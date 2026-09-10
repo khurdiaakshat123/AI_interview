@@ -1,0 +1,512 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Cpu, Mic, MicOff, Volume2, VolumeX, Send, Sparkles,
+  ArrowRight, ShieldCheck, User, Bot, Clock, HelpCircle, Layers
+} from 'lucide-react';
+import { InterviewTurn, InterviewFinalReport } from '../types';
+import { DepthMeter } from '../components/DepthMeter';
+import { api } from '../services/api';
+
+interface LiveInterviewPageProps {
+  initialTurn: InterviewTurn;
+  company: string;
+  role: string;
+  candidateName?: string;
+  onNavigate: (tab: string, state?: any) => void;
+}
+
+interface ChatMessage {
+  sender: 'INTERVIEWER' | 'CANDIDATE';
+  text: string;
+  topic?: string;
+  depth?: number;
+  timestamp: string;
+  evalPrev?: any;
+}
+
+export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
+  initialTurn,
+  company,
+  role,
+  candidateName = 'Candidate',
+  onNavigate
+}) => {
+  const [currentTurn, setCurrentTurn] = useState<InterviewTurn>(initialTurn);
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      sender: 'INTERVIEWER',
+      text: initialTurn.question_text,
+      topic: initialTurn.current_topic,
+      depth: initialTurn.depth_level,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    }
+  ]);
+  const [inputText, setInputText] = useState('');
+  const [isVoiceEnabled, setIsVoiceEnabled] = useState(true);
+  const [isListening, setIsListening] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Speech recognition refs for continuous manual start/stop
+  const recognitionRef = useRef<any>(null);
+  const isListeningRef = useRef<boolean>(false);
+  const baseTextRef = useRef<string>('');
+  const inputTextRef = useRef<string>('');
+
+  useEffect(() => {
+    inputTextRef.current = inputText;
+  }, [inputText]);
+
+  // Clean up recognition on unmount
+  useEffect(() => {
+    return () => {
+      isListeningRef.current = false;
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.abort();
+        } catch (e) {}
+      }
+    };
+  }, []);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  // Voice synthesis: speak question aloud using Web Speech API
+  useEffect(() => {
+    if (isVoiceEnabled && 'speechSynthesis' in window && currentTurn?.question_text) {
+      window.speechSynthesis.cancel(); // stop prior speech
+      const utterance = new SpeechSynthesisUtterance(currentTurn.question_text);
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+      // Prefer standard clear voices if available
+      const voices = window.speechSynthesis.getVoices();
+      const englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+      if (englishVoice) utterance.voice = englishVoice;
+      window.speechSynthesis.speak(utterance);
+    }
+    return () => {
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    };
+  }, [currentTurn, isVoiceEnabled]);
+
+  // Manual Stop speech recognition
+  const stopListening = () => {
+    isListeningRef.current = false;
+    setIsListening(false);
+    if (recognitionRef.current) {
+      try {
+        recognitionRef.current.stop();
+      } catch (err) {
+        console.warn('[SpeechRecognition] stop error:', err);
+      }
+    }
+  };
+
+  // Continuous speech recognition with manual user start & stop (ignores silence pauses)
+  const startListening = () => {
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert('Speech recognition is not supported in this browser. Please use Google Chrome or Microsoft Edge, or type your response.');
+      return;
+    }
+
+    // Stop synthetic interviewer voice if currently reading aloud
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+
+    isListeningRef.current = true;
+    setIsListening(true);
+    baseTextRef.current = inputText.trim() ? inputText.trim() + ' ' : '';
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+
+    recognition.onresult = (e: any) => {
+      let interim = '';
+      let finalized = '';
+
+      for (let i = 0; i < e.results.length; i++) {
+        const item = e.results[i];
+        if (item.isFinal) {
+          finalized += item[0].transcript + ' ';
+        } else {
+          interim += item[0].transcript;
+        }
+      }
+
+      const combinedSpoken = (finalized + interim).replace(/\s+/g, ' ');
+      const newText = (baseTextRef.current + combinedSpoken).trim();
+      setInputText(newText);
+    };
+
+    recognition.onerror = (e: any) => {
+      console.warn('[SpeechRecognition] event error:', e.error);
+      // 'no-speech' is triggered when the user takes a pause; do NOT abort recording!
+      if (e.error === 'no-speech') {
+        return;
+      }
+      if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
+        isListeningRef.current = false;
+        setIsListening(false);
+      }
+    };
+
+    recognition.onend = () => {
+      // If the user has NOT clicked stop, immediately restart listening so pauses don't cut them off
+      if (isListeningRef.current) {
+        if (inputTextRef.current.trim()) {
+          baseTextRef.current = inputTextRef.current.trim() + ' ';
+        }
+        try {
+          recognition.start();
+        } catch (err) {
+          // If browser audio device needs a moment to reset, retry shortly
+          setTimeout(() => {
+            if (isListeningRef.current) {
+              try {
+                recognition.start();
+              } catch (retryErr) {
+                console.warn('[SpeechRecognition] restart failed:', retryErr);
+              }
+            }
+          }, 250);
+        }
+      } else {
+        setIsListening(false);
+      }
+    };
+
+    recognitionRef.current = recognition;
+
+    try {
+      recognition.start();
+    } catch (err) {
+      console.error('[SpeechRecognition] initial start error:', err);
+      isListeningRef.current = false;
+      setIsListening(false);
+    }
+  };
+
+  // Toggle between manual start and manual stop
+  const toggleListening = () => {
+    if (isListening) {
+      stopListening();
+    } else {
+      startListening();
+    }
+  };
+
+  const handleSendAnswer = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    // Automatically stop speech recording when sending answer
+    if (isListeningRef.current) {
+      stopListening();
+    }
+    if (!inputText.trim() || isProcessing) return;
+
+    const candidateAnswer = inputText.trim();
+    setInputText('');
+
+    // Add candidate message to local log
+    const updatedMessages: ChatMessage[] = [
+      ...messages,
+      {
+        sender: 'CANDIDATE',
+        text: candidateAnswer,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      }
+    ];
+    setMessages(updatedMessages);
+    setIsProcessing(true);
+
+    try {
+      const nextTurn = await api.answerInterviewQuestion(currentTurn.session_id, candidateAnswer);
+      setCurrentTurn(nextTurn);
+
+      // Add interviewer message
+      setMessages([
+        ...updatedMessages,
+        {
+          sender: 'INTERVIEWER',
+          text: nextTurn.question_text,
+          topic: nextTurn.current_topic,
+          depth: nextTurn.depth_level,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          evalPrev: nextTurn.eval_previous
+        }
+      ]);
+
+      if (nextTurn.is_completed) {
+        // Fetch report
+        const report = await api.getInterviewReport(currentTurn.session_id);
+        setTimeout(() => {
+          onNavigate('interview-report', { report });
+        }, 1500);
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to process response.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const handleViewReportDirectly = async () => {
+    setIsProcessing(true);
+    try {
+      const report = await api.getInterviewReport(currentTurn.session_id);
+      onNavigate('interview-report', { report });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      {/* Top Session Header */}
+      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-md">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center">
+            <Bot className="w-5 h-5 text-indigo-400" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-base font-bold text-white">{company} Technical Interview</h1>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">
+                LIVE
+              </span>
+            </div>
+            <div className="text-xs text-slate-400">
+              Candidate: <span className="text-slate-200">{candidateName}</span> • Phase:{' '}
+              <span className="text-brand-300 font-semibold font-mono">{currentTurn.phase.replace('_', ' ')}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Audio & Finish Controls */}
+        <div className="flex items-center gap-2.5">
+          <button
+            onClick={() => setIsVoiceEnabled(!isVoiceEnabled)}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+              isVoiceEnabled
+                ? 'bg-brand-950 text-brand-300 border border-brand-800'
+                : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+            }`}
+            title={isVoiceEnabled ? 'Voice Enabled (AI speaks questions)' : 'Voice Disabled'}
+          >
+            {isVoiceEnabled ? <Volume2 className="w-4 h-4 text-brand-400" /> : <VolumeX className="w-4 h-4" />}
+            <span>{isVoiceEnabled ? 'Voice On' : 'Voice Off'}</span>
+          </button>
+
+          <button
+            onClick={handleViewReportDirectly}
+            className="px-4 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all"
+          >
+            Conclude & View Audit Report
+          </button>
+        </div>
+      </div>
+
+      {/* Main Grid */}
+      <div className="grid lg:grid-cols-4 gap-6">
+        {/* Left 3 Cols: Real-time Conversational Flow */}
+        <div className="lg:col-span-3 flex flex-col h-[650px] rounded-2xl bg-slate-900/90 border border-slate-800 overflow-hidden shadow-sm">
+          {/* Messages Scroll Area */}
+          <div className="flex-1 p-6 overflow-y-auto space-y-4">
+            {messages.map((msg, idx) => {
+              const isInterviewer = msg.sender === 'INTERVIEWER';
+
+              return (
+                <div
+                  key={idx}
+                  className={`flex items-start gap-3.5 ${isInterviewer ? 'justify-start' : 'justify-end'}`}
+                >
+                  {isInterviewer && (
+                    <div className="w-8 h-8 rounded-lg bg-indigo-600/30 border border-indigo-500/50 flex items-center justify-center shrink-0 mt-1">
+                      <Bot className="w-4 h-4 text-indigo-300" />
+                    </div>
+                  )}
+
+                  <div className={`max-w-2xl space-y-1.5 ${isInterviewer ? 'items-start' : 'items-end'}`}>
+                    <div className="flex items-center gap-2 text-[11px] text-slate-400 px-1">
+                      <span className="font-semibold text-slate-300">
+                        {isInterviewer ? 'AI Technical Interviewer' : candidateName}
+                      </span>
+                      {msg.topic && (
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">
+                          {msg.topic}
+                        </span>
+                      )}
+                      <span>{msg.timestamp}</span>
+                    </div>
+
+                    <div
+                      className={`p-4 rounded-2xl text-xs sm:text-sm leading-relaxed ${
+                        isInterviewer
+                          ? 'bg-slate-950 border border-slate-800/80 text-slate-100 rounded-tl-sm'
+                          : 'bg-indigo-600 text-white rounded-tr-sm shadow-md shadow-indigo-600/20'
+                      }`}
+                    >
+                      {msg.text}
+                    </div>
+
+                    {/* Show previous evaluation details inline if available */}
+                    {msg.evalPrev && (
+                      msg.evalPrev.is_clarification_prompt || msg.evalPrev.quality_band === 'Specification Clarification' ? (
+                        <div className="p-2.5 rounded-xl bg-amber-950/40 border border-amber-800/60 text-[11px] text-amber-200 flex items-center justify-between gap-2 mt-1">
+                          <div className="flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block" />
+                            <span className="font-bold text-amber-300">2nd-Go Clarification Requested</span>
+                          </div>
+                          <span className="text-amber-300/80 font-medium text-[10px]">
+                            Overview noted • Specify concrete details (No 0/10 penalty yet)
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80 text-[11px] text-slate-300 flex items-center justify-between gap-2 mt-1">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-slate-500">Graded:</span>
+                            <span className="font-bold text-amber-300">{msg.evalPrev.quality_band}</span>
+                          </div>
+                          <span className="font-mono text-emerald-400 font-semibold">
+                            +{msg.evalPrev.earned_points} / {msg.evalPrev.possible_points} pts
+                          </span>
+                        </div>
+                      )
+                    )}
+                  </div>
+
+                  {!isInterviewer && (
+                    <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 mt-1 text-slate-200">
+                      <User className="w-4 h-4" />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            {isProcessing && (
+              <div className="flex items-center gap-3 text-xs text-slate-400 p-2">
+                <div className="w-5 h-5 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin" />
+                <span>Interviewer evaluating technical reasoning & adapting follow-up...</span>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input Bar */}
+          <div className="p-4 bg-slate-950 border-t border-slate-800 space-y-2">
+            {(currentTurn.is_clarification_prompt || currentTurn.eval_previous?.is_clarification_prompt) && (
+              <div className="px-3.5 py-2 rounded-xl bg-amber-950/40 border border-amber-700/60 flex items-center gap-2 text-xs text-amber-200">
+                <HelpCircle className="w-4 h-4 text-amber-400 shrink-0" />
+                <div className="flex-1">
+                  <span className="font-bold text-amber-200">2nd-Go Opportunity: </span>
+                  <span className="text-amber-300/90">
+                    The interviewer wants specific implementation details, libraries, or architecture choices. Answer precisely to earn full marks with minimal penalty!
+                  </span>
+                </div>
+              </div>
+            )}
+            {isListening && (
+              <div className="px-3.5 py-2 rounded-xl bg-rose-950/40 border border-rose-800/60 flex items-center justify-between text-xs text-rose-300">
+                <div className="flex items-center gap-2.5">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500"></span>
+                  </span>
+                  <span className="font-bold text-white">Microphone Active</span>
+                  <span className="text-rose-300/80 hidden sm:inline">• Speak freely, pauses will not stop recording. Click Mic or Stop when done.</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={stopListening}
+                  className="px-2.5 py-1 rounded-lg bg-rose-900/60 hover:bg-rose-800 text-[11px] font-bold uppercase tracking-wider text-rose-100 transition-colors"
+                >
+                  Stop Recording
+                </button>
+              </div>
+            )}
+
+            <form onSubmit={handleSendAnswer} className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={toggleListening}
+                className={`p-3 rounded-xl border transition-all ${
+                  isListening
+                    ? 'bg-rose-600 text-white border-rose-500 shadow-lg shadow-rose-600/30'
+                    : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
+                }`}
+                title={isListening ? 'Stop recording (Manual Stop)' : 'Start speaking (Manual Start with continuous listening)'}
+              >
+                {isListening ? <Mic className="w-4 h-4 animate-pulse" /> : <MicOff className="w-4 h-4" />}
+              </button>
+
+              <input
+                type="text"
+                value={inputText}
+                onChange={(e) => {
+                  setInputText(e.target.value);
+                  baseTextRef.current = e.target.value.trim() ? e.target.value.trim() + ' ' : '';
+                }}
+                placeholder={isListening ? 'Listening continuously... speak freely, take pauses, click mic to stop.' : 'Type your architectural rationale or click mic to speak...'}
+                disabled={isProcessing}
+                className="flex-1 px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-xs sm:text-sm text-white focus:border-indigo-500 focus:outline-none placeholder:text-slate-500"
+              />
+
+              <button
+                type="submit"
+                disabled={!inputText.trim() || isProcessing}
+                className="px-5 py-3 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white flex items-center gap-2 shadow-sm transition-all"
+              >
+                <span>Send</span>
+                <Send className="w-3.5 h-3.5" />
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Right 1 Col: Adaptive Follow-up Depth & Status */}
+        <div className="space-y-4">
+          <DepthMeter
+            currentDepth={currentTurn.depth_level}
+            maxDepth={currentTurn.max_depth}
+            phase={currentTurn.phase}
+            previousEval={currentTurn.eval_previous}
+          />
+
+          <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3 text-xs">
+            <div className="font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+              <Layers className="w-3.5 h-3.5 text-indigo-400" />
+              Adaptive Reasoning Engine (§6.2)
+            </div>
+            <p className="text-slate-400 leading-relaxed">
+              Every turn is scored deterministically using:
+            </p>
+            <div className="p-2.5 rounded-lg bg-slate-950 font-mono text-[11px] text-slate-300 space-y-1">
+              <div>correct_possible(L) = 5 + 3*(L - 1)</div>
+              <div>incorrect_possible(L) = max(2, 10 - 2*(L - 1))</div>
+            </div>
+            <p className="text-slate-400 leading-relaxed">
+              Shallow errors are penalized heavily; correct deep insights at Level 4–5 earn maximum points.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
