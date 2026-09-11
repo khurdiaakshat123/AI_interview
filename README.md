@@ -31,9 +31,14 @@
   $$\text{correct\_possible}(L) = 5 + 3 \times (L - 1)$$
   $$\text{incorrect\_possible}(L) = \max(2, 10 - 2 \times (L - 1))$$
   Shallow blunders carry severe penalties; deep architectural insights earn maximum points.
-- **Continuous Speech Recognition with Manual Controls**:
-  - Speech recognition stays active across natural speech pauses and thoughts; candidate manually controls Start/Stop.
-  - Web Speech API speech synthesis provides spoken interviewer questions.
+- **One-Click "Correct Typos (AI)" Autocorrection**:
+  - A dedicated button in the live interview room allows candidates to review their spoken response before submitting.
+  - The LLM cross-references the spoken answer with the Question Asked and the Candidate's Resume/Projects, automatically correcting phonetic speech-to-text slips (e.g. *"post grass SQL"* → *PostgreSQL*, *"superb is"* → *Supabase*, *"duck duck GO light"* → *DuckDuckGo Lite*, *"red is"* → *Redis*, *"pin corn"* → *Pinecone*) and irregular sentence breaks.
+- **Continuous Multi-Line Paragraph Speech Recognition**:
+  - Live speech recognition streams and wraps words into a full, readable multi-line paragraph in real time.
+  - Automatically scrolls to keep the latest spoken words in view, with live word and character counters.
+  - Candidate has manual Start/Stop control so pauses to gather thoughts never cut off recording.
+  - Web Speech API speech synthesis provides realistic spoken interviewer voice.
 - **Dual Headline Scorecards & Evidence Trail**:
   - Reports **Resume Related Score /100** and **Subject Knowledge Score /100** separately (never averaged into a misleading blend).
   - Every point earned is linked to a permanent `interview_evidence` audit record (`EV-PRO-3-abc123`).
