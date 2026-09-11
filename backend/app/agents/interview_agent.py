@@ -653,6 +653,7 @@ class InterviewAgent:
                 missing_specs_context=missing_specs_context
             )
             if llm_eval and "quality_band" in llm_eval:
+                band = llm_eval.get("quality_band", "Average").strip().capitalize()
                 diff = llm_eval.get("question_difficulty", "medium").lower()
                 topic_detected = llm_eval.get("actual_topic", topic)
                 score_pct = llm_eval.get("score_percentage")
@@ -661,8 +662,15 @@ class InterviewAgent:
                 is_non_ans = llm_eval.get("is_non_answer", False)
                 needs_clar = llm_eval.get("needs_specification_clarification", False)
                 clar_focus = llm_eval.get("clarification_prompt_focus")
+
+                # Strict gating: Clarification is ONLY for relevant, sensible attempts that missed 1-2 parameters.
+                # Never clarify if the answer was Weak, Incorrect, or low-scoring (<40%).
+                if is_non_ans or band in ["Incorrect", "Weak"] or (score_pct is not None and score_pct < 40.0):
+                    needs_clar = False
+                    clar_focus = None
+
                 return (
-                    llm_eval["quality_band"],
+                    band,
                     llm_eval.get("detected_gap"),
                     llm_eval.get("evaluator_reason", "Evaluated via live AI agent model."),
                     llm_eval.get("expected_concept", "Sound engineering design and algorithmic justification."),
@@ -793,8 +801,8 @@ class InterviewAgent:
                 None
             )
 
-        # Case 4: Strong / Excellent technical defense
-        if total_technical_entities >= 3 and (len(reason_hits) >= 1 or word_count >= 35):
+        # Case 4: Strong / Excellent technical defense (requires multiple verified technical entities and reasoning)
+        if total_technical_entities >= 3 and len(reason_hits) >= 1:
             return (
                 "Excellent",
                 None,
@@ -810,12 +818,12 @@ class InterviewAgent:
                 None
             )
 
-        # Case 5: Solid / Good answer
-        if total_technical_entities >= 2 or word_count >= 25:
+        # Case 5: Solid / Good answer (requires at least 2 relevant technical entities and reasonable explanation)
+        if total_technical_entities >= 2 and (len(reason_hits) >= 1 or word_count >= 20):
             return (
                 "Good",
                 None,
-                f"Solid technical explanation addressing key engineering concepts: {', '.join((ds_hits + sys_hits + perf_hits)[:3]) or 'relevant mechanisms'}.",
+                f"Solid technical explanation addressing key engineering concepts: {', '.join((ds_hits + sys_hits + perf_hits)[:3])}.",
                 expected,
                 fallback_difficulty,
                 fallback_topic,
@@ -827,8 +835,25 @@ class InterviewAgent:
                 None
             )
 
-        # Case 6: Average (Acceptable high-level answer)
-        needs_clar_fallback = not is_clarification_attempt and depth <= 2
+        # Case 6: Weak answer (colloquial words or disconnected explanation with zero or minimal technical entities)
+        if total_technical_entities == 0:
+            return (
+                "Weak",
+                "Answer lacks concrete technical mechanisms, algorithms, or architectures relevant to the question.",
+                "Provided a high-level colloquial statement without concrete engineering substance or architectural justification.",
+                expected,
+                fallback_difficulty,
+                fallback_topic,
+                15.0,
+                None,
+                None,
+                False,
+                False,
+                None
+            )
+
+        # Case 7: Average (On-topic baseline attempt with 1 technical entity, but lacking deep specifications)
+        needs_clar_fallback = not is_clarification_attempt and depth <= 2 and total_technical_entities >= 1
         clar_focus_fallback = "concrete technical implementation details, architecture, or chosen database" if needs_clar_fallback else None
         return (
             "Average",

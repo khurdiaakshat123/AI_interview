@@ -84,6 +84,16 @@ class TranscriptNormalizer:
         (re.compile(r'\binfini\s*band\b', re.IGNORECASE), 'InfiniBand'),
         (re.compile(r'\bproto\s*buf\b', re.IGNORECASE), 'Protobuf'),
         (re.compile(r'\bprotocol\s*buffers?\b', re.IGNORECASE), 'Protocol Buffers'),
+
+        # Edge Proxies, Gateways & Security sound-alikes
+        (re.compile(r'\bcloud\s*player\b', re.IGNORECASE), 'Cloudflare'),
+        (re.compile(r'\bcloud\s*flare\b', re.IGNORECASE), 'Cloudflare'),
+        (re.compile(r'\bin\s+the\s+next\b', re.IGNORECASE), 'Nginx'),
+        (re.compile(r'\bengine\s*x\b', re.IGNORECASE), 'Nginx'),
+        (re.compile(r'\bin\s*gin\s*x\b', re.IGNORECASE), 'Nginx'),
+        (re.compile(r'\b(?:bohat|bo\s*hat|birds)\s+(?:sitting|hitting)\b', re.IGNORECASE), 'bots hitting'),
+        (re.compile(r'\ball\s+the\s+birds\b', re.IGNORECASE), 'all the bots'),
+        (re.compile(r'\bconsisting\s+or\b', re.IGNORECASE), 'consisting of'),
     ]
 
     @classmethod

@@ -199,25 +199,26 @@ class LLMClient:
             )
         else:
             clarification_directive = (
-                "\n--- 1ST-GO SPECIFICATION CLARIFICATION DETECTION ---\n"
-                "If the candidate provided an on-topic answer or high-level project summary, BUT is missing concrete expected "
-                "specifications (e.g. they described web scraping generally but omitted the fallback mechanism details, or mentioned "
-                "a database without specifying the primary database choice or schema reasons):\n"
-                "   * set needs_specification_clarification = true\n"
-                "   * set clarification_prompt_focus = \"<the exact 1-2 missing technical specifications that the interviewer should ask for in a 2nd go>\"\n"
-                "   * NOTE: Do NOT trigger clarification for complete deflections (e.g. 'i don't know', 'i have no idea', zero answer). "
-                "Only trigger when the user made a genuine attempt that simply lacked the technical specifics.\n"
+                "\n--- 1ST-GO SPECIFICATION CLARIFICATION DETECTION RULES ---\n"
+                "Trigger a 2nd-go clarification (needs_specification_clarification = true) ONLY IF ALL THREE CONDITIONS ARE SATISFIED:\n"
+                "1. RELEVANT: The candidate's response is directly relevant and on-topic to the specific question asked or resume project.\n"
+                "2. SENSIBLE ATTEMPT: The candidate showed genuine comprehension and gave a coherent, sensible answer with basic technical validity.\n"
+                "3. NOT PINPOINT, BUT CLOSE: The answer is good/average in general direction, but missing 1-2 specific concrete parameters or implementation choices (e.g., they explained the data flow well, but omitted the cache eviction policy).\n\n"
+                "CRITICAL NEGATIVE RULES - NEVER TRIGGER CLARIFICATION IF:\n"
+                "- The answer is NOT relevant to the question asked or the candidate's resume.\n"
+                "- The answer is nonsensical, random, disconnected, or buzzword soup.\n"
+                "- The answer makes an assertion with an inappropriate or disconnected reason (e.g., claiming bot detection and port routing explains how 100k events/sec throughput and 42ms latency was achieved).\n"
+                "- The answer is fundamentally wrong, flawed, or a deflection.\n"
+                "In ALL such cases: set needs_specification_clarification = false. Do NOT ask for clarification. Cut marks immediately (quality_band = 'Weak' or 'Incorrect', score_percentage <= 20) and move to the next question.\n"
             )
 
         system_prompt = (
             f"You are a seasoned Principal Technical Interviewer evaluating a candidate's answer for a {role} role at {company}.\n"
             "Evaluate with FAIR, SOUND, CONTEXT-AWARE ENGINEERING JUDGMENT. Do NOT be rigid or overfitted.\n\n"
-            "1. SPEECH-TO-TEXT TYPO & PHONETIC NORMALIZATION (CRITICAL FOR FAIRNESS):\n"
-            "   - The candidate may be answering via speech-to-text / voice recognition. Browsers often introduce phonetic typos "
-            "(e.g. 'post grass SQL' -> PostgreSQL, 'superb is' -> Supabase, 'webs grapes' -> web scrapes, 'Wells drug' -> well structured, "
-            "'duck duck GO light' -> DuckDuckGo Lite, 'hurastic' -> heuristic, 'CSE files' -> CSV files, 'pills the missing' -> fills the missing).\n"
-            "   - You MUST reconstruct the candidate's true technical intent. Never penalize or call an answer 'incoherent' or 'lacks substance' "
-            "simply due to phonetic misspellings or typographical slips. Evaluate what the candidate actually meant from an engineering standpoint!\n\n"
+            "1. SPEECH-TO-TEXT PHONETIC TYPOS (FAIRNESS WITHOUT HALLUCINATION):\n"
+            "   - The candidate may have answered using speech-to-text voice recognition, which may have minor acoustic phonetic mishearings "
+            "(e.g. 'post grass' -> Postgres, 'cloud player' -> Cloudflare, 'birds' -> bots, 'in the next' -> Nginx, 'CSE' -> CSV, 'red is' -> Redis).\n"
+            "   - Understand their phonetic intent at the word level, BUT DO NOT hallucinate missing logic or invent technical details they never spoke. Evaluate ONLY the technical claims they actually attempted to make.\n\n"
             "2. DETECT NON-ANSWERS & DEFLECTIONS (CRITICAL FOR INTEGRITY):\n"
             "   - If the candidate provided NO real explanation, dodged the question, gave zero technical substance, or said phrases like "
             "\"i am totally aware about this\", \"i know this\", \"i don't know\", \"no idea\", or pure generic buzzwords:\n"
@@ -236,9 +237,14 @@ class LLMClient:
             "   - Principle D (HARD/IN-DEPTH question + WRONG/NON-ANSWER): Low negative drag. Candidate is protected from tough questions. suggested_possible_points between 2.0 and 3.2 pts. suggested_earned_points = 0.0 to 0.5 (or 0.0 if non-answer).\n"
             "   - Medium questions: suggested_possible_points between 5.5 and 8.5 pts.\n"
             "   - Tailor points fluidly to project context and relevance (e.g., 2.7, 4.3, 7.8, 13.5). Avoid rigid repetitive numbers.\n\n"
-            "5. SOUND ENGINEERING LOGIC:\n"
-            "   - In engineering, there are multiple valid architectural patterns and trade-offs. If what the candidate explained makes engineering sense for their project, evaluate it positively (Good or Excellent).\n"
-            "   - If technically correct but high-level, award Good or Average (50%-70% points). Do NOT mark it Weak or Incorrect unless they display severe confusion or say nothing.\n"
+            "5. LOGICAL RIGOR & CAUSALITY CHECKING (ASSERTION VS REASON):\n"
+            "   - You MUST test whether the candidate's answer actually makes sense as an engineering solution.\n"
+            "   - Check Assertion vs Reason causality: If the candidate states an assertion and provides a reason (e.g., 'we did X by using Y because Z'):\n"
+            "     * Both assertion and reason might contain valid-sounding technical buzzwords individually, BUT if the reason is NOT appropriate to the assertion, or does not logically achieve the stated outcome, evaluate the statement as WRONG.\n"
+            "     * Example: If the question asks how an event pipeline achieved 100k events/sec throughput and 42ms p99 latency, and the candidate claims Cloudflare bot detection and Nginx host port routing achieved it: bot detection and port routing DO NOT explain high-throughput batching, queue buffering, or 42ms p99 latency. The reason is inappropriate to the assertion. Mark as 'Weak' or 'Incorrect', score_percentage <= 15%, suggested_earned_points = 0.0 to 0.5 pts.\n"
+            "   - Evaluate ONLY the words the candidate actually stated. NEVER assume, hallucinate, or credit architectures, technologies, or numbers that the candidate did not explicitly explain.\n"
+            "   - If the answer has multiple parts, grade proportionally: give credit only for the specific parts of the reason that are factually and causally correct. If none of the reason explains the assertion, award minimal/zero points.\n"
+            "   - In engineering, there are multiple valid architectural patterns and trade-offs. If what the candidate explained makes sound engineering sense for their project, evaluate it positively (Good or Excellent).\n"
             f"{clarification_directive}\n"
             "Return ONLY a valid JSON object matching this schema:\n"
             "{\n"
@@ -314,10 +320,11 @@ class LLMClient:
                     score_pct = 0.0
                 parsed["score_percentage"] = score_pct
 
-                # Clarification flags
+                # Clarification flags: NEVER clarify on Weak, Incorrect, or low-scoring responses
                 needs_clar = parsed.get("needs_specification_clarification", False)
-                if is_non_ans or is_clarification_attempt:
+                if is_non_ans or is_clarification_attempt or band in ["Incorrect", "Weak"] or (score_pct is not None and score_pct < 40.0):
                     needs_clar = False
+                    parsed["clarification_prompt_focus"] = None
                 parsed["needs_specification_clarification"] = bool(needs_clar)
 
                 # Suggested possible points
@@ -334,6 +341,8 @@ class LLMClient:
                     sug_earn = None
                 if is_non_ans or band == "Incorrect":
                     sug_earn = 0.0
+                elif band == "Weak" and sug_poss and sug_earn is not None:
+                    sug_earn = min(sug_earn, sug_poss * 0.25)
                 parsed["suggested_earned_points"] = sug_earn
 
                 return parsed
@@ -506,20 +515,22 @@ class LLMClient:
             }
 
         system_prompt = (
-            f"You are an expert Principal Technical Interviewer and Speech-to-Text Transcription Corrector for technical interviews at {company} ({role}).\n"
-            "Candidates speak their answers using browser voice recognition, which frequently causes:\n"
-            "1. Phonetic sound-alike mistranslations of technical tools, libraries, protocols, and architectural terms (e.g. 'post grass SQL' -> PostgreSQL, 'superb is' -> Supabase, 'duck duck GO light' -> DuckDuckGo Lite, 'wells drug' -> well structured, 'CSE files' -> CSV files, 'red is' -> Redis, 'pin corn' -> Pinecone, 'cooberneties' -> Kubernetes, 'g r p c' -> gRPC, 'mungo' -> MongoDB, etc.).\n"
-            "2. Fragmented, run-on, or irregular sentence boundaries caused by speaking pauses.\n"
-            "3. Punctuation, capitalization, and minor grammatical slips.\n\n"
-            "YOUR TASK:\n"
-            "- Cross-reference the candidate's spoken answer with the Question Asked and their Resume/Projects Context.\n"
-            "- Correct all voice-to-text phonetic mishearings and restore the exact technical terms the candidate intended.\n"
-            "- Clean up fragmented, run-on, or irregular sentences into a coherent, natural, well-formatted technical paragraph.\n"
-            "- CRITICAL SAFETY RULE: PRESERVE THE CANDIDATE'S ACTUAL CLAIMS, ARCHITECTURE, AND INTENT. DO NOT invent new technologies, algorithms, metrics, or answers they did not attempt to state. Only fix the speech-to-text translation, grammar, and technical names.\n\n"
+            f"You are a strict Word-Level Speech Recognition Acoustic Typo Corrector for technical interviews at {company} ({role}).\n"
+            "Candidates speak their answers using browser voice recognition, which frequently mishears spoken words as acoustically similar words.\n\n"
+            "YOUR STRICT INSTRUCTIONS:\n"
+            "1. ONLY FIX PHONETIC ACOUSTIC TYPOS: Only replace specific words or short groups of words that sound phonetically similar to what the user actually said (e.g. 'cloud player' -> 'Cloudflare', 'birds' -> 'bots', 'bohat sitting' -> 'bots hitting', 'in the next' -> 'Nginx', 'consisting or' -> 'consisting of', 'post grass' -> 'Postgres', 'superb is' -> 'Supabase', 'CSE files' -> 'CSV files', 'red is' -> 'Redis', 'wells drug' -> 'well structured').\n"
+            "2. DO NOT REWRITE OR MODIFY THE COMPLETE SENTENCE: You must preserve the candidate's exact sentence structure, grammar, word order, and phrasing.\n"
+            "3. DO NOT EXPAND OR INVENT NEW CONTENT: DO NOT add new sentences. DO NOT answer the interview question. DO NOT inject technologies, frameworks, metrics, numbers, or architectural details that the candidate did not explicitly utter.\n"
+            "4. PRESERVE FLAWED OR NONSENSICAL LOGIC: If the candidate gave a random, weak, or nonsensical answer, KEEP IT THAT WAY! Your motive is strictly to fix speech recognition phonetic sound-alikes, NEVER to rewrite, enhance, or polish the candidate's answer into a model answer.\n"
+            "5. OUTPUT LENGTH MUST MATCH INPUT LENGTH: The output sentence count and word count must be virtually identical to the input.\n\n"
+            "EXAMPLE:\n"
+            "Raw: \"architecture existed of five levels consisting or cloud player used to detect all the birds and reduce the hit rate of the port followed by in the next to read out the host port so that the relevant user only gets into the server other than bohat sitting the server.\"\n"
+            "Corrected: \"Architecture existed of five levels consisting of Cloudflare used to detect all the bots and reduce the hit rate of the port followed by Nginx to read out the host port so that the relevant user only gets into the server other than bots hitting the server.\"\n"
+            "(Notice: Only phonetic words were corrected. The sentences were NOT rewritten or expanded into a new pipeline explanation.)\n\n"
             "Output JSON strictly with this schema:\n"
             "{\n"
-            '  "corrected_text": "<full cleaned paragraph of candidate\'s answer>",\n'
-            '  "changes_made": ["<short description of term or grammar fix 1>", "<fix 2>"],\n'
+            '  "corrected_text": "<exact candidate text with only acoustic phonetic typos fixed>",\n'
+            '  "changes_made": ["<word 1> -> <word 2>"],\n'
             '  "has_corrections": true | false\n'
             "}"
         )
@@ -528,16 +539,13 @@ class LLMClient:
         pre_normalized, did_prenorm = TranscriptNormalizer.normalize(raw_answer.strip())
 
         user_prompt = (
-            f"Target Role: {role} | Company: {company}\n"
-            f"Question Asked:\n{question_text or 'Technical architecture question'}\n"
-            f"Topic: {topic or 'System Architecture'}\n\n"
-            f"Candidate Resume Context (Projects, Skills, Technologies):\n{resume_context or 'Standard Engineering Stack'}\n\n"
-            f"Raw Spoken Transcription:\n\"\"\"\n{raw_answer.strip()}\n\"\"\"\n\n"
-            f"Phonetically Normalized Terms:\n\"\"\"\n{pre_normalized}\n\"\"\"\n"
+            f"Candidate Spoken Transcription:\n\"\"\"\n{raw_answer.strip()}\n\"\"\"\n\n"
+            f"Phonetic Baseline:\n\"\"\"\n{pre_normalized}\n\"\"\"\n\n"
+            "Correct ONLY phonetic acoustic sound-alikes at the word level. Keep the candidate's exact wording, sentence length, and logic."
         )
 
         try:
-            resp_str = self.generate_completion(system_prompt, user_prompt, temperature=0.1)
+            resp_str = self.generate_completion(system_prompt, user_prompt, temperature=0.0)
             if resp_str:
                 cleaned_resp = resp_str.strip()
                 if cleaned_resp.startswith("```json"):
@@ -549,14 +557,22 @@ class LLMClient:
                 data = json.loads(cleaned_resp.strip())
                 corrected = data.get("corrected_text", "").strip()
                 if corrected:
-                    # Run post-pass normalizer as a safety net
+                    # Run post-pass normalizer
                     final_text, _ = TranscriptNormalizer.normalize(corrected)
+
+                    # Programmatic Guardrail: Reject if the model expanded or hallucinated content
+                    raw_words = len(raw_answer.strip().split())
+                    corrected_words = len(final_text.split())
+                    if corrected_words > (raw_words * 1.25 + 4) or corrected_words < (raw_words * 0.75 - 3):
+                        print(f"[LLMClient] Rejected LLM correction due to length deviation (raw: {raw_words}, corrected: {corrected_words}). Falling back to deterministic phonetic normalizer.")
+                        final_text = pre_normalized
+
                     changes = [c.replace('\u2011', '-').replace('\u2013', '-').replace('\u2018', "'").replace('\u2019', "'") for c in data.get("changes_made", [])]
-                    has_changes = data.get("has_corrections", final_text != raw_answer.strip()) or (final_text != raw_answer.strip())
+                    has_changes = (final_text != raw_answer.strip())
                     return {
                         "corrected_text": final_text,
                         "original_text": raw_answer.strip(),
-                        "changes_made": changes,
+                        "changes_made": changes if changes else (["Corrected phonetic speech terms"] if has_changes else []),
                         "has_corrections": has_changes
                     }
         except Exception as e:
