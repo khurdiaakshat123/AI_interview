@@ -1,9 +1,10 @@
+from __future__ import annotations
 import os
 import json
 import httpx
 from pathlib import Path
 from dotenv import load_dotenv
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Any, Optional, Tuple, List
 
 # Automatically load from backend/.env or root .env
 _env_path = Path(__file__).resolve().parent.parent.parent / ".env"
