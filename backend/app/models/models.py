@@ -17,8 +17,10 @@ class User(Base):
 
     id = Column(String(36), primary_key=True, default=generate_uuid)
     email = Column(String(255), unique=True, index=True, nullable=False)
-    password_hash = Column(String(255), nullable=False)
+    password_hash = Column(String(255), nullable=True, default="google_oauth")
     name = Column(String(255), nullable=False)
+    google_id = Column(String(255), unique=True, index=True, nullable=True)
+    avatar_url = Column(String(500), nullable=True)
     created_at = Column(DateTime(timezone=True), default=utc_now)
 
 class TimeWindow(Base):

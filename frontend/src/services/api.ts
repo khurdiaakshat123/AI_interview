@@ -195,5 +195,45 @@ export const api = {
       method: 'POST'
     });
     return handleResponse(res);
+  },
+
+  // Auth & Google Login
+  async loginWithGoogle(credential: string, userInfo?: any): Promise<{ access_token: string; user: any }> {
+    const res = await fetch(`${BASE_URL}/auth/google`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credential, user_info: userInfo })
+    });
+    return handleResponse(res);
+  },
+
+  async login(email: string, password: string): Promise<{ access_token: string; user: any }> {
+    const res = await fetch(`${BASE_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    return handleResponse(res);
+  },
+
+  async signup(name: string, email: string, password: string): Promise<{ access_token: string; user: any }> {
+    const res = await fetch(`${BASE_URL}/auth/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password })
+    });
+    return handleResponse(res);
+  },
+
+  async getMe(token?: string): Promise<any> {
+    const headers: Record<string, string> = {};
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    const res = await fetch(`${BASE_URL}/auth/me`, { headers });
+    return handleResponse(res);
   }
 };
+
+export { BASE_URL };
+

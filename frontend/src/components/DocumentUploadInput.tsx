@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Upload, FileText, Image, FileCode, CheckCircle2, Loader2, X, AlertCircle } from 'lucide-react';
+import { BASE_URL } from '../services/api';
 
 interface DocumentUploadInputProps {
   label: string;
@@ -42,26 +43,15 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
       formData.append('file', file);
 
       // Relative path works via Vite proxy in dev and same-origin in prod
-      const endpoint = '/api/candidate/extract-file';
+      const endpoint = `${BASE_URL}/candidate/extract-file`;
       let res: Response;
       try {
         res = await fetch(endpoint, {
           method: 'POST',
           body: formData
         });
-        if (!res.ok && (res.status === 500 || res.status === 502 || res.status === 504)) {
-          // If proxy returned 500/502/504, try direct backend endpoint
-          const fallbackRes = await fetch('http://127.0.0.1:8000/api/candidate/extract-file', {
-            method: 'POST',
-            body: formData
-          });
-          if (fallbackRes.ok) {
-            res = fallbackRes;
-          }
-        }
       } catch {
-        // Direct fallback if proxy fetch threw network error
-        res = await fetch('http://127.0.0.1:8000/api/candidate/extract-file', {
+        res = await fetch('/api/candidate/extract-file', {
           method: 'POST',
           body: formData
         });

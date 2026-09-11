@@ -22,12 +22,41 @@ export const App: React.FC = () => {
     email: string;
     company: string;
     role: string;
-  }>({
-    name: 'Alex Mercer',
-    email: 'alex.mercer@intervyn.ai',
-    company: 'Google',
-    role: 'Software Engineer II (L4)'
+  }>(() => {
+    try {
+      const savedUser = JSON.parse(localStorage.getItem('intervyn_user') || 'null');
+      if (savedUser && savedUser.name) {
+        return {
+          name: savedUser.name,
+          email: savedUser.email,
+          company: 'Google',
+          role: 'Software Engineer II (L4)'
+        };
+      }
+    } catch {}
+    return {
+      name: 'Alex Mercer',
+      email: 'alex.mercer@intervyn.ai',
+      company: 'Google',
+      role: 'Software Engineer II (L4)'
+    };
   });
+
+  const handleAuthChange = (user: any) => {
+    if (user) {
+      setCandidate(prev => ({
+        ...prev,
+        name: user.name,
+        email: user.email
+      }));
+    } else {
+      setCandidate(prev => ({
+        ...prev,
+        name: 'Alex Mercer',
+        email: 'alex.mercer@intervyn.ai'
+      }));
+    }
+  };
 
   const handleNavigate = (tab: string, state?: any) => {
     if (state) setNavState(state);
@@ -66,6 +95,7 @@ export const App: React.FC = () => {
         setCurrentTab={handleNavigate} 
         candidate={candidate}
         onOpenCandidateSetup={() => setShowCandidateSetup(true)}
+        onAuthChange={handleAuthChange}
       />
 
       {/* Candidate & Custom JD Setup Modal */}

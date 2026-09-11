@@ -4,6 +4,7 @@ import {
   ArrowRight, X, Layers, Cpu, Check, Loader2, AlertCircle, RefreshCw
 } from 'lucide-react';
 import { DocumentUploadInput } from './DocumentUploadInput';
+import { BASE_URL } from '../services/api';
 
 interface CandidateSetupModalProps {
   isOpen: boolean;
@@ -114,7 +115,7 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
     setStepMessage('Agent 1: Extracting Job Description topics with Live AI...');
 
     try {
-      const response = await fetch('/api/candidate/setup', {
+      const response = await fetch(`${BASE_URL}/candidate/setup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

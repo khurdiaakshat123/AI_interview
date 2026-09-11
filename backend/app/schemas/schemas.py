@@ -12,10 +12,16 @@ class UserLogin(BaseModel):
     email: str
     password: str
 
+class GoogleAuthRequest(BaseModel):
+    credential: str
+    user_info: Optional[Dict[str, Any]] = None
+
 class UserOut(BaseModel):
     id: str
     name: str
     email: str
+    google_id: Optional[str] = None
+    avatar_url: Optional[str] = None
     created_at: datetime
 
     class Config:
