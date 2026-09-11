@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Cpu, Mic, MicOff, Volume2, VolumeX, Send, Sparkles,
-  ArrowRight, ShieldCheck, User, Bot, Clock, HelpCircle, Layers
+  ArrowRight, ShieldCheck, User, Bot, Clock, HelpCircle, Layers, CheckCheck
 } from 'lucide-react';
 import { InterviewTurn, InterviewFinalReport } from '../types';
 import { DepthMeter } from '../components/DepthMeter';
@@ -45,7 +45,10 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
   const [isVoiceEnabled, setIsVoiceEnabled] = useState(true);
   const [isListening, setIsListening] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isCorrecting, setIsCorrecting] = useState(false);
+  const [correctionNotice, setCorrectionNotice] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Speech recognition refs for continuous manual start/stop
   const recognitionRef = useRef<any>(null);
@@ -55,7 +58,11 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
 
   useEffect(() => {
     inputTextRef.current = inputText;
-  }, [inputText]);
+    // Auto scroll textarea when listening so candidate sees streaming speech
+    if (isListening && textareaRef.current) {
+      textareaRef.current.scrollTop = textareaRef.current.scrollHeight;
+    }
+  }, [inputText, isListening]);
 
   // Clean up recognition on unmount
   useEffect(() => {
@@ -206,6 +213,40 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
       stopListening();
     } else {
       startListening();
+    }
+  };
+
+  const handleCorrectTypos = async () => {
+    if (!inputText.trim() || isCorrecting || isProcessing) return;
+
+    setIsCorrecting(true);
+    setCorrectionNotice(null);
+
+    try {
+      const res = await api.correctTranscript(currentTurn.session_id, {
+        raw_text: inputText.trim(),
+        question_text: currentTurn.question_text,
+        topic: currentTurn.current_topic
+      });
+
+      if (res && res.corrected_text) {
+        setInputText(res.corrected_text);
+        baseTextRef.current = res.corrected_text.trim() + ' ';
+
+        if (res.changes_made && res.changes_made.length > 0) {
+          setCorrectionNotice(`Corrected against resume & question context: ${res.changes_made.slice(0, 2).join('; ')}`);
+        } else if (res.has_corrections) {
+          setCorrectionNotice('Refined grammar, technical terms, and sentence flow.');
+        } else {
+          setCorrectionNotice('Answer verified: Technical terms & grammar are sound!');
+        }
+      }
+    } catch (err) {
+      console.error('[TranscriptCorrection] error:', err);
+      setCorrectionNotice('Normalized technical terminology.');
+    } finally {
+      setIsCorrecting(false);
+      setTimeout(() => setCorrectionNotice(null), 6000);
     }
   };
 
@@ -442,40 +483,113 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
               </div>
             )}
 
-            <form onSubmit={handleSendAnswer} className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={toggleListening}
-                className={`p-3 rounded-xl border transition-all ${
-                  isListening
-                    ? 'bg-rose-600 text-white border-rose-500 shadow-lg shadow-rose-600/30'
-                    : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
-                }`}
-                title={isListening ? 'Stop recording (Manual Stop)' : 'Start speaking (Manual Start with continuous listening)'}
-              >
-                {isListening ? <Mic className="w-4 h-4 animate-pulse" /> : <MicOff className="w-4 h-4" />}
-              </button>
+            <form onSubmit={handleSendAnswer} className="space-y-2.5">
+              {/* Full Paragraph Multi-line Textarea */}
+              <div className="relative rounded-2xl bg-slate-900/90 border border-slate-800 focus-within:border-indigo-500/80 focus-within:ring-1 focus-within:ring-indigo-500/30 transition-all p-3 shadow-inner">
+                <textarea
+                  ref={textareaRef}
+                  value={inputText}
+                  rows={4}
+                  onChange={(e) => {
+                    setInputText(e.target.value);
+                    baseTextRef.current = e.target.value.trim() ? e.target.value.trim() + ' ' : '';
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+                      e.preventDefault();
+                      handleSendAnswer();
+                    }
+                  }}
+                  placeholder={
+                    isListening
+                      ? 'Listening continuously... Speak freely; your words will form a full multi-line paragraph here. Pauses will not stop recording. Click Mic or Stop when done.'
+                      : 'Type your technical answer here or click the microphone to speak... Your full paragraph remains visible. (Press Ctrl+Enter or click Send)'
+                  }
+                  disabled={isProcessing || isCorrecting}
+                  className="w-full bg-transparent text-xs sm:text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none resize-y min-h-[95px] max-h-[220px] leading-relaxed font-sans"
+                />
 
-              <input
-                type="text"
-                value={inputText}
-                onChange={(e) => {
-                  setInputText(e.target.value);
-                  baseTextRef.current = e.target.value.trim() ? e.target.value.trim() + ' ' : '';
-                }}
-                placeholder={isListening ? 'Listening continuously... speak freely, take pauses, click mic to stop.' : 'Type your architectural rationale or click mic to speak...'}
-                disabled={isProcessing}
-                className="flex-1 px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-xs sm:text-sm text-white focus:border-indigo-500 focus:outline-none placeholder:text-slate-500"
-              />
+                {/* Bottom Control Bar */}
+                <div className="flex flex-wrap items-center justify-between pt-2 border-t border-slate-800/80 gap-2 text-[11px] text-slate-400">
+                  <div className="flex items-center gap-2">
+                    {isListening && (
+                      <span className="inline-flex items-center gap-1.5 text-rose-400 font-semibold animate-pulse">
+                        <span className="w-2 h-2 rounded-full bg-rose-500" />
+                        Speaking live into paragraph...
+                      </span>
+                    )}
+                    {!isListening && inputText.trim() && (
+                      <span className="text-slate-500">
+                        {inputText.trim().split(/\s+/).length} words • {inputText.length} chars
+                      </span>
+                    )}
+                  </div>
 
-              <button
-                type="submit"
-                disabled={!inputText.trim() || isProcessing}
-                className="px-5 py-3 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white flex items-center gap-2 shadow-sm transition-all"
-              >
-                <span>Send</span>
-                <Send className="w-3.5 h-3.5" />
-              </button>
+                  <div className="flex items-center gap-2 ml-auto">
+                    {/* Correct Typos Button */}
+                    <button
+                      type="button"
+                      onClick={handleCorrectTypos}
+                      disabled={!inputText.trim() || isProcessing || isCorrecting}
+                      className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-950/70 border border-indigo-700/60 text-indigo-200 hover:bg-indigo-900 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 shadow-sm transition-all"
+                      title="AI scans your answer, cross-references with the question and your resume to fix speech-to-text mistranslations and irregular sentences"
+                    >
+                      {isCorrecting ? (
+                        <>
+                          <div className="w-3 h-3 rounded-full border-2 border-indigo-400 border-t-transparent animate-spin" />
+                          <span>Correcting Typos...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+                          <span>Correct Typos (AI)</span>
+                        </>
+                      )}
+                    </button>
+
+                    {/* Microphone Toggle Button */}
+                    <button
+                      type="button"
+                      onClick={toggleListening}
+                      className={`p-2 rounded-xl border transition-all ${
+                        isListening
+                          ? 'bg-rose-600 text-white border-rose-500 shadow-lg shadow-rose-600/30'
+                          : 'bg-slate-800 border-slate-700 text-slate-300 hover:text-white'
+                      }`}
+                      title={isListening ? 'Stop recording (Manual Stop)' : 'Start speaking (Continuous listening paragraph)'}
+                    >
+                      {isListening ? <Mic className="w-3.5 h-3.5 animate-pulse" /> : <MicOff className="w-3.5 h-3.5" />}
+                    </button>
+
+                    {/* Send Answer Button */}
+                    <button
+                      type="submit"
+                      disabled={!inputText.trim() || isProcessing || isCorrecting}
+                      className="px-4 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white flex items-center gap-1.5 shadow-sm transition-all"
+                    >
+                      <span>Send</span>
+                      <Send className="w-3 h-3" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Autocorrect Result Banner */}
+              {correctionNotice && (
+                <div className="px-3.5 py-2 rounded-xl bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 flex items-start justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <CheckCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span className="font-medium text-emerald-200">{correctionNotice}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setCorrectionNotice(null)}
+                    className="text-emerald-400 hover:text-emerald-200 text-xs font-bold ml-2"
+                  >
+                    ×
+                  </button>
+                </div>
+              )}
             </form>
           </div>
         </div>

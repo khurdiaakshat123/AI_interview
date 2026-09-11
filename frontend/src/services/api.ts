@@ -151,6 +151,24 @@ export const api = {
     return handleResponse<InterviewTurn>(res);
   },
 
+  async correctTranscript(sessionId: string, payload: {
+    raw_text: string;
+    question_text?: string;
+    topic?: string;
+  }): Promise<{
+    corrected_text: string;
+    original_text: string;
+    changes_made: string[];
+    has_corrections: boolean;
+  }> {
+    const res = await fetch(`${BASE_URL}/interview/sessions/${sessionId}/correct-transcript`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    return handleResponse(res);
+  },
+
   async getInterviewReport(sessionId: string): Promise<InterviewFinalReport> {
     const res = await fetch(`${BASE_URL}/interview/sessions/${sessionId}/report`);
     return handleResponse<InterviewFinalReport>(res);

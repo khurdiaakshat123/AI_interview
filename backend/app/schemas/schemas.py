@@ -206,6 +206,17 @@ class InterviewSessionCreate(BaseModel):
 class InterviewAnswerRequest(BaseModel):
     answer: str
 
+class CorrectTranscriptRequest(BaseModel):
+    raw_text: str
+    question_text: Optional[str] = None
+    topic: Optional[str] = None
+
+class CorrectTranscriptResponse(BaseModel):
+    corrected_text: str
+    original_text: str
+    changes_made: List[str] = []
+    has_corrections: bool = False
+
 class InterviewTurnOut(BaseModel):
     session_id: str
     phase: str  # PROJECT_DEFENSE | SUBJECT_KNOWLEDGE | COMPLETED

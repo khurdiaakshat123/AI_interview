@@ -95,7 +95,7 @@ class TranscriptNormalizer:
         if not raw_text or not raw_text.strip():
             return raw_text, False
 
-        cleaned = raw_text
+        cleaned = raw_text.replace('\u2011', '-').replace('\u2013', '-').replace('\u2014', '-').replace('\u2018', "'").replace('\u2019', "'").replace('\u201c', '"').replace('\u201d', '"')
         for pattern, replacement in cls.PHONETIC_REPLACEMENTS:
             cleaned = pattern.sub(replacement, cleaned)
 

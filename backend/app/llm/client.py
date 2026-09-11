@@ -479,6 +479,98 @@ class LLMClient:
 
         return self.generate_completion(system_prompt, user_prompt, temperature=0.3)
 
+    def correct_candidate_answer_typos(
+        self,
+        raw_answer: str,
+        question_text: str,
+        resume_context: Optional[str] = None,
+        role: Optional[str] = "Software Engineer",
+        company: Optional[str] = "Tech Company",
+        topic: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Technical voice-to-text typo & grammar autocorrection engine powered by LLM.
+        Takes candidate's raw spoken/typed transcription, question asked, and resume context.
+        Detects phonetic mistranslations, broken/fragmented pause boundaries, and grammar slips,
+        and reconstructs a coherent, natural paragraph reflecting candidate's intended technical answer.
+        """
+        from backend.app.engines.transcript_normalizer import TranscriptNormalizer
+
+        if not raw_answer or not raw_answer.strip():
+            return {
+                "corrected_text": "",
+                "original_text": raw_answer or "",
+                "changes_made": [],
+                "has_corrections": False
+            }
+
+        system_prompt = (
+            f"You are an expert Principal Technical Interviewer and Speech-to-Text Transcription Corrector for technical interviews at {company} ({role}).\n"
+            "Candidates speak their answers using browser voice recognition, which frequently causes:\n"
+            "1. Phonetic sound-alike mistranslations of technical tools, libraries, protocols, and architectural terms (e.g. 'post grass SQL' -> PostgreSQL, 'superb is' -> Supabase, 'duck duck GO light' -> DuckDuckGo Lite, 'wells drug' -> well structured, 'CSE files' -> CSV files, 'red is' -> Redis, 'pin corn' -> Pinecone, 'cooberneties' -> Kubernetes, 'g r p c' -> gRPC, 'mungo' -> MongoDB, etc.).\n"
+            "2. Fragmented, run-on, or irregular sentence boundaries caused by speaking pauses.\n"
+            "3. Punctuation, capitalization, and minor grammatical slips.\n\n"
+            "YOUR TASK:\n"
+            "- Cross-reference the candidate's spoken answer with the Question Asked and their Resume/Projects Context.\n"
+            "- Correct all voice-to-text phonetic mishearings and restore the exact technical terms the candidate intended.\n"
+            "- Clean up fragmented, run-on, or irregular sentences into a coherent, natural, well-formatted technical paragraph.\n"
+            "- CRITICAL SAFETY RULE: PRESERVE THE CANDIDATE'S ACTUAL CLAIMS, ARCHITECTURE, AND INTENT. DO NOT invent new technologies, algorithms, metrics, or answers they did not attempt to state. Only fix the speech-to-text translation, grammar, and technical names.\n\n"
+            "Output JSON strictly with this schema:\n"
+            "{\n"
+            '  "corrected_text": "<full cleaned paragraph of candidate\'s answer>",\n'
+            '  "changes_made": ["<short description of term or grammar fix 1>", "<fix 2>"],\n'
+            '  "has_corrections": true | false\n'
+            "}"
+        )
+
+        # Pre-normalize known technical speech sound-alikes
+        pre_normalized, did_prenorm = TranscriptNormalizer.normalize(raw_answer.strip())
+
+        user_prompt = (
+            f"Target Role: {role} | Company: {company}\n"
+            f"Question Asked:\n{question_text or 'Technical architecture question'}\n"
+            f"Topic: {topic or 'System Architecture'}\n\n"
+            f"Candidate Resume Context (Projects, Skills, Technologies):\n{resume_context or 'Standard Engineering Stack'}\n\n"
+            f"Raw Spoken Transcription:\n\"\"\"\n{raw_answer.strip()}\n\"\"\"\n\n"
+            f"Phonetically Normalized Terms:\n\"\"\"\n{pre_normalized}\n\"\"\"\n"
+        )
+
+        try:
+            resp_str = self.generate_completion(system_prompt, user_prompt, temperature=0.1)
+            if resp_str:
+                cleaned_resp = resp_str.strip()
+                if cleaned_resp.startswith("```json"):
+                    cleaned_resp = cleaned_resp[7:]
+                if cleaned_resp.startswith("```"):
+                    cleaned_resp = cleaned_resp[3:]
+                if cleaned_resp.endswith("```"):
+                    cleaned_resp = cleaned_resp[:-3]
+                data = json.loads(cleaned_resp.strip())
+                corrected = data.get("corrected_text", "").strip()
+                if corrected:
+                    # Run post-pass normalizer as a safety net
+                    final_text, _ = TranscriptNormalizer.normalize(corrected)
+                    changes = [c.replace('\u2011', '-').replace('\u2013', '-').replace('\u2018', "'").replace('\u2019', "'") for c in data.get("changes_made", [])]
+                    has_changes = data.get("has_corrections", final_text != raw_answer.strip()) or (final_text != raw_answer.strip())
+                    return {
+                        "corrected_text": final_text,
+                        "original_text": raw_answer.strip(),
+                        "changes_made": changes,
+                        "has_corrections": has_changes
+                    }
+        except Exception as e:
+            print(f"[LLMClient] Typo correction via LLM failed: {e}")
+
+        # Deterministic fallback
+        final_fallback, changed = TranscriptNormalizer.normalize(raw_answer.strip())
+        return {
+            "corrected_text": final_fallback,
+            "original_text": raw_answer.strip(),
+            "changes_made": ["Applied technical phonetic normalization rules"] if changed else [],
+            "has_corrections": changed or (final_fallback != raw_answer.strip())
+        }
+
 # Global singleton
 llm_client = LLMClient()
+
 

@@ -10,10 +10,12 @@ from backend.app.models.models import (
 )
 from backend.app.schemas.schemas import (
     ResumeUploadRequest, StructuredResumeOut, InterviewSessionCreate,
-    InterviewAnswerRequest, InterviewTurnOut, InterviewFinalReportOut, ProjectScoreCard, InterviewEvidenceRecord
+    InterviewAnswerRequest, InterviewTurnOut, InterviewFinalReportOut, ProjectScoreCard, InterviewEvidenceRecord,
+    CorrectTranscriptRequest, CorrectTranscriptResponse
 )
 from backend.app.engines.resume_parser import ResumeParser
 from backend.app.agents.interview_agent import InterviewAgent
+from backend.app.llm.client import llm_client
 
 router = APIRouter(prefix="/api/interview", tags=["AI Mock Interview"])
 
@@ -139,6 +141,63 @@ def answer_interview_question(id: str, payload: InterviewAnswerRequest, db: Sess
 
     result = InterviewAgent.process_answer(db=db, session=session, user_answer=payload.answer)
     return InterviewTurnOut(**result)
+
+@router.post("/sessions/{id}/correct-transcript", response_model=CorrectTranscriptResponse)
+def correct_session_transcript(id: str, payload: CorrectTranscriptRequest, db: Session = Depends(get_db)):
+    session = db.query(InterviewSession).filter(InterviewSession.id == id).first()
+
+    resume_context = ""
+    role = "Software Engineer"
+    company = "Tech Company"
+    question_text = payload.question_text or ""
+    topic = payload.topic or ""
+
+    if session:
+        role = session.role
+        company = session.company
+        if not question_text and session.transcript_json:
+            for turn in reversed(session.transcript_json):
+                if turn.get("sender") == "INTERVIEWER":
+                    question_text = turn.get("text", "")
+                    topic = turn.get("topic", "")
+                    break
+
+        if session.resume_id:
+            resume = db.query(StructuredResume).filter(StructuredResume.id == session.resume_id).first()
+            if resume and resume.sections_json:
+                sec = resume.sections_json
+                proj_summaries = [f"- {p.get('title')}: {p.get('description', '')} (Tech: {', '.join(p.get('technologies', []))})" for p in sec.get("projects", [])]
+                work_summaries = [f"- {w.get('role')} at {w.get('company')}: {w.get('description', '')}" for w in sec.get("work_experience", [])]
+                skills = ", ".join(sec.get("skills", []))
+
+                parts = []
+                if proj_summaries:
+                    parts.append("Projects:\n" + "\n".join(proj_summaries))
+                if work_summaries:
+                    parts.append("Work Experience:\n" + "\n".join(work_summaries))
+                if skills:
+                    parts.append("Skills: " + skills)
+                resume_context = "\n\n".join(parts)
+
+    res = llm_client.correct_candidate_answer_typos(
+        raw_answer=payload.raw_text,
+        question_text=question_text,
+        resume_context=resume_context,
+        role=role,
+        company=company,
+        topic=topic
+    )
+    return CorrectTranscriptResponse(**res)
+
+@router.post("/correct-transcript", response_model=CorrectTranscriptResponse)
+def correct_transcript_standalone(payload: CorrectTranscriptRequest):
+    res = llm_client.correct_candidate_answer_typos(
+        raw_answer=payload.raw_text,
+        question_text=payload.question_text or "",
+        resume_context="",
+        topic=payload.topic or ""
+    )
+    return CorrectTranscriptResponse(**res)
 
 @router.get("/sessions/{id}/report", response_model=InterviewFinalReportOut)
 def get_interview_report(id: str, db: Session = Depends(get_db)):
