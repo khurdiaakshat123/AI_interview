@@ -6,9 +6,19 @@ import {
 
 interface LandingPageProps {
   onNavigate: (tab: string) => void;
+  currentUser?: any;
+  onOpenAuth?: () => void;
 }
 
-export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
+export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUser, onOpenAuth }) => {
+  const handleAction = (tab: string) => {
+    if (!currentUser && onOpenAuth) {
+      onOpenAuth();
+      return;
+    }
+    onNavigate(tab);
+  };
+
   return (
     <div className="relative overflow-hidden pt-6 pb-24">
       {/* Background Decorative Gradients */}
@@ -33,21 +43,49 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <button
-            onClick={() => onNavigate('dashboard')}
-            className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white shadow-lg shadow-brand-500/25 transition-all transform hover:-translate-y-0.5"
-          >
-            Launch Preparation Dashboard
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          {!currentUser ? (
+            <>
+              <button
+                onClick={onOpenAuth}
+                className="flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-sm bg-white hover:bg-slate-100 text-slate-900 shadow-xl shadow-white/10 transition-all transform hover:-translate-y-0.5 active:scale-[0.98]"
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                </svg>
+                <span>Sign in with Google to Start</span>
+                <ArrowRight className="w-4 h-4 text-slate-600" />
+              </button>
 
-          <button
-            onClick={() => onNavigate('interview')}
-            className="flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700 transition-all"
-          >
-            <Cpu className="w-4 h-4 text-brand-400" />
-            Try Live AI Interview
-          </button>
+              <button
+                onClick={onOpenAuth}
+                className="flex items-center gap-2 px-6 py-4 rounded-xl font-semibold text-sm bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700 transition-all"
+              >
+                <Cpu className="w-4 h-4 text-brand-400" />
+                <span>Explore Platform Features</span>
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => handleAction('dashboard')}
+                className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white shadow-lg shadow-brand-500/25 transition-all transform hover:-translate-y-0.5"
+              >
+                Launch Preparation Dashboard
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={() => handleAction('interview')}
+                className="flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700 transition-all"
+              >
+                <Cpu className="w-4 h-4 text-brand-400" />
+                Try Live AI Interview
+              </button>
+            </>
+          )}
         </div>
 
         {/* Feature Badges */}
@@ -118,7 +156,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
 
             <button
-              onClick={() => onNavigate('jd-intake')}
+              onClick={() => handleAction('jd-intake')}
               className="w-full py-3 rounded-xl font-semibold text-sm bg-slate-800 hover:bg-slate-700 text-brand-300 border border-brand-700/40 flex items-center justify-center gap-2 transition-all"
             >
               Analyze Job Description
@@ -165,7 +203,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
 
             <button
-              onClick={() => onNavigate('interview')}
+              onClick={() => handleAction('interview')}
               className="w-full py-3 rounded-xl font-semibold text-sm bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center gap-2 transition-all shadow-md shadow-indigo-600/20"
             >
               Start Live Interview Session

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
+import { AuthModal } from './components/AuthModal';
 import { CandidateSetupModal } from './components/CandidateSetupModal';
 import { LandingPage } from './pages/LandingPage';
 import { DashboardPage } from './pages/DashboardPage';
@@ -17,6 +18,15 @@ export const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<string>('landing');
   const [navState, setNavState] = useState<any>({});
   const [showCandidateSetup, setShowCandidateSetup] = useState<boolean>(false);
+  const [showAuthModal, setShowAuthModal] = useState<boolean>(false);
+  const [currentUser, setCurrentUser] = useState<any>(() => {
+    try {
+      return JSON.parse(localStorage.getItem('intervyn_user') || 'null');
+    } catch {
+      return null;
+    }
+  });
+
   const [candidate, setCandidate] = useState<{
     name: string;
     email: string;
@@ -28,7 +38,7 @@ export const App: React.FC = () => {
       if (savedUser && savedUser.name) {
         return {
           name: savedUser.name,
-          email: savedUser.email,
+          email: savedUser.email || '',
           company: 'Google',
           role: 'Software Engineer II (L4)'
         };
@@ -42,7 +52,34 @@ export const App: React.FC = () => {
     };
   });
 
+  // Strict gating: Non-authenticated users can only view the landing page
+  useEffect(() => {
+    if (!currentUser && currentTab !== 'landing') {
+      setCurrentTab('landing');
+    }
+  }, [currentUser, currentTab]);
+
+  const handleAuthSuccess = (user: any, token: string) => {
+    setCurrentUser(user);
+    if (user) {
+      setCandidate(prev => ({
+        ...prev,
+        name: user.name || prev.name,
+        email: user.email || prev.email
+      }));
+    }
+    setShowAuthModal(false);
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('intervyn_token');
+    localStorage.removeItem('intervyn_user');
+    setCurrentUser(null);
+    setCurrentTab('landing');
+  };
+
   const handleAuthChange = (user: any) => {
+    setCurrentUser(user);
     if (user) {
       setCandidate(prev => ({
         ...prev,
@@ -59,6 +96,10 @@ export const App: React.FC = () => {
   };
 
   const handleNavigate = (tab: string, state?: any) => {
+    if (tab !== 'landing' && !currentUser) {
+      setShowAuthModal(true);
+      return;
+    }
     if (state) setNavState(state);
     setCurrentTab(tab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -94,8 +135,17 @@ export const App: React.FC = () => {
         currentTab={currentTab} 
         setCurrentTab={handleNavigate} 
         candidate={candidate}
-        onOpenCandidateSetup={() => setShowCandidateSetup(true)}
+        onOpenCandidateSetup={() => {
+          if (!currentUser) {
+            setShowAuthModal(true);
+            return;
+          }
+          setShowCandidateSetup(true);
+        }}
         onAuthChange={handleAuthChange}
+        currentUser={currentUser}
+        onOpenAuth={() => setShowAuthModal(true)}
+        onSignOut={handleSignOut}
       />
 
       {/* Candidate & Custom JD Setup Modal */}
@@ -105,10 +155,21 @@ export const App: React.FC = () => {
         onSuccess={handleCandidateSetupSuccess}
       />
 
+      {/* Google Authentication Modal */}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        onSuccess={handleAuthSuccess}
+      />
+
       {/* Dynamic Page Views */}
       <main className="flex-1">
         {currentTab === 'landing' && (
-          <LandingPage onNavigate={handleNavigate} />
+          <LandingPage 
+            onNavigate={handleNavigate} 
+            currentUser={currentUser}
+            onOpenAuth={() => setShowAuthModal(true)}
+          />
         )}
 
         {currentTab === 'dashboard' && (

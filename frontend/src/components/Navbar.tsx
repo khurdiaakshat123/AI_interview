@@ -12,6 +12,9 @@ interface NavbarProps {
   candidate?: { name: string; email: string; company: string; role: string };
   onOpenCandidateSetup?: () => void;
   onAuthChange?: (user: any) => void;
+  currentUser?: any;
+  onOpenAuth?: () => void;
+  onSignOut?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ 
@@ -19,17 +22,30 @@ export const Navbar: React.FC<NavbarProps> = ({
   setCurrentTab,
   candidate = { name: "Alex Mercer", email: "alex.mercer@intervyn.ai", company: "Google", role: "Software Engineer II (L4)" },
   onOpenCandidateSetup,
-  onAuthChange
+  onAuthChange,
+  currentUser: propUser,
+  onOpenAuth,
+  onSignOut
 }) => {
   const [showSettings, setShowSettings] = useState(false);
-  const [showAuthModal, setShowAuthModal] = useState(false);
-  const [currentUser, setCurrentUser] = useState<any>(() => {
+  const [internalAuthModal, setInternalAuthModal] = useState(false);
+  const [internalUser, setInternalUser] = useState<any>(() => {
     try {
       return JSON.parse(localStorage.getItem('intervyn_user') || 'null');
     } catch {
       return null;
     }
   });
+
+  const currentUser = propUser !== undefined ? propUser : internalUser;
+
+  const triggerOpenAuth = () => {
+    if (onOpenAuth) {
+      onOpenAuth();
+    } else {
+      setInternalAuthModal(true);
+    }
+  };
 
   const [activeProvider, setActiveProvider] = useState('Loading...');
   const [geminiKey, setGeminiKey] = useState('');
@@ -40,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [isSaving, setIsSaving] = useState(false);
 
   const handleAuthSuccess = (user: any, token: string) => {
-    setCurrentUser(user);
+    setInternalUser(user);
     if (onAuthChange) {
       onAuthChange(user);
     }
@@ -49,8 +65,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   const handleSignOut = () => {
     localStorage.removeItem('intervyn_token');
     localStorage.removeItem('intervyn_user');
-    setCurrentUser(null);
-    if (onAuthChange) {
+    setInternalUser(null);
+    if (onSignOut) {
+      onSignOut();
+    } else if (onAuthChange) {
       onAuthChange(null);
     }
   };
@@ -107,6 +125,38 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'admin-review', label: '18-Pt Audit Queue', icon: ShieldCheck },
   ];
 
+  const handleNavClick = (tabId: string) => {
+    if (!currentUser) {
+      triggerOpenAuth();
+      return;
+    }
+    setCurrentTab(tabId);
+  };
+
+  const handleSettingsClick = () => {
+    if (!currentUser) {
+      triggerOpenAuth();
+      return;
+    }
+    setShowSettings(true);
+  };
+
+  const handleCandidateSetupClick = () => {
+    if (!currentUser) {
+      triggerOpenAuth();
+      return;
+    }
+    if (onOpenCandidateSetup) onOpenCandidateSetup();
+  };
+
+  const handleLiveMockClick = () => {
+    if (!currentUser) {
+      triggerOpenAuth();
+      return;
+    }
+    setCurrentTab('interview');
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -137,7 +187,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               return (
                 <button
                   key={item.id}
-                  onClick={() => setCurrentTab(item.id)}
+                  onClick={() => handleNavClick(item.id)}
                   className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
                     isActive
                       ? 'bg-brand-600/20 text-brand-300 border border-brand-500/30'
@@ -181,7 +231,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             ) : (
               <button
-                onClick={() => setShowAuthModal(true)}
+                onClick={triggerOpenAuth}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 text-slate-900 text-xs font-bold transition-all shadow-sm shadow-white/10 active:scale-[0.98]"
                 title="Sign in with Google"
               >
@@ -197,7 +247,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
 
             <button
-              onClick={() => setShowSettings(true)}
+              onClick={handleSettingsClick}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600 text-xs font-semibold transition-all"
               title="Configure LLM & AI Models"
             >
@@ -207,7 +257,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Candidate Setup Trigger */}
             <button
-              onClick={onOpenCandidateSetup}
+              onClick={handleCandidateSetupClick}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-brand-600/30 to-indigo-600/30 border border-brand-500/40 text-brand-200 hover:text-white hover:border-brand-400 text-xs font-semibold transition-all shadow-sm shadow-brand-500/10"
               title="Setup New Candidate & Custom JD / Resume"
             >
@@ -216,7 +266,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
 
             <div 
-              onClick={onOpenCandidateSetup}
+              onClick={handleCandidateSetupClick}
               className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/60 border border-slate-700/60 text-xs cursor-pointer hover:border-slate-500 transition-all"
               title="Click to customize candidate or JD"
             >
@@ -227,7 +277,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             <button
-              onClick={() => setCurrentTab('interview')}
+              onClick={handleLiveMockClick}
               className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow-sm shadow-brand-500/20 transition-all whitespace-nowrap"
             >
               Start Live Mock
@@ -352,12 +402,14 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       )}
 
-      {/* Auth Modal (Google & Email) */}
-      <AuthModal 
-        isOpen={showAuthModal} 
-        onClose={() => setShowAuthModal(false)} 
-        onSuccess={handleAuthSuccess} 
-      />
+      {/* Auth Modal (Google & Email) fallback when unmanaged by parent */}
+      {!onOpenAuth && (
+        <AuthModal 
+          isOpen={internalAuthModal} 
+          onClose={() => setInternalAuthModal(false)} 
+          onSuccess={handleAuthSuccess} 
+        />
+      )}
     </header>
   );
 };
