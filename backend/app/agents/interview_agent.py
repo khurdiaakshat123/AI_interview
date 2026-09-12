@@ -481,6 +481,7 @@ class InterviewAgent:
         next_q_id = str(uuid.uuid4())
         next_topic = topic
         next_subtopic = subtopic
+        next_depth = current_depth
 
         if is_item_done:
             next_idx = curr_idx + 1
@@ -582,7 +583,7 @@ class InterviewAgent:
             "question_id": next_q_id,
             "phase": next_phase,
             "topic": next_topic,
-            "subtopic": "Situational reasoning" if next_phase == "PROJECT_DEFENSE" else "Fundamental algorithms",
+            "subtopic": "Interview Conclusion" if is_completed else ("Situational reasoning" if next_phase == "PROJECT_DEFENSE" else "Fundamental algorithms"),
             "text": next_question_text,
             "depth_level": next_depth,
             "timestamp": utc_now().isoformat()

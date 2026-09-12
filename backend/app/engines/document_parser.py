@@ -2,7 +2,10 @@ import base64
 import io
 import re
 import unicodedata
-import fitz
+try:
+    import pymupdf as fitz
+except ImportError:
+    import fitz
 import httpx
 from typing import Dict, Any, Tuple, Optional
 from PIL import Image

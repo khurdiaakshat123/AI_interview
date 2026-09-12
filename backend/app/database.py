@@ -31,7 +31,8 @@ def _sanitize_db_url(url: str) -> str:
                 encoded_pwd = urllib.parse.quote_plus(unquoted_pwd)
                 url = f"{prefix}://{user}:{encoded_pwd}@{host_part}"
     
-    if ("supabase.com" in url or "supabase.co" in url) and "sslmode=" not in url:
+    cloud_hosts = ("supabase.com", "supabase.co", "render.com", "neon.tech", "cockroachlabs.cloud", "aivencloud.com")
+    if any(h in url for h in cloud_hosts) and "sslmode=" not in url:
         separator = "&" if "?" in url else "?"
         url = f"{url}{separator}sslmode=require"
     return url
