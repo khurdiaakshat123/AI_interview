@@ -42,7 +42,10 @@ function extractSignature(question: Question): ExtractedSignature {
     const params = rawParams.map(p => {
       const parts = p.split(':');
       const name = parts[0]?.trim() || 'arg';
-      const type = parts[1]?.trim() || 'any';
+      let type = parts[1]?.trim() || 'any';
+      if (fnName === 'hourglassSum' && name === 'arr') {
+        type = 'list[list[int]]';
+      }
       return { name, type };
     }).filter(p => p.name && p.name !== 'self');
     const returnType = pyMatch[3]?.trim() || 'any';
@@ -71,10 +74,10 @@ function toCppType(pyType: string): string {
   if (t === 'float') return 'double';
   if (t === 'str' || t === 'string') return 'string';
   if (t === 'bool' || t === 'boolean') return 'bool';
-  if (t.includes('list[int]') || t.includes('vector<int>')) return 'vector<int>';
-  if (t.includes('list[str]') || t.includes('list[string]')) return 'vector<string>';
-  if (t.includes('list[list[int]]')) return 'vector<vector<int>>';
-  if (t.includes('list') || t.includes('vector')) return 'vector<int>';
+  if (t.includes('list[list[int]]') || t.includes('vector<vector<int>>')) return 'vector<vector<int>>&';
+  if (t.includes('list[int]') || t.includes('vector<int>')) return 'vector<int>&';
+  if (t.includes('list[str]') || t.includes('list[string]')) return 'vector<string>&';
+  if (t.includes('list') || t.includes('vector')) return 'vector<int>&';
   return 'string';
 }
 
@@ -84,9 +87,9 @@ function toJavaType(pyType: string): string {
   if (t === 'float') return 'double';
   if (t === 'str' || t === 'string') return 'String';
   if (t === 'bool' || t === 'boolean') return 'boolean';
+  if (t.includes('list[list[int]]') || t.includes('int[][]')) return 'int[][]';
   if (t.includes('list[int]') || t.includes('int[]')) return 'int[]';
   if (t.includes('list[str]') || t.includes('string[]')) return 'String[]';
-  if (t.includes('list[list[int]]')) return 'int[][]';
   if (t.includes('list')) return 'int[]';
   return 'String';
 }

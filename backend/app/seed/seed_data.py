@@ -70,8 +70,177 @@ def seed_database(db: Session):
             db.commit()
 
     # 3. Seed Question Bank (Expanded Depth across DSA, SQL, System Design, Concurrency)
-    questions_to_seed = [
-        # --- DSA: Sliding Window & Two Pointers ---
+        questions_to_seed = [
+        # --- DSA: 2D Array - DS (Hourglass Sum) (HackerRank Featured) ---
+        {
+            "subject": "Data Structures & Algorithms",
+            "topic": "Arrays & Matrices",
+            "subtopic": "2D Array - DS (Hourglass Sum)",
+            "question_type": "DSA",
+            "difficulty": "easy",
+            "title": "2D Array - DS",
+            "prompt": """Given a 6x6 2D Array, `arr`:
+
+    ```
+    1 1 1 0 0 0
+    0 1 0 0 0 0
+    1 1 1 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    0 0 0 0 0 0
+    ```
+
+    An hourglass in `arr` is a subset of values with indices falling in this pattern in `arr`'s graphical representation:
+    ```
+    a b c
+      d
+    e f g
+    ```
+
+    There are 16 hourglasses in `arr`. An hourglass sum is the sum of an hourglass' values. Calculate the hourglass sum for every hourglass in `arr`, then print the maximum hourglass sum. The array will always be 6x6.
+
+    ### Example:
+    `arr =`
+    ```
+    -9 -9 -9  1 1 1 
+     0 -9  0  4 3 2
+    -9 -9 -9  1 2 3
+     0  0  8  6 6 0
+     0  0  0 -2 0 0
+     0  0  1  2 4 0
+    ```
+
+    The 16 hourglass sums are:
+    `-63, -34, -9, 12, -10, 0, 28, 23, -27, -11, -2, 10, 9, 17, 25, 18`
+
+    The highest hourglass sum is `28` from the hourglass beginning at row 1, column 2:
+    ```
+    0 4 3
+      1
+    8 6 6
+    ```
+
+    ### Function Description:
+    Complete the function `hourglassSum` in the editor below.
+    `hourglassSum` has the following parameter(s):
+    - `int arr[6][6]`: an array of integers
+
+    ### Returns:
+    - `int`: the maximum hourglass sum
+
+    ### Input Format:
+    Each of the 6 lines of inputs contains 6 space-separated integers `arr[i][j]`.
+
+    ### Constraints:
+    - `-9 <= arr[i][j] <= 9`
+    - `0 <= i, j <= 5`
+    - Time Limit: 1.0 seconds
+    - Memory Limit: 256 MB
+
+    ### Sample Input:
+    ```
+    1 1 1 0 0 0
+    0 1 0 0 0 0
+    1 1 1 0 0 0
+    0 0 2 4 4 0
+    0 0 0 2 0 0
+    0 0 1 2 4 0
+    ```
+
+    ### Sample Output:
+    `19`
+
+    ### Explanation:
+    The hourglass which has the largest sum is:
+    ```
+    2 4 4
+      2
+    1 2 4
+    ```""",
+            "hint": "Iterate through row indices 0 to 3 and column indices 0 to 3. For each top-left corner (r, c), sum the 7 cells of the hourglass and update the global maximum.",
+            "approach": "There are exactly (6 - 2) * (6 - 2) = 16 hourglasses. Initialize max_sum = -infinity. For each (r, c) from 0 to 3, calculate arr[r][c] + arr[r][c+1] + arr[r][c+2] + arr[r+1][c+1] + arr[r+2][c] + arr[r+2][c+1] + arr[r+2][c+2]. Return the maximum sum found.",
+            "solution": "def hourglassSum(arr: list) -> int:\n    max_val = -float('inf')\n    for r in range(4):\n        for c in range(4):\n            total = (\n                arr[r][c] + arr[r][c+1] + arr[r][c+2] +\n                arr[r+1][c+1] +\n                arr[r+2][c] + arr[r+2][c+1] + arr[r+2][c+2]\n            )\n            if total > max_val:\n                max_val = total\n    return max_val",
+            "starter_code": "def hourglassSum(arr: list) -> int:\n    # Write your code here\n    pass",
+            "test_cases": [
+                {
+                    "input": [[[1, 1, 1, 0, 0, 0], [0, 1, 0, 0, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 2, 4, 4, 0], [0, 0, 0, 2, 0, 0], [0, 0, 1, 2, 4, 0]]],
+                    "expected_output": "19",
+                    "is_hidden": False
+                },
+                {
+                    "input": [[[-9, -9, -9, 1, 1, 1], [0, -9, 0, 4, 3, 2], [-9, -9, -9, 1, 2, 3], [0, 0, 8, 6, 6, 0], [0, 0, 0, -2, 0, 0], [0, 0, 1, 2, 4, 0]]],
+                    "expected_output": "28",
+                    "is_hidden": False
+                },
+                {
+                    "input": [[[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]],
+                    "expected_output": "0",
+                    "is_hidden": False
+                },
+                {
+                    "input": [[[-9, -9, -9, -9, -9, -9], [-9, -9, -9, -9, -9, -9], [-9, -9, -9, -9, -9, -9], [-9, -9, -9, -9, -9, -9], [-9, -9, -9, -9, -9, -9], [-9, -9, -9, -9, -9, -9]]],
+                    "expected_output": "-63",
+                    "is_hidden": True
+                },
+                {
+                    "input": [[[9, 9, 9, 9, 9, 9], [9, 9, 9, 9, 9, 9], [9, 9, 9, 9, 9, 9], [9, 9, 9, 9, 9, 9], [9, 9, 9, 9, 9, 9], [9, 9, 9, 9, 9, 9]]],
+                    "expected_output": "63",
+                    "is_hidden": True
+                },
+                {
+                    "input": [[[-1, -1, 0, -9, -2, -2], [-2, -1, -6, -8, -2, -5], [-1, -1, -1, -2, -3, -4], [-1, -9, -2, -4, -4, -5], [-7, -3, -3, -2, -9, -9], [-1, -3, -1, -2, -4, -5]]],
+                    "expected_output": "-6",
+                    "is_hidden": True
+                },
+                {
+                    "input": [[[-1, 1, -1, 0, 0, 0], [0, -1, 0, 0, 0, 0], [-1, -1, -1, 0, 0, 0], [0, -9, 2, -4, -4, 0], [-7, 0, 0, -2, 0, 0], [0, 0, -1, -2, -4, 0]]],
+                    "expected_output": "0",
+                    "is_hidden": True
+                },
+                {
+                    "input": [[[1, 1, 1, 0, 0, 0], [0, 1, 0, 0, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]],
+                    "expected_output": "7",
+                    "is_hidden": True
+                },
+                {
+                    "input": [[[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 1, 1], [0, 0, 0, 0, 1, 0], [0, 0, 0, 1, 1, 1]]],
+                    "expected_output": "7",
+                    "is_hidden": True
+                },
+                {
+                    "input": [[[0, 0, 0, 1, 1, 1], [0, 0, 0, 0, 1, 0], [0, 0, 0, 1, 1, 1], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]],
+                    "expected_output": "7",
+                    "is_hidden": True
+                },
+                {
+                    "input": [[[1, 2, 3, 0, 0, 0], [0, 4, 0, 0, 0, 0], [5, 6, 7, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]],
+                    "expected_output": "28",
+                    "is_hidden": True
+                },
+                {
+                    "input": [[[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 1, 2, 3, 0], [0, 0, 0, 4, 0, 0], [0, 0, 5, 6, 7, 0], [0, 0, 0, 0, 0, 0]]],
+                    "expected_output": "28",
+                    "is_hidden": True
+                },
+                {
+                    "input": [[[-1, -2, -3, -4, -5, -6], [-7, -8, -9, -1, -2, -3], [-4, -5, -6, -7, -8, -9], [-1, -2, -3, -4, -5, -6], [-7, -8, -9, -1, -2, -3], [-4, -5, -6, -7, -8, -9]]],
+                    "expected_output": "-29",
+                    "is_hidden": True
+                },
+                {
+                    "input": [[[5, 5, 5, 0, 0, 0], [0, 5, 0, 0, 0, 0], [5, 5, 5, 0, 0, 0], [0, 0, 0, 8, 8, 8], [0, 0, 0, 0, 8, 0], [0, 0, 0, 8, 8, 8]]],
+                    "expected_output": "56",
+                    "is_hidden": True
+                },
+                {
+                    "input": [[[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 0, 1], [2, 3, 4, 5, 6, 7], [8, 9, 0, 1, 2, 3], [4, 5, 6, 7, 8, 9], [0, 1, 2, 3, 4, 5]]],
+                    "expected_output": "44",
+                    "is_hidden": True
+                }
+            ]
+        },
+
+        # --- DSA: Longest Substring Without Repeating Characters ---
         {
             "subject": "Data Structures & Algorithms",
             "topic": "Sliding Window & Two Pointers",
@@ -87,11 +256,23 @@ def seed_database(db: Session):
             "test_cases": [
                 {"input": "abcabcbb", "expected_output": "3", "is_hidden": False},
                 {"input": "bbbbb", "expected_output": "1", "is_hidden": False},
-                {"input": "pwwkew", "expected_output": "3", "is_hidden": True},
-                {"input": "", "expected_output": "0", "is_hidden": True}
+                {"input": "pwwkew", "expected_output": "3", "is_hidden": False},
+                {"input": "", "expected_output": "0", "is_hidden": True},
+                {"input": " ", "expected_output": "1", "is_hidden": True},
+                {"input": "au", "expected_output": "2", "is_hidden": True},
+                {"input": "dvdf", "expected_output": "3", "is_hidden": True},
+                {"input": "abba", "expected_output": "2", "is_hidden": True},
+                {"input": "tmmzuxt", "expected_output": "5", "is_hidden": True},
+                {"input": "abcdefghijklmnopqrstuvwxyz", "expected_output": "26", "is_hidden": True},
+                {"input": "aab", "expected_output": "2", "is_hidden": True},
+                {"input": "c", "expected_output": "1", "is_hidden": True},
+                {"input": "123456789012345", "expected_output": "10", "is_hidden": True},
+                {"input": "abcdeafghij", "expected_output": "10", "is_hidden": True},
+                {"input": "a" * 1000 + "b" * 1000, "expected_output": "2", "is_hidden": True}
             ]
         },
-        # --- DSA: Graphs & Cycles ---
+
+        # --- DSA: Course Schedule ---
         {
             "subject": "Data Structures & Algorithms",
             "topic": "Graphs & Shortest Path",
@@ -99,18 +280,31 @@ def seed_database(db: Session):
             "question_type": "DSA",
             "difficulty": "medium",
             "title": "Course Schedule (Cycle Detection in Directed Graph)",
-            "prompt": "There are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [a_i, b_i]` indicates that you **must** take course `b_i` first if you want to take course `a_i`.\n\nFor example, the pair `[0, 1]`, indicates that to take course `0` you have to first take course `1`.\n\nReturn `True` if you can finish all courses. Otherwise, return `False`.\n\n### Example 1:\n**Input:** `numCourses = 2, prerequisites = [[1,0]]`\n**Output:** `True`\n**Explanation:** There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.\n\n### Example 2:\n**Input:** `numCourses = 2, prerequisites = [[1,0],[0,1]]`\n**Output:** `False`\n**Explanation:** There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.\n\n### Constraints:\n- `1 <= numCourses <= 2000`\n- `0 <= prerequisites.length <= 5000`\n- `prerequisites[i].length == 2`\n- `0 <= a_i, b_i < numCourses`\n- All the pairs `prerequisites[i]` are unique.\n- **Time Limit:** 2.0 seconds\n- **Memory Limit:** 256 MB",
+            "prompt": "There are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [a_i, b_i]` indicates that you **must** take course `b_i` first if you want to take course `a_i`.\n\nFor example, the pair `[0, 1]`, indicates that to take course `0` you have to first take course `1`.\n\nReturn `true` if you can finish all courses. Otherwise, return `false`.\n\n### Example 1:\n**Input:** `numCourses = 2, prerequisites = [[1,0]]`\n**Output:** `true`\n**Explanation:** There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.\n\n### Example 2:\n**Input:** `numCourses = 2, prerequisites = [[1,0],[0,1]]`\n**Output:** `false`\n**Explanation:** There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.\n\n### Constraints:\n- `1 <= numCourses <= 2000`\n- `0 <= prerequisites.length <= 5000`\n- `prerequisites[i].length == 2`\n- `0 <= a_i, b_i < numCourses`\n- All the pairs `prerequisites[i]` are unique.\n- **Time Limit:** 2.0 seconds\n- **Memory Limit:** 256 MB",
             "hint": "Model the courses as a directed graph. Can you finish all courses if and only if the graph has no directed cycle?",
             "approach": "Use Kahn's Algorithm (BFS with indegrees) or 3-color DFS (UNVISITED, VISITING, VISITED). Compute in-degrees of all vertices. Push all vertices with indegree 0 into a queue. Process and decrement neighbors; if processed nodes == numCourses, no cycle exists.",
             "solution": "from collections import deque, defaultdict\n\ndef canFinish(numCourses: int, prerequisites: list) -> bool:\n    adj = defaultdict(list)\n    indegree = [0] * numCourses\n    for dest, src in prerequisites:\n        adj[src].append(dest)\n        indegree[dest] += 1\n    queue = deque([i for i in range(numCourses) if indegree[i] == 0])\n    visited_count = 0\n    while queue:\n        curr = queue.popleft()\n        visited_count += 1\n        for nxt in adj[curr]:\n            indegree[nxt] -= 1\n            if indegree[nxt] == 0:\n                queue.append(nxt)\n    return visited_count == numCourses",
-            "starter_code": "def canFinish(numCourses: int, prerequisites: list) -> bool:\n    # Return True if all courses can be finished\n    pass",
+            "starter_code": "def canFinish(numCourses: int, prerequisites: list) -> bool:\n    # Return true if all courses can be finished\n    pass",
             "test_cases": [
-                {"input": [2, [[1, 0]]], "expected_output": "True", "is_hidden": False},
-                {"input": [2, [[1, 0], [0, 1]]], "expected_output": "False", "is_hidden": False},
-                {"input": [3, [[0, 1], [1, 2]]], "expected_output": "True", "is_hidden": True}
+                {"input": [2, [[1, 0]]], "expected_output": "true", "is_hidden": False},
+                {"input": [2, [[1, 0], [0, 1]]], "expected_output": "false", "is_hidden": False},
+                {"input": [3, [[0, 1], [1, 2]]], "expected_output": "true", "is_hidden": False},
+                {"input": [1, []], "expected_output": "true", "is_hidden": True},
+                {"input": [3, [[0, 1], [1, 2], [2, 0]]], "expected_output": "false", "is_hidden": True},
+                {"input": [4, [[1, 0], [2, 0], [3, 1], [3, 2]]], "expected_output": "true", "is_hidden": True},
+                {"input": [4, [[1, 0], [2, 1], [3, 2], [1, 3]]], "expected_output": "false", "is_hidden": True},
+                {"input": [5, [[1, 0], [2, 1], [3, 2], [4, 3]]], "expected_output": "true", "is_hidden": True},
+                {"input": [5, [[1, 0], [2, 1], [3, 2], [4, 3], [2, 4]]], "expected_output": "false", "is_hidden": True},
+                {"input": [3, [[1, 0], [2, 0]]], "expected_output": "true", "is_hidden": True},
+                {"input": [2, []], "expected_output": "true", "is_hidden": True},
+                {"input": [4, [[0, 1], [2, 3], [1, 2], [3, 0]]], "expected_output": "false", "is_hidden": True},
+                {"input": [6, [[1, 0], [2, 0], [3, 1], [4, 2], [5, 3], [5, 4]]], "expected_output": "true", "is_hidden": True},
+                {"input": [3, [[0, 2], [1, 2], [2, 0]]], "expected_output": "false", "is_hidden": True},
+                {"input": [5, [[1, 0], [0, 2], [2, 1]]], "expected_output": "false", "is_hidden": True}
             ]
         },
-        # --- DSA: Binary Search ---
+
+        # --- DSA: Search in Rotated Sorted Array ---
         {
             "subject": "Data Structures & Algorithms",
             "topic": "Binary Search & Arrays",
@@ -126,11 +320,23 @@ def seed_database(db: Session):
             "test_cases": [
                 {"input": [[4, 5, 6, 7, 0, 1, 2], 0], "expected_output": "4", "is_hidden": False},
                 {"input": [[4, 5, 6, 7, 0, 1, 2], 3], "expected_output": "-1", "is_hidden": False},
-                {"input": [[1], 0], "expected_output": "-1", "is_hidden": True},
-                {"input": [[1, 3], 3], "expected_output": "1", "is_hidden": True}
+                {"input": [[1], 0], "expected_output": "-1", "is_hidden": False},
+                {"input": [[1], 1], "expected_output": "0", "is_hidden": True},
+                {"input": [[1, 3], 3], "expected_output": "1", "is_hidden": True},
+                {"input": [[1, 3], 1], "expected_output": "0", "is_hidden": True},
+                {"input": [[3, 1], 1], "expected_output": "1", "is_hidden": True},
+                {"input": [[3, 1], 3], "expected_output": "0", "is_hidden": True},
+                {"input": [[5, 1, 3], 5], "expected_output": "0", "is_hidden": True},
+                {"input": [[4, 5, 6, 7, 8, 1, 2], 8], "expected_output": "4", "is_hidden": True},
+                {"input": [[6, 7, 1, 2, 3, 4, 5], 6], "expected_output": "0", "is_hidden": True},
+                {"input": [[6, 7, 1, 2, 3, 4, 5], 3], "expected_output": "4", "is_hidden": True},
+                {"input": [[2, 3, 4, 5, 6, 7, 1], 1], "expected_output": "6", "is_hidden": True},
+                {"input": [[1, 2, 3, 4, 5, 6], 4], "expected_output": "3", "is_hidden": True},
+                {"input": [[1, 2, 3, 4, 5, 6], 10], "expected_output": "-1", "is_hidden": True}
             ]
         },
-        # --- DSA: Dynamic Programming ---
+
+        # --- DSA: Coin Change ---
         {
             "subject": "Data Structures & Algorithms",
             "topic": "Dynamic Programming",
@@ -146,10 +352,23 @@ def seed_database(db: Session):
             "test_cases": [
                 {"input": [[1, 2, 5], 11], "expected_output": "3", "is_hidden": False},
                 {"input": [[2], 3], "expected_output": "-1", "is_hidden": False},
-                {"input": [[1], 0], "expected_output": "0", "is_hidden": True}
+                {"input": [[1], 0], "expected_output": "0", "is_hidden": False},
+                {"input": [[1], 1], "expected_output": "1", "is_hidden": True},
+                {"input": [[1], 2], "expected_output": "2", "is_hidden": True},
+                {"input": [[2, 5, 10, 1], 27], "expected_output": "4", "is_hidden": True},
+                {"input": [[186, 419, 83, 408], 6249], "expected_output": "20", "is_hidden": True},
+                {"input": [[1, 3, 5], 8], "expected_output": "2", "is_hidden": True},
+                {"input": [[2, 4, 6], 7], "expected_output": "-1", "is_hidden": True},
+                {"input": [[1, 5, 10, 25], 30], "expected_output": "2", "is_hidden": True},
+                {"input": [[1, 5, 10, 25], 99], "expected_output": "9", "is_hidden": True},
+                {"input": [[5, 10], 3], "expected_output": "-1", "is_hidden": True},
+                {"input": [[10], 100], "expected_output": "10", "is_hidden": True},
+                {"input": [[2, 5], 1], "expected_output": "-1", "is_hidden": True},
+                {"input": [[1], 1000], "expected_output": "1000", "is_hidden": True}
             ]
         },
-        # --- DSA: Matrix BFS / DFS ---
+
+        # --- DSA: Number of Islands ---
         {
             "subject": "Data Structures & Algorithms",
             "topic": "Graphs & Grid Traversal",
@@ -163,11 +382,24 @@ def seed_database(db: Session):
             "solution": "def numIslands(grid: list) -> int:\n    if not grid: return 0\n    rows, cols = len(grid), len(grid[0])\n    count = 0\n    def dfs(r, c):\n        if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] != '1':\n            return\n        grid[r][c] = '0'\n        dfs(r+1, c); dfs(r-1, c); dfs(r, c+1); dfs(r, c-1)\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == '1':\n                count += 1\n                dfs(r, c)\n    return count",
             "starter_code": "def numIslands(grid: list) -> int:\n    # Return number of islands\n    pass",
             "test_cases": [
+                {"input": [[["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]], "expected_output": "1", "is_hidden": False},
                 {"input": [[["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]], "expected_output": "3", "is_hidden": False},
-                {"input": [[["1","1","1"],["0","1","0"],["1","1","1"]]], "expected_output": "1", "is_hidden": False}
+                {"input": [[["1","1","1"],["0","1","0"],["1","1","1"]]], "expected_output": "1", "is_hidden": False},
+                {"input": [[["1","0","1"],["0","1","0"],["1","0","1"]]], "expected_output": "5", "is_hidden": True},
+                {"input": [[["0","0","0"],["0","0","0"],["0","0","0"]]], "expected_output": "0", "is_hidden": True},
+                {"input": [[["1","1","1"],["1","1","1"],["1","1","1"]]], "expected_output": "1", "is_hidden": True},
+                {"input": [[["1"]]], "expected_output": "1", "is_hidden": True},
+                {"input": [[["0"]]], "expected_output": "0", "is_hidden": True},
+                {"input": [[["1","0","1","0","1"]]], "expected_output": "3", "is_hidden": True},
+                {"input": [[["1"],["0"],["1"],["0"],["1"]]], "expected_output": "3", "is_hidden": True},
+                {"input": [[["1","1","0","0","0"],["0","1","0","0","1"],["1","0","0","1","1"],["0","0","0","0","0"],["1","0","1","1","0"]]], "expected_output": "5", "is_hidden": True},
+                {"input": [[["1","1","1","1","1"],["1","0","0","0","1"],["1","0","1","0","1"],["1","0","0","0","1"],["1","1","1","1","1"]]], "expected_output": "2", "is_hidden": True},
+                {"input": [[["1","0","0","0"],["0","1","0","0"],["0","0","1","0"],["0","0","0","1"]]], "expected_output": "4", "is_hidden": True},
+                {"input": [[["0","1","0"],["1","0","1"],["0","1","0"]]], "expected_output": "4", "is_hidden": True}
             ]
         },
-        # --- DSA: Two Pointers / Trapping Rain Water ---
+
+        # --- DSA: Trapping Rain Water ---
         {
             "subject": "Data Structures & Algorithms",
             "topic": "Two Pointers & Monotonic Stack",
@@ -182,228 +414,22 @@ def seed_database(db: Session):
             "starter_code": "def trap(height: list) -> int:\n    # Return units of trapped rain water\n    pass",
             "test_cases": [
                 {"input": [[0,1,0,2,1,0,1,3,2,1,2,1]], "expected_output": "6", "is_hidden": False},
-                {"input": [[4,2,0,3,2,5]], "expected_output": "9", "is_hidden": False}
+                {"input": [[4,2,0,3,2,5]], "expected_output": "9", "is_hidden": False},
+                {"input": [[3,0,2,0,4]], "expected_output": "7", "is_hidden": False},
+                {"input": [[2,0,2]], "expected_output": "2", "is_hidden": True},
+                {"input": [[3,0,0,2,0,4]], "expected_output": "10", "is_hidden": True},
+                {"input": [[1,2,3,4,5]], "expected_output": "0", "is_hidden": True},
+                {"input": [[5,4,3,2,1]], "expected_output": "0", "is_hidden": True},
+                {"input": [[0,0,0,0]], "expected_output": "0", "is_hidden": True},
+                {"input": [[]], "expected_output": "0", "is_hidden": True},
+                {"input": [[5]], "expected_output": "0", "is_hidden": True},
+                {"input": [[5,2,1,2,1,5]], "expected_output": "14", "is_hidden": True},
+                {"input": [[0,2,0]], "expected_output": "0", "is_hidden": True},
+                {"input": [[4,2,3]], "expected_output": "1", "is_hidden": True},
+                {"input": [[5,1,1,1,5]], "expected_output": "12", "is_hidden": True}
             ]
-        },
-        # --- SQL: Department Top Salaries ---
-        {
-            "subject": "Core Fundamentals (OS, CN, DBMS, SQL)",
-            "topic": "SQL & Query Optimization",
-            "subtopic": "Window Functions",
-            "question_type": "SQL",
-            "difficulty": "medium",
-            "title": "Department Top Three Highest Salaries",
-            "prompt": "Write an SQL query to find employees who earn the top three highest unique salaries in each department from the `Employee` and `Department` tables.\n\nSchema:\n`Employee(id INT, name VARCHAR, salary INT, departmentId INT)`\n`Department(id INT, name VARCHAR)`",
-            "hint": "Consider using the DENSE_RANK() window function partitioned by departmentId ordered by salary descending.",
-            "approach": "Use a Common Table Expression (CTE) with `DENSE_RANK() OVER (PARTITION BY departmentId ORDER BY salary DESC) AS rnk`. Filter where `rnk <= 3` and join with `Department`.",
-            "solution": "WITH RankedSalaries AS (\n    SELECT \n        d.name AS Department,\n        e.name AS Employee,\n        e.salary AS Salary,\n        DENSE_RANK() OVER (PARTITION BY e.departmentId ORDER BY e.salary DESC) as rnk\n    FROM Employee e\n    JOIN Department d ON e.departmentId = d.id\n)\nSELECT Department, Employee, Salary\nFROM RankedSalaries\nWHERE rnk <= 3;",
-            "starter_code": "SELECT Department, Employee, Salary FROM ...",
-            "test_cases": [
-                {"input": "Standard employee department rows", "expected_output": "Matches top 3 ranked distinct salaries per department", "is_hidden": False},
-                {"input": "Empty or single employee per department", "expected_output": "Handles single employee departments properly", "is_hidden": True}
-            ]
-        },
-        # --- SQL: Consecutive Logins ---
-        {
-            "subject": "Core Fundamentals (OS, CN, DBMS, SQL)",
-            "topic": "SQL & Query Optimization",
-            "subtopic": "Sequential Date Analysis",
-            "question_type": "SQL",
-            "difficulty": "medium",
-            "title": "Active Users with Consecutive Logins",
-            "prompt": "Write an SQL query to find the `id` and `name` of active users who visited the platform for three or more consecutive days.\n\nSchema:\n`Users(id INT, name VARCHAR)`\n`Logins(id INT, login_date DATE)`",
-            "hint": "You can use LEAD() window function or self-joins with DATE_ADD() to test if login dates form consecutive sequences.",
-            "approach": "Deduplicate user logins per day with DISTINCT. Use LEAD(login_date, 2) OVER (PARTITION BY id ORDER BY login_date) and check if DATEDIFF(lead_2, login_date) == 2.",
-            "solution": "WITH DistinctLogins AS (\n    SELECT DISTINCT id, login_date\n    FROM Logins\n),\nSequenced AS (\n    SELECT id, login_date,\n           LEAD(login_date, 2) OVER (PARTITION BY id ORDER BY login_date) AS lead_date\n    FROM DistinctLogins\n)\nSELECT DISTINCT u.id, u.name\nFROM Sequenced s\nJOIN Users u ON s.id = u.id\nWHERE DATEDIFF(s.lead_date, s.login_date) = 2;",
-            "starter_code": "SELECT DISTINCT u.id, u.name FROM ...",
-            "test_cases": [
-                {"input": "Logins with 3-day consecutive activity", "expected_output": "Returns users meeting the 3-day sequence", "is_hidden": False},
-                {"input": "User with multiple non-consecutive logins", "expected_output": "Filters out non-consecutive visitors", "is_hidden": True}
-            ]
-        },
-        # --- SQL: Aggregations & Products ---
-        {
-            "subject": "Core Fundamentals (OS, CN, DBMS, SQL)",
-            "topic": "SQL & Query Optimization",
-            "subtopic": "Relational Division & Grouping",
-            "question_type": "SQL",
-            "difficulty": "medium",
-            "title": "Customers Who Bought All Products in Catalog",
-            "prompt": "Write an SQL query to report the `customer_id` from the `Customer` table who bought all the products listed in the `Product` table.\n\nSchema:\n`Customer(customer_id INT, product_key INT)`\n`Product(product_key INT)`",
-            "hint": "Compare the count of distinct products bought by each customer to the total distinct products in the Product catalog.",
-            "approach": "GROUP BY customer_id and filter in the HAVING clause where COUNT(DISTINCT product_key) equals (SELECT COUNT(*) FROM Product).",
-            "solution": "SELECT customer_id\nFROM Customer\nGROUP BY customer_id\nHAVING COUNT(DISTINCT product_key) = (SELECT COUNT(*) FROM Product);",
-            "starter_code": "SELECT customer_id FROM Customer ...",
-            "test_cases": [
-                {"input": "Customers with partial vs full product ownership", "expected_output": "Only customers with full product coverage", "is_hidden": False},
-                {"input": "No customers matching full catalog", "expected_output": "Returns empty result set gracefully", "is_hidden": True}
-            ]
-        },
-        # --- System Design: Cache Stampede ---
-        {
-            "subject": "System Design & Distributed Systems",
-            "topic": "Distributed Storage & Caching",
-            "subtopic": "Cache Eviction & Stampede",
-            "question_type": "MCQ",
-            "difficulty": "medium",
-            "title": "Mitigating Cache Stampede (Thundering Herd)",
-            "prompt": "A high-traffic e-commerce flash sale endpoint relies on Redis caching. When the cache key for the main catalog expires under 100,000 requests/second, thousands of concurrent requests miss the cache simultaneously and overwhelm PostgreSQL. Which technique effectively prevents this cache stampede?",
-            "options_json": [
-                "A. Switch from Redis to Memcached with larger memory",
-                "B. Mutex / Distributed Locking with probabilistic early expiration (XFetch algorithm)",
-                "C. Disable TTL and let cache keys persist forever without invalidation",
-                "D. Increase PostgreSQL maximum connections pool to 100,000"
-            ],
-            "hint": "Think about how to allow only a single worker to recompute the cache while other requests either wait or serve slightly stale data.",
-            "approach": "Probabilistic early expiration (XFetch) or distributed mutex locking allows exactly one background thread to regenerate the cache before or upon expiration.",
-            "solution": "B. Mutex / Distributed Locking with probabilistic early expiration (XFetch algorithm)",
-            "starter_code": None,
-            "test_cases": []
-        },
-        # --- System Design: Kafka Partitioning & Ordering ---
-        {
-            "subject": "System Design & Distributed Systems",
-            "topic": "High-Throughput Messaging & Queues",
-            "subtopic": "Kafka Partitioning & Ordering",
-            "question_type": "MSQ",
-            "difficulty": "hard",
-            "title": "Guaranteed Message Ordering in Distributed Event Brokers",
-            "prompt": "Select ALL statements that are TRUE regarding message ordering and partitioning guarantees in Apache Kafka:",
-            "options_json": [
-                "A. Kafka guarantees total ordering across all partitions within a topic.",
-                "B. Kafka guarantees strict FIFO ordering only within a single partition.",
-                "C. Messages with identical non-null keys are always hashed and routed to the same partition (assuming partition count is static).",
-                "D. Adding new partitions to an existing topic preserves key-to-partition routing for all subsequent writes."
-            ],
-            "hint": "Remember that Kafka is partitioned by design; total ordering across independent partitions is not guaranteed.",
-            "approach": "Kafka guarantees FIFO ordering per-partition. Messages with the same key go to the same partition via murmur2 hash, unless partition count changes.",
-            "solution": "B, C",
-            "starter_code": None,
-            "test_cases": []
-        },
-        # --- System Design: Consistent Hashing ---
-        {
-            "subject": "System Design & Distributed Systems",
-            "topic": "Distributed Storage & Caching",
-            "subtopic": "Consistent Hashing & Dynamic Sharding",
-            "question_type": "MCQ",
-            "difficulty": "medium",
-            "title": "Data Rebalancing in Consistent Hashing Rings",
-            "prompt": "In a distributed key-value store using Consistent Hashing with virtual nodes (tokens), when an additional physical storage node is added to a cluster of N nodes with K total keys, how many keys on average must be migrated?",
-            "options_json": [
-                "A. K / (N + 1) keys on average",
-                "B. All K keys must be rehashed across the cluster",
-                "C. Exactly K / 2 keys",
-                "D. Zero keys, because consistent hashing prevents any data movement"
-            ],
-            "hint": "The primary benefit of consistent hashing over standard hash mod N is that only keys belonging to the immediate neighbor intervals of the new tokens are moved.",
-            "approach": "In consistent hashing, adding a node only affects the keys in the intervals acquired by the new node's virtual tokens, resulting in approximately K / (N + 1) keys migrated.",
-            "solution": "A. K / (N + 1) keys on average",
-            "starter_code": None,
-            "test_cases": []
-        },
-        # --- System Design: Saga vs 2PC ---
-        {
-            "subject": "System Design & Distributed Systems",
-            "topic": "Distributed Transactions & Consistency",
-            "subtopic": "Saga Pattern vs 2PC",
-            "question_type": "MCQ",
-            "difficulty": "hard",
-            "title": "Saga Pattern in Distributed Microservice Workflows",
-            "prompt": "Why do high-scale distributed microservice architectures prefer the Saga pattern over Two-Phase Commit (2PC) for cross-service transactions?",
-            "options_json": [
-                "A. 2PC holds locks across independent network services until commit, causing severe latency and coordinator bottlenecks, whereas Sagas use local transactions and compensating actions",
-                "B. Sagas provide immediate ACID isolation without eventual consistency",
-                "C. 2PC cannot be implemented with relational databases",
-                "D. Sagas eliminate the need for error handling or rollback mechanisms"
-            ],
-            "hint": "Think about lock duration and coordinator availability in distributed network environments.",
-            "approach": "2PC requires holding locks across distributed services during voting and commit phases, creating single-point-of-failure risks and high latency. Sagas break the transaction into local steps with compensating rollbacks.",
-            "solution": "A. 2PC holds locks across independent network services until commit, causing severe latency and coordinator bottlenecks, whereas Sagas use local transactions and compensating actions",
-            "starter_code": None,
-            "test_cases": []
-        },
-        # --- Operating Systems: Deadlocks ---
-        {
-            "subject": "Core Fundamentals (OS, CN, DBMS, SQL)",
-            "topic": "Operating Systems & Concurrency",
-            "subtopic": "Deadlock Necessary Conditions",
-            "question_type": "MCQ",
-            "difficulty": "medium",
-            "title": "Coffman Conditions for Deadlock",
-            "prompt": "Which of the following is NOT one of the four Coffman conditions necessary for a deadlock to occur in an operating system?",
-            "options_json": [
-                "A. Mutual Exclusion",
-                "B. Hold and Wait",
-                "C. Preemption Permitted",
-                "D. Circular Wait"
-            ],
-            "hint": "Remember that for a deadlock to persist, resources cannot be forcibly confiscated from a process.",
-            "approach": "The four Coffman conditions are: Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait. 'Preemption Permitted' breaks deadlocks rather than enabling them.",
-            "solution": "C. Preemption Permitted",
-            "starter_code": None,
-            "test_cases": []
-        },
-        # --- Operating Systems: Concurrency Control ---
-        {
-            "subject": "Core Fundamentals (OS, CN, DBMS, SQL)",
-            "topic": "Operating Systems & Concurrency",
-            "subtopic": "Optimistic vs Pessimistic Concurrency",
-            "question_type": "MSQ",
-            "difficulty": "hard",
-            "title": "Optimistic Concurrency Control (OCC) Characteristics",
-            "prompt": "Select ALL statements that are TRUE regarding Optimistic Concurrency Control (OCC):",
-            "options_json": [
-                "A. OCC operates without row/table locks during the read phase, making it highly effective in read-heavy environments with low collision probability.",
-                "B. OCC transactions validate changes against version numbers or timestamps at commit time, aborting and retrying if conflicts are detected.",
-                "C. OCC guarantees zero transaction aborts even when thousands of workers simultaneously write to the same single row.",
-                "D. In high-conflict write scenarios, OCC throughput can degrade below pessimistic locking due to continuous rollback and retry thrashing."
-            ],
-            "hint": "Consider what happens when multiple concurrent threads attempt to modify the same resource simultaneously under OCC vs lock-based systems.",
-            "approach": "OCC avoids lock overhead during reads, verifies versions at validation/commit, and aborts on conflict. Under extreme write contention, repeated rollbacks cause severe thrashing.",
-            "solution": "A, B, D",
-            "starter_code": None,
-            "test_cases": []
         }
     ]
-
-    for q_data in questions_to_seed:
-        existing = db.query(QuestionBank).filter(QuestionBank.title == q_data["title"]).first()
-        is_valid, report = ReviewAgent.audit_question(q_data)
-        if not existing:
-            q = QuestionBank(
-                id=generate_uuid(),
-                subject=q_data["subject"],
-                topic=q_data["topic"],
-                subtopic=q_data["subtopic"],
-                question_type=q_data["question_type"],
-                difficulty=q_data["difficulty"],
-                title=q_data.get("title"),
-                prompt=q_data["prompt"],
-                hint=q_data.get("hint"),
-                approach=q_data.get("approach"),
-                solution=q_data.get("solution"),
-                options_json=q_data.get("options_json"),
-                test_cases_json=q_data.get("test_cases", []),
-                starter_code=q_data.get("starter_code"),
-                status="PUBLISHED" if is_valid else "REVIEWING",
-                review_report_json=report,
-                question_generator_version=1,
-                created_at=utc_now()
-            )
-            db.add(q)
-            db.commit()
-        else:
-            existing.prompt = q_data["prompt"]
-            existing.test_cases_json = q_data.get("test_cases", [])
-            existing.starter_code = q_data.get("starter_code")
-            existing.hint = q_data.get("hint")
-            existing.approach = q_data.get("approach")
-            if is_valid:
-                existing.status = "PUBLISHED"
-                existing.review_report_json = report
-            db.commit()
-
     # 4. Seed Structured Resume for Quick-Start Candidate
     resume = db.query(StructuredResume).filter(StructuredResume.user_id == user.id).first()
     if not resume:

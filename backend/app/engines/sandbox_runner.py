@@ -356,7 +356,7 @@ def __run():
         if entrypoint:
             try:
                 val = inp
-                if isinstance(inp, str):
+                if isinstance(inp, str) and (inp.strip().startswith('[') or inp.strip().startswith('{{')):
                     try:
                         val = json.loads(inp)
                     except Exception:
@@ -392,7 +392,7 @@ def __run():
                         ret = entrypoint(val)
 
                 actual = str(ret).strip()
-                passed = is_custom or (actual.lower() == exp.lower())
+                passed = is_custom or (actual.strip().lower() == exp.strip().lower())
             except Exception as e:
                 actual = f"Runtime Error: {{str(e)}}"
                 passed = False
@@ -501,7 +501,7 @@ if __name__ == "__main__":
 
     @classmethod
     def _detect_cpp_method(cls, code: str) -> str:
-        known = ["lengthOfLongestSubstring", "coinChange", "search", "canFinish", "numIslands", "trap"]
+        known = ["hourglassSum", "lengthOfLongestSubstring", "coinChange", "search", "canFinish", "numIslands", "trap"]
         for m in known:
             if re.search(r'\b' + m + r'\s*\(', code):
                 return m
@@ -520,7 +520,20 @@ if __name__ == "__main__":
         is_hidden = bool(tc.get("is_hidden", False))
         is_custom = bool(tc.get("is_custom", False))
 
-        if method == "lengthOfLongestSubstring":
+        if method == "hourglassSum":
+            raw = inp_data[0] if (isinstance(inp_data, list) and len(inp_data) == 1 and isinstance(inp_data[0], list)) else inp_data
+            if isinstance(raw, list):
+                row_strs = []
+                for row in raw:
+                    nums = [str(x) for x in row]
+                    row_strs.append("{" + ", ".join(nums) + "}")
+                grid_str = "{" + ", ".join(row_strs) + "}"
+            else:
+                grid_str = "{}"
+            invoke = f"""        vector<vector<int>> arr = {grid_str};
+        auto res = sol.hourglassSum(arr);
+        actual = to_string(res);"""
+        elif method == "lengthOfLongestSubstring":
             val_str = cls._cpp_format_val(str(inp_data))
             invoke = f"""        string inp = {val_str};
         auto res = sol.lengthOfLongestSubstring(inp);
@@ -596,7 +609,17 @@ if __name__ == "__main__":
         try {{
 {invoke}
             string exp_str = "{safe_exp}";
-            passed = {is_custom_str} || (actual == exp_str);
+            string act_cmp = actual;
+            string exp_cmp = exp_str;
+            transform(act_cmp.begin(), act_cmp.end(), act_cmp.begin(), ::tolower);
+            transform(exp_cmp.begin(), exp_cmp.end(), exp_cmp.begin(), ::tolower);
+            act_cmp.erase(0, act_cmp.find_first_not_of(" \\t\\r\\n"));
+            if (act_cmp.find_last_not_of(" \\t\\r\\n") != string::npos)
+                act_cmp.erase(act_cmp.find_last_not_of(" \\t\\r\\n") + 1);
+            exp_cmp.erase(0, exp_cmp.find_first_not_of(" \\t\\r\\n"));
+            if (exp_cmp.find_last_not_of(" \\t\\r\\n") != string::npos)
+                exp_cmp.erase(exp_cmp.find_last_not_of(" \\t\\r\\n") + 1);
+            passed = {is_custom_str} || (act_cmp == exp_cmp);
         }} catch (...) {{
             actual = "Runtime Exception";
             passed = false;
@@ -727,7 +750,7 @@ int main() {{
 
     @classmethod
     def _detect_java_method(cls, code: str) -> str:
-        known = ["lengthOfLongestSubstring", "coinChange", "search", "canFinish", "numIslands", "trap"]
+        known = ["hourglassSum", "lengthOfLongestSubstring", "coinChange", "search", "canFinish", "numIslands", "trap"]
         for m in known:
             if re.search(r'\b' + m + r'\s*\(', code):
                 return m
@@ -743,7 +766,13 @@ int main() {{
         is_hidden = bool(tc.get("is_hidden", False))
         is_custom = bool(tc.get("is_custom", False))
 
-        if method == "lengthOfLongestSubstring":
+        if method == "hourglassSum":
+            raw = inp_data[0] if (isinstance(inp_data, list) and len(inp_data) == 1 and isinstance(inp_data[0], list)) else inp_data
+            arr = cls._java_format_val(raw) if isinstance(raw, list) else "new int[][]{}"
+            invoke = f"""            int[][] arr = {arr};
+            int ans = sol.hourglassSum(arr);
+            actual = String.valueOf(ans);"""
+        elif method == "lengthOfLongestSubstring":
             val_str = cls._java_format_val(str(inp_data))
             invoke = f"""            String inp = {val_str};
             int ans = sol.lengthOfLongestSubstring(inp);
@@ -890,7 +919,7 @@ public class Main {{
             return cls._evaluate_universal_fallback(code, "javascript", test_cases, approach)
 
         test_cases_json = json.dumps(test_cases)
-        candidates = ["lengthOfLongestSubstring", "coinChange", "search", "canFinish", "numIslands", "trap"]
+        candidates = ["hourglassSum", "lengthOfLongestSubstring", "coinChange", "search", "canFinish", "numIslands", "trap"]
         detected = "solve"
         for c in candidates:
             if re.search(r'\b' + c + r'\b', code):
@@ -919,7 +948,7 @@ if (!fn) {{
 }}
 
 if (!fn) {{
-    const candidates = ['lengthOfLongestSubstring', 'coinChange', 'search', 'canFinish', 'numIslands', 'trap'];
+    const candidates = ['hourglassSum', 'lengthOfLongestSubstring', 'coinChange', 'search', 'canFinish', 'numIslands', 'trap'];
     for (const name of candidates) {{
         try {{
             const val = eval(name);
