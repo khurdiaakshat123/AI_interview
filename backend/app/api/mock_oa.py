@@ -65,7 +65,8 @@ def submit_mock_oa(id: str, payload: MockOASubmitRequest, db: Session = Depends(
         db=db,
         attempt=attempt,
         answers=payload.answers,
-        time_spent_per_question=payload.time_spent_per_question
+        time_spent_per_question=payload.time_spent_per_question,
+        proctoring_data=payload.proctoring_data
     )
 
     return MockOAReportOut(
@@ -81,7 +82,8 @@ def submit_mock_oa(id: str, payload: MockOASubmitRequest, db: Session = Depends(
         weak_topics=eval_data["weak_topics"],
         time_spent_seconds=eval_data["time_spent_seconds"],
         questions_review=eval_data["questions_review"],
-        submitted_at=attempt.submitted_at
+        submitted_at=attempt.submitted_at,
+        proctoring_summary=eval_data.get("proctoring_summary")
     )
 
 @router.get("/attempts/{id}/report", response_model=MockOAReportOut)
@@ -106,5 +108,6 @@ def get_mock_oa_report(id: str, db: Session = Depends(get_db)):
         weak_topics=eval_data.get("weak_topics", []),
         time_spent_seconds=eval_data.get("time_spent_seconds", 0),
         questions_review=eval_data.get("questions_review", []),
-        submitted_at=attempt.submitted_at or attempt.started_at
+        submitted_at=attempt.submitted_at or attempt.started_at,
+        proctoring_summary=eval_data.get("proctoring_summary")
     )

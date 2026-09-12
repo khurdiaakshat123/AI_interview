@@ -107,6 +107,7 @@ export const api = {
   async submitMockOA(attemptId: string, payload: {
     answers: Record<string, any>;
     time_spent_per_question?: Record<string, number>;
+    proctoring_data?: any;
   }): Promise<MockOAReport> {
     return request<MockOAReport>(`/mock-oa/attempts/${attemptId}/submit`, {
       method: 'POST',

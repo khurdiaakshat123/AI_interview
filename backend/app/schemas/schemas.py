@@ -156,6 +156,7 @@ class MockOAVariantOut(BaseModel):
 class MockOASubmitRequest(BaseModel):
     answers: Dict[str, Any]  # question_id -> answer
     time_spent_per_question: Optional[Dict[str, int]] = {}  # seconds
+    proctoring_data: Optional[Dict[str, Any]] = None
 
 class MockOAReportOut(BaseModel):
     attempt_id: str
@@ -171,6 +172,7 @@ class MockOAReportOut(BaseModel):
     time_spent_seconds: int
     questions_review: List[Dict[str, Any]]
     submitted_at: datetime
+    proctoring_summary: Optional[Dict[str, Any]] = None
 
 # --- Resume & Interview ---
 class ResumeUploadRequest(BaseModel):

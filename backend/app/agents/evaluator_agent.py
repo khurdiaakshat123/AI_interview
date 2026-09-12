@@ -16,7 +16,8 @@ class EvaluatorAgent:
         db: Session,
         attempt: MockOAAttempt,
         answers: Dict[str, Any],
-        time_spent_per_question: Dict[str, int] = None
+        time_spent_per_question: Dict[str, int] = None,
+        proctoring_data: Dict[str, Any] = None
     ) -> Dict[str, Any]:
         variant = db.query(MockOAVariant).filter(MockOAVariant.id == attempt.mock_oa_variant_id).first()
         if not variant:
@@ -98,7 +99,8 @@ class EvaluatorAgent:
             "strong_topics": strong_topics,
             "weak_topics": weak_topics,
             "time_spent_seconds": total_time_seconds,
-            "questions_review": question_reviews
+            "questions_review": question_reviews,
+            "proctoring_summary": proctoring_data
         }
 
         attempt.submitted_at = utc_now()

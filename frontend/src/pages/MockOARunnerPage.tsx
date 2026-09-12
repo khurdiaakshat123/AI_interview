@@ -6,6 +6,8 @@ import {
 import { MockOAVariant, Question, MockOAReport } from '../types';
 import { Timer } from '../components/Timer';
 import { CodeEditor } from '../components/CodeEditor';
+import { useProctoring } from '../hooks/useProctoring';
+import { ProctoringBadge, ProctoringToast } from '../components/ProctoringBadge';
 import { api } from '../services/api';
 
 interface MockOARunnerPageProps {
@@ -27,6 +29,22 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  // Autonomous anti-cheat proctoring
+  const {
+    integrityScore,
+    integrityStatus,
+    incidents,
+    currentAlert,
+    clearAlert,
+    getProctoringSummary
+  } = useProctoring({
+    assessmentId: variant?.mock_oa_attempt_id,
+    isEnabled: !loading && !isSubmitting && !!variant,
+    warnOnTabSwitch: true,
+    warnOnPaste: true,
+    maxAllowedTabSwitches: 3
+  });
 
   useEffect(() => {
     async function startOA() {
@@ -82,7 +100,8 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
     try {
       const report = await api.submitMockOA(variant.mock_oa_attempt_id, {
         answers,
-        time_spent_per_question: timeSpent
+        time_spent_per_question: timeSpent,
+        proctoring_data: getProctoringSummary()
       });
       onNavigate('oa-report', { report });
     } catch (err) {
@@ -97,7 +116,10 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
   const answeredCount = Object.keys(answers).filter(k => answers[k] !== '').length;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 relative">
+      {/* Proctoring Warning Toast */}
+      <ProctoringToast alert={currentAlert} onClose={clearAlert} />
+
       {/* Exam Banner Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-md">
         <div className="flex items-center gap-4">
@@ -117,8 +139,14 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
           </div>
         </div>
 
-        {/* Timer & Submit Controls */}
+        {/* Proctoring, Timer & Submit Controls */}
         <div className="flex items-center gap-3">
+          <ProctoringBadge
+            integrityScore={integrityScore}
+            integrityStatus={integrityStatus}
+            incidents={incidents}
+          />
+
           <Timer
             initialMinutes={variant.duration_minutes}
             onTimeExpired={handleSubmitExam}

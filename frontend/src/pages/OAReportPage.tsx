@@ -1,7 +1,8 @@
 import React from 'react';
 import { 
   Trophy, Clock, CheckCircle2, XCircle, ArrowRight, BarChart3,
-  TrendingUp, TrendingDown, Layers, ChevronRight, Check, X, RotateCcw
+  TrendingUp, TrendingDown, Layers, ChevronRight, Check, X, RotateCcw,
+  ShieldCheck, ShieldAlert
 } from 'lucide-react';
 import { MockOAReport } from '../types';
 
@@ -127,6 +128,84 @@ export const OAReportPage: React.FC<OAReportPageProps> = ({ report, onNavigate }
           </div>
         </div>
       </div>
+
+      {/* Assessment Integrity & Proctoring Audit Card */}
+      {report.proctoring_summary && (
+        <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center">
+                <ShieldCheck className="w-5 h-5 text-indigo-400" />
+              </div>
+              <div>
+                <h2 className="text-base font-bold text-white">Assessment Integrity & Proctoring Audit</h2>
+                <p className="text-xs text-slate-400">Autonomous browser focus, tab activity, and paste telemetry analysis</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="text-right">
+                <div className="text-[10px] text-slate-400 uppercase tracking-wider">Integrity Score</div>
+                <div className="text-2xl font-bold font-mono text-white">
+                  {report.proctoring_summary.integrity_score}%
+                </div>
+              </div>
+              <span className={`px-3 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider ${
+                report.proctoring_summary.integrity_score >= 85
+                  ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                  : report.proctoring_summary.integrity_score >= 65
+                  ? 'bg-amber-950 text-amber-300 border border-amber-800'
+                  : 'bg-rose-950 text-rose-300 border border-rose-800'
+              }`}>
+                {report.proctoring_summary.integrity_status.replace(/_/g, ' ')}
+              </span>
+            </div>
+          </div>
+
+          {/* Metric Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 text-center">
+              <div className="text-[11px] text-slate-400">Tab Switches</div>
+              <div className="text-lg font-bold font-mono text-slate-200 mt-0.5">
+                {report.proctoring_summary.tab_switch_count}
+              </div>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 text-center">
+              <div className="text-[11px] text-slate-400">Focus Loss Events</div>
+              <div className="text-lg font-bold font-mono text-slate-200 mt-0.5">
+                {report.proctoring_summary.window_blur_count}
+              </div>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 text-center">
+              <div className="text-[11px] text-slate-400">Time Away</div>
+              <div className="text-lg font-bold font-mono text-slate-200 mt-0.5">
+                {report.proctoring_summary.total_time_away_seconds}s
+              </div>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 text-center">
+              <div className="text-[11px] text-slate-400">Paste Bursts</div>
+              <div className="text-lg font-bold font-mono text-slate-200 mt-0.5">
+                {report.proctoring_summary.paste_burst_count}
+              </div>
+            </div>
+          </div>
+
+          {/* Incident Log if any */}
+          {report.proctoring_summary.incidents && report.proctoring_summary.incidents.length > 0 && (
+            <div className="space-y-2 pt-2">
+              <div className="text-xs font-semibold text-slate-300">Logged Telemetry Incidents</div>
+              <div className="max-h-40 overflow-y-auto space-y-1.5 text-xs pr-1">
+                {report.proctoring_summary.incidents.map((inc, i) => (
+                  <div key={i} className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between text-[11px]">
+                    <div className="text-slate-300">{inc.detail}</div>
+                    <span className="font-mono text-slate-500 shrink-0 ml-2">{inc.timestamp}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Detailed Question Review List */}
       <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">

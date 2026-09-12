@@ -141,6 +141,26 @@ export interface MockOAReport {
     time_spent_seconds: number;
   }[];
   submitted_at: string;
+  proctoring_summary?: ProctoringSummary;
+}
+
+export interface ProctoringIncident {
+  type: 'TAB_SWITCH' | 'WINDOW_BLUR' | 'PASTE_BURST' | 'FULLSCREEN_EXIT';
+  timestamp: string;
+  detail: string;
+  duration_seconds?: number;
+}
+
+export interface ProctoringSummary {
+  integrity_score: number;
+  integrity_status: 'HIGH_INTEGRITY' | 'MODERATE_CONCERN' | 'FLAGGED_FOR_REVIEW';
+  tab_switch_count: number;
+  window_blur_count: number;
+  paste_burst_count: number;
+  fullscreen_exits: number;
+  total_time_away_seconds: number;
+  focus_percentage: number;
+  incidents: ProctoringIncident[];
 }
 
 export interface ProjectRelevance {
