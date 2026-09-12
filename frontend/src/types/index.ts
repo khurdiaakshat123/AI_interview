@@ -61,6 +61,8 @@ export interface Question {
   options?: string[];
   starter_code?: string;
   test_cases?: TestCase[];
+  hint?: string;
+  approach?: string;
 }
 
 export interface TestCaseResult {

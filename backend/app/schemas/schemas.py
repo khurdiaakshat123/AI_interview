@@ -91,6 +91,8 @@ class QuestionOut(BaseModel):
     options: Optional[List[str]] = None
     starter_code: Optional[str] = None
     test_cases: Optional[List[Dict[str, Any]]] = None
+    hint: Optional[str] = None
+    approach: Optional[str] = None
 
 class PracticeSessionCreate(BaseModel):
     role_profile_id: Optional[str] = None

@@ -304,6 +304,7 @@ class SandboxRunner:
         return f"""# -*- coding: utf-8 -*-
 import json
 import time
+import inspect
 from typing import *
 import collections
 import math
@@ -332,6 +333,15 @@ def __run():
         if all_callables:
             entrypoint = all_callables[-1]
 
+    param_count = None
+    if entrypoint:
+        try:
+            sig = inspect.signature(entrypoint)
+            params = [p for p in sig.parameters.values() if p.kind in (inspect.Parameter.POSITIONAL_ONLY, inspect.Parameter.POSITIONAL_OR_KEYWORD)]
+            param_count = len(params)
+        except Exception:
+            param_count = None
+
     results = []
     for idx, tc in enumerate(test_cases):
         inp = tc.get("input")
@@ -345,7 +355,6 @@ def __run():
 
         if entrypoint:
             try:
-                # Handle inputs given as JSON string or raw
                 val = inp
                 if isinstance(inp, str):
                     try:
@@ -353,12 +362,35 @@ def __run():
                     except Exception:
                         val = inp
                 
-                if isinstance(val, dict):
-                    ret = entrypoint(**val)
-                elif isinstance(val, list):
-                    ret = entrypoint(*val)
+                # Dynamic argument dispatch based on function signature
+                if param_count == 1:
+                    # Function expects exactly 1 argument (e.g. s: str, height: list, grid: list)
+                    if isinstance(val, list) and len(val) == 1 and isinstance(val[0], (list, dict)):
+                        try:
+                            ret = entrypoint(val[0])
+                        except Exception:
+                            ret = entrypoint(val)
+                    else:
+                        ret = entrypoint(val)
+                elif param_count is not None and param_count > 1:
+                    # Function expects multiple arguments (e.g. coins, amount or nums, target)
+                    if isinstance(val, (list, tuple)) and len(val) == param_count:
+                        ret = entrypoint(*val)
+                    elif isinstance(val, dict):
+                        ret = entrypoint(**val)
+                    else:
+                        ret = entrypoint(val)
                 else:
-                    ret = entrypoint(val)
+                    if isinstance(val, dict):
+                        ret = entrypoint(**val)
+                    elif isinstance(val, (list, tuple)):
+                        try:
+                            ret = entrypoint(*val)
+                        except TypeError:
+                            ret = entrypoint(val)
+                    else:
+                        ret = entrypoint(val)
+
                 actual = str(ret).strip()
                 passed = is_custom or (actual.lower() == exp.lower())
             except Exception as e:
@@ -454,60 +486,155 @@ if __name__ == "__main__":
                 }
 
     @classmethod
-    def _build_cpp_harness(cls, code: str, test_cases: List[Dict[str, Any]]) -> str:
-        # Prepend standard includes if missing
-        headers = ""
-        if "#include" not in code:
-            headers = "#include <bits/stdc++.h>\nusing namespace std;\n"
+    def _cpp_format_val(cls, val: Any) -> str:
+        if isinstance(val, str):
+            escaped = val.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n')
+            return f'"{escaped}"'
+        elif isinstance(val, bool):
+            return "true" if val else "false"
+        elif isinstance(val, (int, float)):
+            return str(val)
+        elif isinstance(val, list):
+            items = [cls._cpp_format_val(x) for x in val]
+            return "{" + ", ".join(items) + "}"
+        return f'"{str(val)}"'
 
-        test_cases_json = json.dumps(test_cases).replace('\\', '\\\\').replace('"', '\\"')
+    @classmethod
+    def _detect_cpp_method(cls, code: str) -> str:
+        known = ["lengthOfLongestSubstring", "coinChange", "search", "canFinish", "numIslands", "trap"]
+        for m in known:
+            if re.search(r'\b' + m + r'\s*\(', code):
+                return m
+        m = re.search(r'class\s+Solution\s*\{[^}]*?(?:public:)?\s*[\w:<>&*]+\s+([a-zA-Z_]\w*)\s*\(', code, re.DOTALL)
+        if m:
+            return m.group(1)
+        m = re.search(r'(?:int|bool|string|void|vector<[\w<>]+>)\s+([a-zA-Z_]\w*)\s*\(', code)
+        if m:
+            return m.group(1)
+        return "solve"
 
-        return f"""{headers}
-{code}
+    @classmethod
+    def _build_cpp_case(cls, idx: int, method: str, tc: Dict[str, Any]) -> str:
+        inp_data = tc.get("input")
+        exp = str(tc.get("expected_output", "")).strip()
+        is_hidden = bool(tc.get("is_hidden", False))
+        is_custom = bool(tc.get("is_custom", False))
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <sstream>
+        if method == "lengthOfLongestSubstring":
+            val_str = cls._cpp_format_val(str(inp_data))
+            invoke = f"""        string inp = {val_str};
+        auto res = sol.lengthOfLongestSubstring(inp);
+        actual = to_string(res);"""
+        elif method == "coinChange":
+            if isinstance(inp_data, list) and len(inp_data) == 2:
+                coins = cls._cpp_format_val(inp_data[0])
+                amount = cls._cpp_format_val(inp_data[1])
+            else:
+                coins = "{1, 2, 5}"
+                amount = "11"
+            invoke = f"""        vector<int> coins = {coins};
+        int amount = {amount};
+        auto res = sol.coinChange(coins, amount);
+        actual = to_string(res);"""
+        elif method == "search":
+            if isinstance(inp_data, list) and len(inp_data) == 2:
+                nums = cls._cpp_format_val(inp_data[0])
+                target = cls._cpp_format_val(inp_data[1])
+            else:
+                nums = "{4, 5, 6, 7, 0, 1, 2}"
+                target = "0"
+            invoke = f"""        vector<int> nums = {nums};
+        int target = {target};
+        auto res = sol.search(nums, target);
+        actual = to_string(res);"""
+        elif method == "canFinish":
+            if isinstance(inp_data, list) and len(inp_data) == 2:
+                courses = cls._cpp_format_val(inp_data[0])
+                prereqs = cls._cpp_format_val(inp_data[1])
+            else:
+                courses = "2"
+                prereqs = "{{1, 0}}"
+            invoke = f"""        int numCourses = {courses};
+        vector<vector<int>> prerequisites = {prereqs};
+        bool res = sol.canFinish(numCourses, prerequisites);
+        actual = res ? "true" : "false";"""
+        elif method == "trap":
+            raw = inp_data[0] if (isinstance(inp_data, list) and len(inp_data) == 1 and isinstance(inp_data[0], list)) else inp_data
+            height = cls._cpp_format_val(raw) if isinstance(raw, list) else "{}"
+            invoke = f"""        vector<int> height = {height};
+        auto res = sol.trap(height);
+        actual = to_string(res);"""
+        elif method == "numIslands":
+            raw = inp_data[0] if (isinstance(inp_data, list) and len(inp_data) == 1 and isinstance(inp_data[0], list)) else inp_data
+            if isinstance(raw, list):
+                row_strs = []
+                for row in raw:
+                    chars = [f"'{c}'" if isinstance(c, str) and len(c) == 1 else f"'{c[0]}'" for c in row]
+                    row_strs.append("{" + ", ".join(chars) + "}")
+                grid_str = "{" + ", ".join(row_strs) + "}"
+            else:
+                grid_str = "{{'1'}}"
+            invoke = f"""        vector<vector<char>> grid = {grid_str};
+        auto res = sol.numIslands(grid);
+        actual = to_string(res);"""
+        else:
+            val_str = cls._cpp_format_val(inp_data)
+            invoke = f"""        string inp = {val_str};
+        auto res = sol.{method}(inp);
+        actual = to_string(res);"""
 
-int main() {{
-    std::cout << "---SANDBOX_RESULTS_START---" << std::endl;
-    std::cout << "{{\\"results\\": [";
-    
-    // We execute the solution instance
-    Solution sol;
-    
-    // Test case runner
-""" + "\n".join([
-        f"""    {{
-        string inp = "{str(tc.get('input', '')).replace('"', '\\"')}";
-        string exp = "{str(tc.get('expected_output', '')).replace('"', '\\"')}";
-        bool is_hidden = {"true" if tc.get("is_hidden") else "false"};
-        bool is_custom = {"true" if tc.get("is_custom") else "false"};
-        
+        safe_inp = str(inp_data).replace('\\', '\\\\').replace('"', '\\"').replace('\n', ' ')
+        safe_exp = str(exp).replace('\\', '\\\\').replace('"', '\\"').replace('\n', ' ')
+        disp_inp = "(Hidden)" if is_hidden else safe_inp
+        disp_exp = "(Hidden)" if is_hidden else safe_exp
+        is_custom_str = "true" if is_custom else "false"
+        is_hidden_str = "true" if is_hidden else "false"
+
+        return f"""    {{
         string actual = "";
         bool passed = false;
         try {{
-            // Invoke solution
-            auto res = sol.lengthOfLongestSubstring(inp);
-            actual = to_string(res);
-            passed = is_custom || (actual == exp);
+{invoke}
+            string exp_str = "{safe_exp}";
+            passed = {is_custom_str} || (actual == exp_str);
         }} catch (...) {{
             actual = "Runtime Exception";
             passed = false;
         }}
-        
+        string disp_actual = {is_hidden_str} ? (passed ? "(Hidden passed)" : "(Hidden failed)") : actual;
         if ({idx} > 0) std::cout << ",";
         std::cout << "{{\\"test_case_index\\": {idx + 1}"
-                  << ", \\"input_data\\": \\"" << (is_hidden ? "(Hidden)" : inp) << "\\""
-                  << ", \\"expected_output\\": \\"" << (is_hidden ? "(Hidden)" : exp) << "\\""
-                  << ", \\"actual_output\\": \\"" << (is_hidden ? (passed ? "(Hidden passed)" : "(Hidden failed)") : actual) << "\\""
+                  << ", \\"input_data\\": \\"{disp_inp}\\""
+                  << ", \\"expected_output\\": \\"{disp_exp}\\""
+                  << ", \\"actual_output\\": \\"" << disp_actual << "\\""
                   << ", \\"passed\\": " << (passed ? "true" : "false")
-                  << ", \\"runtime_ms\\": 1.4"
+                  << ", \\"runtime_ms\\": 1.2"
                   << ", \\"memory_mb\\": 14.1}}";
     }}"""
-        for idx, tc in enumerate(test_cases)
-    ]) + f"""
+
+    @classmethod
+    def _build_cpp_harness(cls, code: str, test_cases: List[Dict[str, Any]]) -> str:
+        headers = ""
+        if "#include" not in code:
+            headers = "#include <bits/stdc++.h>\nusing namespace std;\n"
+
+        method = cls._detect_cpp_method(code)
+        cases_cpp = "\n".join([cls._build_cpp_case(i, method, tc) for i, tc in enumerate(test_cases)])
+
+        return f"""{headers}
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <algorithm>
+
+{code}
+
+int main() {{
+    std::cout << "---SANDBOX_RESULTS_START---" << std::endl;
+    std::cout << "{{\\"results\\": [";
+    Solution sol;
+{cases_cpp}
     std::cout << "]}}" << std::endl;
     std::cout << "---SANDBOX_RESULTS_END---" << std::endl;
     return 0;
@@ -533,7 +660,6 @@ int main() {{
             src = os.path.join(tmpdir, "solution.c")
             exe = os.path.join(tmpdir, "solution.exe" if sys.platform == "win32" else "solution")
 
-            # Check if main exists
             has_main = "int main(" in code
             if not has_main:
                 harness = f"""
@@ -581,6 +707,120 @@ int main() {{
     # JAVA RUNNER
     # -------------------------------------------------------------------------
     @classmethod
+    def _java_format_val(cls, val: Any) -> str:
+        if isinstance(val, str):
+            escaped = val.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n')
+            return f'"{escaped}"'
+        elif isinstance(val, bool):
+            return "true" if val else "false"
+        elif isinstance(val, (int, float)):
+            return str(val)
+        elif isinstance(val, list):
+            if len(val) == 0:
+                return "new int[]{}"
+            if isinstance(val[0], list):
+                inner = [cls._java_format_val(x) for x in val]
+                return f"new int[][]{{" + ", ".join(inner) + "}"
+            items = [cls._java_format_val(x) for x in val]
+            return f"new int[]{{" + ", ".join(items) + "}"
+        return f'"{str(val)}"'
+
+    @classmethod
+    def _detect_java_method(cls, code: str) -> str:
+        known = ["lengthOfLongestSubstring", "coinChange", "search", "canFinish", "numIslands", "trap"]
+        for m in known:
+            if re.search(r'\b' + m + r'\s*\(', code):
+                return m
+        m = re.search(r'public\s+[\w\[\]<>]+\s+([a-zA-Z_]\w*)\s*\(', code)
+        if m:
+            return m.group(1)
+        return "solve"
+
+    @classmethod
+    def _build_java_case(cls, idx: int, method: str, tc: Dict[str, Any]) -> str:
+        inp_data = tc.get("input")
+        exp = str(tc.get("expected_output", "")).strip()
+        is_hidden = bool(tc.get("is_hidden", False))
+        is_custom = bool(tc.get("is_custom", False))
+
+        if method == "lengthOfLongestSubstring":
+            val_str = cls._java_format_val(str(inp_data))
+            invoke = f"""            String inp = {val_str};
+            int ans = sol.lengthOfLongestSubstring(inp);
+            actual = String.valueOf(ans);"""
+        elif method == "coinChange":
+            if isinstance(inp_data, list) and len(inp_data) == 2:
+                coins = cls._java_format_val(inp_data[0])
+                amount = cls._java_format_val(inp_data[1])
+            else:
+                coins = "new int[]{1, 2, 5}"
+                amount = "11"
+            invoke = f"""            int[] coins = {coins};
+            int amount = {amount};
+            int ans = sol.coinChange(coins, amount);
+            actual = String.valueOf(ans);"""
+        elif method == "search":
+            if isinstance(inp_data, list) and len(inp_data) == 2:
+                nums = cls._java_format_val(inp_data[0])
+                target = cls._java_format_val(inp_data[1])
+            else:
+                nums = "new int[]{4, 5, 6, 7, 0, 1, 2}"
+                target = "0"
+            invoke = f"""            int[] nums = {nums};
+            int target = {target};
+            int ans = sol.search(nums, target);
+            actual = String.valueOf(ans);"""
+        elif method == "canFinish":
+            if isinstance(inp_data, list) and len(inp_data) == 2:
+                courses = cls._java_format_val(inp_data[0])
+                prereqs = cls._java_format_val(inp_data[1])
+            else:
+                courses = "2"
+                prereqs = "new int[][]{{1, 0}}"
+            invoke = f"""            int numCourses = {courses};
+            int[][] prerequisites = {prereqs};
+            boolean ans = sol.canFinish(numCourses, prerequisites);
+            actual = String.valueOf(ans);"""
+        elif method == "trap":
+            raw = inp_data[0] if (isinstance(inp_data, list) and len(inp_data) == 1 and isinstance(inp_data[0], list)) else inp_data
+            height = cls._java_format_val(raw) if isinstance(raw, list) else "new int[]{}"
+            invoke = f"""            int[] height = {height};
+            int ans = sol.trap(height);
+            actual = String.valueOf(ans);"""
+        else:
+            val_str = cls._java_format_val(inp_data)
+            invoke = f"""            actual = String.valueOf(sol.{method}({val_str}));"""
+
+        safe_inp = str(inp_data).replace('\\', '\\\\').replace('"', '\\"').replace('\n', ' ')
+        safe_exp = str(exp).replace('\\', '\\\\').replace('"', '\\"').replace('\n', ' ')
+        disp_inp = "(Hidden)" if is_hidden else safe_inp
+        disp_exp = "(Hidden)" if is_hidden else safe_exp
+        is_custom_str = "true" if is_custom else "false"
+        is_hidden_str = "true" if is_hidden else "false"
+
+        return f"""        if ({idx} > 0) System.out.print(",");
+        {{
+            String actual = "";
+            boolean passed = false;
+            try {{
+{invoke}
+                String expStr = "{safe_exp}";
+                passed = {is_custom_str} || actual.equalsIgnoreCase(expStr);
+            }} catch (Exception e) {{
+                actual = "Runtime Exception";
+                passed = false;
+            }}
+            String dispActual = {is_hidden_str} ? (passed ? "(Hidden passed)" : "(Hidden failed)") : actual;
+            System.out.print("{{\\"test_case_index\\": {idx + 1}"
+                + ", \\"input_data\\": \\"{disp_inp}\\""
+                + ", \\"expected_output\\": \\"{disp_exp}\\""
+                + ", \\"actual_output\\": \\"" + dispActual + "\\""
+                + ", \\"passed\\": " + passed
+                + ", \\"runtime_ms\\": 12.0"
+                + ", \\"memory_mb\\": 32.0}}");
+        }}"""
+
+    @classmethod
     def _evaluate_java(
         cls,
         code: str,
@@ -594,12 +834,14 @@ int main() {{
             return cls._evaluate_universal_fallback(code, "java", test_cases, approach)
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            # Write Solution.java
             sol_file = os.path.join(tmpdir, "Solution.java")
             main_file = os.path.join(tmpdir, "Main.java")
 
             with open(sol_file, "w", encoding="utf-8") as f:
                 f.write(code)
+
+            method = cls._detect_java_method(code)
+            cases_java = "\n".join([cls._build_java_case(i, method, tc) for i, tc in enumerate(test_cases)])
 
             main_src = f"""
 import java.util.*;
@@ -609,24 +851,11 @@ public class Main {{
         System.out.println("---SANDBOX_RESULTS_START---");
         System.out.print("{{\\"results\\": [");
         Solution sol = new Solution();
-""" + "\n".join([
-                f"""        if ({i} > 0) System.out.print(",");
-        String inp{i} = "{str(tc.get('input', '')).replace('"', '\\"')}";
-        String exp{i} = "{str(tc.get('expected_output', '')).replace('"', '\\"')}";
-        try {{
-            // Invoke solution
-            int ans = sol.lengthOfLongestSubstring(inp{i});
-            boolean passed = String.valueOf(ans).equals(exp{i});
-            System.out.print("{{\\"test_case_index\\": {i + 1}, \\"input_data\\": \\"" + inp{i} + "\\", \\"expected_output\\": \\"" + exp{i} + "\\", \\"actual_output\\": \\"" + ans + "\\", \\"passed\\": " + passed + ", \\"runtime_ms\\": 12.0, \\"memory_mb\\": 32.0}}");
-        }} catch (Exception e) {{
-            System.out.print("{{\\"test_case_index\\": {i + 1}, \\"input_data\\": \\"" + inp{i} + "\\", \\"expected_output\\": \\"" + exp{i} + "\\", \\"actual_output\\": \\"Runtime Exception\\", \\"passed\\": false, \\"runtime_ms\\": 12.0, \\"memory_mb\\": 32.0}}");
-        }}"""
-                for i, tc in enumerate(test_cases)
-            ]) + """
+{cases_java}
         System.out.println("]}}");
         System.out.println("---SANDBOX_RESULTS_END---");
     }}
-}
+}}
 """
             with open(main_file, "w", encoding="utf-8") as f:
                 f.write(main_src)
@@ -661,6 +890,13 @@ public class Main {{
             return cls._evaluate_universal_fallback(code, "javascript", test_cases, approach)
 
         test_cases_json = json.dumps(test_cases)
+        candidates = ["lengthOfLongestSubstring", "coinChange", "search", "canFinish", "numIslands", "trap"]
+        detected = "solve"
+        for c in candidates:
+            if re.search(r'\b' + c + r'\b', code):
+                detected = c
+                break
+
         harness = f"""
 {code}
 
@@ -668,10 +904,28 @@ const testCases = {test_cases_json};
 const results = [];
 
 let fn = null;
-if (typeof lengthOfLongestSubstring === 'function') fn = lengthOfLongestSubstring;
-else {{
-    const fns = Object.keys(global).filter(k => typeof global[k] === 'function' && !k.startsWith('_'));
-    if (fns.length) fn = global[fns[fns.length - 1]];
+try {{
+    if (typeof Solution !== 'undefined') {{
+        const sol = new Solution();
+        const methods = Object.getOwnPropertyNames(Object.getPrototypeOf(sol)).filter(m => m !== 'constructor');
+        if (methods.length) fn = sol[methods[0]].bind(sol);
+    }}
+}} catch(e) {{}}
+
+if (!fn) {{
+    try {{
+        if (typeof {detected} !== 'undefined') fn = {detected};
+    }} catch(e) {{}}
+}}
+
+if (!fn) {{
+    const candidates = ['lengthOfLongestSubstring', 'coinChange', 'search', 'canFinish', 'numIslands', 'trap'];
+    for (const name of candidates) {{
+        try {{
+            const val = eval(name);
+            if (typeof val === 'function') {{ fn = val; break; }}
+        }} catch(e) {{}}
+    }}
 }}
 
 for (let i = 0; i < testCases.length; i++) {{
@@ -682,18 +936,28 @@ for (let i = 0; i < testCases.length; i++) {{
 
     if (fn) {{
         try {{
-            const ret = fn(tc.input);
+            let ret;
+            if (fn.length > 1 && Array.isArray(tc.input)) {{
+                ret = fn(...tc.input);
+            }} else if (fn.length === 1 && Array.isArray(tc.input) && tc.input.length === 1 && Array.isArray(tc.input[0])) {{
+                ret = fn(tc.input[0]);
+            }} else {{
+                ret = fn(tc.input);
+            }}
             actual = String(ret).trim();
             passed = tc.is_custom ? true : (actual.toLowerCase() === exp.toLowerCase());
         }} catch (e) {{
             actual = 'Runtime Error: ' + e.message;
             passed = false;
         }}
+    }} else {{
+        actual = 'No solution method detected';
+        passed = false;
     }}
 
     results.push({{
         test_case_index: i + 1,
-        input_data: tc.is_hidden ? '(Hidden)' : String(tc.input),
+        input_data: tc.is_hidden ? '(Hidden)' : JSON.stringify(tc.input),
         expected_output: tc.is_hidden ? '(Hidden)' : exp,
         actual_output: tc.is_hidden ? (passed ? '(Hidden passed)' : '(Hidden failed)') : actual,
         passed,

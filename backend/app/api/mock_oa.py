@@ -86,7 +86,9 @@ def start_mock_oa(payload: MockOAStartRequest, db: Session = Depends(get_db), cu
             prompt=q.prompt,
             options=q.options_json,
             starter_code=q.starter_code,
-            test_cases=[tc for tc in (q.test_cases_json or []) if not tc.get("is_hidden")]
+            test_cases=[tc for tc in (q.test_cases_json or []) if not tc.get("is_hidden")],
+            hint=q.hint,
+            approach=q.approach
         )
         for q in questions
     ]

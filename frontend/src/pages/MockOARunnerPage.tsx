@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Clock, AlertCircle, CheckCircle2, ChevronLeft, ChevronRight,
-  Send, Flag, Code2, Layers, AlertTriangle, Play, Terminal, 
-  Check, X, Sparkles, RefreshCw, Eye
+  Send, Flag, Code2, AlertTriangle, Play, Terminal, 
+  Check, X, Sparkles, RefreshCw, ChevronUp, ChevronDown, Lightbulb, Loader2
 } from 'lucide-react';
 import { MockOAVariant, Question, MockOAReport } from '../types';
 import { Timer } from '../components/Timer';
@@ -37,6 +37,69 @@ interface RunResult {
   feedback?: string;
 }
 
+interface ParsedExample {
+  title: string;
+  input: string;
+  output: string;
+  explanation?: string;
+}
+
+function parseProblemPrompt(prompt: string, fallbackTestCases?: any[]) {
+  const exampleRegex = /###\s*(Example\s*\d+):?\s*([\s\S]*?)(?=(###\s*Example|###\s*Constraints|$))/gi;
+  const constraintsRegex = /###\s*Constraints:?\s*([\s\S]*?)$/i;
+
+  const examples: ParsedExample[] = [];
+  let match;
+  while ((match = exampleRegex.exec(prompt)) !== null) {
+    const title = match[1];
+    const content = match[2];
+    
+    const inputMatch = content.match(/\*\*Input:\*\*\s*(`[^`]+`|[^\n]+)|Input:\s*([^\n]+)/i);
+    const outputMatch = content.match(/\*\*Output:\*\*\s*(`[^`]+`|[^\n]+)|Output:\s*([^\n]+)/i);
+    const explMatch = content.match(/\*\*Explanation:\*\*\s*([\s\S]*?)$|Explanation:\s*([\s\S]*?)$/i);
+
+    const input = (inputMatch?.[1] || inputMatch?.[2] || '').replace(/^`|`$/g, '').trim();
+    const output = (outputMatch?.[1] || outputMatch?.[2] || '').replace(/^`|`$/g, '').trim();
+    const explanation = (explMatch?.[1] || explMatch?.[2] || '').trim();
+
+    examples.push({ title, input, output, explanation });
+  }
+
+  // If no examples parsed from markdown, use test cases
+  if (examples.length === 0 && fallbackTestCases && fallbackTestCases.length > 0) {
+    fallbackTestCases.slice(0, 3).forEach((tc, i) => {
+      examples.push({
+        title: `Example ${i + 1}`,
+        input: typeof tc.input === 'object' ? JSON.stringify(tc.input) : String(tc.input),
+        output: String(tc.expected_output),
+        explanation: ''
+      });
+    });
+  }
+
+  const constraintsMatch = prompt.match(constraintsRegex);
+  let constraints: string[] = [];
+  if (constraintsMatch && constraintsMatch[1]) {
+    constraints = constraintsMatch[1]
+      .split('\n')
+      .map(c => c.replace(/^[-*•]\s*/, '').trim())
+      .filter(c => c.length > 0);
+  }
+
+  if (constraints.length === 0) {
+    constraints = [
+      'Time Limit: 2.0 seconds',
+      'Memory Limit: 256 MB',
+      'Standard DSA execution bounds apply'
+    ];
+  }
+
+  const firstHeaderIdx = prompt.search(/###\s*(Example|Constraints)/i);
+  const baseDescription = firstHeaderIdx !== -1 ? prompt.substring(0, firstHeaderIdx).trim() : prompt.trim();
+
+  return { baseDescription, examples, constraints };
+}
+
 export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
   initialCompany = 'Google',
   initialRole = 'Software Engineer II (L4)',
@@ -58,8 +121,12 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Left panel view tabs
+  const [leftTab, setLeftTab] = useState<'description' | 'hints'>('description');
+
   // Test Case Console state
   const [consoleTab, setConsoleTab] = useState<'testcases' | 'result'>('testcases');
+  const [isConsoleExpanded, setIsConsoleExpanded] = useState(true);
   const [selectedCaseIdx, setSelectedCaseIdx] = useState(0);
   const [customInput, setCustomInput] = useState('');
   const [isCustomMode, setIsCustomMode] = useState(false);
@@ -114,13 +181,14 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
     setConsoleTab('testcases');
     setSelectedCaseIdx(0);
     setIsCustomMode(false);
+    setLeftTab('description');
   }, [currentIndex]);
 
   if (loading || !variant) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center text-slate-400">
         <div className="w-8 h-8 border-2 border-brand-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p>Acquiring canonical Assessment Set for {initialCompany} in active 7-day window...</p>
+        <p className="text-sm font-medium">Acquiring verified Assessment Set for {initialCompany}...</p>
       </div>
     );
   }
@@ -138,8 +206,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
     ? codeByLang[currentQ.id][currentLang]
     : generateBoilerplate(currentLang, currentQ);
 
-  // Non-coding answer (MCQ / MSQ)
-  const nonCodingAnswer = answers[currentQ.id] ?? '';
+  const nonCodingAnswer = answers[currentQ.id] || null;
 
   const handleCodeChange = (val: string) => {
     setCodeByLang(prev => ({
@@ -149,7 +216,6 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
         [currentLang]: val
       }
     }));
-    // Sync into answers for submit
     setAnswers(prev => ({
       ...prev,
       [currentQ.id]: {
@@ -162,7 +228,6 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
   const handleLanguageChange = (newLang: string) => {
     setSelectedLangs(prev => ({ ...prev, [currentQ.id]: newLang }));
 
-    // If no code exists yet for new language, generate proper boilerplate
     if (!codeByLang[currentQ.id] || codeByLang[currentQ.id][newLang] === undefined) {
       const boilerplate = generateBoilerplate(newLang, currentQ);
       setCodeByLang(prev => ({
@@ -206,6 +271,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
     if (isRunningCode) return;
     setIsRunningCode(true);
     setConsoleTab('result');
+    setIsConsoleExpanded(true);
 
     try {
       const res = await api.runCode({
@@ -232,7 +298,6 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
   const handleSubmitExam = async () => {
     setIsSubmitting(true);
     try {
-      // Ensure all coding questions have their active code serialized
       const finalAnswers = { ...answers };
       for (const q of variant.questions) {
         if (!['MCQ', 'MSQ'].includes(q.question_type.toUpperCase())) {
@@ -249,157 +314,331 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
       });
       onNavigate('oa-report', { report });
     } catch (err) {
-      console.error(err);
-      alert('Failed to submit assessment attempt.');
+      console.error('Submission failed:', err);
     } finally {
       setIsSubmitting(false);
       setShowConfirmSubmit(false);
     }
   };
 
-  // Sample visible test cases
-  const sampleTestCases = currentQ.test_cases || [];
-  const answeredCount = Object.keys(answers).filter(k => answers[k] !== undefined && answers[k] !== '').length;
+  const answeredCount = Object.keys(answers).filter(k => {
+    const val = answers[k];
+    if (!val) return false;
+    if (typeof val === 'object' && val.code !== undefined) {
+      return val.code.trim().length > 25;
+    }
+    return true;
+  }).length;
+
+  const { baseDescription, examples, constraints } = parseProblemPrompt(currentQ.prompt, currentQ.test_cases);
+  const sampleCases = currentQ.test_cases || [];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 relative">
-      {/* Proctoring Warning Toast */}
-      <ProctoringToast alert={currentAlert} onClose={clearAlert} />
+    <div className="flex flex-col h-[calc(100vh-64px)] overflow-hidden bg-slate-950 font-sans select-none">
+      {/* Real-time Proctoring Toast notification */}
+      {currentAlert && (
+        <ProctoringToast alert={currentAlert} onClose={clearAlert} />
+      )}
 
-      {/* Exam Banner Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900/90 border border-white/10 shadow-xl">
-        <div className="flex items-center gap-4">
-          <div className="px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-xs font-bold tracking-wider">
-            TIMED ASSESSMENT
-          </div>
-          <div>
-            <div className="text-sm font-bold text-white flex items-center gap-2">
-              <span>{variant.company} • {variant.role}</span>
-              <span className="text-xs text-slate-400 font-normal">
-                (Assessment Set #{variant.attempt_number} • Window active for {variant.window_expires_in_days}d)
-              </span>
-            </div>
-            <span className="text-xs text-slate-400">
-              Standard timed conditions: External internet assistance and paste injection are monitored
+      {/* TOP BAR: Header, Question Selector, Timer, Submit */}
+      <header className="h-14 shrink-0 px-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-xs gap-4 z-20">
+        {/* Left: Brand / Role and Question Selector */}
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 pr-3 border-r border-slate-800">
+            <span className="font-bold text-white tracking-wide text-xs sm:text-sm">
+              {variant.company}
             </span>
+            <span className="hidden md:inline text-slate-400 text-xs">
+              • {variant.role}
+            </span>
+          </div>
+
+          {/* Question Nav Pills */}
+          <div className="flex items-center gap-1.5 overflow-x-auto py-1 scrollbar-none">
+            <button
+              onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
+              disabled={currentIndex === 0}
+              className="p-1 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+              title="Previous Question"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {variant.questions.map((q, idx) => {
+              const isCurrent = idx === currentIndex;
+              const isFlagged = markedForReview[q.id];
+              const ans = answers[q.id];
+              const isAnswered = ans && (typeof ans !== 'object' || (ans.code && ans.code.trim().length > 25));
+
+              return (
+                <button
+                  key={q.id}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`w-7 h-7 rounded-lg font-mono font-bold text-xs flex items-center justify-center relative transition-all ${
+                    isCurrent
+                      ? 'bg-indigo-600 text-white ring-2 ring-indigo-400 shadow-md shadow-indigo-500/30 font-extrabold'
+                      : isAnswered
+                      ? 'bg-emerald-950 text-emerald-300 border border-emerald-700/80 hover:bg-emerald-900'
+                      : isFlagged
+                      ? 'bg-amber-950 text-amber-300 border border-amber-700'
+                      : 'bg-slate-800/80 text-slate-400 border border-slate-700 hover:bg-slate-700'
+                  }`}
+                  title={`Question ${idx + 1}: ${q.title || q.subtopic}`}
+                >
+                  <span>{idx + 1}</span>
+                  {isFlagged && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 absolute -top-0.5 -right-0.5" />
+                  )}
+                </button>
+              );
+            })}
+
+            <button
+              onClick={() => setCurrentIndex(Math.min(variant.questions.length - 1, currentIndex + 1))}
+              disabled={currentIndex === variant.questions.length - 1}
+              className="p-1 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+              title="Next Question"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
-        {/* Proctoring, Timer & Submit Controls */}
-        <div className="flex items-center gap-3">
-          <ProctoringBadge
-            integrityScore={integrityScore}
-            integrityStatus={integrityStatus}
-            incidents={incidents}
-          />
-
+        {/* Center: Timer */}
+        <div className="flex items-center gap-2">
           <Timer
             initialMinutes={variant.duration_minutes}
             onTimeExpired={handleSubmitExam}
             isRunning={true}
           />
+        </div>
+
+        {/* Right: Proctoring Integrity & Submit Button */}
+        <div className="flex items-center gap-3">
+          <div className="hidden sm:block">
+            <ProctoringBadge
+              integrityScore={integrityScore}
+              integrityStatus={integrityStatus}
+              incidents={incidents}
+            />
+          </div>
 
           <button
             onClick={() => setShowConfirmSubmit(true)}
-            className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white flex items-center gap-1.5 shadow-sm transition-all"
+            className="px-3.5 py-1.5 rounded-xl font-bold bg-emerald-600 hover:bg-emerald-500 text-white flex items-center gap-1.5 shadow-md shadow-emerald-600/20 transition-all text-xs"
           >
             <Send className="w-3.5 h-3.5" />
-            Submit Assessment
+            <span>Submit</span>
           </button>
         </div>
-      </div>
+      </header>
 
-      {/* Main Layout */}
-      <div className="grid lg:grid-cols-4 gap-6">
-        {/* Left 3 Cols: Question, Editor and Console */}
-        <div className="lg:col-span-3 space-y-4">
-          {/* Question Description Card */}
-          <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-brand-950 text-brand-300 border border-brand-800">
-                  {currentQ.question_type}
-                </span>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-amber-950 text-amber-300 border border-amber-800">
-                  {currentQ.difficulty}
-                </span>
-                <span className="text-xs text-slate-400 ml-2">{currentQ.topic}</span>
-              </div>
-
+      {/* MAIN BODY: TRUE 50/50 SPLIT SCREEN (LeetCode Layout) */}
+      <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-2 p-2 overflow-hidden bg-slate-950">
+        
+        {/* ============================================================ */}
+        {/* LEFT PANEL: Problem Description, Examples, Constraints, Hint */}
+        {/* ============================================================ */}
+        <div className="h-full flex flex-col rounded-2xl border border-slate-800/90 bg-slate-900/90 shadow-xl overflow-hidden">
+          {/* Problem Header Tabs */}
+          <div className="px-4 py-2 bg-slate-950/70 border-b border-slate-800/80 flex items-center justify-between shrink-0">
+            <div className="flex items-center gap-2">
               <button
-                onClick={toggleMarkForReview}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
-                  markedForReview[currentQ.id]
-                    ? 'bg-amber-950 text-amber-300 border border-amber-700'
-                    : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+                type="button"
+                onClick={() => setLeftTab('description')}
+                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+                  leftTab === 'description'
+                    ? 'bg-slate-800 text-white shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
-                <Flag className="w-3.5 h-3.5" />
-                {markedForReview[currentQ.id] ? 'Marked for Review' : 'Mark for Review'}
+                Description
               </button>
+              {currentQ.hint && (
+                <button
+                  type="button"
+                  onClick={() => setLeftTab('hints')}
+                  className={`flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+                    leftTab === 'hints'
+                      ? 'bg-slate-800 text-amber-300 shadow-sm'
+                      : 'text-slate-400 hover:text-amber-200'
+                  }`}
+                >
+                  <Lightbulb className="w-3 h-3 text-amber-400" />
+                  <span>Hints</span>
+                </button>
+              )}
             </div>
 
-            <h2 className="text-xl font-bold text-white tracking-tight">
-              Question {currentIndex + 1}: {currentQ.title || currentQ.subtopic}
-            </h2>
-
-            <div className="text-xs sm:text-sm text-slate-300 leading-relaxed whitespace-pre-wrap font-sans">
-              {currentQ.prompt}
-            </div>
+            <button
+              onClick={toggleMarkForReview}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+                markedForReview[currentQ.id]
+                  ? 'bg-amber-950 text-amber-300 border border-amber-700'
+                  : 'bg-slate-800/60 text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Flag className="w-3.5 h-3.5" />
+              <span>{markedForReview[currentQ.id] ? 'Marked' : 'Mark for Review'}</span>
+            </button>
           </div>
 
-          {/* Work Area: MCQ/MSQ Selection or Code Editor */}
-          <div>
-            {currentQ.question_type.toUpperCase() === 'MCQ' && currentQ.options ? (
-              <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
-                <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-                  Select Answer Choice
+          {/* Problem Content (Scrollable) */}
+          <div className="flex-1 overflow-y-auto p-5 space-y-5 text-slate-200">
+            {leftTab === 'description' ? (
+              <>
+                {/* Title & Metadata Badges */}
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-indigo-950 text-indigo-300 border border-indigo-800">
+                      {currentQ.question_type}
+                    </span>
+                    <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase ${
+                      currentQ.difficulty.toLowerCase() === 'hard'
+                        ? 'bg-rose-950 text-rose-300 border border-rose-800'
+                        : currentQ.difficulty.toLowerCase() === 'easy'
+                        ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                        : 'bg-amber-950 text-amber-300 border border-amber-800'
+                    }`}>
+                      {currentQ.difficulty}
+                    </span>
+                    <span className="text-xs text-slate-400">
+                      {currentQ.topic}
+                    </span>
+                  </div>
+
+                  <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                    {currentIndex + 1}. {currentQ.title || currentQ.subtopic}
+                  </h1>
                 </div>
-                {currentQ.options.map((opt, oIdx) => (
+
+                {/* Base Problem Description */}
+                <div className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans whitespace-pre-line">
+                  {baseDescription}
+                </div>
+
+                {/* Structured Examples Section (LeetCode Style) */}
+                {examples.length > 0 && (
+                  <div className="space-y-4 pt-2">
+                    {examples.map((ex, i) => (
+                      <div
+                        key={i}
+                        className="rounded-xl border border-slate-800 bg-slate-950/80 p-4 space-y-2 shadow-inner"
+                      >
+                        <div className="text-xs font-bold text-slate-200">
+                          {ex.title}:
+                        </div>
+
+                        {ex.input && (
+                          <div className="flex items-start gap-2 text-xs">
+                            <span className="font-semibold text-slate-400 shrink-0">Input:</span>
+                            <code className="font-mono text-amber-300/90 break-all">
+                              {ex.input}
+                            </code>
+                          </div>
+                        )}
+
+                        {ex.output && (
+                          <div className="flex items-start gap-2 text-xs">
+                            <span className="font-semibold text-slate-400 shrink-0">Output:</span>
+                            <code className="font-mono text-emerald-400 break-all">
+                              {ex.output}
+                            </code>
+                          </div>
+                        )}
+
+                        {ex.explanation && (
+                          <div className="flex items-start gap-2 text-xs pt-1 border-t border-slate-800/60 text-slate-400">
+                            <span className="font-semibold shrink-0">Explanation:</span>
+                            <span>{ex.explanation}</span>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Constraints Section */}
+                {constraints.length > 0 && (
+                  <div className="space-y-2 pt-2">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Constraints:
+                    </h3>
+                    <ul className="space-y-1.5 pl-2">
+                      {constraints.map((c, i) => (
+                        <li key={i} className="flex items-center gap-2 text-xs text-slate-300">
+                          <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
+                          <code className="px-2 py-0.5 rounded bg-slate-950 border border-slate-800/80 text-[11px] font-mono text-indigo-300">
+                            {c}
+                          </code>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : (
+              /* Hints Tab */
+              <div className="space-y-4">
+                <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-800/50 space-y-2">
+                  <div className="flex items-center gap-2 text-amber-300 font-bold text-xs">
+                    <Lightbulb className="w-4 h-4" />
+                    <span>Algorithmic Hint</span>
+                  </div>
+                  <p className="text-xs text-amber-200/90 leading-relaxed font-sans">
+                    {currentQ.hint}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* ============================================================ */}
+        {/* RIGHT PANEL: Monaco Code Editor + Testcase & Console Runner */}
+        {/* ============================================================ */}
+        <div className="h-full flex flex-col rounded-2xl border border-slate-800/90 bg-slate-900/90 shadow-xl overflow-hidden">
+          {/* If MCQ / MSQ: Render Multiple Choice Options */}
+          {!isCodingQuestion ? (
+            <div className="p-6 flex-1 overflow-y-auto space-y-4">
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                {currentQ.question_type.toUpperCase() === 'MCQ' ? 'Select One Option:' : 'Select All Applicable Choices (MSQ):'}
+              </div>
+
+              {currentQ.options?.map((opt, oIdx) => {
+                const letter = opt.trim().slice(0, 1);
+                const isChecked = currentQ.question_type.toUpperCase() === 'MCQ'
+                  ? nonCodingAnswer === opt
+                  : Array.isArray(nonCodingAnswer) && nonCodingAnswer.includes(letter);
+
+                return (
                   <label
                     key={oIdx}
-                    onClick={() => handleNonCodingChange(opt)}
-                    className={`block p-3.5 rounded-xl border text-xs cursor-pointer transition-all ${
-                      nonCodingAnswer === opt
-                        ? 'bg-brand-600/20 border-brand-500 text-brand-200 font-semibold'
+                    onClick={() => {
+                      if (currentQ.question_type.toUpperCase() === 'MCQ') {
+                        handleNonCodingChange(opt);
+                      } else {
+                        const curList: string[] = Array.isArray(nonCodingAnswer) ? nonCodingAnswer : [];
+                        const next = isChecked ? curList.filter(x => x !== letter) : [...curList, letter];
+                        handleNonCodingChange(next);
+                      }
+                    }}
+                    className={`block p-4 rounded-xl border text-xs cursor-pointer transition-all ${
+                      isChecked
+                        ? 'bg-indigo-600/20 border-indigo-500 text-indigo-200 font-semibold shadow-sm'
                         : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:bg-slate-800/60'
                     }`}
                   >
                     {opt}
                   </label>
-                ))}
-              </div>
-            ) : currentQ.question_type.toUpperCase() === 'MSQ' && currentQ.options ? (
-              <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
-                <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-                  Select All Applicable Choices (MSQ)
-                </div>
-                {currentQ.options.map((opt, oIdx) => {
-                  const letter = opt.trim().slice(0, 1);
-                  const curList: string[] = Array.isArray(nonCodingAnswer) ? nonCodingAnswer : [];
-                  const isChecked = curList.includes(letter);
-
-                  return (
-                    <label
-                      key={oIdx}
-                      onClick={() => {
-                        const next = isChecked ? curList.filter(x => x !== letter) : [...curList, letter];
-                        handleNonCodingChange(next);
-                      }}
-                      className={`block p-3.5 rounded-xl border text-xs cursor-pointer transition-all ${
-                        isChecked
-                          ? 'bg-brand-600/20 border-brand-500 text-brand-200 font-semibold'
-                          : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:bg-slate-800/60'
-                      }`}
-                    >
-                      {opt}
-                    </label>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {/* VS Code Monaco Editor */}
+                );
+              })}
+            </div>
+          ) : (
+            /* Coding Problem: Editor on top + Console on bottom */
+            <>
+              {/* TOP: Monaco Code Editor */}
+              <div className="flex-1 min-h-[300px] flex flex-col overflow-hidden">
                 <CodeEditor
                   value={currentCode}
                   onChange={handleCodeChange}
@@ -409,208 +648,201 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                   onReset={() => handleCodeChange(generateBoilerplate(currentLang, currentQ))}
                   onRunCode={handleRunCode}
                   isRunning={isRunningCode}
-                  height="360px"
+                  height="100%"
                 />
+              </div>
 
-                {/* HackerRank / LeetCode Interactive Testcase & Console Runner */}
-                <div className="rounded-2xl border border-slate-800 bg-slate-950 overflow-hidden shadow-xl">
-                  {/* Console Header */}
-                  <div className="flex flex-wrap items-center justify-between px-4 py-2.5 bg-slate-900 border-b border-slate-800/80 text-xs gap-3">
-                    <div className="flex items-center gap-2">
-                      <Terminal className="w-4 h-4 text-indigo-400" />
-                      <button
-                        type="button"
-                        onClick={() => setConsoleTab('testcases')}
-                        className={`px-3 py-1 rounded-lg font-semibold transition-all ${
-                          consoleTab === 'testcases'
-                            ? 'bg-slate-800 text-white shadow-sm'
-                            : 'text-slate-400 hover:text-slate-200'
-                        }`}
-                      >
-                        Testcase
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setConsoleTab('result')}
-                        className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-semibold transition-all ${
-                          consoleTab === 'result'
-                            ? 'bg-slate-800 text-white shadow-sm'
-                            : 'text-slate-400 hover:text-slate-200'
-                        }`}
-                      >
-                        <span>Test Result</span>
-                        {runResult && (
-                          <span className={`w-2 h-2 rounded-full ${
-                            runResult.status === 'ACCEPTED' ? 'bg-emerald-400' : 'bg-rose-400'
-                          }`} />
-                        )}
-                      </button>
-                    </div>
+              {/* BOTTOM: LeetCode-style Testcase & Console Runner */}
+              <div
+                className={`flex flex-col border-t border-slate-800 bg-slate-950 transition-all ${
+                  isConsoleExpanded ? 'h-[280px]' : 'h-10'
+                }`}
+              >
+                {/* Console Header */}
+                <div className="h-10 shrink-0 px-4 bg-slate-900 border-b border-slate-800/80 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsConsoleExpanded(!isConsoleExpanded)}
+                      className="text-slate-400 hover:text-white p-1 rounded transition-colors"
+                      title={isConsoleExpanded ? 'Collapse Console' : 'Expand Console'}
+                    >
+                      {isConsoleExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronUp className="w-3.5 h-3.5" />}
+                    </button>
 
-                    <div className="flex items-center gap-2 ml-auto">
-                      <button
-                        type="button"
-                        onClick={handleRunCode}
-                        disabled={isRunningCode}
-                        className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold border border-slate-700 shadow-sm transition-all disabled:opacity-50"
-                        title="Run Code against sample testcases (Ctrl+Enter)"
-                      >
-                        {isRunningCode ? (
-                          <div className="w-3.5 h-3.5 rounded-full border-2 border-white border-t-transparent animate-spin" />
-                        ) : (
-                          <Play className="w-3.5 h-3.5 text-emerald-400 fill-current" />
-                        )}
-                        <span>{isRunningCode ? 'Running...' : 'Run Code'}</span>
-                      </button>
-                    </div>
+                    <Terminal className="w-3.5 h-3.5 text-indigo-400" />
+                    
+                    <button
+                      type="button"
+                      onClick={() => { setConsoleTab('testcases'); setIsConsoleExpanded(true); }}
+                      className={`px-3 py-1 rounded-lg font-semibold transition-all ${
+                        consoleTab === 'testcases'
+                          ? 'bg-slate-800 text-white shadow-sm'
+                          : 'text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      Testcase
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => { setConsoleTab('result'); setIsConsoleExpanded(true); }}
+                      className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-semibold transition-all ${
+                        consoleTab === 'result'
+                          ? 'bg-slate-800 text-white shadow-sm'
+                          : 'text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      <span>Test Result</span>
+                      {runResult && (
+                        <span className={`w-2 h-2 rounded-full ${
+                          runResult.status === 'ACCEPTED' ? 'bg-emerald-400' : 'bg-rose-400'
+                        }`} />
+                      )}
+                    </button>
                   </div>
 
-                  {/* Console Body */}
-                  <div className="p-4 sm:p-5 space-y-4 min-h-[170px]">
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={handleRunCode}
+                      disabled={isRunningCode}
+                      className="px-3.5 py-1.5 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-500 text-white flex items-center gap-1.5 shadow-md shadow-indigo-600/20 disabled:opacity-50 transition-all text-xs"
+                    >
+                      {isRunningCode ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                          <span>Running...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Play className="w-3.5 h-3.5 fill-current" />
+                          <span>Run Code</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Console Body */}
+                {isConsoleExpanded && (
+                  <div className="flex-1 overflow-y-auto p-4 text-xs font-mono">
                     {consoleTab === 'testcases' ? (
-                      <div className="space-y-4">
-                        {/* Testcase Selection Pills */}
-                        <div className="flex flex-wrap items-center gap-2">
-                          {sampleTestCases.map((_, idx) => (
+                      /* Testcases Tab */
+                      <div className="space-y-3">
+                        {/* Case Switcher */}
+                        <div className="flex items-center gap-2 border-b border-slate-800 pb-2.5">
+                          {sampleCases.map((_, idx) => (
                             <button
                               key={idx}
                               type="button"
-                              onClick={() => {
-                                setIsCustomMode(false);
-                                setSelectedCaseIdx(idx);
-                              }}
-                              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+                              onClick={() => { setSelectedCaseIdx(idx); setIsCustomMode(false); }}
+                              className={`px-3 py-1 rounded-lg font-semibold transition-all ${
                                 !isCustomMode && selectedCaseIdx === idx
-                                  ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/30'
-                                  : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800'
+                                  ? 'bg-slate-800 text-white'
+                                  : 'text-slate-400 hover:text-slate-200'
                               }`}
                             >
                               Case {idx + 1}
                             </button>
                           ))}
+
                           <button
                             type="button"
                             onClick={() => setIsCustomMode(true)}
-                            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+                            className={`px-3 py-1 rounded-lg font-semibold transition-all ${
                               isCustomMode
-                                ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/30'
-                                : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800'
+                                ? 'bg-indigo-600/30 text-indigo-300 border border-indigo-500/50'
+                                : 'text-slate-400 hover:text-slate-200'
                             }`}
                           >
                             + Custom Input
                           </button>
                         </div>
 
-                        {/* Selected Case Content */}
-                        {!isCustomMode && sampleTestCases[selectedCaseIdx] ? (
-                          <div className="space-y-3">
-                            <div>
-                              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
-                                Input:
+                        {/* Case Details */}
+                        {!isCustomMode ? (
+                          sampleCases[selectedCaseIdx] ? (
+                            <div className="space-y-2">
+                              <div className="text-[11px] text-slate-400 uppercase font-bold">Input:</div>
+                              <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-amber-300 break-all">
+                                {typeof sampleCases[selectedCaseIdx].input === 'object'
+                                  ? JSON.stringify(sampleCases[selectedCaseIdx].input)
+                                  : String(sampleCases[selectedCaseIdx].input)}
                               </div>
-                              <div className="p-3 rounded-xl bg-slate-900 border border-slate-800/80 font-mono text-xs text-slate-200">
-                                {typeof sampleTestCases[selectedCaseIdx].input === 'object'
-                                  ? JSON.stringify(sampleTestCases[selectedCaseIdx].input)
-                                  : String(sampleTestCases[selectedCaseIdx].input)}
-                              </div>
-                            </div>
 
-                            <div>
-                              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
-                                Expected Output:
-                              </div>
-                              <div className="p-3 rounded-xl bg-slate-900 border border-slate-800/80 font-mono text-xs text-emerald-400 font-semibold">
-                                {String(sampleTestCases[selectedCaseIdx].expected_output)}
+                              <div className="text-[11px] text-slate-400 uppercase font-bold pt-1">Expected:</div>
+                              <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-emerald-400 break-all">
+                                {String(sampleCases[selectedCaseIdx].expected_output)}
                               </div>
                             </div>
-                          </div>
-                        ) : isCustomMode ? (
+                          ) : (
+                            <div className="text-slate-500">No testcase selected.</div>
+                          )
+                        ) : (
+                          /* Custom Input Editor */
                           <div className="space-y-2">
-                            <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                              Custom Input:
+                            <div className="text-[11px] text-slate-400 uppercase font-bold">
+                              Enter Custom Parameter(s):
                             </div>
                             <textarea
                               value={customInput}
-                              onChange={(e) => setCustomInput(e.target.value)}
-                              placeholder="Enter your custom input parameters here..."
-                              rows={3}
-                              className="w-full p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 resize-y"
+                              onChange={e => setCustomInput(e.target.value)}
+                              placeholder="e.g. [1, 2, 5], 11 or &quot;abcabcbb&quot;"
+                              className="w-full h-24 p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 placeholder-slate-600 font-mono text-xs focus:outline-none focus:border-indigo-500"
                             />
-                          </div>
-                        ) : (
-                          <div className="text-xs text-slate-500 py-4">
-                            No visible sample test cases available for this question. You can use Custom Input to test.
                           </div>
                         )}
                       </div>
                     ) : (
                       /* Test Result Tab */
-                      <div className="space-y-4">
+                      <div>
                         {isRunningCode ? (
-                          <div className="flex flex-col items-center justify-center py-8 space-y-3 text-slate-400 text-xs">
-                            <div className="w-6 h-6 rounded-full border-2 border-emerald-400 border-t-transparent animate-spin" />
-                            <span>Compiling and executing against test cases...</span>
+                          <div className="flex items-center gap-2.5 text-slate-400 py-8 justify-center">
+                            <Loader2 className="w-5 h-5 animate-spin text-indigo-400" />
+                            <span>Compiling and executing test cases...</span>
                           </div>
-                        ) : !runResult ? (
-                          <div className="text-center py-8 text-slate-500 text-xs">
-                            You must run your code first to see execution results. Click <span className="text-slate-300 font-semibold">Run Code</span>.
-                          </div>
-                        ) : (
-                          <div className="space-y-4">
-                            {/* Headline Status Bar */}
-                            <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
-                              <div className="flex items-center gap-2.5">
-                                <span className={`px-3 py-1 rounded-lg text-xs font-bold tracking-wide flex items-center gap-1.5 ${
-                                  runResult.status === 'ACCEPTED'
-                                    ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30'
-                                    : runResult.status === 'COMPILATION_ERROR'
-                                    ? 'bg-rose-500/15 text-rose-300 border border-rose-500/30'
-                                    : 'bg-amber-500/15 text-amber-300 border border-amber-500/30'
-                                }`}>
-                                  {runResult.status === 'ACCEPTED' ? (
-                                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                                  ) : (
-                                    <X className="w-3.5 h-3.5 text-rose-400" />
-                                  )}
-                                  <span>{runResult.status.replace('_', ' ')}</span>
-                                </span>
-                                <span className="text-xs text-slate-400">
-                                  {runResult.feedback}
-                                </span>
-                              </div>
+                        ) : runResult ? (
+                          <div className="space-y-3">
+                            {/* Status Header */}
+                            <div className="flex items-center gap-3">
+                              <span className={`text-base font-bold ${
+                                runResult.status === 'ACCEPTED' ? 'text-emerald-400' : 'text-rose-400'
+                              }`}>
+                                {runResult.status === 'ACCEPTED' ? 'Accepted' :
+                                 runResult.status === 'WRONG_ANSWER' ? 'Wrong Answer' :
+                                 runResult.status === 'COMPILATION_ERROR' ? 'Compilation Error' :
+                                 runResult.status === 'RUNTIME_ERROR' ? 'Runtime Error' : 'Time Limit Exceeded'}
+                              </span>
 
-                              <div className="flex items-center gap-3 text-[11px] text-slate-400 font-mono">
-                                <span>Runtime: <strong className="text-slate-200">{runResult.runtime_ms} ms</strong></span>
-                                <span>•</span>
-                                <span>Memory: <strong className="text-slate-200">{runResult.memory_mb} MB</strong></span>
-                              </div>
+                              <span className="text-slate-400 text-xs">
+                                Runtime: <strong className="text-white">{runResult.runtime_ms} ms</strong>
+                              </span>
+                              <span className="text-slate-400 text-xs">
+                                Memory: <strong className="text-white">{runResult.memory_mb} MB</strong>
+                              </span>
                             </div>
 
-                            {/* Compiler Output / Error */}
-                            {runResult.compiler_output && runResult.status !== 'ACCEPTED' && (
-                              <div className="space-y-1.5">
-                                <div className="text-[11px] font-semibold text-rose-400 uppercase tracking-wider">
-                                  Compiler Message / Error Output:
-                                </div>
-                                <pre className="p-3 rounded-xl bg-slate-950 border border-rose-900/50 font-mono text-[11px] text-rose-300 whitespace-pre-wrap overflow-x-auto leading-relaxed">
-                                  {runResult.compiler_output}
-                                </pre>
+                            {/* Compiler stderr if any */}
+                            {runResult.compiler_output && (
+                              <div className="p-3 rounded-xl bg-rose-950/30 border border-rose-800/50 text-rose-300 whitespace-pre-wrap">
+                                {runResult.compiler_output}
                               </div>
                             )}
 
-                            {/* Test Cases Results Breakdown */}
-                            {runResult.test_case_results && runResult.test_case_results.length > 0 && (
-                              <div className="space-y-3">
-                                <div className="flex flex-wrap items-center gap-2">
+                            {/* Test Cases Results Switcher */}
+                            {runResult.test_case_results?.length > 0 && (
+                              <>
+                                <div className="flex items-center gap-2 border-b border-slate-800 pb-2">
                                   {runResult.test_case_results.map((tc, idx) => (
                                     <button
                                       key={idx}
                                       type="button"
                                       onClick={() => setSelectedCaseIdx(idx)}
-                                      className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+                                      className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-semibold transition-all ${
                                         selectedCaseIdx === idx
-                                          ? 'bg-slate-800 text-white border border-slate-700 shadow-sm'
-                                          : 'bg-slate-900/80 text-slate-400 hover:text-slate-200 border border-slate-800/80'
+                                          ? 'bg-slate-800 text-white'
+                                          : 'text-slate-400 hover:text-slate-200'
                                       }`}
                                     >
                                       <span className={`w-2 h-2 rounded-full ${tc.passed ? 'bg-emerald-400' : 'bg-rose-400'}`} />
@@ -620,127 +852,44 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                                 </div>
 
                                 {runResult.test_case_results[selectedCaseIdx] && (
-                                  <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 space-y-3 text-xs">
-                                    <div>
-                                      <div className="text-[11px] text-slate-400 font-semibold uppercase mb-1">Input:</div>
-                                      <div className="p-2.5 rounded-lg bg-slate-950 font-mono text-slate-200">
-                                        {runResult.test_case_results[selectedCaseIdx].input_data}
-                                      </div>
+                                  <div className="space-y-2 pt-1">
+                                    <div className="text-[11px] text-slate-400 uppercase font-bold">Input:</div>
+                                    <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 break-all">
+                                      {runResult.test_case_results[selectedCaseIdx].input_data}
                                     </div>
 
-                                    <div>
-                                      <div className="text-[11px] text-slate-400 font-semibold uppercase mb-1">Expected Output:</div>
-                                      <div className="p-2.5 rounded-lg bg-slate-950 font-mono text-emerald-400">
-                                        {runResult.test_case_results[selectedCaseIdx].expected_output}
-                                      </div>
+                                    <div className="text-[11px] text-slate-400 uppercase font-bold">Your Output:</div>
+                                    <div className={`p-2.5 rounded-xl border break-all ${
+                                      runResult.test_case_results[selectedCaseIdx].passed
+                                        ? 'bg-emerald-950/20 border-emerald-800/60 text-emerald-400'
+                                        : 'bg-rose-950/20 border-rose-800/60 text-rose-400'
+                                    }`}>
+                                      {runResult.test_case_results[selectedCaseIdx].actual_output}
                                     </div>
 
-                                    <div>
-                                      <div className="text-[11px] text-slate-400 font-semibold uppercase mb-1">Your Output:</div>
-                                      <div className={`p-2.5 rounded-lg bg-slate-950 font-mono ${
-                                        runResult.test_case_results[selectedCaseIdx].passed ? 'text-emerald-400' : 'text-rose-400'
-                                      }`}>
-                                        {runResult.test_case_results[selectedCaseIdx].actual_output}
-                                      </div>
+                                    <div className="text-[11px] text-slate-400 uppercase font-bold">Expected Output:</div>
+                                    <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-emerald-400 break-all">
+                                      {runResult.test_case_results[selectedCaseIdx].expected_output}
                                     </div>
                                   </div>
                                 )}
-                              </div>
+                              </>
                             )}
+                          </div>
+                        ) : (
+                          <div className="text-slate-500 py-6 text-center">
+                            Click &quot;Run Code&quot; to execute your solution against test cases.
                           </div>
                         )}
                       </div>
                     )}
                   </div>
-                </div>
+                )}
               </div>
-            )}
-          </div>
-
-          {/* Navigation Controls */}
-          <div className="flex items-center justify-between pt-2">
-            <button
-              onClick={() => {
-                if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
-              }}
-              disabled={currentIndex === 0}
-              className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-slate-300 flex items-center gap-1.5 transition-colors"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              Previous Question
-            </button>
-
-            <button
-              onClick={() => {
-                if (currentIndex < variant.questions.length - 1) setCurrentIndex(currentIndex + 1);
-              }}
-              disabled={currentIndex === variant.questions.length - 1}
-              className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-slate-300 flex items-center gap-1.5 transition-colors"
-            >
-              Next Question
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
+            </>
+          )}
         </div>
-
-        {/* Right 1 Col: Question Matrix Palette */}
-        <div className="space-y-4">
-          <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
-            <div className="flex items-center justify-between text-xs font-bold text-white pb-3 border-b border-slate-800">
-              <span>Question Palette</span>
-              <span className="font-mono text-brand-400">{answeredCount}/{variant.questions.length} Attempted</span>
-            </div>
-
-            <div className="grid grid-cols-4 gap-2">
-              {variant.questions.map((q, idx) => {
-                const isCurrent = idx === currentIndex;
-                const isAnswered = answers[q.id] !== undefined && answers[q.id] !== '';
-                const isFlagged = markedForReview[q.id];
-
-                return (
-                  <button
-                    key={q.id}
-                    onClick={() => setCurrentIndex(idx)}
-                    className={`h-11 rounded-xl text-xs font-bold font-mono transition-all flex flex-col items-center justify-center relative ${
-                      isCurrent
-                        ? 'ring-2 ring-brand-500 bg-brand-600 text-white shadow-lg shadow-brand-500/25'
-                        : isAnswered
-                        ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-800/80 hover:bg-emerald-900/80'
-                        : isFlagged
-                        ? 'bg-amber-950/80 text-amber-300 border border-amber-800/80'
-                        : 'bg-slate-950/80 text-slate-400 border border-slate-800 hover:bg-slate-800/80'
-                    }`}
-                  >
-                    <span>{idx + 1}</span>
-                    {isFlagged && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 absolute top-1 right-1" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="pt-3 border-t border-slate-800 space-y-2 text-[11px] text-slate-400">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded bg-emerald-950 border border-emerald-700" />
-                <span>Attempted</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded bg-brand-600" />
-                <span>Current Question</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded bg-amber-950 border border-amber-700" />
-                <span>Marked for Review</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded bg-slate-950 border border-slate-800" />
-                <span>Unattempted</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </main>
 
       {/* Confirmation Modal for Exam Submission */}
       {showConfirmSubmit && (
@@ -751,10 +900,10 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
               <h3 className="text-lg font-bold text-white">Submit Online Assessment?</h3>
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-300 leading-relaxed font-sans">
               You have answered <strong className="text-white">{answeredCount}</strong> out of{' '}
               <strong className="text-white">{variant.questions.length}</strong> questions.
-              Once submitted, all coding solutions and selections will be deterministically scored against standard test cases.
+              Once submitted, all coding solutions will be graded deterministically across all standard and hidden test cases.
             </p>
 
             <div className="flex items-center justify-end gap-3 pt-2">
@@ -775,7 +924,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                 {isSubmitting ? (
                   <>
                     <div className="w-3.5 h-3.5 rounded-full border-2 border-white border-t-transparent animate-spin" />
-                    <span>Scoring OA Attempt...</span>
+                    <span>Grading Assessment...</span>
                   </>
                 ) : (
                   <>
