@@ -58,37 +58,62 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
   const baseTextRef = useRef<string>('');
   const inputTextRef = useRef<string>('');
 
-  // Audio queue and low-latency speech state
+  // Audio queue, utterance GC reference, and low-latency speech state
   const [isAiSpeaking, setIsAiSpeaking] = useState<boolean>(false);
   const speechQueueRef = useRef<string[]>([]);
   const isSpeakingRef = useRef<boolean>(false);
   const isVoiceEnabledRef = useRef<boolean>(isVoiceEnabled);
   const spokenQuestionIdsRef = useRef<Set<string>>(new Set());
+  const activeUtteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
 
   // Monaco code scratchpad
   const [showScratchpad, setShowScratchpad] = useState<boolean>(false);
   const [scratchpadCode, setScratchpadCode] = useState<string>(
-    '# Technical Scratchpad\\n# Write Python, SQL, or pseudocode here to reference or insert into your answer\\n\\ndef solution():\\n    pass\\n'
+    '# Technical Scratchpad\n# Write Python, SQL, or pseudocode here to reference or insert into your answer\n\ndef solution():\n    pass\n'
   );
 
   useEffect(() => {
     isVoiceEnabledRef.current = isVoiceEnabled;
   }, [isVoiceEnabled]);
 
+  // Load available speech synthesis voices (handles async voice loading in Chrome)
+  useEffect(() => {
+    if (!('speechSynthesis' in window)) return;
+    const loadVoices = () => {
+      const v = window.speechSynthesis.getVoices();
+      if (v && v.length > 0) {
+        setAvailableVoices(v);
+      }
+    };
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+    return () => {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = null;
+      }
+    };
+  }, []);
+
   const stopAllSpeech = () => {
     speechQueueRef.current = [];
     isSpeakingRef.current = false;
     setIsAiSpeaking(false);
+    activeUtteranceRef.current = null;
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
+      try {
+        window.speechSynthesis.cancel();
+      } catch (e) {
+        console.warn('[SpeechSynthesis] cancel error:', e);
+      }
     }
   };
 
   const getVoice = () => {
     if (!('speechSynthesis' in window)) return null;
-    const voices = window.speechSynthesis.getVoices();
+    const voices = availableVoices.length > 0 ? availableVoices : window.speechSynthesis.getVoices();
     return (
-      voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Jenny') || v.name.includes('Guy'))) ||
+      voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Jenny') || v.name.includes('Guy') || v.name.includes('Aria'))) ||
       voices.find(v => v.lang.startsWith('en')) ||
       null
     );
@@ -96,16 +121,21 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
 
   const playNextSentence = () => {
     if (!isVoiceEnabledRef.current || !('speechSynthesis' in window)) {
-      speechQueueRef.current = [];
-      isSpeakingRef.current = false;
-      setIsAiSpeaking(false);
+      stopAllSpeech();
       return;
     }
     if (speechQueueRef.current.length === 0) {
       isSpeakingRef.current = false;
       setIsAiSpeaking(false);
+      activeUtteranceRef.current = null;
       return;
     }
+
+    try {
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
+    } catch (e) {}
 
     isSpeakingRef.current = true;
     setIsAiSpeaking(true);
@@ -121,18 +151,38 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
     const voice = getVoice();
     if (voice) utterance.voice = voice;
 
+    // Retain reference to prevent Chrome GC bug
+    activeUtteranceRef.current = utterance;
+
     utterance.onend = () => {
-      playNextSentence();
+      activeUtteranceRef.current = null;
+      setTimeout(() => {
+        if (isVoiceEnabledRef.current) {
+          playNextSentence();
+        }
+      }, 90);
     };
 
     utterance.onerror = (e) => {
+      activeUtteranceRef.current = null;
       if (e.error !== 'interrupted' && e.error !== 'canceled') {
         console.warn('[SpeechSynthesis] sentence utterance error:', e.error);
       }
-      playNextSentence();
+      if (isVoiceEnabledRef.current && speechQueueRef.current.length > 0) {
+        playNextSentence();
+      } else {
+        isSpeakingRef.current = false;
+        setIsAiSpeaking(false);
+      }
     };
 
-    window.speechSynthesis.speak(utterance);
+    try {
+      window.speechSynthesis.speak(utterance);
+    } catch (err) {
+      console.warn('[SpeechSynthesis] speak error:', err);
+      isSpeakingRef.current = false;
+      setIsAiSpeaking(false);
+    }
   };
 
   const enqueueSentence = (sentence: string) => {
@@ -147,16 +197,24 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
 
   const speakTurnQuestion = (turn: InterviewTurn) => {
     if (!isVoiceEnabledRef.current || !('speechSynthesis' in window) || !turn?.question_text) return;
-    if (turn.question_id && spokenQuestionIdsRef.current.has(turn.question_id)) return;
-    if (turn.question_id) spokenQuestionIdsRef.current.add(turn.question_id);
+    if (turn.question_id) {
+      spokenQuestionIdsRef.current.add(turn.question_id);
+    }
 
     stopAllSpeech();
-    const sentences = turn.question_text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [turn.question_text];
-    for (const s of sentences) {
-      if (s.trim()) {
-        enqueueSentence(s.trim());
+
+    try {
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
       }
-    }
+    } catch (e) {}
+
+    const rawSentences = turn.question_text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [turn.question_text];
+    const sentences = rawSentences.map(s => s.trim()).filter(Boolean);
+    if (sentences.length === 0) return;
+
+    speechQueueRef.current = [...sentences];
+    playNextSentence();
   };
 
   const handleToggleVoice = () => {
@@ -164,11 +222,12 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
     setIsVoiceEnabled(next);
     isVoiceEnabledRef.current = next;
     if (!next) {
+      // User clicked Voice Off -> stop immediately
       stopAllSpeech();
-    } else if (currentTurn?.question_text && !isSpeakingRef.current) {
-      const sentences = currentTurn.question_text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [currentTurn.question_text];
-      for (const s of sentences) {
-        if (s.trim()) enqueueSentence(s.trim());
+    } else {
+      // User clicked Voice On -> speak current question immediately
+      if (currentTurn?.question_text) {
+        speakTurnQuestion(currentTurn);
       }
     }
   };
@@ -202,15 +261,33 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
     scrollToBottom();
   }, [messages]);
 
-  // Voice synthesis: speak question aloud using Web Speech API sentence queue
+  // Voice synthesis: speak question aloud instantly when currentTurn changes
   useEffect(() => {
     if (isVoiceEnabled && currentTurn?.question_text) {
-      if (!currentTurn.question_id || !spokenQuestionIdsRef.current.has(currentTurn.question_id)) {
+      const qId = currentTurn.question_id;
+      if (!qId || !spokenQuestionIdsRef.current.has(qId)) {
         speakTurnQuestion(currentTurn);
       }
     }
+  }, [currentTurn, isVoiceEnabled]);
+
+  // Autoplay Policy unlocker: ensures first question plays if browser blocked unprompted autoplay
+  useEffect(() => {
+    const unlockAudio = () => {
+      if (isVoiceEnabledRef.current && currentTurn?.question_text && !isSpeakingRef.current) {
+        const qId = currentTurn.question_id;
+        if (!qId || !spokenQuestionIdsRef.current.has(qId)) {
+          speakTurnQuestion(currentTurn);
+        }
+      }
+    };
+
+    window.addEventListener('click', unlockAudio, { once: true });
+    window.addEventListener('keydown', unlockAudio, { once: true });
+
     return () => {
-      stopAllSpeech();
+      window.removeEventListener('click', unlockAudio);
+      window.removeEventListener('keydown', unlockAudio);
     };
   }, [currentTurn]);
 
@@ -440,11 +517,15 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
           });
         },
         (nextTurn: InterviewTurn) => {
-          // Mark turn as handled so useEffect won't double-speak
           if (nextTurn.question_id) {
             spokenQuestionIdsRef.current.add(nextTurn.question_id);
           }
           setCurrentTurn(nextTurn);
+
+          // If voice is enabled and nothing is currently speaking or queued (e.g. sync fallback), speak question immediately
+          if (isVoiceEnabledRef.current && !isSpeakingRef.current && speechQueueRef.current.length === 0 && nextTurn.question_text) {
+            speakTurnQuestion(nextTurn);
+          }
 
           setMessages(prev => {
             const next = [...prev];
@@ -762,6 +843,9 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                   onChange={(e) => {
                     setInputText(e.target.value);
                     baseTextRef.current = e.target.value.trim() ? e.target.value.trim() + ' ' : '';
+                    if (isAiSpeaking) {
+                      stopAllSpeech();
+                    }
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {

@@ -3,12 +3,68 @@ import base64
 import httpx
 from fastapi import APIRouter, Depends, HTTPException, Header, status
 from sqlalchemy.orm import Session
+from sqlalchemy import text
 from typing import Optional
 from backend.app.database import get_db
 from backend.app.models.models import User, generate_uuid, utc_now
 from backend.app.schemas.schemas import UserSignup, UserLogin, UserOut, TokenResponse, GoogleAuthRequest
 
 router = APIRouter(prefix="/api/auth", tags=["Auth"])
+
+def _sync_to_supabase_auth(db: Session, user: User, is_google: bool = True):
+    """
+    Mirrors user account to Supabase auth.users so they appear in both
+    public.users and the Supabase Dashboard Authentication tab.
+    """
+    try:
+        bind = db.get_bind()
+        if bind and bind.dialect.name == "postgresql":
+            exists = db.execute(
+                text("SELECT id FROM auth.users WHERE email = :email"),
+                {"email": user.email}
+            ).first()
+            if not exists:
+                provider = "google" if is_google else "email"
+                meta_json = json.dumps({"provider": provider, "providers": [provider]})
+                db.execute(
+                    text("""
+                        INSERT INTO auth.users (
+                            id,
+                            instance_id,
+                            aud,
+                            role,
+                            email,
+                            encrypted_password,
+                            email_confirmed_at,
+                            raw_app_meta_data,
+                            raw_user_meta_data,
+                            created_at,
+                            updated_at
+                        ) VALUES (
+                            CAST(:id AS uuid),
+                            CAST('00000000-0000-0000-0000-000000000000' AS uuid),
+                            'authenticated',
+                            'authenticated',
+                            :email,
+                            '$2a$10$abcdefghijklmnopqrstuv',
+                            NOW(),
+                            CAST(:meta AS jsonb),
+                            CAST(json_build_object('name', :name, 'full_name', :name) AS jsonb),
+                            NOW(),
+                            NOW()
+                        )
+                    """),
+                    {
+                        "id": str(user.id),
+                        "email": user.email,
+                        "name": user.name or user.email.split("@")[0],
+                        "meta": meta_json
+                    }
+                )
+                db.commit()
+    except Exception as e:
+        # Non-critical: Do not block app authentication if Supabase auth schema is restricted
+        pass
 
 @router.post("/google", response_model=TokenResponse)
 async def google_auth(payload: GoogleAuthRequest, db: Session = Depends(get_db)):
@@ -100,6 +156,8 @@ async def google_auth(payload: GoogleAuthRequest, db: Session = Depends(get_db))
         db.commit()
         db.refresh(user)
 
+    _sync_to_supabase_auth(db, user, is_google=True)
+
     return TokenResponse(
         access_token=f"google_token_{user.id}",
         user=UserOut.model_validate(user)
@@ -122,6 +180,8 @@ def signup(payload: UserSignup, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(user)
 
+    _sync_to_supabase_auth(db, user, is_google=False)
+
     return TokenResponse(
         access_token=f"mock_token_{user.id}",
         user=UserOut.model_validate(user)
@@ -142,6 +202,8 @@ def login(payload: UserLogin, db: Session = Depends(get_db)):
         db.add(user)
         db.commit()
         db.refresh(user)
+
+    _sync_to_supabase_auth(db, user, is_google=False)
 
     return TokenResponse(
         access_token=f"mock_token_{user.id}",
