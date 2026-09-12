@@ -62,24 +62,24 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* Header */}
       <div>
-        <div className="inline-flex items-center gap-2 text-xs font-semibold text-brand-400 uppercase tracking-wider mb-2">
+        <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-400 uppercase tracking-wider mb-2">
           <Sparkles className="w-4 h-4" />
-          Subsystem A • Agent 1
+          Role Intelligence • Competency Mapping
         </div>
-        <h1 className="text-3xl font-bold text-white tracking-tight">
-          Role Topic Profile Generator
+        <h1 className="text-3xl font-extrabold text-white tracking-tight">
+          Target Role Profiler & Skill Mapping
         </h1>
-        <p className="text-sm text-slate-400 mt-1 max-w-2xl">
-          Agent 1 extracts the high-impact subjects, topics, and question formats from your target Job Description, backed by stored evidence facts.
+        <p className="text-sm text-slate-300 mt-1 max-w-2xl">
+          Analyze job requirements to extract core data structures, algorithms, and system design topics prioritized by company interview frequency.
         </p>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Left Form */}
         <div className="lg:col-span-1 space-y-6">
-          <form onSubmit={handleGenerate} className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
+          <form onSubmit={handleGenerate} className="p-6 sm:p-7 rounded-2xl bg-slate-900/80 border border-white/10 shadow-xl space-y-4">
             <h2 className="text-base font-bold text-white flex items-center gap-2">
-              <FileText className="w-4 h-4 text-brand-400" />
+              <FileText className="w-4 h-4 text-sky-400" />
               Role & JD Parameters
             </h2>
 
@@ -90,7 +90,7 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 placeholder="e.g. Google, Amazon, Microsoft"
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-100 focus:border-brand-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 text-xs text-slate-100 focus:border-sky-500 focus:outline-none"
                 required
               />
             </div>
@@ -102,7 +102,7 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
                 placeholder="e.g. Backend SDE 2, Full Stack"
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-100 focus:border-brand-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 text-xs text-slate-100 focus:border-sky-500 focus:outline-none"
                 required
               />
             </div>
@@ -113,11 +113,11 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
                 <select
                   value={jobType}
                   onChange={(e) => setJobType(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-100 focus:border-brand-500 focus:outline-none cursor-pointer"
+                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-xs text-slate-100 focus:border-sky-500 focus:outline-none cursor-pointer"
                 >
                   <option value="Full-Time">Full-Time</option>
-                  <option value="Internship">Internship</option>
                   <option value="Contract">Contract</option>
+                  <option value="Internship">Internship</option>
                 </select>
               </div>
 
@@ -126,7 +126,7 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
                 <select
                   value={experience}
                   onChange={(e) => setExperience(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-100 focus:border-brand-500 focus:outline-none cursor-pointer"
+                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-xs text-slate-100 focus:border-sky-500 focus:outline-none cursor-pointer"
                 >
                   <option value="0-1 years">0-1 years</option>
                   <option value="1-3 years">1-3 years</option>
@@ -149,27 +149,27 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2.5 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-500 disabled:opacity-50 text-white flex items-center justify-center gap-2 shadow-sm transition-all"
+              className="w-full py-3 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 text-white flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/25 transition-all active:scale-[0.98]"
             >
-              {loading ? 'Analyzing with Agent 1...' : 'Generate Role Topic Profile'}
+              {loading ? 'Analyzing Job Requirements...' : 'Generate Target Role Profile'}
               <Sparkles className="w-3.5 h-3.5" />
             </button>
           </form>
 
           {/* Action Callout */}
           {profile && (
-            <div className="p-5 rounded-2xl bg-gradient-to-b from-brand-950/40 to-slate-900 border border-brand-800/40 space-y-3">
-              <div className="text-xs font-bold text-brand-300 uppercase tracking-wider">
+            <div className="p-5 rounded-2xl bg-gradient-to-b from-indigo-950/40 to-slate-900 border border-indigo-500/20 shadow-md space-y-3">
+              <div className="text-xs font-bold text-sky-300 uppercase tracking-wider">
                 Next Preparation Step
               </div>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Topic importance is computed once and shared across the Practice Engine, Mock OA, and Interview defense.
+                Role competencies are mapped and synced across your Practice Engine, Timed Assessments, and 1-on-1 Interview loop.
               </p>
               <button
                 onClick={() => onNavigate('practice', { company: profile.company, role: profile.role })}
-                className="w-full py-2 rounded-xl text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white flex items-center justify-center gap-1.5 transition-all"
+                className="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-500/30 flex items-center justify-center gap-1.5 transition-all shadow-sm"
               >
-                Configure Practice Questions
+                Start Targeted Practice
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

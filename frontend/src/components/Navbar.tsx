@@ -119,10 +119,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Compass },
     { id: 'jd-intake', label: 'Role Profiler', icon: Sparkles },
-    { id: 'practice', label: 'OA Practice', icon: Code2 },
-    { id: 'mock-oa', label: 'Mock OA Exam', icon: Terminal },
+    { id: 'practice', label: 'Skill Practice', icon: Code2 },
+    { id: 'mock-oa', label: 'Timed Assessment', icon: Terminal },
     { id: 'interview', label: 'AI Interview', icon: Cpu },
-    { id: 'admin-review', label: '18-Pt Audit Queue', icon: ShieldCheck },
+    { id: 'admin-review', label: 'Quality Audit', icon: ShieldCheck },
   ];
 
   const handleNavClick = (tabId: string) => {
@@ -158,7 +158,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+    <header className="sticky top-0 z-50 bg-[#070b14]/85 backdrop-blur-xl border-b border-white/[0.08] transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo */}
@@ -166,15 +166,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => setCurrentTab('landing')}
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-all">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-105 group-hover:shadow-indigo-500/40 transition-all">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
-            <div>
-              <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-brand-400 bg-clip-text text-transparent">
-                intervyn<span className="text-brand-400">.ai</span>
+            <div className="flex items-center">
+              <span className="text-xl font-extrabold tracking-tight text-white group-hover:text-slate-100 transition-colors">
+                intervyn<span className="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">.ai</span>
               </span>
-              <span className="hidden sm:inline-block ml-2 px-2 py-0.5 text-[10px] font-semibold bg-brand-950/60 text-brand-300 border border-brand-800/60 rounded-full">
-                OA & Mock AI
+              <span className="hidden sm:inline-flex items-center gap-1.5 ml-3 px-2.5 py-0.5 text-[11px] font-medium bg-gradient-to-r from-blue-500/10 to-indigo-500/10 text-sky-300 border border-sky-500/20 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Technical Interview & Assessment
               </span>
             </div>
           </div>
@@ -188,13 +189,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all ${
                     isActive
-                      ? 'bg-brand-600/20 text-brand-300 border border-brand-500/30'
+                      ? 'bg-gradient-to-r from-blue-600/20 to-indigo-600/20 text-sky-300 border border-sky-500/30 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]'
                       : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-brand-400' : 'text-slate-400'}`} />
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-sky-400' : 'text-slate-400'}`} />
                   {item.label}
                 </button>
               );
@@ -205,15 +206,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Google Authentication Button / User Profile */}
             {currentUser ? (
-              <div className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-slate-800/90 border border-slate-700/80 shadow-sm">
+              <div className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-slate-900/90 border border-white/10 shadow-sm">
                 {currentUser.avatar_url ? (
                   <img
                     src={currentUser.avatar_url}
                     alt={currentUser.name}
-                    className="w-6 h-6 rounded-full object-cover border border-brand-400/50"
+                    className="w-6 h-6 rounded-full object-cover border border-indigo-400/50"
                   />
                 ) : (
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-[10px] font-bold text-white uppercase">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-[10px] font-bold text-white uppercase">
                     {currentUser.name?.[0] || 'U'}
                   </div>
                 )}
@@ -223,7 +224,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
                 <button
                   onClick={handleSignOut}
-                  className="ml-1 p-1 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-700/50 transition-all"
+                  className="ml-1 p-1 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800/50 transition-all"
                   title="Sign Out"
                 >
                   <LogOut className="w-3.5 h-3.5" />
@@ -232,7 +233,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             ) : (
               <button
                 onClick={triggerOpenAuth}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 text-slate-900 text-xs font-bold transition-all shadow-sm shadow-white/10 active:scale-[0.98]"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 text-slate-900 text-xs font-bold transition-all shadow-md shadow-white/10 active:scale-[0.98]"
                 title="Sign in with Google"
               >
                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
@@ -248,7 +249,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <button
               onClick={handleSettingsClick}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600 text-xs font-semibold transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-white/10 text-slate-300 hover:text-white hover:border-white/20 text-xs font-semibold transition-all shadow-sm"
               title="Configure LLM & AI Models"
             >
               <Key className="w-3.5 h-3.5 text-amber-400" />
@@ -258,29 +259,29 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Candidate Setup Trigger */}
             <button
               onClick={handleCandidateSetupClick}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-brand-600/30 to-indigo-600/30 border border-brand-500/40 text-brand-200 hover:text-white hover:border-brand-400 text-xs font-semibold transition-all shadow-sm shadow-brand-500/10"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-violet-500/10 border border-indigo-500/30 text-indigo-200 hover:text-white hover:border-indigo-400 text-xs font-semibold transition-all shadow-sm"
               title="Setup New Candidate & Custom JD / Resume"
             >
-              <UserPlus className="w-3.5 h-3.5 text-brand-400" />
+              <UserPlus className="w-3.5 h-3.5 text-indigo-400" />
               <span className="hidden sm:inline">New Candidate</span>
             </button>
 
             <div 
               onClick={handleCandidateSetupClick}
-              className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/60 border border-slate-700/60 text-xs cursor-pointer hover:border-slate-500 transition-all"
+              className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-white/10 text-xs cursor-pointer hover:border-white/20 transition-all"
               title="Click to customize candidate or JD"
             >
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
               <span className="text-slate-200 font-medium">{candidate.name}</span>
-              <span className="text-slate-500">|</span>
-              <span className="text-brand-400 font-mono truncate max-w-[120px]">{candidate.company}</span>
+              <span className="text-slate-600">|</span>
+              <span className="text-sky-400 font-mono truncate max-w-[120px]">{candidate.company}</span>
             </div>
 
             <button
               onClick={handleLiveMockClick}
-              className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow-sm shadow-brand-500/20 transition-all whitespace-nowrap"
+              className="px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-md shadow-indigo-600/25 hover:shadow-indigo-600/40 transition-all whitespace-nowrap active:scale-[0.98]"
             >
-              Start Live Mock
+              Start AI Interview
             </button>
           </div>
         </div>

@@ -505,21 +505,21 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Top Session Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-md">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900/90 border border-white/10 shadow-xl">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center">
-            <Bot className="w-5 h-5 text-indigo-400" />
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-md shadow-indigo-600/20">
+            <Bot className="w-5 h-5 text-white" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-base font-bold text-white">{company} Technical Interview</h1>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
                 LIVE
               </span>
             </div>
             <div className="text-xs text-slate-400">
-              Candidate: <span className="text-slate-200">{candidateName}</span> • Phase:{' '}
-              <span className="text-brand-300 font-semibold font-mono">{currentTurn.phase.replace('_', ' ')}</span>
+              Candidate: <span className="text-slate-200 font-medium">{candidateName}</span> • Phase:{' '}
+              <span className="text-sky-300 font-semibold font-mono">{currentTurn.phase.replace('_', ' ')}</span>
             </div>
           </div>
         </div>
@@ -530,13 +530,13 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
             onClick={handleToggleVoice}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               isVoiceEnabled
-                ? 'bg-brand-950 text-brand-300 border border-brand-800'
+                ? 'bg-sky-950/80 text-sky-300 border border-sky-800/60'
                 : 'bg-slate-800 text-slate-400 hover:text-slate-200'
             }`}
             title={isVoiceEnabled ? 'Voice Enabled (AI speaks questions)' : 'Voice Disabled'}
           >
             {isVoiceEnabled ? (
-              <Volume2 className={`w-4 h-4 text-brand-400 ${isAiSpeaking ? 'animate-bounce text-emerald-400' : ''}`} />
+              <Volume2 className={`w-4 h-4 text-sky-400 ${isAiSpeaking ? 'animate-bounce text-emerald-400' : ''}`} />
             ) : (
               <VolumeX className="w-4 h-4" />
             )}
@@ -561,7 +561,7 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
             onClick={handleViewReportDirectly}
             className="px-4 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all"
           >
-            Conclude & View Audit Report
+            Conclude & View Feedback Report
           </button>
         </div>
       </div>

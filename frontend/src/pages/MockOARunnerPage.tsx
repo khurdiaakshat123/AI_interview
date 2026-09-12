@@ -121,20 +121,20 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
       <ProctoringToast alert={currentAlert} onClose={clearAlert} />
 
       {/* Exam Banner Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-md">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900/90 border border-white/10 shadow-xl">
         <div className="flex items-center gap-4">
-          <div className="px-3 py-1 rounded-xl bg-amber-950/80 border border-amber-800/60 text-amber-300 font-mono text-xs font-bold">
-            EXAM IN PROGRESS
+          <div className="px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-xs font-bold tracking-wider">
+            TIMED ASSESSMENT
           </div>
           <div>
             <div className="text-sm font-bold text-white flex items-center gap-2">
               <span>{variant.company} • {variant.role}</span>
-              <span className="text-xs text-slate-500 font-normal">
-                (Variant #{variant.attempt_number} • Window expires in {variant.window_expires_in_days}d)
+              <span className="text-xs text-slate-400 font-normal">
+                (Assessment Set #{variant.attempt_number} • Cycle active for {variant.window_expires_in_days}d)
               </span>
             </div>
             <span className="text-xs text-slate-400">
-              Exam mode: Hints and solutions are locked during timed attempt
+              Standard timed conditions: Hints and external solutions are disabled during active assessment
             </span>
           </div>
         </div>

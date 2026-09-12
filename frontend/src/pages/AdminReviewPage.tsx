@@ -68,13 +68,13 @@ export const AdminReviewPage: React.FC = () => {
         <div>
           <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2">
             <ShieldCheck className="w-4 h-4" />
-            Subsystem A • Agent 4
+            Quality Assurance • Automated Verification
           </div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">
-            18-Point Question Validation Queue
+          <h1 className="text-3xl font-extrabold text-white tracking-tight">
+            18-Point Question Quality Audit
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
-            Every question must satisfy all 18 validation checkpoints before being published into the Question Bank.
+          <p className="text-sm text-slate-300 mt-1">
+            Every assessment question is verified against an 18-point rubric including algorithmic correctness, complexity bounds, test cases, and hidden answer leakage.
           </p>
         </div>
 

@@ -97,19 +97,19 @@ export const PracticeConfigPage: React.FC<PracticeConfigPageProps> = ({
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* Header */}
       <div>
-        <div className="inline-flex items-center gap-2 text-xs font-semibold text-brand-400 uppercase tracking-wider mb-2">
+        <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-400 uppercase tracking-wider mb-2">
           <Code2 className="w-4 h-4" />
-          Subsystem A • Agent 2
+          Coding & System Design Practice
         </div>
-        <h1 className="text-3xl font-bold text-white tracking-tight">
-          Practice Question Configurator
+        <h1 className="text-3xl font-extrabold text-white tracking-tight">
+          Targeted Skill Practice
         </h1>
-        <p className="text-sm text-slate-400 mt-1">
-          Configure topics, proficiency vectors, and question allocations. Generated sets are locked to deterministic SHA256 keys for reproducibility.
+        <p className="text-sm text-slate-300 mt-1">
+          Select target topics, set your current proficiency level, and generate tailored questions with hints, code templates, and automated tests.
         </p>
       </div>
 
-      <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-6">
+      <div className="p-6 sm:p-8 rounded-2xl bg-slate-900/80 border border-white/10 shadow-xl space-y-6">
         {/* Company & Role Target */}
         <div className="grid sm:grid-cols-2 gap-4 pb-6 border-b border-slate-800">
           <div>
@@ -242,9 +242,9 @@ export const PracticeConfigPage: React.FC<PracticeConfigPageProps> = ({
           <button
             onClick={handleStartPractice}
             disabled={loading || selectedTopics.length === 0}
-            className="w-full py-3.5 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-500 disabled:opacity-50 text-white flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20 transition-all"
+            className="w-full py-3.5 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 text-white flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/25 transition-all active:scale-[0.98]"
           >
-            {loading ? 'Computing SHA-256 Practice Set...' : 'Launch Practice Session'}
+            {loading ? 'Preparing Practice Set...' : 'Launch Practice Session'}
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

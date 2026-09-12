@@ -249,18 +249,25 @@ export const App: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-950 border-t border-slate-900 py-8 text-center text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-slate-300">intervyn.ai</span>
-            <span>•</span>
-            <span>AI-Powered OA & Mock Interview Preparation Platform</span>
+      <footer className="bg-[#070b14] border-t border-white/[0.06] py-10 text-xs text-slate-400">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-3">
+            <div className="flex items-center gap-2">
+              <span className="font-extrabold text-white text-sm">intervyn<span className="text-sky-400">.ai</span></span>
+              <span className="text-slate-600">•</span>
+              <span className="text-slate-400">The Technical Hiring & Assessment Studio</span>
+            </div>
           </div>
 
-          <div className="flex items-center gap-6 font-mono text-[11px]">
-            <span>FastAPI Backend (:8000)</span>
-            <span>SQLite / PostgreSQL Store</span>
-            <span>18-Point Audit Verified</span>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-400">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              All Systems Operational
+            </span>
+            <span className="text-slate-700 hidden sm:inline">|</span>
+            <span>Enterprise Proctoring</span>
+            <span className="text-slate-700 hidden sm:inline">|</span>
+            <span>18-Point Verification Standard</span>
           </div>
         </div>
       </footer>
