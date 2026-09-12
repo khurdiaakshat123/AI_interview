@@ -115,9 +115,15 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
     setStepMessage('Agent 1: Extracting Job Description topics with Live AI...');
 
     try {
+      const token = localStorage.getItem('intervyn_token');
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
       const response = await fetch(`${BASE_URL}/candidate/setup`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({
           name: name.trim(),
           email: email.trim(),

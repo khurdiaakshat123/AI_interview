@@ -76,95 +76,22 @@ class EvaluatorRegistry:
     @classmethod
     def evaluate_coding(cls, user_code: str, question_data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Executes code against test cases (visible + hidden) and analyzes complexity.
-        Safe local sandbox execution.
+        Executes code against test cases (visible + hidden) using the isolated SandboxRunner.
+        Guarantees AST static screening, process isolation, and timeout controls.
         """
+        from backend.app.engines.sandbox_runner import SandboxRunner
+
         test_cases = question_data.get("test_cases", [])
         if not test_cases and "test_cases_json" in question_data:
             test_cases = question_data.get("test_cases_json", [])
 
-        if not test_cases:
-            # Fallback when no explicit test cases exist
-            has_substance = len(str(user_code).strip()) > 20
-            return {
-                "is_correct": has_substance,
-                "score_fraction": 1.0 if has_substance else 0.0,
-                "feedback": "Code submitted successfully." if has_substance else "Incomplete solution.",
-                "test_case_results": []
-            }
-
-        results = []
-        passed_count = 0
-
-        code_str = str(user_code)
-
-        for idx, tc in enumerate(test_cases):
-            input_val = tc.get("input", "")
-            expected_output = str(tc.get("expected_output", "")).strip()
-            is_hidden = tc.get("is_hidden", False)
-
-            start_t = time.perf_counter()
-            actual_output = None
-            passed = False
-
-            # Simulation & syntactic execution test
-            # If the candidate provided valid python logic, evaluate it
-            try:
-                # Prepare execution namespace
-                exec_globals = {}
-                exec_locals = {}
-                exec(code_str, exec_globals, exec_locals)
-
-                # Find entrypoint function
-                func = None
-                for name, val in exec_locals.items():
-                    if callable(val) and not name.startswith("_"):
-                        func = val
-                        break
-
-                if func:
-                    # Parse input
-                    if isinstance(input_val, dict):
-                        ret = func(**input_val)
-                    elif isinstance(input_val, list):
-                        ret = func(*input_val)
-                    else:
-                        ret = func(input_val)
-                    actual_output = str(ret).strip()
-                    passed = (actual_output.lower() == expected_output.lower())
-                else:
-                    # Check if code solves the problem pattern
-                    passed = expected_output.lower() in code_str.lower()
-                    actual_output = expected_output if passed else "No output function found"
-            except Exception as e:
-                actual_output = f"Runtime error: {str(e)[:100]}"
-                passed = False
-
-            elapsed_ms = round((time.perf_counter() - start_t) * 1000, 2)
-            if passed:
-                passed_count += 1
-
-            results.append({
-                "test_case_index": idx + 1,
-                "input_data": "(Hidden test case)" if is_hidden else str(input_val),
-                "expected_output": "(Hidden)" if is_hidden else expected_output,
-                "actual_output": "(Hidden test case passed)" if (is_hidden and passed) else ("(Hidden test case failed)" if is_hidden else actual_output),
-                "passed": passed,
-                "runtime_ms": elapsed_ms,
-                "memory_mb": 14.2
-            })
-
-        total = len(test_cases)
-        score_fraction = round(passed_count / total, 2) if total > 0 else 0.0
-        all_passed = (passed_count == total)
-
-        return {
-            "is_correct": all_passed,
-            "score_fraction": score_fraction,
-            "feedback": f"Passed {passed_count}/{total} test cases." + (" All tests passed!" if all_passed else " Check failing test cases."),
-            "test_case_results": results,
-            "optimal_complexity": question_data.get("approach", "O(N) Time, O(1) Space")
-        }
+        approach = question_data.get("approach", "O(N) Time, O(1) Space")
+        return SandboxRunner.evaluate_code_against_tests(
+            user_code=user_code,
+            test_cases=test_cases,
+            approach=approach,
+            timeout_seconds=3.0
+        )
 
     @classmethod
     def evaluate_sql(cls, user_sql: str, question_data: Dict[str, Any]) -> Dict[str, Any]:

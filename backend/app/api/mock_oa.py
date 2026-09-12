@@ -7,13 +7,13 @@ from backend.app.schemas.schemas import (
 )
 from backend.app.agents.mock_oa_agent import MockOAAgent
 from backend.app.agents.evaluator_agent import EvaluatorAgent
+from backend.app.api.deps import get_current_user
 
 router = APIRouter(prefix="/api/mock-oa", tags=["Mock OA Engine"])
 
 @router.post("/start", response_model=MockOAVariantOut)
-def start_mock_oa(payload: MockOAStartRequest, db: Session = Depends(get_db)):
-    user = db.query(User).first()
-    user_id = user.id if user else "user_default"
+def start_mock_oa(payload: MockOAStartRequest, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    user_id = current_user.id
 
     variant, attempt, days_remaining = MockOAAgent.start_mock_oa(
         db=db,

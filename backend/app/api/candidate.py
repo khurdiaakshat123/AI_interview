@@ -15,6 +15,8 @@ from backend.app.engines.resume_parser import ResumeParser
 from backend.app.engines.document_parser import DocumentParser
 from backend.app.agents.interview_agent import InterviewAgent
 
+from backend.app.api.deps import get_current_user_optional
+
 router = APIRouter(prefix="/api/candidate", tags=["Candidate & Custom Onboarding"])
 
 @router.post("/extract-file")
@@ -56,23 +58,34 @@ async def extract_file_content(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"Failed to process file: {str(e)}")
 
 @router.post("/setup", response_model=CandidateSetupResponse)
-def setup_candidate_and_run(payload: CandidateSetupRequest, db: Session = Depends(get_db)):
-    # 1. Create or retrieve User
-    user = db.query(User).filter(User.email == payload.email).first()
-    if not user:
-        user = User(
-            id=generate_uuid(),
-            name=payload.name.strip() or "Candidate",
-            email=payload.email.strip().lower(),
-            password_hash="mock_hash_auto",
-            created_at=utc_now()
-        )
-        db.add(user)
-        db.commit()
-        db.refresh(user)
-    else:
+def setup_candidate_and_run(
+    payload: CandidateSetupRequest,
+    db: Session = Depends(get_db),
+    current_user: Optional[User] = Depends(get_current_user_optional)
+):
+    # 1. Create or retrieve User scoped to current auth session if present
+    if current_user:
+        user = current_user
         if payload.name:
             user.name = payload.name.strip()
+            db.commit()
+            db.refresh(user)
+    else:
+        user = db.query(User).filter(User.email == payload.email).first()
+        if not user:
+            user = User(
+                id=generate_uuid(),
+                name=payload.name.strip() or "Candidate",
+                email=payload.email.strip().lower(),
+                password_hash="mock_hash_auto",
+                created_at=utc_now()
+            )
+            db.add(user)
+            db.commit()
+            db.refresh(user)
+        else:
+            if payload.name:
+                user.name = payload.name.strip()
             db.commit()
             db.refresh(user)
 

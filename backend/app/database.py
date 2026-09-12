@@ -39,13 +39,23 @@ def _sanitize_db_url(url: str) -> str:
 DATABASE_URL = _sanitize_db_url(os.getenv("DATABASE_URL", "sqlite:///./intervyn.db"))
 
 connect_args = {}
+engine_kwargs = {
+    "echo": False
+}
+
 if DATABASE_URL.startswith("sqlite"):
-    connect_args = {"check_same_thread": False}
+    connect_args["check_same_thread"] = False
+else:
+    # Handle cloud PostgreSQL (Supabase / Render) connection drops and timeouts
+    engine_kwargs["pool_pre_ping"] = True
+    engine_kwargs["pool_recycle"] = 300
+    engine_kwargs["pool_size"] = 10
+    engine_kwargs["max_overflow"] = 20
 
 engine = create_engine(
     DATABASE_URL,
     connect_args=connect_args,
-    echo=False
+    **engine_kwargs
 )
 
 # Enable foreign keys for SQLite

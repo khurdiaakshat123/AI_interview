@@ -19,11 +19,34 @@ async function handleResponse<T>(res: Response): Promise<T> {
   return res.json();
 }
 
+function getAuthHeaders(customHeaders?: HeadersInit): Headers {
+  const headers = new Headers(customHeaders || {});
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('intervyn_token');
+    if (token && !headers.has('Authorization')) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+  }
+  return headers;
+}
+
+async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+  const headers = getAuthHeaders(options.headers);
+  if (!headers.has('Content-Type') && !(options.body instanceof FormData)) {
+    headers.set('Content-Type', 'application/json');
+  }
+  const url = endpoint.startsWith('http') ? endpoint : `${BASE_URL}${endpoint}`;
+  const res = await fetch(url, {
+    ...options,
+    headers
+  });
+  return handleResponse<T>(res);
+}
+
 export const api = {
   // Role Profiles
   async getRoleProfiles(): Promise<RoleTopicProfile[]> {
-    const res = await fetch(`${BASE_URL}/role-profiles`);
-    return handleResponse<RoleTopicProfile[]>(res);
+    return request<RoleTopicProfile[]>('/role-profiles');
   },
 
   async createRoleProfile(payload: {
@@ -33,12 +56,10 @@ export const api = {
     experience_requirement?: string;
     jd_text?: string;
   }): Promise<RoleTopicProfile> {
-    const res = await fetch(`${BASE_URL}/role-profiles`, {
+    return request<RoleTopicProfile>('/role-profiles', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    return handleResponse<RoleTopicProfile>(res);
   },
 
   // Practice
@@ -50,63 +71,51 @@ export const api = {
     total_questions?: number;
     allocation_mode?: string;
   }): Promise<PracticeSession> {
-    const res = await fetch(`${BASE_URL}/practice/sessions`, {
+    return request<PracticeSession>('/practice/sessions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    return handleResponse<PracticeSession>(res);
   },
 
   async checkAnswer(questionId: string, answer: any): Promise<CheckAnswerResponse> {
-    const res = await fetch(`${BASE_URL}/practice/questions/${questionId}/check-answer`, {
+    return request<CheckAnswerResponse>(`/practice/questions/${questionId}/check-answer`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question_id: questionId, answer })
     });
-    return handleResponse<CheckAnswerResponse>(res);
   },
 
   async getHint(questionId: string): Promise<{ question_id: string; hint: string }> {
-    const res = await fetch(`${BASE_URL}/practice/questions/${questionId}/hint`);
-    return handleResponse(res);
+    return request<{ question_id: string; hint: string }>(`/practice/questions/${questionId}/hint`);
   },
 
   async getApproach(questionId: string): Promise<{ question_id: string; approach: string }> {
-    const res = await fetch(`${BASE_URL}/practice/questions/${questionId}/approach`);
-    return handleResponse(res);
+    return request<{ question_id: string; approach: string }>(`/practice/questions/${questionId}/approach`);
   },
 
   async getSolution(questionId: string): Promise<{ question_id: string; solution: string; explanation?: string }> {
-    const res = await fetch(`${BASE_URL}/practice/questions/${questionId}/solution`);
-    return handleResponse(res);
+    return request<{ question_id: string; solution: string; explanation?: string }>(`/practice/questions/${questionId}/solution`);
   },
 
   // Mock OA
   async startMockOA(payload: { company: string; role: string }): Promise<MockOAVariant> {
-    const res = await fetch(`${BASE_URL}/mock-oa/start`, {
+    return request<MockOAVariant>('/mock-oa/start', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    return handleResponse<MockOAVariant>(res);
   },
 
   async submitMockOA(attemptId: string, payload: {
     answers: Record<string, any>;
     time_spent_per_question?: Record<string, number>;
   }): Promise<MockOAReport> {
-    const res = await fetch(`${BASE_URL}/mock-oa/attempts/${attemptId}/submit`, {
+    return request<MockOAReport>(`/mock-oa/attempts/${attemptId}/submit`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    return handleResponse<MockOAReport>(res);
   },
 
   async getMockOAReport(attemptId: string): Promise<MockOAReport> {
-    const res = await fetch(`${BASE_URL}/mock-oa/attempts/${attemptId}/report`);
-    return handleResponse<MockOAReport>(res);
+    return request<MockOAReport>(`/mock-oa/attempts/${attemptId}/report`);
   },
 
   // Interview
@@ -117,17 +126,14 @@ export const api = {
     company: string;
     role: string;
   }): Promise<StructuredResume> {
-    const res = await fetch(`${BASE_URL}/interview/parse-resume`, {
+    return request<StructuredResume>('/interview/parse-resume', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    return handleResponse<StructuredResume>(res);
   },
 
   async getSampleResume(): Promise<StructuredResume> {
-    const res = await fetch(`${BASE_URL}/interview/resumes/sample`);
-    return handleResponse<StructuredResume>(res);
+    return request<StructuredResume>('/interview/resumes/sample');
   },
 
   async startInterview(payload: {
@@ -137,21 +143,17 @@ export const api = {
     candidate_name?: string;
     resume_text?: string;
   }): Promise<InterviewTurn> {
-    const res = await fetch(`${BASE_URL}/interview/sessions`, {
+    return request<InterviewTurn>('/interview/sessions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    return handleResponse<InterviewTurn>(res);
   },
 
   async answerInterviewQuestion(sessionId: string, answer: string): Promise<InterviewTurn> {
-    const res = await fetch(`${BASE_URL}/interview/sessions/${sessionId}/answer`, {
+    return request<InterviewTurn>(`/interview/sessions/${sessionId}/answer`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ answer })
     });
-    return handleResponse<InterviewTurn>(res);
   },
 
   async correctTranscript(sessionId: string, payload: {
@@ -164,65 +166,53 @@ export const api = {
     changes_made: string[];
     has_corrections: boolean;
   }> {
-    const res = await fetch(`${BASE_URL}/interview/sessions/${sessionId}/correct-transcript`, {
+    return request(`/interview/sessions/${sessionId}/correct-transcript`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    return handleResponse(res);
   },
 
   async getInterviewReport(sessionId: string): Promise<InterviewFinalReport> {
-    const res = await fetch(`${BASE_URL}/interview/sessions/${sessionId}/report`);
-    return handleResponse<InterviewFinalReport>(res);
+    return request<InterviewFinalReport>(`/interview/sessions/${sessionId}/report`);
   },
 
   // Admin
   async getReviewQueue(): Promise<ReviewQueueItem[]> {
-    const res = await fetch(`${BASE_URL}/admin/review-queue`);
-    return handleResponse<ReviewQueueItem[]>(res);
+    return request<ReviewQueueItem[]>('/admin/review-queue');
   },
 
   async approveQuestion(questionId: string): Promise<{ message: string }> {
-    const res = await fetch(`${BASE_URL}/admin/review-queue/${questionId}/approve`, {
+    return request<{ message: string }>(`/admin/review-queue/${questionId}/approve`, {
       method: 'POST'
     });
-    return handleResponse(res);
   },
 
   async rejectQuestion(questionId: string): Promise<{ message: string }> {
-    const res = await fetch(`${BASE_URL}/admin/review-queue/${questionId}/reject`, {
+    return request<{ message: string }>(`/admin/review-queue/${questionId}/reject`, {
       method: 'POST'
     });
-    return handleResponse(res);
   },
 
   // Auth & Google Login
   async loginWithGoogle(credential: string, userInfo?: any): Promise<{ access_token: string; user: any }> {
-    const res = await fetch(`${BASE_URL}/auth/google`, {
+    return request<{ access_token: string; user: any }>('/auth/google', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ credential, user_info: userInfo })
     });
-    return handleResponse(res);
   },
 
   async login(email: string, password: string): Promise<{ access_token: string; user: any }> {
-    const res = await fetch(`${BASE_URL}/auth/login`, {
+    return request<{ access_token: string; user: any }>('/auth/login', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     });
-    return handleResponse(res);
   },
 
   async signup(name: string, email: string, password: string): Promise<{ access_token: string; user: any }> {
-    const res = await fetch(`${BASE_URL}/auth/signup`, {
+    return request<{ access_token: string; user: any }>('/auth/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password })
     });
-    return handleResponse(res);
   },
 
   async getMe(token?: string): Promise<any> {
@@ -230,10 +220,8 @@ export const api = {
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
-    const res = await fetch(`${BASE_URL}/auth/me`, { headers });
-    return handleResponse(res);
+    return request('/auth/me', { headers });
   }
 };
 
 export { BASE_URL };
-

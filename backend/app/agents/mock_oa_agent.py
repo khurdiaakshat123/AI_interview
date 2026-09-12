@@ -102,30 +102,44 @@ class MockOAAgent:
     def _generate_canonical_variant(
         cls, db: Session, company: str, role: str, window_id: str, attempt_num: int
     ) -> MockOAVariant:
-        # Collect published questions for the exam (2 DSA, 1 SQL, 2 MCQ/MSQ)
+        # Categorize and sort questions deterministically by ID
         questions = db.query(QuestionBank).filter(QuestionBank.status == "PUBLISHED").all()
 
-        dsa_qs = [q for q in questions if q.question_type.upper() in ["DSA", "CODING"]]
-        sql_qs = [q for q in questions if q.question_type.upper() == "SQL"]
-        other_qs = [q for q in questions if q.question_type.upper() in ["MCQ", "MSQ", "SYSTEM DESIGN"]]
+        dsa_qs = sorted([q for q in questions if q.question_type.upper() in ["DSA", "CODING"]], key=lambda x: x.id)
+        sql_qs = sorted([q for q in questions if q.question_type.upper() == "SQL"], key=lambda x: x.id)
+        other_qs = sorted([q for q in questions if q.question_type.upper() in ["MCQ", "MSQ", "SYSTEM DESIGN"]], key=lambda x: x.id)
 
         selected_ids = []
-        # Take 2 DSA
-        for q in dsa_qs[:2]:
-            selected_ids.append(q.id)
-        # Take 1 SQL
-        for q in sql_qs[:1]:
-            selected_ids.append(q.id)
-        # Take 2 others
-        for q in other_qs[:2]:
-            selected_ids.append(q.id)
+
+        # Attempt-based rotational selection guarantees distinct question sets per attempt:
+        # Attempt 1 gets Set A, Attempt 2 gets Set B, Attempt 3 gets Set C.
+        if dsa_qs:
+            shift = ((attempt_num - 1) * 2) % len(dsa_qs)
+            rotated_dsa = dsa_qs[shift:] + dsa_qs[:shift]
+            for q in rotated_dsa[:2]:
+                if q.id not in selected_ids:
+                    selected_ids.append(q.id)
+
+        if sql_qs:
+            shift = (attempt_num - 1) % len(sql_qs)
+            rotated_sql = sql_qs[shift:] + sql_qs[:shift]
+            for q in rotated_sql[:1]:
+                if q.id not in selected_ids:
+                    selected_ids.append(q.id)
+
+        if other_qs:
+            shift = ((attempt_num - 1) * 2) % len(other_qs)
+            rotated_other = other_qs[shift:] + other_qs[:shift]
+            for q in rotated_other[:2]:
+                if q.id not in selected_ids:
+                    selected_ids.append(q.id)
 
         # If not enough specific types, fill from whatever is published
-        if len(selected_ids) < 4 and questions:
+        if len(selected_ids) < 5 and questions:
             for q in questions:
                 if q.id not in selected_ids:
                     selected_ids.append(q.id)
-                if len(selected_ids) >= 4:
+                if len(selected_ids) >= 5:
                     break
 
         variant = MockOAVariant(

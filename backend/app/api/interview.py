@@ -16,13 +16,13 @@ from backend.app.schemas.schemas import (
 from backend.app.engines.resume_parser import ResumeParser
 from backend.app.agents.interview_agent import InterviewAgent
 from backend.app.llm.client import llm_client
+from backend.app.api.deps import get_current_user
 
 router = APIRouter(prefix="/api/interview", tags=["AI Mock Interview"])
 
 @router.post("/parse-resume", response_model=StructuredResumeOut)
-def parse_resume(payload: ResumeUploadRequest, db: Session = Depends(get_db)):
-    user = db.query(User).first()
-    user_id = user.id if user else "user_default"
+def parse_resume(payload: ResumeUploadRequest, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    user_id = current_user.id
 
     parsed = ResumeParser.parse_resume(payload.resume_text, payload.company, payload.role)
 
@@ -69,9 +69,8 @@ def get_sample_resume(db: Session = Depends(get_db)):
     )
 
 @router.post("/sessions", response_model=InterviewTurnOut)
-def create_interview_session(payload: InterviewSessionCreate, db: Session = Depends(get_db)):
-    user = db.query(User).first()
-    user_id = user.id if user else "user_default"
+def create_interview_session(payload: InterviewSessionCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    user_id = current_user.id
 
     resume = None
     if payload.resume_id:

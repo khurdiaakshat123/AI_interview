@@ -10,14 +10,13 @@ from backend.app.schemas.schemas import (
 from backend.app.agents.practice_agent import PracticeAgent
 from backend.app.agents.mock_oa_agent import MockOAAgent
 from backend.app.engines.evaluator_registry import EvaluatorRegistry
+from backend.app.api.deps import get_current_user
 
 router = APIRouter(prefix="/api/practice", tags=["Practice Engine"])
 
 @router.post("/sessions")
-def create_practice_session(payload: PracticeSessionCreate, db: Session = Depends(get_db)):
-    # Default user for demo
-    user = db.query(User).first()
-    user_id = user.id if user else "user_default"
+def create_practice_session(payload: PracticeSessionCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    user_id = current_user.id
 
     # Get active window
     window = MockOAAgent.get_or_create_active_window(db, payload.company, payload.role)

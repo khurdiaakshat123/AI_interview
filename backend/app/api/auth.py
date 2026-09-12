@@ -148,28 +148,8 @@ def login(payload: UserLogin, db: Session = Depends(get_db)):
         user=UserOut.model_validate(user)
     )
 
+from backend.app.api.deps import get_current_user
+
 @router.get("/me", response_model=UserOut)
-def get_me(authorization: Optional[str] = Header(None), db: Session = Depends(get_db)):
-    user = None
-    if authorization and ("Bearer " in authorization or "token_" in authorization):
-        token = authorization.replace("Bearer ", "").strip()
-        # Token format: google_token_{id} or mock_token_{id}
-        parts = token.split("_")
-        user_id = parts[-1]
-        user = db.query(User).filter(User.id == user_id).first()
-
-    if not user:
-        user = db.query(User).first()
-
-    if not user:
-        user = User(
-            id=generate_uuid(),
-            name="Alex Mercer",
-            email="candidate@intervyn.ai",
-            password_hash="hashed",
-            created_at=utc_now()
-        )
-        db.add(user)
-        db.commit()
-        db.refresh(user)
-    return UserOut.model_validate(user)
+def get_me(current_user: User = Depends(get_current_user)):
+    return UserOut.model_validate(current_user)
