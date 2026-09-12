@@ -4,16 +4,18 @@ import {
   ArrowRight, X, Layers, Cpu, Check, Loader2, AlertCircle, RefreshCw
 } from 'lucide-react';
 import { DocumentUploadInput } from './DocumentUploadInput';
-import { BASE_URL } from '../services/api';
+import { BASE_URL, getAuthToken } from '../services/api';
 
 interface CandidateSetupModalProps {
   isOpen: boolean;
   onClose: () => void;
+  currentUser?: any;
   onSuccess: (candidateData: {
     user: any;
     company: string;
     role: string;
     turn: any;
+    candidateName?: string;
   }) => void;
 }
 
@@ -71,10 +73,11 @@ const SAMPLE_RESUMES = {
 export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
   isOpen,
   onClose,
+  currentUser,
   onSuccess
 }) => {
-  const [name, setName] = useState('Maya Lin');
-  const [email, setEmail] = useState('maya.lin@example.com');
+  const [name, setName] = useState(currentUser?.name || 'Maya Lin');
+  const [email, setEmail] = useState(currentUser?.email || 'maya.lin@example.com');
   const [experience, setExperience] = useState('3-5 years');
   const [company, setCompany] = useState(SAMPLE_JDS.openai.company);
   const [role, setRole] = useState(SAMPLE_JDS.openai.role);
@@ -83,6 +86,13 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
   const [loading, setLoading] = useState(false);
   const [stepMessage, setStepMessage] = useState('');
   const [error, setError] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (isOpen && currentUser) {
+      if (currentUser.name) setName(currentUser.name);
+      if (currentUser.email) setEmail(currentUser.email);
+    }
+  }, [isOpen, currentUser]);
 
   if (!isOpen) return null;
 
@@ -94,12 +104,16 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
     setJdText(p.jd);
     if (preset === 'openai') {
       setResumeText(SAMPLE_RESUMES.ai_ml);
-      setName('Maya Lin');
-      setEmail('maya.lin@ai-systems.dev');
+      if (!currentUser?.name) {
+        setName('Maya Lin');
+        setEmail('maya.lin@ai-systems.dev');
+      }
     } else {
       setResumeText(SAMPLE_RESUMES.systems);
-      setName('David Park');
-      setEmail('david.park@tech.org');
+      if (!currentUser?.name) {
+        setName('David Park');
+        setEmail('david.park@tech.org');
+      }
     }
   };
 
@@ -115,11 +129,11 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
     setStepMessage('Agent 1: Extracting Job Description topics with Live AI...');
 
     try {
-      const token = localStorage.getItem('intervyn_token');
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
-      }
+      const token = getAuthToken();
+      const headers: Record<string, string> = { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      };
 
       const response = await fetch(`${BASE_URL}/candidate/setup`, {
         method: 'POST',
@@ -150,7 +164,8 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
           user: data.user,
           company: data.company,
           role: data.role,
-          turn: data.initial_turn
+          turn: data.initial_turn,
+          candidateName: data.candidate_name || name.trim()
         });
         onClose();
       }, 500);

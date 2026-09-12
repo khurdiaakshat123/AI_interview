@@ -19,10 +19,22 @@ async function handleResponse<T>(res: Response): Promise<T> {
   return res.json();
 }
 
-function getAuthHeaders(customHeaders?: HeadersInit): Headers {
+export function getAuthToken(): string {
+  if (typeof window === 'undefined') return '';
+  const token = localStorage.getItem('intervyn_token');
+  if (token) return token;
+  let guestId = localStorage.getItem('intervyn_guest_id');
+  if (!guestId) {
+    guestId = 'guest_' + Math.random().toString(36).substring(2, 12) + Date.now().toString(36);
+    localStorage.setItem('intervyn_guest_id', guestId);
+  }
+  return guestId;
+}
+
+export function getAuthHeaders(customHeaders?: HeadersInit): Headers {
   const headers = new Headers(customHeaders || {});
   if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('intervyn_token');
+    const token = getAuthToken();
     if (token && !headers.has('Authorization')) {
       headers.set('Authorization', `Bearer ${token}`);
     }

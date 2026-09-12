@@ -110,10 +110,13 @@ export const App: React.FC = () => {
     company: string;
     role: string;
     turn: any;
+    candidateName?: string;
   }) => {
+    setShowCandidateSetup(false);
+    const chosenName = data.candidateName || data.turn?.candidate_name || data.user?.name || 'Candidate';
     const updated = {
-      name: data.user.name,
-      email: data.user.email,
+      name: chosenName,
+      email: data.user?.email || candidate.email,
       company: data.company,
       role: data.role
     };
@@ -122,7 +125,7 @@ export const App: React.FC = () => {
       turn: data.turn,
       company: data.company,
       role: data.role,
-      candidateName: data.user.name
+      candidateName: chosenName
     });
     setCurrentTab('live-interview');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -152,6 +155,7 @@ export const App: React.FC = () => {
       <CandidateSetupModal
         isOpen={showCandidateSetup}
         onClose={() => setShowCandidateSetup(false)}
+        currentUser={currentUser}
         onSuccess={handleCandidateSetupSuccess}
       />
 
@@ -228,6 +232,7 @@ export const App: React.FC = () => {
 
         {currentTab === 'live-interview' && navState.turn && (
           <LiveInterviewPage
+            key={navState.turn.session_id}
             initialTurn={navState.turn}
             company={navState.company}
             role={navState.role}

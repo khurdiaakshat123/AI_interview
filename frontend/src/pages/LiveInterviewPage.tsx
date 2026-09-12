@@ -240,6 +240,23 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
     }
   }, [inputText, isListening]);
 
+  // Reset interview state if initialTurn or session_id changes
+  useEffect(() => {
+    stopAllSpeech();
+    setCurrentTurn(initialTurn);
+    setMessages([
+      {
+        sender: 'INTERVIEWER',
+        text: initialTurn.question_text,
+        topic: initialTurn.current_topic,
+        depth: initialTurn.depth_level,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      }
+    ]);
+    setInputText('');
+    spokenQuestionIdsRef.current.clear();
+  }, [initialTurn.session_id]);
+
   // Clean up recognition on unmount
   useEffect(() => {
     return () => {

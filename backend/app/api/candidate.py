@@ -64,15 +64,16 @@ def setup_candidate_and_run(
     db: Session = Depends(get_db),
     current_user: Optional[User] = Depends(get_current_user_optional)
 ):
-    # 1. Create or retrieve User scoped to current auth session if present
+    # 1. Determine User identity for multi-tenant isolation
     if current_user:
         user = current_user
-        if payload.name:
+        # Only update user name if this is an anonymous guest account
+        if user.id.startswith("guest_") and payload.name and payload.name.strip():
             user.name = payload.name.strip()
             db.commit()
             db.refresh(user)
     else:
-        user = db.query(User).filter(User.email == payload.email).first()
+        user = db.query(User).filter(User.email == payload.email.strip().lower()).first()
         if not user:
             user = User(
                 id=generate_uuid(),
@@ -84,12 +85,9 @@ def setup_candidate_and_run(
             db.add(user)
             db.commit()
             db.refresh(user)
-        else:
-            if payload.name:
-                user.name = payload.name.strip()
-            db.commit()
-            db.refresh(user)
 
+    candidate_name = payload.name.strip() if (payload.name and payload.name.strip()) else user.name
+    candidate_email = payload.email.strip().lower() if (payload.email and payload.email.strip()) else user.email
     company = payload.target_company.strip() or "Target Company"
     role = payload.target_role.strip() or "Software Engineer"
 
@@ -121,7 +119,7 @@ def setup_candidate_and_run(
 
     # 3. Parse Custom Resume via ResumeParser (Live LLM)
     resume_parsed = ResumeParser.parse_resume(
-        raw_text=payload.resume_text or f"Resume of {user.name}. Technical skills: Python, Go, System Design.",
+        raw_text=payload.resume_text or f"Resume of {candidate_name}. Technical skills: Python, Go, System Design.",
         target_company=company,
         target_role=role
     )
@@ -129,8 +127,8 @@ def setup_candidate_and_run(
     resume_obj = StructuredResume(
         id=generate_uuid(),
         user_id=user.id,
-        candidate_name=user.name,
-        candidate_email=user.email,
+        candidate_name=candidate_name,
+        candidate_email=candidate_email,
         raw_text=payload.resume_text or "",
         sections_json=resume_parsed.get("sections", {}),
         section_weights_json=resume_parsed.get("section_weights", {}),
@@ -148,7 +146,8 @@ def setup_candidate_and_run(
         role=role,
         resume=resume_obj,
         role_profile=role_profile,
-        job_type=payload.job_type or "Full-Time"
+        job_type=payload.job_type or "Full-Time",
+        candidate_name=candidate_name
     )
 
     # Prepare initial turn
@@ -162,7 +161,8 @@ def setup_candidate_and_run(
         depth_level=1,
         max_depth=InterviewAgent.MAX_DEPTH,
         is_completed=False,
-        eval_previous=None
+        eval_previous=None,
+        candidate_name=candidate_name
     )
 
     # Format output models
@@ -238,6 +238,8 @@ def setup_candidate_and_run(
         structured_resume=structured_resume_out,
         initial_turn=initial_turn_out,
         company=company,
-        role=role
+        role=role,
+        candidate_name=candidate_name
     )
+
 

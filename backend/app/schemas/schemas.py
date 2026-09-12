@@ -251,6 +251,7 @@ class InterviewTurnOut(BaseModel):
     max_depth: int
     is_completed: bool
     eval_previous: Optional[Dict[str, Any]] = None
+    candidate_name: Optional[str] = None
 
 class InterviewEvidenceRecord(BaseModel):
     id: str
@@ -331,3 +332,4 @@ class CandidateSetupResponse(BaseModel):
     initial_turn: InterviewTurnOut
     company: str
     role: str
+    candidate_name: Optional[str] = None

@@ -206,6 +206,7 @@ export interface InterviewTurn {
     detected_gap?: string;
     is_clarification_prompt?: boolean;
   };
+  candidate_name?: string;
 }
 
 export interface InterviewEvidenceRecord {
