@@ -25,7 +25,7 @@ export const InterviewReportPage: React.FC<InterviewReportPageProps> = ({ report
         <div>
           <div className="inline-flex items-center gap-2 text-xs font-semibold text-indigo-400 uppercase tracking-wider mb-2">
             <Award className="w-4 h-4" />
-            Deterministic Evaluation & Audit Report (§6.5)
+            Comprehensive Evaluation & Performance Report
           </div>
           <h1 className="text-3xl font-extrabold text-white tracking-tight">
             Final Technical Interview Evaluation

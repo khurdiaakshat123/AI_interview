@@ -875,7 +875,7 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
           <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3 text-xs">
             <div className="font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
               <Layers className="w-3.5 h-3.5 text-indigo-400" />
-              Adaptive Reasoning Engine (§6.2)
+              Adaptive Reasoning & Depth Engine
             </div>
             <p className="text-slate-400 leading-relaxed">
               Every turn is scored deterministically using:
