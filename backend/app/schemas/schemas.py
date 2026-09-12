@@ -158,6 +158,20 @@ class MockOASubmitRequest(BaseModel):
     time_spent_per_question: Optional[Dict[str, int]] = {}  # seconds
     proctoring_data: Optional[Dict[str, Any]] = None
 
+class RunCodeRequest(BaseModel):
+    question_id: str
+    code: str
+    language: str = "python"
+    custom_input: Optional[str] = None
+
+class RunCodeResponse(BaseModel):
+    status: str  # ACCEPTED, WRONG_ANSWER, COMPILATION_ERROR, RUNTIME_ERROR, TLE
+    runtime_ms: float = 0.0
+    memory_mb: float = 0.0
+    test_case_results: List[TestCaseResult] = []
+    compiler_output: Optional[str] = None
+    feedback: Optional[str] = None
+
 class MockOAReportOut(BaseModel):
     attempt_id: str
     company: str

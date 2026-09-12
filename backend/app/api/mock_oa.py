@@ -3,13 +3,64 @@ from sqlalchemy.orm import Session
 from backend.app.database import get_db
 from backend.app.models.models import MockOAVariant, MockOAAttempt, QuestionBank, User
 from backend.app.schemas.schemas import (
-    MockOAStartRequest, MockOAVariantOut, QuestionOut, MockOASubmitRequest, MockOAReportOut
+    MockOAStartRequest, MockOAVariantOut, QuestionOut, MockOASubmitRequest, MockOAReportOut,
+    RunCodeRequest, RunCodeResponse, TestCaseResult
 )
 from backend.app.agents.mock_oa_agent import MockOAAgent
 from backend.app.agents.evaluator_agent import EvaluatorAgent
 from backend.app.api.deps import get_current_user
 
 router = APIRouter(prefix="/api/mock-oa", tags=["Mock OA Engine"])
+
+@router.post("/run", response_model=RunCodeResponse)
+def run_code(payload: RunCodeRequest, db: Session = Depends(get_db)):
+    """
+    HackerRank/LeetCode-grade immediate code execution against sample & custom test cases.
+    Supports C, C++ (17/20/23), Java, Python 3, JavaScript, TypeScript, Go, Rust, and SQL.
+    """
+    from backend.app.engines.sandbox_runner import SandboxRunner
+
+    question = db.query(QuestionBank).filter(QuestionBank.id == payload.question_id).first()
+    if not question:
+        raise HTTPException(status_code=404, detail="Question not found")
+
+    test_cases = question.test_cases_json or []
+    if not payload.custom_input:
+        test_cases = [tc for tc in test_cases if not tc.get("is_hidden")]
+
+    res = SandboxRunner.evaluate_code(
+        user_code=payload.code,
+        language=payload.language,
+        test_cases=test_cases,
+        custom_input=payload.custom_input,
+        approach=question.approach or "O(N) Time, O(1) Space",
+        timeout_seconds=4.0
+    )
+
+    tc_results = [
+        TestCaseResult(
+            test_case_index=r.get("test_case_index", idx + 1),
+            input_data=str(r.get("input_data", "")),
+            expected_output=str(r.get("expected_output", "")),
+            actual_output=str(r.get("actual_output", "")),
+            passed=bool(r.get("passed", False)),
+            runtime_ms=float(r.get("runtime_ms", 1.0)),
+            memory_mb=float(r.get("memory_mb", 14.0))
+        )
+        for idx, r in enumerate(res.get("test_case_results", []))
+    ]
+
+    total_time = sum([r.runtime_ms or 0.0 for r in tc_results])
+    max_mem = max([r.memory_mb or 0.0 for r in tc_results], default=14.0)
+
+    return RunCodeResponse(
+        status=res.get("status", "ACCEPTED" if res.get("is_correct") else "WRONG_ANSWER"),
+        runtime_ms=round(total_time, 2),
+        memory_mb=round(max_mem, 1),
+        test_case_results=tc_results,
+        compiler_output=res.get("compiler_output"),
+        feedback=res.get("feedback")
+    )
 
 @router.post("/start", response_model=MockOAVariantOut)
 def start_mock_oa(payload: MockOAStartRequest, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):

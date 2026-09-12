@@ -81,16 +81,35 @@ class EvaluatorRegistry:
         """
         from backend.app.engines.sandbox_runner import SandboxRunner
 
+        code_str = ""
+        lang = "python"
+        if isinstance(user_code, dict):
+            code_str = user_code.get("code", "")
+            lang = user_code.get("language", "python")
+        else:
+            code_str = str(user_code or "")
+            if "#include" in code_str or "using namespace std" in code_str:
+                lang = "cpp"
+            elif "public class Solution" in code_str or "import java." in code_str:
+                lang = "java"
+            elif "package main" in code_str:
+                lang = "go"
+            elif "impl Solution" in code_str:
+                lang = "rust"
+            elif "SELECT" in code_str.upper() and "FROM" in code_str.upper():
+                lang = "sql"
+
         test_cases = question_data.get("test_cases", [])
         if not test_cases and "test_cases_json" in question_data:
             test_cases = question_data.get("test_cases_json", [])
 
         approach = question_data.get("approach", "O(N) Time, O(1) Space")
-        return SandboxRunner.evaluate_code_against_tests(
-            user_code=user_code,
+        return SandboxRunner.evaluate_code(
+            user_code=code_str,
+            language=lang,
             test_cases=test_cases,
             approach=approach,
-            timeout_seconds=3.0
+            timeout_seconds=4.0
         )
 
     @classmethod

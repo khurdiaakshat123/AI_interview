@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Editor, { OnMount } from '@monaco-editor/react';
 import { 
   RotateCcw, Copy, Check, Code2, Play, Sparkles, 
@@ -18,15 +18,7 @@ interface CodeEditorProps {
   isRunning?: boolean;
 }
 
-const SUPPORTED_LANGUAGES = [
-  { id: 'python', label: 'Python 3' },
-  { id: 'sql', label: 'PostgreSQL / SQL' },
-  { id: 'javascript', label: 'JavaScript' },
-  { id: 'typescript', label: 'TypeScript' },
-  { id: 'cpp', label: 'C++ (Clang)' },
-  { id: 'java', label: 'Java 17' },
-  { id: 'go', label: 'Go' }
-];
+import { SUPPORTED_LANGUAGES } from '../utils/boilerplate_generator';
 
 export const CodeEditor: React.FC<CodeEditorProps> = ({
   value,
@@ -45,6 +37,11 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   const [selectedLang, setSelectedLang] = useState(language.toLowerCase());
   const [formatNotice, setFormatNotice] = useState(false);
   const editorRef = useRef<any>(null);
+  const onRunCodeRef = useRef(onRunCode);
+
+  useEffect(() => {
+    onRunCodeRef.current = onRunCode;
+  }, [onRunCode]);
 
   React.useEffect(() => {
     setSelectedLang(language.toLowerCase());
@@ -75,6 +72,13 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
       }
     });
     monaco.editor.setTheme('intervyn-dark');
+
+    // Bind Ctrl+Enter / Cmd+Enter to Run Code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+      if (onRunCodeRef.current) {
+        onRunCodeRef.current();
+      }
+    });
   };
 
   const handleCopy = () => {
@@ -102,13 +106,17 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
     }
   };
 
-  const monacoLanguage = selectedLang === 'sql' ? 'sql' :
-    selectedLang === 'python' || selectedLang === 'py' ? 'python' :
-    selectedLang === 'js' || selectedLang === 'javascript' ? 'javascript' :
-    selectedLang === 'ts' || selectedLang === 'typescript' ? 'typescript' :
-    selectedLang === 'cpp' || selectedLang === 'c++' ? 'cpp' :
+  const monacoLanguage = 
+    selectedLang === 'sql' ? 'sql' :
+    selectedLang.startsWith('cpp') || selectedLang === 'c++' ? 'cpp' :
+    selectedLang === 'c' ? 'c' :
     selectedLang === 'java' ? 'java' :
-    selectedLang === 'go' ? 'go' : 'python';
+    selectedLang === 'python' || selectedLang === 'py' ? 'python' :
+    selectedLang === 'javascript' || selectedLang === 'js' ? 'javascript' :
+    selectedLang === 'typescript' || selectedLang === 'ts' ? 'typescript' :
+    selectedLang === 'go' ? 'go' :
+    selectedLang === 'rust' ? 'rust' :
+    selectedLang === 'csharp' || selectedLang === 'cs' ? 'csharp' : 'python';
 
   return (
     <div

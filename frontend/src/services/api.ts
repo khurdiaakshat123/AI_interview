@@ -119,6 +119,33 @@ export const api = {
     return request<MockOAReport>(`/mock-oa/attempts/${attemptId}/report`);
   },
 
+  async runCode(payload: {
+    question_id: string;
+    code: string;
+    language: string;
+    custom_input?: string;
+  }): Promise<{
+    status: 'ACCEPTED' | 'WRONG_ANSWER' | 'COMPILATION_ERROR' | 'RUNTIME_ERROR' | 'TLE';
+    runtime_ms: number;
+    memory_mb: number;
+    test_case_results: Array<{
+      test_case_index: number;
+      input_data: string;
+      expected_output: string;
+      actual_output: string;
+      passed: boolean;
+      runtime_ms: number;
+      memory_mb: number;
+    }>;
+    compiler_output?: string;
+    feedback?: string;
+  }> {
+    return request('/mock-oa/run', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+  },
+
   // Interview
   async parseResume(payload: {
     candidate_name: string;
