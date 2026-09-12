@@ -156,6 +156,67 @@ export const api = {
     });
   },
 
+  async streamAnswerInterviewQuestion(
+    sessionId: string,
+    answer: string,
+    onSentence: (text: string, index: number) => void,
+    onTurn: (turn: InterviewTurn) => void,
+    onError: (err: any) => void
+  ): Promise<void> {
+    try {
+      const headers = getAuthHeaders({ 'Content-Type': 'application/json' });
+      const res = await fetch(`${BASE_URL}/interview/sessions/${sessionId}/answer-stream`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ answer })
+      });
+
+      if (!res.ok || !res.body) {
+        // Fallback to synchronous endpoint
+        const fallbackTurn = await api.answerInterviewQuestion(sessionId, answer);
+        onTurn(fallbackTurn);
+        return;
+      }
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (trimmed.startsWith('data: ')) {
+            try {
+              const data = JSON.parse(trimmed.slice(6));
+              if (data.type === 'sentence' && data.text) {
+                onSentence(data.text, data.index);
+              } else if (data.type === 'turn' && data.payload) {
+                onTurn(data.payload as InterviewTurn);
+              }
+            } catch (jsonErr) {
+              console.warn('[SSE] JSON parse warning:', jsonErr);
+            }
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('[SSE Stream] Stream error, falling back to sync:', err);
+      try {
+        const fallbackTurn = await api.answerInterviewQuestion(sessionId, answer);
+        onTurn(fallbackTurn);
+      } catch (fallbackErr) {
+        onError(fallbackErr);
+      }
+    }
+  },
+
   async correctTranscript(sessionId: string, payload: {
     raw_text: string;
     question_text?: string;

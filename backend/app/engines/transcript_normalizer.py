@@ -94,6 +94,44 @@ class TranscriptNormalizer:
         (re.compile(r'\b(?:bohat|bo\s*hat|birds)\s+(?:sitting|hitting)\b', re.IGNORECASE), 'bots hitting'),
         (re.compile(r'\ball\s+the\s+birds\b', re.IGNORECASE), 'all the bots'),
         (re.compile(r'\bconsisting\s+or\b', re.IGNORECASE), 'consisting of'),
+
+        # Metrics, SLAs & Latency sound-alikes
+        (re.compile(r'\bp\s*99\b|\bp\s*ninety\s*nine\b', re.IGNORECASE), 'p99'),
+        (re.compile(r'\bp\s*95\b|\bp\s*ninety\s*five\b', re.IGNORECASE), 'p95'),
+        (re.compile(r'\b(\d+)\s*(?:mill?i\s*sec(?:onds?)?|ms)\b', re.IGNORECASE), r'\1ms'),
+        (re.compile(r'\bmill?i\s*sec(?:onds?)?\b|\bm\s*s\b', re.IGNORECASE), 'ms'),
+
+        # Resiliency, Messaging & Microservices
+        (re.compile(r'\bload\s*balancer?\b|\bload\s*balancing\b', re.IGNORECASE), 'load balancer'),
+        (re.compile(r'\brate\s*limit(?:ing|er)?\b', re.IGNORECASE), 'rate limiting'),
+        (re.compile(r'\btoken\s*bucket\b', re.IGNORECASE), 'token bucket'),
+        (re.compile(r'\bleaky\s*bucket\b', re.IGNORECASE), 'leaky bucket'),
+        (re.compile(r'\bcircuit\s*breaker\b', re.IGNORECASE), 'circuit breaker'),
+        (re.compile(r'\bdead\s*letter\s*q(?:ueue)?\b|\bd\s*l\s*q\b', re.IGNORECASE), 'dead letter queue'),
+        (re.compile(r'\bthundering\s*herd\b|\bcache\s*stampede\b', re.IGNORECASE), 'cache stampede'),
+        (re.compile(r'\bkafka\s*partition(?:ing|s)?\b', re.IGNORECASE), 'Kafka partitioning'),
+        (re.compile(r'\bconsistent\s*hashing\b', re.IGNORECASE), 'consistent hashing'),
+        (re.compile(r'\bvirtual\s*nodes?\b', re.IGNORECASE), 'virtual nodes'),
+        (re.compile(r'\btwo\s*phase\s*commit\b|\b2\s*p\s*c\b', re.IGNORECASE), 'Two-Phase Commit (2PC)'),
+        (re.compile(r'\bsaga\s*pattern\b', re.IGNORECASE), 'Saga pattern'),
+        (re.compile(r'\boptimistic\s*locking\b', re.IGNORECASE), 'optimistic locking'),
+        (re.compile(r'\bpessimistic\s*locking\b', re.IGNORECASE), 'pessimistic locking'),
+
+        # SQL & Database terminology
+        (re.compile(r'\bdense\s*rank\b', re.IGNORECASE), 'DENSE_RANK'),
+        (re.compile(r'\brow\s*number\b', re.IGNORECASE), 'ROW_NUMBER'),
+        (re.compile(r'\bwindow\s*functions?\b', re.IGNORECASE), 'window function'),
+        (re.compile(r'\bcommon\s*table\s*expression\b|\bc\s*t\s*e\b', re.IGNORECASE), 'CTE'),
+
+        # DSA Algorithms & Data Structures
+        (re.compile(r'\btopological\s*sort\b', re.IGNORECASE), 'topological sort'),
+        (re.compile(r'\bkahn(?:\'?s)?\s*algorithm\b', re.IGNORECASE), "Kahn's algorithm"),
+        (re.compile(r'\bcycle\s*detection\b', re.IGNORECASE), 'cycle detection'),
+        (re.compile(r'\bmonoton(?:ic)?\s*stack\b', re.IGNORECASE), 'monotonic stack'),
+        (re.compile(r'\bsliding\s*window\b', re.IGNORECASE), 'sliding window'),
+        (re.compile(r'\btwo\s*pointers?\b', re.IGNORECASE), 'two pointers'),
+        (re.compile(r'\bbinary\s*search\b', re.IGNORECASE), 'binary search'),
+        (re.compile(r'\bdynamic\s*programming\b|\bd\s*p\b', re.IGNORECASE), 'dynamic programming'),
     ]
 
     @classmethod

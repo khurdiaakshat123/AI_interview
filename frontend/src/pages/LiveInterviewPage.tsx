@@ -56,6 +56,115 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
   const baseTextRef = useRef<string>('');
   const inputTextRef = useRef<string>('');
 
+  // Audio queue and low-latency speech state
+  const [isAiSpeaking, setIsAiSpeaking] = useState<boolean>(false);
+  const speechQueueRef = useRef<string[]>([]);
+  const isSpeakingRef = useRef<boolean>(false);
+  const isVoiceEnabledRef = useRef<boolean>(isVoiceEnabled);
+  const spokenQuestionIdsRef = useRef<Set<string>>(new Set());
+
+  useEffect(() => {
+    isVoiceEnabledRef.current = isVoiceEnabled;
+  }, [isVoiceEnabled]);
+
+  const stopAllSpeech = () => {
+    speechQueueRef.current = [];
+    isSpeakingRef.current = false;
+    setIsAiSpeaking(false);
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  };
+
+  const getVoice = () => {
+    if (!('speechSynthesis' in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Jenny') || v.name.includes('Guy'))) ||
+      voices.find(v => v.lang.startsWith('en')) ||
+      null
+    );
+  };
+
+  const playNextSentence = () => {
+    if (!isVoiceEnabledRef.current || !('speechSynthesis' in window)) {
+      speechQueueRef.current = [];
+      isSpeakingRef.current = false;
+      setIsAiSpeaking(false);
+      return;
+    }
+    if (speechQueueRef.current.length === 0) {
+      isSpeakingRef.current = false;
+      setIsAiSpeaking(false);
+      return;
+    }
+
+    isSpeakingRef.current = true;
+    setIsAiSpeaking(true);
+    const sentence = speechQueueRef.current.shift();
+    if (!sentence || !sentence.trim()) {
+      playNextSentence();
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(sentence.trim());
+    utterance.rate = 1.05;
+    utterance.pitch = 1.0;
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+
+    utterance.onend = () => {
+      playNextSentence();
+    };
+
+    utterance.onerror = (e) => {
+      if (e.error !== 'interrupted' && e.error !== 'canceled') {
+        console.warn('[SpeechSynthesis] sentence utterance error:', e.error);
+      }
+      playNextSentence();
+    };
+
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const enqueueSentence = (sentence: string) => {
+    if (!isVoiceEnabledRef.current || !('speechSynthesis' in window)) return;
+    const trimmed = sentence.trim();
+    if (!trimmed) return;
+    speechQueueRef.current.push(trimmed);
+    if (!isSpeakingRef.current) {
+      playNextSentence();
+    }
+  };
+
+  const speakTurnQuestion = (turn: InterviewTurn) => {
+    if (!isVoiceEnabledRef.current || !('speechSynthesis' in window) || !turn?.question_text) return;
+    if (turn.question_id && spokenQuestionIdsRef.current.has(turn.question_id)) return;
+    if (turn.question_id) spokenQuestionIdsRef.current.add(turn.question_id);
+
+    stopAllSpeech();
+    const sentences = turn.question_text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [turn.question_text];
+    for (const s of sentences) {
+      if (s.trim()) {
+        enqueueSentence(s.trim());
+      }
+    }
+  };
+
+  const handleToggleVoice = () => {
+    const next = !isVoiceEnabled;
+    setIsVoiceEnabled(next);
+    isVoiceEnabledRef.current = next;
+    if (!next) {
+      stopAllSpeech();
+    } else if (currentTurn?.question_text && !isSpeakingRef.current) {
+      const sentences = currentTurn.question_text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [currentTurn.question_text];
+      for (const s of sentences) {
+        if (s.trim()) enqueueSentence(s.trim());
+      }
+    }
+  };
+
   useEffect(() => {
     inputTextRef.current = inputText;
     // Auto scroll textarea when listening so candidate sees streaming speech
@@ -68,6 +177,7 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
   useEffect(() => {
     return () => {
       isListeningRef.current = false;
+      stopAllSpeech();
       if (recognitionRef.current) {
         try {
           recognitionRef.current.abort();
@@ -84,23 +194,17 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
     scrollToBottom();
   }, [messages]);
 
-  // Voice synthesis: speak question aloud using Web Speech API
+  // Voice synthesis: speak question aloud using Web Speech API sentence queue
   useEffect(() => {
-    if (isVoiceEnabled && 'speechSynthesis' in window && currentTurn?.question_text) {
-      window.speechSynthesis.cancel(); // stop prior speech
-      const utterance = new SpeechSynthesisUtterance(currentTurn.question_text);
-      utterance.rate = 1.0;
-      utterance.pitch = 1.0;
-      // Prefer standard clear voices if available
-      const voices = window.speechSynthesis.getVoices();
-      const englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
-      if (englishVoice) utterance.voice = englishVoice;
-      window.speechSynthesis.speak(utterance);
+    if (isVoiceEnabled && currentTurn?.question_text) {
+      if (!currentTurn.question_id || !spokenQuestionIdsRef.current.has(currentTurn.question_id)) {
+        speakTurnQuestion(currentTurn);
+      }
     }
     return () => {
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      stopAllSpeech();
     };
-  }, [currentTurn, isVoiceEnabled]);
+  }, [currentTurn]);
 
   // Manual Stop speech recognition
   const stopListening = () => {
@@ -113,6 +217,13 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
         console.warn('[SpeechRecognition] stop error:', err);
       }
     }
+    // Auto-trigger typo correction after brief timeout to catch last speech chunk
+    setTimeout(() => {
+      const textToCorrect = (inputTextRef.current || '').trim();
+      if (textToCorrect.length > 0) {
+        handleCorrectTypos(textToCorrect);
+      }
+    }, 350);
   };
 
   // Continuous speech recognition with manual user start & stop (ignores silence pauses)
@@ -123,10 +234,8 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
       return;
     }
 
-    // Stop synthetic interviewer voice if currently reading aloud
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
+    // Stop synthetic interviewer voice if currently reading aloud (instant conversational interruption)
+    stopAllSpeech();
 
     isListeningRef.current = true;
     setIsListening(true);
@@ -216,15 +325,16 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
     }
   };
 
-  const handleCorrectTypos = async () => {
-    if (!inputText.trim() || isCorrecting || isProcessing) return;
+  const handleCorrectTypos = async (explicitText?: string) => {
+    const raw = (explicitText ?? inputTextRef.current ?? inputText).trim();
+    if (!raw || isCorrecting || isProcessing) return;
 
     setIsCorrecting(true);
     setCorrectionNotice(null);
 
     try {
       const res = await api.correctTranscript(currentTurn.session_id, {
-        raw_text: inputText.trim(),
+        raw_text: raw,
         question_text: currentTurn.question_text,
         topic: currentTurn.current_topic
       });
@@ -232,13 +342,14 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
       if (res && res.corrected_text) {
         setInputText(res.corrected_text);
         baseTextRef.current = res.corrected_text.trim() + ' ';
+        inputTextRef.current = res.corrected_text;
 
         if (res.changes_made && res.changes_made.length > 0) {
-          setCorrectionNotice(`Corrected against resume & question context: ${res.changes_made.slice(0, 2).join('; ')}`);
+          setCorrectionNotice(`✨ Auto-corrected: ${res.changes_made.slice(0, 2).join('; ')} (Review and edit before sending)`);
         } else if (res.has_corrections) {
-          setCorrectionNotice('Refined grammar, technical terms, and sentence flow.');
+          setCorrectionNotice('✨ Refined grammar, technical terms & flow. Review before sending.');
         } else {
-          setCorrectionNotice('Answer verified: Technical terms & grammar are sound!');
+          setCorrectionNotice('✓ Answer verified: Technical terms & grammar are sound!');
         }
       }
     } catch (err) {
@@ -246,7 +357,7 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
       setCorrectionNotice('Normalized technical terminology.');
     } finally {
       setIsCorrecting(false);
-      setTimeout(() => setCorrectionNotice(null), 6000);
+      setTimeout(() => setCorrectionNotice(null), 7000);
     }
   };
 
@@ -254,12 +365,21 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
     if (e) e.preventDefault();
     // Automatically stop speech recording when sending answer
     if (isListeningRef.current) {
-      stopListening();
+      isListeningRef.current = false;
+      setIsListening(false);
+      if (recognitionRef.current) {
+        try { recognitionRef.current.stop(); } catch (err) {}
+      }
     }
+    // Stop any active speech synthesis
+    stopAllSpeech();
+
     if (!inputText.trim() || isProcessing) return;
 
     const candidateAnswer = inputText.trim();
     setInputText('');
+    baseTextRef.current = '';
+    inputTextRef.current = '';
 
     // Add candidate message to local log
     const updatedMessages: ChatMessage[] = [
@@ -273,30 +393,87 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
     setMessages(updatedMessages);
     setIsProcessing(true);
 
+    let fullQuestionText = '';
+    let streamInterviewerMsgAdded = false;
+
     try {
-      const nextTurn = await api.answerInterviewQuestion(currentTurn.session_id, candidateAnswer);
-      setCurrentTurn(nextTurn);
+      await api.streamAnswerInterviewQuestion(
+        currentTurn.session_id,
+        candidateAnswer,
+        (sentence: string, index: number) => {
+          // Low-latency voice synthesis: enqueue Sentence 0 (~350ms) and subsequent sentences immediately
+          if (isVoiceEnabledRef.current) {
+            enqueueSentence(sentence);
+          }
 
-      // Add interviewer message
-      setMessages([
-        ...updatedMessages,
-        {
-          sender: 'INTERVIEWER',
-          text: nextTurn.question_text,
-          topic: nextTurn.current_topic,
-          depth: nextTurn.depth_level,
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          evalPrev: nextTurn.eval_previous
+          // Live stream into interviewer message bubble in chat
+          fullQuestionText += (fullQuestionText ? ' ' : '') + sentence;
+          setMessages(prev => {
+            if (!streamInterviewerMsgAdded) {
+              streamInterviewerMsgAdded = true;
+              return [
+                ...prev,
+                {
+                  sender: 'INTERVIEWER',
+                  text: fullQuestionText,
+                  topic: currentTurn.current_topic,
+                  depth: currentTurn.depth_level,
+                  timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                }
+              ];
+            } else {
+              const next = [...prev];
+              next[next.length - 1] = {
+                ...next[next.length - 1],
+                text: fullQuestionText
+              };
+              return next;
+            }
+          });
+        },
+        (nextTurn: InterviewTurn) => {
+          // Mark turn as handled so useEffect won't double-speak
+          if (nextTurn.question_id) {
+            spokenQuestionIdsRef.current.add(nextTurn.question_id);
+          }
+          setCurrentTurn(nextTurn);
+
+          setMessages(prev => {
+            const next = [...prev];
+            if (next.length > 0 && next[next.length - 1].sender === 'INTERVIEWER') {
+              next[next.length - 1] = {
+                ...next[next.length - 1],
+                text: nextTurn.question_text,
+                topic: nextTurn.current_topic,
+                depth: nextTurn.depth_level,
+                evalPrev: nextTurn.eval_previous
+              };
+            } else {
+              next.push({
+                sender: 'INTERVIEWER',
+                text: nextTurn.question_text,
+                topic: nextTurn.current_topic,
+                depth: nextTurn.depth_level,
+                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                evalPrev: nextTurn.eval_previous
+              });
+            }
+            return next;
+          });
+
+          if (nextTurn.is_completed) {
+            api.getInterviewReport(currentTurn.session_id).then(report => {
+              setTimeout(() => {
+                onNavigate('interview-report', { report });
+              }, 1500);
+            });
+          }
+        },
+        (streamErr: any) => {
+          console.error('[streamAnswerInterviewQuestion] error:', streamErr);
+          alert('Failed to process response. Please try again.');
         }
-      ]);
-
-      if (nextTurn.is_completed) {
-        // Fetch report
-        const report = await api.getInterviewReport(currentTurn.session_id);
-        setTimeout(() => {
-          onNavigate('interview-report', { report });
-        }, 1500);
-      }
+      );
     } catch (err) {
       console.error(err);
       alert('Failed to process response.');
@@ -342,7 +519,7 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
         {/* Audio & Finish Controls */}
         <div className="flex items-center gap-2.5">
           <button
-            onClick={() => setIsVoiceEnabled(!isVoiceEnabled)}
+            onClick={handleToggleVoice}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               isVoiceEnabled
                 ? 'bg-brand-950 text-brand-300 border border-brand-800'
@@ -350,8 +527,12 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
             }`}
             title={isVoiceEnabled ? 'Voice Enabled (AI speaks questions)' : 'Voice Disabled'}
           >
-            {isVoiceEnabled ? <Volume2 className="w-4 h-4 text-brand-400" /> : <VolumeX className="w-4 h-4" />}
-            <span>{isVoiceEnabled ? 'Voice On' : 'Voice Off'}</span>
+            {isVoiceEnabled ? (
+              <Volume2 className={`w-4 h-4 text-brand-400 ${isAiSpeaking ? 'animate-bounce text-emerald-400' : ''}`} />
+            ) : (
+              <VolumeX className="w-4 h-4" />
+            )}
+            <span>{isVoiceEnabled ? (isAiSpeaking ? 'AI Speaking...' : 'Voice On') : 'Voice Off'}</span>
           </button>
 
           <button
@@ -484,6 +665,12 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
             )}
 
             <form onSubmit={handleSendAnswer} className="space-y-2.5">
+              {isCorrecting && (
+                <div className="px-3.5 py-1.5 rounded-xl bg-indigo-950/70 border border-indigo-800/70 flex items-center gap-2 text-xs text-indigo-300">
+                  <Sparkles className="w-3.5 h-3.5 text-indigo-400 animate-spin" />
+                  <span className="font-medium">Polishing technical terms & grammar against question context...</span>
+                </div>
+              )}
               {/* Full Paragraph Multi-line Textarea */}
               <div className="relative rounded-2xl bg-slate-900/90 border border-slate-800 focus-within:border-indigo-500/80 focus-within:ring-1 focus-within:ring-indigo-500/30 transition-all p-3 shadow-inner">
                 <textarea
@@ -529,7 +716,7 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                     {/* Correct Typos Button */}
                     <button
                       type="button"
-                      onClick={handleCorrectTypos}
+                      onClick={() => handleCorrectTypos()}
                       disabled={!inputText.trim() || isProcessing || isCorrecting}
                       className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-950/70 border border-indigo-700/60 text-indigo-200 hover:bg-indigo-900 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 shadow-sm transition-all"
                       title="AI scans your answer, cross-references with the question and your resume to fix speech-to-text mistranslations and irregular sentences"

@@ -1,5 +1,6 @@
 import json
 import asyncio
+import re
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
@@ -140,6 +141,68 @@ def answer_interview_question(id: str, payload: InterviewAnswerRequest, db: Sess
 
     result = InterviewAgent.process_answer(db=db, session=session, user_answer=payload.answer)
     return InterviewTurnOut(**result)
+
+@router.post("/sessions/{id}/answer-stream")
+async def answer_interview_question_stream(
+    id: str,
+    payload: InterviewAnswerRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    session = db.query(InterviewSession).filter(InterviewSession.id == id).first()
+    if not session:
+        raise HTTPException(status_code=404, detail="Interview session not found")
+
+    if session.status == "COMPLETED":
+        data = {
+            "type": "turn",
+            "payload": {
+                "session_id": session.id,
+                "phase": "COMPLETED",
+                "current_topic": "Completed",
+                "question_id": "",
+                "question_text": "This interview session has already concluded.",
+                "depth_level": session.current_depth,
+                "max_depth": InterviewAgent.MAX_DEPTH,
+                "is_completed": True,
+                "eval_previous": None
+            }
+        }
+        return StreamingResponse(iter([f"data: {json.dumps(data)}\n\n"]), media_type="text/event-stream")
+
+    async def event_generator():
+        result = await asyncio.to_thread(InterviewAgent.process_answer, db=db, session=session, user_answer=payload.answer)
+        question_text = result.get("question_text", "")
+        raw_sentences = re.split(r'(?<=[.!?])\s+', question_text.strip())
+        sentences = [s.strip() for s in raw_sentences if s.strip()]
+        if not sentences and question_text.strip():
+            sentences = [question_text.strip()]
+
+        for idx, sentence in enumerate(sentences):
+            sentence_event = {
+                "type": "sentence",
+                "text": sentence,
+                "index": idx,
+                "total": len(sentences)
+            }
+            yield f"data: {json.dumps(sentence_event)}\n\n"
+            await asyncio.sleep(0.03)
+
+        turn_event = {
+            "type": "turn",
+            "payload": result
+        }
+        yield f"data: {json.dumps(turn_event)}\n\n"
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no"
+        }
+    )
 
 @router.post("/sessions/{id}/correct-transcript", response_model=CorrectTranscriptResponse)
 def correct_session_transcript(id: str, payload: CorrectTranscriptRequest, db: Session = Depends(get_db)):

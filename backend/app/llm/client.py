@@ -538,10 +538,21 @@ class LLMClient:
         # Pre-normalize known technical speech sound-alikes
         pre_normalized, did_prenorm = TranscriptNormalizer.normalize(raw_answer.strip())
 
+        context_parts = []
+        if question_text:
+            context_parts.append(f"Question Asked: {question_text.strip()}")
+        if topic:
+            context_parts.append(f"Topic: {topic.strip()}")
+        if resume_context:
+            context_parts.append(f"Candidate Resume Tech Stack & Projects: {resume_context.strip()[:400]}")
+        context_block = "\n".join(context_parts) if context_parts else "General Technical Context"
+
         user_prompt = (
+            f"Technical Context:\n{context_block}\n\n"
             f"Candidate Spoken Transcription:\n\"\"\"\n{raw_answer.strip()}\n\"\"\"\n\n"
             f"Phonetic Baseline:\n\"\"\"\n{pre_normalized}\n\"\"\"\n\n"
-            "Correct ONLY phonetic acoustic sound-alikes at the word level. Keep the candidate's exact wording, sentence length, and logic."
+            "Use the technical context above strictly to identify which engineering tools or architectural words were spoken. "
+            "Correct ONLY phonetic acoustic sound-alikes at the word level. Keep the candidate's exact sentence phrasing, word order, and logic."
         )
 
         try:
