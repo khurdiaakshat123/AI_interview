@@ -106,7 +106,8 @@ class LLMClient:
 
             # 2. Google Gemini (REST - gemini-flash-latest with fallback)
             if self.gemini_key:
-                for gmodel in ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]:
+                # Prioritize flash-lite / 8b for higher rate limits
+                for gmodel in ["gemini-2.0-flash-lite-preview-02-05", "gemini-2.0-flash-lite", "gemini-1.5-flash-8b", "gemini-1.5-flash", "gemini-flash-latest"]:
                     try:
                         url = f"https://generativelanguage.googleapis.com/v1beta/models/{gmodel}:generateContent?key={self.gemini_key}"
                         payload = {
