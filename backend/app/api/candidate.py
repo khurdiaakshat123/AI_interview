@@ -20,6 +20,38 @@ from backend.app.api.deps import get_current_user_optional
 
 router = APIRouter(prefix="/api/candidate", tags=["Candidate & Custom Onboarding"])
 
+@router.get("/debug/llm")
+def debug_llm():
+    import os
+    import httpx
+    keys = {
+        "GROQ_API_KEY": os.getenv("GROQ_API_KEY", "")[:4] + "***" if os.getenv("GROQ_API_KEY") else "MISSING",
+        "GEMINI_API_KEY": os.getenv("GEMINI_API_KEY", "")[:4] + "***" if os.getenv("GEMINI_API_KEY") else "MISSING",
+    }
+    
+    gemini_key = os.getenv("GEMINI_API_KEY")
+    gemini_status = "Skipped"
+    gemini_error = ""
+    
+    if gemini_key:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={gemini_key}"
+        payload = {"contents": [{"parts": [{"text": "Hello"}]}]}
+        try:
+            with httpx.Client(timeout=10.0) as client:
+                resp = client.post(url, json=payload)
+                gemini_status = resp.status_code
+                gemini_error = resp.text[:500]
+        except Exception as e:
+            gemini_status = "Exception"
+            gemini_error = str(e)
+            
+    return {
+        "keys_detected": keys,
+        "gemini_test_status": gemini_status,
+        "gemini_test_response": gemini_error
+    }
+
+
 @router.post("/extract-file")
 async def extract_file_content(file: UploadFile = File(...)):
     """
