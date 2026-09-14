@@ -124,6 +124,11 @@ class LLMClient:
                                 data = resp.json()
                                 if "candidates" in data and data["candidates"]:
                                     return data["candidates"][0]["content"]["parts"][0]["text"]
+                            elif resp.status_code == 429:
+                                print(f"[LLMClient] Gemini Rate Limit 429 on {gmodel}. Backing off to prevent spam.")
+                                import time
+                                time.sleep(3) # Slow down to prevent 18x spam
+                                break # Stop looping models this attempt
                             else:
                                 print(f"[LLMClient] Gemini {gmodel} HTTP {resp.status_code}: {resp.text}")
                     except Exception as e:
