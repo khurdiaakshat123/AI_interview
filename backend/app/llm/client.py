@@ -99,6 +99,8 @@ class LLMClient:
                             resp = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
                             if resp.status_code == 200:
                                 return resp.json()["choices"][0]["message"]["content"]
+                            else:
+                                print(f"[LLMClient] Groq {g_model} HTTP {resp.status_code}: {resp.text}")
                     except Exception as e:
                         print(f"[LLMClient] Groq call ({g_model}) failed or timed out: {e}")
 
@@ -122,6 +124,8 @@ class LLMClient:
                                 data = resp.json()
                                 if "candidates" in data and data["candidates"]:
                                     return data["candidates"][0]["content"]["parts"][0]["text"]
+                            else:
+                                print(f"[LLMClient] Gemini {gmodel} HTTP {resp.status_code}: {resp.text}")
                     except Exception as e:
                         print(f"[LLMClient] Gemini call ({gmodel}) failed: {e}")
 
@@ -141,6 +145,8 @@ class LLMClient:
                         resp = client.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
                         if resp.status_code == 200:
                             return resp.json()["choices"][0]["message"]["content"]
+                        else:
+                            print(f"[LLMClient] OpenAI HTTP {resp.status_code}: {resp.text}")
                 except Exception as e:
                     print(f"[LLMClient] OpenAI call failed: {e}")
 
@@ -163,6 +169,8 @@ class LLMClient:
                         resp = client.post("https://api.anthropic.com/v1/messages", headers=headers, json=payload)
                         if resp.status_code == 200:
                             return resp.json()["content"][0]["text"]
+                        else:
+                            print(f"[LLMClient] Anthropic HTTP {resp.status_code}: {resp.text}")
                 except Exception as e:
                     print(f"[LLMClient] Anthropic call failed: {e}")
 
