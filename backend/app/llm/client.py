@@ -121,12 +121,17 @@ class LLMClient:
                             ],
                             "generationConfig": {"temperature": temperature}
                         }
-                        with httpx.Client(timeout=15.0) as client:
+                        with httpx.Client(timeout=45.0) as client:
                             resp = client.post(url, json=payload)
                             if resp.status_code == 200:
                                 data = resp.json()
                                 if "candidates" in data and data["candidates"]:
-                                    return data["candidates"][0]["content"]["parts"][0]["text"]
+                                    candidate = data["candidates"][0]
+                                    if "content" in candidate and "parts" in candidate["content"]:
+                                        return candidate["content"]["parts"][0].get("text", "")
+                                    else:
+                                        print(f"[LLMClient] Gemini returned 200 but missing content (Safety Filter?): {data}")
+                                        return "Safety Filter Blocked the Response."
                             elif resp.status_code == 429:
                                 print(f"[LLMClient] Gemini Rate Limit 429 on {gmodel}. Backing off to prevent spam.")
                                 import time
