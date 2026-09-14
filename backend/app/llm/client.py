@@ -84,7 +84,7 @@ class LLMClient:
         for attempt in range(3):
             # 1. Groq (REST - Ultra-Fast LLaMA 3.3/3.1)
             if self.groq_key:
-                for g_model in ["llama3-70b-8192", "llama3-8b-8192", "llama-3.1-8b-instant", "mixtral-8x7b-32768"]:
+                for g_model in ["gemma2-9b-it", "llama-3.3-70b-versatile", "llama-3.1-8b-instant", "llama3-8b-8192", "mixtral-8x7b-32768"]:
                     try:
                         headers = {"Authorization": f"Bearer {self.groq_key}", "Content-Type": "application/json"}
                         payload = {
