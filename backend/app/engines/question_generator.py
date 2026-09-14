@@ -155,7 +155,17 @@ class QuestionGenerator:
 
         # 7. Fallback generation (derived strictly from planned dimension & candidate context, NO depth ladder)
         if not generated_text:
-            raise RuntimeError("LLM API connection failed. Cannot generate natural language question offline. Please check your API keys or try again.")
+            generated_text = cls._format_fallback_question(
+                candidate_name=candidate_name,
+                action_str=action_str,
+                focus_dim=focus_dim,
+                question_profile=question_profile,
+                item_title=item_title,
+                item_type=item_type,
+                candidate_entities=candidate_entities,
+                contradiction_context=contradiction_context,
+                relevant_history=relevant_history
+            )
 
         # 8. Persist associated QuestionProfile into question history if state is present
         turn_idx = (len(state.question_history) + 1) if state else 1
