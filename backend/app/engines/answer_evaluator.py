@@ -178,8 +178,14 @@ class AnswerEvaluator:
     @classmethod
     def _is_explicit_evasion(cls, text: str) -> bool:
         """
-        Detects genuine non-answers based on semantic evasion or explicit statements of ignorance.
-        DOES NOT penalize short or one-word answers if they are not evasions.
+        Delegating all evasion and joke detection to the LLM to avoid keyword brittleness.
+        """
+        return False
+
+    @classmethod
+    def _old_is_explicit_evasion(cls, text: str) -> bool:
+        """
+        Legacy method.
         """
         if not text:
             return True
@@ -247,7 +253,7 @@ class AnswerEvaluator:
             "is FULLY CORRECT (correctness = 1.0, objective_coverage = 1.0, is_non_answer = false).\n"
             "   - If question asks for reasoning/trade-offs (e.g. 'Why did you choose PostgreSQL?'), a one-word answer ('PostgreSQL') "
             "has low objective_coverage because reasoning was not provided.\n"
-            "10. NEVER use word count or '<3 words' as a non-answer indicator.\n\n"
+            "10. NEVER use word count or \'<3 words\' as a non-answer indicator.\n11. EVASIONS & JOKES: If the candidate gives a non-technical joke (e.g. \'traded my bitcoins\'), deflects (e.g. \'idk\', \'I was just a technician\'), or fails to attempt a technical answer, YOU MUST set is_non_answer = true and all scores to 0.0.\n\n"
             "Output ONLY valid raw JSON matching this schema:\n"
             "{\n"
             '  "answer_understanding": "<summary of what candidate expressed>",\n'
@@ -409,14 +415,14 @@ class AnswerEvaluator:
             reasoning_summary="Candidate provided technical response; full semantic verification deferred to live evaluator.",
             objective_evidence=["Provided architectural description."],
             missing_evidence=[],
-            correctness=0.75,
-            objective_coverage=0.70,
-            completeness=0.70,
-            technical_validity=0.75,
-            depth_demonstrated=0.50,
-            reasoning_quality=0.60,
-            specificity=0.60,
-            ownership=0.70,
+            correctness=0.40,
+            objective_coverage=0.40,
+            completeness=0.40,
+            technical_validity=0.40,
+            depth_demonstrated=0.40,
+            reasoning_quality=0.40,
+            specificity=0.40,
+            ownership=0.40,
             directness=0.85,
             confidence=0.80,
             is_non_answer=False,

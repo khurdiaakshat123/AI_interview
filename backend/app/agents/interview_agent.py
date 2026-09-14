@@ -702,7 +702,8 @@ class InterviewAgent:
                 company=session.company,
                 role=session.role,
                 llm_client_instance=llm_client,
-                persist_in_history=True
+                persist_in_history=True,
+                latest_eval=eval_result
             )
             next_question_text = gen_next.question_text
 

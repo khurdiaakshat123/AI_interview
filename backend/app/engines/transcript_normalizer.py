@@ -1,5 +1,5 @@
 import re
-from typing import Tuple, List
+from typing import Tuple, List, Optional, Any
 
 class TranscriptNormalizer:
     """
@@ -135,19 +135,39 @@ class TranscriptNormalizer:
     ]
 
     @classmethod
-    def normalize(cls, raw_text: str) -> Tuple[str, bool]:
+    def normalize(cls, raw_text: str, llm_client: Optional[Any] = None) -> Tuple[str, bool]:
         """
         Cleans technical speech-to-text sound-alikes and common typos.
+        Leverages LLM for semantic typo correction to avoid brittle regex matching on jokes/evasions.
         Returns: (normalized_text, was_modified)
         """
         if not raw_text or not raw_text.strip():
             return raw_text, False
 
         cleaned = raw_text.replace('\u2011', '-').replace('\u2013', '-').replace('\u2014', '-').replace('\u2018', "'").replace('\u2019', "'").replace('\u201c', '"').replace('\u201d', '"')
+        
+        # We perform a fast LLM correction if available
+        if llm_client:
+            try:
+                system_prompt = (
+                    "You are a technical Speech-to-Text autocorrection engine.\n"
+                    "Your job is to fix technical jargon sound-alikes and typos (e.g. 'superb is' -> 'Supabase', 'post grass' -> 'Postgres').\n"
+                    "CRITICAL RULES:\n"
+                    "1. DO NOT change the meaning or rewrite the sentence.\n"
+                    "2. If the text is a joke, slang, or non-technical (e.g. 'idk', 'traded my bitcoins'), LEAVE IT EXACTLY AS IS.\n"
+                    "3. Return ONLY the corrected text, nothing else."
+                )
+                corrected = llm_client.generate_completion(system_prompt, cleaned, temperature=0.0)
+                if corrected and len(corrected.strip()) > 0:
+                    was_modified = (corrected.strip() != raw_text.strip())
+                    return corrected.strip(), was_modified
+            except Exception:
+                pass
+                
+        # Fallback to regex if no LLM provided or it fails
         for pattern, replacement in cls.PHONETIC_REPLACEMENTS:
             cleaned = pattern.sub(replacement, cleaned)
 
-        # Normalize multiple spaces
         cleaned = re.sub(r'[ \t]+', ' ', cleaned).strip()
         was_modified = (cleaned != raw_text.strip())
         return cleaned, was_modified

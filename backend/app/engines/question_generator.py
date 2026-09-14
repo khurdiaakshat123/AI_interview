@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 from backend.app.engines.question_profile import QuestionProfile, QuestionKind
 from backend.app.engines.interview_state import InterviewState, Claim, ItemState
 from backend.app.engines.adaptive_planner import PlannerAction, PlannerDecision
+from backend.app.engines.answer_evaluator import SemanticEvaluationResult
 
 
 class GeneratedQuestion(BaseModel):
@@ -60,7 +61,8 @@ class QuestionGenerator:
         company: str = "Target Company",
         role: str = "Software Engineer",
         llm_client_instance: Optional[Any] = None,
-        persist_in_history: bool = True
+        persist_in_history: bool = True,
+        latest_eval: Optional[SemanticEvaluationResult] = None
     ) -> GeneratedQuestion:
         """
         Generates the natural-language question targeting the planned action and profile.
@@ -123,7 +125,8 @@ class QuestionGenerator:
                 action_str=action_str,
                 focus_dim=focus_dim,
                 is_clarification=is_clarification,
-                valid_alternatives=question_profile.valid_alternative_guidance
+                valid_alternatives=question_profile.valid_alternative_guidance,
+                latest_eval=latest_eval
             )
             user_prompt = cls._build_user_prompt(
                 candidate_name=candidate_name,
@@ -234,7 +237,8 @@ class QuestionGenerator:
         action_str: str,
         focus_dim: str,
         is_clarification: bool,
-        valid_alternatives: str
+        valid_alternatives: str,
+        latest_eval: Optional[SemanticEvaluationResult] = None
     ) -> str:
         lines = [
             f"You are an empathetic, sharp Senior Technical Lead conducting a live technical interview for a {role} at {company}.",
@@ -243,7 +247,7 @@ class QuestionGenerator:
             "CRITICAL INVARIANTS & RULES:",
             "1. ONE SINGLE QUESTION: Ask about exactly ONE focused technical topic or decision. Never ask compound questions with multiple sub-parts.",
             "2. NATURALNESS (PREFER <= 2 SHORT SENTENCES):",
-            "   - Sentence 1: Acknowledge what the candidate just explained warmly or bridge smoothly.",
+            "   - Sentence 1: Acknowledge the candidate's answer. If they provided good technical details, validate them warmly. If they gave a joke, evaded, or gave a nonsensical answer, politely but firmly redirect them (e.g. 'Let's focus on the technical implementation...').",
             "   - Sentence 2: Ask ONE clear, focused question.",
             "3. NO GENERIC QUESTIONS: Avoid vague filler like 'Can you tell me more about that?' or 'What else did you do?'. Reference their actual technical choices.",
             f"4. ALTERNATIVE ARCHITECTURES MUST REMAIN VALID: Never imply there is only one textbook answer. Guidance: {valid_alternatives}",
@@ -262,6 +266,12 @@ class QuestionGenerator:
             ])
         else:
             lines.append(f"8. FOCUS DIMENSION: Probe '{focus_dim}'. Directly target engineering mechanics, failure handling, trade-offs, concurrency, or scaling.")
+
+        
+        if latest_eval and latest_eval.is_non_answer:
+            lines.append("9. THE CANDIDATE JUST GAVE A JOKE OR NON-ANSWER. You must firmly redirect them to technical matters before asking the next question.")
+        elif latest_eval and latest_eval.correctness < 0.40:
+            lines.append("9. THE CANDIDATE'S LAST ANSWER WAS WEAK OR INCORRECT. Push back logically or ask them to clarify the flaw in their reasoning.")
 
         lines.append("- Return ONLY the natural-language question text without quotes or role tags.")
         return "\n".join(lines)
@@ -371,28 +381,28 @@ class QuestionGenerator:
         # Case 3: Trade-off Analysis
         if focus_dim == "tradeoff" or action_str == "TEST_TRADEOFF":
             return (
-                f"That explanation makes good sense regarding {entity}, {candidate_name}. "
+                f"Regarding {entity}, {candidate_name}. "
                 f"When evaluating that design for {item_title}, what was the primary engineering trade-off you had to make, and why did you settle on that choice?"
             )
 
         # Case 4: Architectural Reasoning & Justification
         if focus_dim == "reasoning" or action_str == "TEST_REASONING":
             return (
-                f"That explanation makes sense regarding {entity}, {candidate_name}. "
+                f"Regarding {entity}, {candidate_name}. "
                 f"Why did you choose {entity} over alternative approaches for {item_title}, and what technical constraints guided that choice?"
             )
 
         # Case 5: Failure & Fault Tolerance
         if focus_dim in ["failure", "reliability"] or action_str in ["TEST_FAILURE", "TEST_RELIABILITY"]:
             return (
-                f"Understood, that gives helpful context on the baseline flow. "
+                f""
                 f"If {entity} experiences an unexpected node crash or network partition, how does your system fail gracefully to preserve state?"
             )
 
         # Case 6: Scale & Performance
         if focus_dim in ["scale", "performance"] or action_str in ["TEST_SCALE", "TEST_PERFORMANCE"]:
             return (
-                f"Great context on the architecture of {item_title}, {candidate_name}. "
+                f""
                 f"If throughput or data volume scaled up by 10x, what specific bottleneck would emerge first in {entity}, and how would you optimize it?"
             )
 
