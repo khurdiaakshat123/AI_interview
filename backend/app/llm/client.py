@@ -406,88 +406,106 @@ class LLMClient:
         role_skills: Optional[List[str]] = None,
         web_trends: Optional[List[str]] = None,
         item_type: str = "PROJECT",
-        transition_from: Optional[str] = None
+        transition_from: Optional[str] = None,
+        planner_decision: Optional[Any] = None,
+        focus_dimension: Optional[str] = None,
+        discrepancy_context: Optional[str] = None,
+        question_profile: Optional[Any] = None,
+        state: Optional[Any] = None,
+        candidate_claims: Optional[List[Any]] = None,
+        candidate_topics: Optional[List[str]] = None,
+        relevant_history: Optional[List[Dict[str, Any]]] = None,
+        role_objective: Optional[Any] = None,
+        evidence_gaps: Optional[List[str]] = None,
+        contradiction_context: Optional[str] = None,
+        persist_in_history: bool = True
     ) -> Optional[str]:
         """
         Generates a natural, human-like technical interview question (ChatGPT style).
-        Speaks like an experienced, collaborative Senior Tech Lead.
-        STRICT RULES:
-        - ONE BITE-SIZED, FOCUSED QUESTION AT A TIME. NEVER ask compound questions with multiple sub-parts.
-        - Total response must be 2 short sentences:
-          Sentence 1: Acknowledge their previous answer warmly (or provide a smooth transition).
-          Sentence 2: Ask ONE single, clear, focused question.
-        - Start basic and progress step-by-step.
+        Delegates to the QuestionGenerator engine using stateful adaptive planning inputs,
+        QuestionProfiles, and candidate assertions.
         """
-        is_work_exp = (item_type == "WORK_EXPERIENCE" or phase == "EXPERIENCE_DEFENSE")
-        
-        system_prompt = (
-            f"You are an empathetic, sharp Senior Tech Lead conducting a live technical interview for a {role} at {company}.\n"
-            "You talk naturally like a real human engineer on a video call (how ChatGPT speaks in interview mode)—warm, conversational, concise, and focused. NEVER sound like a robotic questionnaire or pre-scripted automated form.\n\n"
-            "CRITICAL RULES FOR QUESTION DESIGN:\n"
-            "1. ONE BITE-SIZED QUESTION AT A TIME: Ask about ONE single thing. NEVER ask compound, overloaded questions. That overwhelms candidates.\n"
-            "2. MAXIMUM 2 SHORT SENTENCES TOTAL:\n"
-            "   - Sentence 1: Acknowledge what the candidate just said warmly (or bridge smoothly if transitioning to a new company/project).\n"
-            "   - Sentence 2: Ask ONE direct, focused question.\n"
-            "3. PROGRESSIVE DEPTH BASED ON ITEM TYPE:\n"
-        )
+        from backend.app.engines.question_generator import QuestionGenerator
+        from backend.app.engines.question_profile import QuestionProfile, QuestionKind
 
-        if is_work_exp:
-            system_prompt += (
-                "   - If this is a new Work Experience (Turn 1): Acknowledge and ask for a concise overview of their core responsibilities and the primary problem their team was solving at this company.\n"
-                "   - If Depth 2: Ask about a specific service, feature, or database optimization they built there.\n"
-                "   - If Depth 3: Ask about a concrete production engineering trade-off, latency bottleneck, or scaling challenge they had to navigate.\n"
-                "   - If Depth 4+: Ask about failure handling, edge cases, or rollback strategies in that production environment.\n"
+        q_profile = question_profile
+        contra = contradiction_context or discrepancy_context
+        action_val = "DEEPEN_CURRENT_TOPIC"
+        target_dim = focus_dimension
+        if planner_decision:
+            if hasattr(planner_decision, "action"):
+                action_val = planner_decision.action.value if hasattr(planner_decision.action, "value") else str(planner_decision.action)
+            elif isinstance(planner_decision, str):
+                action_val = planner_decision
+            if not target_dim and hasattr(planner_decision, "focus_dimension"):
+                target_dim = planner_decision.focus_dimension
+
+        if not q_profile:
+            q_kind = QuestionKind.ARCHITECTURAL_CHOICE
+            if action_val == "CLARIFY_CONTRADICTION" or contra:
+                q_kind = QuestionKind.CONTRADICTION_RESOLUTION
+            elif action_val in ["START_NEXT_ITEM", "PIVOT_ITEM"]:
+                q_kind = QuestionKind.CONCEPTUAL_OVERVIEW
+            elif action_val == "TEST_TRADEOFF":
+                q_kind = QuestionKind.TRADE_OFF_ANALYSIS
+            elif action_val in ["TEST_FAILURE", "TEST_RELIABILITY"]:
+                q_kind = QuestionKind.FAILURE_RECOVERY
+            elif action_val in ["TEST_SCALE", "TEST_PERFORMANCE"]:
+                q_kind = QuestionKind.SCALE_PERFORMANCE
+            elif action_val == "TEST_CONCURRENCY":
+                q_kind = QuestionKind.CONCURRENCY_SYNC
+            elif action_val == "TEST_DEBUGGING":
+                q_kind = QuestionKind.DEBUGGING_DIAGNOSTIC
+            elif action_val == "TEST_IMPLEMENTATION":
+                q_kind = QuestionKind.SPECIFICATION_PROBE
+            elif phase == "SUBJECT_KNOWLEDGE":
+                q_kind = QuestionKind.CONCEPTUAL_OVERVIEW
+
+            q_profile = QuestionProfile(
+                question_id=f"q_{phase}_{current_depth}_{action_val}",
+                objective=f"Evaluate candidate knowledge regarding {target_dim or 'engineering design'} on {project_title or 'system'}",
+                evidence_units=[f"Demonstrates clear grasp of {target_dim or 'technical execution'}"],
+                phase=phase,
+                item_id=project_title or "item_1",
+                item_type=item_type,
+                topic=project_title or "System Architecture",
+                subtopic=target_dim or "architecture",
+                difficulty=min(1.0, max(0.1, 0.2 + 0.2 * current_depth)),
+                follow_up_depth=current_depth,
+                question_kind=q_kind
             )
-        else:
-            system_prompt += (
-                "   - If this is a new Project (Turn 1): Ask for a simple, high-level summary of the core problem '{project_title}' solves.\n"
-                "   - If Depth 2: Ask what primary tool, database, or framework they chose for it.\n"
-                "   - If Depth 3: Ask why they chose that specific tool over an alternative, or how data flows through that component.\n"
-                "   - If Depth 4: Ask about performance, latency, or bottleneck management.\n"
-                "   - If Depth 5+: Ask about edge cases, data consistency, or failure handling.\n"
-            )
 
-        system_prompt += (
-            "4. TRANSITIONS:\n"
-            "   - When moving between work experiences or projects, Sentence 1 should bridge naturally (e.g., 'Thanks for detailing your work at Datastream—that makes sense.', 'That gives me a great picture of your work experience; let\\'s dive into your projects.').\n"
+        # Assemble history if not supplied
+        rel_hist = relevant_history
+        if rel_hist is None:
+            rel_hist = []
+            if previous_question:
+                rel_hist.append({"sender": "INTERVIEWER", "text": previous_question})
+            if candidate_last_answer:
+                rel_hist.append({"sender": "CANDIDATE", "text": candidate_last_answer})
+
+        # Assemble gaps
+        ev_gaps = evidence_gaps if evidence_gaps is not None else ([detected_gap] if detected_gap else [])
+
+        # Call QuestionGenerator
+        result = QuestionGenerator.generate_question(
+            planner_action=planner_decision or action_val,
+            question_profile=q_profile,
+            state=state,
+            current_item={"title": project_title, "item_type": item_type, "details": project_details},
+            candidate_claims=candidate_claims,
+            candidate_topics=candidate_topics,
+            relevant_history=rel_hist,
+            role_objective=role_objective or role_skills,
+            evidence_gaps=ev_gaps,
+            contradiction_context=contra,
+            candidate_name=candidate_name,
+            company=company,
+            role=role,
+            llm_client_instance=self,
+            persist_in_history=persist_in_history
         )
-
-        trends_context = "\n".join([f"- {t}" for t in (web_trends or [])[:3]]) if web_trends else "Standard industry hiring expectations"
-        skills_str = ", ".join((role_skills or [])[:6]) if role_skills else "Core Software Engineering"
-
-        label = "Work Experience" if is_work_exp else "Project"
-        user_prompt = (
-            f"Candidate: {candidate_name} | Role: {role} | Target Company: {company}\n"
-            f"Interview Phase: {phase} | Depth Level: L{current_depth}\n"
-            f"Current {label}: {project_title}\n"
-            f"{label} Summary: {project_details or 'Production engineering work'}\n"
-            f"Key Role Skills: {skills_str}\n"
-            f"Recent Company Interview Trends:\n{trends_context}\n"
-        )
-
-        if transition_from:
-            user_prompt += f"Transitioning from previous item: '{transition_from}'\n"
-
-        if candidate_last_answer:
-            user_prompt += (
-                f"\nPrevious Question Asked:\n{previous_question or 'Overview'}\n\n"
-                f"Candidate's Last Answer:\n\"{candidate_last_answer}\"\n\n"
-                f"Evaluation Band: {quality_band or 'Good'} | Evaluator Notes: {detected_gap or 'None'}\n\n"
-                "Formulate the next natural, bite-sized follow-up question (strictly 2 sentences: 1 acknowledge/bridge, 1 single focused question)."
-            )
-        else:
-            if transition_from:
-                user_prompt += (
-                    f"\nThis is a transition to the next {label} '{project_title}'.\n"
-                    f"Bridge warmly from '{transition_from}' in Sentence 1, then ask ONE clean opening question about '{project_title}' in Sentence 2."
-                )
-            else:
-                user_prompt += (
-                    f"\nThis is the opening question of the interview.\n"
-                    f"Greet {candidate_name} warmly, mention their {label} '{project_title}', and ask a simple, friendly opening question about it."
-                )
-
-        return self.generate_completion(system_prompt, user_prompt, temperature=0.3)
+        return result.question_text
 
     def correct_candidate_answer_typos(
         self,

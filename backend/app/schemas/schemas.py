@@ -241,9 +241,14 @@ class CorrectTranscriptResponse(BaseModel):
     changes_made: List[str] = []
     has_corrections: bool = False
 
+class CurrentItemSummary(BaseModel):
+    item_id: str
+    item_type: str = "PROJECT"  # WORK_EXPERIENCE | PROJECT | SUBJECT_TOPIC
+    title: str
+
 class InterviewTurnOut(BaseModel):
     session_id: str
-    phase: str  # PROJECT_DEFENSE | SUBJECT_KNOWLEDGE | COMPLETED
+    phase: str  # EXPERIENCE_DEFENSE | PROJECT_DEFENSE | SUBJECT_KNOWLEDGE | COMPLETED
     current_topic: str
     question_id: str
     question_text: str
@@ -252,6 +257,29 @@ class InterviewTurnOut(BaseModel):
     is_completed: bool
     eval_previous: Optional[Dict[str, Any]] = None
     candidate_name: Optional[str] = None
+    next_question: Optional[str] = None
+
+    # Current Item context
+    current_item_id: Optional[str] = None
+    current_item_type: Optional[str] = None
+    current_item_title: Optional[str] = None
+    current_item: Optional[CurrentItemSummary] = None
+
+    # Dimension & Difficulty
+    current_dimension: Optional[str] = None
+    depth_dimension: Optional[str] = None
+    target_difficulty: Optional[float] = None
+    question_difficulty: Optional[float] = None
+
+    # Clarification & Scoring flags
+    is_clarification: bool = False
+    is_scored: bool = True
+
+    # Evaluated Turn metrics (previous turn)
+    earned_points: Optional[float] = None
+    possible_points: Optional[float] = None
+    evidence_score: Optional[float] = None
+    concise_evaluation_summary: Optional[str] = None
 
 class InterviewEvidenceRecord(BaseModel):
     id: str
@@ -272,12 +300,20 @@ class InterviewEvidenceRecord(BaseModel):
 class ProjectScoreCard(BaseModel):
     project_id: str
     title: str
-    score: float
-    star_rating: float
-    relevance_weight: float
-    strengths: List[str]
-    identified_gaps: List[str]
-    topics_covered: List[str]
+    score: Optional[float] = None
+    star_rating: Optional[float] = None
+    relevance_weight: float = 1.0
+    strengths: List[str] = Field(default_factory=list)
+    identified_gaps: List[str] = Field(default_factory=list)
+    topics_covered: List[str] = Field(default_factory=list)
+    item_id: Optional[str] = None
+    item_type: Optional[str] = "PROJECT"
+    coverage: Optional[float] = 0.0
+    demonstrated_strengths: List[str] = Field(default_factory=list)
+    claim_status_summary: Dict[str, int] = Field(default_factory=dict)
+
+# Alias for semantic clarity
+ExperienceItemScoreCard = ProjectScoreCard
 
 class InterviewFinalReportOut(BaseModel):
     session_id: str
@@ -285,16 +321,20 @@ class InterviewFinalReportOut(BaseModel):
     role: str
     candidate_name: str
     # Dual headline scores (§6.5)
-    resume_related_score: float  # /100
-    subject_knowledge_score: float  # /100
-    section_scores: Dict[str, float]
-    project_cards: List[ProjectScoreCard]
-    subject_topic_breakdown: Dict[str, str]  # topic -> STRONG | PARTIAL | WEAK | UNTESTED
-    evidence_trail: List[InterviewEvidenceRecord]
-    strengths: List[str]
-    weaknesses: List[str]
-    improvement_recommendations: List[str]
-    completed_at: datetime
+    resume_related_score: Optional[float] = None  # /100
+    experience_score: Optional[float] = None  # /100
+    subject_knowledge_score: Optional[float] = None  # /100
+    section_scores: Dict[str, Optional[float]] = Field(default_factory=dict)
+    experience_items: List[ProjectScoreCard] = Field(default_factory=list)
+    project_cards: List[ProjectScoreCard] = Field(default_factory=list)
+    experience_cards: List[ProjectScoreCard] = Field(default_factory=list)
+    subject_topics: Dict[str, str] = Field(default_factory=dict)  # topic -> STRONG | PARTIAL | WEAK | UNTESTED
+    subject_topic_breakdown: Dict[str, str] = Field(default_factory=dict)  # Backward compatibility
+    evidence_trail: List[InterviewEvidenceRecord] = Field(default_factory=list)
+    strengths: List[str] = Field(default_factory=list)
+    weaknesses: List[str] = Field(default_factory=list)
+    improvement_recommendations: List[str] = Field(default_factory=list)
+    completed_at: Optional[datetime] = None
 
 # --- Admin Review Queue ---
 class ReviewQueueItem(BaseModel):

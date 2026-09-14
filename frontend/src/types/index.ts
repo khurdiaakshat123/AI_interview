@@ -187,16 +187,37 @@ export interface StructuredResume {
   section_weights: Record<string, number>;
 }
 
+export interface CurrentItemSummary {
+  item_id: string;
+  item_type: string;
+  title: string;
+}
+
 export interface InterviewTurn {
   session_id: string;
   phase: string;
   current_topic: string;
   question_id: string;
   question_text: string;
+  next_question?: string;
   depth_level: number;
   max_depth: number;
   is_completed: boolean;
+  is_clarification?: boolean;
   is_clarification_prompt?: boolean;
+  is_scored?: boolean;
+  current_item_id?: string;
+  current_item_type?: string;
+  current_item_title?: string;
+  current_item?: CurrentItemSummary;
+  current_dimension?: string;
+  depth_dimension?: string;
+  target_difficulty?: number;
+  question_difficulty?: number;
+  earned_points?: number;
+  possible_points?: number;
+  evidence_score?: number;
+  concise_evaluation_summary?: string;
   eval_previous?: {
     quality_band: string;
     earned_points: number;
@@ -205,6 +226,9 @@ export interface InterviewTurn {
     feedback: string;
     detected_gap?: string;
     is_clarification_prompt?: boolean;
+    is_scored?: boolean;
+    evidence_score?: number;
+    concise_evaluation_summary?: string;
   };
   candidate_name?: string;
 }
@@ -229,23 +253,34 @@ export interface InterviewEvidenceRecord {
 export interface ProjectScoreCard {
   project_id: string;
   title: string;
-  score: number;
-  star_rating: number;
+  score: number | null;
+  star_rating: number | null;
   relevance_weight: number;
   strengths: string[];
   identified_gaps: string[];
   topics_covered: string[];
+  item_id?: string;
+  item_type?: string;
+  coverage?: number;
+  demonstrated_strengths?: string[];
+  claim_status_summary?: Record<string, number>;
 }
+
+export type ExperienceItemScoreCard = ProjectScoreCard;
 
 export interface InterviewFinalReport {
   session_id: string;
   company: string;
   role: string;
   candidate_name: string;
-  resume_related_score: number;
-  subject_knowledge_score: number;
-  section_scores: Record<string, number>;
+  resume_related_score: number | null;
+  experience_score?: number | null;
+  subject_knowledge_score: number | null;
+  section_scores: Record<string, number | null>;
+  experience_items?: ProjectScoreCard[];
   project_cards: ProjectScoreCard[];
+  experience_cards?: ProjectScoreCard[];
+  subject_topics?: Record<string, string>;
   subject_topic_breakdown: Record<string, string>;
   evidence_trail: InterviewEvidenceRecord[];
   strengths: string[];

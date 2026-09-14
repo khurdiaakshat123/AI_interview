@@ -12,7 +12,7 @@ from backend.app.models.models import (
 from backend.app.schemas.schemas import (
     ResumeUploadRequest, StructuredResumeOut, InterviewSessionCreate,
     InterviewAnswerRequest, InterviewTurnOut, InterviewFinalReportOut, ProjectScoreCard, InterviewEvidenceRecord,
-    CorrectTranscriptRequest, CorrectTranscriptResponse
+    CorrectTranscriptRequest, CorrectTranscriptResponse, CurrentItemSummary
 )
 from backend.app.engines.resume_parser import ResumeParser
 from backend.app.agents.interview_agent import InterviewAgent
@@ -108,16 +108,47 @@ def create_interview_session(payload: InterviewSessionCreate, db: Session = Depe
     )
 
     first_turn = session.transcript_json[0]
+    agent1_meta = session.agent1_report_json or {}
+    q_prof = agent1_meta.get("current_question_profile") or {}
+    unified_state = agent1_meta.get("unified_state") or {}
+    items = unified_state.get("items") or {}
+    active_item_id = session.current_thread_id
+    active_item = items.get(active_item_id) or {}
+    item_id = active_item.get("item_id") or active_item_id
+    item_type = active_item.get("item_type", "PROJECT")
+    item_title = active_item.get("title", first_turn.get("topic", "System Architecture"))
+
+    curr_dim = q_prof.get("follow_up_dimension") or ("responsibilities" if item_type == "WORK_EXPERIENCE" else "architecture")
+    diff = q_prof.get("difficulty", 0.50)
+
+    current_item_dict = CurrentItemSummary(item_id=item_id, item_type=item_type, title=item_title) if item_id else None
+
     return InterviewTurnOut(
         session_id=session.id,
         phase=session.current_phase,
-        current_topic=first_turn.get("topic", "System Architecture"),
+        current_topic=first_turn.get("topic", item_title),
         question_id=session.current_question_id,
         question_text=first_turn.get("text", ""),
+        next_question=first_turn.get("text", ""),
         depth_level=session.current_depth,
         max_depth=InterviewAgent.MAX_DEPTH,
         is_completed=False,
-        eval_previous=None
+        eval_previous=None,
+        candidate_name=payload.candidate_name or "Candidate",
+        current_item_id=item_id,
+        current_item_type=item_type,
+        current_item_title=item_title,
+        current_item=current_item_dict,
+        current_dimension=curr_dim,
+        depth_dimension=curr_dim,
+        target_difficulty=diff,
+        question_difficulty=diff,
+        is_clarification=False,
+        is_scored=True,
+        earned_points=None,
+        possible_points=None,
+        evidence_score=None,
+        concise_evaluation_summary=None
     )
 
 @router.post("/sessions/{id}/answer", response_model=InterviewTurnOut)
@@ -133,10 +164,13 @@ def answer_interview_question(id: str, payload: InterviewAnswerRequest, db: Sess
             current_topic="Completed",
             question_id="",
             question_text="This interview session has already concluded.",
+            next_question="This interview session has already concluded.",
             depth_level=session.current_depth,
             max_depth=InterviewAgent.MAX_DEPTH,
             is_completed=True,
-            eval_previous=None
+            eval_previous=None,
+            is_clarification=False,
+            is_scored=False
         )
 
     result = InterviewAgent.process_answer(db=db, session=session, user_answer=payload.answer)
@@ -297,31 +331,41 @@ def get_interview_report(id: str, db: Session = Depends(get_db)):
 
     project_cards = [
         ProjectScoreCard(
-            project_id=c.get("project_id", "p1"),
-            title=c.get("title", "Flagship Project"),
-            score=c.get("score", 85.0),
-            star_rating=c.get("star_rating", 4.25),
+            project_id=c.get("project_id", c.get("item_id", "p1")),
+            item_id=c.get("item_id", c.get("project_id")),
+            item_type=c.get("item_type", "PROJECT"),
+            title=c.get("title", "Item Defense"),
+            score=c.get("score"),
+            star_rating=c.get("star_rating"),
             relevance_weight=c.get("relevance_weight", 1.0),
+            coverage=c.get("coverage", 0.0),
+            topics_covered=c.get("topics_covered", []),
+            demonstrated_strengths=c.get("demonstrated_strengths", c.get("strengths", [])),
             strengths=c.get("strengths", []),
             identified_gaps=c.get("identified_gaps", []),
-            topics_covered=c.get("topics_covered", [])
+            claim_status_summary=c.get("claim_status_summary", {})
         )
-        for c in report.get("project_cards", [])
+        for c in report.get("experience_items", report.get("project_cards", report.get("experience_cards", [])))
     ]
 
     resume = db.query(StructuredResume).filter(StructuredResume.id == session.resume_id).first()
     candidate_name = resume.candidate_name if resume else "Candidate"
+    subj_topics = report.get("subject_topics", report.get("subject_topic_breakdown", {}))
 
     return InterviewFinalReportOut(
         session_id=session.id,
         company=session.company,
         role=session.role,
         candidate_name=candidate_name,
-        resume_related_score=report.get("resume_related_score", 85.0),
-        subject_knowledge_score=report.get("subject_knowledge_score", 88.0),
+        resume_related_score=report.get("resume_related_score"),
+        experience_score=report.get("experience_score", report.get("resume_related_score")),
+        subject_knowledge_score=report.get("subject_knowledge_score"),
         section_scores=report.get("section_scores", {}),
+        experience_items=project_cards,
         project_cards=project_cards,
-        subject_topic_breakdown=report.get("subject_topic_breakdown", {}),
+        experience_cards=project_cards,
+        subject_topics=subj_topics,
+        subject_topic_breakdown=subj_topics,
         evidence_trail=evidence_models,
         strengths=report.get("strengths", []),
         weaknesses=report.get("weaknesses", []),

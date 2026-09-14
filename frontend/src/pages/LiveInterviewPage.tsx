@@ -769,24 +769,30 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
 
                     {/* Show previous evaluation details inline if available */}
                     {msg.evalPrev && (
-                      msg.evalPrev.is_clarification_prompt || msg.evalPrev.quality_band === 'Specification Clarification' ? (
+                      msg.evalPrev.is_scored === false || msg.evalPrev.is_clarification || msg.evalPrev.is_clarification_prompt || msg.evalPrev.quality_band === 'Specification Clarification' ? (
                         <div className="p-2.5 rounded-xl bg-amber-950/40 border border-amber-800/60 text-[11px] text-amber-200 flex items-center justify-between gap-2 mt-1">
                           <div className="flex items-center gap-1.5">
                             <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block" />
-                            <span className="font-bold text-amber-300">2nd-Go Clarification Requested</span>
+                            <span className="font-bold text-amber-300">Clarification requested</span>
                           </div>
                           <span className="text-amber-300/80 font-medium text-[10px]">
-                            Overview noted • Specify concrete details (No 0/10 penalty yet)
+                            {msg.evalPrev.feedback || "Clarification inquiry • Unscored turn"}
                           </span>
                         </div>
                       ) : (
                         <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80 text-[11px] text-slate-300 flex items-center justify-between gap-2 mt-1">
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-slate-500">Graded:</span>
-                            <span className="font-bold text-amber-300">{msg.evalPrev.quality_band}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-slate-500">Evaluated:</span>
+                            {msg.evalPrev.evidence_score != null ? (
+                              <span className="font-semibold text-sky-300">
+                                {Math.round(msg.evalPrev.evidence_score * 100)}% Evidence
+                              </span>
+                            ) : msg.evalPrev.quality_band ? (
+                              <span className="font-medium text-slate-200">{msg.evalPrev.quality_band}</span>
+                            ) : null}
                           </div>
-                          <span className="font-mono text-emerald-400 font-semibold">
-                            +{msg.evalPrev.earned_points} / {msg.evalPrev.possible_points} pts
+                          <span className="font-mono text-emerald-400 font-bold">
+                            +{Number(msg.evalPrev.earned_points || 0).toFixed(1)} / {Number(msg.evalPrev.possible_points || 0).toFixed(1)} pts
                           </span>
                         </div>
                       )
@@ -813,13 +819,13 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
 
           {/* Input Bar */}
           <div className="p-4 bg-slate-950 border-t border-slate-800 space-y-2">
-            {(currentTurn.is_clarification_prompt || currentTurn.eval_previous?.is_clarification_prompt) && (
+            {(currentTurn.is_clarification || currentTurn.is_clarification_prompt || currentTurn.eval_previous?.is_clarification_prompt) && (
               <div className="px-3.5 py-2 rounded-xl bg-amber-950/40 border border-amber-700/60 flex items-center gap-2 text-xs text-amber-200">
                 <HelpCircle className="w-4 h-4 text-amber-400 shrink-0" />
                 <div className="flex-1">
-                  <span className="font-bold text-amber-200">2nd-Go Opportunity: </span>
+                  <span className="font-bold text-amber-200">Clarification requested: </span>
                   <span className="text-amber-300/90">
-                    The interviewer wants specific implementation details, libraries, or architecture choices. Answer precisely to earn full marks with minimal penalty!
+                    The interviewer is seeking clarification on your previous technical statements. This inquiry is not directly scored; please provide precise technical details.
                   </span>
                 </div>
               </div>
@@ -967,27 +973,38 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
         {/* Right 1 Col: Adaptive Follow-up Depth & Status */}
         <div className="space-y-4">
           <DepthMeter
+            currentDimension={currentTurn.current_dimension || currentTurn.depth_dimension}
+            depthDimension={currentTurn.depth_dimension}
             currentDepth={currentTurn.depth_level}
-            maxDepth={currentTurn.max_depth}
             phase={currentTurn.phase}
+            currentItemTitle={currentTurn.current_item_title || currentTurn.current_item?.title}
+            currentItemType={currentTurn.current_item_type || currentTurn.current_item?.item_type}
+            isClarification={currentTurn.is_clarification || currentTurn.is_clarification_prompt}
             previousEval={currentTurn.eval_previous}
           />
 
           <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3 text-xs">
             <div className="font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
               <Layers className="w-3.5 h-3.5 text-indigo-400" />
-              Adaptive Reasoning & Depth Engine
+              Adaptive Scoring & Dimension Policy
             </div>
-            <p className="text-slate-400 leading-relaxed">
-              Every turn is scored deterministically using:
+            <p className="text-slate-300 leading-relaxed">
+              Question weight adapts to question difficulty/complexity and demonstrated answer evidence. Depth describes the kind of reasoning being tested; it does not by itself determine score or when the interview ends.
             </p>
-            <div className="p-2.5 rounded-lg bg-slate-950 font-mono text-[11px] text-slate-300 space-y-1">
-              <div>correct_possible(L) = 5 + 3*(L - 1)</div>
-              <div>incorrect_possible(L) = max(2, 10 - 2*(L - 1))</div>
+            <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/80 text-[11px] text-slate-400 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-slate-500">Scoring Model:</span>
+                <span className="text-sky-300 font-medium font-mono">Continuous Evidence-Based</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-500">Turn Score:</span>
+                <span className="text-emerald-400 font-semibold font-mono">earned / possible points</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-500">Clarification Turns:</span>
+                <span className="text-amber-300 font-medium">Unscored Inquiry</span>
+              </div>
             </div>
-            <p className="text-slate-400 leading-relaxed">
-              Shallow errors are penalized heavily; correct deep insights at Level 4–5 earn maximum points.
-            </p>
           </div>
         </div>
       </div>
