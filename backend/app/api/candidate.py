@@ -139,16 +139,19 @@ def setup_candidate_and_run(
     db.refresh(resume_obj)
 
     # 4. Initialize Live Interview Session
-    session = InterviewAgent.start_session(
-        db=db,
-        user_id=user.id,
-        company=company,
-        role=role,
-        resume=resume_obj,
-        role_profile=role_profile,
-        job_type=payload.job_type or "Full-Time",
-        candidate_name=candidate_name
-    )
+    try:
+        session = InterviewAgent.start_session(
+            db=db,
+            user_id=user.id,
+            company=company,
+            role=role,
+            resume=resume_obj,
+            role_profile=role_profile,
+            job_type=payload.job_type or "Full-Time",
+            candidate_name=candidate_name
+        )
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
     # Prepare initial turn
     first_turn = session.transcript_json[0] if session.transcript_json else {}
