@@ -29,26 +29,31 @@ def debug_llm():
         "GEMINI_API_KEY": os.getenv("GEMINI_API_KEY", "")[:4] + "***" if os.getenv("GEMINI_API_KEY") else "MISSING",
     }
     
-    gemini_key = os.getenv("GEMINI_API_KEY")
-    gemini_status = "Skipped"
-    gemini_error = ""
+    groq_key = os.getenv("GROQ_API_KEY")
+    groq_status = "Skipped"
+    groq_error = ""
     
-    if gemini_key:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={gemini_key}"
-        payload = {"contents": [{"parts": [{"text": "Hello"}]}]}
+    if groq_key:
+        url = "https://api.groq.com/openai/v1/chat/completions"
+        headers = {"Authorization": f"Bearer {groq_key}", "Content-Type": "application/json"}
+        payload = {
+            "model": "llama3-8b-8192",
+            "messages": [{"role": "user", "content": "Hello"}],
+            "max_tokens": 10
+        }
         try:
             with httpx.Client(timeout=10.0) as client:
-                resp = client.post(url, json=payload)
-                gemini_status = resp.status_code
-                gemini_error = resp.text[:500]
+                resp = client.post(url, headers=headers, json=payload)
+                groq_status = resp.status_code
+                groq_error = resp.text[:500]
         except Exception as e:
-            gemini_status = "Exception"
-            gemini_error = str(e)
+            groq_status = "Exception"
+            groq_error = str(e)
             
     return {
         "keys_detected": keys,
-        "gemini_test_status": gemini_status,
-        "gemini_test_response": gemini_error
+        "groq_test_status": groq_status,
+        "groq_test_response": groq_error
     }
 
 
