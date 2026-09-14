@@ -105,7 +105,7 @@ class QuestionGenerator:
         prev_q_text = None
         cand_last_ans = None
         if relevant_history:
-            for turn in reversed(relevant_history):
+            for turn in reversed(relevant_history[-10:] if relevant_history else []):
                 if turn.get("sender") == "INTERVIEWER" and not prev_q_text:
                     prev_q_text = turn.get("text", "")
                 elif turn.get("sender") == "CANDIDATE" and not cand_last_ans:
@@ -155,17 +155,7 @@ class QuestionGenerator:
 
         # 7. Fallback generation (derived strictly from planned dimension & candidate context, NO depth ladder)
         if not generated_text:
-            generated_text = cls._format_fallback_question(
-                candidate_name=candidate_name,
-                action_str=action_str,
-                focus_dim=focus_dim,
-                question_profile=question_profile,
-                item_title=item_title,
-                item_type=item_type,
-                candidate_entities=candidate_entities,
-                contradiction_context=contradiction_context,
-                relevant_history=relevant_history
-            )
+            raise RuntimeError("LLM API connection failed. Cannot generate natural language question offline. Please check your API keys or try again.")
 
         # 8. Persist associated QuestionProfile into question history if state is present
         turn_idx = (len(state.question_history) + 1) if state else 1

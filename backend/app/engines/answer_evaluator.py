@@ -167,13 +167,9 @@ class AnswerEvaluator:
             )
             if result:
                 return result
-
-        # 3. Conservative Deterministic Fallback (NEVER pretends keyword counting = semantics)
-        return cls._conservative_fallback_evaluation(
-            question_profile=question_profile,
-            candidate_answer=cleaned_answer,
-            state=state
-        )
+            raise RuntimeError("LLM API connection failed. Cannot semantically evaluate free-text answer offline. Please check your API keys or try again.")
+            
+        raise RuntimeError("No LLM client provided. Strict LLM evaluation is enforced; offline fallback is disabled.")
 
     @classmethod
     def _is_explicit_evasion(cls, text: str) -> bool:
@@ -225,7 +221,7 @@ class AnswerEvaluator:
         if history:
             recent_turns = "\n".join([
                 f"- Turn {t.get('turn_index', i+1)} ({t.get('sender', 'INTERVIEWER')}): {t.get('text', '')}"
-                for i, t in enumerate(history[-4:])
+                for i, t in enumerate(history[-8:])
             ])
 
         prior_claims_str = ""

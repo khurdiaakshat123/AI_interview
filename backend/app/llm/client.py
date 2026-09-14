@@ -80,90 +80,94 @@ class LLMClient:
         return "Intervyn Domain Expert Engine (Local Deterministic)"
 
     def generate_completion(self, system_prompt: str, user_prompt: str, temperature: float = 0.2) -> Optional[str]:
-        # 1. Groq (REST - Ultra-Fast LLaMA 3.3/3.1)
-        if self.groq_key:
-            for g_model in ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]:
+        import time
+        for attempt in range(3):
+            # 1. Groq (REST - Ultra-Fast LLaMA 3.3/3.1)
+            if self.groq_key:
+                for g_model in ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]:
+                    try:
+                        headers = {"Authorization": f"Bearer {self.groq_key}", "Content-Type": "application/json"}
+                        payload = {
+                            "model": g_model,
+                            "messages": [
+                                {"role": "system", "content": system_prompt},
+                                {"role": "user", "content": user_prompt}
+                            ],
+                            "temperature": temperature
+                        }
+                        with httpx.Client(timeout=15.0) as client:
+                            resp = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
+                            if resp.status_code == 200:
+                                return resp.json()["choices"][0]["message"]["content"]
+                    except Exception as e:
+                        print(f"[LLMClient] Groq call ({g_model}) failed or timed out: {e}")
+
+            # 2. Google Gemini (REST - gemini-flash-latest with fallback)
+            if self.gemini_key:
+                for gmodel in ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]:
+                    try:
+                        url = f"https://generativelanguage.googleapis.com/v1beta/models/{gmodel}:generateContent?key={self.gemini_key}"
+                        payload = {
+                            "contents": [
+                                {
+                                    "role": "user",
+                                    "parts": [{"text": f"System Instructions:\n{system_prompt}\n\nTask:\n{user_prompt}"}]
+                                }
+                            ],
+                            "generationConfig": {"temperature": temperature}
+                        }
+                        with httpx.Client(timeout=15.0) as client:
+                            resp = client.post(url, json=payload)
+                            if resp.status_code == 200:
+                                data = resp.json()
+                                if "candidates" in data and data["candidates"]:
+                                    return data["candidates"][0]["content"]["parts"][0]["text"]
+                    except Exception as e:
+                        print(f"[LLMClient] Gemini call ({gmodel}) failed: {e}")
+
+            # 3. OpenAI (REST - GPT-4o-mini)
+            if self.openai_key:
                 try:
-                    headers = {"Authorization": f"Bearer {self.groq_key}", "Content-Type": "application/json"}
+                    headers = {"Authorization": f"Bearer {self.openai_key}", "Content-Type": "application/json"}
                     payload = {
-                        "model": g_model,
+                        "model": "gpt-4o-mini",
                         "messages": [
                             {"role": "system", "content": system_prompt},
                             {"role": "user", "content": user_prompt}
                         ],
                         "temperature": temperature
                     }
-                    with httpx.Client(timeout=15.0) as client:
-                        resp = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
+                    with httpx.Client(timeout=25.0) as client:
+                        resp = client.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
                         if resp.status_code == 200:
                             return resp.json()["choices"][0]["message"]["content"]
                 except Exception as e:
-                    print(f"[LLMClient] Groq call ({g_model}) failed or timed out: {e}")
+                    print(f"[LLMClient] OpenAI call failed: {e}")
 
-        # 2. Google Gemini (REST - gemini-flash-latest with fallback)
-        if self.gemini_key:
-            for gmodel in ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]:
+            # 4. Anthropic Claude (REST)
+            if self.anthropic_key:
                 try:
-                    url = f"https://generativelanguage.googleapis.com/v1beta/models/{gmodel}:generateContent?key={self.gemini_key}"
-                    payload = {
-                        "contents": [
-                            {
-                                "role": "user",
-                                "parts": [{"text": f"System Instructions:\n{system_prompt}\n\nTask:\n{user_prompt}"}]
-                            }
-                        ],
-                        "generationConfig": {"temperature": temperature}
+                    headers = {
+                        "x-api-key": self.anthropic_key,
+                        "anthropic-version": "2023-06-01",
+                        "content-type": "application/json"
                     }
-                    with httpx.Client(timeout=15.0) as client:
-                        resp = client.post(url, json=payload)
+                    payload = {
+                        "model": "claude-3-5-sonnet-20241022",
+                        "max_tokens": 1024,
+                        "system": system_prompt,
+                        "messages": [{"role": "user", "content": user_prompt}],
+                        "temperature": temperature
+                    }
+                    with httpx.Client(timeout=25.0) as client:
+                        resp = client.post("https://api.anthropic.com/v1/messages", headers=headers, json=payload)
                         if resp.status_code == 200:
-                            data = resp.json()
-                            if "candidates" in data and data["candidates"]:
-                                return data["candidates"][0]["content"]["parts"][0]["text"]
+                            return resp.json()["content"][0]["text"]
                 except Exception as e:
-                    print(f"[LLMClient] Gemini call ({gmodel}) failed: {e}")
+                    print(f"[LLMClient] Anthropic call failed: {e}")
 
-        # 3. OpenAI (REST - GPT-4o-mini)
-        if self.openai_key:
-            try:
-                headers = {"Authorization": f"Bearer {self.openai_key}", "Content-Type": "application/json"}
-                payload = {
-                    "model": "gpt-4o-mini",
-                    "messages": [
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_prompt}
-                    ],
-                    "temperature": temperature
-                }
-                with httpx.Client(timeout=25.0) as client:
-                    resp = client.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-                    if resp.status_code == 200:
-                        return resp.json()["choices"][0]["message"]["content"]
-            except Exception as e:
-                print(f"[LLMClient] OpenAI call failed: {e}")
-
-        # 4. Anthropic Claude (REST)
-        if self.anthropic_key:
-            try:
-                headers = {
-                    "x-api-key": self.anthropic_key,
-                    "anthropic-version": "2023-06-01",
-                    "content-type": "application/json"
-                }
-                payload = {
-                    "model": "claude-3-5-sonnet-20241022",
-                    "max_tokens": 1024,
-                    "system": system_prompt,
-                    "messages": [{"role": "user", "content": user_prompt}],
-                    "temperature": temperature
-                }
-                with httpx.Client(timeout=25.0) as client:
-                    resp = client.post("https://api.anthropic.com/v1/messages", headers=headers, json=payload)
-                    if resp.status_code == 200:
-                        return resp.json()["content"][0]["text"]
-            except Exception as e:
-                print(f"[LLMClient] Anthropic call failed: {e}")
-
+            print(f"[LLMClient] Attempt {attempt + 1}/3 failed across all providers. Retrying in 1s...")
+            time.sleep(1)
         return None
 
     def evaluate_candidate_answer(
