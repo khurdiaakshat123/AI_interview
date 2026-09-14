@@ -239,6 +239,9 @@ export const api = {
                 onSentence(data.text, data.index);
               } else if (data.type === 'turn' && data.payload) {
                 onTurn(data.payload as InterviewTurn);
+              } else if (data.type === 'error') {
+                onError(new Error(data.message));
+                return;
               }
             } catch (jsonErr) {
               console.warn('[SSE] JSON parse warning:', jsonErr);
