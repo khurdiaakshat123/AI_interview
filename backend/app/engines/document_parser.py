@@ -193,7 +193,7 @@ class DocumentParser:
     def _call_gemini_vision(cls, b64_data: str, mime_type: str) -> str:
         if not llm_client.gemini_key:
             return ""
-        models_to_try = ["gemini-flash-latest", "gemini-3.6-flash", "gemini-2.5-flash"]
+        models_to_try = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]
         for model in models_to_try:
             try:
                 url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={llm_client.gemini_key}"

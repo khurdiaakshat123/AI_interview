@@ -114,6 +114,21 @@ class InterviewAgent:
                 "subtopic": "Architecture & Engineering Trade-offs"
             })
 
+        # Safety invariant: Ensure at least one technical experience defense item exists
+        # so the candidate is never thrown straight into subject knowledge without defending their background
+        if not agenda:
+            agenda.append({
+                "item_id": "exp_overview",
+                "item_type": "WORK_EXPERIENCE",
+                "phase": "EXPERIENCE_DEFENSE",
+                "title": "Technical Background & Engineering Experience",
+                "company_name": target_company,
+                "role_name": target_role,
+                "details": f"Exploration of technical background, core engineering skills, and system design experience for {target_role}.",
+                "relevance": 0.85,
+                "topic": "Technical Background",
+                "subtopic": "Engineering Responsibilities & Architecture"
+            })
 
         # 3. Subject Knowledge Topics (Begins after all work experiences and projects have concluded)
         subject_items = []

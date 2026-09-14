@@ -70,7 +70,7 @@ class LLMClient:
 
     def get_active_provider(self) -> str:
         if self.groq_key:
-            return "Groq (openai/gpt-oss-120b)"
+            return "Groq (llama-3.3-70b-versatile)"
         if self.gemini_key:
             return "Google Gemini (gemini-flash-latest)"
         if self.openai_key:
@@ -80,28 +80,29 @@ class LLMClient:
         return "Intervyn Domain Expert Engine (Local Deterministic)"
 
     def generate_completion(self, system_prompt: str, user_prompt: str, temperature: float = 0.2) -> Optional[str]:
-        # 1. Groq (REST - Ultra-Fast openai/gpt-oss-120b)
+        # 1. Groq (REST - Ultra-Fast LLaMA 3.3/3.1)
         if self.groq_key:
-            try:
-                headers = {"Authorization": f"Bearer {self.groq_key}", "Content-Type": "application/json"}
-                payload = {
-                    "model": "openai/gpt-oss-120b",
-                    "messages": [
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_prompt}
-                    ],
-                    "temperature": temperature
-                }
-                with httpx.Client(timeout=25.0) as client:
-                    resp = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
-                    if resp.status_code == 200:
-                        return resp.json()["choices"][0]["message"]["content"]
-            except Exception as e:
-                print(f"[LLMClient] Groq call failed or timed out: {e}")
+            for g_model in ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]:
+                try:
+                    headers = {"Authorization": f"Bearer {self.groq_key}", "Content-Type": "application/json"}
+                    payload = {
+                        "model": g_model,
+                        "messages": [
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": user_prompt}
+                        ],
+                        "temperature": temperature
+                    }
+                    with httpx.Client(timeout=15.0) as client:
+                        resp = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
+                        if resp.status_code == 200:
+                            return resp.json()["choices"][0]["message"]["content"]
+                except Exception as e:
+                    print(f"[LLMClient] Groq call ({g_model}) failed or timed out: {e}")
 
         # 2. Google Gemini (REST - gemini-flash-latest with fallback)
         if self.gemini_key:
-            for gmodel in ["gemini-flash-latest", "gemini-3.6-flash", "gemini-2.5-flash"]:
+            for gmodel in ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]:
                 try:
                     url = f"https://generativelanguage.googleapis.com/v1beta/models/{gmodel}:generateContent?key={self.gemini_key}"
                     payload = {
@@ -113,7 +114,7 @@ class LLMClient:
                         ],
                         "generationConfig": {"temperature": temperature}
                     }
-                    with httpx.Client(timeout=25.0) as client:
+                    with httpx.Client(timeout=15.0) as client:
                         resp = client.post(url, json=payload)
                         if resp.status_code == 200:
                             data = resp.json()

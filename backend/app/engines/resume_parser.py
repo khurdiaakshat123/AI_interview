@@ -47,6 +47,9 @@ class ResumeParser:
         Parses resume into structured contextual sections without fabricating data.
         """
         text = raw_text.strip() if raw_text else ""
+        # Normalize Unicode dashes and bullet characters
+        text = text.replace("\u2014", " — ").replace("\u2013", " – ").replace("\u2015", " ― ")
+        text = re.sub(r"[\u25cf\u2022\u25aa\u25ab]", "•", text)
         lines = [line.strip() for line in text.split("\n") if line.strip()]
 
         # 1. Extract Name and Email heuristically
@@ -68,6 +71,9 @@ class ResumeParser:
                 system_prompt = (
                     "You are a strict, objective technical recruiter and resume parser.\n"
                     "Extract ONLY verifiable technical facts, experience, and projects present in the candidate resume relative to the target role.\n"
+                    "CLASSIFICATION GUIDELINES:\n"
+                    "- Employment, corporate internships, and company roles belong in 'work_experience'.\n"
+                    "- Academic projects, course projects (e.g. DBMS Project, NLP Project), personal systems, and research initiatives belong in 'projects' (even if placed under an 'EXPERIENCE' section).\n"
                     "STRICT NEGATIVE CONSTRAINT: DO NOT hallucinate, assume, or invent fake projects, fake metrics, fake certifications, or fake achievements. "
                     "If a section or field is not explicitly present in the text, return an empty array [] or empty string.\n\n"
                     "Output ONLY valid JSON matching this schema:\n"
@@ -427,23 +433,26 @@ class ResumeParser:
         source_text = exp_section_text if exp_section_text else text
 
         entries: List[Dict[str, Any]] = []
-        # Look for company/role pattern lines e.g.:
-        # "Software Engineer at Datastream Corp (2021 - Present)"
-        # "CloudScale Systems | Backend Engineer | 2022-2024"
         lines = [line.strip() for line in source_text.split("\n") if line.strip()]
-
         current_entry: Optional[Dict[str, Any]] = None
 
-        role_indicators = r"(engineer|developer|architect|lead|manager|intern|consultant|specialist|analyst)"
-        date_pattern = r"(20\d\d|19\d\d|present|current|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)"
+        role_indicators = r"(engineer|developer|architect|lead|manager|intern|consultant|specialist|analyst|sde)"
+        date_pattern = r"(20\d\d|19\d\d|present|current|ongoing|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)"
+        project_indicators = r"\b(project|research|capstone|thesis|hackathon)\b"
 
-        for line in lines:
-            # Check if line marks a new job entry
+        for idx, line in enumerate(lines):
+            # Skip lines that are explicitly projects/research
+            if re.search(project_indicators, line, re.I):
+                continue
+
             has_role = bool(re.search(role_indicators, line, re.I))
-            has_company = (" at " in line or " | " in line or " - " in line or " @" in line)
-            has_date = bool(re.search(date_pattern, line, re.I))
+            has_delim = bool(re.search(r"(\s+at\s+|\s+@\s+|\s+[|–—―-]\s+)", line))
+            has_date_curr = bool(re.search(date_pattern, line, re.I))
 
-            if has_role and (has_company or has_date):
+            next_line = lines[idx + 1] if idx + 1 < len(lines) else ""
+            has_date_next = bool(re.search(date_pattern, next_line, re.I)) and not bool(re.search(role_indicators, next_line, re.I))
+
+            if has_role and (has_delim or has_date_curr or has_date_next):
                 if current_entry:
                     cls._finalize_work_entry(current_entry, target_role, len(entries))
                     entries.append(current_entry)
@@ -453,9 +462,9 @@ class ResumeParser:
                 duration = "Timeline"
 
                 if " at " in line:
-                    parts = line.split(" at ", 1)
+                    parts = re.split(r"\s+at\s+", line, maxsplit=1)
                     role_title = parts[0].strip()
-                    comp = parts[1].split("(")[0].split("|")[0].split("-")[0].strip()
+                    comp = re.split(r"[\(|–—―-]", parts[1])[0].strip()
                 elif " | " in line:
                     parts = line.split(" | ")
                     if len(parts) >= 2:
@@ -463,13 +472,26 @@ class ResumeParser:
                         role_title = parts[1].strip()
                     if len(parts) >= 3:
                         duration = parts[2].strip()
+                elif re.search(r"\s+[–—―-]\s+", line):
+                    parts = re.split(r"\s+[–—―-]\s+", line, maxsplit=1)
+                    if re.search(role_indicators, parts[0], re.I):
+                        role_title = parts[0].strip()
+                        comp = parts[1].split("(")[0].strip()
+                    else:
+                        comp = parts[0].strip()
+                        role_title = parts[1].split("(")[0].strip()
                 else:
                     role_match = re.search(role_indicators, line, re.I)
                     if role_match:
                         role_title = line[:role_match.end()].strip()
-                        comp = line[role_match.end():].strip().lstrip("-|@ ")
+                        comp = line[role_match.end():].strip().lstrip("-–—―|@ ")
 
-                date_match = re.search(r"(\d{4}\s*[-–—]\s*(?:\d{4}|present|current))", line, re.I)
+                date_match = re.search(r"((?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)?\s*\d{4}\s*[-–—―]\s*(?:present|current|ongoing|\d{4}|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s*\d{4}))", line, re.I)
+                if not date_match and has_date_next:
+                    date_match = re.search(r"((?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)?\s*\d{4}\s*[-–—―]\s*(?:present|current|ongoing|\d{4}|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s*\d{4}))", next_line, re.I)
+                    if not date_match:
+                        date_match = re.search(r"(\d{4}\s*[-–—―]\s*(?:\d{4}|present|current|ongoing))", next_line, re.I)
+
                 if date_match:
                     duration = date_match.group(1).strip()
 
@@ -488,9 +510,12 @@ class ResumeParser:
                     "key_skills": []
                 }
             elif current_entry:
+                # If this line is just the date line that was consumed, skip adding it as a summary bullet
+                if re.search(date_pattern, line, re.I) and len(line) < 30 and not re.search(r"[a-z]{5,}", line, re.I):
+                    continue
                 # Add line to current entry
-                cleaned_line = line.lstrip("•*- ").strip()
-                if cleaned_line:
+                cleaned_line = line.lstrip("•*-●▪▫ ").strip()
+                if cleaned_line and len(cleaned_line) > 2:
                     current_entry["summary_lines"].append(cleaned_line)
                     cls._extract_line_entities(cleaned_line, current_entry)
 
@@ -519,62 +544,90 @@ class ResumeParser:
     def _extract_projects(cls, text: str, target_role: str) -> List[Dict[str, Any]]:
         """
         Extracts projects from resume text without injecting fake sample projects.
+        Extracts from:
+        1. Explicit 'PROJECTS' section if present.
+        2. Items within 'EXPERIENCE' or general text labeled as projects/research or non-employment systems.
         Returns [] if no projects exist in the resume.
         """
         if not text or len(text.strip()) < 20:
             return []
 
-        proj_section_text = cls._extract_section_text(text, ["projects", "personal projects", "technical projects", "academic projects"])
-        if not proj_section_text:
-            return []
-
-        lines = [line.strip() for line in proj_section_text.split("\n") if line.strip()]
         projects: List[Dict[str, Any]] = []
-        current_proj: Optional[Dict[str, Any]] = None
+        seen_titles = set()
 
-        for line in lines:
-            # Project header: e.g. "Project: XYZ", "Title | Tech: Python", or bullet with title
-            is_new_proj = False
-            title = ""
-            desc = ""
+        def process_lines_for_projects(lines: List[str]):
+            current_proj: Optional[Dict[str, Any]] = None
+            date_pattern = r"(20\d\d|19\d\d|present|current|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)"
 
-            if line.lower().startswith("project:") or line.lower().startswith("project -"):
-                is_new_proj = True
-                title = line.split(":", 1)[-1].split("-", 1)[-1].strip()
-            elif " | " in line and ("http" not in line) and not re.search(r"(20\d\d|19\d\d)", line):
-                is_new_proj = True
-                parts = line.split(" | ")
-                title = parts[0].strip()
-            elif (line.startswith("##") or line.isupper()) and len(line) < 60 and not re.search(r"(skills|education|certifications)", line, re.I):
-                is_new_proj = True
-                title = line.lstrip("#").strip()
+            for idx, line in enumerate(lines):
+                is_new_proj = False
+                title = ""
 
-            if is_new_proj and title:
-                if current_proj:
-                    cls._finalize_proj_entry(current_proj, target_role, len(projects))
-                    projects.append(current_proj)
+                # Pattern 1: Explicit project prefix
+                if line.lower().startswith("project:") or line.lower().startswith("project -"):
+                    is_new_proj = True
+                    title = line.split(":", 1)[-1].split("-", 1)[-1].strip()
+                # Pattern 2: Delimited with Project or Research indicator
+                elif re.search(r"\s+[–—―-]\s+", line) and re.search(r"\b(project|research|capstone|system|chatbot|pipeline|platform|engine|app)\b", line, re.I):
+                    is_new_proj = True
+                    title = re.split(r"\s+[–—―-]\s+", line, maxsplit=1)[0].strip()
+                # Pattern 3: Delimited with pipe
+                elif " | " in line and ("http" not in line) and not re.search(r"(20\d\d|19\d\d)", line):
+                    is_new_proj = True
+                    parts = line.split(" | ")
+                    title = parts[0].strip()
+                # Pattern 4: Markdown header or uppercase title
+                elif (line.startswith("##") or (line.isupper() and len(line) > 3)) and len(line) < 60 and not re.search(r"(skills|education|certifications|experience|summary|awards|coursework)", line, re.I):
+                    is_new_proj = True
+                    title = line.lstrip("#").strip()
 
-                current_proj = {
-                    "title": title,
-                    "desc_lines": [],
-                    "technologies": [],
-                    "components_services": [],
-                    "architecture_claims": [],
-                    "metrics": [],
-                    "ownership_claims": [],
-                    "responsibilities": [],
-                    "relevant_topics": [],
-                    "irrelevant_topics": []
-                }
-            elif current_proj:
-                cleaned_line = line.lstrip("•*- ").strip()
-                if cleaned_line:
-                    current_proj["desc_lines"].append(cleaned_line)
-                    cls._extract_line_entities(cleaned_line, current_proj)
+                if is_new_proj and title and len(title) > 2:
+                    clean_title = re.sub(r"^[0-9\.\-\s]+", "", title).strip()
+                    title_key = clean_title.lower()
+                    if title_key in seen_titles:
+                        continue
+                    seen_titles.add(title_key)
 
-        if current_proj:
-            cls._finalize_proj_entry(current_proj, target_role, len(projects))
-            projects.append(current_proj)
+                    if current_proj:
+                        cls._finalize_proj_entry(current_proj, target_role, len(projects))
+                        projects.append(current_proj)
+
+                    current_proj = {
+                        "title": clean_title,
+                        "desc_lines": [],
+                        "technologies": [],
+                        "components_services": [],
+                        "architecture_claims": [],
+                        "metrics": [],
+                        "ownership_claims": [],
+                        "responsibilities": [],
+                        "relevant_topics": [],
+                        "irrelevant_topics": []
+                    }
+                elif current_proj:
+                    # Skip date-only line
+                    if re.search(date_pattern, line, re.I) and len(line) < 30 and not re.search(r"[a-z]{5,}", line, re.I):
+                        continue
+                    cleaned_line = line.lstrip("•*-●▪▫ ").strip()
+                    if cleaned_line and len(cleaned_line) > 2:
+                        current_proj["desc_lines"].append(cleaned_line)
+                        cls._extract_line_entities(cleaned_line, current_proj)
+
+            if current_proj:
+                cls._finalize_proj_entry(current_proj, target_role, len(projects))
+                projects.append(current_proj)
+
+        # 1. First extract from dedicated projects section if present
+        proj_section_text = cls._extract_section_text(text, ["projects", "personal projects", "technical projects", "academic projects"])
+        if proj_section_text:
+            lines = [line.strip() for line in proj_section_text.split("\n") if line.strip()]
+            process_lines_for_projects(lines)
+
+        # 2. Also scan experience section for project/research items
+        exp_section_text = cls._extract_section_text(text, ["experience", "work experience", "employment", "professional experience"])
+        source_for_projects = exp_section_text if exp_section_text else text
+        exp_lines = [line.strip() for line in source_for_projects.split("\n") if line.strip()]
+        process_lines_for_projects(exp_lines)
 
         return projects
 
