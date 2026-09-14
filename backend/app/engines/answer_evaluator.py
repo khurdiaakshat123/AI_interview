@@ -167,9 +167,41 @@ class AnswerEvaluator:
             )
             if result:
                 return result
-            raise RuntimeError("LLM API connection failed. Cannot semantically evaluate free-text answer offline. Please check your API keys or try again.")
             
-        raise RuntimeError("No LLM client provided. Strict LLM evaluation is enforced; offline fallback is disabled.")
+            # If LLM parsing fails (e.g. ValidationError due to jokes breaking the schema), fallback gracefully instead of crashing.
+            return SemanticEvaluationResult(
+                answer_understanding="LLM encountered an error parsing the semantic evaluation (likely due to an evasion).",
+                reasoning_summary="System gracefully caught an LLM validation error and assigned a default zero score.",
+                missing_evidence=[],
+                correctness=0.0,
+                objective_coverage=0.0,
+                completeness=0.0,
+                technical_validity=0.0,
+                depth_demonstrated=0.0,
+                reasoning_quality=0.0,
+                specificity=0.0,
+                directness=0.0,
+                confidence=0.0,
+                is_non_answer=True,
+                uncertainty_notes=None
+            )
+            
+        return SemanticEvaluationResult(
+            answer_understanding="No LLM client provided.",
+            reasoning_summary="Strict LLM evaluation enforced but no client found.",
+            missing_evidence=[],
+            correctness=0.0,
+            objective_coverage=0.0,
+            completeness=0.0,
+            technical_validity=0.0,
+            depth_demonstrated=0.0,
+            reasoning_quality=0.0,
+            specificity=0.0,
+            directness=0.0,
+            confidence=0.0,
+            is_non_answer=True,
+            uncertainty_notes=None
+        )
 
     @classmethod
     def _is_explicit_evasion(cls, text: str) -> bool:
