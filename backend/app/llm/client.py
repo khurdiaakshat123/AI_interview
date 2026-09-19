@@ -79,72 +79,103 @@ class LLMClient:
             return "Anthropic Claude (claude-3-5-sonnet)"
         return "Intervyn Domain Expert Engine (Local Deterministic)"
 
-    def generate_completion(self, system_prompt: str, user_prompt: str, temperature: float = 0.2, prefer_provider: str = None) -> Optional[str]:
-        from backend.app.llm.key_pool import pool
-        import httpx
-        import asyncio
-        import concurrent.futures
+    def generate_completion(self, system_prompt: str, user_prompt: str, temperature: float = 0.2) -> Optional[str]:
+        from backend.app.llm.key_pool import key_pool
+        import time
+        import random
         
-        async def operation(provider: str, api_key: str) -> str:
-            if provider == "groq":
-                headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
-                payload = {
-                    "model": "llama-3.3-70b-versatile",
-                    "messages": [
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_prompt}
-                    ],
-                    "temperature": temperature
-                }
-                async with httpx.AsyncClient(timeout=15.0) as client:
-                    resp = await client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
-                    if resp.status_code == 200:
-                        return resp.json()["choices"][0]["message"]["content"]
-                    else:
-                        raise Exception(f"Groq HTTP {resp.status_code}: {resp.text}")
-                        
-            elif provider == "gemini":
-                url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={api_key}"
-                payload = {
-                    "contents": [
-                        {
-                            "role": "user",
-                            "parts": [{"text": f"System Instructions:\n{system_prompt}\n\nTask:\n{user_prompt}"}]
+        # User requested: "try to use gemini and for questons and answering if possible"
+        preferred = "gemini" 
+        
+        for attempt in range(4):
+            key_obj = key_pool.get_next_key(preferred_provider=preferred)
+            
+            if not key_obj:
+                # If everything in the pool is exhausted, fallback to legacy keys if present
+                if self.openai_key:
+                    try:
+                        headers = {"Authorization": f"Bearer {self.openai_key}", "Content-Type": "application/json"}
+                        payload = {
+                            "model": "gpt-4o-mini",
+                            "messages": [
+                                {"role": "system", "content": system_prompt},
+                                {"role": "user", "content": user_prompt}
+                            ],
+                            "temperature": temperature
                         }
-                    ],
-                    "generationConfig": {"temperature": temperature}
-                }
-                async with httpx.AsyncClient(timeout=45.0) as client:
-                    resp = await client.post(url, json=payload)
-                    if resp.status_code == 200:
-                        data = resp.json()
-                        if "candidates" in data and data["candidates"]:
-                            candidate = data["candidates"][0]
-                            if "content" in candidate and "parts" in candidate["content"]:
-                                return candidate["content"]["parts"][0].get("text", "")
-                        return ""
-                    else:
-                        raise Exception(f"Gemini HTTP {resp.status_code}: {resp.text}")
+                        with httpx.Client(timeout=25.0) as client:
+                            resp = client.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
+                            if resp.status_code == 200:
+                                return resp.json()["choices"][0]["message"]["content"]
+                    except Exception as e:
+                        print(f"[LLMClient] OpenAI fallback failed: {e}")
                         
-            raise Exception(f"Unknown provider: {provider}")
-
-        if not pool.keys:
-            pool.load_keys_from_env()
-
-        try:
-            # Sync wrapper around async pool execution
-            try:
-                loop = asyncio.get_running_loop()
-                # We are in an event loop. Let's run it using a ThreadPoolExecutor to block synchronously without asyncio loop nesting errors.
-                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool_exec:
-                    future = pool_exec.submit(asyncio.run, pool.execute(operation, prefer_provider=prefer_provider))
-                    return future.result()
-            except RuntimeError:
-                return asyncio.run(pool.execute(operation, prefer_provider=prefer_provider))
+                print("[LLMClient] All keys in pool exhausted. Waiting 5 seconds before retry...")
+                time.sleep(5)
+                continue
                 
-        except Exception as e:
-            print(f"[LLMClient] pool.execute failed: {e}")
-            return None
+            key_obj.record_usage()
+            
+            if key_obj.provider == "groq":
+                try:
+                    headers = {"Authorization": f"Bearer {key_obj.key_string}", "Content-Type": "application/json"}
+                    payload = {
+                        "model": "llama-3.3-70b-versatile",
+                        "messages": [
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": user_prompt}
+                        ],
+                        "temperature": temperature
+                    }
+                    with httpx.Client(timeout=15.0) as client:
+                        resp = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
+                        if resp.status_code == 200:
+                            return resp.json()["choices"][0]["message"]["content"]
+                        elif resp.status_code in [429, 401]:
+                            print(f"[LLMClient] Groq {key_obj.masked_name} hit {resp.status_code}. Cooling down.")
+                            key_obj.trigger_cooldown(30.0)
+                        else:
+                            print(f"[LLMClient] Groq {key_obj.masked_name} HTTP {resp.status_code}: {resp.text}")
+                except Exception as e:
+                    print(f"[LLMClient] Groq {key_obj.masked_name} failed: {e}")
+                    
+            elif key_obj.provider == "gemini":
+                try:
+                    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={key_obj.key_string}"
+                    payload = {
+                        "contents": [
+                            {
+                                "role": "user",
+                                "parts": [{"text": f"System Instructions:\n{system_prompt}\n\nTask:\n{user_prompt}"}]
+                            }
+                        ],
+                        "generationConfig": {"temperature": temperature}
+                    }
+                    with httpx.Client(timeout=45.0) as client:
+                        resp = client.post(url, json=payload)
+                        if resp.status_code == 200:
+                            data = resp.json()
+                            if "candidates" in data and data["candidates"]:
+                                candidate = data["candidates"][0]
+                                if "content" in candidate and "parts" in candidate["content"]:
+                                    return candidate["content"]["parts"][0].get("text", "")
+                        elif resp.status_code in [429, 401, 404]:
+                            print(f"[LLMClient] Gemini {key_obj.masked_name} hit {resp.status_code}. Cooling down.")
+                            key_obj.trigger_cooldown(30.0)
+                        else:
+                            print(f"[LLMClient] Gemini {key_obj.masked_name} HTTP {resp.status_code}: {resp.text}")
+                except Exception as e:
+                    print(f"[LLMClient] Gemini {key_obj.masked_name} failed: {e}")
+            
+            # Switch preferred provider to alternate to distribute load on failure
+            preferred = "groq" if preferred == "gemini" else "gemini"
+            
+            # Exponential backoff with jitter
+            backoff = (2 ** attempt) + random.uniform(0.5, 1.5)
+            print(f"[LLMClient] Request failed/rate-limited on {key_obj.masked_name}. Retrying in {backoff:.2f}s...")
+            time.sleep(backoff)
+            
+        return None
 
     def evaluate_candidate_answer(
         self,
@@ -245,7 +276,7 @@ class LLMClient:
             f"Candidate Response:\n\"{candidate_answer}\""
         )
 
-        completion = self.generate_completion(system_prompt, user_prompt, temperature=0.1, prefer_provider='gemini')
+        completion = self.generate_completion(system_prompt, user_prompt, temperature=0.1)
         if completion:
             try:
                 clean = completion.strip()
@@ -356,7 +387,7 @@ class LLMClient:
             f"Expected Concept: {expected_concept}\n"
             f"Missing Specifications to Ask For: {missing_specs}"
         )
-        completion = self.generate_completion(system_prompt, user_prompt, temperature=0.2, prefer_provider='gemini')
+        completion = self.generate_completion(system_prompt, user_prompt, temperature=0.2)
         if completion and len(completion.strip()) > 10:
             return completion.strip().strip('"')
         return (
