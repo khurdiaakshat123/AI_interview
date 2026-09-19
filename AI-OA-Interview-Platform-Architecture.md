@@ -610,3 +610,64 @@ POST   /api/admin/review-queue/{id}/reject
 - Judge0: isolated sandbox cluster, network-restricted, no outbound
   access from executed code.
 - S3/R2: resume uploads, generated PDFs/exports, transcript archives.
+
+
+---
+
+## 13. Deep-Dive: Adaptive Interview & Semantic Evaluation Architecture
+
+To ensure any AI agent or developer can fully understand the runtime behavior of the Interview Subsystem, the following details the exact execution pipeline for a single interview turn.
+
+### 13.1 LLM Fallback Client (`LLMClient`)
+The system abstracts all AI calls behind `LLMClient`. It employs a highly robust fallback waterfall to bypass strict rate limits (like Groq's 1000 OTPM limit):
+1. **Groq (Primary)**: Attempts ultra-fast inference using models like `llama3-70b-8192` or `qwen-2.5`. Catches `429 Rate Limit` errors.
+2. **Gemini (Fallback)**: If Groq hits a rate limit or goes down, instantly falls back to `gemini-flash-latest` via Google's API, handling its safety filters and `503 Unavailable` demand spikes gracefully.
+
+### 13.2 The Resume Ingestion & Claim Storage
+1. `ResumeParser` extracts text into a `StructuredResume`.
+2. An LLM passes over the text, breaking it into discrete **Contextual Resume Claims** (e.g., "Candidate used React for E-commerce project").
+3. These are saved in the `InterviewState` under `state.claims` — a dual-layer store that keeps pre-verified resume claims separate from live candidate assertions.
+
+### 13.3 The Evaluation Engine (`AnswerEvaluator`)
+When the candidate answers, the `AnswerEvaluator` injects the Question Profile, Interview History, and candidate text into a massive LLM prompt. 
+**Crucially, the LLM DOES NOT CALCULATE MARKS.** It acts strictly as a semantic extractor, outputting a JSON schema (`SemanticEvaluationResult`) with:
+*   `candidate_claims`: Technical assertions made in the answer.
+*   **8 Dimension Parameters [0.0 - 1.0]**: 
+    - `correctness_validity` (Technical truth, 100% credit for 'Technically Valid Alternatives' differing from expectation)
+    - `objective_coverage` (Did they answer the core question?)
+    - `completeness` (Were edge cases covered?)
+    - `reasoning_quality` (Architectural thinking)
+    - `depth_demonstrated` 
+    - `specificity`
+    - `ownership`
+    - `directness`
+*   `is_non_answer`: Boolean flag triggered if the user deflects (e.g., "idk") or jokes.
+
+### 13.4 The Consistency Engine (`ConsistencyEngine`)
+Before scoring, the engine cross-references the newly extracted `candidate_claims` against the stored resume claims in `InterviewState`.
+It checks three dimensions:
+*   **Project Context**: Correct project attribution?
+*   **Component Context**: Correct tech stack?
+*   **Role Context**: Appropriate complexity for the claimed role?
+If an explicit contradiction is found (e.g., claiming Python backend experience when the resume explicitly lists Node.js), it sets a `clarification_needed` flag and records a contradiction in the state.
+
+### 13.5 The Deterministic Scoring Engine (`ScoringPolicy`)
+The Python backend takes the semantic decimals [0.0-1.0] and runs a hardcoded mathematical weighted average:
+*   Correctness/Validity: 30%
+*   Objective Coverage: 20%
+*   Completeness: 15%
+*   Reasoning Quality: 10%
+*   Depth Demonstrated: 10%
+*   Specificity: 5%
+*   Ownership: 5%
+*   Directness: 5%
+
+*(If `is_non_answer` is true, this math is bypassed and the score is forced to 0.0)*
+
+### 13.6 The Adaptive Planner (`AdaptivePlanner`)
+Based on the computed score and consistency flags, the planner triggers a state machine action:
+*   **DRILL_DOWN**: (Score > 70%) Asks a harder follow-up question on the exact same topic to find the candidate's ceiling.
+*   **PIVOT**: (Score < 70% or Evasive) Abandons the current topic and moves to a different project or fundamental area.
+*   **CLARIFY_CONTRADICTION**: If the `ConsistencyEngine` flagged a discrepancy, the planner forces a gentle confrontational question (e.g., "Your resume mentions Node.js, but you just mentioned Python. Can you clarify?").
+
+This continuous loop guarantees that every score is deterministic, auditable via the semantic JSON parameters, and immune to standard LLM mathematical hallucinations.
