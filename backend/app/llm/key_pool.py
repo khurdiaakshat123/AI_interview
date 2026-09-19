@@ -72,13 +72,22 @@ class KeyPool:
         
     def _load_keys(self):
         # Load from numbered environment variables
-        for i in range(1, 10):
+        for i in range(1, 15):
             g_key = os.getenv(f"GROQ_API_KEY_{i}")
             if g_key:
                 self.keys.append(APIKey("groq", g_key, f"GROQ_{i}"))
             gem_key = os.getenv(f"GEMINI_API_KEY_{i}")
             if gem_key:
                 self.keys.append(APIKey("gemini", gem_key, f"GEMINI_{i}"))
+                
+        # FALLBACK: If no numbered keys exist (e.g. on Render before user updates env vars), load base keys
+        if not self.keys:
+            base_g = os.getenv("GROQ_API_KEY")
+            if base_g:
+                self.keys.append(APIKey("groq", base_g, "GROQ_BASE"))
+            base_gem = os.getenv("GEMINI_API_KEY")
+            if base_gem:
+                self.keys.append(APIKey("gemini", base_gem, "GEMINI_BASE"))
                 
         # Shuffle keys initially to distribute load across workers if any
         random.shuffle(self.keys)
