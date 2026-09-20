@@ -270,7 +270,7 @@ class QuestionGenerator:
         
         if latest_eval and latest_eval.is_non_answer:
             lines.append("9. THE CANDIDATE JUST GAVE A JOKE OR NON-ANSWER. You must firmly redirect them to technical matters before asking the next question.")
-        elif latest_eval and latest_eval.correctness < 0.40:
+        elif latest_eval and latest_eval.technical_validity < 0.40:
             lines.append("9. THE CANDIDATE'S LAST ANSWER WAS WEAK OR INCORRECT. Push back logically or ask them to clarify the flaw in their reasoning.")
 
         lines.append("- Return ONLY the natural-language question text without quotes or role tags.")

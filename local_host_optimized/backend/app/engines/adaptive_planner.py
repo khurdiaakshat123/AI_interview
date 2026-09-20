@@ -167,7 +167,7 @@ class AdaptivePlanner:
         # Priority 4: Weak Evidence Handling (Rule 2)
         # Weak evidence receives at most one focused repair probe and then moves on.
         # ----------------------------------------------------------------------
-        if latest_eval and latest_eval.correctness < 0.40:
+        if latest_eval and latest_eval.technical_validity < 0.40:
             if turns_on_item >= 2:
                 return cls._advance_agenda_or_phase(state, reason="Limited exploration after weak evidence response.")
             else:
@@ -231,7 +231,7 @@ class AdaptivePlanner:
         # Priority 7: Strong Evidence -> Deepen Meaningful Dimensions (Rules 1, 11, 12)
         # Follow-ups target situational failure, scale, concurrency, and trade-offs.
         # ----------------------------------------------------------------------
-        if latest_eval and latest_eval.correctness >= 0.70 and turns_on_item < max_turns_for_item:
+        if latest_eval and latest_eval.technical_validity >= 0.70 and turns_on_item < max_turns_for_item:
             dimension = cls._select_situational_dimension(
                 eval_result=latest_eval,
                 tested_dimensions=tested_dimensions
