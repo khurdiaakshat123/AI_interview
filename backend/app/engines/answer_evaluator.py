@@ -86,16 +86,7 @@ class SemanticEvaluationResult(BaseModel):
             val = 0.5
         return max(0.0, min(1.0, round(val, 4)))
 
-    @field_validator("reasoning_quality", "specificity", "ownership", mode="before")
-    @classmethod
-    def clamp_optional_normalized(cls, v: Any) -> Optional[float]:
-        if v is None:
-            return None
-        try:
-            val = float(v)
-        except (ValueError, TypeError):
-            return None
-        return max(0.0, min(1.0, round(val, 4)))
+
 
     def to_dict(self) -> Dict[str, Any]:
         return self.model_dump()
