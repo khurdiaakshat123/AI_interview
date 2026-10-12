@@ -16,7 +16,11 @@ def _sanitize_db_url(url: str) -> str:
     if not url:
         return url
     if url.startswith("postgres://"):
-        url = url.replace("postgres://", "postgresql://", 1)
+        url = url.replace("postgres://", "postgresql+psycopg2://", 1)
+    elif url.startswith("postgresql+psycopg://"):
+        url = url.replace("postgresql+psycopg://", "postgresql+psycopg2://", 1)
+    elif url.startswith("postgresql://") and not url.startswith("postgresql+"):
+        url = url.replace("postgresql://", "postgresql+psycopg2://", 1)
     
     # Handle unencoded special characters in password (e.g. '@' in 'intervyn@ai123')
     if "://" in url and "@" in url:
