@@ -37,7 +37,7 @@ def debug_llm():
         url = "https://api.groq.com/openai/v1/chat/completions"
         headers = {"Authorization": f"Bearer {groq_key}", "Content-Type": "application/json"}
         payload = {
-            "model": "llama3-8b-8192",
+            "model": os.getenv("GROQ_MODEL", "llama-3.1-8b-instant"),
             "messages": [{"role": "user", "content": "Hello"}],
             "max_tokens": 10
         }

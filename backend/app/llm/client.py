@@ -71,7 +71,7 @@ class LLMClient:
 
     def get_active_provider(self) -> str:
         if self.groq_key:
-            return "Groq (llama-3.3-70b-versatile)"
+            return f"Groq ({os.getenv('GROQ_MODEL', 'llama-3.1-8b-instant')})"
         if self.gemini_key:
             return "Google Gemini (gemini-flash-latest)"
         if self.openai_key:
@@ -128,9 +128,10 @@ class LLMClient:
             
             if key_obj.provider == "groq":
                 try:
+                    groq_model = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
                     headers = {"Authorization": f"Bearer {key_obj.key_string}", "Content-Type": "application/json"}
                     payload = {
-                        "model": "llama-3.3-70b-versatile",
+                        "model": groq_model,
                         "messages": [
                             {"role": "system", "content": system_prompt},
                             {"role": "user", "content": user_prompt}
@@ -141,6 +142,13 @@ class LLMClient:
                         resp = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
                         if resp.status_code == 200:
                             return resp.json()["choices"][0]["message"]["content"]
+                        elif resp.status_code == 404 and groq_model != "llama3-8b-8192":
+                            # Fallback to legacy 8b model if 3.1 is not accessible
+                            payload["model"] = "llama3-8b-8192"
+                            fb_resp = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
+                            if fb_resp.status_code == 200:
+                                return fb_resp.json()["choices"][0]["message"]["content"]
+                            print(f"[LLMClient] Groq {key_obj.masked_name} 404 fallback HTTP {fb_resp.status_code}: {fb_resp.text}")
                         elif resp.status_code in [429, 401]:
                             print(f"[LLMClient] Groq {key_obj.masked_name} hit {resp.status_code}. Cooling down.")
                             key_obj.trigger_cooldown(30.0)
