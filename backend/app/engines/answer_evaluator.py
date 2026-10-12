@@ -209,7 +209,18 @@ class AnswerEvaluator:
         Prompts LLM to evaluate strictly according to semantic evidence principles.
         """
         recent_turns = ""
-        if history:
+        branch_summary = ""
+        pruned_topics = []
+        if state and hasattr(state, "get_active_branch_summary"):
+            branch_summary = state.get_active_branch_summary(question_profile.item_id)
+            if hasattr(state, "get_pruned_topics_for_item") and question_profile.item_id:
+                pruned_topics = state.get_pruned_topics_for_item(question_profile.item_id)
+
+        if branch_summary:
+            recent_turns = f"- Active Branch Summary Tree: {branch_summary}"
+            if pruned_topics:
+                recent_turns += f"\n- Pruned Sibling Branches (Explored): {', '.join(pruned_topics)}"
+        elif history:
             recent_turns = "\n".join([
                 f"- Turn {t.get('turn_index', i+1)} ({t.get('sender', 'INTERVIEWER')}): {t.get('text', '')}"
                 for i, t in enumerate(history[-8:])

@@ -144,7 +144,8 @@ class QuestionGenerator:
                 contradiction_context=contradiction_context,
                 role_skills_str=role_skills_str,
                 action_str=action_str,
-                focus_dim=focus_dim
+                focus_dim=focus_dim,
+                state=state
             )
             try:
                 completion = llm_client_instance.generate_completion(sys_prompt, user_prompt, temperature=0.25)
@@ -294,7 +295,8 @@ class QuestionGenerator:
         contradiction_context: Optional[str],
         role_skills_str: str,
         action_str: str,
-        focus_dim: str
+        focus_dim: str,
+        state: Optional[Any] = None
     ) -> str:
         entities_str = ", ".join(candidate_entities[:4]) if candidate_entities else item_title
         lines = [
@@ -306,6 +308,16 @@ class QuestionGenerator:
             f"Question Objective: {question_profile.objective}",
             f"Planned Dimension: {focus_dim} (Action: {action_str})"
         ]
+
+        # Inject Summary Tree branch context if available
+        if state and hasattr(state, "get_active_branch_summary"):
+            branch_summary = state.get_active_branch_summary(question_profile.item_id)
+            if branch_summary:
+                lines.append(f"Active Discussion Thread Context (Summary Tree): {branch_summary}")
+            if hasattr(state, "get_pruned_topics_for_item") and question_profile.item_id:
+                pruned_topics = state.get_pruned_topics_for_item(question_profile.item_id)
+                if pruned_topics:
+                    lines.append(f"Previously Explored Sibling Topics (DO NOT REPEAT): {', '.join(pruned_topics[:6])}")
 
         if contradiction_context:
             lines.append(f"Discrepancy / Scope Ambiguity to Clarify: {contradiction_context}")
@@ -476,6 +488,11 @@ class QuestionGenerator:
                 return (
                     f"Thanks for detailing your previous work, {candidate_name}! "
                     f"Looking at your time at {item_title}, could you give me a concise overview of your primary technical responsibilities and challenges there?"
+                )
+            if item_type == "SUBJECT_TOPIC":
+                return (
+                    f"Thanks for walking through your previous experience, {candidate_name}! "
+                    f"Turning to core engineering fundamentals in {item_title}: could you walk me through how you approach system design and principles in this domain?"
                 )
             return (
                 f"That gives me a great picture of your previous work, {candidate_name}! "

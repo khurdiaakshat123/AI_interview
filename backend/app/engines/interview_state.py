@@ -181,6 +181,25 @@ def are_distinct_technologies(entity_a: Optional[str], entity_b: Optional[str]) 
     return False
 
 
+class SummaryNode(BaseModel):
+    """
+    Represents an immutable checkpoint node in the conversation summary tree.
+    Tracks recursive branch summaries: S(child) = S(child, S(parent)).
+    When backtracking, restores the parent's immutable snapshot while retaining
+    the list of explored topics from abandoned sibling branches.
+    """
+    node_id: str
+    parent_id: Optional[str] = None
+    item_id: str
+    turn_index: int
+    question_text: str = ""
+    answer_summary: str = ""
+    accumulated_summary: str = ""
+    topics_covered_in_branch: List[str] = Field(default_factory=list)
+    entities_in_branch: List[str] = Field(default_factory=list)
+    child_ids: List[str] = Field(default_factory=list)
+
+
 class InterviewState(BaseModel):
     """
     Unified Interview State Layer.
@@ -190,6 +209,11 @@ class InterviewState(BaseModel):
     session_id: str
     current_phase: str = "EXPERIENCE_DEFENSE"
     active_item_id: Optional[str] = None
+
+    # Recursive Summary Tree for context window optimization & immutable backtracking
+    summary_nodes: Dict[str, SummaryNode] = Field(default_factory=dict)
+    active_summary_node_id: Optional[str] = None
+    branch_pruned_topics: Dict[str, List[str]] = Field(default_factory=dict)  # item_id -> list of topics explored in pruned branches
 
     # Claims: Dual-layer store separating contextual resume claims from candidate assertions
     claims: Dict[str, Claim] = Field(default_factory=dict)
@@ -589,6 +613,7 @@ class InterviewState(BaseModel):
     def start_item(self, item_id: str) -> bool:
         """
         Transitions active focus to a new agenda item.
+        Initializes and sets the root node (Node A) for the Summary Tree.
         """
         if item_id not in self.items:
             return False
@@ -598,6 +623,10 @@ class InterviewState(BaseModel):
         self.current_phase = item.phase
         self.guardrails.turns_on_current_item = 0
         self.guardrails.clarification_attempts_current_item = 0
+
+        # Initialize root node in Summary Tree (Node A)
+        root_node = self.get_or_create_root_summary_node(item_id)
+        self.active_summary_node_id = root_node.node_id
         return True
 
     def conclude_active_item(self, reason: str = "COMPLETED") -> Optional[str]:
@@ -620,6 +649,127 @@ class InterviewState(BaseModel):
                 self.completed_item_ids.append(curr_id)
 
         return curr_id
+
+    # --------------------------------------------------------------------------
+    # Summary Tree & Immutable Checkpointing Methods
+    # --------------------------------------------------------------------------
+
+    def get_or_create_root_summary_node(self, item_id: str) -> SummaryNode:
+        """
+        Retrieves or initializes the root node (Node A) for an agenda item.
+        Acts as the immutable root checkpoint before any deep-dive follow-ups.
+        """
+        root_node_id = f"node_{item_id}_root"
+        if root_node_id not in self.summary_nodes:
+            item = self.items.get(item_id)
+            title = item.title if item else "Technical Topic"
+            details = item.details if item else ""
+            root_summary = f"{title}: {details}".strip(" :")
+            node = SummaryNode(
+                node_id=root_node_id,
+                parent_id=None,
+                item_id=item_id,
+                turn_index=0,
+                accumulated_summary=root_summary,
+                answer_summary=root_summary
+            )
+            self.summary_nodes[root_node_id] = node
+        return self.summary_nodes[root_node_id]
+
+    def record_summary_turn(
+        self,
+        turn_index: int,
+        item_id: str,
+        question_text: str,
+        answer_understanding: str,
+        reasoning_summary: str = "",
+        candidate_topics: Optional[List[str]] = None,
+        entities: Optional[List[str]] = None
+    ) -> SummaryNode:
+        """
+        Records a new answer in the summary tree.
+        Computes rolling recursive summary: S(child) = S(child, S(parent)).
+        Preserves parent node as an immutable snapshot.
+        """
+        root_node = self.get_or_create_root_summary_node(item_id)
+        parent_id = self.active_summary_node_id or root_node.node_id
+        parent_node = self.summary_nodes.get(parent_id, root_node)
+
+        node_id = f"node_{item_id}_t{turn_index}"
+        topics = list(candidate_topics or [])
+        ents = list(entities or [])
+
+        # Pure Python combination: S(child) = parent summary + current answer summary
+        ans_brief = (answer_understanding or "").strip()
+        if reasoning_summary and reasoning_summary.strip() and reasoning_summary != ans_brief:
+            ans_brief = f"{ans_brief} (Reasoning: {reasoning_summary.strip()})"
+
+        if parent_node.accumulated_summary:
+            accumulated = f"{parent_node.accumulated_summary} -> Follow-up {turn_index}: {ans_brief}"
+        else:
+            accumulated = f"Follow-up {turn_index}: {ans_brief}"
+
+        # Combine branch topics
+        branch_topics = list(set(parent_node.topics_covered_in_branch + topics))
+        branch_ents = list(set(parent_node.entities_in_branch + ents))
+
+        new_node = SummaryNode(
+            node_id=node_id,
+            parent_id=parent_node.node_id,
+            item_id=item_id,
+            turn_index=turn_index,
+            question_text=question_text,
+            answer_summary=ans_brief,
+            accumulated_summary=accumulated,
+            topics_covered_in_branch=branch_topics,
+            entities_in_branch=branch_ents
+        )
+        self.summary_nodes[node_id] = new_node
+        if node_id not in parent_node.child_ids:
+            parent_node.child_ids.append(node_id)
+
+        self.active_summary_node_id = node_id
+        return new_node
+
+    def backtrack_to_node(self, target_node_id: str, item_id: Optional[str] = None) -> Optional[SummaryNode]:
+        """
+        Backtracks active context to a target ancestor node (e.g., Root Node A).
+        Archives topics explored in the abandoned branch into branch_pruned_topics
+        so future questions in sibling branches do not re-ask them.
+        """
+        current_node = self.summary_nodes.get(self.active_summary_node_id)
+        target_node = self.summary_nodes.get(target_node_id)
+        if not target_node:
+            return None
+
+        # Archive pruned branch topics so they aren't repeated in sibling branches
+        target_item = item_id or target_node.item_id
+        if current_node and current_node.node_id != target_node.node_id:
+            if target_item not in self.branch_pruned_topics:
+                self.branch_pruned_topics[target_item] = []
+            for t in current_node.topics_covered_in_branch:
+                if t not in self.branch_pruned_topics[target_item]:
+                    self.branch_pruned_topics[target_item].append(t)
+
+        self.active_summary_node_id = target_node.node_id
+        return target_node
+
+    def get_active_branch_summary(self, item_id: Optional[str] = None) -> str:
+        """
+        Returns the clean, rolling accumulated summary for the active branch.
+        """
+        if self.active_summary_node_id and self.active_summary_node_id in self.summary_nodes:
+            return self.summary_nodes[self.active_summary_node_id].accumulated_summary
+        if item_id:
+            root = self.get_or_create_root_summary_node(item_id)
+            return root.accumulated_summary
+        return ""
+
+    def get_pruned_topics_for_item(self, item_id: str) -> List[str]:
+        """
+        Returns list of topics explored in completed or abandoned branches for this item.
+        """
+        return self.branch_pruned_topics.get(item_id, [])
 
     def record_turn(
         self,

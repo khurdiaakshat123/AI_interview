@@ -444,14 +444,18 @@ class InterviewAgent:
                 follow_up_depth=current_depth
             )
 
-        # 4. Prepare resume context string
-        resume_context_str = ""
-        if resume and resume.sections_json:
+        # 4. Prepare focused item context string (Summary Tree Node A)
+        # Avoid prompt bloat: Only inject the active item details rather than the entire resume
+        if active_item:
+            item_context_str = f"Active Focus Item: {active_item.title}\nItem Details: {active_item.details}"
+        elif resume and resume.sections_json:
             sec = resume.sections_json
             work_strs = [f"- {w.get('role')} at {w.get('company')}: {w.get('summary', '') or w.get('description', '')}" for w in sec.get("work_experience", [])]
             proj_strs = [f"- {p.get('title')}: {p.get('description', '')} (Tech: {', '.join(p.get('technologies', []))})" for p in sec.get("projects", [])]
             nl = "\n"
-            resume_context_str = f"Work Experience:{nl}{nl.join(work_strs)}{nl}{nl}Projects:{nl}{nl.join(proj_strs)}"
+            item_context_str = f"Work Experience:{nl}{nl.join(work_strs)}{nl}{nl}Projects:{nl}{nl.join(proj_strs)}"
+        else:
+            item_context_str = ""
 
         role_profile_dict = {
             "role": session.role,
@@ -465,7 +469,7 @@ class InterviewAgent:
             candidate_answer=cleaned_answer,
             history=transcript,
             state=state,
-            resume_context=resume_context_str,
+            resume_context=item_context_str,
             role_profile=role_profile_dict,
             llm_client_instance=llm_client
         )
@@ -533,7 +537,7 @@ class InterviewAgent:
                     if clm.entity and any(e.lower() == clm.entity.lower() for e in eval_result.entities):
                         state.record_candidate_mention_of_resume_claim(c_id, len(transcript) // 2 + 1)
 
-        # Record completed turn in InterviewState
+        # Record completed turn in InterviewState & Recursive Summary Tree
         turn_idx = len(transcript) // 2 + 1
         state.record_turn(
             question_id=current_q_profile.question_id,
@@ -543,6 +547,16 @@ class InterviewAgent:
             subtopic=current_q_profile.subtopic or subtopic,
             question_profile=current_q_profile
         )
+        if state.active_item_id:
+            state.record_summary_turn(
+                turn_index=turn_idx,
+                item_id=state.active_item_id,
+                question_text=question_text,
+                answer_understanding=eval_result.answer_understanding,
+                reasoning_summary=eval_result.reasoning_summary,
+                candidate_topics=eval_result.candidate_topics,
+                entities=eval_result.entities
+            )
 
         # 8. Deterministic Scoring (ScoringPolicy)
         was_clarification_prompt = agent1_meta.get("is_clarification_prompt", False)
@@ -640,6 +654,11 @@ class InterviewAgent:
             rationale=decision.rationale,
             focus_dimension=decision.focus_dimension
         )
+
+        if decision.action in (PlannerAction.PIVOT_ITEM, PlannerAction.START_NEXT_ITEM):
+            # Backtrack Summary Tree to Root Node A of active item and archive pruned branch topics
+            if state.active_item_id:
+                state.backtrack_to_node(f"node_{state.active_item_id}_root")
 
         is_completed = False
         next_phase = state.current_phase
