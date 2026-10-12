@@ -85,8 +85,8 @@ class ConsistencyEngine:
         discrepancies: List[DiscrepancyRecord] = []
         target_item = current_item_id or state.active_item_id
 
-        # 1. Attempt LLM-assisted contextual analysis if available
-        if llm_client is not None and state.claims:
+        # 1. Attempt LLM-assisted contextual analysis only if candidate asserted new claims
+        if llm_client is not None and state.claims and eval_result.candidate_claims:
             llm_discrepancies = cls._analyze_via_llm(
                 eval_result=eval_result,
                 state=state,

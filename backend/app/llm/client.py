@@ -9,7 +9,8 @@ from typing import Dict, Any, Optional, Tuple, List
 # Automatically load from backend/.env or root .env
 _env_path = Path(__file__).resolve().parent.parent.parent / ".env"
 load_dotenv(dotenv_path=_env_path)
-load_dotenv()
+# Global rate-limit pacing timestamp to prevent burst exhaustion
+_last_llm_dispatch_time = 0.0
 
 class LLMClient:
     """
@@ -86,7 +87,16 @@ class LLMClient:
         
         # User requested: "try to use gemini and for questons and answering if possible"
         preferred = "gemini" 
-        
+
+        # Enforce rate-limit pacing delay across calls (prevent burst rate limit exhaustion)
+        global _last_llm_dispatch_time
+        MIN_PACING_INTERVAL = 2.0  # Guarantee at least 2.0s between consecutive outgoing network requests
+        now = time.time()
+        elapsed = now - _last_llm_dispatch_time
+        if elapsed < MIN_PACING_INTERVAL:
+            time.sleep(MIN_PACING_INTERVAL - elapsed)
+        _last_llm_dispatch_time = time.time()
+
         for attempt in range(4):
             key_obj = key_pool.get_next_key(preferred_provider=preferred)
             

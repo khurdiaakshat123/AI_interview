@@ -1,6 +1,7 @@
 from __future__ import annotations
 import json
 import uuid
+import time
 from typing import Dict, Any, List, Optional, Tuple
 from sqlalchemy.orm import Session
 from backend.app.models.models import (
@@ -474,6 +475,9 @@ class InterviewAgent:
             llm_client_instance=llm_client
         )
 
+        # Rate-limit pacing break between Call 1 (Evaluation) and Call 2 (Consistency)
+        time.sleep(2.5)
+
         # 6. Consistency Engine (discrepancy & contradiction detection)
         cons_result: ConsistencyAnalysisResult = ConsistencyEngine.analyze(
             eval_result=eval_result,
@@ -704,6 +708,9 @@ class InterviewAgent:
             agent1_meta["is_clarification_prompt"] = next_is_clarification
             next_dim = decision.focus_dimension
             next_diff = next_q_profile.difficulty
+
+            # Rate-limit pacing break before Call 3 (Question Generation) to prevent burst exhaustion
+            time.sleep(2.5)
 
             # Generate question using QuestionGenerator
             gen_next = QuestionGenerator.generate_question(
