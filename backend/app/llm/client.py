@@ -71,7 +71,7 @@ class LLMClient:
 
     def get_active_provider(self) -> str:
         if self.groq_key:
-            return f"Groq ({os.getenv('GROQ_MODEL', 'llama-3.1-8b-instant')})"
+            return f"Groq ({os.getenv('GROQ_MODEL', 'openai/gpt-oss-120b')})"
         if self.gemini_key:
             return "Google Gemini (gemini-flash-latest)"
         if self.openai_key:
@@ -128,38 +128,45 @@ class LLMClient:
             
             if key_obj.provider == "groq":
                 try:
-                    groq_model = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
+                    groq_models = [
+                        os.getenv("GROQ_MODEL", "openai/gpt-oss-120b"),
+                        "openai/gpt-oss-20b",
+                        "qwen/qwen3.8-27b"
+                    ]
                     headers = {"Authorization": f"Bearer {key_obj.key_string}", "Content-Type": "application/json"}
-                    payload = {
-                        "model": groq_model,
-                        "messages": [
-                            {"role": "system", "content": system_prompt},
-                            {"role": "user", "content": user_prompt}
-                        ],
-                        "temperature": temperature
-                    }
-                    with httpx.Client(timeout=15.0) as client:
-                        resp = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
-                        if resp.status_code == 200:
-                            return resp.json()["choices"][0]["message"]["content"]
-                        elif resp.status_code == 404 and groq_model != "llama3-8b-8192":
-                            # Fallback to legacy 8b model if 3.1 is not accessible
-                            payload["model"] = "llama3-8b-8192"
-                            fb_resp = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
-                            if fb_resp.status_code == 200:
-                                return fb_resp.json()["choices"][0]["message"]["content"]
-                            print(f"[LLMClient] Groq {key_obj.masked_name} 404 fallback HTTP {fb_resp.status_code}: {fb_resp.text}")
-                        elif resp.status_code in [429, 401]:
-                            print(f"[LLMClient] Groq {key_obj.masked_name} hit {resp.status_code}. Cooling down.")
-                            key_obj.trigger_cooldown(30.0)
-                        else:
-                            print(f"[LLMClient] Groq {key_obj.masked_name} HTTP {resp.status_code}: {resp.text}")
+                    with httpx.Client(timeout=20.0) as client:
+                        for g_model in groq_models:
+                            payload = {
+                                "model": g_model,
+                                "messages": [
+                                    {"role": "system", "content": system_prompt},
+                                    {"role": "user", "content": user_prompt}
+                                ],
+                                "temperature": temperature
+                            }
+                            resp = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
+                            if resp.status_code == 200:
+                                return resp.json()["choices"][0]["message"]["content"]
+                            elif resp.status_code == 401:
+                                print(f"[LLMClient] Groq {key_obj.masked_name} hit 401 (Invalid Key). Disabling for 24h.")
+                                key_obj.trigger_cooldown(86400.0)
+                                break
+                            elif resp.status_code == 429:
+                                print(f"[LLMClient] Groq {key_obj.masked_name} hit 429. Cooling down.")
+                                key_obj.trigger_cooldown(30.0)
+                                break
+                            elif resp.status_code in [404, 503]:
+                                print(f"[LLMClient] Groq {key_obj.masked_name} model {g_model} returned {resp.status_code}, trying next fallback model...")
+                                continue
+                            else:
+                                print(f"[LLMClient] Groq {key_obj.masked_name} HTTP {resp.status_code}: {resp.text}")
+                                break
                 except Exception as e:
                     print(f"[LLMClient] Groq {key_obj.masked_name} failed: {e}")
                     
             elif key_obj.provider == "gemini":
                 try:
-                    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={key_obj.key_string}"
+                    gemini_models = ["gemini-flash-latest", "gemini-flash-lite-latest"]
                     payload = {
                         "contents": [
                             {
@@ -170,18 +177,29 @@ class LLMClient:
                         "generationConfig": {"temperature": temperature}
                     }
                     with httpx.Client(timeout=45.0) as client:
-                        resp = client.post(url, json=payload)
-                        if resp.status_code == 200:
-                            data = resp.json()
-                            if "candidates" in data and data["candidates"]:
-                                candidate = data["candidates"][0]
-                                if "content" in candidate and "parts" in candidate["content"]:
-                                    return candidate["content"]["parts"][0].get("text", "")
-                        elif resp.status_code in [429, 401, 404]:
-                            print(f"[LLMClient] Gemini {key_obj.masked_name} hit {resp.status_code}. Cooling down.")
-                            key_obj.trigger_cooldown(30.0)
-                        else:
-                            print(f"[LLMClient] Gemini {key_obj.masked_name} HTTP {resp.status_code}: {resp.text}")
+                        for gem_model in gemini_models:
+                            url = f"https://generativelanguage.googleapis.com/v1beta/models/{gem_model}:generateContent?key={key_obj.key_string}"
+                            resp = client.post(url, json=payload)
+                            if resp.status_code == 200:
+                                data = resp.json()
+                                if "candidates" in data and data["candidates"]:
+                                    candidate = data["candidates"][0]
+                                    if "content" in candidate and "parts" in candidate["content"]:
+                                        return candidate["content"]["parts"][0].get("text", "")
+                            elif resp.status_code == 401:
+                                print(f"[LLMClient] Gemini {key_obj.masked_name} hit 401 (Invalid Key). Disabling for 24h.")
+                                key_obj.trigger_cooldown(86400.0)
+                                break
+                            elif resp.status_code == 503 and gem_model != gemini_models[-1]:
+                                print(f"[LLMClient] Gemini {key_obj.masked_name} hit 503 on {gem_model}, falling back to {gemini_models[-1]}...")
+                                continue
+                            elif resp.status_code in [429, 404]:
+                                print(f"[LLMClient] Gemini {key_obj.masked_name} hit {resp.status_code}. Cooling down.")
+                                key_obj.trigger_cooldown(30.0)
+                                break
+                            else:
+                                print(f"[LLMClient] Gemini {key_obj.masked_name} HTTP {resp.status_code}: {resp.text}")
+                                break
                 except Exception as e:
                     print(f"[LLMClient] Gemini {key_obj.masked_name} failed: {e}")
             

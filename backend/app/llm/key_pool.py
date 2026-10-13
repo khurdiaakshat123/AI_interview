@@ -2,9 +2,12 @@ import os
 import time
 import random
 import logging
+from pathlib import Path
 from typing import Optional, List
 from dotenv import load_dotenv
 
+_backend_env = Path(__file__).resolve().parent.parent.parent / ".env"
+load_dotenv(dotenv_path=_backend_env)
 load_dotenv()
 
 logger = logging.getLogger(__name__)
