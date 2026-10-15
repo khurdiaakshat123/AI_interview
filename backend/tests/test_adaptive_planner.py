@@ -210,6 +210,23 @@ class TestAdaptivePlanner(unittest.TestCase):
         dec_d = AdaptivePlanner.plan_next_action(self.state, latest_eval=ans_evasion)
         self.assertIn(dec_d.action, [PlannerAction.START_NEXT_ITEM, PlannerAction.PIVOT_ITEM])
 
+    def test_turn_zero_non_answer_pivots_immediately(self):
+        """
+        Rule 4: Candidate states lack of knowledge on turn 0 -> immediately pivots
+        to the next item without asking an introductory repair probe or badgering.
+        """
+        ans_evasion = SemanticEvaluationResult(
+            answer_understanding="I don't know",
+            reasoning_summary="Candidate indicated lack of knowledge.",
+            is_non_answer=True
+        )
+        self.state.items["exp_1"].turns_spent = 0
+        decision = AdaptivePlanner.plan_next_action(self.state, latest_eval=ans_evasion)
+        self.assertEqual(decision.action, PlannerAction.START_NEXT_ITEM)
+        self.assertEqual(decision.focus_topic, "High-Throughput Caching Layer")
+        self.assertEqual(self.state.items["exp_1"].status, "PIVOTED")
+        self.assertIn("exp_1", self.state.pivoted_item_ids)
+
     def test_experience_and_projects_complete_before_subject_knowledge(self):
         """
         Rules 19 & 20:

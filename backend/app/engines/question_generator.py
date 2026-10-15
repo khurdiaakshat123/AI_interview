@@ -268,13 +268,17 @@ class QuestionGenerator:
         else:
             lines.append(f"8. FOCUS DIMENSION: Probe '{focus_dim}'. Directly target engineering mechanics, failure handling, trade-offs, concurrency, or scaling.")
 
-        
-        if latest_eval and latest_eval.is_non_answer:
+        if action_str in ["START_NEXT_ITEM", "START_SUBJECT_STAGE", "PIVOT_ITEM"]:
+            lines.append("9. TRANSITIONING TO NEXT TOPIC: Acknowledge the transition cleanly and warmly (e.g. 'That gives me helpful context! Let\\'s explore...'), and ask ONE focused opening question about the new topic.")
+        elif latest_eval and latest_eval.is_non_answer:
             lines.append("9. THE CANDIDATE JUST GAVE A JOKE OR NON-ANSWER. You must firmly redirect them to technical matters before asking the next question.")
         elif latest_eval and latest_eval.technical_validity < 0.40:
             lines.append("9. THE CANDIDATE'S LAST ANSWER WAS WEAK OR INCORRECT. Push back logically or ask them to clarify the flaw in their reasoning.")
 
-        lines.append("- Return ONLY the natural-language question text without quotes or role tags.")
+        lines.extend([
+            "10. CROSS-PROJECT ANTI-REPETITION: Do NOT repeat questions about general tools (e.g., Docker, PostgreSQL, Redis) that were already explored in earlier projects. If this project uses similar tools, anchor your question strictly to this project's unique domain, architecture, and specific scale.",
+            "- Return ONLY the natural-language question text without quotes or role tags."
+        ])
         return "\n".join(lines)
 
     @classmethod
@@ -318,6 +322,16 @@ class QuestionGenerator:
                 pruned_topics = state.get_pruned_topics_for_item(question_profile.item_id)
                 if pruned_topics:
                     lines.append(f"Previously Explored Sibling Topics (DO NOT REPEAT): {', '.join(pruned_topics[:6])}")
+
+        # Cross-Project Topic Guard: Prevent repeating questions already answered in earlier projects
+        if state and getattr(state, "topics_covered", None):
+            already_tested = [t for t in state.topics_covered if t.lower() not in item_title.lower()]
+            if already_tested:
+                lines.append(
+                    f"Cross-Project Guard (ALREADY TESTED IN EARLIER ITEMS - DO NOT RE-ASK GENERAL QUESTIONS): "
+                    f"{', '.join(already_tested[:8])}. If this project shares any of these tools, anchor your question "
+                    f"strictly to {item_title}'s UNIQUE domain and scale rather than basic usage."
+                )
 
         if contradiction_context:
             lines.append(f"Discrepancy / Scope Ambiguity to Clarify: {contradiction_context}")

@@ -555,7 +555,7 @@ class ResumeParser:
         projects: List[Dict[str, Any]] = []
         seen_titles = set()
 
-        def process_lines_for_projects(lines: List[str]):
+        def process_lines_for_projects(lines: List[str], is_project_section: bool = False):
             current_proj: Optional[Dict[str, Any]] = None
             date_pattern = r"(20\d\d|19\d\d|present|current|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)"
 
@@ -577,9 +577,14 @@ class ResumeParser:
                     parts = line.split(" | ")
                     title = parts[0].strip()
                 # Pattern 4: Markdown header or uppercase title
-                elif (line.startswith("##") or (line.isupper() and len(line) > 3)) and len(line) < 60 and not re.search(r"(skills|education|certifications|experience|summary|awards|coursework)", line, re.I):
+                elif (line.startswith("##") or (line.isupper() and len(line) > 3)) and len(line) < 60 and not re.search(r"(projects|skills|education|certifications|experience|summary|awards|coursework)", line, re.I):
                     is_new_proj = True
                     title = line.lstrip("#").strip()
+                # Pattern 5: Numbered list item inside dedicated projects section (e.g., '1. GPU-Accelerated...', '2) Distributed Cache')
+                elif is_project_section and re.match(r"^\s*\d+[\.\)]\s+[A-Za-z0-9]", line) and len(line) < 80:
+                    if not (line.rstrip().endswith(".") and len(line.split()) > 8):
+                        is_new_proj = True
+                        title = re.sub(r"^\s*\d+[\.\)]\s+", "", line).strip()
 
                 if is_new_proj and title and len(title) > 2:
                     clean_title = re.sub(r"^[0-9\.\-\s]+", "", title).strip()
@@ -621,13 +626,13 @@ class ResumeParser:
         proj_section_text = cls._extract_section_text(text, ["projects", "personal projects", "technical projects", "academic projects"])
         if proj_section_text:
             lines = [line.strip() for line in proj_section_text.split("\n") if line.strip()]
-            process_lines_for_projects(lines)
+            process_lines_for_projects(lines, is_project_section=True)
 
         # 2. Also scan experience section for project/research items
         exp_section_text = cls._extract_section_text(text, ["experience", "work experience", "employment", "professional experience"])
-        source_for_projects = exp_section_text if exp_section_text else text
+        source_for_projects = exp_section_text if exp_section_text else ("" if proj_section_text else text)
         exp_lines = [line.strip() for line in source_for_projects.split("\n") if line.strip()]
-        process_lines_for_projects(exp_lines)
+        process_lines_for_projects(exp_lines, is_project_section=False)
 
         return projects
 

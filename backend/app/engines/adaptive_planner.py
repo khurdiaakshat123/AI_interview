@@ -106,6 +106,11 @@ class AdaptivePlanner:
         # Track previously tested dimensions on current item to avoid repetition (Rule 17)
         tested_dimensions = cls._get_tested_dimensions_for_item(state, active_item_id)
 
+        # Effective validity for dimension selection & repair probe checks
+        effective_validity = latest_eval.technical_validity if latest_eval else 0.5
+        if latest_eval and getattr(latest_eval, "correctness", None) is not None and latest_eval.correctness > effective_validity:
+            effective_validity = latest_eval.correctness
+
         # ----------------------------------------------------------------------
         # Priority 1: Contradictions & Clarifications (Rules 5 & 8)
         # Contradictions must be clarified before score penalty.
@@ -137,21 +142,13 @@ class AdaptivePlanner:
 
         # ----------------------------------------------------------------------
         # Priority 2: Non-Answer Handling (Rule 4)
-        # Non-answers should not cause repeated pathological drilling.
+        # Non-answers should never cause repeated drilling. Cleanly pivot immediately.
         # ----------------------------------------------------------------------
         if latest_eval and latest_eval.is_non_answer:
-            if turns_on_item >= 1:
-                return cls._advance_agenda_or_phase(state, reason="Candidate deflected or stated lack of knowledge.")
-            else:
-                # One gentle introductory reset if at turn 1
-                return PlannerDecision(
-                    action=PlannerAction.TEST_IMPLEMENTATION,
-                    focus_topic=item_title,
-                    focus_dimension="implementation",
-                    target_difficulty=0.20,
-                    target_depth=1,
-                    rationale="Candidate indicated lack of knowledge on initial question; offering one baseline inquiry before pivoting."
-                )
+            return cls._advance_agenda_or_phase(
+                state,
+                reason="Candidate indicated lack of knowledge; cleanly pivoting to next item.",
+            )
 
         # ----------------------------------------------------------------------
         # Priority 3: Local Exploration Guardrails & Relevance Bounds (Rules 13, 14, 17)
@@ -167,7 +164,7 @@ class AdaptivePlanner:
         # Priority 4: Weak Evidence Handling (Rule 2)
         # Weak evidence receives at most one focused repair probe and then moves on.
         # ----------------------------------------------------------------------
-        if latest_eval and latest_eval.technical_validity < 0.40:
+        if latest_eval and effective_validity < 0.40:
             if turns_on_item >= 2:
                 return cls._advance_agenda_or_phase(state, reason="Limited exploration after weak evidence response.")
             else:
@@ -231,7 +228,7 @@ class AdaptivePlanner:
         # Priority 7: Strong Evidence -> Deepen Meaningful Dimensions (Rules 1, 11, 12)
         # Follow-ups target situational failure, scale, concurrency, and trade-offs.
         # ----------------------------------------------------------------------
-        if latest_eval and latest_eval.technical_validity >= 0.70 and turns_on_item < max_turns_for_item:
+        if latest_eval and effective_validity >= 0.70 and turns_on_item < max_turns_for_item:
             dimension = cls._select_situational_dimension(
                 eval_result=latest_eval,
                 tested_dimensions=tested_dimensions
@@ -394,7 +391,8 @@ class AdaptivePlanner:
         """
         curr_active_id = state.active_item_id
         if curr_active_id and curr_active_id in state.items:
-            state.conclude_active_item(reason="COMPLETED")
+            conclude_reason = "PIVOTED" if "pivot" in reason.lower() else "COMPLETED"
+            state.conclude_active_item(reason=conclude_reason)
 
         # Find next pending item in item_order
         pending_items = [

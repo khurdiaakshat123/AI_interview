@@ -341,6 +341,51 @@ class TestQuestionGenerator(unittest.TestCase):
         self.assertEqual(len(self.state.question_history), 1)
         self.assertEqual(self.state.question_history[0].question_profile["question_id"], "q_facade_1")
 
+    def test_cross_project_guard_in_user_prompt(self):
+        """
+        Verify that topics covered in earlier projects/items are injected into
+        the cross-project guard of the prompt to prevent repetitive questioning.
+        """
+        self.state.topics_covered = ["Docker", "PostgreSQL", "Kafka"]
+        profile = QuestionProfile(
+            question_id="q_proj2_1",
+            objective="Evaluate gateway request batching architecture.",
+            evidence_units=["Explains dynamic batching."],
+            phase="PROJECT_DEFENSE",
+            item_id="proj_2",
+            item_type="PROJECT",
+            topic="Triton Gateway",
+            subtopic="architecture",
+            difficulty=0.7,
+            question_kind=QuestionKind.ARCHITECTURAL_CHOICE
+        )
+
+        user_prompt = QuestionGenerator._build_user_prompt(
+            candidate_name="Maya",
+            role="AI Infrastructure Engineer",
+            company="Tech Corp",
+            phase="PROJECT_DEFENSE",
+            item_title="Triton Gateway",
+            item_type="PROJECT",
+            item_details="Inference gateway",
+            question_profile=profile,
+            candidate_entities=["Triton", "FastAPI"],
+            candidate_last_answer=None,
+            previous_question=None,
+            evidence_gaps=None,
+            contradiction_context=None,
+            role_skills_str="Distributed Systems",
+            action_str="START_NEXT_ITEM",
+            focus_dim="architecture",
+            state=self.state
+        )
+
+        self.assertIn("Cross-Project Guard", user_prompt)
+        self.assertIn("Docker", user_prompt)
+        self.assertIn("PostgreSQL", user_prompt)
+        self.assertIn("Kafka", user_prompt)
+        self.assertIn("UNIQUE domain and scale rather than basic usage", user_prompt)
+
 
 if __name__ == '__main__':
     unittest.main()

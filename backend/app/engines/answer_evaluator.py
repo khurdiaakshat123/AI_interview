@@ -60,6 +60,9 @@ class SemanticEvaluationResult(BaseModel):
     technical_validity: float = Field(default=0.5, ge=0.0, le=1.0)
     completeness: float = Field(default=0.5, ge=0.0, le=1.0)
     communication: float = Field(default=0.5, ge=0.0, le=1.0)
+    correctness: Optional[float] = Field(default=None)
+
+    model_config = {"extra": "allow"}
 
     # Discrepancies and Inconsistencies
     contradictions_with_previous_answers: List[str] = Field(default_factory=list)

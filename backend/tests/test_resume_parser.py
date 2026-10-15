@@ -252,6 +252,31 @@ Project: Analytics Hub
         # Check achievements
         self.assertTrue(any("35%" in s for s in statements))
 
+    def test_numbered_projects_extraction(self):
+        """
+        Verify that numbered project entries (e.g. '1. GPU-Accelerated...', '2) Triton...')
+        are properly detected and extracted by ResumeParser._extract_projects.
+        """
+        raw_text = """
+PROJECTS
+1. GPU-Accelerated Distributed Training Pipeline
+- Built a PyTorch distributed pipeline with NCCL and Docker.
+- Reduced training time by 40% across 8 nodes.
+
+2. Triton Inference Gateway
+- Designed low-latency model inference gateway using FastAPI and Redis.
+- Achieved sub-12ms p99 latency.
+"""
+        projects = ResumeParser._extract_projects(raw_text, "AI Engineer")
+        self.assertEqual(len(projects), 2)
+        self.assertEqual(projects[0]["title"], "GPU-Accelerated Distributed Training Pipeline")
+        self.assertIn("Docker", projects[0]["technologies"])
+        self.assertIn("40%", projects[0]["metrics"])
+
+        self.assertEqual(projects[1]["title"], "Triton Inference Gateway")
+        self.assertIn("FastAPI", projects[1]["technologies"])
+        self.assertIn("Redis", projects[1]["technologies"])
+
 
 if __name__ == "__main__":
     unittest.main()
