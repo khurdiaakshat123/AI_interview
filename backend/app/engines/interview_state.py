@@ -575,9 +575,15 @@ class InterviewState(BaseModel):
             claim_a.status = resolved_status_for_claim_a
             claim_a.turn_last_updated = turn_index
 
+        if contra.claim_id_b:
+            claim_b = self.claims.get(contra.claim_id_b)
+            if claim_b:
+                claim_b.status = resolved_status_for_claim_a
+                claim_b.turn_last_updated = turn_index
+
         # Close corresponding unresolved issue
         for issue in self.unresolved_issues:
-            if issue.target_claim_id == contra.claim_id_a and issue.status == "OPEN":
+            if issue.target_claim_id in [contra.claim_id_a, contra.claim_id_b] and issue.status in ["OPEN", "UNRESOLVED"]:
                 issue.status = "RESOLVED"
         return True
 

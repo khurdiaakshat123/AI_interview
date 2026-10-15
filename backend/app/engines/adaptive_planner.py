@@ -114,31 +114,36 @@ class AdaptivePlanner:
         # ----------------------------------------------------------------------
         # Priority 1: Contradictions & Clarifications (Rules 5 & 8)
         # Contradictions must be clarified before score penalty.
+        # Bounded by max_clarification_attempts_per_item to prevent repeated clarification.
         # ----------------------------------------------------------------------
-        if latest_eval and latest_eval.clarification_needed:
-            return PlannerDecision(
-                action=PlannerAction.CLARIFY_CONTRADICTION,
-                focus_topic=item_title,
-                focus_dimension="consistency",
-                target_difficulty=0.50,
-                target_depth=next_depth,
-                rationale=f"Clarification required: {latest_eval.clarification_reason or 'Contextual scope ambiguity'}."
-            )
+        clarification_attempts = getattr(state.guardrails, "clarification_attempts_current_item", 0)
+        max_clarification = getattr(state.guardrails, "max_clarification_attempts_per_item", 2)
 
-        unresolved_contra = next(
-            (c for c in state.contradictions if c.status in ["UNRESOLVED", "CLARIFICATION_REQUIRED"]),
-            None
-        )
-        if unresolved_contra:
-            return PlannerDecision(
-                action=PlannerAction.CLARIFY_CONTRADICTION,
-                focus_topic=item_title,
-                focus_claim_id=unresolved_contra.claim_id_a,
-                focus_dimension="consistency",
-                target_difficulty=0.50,
-                target_depth=next_depth,
-                rationale=f"Resolving open contradiction: {unresolved_contra.description}."
+        if clarification_attempts < max_clarification:
+            if latest_eval and latest_eval.clarification_needed:
+                return PlannerDecision(
+                    action=PlannerAction.CLARIFY_CONTRADICTION,
+                    focus_topic=item_title,
+                    focus_dimension="consistency",
+                    target_difficulty=0.50,
+                    target_depth=next_depth,
+                    rationale=f"Clarification required: {latest_eval.clarification_reason or 'Contextual scope ambiguity'}."
+                )
+
+            unresolved_contra = next(
+                (c for c in state.contradictions if c.status in ["UNRESOLVED", "CLARIFICATION_REQUIRED"]),
+                None
             )
+            if unresolved_contra:
+                return PlannerDecision(
+                    action=PlannerAction.CLARIFY_CONTRADICTION,
+                    focus_topic=item_title,
+                    focus_claim_id=unresolved_contra.claim_id_a,
+                    focus_dimension="consistency",
+                    target_difficulty=0.50,
+                    target_depth=next_depth,
+                    rationale=f"Resolving open contradiction: {unresolved_contra.description}."
+                )
 
         # ----------------------------------------------------------------------
         # Priority 2: Non-Answer Handling (Rule 4)

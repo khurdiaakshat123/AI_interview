@@ -1,6 +1,7 @@
 from __future__ import annotations
 import re
 import json
+import time
 from typing import Dict, Any, List, Optional
 from backend.app.engines.scoring_engine import DEFAULT_SECTION_WEIGHTS
 from backend.app.llm.client import llm_client
@@ -68,13 +69,23 @@ class ResumeParser:
         # 2. Try Live LLM extraction if resume text has substance
         if len(text) > 80 and (getattr(llm_client, "gemini_key", None) or getattr(llm_client, "groq_key", None) or getattr(llm_client, "openai_key", None)):
             try:
+                # Rate limit pacing break before calling LLM
+                time.sleep(2.0)
+
+                # Truncate text if excessively large (keep up to ~7000 chars) to prevent token limit bursts
+                clean_text = text[:7000] if len(text) > 7000 else text
+
                 system_prompt = (
                     "You are a strict, objective technical recruiter and resume parser.\n"
-                    "Extract ONLY verifiable technical facts, experience, and projects present in the candidate resume relative to the target role.\n"
-                    "CLASSIFICATION GUIDELINES:\n"
-                    "- Employment, corporate internships, and company roles belong in 'work_experience'.\n"
-                    "- Academic projects, course projects (e.g. DBMS Project, NLP Project), personal systems, and research initiatives belong in 'projects' (even if placed under an 'EXPERIENCE' section).\n"
-                    "STRICT NEGATIVE CONSTRAINT: DO NOT hallucinate, assume, or invent fake projects, fake metrics, fake certifications, or fake achievements. "
+                    "Extract ONLY verifiable technical facts, experience, and projects present in the candidate resume relative to the target role.\n\n"
+                    "CRITICAL WORK EXPERIENCE VS PROJECTS CLASSIFICATION RULES:\n"
+                    "1. 'work_experience' MUST contain all formal employment, corporate internships, startup roles, and contract work.\n"
+                    "   - If a line lists a sub-project, product, or team along with a role and company (e.g. 'Support Chatbot — Backend Engineer — KVGAI' or 'KVGAI | Backend Developer | Web Scraper'), company is 'KVGAI', role is 'Backend Engineer (Support Chatbot)'.\n"
+                    "   - DO NOT extract company roles or corporate internship products into the standalone 'projects' list!\n"
+                    "2. 'projects' MUST ONLY contain standalone personal projects, open-source repositories, hackathon entries, or academic coursework projects (e.g., 'OOP Course Project', 'DBMS Project', 'Compiler Design', 'B.Tech Capstone Project').\n"
+                    "   - Even if placed under an 'EXPERIENCE' heading in a resume, academic/course projects and hackathon systems belong in 'projects'.\n"
+                    "3. MUTUAL EXCLUSIVITY: An item cannot appear in both 'work_experience' and 'projects'. Never duplicate items across both sections.\n"
+                    "4. STRICT NEGATIVE CONSTRAINT: DO NOT hallucinate, assume, or invent fake projects, fake metrics, fake certifications, or fake achievements. "
                     "If a section or field is not explicitly present in the text, return an empty array [] or empty string.\n\n"
                     "Output ONLY valid JSON matching this schema:\n"
                     "{\n"
@@ -123,8 +134,22 @@ class ResumeParser:
                     '  "extracurricular": ["Only actual extracurriculars in resume, else []"]\n'
                     "}"
                 )
-                user_prompt = f"Target Company: {target_company}\nTarget Role: {target_role}\n\nCandidate Resume Text:\n{text}"
-                completion = llm_client.generate_completion(system_prompt, user_prompt, temperature=0.1)
+                user_prompt = f"Target Company: {target_company}\nTarget Role: {target_role}\n\nCandidate Resume Text:\n{clean_text}"
+
+                # Retry wrapper with backoff for rate limit protection
+                completion = None
+                for attempt in range(2):
+                    try:
+                        completion = llm_client.generate_completion(system_prompt, user_prompt, temperature=0.1)
+                        if completion:
+                            break
+                    except Exception as llm_err:
+                        print(f"[ResumeParser] LLM attempt {attempt + 1} failed: {llm_err}. Waiting 3s...")
+                        time.sleep(3.0)
+
+                # Post-LLM pacing break to protect downstream rate limits
+                time.sleep(1.0)
+
                 if completion:
                     clean = completion.strip()
                     if clean.startswith("```json"): clean = clean[7:]
@@ -457,43 +482,62 @@ class ResumeParser:
                     cls._finalize_work_entry(current_entry, target_role, len(entries))
                     entries.append(current_entry)
 
-                comp = "Engineering Team"
-                role_title = "Software Engineer"
-                duration = "Timeline"
-
-                if " at " in line:
-                    parts = re.split(r"\s+at\s+", line, maxsplit=1)
-                    role_title = parts[0].strip()
-                    comp = re.split(r"[\(|–—―-]", parts[1])[0].strip()
-                elif " | " in line:
-                    parts = line.split(" | ")
-                    if len(parts) >= 2:
-                        comp = parts[0].strip()
-                        role_title = parts[1].strip()
-                    if len(parts) >= 3:
-                        duration = parts[2].strip()
-                elif re.search(r"\s+[–—―-]\s+", line):
-                    parts = re.split(r"\s+[–—―-]\s+", line, maxsplit=1)
-                    if re.search(role_indicators, parts[0], re.I):
-                        role_title = parts[0].strip()
-                        comp = parts[1].split("(")[0].strip()
-                    else:
-                        comp = parts[0].strip()
-                        role_title = parts[1].split("(")[0].strip()
-                else:
-                    role_match = re.search(role_indicators, line, re.I)
-                    if role_match:
-                        role_title = line[:role_match.end()].strip()
-                        comp = line[role_match.end():].strip().lstrip("-–—―|@ ")
-
+                # 1. Extract date from current line or next line first
                 date_match = re.search(r"((?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)?\s*\d{4}\s*[-–—―]\s*(?:present|current|ongoing|\d{4}|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s*\d{4}))", line, re.I)
                 if not date_match and has_date_next:
                     date_match = re.search(r"((?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)?\s*\d{4}\s*[-–—―]\s*(?:present|current|ongoing|\d{4}|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s*\d{4}))", next_line, re.I)
                     if not date_match:
                         date_match = re.search(r"(\d{4}\s*[-–—―]\s*(?:\d{4}|present|current|ongoing))", next_line, re.I)
 
-                if date_match:
-                    duration = date_match.group(1).strip()
+                duration = date_match.group(1).strip() if date_match else "Timeline"
+
+                # 2. Clean header line (strip date if on the same line)
+                if date_match and date_match.string == line:
+                    clean_header = (line[:date_match.start()] + line[date_match.end():]).strip()
+                else:
+                    clean_header = line.strip()
+
+                comp = "Engineering Team"
+                role_title = "Software Engineer"
+
+                if " at " in clean_header:
+                    parts = re.split(r"\s+at\s+", clean_header, maxsplit=1)
+                    role_title = parts[0].strip()
+                    comp = re.split(r"[\(|–—―-]", parts[1])[0].strip()
+                elif " | " in clean_header:
+                    parts = [p.strip() for p in clean_header.split(" | ") if p.strip()]
+                    if len(parts) >= 3:
+                        role_idx = next((i for i, p in enumerate(parts) if re.search(role_indicators, p, re.I)), 1)
+                        role_title = parts[role_idx]
+                        other_parts = [p for i, p in enumerate(parts) if i != role_idx]
+                        comp = other_parts[-1] if other_parts else "Company"
+                    elif len(parts) == 2:
+                        if re.search(role_indicators, parts[0], re.I):
+                            role_title = parts[0]
+                            comp = parts[1]
+                        else:
+                            comp = parts[0]
+                            role_title = parts[1]
+                elif re.search(r"\s+[–—―-]\s+", clean_header):
+                    parts = [p.strip() for p in re.split(r"\s+[–—―-]\s+", clean_header) if p.strip()]
+                    if len(parts) >= 3:
+                        # e.g. Support Chatbot — Backend Engineer — KVGAI
+                        role_idx = next((i for i, p in enumerate(parts) if re.search(role_indicators, p, re.I)), 1)
+                        role_title = parts[role_idx]
+                        other_parts = [p for i, p in enumerate(parts) if i != role_idx]
+                        comp = other_parts[-1] if other_parts else "Company"
+                    elif len(parts) == 2:
+                        if re.search(role_indicators, parts[0], re.I):
+                            role_title = parts[0]
+                            comp = parts[1].split("(")[0].strip()
+                        else:
+                            comp = parts[0]
+                            role_title = parts[1].split("(")[0].strip()
+                else:
+                    role_match = re.search(role_indicators, clean_header, re.I)
+                    if role_match:
+                        role_title = clean_header[:role_match.end()].strip()
+                        comp = clean_header[role_match.end():].strip().lstrip("-–—―|@ ")
 
                 current_entry = {
                     "company": comp or "Company",
@@ -560,6 +604,10 @@ class ResumeParser:
             date_pattern = r"(20\d\d|19\d\d|present|current|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)"
 
             for idx, line in enumerate(lines):
+                # When scanning general or experience sections, never treat employment role lines as projects
+                if not is_project_section and re.search(r"\b(engineer|developer|intern|lead|manager|consultant|analyst|architect|specialist|sde)\b", line, re.I):
+                    continue
+
                 is_new_proj = False
                 title = ""
 
@@ -569,8 +617,9 @@ class ResumeParser:
                     title = line.split(":", 1)[-1].split("-", 1)[-1].strip()
                 # Pattern 2: Delimited with Project or Research indicator
                 elif re.search(r"\s+[–—―-]\s+", line) and re.search(r"\b(project|research|capstone|system|chatbot|pipeline|platform|engine|app)\b", line, re.I):
-                    is_new_proj = True
-                    title = re.split(r"\s+[–—―-]\s+", line, maxsplit=1)[0].strip()
+                    if is_project_section or not re.search(r"\b(engineer|developer|intern|lead|manager)\b", line, re.I):
+                        is_new_proj = True
+                        title = re.split(r"\s+[–—―-]\s+", line, maxsplit=1)[0].strip()
                 # Pattern 3: Delimited with pipe
                 elif " | " in line and ("http" not in line) and not re.search(r"(20\d\d|19\d\d)", line):
                     is_new_proj = True
@@ -627,12 +676,12 @@ class ResumeParser:
         if proj_section_text:
             lines = [line.strip() for line in proj_section_text.split("\n") if line.strip()]
             process_lines_for_projects(lines, is_project_section=True)
-
-        # 2. Also scan experience section for project/research items
-        exp_section_text = cls._extract_section_text(text, ["experience", "work experience", "employment", "professional experience"])
-        source_for_projects = exp_section_text if exp_section_text else ("" if proj_section_text else text)
-        exp_lines = [line.strip() for line in source_for_projects.split("\n") if line.strip()]
-        process_lines_for_projects(exp_lines, is_project_section=False)
+        else:
+            # 2. Only scan experience/text if NO dedicated projects section was found
+            exp_section_text = cls._extract_section_text(text, ["experience", "work experience", "employment", "professional experience"])
+            source_for_projects = exp_section_text if exp_section_text else text
+            exp_lines = [line.strip() for line in source_for_projects.split("\n") if line.strip()]
+            process_lines_for_projects(exp_lines, is_project_section=False)
 
         return projects
 

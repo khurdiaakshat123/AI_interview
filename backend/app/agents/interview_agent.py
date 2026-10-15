@@ -490,7 +490,11 @@ class InterviewAgent:
         )
 
         # 7. Reconcile claims and contradictions
-        if cons_result.has_discrepancies:
+        was_clarification_prompt = agent1_meta.get("is_clarification_prompt", False)
+        if was_clarification_prompt:
+            eval_result.clarification_needed = False
+
+        if cons_result.has_discrepancies and not was_clarification_prompt:
             for d in cons_result.discrepancies:
                 c_a = d.claim_references[0] if d.claim_references else f"claim_{uuid.uuid4().hex[:6]}"
                 c_b = d.claim_references[1] if len(d.claim_references) > 1 else f"claim_{uuid.uuid4().hex[:6]}"
@@ -572,7 +576,7 @@ class InterviewAgent:
             is_scored = False
             agent1_meta["is_clarification_prompt"] = False
             for c in state.contradictions:
-                if c.status == "OPEN" and (not c.item_id or c.item_id == state.active_item_id):
+                if c.status in ["OPEN", "UNRESOLVED", "CLARIFICATION_REQUIRED"] and (not c.item_id or c.item_id == state.active_item_id):
                     state.resolve_contradiction(
                         contradiction_id=c.contradiction_id,
                         resolution_notes=f"Candidate clarified: {cleaned_answer[:120]}",
@@ -703,7 +707,9 @@ class InterviewAgent:
                 role=session.role
             )
             agent1_meta["current_question_profile"] = next_q_profile.to_dict()
-            next_is_clarification = (decision.action in (PlannerAction.CLARIFY_CONTRADICTION, PlannerAction.VERIFY_UNSUPPORTED_CLAIM))
+            next_is_clarification = (decision.action == PlannerAction.CLARIFY_CONTRADICTION)
+            if decision.action == PlannerAction.CLARIFY_CONTRADICTION:
+                state.guardrails.clarification_attempts_current_item += 1
             next_is_scored = not next_is_clarification
             agent1_meta["is_clarification_prompt"] = next_is_clarification
             next_dim = decision.focus_dimension
