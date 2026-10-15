@@ -38,6 +38,102 @@ class ResumeParser:
         return generate_stable_id(prefix, name, index)
 
     @classmethod
+    def _safe_json_parse(cls, raw: str) -> Optional[Dict[str, Any]]:
+        if not raw:
+            return None
+        clean = raw.strip()
+        if clean.startswith("```json"): clean = clean[7:]
+        if clean.startswith("```"): clean = clean[3:]
+        if clean.endswith("```"): clean = clean[:-3]
+        clean = clean.strip()
+
+        # 1. Direct parse
+        try:
+            return json.loads(clean)
+        except Exception:
+            pass
+
+        # 2. Strip trailing commas before closing braces/brackets
+        try:
+            clean_commas = re.sub(r',\s*([\]}])', r'\1', clean)
+            return json.loads(clean_commas)
+        except Exception:
+            pass
+
+        # 3. Handle truncated JSON by closing open arrays and objects
+        try:
+            clean_commas = re.sub(r',\s*([\]}])', r'\1', clean)
+            open_curly = clean_commas.count("{") - clean_commas.count("}")
+            open_square = clean_commas.count("[") - clean_commas.count("]")
+            repaired = clean_commas + ("]" * max(0, open_square)) + ("}" * max(0, open_curly))
+            return json.loads(repaired)
+        except Exception:
+            pass
+
+        return None
+
+    @classmethod
+    def _repair_interleaved_bullets(cls, raw: str) -> str:
+        """
+        Reconstructs fragmented bullet points caused by multi-stream font layering in PDFs.
+        When bold keywords and regular text are extracted as separate alternating streams,
+        this zipper algorithm reconstitutes them into their original fluent sentences.
+        """
+        if not raw or "•" not in raw:
+            return raw
+
+        segments = re.split(r'(\n\s*[•*●▪▫]\s*)', raw)
+        if len(segments) <= 1:
+            return raw
+
+        out = [segments[0]]
+        for i in range(1, len(segments), 2):
+            sym = segments[i]
+            body = segments[i + 1] if i + 1 < len(segments) else ""
+
+            blocks = [b.strip() for b in re.split(r'\n\s*\n', body.strip()) if b.strip()]
+            if len(blocks) >= 2:
+                lines_a = [l.strip() for l in blocks[0].split("\n") if l.strip()]
+                lines_b = [l.strip() for l in blocks[1].split("\n") if l.strip()]
+                if len(lines_a) >= 1 and len(lines_b) >= 1 and abs(len(lines_a) - len(lines_b)) <= 1:
+                    res = []
+                    if len(lines_b) == len(lines_a) + 1:
+                        for k in range(len(lines_a)):
+                            res.append(lines_b[k])
+                            res.append(lines_a[k])
+                        res.append(lines_b[-1])
+                        merged = re.sub(r'\s+', ' ', ' '.join(res)).strip()
+                        rem = ('\n\n' + '\n\n'.join(blocks[2:])) if len(blocks) > 2 else ""
+                        out.append(f"\n• {merged}{rem}\n")
+                        continue
+                    elif len(lines_a) == len(lines_b) + 1:
+                        for k in range(len(lines_b)):
+                            res.append(lines_a[k])
+                            res.append(lines_b[k])
+                        res.append(lines_a[-1])
+                        merged = re.sub(r'\s+', ' ', ' '.join(res)).strip()
+                        rem = ('\n\n' + '\n\n'.join(blocks[2:])) if len(blocks) > 2 else ""
+                        out.append(f"\n• {merged}{rem}\n")
+                        continue
+                    elif len(lines_a) == len(lines_b):
+                        verb_b = bool(re.search(r'^[A-Z][a-z]+(?:ed|ing)\b', lines_b[0]))
+                        if verb_b:
+                            for k in range(len(lines_a)):
+                                res.append(lines_b[k])
+                                res.append(lines_a[k])
+                        else:
+                            for k in range(len(lines_a)):
+                                res.append(lines_a[k])
+                                res.append(lines_b[k])
+                        merged = re.sub(r'\s+', ' ', ' '.join(res)).strip()
+                        rem = ('\n\n' + '\n\n'.join(blocks[2:])) if len(blocks) > 2 else ""
+                        out.append(f"\n• {merged}{rem}\n")
+                        continue
+
+            out.append(sym + body)
+        return "".join(out)
+
+    @classmethod
     def parse_resume(
         cls,
         raw_text: str,
@@ -51,6 +147,7 @@ class ResumeParser:
         # Normalize Unicode dashes and bullet characters
         text = text.replace("\u2014", " — ").replace("\u2013", " – ").replace("\u2015", " ― ")
         text = re.sub(r"[\u25cf\u2022\u25aa\u25ab]", "•", text)
+        text = cls._repair_interleaved_bullets(text)
         lines = [line.strip() for line in text.split("\n") if line.strip()]
 
         # 1. Extract Name and Email heuristically
@@ -151,62 +248,58 @@ class ResumeParser:
                 time.sleep(1.0)
 
                 if completion:
-                    clean = completion.strip()
-                    if clean.startswith("```json"): clean = clean[7:]
-                    if clean.startswith("```"): clean = clean[3:]
-                    if clean.endswith("```"): clean = clean[:-3]
-                    parsed_llm = json.loads(clean.strip())
+                    parsed_llm = cls._safe_json_parse(completion)
+                    if parsed_llm and isinstance(parsed_llm, dict):
+                        if parsed_llm.get("candidate_name") and parsed_llm["candidate_name"].strip() != "Candidate Full Name":
+                            name = parsed_llm["candidate_name"].strip()
+                        if parsed_llm.get("candidate_email") and "@" in parsed_llm["candidate_email"]:
+                            email = parsed_llm["candidate_email"].strip()
 
-                    if parsed_llm.get("candidate_name") and parsed_llm["candidate_name"].strip() != "Candidate Full Name":
-                        name = parsed_llm["candidate_name"].strip()
-                    if parsed_llm.get("candidate_email") and "@" in parsed_llm["candidate_email"]:
-                        email = parsed_llm["candidate_email"].strip()
+                        work_exps = parsed_llm.get("work_experience", [])
+                        for idx, exp in enumerate(work_exps):
+                            exp["id"] = generate_stable_id("exp", exp.get("company", "work"), idx)
+                            rel = exp.get("overall_relevance")
+                            if rel is None or not isinstance(rel, (int, float)):
+                                exp["overall_relevance"] = cls._calculate_semantic_relevance(
+                                    text=f"{exp.get('role', '')} {exp.get('summary', '')} {' '.join(exp.get('technologies', []))}",
+                                    target_role=target_role
+                                )
+                            else:
+                                exp["overall_relevance"] = max(0.1, min(1.0, float(rel)))
 
-                    work_exps = parsed_llm.get("work_experience", [])
-                    for idx, exp in enumerate(work_exps):
-                        exp["id"] = generate_stable_id("exp", exp.get("company", "work"), idx)
-                        rel = exp.get("overall_relevance")
-                        if rel is None or not isinstance(rel, (int, float)):
-                            exp["overall_relevance"] = cls._calculate_semantic_relevance(
-                                text=f"{exp.get('role', '')} {exp.get('summary', '')} {' '.join(exp.get('technologies', []))}",
-                                target_role=target_role
-                            )
-                        else:
-                            exp["overall_relevance"] = max(0.1, min(1.0, float(rel)))
+                        projects = parsed_llm.get("projects", [])
+                        for idx, p in enumerate(projects):
+                            p["project_id"] = generate_stable_id("proj", p.get("title", "project"), idx)
+                            rel = p.get("overall_relevance")
+                            if rel is None or not isinstance(rel, (int, float)):
+                                p["overall_relevance"] = cls._calculate_semantic_relevance(
+                                    text=f"{p.get('title', '')} {p.get('description', '')} {' '.join(p.get('technologies', []))}",
+                                    target_role=target_role
+                                )
+                            else:
+                                p["overall_relevance"] = max(0.1, min(1.0, float(rel)))
+                            p["irrelevant_topics"] = p.get("irrelevant_topics", [])
 
-                    projects = parsed_llm.get("projects", [])
-                    for idx, p in enumerate(projects):
-                        p["project_id"] = generate_stable_id("proj", p.get("title", "project"), idx)
-                        rel = p.get("overall_relevance")
-                        if rel is None or not isinstance(rel, (int, float)):
-                            p["overall_relevance"] = cls._calculate_semantic_relevance(
-                                text=f"{p.get('title', '')} {p.get('description', '')} {' '.join(p.get('technologies', []))}",
-                                target_role=target_role
-                            )
-                        else:
-                            p["overall_relevance"] = max(0.1, min(1.0, float(rel)))
-                        p["irrelevant_topics"] = p.get("irrelevant_topics", [])
+                        # Sort projects descending by overall_relevance
+                        projects.sort(key=lambda p: float(p.get("overall_relevance", 0.5)), reverse=True)
+                        for idx, p in enumerate(projects):
+                            p["questioning_priority"] = idx + 1
 
-                    # Sort projects descending by overall_relevance
-                    projects.sort(key=lambda p: float(p.get("overall_relevance", 0.5)), reverse=True)
-                    for idx, p in enumerate(projects):
-                        p["questioning_priority"] = idx + 1
-
-                    return {
-                        "candidate_name": name,
-                        "candidate_email": email,
-                        "raw_text": text,
-                        "sections": {
-                            "work_experience": work_exps,
-                            "projects": projects,
-                            "skills": parsed_llm.get("skills", []),
-                            "education": parsed_llm.get("education", []),
-                            "certifications": parsed_llm.get("certifications", []),
-                            "achievements": parsed_llm.get("achievements", []),
-                            "extracurricular": parsed_llm.get("extracurricular", [])
-                        },
-                        "section_weights": DEFAULT_SECTION_WEIGHTS
-                    }
+                        return {
+                            "candidate_name": name,
+                            "candidate_email": email,
+                            "raw_text": text,
+                            "sections": {
+                                "work_experience": work_exps,
+                                "projects": projects,
+                                "skills": parsed_llm.get("skills", []),
+                                "education": parsed_llm.get("education", []),
+                                "certifications": parsed_llm.get("certifications", []),
+                                "achievements": parsed_llm.get("achievements", []),
+                                "extracurricular": parsed_llm.get("extracurricular", [])
+                            },
+                            "section_weights": DEFAULT_SECTION_WEIGHTS
+                        }
             except Exception as e:
                 print(f"[ResumeParser] LLM parsing failed or unconfigured: {e}, falling back to deterministic extraction")
 
@@ -454,7 +547,7 @@ class ResumeParser:
         if not text or len(text.strip()) < 20:
             return []
 
-        exp_section_text = cls._extract_section_text(text, ["experience", "work experience", "employment", "professional experience"])
+        exp_section_text = cls._extract_section_text(text, ["experience", "work experience", "employment", "professional experience", "internships", "internship experience"])
         source_text = exp_section_text if exp_section_text else text
 
         entries: List[Dict[str, Any]] = []
@@ -471,7 +564,7 @@ class ResumeParser:
                 continue
 
             has_role = bool(re.search(role_indicators, line, re.I))
-            has_delim = bool(re.search(r"(\s+at\s+|\s+@\s+|\s+[|–—―-]\s+)", line))
+            has_delim = bool(re.search(r"(\s+at\s+|\s+@\s+|\s+[|–—―-]\s+|,\s+)", line))
             has_date_curr = bool(re.search(date_pattern, line, re.I))
 
             next_line = lines[idx + 1] if idx + 1 < len(lines) else ""
@@ -533,11 +626,22 @@ class ResumeParser:
                         else:
                             comp = parts[0]
                             role_title = parts[1].split("(")[0].strip()
+                elif "," in clean_header and not " at " in clean_header:
+                    parts = [p.strip() for p in clean_header.split(",") if p.strip()]
+                    if len(parts) >= 2:
+                        if re.search(role_indicators, parts[0], re.I):
+                            role_title = parts[0]
+                            comp = parts[1]
+                        else:
+                            comp = parts[0]
+                            role_title = parts[1]
                 else:
                     role_match = re.search(role_indicators, clean_header, re.I)
                     if role_match:
                         role_title = clean_header[:role_match.end()].strip()
                         comp = clean_header[role_match.end():].strip().lstrip("-–—―|@ ")
+
+                comp = comp.lstrip(", -–—―|@").strip()
 
                 current_entry = {
                     "company": comp or "Company",
@@ -615,7 +719,10 @@ class ResumeParser:
                 if line.lower().startswith("project:") or line.lower().startswith("project -"):
                     is_new_proj = True
                     title = line.split(":", 1)[-1].split("-", 1)[-1].strip()
-                # Pattern 2: Delimited with Project or Research indicator
+                # Pattern 2: Delimited with Project or Research indicator, or Title - Subfield in dedicated projects section
+                elif is_project_section and re.search(r"\s+[–—―-]\s+", line) and not re.search(date_pattern, line, re.I) and len(line) < 100:
+                    is_new_proj = True
+                    title = re.split(r"\s+[–—―-]\s+", line, maxsplit=1)[0].strip()
                 elif re.search(r"\s+[–—―-]\s+", line) and re.search(r"\b(project|research|capstone|system|chatbot|pipeline|platform|engine|app)\b", line, re.I):
                     if is_project_section or not re.search(r"\b(engineer|developer|intern|lead|manager)\b", line, re.I):
                         is_new_proj = True
@@ -634,6 +741,10 @@ class ResumeParser:
                     if not (line.rstrip().endswith(".") and len(line.split()) > 8):
                         is_new_proj = True
                         title = re.sub(r"^\s*\d+[\.\)]\s+", "", line).strip()
+
+                # Guard against major section headers being classified as project titles
+                if title.strip().upper() in ["COMPETITIONS", "EXTRA CURRICULAR ACTIVITIES", "SCHOLARSHIPS", "AWARDS", "EDUCATION", "ACADEMIC DETAILS", "TECHNICAL PROFICIENCY", "SUBJECTS / ELECTIVES"]:
+                    is_new_proj = False
 
                 if is_new_proj and title and len(title) > 2:
                     clean_title = re.sub(r"^[0-9\.\-\s]+", "", title).strip()
@@ -723,7 +834,7 @@ class ResumeParser:
                 target_dict["metrics"].append(m)
 
         # Ownership statements
-        if re.search(r"\b(architected|designed|spearheaded|led|owned|built|implemented|created)\b", line, re.I):
+        if re.search(r"\b(architected|designed|spearheaded|led|owned|built|implemented|created|engineered|developed|deployed|integrated|identified|patched)\b", line, re.I):
             target_dict["ownership_claims"].append(line)
             target_dict["responsibilities"].append(line)
 
@@ -752,7 +863,9 @@ class ResumeParser:
             "Vue", "Angular", "Node.js", "PostgreSQL", "MySQL", "SQLite", "MongoDB",
             "Redis", "Kafka", "RabbitMQ", "Elasticsearch", "Docker", "Kubernetes",
             "AWS", "GCP", "Azure", "Terraform", "GraphQL", "gRPC", "REST API",
-            "Microservices", "Git", "Linux", "CI/CD", "Prometheus", "Grafana"
+            "Microservices", "Git", "Linux", "CI/CD", "Prometheus", "Grafana",
+            "Solidity", "Hardhat", "Remix", "MetaMask", "Supabase", "Streamlit",
+            "Oracle", "Vercel", "Bootstrap", "Groq"
         ]
 
         text_lower = f" {text.lower()} "
@@ -769,19 +882,52 @@ class ResumeParser:
         """
         Extracts education entries if present in text; returns [] otherwise.
         """
-        edu_text = cls._extract_section_text(text, ["education", "academic background", "academics", "university"])
-        if not edu_text:
-            return []
+        edu_list: List[Dict[str, Any]] = []
 
-        lines = [line.strip() for line in edu_text.split("\n") if line.strip()]
-        edu_list = []
-        for line in lines:
-            if re.search(r"\b(bachelor|master|phd|b\.tech|m\.tech|b\.s|m\.s|degree|university|college|institute)\b", line, re.I):
-                edu_list.append({
-                    "degree": line,
-                    "institution": "University/Institution",
-                    "grad_year": re.search(r"(20\d\d|19\d\d)", line).group(0) if re.search(r"(20\d\d|19\d\d)", line) else ""
-                })
+        # 1. Check header for college degree (e.g. B.E., B.Tech, Computer Science Engineering)
+        degree_match = re.search(r'\b(B\.E\.|B\.Tech|B\.S\.|M\.Tech|M\.S\.|Bachelor|Master)\b[^\n]*', text[:600], re.I)
+        cs_match = re.search(r'\b(Computer Science[^\n,]*|Electrical[^\n,]*|Mechanical[^\n,]*|Information Technology[^\n,]*)', text[:600], re.I)
+        grad_year_match = re.search(r'\b(202\d|201\d)\b', text[:600])
+        inst = "BITS Pilani" if "bits-pilani" in text.lower() else "University"
+        if degree_match or cs_match:
+            deg = degree_match.group(0).strip() if degree_match else ""
+            if cs_match and cs_match.group(0) not in deg:
+                deg = f"{deg}, {cs_match.group(0).strip()}".strip(", ")
+            edu_list.append({
+                "degree": deg or "Bachelor of Engineering",
+                "institution": inst,
+                "grad_year": grad_year_match.group(1) if grad_year_match else ""
+            })
+
+        # 2. Extract from dedicated education / academic details section
+        edu_text = cls._extract_section_text(text, ["education", "academic background", "academics", "academic details", "academic record", "academics details"])
+        if edu_text:
+            lines = [line.strip() for line in edu_text.split("\n") if line.strip()]
+            for idx, line in enumerate(lines):
+                if re.match(r"^(COURSE|INSTITUTE|BOARD|UNIVERSITY|SCORE|YEAR)\b", line, re.I):
+                    continue
+                if re.search(r"\b(bachelor|master|phd|b\.tech|m\.tech|b\.s|m\.s|degree)\b", line, re.I):
+                    edu_list.append({
+                        "degree": line,
+                        "institution": "University/Institution",
+                        "grad_year": re.search(r"(20\d\d|19\d\d)", line).group(0) if re.search(r"(20\d\d|19\d\d)", line) else ""
+                    })
+                elif re.match(r"^(CLASS\s+(?:XII|X|12|10)|12th|10th)", line, re.I):
+                    cls_name = line
+                    school = lines[idx + 1] if idx + 1 < len(lines) else "School"
+                    score = ""
+                    year = ""
+                    for forward in lines[idx + 1:idx + 6]:
+                        if "%" in forward or re.search(r"\b\d+\.\d+\s*%", forward):
+                            score = forward
+                        if re.match(r"^(20\d\d|19\d\d)$", forward):
+                            year = forward
+                    edu_list.append({
+                        "degree": f"{cls_name} ({score})" if score else cls_name,
+                        "institution": school,
+                        "grad_year": year
+                    })
+
         return edu_list
 
     @classmethod
@@ -800,32 +946,33 @@ class ResumeParser:
         """
         Extracts actual achievements if present in text; returns [] otherwise.
         """
-        ach_text = cls._extract_section_text(text, ["achievements", "honors", "awards"])
+        ach_text = cls._extract_section_text(text, ["achievements", "honors", "awards", "scholarships", "competitions", "hackathons"])
         if not ach_text:
             return []
         lines = [line.lstrip("•*- ").strip() for line in ach_text.split("\n") if line.strip()]
-        return [l for l in lines if len(l) > 3 and not re.search(r"(achievements|honors|awards)", l, re.I)]
+        return [l for l in lines if len(l) > 3 and not re.search(r"^(achievements|honors|awards|scholarships|competitions)$", l, re.I)]
 
     @classmethod
     def _extract_extracurricular(cls, text: str) -> List[str]:
         """
         Extracts actual extracurriculars if present in text; returns [] otherwise.
         """
-        extra_text = cls._extract_section_text(text, ["extracurricular", "volunteer", "activities", "leadership"])
+        extra_text = cls._extract_section_text(text, ["extracurricular", "volunteer", "activities", "leadership", "extra curricular activities", "extracurricular activities"])
         if not extra_text:
             return []
         lines = [line.lstrip("•*- ").strip() for line in extra_text.split("\n") if line.strip()]
-        return [l for l in lines if len(l) > 3 and not re.search(r"(extracurricular|activities)", l, re.I)]
+        return [l for l in lines if len(l) > 3 and not re.search(r"^(extracurricular|activities)$", l, re.I)]
 
     KNOWN_SECTION_HEADERS = [
         "summary", "about", "profile", "objective",
-        "experience", "work experience", "employment", "professional experience",
+        "experience", "work experience", "employment", "professional experience", "internships", "internship experience",
         "projects", "personal projects", "technical projects", "academic projects",
-        "skills", "technical skills", "core competencies",
-        "education", "academic background", "academics",
+        "skills", "technical skills", "technical proficiency", "core competencies",
+        "education", "academic background", "academics", "academic details", "academic record",
         "certifications", "certificates", "licenses",
-        "achievements", "honors", "awards",
-        "extracurricular", "activities", "leadership", "volunteer"
+        "achievements", "honors", "awards", "scholarships", "competitions", "hackathons",
+        "extracurricular", "activities", "leadership", "volunteer", "extra curricular activities", "extracurricular activities",
+        "subjects / electives", "coursework", "relevant coursework"
     ]
 
     @classmethod

@@ -46,6 +46,57 @@ class DocumentParser:
                 return str(file_bytes), "unknown"
 
     @classmethod
+    def _extract_page_layout_text(cls, page) -> str:
+        """
+        Extracts text from a PDF page respecting physical 2D reading order.
+        Groups words into horizontal lines by baseline coordinate clustering,
+        preventing multi-stream font layering (e.g. bold keywords rendered in separate streams)
+        from splitting sentences into disjoint blocks.
+        """
+        try:
+            words = page.get_text("words", sort=True)
+            if not words:
+                return page.get_text("text").strip()
+
+            page_width = page.rect.width
+
+            # Detect two-column layout
+            left_words = [w for w in words if w[2] <= page_width * 0.52]
+            right_words = [w for w in words if w[0] >= page_width * 0.48]
+            has_two_cols = (
+                len(left_words) >= 15 and len(right_words) >= 15 and
+                (len(left_words) + len(right_words)) >= len(words) * 0.85
+            )
+
+            def cluster_words_to_lines(word_list):
+                if not word_list:
+                    return []
+                # Group words with vertical baseline tolerance of 3.5 points
+                lines_dict = {}
+                for w in word_list:
+                    # w: (x0, y0, x1, y1, word, block_no, line_no, word_no)
+                    y_key = round(w[1] / 3.5) * 3.5
+                    lines_dict.setdefault(y_key, []).append((w[0], w[4]))
+
+                result_lines = []
+                for y in sorted(lines_dict.keys()):
+                    row = sorted(lines_dict[y], key=lambda x: x[0])
+                    line_str = " ".join(t for _, t in row).strip()
+                    if line_str:
+                        result_lines.append(line_str)
+                return result_lines
+
+            if has_two_cols:
+                col1_lines = cluster_words_to_lines(left_words)
+                col2_lines = cluster_words_to_lines(right_words)
+                return "\n".join(col1_lines) + "\n\n" + "\n".join(col2_lines)
+            else:
+                lines = cluster_words_to_lines(words)
+                return "\n".join(lines)
+        except Exception:
+            return page.get_text("text").strip()
+
+    @classmethod
     def _extract_from_pdf(cls, file_bytes: bytes) -> str:
         try:
             doc = fitz.open(stream=file_bytes, filetype="pdf")
@@ -61,31 +112,19 @@ class DocumentParser:
 
             pages_text = []
             for page in doc:
-                # Column-aware block extraction: prevents interleaving left and right columns
-                blocks = page.get_text("blocks")
-                text_blocks = [
-                    b for b in blocks 
-                    if len(b) >= 5 and (len(b) < 7 or b[6] == 0) and isinstance(b[4], str) and b[4].strip()
-                ]
+                # 1. Use 2D spatial word-clustering to prevent bold font layers from de-interleaving text
+                page_content = cls._extract_page_layout_text(page)
 
-                page_width = page.rect.width
-                has_two_columns = False
-                col1 = []
-                col2 = []
-
-                if len(text_blocks) >= 4:
-                    left_blocks = [b for b in text_blocks if b[2] <= page_width * 0.55]
-                    right_blocks = [b for b in text_blocks if b[0] >= page_width * 0.40]
-                    if len(left_blocks) >= 2 and len(right_blocks) >= 2 and (len(left_blocks) + len(right_blocks)) >= len(text_blocks) * 0.75:
-                        has_two_columns = True
-                        col1 = sorted(left_blocks, key=lambda b: (b[1], b[0]))
-                        col2 = sorted(right_blocks, key=lambda b: (b[1], b[0]))
-
-                if has_two_columns:
-                    page_content = "\n\n".join([b[4].strip() for b in col1] + [b[4].strip() for b in col2])
-                else:
-                    sorted_blocks = sorted(text_blocks, key=lambda b: (b[1], b[0]))
-                    page_content = "\n\n".join([b[4].strip() for b in sorted_blocks])
+                # Fallback to column-aware blocks if word extraction was too sparse
+                if len(page_content.strip()) < 30:
+                    blocks = page.get_text("blocks")
+                    text_blocks = [
+                        b for b in blocks 
+                        if len(b) >= 5 and (len(b) < 7 or b[6] == 0) and isinstance(b[4], str) and b[4].strip()
+                    ]
+                    if text_blocks:
+                        sorted_blocks = sorted(text_blocks, key=lambda b: (b[1], b[0]))
+                        page_content = "\n\n".join([b[4].strip() for b in sorted_blocks])
 
                 if not page_content.strip():
                     page_content = page.get_text("text").strip()
@@ -113,7 +152,7 @@ class DocumentParser:
                 return combined.strip()
 
             # If PDF has no digital text (scanned PDF), use vision at 150 DPI on up to 4 pages
-            if llm_client.gemini_key and len(doc) > 0:
+            if len(doc) > 0:
                 scanned_pages = []
                 for i in range(min(4, len(doc))):
                     pix = doc[i].get_pixmap(dpi=150)
@@ -177,55 +216,63 @@ class DocumentParser:
 
         b64 = base64.b64encode(file_bytes).decode("utf-8")
 
-        # 1. Use Gemini Vision if key is available
-        if llm_client.gemini_key:
-            extracted = cls._call_gemini_vision(b64, mime)
-            if extracted:
-                return extracted
+        # 1. Use Gemini Vision via key_pool
+        extracted = cls._call_gemini_vision(b64, mime)
+        if extracted and len(extracted.strip()) > 20:
+            return extracted
 
-        # Fallback if vision key is absent
+        # Fallback if vision extraction fails
         return (
-            "[Image uploaded: Vision extraction requires Gemini API key. "
+            "[Image uploaded: Vision extraction requires active Gemini API key. "
             "Please configure Gemini key or paste text manually.]"
         )
 
     @classmethod
     def _call_gemini_vision(cls, b64_data: str, mime_type: str) -> str:
-        if not llm_client.gemini_key:
-            return ""
-        models_to_try = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]
-        for model in models_to_try:
-            try:
-                url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={llm_client.gemini_key}"
-                payload = {
-                    "contents": [
-                        {
-                            "role": "user",
-                            "parts": [
-                                {"inline_data": {"mime_type": mime_type, "data": b64_data}},
-                                {
-                                    "text": (
-                                        "You are an OCR and technical document digitization specialist. "
-                                        "Extract all text, sections, bullet points, headers, and code from this document image verbatim. "
-                                        "Preserve the original layout, structure, and technical terminology exactly. "
-                                        "Do not add conversational preamble. Return only the extracted text."
-                                    )
-                                }
-                            ]
-                        }
-                    ],
-                    "generationConfig": {"temperature": 0.1}
-                }
-                with httpx.Client(timeout=25.0) as client:
-                    resp = client.post(url, json=payload)
-                    if resp.status_code == 200:
-                        data = resp.json()
-                        if "candidates" in data and data["candidates"]:
-                            parts = data["candidates"][0].get("content", {}).get("parts", [])
-                            if parts and "text" in parts[0]:
-                                return parts[0]["text"].strip()
-            except Exception as e:
-                print(f"[DocumentParser] Gemini vision call error with {model}: {e}")
-                continue
+        from backend.app.llm.key_pool import key_pool
+        models_to_try = ["gemini-flash-latest", "gemini-flash-lite-latest"]
+        for _ in range(4):
+            key_obj = key_pool.get_next_key(preferred_provider="gemini")
+            if not key_obj:
+                break
+            for model in models_to_try:
+                try:
+                    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key_obj.key_string}"
+                    payload = {
+                        "contents": [
+                            {
+                                "role": "user",
+                                "parts": [
+                                    {"inline_data": {"mime_type": mime_type, "data": b64_data}},
+                                    {
+                                        "text": (
+                                            "You are an OCR and technical document digitization specialist. "
+                                            "Extract all text, sections, bullet points, headers, tables, and code from this document image verbatim. "
+                                            "Preserve the original layout, structure, and technical terminology exactly. "
+                                            "Do not add conversational preamble. Return only the extracted text."
+                                        )
+                                    }
+                                ]
+                            }
+                        ],
+                        "generationConfig": {"temperature": 0.1}
+                    }
+                    with httpx.Client(timeout=30.0) as client:
+                        resp = client.post(url, json=payload)
+                        if resp.status_code == 200:
+                            data = resp.json()
+                            if "candidates" in data and data["candidates"]:
+                                parts = data["candidates"][0].get("content", {}).get("parts", [])
+                                if parts and "text" in parts[0]:
+                                    return parts[0]["text"].strip()
+                        elif resp.status_code == 429:
+                            key_obj.trigger_cooldown(30.0)
+                            break
+                        elif resp.status_code == 401:
+                            key_obj.trigger_cooldown(86400.0)
+                            break
+                except Exception as e:
+                    print(f"[DocumentParser] Gemini vision call error with {model}: {e}")
+                    continue
         return ""
 
