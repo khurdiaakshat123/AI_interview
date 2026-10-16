@@ -50,6 +50,15 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
           method: 'POST',
           body: formData
         });
+        if (!res.ok && res.status === 404 && endpoint !== '/api/candidate/extract-file') {
+          const fallbackRes = await fetch('/api/candidate/extract-file', {
+            method: 'POST',
+            body: formData
+          });
+          if (fallbackRes.ok) {
+            res = fallbackRes;
+          }
+        }
       } catch {
         res = await fetch('/api/candidate/extract-file', {
           method: 'POST',
@@ -58,13 +67,15 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
       }
 
       if (!res.ok) {
+        const rawText = await res.text().catch(() => '');
         let errMsg = `Failed to extract text (${res.status})`;
-        try {
-          const errJson = await res.json();
-          errMsg = errJson.detail || errMsg;
-        } catch {
-          const text = await res.text();
-          if (text) errMsg = text;
+        if (rawText) {
+          try {
+            const errJson = JSON.parse(rawText);
+            errMsg = errJson.detail || errMsg;
+          } catch {
+            errMsg = rawText.length > 250 ? rawText.slice(0, 250) + '...' : rawText;
+          }
         }
         throw new Error(errMsg);
       }
@@ -88,7 +99,9 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
       setActiveMode('text'); // switch to text view so candidate can review the extracted text
     } catch (err: any) {
       console.error(err);
-      setError(err.message || 'Error parsing document.');
+      setError(err?.message || 'Error parsing document.');
+      setUploadedFileName(null);
+      setExtractedStats(null);
     } finally {
       setUploading(false);
     }
