@@ -163,12 +163,17 @@ class ResumeParser:
                 name = line
                 break
 
-        # 2. Try Live LLM extraction if resume text has substance
-        if len(text) > 80 and (getattr(llm_client, "gemini_key", None) or getattr(llm_client, "groq_key", None) or getattr(llm_client, "openai_key", None)):
+        # 2. Try Live LLM extraction if resume text has substance and any keys are configured
+        from backend.app.llm.key_pool import key_pool
+        has_keys = bool(
+            getattr(llm_client, "gemini_key", None)
+            or getattr(llm_client, "groq_key", None)
+            or getattr(llm_client, "openai_key", None)
+            or getattr(llm_client, "anthropic_key", None)
+            or (hasattr(key_pool, "keys") and key_pool.keys)
+        )
+        if len(text) > 80 and has_keys:
             try:
-                # Rate limit pacing break before calling LLM
-                time.sleep(2.0)
-
                 # Truncate text if excessively large (keep up to ~7000 chars) to prevent token limit bursts
                 clean_text = text[:7000] if len(text) > 7000 else text
 
@@ -244,9 +249,6 @@ class ResumeParser:
                         print(f"[ResumeParser] LLM attempt {attempt + 1} failed: {llm_err}. Waiting 3s...")
                         time.sleep(3.0)
 
-                # Post-LLM pacing break to protect downstream rate limits
-                time.sleep(1.0)
-
                 if completion:
                     parsed_llm = cls._safe_json_parse(completion)
                     if parsed_llm and isinstance(parsed_llm, dict):
@@ -279,6 +281,9 @@ class ResumeParser:
                             else:
                                 p["overall_relevance"] = max(0.1, min(1.0, float(rel)))
                             p["irrelevant_topics"] = p.get("irrelevant_topics", [])
+                            p.setdefault("relevant_topics", [p.get("title", "Project")])
+                            p.setdefault("technologies", [])
+                            p.setdefault("description", f"Technical project: {p.get('title', 'Project')}.")
 
                         # Sort projects descending by overall_relevance
                         projects.sort(key=lambda p: float(p.get("overall_relevance", 0.5)), reverse=True)
@@ -316,6 +321,10 @@ class ResumeParser:
         projects.sort(key=lambda p: float(p.get("overall_relevance", 0.5)), reverse=True)
         for idx, p in enumerate(projects):
             p["questioning_priority"] = idx + 1
+            p.setdefault("irrelevant_topics", [])
+            p.setdefault("relevant_topics", [p.get("title", "Project")])
+            p.setdefault("technologies", [])
+            p.setdefault("description", f"Technical project: {p.get('title', 'Project')}.")
 
         return {
             "candidate_name": name,
@@ -810,7 +819,8 @@ class ResumeParser:
         topics = [proj["title"]]
         if found_tech:
             topics.extend(found_tech[:3])
-        proj["relevant_topics"] = list(set(proj["relevant_topics"] + topics))
+        proj["relevant_topics"] = list(set(proj.get("relevant_topics", []) + topics))
+        proj["irrelevant_topics"] = proj.get("irrelevant_topics", [])
 
         # Calculate semantic relevance
         combined_text = f"{proj['title']} {proj['description']} {' '.join(proj['technologies'])}"

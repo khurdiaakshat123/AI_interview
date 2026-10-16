@@ -201,12 +201,12 @@ class ResumeUploadRequest(BaseModel):
 class ProjectRelevance(BaseModel):
     project_id: str
     title: str
-    description: str
-    technologies: List[str]
-    overall_relevance: float
-    questioning_priority: int
-    relevant_topics: List[str]
-    irrelevant_topics: List[str]
+    description: str = ""
+    technologies: List[str] = Field(default_factory=list)
+    overall_relevance: float = 0.70
+    questioning_priority: int = 1
+    relevant_topics: List[str] = Field(default_factory=list)
+    irrelevant_topics: List[str] = Field(default_factory=list)
 
 class StructuredResumeOut(BaseModel):
     id: str

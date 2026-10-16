@@ -95,7 +95,7 @@ class KeyPool:
         # Shuffle keys initially to distribute load across workers if any
         random.shuffle(self.keys)
 
-    def get_next_key(self, preferred_provider: Optional[str] = None) -> Optional[APIKey]:
+    def get_next_key(self, preferred_provider: Optional[str] = None, strict_provider: bool = False) -> Optional[APIKey]:
         if not self.keys:
             return None
             
@@ -107,6 +107,8 @@ class KeyPool:
                 self.current_idx = (self.current_idx + 1) % len(self.keys)
                 if k.provider == preferred_provider and k.is_available():
                     return k
+            if strict_provider:
+                return None
             print(f"[KeyPool] All {preferred_provider} keys are busy/exhausted. Falling back to other providers.")
 
         # 2. If no preference or preferred provider is exhausted, fall back to ANY available key

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   FileText, Cpu, CheckCircle2, ArrowRight, Upload, Sparkles,
-  Building2, Briefcase, Star, Layers, ShieldCheck
+  Building2, Briefcase, Star, Layers, ShieldCheck, AlertCircle
 } from 'lucide-react';
 import { StructuredResume } from '../types';
 import { api } from '../services/api';
@@ -24,13 +24,18 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
   const [candidateEmail, setCandidateEmail] = useState('alex.mercer@intervyn.ai');
   const [resumeText, setResumeText] = useState('');
   const [structuredResume, setStructuredResume] = useState<StructuredResume | null>(null);
+  const [isCustomResumeParsed, setIsCustomResumeParsed] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [parseError, setParseError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadSample() {
       try {
         const sample = await api.getSampleResume();
-        setStructuredResume(sample);
+        // Only show sample preview if user has not entered resume text yet
+        if (!resumeText.trim()) {
+          setStructuredResume(sample);
+        }
       } catch (err) {
         console.error(err);
       }
@@ -38,10 +43,17 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
     loadSample();
   }, []);
 
-  const handleParseResume = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleResumeTextChange = (text: string) => {
+    setResumeText(text);
+    setIsCustomResumeParsed(false);
+    setParseError(null);
+  };
+
+  const handleParseResume = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     if (!resumeText.trim()) return;
     setLoading(true);
+    setParseError(null);
     try {
       const res = await api.parseResume({
         candidate_name: candidateName,
@@ -51,9 +63,16 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
         role
       });
       setStructuredResume(res);
-    } catch (err) {
+      setIsCustomResumeParsed(true);
+      if (res.candidate_name && res.candidate_name !== 'Candidate' && res.candidate_name !== 'Alex Mercer') {
+        setCandidateName(res.candidate_name);
+      }
+      if (res.candidate_email) {
+        setCandidateEmail(res.candidate_email);
+      }
+    } catch (err: any) {
       console.error(err);
-      alert('Failed to parse resume.');
+      setParseError(err.message || 'Failed to parse resume structure.');
     } finally {
       setLoading(false);
     }
@@ -61,18 +80,19 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
 
   const handleStartInterview = async () => {
     setLoading(true);
+    setParseError(null);
     try {
       const turn = await api.startInterview({
         company,
         role,
-        resume_id: structuredResume?.id,
+        resume_id: isCustomResumeParsed && structuredResume ? structuredResume.id : undefined,
         candidate_name: candidateName,
-        resume_text: resumeText
+        resume_text: resumeText.trim() ? resumeText.trim() : undefined
       });
       onNavigate('live-interview', { turn, company, role, candidateName });
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      alert('Failed to launch live interview session.');
+      alert(err.message || 'Failed to launch live interview session.');
     } finally {
       setLoading(false);
     }
@@ -146,10 +166,10 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
             {/* Resume Text Input or File Upload */}
             <div className="pt-2 border-t border-slate-800">
               <DocumentUploadInput
-                label="Resume Document (.pdf, .png, .jpg, .txt)"
-                placeholder="Upload your resume PDF/image or paste plain text..."
+                label="Resume Document (.pdf, .docx, .png, .jpg, .txt)"
+                placeholder="Upload your resume PDF/Word/image or paste plain text..."
                 value={resumeText}
-                onChange={setResumeText}
+                onChange={handleResumeTextChange}
                 onMetaExtracted={({ name: extractedName, email: extractedEmail }) => {
                   if (extractedName) setCandidateName(extractedName);
                   if (extractedEmail) setCandidateEmail(extractedEmail);
@@ -157,36 +177,49 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
               />
             </div>
 
+            {parseError && (
+              <div className="p-2.5 rounded-xl bg-red-950/50 border border-red-800 text-[11px] text-red-300 flex items-center gap-2">
+                <AlertCircle className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
+                <span>{parseError}</span>
+              </div>
+            )}
+
             <button
               onClick={handleParseResume}
               disabled={loading || !resumeText.trim()}
               className="w-full py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-500/30 flex items-center justify-center gap-2 transition-all disabled:opacity-50"
             >
               <Upload className="w-3.5 h-3.5" />
-              {loading ? 'Parsing Resume Structure...' : 'Parse & Structure Resume'}
+              {loading ? 'Parsing Resume Structure...' : 'Parse & Preview Structure'}
             </button>
           </div>
 
           {/* Start Interview Action Card */}
-          {structuredResume && (
-            <div className="p-6 rounded-2xl bg-gradient-to-b from-slate-900 to-indigo-950/30 border border-white/10 shadow-lg space-y-4">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400">
-                <CheckCircle2 className="w-4 h-4" />
-                Ready to Launch
-              </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Resume parsed successfully. The interview begins with your highest-relevance project: <span className="text-white font-semibold">{structuredResume.projects[0]?.title}</span>.
-              </p>
-              <button
-                onClick={handleStartInterview}
-                disabled={loading}
-                className="w-full py-3.5 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 text-white flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/25 transition-all active:scale-[0.98]"
-              >
-                {loading ? 'Initializing Interview Room...' : 'Enter AI Technical Interview Room'}
-                <ArrowRight className="w-4 h-4" />
-              </button>
+          <div className="p-6 rounded-2xl bg-gradient-to-b from-slate-900 to-indigo-950/30 border border-white/10 shadow-lg space-y-4">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400">
+              <CheckCircle2 className="w-4 h-4" />
+              {isCustomResumeParsed ? 'Custom Resume Ready' : (resumeText.trim() ? 'Ready to Launch' : 'Sample Preview Loaded')}
             </div>
-          )}
+            <p className="text-xs text-slate-300 leading-relaxed">
+              {isCustomResumeParsed && structuredResume?.projects[0] ? (
+                <>Resume structured. Interview begins with: <span className="text-white font-semibold">{structuredResume.projects[0].title}</span>.</>
+              ) : resumeText.trim() ? (
+                <>Your custom resume is loaded. Click below to launch your tailored live technical interview session.</>
+              ) : structuredResume?.projects[0] ? (
+                <>Sample preview loaded: <span className="text-white font-semibold">{structuredResume.projects[0].title}</span>. Paste or upload your own resume above for a customized session.</>
+              ) : (
+                <>Upload or paste your resume to launch an interview.</>
+              )}
+            </p>
+            <button
+              onClick={handleStartInterview}
+              disabled={loading || (!resumeText.trim() && !structuredResume)}
+              className="w-full py-3.5 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 text-white flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/25 transition-all active:scale-[0.98] disabled:opacity-50"
+            >
+              {loading ? 'Initializing Interview Room...' : 'Enter AI Technical Interview Room'}
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Right Details: Extracted Projects & Relevance Ranking */}

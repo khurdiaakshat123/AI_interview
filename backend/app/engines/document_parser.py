@@ -31,12 +31,16 @@ class DocumentParser:
         if fname.endswith(".pdf") or "application/pdf" in ctype:
             return cls._extract_from_pdf(file_bytes), "pdf"
 
-        # 2. Check if Image
+        # 2. Check if Word Document (DOCX)
+        if fname.endswith(".docx") or "officedocument.wordprocessingml" in ctype or "application/msword" in ctype or fname.endswith(".doc"):
+            return cls._extract_from_docx(file_bytes), "docx"
+
+        # 3. Check if Image
         image_exts = [".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tiff"]
         if any(fname.endswith(ext) for ext in image_exts) or "image/" in ctype:
             return cls._extract_from_image(file_bytes, fname, ctype), "image"
 
-        # 3. Default to text decoding
+        # 4. Default to text decoding (TXT, MD, CSV, etc.)
         try:
             return file_bytes.decode("utf-8").strip(), "text"
         except UnicodeDecodeError:
@@ -228,12 +232,41 @@ class DocumentParser:
         )
 
     @classmethod
+    def _extract_from_docx(cls, file_bytes: bytes) -> str:
+        """
+        Extracts plain text paragraphs from Microsoft Word (.docx) documents.
+        Directly parses word/document.xml without external dependencies.
+        """
+        import zipfile
+        import xml.etree.ElementTree as ET
+        try:
+            with zipfile.ZipFile(io.BytesIO(file_bytes)) as zf:
+                if "word/document.xml" not in zf.namelist():
+                    return "Error: Invalid DOCX archive format."
+                xml_data = zf.read("word/document.xml")
+                root = ET.fromstring(xml_data)
+                
+                w_ns = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+                paragraphs = []
+                for p in root.iter(f"{{{w_ns}}}p"):
+                    texts = [t.text for t in p.iter(f"{{{w_ns}}}t") if t.text]
+                    if texts:
+                        line = "".join(texts).strip()
+                        if line:
+                            paragraphs.append(line)
+                
+                text = "\n\n".join(paragraphs).strip()
+                return text if text else "DOCX file contains no readable text."
+        except Exception as e:
+            return f"Error extracting DOCX text: {e}"
+
+    @classmethod
     def _call_gemini_vision(cls, b64_data: str, mime_type: str) -> str:
         from backend.app.llm.key_pool import key_pool
-        models_to_try = ["gemini-flash-latest", "gemini-flash-lite-latest"]
+        models_to_try = ["gemini-flash-lite-latest", "gemini-flash-latest"]
         for _ in range(4):
-            key_obj = key_pool.get_next_key(preferred_provider="gemini")
-            if not key_obj:
+            key_obj = key_pool.get_next_key(preferred_provider="gemini", strict_provider=True)
+            if not key_obj or key_obj.provider != "gemini":
                 break
             for model in models_to_try:
                 try:

@@ -135,20 +135,31 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
         'Authorization': `Bearer ${token}`
       };
 
-      const response = await fetch(`${BASE_URL}/candidate/setup`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          experience_years: experience,
-          target_company: company.trim(),
-          target_role: role.trim(),
-          job_type: 'Full-Time',
-          jd_text: jdText.trim(),
-          resume_text: resumeText.trim()
-        })
+      const payloadBody = JSON.stringify({
+        name: name.trim(),
+        email: email.trim(),
+        experience_years: experience,
+        target_company: company.trim(),
+        target_role: role.trim(),
+        job_type: 'Full-Time',
+        jd_text: jdText.trim(),
+        resume_text: resumeText.trim()
       });
+
+      let response: Response;
+      try {
+        response = await fetch(`${BASE_URL}/candidate/setup`, {
+          method: 'POST',
+          headers,
+          body: payloadBody
+        });
+      } catch {
+        response = await fetch('/api/candidate/setup', {
+          method: 'POST',
+          headers,
+          body: payloadBody
+        });
+      }
 
       if (!response.ok) {
         const errText = await response.text();

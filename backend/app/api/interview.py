@@ -30,11 +30,11 @@ def parse_resume(payload: ResumeUploadRequest, db: Session = Depends(get_db), cu
     resume = StructuredResume(
         id=generate_uuid(),
         user_id=user_id,
-        candidate_name=payload.candidate_name or parsed["candidate_name"],
-        candidate_email=payload.candidate_email or parsed["candidate_email"],
+        candidate_name=payload.candidate_name or parsed.get("candidate_name") or "Candidate",
+        candidate_email=payload.candidate_email or parsed.get("candidate_email") or current_user.email,
         raw_text=payload.resume_text,
-        sections_json=parsed["sections"],
-        section_weights_json=parsed["section_weights"],
+        sections_json=parsed.get("sections", {}),
+        section_weights_json=parsed.get("section_weights", {}),
         created_at=utc_now()
     )
     db.add(resume)
@@ -74,23 +74,32 @@ def create_interview_session(payload: InterviewSessionCreate, db: Session = Depe
     user_id = current_user.id
 
     resume = None
-    if payload.resume_id:
+    if payload.resume_text and payload.resume_text.strip():
+        # Candidate provided explicit resume text - prioritize over any stale sample resume_id
+        if payload.resume_id:
+            existing = db.query(StructuredResume).filter(StructuredResume.id == payload.resume_id).first()
+            if existing and existing.raw_text and existing.raw_text.strip() == payload.resume_text.strip():
+                resume = existing
+
+        if not resume:
+            parsed = ResumeParser.parse_resume(payload.resume_text, payload.company, payload.role)
+            chosen_name = payload.candidate_name or parsed.get("candidate_name") or "Candidate"
+            chosen_email = payload.candidate_email or parsed.get("candidate_email") or current_user.email
+            resume = StructuredResume(
+                id=generate_uuid(),
+                user_id=user_id,
+                candidate_name=chosen_name,
+                candidate_email=chosen_email,
+                raw_text=payload.resume_text,
+                sections_json=parsed.get("sections", {}),
+                section_weights_json=parsed.get("section_weights", {}),
+                created_at=utc_now()
+            )
+            db.add(resume)
+            db.commit()
+            db.refresh(resume)
+    elif payload.resume_id:
         resume = db.query(StructuredResume).filter(StructuredResume.id == payload.resume_id).first()
-    elif payload.resume_text:
-        parsed = ResumeParser.parse_resume(payload.resume_text, payload.company, payload.role)
-        resume = StructuredResume(
-            id=generate_uuid(),
-            user_id=user_id,
-            candidate_name=payload.candidate_name or parsed["candidate_name"],
-            candidate_email=parsed["candidate_email"],
-            raw_text=payload.resume_text,
-            sections_json=parsed["sections"],
-            section_weights_json=parsed["section_weights"],
-            created_at=utc_now()
-        )
-        db.add(resume)
-        db.commit()
-        db.refresh(resume)
 
     role_profile = None
     if payload.role_topic_profile_id:

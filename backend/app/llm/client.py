@@ -166,7 +166,7 @@ class LLMClient:
                     
             elif key_obj.provider == "gemini":
                 try:
-                    gemini_models = ["gemini-flash-latest", "gemini-flash-lite-latest"]
+                    gemini_models = ["gemini-flash-lite-latest", "gemini-flash-latest"]
                     payload = {
                         "contents": [
                             {

@@ -161,6 +161,16 @@ def setup_candidate_and_run(
         target_role=role
     )
 
+    parsed_name = resume_parsed.get("candidate_name")
+    if parsed_name and parsed_name.strip() and parsed_name != "Candidate":
+        if not payload.name or payload.name.strip() in ["", "Candidate", "Alex Mercer", "Maya Lin"]:
+            candidate_name = parsed_name.strip()
+
+    parsed_email = resume_parsed.get("candidate_email")
+    if parsed_email and "@" in parsed_email:
+        if not payload.email or payload.email.strip() in ["", "alex.mercer@intervyn.ai", "maya.lin@example.com", "candidate@example.com"]:
+            candidate_email = parsed_email.strip().lower()
+
     resume_obj = StructuredResume(
         id=generate_uuid(),
         user_id=user.id,

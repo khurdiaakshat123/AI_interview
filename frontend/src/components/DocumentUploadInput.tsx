@@ -156,7 +156,7 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
           <input
             ref={fileInputRef}
             type='file'
-            accept='.pdf,.png,.jpg,.jpeg,.webp,.txt,.md'
+            accept='.pdf,.docx,.doc,.png,.jpg,.jpeg,.webp,.txt,.md'
             className='hidden'
             onChange={(e) => {
               if (e.target.files && e.target.files[0]) {
@@ -179,12 +179,13 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
               {uploading ? 'Analyzing Document with Multimodal AI...' : 'Click to upload or drag & drop'}
             </span>
             <span className='text-[11px] text-slate-400'>
-              Supports PDF, Screenshots/Images (PNG, JPG, WEBP), and Plain Text
+              Supports PDF, Word Documents (.docx), Screenshots/Images (PNG, JPG, WEBP), and Plain Text
             </span>
           </div>
 
           <div className='flex items-center justify-center gap-3 pt-1 text-[10px] text-slate-400'>
             <span className='flex items-center gap-1'><FileText className='w-3 h-3 text-red-400' /> PDF (PyMuPDF)</span>
+            <span className='flex items-center gap-1'><FileText className='w-3 h-3 text-sky-400' /> Word (.docx)</span>
             <span className='flex items-center gap-1'><Image className='w-3 h-3 text-blue-400' /> Images (Vision AI)</span>
             <span className='flex items-center gap-1'><FileCode className='w-3 h-3 text-emerald-400' /> TXT/MD</span>
           </div>
@@ -232,7 +233,34 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
         >
           <textarea
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => {
+              const val = e.target.value;
+              onChange(val);
+              if (onMetaExtracted && val.length > 25) {
+                const emailMatch = val.match(/[\w.-]+@[\w.-]+\.\w+/);
+                const email = emailMatch ? emailMatch[0].toLowerCase() : undefined;
+                const lines = val.split('\n').map(l => l.trim()).filter(Boolean);
+                let name: string | undefined;
+                for (const line of lines.slice(0, 6)) {
+                  const seg = line.split(/[|•·\t]/)[0].trim();
+                  const words = seg.split(/\s+/);
+                  if (
+                    !seg.includes('@') &&
+                    !/(http|linkedin|github|curriculum|resume|page|email|phone|summary|profile)/i.test(seg) &&
+                    !/\d/.test(seg) &&
+                    words.length >= 2 && words.length <= 4 &&
+                    seg.length < 40 &&
+                    words.every(w => /^[A-Za-z]/.test(w))
+                  ) {
+                    name = seg;
+                    break;
+                  }
+                }
+                if (name || email) {
+                  onMetaExtracted({ name, email });
+                }
+              }
+            }}
             rows={rows}
             placeholder={placeholder}
             className='w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white font-mono leading-relaxed focus:border-brand-500 focus:outline-none resize-none'
