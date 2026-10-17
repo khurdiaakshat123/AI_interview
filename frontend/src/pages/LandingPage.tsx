@@ -21,28 +21,27 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
       <div className="max-w-[1100px] mx-auto">
         {/* Left-Aligned Editorial Hero Headline */}
         <div className="mb-10 sm:mb-12">
-          <h1 className="font-serif text-[42px] sm:text-[50px] leading-[1.08] tracking-[-0.02em] text-text font-normal max-w-2xl">
-            Practice the OA. Then defend your resume.
+          <h1 className="font-serif text-[clamp(34px,4.2vw,46px)] leading-[1.15] tracking-[-0.01em] text-text font-normal max-w-[22ch] [text-wrap:balance]">
+            Prepare for Company OAs &amp; 1-on-1 Technical Interviews
           </h1>
-          <p className="mt-3 text-[15px] leading-[1.6] text-text-muted max-w-xl font-sans">
-            Targeted preparation for engineering interviews at Google, Stripe, Meta, and OpenAI. Realistic coding assessments paired with adaptive 1-on-1 technical evaluations.
+          <p className="mt-3 text-[15px] leading-[1.6] text-text-muted max-w-[60ch] font-sans">
+            Timed assessments modeled on how each company hires, plus AI interviews that question you on your own resume projects.
           </p>
         </div>
 
         {/* Two-Column Grid: 5fr / 7fr with Interview as primary focus */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Left Column (5fr): Practice & Timed Assessments */}
-          <div className="lg:col-span-5 bg-surface border border-border rounded-card p-8 flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-surface border border-border rounded-[12px] p-8 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-[12px] font-mono uppercase tracking-[0.06em] text-text-muted">
-                  Assessments
+                  ASSESSMENTS
                 </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-border" />
               </div>
 
               <h2 className="text-[20px] font-semibold text-text tracking-tight mb-2 font-sans">
-                Practice & Timed Assessments
+                Practice &amp; Timed Assessments
               </h2>
               
               <p className="text-[15px] leading-[1.6] text-text-muted mb-6 font-sans">
@@ -51,25 +50,25 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
 
               <ul className="space-y-3 text-[14px] text-text-muted mb-8 font-sans">
                 <li className="flex items-start gap-2.5">
-                  <span className="text-text-dim select-none font-mono mt-0.5">—</span>
+                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
                   <span>Extracts core subjects with prioritized importance weights</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-text-dim select-none font-mono mt-0.5">—</span>
+                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
                   <span>Personalized hints, architectural approaches, and code solutions</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-text-dim select-none font-mono mt-0.5">—</span>
+                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
                   <span>60-minute exam simulation matching real 7-day hiring cycles</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-text-dim select-none font-mono mt-0.5">—</span>
+                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
                   <span>Monaco editor with hidden boundary and performance test cases</span>
                 </li>
               </ul>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-auto pt-4">
               <button
                 onClick={() => handleAction('practice')}
                 className="h-10 px-4 rounded-md border border-border bg-transparent text-text hover:bg-surface-hover hover:border-border-focus font-sans text-[14px] font-medium flex items-center justify-center gap-2 transition-colors"
@@ -91,14 +90,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
           </div>
 
           {/* Right Column (7fr): AI Technical Interview - Primary Focus */}
-          <div className="lg:col-span-7 bg-surface border border-border rounded-card p-8 flex flex-col justify-between relative">
+          <div className="lg:col-span-7 bg-surface border border-border rounded-[12px] p-8 flex flex-col justify-between relative">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-[12px] font-mono uppercase tracking-[0.06em] text-accent">
-                  Primary Focus
+                  PRIMARY FOCUS
                 </span>
                 <span className="text-[12px] font-mono text-text-muted">
-                  Adaptive 5-Level Depth
+                  Adaptive 5-level depth
                 </span>
               </div>
 
@@ -110,10 +109,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                 Questions come from your own resume projects, with follow-ups up to five levels deep. You get two scores: project defense and CS fundamentals.
               </p>
 
-              <ul className="space-y-3 text-[14px] text-text-muted mb-8 font-sans">
+              <ul className="space-y-3 text-[14px] text-text-muted mb-6 font-sans">
                 <li className="flex items-start gap-2.5">
                   <span className="text-accent select-none font-mono mt-0.5">—</span>
-                  <span className="text-text">Rigorously probes architecture choices and production trade-offs</span>
+                  <span>Rigorously probes architecture choices and production trade-offs</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-accent select-none font-mono mt-0.5">—</span>
@@ -128,12 +127,40 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                   <span>Dual-dimensional scorecard for project defense and subject knowledge</span>
                 </li>
               </ul>
+
+              {/* Sample Scorecard Static Preview */}
+              <div className="mb-4 p-3.5 rounded-lg border border-border bg-bg/50 space-y-2.5">
+                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.06em]">
+                  <span className="text-text-muted">Scorecard Breakdown</span>
+                  <span className="text-[10px] text-text-muted/60 lowercase tracking-normal">(sample data)</span>
+                </div>
+                <div className="space-y-2 font-mono text-[12px]">
+                  <div>
+                    <div className="flex justify-between text-text mb-1">
+                      <span className="text-[11px]">Project defense</span>
+                      <span className="text-[11px] text-accent">72/100</span>
+                    </div>
+                    <div className="h-1 w-full bg-surface rounded-full overflow-hidden border border-border/40">
+                      <div className="h-full bg-accent rounded-full" style={{ width: '72%' }} />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-text mb-1">
+                      <span className="text-[11px]">Fundamentals</span>
+                      <span className="text-[11px] text-accent">64/100</span>
+                    </div>
+                    <div className="h-1 w-full bg-surface rounded-full overflow-hidden border border-border/40">
+                      <div className="h-full bg-accent/80 rounded-full" style={{ width: '64%' }} />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="pt-2">
+            <div className="mt-auto pt-4">
               <button
                 onClick={() => handleAction('interview')}
-                className="w-full h-11 px-6 rounded-md bg-accent hover:bg-accent-hover text-accent-contrast font-sans text-[14px] font-medium flex items-center justify-center gap-2 transition-colors"
+                className="w-full h-11 px-6 rounded-md bg-accent hover:opacity-90 text-accent-contrast font-sans text-[14px] font-medium flex items-center justify-center gap-2 transition-opacity"
               >
                 <span>Enter AI Interview Room</span>
                 <ArrowRight className="w-4 h-4" />
@@ -143,7 +170,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
         </div>
 
         {/* Restrained 3-Step Walkthrough Bar */}
-        <div className="mt-12 p-8 rounded-card border border-border bg-surface">
+        <div className="mt-12 p-8 rounded-[12px] border border-border bg-surface">
           <div className="flex items-center justify-between mb-6 pb-3 border-b border-border">
             <h3 className="font-serif text-[22px] text-text font-normal">
               Preparation Workflow

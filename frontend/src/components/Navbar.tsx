@@ -178,12 +178,17 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="sticky top-0 z-50 bg-bg border-b border-border transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Brand Wordmark */}
+          {/* Brand Wordmark & Mark */}
           <div 
-            className="flex items-center gap-2 cursor-pointer select-none group"
+            className="flex items-center gap-[10px] cursor-pointer select-none group"
             onClick={() => setCurrentTab('landing')}
           >
-            <span className="font-serif text-2xl text-text tracking-tight font-normal">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="shrink-0">
+              <rect x="0.5" y="0.5" width="27" height="27" rx="7" stroke="var(--border)"/>
+              <circle cx="14" cy="8.5" r="2.2" fill="var(--accent)"/>
+              <rect x="12.4" y="13" width="3.2" height="9" rx="1.2" fill="var(--text)"/>
+            </svg>
+            <span className="font-serif text-2xl text-text tracking-tight font-normal leading-none">
               intervyn<span className="text-accent">.</span>
             </span>
           </div>

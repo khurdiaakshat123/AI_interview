@@ -47,7 +47,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
   return (
     <div className="max-w-[1100px] mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-8">
       {/* Top Welcome Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-card bg-surface border border-border">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-[12px] bg-surface border border-border">
         <div>
           <span className="text-[12px] font-mono uppercase tracking-[0.06em] text-accent block mb-1">
             Target Preparation
@@ -111,7 +111,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
       {/* KPI Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-5 rounded-card bg-surface border border-border">
+        <div className="p-5 rounded-[12px] bg-surface border border-border">
           <div className="flex items-center justify-between text-text-muted text-[11px] font-mono uppercase tracking-[0.04em] mb-2">
             <span>Assessment Window</span>
             <Clock className="w-3.5 h-3.5 text-text-muted" />
@@ -123,7 +123,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </div>
         </div>
 
-        <div className="p-5 rounded-card bg-surface border border-border">
+        <div className="p-5 rounded-[12px] bg-surface border border-border">
           <div className="flex items-center justify-between text-text-muted text-[11px] font-mono uppercase tracking-[0.04em] mb-2">
             <span>Project Defense</span>
             <Trophy className="w-3.5 h-3.5 text-accent" />
@@ -134,7 +134,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </div>
         </div>
 
-        <div className="p-5 rounded-card bg-surface border border-border">
+        <div className="p-5 rounded-[12px] bg-surface border border-border">
           <div className="flex items-center justify-between text-text-muted text-[11px] font-mono uppercase tracking-[0.04em] mb-2">
             <span>Subject Knowledge</span>
             <Cpu className="w-3.5 h-3.5 text-accent" />
@@ -145,7 +145,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </div>
         </div>
 
-        <div className="p-5 rounded-card bg-surface border border-border">
+        <div className="p-5 rounded-[12px] bg-surface border border-border">
           <div className="flex items-center justify-between text-text-muted text-[11px] font-mono uppercase tracking-[0.04em] mb-2">
             <span>Quality Verification</span>
             <CheckCircle2 className="w-3.5 h-3.5 text-success" />
@@ -161,7 +161,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Left 2 Cols: Role Topic Profile Preview */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="p-6 sm:p-7 rounded-card bg-surface border border-border">
+          <div className="p-6 sm:p-7 rounded-[12px] bg-surface border border-border">
             <div className="flex items-center justify-between mb-5 pb-3 border-b border-border">
               <div>
                 <h2 className="text-[18px] font-semibold text-text tracking-tight font-sans">
@@ -217,7 +217,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
         {/* Right Col: Quick Preparation Actions */}
         <div className="space-y-4">
           {/* Card 1: Practice Engine */}
-          <div className="p-6 rounded-card bg-surface border border-border flex flex-col justify-between">
+          <div className="p-6 rounded-[12px] bg-surface border border-border flex flex-col justify-between">
             <div>
               <span className="text-[11px] font-mono uppercase tracking-wider text-text-muted block mb-1">
                 Step 1 — Practice
@@ -239,7 +239,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </div>
 
           {/* Card 2: Timed Mock OA */}
-          <div className="p-6 rounded-card bg-surface border border-border flex flex-col justify-between">
+          <div className="p-6 rounded-[12px] bg-surface border border-border flex flex-col justify-between">
             <div>
               <span className="text-[11px] font-mono uppercase tracking-wider text-text-muted block mb-1">
                 Step 2 — Timed Assessment
@@ -261,7 +261,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </div>
 
           {/* Card 3: AI Interview */}
-          <div className="p-6 rounded-card bg-surface border border-border flex flex-col justify-between">
+          <div className="p-6 rounded-[12px] bg-surface border border-border flex flex-col justify-between">
             <div>
               <span className="text-[11px] font-mono uppercase tracking-wider text-accent block mb-1">
                 Step 3 — Technical Interview
