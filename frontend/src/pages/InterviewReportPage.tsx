@@ -13,20 +13,20 @@ interface InterviewReportPageProps {
 }
 
 const CLAIM_STATUS_META: Record<string, { label: string; bg: string; text: string; border: string }> = {
-  strongly_demonstrated: { label: 'Strongly Supported', bg: 'bg-emerald-950/80', text: 'text-emerald-300', border: 'border-emerald-700/60' },
-  strongly_supported: { label: 'Strongly Supported', bg: 'bg-emerald-950/80', text: 'text-emerald-300', border: 'border-emerald-700/60' },
-  demonstrated: { label: 'Demonstrated', bg: 'bg-emerald-950/50', text: 'text-emerald-400', border: 'border-emerald-800/50' },
-  supported: { label: 'Supported', bg: 'bg-emerald-950/50', text: 'text-emerald-400', border: 'border-emerald-800/50' },
-  partially_supported: { label: 'Partially Supported', bg: 'bg-cyan-950/60', text: 'text-cyan-300', border: 'border-cyan-800/50' },
-  candidate_mentioned: { label: 'Candidate Mentioned', bg: 'bg-indigo-950/60', text: 'text-indigo-300', border: 'border-indigo-800/50' },
-  mentioned_by_candidate: { label: 'Candidate Mentioned', bg: 'bg-indigo-950/60', text: 'text-indigo-300', border: 'border-indigo-800/50' },
-  resume_claim: { label: 'Resume Claim', bg: 'bg-slate-800/80', text: 'text-slate-300', border: 'border-slate-700/60' },
-  claimed_on_resume: { label: 'Resume Claim', bg: 'bg-slate-800/80', text: 'text-slate-300', border: 'border-slate-700/60' },
-  unverified: { label: 'Unverified', bg: 'bg-amber-950/60', text: 'text-amber-300', border: 'border-amber-800/50' },
-  clarification_required: { label: 'Clarification Required', bg: 'bg-amber-950/80', text: 'text-amber-300', border: 'border-amber-700/70' },
-  contradicted: { label: 'Contradicted', bg: 'bg-rose-950/80', text: 'text-rose-300', border: 'border-rose-700/60' },
-  not_explored: { label: 'Not Explored', bg: 'bg-slate-900/60', text: 'text-slate-500', border: 'border-slate-800/60' },
-  unexplored: { label: 'Not Explored', bg: 'bg-slate-900/60', text: 'text-slate-500', border: 'border-slate-800/60' },
+  strongly_demonstrated: { label: 'Strongly Supported', bg: 'bg-success/15', text: 'text-success', border: 'border-success/30' },
+  strongly_supported: { label: 'Strongly Supported', bg: 'bg-success/15', text: 'text-success', border: 'border-success/30' },
+  demonstrated: { label: 'Demonstrated', bg: 'bg-success/10', text: 'text-success', border: 'border-success/20' },
+  supported: { label: 'Supported', bg: 'bg-success/10', text: 'text-success', border: 'border-success/20' },
+  partially_supported: { label: 'Partially Supported', bg: 'bg-surface', text: 'text-text', border: 'border-border' },
+  candidate_mentioned: { label: 'Candidate Mentioned', bg: 'bg-surface', text: 'text-text', border: 'border-border' },
+  mentioned_by_candidate: { label: 'Candidate Mentioned', bg: 'bg-surface', text: 'text-text', border: 'border-border' },
+  resume_claim: { label: 'Resume Claim', bg: 'bg-surface', text: 'text-text-muted', border: 'border-border' },
+  claimed_on_resume: { label: 'Resume Claim', bg: 'bg-surface', text: 'text-text-muted', border: 'border-border' },
+  unverified: { label: 'Unverified', bg: 'bg-accent/15', text: 'text-accent', border: 'border-accent/30' },
+  clarification_required: { label: 'Clarification Required', bg: 'bg-accent/15', text: 'text-accent', border: 'border-accent/30' },
+  contradicted: { label: 'Contradicted', bg: 'bg-danger/15', text: 'text-danger', border: 'border-danger/30' },
+  not_explored: { label: 'Not Explored', bg: 'bg-bg', text: 'text-text-dim', border: 'border-border' },
+  unexplored: { label: 'Not Explored', bg: 'bg-bg', text: 'text-text-dim', border: 'border-border' },
 };
 
 export const InterviewReportPage: React.FC<InterviewReportPageProps> = ({ report, onNavigate }) => {

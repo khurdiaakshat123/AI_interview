@@ -256,8 +256,8 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
   };
 
   return createPortal(
-    <div className='fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center p-3 sm:p-5 overflow-hidden'>
-      <div className='w-full max-w-3xl max-h-[90vh] flex flex-col rounded-card bg-surface border border-border relative overflow-hidden animate-in fade-in duration-150'>
+    <div className='fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center p-3 sm:p-5 overflow-hidden'>
+      <div className='w-full max-w-3xl max-h-[90vh] flex flex-col rounded-[12px] bg-surface border border-border relative overflow-hidden animate-in fade-in duration-150'>
         {/* Fixed Header - Always visible at top */}
         <div className='flex items-center justify-between px-6 sm:px-8 py-5 border-b border-border bg-surface shrink-0'>
           <div className='flex items-center gap-3'>

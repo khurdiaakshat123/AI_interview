@@ -7,7 +7,8 @@ import {
 import { SUPPORTED_LANGUAGES } from '../utils/boilerplate_generator';
 
 export const EDITOR_THEMES = [
-  { id: 'intervyn-dark', label: 'Intervyn Studio' },
+  { id: 'intervyn-dark', label: 'Intervyn Dark' },
+  { id: 'intervyn-light', label: 'Intervyn Light' },
   { id: 'vs-dark', label: 'Dark (VS Code)' },
   { id: 'vs-light', label: 'Light' },
   { id: 'hc-black', label: 'High Contrast' }
@@ -73,19 +74,51 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
     }
   }, [theme]);
 
+  // Synchronize Monaco theme with data-theme when using intervyn themes
+  useEffect(() => {
+    const handleThemeChange = () => {
+      const docTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const targetTheme = docTheme === 'light' ? 'intervyn-light' : 'intervyn-dark';
+      if (!theme || theme.startsWith('intervyn-')) {
+        setSelectedTheme(targetTheme);
+        if (monacoRef.current) {
+          monacoRef.current.editor.setTheme(targetTheme);
+        }
+        if (onThemeChange) {
+          onThemeChange(targetTheme);
+        }
+      }
+    };
+
+    window.addEventListener('intervyn-theme-change', handleThemeChange);
+    const observer = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        if (m.type === 'attributes' && m.attributeName === 'data-theme') {
+          handleThemeChange();
+        }
+      }
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    return () => {
+      window.removeEventListener('intervyn-theme-change', handleThemeChange);
+      observer.disconnect();
+    };
+  }, [theme, onThemeChange]);
+
   const handleEditorDidMount: OnMount = (editor, monaco) => {
     editorRef.current = editor;
     monacoRef.current = monaco;
 
-    // Custom dark theme definition matching intervyn tokens
+    // Custom dark theme definition matching intervyn dark tokens
     monaco.editor.defineTheme('intervyn-dark', {
       base: 'vs-dark',
       inherit: true,
       rules: [
         { token: 'comment', foreground: '8F8D88', fontStyle: 'italic' },
-        { token: 'keyword', foreground: 'E8A33D', fontStyle: 'bold' },
+        { token: 'keyword', foreground: 'E8603C', fontStyle: 'bold' },
         { token: 'string', foreground: '529B72' },
-        { token: 'number', foreground: 'E8A33D' },
+        { token: 'number', foreground: 'E8603C' },
         { token: 'type', foreground: 'EDEBE6' }
       ],
       colors: {
@@ -93,16 +126,45 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
         'editor.foreground': '#EDEBE6',
         'editorLineNumber.foreground': '#5C5B57',
         'editorLineNumber.activeForeground': '#EDEBE6',
-        'editor.selectionBackground': '#E8A33D33',
-        'editor.inactiveSelectionBackground': '#E8A33D1A',
-        'editorCursor.foreground': '#E8A33D',
+        'editor.selectionBackground': '#E8603C33',
+        'editor.inactiveSelectionBackground': '#E8603C1A',
+        'editorCursor.foreground': '#E8603C',
         'editorWhitespace.foreground': '#2A2A2D',
         'editor.lineHighlightBackground': '#161618',
         'editorGutter.background': '#0E0E10'
       }
     });
 
-    const activeTheme = selectedTheme === 'intervyn-dark' ? 'intervyn-dark' : selectedTheme;
+    // Custom light theme definition matching intervyn light tokens
+    monaco.editor.defineTheme('intervyn-light', {
+      base: 'vs',
+      inherit: true,
+      rules: [
+        { token: 'comment', foreground: '6B6963', fontStyle: 'italic' },
+        { token: 'keyword', foreground: 'C4421F', fontStyle: 'bold' },
+        { token: 'string', foreground: '3B7A57' },
+        { token: 'number', foreground: 'C4421F' },
+        { token: 'type', foreground: '1A1A1A' }
+      ],
+      colors: {
+        'editor.background': '#F7F5F0',
+        'editor.foreground': '#1A1A1A',
+        'editorLineNumber.foreground': '#9E9C96',
+        'editorLineNumber.activeForeground': '#1A1A1A',
+        'editor.selectionBackground': '#C4421F26',
+        'editor.inactiveSelectionBackground': '#C4421F14',
+        'editorCursor.foreground': '#C4421F',
+        'editorWhitespace.foreground': '#E2DFD7',
+        'editor.lineHighlightBackground': '#F0EDE6',
+        'editorGutter.background': '#F7F5F0'
+      }
+    });
+
+    const docTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    let activeTheme = selectedTheme;
+    if (activeTheme === 'intervyn-dark' || activeTheme === 'intervyn-light') {
+      activeTheme = docTheme === 'light' ? 'intervyn-light' : 'intervyn-dark';
+    }
     monaco.editor.setTheme(activeTheme);
 
     // Track cursor movements
@@ -340,8 +402,8 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
             tabCompletion: 'on'
           }}
           loading={
-            <div className="flex flex-col items-center justify-center h-full min-h-[220px] bg-slate-950 text-slate-500 text-xs space-y-2">
-              <div className="w-5 h-5 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin" />
+            <div className="flex flex-col items-center justify-center h-full min-h-[220px] bg-bg text-text-muted text-xs space-y-2">
+              <div className="w-5 h-5 rounded-full border-2 border-accent border-t-transparent animate-spin" />
               <span>Loading VS Code Editor...</span>
             </div>
           }
@@ -350,7 +412,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
 
       {/* HackerRank / Monaco Bottom Status Bar */}
       {showFooterStatus && (
-        <div className="h-6 shrink-0 px-3 bg-slate-900 border-t border-slate-800/80 flex items-center justify-end text-[11px] text-slate-400 font-mono select-none">
+        <div className="h-6 shrink-0 px-3 bg-surface border-t border-border flex items-center justify-end text-[11px] text-text-muted font-mono select-none">
           <span>Line: {cursorPos.line} Col: {cursorPos.col}</span>
         </div>
       )}

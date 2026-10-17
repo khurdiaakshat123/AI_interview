@@ -20,13 +20,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
     <div className="py-8 sm:py-12 px-4 sm:px-6">
       <div className="max-w-[1100px] mx-auto">
         {/* Left-Aligned Editorial Hero Headline */}
-        <div className="mb-10 sm:mb-12">
+        <div className="mb-12">
           <h1 className="font-serif text-[clamp(34px,4.2vw,46px)] leading-[1.15] tracking-[-0.01em] text-text font-normal max-w-[22ch] [text-wrap:balance]">
             Prepare for Company OAs &amp; 1-on-1 Technical Interviews
           </h1>
-          <p className="mt-3 text-[15px] leading-[1.6] text-text-muted max-w-[60ch] font-sans">
-            Timed assessments modeled on how each company hires, plus AI interviews that question you on your own resume projects.
-          </p>
         </div>
 
         {/* Two-Column Grid: 5fr / 7fr with Interview as primary focus */}

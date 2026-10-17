@@ -209,10 +209,10 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
 
   if (loading || !variant) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-24 text-center text-slate-400">
-        <div className="w-10 h-10 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-sm font-semibold text-slate-200">Starting HackerRank Online Assessment Environment...</p>
-        <p className="text-xs text-slate-500 mt-1">Preparing compiler runners, isolated test sandboxes, and question set.</p>
+      <div className="max-w-4xl mx-auto px-4 py-24 text-center text-text-muted">
+        <div className="w-10 h-10 border-2 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-sm font-semibold text-text">Starting HackerRank Online Assessment Environment...</p>
+        <p className="text-xs text-text-muted mt-1">Preparing compiler runners, isolated test sandboxes, and question set.</p>
       </div>
     );
   }

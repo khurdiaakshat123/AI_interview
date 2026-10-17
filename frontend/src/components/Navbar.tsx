@@ -8,6 +8,7 @@ import {
 import { BASE_URL } from '../services/api';
 import { AuthModal } from './AuthModal';
 import { CandidateProfile } from '../types';
+import { ThemeToggle } from './ThemeToggle';
 
 interface NavbarProps {
   currentTab: string;
@@ -227,12 +228,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <div className="w-1.5 h-1.5 rounded-full bg-success"></div>
                 <span className="text-text font-medium truncate max-w-[120px]">{candidate.name}</span>
                 <span className="text-border">/</span>
-                <span className="text-accent font-mono truncate max-w-[110px]">{candidate.company}</span>
+                <span className="text-text font-mono truncate max-w-[110px]">{candidate.company}</span>
                 <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-mono text-text-muted border-l border-border pl-2 ml-0.5">
                   + New Candidate
                 </span>
               </button>
             )}
+
+            {/* Theme Toggle Button */}
+            <ThemeToggle />
 
             {currentUser ? (
               <div>

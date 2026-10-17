@@ -109,8 +109,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center p-4 overflow-y-auto">
-      <div className="w-full max-w-md p-6 sm:p-8 rounded-card bg-surface border border-border relative space-y-5">
+    <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center p-4 overflow-y-auto">
+      <div className="w-full max-w-md p-6 sm:p-8 rounded-[12px] bg-surface border border-border relative space-y-5">
         <button
           onClick={onClose}
           className="absolute top-5 right-5 p-1.5 rounded-md text-text-muted hover:text-text hover:bg-surface-hover transition-colors"
