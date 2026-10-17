@@ -1,66 +1,123 @@
+@import './styles/tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #070b14;
-    color: #f1f5f9;
+  * {
+    border-color: var(--border);
   }
+  
+  html {
+    background-color: var(--bg);
+    color: var(--text);
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+  }
+
   code, pre, .font-mono {
-    font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family: var(--font-mono);
   }
 }
 
-/* Custom modern scrollbars */
+/* Restrained Developer Tool Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(10, 15, 29, 0.7);
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(71, 85, 105, 0.6);
-  border-radius: 9999px;
+  background: var(--border);
+  border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.9);
+  background: var(--border-focus);
 }
 
-/* Glassmorphic card surfaces */
+/* Card Tokens - 1px solid var(--border), radius 12px, NO shadow */
+.card-base {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.card-interactive {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.card-interactive:hover {
+  border-color: var(--border-focus);
+  background-color: var(--surface-hover);
+}
+
+/* Backward compatibility for previous surface classes without glows */
 .surface-card {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.75) 0%, rgba(10, 15, 29, 0.85) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: none;
 }
 
 .surface-card-interactive {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.75) 0%, rgba(10, 15, 29, 0.85) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: none;
+  transition: border-color 0.15s ease;
 }
 
 .surface-card-interactive:hover {
-  border-color: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.65), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  border-color: var(--border-focus);
 }
 
-/* Subtle glowing accent borders */
-.glow-border-brand {
-  box-shadow: 0 0 20px -2px rgba(12, 143, 233, 0.35);
+/* Button utility classes */
+.btn-accent {
+  background-color: var(--accent);
+  color: var(--accent-contrast);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background-color 0.15s ease;
 }
 
-.glow-border-emerald {
-  box-shadow: 0 0 20px -2px rgba(16, 185, 129, 0.35);
+.btn-accent:hover {
+  background-color: var(--accent-hover);
 }
 
-.glow-border-indigo {
-  box-shadow: 0 0 20px -2px rgba(99, 102, 241, 0.35);
+.btn-outline {
+  background-color: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--border-focus);
+  background-color: var(--surface-hover);
 }

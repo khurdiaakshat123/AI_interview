@@ -24,24 +24,24 @@ export const ProctoringBadge: React.FC<ProctoringBadgeProps> = ({
       <button
         type="button"
         onClick={() => setShowModal(true)}
-        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium border transition-colors ${
           isClean
-            ? 'bg-emerald-950/50 border-emerald-800/80 text-emerald-300 hover:bg-emerald-900/40'
+            ? 'bg-surface border-border text-success hover:bg-bg'
             : isHighConcern
-            ? 'bg-rose-950/60 border-rose-800 text-rose-200 hover:bg-rose-900/50 animate-pulse'
-            : 'bg-amber-950/50 border-amber-800/80 text-amber-200 hover:bg-amber-900/40'
+            ? 'bg-danger/10 border-danger/30 text-danger hover:bg-danger/20 animate-pulse'
+            : 'bg-surface border-border text-accent hover:bg-bg'
         }`}
         title="Click to inspect assessment proctoring and integrity telemetry"
       >
         {isClean ? (
-          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+          <ShieldCheck className="w-3.5 h-3.5 text-success" />
         ) : (
-          <ShieldAlert className="w-3.5 h-3.5 text-amber-400" />
+          <ShieldAlert className="w-3.5 h-3.5 text-accent" />
         )}
         <span className="hidden sm:inline">Proctoring:</span>
-        <span className="font-mono font-bold">{integrityScore}%</span>
+        <span className="font-mono">{integrityScore}%</span>
         {!isClean && (
-          <span className="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-slate-900/80 text-slate-300 font-mono">
+          <span className="ml-1 px-1.5 py-0.5 rounded text-[10px] bg-bg border border-border text-text-muted font-mono">
             {incidents.length}
           </span>
         )}
@@ -49,33 +49,33 @@ export const ProctoringBadge: React.FC<ProctoringBadgeProps> = ({
 
       {/* Proctoring Telemetry Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg/80 animate-fade-in">
+          <div className="bg-surface border border-border rounded-xl max-w-md w-full p-6 space-y-4 relative">
+            <div className="flex items-center justify-between border-b border-border pb-3">
               <div className="flex items-center gap-2">
                 {isClean ? (
-                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                  <ShieldCheck className="w-5 h-5 text-success" />
                 ) : (
-                  <ShieldAlert className="w-5 h-5 text-amber-400" />
+                  <ShieldAlert className="w-5 h-5 text-accent" />
                 )}
                 <div>
-                  <h3 className="text-sm font-bold text-white">Assessment Integrity Telemetry</h3>
-                  <p className="text-[11px] text-slate-400">Autonomous browser anti-cheat monitoring</p>
+                  <h3 className="text-base font-serif text-text font-normal">Assessment Integrity Telemetry</h3>
+                  <p className="text-[11px] text-text-muted">Autonomous browser anti-cheat monitoring</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowModal(false)}
-                className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800"
+                className="p-1 text-text-muted hover:text-text rounded-md hover:bg-bg transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Score pill */}
-            <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs">
-              <span className="text-slate-400">Integrity Rating:</span>
-              <span className={`font-mono font-bold text-sm ${
-                integrityScore >= 85 ? 'text-emerald-400' : integrityScore >= 65 ? 'text-amber-400' : 'text-rose-400'
+            <div className="flex items-center justify-between p-3 rounded-lg bg-bg border border-border text-xs font-mono">
+              <span className="text-text-muted">Integrity Rating:</span>
+              <span className={`font-medium text-xs ${
+                integrityScore >= 85 ? 'text-success' : integrityScore >= 65 ? 'text-accent' : 'text-danger'
               }`}>
                 {integrityScore} / 100 ({integrityStatus.replace(/_/g, ' ')})
               </span>
@@ -83,24 +83,24 @@ export const ProctoringBadge: React.FC<ProctoringBadgeProps> = ({
 
             {/* Incidents List */}
             <div className="space-y-2">
-              <div className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-indigo-400" />
+              <div className="text-xs font-mono uppercase tracking-wider text-text-muted flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-accent" />
                 Recorded Events ({incidents.length})
               </div>
 
               {incidents.length === 0 ? (
-                <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-900/40 text-xs text-emerald-300 text-center">
+                <div className="p-4 rounded-lg bg-success/10 border border-success/30 text-xs text-success text-center font-mono">
                   ✓ Zero infractions detected. Session is in continuous high-integrity compliance.
                 </div>
               ) : (
                 <div className="max-h-52 overflow-y-auto space-y-1.5 pr-1 text-xs">
                   {incidents.map((inc, i) => (
-                    <div key={i} className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start justify-between gap-2">
+                    <div key={i} className="p-2.5 rounded-lg bg-bg border border-border flex items-start justify-between gap-2">
                       <div className="space-y-0.5">
-                        <div className="font-semibold text-slate-200 text-[11px]">{inc.detail}</div>
-                        <div className="text-[10px] text-slate-500 font-mono">{inc.timestamp}</div>
+                        <div className="font-medium text-text text-[11px]">{inc.detail}</div>
+                        <div className="text-[10px] text-text-muted font-mono">{inc.timestamp}</div>
                       </div>
-                      <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase bg-slate-800 text-slate-300 shrink-0">
+                      <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-medium uppercase bg-surface border border-border text-text-muted shrink-0">
                         {inc.type.replace('_', ' ')}
                       </span>
                     </div>
@@ -109,11 +109,11 @@ export const ProctoringBadge: React.FC<ProctoringBadgeProps> = ({
               )}
             </div>
 
-            <div className="pt-2 border-t border-slate-800 flex justify-end">
+            <div className="pt-2 border-t border-border flex justify-end">
               <button
                 type="button"
                 onClick={() => setShowModal(false)}
-                className="px-4 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition-colors"
+                className="px-4 py-1.5 rounded-lg text-xs font-medium bg-bg hover:bg-surface text-text border border-border transition-colors"
               >
                 Close Telemetry
               </button>
@@ -134,23 +134,23 @@ export const ProctoringToast: React.FC<{
   const isDanger = alert.type === 'danger';
 
   return (
-    <div className="fixed top-4 right-4 z-50 max-w-sm w-full animate-bounce-short shadow-2xl">
-      <div className={`p-4 rounded-2xl border backdrop-blur-md flex items-start gap-3 text-xs ${
+    <div className="fixed top-4 right-4 z-50 max-w-sm w-full animate-bounce-short">
+      <div className={`p-4 rounded-xl border flex items-start gap-3 text-xs ${
         isDanger
-          ? 'bg-rose-950/95 border-rose-700 text-rose-100'
-          : 'bg-amber-950/95 border-amber-700 text-amber-100'
+          ? 'bg-surface border-danger/40 text-text'
+          : 'bg-surface border-border text-text'
       }`}>
-        <AlertTriangle className={`w-4 h-4 shrink-0 mt-0.5 ${isDanger ? 'text-rose-400' : 'text-amber-400'}`} />
+        <AlertTriangle className={`w-4 h-4 shrink-0 mt-0.5 ${isDanger ? 'text-danger' : 'text-accent'}`} />
         <div className="flex-1 space-y-1">
-          <div className="font-bold flex items-center justify-between">
+          <div className="font-semibold flex items-center justify-between text-text">
             <span>{alert.title}</span>
-            <span className="text-[10px] opacity-70 font-mono">{alert.timestamp}</span>
+            <span className="text-[10px] text-text-muted font-mono">{alert.timestamp}</span>
           </div>
-          <p className="text-[11px] opacity-90 leading-relaxed">{alert.message}</p>
+          <p className="text-[11px] text-text-muted leading-relaxed">{alert.message}</p>
         </div>
         <button
           onClick={onClose}
-          className="p-1 rounded hover:bg-white/10 opacity-70 hover:opacity-100 transition-opacity"
+          className="p-1 rounded text-text-muted hover:text-text transition-colors"
         >
           <X className="w-3.5 h-3.5" />
         </button>

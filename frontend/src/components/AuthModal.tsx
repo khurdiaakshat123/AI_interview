@@ -109,29 +109,26 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[9999] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-      <div className="w-full max-w-md p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl relative space-y-6">
+    <div className="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center p-4 overflow-y-auto">
+      <div className="w-full max-w-md p-6 sm:p-8 rounded-card bg-surface border border-border relative space-y-5">
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+          className="absolute top-5 right-5 p-1.5 rounded-md text-text-muted hover:text-text hover:bg-surface-hover transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center mx-auto shadow-lg shadow-brand-500/20">
-            <Sparkles className="w-6 h-6 text-white" />
-          </div>
-          <h2 className="text-2xl font-black text-white tracking-tight">
-            Welcome to <span className="bg-gradient-to-r from-brand-400 to-indigo-300 bg-clip-text text-transparent">Intervyn</span>
+        <div className="text-center space-y-1.5">
+          <h2 className="font-serif text-2xl text-text font-normal tracking-tight">
+            Welcome to intervyn<span className="text-accent">.</span>
           </h2>
-          <p className="text-xs text-slate-400">
-            Sign in with Google to save your mock interviews, resume context, and AI benchmark reports.
+          <p className="text-xs text-text-muted">
+            Sign in to save your mock interviews, resume context, and benchmark scores.
           </p>
         </div>
 
         {error && (
-          <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center gap-2.5 text-rose-400 text-xs">
+          <div className="p-3 rounded-md bg-danger-subtle border border-danger/40 flex items-center gap-2.5 text-danger text-xs">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{error}</span>
           </div>
@@ -142,25 +139,25 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
         </div>
 
         <div className="relative flex items-center justify-center">
-          <div className="border-t border-slate-800 w-full" />
-          <span className="bg-slate-900 px-3 text-[11px] text-slate-500 uppercase tracking-widest font-mono">
+          <div className="border-t border-border w-full" />
+          <span className="bg-surface px-3 text-[11px] text-text-muted uppercase tracking-widest font-mono">
             or with email
           </span>
-          <div className="border-t border-slate-800 w-full" />
+          <div className="border-t border-border w-full" />
         </div>
 
-        <div className="flex rounded-xl bg-slate-950 p-1 border border-slate-800">
+        <div className="flex rounded-md bg-bg p-1 border border-border">
           <button
             type="button"
             onClick={() => setActiveTab("signin")}
-            className={"flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all " + (activeTab === "signin" ? "bg-slate-800 text-white shadow" : "text-slate-400 hover:text-slate-200")}
+            className={"flex-1 py-1.5 text-xs font-medium rounded transition-colors " + (activeTab === "signin" ? "bg-surface text-text" : "text-text-muted hover:text-text")}
           >
             Sign In
           </button>
           <button
             type="button"
             onClick={() => setActiveTab("signup")}
-            className={"flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all " + (activeTab === "signup" ? "bg-slate-800 text-white shadow" : "text-slate-400 hover:text-slate-200")}
+            className={"flex-1 py-1.5 text-xs font-medium rounded transition-colors " + (activeTab === "signup" ? "bg-surface text-text" : "text-text-muted hover:text-text")}
           >
             Create Account
           </button>
@@ -169,15 +166,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
         <form onSubmit={handleSubmit} className="space-y-3.5">
           {activeTab === "signup" && (
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">Full Name</label>
+              <label className="block text-[11px] font-mono uppercase tracking-[0.04em] text-text-muted mb-1">Full Name</label>
               <div className="relative">
-                <UserIcon className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+                <UserIcon className="w-4 h-4 text-text-muted absolute left-3 top-2.5" />
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Akshat Khurdia"
-                  className="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-600 focus:border-brand-500 focus:outline-none"
+                  className="w-full pl-9 pr-3 py-2 rounded-md bg-bg border border-border text-xs text-text placeholder-text-dim focus:border-accent focus:outline-none"
                   required={activeTab === "signup"}
                 />
               </div>
@@ -185,30 +182,30 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
           )}
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">Email Address</label>
+            <label className="block text-[11px] font-mono uppercase tracking-[0.04em] text-text-muted mb-1">Email Address</label>
             <div className="relative">
-              <Mail className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+              <Mail className="w-4 h-4 text-text-muted absolute left-3 top-2.5" />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="candidate@intervyn.ai"
-                className="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-600 focus:border-brand-500 focus:outline-none"
+                className="w-full pl-9 pr-3 py-2 rounded-md bg-bg border border-border text-xs text-text placeholder-text-dim focus:border-accent focus:outline-none"
                 required
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">Password</label>
+            <label className="block text-[11px] font-mono uppercase tracking-[0.04em] text-text-muted mb-1">Password</label>
             <div className="relative">
-              <Lock className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+              <Lock className="w-4 h-4 text-text-muted absolute left-3 top-2.5" />
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-600 focus:border-brand-500 focus:outline-none"
+                className="w-full pl-9 pr-3 py-2 rounded-md bg-bg border border-border text-xs text-text placeholder-text-dim focus:border-accent focus:outline-none"
                 required
               />
             </div>
@@ -217,7 +214,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2.5 rounded-xl font-bold text-xs bg-brand-600 hover:bg-brand-500 text-white flex items-center justify-center gap-2 shadow-lg shadow-brand-500/25 transition-all disabled:opacity-50 mt-4"
+            className="w-full h-10 rounded-md font-medium text-xs bg-accent hover:bg-accent-hover text-accent-contrast flex items-center justify-center gap-2 transition-colors disabled:opacity-50 mt-4"
           >
             {loading ? (
               <>
@@ -232,7 +229,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
           </button>
         </form>
 
-        <p className="text-[11px] text-slate-500 text-center">
+        <p className="text-[11px] text-text-muted text-center font-mono">
           Securely encrypted & powered by Supabase PostgreSQL.
         </p>
       </div>

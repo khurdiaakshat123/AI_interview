@@ -276,34 +276,34 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       {/* Header */}
       <div>
-        <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-400 uppercase tracking-wider mb-2">
-          <Cpu className="w-4 h-4" />
+        <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-text-muted mb-2">
+          <Cpu className="w-3.5 h-3.5 text-accent" />
           Technical Interview • Adaptive Candidate Alignment
         </div>
-        <h1 className="text-3xl font-extrabold text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-serif text-text tracking-tight font-normal">
           AI Technical Interview Setup
         </h1>
-        <p className="text-sm text-slate-300 mt-1 max-w-3xl">
+        <p className="text-sm text-text-muted mt-1.5 max-w-3xl leading-relaxed">
           Your stored profile resume is automatically attached. Provide or paste the target Job Description (JD) to focus interview questions directly on the opening's requirements.
         </p>
       </div>
 
       {/* Profile & Resume Summary Card (Always Visible Status Banner) */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-white/10 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="p-5 rounded-xl bg-surface border border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center text-sm font-bold text-white uppercase shadow-md shadow-indigo-500/20 shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-bg border border-border flex items-center justify-center text-sm font-mono font-semibold text-text uppercase shrink-0">
             {candidateName[0] || 'C'}
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-sm font-bold text-white">{candidateName}</h3>
-              <span className="text-xs text-slate-400 font-mono">({candidateEmail})</span>
+              <h3 className="text-sm font-semibold text-text">{candidateName}</h3>
+              <span className="text-xs text-text-muted font-mono">({candidateEmail})</span>
             </div>
-            <div className="text-xs text-slate-300 flex items-center gap-1.5 mt-0.5">
+            <div className="text-xs text-text-muted flex items-center gap-1.5 mt-0.5">
               <span>Target:</span>
-              <span className="font-semibold text-white">{role}</span>
-              <span className="text-slate-500">•</span>
-              <span className="font-semibold text-sky-400">{company}</span>
+              <span className="font-medium text-text">{role}</span>
+              <span className="text-text-muted">•</span>
+              <span className="font-medium text-accent">{company}</span>
             </div>
           </div>
         </div>
@@ -311,13 +311,13 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
         <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-between md:justify-end">
           <div className="flex items-center gap-2">
             {resumeText.trim() ? (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono bg-success/10 text-success border border-success/30">
+                <CheckCircle2 className="w-3.5 h-3.5 text-success" />
                 Resume Attached ({resumeWordCount} words)
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30">
-                <AlertCircle className="w-3.5 h-3.5 text-amber-400" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono bg-danger/10 text-danger border border-danger/30">
+                <AlertCircle className="w-3.5 h-3.5 text-danger" />
                 No Resume Attached
               </span>
             )}
@@ -326,15 +326,15 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
           <button
             type="button"
             onClick={() => setShowEditCandidateDetails(prev => !prev)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-white/10 hover:border-white/20 transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium bg-bg hover:bg-surface text-text border border-border transition-colors"
             title="Inspect or modify your attached resume, candidate name, or target position"
           >
-            <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-400" />
+            <SlidersHorizontal className="w-3.5 h-3.5 text-text-muted" />
             {showEditCandidateDetails ? 'Hide Resume & Position Settings' : 'Change Resume or Target Position'}
             {showEditCandidateDetails ? (
-              <ChevronUp className="w-3.5 h-3.5 text-slate-400" />
+              <ChevronUp className="w-3.5 h-3.5 text-text-muted" />
             ) : (
-              <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+              <ChevronDown className="w-3.5 h-3.5 text-text-muted" />
             )}
           </button>
         </div>
@@ -342,65 +342,65 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
 
       {/* Collapsible Candidate Resume & Position Customization Card */}
       {showEditCandidateDetails && (
-        <div className="p-6 rounded-2xl bg-slate-900/95 border border-indigo-500/30 shadow-xl space-y-4 animate-in fade-in duration-200">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="p-6 rounded-xl bg-surface border border-border space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-border">
             <div className="flex items-center gap-2">
-              <Building2 className="w-4 h-4 text-indigo-400" />
-              <h2 className="text-sm font-bold text-white">
+              <Building2 className="w-4 h-4 text-accent" />
+              <h2 className="text-sm font-semibold text-text">
                 Customize Candidate Details & Resume for this Session
               </h2>
             </div>
-            <span className="text-[11px] text-slate-400">
+            <span className="text-[11px] text-text-muted">
               Edits can be saved to your profile or used for this interview
             </span>
           </div>
 
           {profileSavedAlert && (
-            <div className="p-3 rounded-xl bg-emerald-950/60 border border-emerald-700 text-xs text-emerald-300 flex items-center gap-2">
-              <Check className="w-4 h-4 text-emerald-400" />
+            <div className="p-3 rounded-lg bg-success/10 border border-success/30 text-xs text-success flex items-center gap-2 font-mono">
+              <Check className="w-4 h-4 text-success" />
               <span>Profile details and resume saved successfully!</span>
             </div>
           )}
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">Target Company</label>
+              <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-1">Target Company</label>
               <input
                 type="text"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 placeholder="e.g. OpenAI, Google"
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">Target Role</label>
+              <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-1">Target Role</label>
               <input
                 type="text"
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
                 placeholder="e.g. Distributed Systems Engineer"
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">Candidate Name</label>
+              <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-1">Candidate Name</label>
               <input
                 type="text"
                 value={candidateName}
                 onChange={(e) => setCandidateName(e.target.value)}
                 placeholder="Full Name"
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">Email</label>
+              <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-1">Email</label>
               <input
                 type="email"
                 value={candidateEmail}
                 onChange={(e) => setCandidateEmail(e.target.value)}
                 placeholder="candidate@example.com"
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
               />
             </div>
           </div>
@@ -421,11 +421,11 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
             />
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800">
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-border">
             <button
               type="button"
               onClick={handleSaveDetailsToProfile}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-500/30 transition-all"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium bg-bg hover:bg-surface text-text border border-border transition-colors"
             >
               <Save className="w-3.5 h-3.5" />
               Save to Profile
@@ -435,9 +435,9 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
               type="button"
               onClick={handleParseResume}
               disabled={loading || !resumeText.trim()}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/40 transition-all disabled:opacity-50"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium bg-surface hover:bg-bg text-text border border-border transition-colors disabled:opacity-40"
             >
-              <Upload className="w-3.5 h-3.5" />
+              <Upload className="w-3.5 h-3.5 text-accent" />
               {loading ? 'Re-parsing Resume...' : 'Re-parse & Preview Projects'}
             </button>
           </div>
@@ -448,43 +448,42 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Left Form: Dedicated Job Description (JD) Input & Launch */}
         <div className="lg:col-span-1 space-y-6">
-          <div className="p-6 rounded-2xl bg-slate-900/80 border border-white/10 shadow-lg space-y-4">
+          <div className="p-6 rounded-xl bg-surface border border-border space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-base font-bold text-white flex items-center gap-2">
-                <Briefcase className="w-4 h-4 text-indigo-400" />
+              <h2 className="text-base font-semibold text-text flex items-center gap-2">
+                <Briefcase className="w-4 h-4 text-accent" />
                 Target Job Description (JD)
               </h2>
             </div>
             
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-text-muted leading-relaxed">
               Paste the job opening specs or upload a JD document. Our AI will align every question to these requirements.
             </p>
 
             {/* Quick Sample Presets */}
-            <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-2">
-              <div className="text-[11px] font-semibold text-slate-400 flex items-center gap-1.5">
-                <Sparkles className="w-3 h-3 text-amber-400" />
-                Or Try Quick Sample Role:
+            <div className="p-3.5 rounded-lg bg-bg border border-border space-y-2">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-text-muted">
+                Sample Roles:
               </div>
               <div className="flex flex-wrap gap-1.5">
                 <button
                   type="button"
                   onClick={() => handleApplyJdPreset('openai')}
-                  className="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-white/5 transition-all"
+                  className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-surface hover:bg-border text-text border border-border transition-colors"
                 >
                   OpenAI Distributed
                 </button>
                 <button
                   type="button"
                   onClick={() => handleApplyJdPreset('google')}
-                  className="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-white/5 transition-all"
+                  className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-surface hover:bg-border text-text border border-border transition-colors"
                 >
                   Google Spanner L4
                 </button>
                 <button
                   type="button"
                   onClick={() => handleApplyJdPreset('meta')}
-                  className="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-white/5 transition-all"
+                  className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-surface hover:bg-border text-text border border-border transition-colors"
                 >
                   Meta Infra E4
                 </button>
@@ -503,21 +502,21 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
             />
 
             {parseError && (
-              <div className="p-2.5 rounded-xl bg-red-950/50 border border-red-800 text-[11px] text-red-300 flex items-center gap-2">
-                <AlertCircle className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
+              <div className="p-2.5 rounded-lg bg-danger/10 border border-danger/30 text-[11px] text-danger flex items-center gap-2 font-mono">
+                <AlertCircle className="w-3.5 h-3.5 text-danger flex-shrink-0" />
                 <span>{parseError}</span>
               </div>
             )}
           </div>
 
           {/* Launch Session Card */}
-          <div className="p-6 rounded-2xl bg-gradient-to-b from-slate-900 to-indigo-950/40 border border-white/10 shadow-lg space-y-4">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400">
-              <CheckCircle2 className="w-4 h-4" />
+          <div className="p-6 rounded-xl bg-surface border border-border space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono font-medium text-text">
+              <CheckCircle2 className="w-4 h-4 text-accent" />
               {jdText.trim() ? 'Ready with JD & Attached Resume' : (resumeText.trim() ? 'Resume Ready • Launch Directly' : 'Sample Loaded')}
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-xs text-text-muted leading-relaxed">
               {jdText.trim() ? (
                 <>AI interviewer will generate customized questioning based on your target JD and attached resume.</>
               ) : resumeText.trim() ? (
@@ -528,8 +527,8 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
             </p>
 
             {loading && stepMessage && (
-              <div className="p-3 rounded-xl bg-indigo-950/60 border border-indigo-800/70 text-xs text-indigo-200 flex items-center gap-2.5">
-                <Loader2 className="w-4 h-4 animate-spin text-sky-400 shrink-0" />
+              <div className="p-3 rounded-lg bg-bg border border-border text-xs text-text flex items-center gap-2.5 font-mono">
+                <Loader2 className="w-4 h-4 animate-spin text-accent shrink-0" />
                 <span>{stepMessage}</span>
               </div>
             )}
@@ -537,7 +536,7 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
             <button
               onClick={handleStartInterview}
               disabled={loading || (!resumeText.trim() && !structuredResume)}
-              className="w-full py-3.5 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 text-white flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/25 transition-all active:scale-[0.98] disabled:opacity-50"
+              className="w-full py-3.5 rounded-xl text-sm font-medium bg-accent text-accent-contrast hover:opacity-90 flex items-center justify-center gap-2 transition-opacity disabled:opacity-40"
             >
               {loading ? (
                 <>
@@ -546,7 +545,6 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-4 h-4" />
                   Enter AI Technical Interview Room
                   <ArrowRight className="w-4 h-4" />
                 </>
@@ -560,20 +558,20 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
           {structuredResume ? (
             <div className="space-y-6">
               {/* Profile Card */}
-              <div className="p-6 rounded-2xl bg-slate-900/80 border border-white/10 shadow-lg flex flex-wrap items-center justify-between gap-4">
+              <div className="p-6 rounded-xl bg-surface border border-border flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <h3 className="text-lg font-bold text-white">{structuredResume.candidate_name}</h3>
-                  <p className="text-xs text-slate-400">{structuredResume.candidate_email || candidateEmail || 'Attached Candidate Profile'}</p>
+                  <h3 className="text-xl font-serif text-text">{structuredResume.candidate_name}</h3>
+                  <p className="text-xs text-text-muted font-mono">{structuredResume.candidate_email || candidateEmail || 'Attached Candidate Profile'}</p>
                   <div className="flex flex-wrap items-center gap-1.5 mt-3">
                     {structuredResume.skills.slice(0, 8).map((sk, i) => (
-                      <span key={i} className="px-2 py-0.5 rounded bg-slate-800 border border-white/5 text-[10px] text-slate-300 font-mono">
+                      <span key={i} className="px-2 py-0.5 rounded bg-bg border border-border text-[11px] text-text-muted font-mono">
                         {sk}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="text-xs text-right text-slate-400 font-mono space-y-0.5">
+                <div className="text-xs text-right text-text-muted font-mono space-y-0.5">
                   <div>Work Exp Weight: 30%</div>
                   <div>Projects Weight: 30%</div>
                   <div>Skills Weight: 15%</div>
@@ -581,13 +579,13 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
               </div>
 
               {/* Projects Ranked by Priority */}
-              <div className="p-6 rounded-2xl bg-slate-900/80 border border-white/10 shadow-lg space-y-4">
+              <div className="p-6 rounded-xl bg-surface border border-border space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-base font-bold text-white">
+                    <h4 className="text-lg font-serif text-text">
                       Extracted Projects & Questioning Priority
                     </h4>
-                    <p className="text-xs text-slate-400 mt-0.5">
+                    <p className="text-xs text-text-muted mt-0.5">
                       Ranked by relevance to {role}. High relevance topics receive deep situational follow-ups.
                     </p>
                   </div>
@@ -597,26 +595,26 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
                   {structuredResume.projects.map((proj, idx) => (
                     <div
                       key={idx}
-                      className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-2.5"
+                      className="p-4 rounded-lg bg-bg border border-border space-y-2.5"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
-                          <span className="w-5 h-5 rounded-full bg-brand-600/30 text-brand-300 text-xs font-mono font-bold flex items-center justify-center">
+                          <span className="w-5 h-5 rounded bg-surface border border-border text-accent text-xs font-mono font-medium flex items-center justify-center">
                             #{proj.questioning_priority}
                           </span>
-                          <span className="text-xs sm:text-sm font-bold text-white">{proj.title}</span>
+                          <span className="text-xs sm:text-sm font-semibold text-text">{proj.title}</span>
                         </div>
 
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">
+                        <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-medium bg-success/10 text-success border border-success/30">
                           {Math.round(proj.overall_relevance * 100)}% Relevance
                         </span>
                       </div>
 
-                      <p className="text-xs text-slate-400 leading-relaxed">{proj.description}</p>
+                      <p className="text-xs text-text-muted leading-relaxed">{proj.description}</p>
 
-                      <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/60 text-[11px]">
-                        <div className="flex items-center gap-1 text-slate-400">
-                          <span className="font-semibold text-slate-300">Target Topics:</span>
+                      <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-border text-[11px]">
+                        <div className="flex items-center gap-1 text-text-muted">
+                          <span className="font-medium text-text">Target Topics:</span>
                           <span>{proj.relevant_topics.join(', ')}</span>
                         </div>
                       </div>
@@ -626,7 +624,7 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
               </div>
             </div>
           ) : (
-            <div className="p-12 text-center rounded-2xl border border-dashed border-slate-800 text-slate-500">
+            <div className="p-12 text-center rounded-xl border border-dashed border-border text-text-muted font-mono text-xs">
               No structured resume loaded.
             </div>
           )}

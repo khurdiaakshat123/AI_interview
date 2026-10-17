@@ -7,8 +7,8 @@ import {
 import { SUPPORTED_LANGUAGES } from '../utils/boilerplate_generator';
 
 export const EDITOR_THEMES = [
+  { id: 'intervyn-dark', label: 'Intervyn Studio' },
   { id: 'vs-dark', label: 'Dark (VS Code)' },
-  { id: 'intervyn-dark', label: 'Hacker / Intervyn Dark' },
   { id: 'vs-light', label: 'Light' },
   { id: 'hc-black', label: 'High Contrast' }
 ];
@@ -35,7 +35,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   value,
   onChange,
   language = 'python',
-  theme = 'vs-dark',
+  theme = 'intervyn-dark',
   onThemeChange,
   onReset,
   readOnly = false,
@@ -77,26 +77,28 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
     editorRef.current = editor;
     monacoRef.current = monaco;
 
-    // Custom dark theme definition
+    // Custom dark theme definition matching intervyn tokens
     monaco.editor.defineTheme('intervyn-dark', {
       base: 'vs-dark',
       inherit: true,
       rules: [
-        { token: 'comment', foreground: '6A9955', fontStyle: 'italic' },
-        { token: 'keyword', foreground: '569CD6', fontStyle: 'bold' },
-        { token: 'string', foreground: 'CE9178' },
-        { token: 'number', foreground: 'B5CEA8' },
-        { token: 'type', foreground: '4EC9B0' }
+        { token: 'comment', foreground: '8F8D88', fontStyle: 'italic' },
+        { token: 'keyword', foreground: 'E8A33D', fontStyle: 'bold' },
+        { token: 'string', foreground: '529B72' },
+        { token: 'number', foreground: 'E8A33D' },
+        { token: 'type', foreground: 'EDEBE6' }
       ],
       colors: {
-        'editor.background': '#0f172a',
-        'editor.foreground': '#F8FAFC',
-        'editorLineNumber.foreground': '#475569',
-        'editorLineNumber.activeForeground': '#94A3B8',
-        'editor.selectionBackground': '#3b82f633',
-        'editor.inactiveSelectionBackground': '#3b82f61a',
-        'editorCursor.foreground': '#60A5FA',
-        'editorWhitespace.foreground': '#1E293B'
+        'editor.background': '#0E0E10',
+        'editor.foreground': '#EDEBE6',
+        'editorLineNumber.foreground': '#5C5B57',
+        'editorLineNumber.activeForeground': '#EDEBE6',
+        'editor.selectionBackground': '#E8A33D33',
+        'editor.inactiveSelectionBackground': '#E8A33D1A',
+        'editorCursor.foreground': '#E8A33D',
+        'editorWhitespace.foreground': '#2A2A2D',
+        'editor.lineHighlightBackground': '#161618',
+        'editorGutter.background': '#0E0E10'
       }
     });
 
@@ -169,54 +171,47 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
 
   return (
     <div
-      className={`rounded-2xl border border-slate-800 bg-slate-950 overflow-hidden shadow-lg flex flex-col font-mono transition-all ${
-        isFullscreen ? 'fixed inset-4 z-50 shadow-2xl border-indigo-500/50' : 'relative h-full'
+      className={`rounded-card border border-border bg-bg overflow-hidden flex flex-col font-mono transition-all ${
+        isFullscreen ? 'fixed inset-4 z-50 border-accent' : 'relative h-full'
       }`}
     >
-      {/* Editor Header Bar (Optional, can be hidden when page provides its own HackerRank toolbar) */}
+      {/* Editor Header Bar */}
       {!hideHeader && (
-        <div className="flex flex-wrap items-center justify-between px-4 py-2 bg-slate-900/90 border-b border-slate-800/80 text-xs text-slate-400 gap-2 shrink-0">
+        <div className="flex flex-wrap items-center justify-between px-3.5 py-2 bg-surface border-b border-border text-xs text-text-muted gap-2 shrink-0">
           <div className="flex items-center gap-3">
-            {/* Mac-style window controls */}
-            <div className="flex gap-1.5 shrink-0">
-              <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-            </div>
-
             {/* Language Selector Dropdown */}
             {showLanguageSelector ? (
               <div className="flex items-center gap-1.5">
-                <Code2 className="w-3.5 h-3.5 text-indigo-400" />
+                <Code2 className="w-3.5 h-3.5 text-accent" />
                 <select
                   value={selectedLang}
                   onChange={(e) => handleLangChange(e.target.value)}
                   disabled={readOnly}
-                  className="bg-slate-950 border border-slate-700/80 hover:border-slate-600 rounded-lg px-2.5 py-1 text-[11px] font-semibold text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer font-sans"
+                  className="bg-bg border border-border hover:border-border-focus rounded px-2.5 py-1 text-[11px] font-medium text-text focus:outline-none focus:border-accent cursor-pointer font-mono"
                 >
                   {SUPPORTED_LANGUAGES.map((l) => (
-                    <option key={l.id} value={l.id} className="bg-slate-900 text-slate-200">
+                    <option key={l.id} value={l.id} className="bg-surface text-text">
                       {l.label}
                     </option>
                   ))}
                 </select>
               </div>
             ) : (
-              <span className="font-semibold text-slate-300 uppercase tracking-wider text-[11px]">
+              <span className="font-mono text-text uppercase tracking-wider text-[11px]">
                 {selectedLang}
               </span>
             )}
 
             {/* Theme Selector */}
             <div className="hidden sm:flex items-center gap-1 text-[11px]">
-              <span className="text-slate-400 font-sans">Theme:</span>
+              <span className="text-text-muted font-sans">Theme:</span>
               <select
                 value={selectedTheme}
                 onChange={(e) => handleThemeChange(e.target.value)}
-                className="bg-slate-950 border border-slate-700/80 hover:border-slate-600 rounded-lg px-2 py-0.5 text-[11px] text-slate-200 focus:outline-none font-sans"
+                className="bg-bg border border-border hover:border-border-focus rounded px-2 py-0.5 text-[11px] text-text focus:outline-none font-mono"
               >
                 {EDITOR_THEMES.map((t) => (
-                  <option key={t.id} value={t.id} className="bg-slate-900 text-slate-200">
+                  <option key={t.id} value={t.id} className="bg-surface text-text">
                     {t.label}
                   </option>
                 ))}
@@ -224,7 +219,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
             </div>
 
             {formatNotice && (
-              <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-sans">
+              <span className="inline-flex items-center gap-1 text-[10px] text-success font-mono">
                 <CheckCheck className="w-3 h-3" />
                 Formatted
               </span>
@@ -238,10 +233,9 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
               <button
                 type="button"
                 onClick={handleFormatCode}
-                className="flex items-center gap-1 hover:text-slate-200 px-2 py-1 rounded-lg hover:bg-slate-800 text-[11px] transition-colors"
+                className="flex items-center gap-1 hover:text-text px-2 py-1 rounded hover:bg-surface-hover text-[11px] text-text-muted transition-colors"
                 title="Auto-format code document"
               >
-                <Sparkles className="w-3 h-3 text-indigo-400" />
                 <span className="hidden sm:inline">Format</span>
               </button>
             )}
@@ -251,7 +245,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
               <button
                 type="button"
                 onClick={onReset}
-                className="flex items-center gap-1 hover:text-slate-200 px-2 py-1 rounded-lg hover:bg-slate-800 text-[11px] transition-colors"
+                className="flex items-center gap-1 hover:text-text px-2 py-1 rounded hover:bg-surface-hover text-[11px] text-text-muted transition-colors"
                 title="Reset starter template code"
               >
                 <RotateCcw className="w-3 h-3" />
@@ -263,10 +257,10 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
             <button
               type="button"
               onClick={handleCopy}
-              className="flex items-center gap-1 hover:text-slate-200 px-2 py-1 rounded-lg hover:bg-slate-800 text-[11px] transition-colors"
+              className="flex items-center gap-1 hover:text-text px-2 py-1 rounded hover:bg-surface-hover text-[11px] text-text-muted transition-colors"
               title="Copy code to clipboard"
             >
-              {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+              {copied ? <Check className="w-3 h-3 text-success" /> : <Copy className="w-3 h-3" />}
               <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy'}</span>
             </button>
 
@@ -274,10 +268,10 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
             <button
               type="button"
               onClick={() => setIsFullscreen(!isFullscreen)}
-              className="p-1.5 hover:text-slate-200 rounded-lg hover:bg-slate-800 transition-colors"
+              className="p-1 text-text-muted hover:text-text rounded hover:bg-surface-hover transition-colors"
               title={isFullscreen ? 'Exit Fullscreen' : 'Expand Editor to Fullscreen'}
             >
-              {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5 text-slate-400" />}
+              {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
             </button>
 
             {/* Run Code Button */}
@@ -286,11 +280,11 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
                 type="button"
                 onClick={onRunCode}
                 disabled={isRunning}
-                className="ml-2 flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-[11px] font-bold shadow-sm transition-all"
+                className="ml-2 flex items-center gap-1.5 px-3 py-1 rounded bg-accent hover:bg-accent-hover disabled:opacity-50 text-accent-contrast text-[11px] font-medium transition-colors"
                 title="Execute code against test cases"
               >
                 {isRunning ? (
-                  <div className="w-3 h-3 rounded-full border-2 border-white border-t-transparent animate-spin" />
+                  <div className="w-3 h-3 rounded-full border-2 border-accent-contrast border-t-transparent animate-spin" />
                 ) : (
                   <Play className="w-3 h-3 fill-current" />
                 )}

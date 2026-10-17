@@ -62,14 +62,14 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* Header */}
       <div>
-        <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-400 uppercase tracking-wider mb-2">
-          <Sparkles className="w-4 h-4" />
+        <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-text-muted mb-2">
+          <Sparkles className="w-3.5 h-3.5 text-accent" />
           Role Intelligence • Competency Mapping
         </div>
-        <h1 className="text-3xl font-extrabold text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-serif text-text tracking-tight font-normal">
           Target Role Profiler & Skill Mapping
         </h1>
-        <p className="text-sm text-slate-300 mt-1 max-w-2xl">
+        <p className="text-sm text-text-muted mt-1.5 max-w-2xl leading-relaxed">
           Analyze job requirements to extract core data structures, algorithms, and system design topics prioritized by company interview frequency.
         </p>
       </div>
@@ -77,43 +77,43 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Left Form */}
         <div className="lg:col-span-1 space-y-6">
-          <form onSubmit={handleGenerate} className="p-6 sm:p-7 rounded-2xl bg-slate-900/80 border border-white/10 shadow-xl space-y-4">
-            <h2 className="text-base font-bold text-white flex items-center gap-2">
-              <FileText className="w-4 h-4 text-sky-400" />
+          <form onSubmit={handleGenerate} className="p-6 rounded-xl bg-surface border border-border space-y-4">
+            <h2 className="text-base font-semibold text-text flex items-center gap-2">
+              <FileText className="w-4 h-4 text-accent" />
               Role & JD Parameters
             </h2>
 
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">Company</label>
+              <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-1">Company</label>
               <input
                 type="text"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 placeholder="e.g. Google, Amazon, Microsoft"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 text-xs text-slate-100 focus:border-sky-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-bg border border-border text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">Role Title</label>
+              <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-1">Role Title</label>
               <input
                 type="text"
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
                 placeholder="e.g. Backend SDE 2, Full Stack"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 text-xs text-slate-100 focus:border-sky-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-bg border border-border text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
                 required
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">Job Type</label>
+                <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-1">Job Type</label>
                 <select
                   value={jobType}
                   onChange={(e) => setJobType(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-xs text-slate-100 focus:border-sky-500 focus:outline-none cursor-pointer"
+                  className="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text focus:border-accent focus:outline-none cursor-pointer"
                 >
                   <option value="Full-Time">Full-Time</option>
                   <option value="Contract">Contract</option>
@@ -122,11 +122,11 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">Experience</label>
+                <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-1">Experience</label>
                 <select
                   value={experience}
                   onChange={(e) => setExperience(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-xs text-slate-100 focus:border-sky-500 focus:outline-none cursor-pointer"
+                  className="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text focus:border-accent focus:outline-none cursor-pointer"
                 >
                   <option value="0-1 years">0-1 years</option>
                   <option value="1-3 years">1-3 years</option>
@@ -149,25 +149,25 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 text-white flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/25 transition-all active:scale-[0.98]"
+              className="w-full py-3 rounded-xl text-sm font-medium bg-accent text-accent-contrast hover:opacity-90 disabled:opacity-40 flex items-center justify-center gap-2 transition-opacity"
             >
               {loading ? 'Analyzing Job Requirements...' : 'Generate Target Role Profile'}
-              <Sparkles className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </form>
 
           {/* Action Callout */}
           {profile && (
-            <div className="p-5 rounded-2xl bg-gradient-to-b from-indigo-950/40 to-slate-900 border border-indigo-500/20 shadow-md space-y-3">
-              <div className="text-xs font-bold text-sky-300 uppercase tracking-wider">
+            <div className="p-5 rounded-xl bg-surface border border-border space-y-3">
+              <div className="text-xs font-mono uppercase tracking-wider text-text-muted">
                 Next Preparation Step
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-text-muted leading-relaxed">
                 Role competencies are mapped and synced across your Practice Engine, Timed Assessments, and 1-on-1 Interview loop.
               </p>
               <button
                 onClick={() => onNavigate('practice', { company: profile.company, role: profile.role })}
-                className="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-500/30 flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                className="w-full py-2.5 rounded-lg text-xs font-medium bg-bg hover:bg-surface text-text border border-border flex items-center justify-center gap-1.5 transition-colors"
               >
                 Start Targeted Practice
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -181,24 +181,24 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
           {profile ? (
             <div className="space-y-6">
               {/* Header card */}
-              <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
+              <div className="p-6 rounded-xl bg-surface border border-border flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-lg font-bold text-white">{profile.company}</span>
-                    <span className="text-slate-500">•</span>
-                    <span className="text-sm text-brand-300 font-medium">{profile.role}</span>
+                    <span className="text-xl font-serif text-text">{profile.company}</span>
+                    <span className="text-text-muted">•</span>
+                    <span className="text-sm text-text font-medium">{profile.role}</span>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 mt-2">
                     {profile.required_skills.slice(0, 6).map((skill, i) => (
-                      <span key={i} className="px-2 py-0.5 rounded-md bg-slate-800 text-[11px] text-slate-300 border border-slate-700">
+                      <span key={i} className="px-2 py-0.5 rounded bg-bg text-[11px] text-text-muted border border-border font-mono">
                         {skill}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="text-right text-xs text-slate-400 font-mono">
-                  <div>Status: <span className="text-emerald-400 font-semibold">ACTIVE</span></div>
+                <div className="text-right text-xs text-text-muted font-mono">
+                  <div>Status: <span className="text-success font-medium">ACTIVE</span></div>
                   <div>Window ID: {profile.time_window_id ? profile.time_window_id.slice(0, 8) : 'canonical-7d'}</div>
                 </div>
               </div>
@@ -206,40 +206,40 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
               {/* Subject Breakdown */}
               <div className="space-y-4">
                 {profile.subjects.map((sub, sIdx) => (
-                  <div key={sIdx} className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-200 mb-4 pb-2 border-b border-slate-800">
-                      <Layers className="w-4 h-4 text-brand-400" />
+                  <div key={sIdx} className="p-5 rounded-xl bg-surface border border-border">
+                    <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-text-muted mb-4 pb-2 border-b border-border">
+                      <Layers className="w-3.5 h-3.5 text-accent" />
                       {sub.subject}
                     </div>
 
                     <div className="grid gap-3">
                       {sub.topics.map((top, tIdx) => (
-                        <div key={tIdx} className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-2">
+                        <div key={tIdx} className="p-3.5 rounded-lg bg-bg border border-border space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-semibold text-slate-200">{top.topic}</span>
-                            <span className="text-xs font-mono font-bold text-brand-400">
+                            <span className="text-xs font-medium text-text">{top.topic}</span>
+                            <span className="text-xs font-mono font-medium text-accent">
                               {Math.round(top.importance_score * 100)}% Importance
                             </span>
                           </div>
 
-                          <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                          <div className="w-full h-1.5 rounded-full bg-border overflow-hidden">
                             <div 
-                              className="h-full rounded-full bg-gradient-to-r from-brand-500 to-indigo-500"
+                              className="h-full rounded-full bg-accent"
                               style={{ width: `${top.importance_score * 100}%` }}
                             />
                           </div>
 
-                          <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-[11px] text-slate-400">
+                          <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-[11px] text-text-muted">
                             <div className="flex items-center gap-1.5">
                               <span>Expected:</span>
                               {top.expected_question_types.map((qt, qIdx) => (
-                                <span key={qIdx} className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">
+                                <span key={qIdx} className="px-1.5 py-0.5 rounded bg-surface border border-border text-text font-mono">
                                   {qt}
                                 </span>
                               ))}
                             </div>
 
-                            <div className="text-slate-500">
+                            <div>
                               Subtopics: {top.subtopics.slice(0, 3).join(', ')}
                             </div>
                           </div>
@@ -251,19 +251,19 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
               </div>
 
               {/* Evidence Provenance Box */}
-              <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <div className="p-5 rounded-xl bg-surface border border-border">
+                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-text-muted mb-3">
+                  <ShieldCheck className="w-4 h-4 text-accent" />
                   Evidence Provenance & Trust Traceability
                 </div>
                 <div className="space-y-2">
                   {profile.evidence.map((ev, eIdx) => (
-                    <div key={eIdx} className="p-3 rounded-lg bg-slate-950/40 border border-slate-800/60 text-xs flex items-start justify-between gap-4">
+                    <div key={eIdx} className="p-3 rounded-lg bg-bg border border-border text-xs flex items-start justify-between gap-4">
                       <div>
-                        <p className="text-slate-300">{ev.fact}</p>
-                        <span className="text-[10px] text-slate-500 mt-1 block">Source: {ev.source}</span>
+                        <p className="text-text leading-relaxed">{ev.fact}</p>
+                        <span className="text-[10px] text-text-muted mt-1 block font-mono">Source: {ev.source}</span>
                       </div>
-                      <span className="shrink-0 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">
+                      <span className="shrink-0 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-success/10 text-success border border-success/30">
                         {ev.trust_level}
                       </span>
                     </div>
@@ -272,7 +272,7 @@ export const JDIntakePage: React.FC<JDIntakePageProps> = ({
               </div>
             </div>
           ) : (
-            <div className="p-12 text-center rounded-2xl border border-dashed border-slate-800 text-slate-500">
+            <div className="p-12 text-center rounded-xl border border-dashed border-border text-text-muted font-mono text-xs">
               Select or generate a role topic profile to inspect importance distributions.
             </div>
           )}

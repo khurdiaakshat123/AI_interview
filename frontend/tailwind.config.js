@@ -7,21 +7,60 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        serif: ['"Instrument Serif"', 'Georgia', 'Cambria', 'serif'],
+        sans: ['"Instrument Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+      },
       colors: {
+        bg: 'var(--bg)',
+        surface: {
+          DEFAULT: 'var(--surface)',
+          hover: 'var(--surface-hover)',
+          active: 'var(--surface-active)',
+        },
+        border: {
+          DEFAULT: 'var(--border)',
+          subtle: 'var(--border-subtle)',
+          focus: 'var(--border-focus)',
+        },
+        text: {
+          DEFAULT: 'var(--text)',
+          muted: 'var(--text-muted)',
+          dim: 'var(--text-dim)',
+        },
+        accent: {
+          DEFAULT: 'var(--accent)',
+          hover: 'var(--accent-hover)',
+          contrast: 'var(--accent-contrast)',
+          subtle: 'var(--accent-subtle)',
+          border: 'var(--accent-border)',
+        },
+        success: {
+          DEFAULT: 'var(--success)',
+          subtle: 'var(--success-subtle)',
+        },
+        danger: {
+          DEFAULT: 'var(--danger)',
+          subtle: 'var(--danger-subtle)',
+        },
         brand: {
-          50: '#f0f7ff',
-          100: '#e0effe',
-          200: '#bae0fd',
-          300: '#7cc7fb',
-          400: '#36abf7',
-          500: '#0c8fe9',
-          600: '#0070c6',
-          700: '#0159a1',
-          800: '#054c84',
-          900: '#0a406e',
-          950: '#072849',
+          50: '#f7f6f3',
+          100: '#edebe6',
+          200: '#dedad2',
+          300: '#c5bfb3',
+          400: '#a8a090',
+          500: '#E8A33D',
+          600: '#d49332',
+          700: '#b87c24',
+          800: '#8c5d18',
+          900: '#5c3d0f',
+          950: '#161618',
         },
       },
+      borderRadius: {
+        'card': '12px',
+      }
     },
   },
   plugins: [],

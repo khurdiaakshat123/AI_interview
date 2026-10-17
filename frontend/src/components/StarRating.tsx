@@ -27,21 +27,21 @@ export const StarRating: React.FC<StarRatingProps> = ({
           return (
             <div key={i} className="relative inline-block">
               {/* Background empty star */}
-              <Star className={`${sizeClasses[size]} text-slate-700`} fill="currentColor" />
+              <Star className={`${sizeClasses[size]} text-border`} fill="currentColor" />
               {/* Foreground filled star with clip */}
               {fillPercentage > 0 && (
                 <div
                   className="absolute top-0 left-0 overflow-hidden"
                   style={{ width: `${fillPercentage}%` }}
                 >
-                  <Star className={`${sizeClasses[size]} text-amber-400`} fill="currentColor" />
+                  <Star className={`${sizeClasses[size]} text-accent`} fill="currentColor" />
                 </div>
               )}
             </div>
           );
         })}
       </div>
-      <span className="text-xs font-mono font-bold text-amber-300 ml-1">
+      <span className="text-xs font-mono font-medium text-accent ml-1">
         {rating.toFixed(2)} / 5.0
       </span>
     </div>

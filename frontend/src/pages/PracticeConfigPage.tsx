@@ -97,55 +97,55 @@ export const PracticeConfigPage: React.FC<PracticeConfigPageProps> = ({
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* Header */}
       <div>
-        <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-400 uppercase tracking-wider mb-2">
-          <Code2 className="w-4 h-4" />
+        <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-text-muted mb-2">
+          <Code2 className="w-3.5 h-3.5 text-accent" />
           Coding & System Design Practice
         </div>
-        <h1 className="text-3xl font-extrabold text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-serif text-text tracking-tight font-normal">
           Targeted Skill Practice
         </h1>
-        <p className="text-sm text-slate-300 mt-1">
+        <p className="text-sm text-text-muted mt-1.5 leading-relaxed">
           Select target topics, set your current proficiency level, and generate tailored questions with hints, code templates, and automated tests.
         </p>
       </div>
 
-      <div className="p-6 sm:p-8 rounded-2xl bg-slate-900/80 border border-white/10 shadow-xl space-y-6">
+      <div className="p-6 sm:p-8 rounded-xl bg-surface border border-border space-y-6">
         {/* Company & Role Target */}
-        <div className="grid sm:grid-cols-2 gap-4 pb-6 border-b border-slate-800">
+        <div className="grid sm:grid-cols-2 gap-4 pb-6 border-b border-border">
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">Company Target</label>
+            <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-1">Company Target</label>
             <input
               type="text"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
-              className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:border-brand-500 focus:outline-none"
+              className="w-full px-3.5 py-2 rounded-lg bg-bg border border-border text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">Role Title</label>
+            <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-1">Role Title</label>
             <input
               type="text"
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:border-brand-500 focus:outline-none"
+              className="w-full px-3.5 py-2 rounded-lg bg-bg border border-border text-xs text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
             />
           </div>
         </div>
 
         {/* Allocation Mode & Total Questions */}
-        <div className="grid sm:grid-cols-2 gap-6 pb-6 border-b border-slate-800">
+        <div className="grid sm:grid-cols-2 gap-6 pb-6 border-b border-border">
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-2">Question Count</label>
+            <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-2">Question Count</label>
             <div className="flex items-center gap-2">
               {[3, 5, 8, 10].map((num) => (
                 <button
                   key={num}
                   type="button"
                   onClick={() => setTotalQuestions(num)}
-                  className={`flex-1 py-2 rounded-xl text-xs font-semibold font-mono transition-all ${
+                  className={`flex-1 py-2 rounded-lg text-xs font-mono transition-colors ${
                     totalQuestions === num
-                      ? 'bg-brand-600 text-white shadow-sm'
-                      : 'bg-slate-950 border border-slate-800 text-slate-400 hover:text-white'
+                      ? 'bg-accent text-accent-contrast font-medium'
+                      : 'bg-bg border border-border text-text-muted hover:text-text'
                   }`}
                 >
                   {num} Qs
@@ -155,15 +155,15 @@ export const PracticeConfigPage: React.FC<PracticeConfigPageProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-2">Allocation Mode</label>
+            <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-2">Allocation Mode</label>
             <div className="grid grid-cols-2 gap-2">
               <button
                 type="button"
                 onClick={() => setAllocationMode('auto')}
-                className={`py-2 px-3 rounded-xl text-xs font-semibold text-center transition-all ${
+                className={`py-2 px-3 rounded-lg text-xs transition-colors ${
                   allocationMode === 'auto'
-                    ? 'bg-brand-600 text-white shadow-sm'
-                    : 'bg-slate-950 border border-slate-800 text-slate-400 hover:text-white'
+                    ? 'bg-accent text-accent-contrast font-medium'
+                    : 'bg-bg border border-border text-text-muted hover:text-text'
                 }`}
               >
                 Auto (Weighted)
@@ -171,10 +171,10 @@ export const PracticeConfigPage: React.FC<PracticeConfigPageProps> = ({
               <button
                 type="button"
                 onClick={() => setAllocationMode('manual')}
-                className={`py-2 px-3 rounded-xl text-xs font-semibold text-center transition-all ${
+                className={`py-2 px-3 rounded-lg text-xs transition-colors ${
                   allocationMode === 'manual'
-                    ? 'bg-brand-600 text-white shadow-sm'
-                    : 'bg-slate-950 border border-slate-800 text-slate-400 hover:text-white'
+                    ? 'bg-accent text-accent-contrast font-medium'
+                    : 'bg-bg border border-border text-text-muted hover:text-text'
                 }`}
               >
                 Manual Equal
@@ -185,7 +185,7 @@ export const PracticeConfigPage: React.FC<PracticeConfigPageProps> = ({
 
         {/* Topics & Per-Topic Proficiency Sliders */}
         <div>
-          <label className="block text-xs font-medium text-slate-300 mb-3">
+          <label className="block text-xs font-mono uppercase tracking-wider text-text-muted mb-3">
             Select Topics & Target Proficiency
           </label>
 
@@ -197,10 +197,10 @@ export const PracticeConfigPage: React.FC<PracticeConfigPageProps> = ({
               return (
                 <div
                   key={top}
-                  className={`p-3.5 rounded-xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                  className={`p-3.5 rounded-lg border transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
                     isSelected
-                      ? 'bg-slate-950/80 border-brand-500/40'
-                      : 'bg-slate-950/40 border-slate-800/80 opacity-70'
+                      ? 'bg-bg border-accent/40'
+                      : 'bg-bg/40 border-border opacity-70'
                   }`}
                 >
                   <label className="flex items-center gap-3 cursor-pointer">
@@ -208,22 +208,22 @@ export const PracticeConfigPage: React.FC<PracticeConfigPageProps> = ({
                       type="checkbox"
                       checked={isSelected}
                       onChange={() => handleTopicToggle(top)}
-                      className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-brand-600 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                      className="w-4 h-4 rounded border-border bg-surface text-accent focus:ring-0 focus:ring-offset-0 cursor-pointer"
                     />
-                    <span className="text-xs font-semibold text-slate-200">{top}</span>
+                    <span className="text-xs font-medium text-text">{top}</span>
                   </label>
 
                   {isSelected && (
-                    <div className="flex items-center gap-1.5 self-end sm:self-auto">
+                    <div className="flex items-center gap-1.5 self-end sm:self-auto font-mono text-[11px]">
                       {['beginner', 'intermediate', 'advanced'].map((lvl) => (
                         <button
                           key={lvl}
                           type="button"
                           onClick={() => handleProficiencyChange(top, lvl)}
-                          className={`px-2.5 py-1 rounded-lg text-[11px] font-medium capitalize transition-all ${
+                          className={`px-2.5 py-1 rounded-md capitalize transition-colors ${
                             currentLevel === lvl
-                              ? 'bg-brand-600/30 text-brand-300 border border-brand-500/40'
-                              : 'text-slate-500 hover:text-slate-300'
+                              ? 'bg-surface border border-accent text-accent font-medium'
+                              : 'text-text-muted hover:text-text'
                           }`}
                         >
                           {lvl}
@@ -242,7 +242,7 @@ export const PracticeConfigPage: React.FC<PracticeConfigPageProps> = ({
           <button
             onClick={handleStartPractice}
             disabled={loading || selectedTopics.length === 0}
-            className="w-full py-3.5 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 text-white flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/25 transition-all active:scale-[0.98]"
+            className="w-full py-3.5 rounded-xl text-sm font-medium bg-accent text-accent-contrast hover:opacity-90 disabled:opacity-40 flex items-center justify-center gap-2 transition-opacity"
           >
             {loading ? 'Preparing Practice Set...' : 'Launch Practice Session'}
             <ArrowRight className="w-4 h-4" />

@@ -37,16 +37,16 @@ export const Timer: React.FC<TimerProps> = ({
 
   return (
     <div
-      className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border font-mono text-sm font-semibold transition-all ${
+      className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border font-mono text-xs font-medium transition-colors ${
         isUrgent
-          ? 'bg-rose-950/60 border-rose-700 text-rose-300 animate-pulse'
-          : 'bg-slate-800/80 border-slate-700 text-slate-200'
+          ? 'bg-danger/10 border-danger/40 text-danger animate-pulse'
+          : 'bg-surface border-border text-text'
       }`}
     >
       {isUrgent ? (
-        <AlertTriangle className="w-4 h-4 text-rose-400" />
+        <AlertTriangle className="w-3.5 h-3.5 text-danger" />
       ) : (
-        <Clock className="w-4 h-4 text-brand-400" />
+        <Clock className="w-3.5 h-3.5 text-text-muted" />
       )}
       <span>
         {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}

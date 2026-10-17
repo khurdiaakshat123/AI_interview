@@ -256,20 +256,17 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
   };
 
   return createPortal(
-    <div className='fixed inset-0 z-[9999] bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 overflow-hidden'>
-      <div className='w-full max-w-3xl max-h-[90vh] flex flex-col rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl relative overflow-hidden animate-in fade-in zoom-in-95 duration-200'>
+    <div className='fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center p-3 sm:p-5 overflow-hidden'>
+      <div className='w-full max-w-3xl max-h-[90vh] flex flex-col rounded-card bg-surface border border-border relative overflow-hidden animate-in fade-in duration-150'>
         {/* Fixed Header - Always visible at top */}
-        <div className='flex items-center justify-between px-6 sm:px-8 py-4 sm:py-5 border-b border-slate-800 bg-slate-900/95 backdrop-blur-sm shrink-0'>
+        <div className='flex items-center justify-between px-6 sm:px-8 py-5 border-b border-border bg-surface shrink-0'>
           <div className='flex items-center gap-3'>
-            <div className='w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-brand-500/20 shrink-0'>
-              <UserPlus className='w-5 h-5 text-white' />
-            </div>
             <div>
-              <h2 className='text-lg sm:text-xl font-extrabold text-white tracking-tight'>
+              <h2 className='font-serif text-2xl text-text font-normal tracking-tight'>
                 Candidate Profile & Resume Setup
               </h2>
-              <p className='text-xs text-slate-400 mt-0.5 line-clamp-1 sm:line-clamp-none'>
-                Store your resume, target role, and basic profile info. Saved automatically so you can start or customize any interview without re-uploading.
+              <p className='text-xs text-text-muted mt-0.5'>
+                Store your resume, target role, and basic profile info. Saved automatically.
               </p>
             </div>
           </div>
@@ -277,7 +274,7 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
             type='button'
             onClick={onClose}
             disabled={loading}
-            className='p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-all shrink-0'
+            className='p-1.5 rounded-md text-text-muted hover:text-text hover:bg-surface-hover transition-colors shrink-0'
             title='Close dialog'
           >
             <X className='w-5 h-5' />
@@ -289,37 +286,36 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
           <div className='flex-1 overflow-y-auto p-6 sm:p-8 space-y-6'>
             {/* Save Success Banner */}
             {saveSuccess && (
-              <div className='p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-700/70 text-xs text-emerald-300 flex items-center gap-2 animate-in fade-in'>
-                <CheckCircle2 className='w-4 h-4 flex-shrink-0 text-emerald-400' />
-                <span className='font-semibold'>Profile and resume saved successfully! Ready for your interview.</span>
+              <div className='p-3.5 rounded-md bg-success-subtle border border-success/40 text-xs text-success flex items-center gap-2'>
+                <CheckCircle2 className='w-4 h-4 flex-shrink-0' />
+                <span className='font-medium'>Profile and resume saved successfully. Ready for your interview.</span>
               </div>
             )}
 
             {/* Quick Presets */}
-            <div className='flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800/80 text-xs'>
-              <span className='text-slate-400 font-medium flex items-center gap-1.5'>
-                <Sparkles className='w-3.5 h-3.5 text-amber-400' />
-                Quick Sample Roles:
+            <div className='flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-md bg-bg border border-border text-xs'>
+              <span className='text-text-muted font-mono uppercase tracking-[0.06em] text-[11px]'>
+                Sample Profiles:
               </span>
               <div className='flex flex-wrap items-center gap-2'>
                 <button
                   type='button'
                   onClick={() => handleApplyPreset('openai')}
-                  className='px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all'
+                  className='px-2.5 py-1 rounded bg-surface hover:bg-surface-hover border border-border text-text text-xs font-mono transition-colors'
                 >
                   OpenAI (Distributed Training)
                 </button>
                 <button
                   type='button'
                   onClick={() => handleApplyPreset('google')}
-                  className='px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all'
+                  className='px-2.5 py-1 rounded bg-surface hover:bg-surface-hover border border-border text-text text-xs font-mono transition-colors'
                 >
                   Google L4 (Cloud Spanner)
                 </button>
                 <button
                   type='button'
                   onClick={() => handleApplyPreset('meta')}
-                  className='px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all'
+                  className='px-2.5 py-1 rounded bg-surface hover:bg-surface-hover border border-border text-text text-xs font-mono transition-colors'
                 >
                   Meta E4 (Infrastructure)
                 </button>
@@ -327,46 +323,46 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
             </div>
 
             {error && (
-              <div className='p-3.5 rounded-xl bg-red-950/50 border border-red-800/60 text-xs text-red-300 flex items-center gap-2'>
-                <AlertCircle className='w-4 h-4 flex-shrink-0 text-red-400' />
+              <div className='p-3.5 rounded-md bg-danger-subtle border border-danger/40 text-xs text-danger flex items-center gap-2'>
+                <AlertCircle className='w-4 h-4 flex-shrink-0' />
                 <span>{error}</span>
               </div>
             )}
           {/* Section 1: Candidate Details */}
           <div className='space-y-3'>
-            <div className='flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-400'>
+            <div className='flex items-center gap-2 text-xs font-mono uppercase tracking-[0.06em] text-accent'>
               <Cpu className='w-3.5 h-3.5' />
               1. Candidate Profile
             </div>
             <div className='grid sm:grid-cols-3 gap-3'>
               <div>
-                <label className='block text-xs font-medium text-slate-300 mb-1'>Full Name</label>
+                <label className='block text-[11px] font-mono uppercase tracking-[0.04em] text-text-muted mb-1'>Full Name</label>
                 <input
                   type='text'
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder='e.g. Maya Lin'
-                  className='w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:border-brand-500 focus:outline-none'
+                  className='w-full px-3 py-2 rounded-md bg-bg border border-border text-xs text-text focus:border-accent focus:outline-none'
                   required
                 />
               </div>
               <div>
-                <label className='block text-xs font-medium text-slate-300 mb-1'>Email Address</label>
+                <label className='block text-[11px] font-mono uppercase tracking-[0.04em] text-text-muted mb-1'>Email Address</label>
                 <input
                   type='email'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder='e.g. maya.lin@example.com'
-                  className='w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:border-brand-500 focus:outline-none'
+                  className='w-full px-3 py-2 rounded-md bg-bg border border-border text-xs text-text focus:border-accent focus:outline-none'
                   required
                 />
               </div>
               <div>
-                <label className='block text-xs font-medium text-slate-300 mb-1'>Experience Level</label>
+                <label className='block text-[11px] font-mono uppercase tracking-[0.04em] text-text-muted mb-1'>Experience Level</label>
                 <select
                   value={experience}
                   onChange={(e) => setExperience(e.target.value)}
-                  className='w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:border-brand-500 focus:outline-none cursor-pointer'
+                  className='w-full px-3 py-2 rounded-md bg-bg border border-border text-xs text-text focus:border-accent focus:outline-none cursor-pointer'
                 >
                   <option value='0-1 years'>0-1 years (Entry / Intern)</option>
                   <option value='1-3 years'>1-3 years (Junior SWE)</option>
@@ -379,30 +375,30 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
 
           {/* Section 2: Target Opportunity & JD */}
           <div className='space-y-3'>
-            <div className='flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400'>
+            <div className='flex items-center gap-2 text-xs font-mono uppercase tracking-[0.06em] text-accent'>
               <Building2 className='w-3.5 h-3.5' />
               2. Target Company & Job Description (JD)
             </div>
             <div className='grid sm:grid-cols-2 gap-3'>
               <div>
-                <label className='block text-xs font-medium text-slate-300 mb-1'>Target Company</label>
+                <label className='block text-[11px] font-mono uppercase tracking-[0.04em] text-text-muted mb-1'>Target Company</label>
                 <input
                   type='text'
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
                   placeholder='e.g. OpenAI, Google, Stripe'
-                  className='w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:border-indigo-500 focus:outline-none'
+                  className='w-full px-3 py-2 rounded-md bg-bg border border-border text-xs text-text focus:border-accent focus:outline-none'
                   required
                 />
               </div>
               <div>
-                <label className='block text-xs font-medium text-slate-300 mb-1'>Target Role Title</label>
+                <label className='block text-[11px] font-mono uppercase tracking-[0.04em] text-text-muted mb-1'>Target Role Title</label>
                 <input
                   type='text'
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
                   placeholder='e.g. Distributed Systems Engineer'
-                  className='w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:border-indigo-500 focus:outline-none'
+                  className='w-full px-3 py-2 rounded-md bg-bg border border-border text-xs text-text focus:border-accent focus:outline-none'
                   required
                 />
               </div>
@@ -421,14 +417,14 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
           {/* Section 3: Candidate Resume */}
           <div className='space-y-3'>
             <div className='flex items-center justify-between'>
-              <div className='flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400'>
+              <div className='flex items-center gap-2 text-xs font-mono uppercase tracking-[0.06em] text-accent'>
                 <FileText className='w-3.5 h-3.5' />
                 3. Candidate Resume (Projects & Skills)
               </div>
               <button
                 type='button'
                 onClick={() => setResumeText('')}
-                className='text-[11px] text-slate-400 hover:text-slate-200 underline'
+                className='text-[11px] font-mono text-text-muted hover:text-text underline'
               >
                 Clear Resume
               </button>
@@ -455,10 +451,10 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
 
           {/* Progress Banner during submission */}
           {loading && (
-            <div className='p-4 rounded-2xl bg-brand-950/40 border border-brand-800/60 flex items-center gap-3 text-xs text-brand-300'>
-              <Loader2 className='w-5 h-5 animate-spin text-brand-400 flex-shrink-0' />
+            <div className='p-3.5 rounded-md bg-surface border border-border flex items-center gap-3 text-xs text-text-muted'>
+              <Loader2 className='w-4 h-4 animate-spin text-accent flex-shrink-0' />
               <div>
-                <span className='font-semibold block text-white'>Running AI Pipeline</span>
+                <span className='font-medium block text-text'>Running Topic & Question Pipeline</span>
                 <span>{stepMessage}</span>
               </div>
             </div>
@@ -467,12 +463,12 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
           </div>
 
           {/* Fixed Footer Actions */}
-          <div className='px-6 sm:px-8 py-4 border-t border-slate-800 bg-slate-950/80 backdrop-blur-sm shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3'>
+          <div className='px-6 sm:px-8 py-4 border-t border-border bg-surface shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3'>
             <button
               type='button'
               onClick={onClose}
               disabled={loading}
-              className='w-full sm:w-auto px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-all text-center'
+              className='w-full sm:w-auto h-9 px-4 rounded-md text-xs font-medium text-text-muted hover:text-text hover:bg-surface-hover transition-colors text-center'
             >
               Cancel
             </button>
@@ -482,17 +478,16 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
                 type='button'
                 onClick={handleSaveProfileOnly}
                 disabled={loading}
-                className='flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-500/30 hover:border-sky-500/50 shadow transition-all disabled:opacity-50'
+                className='flex-1 sm:flex-initial h-9 px-4 rounded-md text-xs font-medium border border-border bg-transparent text-text hover:bg-surface-hover hover:border-border-focus transition-colors disabled:opacity-50'
                 title="Save candidate info and resume to your profile without launching an interview"
               >
-                <Save className='w-4 h-4 text-sky-400' />
                 Save Profile & Resume
               </button>
 
               <button
                 type='submit'
                 disabled={loading}
-                className='flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white shadow-lg shadow-brand-500/25 transition-all disabled:opacity-50'
+                className='flex-1 sm:flex-initial h-9 px-5 rounded-md text-xs font-medium bg-accent hover:bg-accent-hover text-accent-contrast transition-colors disabled:opacity-50 flex items-center justify-center gap-2'
               >
                 {loading ? (
                   <>
@@ -501,9 +496,8 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
                   </>
                 ) : (
                   <>
-                    <Sparkles className='w-4 h-4' />
                     Save & Launch Interview
-                    <ArrowRight className='w-4 h-4' />
+                    <ArrowRight className='w-3.5 h-3.5' />
                   </>
                 )}
               </button>

@@ -150,7 +150,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 antialiased selection:bg-brand-500/30 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-bg text-text font-sans antialiased selection:bg-accent/25 selection:text-text">
       {/* Top Navigation */}
       <Navbar 
         currentTab={currentTab} 
@@ -276,25 +276,23 @@ export const App: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#070b14] border-t border-white/[0.06] py-10 text-xs text-slate-400">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col sm:flex-row items-center gap-3">
-            <div className="flex items-center gap-2">
-              <span className="font-extrabold text-white text-sm">intervyn<span className="text-sky-400">.ai</span></span>
-              <span className="text-slate-600">•</span>
-              <span className="text-slate-400">The Technical Hiring & Assessment Studio</span>
-            </div>
+      <footer className="bg-bg border-t border-border py-8 text-xs text-text-muted">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <span className="font-serif text-base text-text">intervyn</span>
+            <span className="text-border">•</span>
+            <span className="text-text-muted">Technical Hiring & Assessment Studio</span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-400">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-text-muted font-mono">
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              All Systems Operational
+              <span className="w-1.5 h-1.5 rounded-full bg-success"></span>
+              Systems Operational
             </span>
-            <span className="text-slate-700 hidden sm:inline">|</span>
-            <span>Enterprise Proctoring</span>
-            <span className="text-slate-700 hidden sm:inline">|</span>
-            <span>18-Point Verification Standard</span>
+            <span className="text-border hidden sm:inline">/</span>
+            <span>Deterministic Scoring</span>
+            <span className="text-border hidden sm:inline">/</span>
+            <span>Evidence-Backed Verification</span>
           </div>
         </div>
       </footer>

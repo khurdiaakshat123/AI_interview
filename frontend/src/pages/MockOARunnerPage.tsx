@@ -393,7 +393,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
   const sampleCases = currentQ.test_cases || [];
 
   return (
-    <div className={`flex flex-col h-[calc(100vh-64px)] overflow-hidden bg-[#0d1117] text-slate-200 font-sans select-none ${
+    <div className={`flex flex-col h-[calc(100vh-64px)] overflow-hidden bg-bg text-text font-sans select-none ${
       isFullScreenView ? 'fixed inset-0 z-50 h-screen' : 'relative'
     }`}>
       {/* Real-time Proctoring Toast notification */}
@@ -402,56 +402,53 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
       )}
 
       {/* ============================================================ */}
-      {/* HACKERRANK TOP BAR: Logo, Breadcrumbs, Timer, Fullscreen, Submit */}
+      {/* OA TOP BAR: Logo, Breadcrumbs, Timer, Fullscreen, Submit */}
       {/* ============================================================ */}
-      <header className="h-12 shrink-0 px-4 bg-[#161f28] border-b border-[#2d3a4b] flex items-center justify-between text-xs gap-4 z-20">
-        {/* Left: HackerRank Logo & Breadcrumbs */}
+      <header className="h-12 shrink-0 px-4 bg-surface border-b border-border flex items-center justify-between text-xs gap-4 z-20">
+        {/* Left: Logo & Breadcrumbs */}
         <div className="flex items-center gap-3 overflow-hidden">
-          {/* HackerRank Icon & Text */}
+          {/* Logo mark */}
           <div className="flex items-center gap-2 shrink-0">
-            <div className="w-6 h-6 rounded bg-[#1BA94C] flex items-center justify-center font-black text-white text-sm shadow-sm">
-              H
-            </div>
-            <span className="font-extrabold text-white text-sm tracking-tight hidden sm:inline">
-              HackerRank
+            <span className="font-serif text-lg tracking-tight text-text">
+              intervyn<span className="text-accent">.</span>
             </span>
           </div>
 
-          <span className="text-slate-600 font-light">|</span>
+          <span className="text-border font-light">|</span>
 
           {/* Breadcrumbs */}
-          <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium truncate">
-            <span className="hover:text-slate-200 cursor-pointer hidden md:inline">Prepare</span>
-            <span className="text-slate-600 hidden md:inline">&gt;</span>
-            <span className="hover:text-slate-200 cursor-pointer hidden sm:inline">Data Structures</span>
-            <span className="text-slate-600 hidden sm:inline">&gt;</span>
-            <span className="hover:text-slate-200 cursor-pointer">{currentQ.topic || 'Arrays'}</span>
-            <span className="text-slate-600">&gt;</span>
-            <span className="text-emerald-400 font-semibold truncate">
-              {currentQ.title || '2D Array - DS'}
+          <div className="flex items-center gap-1.5 text-xs text-text-muted font-medium truncate font-mono">
+            <span className="hover:text-text cursor-pointer hidden md:inline">Assess</span>
+            <span className="text-text-muted hidden md:inline">&gt;</span>
+            <span className="hover:text-text cursor-pointer hidden sm:inline">Online Assessment</span>
+            <span className="text-text-muted hidden sm:inline">&gt;</span>
+            <span className="hover:text-text cursor-pointer">{currentQ.topic || 'Coding'}</span>
+            <span className="text-text-muted">&gt;</span>
+            <span className="text-accent font-medium truncate">
+              {currentQ.title || 'Problem'}
             </span>
           </div>
         </div>
 
         {/* Center: Question Navigation Pills */}
-        <div className="flex items-center gap-1 shrink-0">
+        <div className="flex items-center gap-1 shrink-0 font-mono">
           <button
             onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
             disabled={currentIndex === 0}
-            className="p-1 rounded bg-[#212e3c] hover:bg-[#2c3d4f] text-slate-300 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+            className="p-1 rounded bg-bg hover:bg-surface text-text-muted hover:text-text border border-border disabled:opacity-30 disabled:pointer-events-none transition-colors"
             title="Previous Question"
           >
             <ChevronLeft className="w-3.5 h-3.5" />
           </button>
 
-          <span className="text-[11px] font-mono text-slate-400 px-1.5">
+          <span className="text-[11px] text-text-muted px-1.5">
             {currentIndex + 1} / {variant.questions.length}
           </span>
 
           <button
             onClick={() => setCurrentIndex(Math.min(variant.questions.length - 1, currentIndex + 1))}
             disabled={currentIndex === variant.questions.length - 1}
-            className="p-1 rounded bg-[#212e3c] hover:bg-[#2c3d4f] text-slate-300 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+            className="p-1 rounded bg-bg hover:bg-surface text-text-muted hover:text-text border border-border disabled:opacity-30 disabled:pointer-events-none transition-colors"
             title="Next Question"
           >
             <ChevronRight className="w-3.5 h-3.5" />
@@ -459,10 +456,9 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
         </div>
 
         {/* Right: Timer, Full Screen Toggle, Proctoring, Finish Exam */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex items-center gap-2.5 shrink-0">
           {/* Active Timer */}
-          <div className="flex items-center gap-1.5 bg-[#212e3c] px-2.5 py-1 rounded text-slate-200 font-mono text-xs border border-slate-700/50">
-            <Clock className="w-3.5 h-3.5 text-emerald-400" />
+          <div className="flex items-center">
             <Timer
               initialMinutes={variant.duration_minutes}
               onTimeExpired={handleSubmitExam}
@@ -474,18 +470,18 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
           <button
             type="button"
             onClick={() => setIsFullScreenView(!isFullScreenView)}
-            className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#212e3c] hover:bg-[#2c3d4f] text-slate-300 hover:text-white text-[11px] transition-colors border border-slate-700/50"
+            className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-bg hover:bg-surface text-text-muted hover:text-text text-[11px] transition-colors border border-border font-mono"
             title="Toggle Full Screen View"
           >
             {isFullScreenView ? (
               <>
-                <Minimize2 className="w-3 h-3 text-emerald-400" />
+                <Minimize2 className="w-3 h-3 text-accent" />
                 <span>Exit Full Screen</span>
               </>
             ) : (
               <>
-                <Maximize2 className="w-3 h-3 text-slate-400" />
-                <span>Full Screen View</span>
+                <Maximize2 className="w-3 h-3 text-text-muted" />
+                <span>Full Screen</span>
               </>
             )}
           </button>
@@ -503,7 +499,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
           <button
             type="button"
             onClick={() => setShowConfirmSubmit(true)}
-            className="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs border border-slate-700 transition-all"
+            className="px-3.5 py-1.5 rounded-lg bg-accent text-accent-contrast font-medium text-xs hover:opacity-90 transition-opacity"
           >
             Finish Exam
           </button>
@@ -518,14 +514,14 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
         {/* ============================================================ */}
         {/* LEFT VERTICAL RAIL (HackerRank Tabs: Problem, Submissions, etc.) */}
         {/* ============================================================ */}
-        <aside className="w-12 shrink-0 bg-[#161f28] border-r border-[#2d3a4b] flex flex-col items-center py-3 gap-4 z-10 select-none">
+        <aside className="w-12 shrink-0 bg-surface border-r border-border flex flex-col items-center py-3 gap-4 z-10 select-none">
           <button
             type="button"
             onClick={() => setActiveRailTab('problem')}
             className={`w-9 h-9 rounded flex items-center justify-center transition-all ${
               activeRailTab === 'problem'
-                ? 'bg-[#1BA94C] text-white shadow-sm font-bold'
-                : 'text-slate-400 hover:text-white hover:bg-[#212e3c]'
+                ? 'bg-accent text-accent-contrast font-medium'
+                : 'text-text-muted hover:text-text hover:bg-surface-hover'
             }`}
             title="Problem Statement"
           >
@@ -537,8 +533,8 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
             onClick={() => setActiveRailTab('submissions')}
             className={`w-9 h-9 rounded flex items-center justify-center transition-all ${
               activeRailTab === 'submissions'
-                ? 'bg-[#1BA94C] text-white shadow-sm font-bold'
-                : 'text-slate-400 hover:text-white hover:bg-[#212e3c]'
+                ? 'bg-accent text-accent-contrast font-medium'
+                : 'text-text-muted hover:text-text hover:bg-surface-hover'
             }`}
             title="Submissions"
           >
@@ -550,8 +546,8 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
             onClick={() => setActiveRailTab('leaderboard')}
             className={`w-9 h-9 rounded flex items-center justify-center transition-all ${
               activeRailTab === 'leaderboard'
-                ? 'bg-[#1BA94C] text-white shadow-sm font-bold'
-                : 'text-slate-400 hover:text-white hover:bg-[#212e3c]'
+                ? 'bg-accent text-accent-contrast font-medium'
+                : 'text-text-muted hover:text-text hover:bg-surface-hover'
             }`}
             title="Leaderboard"
           >
@@ -563,8 +559,8 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
             onClick={() => setActiveRailTab('discussions')}
             className={`w-9 h-9 rounded flex items-center justify-center transition-all ${
               activeRailTab === 'discussions'
-                ? 'bg-[#1BA94C] text-white shadow-sm font-bold'
-                : 'text-slate-400 hover:text-white hover:bg-[#212e3c]'
+                ? 'bg-accent text-accent-contrast font-medium'
+                : 'text-text-muted hover:text-text hover:bg-surface-hover'
             }`}
             title="Discussions"
           >
@@ -577,8 +573,8 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
               onClick={toggleMarkForReview}
               className={`w-9 h-9 rounded flex items-center justify-center transition-all ${
                 markedForReview[currentQ.id]
-                  ? 'bg-amber-500/20 text-amber-400 border border-amber-500/50'
-                  : 'text-slate-400 hover:text-white hover:bg-[#212e3c]'
+                  ? 'bg-accent/20 text-accent border border-accent/40'
+                  : 'text-text-muted hover:text-text hover:bg-surface-hover'
               }`}
               title={markedForReview[currentQ.id] ? 'Flagged for Review' : 'Mark for Review'}
             >
@@ -595,22 +591,22 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
           {/* ============================================================ */}
           {/* LEFT AREA: Problem Statement & HackerRank Structured Sections */}
           {/* ============================================================ */}
-          <section className="h-full flex flex-col border-r border-[#2d3a4b] bg-[#101720] overflow-hidden">
+          <section className="h-full flex flex-col border-r border-border bg-surface overflow-hidden">
             {/* Header Tabs if in Problem View */}
-            <div className="h-10 shrink-0 px-5 bg-[#161f28] border-b border-[#2d3a4b] flex items-center justify-between text-xs">
+            <div className="h-10 shrink-0 px-5 bg-surface border-b border-border flex items-center justify-between text-xs">
               <div className="flex items-center gap-3">
-                <span className="font-semibold text-slate-200 capitalize">
+                <span className="font-medium text-text capitalize">
                   {activeRailTab}
                 </span>
                 {activeRailTab === 'problem' && (
-                  <span className="text-[11px] text-slate-500">
+                  <span className="text-[11px] text-text-muted font-mono">
                     Question {currentIndex + 1} of {variant.questions.length}
                   </span>
                 )}
               </div>
 
               {markedForReview[currentQ.id] && (
-                <span className="inline-flex items-center gap-1 text-[11px] text-amber-400 font-medium">
+                <span className="inline-flex items-center gap-1 text-[11px] text-accent font-medium">
                   <Flag className="w-3 h-3 fill-current" />
                   Flagged
                 </span>
@@ -618,69 +614,69 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
             </div>
 
             {/* Content Area */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6 text-slate-300 font-sans leading-relaxed text-sm">
+            <div className="flex-1 overflow-y-auto p-6 space-y-6 text-text font-sans leading-relaxed text-sm">
               {activeRailTab === 'problem' && (
                 <>
                   {/* Title & Metadata Row (HackerRank Style) */}
-                  <div className="space-y-3 pb-3 border-b border-[#243342]">
-                    <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  <div className="space-y-3 pb-3 border-b border-border">
+                    <h1 className="font-serif text-2xl font-normal text-text tracking-tight">
                       {currentQ.title || currentQ.subtopic}
                     </h1>
 
                     <div className="flex flex-wrap items-center gap-3 text-xs">
-                      <span className={`px-2.5 py-0.5 rounded font-semibold uppercase text-[11px] ${
+                      <span className={`px-2.5 py-0.5 rounded font-mono font-medium uppercase text-[11px] ${
                         currentQ.difficulty.toLowerCase() === 'hard'
-                          ? 'bg-rose-950/80 text-rose-300 border border-rose-800/60'
+                          ? 'bg-danger/10 text-danger border border-danger/30'
                           : currentQ.difficulty.toLowerCase() === 'easy'
-                          ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-800/60'
-                          : 'bg-amber-950/80 text-amber-300 border border-amber-800/60'
+                          ? 'bg-success/10 text-success border border-success/30'
+                          : 'bg-accent/10 text-accent border border-accent/30'
                       }`}>
                         {currentQ.difficulty}
                       </span>
 
-                      <span className="text-slate-400">
-                        Max Score: <strong className="text-slate-200">15</strong>
+                      <span className="text-text-muted">
+                        Max Score: <strong className="text-text font-mono">15</strong>
                       </span>
 
-                      <span className="text-slate-600">•</span>
+                      <span className="text-border">•</span>
 
-                      <span className="text-slate-400">
-                        Success Rate: <strong className="text-slate-200">92.4%</strong>
+                      <span className="text-text-muted">
+                        Success Rate: <strong className="text-text font-mono">92.4%</strong>
                       </span>
 
-                      <span className="text-slate-600">•</span>
+                      <span className="text-border">•</span>
 
-                      <span className="text-slate-400">
-                        Domain: <span className="text-emerald-400">{currentQ.topic}</span>
+                      <span className="text-text-muted">
+                        Domain: <span className="text-accent">{currentQ.topic}</span>
                       </span>
                     </div>
                   </div>
 
                   {/* Problem Description & Formatted Blocks */}
-                  <div className="space-y-4 text-slate-300 whitespace-pre-line leading-relaxed">
+                  <div className="space-y-4 text-text-muted whitespace-pre-line leading-relaxed">
                     {baseDescription}
                   </div>
 
                   {/* Structured Examples (HackerRank Sample Cases) */}
                   {examples.length > 0 && (
                     <div className="space-y-4 pt-2">
-                      <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      <h3 className="text-xs font-mono uppercase tracking-wider text-text-muted">
                         Sample Input & Output:
                       </h3>
 
                       {examples.map((ex, i) => (
                         <div
                           key={i}
-                          className="rounded-xl border border-[#2d3a4b] bg-[#161f28] p-4 space-y-3 shadow-sm font-mono text-xs"
+                          className="rounded-xl border border-border bg-bg p-4 space-y-3 font-mono text-xs"
                         >
-                          <div className="text-xs font-bold text-emerald-400 font-sans">
+                          <div className="text-xs font-semibold text-text font-sans">
                             {ex.title}:
                           </div>
 
                           {ex.input && (
                             <div className="space-y-1">
-                              <div className="text-[11px] text-slate-400 font-sans uppercase font-bold">Input:</div>
-                              <pre className="p-2.5 rounded bg-[#0d1117] border border-[#243342] text-amber-300 whitespace-pre-wrap break-all overflow-x-auto">
+                              <div className="text-[11px] text-text-muted font-mono uppercase">Input:</div>
+                              <pre className="p-2.5 rounded bg-surface border border-border text-accent whitespace-pre-wrap break-all overflow-x-auto">
                                 {ex.input}
                               </pre>
                             </div>
@@ -688,16 +684,16 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
 
                           {ex.output && (
                             <div className="space-y-1">
-                              <div className="text-[11px] text-slate-400 font-sans uppercase font-bold">Output:</div>
-                              <pre className="p-2.5 rounded bg-[#0d1117] border border-[#243342] text-emerald-400 whitespace-pre-wrap break-all overflow-x-auto">
+                              <div className="text-[11px] text-text-muted font-mono uppercase">Output:</div>
+                              <pre className="p-2.5 rounded bg-surface border border-border text-success whitespace-pre-wrap break-all overflow-x-auto">
                                 {ex.output}
                               </pre>
                             </div>
                           )}
 
                           {ex.explanation && (
-                            <div className="pt-2 border-t border-[#243342] text-slate-300 font-sans text-xs">
-                              <strong className="text-slate-400">Explanation: </strong>
+                            <div className="pt-2 border-t border-border text-text-muted font-sans text-xs">
+                              <strong className="text-text">Explanation: </strong>
                               <span>{ex.explanation}</span>
                             </div>
                           )}
@@ -709,14 +705,14 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                   {/* Constraints Section (HackerRank monospace pills) */}
                   {constraints.length > 0 && (
                     <div className="space-y-2 pt-2">
-                      <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      <h3 className="text-xs font-mono uppercase tracking-wider text-text-muted">
                         Constraints:
                       </h3>
                       <div className="space-y-1.5 pl-1 font-mono text-xs">
                         {constraints.map((c, i) => (
                           <div key={i} className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                            <code className="px-2 py-0.5 rounded bg-[#161f28] border border-[#2d3a4b] text-indigo-300">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                            <code className="px-2 py-0.5 rounded bg-bg border border-border text-text">
                               {c}
                             </code>
                           </div>
@@ -727,12 +723,12 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
 
                   {/* Algorithmic Hint */}
                   {currentQ.hint && (
-                    <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-700/40 space-y-1.5">
-                      <div className="flex items-center gap-2 text-amber-400 font-bold text-xs">
+                    <div className="p-4 rounded-xl bg-accent/10 border border-accent/30 space-y-1.5">
+                      <div className="flex items-center gap-2 text-accent font-medium text-xs">
                         <Lightbulb className="w-4 h-4" />
                         <span>Algorithmic Hint</span>
                       </div>
-                      <p className="text-xs text-amber-200/90 leading-relaxed font-sans">
+                      <p className="text-xs text-text-muted leading-relaxed font-sans">
                         {currentQ.hint}
                       </p>
                     </div>
@@ -743,32 +739,32 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
               {/* Submissions Tab View */}
               {activeRailTab === 'submissions' && (
                 <div className="space-y-4">
-                  <h2 className="text-base font-bold text-white">Your Run & Submission History</h2>
+                  <h2 className="font-serif text-lg text-text">Your Run & Submission History</h2>
                   {submissionsHistory[currentQ.id]?.length ? (
                     <div className="space-y-2">
                       {submissionsHistory[currentQ.id].map((sub) => (
                         <div
                           key={sub.id}
-                          className="p-3 rounded-xl border border-[#2d3a4b] bg-[#161f28] flex items-center justify-between text-xs font-mono"
+                          className="p-3 rounded-xl border border-border bg-bg flex items-center justify-between text-xs font-mono"
                         >
                           <div className="flex items-center gap-2.5">
                             <span className={`w-2.5 h-2.5 rounded-full ${
-                              sub.status === 'ACCEPTED' ? 'bg-emerald-400' : 'bg-rose-400'
+                              sub.status === 'ACCEPTED' ? 'bg-success' : 'bg-danger'
                             }`} />
-                            <span className="font-bold text-white uppercase">{sub.language}</span>
-                            <span className="text-slate-400">({sub.timestamp})</span>
+                            <span className="font-medium text-text uppercase">{sub.language}</span>
+                            <span className="text-text-muted">({sub.timestamp})</span>
                           </div>
                           <div className="flex items-center gap-4">
-                            <span className={sub.status === 'ACCEPTED' ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold'}>
+                            <span className={sub.status === 'ACCEPTED' ? 'text-success font-medium' : 'text-danger font-medium'}>
                               {sub.passedCount} / {sub.totalCount} Test Cases
                             </span>
-                            <span className="text-slate-400">{sub.runtimeMs} ms</span>
+                            <span className="text-text-muted">{sub.runtimeMs} ms</span>
                           </div>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <div className="p-8 text-center text-slate-500 border border-dashed border-[#2d3a4b] rounded-2xl text-xs">
+                    <div className="p-8 text-center text-text-muted border border-dashed border-border rounded-xl text-xs">
                       No code runs yet for this challenge. Click &quot;Run Code&quot; to test your solution.
                     </div>
                   )}
@@ -777,10 +773,10 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
 
               {/* Leaderboard Tab View */}
               {activeRailTab === 'leaderboard' && (
-                <div className="p-8 text-center text-slate-400 space-y-3">
-                  <Award className="w-10 h-10 text-emerald-400 mx-auto" />
-                  <h3 className="text-base font-bold text-white">Live OA Assessment Mode</h3>
-                  <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                <div className="p-8 text-center text-text-muted space-y-3">
+                  <Award className="w-10 h-10 text-accent mx-auto" />
+                  <h3 className="font-serif text-lg font-normal text-text">Live OA Assessment Mode</h3>
+                  <p className="text-xs text-text-muted max-w-sm mx-auto">
                     The competitive leaderboard will be published after the assessment window concludes and all test cases are graded.
                   </p>
                 </div>
@@ -788,10 +784,10 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
 
               {/* Discussions Tab View */}
               {activeRailTab === 'discussions' && (
-                <div className="p-8 text-center text-slate-400 space-y-3">
-                  <MessageSquare className="w-10 h-10 text-slate-500 mx-auto" />
-                  <h3 className="text-base font-bold text-white">Discussions Disabled</h3>
-                  <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                <div className="p-8 text-center text-text-muted space-y-3">
+                  <MessageSquare className="w-10 h-10 text-text-muted mx-auto" />
+                  <h3 className="font-serif text-lg font-normal text-text">Discussions Disabled</h3>
+                  <p className="text-xs text-text-muted max-w-sm mx-auto">
                     To maintain strict test integrity during proctored Online Assessments, community discussions are locked.
                   </p>
                 </div>
@@ -802,11 +798,11 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
           {/* ============================================================ */}
           {/* RIGHT AREA: Monaco Editor + HackerRank Bottom Actions & Console */}
           {/* ============================================================ */}
-          <section className="h-full flex flex-col bg-[#0d1117] overflow-hidden">
+          <section className="h-full flex flex-col bg-bg overflow-hidden">
             {!isCodingQuestion ? (
               /* Non-Coding (MCQ/MSQ) View */
               <div className="p-6 flex-1 overflow-y-auto space-y-4">
-                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <div className="text-xs font-mono uppercase tracking-wider text-text-muted">
                   {currentQ.question_type.toUpperCase() === 'MCQ' ? 'Select One Option:' : 'Select All Applicable Choices (MSQ):'}
                 </div>
 
@@ -830,8 +826,8 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                       }}
                       className={`block p-4 rounded-xl border text-xs cursor-pointer transition-all ${
                         isChecked
-                          ? 'bg-emerald-950/30 border-emerald-500 text-emerald-200 font-semibold shadow-sm'
-                          : 'bg-[#161f28] border-[#2d3a4b] text-slate-300 hover:bg-[#212e3c]'
+                          ? 'bg-accent/10 border-accent text-text font-medium'
+                          : 'bg-surface border-border text-text-muted hover:text-text hover:bg-surface-hover'
                       }`}
                     >
                       {opt}
@@ -843,15 +839,15 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
               /* Full Coding Question View */
               <>
                 {/* Editor Header: Theme, Language, Reset, Format */}
-                <div className="h-10 shrink-0 px-4 bg-[#161f28] border-b border-[#2d3a4b] flex items-center justify-between text-xs gap-3">
+                <div className="h-10 shrink-0 px-4 bg-surface border-b border-border flex items-center justify-between text-xs gap-3">
                   <div className="flex items-center gap-3">
                     {/* Theme Selector */}
                     <div className="flex items-center gap-1.5">
-                      <span className="text-slate-400 text-[11px]">Theme:</span>
+                      <span className="text-text-muted text-[11px]">Theme:</span>
                       <select
                         value={editorTheme}
                         onChange={(e) => setEditorTheme(e.target.value)}
-                        className="bg-[#0d1117] border border-[#2d3a4b] hover:border-slate-500 rounded px-2 py-0.5 text-[11px] text-slate-200 focus:outline-none cursor-pointer"
+                        className="bg-bg border border-border hover:border-text-muted/40 rounded px-2 py-0.5 text-[11px] text-text focus:outline-none cursor-pointer"
                       >
                         {EDITOR_THEMES.map(t => (
                           <option key={t.id} value={t.id}>{t.label}</option>
@@ -861,11 +857,11 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
 
                     {/* Language Selector */}
                     <div className="flex items-center gap-1.5">
-                      <Code2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <Code2 className="w-3.5 h-3.5 text-accent" />
                       <select
                         value={currentLang}
                         onChange={(e) => handleLanguageChange(e.target.value)}
-                        className="bg-[#0d1117] border border-[#2d3a4b] hover:border-slate-500 rounded px-2.5 py-0.5 text-[11px] font-semibold text-slate-200 focus:outline-none cursor-pointer"
+                        className="bg-bg border border-border hover:border-text-muted/40 rounded px-2.5 py-0.5 text-[11px] font-medium text-text focus:outline-none cursor-pointer"
                       >
                         {SUPPORTED_LANGUAGES.map(l => (
                           <option key={l.id} value={l.id}>{l.label}</option>
@@ -879,7 +875,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                     <button
                       type="button"
                       onClick={handleResetCode}
-                      className="flex items-center gap-1 text-slate-400 hover:text-white px-2 py-1 rounded hover:bg-[#212e3c] text-[11px] transition-colors"
+                      className="flex items-center gap-1 text-text-muted hover:text-text px-2 py-1 rounded hover:bg-surface-hover text-[11px] transition-colors"
                       title="Reset Boilerplate Code"
                     >
                       <RotateCcw className="w-3 h-3" />
@@ -905,7 +901,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                 {/* ============================================================ */}
                 {/* HACKERRANK BOTTOM FOOTER BAR */}
                 {/* ============================================================ */}
-                <div className="h-12 shrink-0 px-4 bg-[#161f28] border-t border-[#2d3a4b] flex items-center justify-between text-xs gap-3 select-none z-10">
+                <div className="h-12 shrink-0 px-4 bg-surface border-t border-border flex items-center justify-between text-xs gap-3 select-none z-10">
                   {/* Left Side: Upload Code & Custom Input Checkbox */}
                   <div className="flex items-center gap-4">
                     {/* Upload Code as File */}
@@ -919,7 +915,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#212e3c] hover:bg-[#2c3d4f] text-slate-300 hover:text-white text-xs font-medium border border-slate-700/60 transition-colors"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface hover:bg-surface-hover text-text-muted hover:text-text text-xs font-medium border border-border transition-colors"
                       title="Upload local code file"
                     >
                       <Upload className="w-3.5 h-3.5" />
@@ -927,7 +923,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                     </button>
 
                     {/* Test against custom input checkbox */}
-                    <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer hover:text-white">
+                    <label className="flex items-center gap-2 text-xs text-text-muted cursor-pointer hover:text-text">
                       <input
                         type="checkbox"
                         checked={testAgainstCustomInput}
@@ -935,7 +931,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                           setTestAgainstCustomInput(e.target.checked);
                           if (e.target.checked) setIsConsoleExpanded(true);
                         }}
-                        className="w-4 h-4 rounded bg-[#0d1117] border-slate-600 text-emerald-500 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                        className="w-4 h-4 rounded bg-bg border-border text-accent focus:ring-0 focus:ring-offset-0 cursor-pointer"
                       />
                       <span>Test against custom input</span>
                     </label>
@@ -943,7 +939,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
 
                   {/* Right Side: Line/Col Counter, Run Code, Submit Code */}
                   <div className="flex items-center gap-3">
-                    <span className="text-[11px] font-mono text-slate-400 hidden sm:inline">
+                    <span className="text-[11px] font-mono text-text-muted hidden sm:inline">
                       Line: {cursorPosition.line} Col: {cursorPosition.col}
                     </span>
 
@@ -952,27 +948,27 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                       type="button"
                       onClick={handleRunCode}
                       disabled={isRunningCode}
-                      className="px-4 py-1.5 rounded bg-[#212e3c] hover:bg-[#2c3d4f] text-white font-semibold flex items-center gap-1.5 border border-slate-600/80 transition-all text-xs disabled:opacity-50"
+                      className="px-4 py-1.5 rounded-lg bg-surface hover:bg-surface-hover text-text font-medium flex items-center gap-1.5 border border-border transition-colors text-xs disabled:opacity-50"
                     >
                       {isRunningCode ? (
                         <>
-                          <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-400" />
+                          <Loader2 className="w-3.5 h-3.5 animate-spin text-accent" />
                           <span>Processing...</span>
                         </>
                       ) : (
                         <>
-                          <Play className="w-3.5 h-3.5 fill-current text-slate-300" />
+                          <Play className="w-3.5 h-3.5 fill-current text-text-muted" />
                           <span>Run Code</span>
                         </>
                       )}
                     </button>
 
-                    {/* Submit Code Button (HackerRank Signature Green #1BA94C) */}
+                    {/* Submit Code Button */}
                     <button
                       type="button"
                       onClick={handleRunCode}
                       disabled={isRunningCode}
-                      className="px-4 py-1.5 rounded bg-[#1BA94C] hover:bg-[#169642] text-white font-bold flex items-center gap-1.5 shadow-md shadow-emerald-700/20 transition-all text-xs disabled:opacity-50"
+                      className="px-4 py-1.5 rounded-lg bg-accent text-accent-contrast font-medium flex items-center gap-1.5 hover:opacity-90 transition-opacity text-xs disabled:opacity-50"
                     >
                       <span>Submit Code</span>
                     </button>
@@ -980,25 +976,25 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                 </div>
 
                 {/* ============================================================ */}
-                {/* TEST CASES & RESULTS DRAWER (HACKERRANK STYLE) */}
+                {/* TEST CASES & RESULTS DRAWER */}
                 {/* ============================================================ */}
                 <div
-                  className={`flex flex-col border-t border-[#2d3a4b] bg-[#0d1117] transition-all duration-200 ${
+                  className={`flex flex-col border-t border-border bg-bg transition-all duration-200 ${
                     isConsoleExpanded ? 'h-[270px]' : 'h-8'
                   }`}
                 >
                   {/* Drawer Toggle Header */}
-                  <div className="h-8 shrink-0 px-4 bg-[#161f28] border-b border-[#2d3a4b] flex items-center justify-between text-xs cursor-pointer"
+                  <div className="h-8 shrink-0 px-4 bg-surface border-b border-border flex items-center justify-between text-xs cursor-pointer"
                     onClick={() => setIsConsoleExpanded(!isConsoleExpanded)}
                   >
                     <div className="flex items-center gap-2">
-                      <Terminal className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="font-semibold text-slate-300">
+                      <Terminal className="w-3.5 h-3.5 text-accent" />
+                      <span className="font-medium text-text">
                         {testAgainstCustomInput ? 'Custom Input Console' : 'Test Cases Output'}
                       </span>
                       {runResult && (
-                        <span className={`px-2 py-0.2 rounded text-[10px] font-bold ${
-                          runResult.status === 'ACCEPTED' ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-rose-950 text-rose-400 border border-rose-800'
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium ${
+                          runResult.status === 'ACCEPTED' ? 'bg-success/10 text-success border border-success/30' : 'bg-danger/10 text-danger border border-danger/30'
                         }`}>
                           {runResult.status}
                         </span>
@@ -1007,7 +1003,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
 
                     <button
                       type="button"
-                      className="text-slate-400 hover:text-white p-0.5"
+                      className="text-text-muted hover:text-text p-0.5"
                     >
                       {isConsoleExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronUp className="w-3.5 h-3.5" />}
                     </button>
@@ -1019,36 +1015,36 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                       {testAgainstCustomInput ? (
                         /* Custom Input Editor */
                         <div className="space-y-2 h-full flex flex-col">
-                          <div className="text-[11px] text-slate-400 font-sans uppercase font-bold">
+                          <div className="text-[11px] text-text-muted font-mono uppercase">
                             Enter Custom Input Data:
                           </div>
                           <textarea
                             value={customInputText}
                             onChange={(e) => setCustomInputText(e.target.value)}
                             placeholder="e.g. [[1,1,1,0,0,0],[0,1,0,0,0,0],[1,1,1,0,0,0],[0,0,2,4,4,0],[0,0,0,2,0,0],[0,0,1,2,4,0]]"
-                            className="flex-1 w-full p-3 rounded-lg bg-[#161f28] border border-[#2d3a4b] text-slate-200 placeholder-slate-600 font-mono text-xs focus:outline-none focus:border-emerald-500 resize-none"
+                            className="flex-1 w-full p-3 rounded-xl bg-surface border border-border text-text placeholder-text-muted/50 font-mono text-xs focus:outline-none focus:border-accent resize-none"
                           />
                         </div>
                       ) : (
                         /* Test Cases 0 to 14 View */
                         <div className="space-y-3">
                           {isRunningCode ? (
-                            <div className="flex flex-col items-center justify-center py-10 text-slate-400 space-y-2">
-                              <Loader2 className="w-6 h-6 animate-spin text-emerald-400" />
+                            <div className="flex flex-col items-center justify-center py-10 text-text-muted space-y-2">
+                              <Loader2 className="w-6 h-6 animate-spin text-accent" />
                               <span className="font-sans">Running solution across all test cases...</span>
                             </div>
                           ) : runResult ? (
                             <div className="space-y-3">
                               {/* Overall Status Banner */}
-                              <div className="flex items-center justify-between pb-2 border-b border-[#243342]">
+                              <div className="flex items-center justify-between pb-2 border-b border-border">
                                 <div className="flex items-center gap-2">
                                   {runResult.status === 'ACCEPTED' ? (
-                                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                                    <CheckCircle2 className="w-4 h-4 text-success" />
                                   ) : (
-                                    <AlertCircle className="w-4 h-4 text-rose-400" />
+                                    <AlertCircle className="w-4 h-4 text-danger" />
                                   )}
-                                  <span className={`font-bold text-sm ${
-                                    runResult.status === 'ACCEPTED' ? 'text-emerald-400' : 'text-rose-400'
+                                  <span className={`font-medium text-sm ${
+                                    runResult.status === 'ACCEPTED' ? 'text-success' : 'text-danger'
                                   }`}>
                                     {runResult.status === 'ACCEPTED'
                                       ? 'Congratulations! You passed all test cases.'
@@ -1060,15 +1056,15 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                                   </span>
                                 </div>
 
-                                <div className="flex items-center gap-3 text-slate-400 text-xs">
-                                  <span>Runtime: <strong className="text-white">{runResult.runtime_ms} ms</strong></span>
-                                  <span>Memory: <strong className="text-white">{runResult.memory_mb} MB</strong></span>
+                                <div className="flex items-center gap-3 text-text-muted text-xs">
+                                  <span>Runtime: <strong className="text-text font-mono">{runResult.runtime_ms} ms</strong></span>
+                                  <span>Memory: <strong className="text-text font-mono">{runResult.memory_mb} MB</strong></span>
                                 </div>
                               </div>
 
                               {/* Compiler stderr if any */}
                               {runResult.compiler_output && runResult.status !== 'ACCEPTED' && (
-                                <div className="p-3 rounded-lg bg-rose-950/30 border border-rose-800/50 text-rose-300 whitespace-pre-wrap">
+                                <div className="p-3 rounded-xl bg-danger/10 border border-danger/30 text-danger whitespace-pre-wrap font-mono">
                                   {runResult.compiler_output}
                                 </div>
                               )}
@@ -1076,19 +1072,19 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                               {/* Test Case Pills: Test Case 0, Test Case 1, etc. */}
                               {runResult.test_case_results?.length > 0 && (
                                 <>
-                                  <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-[#243342] scrollbar-none">
+                                  <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-border scrollbar-none">
                                     {runResult.test_case_results.map((tc, idx) => (
                                       <button
                                         key={idx}
                                         type="button"
                                         onClick={() => setSelectedCaseIdx(idx)}
-                                        className={`flex items-center gap-1.5 px-3 py-1 rounded text-xs font-medium transition-all ${
+                                        className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono transition-all ${
                                           selectedCaseIdx === idx
-                                            ? 'bg-[#212e3c] text-white border border-slate-500 font-bold'
-                                            : 'text-slate-400 hover:text-white bg-[#161f28]'
+                                            ? 'bg-surface text-text border border-accent font-medium'
+                                            : 'text-text-muted hover:text-text bg-bg'
                                         }`}
                                       >
-                                        <span className={`w-2 h-2 rounded-full ${tc.passed ? 'bg-emerald-400' : 'bg-rose-400'}`} />
+                                        <span className={`w-2 h-2 rounded-full ${tc.passed ? 'bg-success' : 'bg-danger'}`} />
                                         <span>Test Case {idx}</span>
                                       </button>
                                     ))}
@@ -1098,37 +1094,37 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                                   {runResult.test_case_results[selectedCaseIdx] && (
                                     <div className="space-y-2 pt-1">
                                       <div className="space-y-1">
-                                        <span className="text-[11px] text-slate-400 font-sans uppercase font-bold">Compiler Message:</span>
-                                        <div className={`p-2 rounded bg-[#161f28] border ${
+                                        <span className="text-[11px] text-text-muted font-mono uppercase">Compiler Message:</span>
+                                        <div className={`p-2 rounded-lg bg-surface border ${
                                           runResult.test_case_results[selectedCaseIdx].passed
-                                            ? 'border-emerald-800/60 text-emerald-400'
-                                            : 'border-rose-800/60 text-rose-400'
+                                            ? 'border-success/30 text-success'
+                                            : 'border-danger/30 text-danger'
                                         }`}>
                                           {runResult.test_case_results[selectedCaseIdx].passed ? 'Success' : 'Wrong Answer'}
                                         </div>
                                       </div>
 
                                       <div className="space-y-1">
-                                        <span className="text-[11px] text-slate-400 font-sans uppercase font-bold">Input:</span>
-                                        <div className="p-2.5 rounded bg-[#161f28] border border-[#243342] text-amber-300 break-all overflow-x-auto">
+                                        <span className="text-[11px] text-text-muted font-mono uppercase">Input:</span>
+                                        <div className="p-2.5 rounded-lg bg-surface border border-border text-accent break-all overflow-x-auto">
                                           {runResult.test_case_results[selectedCaseIdx].input_data}
                                         </div>
                                       </div>
 
                                       <div className="space-y-1">
-                                        <span className="text-[11px] text-slate-400 font-sans uppercase font-bold">Your Output:</span>
-                                        <div className={`p-2.5 rounded border break-all ${
+                                        <span className="text-[11px] text-text-muted font-mono uppercase">Your Output:</span>
+                                        <div className={`p-2.5 rounded-lg border break-all ${
                                           runResult.test_case_results[selectedCaseIdx].passed
-                                            ? 'bg-emerald-950/20 border-emerald-800/60 text-emerald-400'
-                                            : 'bg-rose-950/20 border-rose-800/60 text-rose-400'
+                                            ? 'bg-success/10 border-success/30 text-success'
+                                            : 'bg-danger/10 border-danger/30 text-danger'
                                         }`}>
                                           {runResult.test_case_results[selectedCaseIdx].actual_output}
                                         </div>
                                       </div>
 
                                       <div className="space-y-1">
-                                        <span className="text-[11px] text-slate-400 font-sans uppercase font-bold">Expected Output:</span>
-                                        <div className="p-2.5 rounded bg-[#161f28] border border-[#243342] text-emerald-400 break-all">
+                                        <span className="text-[11px] text-text-muted font-mono uppercase">Expected Output:</span>
+                                        <div className="p-2.5 rounded-lg bg-surface border border-border text-success break-all">
                                           {runResult.test_case_results[selectedCaseIdx].expected_output}
                                         </div>
                                       </div>
@@ -1140,16 +1136,16 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                           ) : (
                             /* Initial test case preview when not run yet */
                             <div className="space-y-3">
-                              <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-[#243342]">
+                              <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-border">
                                 {sampleCases.map((_, idx) => (
                                   <button
                                     key={idx}
                                     type="button"
                                     onClick={() => setSelectedCaseIdx(idx)}
-                                    className={`px-3 py-1 rounded text-xs font-medium transition-all ${
+                                    className={`px-3 py-1 rounded-lg text-xs font-mono transition-all ${
                                       selectedCaseIdx === idx
-                                        ? 'bg-[#212e3c] text-white border border-slate-500 font-bold'
-                                        : 'text-slate-400 hover:text-white bg-[#161f28]'
+                                        ? 'bg-surface text-text border border-accent font-medium'
+                                        : 'text-text-muted hover:text-text bg-bg'
                                     }`}
                                   >
                                     Test Case {idx}
@@ -1160,8 +1156,8 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                               {sampleCases[selectedCaseIdx] && (
                                 <div className="space-y-2 pt-1">
                                   <div className="space-y-1">
-                                    <span className="text-[11px] text-slate-400 font-sans uppercase font-bold">Input:</span>
-                                    <pre className="p-2.5 rounded bg-[#161f28] border border-[#243342] text-amber-300 break-all overflow-x-auto">
+                                    <span className="text-[11px] text-text-muted font-mono uppercase">Input:</span>
+                                    <pre className="p-2.5 rounded-lg bg-surface border border-border text-accent break-all overflow-x-auto">
                                       {typeof sampleCases[selectedCaseIdx].input === 'object'
                                         ? JSON.stringify(sampleCases[selectedCaseIdx].input)
                                         : String(sampleCases[selectedCaseIdx].input)}
@@ -1169,8 +1165,8 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                                   </div>
 
                                   <div className="space-y-1">
-                                    <span className="text-[11px] text-slate-400 font-sans uppercase font-bold">Expected Output:</span>
-                                    <pre className="p-2.5 rounded bg-[#161f28] border border-[#243342] text-emerald-400 break-all">
+                                    <span className="text-[11px] text-text-muted font-mono uppercase">Expected Output:</span>
+                                    <pre className="p-2.5 rounded-lg bg-surface border border-border text-success break-all">
                                       {String(sampleCases[selectedCaseIdx].expected_output)}
                                     </pre>
                                   </div>
@@ -1191,16 +1187,16 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
 
       {/* Confirmation Modal for Exam Submission */}
       {showConfirmSubmit && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="w-full max-w-md p-6 rounded-2xl bg-[#161f28] border border-[#2d3a4b] shadow-2xl space-y-5">
-            <div className="flex items-center gap-3 text-amber-400">
+        <div className="fixed inset-0 z-50 bg-bg/80 flex items-center justify-center p-4">
+          <div className="w-full max-w-md p-6 rounded-xl bg-surface border border-border space-y-5">
+            <div className="flex items-center gap-3 text-accent">
               <AlertTriangle className="w-6 h-6" />
-              <h3 className="text-lg font-bold text-white">Submit Online Assessment?</h3>
+              <h3 className="font-serif text-xl font-normal text-text">Submit Online Assessment?</h3>
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed font-sans">
-              You have answered <strong className="text-white">{answeredCount}</strong> out of{' '}
-              <strong className="text-white">{variant.questions.length}</strong> questions.
+            <p className="text-sm text-text-muted leading-relaxed font-sans">
+              You have answered <strong className="text-text font-mono">{answeredCount}</strong> out of{' '}
+              <strong className="text-text font-mono">{variant.questions.length}</strong> questions.
               Once submitted, all coding challenges will be thoroughly evaluated across standard and hidden test cases.
             </p>
 
@@ -1208,7 +1204,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
               <button
                 type="button"
                 onClick={() => setShowConfirmSubmit(false)}
-                className="px-4 py-2 rounded-xl text-xs font-semibold bg-[#212e3c] text-slate-300 hover:bg-[#2c3d4f] transition-colors"
+                className="px-4 py-2 rounded-lg text-xs font-medium bg-surface text-text hover:bg-surface-hover border border-border transition-colors"
               >
                 Continue Assessment
               </button>
@@ -1217,11 +1213,11 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
                 type="button"
                 onClick={handleSubmitExam}
                 disabled={isSubmitting}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-[#1BA94C] hover:bg-[#169642] text-white flex items-center gap-1.5 shadow-lg shadow-emerald-700/25 transition-all disabled:opacity-50"
+                className="px-4 py-2 rounded-lg text-xs font-medium bg-accent text-accent-contrast flex items-center gap-1.5 hover:opacity-90 transition-opacity disabled:opacity-50"
               >
                 {isSubmitting ? (
                   <>
-                    <div className="w-3.5 h-3.5 rounded-full border-2 border-white border-t-transparent animate-spin" />
+                    <div className="w-3.5 h-3.5 rounded-full border-2 border-accent-contrast border-t-transparent animate-spin" />
                     <span>Grading Assessment...</span>
                   </>
                 ) : (

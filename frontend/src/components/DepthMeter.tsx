@@ -168,58 +168,58 @@ export const DepthMeter: React.FC<DepthMeterProps> = ({
   const isClarificationActive = isClarification || previousEval?.is_clarification_prompt || previousEval?.is_scored === false;
 
   return (
-    <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
+    <div className="bg-surface border border-border rounded-xl p-4 sm:p-5 space-y-4">
       {/* Top Header: Exploration Dimension */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Layers className="w-4 h-4 text-indigo-400" />
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
+          <Layers className="w-3.5 h-3.5 text-accent" />
+          <span className="text-xs font-mono uppercase tracking-wider text-text-muted">
             Exploration Dimension
           </span>
         </div>
-        <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-indigo-950/80 text-indigo-300 border border-indigo-800/60 font-semibold">
+        <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-bg text-text-muted border border-border">
           {activeDim.label}
         </span>
       </div>
 
       {/* Active Dimension Focus Card */}
-      <div className="p-3.5 rounded-xl bg-slate-950/90 border border-slate-800/90 space-y-2">
+      <div className="p-3.5 rounded-lg bg-bg border border-border space-y-2">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center shrink-0">
-            <DimensionIcon className="w-4 h-4 text-indigo-300" />
+          <div className="w-7 h-7 rounded-lg bg-surface border border-border flex items-center justify-center shrink-0">
+            <DimensionIcon className="w-3.5 h-3.5 text-accent" />
           </div>
           <div className="flex-1 min-w-0">
-            <div className="text-xs font-bold text-white truncate">
+            <div className="text-xs font-semibold text-text truncate">
               {activeDim.label}
             </div>
             {currentItemTitle && (
-              <div className="text-[10px] text-slate-400 truncate">
-                Item: <span className="text-slate-200 font-medium">{currentItemTitle}</span>
+              <div className="text-[10px] text-text-muted truncate font-mono">
+                Item: <span className="text-text font-medium">{currentItemTitle}</span>
               </div>
             )}
           </div>
         </div>
 
-        <p className="text-[11px] text-slate-400 leading-relaxed">
+        <p className="text-[11px] text-text-muted leading-relaxed">
           {activeDim.description}
         </p>
       </div>
 
       {/* Dimension Spectrum Indicator */}
       <div className="space-y-1.5">
-        <div className="text-[10px] uppercase font-semibold tracking-wider text-slate-500">
+        <div className="text-[10px] uppercase font-mono tracking-wider text-text-muted">
           Exploration Spectrum
         </div>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1.5 font-mono text-[10px]">
           {PRIMARY_DIMENSIONS.map((dim) => {
             const isActive = dim.key === activeDim.key;
             return (
               <span
                 key={dim.key}
-                className={`text-[10px] px-2 py-0.5 rounded-md font-medium transition-all ${
+                className={`px-2 py-0.5 rounded transition-colors ${
                   isActive
-                    ? 'bg-indigo-600 text-white font-semibold shadow-sm shadow-indigo-600/40 border border-indigo-400/50'
-                    : 'bg-slate-950 text-slate-400 border border-slate-800/80'
+                    ? 'bg-accent text-accent-contrast font-medium'
+                    : 'bg-bg text-text-muted border border-border'
                 }`}
               >
                 {dim.label}
@@ -230,26 +230,26 @@ export const DepthMeter: React.FC<DepthMeterProps> = ({
       </div>
 
       {/* Meaningful Context Note */}
-      <div className="text-[10px] text-slate-400 italic leading-relaxed border-t border-slate-800/60 pt-2">
+      <div className="text-[11px] text-text-muted leading-relaxed border-t border-border pt-2">
         Depth describes the kind of reasoning being tested; it does not by itself determine score or when the interview ends.
       </div>
 
       {/* Evaluated Turn Feedback & Prominent Score Display */}
       {previousEval && (
-        <div className={`pt-3 border-t text-xs ${isClarificationActive ? 'border-amber-800/60 bg-amber-950/20 -mx-4 sm:-mx-5 -mb-4 sm:-mb-5 p-4 rounded-b-2xl' : 'border-slate-800/80'}`}>
+        <div className={`pt-3 border-t text-xs ${isClarificationActive ? 'border-accent/40 bg-accent/5 -mx-4 sm:-mx-5 -mb-4 sm:-mb-5 p-4 rounded-b-xl' : 'border-border'}`}>
           <div className="flex items-center justify-between mb-1.5 gap-2">
             <div className="flex items-center gap-1.5">
-              <span className="text-slate-400 text-[11px]">Evaluation:</span>
+              <span className="text-text-muted text-[11px] font-mono">Evaluation:</span>
               <span
-                className={`font-semibold px-2 py-0.5 rounded text-[10px] ${
+                className={`px-2 py-0.5 rounded text-[10px] font-mono ${
                   isClarificationActive
-                    ? 'bg-amber-950 text-amber-300 border border-amber-700 font-bold'
-                    : 'bg-indigo-950 text-indigo-300 border border-indigo-800 font-medium'
+                    ? 'bg-bg text-accent border border-accent/40'
+                    : 'bg-bg text-text border border-border'
                 }`}
               >
                 {isClarificationActive ? (
                   <span className="flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                     Clarification requested
                   </span>
                 ) : previousEval.evidence_score != null ? (
@@ -262,18 +262,18 @@ export const DepthMeter: React.FC<DepthMeterProps> = ({
 
             {/* Prominent Earned / Possible Points Display */}
             {isClarificationActive ? (
-              <span className="text-amber-400 font-medium text-[11px]">
+              <span className="text-accent font-mono text-[11px]">
                 Unscored Inquiry
               </span>
             ) : (
-              <span className="font-mono text-emerald-400 font-bold text-xs bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-800/40">
+              <span className="font-mono text-success text-xs bg-success/10 px-2 py-0.5 rounded border border-success/30 font-medium">
                 +{Number(previousEval.earned_points || 0).toFixed(1)} / {Number(previousEval.possible_points || 0).toFixed(1)} pts
               </span>
             )}
           </div>
 
           {(previousEval.feedback || previousEval.concise_evaluation_summary) && (
-            <p className="text-slate-300 italic text-[11px] line-clamp-2 mt-1">
+            <p className="text-text-muted text-[11px] line-clamp-2 mt-1 leading-relaxed">
               "{previousEval.feedback || previousEval.concise_evaluation_summary}"
             </p>
           )}

@@ -115,30 +115,30 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
   };
 
   const colorClasses = {
-    indigo: 'text-indigo-400 border-indigo-500/40 bg-indigo-950/20',
-    emerald: 'text-emerald-400 border-emerald-500/40 bg-emerald-950/20',
-    brand: 'text-brand-400 border-brand-500/40 bg-brand-950/20'
+    indigo: 'text-text border-border bg-surface',
+    emerald: 'text-success border-success/30 bg-success/10',
+    brand: 'text-accent border-accent/30 bg-accent/10'
   }[badgeColor];
 
   return (
     <div className='space-y-2 text-xs'>
       <div className='flex items-center justify-between'>
         <div>
-          <label className='font-bold text-slate-200 block'>
-            {label} {required && <span className='text-red-400'>*</span>}
+          <label className='font-medium text-text block'>
+            {label} {required && <span className='text-danger'>*</span>}
           </label>
-          {sublabel && <p className='text-[11px] text-slate-400'>{sublabel}</p>}
+          {sublabel && <p className='text-[11px] text-text-muted'>{sublabel}</p>}
         </div>
 
         {/* Mode Switcher */}
-        <div className="flex items-center p-0.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-medium">
+        <div className="flex items-center p-0.5 rounded-md bg-bg border border-border text-[11px]">
           <button
             type="button"
             onClick={() => setActiveMode('text')}
-            className={`px-2.5 py-1 rounded-md transition-all ${
+            className={`px-2.5 py-1 rounded transition-colors ${
               activeMode === 'text'
-                ? 'bg-slate-800 text-white shadow-sm font-semibold'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-surface text-text font-medium'
+                : 'text-text-muted hover:text-text'
             }`}
           >
             Type / Paste Text
@@ -146,10 +146,10 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
           <button
             type="button"
             onClick={() => setActiveMode('upload')}
-            className={`px-2.5 py-1 rounded-md flex items-center gap-1 transition-all ${
+            className={`px-2.5 py-1 rounded flex items-center gap-1 transition-colors ${
               activeMode === 'upload'
-                ? 'bg-slate-800 text-white shadow-sm font-semibold'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-surface text-text font-medium'
+                : 'text-text-muted hover:text-text'
             }`}
           >
             <Upload className="w-3 h-3" />
@@ -164,7 +164,7 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
           onDragOver={(e) => e.preventDefault()}
           onDrop={onDrop}
           onClick={() => fileInputRef.current?.click()}
-          className='p-6 rounded-2xl border-2 border-dashed border-slate-700 hover:border-brand-500/60 bg-slate-950/50 hover:bg-slate-900/50 transition-all cursor-pointer text-center space-y-2'
+          className='p-6 rounded-card border border-dashed border-border hover:border-accent bg-bg transition-colors cursor-pointer text-center space-y-2'
         >
           <input
             ref={fileInputRef}
@@ -179,41 +179,34 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
             }}
           />
 
-          <div className='w-10 h-10 mx-auto rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300'>
+          <div className='w-9 h-9 mx-auto rounded-md bg-surface border border-border flex items-center justify-center text-text-muted'>
             {uploading ? (
-              <Loader2 className='w-5 h-5 animate-spin text-brand-400' />
+              <Loader2 className='w-4 h-4 animate-spin text-accent' />
             ) : (
-              <Upload className='w-5 h-5 text-brand-400' />
+              <Upload className='w-4 h-4 text-text-muted' />
             )}
           </div>
 
           <div>
-            <span className='font-bold text-slate-200 block text-xs'>
-              {uploading ? 'Analyzing Document with Multimodal AI...' : 'Click to upload or drag & drop'}
+            <span className='font-medium text-text block text-xs'>
+              {uploading ? 'Extracting document text...' : 'Click to select or drag and drop file'}
             </span>
-            <span className='text-[11px] text-slate-400'>
-              Supports PDF, Word Documents (.docx), Screenshots/Images (PNG, JPG, WEBP), and Plain Text
+            <span className='text-[11px] text-text-muted'>
+              Supports PDF, Word (.docx), image screenshots, and plain text
             </span>
-          </div>
-
-          <div className='flex items-center justify-center gap-3 pt-1 text-[10px] text-slate-400'>
-            <span className='flex items-center gap-1'><FileText className='w-3 h-3 text-red-400' /> PDF (PyMuPDF)</span>
-            <span className='flex items-center gap-1'><FileText className='w-3 h-3 text-sky-400' /> Word (.docx)</span>
-            <span className='flex items-center gap-1'><Image className='w-3 h-3 text-blue-400' /> Images (Vision AI)</span>
-            <span className='flex items-center gap-1'><FileCode className='w-3 h-3 text-emerald-400' /> TXT/MD</span>
           </div>
         </div>
       )}
 
       {/* Uploaded File Badge */}
       {uploadedFileName && (
-        <div className={`flex items-center justify-between p-2 rounded-xl border text-[11px] ${colorClasses}`}>
+        <div className="flex items-center justify-between p-2 rounded-md border border-border bg-surface text-[11px] text-text">
           <div className='flex items-center gap-2'>
-            <CheckCircle2 className='w-3.5 h-3.5 flex-shrink-0' />
-            <span className='font-semibold'>{uploadedFileName}</span>
+            <CheckCircle2 className='w-3.5 h-3.5 text-success flex-shrink-0' />
+            <span className='font-medium'>{uploadedFileName}</span>
             {extractedStats && (
-              <span className='opacity-75'>
-                ({extractedStats.type.toUpperCase()} • {extractedStats.words} words extracted)
+              <span className='text-text-muted font-mono'>
+                ({extractedStats.type.toUpperCase()} • {extractedStats.words} words)
               </span>
             )}
           </div>
@@ -223,7 +216,7 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
               setUploadedFileName(null);
               setExtractedStats(null);
             }}
-            className='hover:text-white'
+            className='text-text-muted hover:text-text'
           >
             <X className='w-3.5 h-3.5' />
           </button>
@@ -231,8 +224,8 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
       )}
 
       {error && (
-        <div className='p-2 rounded-xl bg-red-950/40 border border-red-800/50 text-[11px] text-red-300 flex items-center gap-2'>
-          <AlertCircle className='w-3.5 h-3.5 text-red-400' />
+        <div className='p-2 rounded-md bg-danger-subtle border border-danger/40 text-[11px] text-danger flex items-center gap-2'>
+          <AlertCircle className='w-3.5 h-3.5 text-danger' />
           <span>{error}</span>
         </div>
       )}
@@ -276,7 +269,7 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
             }}
             rows={rows}
             placeholder={placeholder}
-            className='w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white font-mono leading-relaxed focus:border-brand-500 focus:outline-none resize-none'
+            className='w-full p-3 rounded-md bg-bg border border-border text-xs text-text font-mono leading-relaxed focus:border-accent focus:outline-none resize-none'
             required={required}
           />
           <div className='absolute right-2.5 bottom-2.5 flex items-center gap-2'>
@@ -286,13 +279,13 @@ export const DocumentUploadInput: React.FC<DocumentUploadInputProps> = ({
                 setActiveMode('upload');
                 setTimeout(() => fileInputRef.current?.click(), 50);
               }}
-              className='text-[10px] text-slate-400 hover:text-brand-300 bg-slate-900/90 border border-slate-800 hover:border-brand-500/50 px-2 py-0.5 rounded flex items-center gap-1 transition-all'
+              className='text-[10px] text-text-muted hover:text-text bg-surface border border-border hover:border-border-focus px-2 py-0.5 rounded flex items-center gap-1 transition-colors'
             >
               <Upload className='w-2.5 h-2.5' />
               Upload PDF
             </button>
             {value && (
-              <span className='text-[10px] text-slate-400 font-mono bg-slate-900/90 px-1.5 py-0.5 rounded border border-slate-800/60'>
+              <span className='text-[10px] text-text-muted font-mono bg-surface px-1.5 py-0.5 rounded border border-border'>
                 {value.split(/\s+/).filter(Boolean).length} words
               </span>
             )}

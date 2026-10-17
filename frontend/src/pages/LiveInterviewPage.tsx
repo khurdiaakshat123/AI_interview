@@ -603,40 +603,40 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Top Session Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900/90 border border-white/10 shadow-xl">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-xl bg-surface border border-border">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-md shadow-indigo-600/20">
-            <Bot className="w-5 h-5 text-white" />
+          <div className="w-10 h-10 rounded-lg bg-bg border border-border flex items-center justify-center shrink-0">
+            <Bot className="w-5 h-5 text-accent" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-base font-bold text-white">{company} Technical Interview</h1>
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+              <h1 className="text-base font-serif text-text font-normal">{company} Technical Interview</h1>
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-success/10 text-success border border-success/30 font-medium">
                 LIVE
               </span>
             </div>
-            <div className="text-xs text-slate-400">
-              Candidate: <span className="text-slate-200 font-medium">{candidateName}</span> • Phase:{' '}
-              <span className="text-sky-300 font-semibold font-mono">{currentTurn.phase.replace('_', ' ')}</span>
+            <div className="text-xs text-text-muted mt-0.5">
+              Candidate: <span className="text-text font-medium">{candidateName}</span> • Phase:{' '}
+              <span className="text-accent font-medium font-mono">{currentTurn.phase.replace('_', ' ')}</span>
             </div>
           </div>
         </div>
 
         {/* Audio & Finish Controls */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
           <button
             onClick={handleToggleVoice}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-colors border ${
               isVoiceEnabled
-                ? 'bg-sky-950/80 text-sky-300 border border-sky-800/60'
-                : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+                ? 'bg-bg text-accent border-accent/40'
+                : 'bg-surface text-text-muted hover:text-text border-border'
             }`}
             title={isVoiceEnabled ? 'Voice Enabled (AI speaks questions)' : 'Voice Disabled'}
           >
             {isVoiceEnabled ? (
-              <Volume2 className={`w-4 h-4 text-sky-400 ${isAiSpeaking ? 'animate-bounce text-emerald-400' : ''}`} />
+              <Volume2 className={`w-3.5 h-3.5 ${isAiSpeaking ? 'text-accent animate-pulse' : 'text-text-muted'}`} />
             ) : (
-              <VolumeX className="w-4 h-4" />
+              <VolumeX className="w-3.5 h-3.5 text-text-muted" />
             )}
             <span>{isVoiceEnabled ? (isAiSpeaking ? 'AI Speaking...' : 'Voice On') : 'Voice Off'}</span>
           </button>
@@ -644,43 +644,43 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
           {/* Code Scratchpad Button */}
           <button
             onClick={() => setShowScratchpad(!showScratchpad)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-colors border ${
               showScratchpad
-                ? 'bg-indigo-950 text-indigo-300 border border-indigo-700'
-                : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700'
+                ? 'bg-bg text-accent border-accent/40'
+                : 'bg-surface text-text-muted hover:text-text border-border'
             }`}
             title="Open Monaco Code & Architecture Scratchpad"
           >
-            <Code2 className="w-4 h-4 text-indigo-400" />
+            <Code2 className="w-3.5 h-3.5 text-accent" />
             <span>{showScratchpad ? 'Close Editor' : 'Code Editor'}</span>
           </button>
 
           <button
             onClick={handleViewReportDirectly}
-            className="px-4 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all"
+            className="px-3.5 py-1.5 rounded-lg text-xs font-mono bg-bg hover:bg-surface text-text border border-border transition-colors"
           >
-            Conclude & View Feedback Report
+            Conclude & View Report
           </button>
         </div>
       </div>
 
       {/* Monaco Code Scratchpad Modal */}
       {showScratchpad && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-4xl w-full p-5 space-y-4 shadow-2xl relative flex flex-col max-h-[90vh]">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg/80 animate-fade-in">
+          <div className="bg-surface border border-border rounded-xl max-w-4xl w-full p-5 space-y-4 relative flex flex-col max-h-[90vh]">
+            <div className="flex items-center justify-between border-b border-border pb-3">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center">
-                  <Code2 className="w-4 h-4 text-indigo-400" />
+                <div className="w-8 h-8 rounded-lg bg-bg border border-border flex items-center justify-center">
+                  <Code2 className="w-4 h-4 text-accent" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white">Monaco Code Scratchpad</h3>
-                  <p className="text-[11px] text-slate-400">Write, format, and structure code during your technical interview</p>
+                  <h3 className="text-sm font-semibold text-text">Monaco Code Scratchpad</h3>
+                  <p className="text-[11px] text-text-muted">Write, format, and structure code during your technical interview</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowScratchpad(false)}
-                className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800"
+                className="p-1 text-text-muted hover:text-text rounded-md hover:bg-bg transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -694,8 +694,8 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
               />
             </div>
 
-            <div className="pt-2 border-t border-slate-800 flex items-center justify-between">
-              <span className="text-[11px] text-slate-500">
+            <div className="pt-2 border-t border-border flex items-center justify-between">
+              <span className="text-[11px] text-text-muted font-mono">
                 Code persists throughout your interview session.
               </span>
               <div className="flex items-center gap-2">
@@ -706,7 +706,7 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                     setInputText(prev => (prev.trim() ? `${prev.trim()}\n${snippet}` : snippet));
                     setShowScratchpad(false);
                   }}
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-sm transition-all"
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium bg-accent text-accent-contrast hover:opacity-90 transition-opacity"
                 >
                   <PlusCircle className="w-3.5 h-3.5" />
                   <span>Insert into Answer</span>
@@ -714,7 +714,7 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowScratchpad(false)}
-                  className="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                  className="px-3.5 py-1.5 rounded-lg text-xs font-medium bg-bg hover:bg-surface text-text border border-border transition-colors"
                 >
                   Close
                 </button>
@@ -727,7 +727,7 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
       {/* Main Grid */}
       <div className="grid lg:grid-cols-4 gap-6">
         {/* Left 3 Cols: Real-time Conversational Flow */}
-        <div className="lg:col-span-3 flex flex-col h-[650px] rounded-2xl bg-slate-900/90 border border-slate-800 overflow-hidden shadow-sm">
+        <div className="lg:col-span-3 flex flex-col h-[650px] rounded-xl bg-surface border border-border overflow-hidden">
           {/* Messages Scroll Area */}
           <div className="flex-1 p-6 overflow-y-auto space-y-4">
             {messages.map((msg, idx) => {
@@ -739,18 +739,18 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                   className={`flex items-start gap-3.5 ${isInterviewer ? 'justify-start' : 'justify-end'}`}
                 >
                   {isInterviewer && (
-                    <div className="w-8 h-8 rounded-lg bg-indigo-600/30 border border-indigo-500/50 flex items-center justify-center shrink-0 mt-1">
-                      <Bot className="w-4 h-4 text-indigo-300" />
+                    <div className="w-8 h-8 rounded-lg bg-bg border border-border flex items-center justify-center shrink-0 mt-1">
+                      <Bot className="w-4 h-4 text-accent" />
                     </div>
                   )}
 
                   <div className={`max-w-2xl space-y-1.5 ${isInterviewer ? 'items-start' : 'items-end'}`}>
-                    <div className="flex items-center gap-2 text-[11px] text-slate-400 px-1">
-                      <span className="font-semibold text-slate-300">
+                    <div className="flex items-center gap-2 text-[11px] text-text-muted px-1 font-mono">
+                      <span className="font-medium text-text">
                         {isInterviewer ? 'AI Technical Interviewer' : candidateName}
                       </span>
                       {msg.topic && (
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-bg border border-border text-text-muted">
                           {msg.topic}
                         </span>
                       )}
@@ -758,10 +758,10 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                     </div>
 
                     <div
-                      className={`p-4 rounded-2xl text-xs sm:text-sm leading-relaxed ${
+                      className={`p-4 rounded-xl text-xs sm:text-sm leading-relaxed ${
                         isInterviewer
-                          ? 'bg-slate-950 border border-slate-800/80 text-slate-100 rounded-tl-sm'
-                          : 'bg-indigo-600 text-white rounded-tr-sm shadow-md shadow-indigo-600/20'
+                          ? 'bg-bg border border-border text-text rounded-tl-sm'
+                          : 'bg-surface border border-accent/40 text-text rounded-tr-sm'
                       }`}
                     >
                       {msg.text}
@@ -770,28 +770,28 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                     {/* Show previous evaluation details inline if available */}
                     {msg.evalPrev && (
                       msg.evalPrev.is_scored === false || msg.evalPrev.is_clarification || msg.evalPrev.is_clarification_prompt || msg.evalPrev.quality_band === 'Specification Clarification' ? (
-                        <div className="p-2.5 rounded-xl bg-amber-950/40 border border-amber-800/60 text-[11px] text-amber-200 flex items-center justify-between gap-2 mt-1">
+                        <div className="p-2.5 rounded-lg bg-bg border border-accent/40 text-[11px] text-accent flex items-center justify-between gap-2 mt-1 font-mono">
                           <div className="flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block" />
-                            <span className="font-bold text-amber-300">Clarification requested</span>
+                            <span className="w-2 h-2 rounded-full bg-accent animate-pulse inline-block" />
+                            <span className="font-medium">Clarification requested</span>
                           </div>
-                          <span className="text-amber-300/80 font-medium text-[10px]">
+                          <span className="text-text-muted text-[10px]">
                             {msg.evalPrev.feedback || "Clarification inquiry • Unscored turn"}
                           </span>
                         </div>
                       ) : (
-                        <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80 text-[11px] text-slate-300 flex items-center justify-between gap-2 mt-1">
+                        <div className="p-2.5 rounded-lg bg-bg border border-border text-[11px] text-text-muted flex items-center justify-between gap-2 mt-1 font-mono">
                           <div className="flex items-center gap-2">
-                            <span className="text-slate-500">Evaluated:</span>
+                            <span>Evaluated:</span>
                             {msg.evalPrev.evidence_score != null ? (
-                              <span className="font-semibold text-sky-300">
+                              <span className="text-text font-medium">
                                 {Math.round(msg.evalPrev.evidence_score * 100)}% Evidence
                               </span>
                             ) : msg.evalPrev.quality_band ? (
-                              <span className="font-medium text-slate-200">{msg.evalPrev.quality_band}</span>
+                              <span className="text-text">{msg.evalPrev.quality_band}</span>
                             ) : null}
                           </div>
-                          <span className="font-mono text-emerald-400 font-bold">
+                          <span className="text-success font-medium">
                             +{Number(msg.evalPrev.earned_points || 0).toFixed(1)} / {Number(msg.evalPrev.possible_points || 0).toFixed(1)} pts
                           </span>
                         </div>
@@ -800,7 +800,7 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                   </div>
 
                   {!isInterviewer && (
-                    <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 mt-1 text-slate-200">
+                    <div className="w-8 h-8 rounded-lg bg-bg border border-border flex items-center justify-center shrink-0 mt-1 text-text-muted">
                       <User className="w-4 h-4" />
                     </div>
                   )}
@@ -809,8 +809,8 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
             })}
 
             {isProcessing && (
-              <div className="flex items-center gap-3 text-xs text-slate-400 p-2">
-                <div className="w-5 h-5 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin" />
+              <div className="flex items-center gap-3 text-xs text-text-muted p-2 font-mono">
+                <div className="w-4 h-4 rounded-full border-2 border-accent border-t-transparent animate-spin" />
                 <span>Interviewer evaluating technical reasoning & adapting follow-up...</span>
               </div>
             )}
@@ -818,32 +818,32 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
           </div>
 
           {/* Input Bar */}
-          <div className="p-4 bg-slate-950 border-t border-slate-800 space-y-2">
+          <div className="p-4 bg-bg border-t border-border space-y-2">
             {(currentTurn.is_clarification || currentTurn.is_clarification_prompt || currentTurn.eval_previous?.is_clarification_prompt) && (
-              <div className="px-3.5 py-2 rounded-xl bg-amber-950/40 border border-amber-700/60 flex items-center gap-2 text-xs text-amber-200">
-                <HelpCircle className="w-4 h-4 text-amber-400 shrink-0" />
+              <div className="px-3.5 py-2 rounded-lg bg-surface border border-accent/40 flex items-center gap-2 text-xs text-text font-mono">
+                <HelpCircle className="w-4 h-4 text-accent shrink-0" />
                 <div className="flex-1">
-                  <span className="font-bold text-amber-200">Clarification requested: </span>
-                  <span className="text-amber-300/90">
+                  <span className="font-semibold text-accent">Clarification requested: </span>
+                  <span className="text-text-muted">
                     The interviewer is seeking clarification on your previous technical statements. This inquiry is not directly scored; please provide precise technical details.
                   </span>
                 </div>
               </div>
             )}
             {isListening && (
-              <div className="px-3.5 py-2 rounded-xl bg-rose-950/40 border border-rose-800/60 flex items-center justify-between text-xs text-rose-300">
+              <div className="px-3.5 py-2 rounded-lg bg-danger/10 border border-danger/30 flex items-center justify-between text-xs text-danger font-mono">
                 <div className="flex items-center gap-2.5">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500"></span>
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-danger opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-danger"></span>
                   </span>
-                  <span className="font-bold text-white">Microphone Active</span>
-                  <span className="text-rose-300/80 hidden sm:inline">• Speak freely, pauses will not stop recording. Click Mic or Stop when done.</span>
+                  <span className="font-semibold">Microphone Active</span>
+                  <span className="text-text-muted hidden sm:inline">• Speak freely, pauses will not stop recording. Click Mic or Stop when done.</span>
                 </div>
                 <button
                   type="button"
                   onClick={stopListening}
-                  className="px-2.5 py-1 rounded-lg bg-rose-900/60 hover:bg-rose-800 text-[11px] font-bold uppercase tracking-wider text-rose-100 transition-colors"
+                  className="px-2 py-0.5 rounded bg-surface hover:bg-border text-[11px] font-mono text-danger border border-danger/40 transition-colors"
                 >
                   Stop Recording
                 </button>
@@ -852,13 +852,13 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
 
             <form onSubmit={handleSendAnswer} className="space-y-2.5">
               {isCorrecting && (
-                <div className="px-3.5 py-1.5 rounded-xl bg-indigo-950/70 border border-indigo-800/70 flex items-center gap-2 text-xs text-indigo-300">
-                  <Sparkles className="w-3.5 h-3.5 text-indigo-400 animate-spin" />
-                  <span className="font-medium">Polishing technical terms & grammar against question context...</span>
+                <div className="px-3.5 py-1.5 rounded-lg bg-surface border border-border flex items-center gap-2 text-xs text-text font-mono">
+                  <Sparkles className="w-3.5 h-3.5 text-accent animate-spin" />
+                  <span className="text-text-muted">Polishing technical terms & grammar against question context...</span>
                 </div>
               )}
               {/* Full Paragraph Multi-line Textarea */}
-              <div className="relative rounded-2xl bg-slate-900/90 border border-slate-800 focus-within:border-indigo-500/80 focus-within:ring-1 focus-within:ring-indigo-500/30 transition-all p-3 shadow-inner">
+              <div className="relative rounded-xl bg-surface border border-border focus-within:border-accent transition-colors p-3">
                 <textarea
                   ref={textareaRef}
                   value={inputText}
@@ -882,20 +882,20 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                       : 'Type your technical answer here or click the microphone to speak... Your full paragraph remains visible. (Press Ctrl+Enter or click Send)'
                   }
                   disabled={isProcessing || isCorrecting}
-                  className="w-full bg-transparent text-xs sm:text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none resize-y min-h-[95px] max-h-[220px] leading-relaxed font-sans"
+                  className="w-full bg-transparent text-xs sm:text-sm text-text placeholder:text-text-muted focus:outline-none resize-y min-h-[95px] max-h-[220px] leading-relaxed font-sans"
                 />
 
                 {/* Bottom Control Bar */}
-                <div className="flex flex-wrap items-center justify-between pt-2 border-t border-slate-800/80 gap-2 text-[11px] text-slate-400">
+                <div className="flex flex-wrap items-center justify-between pt-2 border-t border-border gap-2 text-[11px] text-text-muted font-mono">
                   <div className="flex items-center gap-2">
                     {isListening && (
-                      <span className="inline-flex items-center gap-1.5 text-rose-400 font-semibold animate-pulse">
-                        <span className="w-2 h-2 rounded-full bg-rose-500" />
+                      <span className="inline-flex items-center gap-1.5 text-danger font-medium animate-pulse">
+                        <span className="w-1.5 h-1.5 rounded-full bg-danger" />
                         Speaking live into paragraph...
                       </span>
                     )}
                     {!isListening && inputText.trim() && (
-                      <span className="text-slate-500">
+                      <span>
                         {inputText.trim().split(/\s+/).length} words • {inputText.length} chars
                       </span>
                     )}
@@ -907,18 +907,18 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                       type="button"
                       onClick={() => handleCorrectTypos()}
                       disabled={!inputText.trim() || isProcessing || isCorrecting}
-                      className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-950/70 border border-indigo-700/60 text-indigo-200 hover:bg-indigo-900 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 shadow-sm transition-all"
+                      className="px-3 py-1.5 rounded-lg text-xs font-mono bg-bg border border-border text-text hover:bg-surface disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 transition-colors"
                       title="AI scans your answer, cross-references with the question and your resume to fix speech-to-text mistranslations and irregular sentences"
                     >
                       {isCorrecting ? (
                         <>
-                          <div className="w-3 h-3 rounded-full border-2 border-indigo-400 border-t-transparent animate-spin" />
+                          <div className="w-3 h-3 rounded-full border-2 border-accent border-t-transparent animate-spin" />
                           <span>Correcting Typos...</span>
                         </>
                       ) : (
                         <>
-                          <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-                          <span>Correct Typos (AI)</span>
+                          <Sparkles className="w-3.5 h-3.5 text-accent" />
+                          <span>Correct Typos</span>
                         </>
                       )}
                     </button>
@@ -927,21 +927,21 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                     <button
                       type="button"
                       onClick={toggleListening}
-                      className={`p-2 rounded-xl border transition-all ${
+                      className={`p-2 rounded-lg border transition-colors ${
                         isListening
-                          ? 'bg-rose-600 text-white border-rose-500 shadow-lg shadow-rose-600/30'
-                          : 'bg-slate-800 border-slate-700 text-slate-300 hover:text-white'
+                          ? 'bg-danger/20 text-danger border-danger'
+                          : 'bg-bg border-border text-text-muted hover:text-text hover:bg-surface'
                       }`}
                       title={isListening ? 'Stop recording (Manual Stop)' : 'Start speaking (Continuous listening paragraph)'}
                     >
-                      {isListening ? <Mic className="w-3.5 h-3.5 animate-pulse" /> : <MicOff className="w-3.5 h-3.5" />}
+                      {isListening ? <Mic className="w-3.5 h-3.5 text-danger animate-pulse" /> : <MicOff className="w-3.5 h-3.5" />}
                     </button>
 
                     {/* Send Answer Button */}
                     <button
                       type="submit"
                       disabled={!inputText.trim() || isProcessing || isCorrecting}
-                      className="px-4 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white flex items-center gap-1.5 shadow-sm transition-all"
+                      className="px-4 py-1.5 rounded-lg text-xs font-medium bg-accent text-accent-contrast hover:opacity-90 disabled:opacity-40 flex items-center gap-1.5 transition-opacity"
                     >
                       <span>Send</span>
                       <Send className="w-3 h-3" />
@@ -952,15 +952,15 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
 
               {/* Autocorrect Result Banner */}
               {correctionNotice && (
-                <div className="px-3.5 py-2 rounded-xl bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 flex items-start justify-between gap-2">
+                <div className="px-3.5 py-2 rounded-lg bg-surface border border-success/30 text-xs text-success flex items-start justify-between gap-2 font-mono">
                   <div className="flex items-center gap-2">
-                    <CheckCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span className="font-medium text-emerald-200">{correctionNotice}</span>
+                    <CheckCheck className="w-4 h-4 text-success shrink-0" />
+                    <span>{correctionNotice}</span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setCorrectionNotice(null)}
-                    className="text-emerald-400 hover:text-emerald-200 text-xs font-bold ml-2"
+                    className="text-text-muted hover:text-text text-xs ml-2"
                   >
                     ×
                   </button>
@@ -983,26 +983,26 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
             previousEval={currentTurn.eval_previous}
           />
 
-          <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3 text-xs">
-            <div className="font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
-              <Layers className="w-3.5 h-3.5 text-indigo-400" />
-              Adaptive Scoring & Dimension Policy
+          <div className="p-5 rounded-xl bg-surface border border-border space-y-3 text-xs">
+            <div className="font-mono text-xs uppercase tracking-wider text-text-muted flex items-center gap-2">
+              <Layers className="w-3.5 h-3.5 text-accent" />
+              Scoring & Dimension Policy
             </div>
-            <p className="text-slate-300 leading-relaxed">
+            <p className="text-text-muted leading-relaxed">
               Question weight adapts to question difficulty/complexity and demonstrated answer evidence. Depth describes the kind of reasoning being tested; it does not by itself determine score or when the interview ends.
             </p>
-            <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/80 text-[11px] text-slate-400 space-y-1.5">
+            <div className="p-3 rounded-lg bg-bg border border-border text-[11px] text-text-muted font-mono space-y-1.5">
               <div className="flex items-center justify-between">
-                <span className="text-slate-500">Scoring Model:</span>
-                <span className="text-sky-300 font-medium font-mono">Continuous Evidence-Based</span>
+                <span>Scoring Model:</span>
+                <span className="text-text font-medium">Continuous Evidence-Based</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-500">Turn Score:</span>
-                <span className="text-emerald-400 font-semibold font-mono">earned / possible points</span>
+                <span>Turn Score:</span>
+                <span className="text-success font-medium">earned / possible pts</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-500">Clarification Turns:</span>
-                <span className="text-amber-300 font-medium">Unscored Inquiry</span>
+                <span>Clarification Turns:</span>
+                <span className="text-accent font-medium">Unscored Inquiry</span>
               </div>
             </div>
           </div>

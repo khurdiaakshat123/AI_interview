@@ -175,45 +175,35 @@ export const Navbar: React.FC<NavbarProps> = ({
 
 
   return (
-    <header className="sticky top-0 z-50 bg-[#070b14]/85 backdrop-blur-xl border-b border-white/[0.08] transition-all">
+    <header className="sticky top-0 z-50 bg-bg border-b border-border transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Brand Logo */}
+          {/* Brand Wordmark */}
           <div 
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-2 cursor-pointer select-none group"
             onClick={() => setCurrentTab('landing')}
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-105 group-hover:shadow-indigo-500/40 transition-all">
-              <Sparkles className="w-5 h-5 text-white" />
-            </div>
-            <div className="flex items-center">
-              <span className="text-xl font-extrabold tracking-tight text-white group-hover:text-slate-100 transition-colors">
-                intervyn<span className="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">.ai</span>
-              </span>
-              <span className="hidden sm:inline-flex items-center gap-1.5 ml-3 px-2.5 py-0.5 text-[11px] font-medium bg-gradient-to-r from-blue-500/10 to-indigo-500/10 text-sky-300 border border-sky-500/20 rounded-full">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                Technical Interview & Assessment
-              </span>
-            </div>
+            <span className="font-serif text-2xl text-text tracking-tight font-normal">
+              intervyn<span className="text-accent">.</span>
+            </span>
           </div>
 
           {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-7">
             {navItems.map((item) => {
-              const Icon = item.icon;
               const isActive = currentTab === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all ${
-                    isActive
-                      ? 'bg-gradient-to-r from-blue-600/20 to-indigo-600/20 text-sky-300 border border-sky-500/30 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  className={`relative py-1 text-sm font-medium transition-colors ${
+                    isActive ? 'text-text' : 'text-text-muted hover:text-text'
                   }`}
                 >
-                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-sky-400' : 'text-slate-400'}`} />
                   {item.label}
+                  {isActive && (
+                    <span className="absolute -bottom-[21px] left-0 right-0 h-[2px] bg-accent" />
+                  )}
                 </button>
               );
             })}
@@ -226,16 +216,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 type="button"
                 onClick={handleCandidateSetupClick}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 border border-white/10 hover:border-indigo-500/40 text-xs transition-all shadow-sm group"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-surface border border-border hover:border-border-focus text-xs transition-colors group"
                 title="Click to switch candidate, upload new resume, or change target position"
               >
-                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-                <span className="text-slate-200 font-semibold group-hover:text-white truncate max-w-[120px]">{candidate.name}</span>
-                <span className="text-slate-600">|</span>
-                <span className="text-sky-400 font-mono truncate max-w-[110px]">{candidate.company}</span>
-                <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-semibold text-indigo-300 bg-indigo-950/70 border border-indigo-500/30 px-2 py-0.5 rounded-lg group-hover:bg-indigo-900/80 transition-colors ml-1">
-                  <UserPlus className="w-3 h-3 text-indigo-400" />
-                  New Candidate
+                <div className="w-1.5 h-1.5 rounded-full bg-success"></div>
+                <span className="text-text font-medium truncate max-w-[120px]">{candidate.name}</span>
+                <span className="text-border">/</span>
+                <span className="text-accent font-mono truncate max-w-[110px]">{candidate.company}</span>
+                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-mono text-text-muted border-l border-border pl-2 ml-0.5">
+                  + New Candidate
                 </span>
               </button>
             )}
@@ -246,10 +235,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   type="button"
                   onClick={() => setProfileDropdownOpen(prev => !prev)}
-                  className={`relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all shadow-md group focus:outline-none ${
+                  className={`relative w-8 h-8 rounded-full flex items-center justify-center transition-colors focus:outline-none ${
                     profileDropdownOpen 
-                      ? 'ring-2 ring-sky-400 ring-offset-2 ring-offset-slate-950 scale-105' 
-                      : 'hover:scale-105 hover:ring-2 hover:ring-indigo-500/50'
+                      ? 'border-2 border-accent' 
+                      : 'border border-border hover:border-accent'
                   }`}
                   title={`${currentUser.name || candidate.name} - View Profile & Actions`}
                 >
@@ -257,28 +246,22 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <img
                       src={currentUser.avatar_url}
                       alt={currentUser.name || candidate.name}
-                      className="w-full h-full rounded-full object-cover border-2 border-indigo-500/60 group-hover:border-sky-400 transition-colors"
+                      className="w-full h-full rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 border-2 border-indigo-400/50 flex items-center justify-center text-xs sm:text-sm font-bold text-white uppercase shadow-inner group-hover:border-sky-300 transition-colors">
+                    <div className="w-full h-full rounded-full bg-surface flex items-center justify-center text-xs font-mono font-medium text-text">
                       {(currentUser.name || candidate.name)?.[0] || 'U'}
                     </div>
                   )}
-                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-slate-950"></span>
+                  <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-success border-2 border-bg"></span>
                 </button>
               </div>
             ) : (
               <button
                 onClick={triggerOpenAuth}
-                className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-900 text-xs font-bold transition-all shadow-md shadow-white/10 active:scale-[0.98]"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-accent hover:bg-accent-hover text-accent-contrast text-xs font-medium transition-colors"
                 title="Sign in with Google"
               >
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
-                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                </svg>
                 <span>Sign In</span>
               </button>
             )}
@@ -291,7 +274,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <>
           {/* Backdrop Overlay */}
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] transition-opacity animate-in fade-in duration-200"
+            className="fixed inset-0 bg-black/60 z-[9998] transition-opacity"
             onClick={() => setProfileDropdownOpen(false)}
             aria-hidden="true"
           />
@@ -299,21 +282,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Extreme Right Drawer */}
           <div
             ref={profileMenuRef}
-            className="fixed top-0 right-0 bottom-0 h-screen w-80 sm:w-96 max-w-[85vw] bg-[#090e1a] border-l border-white/10 shadow-2xl shadow-black z-[9999] flex flex-col justify-between p-5 sm:p-6 overflow-y-auto animate-in slide-in-from-right duration-250"
+            className="fixed top-0 right-0 bottom-0 h-screen w-80 sm:w-96 max-w-[85vw] bg-surface border-l border-border z-[9999] flex flex-col justify-between p-6 overflow-y-auto animate-in slide-in-from-right duration-200"
           >
             <div className="space-y-4">
               {/* Drawer Header with Title and Close X Button */}
-              <div className="flex items-center justify-between pb-3.5 border-b border-white/[0.08]">
+              <div className="flex items-center justify-between pb-3.5 border-b border-border">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-success"></span>
+                  <span className="text-xs font-mono uppercase tracking-wider text-text-muted">
                     Candidate Profile
                   </span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setProfileDropdownOpen(false)}
-                  className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.08] transition-all"
+                  className="p-1 rounded-md text-text-muted hover:text-text hover:bg-surface-hover transition-colors"
                   title="Close Profile Panel"
                 >
                   <X className="w-4 h-4" />
@@ -321,68 +304,66 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
 
               {/* User Identity Header */}
-              <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-950/70 border border-white/[0.06]">
+              <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-bg border border-border">
                 {currentUser?.avatar_url ? (
                   <img
                     src={currentUser.avatar_url}
                     alt={currentUser.name || candidate.name}
-                    className="w-12 h-12 rounded-full object-cover border-2 border-indigo-500/70 shadow-md shrink-0"
+                    className="w-10 h-10 rounded-full object-cover border border-border shrink-0"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center text-base font-bold text-white uppercase shadow-inner shrink-0 border border-indigo-400/40">
+                  <div className="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-sm font-mono font-medium text-text shrink-0">
                     {(currentUser?.name || candidate.name)?.[0] || 'U'}
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <h4 className="text-sm font-bold text-white truncate">
+                    <h4 className="text-sm font-medium text-text truncate">
                       {currentUser?.name || candidate.name}
                     </h4>
-                    <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shrink-0">
+                    <span className="px-1.5 py-0.2 rounded text-[10px] font-mono text-success bg-success-subtle border border-success/30 shrink-0">
                       Active
                     </span>
                   </div>
-                  <p className="text-xs text-slate-400 truncate font-mono mt-0.5">
+                  <p className="text-xs text-text-muted truncate font-mono mt-0.5">
                     {currentUser?.email || candidate.email}
                   </p>
                 </div>
               </div>
 
               {/* Target Position Card */}
-              <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-white/[0.06] space-y-1">
-                <div className="flex items-center justify-between text-[10px] text-slate-400">
-                  <span>Target Role & Company</span>
-                  <span className="text-emerald-400 font-mono text-[9px] font-semibold">Configured</span>
+              <div className="p-3.5 rounded-xl bg-bg border border-border space-y-1">
+                <div className="flex items-center justify-between text-[11px] font-mono text-text-muted">
+                  <span>Target Position</span>
+                  <span className="text-success text-[10px]">Configured</span>
                 </div>
-                <div className="text-xs font-bold text-white truncate">{candidate.role || 'Software Engineer'}</div>
-                <div className="text-[11px] font-medium text-sky-400 font-mono truncate">{candidate.company || 'Target Company'}</div>
+                <div className="text-xs font-semibold text-text truncate">{candidate.role || 'Software Engineer'}</div>
+                <div className="text-[11px] font-mono text-accent truncate">{candidate.company || 'Target Company'}</div>
               </div>
 
               {/* Stored Resume Status Card */}
-              <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-white/[0.06] flex items-center justify-between gap-3">
+              <div className="p-3.5 rounded-xl bg-bg border border-border flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
-                    candidate.resumeText ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-slate-800 text-slate-400'
-                  }`}>
+                  <div className="w-8 h-8 rounded-lg bg-surface border border-border flex items-center justify-center shrink-0 text-text-muted">
                     <FileText className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs font-semibold text-white truncate">
+                    <div className="text-xs font-medium text-text truncate">
                       {candidate.resumeFileName || (candidate.resumeText ? 'Resume Attached' : 'No Resume Uploaded')}
                     </div>
-                    <div className="text-[10px] text-slate-400 truncate font-mono">
+                    <div className="text-[11px] text-text-muted truncate font-mono">
                       {candidate.resumeText 
-                        ? `${candidate.resumeWordCount || candidate.resumeText.split(/\s+/).filter(Boolean).length} words • Loaded`
+                        ? `${candidate.resumeWordCount || candidate.resumeText.split(/\s+/).filter(Boolean).length} words • Stored`
                         : 'Upload in profile'}
                     </div>
                   </div>
                 </div>
                 {candidate.resumeText ? (
-                  <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shrink-0">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono text-success bg-success-subtle border border-success/30 shrink-0">
                     Ready
                   </span>
                 ) : (
-                  <span className="px-2 py-0.5 rounded-full text-[9px] font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30 shrink-0">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono text-text-muted bg-surface border border-border shrink-0">
                     Not Set
                   </span>
                 )}
@@ -390,7 +371,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               {/* Profile & Resume Actions */}
               <div className="pt-1 space-y-1">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-1 pb-1">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-text-muted px-1 pb-1">
                   Account & Profile
                 </div>
                 <button
@@ -399,19 +380,19 @@ export const Navbar: React.FC<NavbarProps> = ({
                     setProfileDropdownOpen(false);
                     handleCandidateSetupClick();
                   }}
-                  className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-200 hover:text-white bg-slate-950/40 hover:bg-white/[0.06] border border-white/5 hover:border-white/10 transition-all text-left group"
+                  className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs font-medium text-text bg-bg hover:bg-surface-hover border border-border transition-colors text-left group"
                 >
-                  <FileText className="w-4 h-4 text-indigo-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <FileText className="w-4 h-4 text-accent shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-semibold text-slate-200 group-hover:text-white truncate">Update Profile & Resume</div>
-                    <div className="text-[10px] text-slate-400 truncate">Change resume file, target role, or company</div>
+                    <div className="text-xs font-medium text-text truncate">Update Profile & Resume</div>
+                    <div className="text-[11px] text-text-muted truncate">Change resume file, target role, or company</div>
                   </div>
                 </button>
               </div>
 
               {/* Platform Modes Shortcuts */}
               <div className="pt-2 space-y-1">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-1 pb-1">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-text-muted px-1 pb-1">
                   Preparation Studio
                 </div>
 
@@ -421,12 +402,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                     setProfileDropdownOpen(false);
                     handleNavClick('interview');
                   }}
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all text-left group"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium text-text hover:bg-surface-hover border border-transparent hover:border-border transition-colors text-left"
                 >
-                  <Cpu className="w-4 h-4 text-sky-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <Cpu className="w-4 h-4 text-text-muted shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-semibold text-slate-200 group-hover:text-white truncate">1-on-1 AI Interview</div>
-                    <div className="text-[10px] text-slate-500 truncate">Deep situational interview tailored to JD</div>
+                    <div className="text-xs font-medium text-text truncate">1-on-1 AI Interview</div>
+                    <div className="text-[11px] text-text-muted truncate">Deep situational interview tailored to JD</div>
                   </div>
                 </button>
 
@@ -436,12 +417,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                     setProfileDropdownOpen(false);
                     handleNavClick('mock-oa');
                   }}
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all text-left group"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium text-text hover:bg-surface-hover border border-transparent hover:border-border transition-colors text-left"
                 >
-                  <Terminal className="w-4 h-4 text-cyan-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <Terminal className="w-4 h-4 text-text-muted shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-semibold text-slate-200 group-hover:text-white truncate">Timed Assessment (Mock OA)</div>
-                    <div className="text-[10px] text-slate-500 truncate">60-minute coding exam simulation</div>
+                    <div className="text-xs font-medium text-text truncate">Timed Assessment (Mock OA)</div>
+                    <div className="text-[11px] text-text-muted truncate">60-minute coding exam simulation</div>
                   </div>
                 </button>
 
@@ -451,12 +432,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                     setProfileDropdownOpen(false);
                     handleNavClick('practice');
                   }}
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all text-left group"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium text-text hover:bg-surface-hover border border-transparent hover:border-border transition-colors text-left"
                 >
-                  <Code2 className="w-4 h-4 text-indigo-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <Code2 className="w-4 h-4 text-text-muted shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-semibold text-slate-200 group-hover:text-white truncate">Targeted Skill Practice</div>
-                    <div className="text-[10px] text-slate-500 truncate">Coding questions with hints & solutions</div>
+                    <div className="text-xs font-medium text-text truncate">Targeted Skill Practice</div>
+                    <div className="text-[11px] text-text-muted truncate">Coding questions with hints & solutions</div>
                   </div>
                 </button>
 
@@ -466,26 +447,26 @@ export const Navbar: React.FC<NavbarProps> = ({
                     setProfileDropdownOpen(false);
                     handleNavClick('dashboard');
                   }}
-                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all text-left group"
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium text-text hover:bg-surface-hover border border-transparent hover:border-border transition-colors text-left"
                 >
-                  <Compass className="w-4 h-4 text-slate-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <Compass className="w-4 h-4 text-text-muted shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-semibold text-slate-200 group-hover:text-white truncate">Candidate Dashboard</div>
-                    <div className="text-[10px] text-slate-500 truncate">Readiness scores & past attempts</div>
+                    <div className="text-xs font-medium text-text truncate">Candidate Dashboard</div>
+                    <div className="text-[11px] text-text-muted truncate">Readiness scores & past attempts</div>
                   </div>
                 </button>
               </div>
             </div>
 
             {/* Drawer Bottom: Sign Out */}
-            <div className="pt-4 border-t border-white/[0.08] mt-4">
+            <div className="pt-4 border-t border-border mt-4">
               <button
                 type="button"
                 onClick={() => {
                   setProfileDropdownOpen(false);
                   handleSignOut();
                 }}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-rose-500/20 hover:border-rose-500/40 transition-all"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-md text-xs font-medium text-danger hover:bg-danger-subtle border border-border hover:border-danger/40 transition-colors"
               >
                 <LogOut className="w-3.5 h-3.5" />
                 Sign Out
@@ -498,35 +479,35 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* LLM Configuration Modal */}
       {showSettings && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="w-full max-w-lg p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl space-y-5">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="fixed inset-0 z-50 bg-bg/80 flex items-center justify-center p-4">
+          <div className="w-full max-w-lg p-6 rounded-xl bg-surface border border-border space-y-5">
+            <div className="flex items-center justify-between pb-3 border-b border-border">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-brand-600/20 border border-brand-500/40 flex items-center justify-center">
-                  <Key className="w-4 h-4 text-brand-400" />
+                <div className="w-8 h-8 rounded-lg bg-bg border border-border flex items-center justify-center">
+                  <Key className="w-4 h-4 text-accent" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-white">AI Models & LLM Configuration</h3>
-                  <p className="text-[11px] text-slate-400">Power Agent 1, Interview Agents, and Evaluation</p>
+                  <h3 className="font-serif text-lg font-normal text-text">AI Models & LLM Configuration</h3>
+                  <p className="text-xs text-text-muted">Power Agent 1, Interview Agents, and Evaluation</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowSettings(false)}
-                className="p-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800"
+                className="p-1 rounded-lg text-text-muted hover:text-text hover:bg-surface-hover transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Current Active Engine Badge */}
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
-              <span className="text-slate-400 block text-[11px]">Currently Active AI Provider:</span>
-              <span className="font-bold text-emerald-400 font-mono text-xs">{activeProvider}</span>
+            <div className="p-3.5 rounded-lg bg-bg border border-border text-xs space-y-1">
+              <span className="text-text-muted block text-[11px] font-mono uppercase">Currently Active AI Provider:</span>
+              <span className="font-medium text-accent font-mono text-xs">{activeProvider}</span>
             </div>
 
             <form onSubmit={handleSaveKeys} className="space-y-3.5 text-xs">
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">
+                <label className="block text-text font-medium mb-1">
                   Google Gemini API Key (gemini-3.6-flash)
                 </label>
                 <input
@@ -534,12 +515,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   value={geminiKey}
                   onChange={(e) => setGeminiKey(e.target.value)}
                   placeholder="AQ... or AIzaSy..."
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:border-brand-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text placeholder-text-muted/50 focus:border-accent focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">
+                <label className="block text-text font-medium mb-1">
                   Groq API Key (GPT-OSS 120B / Qwen 27B)
                 </label>
                 <input
@@ -547,12 +528,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   value={groqKey}
                   onChange={(e) => setGroqKey(e.target.value)}
                   placeholder="gsk_..."
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:border-brand-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text placeholder-text-muted/50 focus:border-accent focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">
+                <label className="block text-text font-medium mb-1">
                   OpenAI API Key (GPT-4o)
                 </label>
                 <input
@@ -560,12 +541,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   value={openaiKey}
                   onChange={(e) => setOpenaiKey(e.target.value)}
                   placeholder="sk-..."
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:border-brand-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text placeholder-text-muted/50 focus:border-accent focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">
+                <label className="block text-text font-medium mb-1">
                   Anthropic API Key (Claude 3.5 Sonnet)
                 </label>
                 <input
@@ -573,17 +554,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                   value={anthropicKey}
                   onChange={(e) => setAnthropicKey(e.target.value)}
                   placeholder="sk-ant-..."
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:border-brand-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text placeholder-text-muted/50 focus:border-accent focus:outline-none"
                 />
               </div>
 
-              <div className="text-[11px] text-slate-400 italic">
+              <div className="text-[11px] text-text-muted italic">
                 * If no key is entered, the built-in <strong>Domain Expert Deterministic Engine</strong> provides accurate responses and evaluations.
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-slate-800">
+              <div className="flex items-center justify-between pt-3 border-t border-border">
                 {isSaved ? (
-                  <span className="text-emerald-400 text-xs font-semibold flex items-center gap-1.5">
+                  <span className="text-success text-xs font-medium flex items-center gap-1.5">
                     <Check className="w-4 h-4" /> Keys updated & active!
                   </span>
                 ) : (
@@ -594,14 +575,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <button
                     type="button"
                     onClick={() => setShowSettings(false)}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300"
+                    className="px-4 py-2 rounded-lg text-xs font-medium bg-surface hover:bg-surface-hover text-text border border-border transition-colors"
                   >
                     Close
                   </button>
                   <button
                     type="submit"
                     disabled={isSaving}
-                    className="px-5 py-2 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-500 disabled:opacity-50 text-white flex items-center gap-1.5 shadow-sm"
+                    className="px-5 py-2 rounded-lg text-xs font-medium bg-accent text-accent-contrast disabled:opacity-50 hover:opacity-90 transition-opacity"
                   >
                     {isSaving ? 'Saving...' : 'Save & Activate'}
                   </button>

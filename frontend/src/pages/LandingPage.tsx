@@ -1,8 +1,5 @@
 import React from 'react';
-import { 
-  Code2, Cpu, ArrowRight, CheckCircle2,
-  Terminal
-} from 'lucide-react';
+import { ArrowRight, Terminal, Code2, Cpu } from 'lucide-react';
 
 interface LandingPageProps {
   onNavigate: (tab: string) => void;
@@ -20,135 +17,124 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
   };
 
   return (
-    <div className="relative overflow-hidden pt-4 sm:pt-6 pb-16">
-      {/* Ambient Background Glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[380px] bg-gradient-to-tr from-blue-600/20 via-indigo-600/15 to-violet-600/10 blur-[140px] pointer-events-none -z-10" />
-      <div className="absolute top-[320px] left-1/4 w-[400px] h-[280px] bg-cyan-500/10 blur-[120px] pointer-events-none -z-10" />
+    <div className="py-8 sm:py-12 px-4 sm:px-6">
+      <div className="max-w-[1100px] mx-auto">
+        {/* Left-Aligned Editorial Hero Headline */}
+        <div className="mb-10 sm:mb-12">
+          <h1 className="font-serif text-[42px] sm:text-[50px] leading-[1.08] tracking-[-0.02em] text-text font-normal max-w-2xl">
+            Practice the OA. Then defend your resume.
+          </h1>
+          <p className="mt-3 text-[15px] leading-[1.6] text-text-muted max-w-xl font-sans">
+            Targeted preparation for engineering interviews at Google, Stripe, Meta, and OpenAI. Realistic coding assessments paired with adaptive 1-on-1 technical evaluations.
+          </p>
+        </div>
 
-      {/* Hero Title Section */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-2 sm:pt-4 pb-5 sm:pb-6">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
-          Crack Company Coding OAs & <br />
-          <span className="bg-gradient-to-r from-sky-400 via-indigo-300 to-violet-400 bg-clip-text text-transparent">
-            Master 1-on-1 Technical Interviews
-          </span>
-        </h1>
-      </div>
-
-      {/* Dual Options Section - Visible on front screen without scrolling */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-5 sm:gap-6">
-          {/* Pillar 1: Coding Assessments & Practice */}
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900/85 to-slate-950/95 p-5 sm:p-6 flex flex-col justify-between hover:border-white/20 transition-all shadow-xl shadow-black/40">
+        {/* Two-Column Grid: 5fr / 7fr with Interview as primary focus */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          {/* Left Column (5fr): Practice & Timed Assessments */}
+          <div className="lg:col-span-5 bg-surface border border-border rounded-card p-8 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center shadow-md shadow-sky-500/10">
-                  <Code2 className="w-5 h-5 text-sky-400" />
-                </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-950/50 border border-sky-500/20 text-[11px] font-semibold text-sky-400">
-                  <span>Pillar 1</span>
-                  <span className="text-sky-600">•</span>
-                  <span>Coding Assessments</span>
-                </div>
+                <span className="text-[12px] font-mono uppercase tracking-[0.06em] text-text-muted">
+                  Assessments
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-border" />
               </div>
 
-              <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-                Targeted Practice & Timed Assessments
-              </h3>
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">
-                Parse job specifications to extract topic weights, practice with hints and full solutions, and take realistic 60-minute timed assessments matching real hiring cycles.
+              <h2 className="text-[20px] font-semibold text-text tracking-tight mb-2 font-sans">
+                Practice & Timed Assessments
+              </h2>
+              
+              <p className="text-[15px] leading-[1.6] text-text-muted mb-6 font-sans">
+                Paste a job description, get topics ranked by weight, practice with hints, then sit a 60-minute timed OA.
               </p>
 
-              <ul className="space-y-2 text-xs sm:text-sm text-slate-300 mb-6">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                  <span><strong>Role Topic Profiling:</strong> Extracts core subjects with prioritized importance weights</span>
+              <ul className="space-y-3 text-[14px] text-text-muted mb-8 font-sans">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-text-dim select-none font-mono mt-0.5">—</span>
+                  <span>Extracts core subjects with prioritized importance weights</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                  <span><strong>Personalized Practice:</strong> Structured hints, architectural approaches, and code solutions</span>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-text-dim select-none font-mono mt-0.5">—</span>
+                  <span>Personalized hints, architectural approaches, and code solutions</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                  <span><strong>Timed Exam Simulation:</strong> Realistic 60-minute exam environment synchronized across 7-day windows</span>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-text-dim select-none font-mono mt-0.5">—</span>
+                  <span>60-minute exam simulation matching real 7-day hiring cycles</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                  <span><strong>Automated Test Runner:</strong> Monaco VS Code experience with hidden boundary & performance test cases</span>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-text-dim select-none font-mono mt-0.5">—</span>
+                  <span>Monaco editor with hidden boundary and performance test cases</span>
                 </li>
               </ul>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-3 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <button
                 onClick={() => handleAction('practice')}
-                className="py-2.5 px-3 rounded-xl font-semibold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-500/30 flex items-center justify-center gap-2 transition-all shadow-sm group"
+                className="h-10 px-4 rounded-md border border-border bg-transparent text-text hover:bg-surface-hover hover:border-border-focus font-sans text-[14px] font-medium flex items-center justify-center gap-2 transition-colors"
                 title="Start personalized coding practice with hints and solutions"
               >
-                <Code2 className="w-4 h-4 text-sky-400 group-hover:scale-110 transition-transform" />
                 <span>Skill Practice</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 text-text-muted" />
               </button>
 
               <button
                 onClick={() => handleAction('mock-oa')}
-                className="py-2.5 px-3 rounded-xl font-semibold text-xs sm:text-sm bg-gradient-to-r from-sky-600/30 via-indigo-600/30 to-blue-600/30 hover:from-sky-600/45 hover:to-indigo-600/45 text-sky-200 border border-sky-400/40 flex items-center justify-center gap-2 transition-all shadow-sm group"
+                className="h-10 px-4 rounded-md border border-border bg-transparent text-text hover:bg-surface-hover hover:border-border-focus font-sans text-[14px] font-medium flex items-center justify-center gap-2 transition-colors"
                 title="Start a 60-minute realistic company coding assessment"
               >
-                <Terminal className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
                 <span>Timed Assessment (OA)</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 text-text-muted" />
               </button>
             </div>
           </div>
 
-          {/* Pillar 2: 1-on-1 AI Technical Interview */}
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900/85 to-slate-950/95 p-5 sm:p-6 flex flex-col justify-between hover:border-white/20 transition-all shadow-xl shadow-black/40">
+          {/* Right Column (7fr): AI Technical Interview - Primary Focus */}
+          <div className="lg:col-span-7 bg-surface border border-border rounded-card p-8 flex flex-col justify-between relative">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center shadow-md shadow-indigo-500/10">
-                  <Cpu className="w-5 h-5 text-indigo-400" />
-                </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-950/50 border border-indigo-500/20 text-[11px] font-semibold text-indigo-400">
-                  <span>Pillar 2</span>
-                  <span className="text-indigo-600">•</span>
-                  <span>Interactive Interview</span>
-                </div>
+                <span className="text-[12px] font-mono uppercase tracking-[0.06em] text-accent">
+                  Primary Focus
+                </span>
+                <span className="text-[12px] font-mono text-text-muted">
+                  Adaptive 5-Level Depth
+                </span>
               </div>
 
-              <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-                1-on-1 AI Technical Interview
-              </h3>
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">
-                Experience an interview that sounds, feels, and questions like a senior staff engineer. Defend your real resume projects, explain trade-offs, and tackle adaptive follow-up depths.
+              <h2 className="text-[20px] font-semibold text-text tracking-tight mb-2 font-sans">
+                AI Technical Interview
+              </h2>
+
+              <p className="text-[15px] leading-[1.6] text-text-muted mb-6 font-sans">
+                Questions come from your own resume projects, with follow-ups up to five levels deep. You get two scores: project defense and CS fundamentals.
               </p>
 
-              <ul className="space-y-2 text-xs sm:text-sm text-slate-300 mb-6">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-                  <span><strong>Resume Project Defense:</strong> Rigorously probes architecture choices and production trade-offs</span>
+              <ul className="space-y-3 text-[14px] text-text-muted mb-8 font-sans">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-accent select-none font-mono mt-0.5">—</span>
+                  <span className="text-text">Rigorously probes architecture choices and production trade-offs</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-                  <span><strong>Computer Science Fundamentals:</strong> OS internals, distributed locks, database transactions, and caching</span>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-accent select-none font-mono mt-0.5">—</span>
+                  <span>Probes OS internals, distributed locks, database transactions, and caching</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-                  <span><strong>Adaptive Follow-Ups:</strong> Evaluates answers in real time and probes deeper (Levels 1 through 5)</span>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-accent select-none font-mono mt-0.5">—</span>
+                  <span>Evaluates answers in real time and probes deeper (levels 1 through 5)</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-                  <span><strong>Dual-Dimensional Scorecard:</strong> Detailed score breakdown for Project Defense and Subject Knowledge</span>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-accent select-none font-mono mt-0.5">—</span>
+                  <span>Dual-dimensional scorecard for project defense and subject knowledge</span>
                 </li>
               </ul>
             </div>
 
-            <div className="pt-1">
+            <div className="pt-2">
               <button
                 onClick={() => handleAction('interview')}
-                className="w-full py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 text-white flex items-center justify-center gap-2 transition-all shadow-md shadow-indigo-600/25 group"
+                className="w-full h-11 px-6 rounded-md bg-accent hover:bg-accent-hover text-accent-contrast font-sans text-[14px] font-medium flex items-center justify-center gap-2 transition-colors"
               >
-                <Cpu className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
                 <span>Enter AI Interview Room</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -156,46 +142,40 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
           </div>
         </div>
 
-        {/* 3-Step Walkthrough Bar */}
-        <div className="mt-14 p-8 rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-md">
-          <h3 className="text-center text-lg font-bold text-white mb-6">
-            Three Steps to Interview Readiness
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold text-xs shrink-0">
-                1
-              </div>
-              <div>
-                <h4 className="text-sm font-semibold text-white">Target Your Role</h4>
-                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                  Select from top tech companies or paste any custom Job Description to generate topic profiles.
-                </p>
-              </div>
+        {/* Restrained 3-Step Walkthrough Bar */}
+        <div className="mt-12 p-8 rounded-card border border-border bg-surface">
+          <div className="flex items-center justify-between mb-6 pb-3 border-b border-border">
+            <h3 className="font-serif text-[22px] text-text font-normal">
+              Preparation Workflow
+            </h3>
+            <span className="text-[12px] font-mono text-text-muted uppercase tracking-[0.06em]">
+              3 Steps
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="space-y-1.5">
+              <span className="font-mono text-[12px] text-accent">01</span>
+              <h4 className="text-[15px] font-medium text-text">Target Your Role</h4>
+              <p className="text-[13px] text-text-muted leading-[1.6]">
+                Select from top tech companies or paste any custom Job Description to generate topic profiles.
+              </p>
             </div>
 
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 font-bold text-xs shrink-0">
-                2
-              </div>
-              <div>
-                <h4 className="text-sm font-semibold text-white">Simulate Coding Assessments</h4>
-                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                  Practice high-frequency topics or simulate full 60-minute assessments with VS Code Monaco editor.
-                </p>
-              </div>
+            <div className="space-y-1.5">
+              <span className="font-mono text-[12px] text-accent">02</span>
+              <h4 className="text-[15px] font-medium text-text">Simulate Coding Assessments</h4>
+              <p className="text-[13px] text-text-muted leading-[1.6]">
+                Practice high-frequency topics or sit a realistic 60-minute exam with Monaco test runner.
+              </p>
             </div>
 
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-violet-500/15 border border-violet-500/30 flex items-center justify-center text-violet-400 font-bold text-xs shrink-0">
-                3
-              </div>
-              <div>
-                <h4 className="text-sm font-semibold text-white">Ace the AI Technical Interview</h4>
-                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                  Speak out loud with continuous speech recognition and receive comprehensive audit scorecards.
-                </p>
-              </div>
+            <div className="space-y-1.5">
+              <span className="font-mono text-[12px] text-accent">03</span>
+              <h4 className="text-[15px] font-medium text-text">Defend in Technical Interview</h4>
+              <p className="text-[13px] text-text-muted leading-[1.6]">
+                Answer spoken prompts and defend resume implementations with structured rubrics.
+              </p>
             </div>
           </div>
         </div>
