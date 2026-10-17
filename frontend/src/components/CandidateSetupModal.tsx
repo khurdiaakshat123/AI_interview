@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   UserPlus, Sparkles, Building2, Briefcase, FileText, CheckCircle2,
   ArrowRight, X, Layers, Cpu, Check, Loader2, AlertCircle, RefreshCw,
@@ -254,81 +255,83 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
     }
   };
 
-  return (
-    <div className='fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto'>
-      <div className='w-full max-w-3xl my-8 p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl space-y-6 relative'>
-        {/* Header */}
-        <div className='flex items-start justify-between pb-4 border-b border-slate-800'>
+  return createPortal(
+    <div className='fixed inset-0 z-[9999] bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 overflow-hidden'>
+      <div className='w-full max-w-3xl max-h-[90vh] flex flex-col rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl relative overflow-hidden animate-in fade-in zoom-in-95 duration-200'>
+        {/* Fixed Header - Always visible at top */}
+        <div className='flex items-center justify-between px-6 sm:px-8 py-4 sm:py-5 border-b border-slate-800 bg-slate-900/95 backdrop-blur-sm shrink-0'>
           <div className='flex items-center gap-3'>
-            <div className='w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-brand-500/20'>
+            <div className='w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-brand-500/20 shrink-0'>
               <UserPlus className='w-5 h-5 text-white' />
             </div>
             <div>
-              <h2 className='text-xl font-extrabold text-white tracking-tight'>
+              <h2 className='text-lg sm:text-xl font-extrabold text-white tracking-tight'>
                 Candidate Profile & Resume Setup
               </h2>
-              <p className='text-xs text-slate-400 mt-0.5'>
+              <p className='text-xs text-slate-400 mt-0.5 line-clamp-1 sm:line-clamp-none'>
                 Store your resume, target role, and basic profile info. Saved automatically so you can start or customize any interview without re-uploading.
               </p>
             </div>
           </div>
           <button
+            type='button'
             onClick={onClose}
             disabled={loading}
-            className='p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-all'
+            className='p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-all shrink-0'
+            title='Close dialog'
           >
             <X className='w-5 h-5' />
           </button>
         </div>
 
-        {/* Save Success Banner */}
-        {saveSuccess && (
-          <div className='p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-700/70 text-xs text-emerald-300 flex items-center gap-2 animate-in fade-in'>
-            <CheckCircle2 className='w-4 h-4 flex-shrink-0 text-emerald-400' />
-            <span className='font-semibold'>Profile and resume saved successfully! Ready for your interview.</span>
-          </div>
-        )}
+        {/* Form with Scrollable Body and Fixed Footer */}
+        <form onSubmit={handleSubmit} className='flex-1 flex flex-col min-h-0 overflow-hidden'>
+          <div className='flex-1 overflow-y-auto p-6 sm:p-8 space-y-6'>
+            {/* Save Success Banner */}
+            {saveSuccess && (
+              <div className='p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-700/70 text-xs text-emerald-300 flex items-center gap-2 animate-in fade-in'>
+                <CheckCircle2 className='w-4 h-4 flex-shrink-0 text-emerald-400' />
+                <span className='font-semibold'>Profile and resume saved successfully! Ready for your interview.</span>
+              </div>
+            )}
 
-        {/* Quick Presets */}
-        <div className='flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800/80 text-xs'>
-          <span className='text-slate-400 font-medium flex items-center gap-1.5'>
-            <Sparkles className='w-3.5 h-3.5 text-amber-400' />
-            Quick Sample Roles:
-          </span>
-          <div className='flex flex-wrap items-center gap-2'>
-            <button
-              type='button'
-              onClick={() => handleApplyPreset('openai')}
-              className='px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all'
-            >
-              OpenAI (Distributed Training)
-            </button>
-            <button
-              type='button'
-              onClick={() => handleApplyPreset('google')}
-              className='px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all'
-            >
-              Google L4 (Cloud Spanner)
-            </button>
-            <button
-              type='button'
-              onClick={() => handleApplyPreset('meta')}
-              className='px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all'
-            >
-              Meta E4 (Infrastructure)
-            </button>
-          </div>
-        </div>
+            {/* Quick Presets */}
+            <div className='flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800/80 text-xs'>
+              <span className='text-slate-400 font-medium flex items-center gap-1.5'>
+                <Sparkles className='w-3.5 h-3.5 text-amber-400' />
+                Quick Sample Roles:
+              </span>
+              <div className='flex flex-wrap items-center gap-2'>
+                <button
+                  type='button'
+                  onClick={() => handleApplyPreset('openai')}
+                  className='px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all'
+                >
+                  OpenAI (Distributed Training)
+                </button>
+                <button
+                  type='button'
+                  onClick={() => handleApplyPreset('google')}
+                  className='px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all'
+                >
+                  Google L4 (Cloud Spanner)
+                </button>
+                <button
+                  type='button'
+                  onClick={() => handleApplyPreset('meta')}
+                  className='px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all'
+                >
+                  Meta E4 (Infrastructure)
+                </button>
+              </div>
+            </div>
 
-        {error && (
-          <div className='p-3.5 rounded-xl bg-red-950/50 border border-red-800/60 text-xs text-red-300 flex items-center gap-2'>
-            <AlertCircle className='w-4 h-4 flex-shrink-0 text-red-400' />
-            <span>{error}</span>
-          </div>
-        )}
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className='space-y-6'>
+            {error && (
+              <div className='p-3.5 rounded-xl bg-red-950/50 border border-red-800/60 text-xs text-red-300 flex items-center gap-2'>
+                <AlertCircle className='w-4 h-4 flex-shrink-0 text-red-400' />
+                <span>{error}</span>
+              </div>
+            )}
           {/* Section 1: Candidate Details */}
           <div className='space-y-3'>
             <div className='flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-400'>
@@ -461,8 +464,10 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
             </div>
           )}
 
-          {/* Footer Actions */}
-          <div className='flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-800'>
+          </div>
+
+          {/* Fixed Footer Actions */}
+          <div className='px-6 sm:px-8 py-4 border-t border-slate-800 bg-slate-950/80 backdrop-blur-sm shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3'>
             <button
               type='button'
               onClick={onClose}
@@ -506,6 +511,7 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
           </div>
         </form>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

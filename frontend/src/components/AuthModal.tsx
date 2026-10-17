@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X, Sparkles, Mail, Lock, User as UserIcon, Loader2, AlertCircle } from "lucide-react";
 import { api } from "../services/api";
 
@@ -107,8 +108,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
 
   if (!isOpen) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
       <div className="w-full max-w-md p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl relative space-y-6">
         <button
           onClick={onClose}
@@ -235,6 +236,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
           Securely encrypted & powered by Supabase PostgreSQL.
         </p>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
