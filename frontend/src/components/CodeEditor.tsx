@@ -115,23 +115,23 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
       base: 'vs-dark',
       inherit: true,
       rules: [
-        { token: 'comment', foreground: '83938B', fontStyle: 'italic' },
+        { token: 'comment', foreground: '8F8D88', fontStyle: 'italic' },
         { token: 'keyword', foreground: '96BFE6', fontStyle: 'bold' },
         { token: 'string', foreground: 'DCA876' },
         { token: 'number', foreground: 'B5C99A' },
-        { token: 'type', foreground: 'E6EEE9' }
+        { token: 'type', foreground: 'EDEDED' }
       ],
       colors: {
-        'editor.background': '#0B100E',
-        'editor.foreground': '#E6EEE9',
-        'editorLineNumber.foreground': '#83938B',
-        'editorLineNumber.activeForeground': '#E6EEE9',
+        'editor.background': '#0E0E10',
+        'editor.foreground': '#EDEDED',
+        'editorLineNumber.foreground': '#8F8D88',
+        'editorLineNumber.activeForeground': '#EDEDED',
         'editor.selectionBackground': '#3FD08F33',
         'editor.inactiveSelectionBackground': '#3FD08F1A',
         'editorCursor.foreground': '#3FD08F',
-        'editorWhitespace.foreground': '#22302A',
-        'editor.lineHighlightBackground': '#121A16',
-        'editorGutter.background': '#0B100E'
+        'editorWhitespace.foreground': '#2A2A2D',
+        'editor.lineHighlightBackground': '#161618',
+        'editorGutter.background': '#0E0E10'
       }
     });
 
