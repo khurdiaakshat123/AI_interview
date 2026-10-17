@@ -184,54 +184,43 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex items-center gap-[10px] cursor-pointer select-none group"
             onClick={() => setCurrentTab('landing')}
           >
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="shrink-0">
-              <rect x="0.5" y="0.5" width="27" height="27" rx="7" stroke="var(--border)"/>
-              <circle cx="14" cy="8.5" r="2.2" fill="var(--accent)"/>
-              <rect x="12.4" y="13" width="3.2" height="9" rx="1.2" fill="var(--text)"/>
-            </svg>
-            <span className="font-serif text-2xl text-text tracking-tight font-normal leading-none">
-              intervyn<span className="text-accent">.</span>
+            <span className="font-serif text-[26px] text-text tracking-tight font-normal leading-none">
+              Intervyn
             </span>
           </div>
 
           {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-7">
+          <nav className="hidden md:flex items-center gap-8 ml-8 mr-auto">
             {navItems.map((item) => {
               const isActive = currentTab === item.id;
+              const displayLabel = item.id === 'jd-intake' ? 'Role profiler' : item.label;
               return (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`relative py-1 text-sm font-medium transition-colors ${
-                    isActive ? 'text-text' : 'text-text-muted hover:text-text'
+                  className={`text-[14px] font-medium transition-colors ${
+                    isActive ? 'text-text font-semibold' : 'text-text-muted hover:text-text'
                   }`}
                 >
-                  {item.label}
-                  {isActive && (
-                    <span className="absolute -bottom-[21px] left-0 right-0 h-[2px] bg-accent" />
-                  )}
+                  {displayLabel}
                 </button>
               );
             })}
           </nav>
 
           {/* Top Right: Candidate Switcher & User Profile */}
-          <div className="flex items-center gap-3">
-            {/* Active Candidate & Target Role Switcher ("New Candidate" button) */}
+          <div className="flex items-center gap-4">
+            {/* Active Candidate & Target Role Switcher */}
             {currentUser && (
               <button
                 type="button"
                 onClick={handleCandidateSetupClick}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-surface border border-border hover:border-border-focus text-xs transition-colors group"
+                className="hidden sm:flex items-center gap-1.5 text-[13px] text-text-muted hover:text-text transition-colors group cursor-pointer"
                 title="Click to switch candidate, upload new resume, or change target position"
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-success"></div>
-                <span className="text-text font-medium truncate max-w-[120px]">{candidate.name}</span>
-                <span className="text-border">/</span>
-                <span className="text-text font-mono truncate max-w-[110px]">{candidate.company}</span>
-                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-mono text-text-muted border-l border-border pl-2 ml-0.5">
-                  + New Candidate
-                </span>
+                <span className="text-text font-medium">{candidate.name || 'Candidate'}</span>
+                <span>·</span>
+                <span>Targeting {candidate.company || 'Google'}, {candidate.role || 'SWE II'}</span>
               </button>
             )}
 
@@ -247,7 +236,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   className={`relative w-8 h-8 rounded-full flex items-center justify-center transition-colors focus:outline-none ${
                     profileDropdownOpen 
                       ? 'border-2 border-accent' 
-                      : 'border border-border hover:border-accent'
+                      : 'border border-border hover:border-text text-text'
                   }`}
                   title={`${currentUser.name || candidate.name} - View Profile & Actions`}
                 >
@@ -258,17 +247,16 @@ export const Navbar: React.FC<NavbarProps> = ({
                       className="w-full h-full rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full rounded-full bg-surface flex items-center justify-center text-xs font-mono font-medium text-text">
-                      {(currentUser.name || candidate.name)?.[0] || 'U'}
+                    <div className="w-full h-full rounded-full bg-surface flex items-center justify-center text-xs font-serif font-medium text-text">
+                      {(currentUser.name || candidate.name)?.[0]?.toUpperCase() || 'A'}
                     </div>
                   )}
-                  <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-success border-2 border-bg"></span>
                 </button>
               </div>
             ) : (
               <button
                 onClick={triggerOpenAuth}
-                className="flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-accent hover:bg-accent-hover text-accent-contrast text-xs font-medium transition-colors"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-accent hover:opacity-90 text-accent-contrast text-xs font-medium transition-opacity"
                 title="Sign in with Google"
               >
                 <span>Sign In</span>
