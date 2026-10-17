@@ -148,13 +148,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     if (onOpenCandidateSetup) onOpenCandidateSetup();
   };
 
-  const handleLiveMockClick = () => {
-    if (!currentUser) {
-      triggerOpenAuth();
-      return;
-    }
-    setCurrentTab('interview');
-  };
+
 
   return (
     <header className="sticky top-0 z-50 bg-[#070b14]/85 backdrop-blur-xl border-b border-white/[0.08] transition-all">
@@ -246,33 +240,20 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             )}
 
-
-            {/* Candidate Setup Trigger */}
+            {/* Active Candidate & Target Role Switcher */}
             <button
               onClick={handleCandidateSetupClick}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-violet-500/10 border border-indigo-500/30 text-indigo-200 hover:text-white hover:border-indigo-400 text-xs font-semibold transition-all shadow-sm"
-              title="Setup New Candidate & Custom JD / Resume"
-            >
-              <UserPlus className="w-3.5 h-3.5 text-indigo-400" />
-              <span className="hidden sm:inline">New Candidate</span>
-            </button>
-
-            <div 
-              onClick={handleCandidateSetupClick}
-              className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-white/10 text-xs cursor-pointer hover:border-white/20 transition-all"
-              title="Click to customize candidate or JD"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 border border-white/10 hover:border-indigo-500/40 text-xs transition-all shadow-sm group"
+              title="Click to switch candidate, upload new resume, or change target company"
             >
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-              <span className="text-slate-200 font-medium">{candidate.name}</span>
+              <span className="text-slate-200 font-semibold group-hover:text-white truncate max-w-[120px]">{candidate.name}</span>
               <span className="text-slate-600">|</span>
-              <span className="text-sky-400 font-mono truncate max-w-[120px]">{candidate.company}</span>
-            </div>
-
-            <button
-              onClick={handleLiveMockClick}
-              className="px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-md shadow-indigo-600/25 hover:shadow-indigo-600/40 transition-all whitespace-nowrap active:scale-[0.98]"
-            >
-              Start AI Interview
+              <span className="text-sky-400 font-mono truncate max-w-[110px]">{candidate.company}</span>
+              <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-medium text-indigo-300 bg-indigo-950/70 border border-indigo-500/30 px-2 py-0.5 rounded-lg group-hover:bg-indigo-900/80 transition-colors ml-1">
+                <UserPlus className="w-3 h-3 text-indigo-400" />
+                Change
+              </span>
             </button>
           </div>
         </div>
