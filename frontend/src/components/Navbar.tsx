@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Sparkles, Terminal, Code2, Cpu, FileCheck2, UserCheck, Compass,
-  ShieldCheck, Key, Check, Settings, X, ExternalLink, UserPlus, LogOut
+  Key, Check, Settings, X, ExternalLink, UserPlus, LogOut
 } from 'lucide-react';
 import { BASE_URL } from '../services/api';
 import { AuthModal } from './AuthModal';
@@ -122,7 +122,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'practice', label: 'Skill Practice', icon: Code2 },
     { id: 'mock-oa', label: 'Timed Assessment', icon: Terminal },
     { id: 'interview', label: 'AI Interview', icon: Cpu },
-    { id: 'admin-review', label: 'Quality Audit', icon: ShieldCheck },
   ];
 
   const handleNavClick = (tabId: string) => {
@@ -247,14 +246,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             )}
 
-            <button
-              onClick={handleSettingsClick}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-white/10 text-slate-300 hover:text-white hover:border-white/20 text-xs font-semibold transition-all shadow-sm"
-              title="Configure LLM & AI Models"
-            >
-              <Key className="w-3.5 h-3.5 text-amber-400" />
-              <span className="hidden lg:inline">LLM Keys</span>
-            </button>
 
             {/* Candidate Setup Trigger */}
             <button
