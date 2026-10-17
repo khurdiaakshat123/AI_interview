@@ -52,10 +52,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
         const btnContainer = document.getElementById("google-gis-btn");
         if (btnContainer) {
           window.google.accounts.id.renderButton(btnContainer, {
-            theme: "filled_blue",
+            theme: "outline",
             size: "large",
             text: "continue_with",
-            shape: "pill",
+            shape: "rectangular",
             width: 320
           });
         }

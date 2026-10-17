@@ -90,7 +90,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
           <div className="lg:col-span-7 bg-surface border border-border rounded-[12px] p-8 flex flex-col justify-between relative">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-[12px] font-mono uppercase tracking-[0.06em] text-accent">
+                <span className="text-[12px] font-mono uppercase tracking-[0.06em] text-text-muted">
                   PRIMARY FOCUS
                 </span>
                 <span className="text-[12px] font-mono text-text-muted">
@@ -108,19 +108,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
 
               <ul className="space-y-3 text-[14px] text-text-muted mb-6 font-sans">
                 <li className="flex items-start gap-2.5">
-                  <span className="text-accent select-none font-mono mt-0.5">—</span>
+                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
                   <span>Rigorously probes architecture choices and production trade-offs</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-accent select-none font-mono mt-0.5">—</span>
+                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
                   <span>Probes OS internals, distributed locks, database transactions, and caching</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-accent select-none font-mono mt-0.5">—</span>
+                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
                   <span>Evaluates answers in real time and probes deeper (levels 1 through 5)</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-accent select-none font-mono mt-0.5">—</span>
+                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
                   <span>Dual-dimensional scorecard for project defense and subject knowledge</span>
                 </li>
               </ul>
@@ -135,7 +135,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                   <div>
                     <div className="flex justify-between text-text mb-1">
                       <span className="text-[11px]">Project defense</span>
-                      <span className="text-[11px] text-accent">72/100</span>
+                      <span className="text-[11px] text-text">72/100</span>
                     </div>
                     <div className="h-1 w-full bg-surface rounded-full overflow-hidden border border-border/40">
                       <div className="h-full bg-accent rounded-full" style={{ width: '72%' }} />
@@ -144,10 +144,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                   <div>
                     <div className="flex justify-between text-text mb-1">
                       <span className="text-[11px]">Fundamentals</span>
-                      <span className="text-[11px] text-accent">64/100</span>
+                      <span className="text-[11px] text-text">64/100</span>
                     </div>
                     <div className="h-1 w-full bg-surface rounded-full overflow-hidden border border-border/40">
-                      <div className="h-full bg-accent/80 rounded-full" style={{ width: '64%' }} />
+                      <div className="h-full bg-accent rounded-full" style={{ width: '64%' }} />
                     </div>
                   </div>
                 </div>
@@ -179,7 +179,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="space-y-1.5">
-              <span className="font-mono text-[12px] text-accent">01</span>
+              <span className="font-mono text-[12px] text-text-muted">01</span>
               <h4 className="text-[15px] font-medium text-text">Target Your Role</h4>
               <p className="text-[13px] text-text-muted leading-[1.6]">
                 Select from top tech companies or paste any custom Job Description to generate topic profiles.
@@ -187,7 +187,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
             </div>
 
             <div className="space-y-1.5">
-              <span className="font-mono text-[12px] text-accent">02</span>
+              <span className="font-mono text-[12px] text-text-muted">02</span>
               <h4 className="text-[15px] font-medium text-text">Simulate Coding Assessments</h4>
               <p className="text-[13px] text-text-muted leading-[1.6]">
                 Practice high-frequency topics or sit a realistic 60-minute exam with Monaco test runner.
@@ -195,7 +195,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
             </div>
 
             <div className="space-y-1.5">
-              <span className="font-mono text-[12px] text-accent">03</span>
+              <span className="font-mono text-[12px] text-text-muted">03</span>
               <h4 className="text-[15px] font-medium text-text">Defend in Technical Interview</h4>
               <p className="text-[13px] text-text-muted leading-[1.6]">
                 Answer spoken prompts and defend resume implementations with structured rubrics.

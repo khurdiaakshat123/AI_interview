@@ -347,7 +347,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <span className="text-success text-[10px]">Configured</span>
                 </div>
                 <div className="text-xs font-semibold text-text truncate">{candidate.role || 'Software Engineer'}</div>
-                <div className="text-[11px] font-mono text-accent truncate">{candidate.company || 'Target Company'}</div>
+                <div className="text-[11px] font-mono text-text-muted truncate">{candidate.company || 'Target Company'}</div>
               </div>
 
               {/* Stored Resume Status Card */}
@@ -391,7 +391,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                   className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs font-medium text-text bg-bg hover:bg-surface-hover border border-border transition-colors text-left group"
                 >
-                  <FileText className="w-4 h-4 text-accent shrink-0" />
+                  <FileText className="w-4 h-4 text-text-muted shrink-0" />
                   <div className="flex-1 min-w-0">
                     <div className="text-xs font-medium text-text truncate">Update Profile & Resume</div>
                     <div className="text-[11px] text-text-muted truncate">Change resume file, target role, or company</div>
@@ -493,7 +493,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="flex items-center justify-between pb-3 border-b border-border">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-bg border border-border flex items-center justify-center">
-                  <Key className="w-4 h-4 text-accent" />
+                  <Key className="w-4 h-4 text-text-muted" />
                 </div>
                 <div>
                   <h3 className="font-serif text-lg font-normal text-text">AI Models & LLM Configuration</h3>
@@ -511,7 +511,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Current Active Engine Badge */}
             <div className="p-3.5 rounded-lg bg-bg border border-border text-xs space-y-1">
               <span className="text-text-muted block text-[11px] font-mono uppercase">Currently Active AI Provider:</span>
-              <span className="font-medium text-accent font-mono text-xs">{activeProvider}</span>
+              <span className="font-medium text-text font-mono text-xs">{activeProvider}</span>
             </div>
 
             <form onSubmit={handleSaveKeys} className="space-y-3.5 text-xs">
