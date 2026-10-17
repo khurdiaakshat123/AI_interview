@@ -13,6 +13,7 @@ import { InterviewIntakePage } from './pages/InterviewIntakePage';
 import { LiveInterviewPage } from './pages/LiveInterviewPage';
 import { InterviewReportPage } from './pages/InterviewReportPage';
 import { AdminReviewPage } from './pages/AdminReviewPage';
+import { CandidateProfile } from './types';
 
 export const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<string>('landing');
@@ -27,13 +28,12 @@ export const App: React.FC = () => {
     }
   });
 
-  const [candidate, setCandidate] = useState<{
-    name: string;
-    email: string;
-    company: string;
-    role: string;
-  }>(() => {
+  const [candidate, setCandidate] = useState<CandidateProfile>(() => {
     try {
+      const savedProfile = localStorage.getItem('intervyn_candidate_profile');
+      if (savedProfile) {
+        return JSON.parse(savedProfile);
+      }
       const savedUser = JSON.parse(localStorage.getItem('intervyn_user') || 'null');
       if (savedUser && savedUser.name) {
         return {
@@ -59,14 +59,32 @@ export const App: React.FC = () => {
     }
   }, [currentUser, currentTab]);
 
+  const handleSaveProfile = (updatedProfile: Partial<CandidateProfile>) => {
+    setCandidate(prev => {
+      const merged: CandidateProfile = {
+        ...prev,
+        ...updatedProfile,
+        name: updatedProfile.name || prev.name,
+        email: updatedProfile.email || prev.email,
+        company: updatedProfile.company || prev.company,
+        role: updatedProfile.role || prev.role
+      };
+      try {
+        localStorage.setItem('intervyn_candidate_profile', JSON.stringify(merged));
+      } catch (e) {
+        console.error('Failed to store candidate profile', e);
+      }
+      return merged;
+    });
+  };
+
   const handleAuthSuccess = (user: any, token: string) => {
     setCurrentUser(user);
     if (user) {
-      setCandidate(prev => ({
-        ...prev,
-        name: user.name || prev.name,
-        email: user.email || prev.email
-      }));
+      handleSaveProfile({
+        name: user.name || candidate.name,
+        email: user.email || candidate.email
+      });
     }
     setShowAuthModal(false);
   };
@@ -81,11 +99,10 @@ export const App: React.FC = () => {
   const handleAuthChange = (user: any) => {
     setCurrentUser(user);
     if (user) {
-      setCandidate(prev => ({
-        ...prev,
+      handleSaveProfile({
         name: user.name,
         email: user.email
-      }));
+      });
     } else {
       setCandidate(prev => ({
         ...prev,
@@ -114,13 +131,14 @@ export const App: React.FC = () => {
   }) => {
     setShowCandidateSetup(false);
     const chosenName = data.candidateName || data.turn?.candidate_name || data.user?.name || 'Candidate';
-    const updated = {
+    const updated: CandidateProfile = {
+      ...candidate,
       name: chosenName,
       email: data.user?.email || candidate.email,
       company: data.company,
       role: data.role
     };
-    setCandidate(updated);
+    handleSaveProfile(updated);
     setNavState({
       turn: data.turn,
       company: data.company,
@@ -156,6 +174,8 @@ export const App: React.FC = () => {
         isOpen={showCandidateSetup}
         onClose={() => setShowCandidateSetup(false)}
         currentUser={currentUser}
+        initialCandidate={candidate}
+        onSaveProfile={handleSaveProfile}
         onSuccess={handleCandidateSetupSuccess}
       />
 
@@ -224,8 +244,10 @@ export const App: React.FC = () => {
 
         {currentTab === 'interview' && (
           <InterviewIntakePage
-            initialCompany={navState.company}
-            initialRole={navState.role}
+            initialCompany={navState.company || candidate.company}
+            initialRole={navState.role || candidate.role}
+            candidateProfile={candidate}
+            onSaveProfile={handleSaveProfile}
             onNavigate={handleNavigate}
           />
         )}

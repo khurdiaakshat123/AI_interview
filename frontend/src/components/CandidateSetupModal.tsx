@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { 
   UserPlus, Sparkles, Building2, Briefcase, FileText, CheckCircle2,
-  ArrowRight, X, Layers, Cpu, Check, Loader2, AlertCircle, RefreshCw
+  ArrowRight, X, Layers, Cpu, Check, Loader2, AlertCircle, RefreshCw,
+  Save
 } from 'lucide-react';
 import { DocumentUploadInput } from './DocumentUploadInput';
 import { BASE_URL, getAuthToken } from '../services/api';
+import { CandidateProfile } from '../types';
 
 interface CandidateSetupModalProps {
   isOpen: boolean;
   onClose: () => void;
   currentUser?: any;
+  initialCandidate?: CandidateProfile;
+  onSaveProfile?: (profile: CandidateProfile) => void;
   onSuccess: (candidateData: {
     user: any;
     company: string;
@@ -74,27 +78,72 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
   isOpen,
   onClose,
   currentUser,
+  initialCandidate,
+  onSaveProfile,
   onSuccess
 }) => {
-  const [name, setName] = useState(currentUser?.name || 'Maya Lin');
-  const [email, setEmail] = useState(currentUser?.email || 'maya.lin@example.com');
-  const [experience, setExperience] = useState('3-5 years');
-  const [company, setCompany] = useState(SAMPLE_JDS.openai.company);
-  const [role, setRole] = useState(SAMPLE_JDS.openai.role);
-  const [jdText, setJdText] = useState(SAMPLE_JDS.openai.jd);
-  const [resumeText, setResumeText] = useState(SAMPLE_RESUMES.ai_ml);
+  const [name, setName] = useState(initialCandidate?.name || currentUser?.name || 'Maya Lin');
+  const [email, setEmail] = useState(initialCandidate?.email || currentUser?.email || 'maya.lin@example.com');
+  const [experience, setExperience] = useState(initialCandidate?.experience || '3-5 years');
+  const [company, setCompany] = useState(initialCandidate?.company || SAMPLE_JDS.openai.company);
+  const [role, setRole] = useState(initialCandidate?.role || SAMPLE_JDS.openai.role);
+  const [jdText, setJdText] = useState(initialCandidate?.jdText || SAMPLE_JDS.openai.jd);
+  const [resumeText, setResumeText] = useState(initialCandidate?.resumeText || SAMPLE_RESUMES.ai_ml);
   const [loading, setLoading] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
   const [stepMessage, setStepMessage] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   React.useEffect(() => {
-    if (isOpen && currentUser) {
-      if (currentUser.name) setName(currentUser.name);
-      if (currentUser.email) setEmail(currentUser.email);
+    if (isOpen) {
+      if (initialCandidate) {
+        if (initialCandidate.name) setName(initialCandidate.name);
+        if (initialCandidate.email) setEmail(initialCandidate.email);
+        if (initialCandidate.company) setCompany(initialCandidate.company);
+        if (initialCandidate.role) setRole(initialCandidate.role);
+        if (initialCandidate.experience) setExperience(initialCandidate.experience);
+        if (initialCandidate.resumeText !== undefined) setResumeText(initialCandidate.resumeText);
+        if (initialCandidate.jdText !== undefined) setJdText(initialCandidate.jdText);
+      } else if (currentUser) {
+        if (currentUser.name) setName(currentUser.name);
+        if (currentUser.email) setEmail(currentUser.email);
+      }
+      setError(null);
+      setSaveSuccess(false);
     }
-  }, [isOpen, currentUser]);
+  }, [isOpen, initialCandidate, currentUser]);
 
   if (!isOpen) return null;
+
+  const handleSaveProfileOnly = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (!name.trim() || !email.trim()) {
+      setError('Please provide candidate name and email address.');
+      return;
+    }
+
+    setError(null);
+    const wordCount = resumeText.trim() ? resumeText.trim().split(/\s+/).filter(Boolean).length : 0;
+    const profile: CandidateProfile = {
+      name: name.trim(),
+      email: email.trim(),
+      company: company.trim() || 'General Tech',
+      role: role.trim() || 'Software Engineer',
+      experience,
+      resumeText: resumeText.trim(),
+      resumeWordCount: wordCount,
+      jdText: jdText.trim()
+    };
+
+    if (onSaveProfile) {
+      onSaveProfile(profile);
+    }
+    setSaveSuccess(true);
+    setTimeout(() => {
+      setSaveSuccess(false);
+      onClose();
+    }, 900);
+  };
 
   const handleApplyPreset = (preset: 'openai' | 'google' | 'meta') => {
     const p = SAMPLE_JDS[preset];
@@ -122,6 +171,21 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
     if (!name.trim() || !email.trim() || !company.trim() || !role.trim()) {
       setError('Please provide all required profile fields.');
       return;
+    }
+
+    // Persist profile to state & localStorage
+    const wordCount = resumeText.trim() ? resumeText.trim().split(/\s+/).filter(Boolean).length : 0;
+    if (onSaveProfile) {
+      onSaveProfile({
+        name: name.trim(),
+        email: email.trim(),
+        company: company.trim(),
+        role: role.trim(),
+        experience,
+        resumeText: resumeText.trim(),
+        resumeWordCount: wordCount,
+        jdText: jdText.trim()
+      });
     }
 
     setError(null);
@@ -201,10 +265,10 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
             </div>
             <div>
               <h2 className='text-xl font-extrabold text-white tracking-tight'>
-                New Candidate & Opportunity Setup
+                Candidate Profile & Resume Setup
               </h2>
               <p className='text-xs text-slate-400 mt-0.5'>
-                Input your details, target Job Description, and Resume. Intervyn structures the topics and tailors the live interview to you.
+                Store your resume, target role, and basic profile info. Saved automatically so you can start or customize any interview without re-uploading.
               </p>
             </div>
           </div>
@@ -216,6 +280,14 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
             <X className='w-5 h-5' />
           </button>
         </div>
+
+        {/* Save Success Banner */}
+        {saveSuccess && (
+          <div className='p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-700/70 text-xs text-emerald-300 flex items-center gap-2 animate-in fade-in'>
+            <CheckCircle2 className='w-4 h-4 flex-shrink-0 text-emerald-400' />
+            <span className='font-semibold'>Profile and resume saved successfully! Ready for your interview.</span>
+          </div>
+        )}
 
         {/* Quick Presets */}
         <div className='flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800/80 text-xs'>
@@ -390,34 +462,47 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
           )}
 
           {/* Footer Actions */}
-          <div className='flex items-center justify-between pt-4 border-t border-slate-800'>
+          <div className='flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-800'>
             <button
               type='button'
               onClick={onClose}
               disabled={loading}
-              className='px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-all'
+              className='w-full sm:w-auto px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-all text-center'
             >
               Cancel
             </button>
 
-            <button
-              type='submit'
-              disabled={loading}
-              className='flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white shadow-lg shadow-brand-500/25 transition-all disabled:opacity-50'
-            >
-              {loading ? (
-                <>
-                  <Loader2 className='w-4 h-4 animate-spin' />
-                  Analyzing JD & Resume...
-                </>
-              ) : (
-                <>
-                  <Sparkles className='w-4 h-4' />
-                  Save Candidate & Launch Live Interview
-                  <ArrowRight className='w-4 h-4' />
-                </>
-              )}
-            </button>
+            <div className='flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-end'>
+              <button
+                type='button'
+                onClick={handleSaveProfileOnly}
+                disabled={loading}
+                className='flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-500/30 hover:border-sky-500/50 shadow transition-all disabled:opacity-50'
+                title="Save candidate info and resume to your profile without launching an interview"
+              >
+                <Save className='w-4 h-4 text-sky-400' />
+                Save Profile & Resume
+              </button>
+
+              <button
+                type='submit'
+                disabled={loading}
+                className='flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white shadow-lg shadow-brand-500/25 transition-all disabled:opacity-50'
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className='w-4 h-4 animate-spin' />
+                    Analyzing JD & Resume...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className='w-4 h-4' />
+                    Save & Launch Interview
+                    <ArrowRight className='w-4 h-4' />
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </form>
       </div>

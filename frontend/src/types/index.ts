@@ -308,3 +308,15 @@ export interface ReviewQueueItem {
   };
   created_at: string;
 }
+
+export interface CandidateProfile {
+  name: string;
+  email: string;
+  company: string;
+  role: string;
+  experience?: string;
+  resumeText?: string;
+  resumeFileName?: string;
+  resumeWordCount?: number;
+  jdText?: string;
+}
