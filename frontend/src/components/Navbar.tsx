@@ -145,9 +145,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Compass },
     { id: 'jd-intake', label: 'Role Profiler', icon: Sparkles },
-    { id: 'practice', label: 'Skill Practice', icon: Code2 },
-    { id: 'mock-oa', label: 'Timed Assessment', icon: Terminal },
-    { id: 'interview', label: 'AI Interview', icon: Cpu },
   ];
 
   const handleNavClick = (tabId: string) => {
@@ -224,176 +221,239 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Top Right: Unified User Profile Dropdown */}
           <div className="flex items-center gap-3">
             {currentUser ? (
-              <div className="relative" ref={profileMenuRef}>
+              <div>
+                {/* Circular Profile Button on Side */}
                 <button
                   type="button"
                   onClick={() => setProfileDropdownOpen(prev => !prev)}
-                  className={`flex items-center gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-2xl bg-slate-900/90 border transition-all shadow-sm group ${
+                  className={`relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all shadow-md group focus:outline-none ${
                     profileDropdownOpen 
-                      ? 'border-indigo-500/50 bg-slate-800/90 ring-2 ring-indigo-500/20' 
-                      : 'border-white/10 hover:border-white/20 hover:bg-slate-800/80'
+                      ? 'ring-2 ring-sky-400 ring-offset-2 ring-offset-slate-950 scale-105' 
+                      : 'hover:scale-105 hover:ring-2 hover:ring-indigo-500/50'
                   }`}
-                  title="View Profile & Settings"
+                  title={`${currentUser.name || candidate.name} - View Profile & Actions`}
                 >
                   {currentUser.avatar_url ? (
                     <img
                       src={currentUser.avatar_url}
                       alt={currentUser.name || candidate.name}
-                      className="w-7 h-7 rounded-full object-cover border border-indigo-400/50 group-hover:border-indigo-400 transition-colors"
+                      className="w-full h-full rounded-full object-cover border-2 border-indigo-500/60 group-hover:border-sky-400 transition-colors"
                     />
                   ) : (
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center text-xs font-bold text-white uppercase shadow-inner">
+                    <div className="w-full h-full rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 border-2 border-indigo-400/50 flex items-center justify-center text-xs sm:text-sm font-bold text-white uppercase shadow-inner group-hover:border-sky-300 transition-colors">
                       {(currentUser.name || candidate.name)?.[0] || 'U'}
                     </div>
                   )}
-                  <div className="hidden sm:flex flex-col text-left leading-tight">
-                    <span className="text-xs font-bold text-white group-hover:text-sky-300 transition-colors truncate max-w-[120px]">
-                      {currentUser.name || candidate.name}
-                    </span>
-                    <span className="text-[10px] text-slate-400 font-mono truncate max-w-[120px]">
-                      {candidate.company || 'Ready'}
-                    </span>
-                  </div>
-                  <ChevronDown className={`w-3.5 h-3.5 text-slate-400 group-hover:text-slate-200 transition-transform duration-200 ${profileDropdownOpen ? 'rotate-180 text-sky-400' : ''}`} />
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-slate-950"></span>
                 </button>
 
-                {/* Floating Profile Panel */}
+                {/* Extreme Right Slide-out Drawer */}
                 {profileDropdownOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] rounded-2xl bg-[#090e1a]/95 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/90 p-4 space-y-3.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                    {/* User Identity Header */}
-                    <div className="flex items-center gap-3 pb-3 border-b border-white/[0.08]">
-                      {currentUser.avatar_url ? (
-                        <img
-                          src={currentUser.avatar_url}
-                          alt={currentUser.name || candidate.name}
-                          className="w-11 h-11 rounded-full object-cover border-2 border-indigo-500/60 shadow"
-                        />
-                      ) : (
-                        <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center text-sm font-bold text-white uppercase shadow-inner">
-                          {(currentUser.name || candidate.name)?.[0] || 'U'}
-                        </div>
-                      )}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-1.5">
-                          <h4 className="text-xs font-bold text-white truncate">
-                            {currentUser.name || candidate.name}
-                          </h4>
-                          <span className="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-                            Active
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-slate-400 truncate font-mono">
-                          {currentUser.email || candidate.email}
-                        </p>
-                      </div>
-                    </div>
+                  <>
+                    {/* Backdrop Overlay */}
+                    <div
+                      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity animate-in fade-in duration-200"
+                      onClick={() => setProfileDropdownOpen(false)}
+                      aria-hidden="true"
+                    />
 
-                    {/* Active Interview Context Card */}
-                    <div className="p-3 rounded-xl bg-slate-950/70 border border-white/[0.06] space-y-1.5">
-                      <div className="flex items-center justify-between text-[10px] text-slate-400">
-                        <span>Active Interview Target</span>
-                        <span className="inline-flex items-center gap-1 text-emerald-400 font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                          Configured
-                        </span>
-                      </div>
-                      <div className="text-xs font-bold text-white">{candidate.role || 'Software Engineer'}</div>
-                      <div className="text-[11px] font-medium text-sky-400 font-mono">{candidate.company || 'Target Company'}</div>
-                    </div>
-
-                    {/* Stored Resume Status Card */}
-                    <div className="p-3 rounded-xl bg-slate-950/70 border border-white/[0.06] flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${
-                          candidate.resumeText ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-slate-800 text-slate-400'
-                        }`}>
-                          <FileText className="w-3.5 h-3.5" />
-                        </div>
-                        <div className="min-w-0">
-                          <div className="text-xs font-semibold text-white truncate">
-                            {candidate.resumeFileName || (candidate.resumeText ? 'Resume Attached' : 'No Resume Uploaded')}
+                    {/* Extreme Right Drawer */}
+                    <div
+                      ref={profileMenuRef}
+                      className="fixed top-0 right-0 bottom-0 w-80 sm:w-96 max-w-[85vw] bg-[#090e1a]/98 backdrop-blur-2xl border-l border-white/10 shadow-2xl shadow-black z-50 flex flex-col justify-between p-5 sm:p-6 overflow-y-auto animate-in slide-in-from-right duration-250"
+                    >
+                      <div className="space-y-4">
+                        {/* Drawer Header with Title and Close X Button */}
+                        <div className="flex items-center justify-between pb-3.5 border-b border-white/[0.08]">
+                          <div className="flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
+                              Candidate Profile
+                            </span>
                           </div>
-                          <div className="text-[10px] text-slate-400 truncate font-mono">
-                            {candidate.resumeText 
-                              ? `${candidate.resumeWordCount || candidate.resumeText.split(/\s+/).filter(Boolean).length} words • Stored`
-                              : 'Upload in profile'}
+                          <button
+                            type="button"
+                            onClick={() => setProfileDropdownOpen(false)}
+                            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.08] transition-all"
+                            title="Close Profile Panel"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+
+                        {/* User Identity Header */}
+                        <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-950/70 border border-white/[0.06]">
+                          {currentUser.avatar_url ? (
+                            <img
+                              src={currentUser.avatar_url}
+                              alt={currentUser.name || candidate.name}
+                              className="w-12 h-12 rounded-full object-cover border-2 border-indigo-500/70 shadow-md shrink-0"
+                            />
+                          ) : (
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center text-base font-bold text-white uppercase shadow-inner shrink-0 border border-indigo-400/40">
+                              {(currentUser.name || candidate.name)?.[0] || 'U'}
+                            </div>
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm font-bold text-white truncate">
+                                {currentUser.name || candidate.name}
+                              </h4>
+                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shrink-0">
+                                Active
+                              </span>
+                            </div>
+                            <p className="text-xs text-slate-400 truncate font-mono mt-0.5">
+                              {currentUser.email || candidate.email}
+                            </p>
                           </div>
                         </div>
+
+                        {/* Target Position Card */}
+                        <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-white/[0.06] space-y-1">
+                          <div className="flex items-center justify-between text-[10px] text-slate-400">
+                            <span>Target Role & Company</span>
+                            <span className="text-emerald-400 font-mono text-[9px] font-semibold">Configured</span>
+                          </div>
+                          <div className="text-xs font-bold text-white truncate">{candidate.role || 'Software Engineer'}</div>
+                          <div className="text-[11px] font-medium text-sky-400 font-mono truncate">{candidate.company || 'Target Company'}</div>
+                        </div>
+
+                        {/* Stored Resume Status Card */}
+                        <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-white/[0.06] flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
+                              candidate.resumeText ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-slate-800 text-slate-400'
+                            }`}>
+                              <FileText className="w-4 h-4" />
+                            </div>
+                            <div className="min-w-0">
+                              <div className="text-xs font-semibold text-white truncate">
+                                {candidate.resumeFileName || (candidate.resumeText ? 'Resume Attached' : 'No Resume Uploaded')}
+                              </div>
+                              <div className="text-[10px] text-slate-400 truncate font-mono">
+                                {candidate.resumeText 
+                                  ? `${candidate.resumeWordCount || candidate.resumeText.split(/\s+/).filter(Boolean).length} words • Loaded`
+                                  : 'Upload in profile'}
+                              </div>
+                            </div>
+                          </div>
+                          {candidate.resumeText ? (
+                            <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shrink-0">
+                              Ready
+                            </span>
+                          ) : (
+                            <span className="px-2 py-0.5 rounded-full text-[9px] font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30 shrink-0">
+                              Not Set
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Profile & Resume Actions */}
+                        <div className="pt-1 space-y-1">
+                          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-1 pb-1">
+                            Account & Profile
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setProfileDropdownOpen(false);
+                              handleCandidateSetupClick();
+                            }}
+                            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-200 hover:text-white bg-slate-950/40 hover:bg-white/[0.06] border border-white/5 hover:border-white/10 transition-all text-left group"
+                          >
+                            <FileText className="w-4 h-4 text-indigo-400 shrink-0 group-hover:scale-110 transition-transform" />
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs font-semibold text-slate-200 group-hover:text-white truncate">Update Profile & Resume</div>
+                              <div className="text-[10px] text-slate-400 truncate">Change resume file, target role, or company</div>
+                            </div>
+                          </button>
+                        </div>
+
+                        {/* Platform Modes Shortcuts */}
+                        <div className="pt-2 space-y-1">
+                          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-1 pb-1">
+                            Preparation Studio
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setProfileDropdownOpen(false);
+                              handleNavClick('interview');
+                            }}
+                            className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all text-left group"
+                          >
+                            <Cpu className="w-4 h-4 text-sky-400 shrink-0 group-hover:scale-110 transition-transform" />
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs font-semibold text-slate-200 group-hover:text-white truncate">1-on-1 AI Interview</div>
+                              <div className="text-[10px] text-slate-500 truncate">Deep situational interview tailored to JD</div>
+                            </div>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setProfileDropdownOpen(false);
+                              handleNavClick('mock-oa');
+                            }}
+                            className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all text-left group"
+                          >
+                            <Terminal className="w-4 h-4 text-cyan-400 shrink-0 group-hover:scale-110 transition-transform" />
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs font-semibold text-slate-200 group-hover:text-white truncate">Timed Assessment (Mock OA)</div>
+                              <div className="text-[10px] text-slate-500 truncate">60-minute coding exam simulation</div>
+                            </div>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setProfileDropdownOpen(false);
+                              handleNavClick('practice');
+                            }}
+                            className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all text-left group"
+                          >
+                            <Code2 className="w-4 h-4 text-indigo-400 shrink-0 group-hover:scale-110 transition-transform" />
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs font-semibold text-slate-200 group-hover:text-white truncate">Targeted Skill Practice</div>
+                              <div className="text-[10px] text-slate-500 truncate">Coding questions with hints & solutions</div>
+                            </div>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setProfileDropdownOpen(false);
+                              handleNavClick('dashboard');
+                            }}
+                            className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all text-left group"
+                          >
+                            <Compass className="w-4 h-4 text-slate-400 shrink-0 group-hover:scale-110 transition-transform" />
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs font-semibold text-slate-200 group-hover:text-white truncate">Candidate Dashboard</div>
+                              <div className="text-[10px] text-slate-500 truncate">Readiness scores & past attempts</div>
+                            </div>
+                          </button>
+                        </div>
                       </div>
-                      {candidate.resumeText ? (
-                        <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shrink-0">
-                          Ready
-                        </span>
-                      ) : (
-                        <span className="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30 shrink-0">
-                          Not Set
-                        </span>
-                      )}
+
+                      {/* Drawer Bottom: Sign Out */}
+                      <div className="pt-4 border-t border-white/[0.08] mt-4">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setProfileDropdownOpen(false);
+                            handleSignOut();
+                          }}
+                          className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-rose-500/20 hover:border-rose-500/40 transition-all"
+                        >
+                          <LogOut className="w-3.5 h-3.5" />
+                          Sign Out
+                        </button>
+                      </div>
                     </div>
-
-                    {/* Resume & Profile Action Buttons */}
-                    <div className="space-y-1 pt-0.5">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setProfileDropdownOpen(false);
-                          handleCandidateSetupClick();
-                        }}
-                        className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all group/item text-left"
-                      >
-                        <FileText className="w-4 h-4 text-indigo-400 shrink-0 group-hover/item:scale-110 transition-transform" />
-                        <div className="flex-1">
-                          <div className="text-xs font-semibold text-slate-200 group-hover/item:text-white">Update Resume & Profile</div>
-                          <div className="text-[10px] text-slate-500">Store or change resume, target role, company</div>
-                        </div>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setProfileDropdownOpen(false);
-                          handleNavClick('interview');
-                        }}
-                        className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all group/item text-left"
-                      >
-                        <Cpu className="w-4 h-4 text-sky-400 shrink-0 group-hover/item:scale-110 transition-transform" />
-                        <div className="flex-1">
-                          <div className="text-xs font-semibold text-slate-200 group-hover/item:text-white">Start AI Interview</div>
-                          <div className="text-[10px] text-slate-500">Provide JD & launch with saved resume</div>
-                        </div>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setProfileDropdownOpen(false);
-                          handleNavClick('dashboard');
-                        }}
-                        className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all group/item text-left"
-                      >
-                        <Compass className="w-4 h-4 text-slate-400 shrink-0 group-hover/item:scale-110 transition-transform" />
-                        <div className="flex-1">
-                          <div className="text-xs font-semibold text-slate-200 group-hover/item:text-white">Candidate Dashboard</div>
-                          <div className="text-[10px] text-slate-500">Readiness scores & past sessions</div>
-                        </div>
-                      </button>
-                    </div>
-
-                    {/* Sign Out Button */}
-                    <div className="pt-2 border-t border-white/[0.08]">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setProfileDropdownOpen(false);
-                          handleSignOut();
-                        }}
-                        className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all"
-                      >
-                        <LogOut className="w-3.5 h-3.5" />
-                        Sign Out
-                      </button>
-                    </div>
-                  </div>
+                  </>
                 )}
               </div>
             ) : (

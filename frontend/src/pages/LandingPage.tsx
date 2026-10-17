@@ -156,13 +156,27 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
               </ul>
             </div>
 
-            <button
-              onClick={() => handleAction('practice')}
-              className="w-full py-3 rounded-xl font-semibold text-sm bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-500/30 flex items-center justify-center gap-2 transition-all shadow-sm"
-            >
-              Start Coding Practice
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            <div className="grid sm:grid-cols-2 gap-3 pt-2">
+              <button
+                onClick={() => handleAction('practice')}
+                className="py-3 px-3.5 rounded-xl font-semibold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-500/30 flex items-center justify-center gap-2 transition-all shadow-sm group"
+                title="Start personalized coding practice with hints and solutions"
+              >
+                <Code2 className="w-4 h-4 text-sky-400 group-hover:scale-110 transition-transform" />
+                <span>Skill Practice</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+
+              <button
+                onClick={() => handleAction('mock-oa')}
+                className="py-3 px-3.5 rounded-xl font-semibold text-xs sm:text-sm bg-gradient-to-r from-sky-600/30 via-indigo-600/30 to-blue-600/30 hover:from-sky-600/45 hover:to-indigo-600/45 text-sky-200 border border-sky-400/40 flex items-center justify-center gap-2 transition-all shadow-sm group"
+                title="Start a 60-minute realistic company coding assessment"
+              >
+                <Terminal className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+                <span>Timed Assessment (OA)</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
 
           {/* Pillar 2: 1-on-1 AI Technical Interview */}
@@ -203,13 +217,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
               </ul>
             </div>
 
-            <button
-              onClick={() => handleAction('interview')}
-              className="w-full py-3 rounded-xl font-semibold text-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 text-white flex items-center justify-center gap-2 transition-all shadow-md shadow-indigo-600/25"
-            >
-              Enter AI Interview Room
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            <div className="pt-2">
+              <button
+                onClick={() => handleAction('interview')}
+                className="w-full py-3 rounded-xl font-semibold text-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-500 hover:to-indigo-500 text-white flex items-center justify-center gap-2 transition-all shadow-md shadow-indigo-600/25 group"
+              >
+                <Cpu className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
+                <span>Enter AI Interview Room</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
 
