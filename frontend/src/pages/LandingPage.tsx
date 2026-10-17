@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Terminal, Code2, Cpu } from 'lucide-react';
+import BotMascot from '../components/BotMascot';
 
 interface LandingPageProps {
   onNavigate: (tab: string) => void;
@@ -19,11 +20,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
   return (
     <div className="py-8 sm:py-12 px-4 sm:px-6">
       <div className="max-w-[1100px] mx-auto">
-        {/* Left-Aligned Editorial Hero Headline */}
-        <div className="mb-12">
+        {/* Left-Aligned Hero Headline with Animated Bot Mascot */}
+        <div className="flex items-center justify-between gap-6 mb-8 sm:mb-10">
           <h1 className="font-serif text-[clamp(34px,4.2vw,46px)] leading-[1.15] tracking-[-0.01em] text-text font-normal max-w-[22ch] [text-wrap:balance]">
             Prepare for Company OAs &amp; 1-on-1 Technical Interviews
           </h1>
+          <div className="hero-bot-container hidden min-[900px]:flex ml-auto pointer-events-none select-none shrink-0 -my-4">
+            <BotMascot />
+          </div>
         </div>
 
         {/* Two-Column Grid: 5fr / 7fr with Interview as primary focus */}
