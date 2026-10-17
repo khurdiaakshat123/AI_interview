@@ -1,6 +1,5 @@
 import React from 'react';
-import { ArrowRight, Terminal, Code2, Cpu } from 'lucide-react';
-import BotMascot from '../components/BotMascot';
+import { ArrowRight } from 'lucide-react';
 
 interface LandingPageProps {
   onNavigate: (tab: string) => void;
@@ -18,192 +17,139 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
   };
 
   return (
-    <div className="py-8 sm:py-12 px-4 sm:px-6">
+    <div className="py-16 sm:py-20 px-4 sm:px-6">
       <div className="max-w-[1100px] mx-auto">
-        {/* Left-Aligned Hero Headline with Animated Bot Mascot */}
-        <div className="flex items-center justify-between gap-6 mb-8 sm:mb-10">
-          <h1 className="font-serif text-[clamp(34px,4.2vw,46px)] leading-[1.15] tracking-[-0.01em] text-text font-normal max-w-[22ch] [text-wrap:balance]">
-            Prepare for Company OAs &amp; 1-on-1 Technical Interviews
+        {/* HERO */}
+        <div className="mb-20">
+          <p className="text-[11px] font-mono uppercase tracking-[0.1em] text-text-muted mb-5">
+            Technical Interview Preparation
+          </p>
+          <h1
+            className="text-[clamp(36px,4.5vw,52px)] leading-[1.1] tracking-[-0.02em] text-text font-semibold max-w-[18ch] mb-7"
+            style={{ fontFamily: 'var(--font-sans)' }}
+          >
+            Prepare for company OAs &amp; technical interviews
           </h1>
-          <div className="hero-bot-container hidden min-[900px]:flex ml-auto pointer-events-none select-none shrink-0 -my-4">
-            <BotMascot />
+          <p
+            className="text-[16px] leading-[1.7] text-text-muted max-w-[52ch] mb-10"
+            style={{ fontFamily: 'var(--font-sans)' }}
+          >
+            Resume-grounded AI interviews. Timed coding assessments. Adaptive depth up to five follow-up levels. Built for engineers targeting top-tier roles.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => handleAction('interview')}
+              className="h-11 px-6 rounded-md bg-accent text-accent-contrast text-[14px] font-medium flex items-center gap-2 hover:opacity-90 transition-opacity"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              Enter AI Interview Room
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => handleAction('mock-oa')}
+              className="h-11 px-6 rounded-md border border-border bg-transparent text-text text-[14px] font-medium flex items-center gap-2 hover:bg-surface-hover transition-colors"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              Timed Assessment (OA)
+              <ArrowRight className="w-4 h-4 text-text-muted" />
+            </button>
           </div>
         </div>
-
-        {/* Two-Column Grid: 5fr / 7fr with Interview as primary focus */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          {/* Left Column (5fr): Practice & Timed Assessments */}
-          <div className="lg:col-span-5 bg-surface border border-border rounded-[12px] p-8 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[12px] font-mono uppercase tracking-[0.06em] text-text-muted">
-                  ASSESSMENTS
-                </span>
-              </div>
-
-              <h2 className="text-[20px] font-semibold text-text tracking-tight mb-2 font-sans">
-                Practice &amp; Timed Assessments
-              </h2>
-              
-              <p className="text-[15px] leading-[1.6] text-text-muted mb-6 font-sans">
-                Paste a job description, get topics ranked by weight, practice with hints, then sit a 60-minute timed OA.
-              </p>
-
-              <ul className="space-y-3 text-[14px] text-text-muted mb-8 font-sans">
-                <li className="flex items-start gap-2.5">
-                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
-                  <span>Extracts core subjects with prioritized importance weights</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
-                  <span>Personalized hints, architectural approaches, and code solutions</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
-                  <span>60-minute exam simulation matching real 7-day hiring cycles</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
-                  <span>Monaco editor with hidden boundary and performance test cases</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-auto pt-4">
+        {/* FEATURE COLUMNS */}
+        <div className="border-t border-border pt-12 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+          {/* Column 1: Mock Interview */}
+          <div>
+            <p className="text-[11px] font-mono uppercase tracking-[0.1em] text-text-muted mb-5">
+              Mock Interview
+            </p>
+            <h2
+              className="text-[18px] font-semibold text-text mb-3"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              AI-powered 1-on-1 technical interview
+            </h2>
+            <p
+              className="text-[14px] leading-[1.7] text-text-muted mb-6"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              Questions come from your own resume projects, with follow-ups up to five levels deep. You receive two scores: project defense and CS fundamentals.
+            </p>
+            <ul className="space-y-2 text-[14px] text-text-muted mb-8" style={{ fontFamily: 'var(--font-sans)' }}>
+              <li className="flex items-start gap-2.5">
+                <span className="text-text-muted select-none font-mono mt-0.5 shrink-0">—</span>
+                <span>Probes architecture choices and production trade-offs</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-text-muted select-none font-mono mt-0.5 shrink-0">—</span>
+                <span>OS internals, distributed locks, DB transactions, caching</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-text-muted select-none font-mono mt-0.5 shrink-0">—</span>
+                <span>Adaptive depth — evaluates and probes levels 1 through 5</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-text-muted select-none font-mono mt-0.5 shrink-0">—</span>
+                <span>Dual-dimensional scorecard on completion</span>
+              </li>
+            </ul>
+            <button
+              onClick={() => handleAction('interview')}
+              className="text-[13px] font-medium text-accent hover:underline underline-offset-4 flex items-center gap-1.5 transition-colors"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              Start an interview <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+          {/* Column 2: Timed Assessments + Skill Practice */}
+          <div>
+            <p className="text-[11px] font-mono uppercase tracking-[0.1em] text-text-muted mb-5">
+              Coding Assessments
+            </p>
+            <h2
+              className="text-[18px] font-semibold text-text mb-3"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              Timed OAs &amp; targeted skill practice
+            </h2>
+            <p
+              className="text-[14px] leading-[1.7] text-text-muted mb-6"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              Paste a job description, get topics ranked by weight, practice with hints, then sit a 60-minute timed OA with Monaco editor and hidden test cases.
+            </p>
+            <ul className="space-y-2 text-[14px] text-text-muted mb-8" style={{ fontFamily: 'var(--font-sans)' }}>
+              <li className="flex items-start gap-2.5">
+                <span className="text-text-muted select-none font-mono mt-0.5 shrink-0">—</span>
+                <span>Extracts core subjects with prioritized importance weights</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-text-muted select-none font-mono mt-0.5 shrink-0">—</span>
+                <span>Personalized hints, architectural approaches, code solutions</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-text-muted select-none font-mono mt-0.5 shrink-0">—</span>
+                <span>60-minute exam simulation matching real 7-day hiring cycles</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-text-muted select-none font-mono mt-0.5 shrink-0">—</span>
+                <span>Monaco editor with hidden boundary and performance test cases</span>
+              </li>
+            </ul>
+            <div className="flex flex-wrap gap-6">
               <button
                 onClick={() => handleAction('practice')}
-                className="h-10 px-4 rounded-md border border-border bg-transparent text-text hover:bg-surface-hover hover:border-border-focus font-sans text-[14px] font-medium flex items-center justify-center gap-2 transition-colors"
-                title="Start personalized coding practice with hints and solutions"
+                className="text-[13px] font-medium text-accent hover:underline underline-offset-4 flex items-center gap-1.5 transition-colors"
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
-                <span>Skill Practice</span>
-                <ArrowRight className="w-3.5 h-3.5 text-text-muted" />
+                Skill Practice <ArrowRight className="w-3.5 h-3.5" />
               </button>
-
               <button
                 onClick={() => handleAction('mock-oa')}
-                className="h-10 px-4 rounded-md border border-border bg-transparent text-text hover:bg-surface-hover hover:border-border-focus font-sans text-[14px] font-medium flex items-center justify-center gap-2 transition-colors"
-                title="Start a 60-minute realistic company coding assessment"
+                className="text-[13px] font-medium text-accent hover:underline underline-offset-4 flex items-center gap-1.5 transition-colors"
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
-                <span>Timed Assessment (OA)</span>
-                <ArrowRight className="w-3.5 h-3.5 text-text-muted" />
+                Timed Assessment <ArrowRight className="w-3.5 h-3.5" />
               </button>
-            </div>
-          </div>
-
-          {/* Right Column (7fr): AI Technical Interview - Primary Focus */}
-          <div className="lg:col-span-7 bg-surface border border-border rounded-[12px] p-8 flex flex-col justify-between relative">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[12px] font-mono uppercase tracking-[0.06em] text-text-muted">
-                  PRIMARY FOCUS
-                </span>
-                <span className="text-[12px] font-mono text-text-muted">
-                  Adaptive 5-level depth
-                </span>
-              </div>
-
-              <h2 className="text-[20px] font-semibold text-text tracking-tight mb-2 font-sans">
-                AI Technical Interview
-              </h2>
-
-              <p className="text-[15px] leading-[1.6] text-text-muted mb-6 font-sans">
-                Questions come from your own resume projects, with follow-ups up to five levels deep. You get two scores: project defense and CS fundamentals.
-              </p>
-
-              <ul className="space-y-3 text-[14px] text-text-muted mb-6 font-sans">
-                <li className="flex items-start gap-2.5">
-                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
-                  <span>Rigorously probes architecture choices and production trade-offs</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
-                  <span>Probes OS internals, distributed locks, database transactions, and caching</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
-                  <span>Evaluates answers in real time and probes deeper (levels 1 through 5)</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-text-muted select-none font-mono mt-0.5">—</span>
-                  <span>Dual-dimensional scorecard for project defense and subject knowledge</span>
-                </li>
-              </ul>
-
-              {/* Sample Scorecard Static Preview */}
-              <div className="mb-4 p-3.5 rounded-lg border border-border bg-bg/50 space-y-2.5">
-                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.06em]">
-                  <span className="text-text-muted">Scorecard Breakdown</span>
-                  <span className="text-[10px] text-text-muted/60 lowercase tracking-normal">(sample data)</span>
-                </div>
-                <div className="space-y-2 font-mono text-[12px]">
-                  <div>
-                    <div className="flex justify-between text-text mb-1">
-                      <span className="text-[11px]">Project defense</span>
-                      <span className="text-[11px] text-text">72/100</span>
-                    </div>
-                    <div className="h-1 w-full bg-surface rounded-full overflow-hidden border border-border/40">
-                      <div className="h-full bg-accent rounded-full" style={{ width: '72%' }} />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-text mb-1">
-                      <span className="text-[11px]">Fundamentals</span>
-                      <span className="text-[11px] text-text">64/100</span>
-                    </div>
-                    <div className="h-1 w-full bg-surface rounded-full overflow-hidden border border-border/40">
-                      <div className="h-full bg-accent rounded-full" style={{ width: '64%' }} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-auto pt-4">
-              <button
-                onClick={() => handleAction('interview')}
-                className="w-full h-11 px-6 rounded-md bg-accent hover:opacity-90 text-accent-contrast font-sans text-[14px] font-medium flex items-center justify-center gap-2 transition-opacity"
-              >
-                <span>Enter AI Interview Room</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Restrained 3-Step Walkthrough Bar */}
-        <div className="mt-12 p-8 rounded-[12px] border border-border bg-surface">
-          <div className="flex items-center justify-between mb-6 pb-3 border-b border-border">
-            <h3 className="font-serif text-[22px] text-text font-normal">
-              Preparation Workflow
-            </h3>
-            <span className="text-[12px] font-mono text-text-muted uppercase tracking-[0.06em]">
-              3 Steps
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="space-y-1.5">
-              <span className="font-mono text-[12px] text-text-muted">01</span>
-              <h4 className="text-[15px] font-medium text-text">Target Your Role</h4>
-              <p className="text-[13px] text-text-muted leading-[1.6]">
-                Select from top tech companies or paste any custom Job Description to generate topic profiles.
-              </p>
-            </div>
-
-            <div className="space-y-1.5">
-              <span className="font-mono text-[12px] text-text-muted">02</span>
-              <h4 className="text-[15px] font-medium text-text">Simulate Coding Assessments</h4>
-              <p className="text-[13px] text-text-muted leading-[1.6]">
-                Practice high-frequency topics or sit a realistic 60-minute exam with Monaco test runner.
-              </p>
-            </div>
-
-            <div className="space-y-1.5">
-              <span className="font-mono text-[12px] text-text-muted">03</span>
-              <h4 className="text-[15px] font-medium text-text">Defend in Technical Interview</h4>
-              <p className="text-[13px] text-text-muted leading-[1.6]">
-                Answer spoken prompts and defend resume implementations with structured rubrics.
-              </p>
             </div>
           </div>
         </div>
