@@ -8,10 +8,6 @@ interface PreviewTurn {
   badge?: string;
   timestamp: string;
   text: string;
-  evalPrev?: {
-    evidence: string;
-    points: string;
-  };
   depth: number;
 }
 
@@ -40,10 +36,6 @@ const PREVIEW_SCRIPT: PreviewTurn[] = [
     badge: 'Reliability & Canary Gates',
     timestamp: '10:46 PM',
     text: 'If a canary fails under live traffic, how do you handle zero-downtime rollbacks with database schema changes?',
-    evalPrev: {
-      evidence: '88% Evidence',
-      points: '+4.4 / 5.0 pts'
-    },
     depth: 3
   },
   {
@@ -61,10 +53,6 @@ const PREVIEW_SCRIPT: PreviewTurn[] = [
     badge: 'Telemetry & Gate Automation',
     timestamp: '10:47 PM',
     text: 'Solid strategy. How do you configure Application Insights alerts to trigger that Front Door rollback automatically before error spikes reach users?',
-    evalPrev: {
-      evidence: '94% Evidence',
-      points: '+4.8 / 5.0 pts'
-    },
     depth: 5
   }
 ];
@@ -269,17 +257,6 @@ export const DynamicInterviewPreview: React.FC = () => {
                 >
                   <p className="font-normal">{turn.text}</p>
                 </div>
-
-                {/* Real-time Turn Evaluation Badge */}
-                {turn.evalPrev && (
-                  <div className="px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg bg-bg border border-border text-[10px] sm:text-[10.5px] text-text-muted flex items-center justify-between gap-2.5 mt-1 font-mono">
-                    <div className="flex items-center gap-1.5">
-                      <span>Evaluated:</span>
-                      <span className="text-text font-medium">{turn.evalPrev.evidence}</span>
-                    </div>
-                    <span className="text-success font-medium">{turn.evalPrev.points}</span>
-                  </div>
-                )}
               </div>
 
               {/* Candidate Avatar (Right) */}
