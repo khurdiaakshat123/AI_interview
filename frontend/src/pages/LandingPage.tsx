@@ -39,11 +39,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
 
   return (
     <div className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[1100px] mx-auto">
+      <div className="max-w-[1240px] mx-auto">
         {/* Top Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Hero Column */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6 xl:col-span-5">
             <h1 className="font-serif text-[clamp(38px,4.6vw,56px)] leading-[1.08] tracking-[-0.015em] text-text font-normal mb-6 [text-wrap:balance]">
               Get questioned on your own projects before a real interviewer does.
             </h1>
@@ -70,7 +70,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
           </div>
 
           {/* Right Hero Column: Dynamic Moving Interactive Interview Preview */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+          <div className="lg:col-span-6 xl:col-span-7 flex justify-center lg:justify-end">
             <DynamicInterviewPreview />
           </div>
         </div>
