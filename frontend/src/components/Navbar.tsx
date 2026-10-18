@@ -184,6 +184,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex items-center gap-[10px] cursor-pointer select-none group"
             onClick={() => setCurrentTab('landing')}
           >
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="shrink-0">
+              <rect x="0.5" y="0.5" width="27" height="27" rx="7" stroke="var(--border)" fill="var(--surface)"/>
+              <circle cx="14" cy="8.5" r="2.2" fill="var(--accent)"/>
+              <rect x="12.4" y="13" width="3.2" height="9" rx="1.2" fill="var(--text)"/>
+            </svg>
             <span className="font-serif text-[26px] text-text tracking-tight font-normal leading-none">
               Intervyn
             </span>
