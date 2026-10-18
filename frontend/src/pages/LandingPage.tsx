@@ -101,14 +101,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
             <div className="flex flex-wrap items-center gap-3.5 mb-7">
               <button
                 onClick={() => handleAction('interview')}
-                className="h-12 px-6 rounded-lg bg-[#18181A] text-[#FAFAFA] dark:bg-[#EDEDED] dark:text-[#0E0E10] text-[15px] font-medium hover:opacity-90 transition-opacity shadow-sm cursor-pointer"
+                className="h-12 px-6 rounded-lg bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:opacity-90 text-[15px] font-medium transition-all shadow-sm cursor-pointer select-none"
               >
                 Start an interview
               </button>
 
               <button
                 onClick={() => handleAction('mock-oa')}
-                className="h-12 px-6 rounded-lg border border-border bg-transparent text-text hover:bg-surface-hover text-[15px] font-medium transition-colors cursor-pointer"
+                className="h-12 px-6 rounded-lg border border-border bg-transparent text-text hover:bg-surface-hover hover:border-border-focus text-[15px] font-medium transition-colors cursor-pointer select-none"
               >
                 Practice a timed OA
               </button>
@@ -121,17 +121,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                 <button
                   type="button"
                   onClick={() => setInfoPopup('interviews')}
-                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover text-text text-[14.5px] font-medium transition-colors cursor-pointer group shadow-xs"
+                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-accent/40 text-text text-[14.5px] font-medium transition-all cursor-pointer group shadow-xs"
                   title="Click to view details about Past Interviews"
                 >
                   <span>Past interviews</span>
-                  <Info className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors" />
+                  <Info className="w-4 h-4 text-accent/80 group-hover:text-accent transition-colors" />
                 </button>
 
                 <button
                   type="button"
                   onClick={handleOpenPastInterviews}
-                  className="h-12 px-3 text-[14.5px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
+                  className="h-12 px-3 text-[14.5px] font-medium text-text hover:text-accent underline decoration-accent decoration-2 underline-offset-4 hover:opacity-90 transition-all cursor-pointer inline-flex items-center gap-1.5"
                 >
                   <span>View past interviews</span>
                   <ArrowRight className="w-4 h-4 text-accent" />
@@ -143,17 +143,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                 <button
                   type="button"
                   onClick={() => setInfoPopup('practice')}
-                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover text-text text-[14.5px] font-medium transition-colors cursor-pointer group shadow-xs"
+                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-accent/40 text-text text-[14.5px] font-medium transition-all cursor-pointer group shadow-xs"
                   title="Click to view details about Practice Questions"
                 >
                   <span>Practice questions</span>
-                  <Info className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors" />
+                  <Info className="w-4 h-4 text-accent/80 group-hover:text-accent transition-colors" />
                 </button>
 
                 <button
                   type="button"
                   onClick={() => handleAction('jd-intake')}
-                  className="h-12 px-3 text-[14.5px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
+                  className="h-12 px-3 text-[14.5px] font-medium text-text hover:text-accent underline decoration-accent decoration-2 underline-offset-4 hover:opacity-90 transition-all cursor-pointer inline-flex items-center gap-1.5"
                 >
                   <span>Paste a job description</span>
                   <ArrowRight className="w-4 h-4 text-accent" />
@@ -165,17 +165,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                 <button
                   type="button"
                   onClick={() => setInfoPopup('assessments')}
-                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover text-text text-[14.5px] font-medium transition-colors cursor-pointer group shadow-xs"
+                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-accent/40 text-text text-[14.5px] font-medium transition-all cursor-pointer group shadow-xs"
                   title="Click to view details about Review Assessments"
                 >
                   <span>Review assessments</span>
-                  <Info className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors" />
+                  <Info className="w-4 h-4 text-accent/80 group-hover:text-accent transition-colors" />
                 </button>
 
                 <button
                   type="button"
                   onClick={handleOpenPastOAReview}
-                  className="h-12 px-3 text-[14.5px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
+                  className="h-12 px-3 text-[14.5px] font-medium text-text hover:text-accent underline decoration-accent decoration-2 underline-offset-4 hover:opacity-90 transition-all cursor-pointer inline-flex items-center gap-1.5"
                 >
                   <span>Review assessments</span>
                   <ArrowRight className="w-4 h-4 text-accent" />

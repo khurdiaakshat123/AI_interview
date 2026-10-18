@@ -240,8 +240,8 @@ export const DynamicInterviewPreview: React.FC = () => {
                 <div
                   className={`p-4 sm:p-4.5 rounded-2xl text-[14px] sm:text-[14.5px] leading-[1.6] transition-colors ${
                     isInterviewer
-                      ? 'bg-bg border border-border text-text rounded-tl-xs shadow-xs'
-                      : 'bg-surface border border-accent/40 text-text rounded-tr-xs shadow-xs'
+                      ? 'bg-bg/80 border border-border text-text rounded-tl-xs shadow-xs'
+                      : 'bg-surface-hover border border-accent/40 text-text rounded-tr-xs shadow-xs'
                   }`}
                 >
                   <p className="font-normal">{turn.text}</p>
