@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PastInterviewsModal } from '../components/PastInterviewsModal';
 import { PastOAReviewModal } from '../components/PastOAReviewModal';
+import { DynamicInterviewPreview } from '../components/DynamicInterviewPreview';
 
 interface LandingPageProps {
   onNavigate: (tab: string, state?: any) => void;
@@ -68,67 +69,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
             </div>
           </div>
 
-          {/* Right Hero Column: Interactive Example Interview Card */}
+          {/* Right Hero Column: Dynamic Moving Interactive Interview Preview */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="bg-surface border border-border rounded-xl p-6 sm:p-7 shadow-[0_1px_3px_rgba(0,0,0,0.04)] w-full max-w-[480px]">
-              {/* Card Header */}
-              <div className="flex items-center justify-between text-xs mb-5 font-sans">
-                <span className="font-semibold text-text text-[13px]">
-                  Example: your support chatbot project
-                </span>
-                <span className="text-text-muted text-[12px]">
-                  Follow-up 3 of 5
-                </span>
-              </div>
-
-              {/* Dialogue Transcript */}
-              <div className="space-y-4 font-sans">
-                {/* Exchange 1 */}
-                <div>
-                  <div className="text-[12px] font-semibold text-accent mb-1">
-                    Interviewer
-                  </div>
-                  <p className="text-[13.5px] leading-[1.55] text-text font-normal">
-                    You stored embeddings in Postgres with pgvector. Why not a dedicated vector database?
-                  </p>
-                </div>
-
-                {/* Exchange 2 */}
-                <div>
-                  <div className="text-[12px] font-medium text-text-muted mb-1">
-                    You
-                  </div>
-                  <p className="text-[13.5px] leading-[1.55] text-text-muted font-normal">
-                    The data was small and already in Postgres, so it was one less service to run.
-                  </p>
-                </div>
-
-                {/* Exchange 3 */}
-                <div>
-                  <div className="text-[12px] font-semibold text-accent mb-1">
-                    Interviewer
-                  </div>
-                  <p className="text-[13.5px] leading-[1.55] text-text font-normal">
-                    At what corpus size does that stop being true, and what breaks first?
-                  </p>
-                </div>
-              </div>
-
-              {/* Subtle Divider */}
-              <div className="border-t border-border mt-5 mb-4" />
-
-              {/* Depth Level Indicator */}
-              <div className="flex items-center gap-3 font-sans">
-                <span className="text-[12px] text-text-muted font-normal">Depth</span>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-5 h-[3px] rounded-full bg-accent" />
-                  <div className="w-5 h-[3px] rounded-full bg-accent" />
-                  <div className="w-5 h-[3px] rounded-full bg-accent" />
-                  <div className="w-5 h-[3px] rounded-full bg-border" />
-                  <div className="w-5 h-[3px] rounded-full bg-border" />
-                </div>
-              </div>
-            </div>
+            <DynamicInterviewPreview />
           </div>
         </div>
 
