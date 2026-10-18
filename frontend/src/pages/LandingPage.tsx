@@ -114,14 +114,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
               </button>
             </div>
 
-            {/* Three Feature Rows in Vertical Order Below Buttons: Bigger buttons & clean alignment */}
-            <div className="space-y-3.5 pt-5 border-t border-border/70 font-sans">
+            {/* Three Feature Rows in Vertical Order Below Buttons: Bigger boxes & spacious alignment */}
+            <div className="space-y-4 pt-6 border-t border-border/70 font-sans">
               {/* Row 1: Past interviews */}
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-4">
                 <button
                   type="button"
                   onClick={() => setInfoPopup('interviews')}
-                  className="inline-flex items-center gap-2 h-11 px-4.5 rounded-lg border border-border bg-surface hover:bg-surface-hover text-text text-[14px] font-medium transition-colors cursor-pointer group shadow-xs"
+                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover text-text text-[14.5px] font-medium transition-colors cursor-pointer group shadow-xs"
                   title="Click to view details about Past Interviews"
                 >
                   <span>Past interviews</span>
@@ -131,7 +131,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                 <button
                   type="button"
                   onClick={handleOpenPastInterviews}
-                  className="h-11 px-3 text-[14px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
+                  className="h-12 px-3 text-[14.5px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
                 >
                   <span>View past interviews</span>
                   <ArrowRight className="w-4 h-4 text-accent" />
@@ -139,11 +139,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
               </div>
 
               {/* Row 2: Practice questions */}
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-4">
                 <button
                   type="button"
                   onClick={() => setInfoPopup('practice')}
-                  className="inline-flex items-center gap-2 h-11 px-4.5 rounded-lg border border-border bg-surface hover:bg-surface-hover text-text text-[14px] font-medium transition-colors cursor-pointer group shadow-xs"
+                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover text-text text-[14.5px] font-medium transition-colors cursor-pointer group shadow-xs"
                   title="Click to view details about Practice Questions"
                 >
                   <span>Practice questions</span>
@@ -153,7 +153,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                 <button
                   type="button"
                   onClick={() => handleAction('jd-intake')}
-                  className="h-11 px-3 text-[14px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
+                  className="h-12 px-3 text-[14.5px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
                 >
                   <span>Paste a job description</span>
                   <ArrowRight className="w-4 h-4 text-accent" />
@@ -161,11 +161,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
               </div>
 
               {/* Row 3: Review assessments */}
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-4">
                 <button
                   type="button"
                   onClick={() => setInfoPopup('assessments')}
-                  className="inline-flex items-center gap-2 h-11 px-4.5 rounded-lg border border-border bg-surface hover:bg-surface-hover text-text text-[14px] font-medium transition-colors cursor-pointer group shadow-xs"
+                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover text-text text-[14.5px] font-medium transition-colors cursor-pointer group shadow-xs"
                   title="Click to view details about Review Assessments"
                 >
                   <span>Review assessments</span>
@@ -175,7 +175,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                 <button
                   type="button"
                   onClick={handleOpenPastOAReview}
-                  className="h-11 px-3 text-[14px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
+                  className="h-12 px-3 text-[14.5px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
                 >
                   <span>Review assessments</span>
                   <ArrowRight className="w-4 h-4 text-accent" />
@@ -198,24 +198,24 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
           onClick={() => setInfoPopup(null)}
         >
           <div 
-            className="bg-surface border border-border rounded-xl p-6 sm:p-7 max-w-md w-full shadow-2xl relative"
+            className="bg-surface border border-border rounded-2xl p-7 sm:p-8 max-w-lg w-full shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               type="button"
               onClick={() => setInfoPopup(null)}
-              className="absolute top-4 right-4 p-1.5 rounded-lg text-text-muted hover:text-text hover:bg-bg transition-colors cursor-pointer"
+              className="absolute top-4 right-4 p-2 rounded-lg text-text-muted hover:text-text hover:bg-bg transition-colors cursor-pointer"
               aria-label="Close popup"
             >
               <X className="w-4 h-4" />
             </button>
 
-            <h3 className="font-serif text-[22px] sm:text-[24px] text-text font-normal mb-2.5">
+            <h3 className="font-serif text-[24px] sm:text-[26px] text-text font-normal mb-3">
               {POPUP_DETAILS[infoPopup].title}
             </h3>
 
-            <p className="text-[14px] leading-[1.65] text-text-muted mb-6 font-sans">
+            <p className="text-[14.5px] leading-[1.65] text-text-muted mb-6 font-sans">
               {POPUP_DETAILS[infoPopup].desc}
             </p>
 
@@ -223,14 +223,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
               <button
                 type="button"
                 onClick={() => setInfoPopup(null)}
-                className="h-9 px-4 rounded-md border border-border bg-transparent text-text hover:bg-surface-hover text-[13px] font-medium transition-colors cursor-pointer"
+                className="h-10 px-4.5 rounded-lg border border-border bg-transparent text-text hover:bg-surface-hover text-[14px] font-medium transition-colors cursor-pointer"
               >
                 Close
               </button>
               <button
                 type="button"
                 onClick={POPUP_DETAILS[infoPopup].onAction}
-                className="h-9 px-4 rounded-md bg-accent text-accent-contrast hover:opacity-90 text-[13px] font-medium transition-opacity cursor-pointer inline-flex items-center gap-1.5"
+                className="h-10 px-5 rounded-lg bg-accent text-accent-contrast hover:opacity-90 text-[14px] font-medium transition-opacity cursor-pointer inline-flex items-center gap-1.5"
               >
                 <span>{POPUP_DETAILS[infoPopup].actionLabel}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
