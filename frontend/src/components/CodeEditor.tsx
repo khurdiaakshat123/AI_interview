@@ -126,9 +126,9 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
         'editor.foreground': '#EDEDED',
         'editorLineNumber.foreground': '#8F8D88',
         'editorLineNumber.activeForeground': '#EDEDED',
-        'editor.selectionBackground': '#3FD08F33',
-        'editor.inactiveSelectionBackground': '#3FD08F1A',
-        'editorCursor.foreground': '#3FD08F',
+        'editor.selectionBackground': '#4A937033',
+        'editor.inactiveSelectionBackground': '#4A93701A',
+        'editorCursor.foreground': '#4A9370',
         'editorWhitespace.foreground': '#2A2A2D',
         'editor.lineHighlightBackground': '#161618',
         'editorGutter.background': '#0E0E10'
