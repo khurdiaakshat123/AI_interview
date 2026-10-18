@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { PastInterviewsModal } from '../components/PastInterviewsModal';
 
 interface LandingPageProps {
-  onNavigate: (tab: string) => void;
+  onNavigate: (tab: string, state?: any) => void;
   currentUser?: any;
   onOpenAuth?: () => void;
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUser, onOpenAuth }) => {
+  const [showPastInterviews, setShowPastInterviews] = useState(false);
+
   const handleAction = (tab: string) => {
     if (!currentUser && onOpenAuth) {
       onOpenAuth();
       return;
     }
     onNavigate(tab);
+  };
+
+  const handleOpenPastInterviews = () => {
+    if (!currentUser && onOpenAuth) {
+      onOpenAuth();
+      return;
+    }
+    setShowPastInterviews(true);
   };
 
   return (
@@ -116,19 +127,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
 
         {/* Bottom 3-Column Editorial Feature Links */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-          {/* Column 1: Mock interview */}
+          {/* Column 1: Past interviews (replaces duplicate mock interview link) */}
           <div>
             <h2 className="font-serif text-[26px] text-text font-normal mb-3">
-              Mock interview
+              Past interviews
             </h2>
             <p className="text-[14px] leading-[1.65] text-text-muted mb-5 font-sans">
-              Questions come from the projects on your resume. You finish with two scores: how well you defended your work, and how solid your CS fundamentals are.
+              Review your recorded interview sessions with the complete conversation transcript, follow-up probe depths, and evaluation feedback.
             </p>
             <button
-              onClick={() => handleAction('interview')}
+              onClick={handleOpenPastInterviews}
               className="text-[14px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity text-left font-sans cursor-pointer"
             >
-              Set up your resume
+              View past interviews
             </button>
           </div>
 
@@ -165,6 +176,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
           </div>
         </div>
       </div>
+
+      {/* Past Interviews & Full Conversation Transcript Viewer Modal */}
+      <PastInterviewsModal
+        isOpen={showPastInterviews}
+        onClose={() => setShowPastInterviews(false)}
+        onNavigate={onNavigate}
+      />
     </div>
   );
 };

@@ -280,6 +280,46 @@ export const api = {
     return request<InterviewFinalReport>(`/interview/sessions/${sessionId}/report`);
   },
 
+  async getPastInterviews(): Promise<Array<{
+    id: string;
+    company: string;
+    role: string;
+    candidate_name: string;
+    status: string;
+    current_phase: string;
+    turn_count: number;
+    created_at: string;
+    completed_at?: string;
+    score?: number;
+    has_report: boolean;
+  }>> {
+    return request('/interview/sessions');
+  },
+
+  async getInterviewTranscript(sessionId: string): Promise<{
+    id: string;
+    company: string;
+    role: string;
+    candidate_name: string;
+    created_at: string;
+    completed_at?: string;
+    status: string;
+    current_phase?: string;
+    current_depth?: number;
+    transcript: Array<{
+      turn_index: number;
+      sender: 'INTERVIEWER' | 'CANDIDATE';
+      text: string;
+      topic?: string;
+      subtopic?: string;
+      depth_level?: number;
+      timestamp?: string;
+    }>;
+    final_report: any;
+  }> {
+    return request(`/interview/sessions/${sessionId}/transcript`);
+  },
+
   // Admin
   async getReviewQueue(): Promise<ReviewQueueItem[]> {
     return request<ReviewQueueItem[]>('/admin/review-queue');

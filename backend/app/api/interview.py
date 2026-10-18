@@ -4,7 +4,7 @@ import re
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 from backend.app.database import get_db
 from backend.app.models.models import (
     InterviewSession, InterviewEvidence, StructuredResume, RoleTopicProfile, User, generate_uuid, utc_now
@@ -17,7 +17,7 @@ from backend.app.schemas.schemas import (
 from backend.app.engines.resume_parser import ResumeParser
 from backend.app.agents.interview_agent import InterviewAgent
 from backend.app.llm.client import llm_client
-from backend.app.api.deps import get_current_user
+from backend.app.api.deps import get_current_user, get_current_user_optional
 
 router = APIRouter(prefix="/api/interview", tags=["AI Mock Interview"])
 
@@ -404,3 +404,68 @@ async def stream_interview_session(id: str, db: Session = Depends(get_db)):
         await asyncio.sleep(0.5)
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
+
+@router.get("/sessions")
+def list_interview_sessions(
+    db: Session = Depends(get_db),
+    current_user: Optional[User] = Depends(get_current_user_optional)
+):
+    """
+    List past interview sessions with metadata and high-level results.
+    """
+    query = db.query(InterviewSession)
+    if current_user and not current_user.id.startswith("guest_anon_"):
+        user_sessions = query.filter(InterviewSession.user_id == current_user.id).order_by(InterviewSession.created_at.desc()).all()
+        if user_sessions:
+            sessions = user_sessions
+        else:
+            sessions = db.query(InterviewSession).order_by(InterviewSession.created_at.desc()).limit(20).all()
+    else:
+        sessions = db.query(InterviewSession).order_by(InterviewSession.created_at.desc()).limit(20).all()
+
+    results = []
+    for s in sessions:
+        resume = db.query(StructuredResume).filter(StructuredResume.id == s.resume_id).first() if s.resume_id else None
+        candidate_name = resume.candidate_name if resume else "Candidate"
+        final_rep = s.final_report_json or {}
+        score = final_rep.get("resume_related_score") or final_rep.get("experience_score")
+        results.append({
+            "id": s.id,
+            "company": s.company,
+            "role": s.role,
+            "candidate_name": candidate_name,
+            "status": s.status,
+            "current_phase": s.current_phase,
+            "turn_count": len(s.transcript_json or []),
+            "created_at": s.created_at.isoformat() if s.created_at else None,
+            "completed_at": s.completed_at.isoformat() if s.completed_at else None,
+            "score": round(score, 1) if score is not None else None,
+            "has_report": bool(s.final_report_json)
+        })
+    return results
+
+@router.get("/sessions/{id}/transcript")
+def get_interview_transcript(id: str, db: Session = Depends(get_db)):
+    """
+    Retrieve full interview session transcript with turn-by-turn dialogue text.
+    """
+    session = db.query(InterviewSession).filter(InterviewSession.id == id).first()
+    if not session:
+        raise HTTPException(status_code=404, detail="Interview session not found")
+
+    resume = db.query(StructuredResume).filter(StructuredResume.id == session.resume_id).first() if session.resume_id else None
+    candidate_name = resume.candidate_name if resume else "Candidate"
+
+    return {
+        "id": session.id,
+        "company": session.company,
+        "role": session.role,
+        "candidate_name": candidate_name,
+        "created_at": session.created_at.isoformat() if session.created_at else None,
+        "completed_at": session.completed_at.isoformat() if session.completed_at else None,
+        "status": session.status,
+        "current_phase": session.current_phase,
+        "current_depth": session.current_depth,
+        "transcript": session.transcript_json or [],
+        "final_report": session.final_report_json or {}
+    }
