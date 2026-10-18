@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Info, ArrowRight, X } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { PastInterviewsModal } from '../components/PastInterviewsModal';
 import { PastOAReviewModal } from '../components/PastOAReviewModal';
 import { DynamicInterviewPreview } from '../components/DynamicInterviewPreview';
@@ -13,18 +13,6 @@ interface LandingPageProps {
 export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUser, onOpenAuth }) => {
   const [showPastInterviews, setShowPastInterviews] = useState(false);
   const [showPastOAReview, setShowPastOAReview] = useState(false);
-  const [infoPopup, setInfoPopup] = useState<'interviews' | 'practice' | 'assessments' | null>(null);
-
-  // Close info popup on Escape key
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') setInfoPopup(null);
-    }
-    if (infoPopup) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [infoPopup]);
 
   const handleAction = (tab: string) => {
     if (!currentUser && onOpenAuth) {
@@ -48,36 +36,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
       return;
     }
     setShowPastOAReview(true);
-  };
-
-  const POPUP_DETAILS: Record<string, { title: string; desc: string; actionLabel: string; onAction: () => void }> = {
-    interviews: {
-      title: 'Past interviews',
-      desc: 'Review your recorded interview sessions with the complete conversation transcript, follow-up probe depths, and evaluation feedback.',
-      actionLabel: 'View past interviews',
-      onAction: () => {
-        setInfoPopup(null);
-        handleOpenPastInterviews();
-      }
-    },
-    practice: {
-      title: 'Practice questions',
-      desc: 'Paste a job description and get topics ranked by how much they matter. Work through coding questions on each, with hints when you get stuck.',
-      actionLabel: 'Paste a job description',
-      onAction: () => {
-        setInfoPopup(null);
-        handleAction('jd-intake');
-      }
-    },
-    assessments: {
-      title: 'Review assessments',
-      desc: 'Review your completed OA attempts with detailed performance breakdowns: time taken, overall score, questions solved correctly vs failed, and complete question reviews.',
-      actionLabel: 'Review assessments',
-      onAction: () => {
-        setInfoPopup(null);
-        handleOpenPastOAReview();
-      }
-    }
   };
 
   return (
@@ -114,79 +72,64 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
               </button>
             </div>
 
-            {/* Three Feature Rows in Vertical Order Below Buttons: Bigger boxes & spacious alignment */}
-            <div className="space-y-4 pt-6 border-t border-border/70 font-sans">
-              {/* Row 1: Past interviews */}
-              <div className="flex flex-wrap items-center gap-4">
-                <button
-                  type="button"
-                  onClick={() => setInfoPopup('interviews')}
-                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-accent/40 text-text text-[14.5px] font-medium transition-all cursor-pointer group shadow-xs"
-                  title="Click to view details about Past Interviews"
-                >
-                  <span>Past interviews</span>
-                  <Info className="w-4 h-4 text-accent/80 group-hover:text-accent transition-colors" />
-                </button>
+            {/* Three Feature Rows: One clickable line per destination with muted description & right-aligned arrow */}
+            <div className="space-y-3 pt-6 border-t border-border/70 font-sans">
+              {/* Row 1: View past interviews */}
+              <button
+                type="button"
+                onClick={handleOpenPastInterviews}
+                className="w-full group flex items-center justify-between p-3.5 sm:px-4 sm:py-3 rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-accent/40 transition-all text-left cursor-pointer shadow-xs"
+                title="View past interviews"
+                aria-label="View past interviews"
+              >
+                <div className="space-y-0.5">
+                  <div className="text-[14.5px] sm:text-[15px] font-medium text-text group-hover:text-accent transition-colors">
+                    View past interviews
+                  </div>
+                  <p className="text-[12.5px] sm:text-[13px] text-text-muted">
+                    Transcripts, probe depth, and feedback
+                  </p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-accent group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+              </button>
 
-                <button
-                  type="button"
-                  onClick={handleOpenPastInterviews}
-                  className="h-12 px-3 text-[14.5px] font-medium text-text hover:text-accent underline decoration-accent decoration-2 underline-offset-4 hover:opacity-90 transition-all cursor-pointer inline-flex items-center gap-1.5"
-                  title="View past interviews"
-                  aria-label="View past interviews"
-                >
-                  <span>View</span>
-                  <ArrowRight className="w-4 h-4 text-accent" />
-                </button>
-              </div>
-
-              {/* Row 2: Practice questions */}
-              <div className="flex flex-wrap items-center gap-4">
-                <button
-                  type="button"
-                  onClick={() => setInfoPopup('practice')}
-                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-accent/40 text-text text-[14.5px] font-medium transition-all cursor-pointer group shadow-xs"
-                  title="Click to view details about Practice Questions"
-                >
-                  <span>Practice questions</span>
-                  <Info className="w-4 h-4 text-accent/80 group-hover:text-accent transition-colors" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => handleAction('jd-intake')}
-                  className="h-12 px-3 text-[14.5px] font-medium text-text hover:text-accent underline decoration-accent decoration-2 underline-offset-4 hover:opacity-90 transition-all cursor-pointer inline-flex items-center gap-1.5"
-                  title="View practice questions"
-                  aria-label="View practice questions"
-                >
-                  <span>View</span>
-                  <ArrowRight className="w-4 h-4 text-accent" />
-                </button>
-              </div>
+              {/* Row 2: Paste a job description */}
+              <button
+                type="button"
+                onClick={() => handleAction('jd-intake')}
+                className="w-full group flex items-center justify-between p-3.5 sm:px-4 sm:py-3 rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-accent/40 transition-all text-left cursor-pointer shadow-xs"
+                title="Paste a job description"
+                aria-label="Paste a job description"
+              >
+                <div className="space-y-0.5">
+                  <div className="text-[14.5px] sm:text-[15px] font-medium text-text group-hover:text-accent transition-colors">
+                    Paste a job description
+                  </div>
+                  <p className="text-[12.5px] sm:text-[13px] text-text-muted">
+                    Practice questions, ranked topics, and hints
+                  </p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-accent group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+              </button>
 
               {/* Row 3: Review assessments */}
-              <div className="flex flex-wrap items-center gap-4">
-                <button
-                  type="button"
-                  onClick={() => setInfoPopup('assessments')}
-                  className="inline-flex items-center gap-2.5 h-12 px-5 sm:px-6 rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-accent/40 text-text text-[14.5px] font-medium transition-all cursor-pointer group shadow-xs"
-                  title="Click to view details about Review Assessments"
-                >
-                  <span>Review assessments</span>
-                  <Info className="w-4 h-4 text-accent/80 group-hover:text-accent transition-colors" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleOpenPastOAReview}
-                  className="h-12 px-3 text-[14.5px] font-medium text-text hover:text-accent underline decoration-accent decoration-2 underline-offset-4 hover:opacity-90 transition-all cursor-pointer inline-flex items-center gap-1.5"
-                  title="View review assessments"
-                  aria-label="View review assessments"
-                >
-                  <span>View</span>
-                  <ArrowRight className="w-4 h-4 text-accent" />
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleOpenPastOAReview}
+                className="w-full group flex items-center justify-between p-3.5 sm:px-4 sm:py-3 rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-accent/40 transition-all text-left cursor-pointer shadow-xs"
+                title="Review assessments"
+                aria-label="Review assessments"
+              >
+                <div className="space-y-0.5">
+                  <div className="text-[14.5px] sm:text-[15px] font-medium text-text group-hover:text-accent transition-colors">
+                    Review assessments
+                  </div>
+                  <p className="text-[12.5px] sm:text-[13px] text-text-muted">
+                    Scores, question breakdowns, and time analysis
+                  </p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-accent group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+              </button>
             </div>
           </div>
 
@@ -196,55 +139,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
           </div>
         </div>
       </div>
-
-      {/* Feature Details Popups (for Past Interviews, Practice Questions, Review Assessments) */}
-      {infoPopup && POPUP_DETAILS[infoPopup] && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-fadeIn"
-          onClick={() => setInfoPopup(null)}
-        >
-          <div 
-            className="bg-surface border border-border rounded-2xl p-7 sm:p-8 max-w-lg w-full shadow-2xl relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              type="button"
-              onClick={() => setInfoPopup(null)}
-              className="absolute top-4 right-4 p-2 rounded-lg text-text-muted hover:text-text hover:bg-bg transition-colors cursor-pointer"
-              aria-label="Close popup"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            <h3 className="font-serif text-[24px] sm:text-[26px] text-text font-normal mb-3">
-              {POPUP_DETAILS[infoPopup].title}
-            </h3>
-
-            <p className="text-[14.5px] leading-[1.65] text-text-muted mb-6 font-sans">
-              {POPUP_DETAILS[infoPopup].desc}
-            </p>
-
-            <div className="flex items-center justify-end gap-3 font-sans">
-              <button
-                type="button"
-                onClick={() => setInfoPopup(null)}
-                className="h-10 px-4.5 rounded-lg border border-border bg-transparent text-text hover:bg-surface-hover text-[14px] font-medium transition-colors cursor-pointer"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                onClick={POPUP_DETAILS[infoPopup].onAction}
-                className="h-10 px-5 rounded-lg bg-accent text-accent-contrast hover:opacity-90 text-[14px] font-medium transition-opacity cursor-pointer inline-flex items-center gap-1.5"
-              >
-                <span>{POPUP_DETAILS[infoPopup].actionLabel}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Past Interviews & Full Conversation Transcript Viewer Modal */}
       <PastInterviewsModal
