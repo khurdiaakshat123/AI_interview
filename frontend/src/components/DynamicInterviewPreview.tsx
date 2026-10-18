@@ -22,7 +22,7 @@ const PREVIEW_SCRIPT: PreviewTurn[] = [
     speakerLabel: 'AI Technical Interviewer',
     badge: 'Veracity Solutions · Azure DevOps',
     timestamp: '10:45 PM',
-    text: 'On your resume at Veracity Solutions, you claim a 40% reduction in deployment time using Azure DevOps. How did you structure your pipeline caching and parallelization to achieve that without deployment errors?',
+    text: 'At Veracity Solutions, you reduced deployment times by 40% with Azure DevOps. How did you structure pipeline caching to achieve that?',
     depth: 1
   },
   {
@@ -30,7 +30,7 @@ const PREVIEW_SCRIPT: PreviewTurn[] = [
     sender: 'CANDIDATE',
     speakerLabel: 'You',
     timestamp: '10:45 PM',
-    text: 'We decoupled builds into isolated Azure Container Registry tasks with layer caching, parallelized independent test suites across ephemeral self-hosted agents, and enforced automated canary gates.',
+    text: 'We used ACR layer caching with parallel build stages across ephemeral agents, backed by automated canary validation gates.',
     depth: 2
   },
   {
@@ -39,7 +39,7 @@ const PREVIEW_SCRIPT: PreviewTurn[] = [
     speakerLabel: 'AI Technical Interviewer',
     badge: 'Reliability & Canary Gates',
     timestamp: '10:46 PM',
-    text: 'When a canary release detects a threshold breach under active traffic, how does your pipeline handle zero-downtime rollbacks for stateful migrations?',
+    text: 'If a canary fails under live traffic, how do you handle zero-downtime rollbacks with database schema changes?',
     evalPrev: {
       evidence: '88% Evidence',
       points: '+4.4 / 5.0 pts'
@@ -51,7 +51,7 @@ const PREVIEW_SCRIPT: PreviewTurn[] = [
     sender: 'CANDIDATE',
     speakerLabel: 'You',
     timestamp: '10:46 PM',
-    text: 'We enforce expand-and-contract migrations. The API supports both schema versions concurrently, traffic is reverted instantaneously via Azure Front Door routing, and old columns are dropped only after canary validation.',
+    text: 'We enforce expand-and-contract migrations. The API supports dual schemas, traffic reverts via Azure Front Door, and old columns drop only after validation.',
     depth: 4
   }
 ];
