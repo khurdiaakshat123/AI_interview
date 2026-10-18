@@ -132,8 +132,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                   type="button"
                   onClick={handleOpenPastInterviews}
                   className="h-12 px-3 text-[14.5px] font-medium text-text hover:text-accent underline decoration-accent decoration-2 underline-offset-4 hover:opacity-90 transition-all cursor-pointer inline-flex items-center gap-1.5"
+                  title="View past interviews"
+                  aria-label="View past interviews"
                 >
-                  <span>View past interviews</span>
+                  <span>View</span>
                   <ArrowRight className="w-4 h-4 text-accent" />
                 </button>
               </div>
@@ -154,8 +156,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                   type="button"
                   onClick={() => handleAction('jd-intake')}
                   className="h-12 px-3 text-[14.5px] font-medium text-text hover:text-accent underline decoration-accent decoration-2 underline-offset-4 hover:opacity-90 transition-all cursor-pointer inline-flex items-center gap-1.5"
+                  title="View practice questions"
+                  aria-label="View practice questions"
                 >
-                  <span>Paste a job description</span>
+                  <span>View</span>
                   <ArrowRight className="w-4 h-4 text-accent" />
                 </button>
               </div>
@@ -176,8 +180,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
                   type="button"
                   onClick={handleOpenPastOAReview}
                   className="h-12 px-3 text-[14.5px] font-medium text-text hover:text-accent underline decoration-accent decoration-2 underline-offset-4 hover:opacity-90 transition-all cursor-pointer inline-flex items-center gap-1.5"
+                  title="View review assessments"
+                  aria-label="View review assessments"
                 >
-                  <span>Review assessments</span>
+                  <span>View</span>
                   <ArrowRight className="w-4 h-4 text-accent" />
                 </button>
               </div>
