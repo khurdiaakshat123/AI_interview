@@ -20,9 +20,9 @@ const PREVIEW_SCRIPT: PreviewTurn[] = [
     id: 'turn-1',
     sender: 'INTERVIEWER',
     speakerLabel: 'AI Technical Interviewer',
-    badge: 'Backend Engineer (Support Chatbot)',
+    badge: 'Veracity Solutions · Azure DevOps',
     timestamp: '10:45 PM',
-    text: 'You stored embeddings in Postgres with pgvector. Why not a dedicated vector database?',
+    text: 'On your resume at Veracity Solutions, you claim a 40% reduction in deployment time using Azure DevOps. How did you structure your pipeline caching and parallelization to achieve that without deployment errors?',
     depth: 1
   },
   {
@@ -30,19 +30,19 @@ const PREVIEW_SCRIPT: PreviewTurn[] = [
     sender: 'CANDIDATE',
     speakerLabel: 'You',
     timestamp: '10:45 PM',
-    text: 'The data was small and already in Postgres, so it was one less service to run.',
+    text: 'We decoupled builds into isolated Azure Container Registry tasks with layer caching, parallelized independent test suites across ephemeral self-hosted agents, and enforced automated canary gates.',
     depth: 2
   },
   {
     id: 'turn-3',
     sender: 'INTERVIEWER',
     speakerLabel: 'AI Technical Interviewer',
-    badge: 'Architecture & Scale',
+    badge: 'Reliability & Canary Gates',
     timestamp: '10:46 PM',
-    text: 'At what corpus size does that stop being true, and what breaks first?',
+    text: 'When a canary release detects a threshold breach under active traffic, how does your pipeline handle zero-downtime rollbacks for stateful migrations?',
     evalPrev: {
-      evidence: '84% Evidence',
-      points: '+4.2 / 5.0 pts'
+      evidence: '88% Evidence',
+      points: '+4.4 / 5.0 pts'
     },
     depth: 3
   },
@@ -51,7 +51,7 @@ const PREVIEW_SCRIPT: PreviewTurn[] = [
     sender: 'CANDIDATE',
     speakerLabel: 'You',
     timestamp: '10:46 PM',
-    text: 'Around ~500k 1536-dim vectors. Buffer cache saturation and VACUUM overhead degrade HNSW build latency before query latency spikes.',
+    text: 'We enforce expand-and-contract migrations. The API supports both schema versions concurrently, traffic is reverted instantaneously via Azure Front Door routing, and old columns are dropped only after canary validation.',
     depth: 4
   }
 ];
@@ -319,8 +319,8 @@ export const DynamicInterviewPreview: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-1.5 text-[11.5px] text-text-muted font-mono">
-          <span>Project:</span>
-          <span className="text-text font-medium">support chatbot</span>
+          <span>Target:</span>
+          <span className="text-text font-medium">Veracity Solutions · Azure</span>
         </div>
       </div>
     </div>
