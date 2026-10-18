@@ -131,6 +131,22 @@ export const api = {
     return request<MockOAReport>(`/mock-oa/attempts/${attemptId}/report`);
   },
 
+  async getMockOAAttempts(): Promise<Array<{
+    id: string;
+    company: string;
+    role: string;
+    attempt_number: number;
+    score: number;
+    time_spent_seconds: number;
+    correct_count: number;
+    total_questions: number;
+    started_at: string;
+    submitted_at?: string;
+    is_submitted: boolean;
+  }>> {
+    return request('/mock-oa/attempts');
+  },
+
   async runCode(payload: {
     question_id: string;
     code: string;

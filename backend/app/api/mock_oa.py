@@ -1,3 +1,4 @@
+from typing import Optional, List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from backend.app.database import get_db
@@ -8,7 +9,7 @@ from backend.app.schemas.schemas import (
 )
 from backend.app.agents.mock_oa_agent import MockOAAgent
 from backend.app.agents.evaluator_agent import EvaluatorAgent
-from backend.app.api.deps import get_current_user
+from backend.app.api.deps import get_current_user, get_current_user_optional
 
 router = APIRouter(prefix="/api/mock-oa", tags=["Mock OA Engine"])
 
@@ -164,3 +165,44 @@ def get_mock_oa_report(id: str, db: Session = Depends(get_db)):
         submitted_at=attempt.submitted_at or attempt.started_at,
         proctoring_summary=eval_data.get("proctoring_summary")
     )
+
+@router.get("/attempts")
+def list_mock_oa_attempts(
+    db: Session = Depends(get_db),
+    current_user: Optional[User] = Depends(get_current_user_optional)
+):
+    """
+    List past Mock OA attempts with company, role, score, time spent, questions correct count, and date.
+    """
+    query = db.query(MockOAAttempt)
+    if current_user and not current_user.id.startswith("guest_anon_"):
+        user_attempts = query.filter(MockOAAttempt.user_id == current_user.id).order_by(MockOAAttempt.started_at.desc()).all()
+        if user_attempts:
+            attempts = user_attempts
+        else:
+            attempts = db.query(MockOAAttempt).order_by(MockOAAttempt.started_at.desc()).limit(20).all()
+    else:
+        attempts = db.query(MockOAAttempt).order_by(MockOAAttempt.started_at.desc()).limit(20).all()
+
+    results = []
+    for a in attempts:
+        variant = db.query(MockOAVariant).filter(MockOAVariant.id == a.mock_oa_variant_id).first()
+        eval_data = a.evaluation_json or {}
+        q_reviews = eval_data.get("questions_review", [])
+        correct_count = sum(1 for q in q_reviews if q.get("is_correct"))
+        total_questions = len(q_reviews) if q_reviews else (len(variant.question_ids) if variant else 0)
+
+        results.append({
+            "id": a.id,
+            "company": variant.company if variant else "Company",
+            "role": variant.role if variant else "Software Engineer",
+            "attempt_number": variant.attempt_number if variant else 1,
+            "score": round(a.score, 1) if a.score is not None else 0.0,
+            "time_spent_seconds": eval_data.get("time_spent_seconds", 0),
+            "correct_count": correct_count,
+            "total_questions": total_questions,
+            "started_at": a.started_at.isoformat() if a.started_at else None,
+            "submitted_at": a.submitted_at.isoformat() if a.submitted_at else None,
+            "is_submitted": a.submitted_at is not None
+        })
+    return results

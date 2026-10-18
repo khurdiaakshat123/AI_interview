@@ -430,6 +430,30 @@ def seed_database(db: Session):
             ]
         }
     ]
+
+    # Insert QuestionBank records if not already populated
+    if db.query(QuestionBank).count() == 0:
+        for q_data in questions_to_seed:
+            q_rec = QuestionBank(
+                id=generate_uuid(),
+                subject=q_data["subject"],
+                topic=q_data["topic"],
+                subtopic=q_data.get("subtopic"),
+                question_type=q_data["question_type"],
+                difficulty=q_data["difficulty"],
+                title=q_data.get("title"),
+                prompt=q_data["prompt"],
+                options_json=q_data.get("options"),
+                starter_code=q_data.get("starter_code"),
+                test_cases_json=q_data.get("test_cases", []),
+                hint=q_data.get("hint"),
+                approach=q_data.get("approach"),
+                solution=q_data.get("solution"),
+                created_at=utc_now()
+            )
+            db.add(q_rec)
+        db.commit()
+
     # 4. Seed Structured Resume for Quick-Start Candidate
     resume = db.query(StructuredResume).filter(StructuredResume.user_id == user.id).first()
     if not resume:

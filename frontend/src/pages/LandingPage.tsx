@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PastInterviewsModal } from '../components/PastInterviewsModal';
+import { PastOAReviewModal } from '../components/PastOAReviewModal';
 
 interface LandingPageProps {
   onNavigate: (tab: string, state?: any) => void;
@@ -9,6 +10,7 @@ interface LandingPageProps {
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUser, onOpenAuth }) => {
   const [showPastInterviews, setShowPastInterviews] = useState(false);
+  const [showPastOAReview, setShowPastOAReview] = useState(false);
 
   const handleAction = (tab: string) => {
     if (!currentUser && onOpenAuth) {
@@ -24,6 +26,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
       return;
     }
     setShowPastInterviews(true);
+  };
+
+  const handleOpenPastOAReview = () => {
+    if (!currentUser && onOpenAuth) {
+      onOpenAuth();
+      return;
+    }
+    setShowPastOAReview(true);
   };
 
   return (
@@ -127,7 +137,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
 
         {/* Bottom 3-Column Editorial Feature Links */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-          {/* Column 1: Past interviews (replaces duplicate mock interview link) */}
+          {/* Column 1: Past interviews */}
           <div>
             <h2 className="font-serif text-[26px] text-text font-normal mb-3">
               Past interviews
@@ -159,19 +169,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
             </button>
           </div>
 
-          {/* Column 3: Timed OA */}
+          {/* Column 3: Review Assessments */}
           <div>
             <h2 className="font-serif text-[26px] text-text font-normal mb-3">
-              Timed OA
+              Review assessments
             </h2>
             <p className="text-[14px] leading-[1.65] text-text-muted mb-5 font-sans">
-              Sit a 60-minute online assessment in the code editor, with no hints, like the real round. Hidden test cases are checked when you submit.
+              Review your completed OA attempts with detailed performance breakdowns: time taken, overall score, questions solved correctly vs failed, and complete question reviews.
             </p>
             <button
-              onClick={() => handleAction('mock-oa')}
+              onClick={handleOpenPastOAReview}
               className="text-[14px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity text-left font-sans cursor-pointer"
             >
-              Start a 60-minute OA
+              Review assessments
             </button>
           </div>
         </div>
@@ -181,6 +191,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
       <PastInterviewsModal
         isOpen={showPastInterviews}
         onClose={() => setShowPastInterviews(false)}
+        onNavigate={onNavigate}
+      />
+
+      {/* Review Past OA Assessments Performance & Questions Modal */}
+      <PastOAReviewModal
+        isOpen={showPastOAReview}
+        onClose={() => setShowPastOAReview(false)}
         onNavigate={onNavigate}
       />
     </div>
