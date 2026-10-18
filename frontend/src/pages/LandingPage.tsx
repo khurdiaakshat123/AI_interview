@@ -81,104 +81,104 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, currentUse
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-3 sm:py-5 lg:py-6 overflow-hidden">
+    <div className="min-h-[calc(100vh-4rem)] flex flex-col justify-start lg:justify-center px-4 sm:px-6 lg:px-8 pt-4 pb-6 sm:pt-6 sm:pb-8 lg:py-8 overflow-hidden">
       <div className="max-w-[1240px] w-full mx-auto">
         {/* Top Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Hero Column */}
-          <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-center">
-            {/* Headline: Slightly smaller font as requested */}
-            <h1 className="font-serif text-[clamp(25px,2.5vw,36px)] leading-[1.12] tracking-[-0.015em] text-text font-normal mb-3 [text-wrap:balance]">
+          <div className="lg:col-span-6 xl:col-span-5 flex flex-col pt-1 lg:pt-3">
+            {/* Headline: Shifted upwards with strong editorial presence */}
+            <h1 className="font-serif text-[clamp(28px,3.1vw,44px)] leading-[1.08] tracking-[-0.015em] text-text font-normal mb-4 [text-wrap:balance]">
               Get questioned on your own projects before a real interviewer does.
             </h1>
 
             {/* Subtext */}
-            <p className="text-[13.5px] sm:text-[14px] leading-[1.55] text-text-muted max-w-[46ch] mb-4 font-sans">
+            <p className="text-[14.5px] sm:text-[15.5px] leading-[1.62] text-text-muted max-w-[48ch] mb-6 font-sans">
               Upload your resume and a job description. The interviewer picks something you built, asks why, then keeps pushing until you run out of answers.
             </p>
 
-            {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3 mb-5">
+            {/* Primary Action Buttons: Made bigger and prominent */}
+            <div className="flex flex-wrap items-center gap-3.5 mb-7">
               <button
                 onClick={() => handleAction('interview')}
-                className="h-10 px-4 rounded-md bg-[#18181A] text-[#FAFAFA] dark:bg-[#EDEDED] dark:text-[#0E0E10] text-[13.5px] font-medium hover:opacity-90 transition-opacity shadow-xs cursor-pointer"
+                className="h-12 px-6 rounded-lg bg-[#18181A] text-[#FAFAFA] dark:bg-[#EDEDED] dark:text-[#0E0E10] text-[15px] font-medium hover:opacity-90 transition-opacity shadow-sm cursor-pointer"
               >
                 Start an interview
               </button>
 
               <button
                 onClick={() => handleAction('mock-oa')}
-                className="h-10 px-4 rounded-md border border-border bg-transparent text-text hover:bg-surface-hover text-[13.5px] font-medium transition-colors cursor-pointer"
+                className="h-12 px-6 rounded-lg border border-border bg-transparent text-text hover:bg-surface-hover text-[15px] font-medium transition-colors cursor-pointer"
               >
                 Practice a timed OA
               </button>
             </div>
 
-            {/* Three Feature Rows in Vertical Order Below Buttons */}
-            <div className="space-y-2.5 pt-3 border-t border-border/70 font-sans">
+            {/* Three Feature Rows in Vertical Order Below Buttons: Bigger buttons & clean alignment */}
+            <div className="space-y-3.5 pt-5 border-t border-border/70 font-sans">
               {/* Row 1: Past interviews */}
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <button
                   type="button"
                   onClick={() => setInfoPopup('interviews')}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border bg-surface hover:bg-surface-hover text-text text-[13px] font-medium transition-colors cursor-pointer group shadow-2xs"
+                  className="inline-flex items-center gap-2 h-11 px-4.5 rounded-lg border border-border bg-surface hover:bg-surface-hover text-text text-[14px] font-medium transition-colors cursor-pointer group shadow-xs"
                   title="Click to view details about Past Interviews"
                 >
                   <span>Past interviews</span>
-                  <Info className="w-3.5 h-3.5 text-text-muted group-hover:text-accent transition-colors" />
+                  <Info className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors" />
                 </button>
 
                 <button
                   type="button"
                   onClick={handleOpenPastInterviews}
-                  className="text-[13px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1"
+                  className="h-11 px-3 text-[14px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
                 >
                   <span>View past interviews</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-accent" />
+                  <ArrowRight className="w-4 h-4 text-accent" />
                 </button>
               </div>
 
               {/* Row 2: Practice questions */}
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <button
                   type="button"
                   onClick={() => setInfoPopup('practice')}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border bg-surface hover:bg-surface-hover text-text text-[13px] font-medium transition-colors cursor-pointer group shadow-2xs"
+                  className="inline-flex items-center gap-2 h-11 px-4.5 rounded-lg border border-border bg-surface hover:bg-surface-hover text-text text-[14px] font-medium transition-colors cursor-pointer group shadow-xs"
                   title="Click to view details about Practice Questions"
                 >
                   <span>Practice questions</span>
-                  <Info className="w-3.5 h-3.5 text-text-muted group-hover:text-accent transition-colors" />
+                  <Info className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors" />
                 </button>
 
                 <button
                   type="button"
                   onClick={() => handleAction('jd-intake')}
-                  className="text-[13px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1"
+                  className="h-11 px-3 text-[14px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
                 >
                   <span>Paste a job description</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-accent" />
+                  <ArrowRight className="w-4 h-4 text-accent" />
                 </button>
               </div>
 
               {/* Row 3: Review assessments */}
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <button
                   type="button"
                   onClick={() => setInfoPopup('assessments')}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border bg-surface hover:bg-surface-hover text-text text-[13px] font-medium transition-colors cursor-pointer group shadow-2xs"
+                  className="inline-flex items-center gap-2 h-11 px-4.5 rounded-lg border border-border bg-surface hover:bg-surface-hover text-text text-[14px] font-medium transition-colors cursor-pointer group shadow-xs"
                   title="Click to view details about Review Assessments"
                 >
                   <span>Review assessments</span>
-                  <Info className="w-3.5 h-3.5 text-text-muted group-hover:text-accent transition-colors" />
+                  <Info className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors" />
                 </button>
 
                 <button
                   type="button"
                   onClick={handleOpenPastOAReview}
-                  className="text-[13px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1"
+                  className="h-11 px-3 text-[14px] font-medium text-text underline decoration-accent decoration-2 underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer inline-flex items-center gap-1.5"
                 >
                   <span>Review assessments</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-accent" />
+                  <ArrowRight className="w-4 h-4 text-accent" />
                 </button>
               </div>
             </div>

@@ -139,9 +139,9 @@ export const DynamicInterviewPreview: React.FC = () => {
   const currentDepth = step > 0 ? PREVIEW_SCRIPT[Math.min(step - 1, PREVIEW_SCRIPT.length - 1)].depth : 1;
 
   return (
-    <div className="bg-surface border border-border rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] w-full max-w-[600px] flex flex-col overflow-hidden transition-all duration-300">
+    <div className="bg-surface border border-border rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] w-full max-w-[620px] flex flex-col overflow-hidden transition-all duration-300">
       {/* Dynamic Simulated Window Header */}
-      <div className="px-4 sm:px-5 py-3 border-b border-border bg-bg/50 flex items-center justify-between gap-3 select-none">
+      <div className="px-5 py-3.5 border-b border-border bg-bg/50 flex items-center justify-between gap-3 select-none">
         <div className="flex items-center gap-2.5">
           {/* Subtle OS window dots */}
           <div className="flex items-center gap-1.5 mr-1">
@@ -150,14 +150,14 @@ export const DynamicInterviewPreview: React.FC = () => {
             <span className="w-2.5 h-2.5 rounded-full bg-border" />
           </div>
 
-          <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface border border-border text-[11px] sm:text-[11.5px] font-mono text-text-muted">
+          <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface border border-border text-[11px] sm:text-[12px] font-mono text-text-muted">
             <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
             <span className="font-medium text-text">Live Technical Probe</span>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="text-[11px] sm:text-[11.5px] font-mono text-text-muted">
+          <span className="text-[11.5px] sm:text-[12px] font-mono text-text-muted">
             Follow-up {currentDepth} of 5
           </span>
 
@@ -187,7 +187,7 @@ export const DynamicInterviewPreview: React.FC = () => {
       {/* Dynamic Chat Messages Area with Real Interview Spacing */}
       <div 
         ref={scrollRef}
-        className="p-4 sm:p-5 h-[360px] sm:h-[390px] xl:h-[410px] overflow-y-auto space-y-4 font-sans scroll-smooth"
+        className="p-5 sm:p-6 h-[430px] sm:h-[460px] xl:h-[490px] overflow-y-auto space-y-4.5 font-sans scroll-smooth"
       >
         {PREVIEW_SCRIPT.slice(0, step).map((turn) => {
           const isInterviewer = turn.sender === 'INTERVIEWER';
