@@ -18,41 +18,58 @@ const PREVIEW_SCRIPT: PreviewTurn[] = [
     speakerLabel: 'AI Technical Interviewer',
     badge: 'Veracity Solutions · Azure DevOps',
     timestamp: '10:45 PM',
-    text: 'Welcome! Great to meet you. At Veracity Solutions, you reduced deployment times by 40% with Azure DevOps. How did you structure your pipeline caching to achieve that?',
+    text: 'Hi Akshat, welcome! Looking at your current role at Veracity Solutions, you reduced manual deployment errors by 70% with Azure DevOps. What was actually causing those release failures initially?',
     depth: 1
   },
   {
     id: 'turn-2',
     sender: 'CANDIDATE',
-    speakerLabel: 'You',
+    speakerLabel: 'Akshat',
     timestamp: '10:45 PM',
-    text: 'We used ACR layer caching with parallel build stages across ephemeral agents, backed by automated canary validation gates.',
+    text: 'Earlier, people were manually updating environment configs in the Azure portal and running ad-hoc release scripts. Staging and prod drifted apart, so hotfixes often crashed on startup.',
     depth: 2
   },
   {
     id: 'turn-3',
     sender: 'INTERVIEWER',
     speakerLabel: 'AI Technical Interviewer',
-    badge: 'Reliability & Canary Gates',
+    badge: 'Configuration Drift & Parity',
     timestamp: '10:46 PM',
-    text: 'If a canary fails under live traffic, how do you handle zero-downtime rollbacks with database schema changes?',
+    text: 'Makes sense. How did you structure your Azure DevOps pipelines to enforce parity and stop engineers from making manual tweaks?',
     depth: 3
   },
   {
     id: 'turn-4',
     sender: 'CANDIDATE',
-    speakerLabel: 'You',
+    speakerLabel: 'Akshat',
     timestamp: '10:46 PM',
-    text: 'We enforce expand-and-contract migrations. The API supports dual schemas, traffic reverts via Azure Front Door, and old columns drop only after validation.',
-    depth: 4
+    text: 'We moved to version-controlled YAML pipelines with separate build and release stages, linked Azure Key Vault for secrets, and used Bicep so no one touched the portal directly.',
+    depth: 3
   },
   {
     id: 'turn-5',
     sender: 'INTERVIEWER',
     speakerLabel: 'AI Technical Interviewer',
-    badge: 'Telemetry & Gate Automation',
+    badge: 'Rollback & Failure Handling',
     timestamp: '10:47 PM',
-    text: 'Solid strategy. How do you configure Application Insights alerts to trigger that Front Door rollback automatically before error spikes reach users?',
+    text: 'If a deployment fails halfway through after some microservices are already updated, how does your pipeline handle the rollback?',
+    depth: 4
+  },
+  {
+    id: 'turn-6',
+    sender: 'CANDIDATE',
+    speakerLabel: 'Akshat',
+    timestamp: '10:47 PM',
+    text: 'To be honest, we usually just re-run the previous pipeline build to redeploy the old container tag, or manually swap back the deployment slot if health checks fail.',
+    depth: 4
+  },
+  {
+    id: 'turn-7',
+    sender: 'INTERVIEWER',
+    speakerLabel: 'AI Technical Interviewer',
+    badge: 'Stateful Failure & Edge Case',
+    timestamp: '10:48 PM',
+    text: "Right, but if that failed release already executed a database schema migration, wouldn't rolling back only the container cause immediate runtime crashes?",
     depth: 5
   }
 ];
@@ -75,7 +92,7 @@ export const DynamicInterviewPreview: React.FC = () => {
     }
   }, [step, isTyping]);
 
-  // Main animation / dynamic sequence controller (3 questions + 2 answers = 5 depths)
+  // Main animation / dynamic sequence controller (7 turns with realistic pushback)
   useEffect(() => {
     if (!isPlaying) return;
 
@@ -87,50 +104,70 @@ export const DynamicInterviewPreview: React.FC = () => {
         setStep(1);
       }, 500);
     } else if (step === 1) {
-      // Candidate types answer 1
+      // Akshat types solid answer 1
       timer = setTimeout(() => {
         setTypingSender('CANDIDATE');
         setIsTyping(true);
         timer = setTimeout(() => {
           setIsTyping(false);
           setStep(2);
-        }, 1200);
-      }, 1400);
+        }, 1100);
+      }, 1300);
     } else if (step === 2) {
-      // Interviewer evaluates and asks follow-up question 2
+      // Interviewer asks follow-up Q2
       timer = setTimeout(() => {
         setTypingSender('INTERVIEWER');
         setIsTyping(true);
         timer = setTimeout(() => {
           setIsTyping(false);
           setStep(3);
-        }, 1300);
-      }, 1400);
+        }, 1200);
+      }, 1300);
     } else if (step === 3) {
-      // Candidate types answer 2
+      // Akshat types solid answer 2
       timer = setTimeout(() => {
         setTypingSender('CANDIDATE');
         setIsTyping(true);
         timer = setTimeout(() => {
           setIsTyping(false);
           setStep(4);
-        }, 1200);
-      }, 1400);
+        }, 1100);
+      }, 1300);
     } else if (step === 4) {
-      // Interviewer evaluates and asks follow-up question 3 (depth 5)
+      // Interviewer asks deeper probe Q3
       timer = setTimeout(() => {
         setTypingSender('INTERVIEWER');
         setIsTyping(true);
         timer = setTimeout(() => {
           setIsTyping(false);
           setStep(5);
-        }, 1300);
-      }, 1400);
+        }, 1200);
+      }, 1300);
+    } else if (step === 5) {
+      // Akshat types weak/imperfect answer 3
+      timer = setTimeout(() => {
+        setTypingSender('CANDIDATE');
+        setIsTyping(true);
+        timer = setTimeout(() => {
+          setIsTyping(false);
+          setStep(6);
+        }, 1100);
+      }, 1300);
+    } else if (step === 6) {
+      // Interviewer pushes back with "Right, but..." question (depth 5)
+      timer = setTimeout(() => {
+        setTypingSender('INTERVIEWER');
+        setIsTyping(true);
+        timer = setTimeout(() => {
+          setIsTyping(false);
+          setStep(7);
+        }, 1200);
+      }, 1300);
     } else if (step >= PREVIEW_SCRIPT.length) {
-      // Hold complete 5-depth conversation for 6.5 seconds, then smoothly loop
+      // Hold complete conversation for 7 seconds, then smoothly loop
       timer = setTimeout(() => {
         setStep(1);
-      }, 6500);
+      }, 7000);
     }
 
     return () => clearTimeout(timer);
@@ -231,7 +268,7 @@ export const DynamicInterviewPreview: React.FC = () => {
                         {turn.speakerLabel}
                       </span>
                       {turn.badge && (
-                        <span className="text-[9.5px] sm:text-[10px] px-1.5 py-0.5 rounded bg-bg border border-border text-text-muted truncate max-w-[150px] sm:max-w-none">
+                        <span className="text-[9.5px] sm:text-[10px] px-1.5 py-0.5 rounded bg-bg border border-border text-text-muted truncate max-w-[170px] sm:max-w-none">
                           {turn.badge}
                         </span>
                       )}
@@ -274,7 +311,7 @@ export const DynamicInterviewPreview: React.FC = () => {
           <div className="animate-fadeIn">
             {typingSender === 'CANDIDATE' ? (
               <div className="flex items-center justify-end gap-2 text-text-muted">
-                <span className="text-[10.5px] sm:text-[11px] font-mono">You are replying...</span>
+                <span className="text-[10.5px] sm:text-[11px] font-mono">Akshat is replying...</span>
                 <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-surface border border-accent/30 shadow-xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent/80 animate-bounce [animation-delay:0ms]" />
                   <span className="w-1.5 h-1.5 rounded-full bg-accent/80 animate-bounce [animation-delay:150ms]" />
