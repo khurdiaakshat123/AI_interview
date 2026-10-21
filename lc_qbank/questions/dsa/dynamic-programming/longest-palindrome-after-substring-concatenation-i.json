@@ -1,0 +1,176 @@
+{
+  "id": "3503",
+  "slug": "longest-palindrome-after-substring-concatenation-i",
+  "title": "Longest Palindrome After Substring Concatenation I",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming",
+    "Enumeration"
+  ],
+  "statement": "You are given two strings, `s` and `t`.\n\nYou can create a new string by selecting a substring from `s` (possibly empty) and a substring from `t` (possibly empty), then concatenating them **in order**.\n\nReturn the length of the **longest** palindrome that can be formed this way.\n\n**Example 1:**\n\n**Input:** s = \"a\", t = \"a\"\n\n**Output:** 2\n\n**Explanation:**\n\nConcatenating `\"a\"` from `s` and `\"a\"` from `t` results in `\"aa\"`, which is a palindrome of length 2.\n\n**Example 2:**\n\n**Input:** s = \"abc\", t = \"def\"\n\n**Output:** 1\n\n**Explanation:**\n\nSince all characters are different, the longest palindrome is any single character, so the answer is 1.\n\n**Example 3:**\n\n**Input:** s = \"b\", t = \"aaaa\"\n\n**Output:** 4\n\n**Explanation:**\n\nSelecting \"`aaaa`\" from `t` is the longest palindrome, so the answer is 4.\n\n**Example 4:**\n\n**Input:** s = \"abcde\", t = \"ecdba\"\n\n**Output:** 5\n\n**Explanation:**\n\nConcatenating `\"abc\"` from `s` and `\"ba\"` from `t` results in `\"abcba\"`, which is a palindrome of length 5.\n\n**Constraints:**\n\n*   `1 <= s.length, t.length <= 30`\n*   `s` and `t` consist of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length, t.length <= 30",
+    "s and t consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"a\", t = \"a\"",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "s = \"abc\", t = \"def\"",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "s = \"b\", t = \"aaaa\"",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "s = \"abcde\", t = \"ecdba\"",
+      "output": "5",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestPalindrome(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestPalindrome(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestPalindrome(self, s: str, t: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestPalindrome(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {number}\n */\nvar longestPalindrome = function(s, t) {\n    \n};",
+    "typescript": "function longestPalindrome(s: string, t: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestPalindrome(string s, string t) {\n        \n    }\n}",
+    "c": "int longestPalindrome(char* s, char* t) {\n    \n}",
+    "golang": "func longestPalindrome(s string, t string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestPalindrome(s: String, t: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestPalindrome(_ s: String, _ t: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_palindrome(s: String, t: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Integer}\ndef longest_palindrome(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Integer\n     */\n    function longestPalindrome($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestPalindrome(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestPalindrome(s: String, t: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_palindrome(s :: String.t, t :: String.t) :: integer\n  def longest_palindrome(s, t) do\n    \n  end\nend",
+    "erlang": "-spec longest_palindrome(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> integer().\nlongest_palindrome(S, T) ->\n  .",
+    "racket": "(define/contract (longest-palindrome s t)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"a\"\n\"a\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abc\"\n\"def\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n\"aaaa\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcde\"\n\"ecdba\"",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"a\"\n\"a\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abc\"\n\"def\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n\"aaaa\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcde\"\n\"ecdba\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aa\"\n\"a\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"A\"\n\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"\n\"a\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"ba\"\n\"a\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aba\"\n\"a\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abba\"\n\"a\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaa\"\n\"a\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abcde\"\n\"a\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"edcba\"\n\"a\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aab\"\n\"a\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aA\"\n\"a\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"0\"\n\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"121\"\n\"a\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"racecar\"\n\"a\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"hello\"\n\"a\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Brute force"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.548Z",
+    "sourceUpdatedAt": null
+  }
+}

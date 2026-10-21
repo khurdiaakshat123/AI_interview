@@ -1,0 +1,59 @@
+{
+  "id": "196",
+  "slug": "delete-duplicate-emails",
+  "title": "Delete Duplicate Emails",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Person`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| id          | int     |\n| email       | varchar |\n+-------------+---------+\nid is the primary key (column with unique values) for this table.\nEach row of this table contains an email. The emails will not contain uppercase letters.\n```\n\nWrite a solution to **delete** all duplicate emails, keeping only one unique email with the smallest `id`.\n\nFor SQL users, please note that you are supposed to write a `DELETE` statement and not a `SELECT` one.\n\nFor Pandas users, please note that you are supposed to modify `Person` in place.\n\nAfter running your script, the answer shown is the `Person` table. The driver will first compile and run your piece of code and then show the `Person` table. The final order of the `Person` table **does not matter**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nPerson table:\n+----+------------------+\n| id | email            |\n+----+------------------+\n| 1  | john@example.com |\n| 2  | bob@example.com  |\n| 3  | john@example.com |\n+----+------------------+\nOutput: \n+----+------------------+\n| id | email            |\n+----+------------------+\n| 1  | john@example.com |\n| 2  | bob@example.com  |\n+----+------------------+\nExplanation: john@example.com is repeated two times. We keep the row with the smallest Id = 1.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Person table:\n+----+------------------+\n| id | email            |\n+----+------------------+\n| 1  | john@example.com |\n| 2  | bob@example.com  |\n| 3  | john@example.com |\n+----+------------------+",
+      "output": "+----+------------------+\n| id | email            |\n+----+------------------+\n| 1  | john@example.com |\n| 2  | bob@example.com  |\n+----+------------------+",
+      "explanation": "john@example.com is repeated two times. We keep the row with the smallest Id = 1."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef delete_duplicate_emails(person: pd.DataFrame) -> None:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"Person\": [\"id\", \"email\"]}, \"rows\": {\"Person\": [[1, \"john@example.com\"], [2, \"bob@example.com\"], [3, \"john@example.com\"]]}}",
+      "expectedOutput": "+----+------------------+\n| id | email            |\n+----+------------------+\n| 1  | john@example.com |\n| 2  | bob@example.com  |\n+----+------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"Person\": [\"id\", \"email\"]}, \"rows\": {\"Person\": [[1, \"john@example.com\"], [2, \"bob@example.com\"], [3, \"john@example.com\"]]}}",
+      "expectedOutput": "+----+------------------+\n| id | email            |\n+----+------------------+\n| 1  | john@example.com |\n| 2  | bob@example.com  |\n+----+------------------+"
+    },
+    {
+      "input": "Person table:\n+----+------------------+\n| id | email            |\n+----+------------------+\n| 1  | john@example.com |\n| 2  | bob@example.com  |\n| 3  | john@example.com |\n+----+------------------+",
+      "expectedOutput": "+----+------------------+\n| id | email            |\n+----+------------------+\n| 1  | john@example.com |\n| 2  | bob@example.com  |\n+----+------------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Person (Id int, Email varchar(255))\n\nTruncate table Person",
+  "sqlSetup": [
+    "insert into Person (id, email) values ('1', 'john@example.com')",
+    "insert into Person (id, email) values ('2', 'bob@example.com')",
+    "insert into Person (id, email) values ('3', 'john@example.com')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/delete-duplicate-emails/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.283Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "id": "2396",
+  "slug": "strictly-palindromic-number",
+  "title": "Strictly Palindromic Number",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "Two Pointers",
+    "Brainteaser"
+  ],
+  "statement": "An integer `n` is **strictly palindromic** if, for **every** base `b` between `2` and `n - 2` (**inclusive**), the string representation of the integer `n` in base `b` is **palindromic**.\n\nGiven an integer `n`, return `true` _if_ `n` _is **strictly palindromic** and_ `false` _otherwise_.\n\nA string is **palindromic** if it reads the same forward and backward.\n\n**Example 1:**\n\n```\nInput: n = 9\nOutput: false\nExplanation: In base 2: 9 = 1001 (base 2), which is palindromic.\nIn base 3: 9 = 100 (base 3), which is not palindromic.\nTherefore, 9 is not strictly palindromic so we return false.\nNote that in bases 4, 5, 6, and 7, n = 9 is also not palindromic.\n```\n\n**Example 2:**\n\n```\nInput: n = 4\nOutput: false\nExplanation: We only consider base 2: 4 = 100 (base 2), which is not palindromic.\nTherefore, we return false.\n```\n\n**Constraints:**\n\n*   `4 <= n <= 10^(5)`",
+  "constraints": [
+    "4 <= n <= 105"
+  ],
+  "examples": [
+    {
+      "input": "n = 9",
+      "output": "false",
+      "explanation": "In base 2: 9 = 1001 (base 2), which is palindromic.\nIn base 3: 9 = 100 (base 3), which is not palindromic.\nTherefore, 9 is not strictly palindromic so we return false.\nNote that in bases 4, 5, 6, and 7, n = 9 is also not palindromic."
+    },
+    {
+      "input": "n = 4",
+      "output": "false",
+      "explanation": "We only consider base 2: 4 = 100 (base 2), which is not palindromic.\nTherefore, we return false."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isStrictlyPalindromic(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isStrictlyPalindromic(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isStrictlyPalindromic(self, n: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isStrictlyPalindromic(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {boolean}\n */\nvar isStrictlyPalindromic = function(n) {\n    \n};",
+    "typescript": "function isStrictlyPalindromic(n: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsStrictlyPalindromic(int n) {\n        \n    }\n}",
+    "c": "bool isStrictlyPalindromic(int n) {\n    \n}",
+    "golang": "func isStrictlyPalindromic(n int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isStrictlyPalindromic(n: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isStrictlyPalindromic(_ n: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_strictly_palindromic(n: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Boolean}\ndef is_strictly_palindromic(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Boolean\n     */\n    function isStrictlyPalindromic($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isStrictlyPalindromic(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isStrictlyPalindromic(n: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_strictly_palindromic(n :: integer) :: boolean\n  def is_strictly_palindromic(n) do\n    \n  end\nend",
+    "erlang": "-spec is_strictly_palindromic(N :: integer()) -> boolean().\nis_strictly_palindromic(N) ->\n  .",
+    "racket": "(define/contract (is-strictly-palindromic n)\n  (-> exact-integer? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "9",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "4",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "9",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "4",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "0",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "1",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "5",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "6",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "7",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "8",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "10",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "-1",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "-2",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider the representation of the given number in the base n - 2.",
+    "The number n in base (n - 2) is always 12, which is not palindromic."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/strictly-palindromic-number/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.300Z",
+    "sourceUpdatedAt": null
+  }
+}

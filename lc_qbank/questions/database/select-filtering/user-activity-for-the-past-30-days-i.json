@@ -1,0 +1,67 @@
+{
+  "id": "1141",
+  "slug": "user-activity-for-the-past-30-days-i",
+  "title": "User Activity for the Past 30 Days I",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Activity`\n\n```\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| user_id       | int     |\n| session_id    | int     |\n| activity_date | date    |\n| activity_type | enum    |\n+---------------+---------+\nThis table may have duplicate rows.\nThe activity_type column is an ENUM (category) of type ('open_session', 'end_session', 'scroll_down', 'send_message').\nThe table shows the user activities for a social media website. \nNote that each session belongs to exactly one user.\n```\n\nWrite a solution to find the daily active user count for a period of `30` days ending `2019-07-27` inclusively. A user was active on someday if they made at least one activity on that day.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\nNote: **Any** activity from (`'open_session'`, `'end_session'`, `'scroll_down'`, `'send_message'`) will be considered valid activity for a user to be considered active on a day.\n\n**Example 1:**\n\n```\nInput: \nActivity table:\n+---------+------------+---------------+---------------+\n| user_id | session_id | activity_date | activity_type |\n+---------+------------+---------------+---------------+\n| 1       | 1          | 2019-07-20    | open_session  |\n| 1       | 1          | 2019-07-20    | scroll_down   |\n| 1       | 1          | 2019-07-20    | end_session   |\n| 2       | 4          | 2019-07-20    | open_session  |\n| 2       | 4          | 2019-07-21    | send_message  |\n| 2       | 4          | 2019-07-21    | end_session   |\n| 3       | 2          | 2019-07-21    | open_session  |\n| 3       | 2          | 2019-07-21    | send_message  |\n| 3       | 2          | 2019-07-21    | end_session   |\n| 4       | 3          | 2019-06-25    | open_session  |\n| 4       | 3          | 2019-06-25    | end_session   |\n+---------+------------+---------------+---------------+\nOutput: \n+------------+--------------+ \n| day        | active_users |\n+------------+--------------+ \n| 2019-07-20 | 2            |\n| 2019-07-21 | 2            |\n+------------+--------------+ \nExplanation: Note that we do not care about days with zero active users.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Activity table:\n+---------+------------+---------------+---------------+\n| user_id | session_id | activity_date | activity_type |\n+---------+------------+---------------+---------------+\n| 1       | 1          | 2019-07-20    | open_session  |\n| 1       | 1          | 2019-07-20    | scroll_down   |\n| 1       | 1          | 2019-07-20    | end_session   |\n| 2       | 4          | 2019-07-20    | open_session  |\n| 2       | 4          | 2019-07-21    | send_message  |\n| 2       | 4          | 2019-07-21    | end_session   |\n| 3       | 2          | 2019-07-21    | open_session  |\n| 3       | 2          | 2019-07-21    | send_message  |\n| 3       | 2          | 2019-07-21    | end_session   |\n| 4       | 3          | 2019-06-25    | open_session  |\n| 4       | 3          | 2019-06-25    | end_session   |\n+---------+------------+---------------+---------------+",
+      "output": "+------------+--------------+ \n| day        | active_users |\n+------------+--------------+ \n| 2019-07-20 | 2            |\n| 2019-07-21 | 2            |\n+------------+--------------+",
+      "explanation": "Note that we do not care about days with zero active users."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef user_activity(activity: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Activity\":[\"user_id\",\"session_id\",\"activity_date\",\"activity_type\"]},\"rows\":{\"Activity\":[[1,1,\"2019-07-20\",\"open_session\"],[1,1,\"2019-07-20\",\"scroll_down\"],[1,1,\"2019-07-20\",\"end_session\"],[2,4,\"2019-07-20\",\"open_session\"],[2,4,\"2019-07-21\",\"send_message\"],[2,4,\"2019-07-21\",\"end_session\"],[3,2,\"2019-07-21\",\"open_session\"],[3,2,\"2019-07-21\",\"send_message\"],[3,2,\"2019-07-21\",\"end_session\"],[4,3,\"2019-06-25\",\"open_session\"],[4,3,\"2019-06-25\",\"end_session\"]]}}",
+      "expectedOutput": "+------------+--------------+ \n| day        | active_users |\n+------------+--------------+ \n| 2019-07-20 | 2            |\n| 2019-07-21 | 2            |\n+------------+--------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Activity\":[\"user_id\",\"session_id\",\"activity_date\",\"activity_type\"]},\"rows\":{\"Activity\":[[1,1,\"2019-07-20\",\"open_session\"],[1,1,\"2019-07-20\",\"scroll_down\"],[1,1,\"2019-07-20\",\"end_session\"],[2,4,\"2019-07-20\",\"open_session\"],[2,4,\"2019-07-21\",\"send_message\"],[2,4,\"2019-07-21\",\"end_session\"],[3,2,\"2019-07-21\",\"open_session\"],[3,2,\"2019-07-21\",\"send_message\"],[3,2,\"2019-07-21\",\"end_session\"],[4,3,\"2019-06-25\",\"open_session\"],[4,3,\"2019-06-25\",\"end_session\"]]}}",
+      "expectedOutput": "+------------+--------------+ \n| day        | active_users |\n+------------+--------------+ \n| 2019-07-20 | 2            |\n| 2019-07-21 | 2            |\n+------------+--------------+"
+    },
+    {
+      "input": "Activity table:\n+---------+------------+---------------+---------------+\n| user_id | session_id | activity_date | activity_type |\n+---------+------------+---------------+---------------+\n| 1       | 1          | 2019-07-20    | open_session  |\n| 1       | 1          | 2019-07-20    | scroll_down   |\n| 1       | 1          | 2019-07-20    | end_session   |\n| 2       | 4          | 2019-07-20    | open_session  |\n| 2       | 4          | 2019-07-21    | send_message  |\n| 2       | 4          | 2019-07-21    | end_session   |\n| 3       | 2          | 2019-07-21    | open_session  |\n| 3       | 2          | 2019-07-21    | send_message  |\n| 3       | 2          | 2019-07-21    | end_session   |\n| 4       | 3          | 2019-06-25    | open_session  |\n| 4       | 3          | 2019-06-25    | end_session   |\n+---------+------------+---------------+---------------+",
+      "expectedOutput": "+------------+--------------+ \n| day        | active_users |\n+------------+--------------+ \n| 2019-07-20 | 2            |\n| 2019-07-21 | 2            |\n+------------+--------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Activity (user_id int, session_id int, activity_date date, activity_type ENUM('open_session', 'end_session', 'scroll_down', 'send_message'))\n\nTruncate table Activity",
+  "sqlSetup": [
+    "insert into Activity (user_id, session_id, activity_date, activity_type) values ('1', '1', '2019-07-20', 'open_session')",
+    "insert into Activity (user_id, session_id, activity_date, activity_type) values ('1', '1', '2019-07-20', 'scroll_down')",
+    "insert into Activity (user_id, session_id, activity_date, activity_type) values ('1', '1', '2019-07-20', 'end_session')",
+    "insert into Activity (user_id, session_id, activity_date, activity_type) values ('2', '4', '2019-07-20', 'open_session')",
+    "insert into Activity (user_id, session_id, activity_date, activity_type) values ('2', '4', '2019-07-21', 'send_message')",
+    "insert into Activity (user_id, session_id, activity_date, activity_type) values ('2', '4', '2019-07-21', 'end_session')",
+    "insert into Activity (user_id, session_id, activity_date, activity_type) values ('3', '2', '2019-07-21', 'open_session')",
+    "insert into Activity (user_id, session_id, activity_date, activity_type) values ('3', '2', '2019-07-21', 'send_message')",
+    "insert into Activity (user_id, session_id, activity_date, activity_type) values ('3', '2', '2019-07-21', 'end_session')",
+    "insert into Activity (user_id, session_id, activity_date, activity_type) values ('4', '3', '2019-06-25', 'open_session')",
+    "insert into Activity (user_id, session_id, activity_date, activity_type) values ('4', '3', '2019-06-25', 'end_session')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/user-activity-for-the-past-30-days-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.434Z",
+    "sourceUpdatedAt": null
+  }
+}

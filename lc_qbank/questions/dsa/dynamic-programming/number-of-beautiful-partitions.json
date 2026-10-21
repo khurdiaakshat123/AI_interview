@@ -1,0 +1,167 @@
+{
+  "id": "2478",
+  "slug": "number-of-beautiful-partitions",
+  "title": "Number of Beautiful Partitions",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a string `s` that consists of the digits `'1'` to `'9'` and two integers `k` and `minLength`.\n\nA partition of `s` is called **beautiful** if:\n\n*   `s` is partitioned into `k` non-intersecting substrings.\n*   Each substring has a length of **at least** `minLength`.\n*   Each substring starts with a **prime** digit and ends with a **non-prime** digit. Prime digits are `'2'`, `'3'`, `'5'`, and `'7'`, and the rest of the digits are non-prime.\n\nReturn _the number of **beautiful** partitions of_ `s`. Since the answer may be very large, return it **modulo** `10^(9) + 7`.\n\nA **substring** is a contiguous sequence of characters within a string.\n\n**Example 1:**\n\n```\nInput: s = \"23542185131\", k = 3, minLength = 2\nOutput: 3\nExplanation: There exists three ways to create a beautiful partition:\n\"2354 | 218 | 5131\"\n\"2354 | 21851 | 31\"\n\"2354218 | 51 | 31\"\n```\n\n**Example 2:**\n\n```\nInput: s = \"23542185131\", k = 3, minLength = 3\nOutput: 1\nExplanation: There exists one way to create a beautiful partition: \"2354 | 218 | 5131\".\n```\n\n**Example 3:**\n\n```\nInput: s = \"3312958\", k = 3, minLength = 1\nOutput: 1\nExplanation: There exists one way to create a beautiful partition: \"331 | 29 | 58\".\n```\n\n**Constraints:**\n\n*   `1 <= k, minLength <= s.length <= 1000`\n*   `s` consists of the digits `'1'` to `'9'`.",
+  "constraints": [
+    "1 <= k, minLength <= s.length <= 1000",
+    "s consists of the digits '1' to '9'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"23542185131\", k = 3, minLength = 2",
+      "output": "3",
+      "explanation": "There exists three ways to create a beautiful partition:\n\"2354 | 218 | 5131\"\n\"2354 | 21851 | 31\"\n\"2354218 | 51 | 31\""
+    },
+    {
+      "input": "s = \"23542185131\", k = 3, minLength = 3",
+      "output": "1",
+      "explanation": "There exists one way to create a beautiful partition: \"2354 | 218 | 5131\"."
+    },
+    {
+      "input": "s = \"3312958\", k = 3, minLength = 1",
+      "output": "1",
+      "explanation": "There exists one way to create a beautiful partition: \"331 | 29 | 58\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int beautifulPartitions(string s, int k, int minLength) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int beautifulPartitions(String s, int k, int minLength) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def beautifulPartitions(self, s: str, k: int, minLength: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def beautifulPartitions(self, s, k, minLength):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :type minLength: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @param {number} minLength\n * @return {number}\n */\nvar beautifulPartitions = function(s, k, minLength) {\n    \n};",
+    "typescript": "function beautifulPartitions(s: string, k: number, minLength: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int BeautifulPartitions(string s, int k, int minLength) {\n        \n    }\n}",
+    "c": "int beautifulPartitions(char* s, int k, int minLength) {\n    \n}",
+    "golang": "func beautifulPartitions(s string, k int, minLength int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun beautifulPartitions(s: String, k: Int, minLength: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func beautifulPartitions(_ s: String, _ k: Int, _ minLength: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn beautiful_partitions(s: String, k: i32, min_length: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @param {Integer} min_length\n# @return {Integer}\ndef beautiful_partitions(s, k, min_length)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @param Integer $minLength\n     * @return Integer\n     */\n    function beautifulPartitions($s, $k, $minLength) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int beautifulPartitions(String s, int k, int minLength) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def beautifulPartitions(s: String, k: Int, minLength: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec beautiful_partitions(s :: String.t, k :: integer, min_length :: integer) :: integer\n  def beautiful_partitions(s, k, min_length) do\n    \n  end\nend",
+    "erlang": "-spec beautiful_partitions(S :: unicode:unicode_binary(), K :: integer(), MinLength :: integer()) -> integer().\nbeautiful_partitions(S, K, MinLength) ->\n  .",
+    "racket": "(define/contract (beautiful-partitions s k minLength)\n  (-> string? exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"23542185131\"\n3\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"23542185131\"\n3\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"3312958\"\n3\n1",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"23542185131\"\n3\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"23542185131\"\n3\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"3312958\"\n3\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"23542\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"185131\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"2\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"23\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"13158124532\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"222222\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"\n3\n2",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try using a greedy approach where you take as many digits as possible from the left of the string for each partition.",
+    "You can also use a dynamic programming approach, let an array dp where dp[i] is the solution of the problem for the prefix of the string ending at index i, the answer of the problem will be dp[n-1]. What are the transitions of this dp?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-beautiful-partitions/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.772Z",
+    "sourceUpdatedAt": null
+  }
+}

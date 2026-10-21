@@ -1,0 +1,171 @@
+{
+  "id": "3003",
+  "slug": "maximize-the-number-of-partitions-after-operations",
+  "title": "Maximize the Number of Partitions After Operations",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "statement": "You are given a string `s` and an integer `k`.\n\nFirst, you are allowed to change **at most** **one** index in `s` to another lowercase English letter.\n\nAfter that, do the following partitioning operation until `s` is **empty**:\n\n*   Choose the **longest** **prefix** of `s` containing at most `k` **distinct** characters.\n*   **Delete** the prefix from `s` and increase the number of partitions by one. The remaining characters (if any) in `s` maintain their initial order.\n\nReturn an integer denoting the **maximum** number of resulting partitions after the operations by optimally choosing at most one index to change.\n\n**Example 1:**\n\n**Input:** s = \"accca\", k = 2\n\n**Output:** 3\n\n**Explanation:**\n\nThe optimal way is to change `s[2]` to something other than a and c, for example, b. then it becomes `\"acbca\"`.\n\nThen we perform the operations:\n\n1.  The longest prefix containing at most 2 distinct characters is `\"ac\"`, we remove it and `s` becomes `\"bca\"`.\n2.  Now The longest prefix containing at most 2 distinct characters is `\"bc\"`, so we remove it and `s` becomes `\"a\"`.\n3.  Finally, we remove `\"a\"` and `s` becomes empty, so the procedure ends.\n\nDoing the operations, the string is divided into 3 partitions, so the answer is 3.\n\n**Example 2:**\n\n**Input:** s = \"aabaab\", k = 3\n\n**Output:** 1\n\n**Explanation:**\n\nInitially `s` contains 2 distinct characters, so whichever character we change, it will contain at most 3 distinct characters, so the longest prefix with at most 3 distinct characters would always be all of it, therefore the answer is 1.\n\n**Example 3:**\n\n**Input:** s = \"xxyz\", k = 1\n\n**Output:** 4\n\n**Explanation:**\n\nThe optimal way is to change `s[0]` or `s[1]` to something other than characters in `s`, for example, to change `s[0]` to `w`.\n\nThen `s` becomes `\"wxyz\"`, which consists of 4 distinct characters, so as `k` is 1, it will divide into 4 partitions.\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(4)`\n*   `s` consists only of lowercase English letters.\n*   `1 <= k <= 26`",
+  "constraints": [
+    "1 <= s.length <= 104",
+    "s consists only of lowercase English letters.",
+    "1 <= k <= 26"
+  ],
+  "examples": [
+    {
+      "input": "s = \"accca\", k = 2",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "s = \"aabaab\", k = 3",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "s = \"xxyz\", k = 1",
+      "output": "4",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxPartitionsAfterOperations(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxPartitionsAfterOperations(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxPartitionsAfterOperations(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxPartitionsAfterOperations(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar maxPartitionsAfterOperations = function(s, k) {\n    \n};",
+    "typescript": "function maxPartitionsAfterOperations(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxPartitionsAfterOperations(string s, int k) {\n        \n    }\n}",
+    "c": "int maxPartitionsAfterOperations(char* s, int k) {\n    \n}",
+    "golang": "func maxPartitionsAfterOperations(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxPartitionsAfterOperations(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxPartitionsAfterOperations(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_partitions_after_operations(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef max_partitions_after_operations(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function maxPartitionsAfterOperations($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxPartitionsAfterOperations(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxPartitionsAfterOperations(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_partitions_after_operations(s :: String.t, k :: integer) :: integer\n  def max_partitions_after_operations(s, k) do\n    \n  end\nend",
+    "erlang": "-spec max_partitions_after_operations(S :: unicode:unicode_binary(), K :: integer()) -> integer().\nmax_partitions_after_operations(S, K) ->\n  .",
+    "racket": "(define/contract (max-partitions-after-operations s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"accca\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aabaab\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"xxyz\"\n1",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"accca\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aabaab\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"xxyz\"\n1",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"ac\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"cca\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"acccaaccca\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"edcba\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aab\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"racecar\"\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"hello\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"leetcode\"\n2",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For each position, try to brute-force the replacements.",
+    "To speed up the brute-force solution, we can precompute the following (without changing any index) using prefix sums and binary search:<ul>\r\n<li><code>pref[i]</code>: The number of resulting partitions from the operations by performing the operations on <code>s[0:i]</code>.</li>\r\n<li><code>suff[i]</code>: The number of resulting partitions from the operations by performing the operations on <code>s[i:n - 1]</code>, where <code>n == s.length</code>.</li>\r\n<li><code>partition_start[i]</code>: The start index of the partition containing the <code>i<sup>th</sup></code> index after performing the operations.</li>\r\n</ul>",
+    "Now, for a position <code>i</code>, we can try all possible <code>25</code> replacements:<br />\r\nFor a replacement, using prefix sums and binary search, we need to find the rightmost index, <code>r</code>, such that the number of distinct characters in the range <code>[partition_start[i], r]</code> is at most <code>k</code>.<br />\r\nThere are <code>2</code> cases:<ul>\r\n<li><code>r >= i</code>: the number of resulting partitions in this case is <code>1 + pref[partition_start[i] - 1] + suff[r + 1]</code>.</li>\r\n<li>Otherwise, we need to find the rightmost index <code>r<sub>2</sub></code> such that the number of distinct characters in the range <code>[r:r<sub>2</sub>]</code> is at most <code>k</code>. The answer in this case is <code>2 + pref[partition_start[i] - 1] + suff[r<sub>2</sub> + 1]</code></li>\r\n</ul>",
+    "The answer is the maximum among all replacements."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-the-number-of-partitions-after-operations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.410Z",
+    "sourceUpdatedAt": null
+  }
+}

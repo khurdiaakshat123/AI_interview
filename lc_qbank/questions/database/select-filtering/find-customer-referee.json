@@ -1,0 +1,64 @@
+{
+  "id": "584",
+  "slug": "find-customer-referee",
+  "title": "Find Customer Referee",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Customer`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| id          | int     |\n| name        | varchar |\n| referee_id  | int     |\n+-------------+---------+\nIn SQL, id is the primary key column for this table.\nEach row of this table indicates the id of a customer, their name, and the id of the customer who referred them.\n```\n\nFind the names of the customer that are either:\n\n1.  **referred by** any customer with `id != 2`.\n2.  **not referred by** any customer.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nCustomer table:\n+----+------+------------+\n| id | name | referee_id |\n+----+------+------------+\n| 1  | Will | null       |\n| 2  | Jane | null       |\n| 3  | Alex | 2          |\n| 4  | Bill | null       |\n| 5  | Zack | 1          |\n| 6  | Mark | 2          |\n+----+------+------------+\nOutput: \n+------+\n| name |\n+------+\n| Will |\n| Jane |\n| Bill |\n| Zack |\n+------+\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Customer table:\n+----+------+------------+\n| id | name | referee_id |\n+----+------+------------+\n| 1  | Will | null       |\n| 2  | Jane | null       |\n| 3  | Alex | 2          |\n| 4  | Bill | null       |\n| 5  | Zack | 1          |\n| 6  | Mark | 2          |\n+----+------+------------+",
+      "output": "+------+\n| name |\n+------+\n| Will |\n| Jane |\n| Bill |\n| Zack |\n+------+",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_customer_referee(customer: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Customer\":[\"id\",\"name\",\"referee_id\"]},\"rows\":{\"Customer\":[[1,\"Will\",null],[2,\"Jane\",null],[3,\"Alex\",2],[4,\"Bill\",null],[5,\"Zack\",1],[6,\"Mark\",2]]}}",
+      "expectedOutput": "+------+\n| name |\n+------+\n| Will |\n| Jane |\n| Bill |\n| Zack |\n+------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Customer\":[\"id\",\"name\",\"referee_id\"]},\"rows\":{\"Customer\":[[1,\"Will\",null],[2,\"Jane\",null],[3,\"Alex\",2],[4,\"Bill\",null],[5,\"Zack\",1],[6,\"Mark\",2]]}}",
+      "expectedOutput": "+------+\n| name |\n+------+\n| Will |\n| Jane |\n| Bill |\n| Zack |\n+------+"
+    },
+    {
+      "input": "Customer table:\n+----+------+------------+\n| id | name | referee_id |\n+----+------+------------+\n| 1  | Will | null       |\n| 2  | Jane | null       |\n| 3  | Alex | 2          |\n| 4  | Bill | null       |\n| 5  | Zack | 1          |\n| 6  | Mark | 2          |\n+----+------+------------+",
+      "expectedOutput": "+------+\n| name |\n+------+\n| Will |\n| Jane |\n| Bill |\n| Zack |\n+------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Customer (id int, name varchar(25), referee_id int)\n\nTruncate table Customer",
+  "sqlSetup": [
+    "insert into Customer (id, name, referee_id) values ('1', 'Will', NULL)",
+    "insert into Customer (id, name, referee_id) values ('2', 'Jane', NULL)",
+    "insert into Customer (id, name, referee_id) values ('3', 'Alex', '2')",
+    "insert into Customer (id, name, referee_id) values ('4', 'Bill', NULL)",
+    "insert into Customer (id, name, referee_id) values ('5', 'Zack', '1')",
+    "insert into Customer (id, name, referee_id) values ('6', 'Mark', '2')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Be careful of the NULL value"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-customer-referee/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.645Z",
+    "sourceUpdatedAt": null
+  }
+}

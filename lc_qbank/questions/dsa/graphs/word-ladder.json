@@ -1,0 +1,161 @@
+{
+  "id": "127",
+  "slug": "word-ladder",
+  "title": "Word Ladder",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Breadth-First Search",
+    "Bidirectional Search"
+  ],
+  "statement": "A **transformation sequence** from word `beginWord` to word `endWord` using a dictionary `wordList` is a sequence of words `beginWord -> s_(1) -> s_(2) -> ... -> s_(k)` such that:\n\n*   Every adjacent pair of words differs by a single letter.\n*   Every `s_(i)` for `1 <= i <= k` is in `wordList`. Note that `beginWord` does not need to be in `wordList`.\n*   `s_(k) == endWord`\n\nGiven two words, `beginWord` and `endWord`, and a dictionary `wordList`, return _the **number of words** in the **shortest transformation sequence** from_ `beginWord` _to_ `endWord`_, or_ `0` _if no such sequence exists._\n\n**Example 1:**\n\n```\nInput: beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]\nOutput: 5\nExplanation: One shortest transformation sequence is \"hit\" -> \"hot\" -> \"dot\" -> \"dog\" -> cog\", which is 5 words long.\n```\n\n**Example 2:**\n\n```\nInput: beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]\nOutput: 0\nExplanation: The endWord \"cog\" is not in wordList, therefore there is no valid transformation sequence.\n```\n\n**Constraints:**\n\n*   `1 <= beginWord.length <= 10`\n*   `endWord.length == beginWord.length`\n*   `1 <= wordList.length <= 5000`\n*   `wordList[i].length == beginWord.length`\n*   `beginWord`, `endWord`, and `wordList[i]` consist of lowercase English letters.\n*   `beginWord != endWord`\n*   All the words in `wordList` are **unique**.",
+  "constraints": [
+    "1 <= beginWord.length <= 10",
+    "endWord.length == beginWord.length",
+    "1 <= wordList.length <= 5000",
+    "wordList[i].length == beginWord.length",
+    "beginWord, endWord, and wordList[i] consist of lowercase English letters.",
+    "beginWord != endWord",
+    "All the words in wordList are unique."
+  ],
+  "examples": [
+    {
+      "input": "beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "output": "5",
+      "explanation": "One shortest transformation sequence is \"hit\" -> \"hot\" -> \"dot\" -> \"dog\" -> cog\", which is 5 words long."
+    },
+    {
+      "input": "beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]",
+      "output": "0",
+      "explanation": "The endWord \"cog\" is not in wordList, therefore there is no valid transformation sequence."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int ladderLength(String beginWord, String endWord, List<String> wordList) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def ladderLength(self, beginWord: str, endWord: str, wordList: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def ladderLength(self, beginWord, endWord, wordList):\n        \"\"\"\n        :type beginWord: str\n        :type endWord: str\n        :type wordList: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} beginWord\n * @param {string} endWord\n * @param {string[]} wordList\n * @return {number}\n */\nvar ladderLength = function(beginWord, endWord, wordList) {\n    \n};",
+    "typescript": "function ladderLength(beginWord: string, endWord: string, wordList: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LadderLength(string beginWord, string endWord, IList<string> wordList) {\n        \n    }\n}",
+    "c": "int ladderLength(char* beginWord, char* endWord, char** wordList, int wordListSize) {\n    \n}",
+    "golang": "func ladderLength(beginWord string, endWord string, wordList []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun ladderLength(beginWord: String, endWord: String, wordList: List<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func ladderLength(_ beginWord: String, _ endWord: String, _ wordList: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn ladder_length(begin_word: String, end_word: String, word_list: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} begin_word\n# @param {String} end_word\n# @param {String[]} word_list\n# @return {Integer}\ndef ladder_length(begin_word, end_word, word_list)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $beginWord\n     * @param String $endWord\n     * @param String[] $wordList\n     * @return Integer\n     */\n    function ladderLength($beginWord, $endWord, $wordList) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int ladderLength(String beginWord, String endWord, List<String> wordList) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def ladderLength(beginWord: String, endWord: String, wordList: List[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec ladder_length(begin_word :: String.t, end_word :: String.t, word_list :: [String.t]) :: integer\n  def ladder_length(begin_word, end_word, word_list) do\n    \n  end\nend",
+    "erlang": "-spec ladder_length(BeginWord :: unicode:unicode_binary(), EndWord :: unicode:unicode_binary(), WordList :: [unicode:unicode_binary()]) -> integer().\nladder_length(BeginWord, EndWord, WordList) ->\n  .",
+    "racket": "(define/contract (ladder-length beginWord endWord wordList)\n  (-> string? string? (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"hit\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"hit\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"hit\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"hit\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"h\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"it\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"hi\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"tih\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"hithit\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"hhh\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"hittih\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"HIT\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"\n\"cog\"\n[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/word-ladder/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.774Z",
+    "sourceUpdatedAt": null
+  }
+}

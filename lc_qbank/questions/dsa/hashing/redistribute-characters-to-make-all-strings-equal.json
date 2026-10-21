@@ -1,0 +1,159 @@
+{
+  "id": "1897",
+  "slug": "redistribute-characters-to-make-all-strings-equal",
+  "title": "Redistribute Characters to Make All Strings Equal",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "statement": "You are given an array of strings `words` (**0-indexed**).\n\nIn one operation, pick two **distinct** indices `i` and `j`, where `words[i]` is a non-empty string, and move **any** character from `words[i]` to **any** position in `words[j]`.\n\nReturn `true` _if you can make **every** string in_ `words` _**equal** using **any** number of operations_, _and_ `false` _otherwise_.\n\n**Example 1:**\n\n```\nwords[1] to the front of words[2],\nto make\n```\n\n**Example 2:**\n\n```\nInput: words = [\"ab\",\"a\"]\nOutput: false\nExplanation: It is impossible to make all the strings equal using the operation.\n```\n\n**Constraints:**\n\n*   `1 <= words.length <= 100`\n*   `1 <= words[i].length <= 100`\n*   `words[i]` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= words.length <= 100",
+    "1 <= words[i].length <= 100",
+    "words[i] consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"abc\",\"aabc\",\"bc\"]",
+      "output": "true",
+      "explanation": "Move the first 'a' in words[1] to the front of words[2],\nto make words[1] = \"abc\" and words[2] = \"abc\".\nAll the strings are now equal to \"abc\", so return true."
+    },
+    {
+      "input": "words = [\"ab\",\"a\"]",
+      "output": "false",
+      "explanation": "It is impossible to make all the strings equal using the operation."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool makeEqual(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean makeEqual(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def makeEqual(self, words: list[str]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def makeEqual(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {boolean}\n */\nvar makeEqual = function(words) {\n    \n};",
+    "typescript": "function makeEqual(words: string[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool MakeEqual(string[] words) {\n        \n    }\n}",
+    "c": "bool makeEqual(char** words, int wordsSize) {\n    \n}",
+    "golang": "func makeEqual(words []string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun makeEqual(words: Array<String>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func makeEqual(_ words: [String]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn make_equal(words: Vec<String>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Boolean}\ndef make_equal(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Boolean\n     */\n    function makeEqual($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool makeEqual(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def makeEqual(words: Array[String]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec make_equal(words :: [String.t]) :: boolean\n  def make_equal(words) do\n    \n  end\nend",
+    "erlang": "-spec make_equal(Words :: [unicode:unicode_binary()]) -> boolean().\nmake_equal(Words) ->\n  .",
+    "racket": "(define/contract (make-equal words)\n  (-> (listof string?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"abc\",\"aabc\",\"bc\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"ab\",\"a\"]",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"abc\",\"aabc\",\"bc\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"ab\",\"a\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"abc\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"aabc\",\"bc\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"abc\",\"bc\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"abc\",\"aabc\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"bc\",\"aabc\",\"abc\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"aabc\",\"abc\",\"bc\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"bc\",\"abc\",\"aabc\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"abc\",\"abc\",\"abc\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"abc\",\"aabc\",\"bc\",\"abc\",\"aabc\",\"bc\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Characters are independent—only the frequency of characters matters.",
+    "It is possible to distribute characters if all characters can be divided equally among all strings."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/redistribute-characters-to-make-all-strings-equal/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.358Z",
+    "sourceUpdatedAt": null
+  }
+}

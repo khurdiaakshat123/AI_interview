@@ -1,0 +1,167 @@
+{
+  "id": "3810",
+  "slug": "minimum-operations-to-reach-target-array",
+  "title": "Minimum Operations to Reach Target Array",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy"
+  ],
+  "statement": "You are given two integer arrays `nums` and `target`, each of length `n`, where `nums[i]` is the current value at index `i` and `target[i]` is the desired value at index `i`.\n\nYou may perform the following operation any number of times (including zero):\n\n*   Choose an integer value `x`\n*   Find all **maximal contiguous segments** where `nums[i] == x` (a segment is **maximal** if it cannot be extended to the left or right while keeping all values equal to `x`)\n*   For each such segment `[l, r]`, update **simultaneously**:\n    *   `nums[l] = target[l], nums[l + 1] = target[l + 1], ..., nums[r] = target[r]`\n\nReturn the **minimum** number of operations required to make `nums` equal to `target`.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,3\\], target = \\[2,1,3\\]\n\n**Output:** 2\n\n**Explanation:**​​​​​​​\n\n*   Choose `x = 1`: maximal segment `[0, 0]` updated -> nums becomes `[2, 2, 3]`\n*   Choose `x = 2`: maximal segment `[0, 1]` updated (`nums[0]` stays 2, `nums[1]` becomes 1) -> `nums` becomes `[2, 1, 3]`\n*   Thus, 2 operations are required to convert `nums` to `target`.​​​​​​​​​​​​​​\n\n**Example 2:**\n\n**Input:** nums = \\[4,1,4\\], target = \\[5,1,4\\]\n\n**Output:** 1\n\n**Explanation:**\n\n*   Choose `x = 4`: maximal segments `[0, 0]` and `[2, 2]` updated (`nums[2]` stays 4) -> `nums` becomes `[5, 1, 4]`\n*   Thus, 1 operation is required to convert `nums` to `target`.\n\n**Example 3:**\n\n**Input:** nums = \\[7,3,7\\], target = \\[5,5,9\\]\n\n**Output:** 2\n\n**Explanation:**\n\n*   Choose `x = 7`: maximal segments `[0, 0]` and `[2, 2]` updated -> `nums` becomes `[5, 3, 9]`\n*   Choose `x = 3`: maximal segment `[1, 1]` updated -> `nums` becomes `[5, 5, 9]`\n*   Thus, 2 operations are required to convert `nums` to `target`.\n\n**Constraints:**\n\n*   `1 <= n == nums.length == target.length <= 10^(5)`\n*   `1 <= nums[i], target[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= n == nums.length == target.length <= 105",
+    "1 <= nums[i], target[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3], target = [2,1,3]",
+      "output": "2",
+      "explanation": "​​​​​​​\n\n\n\tChoose x = 1: maximal segment [0, 0] updated -> nums becomes [2, 2, 3]\n\tChoose x = 2: maximal segment [0, 1] updated (nums[0] stays 2, nums[1] becomes 1) -> nums becomes [2, 1, 3]\n\tThus, 2 operations are required to convert nums to target.​​​​​​​​​​​​​​"
+    },
+    {
+      "input": "nums = [4,1,4], target = [5,1,4]",
+      "output": "1",
+      "explanation": "Choose x = 4: maximal segments [0, 0] and [2, 2] updated (nums[2] stays 4) -> nums becomes [5, 1, 4]\n\tThus, 1 operation is required to convert nums to target."
+    },
+    {
+      "input": "nums = [7,3,7], target = [5,5,9]",
+      "output": "2",
+      "explanation": "Choose x = 7: maximal segments [0, 0] and [2, 2] updated -> nums becomes [5, 3, 9]\n\tChoose x = 3: maximal segment [1, 1] updated -> nums becomes [5, 5, 9]\n\tThus, 2 operations are required to convert nums to target."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, vector<int>& target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minOperations(int[] nums, int[] target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, nums: List[int], target: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[]} target\n * @return {number}\n */\nvar minOperations = function(nums, target) {\n    \n};",
+    "typescript": "function minOperations(nums: number[], target: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinOperations(int[] nums, int[] target) {\n        \n    }\n}",
+    "c": "int minOperations(int* nums, int numsSize, int* target, int targetSize) {\n    \n}",
+    "golang": "func minOperations(nums []int, target []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(nums: IntArray, target: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ nums: [Int], _ target: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(nums: Vec<i32>, target: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[]} target\n# @return {Integer}\ndef min_operations(nums, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[] $target\n     * @return Integer\n     */\n    function minOperations($nums, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(List<int> nums, List<int> target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(nums: Array[Int], target: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(nums :: [integer], target :: [integer]) :: integer\n  def min_operations(nums, target) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(Nums :: [integer()], Target :: [integer()]) -> integer().\nmin_operations(Nums, Target) ->\n  .",
+    "racket": "(define/contract (min-operations nums target)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3]\n[2,1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,1,4]\n[5,1,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[7,3,7]\n[5,5,9]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3]\n[2,1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,1,4]\n[5,1,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[7,3,7]\n[5,5,9]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]\n[2,1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3]\n[2,1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3]\n[2,1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2]\n[2,1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2,1]\n[2,1,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1]\n[2,1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3,1,2,3]\n[2,1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4,6]\n[2,1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,3,4]\n[2,1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,2]\n[2,1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,-2,-3]\n[2,1,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0]\n[2,1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]\n[2,1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n[2,1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]\n[2,1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]\n[2,1,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]\n[2,1,3]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find all positions where <code>nums[i] != target[i]</code>.",
+    "The answer is the number of distinct values in <code>nums</code> among those positions."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-operations-to-reach-target-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.788Z",
+    "sourceUpdatedAt": null
+  }
+}

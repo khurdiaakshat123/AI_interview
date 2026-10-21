@@ -1,0 +1,129 @@
+{
+  "id": "3923",
+  "slug": "minimum-generations-to-target-point",
+  "title": "Minimum Generations to Target Point",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Simulation"
+  ],
+  "statement": "You are given a 2D integer array `points` where `points[i] = [x_(i), y_(i), z_(i)]` represents a point in 3D space, and an integer array `target` representing a target point.\n\nDefine **generation** 0 as the initial list of points. For each integer `k >= 1`, form generation `k` as follows:\n\n*   Consider every pair of two **distinct** points `a = [x_(1), y_(1), z_(1)]` and `b = [x_(2), y_(2), z_(2)]` taken from all points produced in generations 0 through `k - 1`.\n*   For each such pair, compute `c = [floor((x_(1) + x_(2)) / 2), floor((y_(1) + y_(2)) / 2), floor((z_(1) + z_(2)) / 2)]` and collect every such `c` into a generation `k`.\n*   All points in the generation `k` are produced **simultaneously** from points in generations 0 through​​​​​​​ `k - 1`.\n*   After generation `k` is formed, the points in the generation `k` are considered available for forming later generations.\n\nReturn the **smallest** integer `k` such that the `target` appears in one of the generations 0 through `k`. If the `target` is already in the initial points, return 0. If it is impossible to obtain the `target`, return -1.\n\nNotes:\n\n*   **floor** denotes rounding **down** to the nearest integer.\n*   \"Two **distinct** points\" means the two chosen points must have **different** `(x, y, z)` coordinates. A point cannot be paired with itself, and pairing two points with **identical** coordinates is not possible.\n\n**Example 1:**\n\n**Input:** points = \\[\\[0,0,0\\],\\[6,6,6\\]\\], target = \\[3,3,3\\]\n\n**Output:** 1\n\n**Explanation:**\n\n*   **Generation 0:** The initial `points = [[0, 0, 0], [6, 6, 6]]`.\n*   The `target = [3, 3, 3]` does not exist in generation 0.\n*   **Generation 1:** For each pair of points in generation 0, we create new points.\n    *   Using `[0, 0, 0]` and `[6, 6, 6]`, we generate `[3, 3, 3]`.\n*   After generation 1, `points = [[0, 0, 0], [6, 6, 6], [3, 3, 3]]`.\n*   The `target = [3, 3, 3]` is found in generation 1, so the smallest `k` is 1.\n\n**Example 2:**\n\n**Input:** points = \\[\\[0,0,0\\],\\[5,5,5\\]\\], target = \\[1,1,1\\]\n\n**Output:** 2\n\n**Explanation:**\n\n*   **Generation 0:** The initial `points = [[0, 0, 0], [5, 5, 5]]`.\n*   The `target = [1, 1, 1]` does not exist in generation 0.\n*   **Generation 1:** For each pair of points in generation 0, we create new points.\n    *   Using `[0, 0, 0]` and `[5, 5, 5]`, we generate `[2, 2, 2]`.\n*   After generation 1, `points = [[0, 0, 0], [5, 5, 5], [2, 2, 2]]`.\n*   **Generation 2:** For each pair of points available after generation 1, we create new points.\n    *   Using `[0, 0, 0]` and `[5, 5, 5]`, we generate `[2, 2, 2]`.\n    *   Using `[0, 0, 0]` and `[2, 2, 2]`, we generate `[1, 1, 1]`.\n    *   Using `[5, 5, 5]` and `[2, 2, 2]`, we generate `[3, 3, 3]`.\n*   After generation 2, `points = [[0, 0, 0], [5, 5, 5], [2, 2, 2], [1, 1, 1], [3, 3, 3]]`.\n*   The `target = [1, 1, 1]` is found in generation 2, so the smallest `k` is 2.\n\n**Example 3:**\n\n**Input:** points = \\[\\[0,0,0\\],\\[2,2,2\\],\\[3,3,3\\]\\], target = \\[2,2,2\\]\n\n**Output:** 0\n\n**Explanation:**\n\n*   **Generation 0:** The initial `points = [[0, 0, 0], [2, 2, 2], [3, 3, 3]]`.\n*   The `target = [2, 2, 2]` already exists in generation 0, so the smallest `k` is 0.\n\n**Example 4:**\n\n**Input:** points = \\[\\[1,2,3\\]\\], target = \\[5,5,5\\]\n\n**Output:** \\-1\n\n**Explanation:**\n\n*   Only one initial point is available, so no new points can be generated.\n*   Therefore, the target cannot be obtained, and the answer is -1.\n\n**Constraints:**\n\n*   `1 <= points.length <= 20`\n*   `points[i] = [x_(i), y_(i), z_(i)​​​​​​​]`\n*   `0 <= x_(i), y_(i), z_(i) <= 6`\n*   `target.length == 3`\n*   `​​​​​​​0 <= target[i] <= 6`\n*   The initial set of points contains no duplicates.",
+  "constraints": [
+    "1 <= points.length <= 20",
+    "points[i] = [xi, yi, zi​​​​​​​]",
+    "0 <= xi, yi, zi <= 6",
+    "target.length == 3",
+    "​​​​​​​0 <= target[i] <= 6",
+    "The initial set of points contains no duplicates."
+  ],
+  "examples": [
+    {
+      "input": "points = [[0,0,0],[6,6,6]], target = [3,3,3]",
+      "output": "1",
+      "explanation": "Generation 0: The initial points = [[0, 0, 0], [6, 6, 6]].\n\tThe target = [3, 3, 3] does not exist in generation 0.\n\tGeneration 1: For each pair of points in generation 0, we create new points.\n\t\n\t\tUsing [0, 0, 0] and [6, 6, 6], we generate [3, 3, 3].\n\t\n\t\n\tAfter generation 1, points = [[0, 0, 0], [6, 6, 6], [3, 3, 3]].\n\tThe target = [3, 3, 3] is found in generation 1, so the smallest k is 1."
+    },
+    {
+      "input": "points = [[0,0,0],[5,5,5]], target = [1,1,1]",
+      "output": "2",
+      "explanation": "Generation 0: The initial points = [[0, 0, 0], [5, 5, 5]].\n\tThe target = [1, 1, 1] does not exist in generation 0.\n\tGeneration 1: For each pair of points in generation 0, we create new points.\n\t\n\t\tUsing [0, 0, 0] and [5, 5, 5], we generate [2, 2, 2].\n\t\n\t\n\tAfter generation 1, points = [[0, 0, 0], [5, 5, 5], [2, 2, 2]].\n\tGeneration 2: For each pair of points available after generation 1, we create new points.\n\t\n\t\tUsing [0, 0, 0] and [5, 5, 5], we generate [2, 2, 2].\n\t\tUsing [0, 0, 0] and [2, 2, 2], we generate [1, 1, 1].\n\t\tUsing [5, 5, 5] and [2, 2, 2], we generate [3, 3, 3].\n\t\n\t\n\tAfter generation 2, points = [[0, 0, 0], [5, 5, 5], [2, 2, 2], [1, 1, 1], [3, 3, 3]].\n\tThe target = [1, 1, 1] is found in generation 2, so the smallest k is 2."
+    },
+    {
+      "input": "points = [[0,0,0],[2,2,2],[3,3,3]], target = [2,2,2]",
+      "output": "0",
+      "explanation": "Generation 0: The initial points = [[0, 0, 0], [2, 2, 2], [3, 3, 3]].\n\tThe target = [2, 2, 2] already exists in generation 0, so the smallest k is 0."
+    },
+    {
+      "input": "points = [[1,2,3]], target = [5,5,5]",
+      "output": "-1",
+      "explanation": "Only one initial point is available, so no new points can be generated.\n\tTherefore, the target cannot be obtained, and the answer is -1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minGenerations(vector<vector<int>>& points, vector<int>& target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minGenerations(int[][] points, int[] target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minGenerations(self, points: List[List[int]], target: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minGenerations(self, points, target):\n        \"\"\"\n        :type points: List[List[int]]\n        :type target: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} points\n * @param {number[]} target\n * @return {number}\n */\nvar minGenerations = function(points, target) {\n    \n};",
+    "typescript": "function minGenerations(points: number[][], target: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinGenerations(int[][] points, int[] target) {\n        \n    }\n}",
+    "c": "int minGenerations(int** points, int pointsSize, int* pointsColSize, int* target, int targetSize) {\n    \n}",
+    "golang": "func minGenerations(points [][]int, target []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minGenerations(points: Array<IntArray>, target: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minGenerations(_ points: [[Int]], _ target: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_generations(points: Vec<Vec<i32>>, target: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} points\n# @param {Integer[]} target\n# @return {Integer}\ndef min_generations(points, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $points\n     * @param Integer[] $target\n     * @return Integer\n     */\n    function minGenerations($points, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minGenerations(List<List<int>> points, List<int> target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minGenerations(points: Array[Array[Int]], target: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_generations(points :: [[integer]], target :: [integer]) :: integer\n  def min_generations(points, target) do\n    \n  end\nend",
+    "erlang": "-spec min_generations(Points :: [[integer()]], Target :: [integer()]) -> integer().\nmin_generations(Points, Target) ->\n  .",
+    "racket": "(define/contract (min-generations points target)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,0,0],[6,6,6]]\n[3,3,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0,0],[5,5,5]]\n[1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,0,0],[2,2,2],[3,3,3]]\n[2,2,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[1,2,3]]\n[5,5,5]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,0,0],[6,6,6]]\n[3,3,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0,0],[5,5,5]]\n[1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,0,0],[2,2,2],[3,3,3]]\n[2,2,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[1,2,3]]\n[5,5,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "points = [[0,0,0],[6,6,6]], target = [3,3,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "points = [[0,0,0],[5,5,5]], target = [1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "points = [[0,0,0],[2,2,2],[3,3,3]], target = [2,2,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "points = [[1,2,3]], target = [5,5,5]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-generations-to-target-point/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.943Z",
+    "sourceUpdatedAt": null
+  }
+}

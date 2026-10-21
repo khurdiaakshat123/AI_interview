@@ -1,0 +1,106 @@
+{
+  "id": "1368",
+  "slug": "minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
+  "title": "Minimum Cost to Make at Least One Valid Path in a Grid",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Shortest Path",
+    "0-1 BFS",
+    "Dijkstra's Algorithm"
+  ],
+  "statement": "Given an `m x n` grid. Each cell of the grid has a sign pointing to the next cell you should visit if you are currently in this cell. The sign of `grid[i][j]` can be:\n\n*   `1` which means go to the cell to the right. (i.e go from `grid[i][j]` to `grid[i][j + 1]`)\n*   `2` which means go to the cell to the left. (i.e go from `grid[i][j]` to `grid[i][j - 1]`)\n*   `3` which means go to the lower cell. (i.e go from `grid[i][j]` to `grid[i + 1][j]`)\n*   `4` which means go to the upper cell. (i.e go from `grid[i][j]` to `grid[i - 1][j]`)\n\nNotice that there could be some signs on the cells of the grid that point outside the grid.\n\nYou will initially start at the upper left cell `(0, 0)`. A valid path in the grid is a path that starts from the upper left cell `(0, 0)` and ends at the bottom-right cell `(m - 1, n - 1)` following the signs on the grid. The valid path does not have to be the shortest.\n\nYou can modify the sign on a cell with `cost = 1`. You can modify the sign on a cell **one time only**.\n\nReturn _the minimum cost to make the grid have at least one valid path_.\n\n**Example 1:**\n\n![](./assets/minimum-cost-to-make-at-least-one-valid-path-in-a-grid-1.png)\n```\nInput: grid = [[1,1,1,1],[2,2,2,2],[1,1,1,1],[2,2,2,2]]\nOutput: 3\nExplanation: You will start at point (0, 0).\nThe path to (3, 3) is as follows. (0, 0) --> (0, 1) --> (0, 2) --> (0, 3) change the arrow to down with cost = 1 --> (1, 3) --> (1, 2) --> (1, 1) --> (1, 0) change the arrow to down with cost = 1 --> (2, 0) --> (2, 1) --> (2, 2) --> (2, 3) change the arrow to down with cost = 1 --> (3, 3)\nThe total cost = 3.\n```\n\n**Example 2:**\n\n![](./assets/minimum-cost-to-make-at-least-one-valid-path-in-a-grid-2.png)\n```\nInput: grid = [[1,1,3],[3,2,2],[1,1,4]]\nOutput: 0\nExplanation: You can follow the path from (0, 0) to (2, 2).\n```\n\n**Example 3:**\n\n![](./assets/minimum-cost-to-make-at-least-one-valid-path-in-a-grid-3.png)\n```\nInput: grid = [[1,2],[4,3]]\nOutput: 1\n```\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 100`\n*   `1 <= grid[i][j] <= 4`",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 100",
+    "1 <= grid[i][j] <= 4"
+  ],
+  "examples": [
+    {
+      "input": "grid = [[1,1,1,1],[2,2,2,2],[1,1,1,1],[2,2,2,2]]",
+      "output": "3",
+      "explanation": "You will start at point (0, 0).\nThe path to (3, 3) is as follows. (0, 0) --> (0, 1) --> (0, 2) --> (0, 3) change the arrow to down with cost = 1 --> (1, 3) --> (1, 2) --> (1, 1) --> (1, 0) change the arrow to down with cost = 1 --> (2, 0) --> (2, 1) --> (2, 2) --> (2, 3) change the arrow to down with cost = 1 --> (3, 3)\nThe total cost = 3."
+    },
+    {
+      "input": "grid = [[1,1,3],[3,2,2],[1,1,4]]",
+      "output": "0",
+      "explanation": "You can follow the path from (0, 0) to (2, 2)."
+    },
+    {
+      "input": "grid = [[1,2],[4,3]]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minCost(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minCost(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCost(self, grid: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minCost(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar minCost = function(grid) {\n    \n};",
+    "typescript": "function minCost(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinCost(int[][] grid) {\n        \n    }\n}",
+    "c": "int minCost(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func minCost(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCost(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCost(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_cost(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef min_cost(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function minCost($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minCost(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCost(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_cost(grid :: [[integer]]) :: integer\n  def min_cost(grid) do\n    \n  end\nend",
+    "erlang": "-spec min_cost(Grid :: [[integer()]]) -> integer().\nmin_cost(Grid) ->\n  .",
+    "racket": "(define/contract (min-cost grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,1,1,1],[2,2,2,2],[1,1,1,1],[2,2,2,2]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[1,1,3],[3,2,2],[1,1,4]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[1,2],[4,3]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,1,1,1],[2,2,2,2],[1,1,1,1],[2,2,2,2]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[1,1,3],[3,2,2],[1,1,4]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[1,2],[4,3]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Build a graph where grid[i][j] is connected to all the four side-adjacent cells with weighted edge. the weight is 0 if the sign is pointing to the adjacent cell or 1 otherwise.",
+    "Do BFS from (0, 0) visit all edges with weight = 0 first. the answer is the distance to (m -1, n - 1)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.668Z",
+    "sourceUpdatedAt": null
+  }
+}

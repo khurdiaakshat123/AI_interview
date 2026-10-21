@@ -1,0 +1,163 @@
+{
+  "id": "1316",
+  "slug": "distinct-echo-substrings",
+  "title": "Distinct Echo Substrings",
+  "category": "dsa",
+  "subcategory": "tries",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Trie",
+    "Rolling Hash",
+    "Suffix Array",
+    "Hash Function",
+    "Suffix Automaton",
+    "Suffix Tree"
+  ],
+  "statement": "Return the number of **distinct** non-empty substrings of `text` that can be written as the concatenation of some string with itself (i.e. it can be written as `a + a` where `a` is some string).\n\n**Example 1:**\n\n```\nInput: text = \"abcabcabc\"\nOutput: 3\nExplanation: The 3 substrings are \"abcabc\", \"bcabca\" and \"cabcab\".\n```\n\n**Example 2:**\n\n```\nInput: text = \"leetcodeleetcode\"\nOutput: 2\nExplanation: The 2 substrings are \"ee\" and \"leetcodeleetcode\".\n```\n\n**Constraints:**\n\n*   `1 <= text.length <= 2000`\n*   `text` has only lowercase English letters.",
+  "constraints": [
+    "1 <= text.length <= 2000",
+    "text has only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "text = \"abcabcabc\"",
+      "output": "3",
+      "explanation": "The 3 substrings are \"abcabc\", \"bcabca\" and \"cabcab\"."
+    },
+    {
+      "input": "text = \"leetcodeleetcode\"",
+      "output": "2",
+      "explanation": "The 2 substrings are \"ee\" and \"leetcodeleetcode\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int distinctEchoSubstrings(string text) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int distinctEchoSubstrings(String text) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def distinctEchoSubstrings(self, text: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def distinctEchoSubstrings(self, text):\n        \"\"\"\n        :type text: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} text\n * @return {number}\n */\nvar distinctEchoSubstrings = function(text) {\n    \n};",
+    "typescript": "function distinctEchoSubstrings(text: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int DistinctEchoSubstrings(string text) {\n        \n    }\n}",
+    "c": "int distinctEchoSubstrings(char* text) {\n    \n}",
+    "golang": "func distinctEchoSubstrings(text string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun distinctEchoSubstrings(text: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func distinctEchoSubstrings(_ text: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn distinct_echo_substrings(text: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} text\n# @return {Integer}\ndef distinct_echo_substrings(text)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $text\n     * @return Integer\n     */\n    function distinctEchoSubstrings($text) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int distinctEchoSubstrings(String text) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def distinctEchoSubstrings(text: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec distinct_echo_substrings(text :: String.t) :: integer\n  def distinct_echo_substrings(text) do\n    \n  end\nend",
+    "erlang": "-spec distinct_echo_substrings(Text :: unicode:unicode_binary()) -> integer().\ndistinct_echo_substrings(Text) ->\n  .",
+    "racket": "(define/contract (distinct-echo-substrings text)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcabcabc\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"leetcodeleetcode\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcabcabc\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"leetcodeleetcode\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abca\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"bcabc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"cbacbacba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcabcabcabcabcabc\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcabcabccbacbacba\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"ABCABCABC\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Given a substring of the text, how to check if it can be written as the concatenation of a string with itself ?",
+    "We can do that in linear time, a faster way is to use hashing.",
+    "Try all substrings and use hashing to check them."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/distinct-echo-substrings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.716Z",
+    "sourceUpdatedAt": null
+  }
+}

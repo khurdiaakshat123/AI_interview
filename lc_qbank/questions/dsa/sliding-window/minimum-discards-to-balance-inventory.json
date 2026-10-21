@@ -1,0 +1,164 @@
+{
+  "id": "3679",
+  "slug": "minimum-discards-to-balance-inventory",
+  "title": " Minimum Discards to Balance Inventory",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window",
+    "Simulation",
+    "Counting"
+  ],
+  "statement": "You are given two integers `w` and `m`, and an integer array `arrivals`, where `arrivals[i]` is the type of item arriving on day `i` (days are **1-indexed**).\n\nItems are managed according to the following rules:\n\n*   Each arrival may be **kept** or **discarded**; an item may only be discarded on its arrival day.\n*   For each day `i`, consider the window of days `[max(1, i - w + 1), i]` (the `w` most recent days up to day `i`):\n    *   For **any** such window, each item type may appear **at most** `m` times among kept arrivals whose arrival day lies in that window.\n    *   If keeping the arrival on day `i` would cause its type to appear **more than** `m` times in the window, that arrival **must** be discarded.\n\nReturn the **minimum** number of arrivals to be discarded so that every `w`\\-day window contains at most `m` occurrences of each type.\n\n**Example 1:**\n\n**Input:** arrivals = \\[1,2,1,3,1\\], w = 4, m = 2\n\n**Output:** 0\n\n**Explanation:**\n\n*   On day 1, Item 1 arrives; the window contains no more than `m` occurrences of this type, so we keep it.\n*   On day 2, Item 2 arrives; the window of days 1 - 2 is fine.\n*   On day 3, Item 1 arrives, window `[1, 2, 1]` has item 1 twice, within limit.\n*   On day 4, Item 3 arrives, window `[1, 2, 1, 3]` has item 1 twice, allowed.\n*   On day 5, Item 1 arrives, window `[2, 1, 3, 1]` has item 1 twice, still valid.\n\nThere are no discarded items, so return 0.\n\n**Example 2:**\n\n**Input:** arrivals = \\[1,2,3,3,3,4\\], w = 3, m = 2\n\n**Output:** 1\n\n**Explanation:**\n\n*   On day 1, Item 1 arrives. We keep it.\n*   On day 2, Item 2 arrives, window `[1, 2]` is fine.\n*   On day 3, Item 3 arrives, window `[1, 2, 3]` has item 3 once.\n*   On day 4, Item 3 arrives, window `[2, 3, 3]` has item 3 twice, allowed.\n*   On day 5, Item 3 arrives, window `[3, 3, 3]` has item 3 three times, exceeds limit, so the arrival must be discarded.\n*   On day 6, Item 4 arrives, window `[3, 4]` is fine.\n\nItem 3 on day 5 is discarded, and this is the minimum number of arrivals to discard, so return 1.\n\n**Constraints:**\n\n*   `1 <= arrivals.length <= 10^(5)`\n*   `1 <= arrivals[i] <= 10^(5)`\n*   `1 <= w <= arrivals.length`\n*   `1 <= m <= w`",
+  "constraints": [
+    "1 <= arrivals.length <= 105",
+    "1 <= arrivals[i] <= 105",
+    "1 <= w <= arrivals.length",
+    "1 <= m <= w"
+  ],
+  "examples": [
+    {
+      "input": "arrivals = [1,2,1,3,1], w = 4, m = 2",
+      "output": "0",
+      "explanation": "On day 1, Item 1 arrives; the window contains no more than m occurrences of this type, so we keep it.\n\tOn day 2, Item 2 arrives; the window of days 1 - 2 is fine.\n\tOn day 3, Item 1 arrives, window [1, 2, 1] has item 1 twice, within limit.\n\tOn day 4, Item 3 arrives, window [1, 2, 1, 3] has item 1 twice, allowed.\n\tOn day 5, Item 1 arrives, window [2, 1, 3, 1] has item 1 twice, still valid."
+    },
+    {
+      "input": "arrivals = [1,2,3,3,3,4], w = 3, m = 2",
+      "output": "1",
+      "explanation": "On day 1, Item 1 arrives. We keep it.\n\tOn day 2, Item 2 arrives, window [1, 2] is fine.\n\tOn day 3, Item 3 arrives, window [1, 2, 3] has item 3 once.\n\tOn day 4, Item 3 arrives, window [2, 3, 3] has item 3 twice, allowed.\n\tOn day 5, Item 3 arrives, window [3, 3, 3] has item 3 three times, exceeds limit, so the arrival must be discarded.\n\tOn day 6, Item 4 arrives, window [3, 4] is fine."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minArrivalsToDiscard(vector<int>& arrivals, int w, int m) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minArrivalsToDiscard(int[] arrivals, int w, int m) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minArrivalsToDiscard(self, arrivals: List[int], w: int, m: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minArrivalsToDiscard(self, arrivals, w, m):\n        \"\"\"\n        :type arrivals: List[int]\n        :type w: int\n        :type m: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arrivals\n * @param {number} w\n * @param {number} m\n * @return {number}\n */\nvar minArrivalsToDiscard = function(arrivals, w, m) {\n    \n};",
+    "typescript": "function minArrivalsToDiscard(arrivals: number[], w: number, m: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinArrivalsToDiscard(int[] arrivals, int w, int m) {\n        \n    }\n}",
+    "c": "int minArrivalsToDiscard(int* arrivals, int arrivalsSize, int w, int m) {\n    \n}",
+    "golang": "func minArrivalsToDiscard(arrivals []int, w int, m int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minArrivalsToDiscard(arrivals: IntArray, w: Int, m: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minArrivalsToDiscard(_ arrivals: [Int], _ w: Int, _ m: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_arrivals_to_discard(arrivals: Vec<i32>, w: i32, m: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arrivals\n# @param {Integer} w\n# @param {Integer} m\n# @return {Integer}\ndef min_arrivals_to_discard(arrivals, w, m)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arrivals\n     * @param Integer $w\n     * @param Integer $m\n     * @return Integer\n     */\n    function minArrivalsToDiscard($arrivals, $w, $m) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minArrivalsToDiscard(List<int> arrivals, int w, int m) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minArrivalsToDiscard(arrivals: Array[Int], w: Int, m: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_arrivals_to_discard(arrivals :: [integer], w :: integer, m :: integer) :: integer\n  def min_arrivals_to_discard(arrivals, w, m) do\n    \n  end\nend",
+    "erlang": "-spec min_arrivals_to_discard(Arrivals :: [integer()], W :: integer(), M :: integer()) -> integer().\nmin_arrivals_to_discard(Arrivals, W, M) ->\n  .",
+    "racket": "(define/contract (min-arrivals-to-discard arrivals w m)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,1,3,1]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,3,3,4]\n3\n2",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,1,3,1]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,3,3,4]\n3\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,3,1]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,3,1,2,1]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,2,3]\n4\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,1,1,1]\n4\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1,1]\n4\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,1,3,1,1,2,1,3,1]\n4\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4,2,6,2]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,3,2,4,2]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1,0,2,0]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-2,-1,-3,-1]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]\n4\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,1]\n4\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n4\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n4\n2",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use a sliding window of up to <code>w</code> days with two pointers <code>left</code> and <code>right</code> to represent the current interval.",
+    "Maintain a hash map <code>cnt</code> from item type to its current count in the window. When you advance <code>right</code> to day <code>i</code>, do <code>cnt[arrivals[i]]++</code>.",
+    "If the window size exceeds <code>w</code> (i.e. <code>right - left + 1 > w</code>), shrink it by doing <code>cnt[arrivals[left]]--</code> and then <code>left++</code>.",
+    "After each increment, check if <code>cnt[arrivals[right]] > m</code>. If so, we must discard the current arrival."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-discards-to-balance-inventory/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.824Z",
+    "sourceUpdatedAt": null
+  }
+}

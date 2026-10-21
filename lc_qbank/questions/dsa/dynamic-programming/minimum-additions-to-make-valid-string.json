@@ -1,0 +1,156 @@
+{
+  "id": "2645",
+  "slug": "minimum-additions-to-make-valid-string",
+  "title": "Minimum Additions to Make Valid String",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Stack",
+    "Greedy"
+  ],
+  "statement": "Given a string `word` to which you can insert letters \"a\", \"b\" or \"c\" anywhere and any number of times, return _the minimum number of letters that must be inserted so that `word` becomes **valid**._\n\nA string is called **valid** if it can be formed by concatenating the string \"abc\" several times.\n\n**Example 1:**\n\n```\nInput: word = \"b\"\nOutput: 2\nExplanation: Insert the letter \"a\" right before \"b\", and the letter \"c\" right next to \"b\" to obtain the valid string \"abc\".\n```\n\n**Example 2:**\n\n```\nInput: word = \"aaa\"\nOutput: 6\nExplanation: Insert letters \"b\" and \"c\" next to each \"a\" to obtain the valid string \"abcabcabc\".\n```\n\n**Example 3:**\n\n```\nInput: word = \"abc\"\nOutput: 0\nExplanation: word is already valid. No modifications are needed.\n```\n\n**Constraints:**\n\n*   `1 <= word.length <= 50`\n*   `word` consists of letters \"a\", \"b\" and \"c\" only.",
+  "constraints": [
+    "1 <= word.length <= 50",
+    "word consists of letters \"a\", \"b\" and \"c\" only. "
+  ],
+  "examples": [
+    {
+      "input": "word = \"b\"",
+      "output": "2",
+      "explanation": "Insert the letter \"a\" right before \"b\", and the letter \"c\" right next to \"b\" to obtain the valid string \"abc\"."
+    },
+    {
+      "input": "word = \"aaa\"",
+      "output": "6",
+      "explanation": "Insert letters \"b\" and \"c\" next to each \"a\" to obtain the valid string \"abcabcabc\"."
+    },
+    {
+      "input": "word = \"abc\"",
+      "output": "0",
+      "explanation": "word is already valid. No modifications are needed."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int addMinimum(string word) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int addMinimum(String word) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def addMinimum(self, word: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def addMinimum(self, word):\n        \"\"\"\n        :type word: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word\n * @return {number}\n */\nvar addMinimum = function(word) {\n    \n};",
+    "typescript": "function addMinimum(word: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int AddMinimum(string word) {\n        \n    }\n}",
+    "c": "int addMinimum(char* word) {\n    \n}",
+    "golang": "func addMinimum(word string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun addMinimum(word: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func addMinimum(_ word: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn add_minimum(word: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} word\n# @return {Integer}\ndef add_minimum(word)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word\n     * @return Integer\n     */\n    function addMinimum($word) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int addMinimum(String word) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def addMinimum(word: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec add_minimum(word :: String.t) :: integer\n  def add_minimum(word) do\n    \n  end\nend",
+    "erlang": "-spec add_minimum(Word :: unicode:unicode_binary()) -> integer().\nadd_minimum(Word) ->\n  .",
+    "racket": "(define/contract (add-minimum word)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"b\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaa\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"b\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaa\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"bb\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "\"bc\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"cba\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abcabc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abccba\"",
+      "expectedOutput": "6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Maintain a pointer on word and another pointer on string “abc”.",
+    "If the two characters that are being pointed to differ, Increment the answer and the pointer to the string “abc” by one."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-additions-to-make-valid-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.379Z",
+    "sourceUpdatedAt": null
+  }
+}

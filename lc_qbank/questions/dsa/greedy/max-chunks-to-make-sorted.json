@@ -1,0 +1,161 @@
+{
+  "id": "769",
+  "slug": "max-chunks-to-make-sorted",
+  "title": "Max Chunks To Make Sorted",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Stack",
+    "Greedy",
+    "Sorting",
+    "Monotonic Stack"
+  ],
+  "statement": "You are given an integer array `arr` of length `n` that represents a permutation of the integers in the range `[0, n - 1]`.\n\nWe split `arr` into some number of **chunks** (i.e., partitions), and individually sort each chunk. After concatenating them, the result should equal the sorted array.\n\nReturn _the largest number of chunks we can make to sort the array_.\n\n**Example 1:**\n\n```\nInput: arr = [4,3,2,1,0]\nOutput: 1\nExplanation:\nSplitting into two or more chunks will not return the required result.\nFor example, splitting into [4, 3], [2, 1, 0] will result in [3, 4, 0, 1, 2], which isn't sorted.\n```\n\n**Example 2:**\n\n```\nInput: arr = [1,0,2,3,4]\nOutput: 4\nExplanation:\nWe can split into two chunks, such as [1, 0], [2, 3, 4].\nHowever, splitting into [1, 0], [2], [3], [4] is the highest number of chunks possible.\n```\n\n**Constraints:**\n\n*   `n == arr.length`\n*   `1 <= n <= 10`\n*   `0 <= arr[i] < n`\n*   All the elements of `arr` are **unique**.",
+  "constraints": [
+    "n == arr.length",
+    "1 <= n <= 10",
+    "0 <= arr[i] < n",
+    "All the elements of arr are unique."
+  ],
+  "examples": [
+    {
+      "input": "arr = [4,3,2,1,0]",
+      "output": "1",
+      "explanation": "Splitting into two or more chunks will not return the required result.\nFor example, splitting into [4, 3], [2, 1, 0] will result in [3, 4, 0, 1, 2], which isn't sorted."
+    },
+    {
+      "input": "arr = [1,0,2,3,4]",
+      "output": "4",
+      "explanation": "We can split into two chunks, such as [1, 0], [2, 3, 4].\nHowever, splitting into [1, 0], [2], [3], [4] is the highest number of chunks possible."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxChunksToSorted(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxChunksToSorted(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxChunksToSorted(self, arr: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxChunksToSorted(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number}\n */\nvar maxChunksToSorted = function(arr) {\n    \n};",
+    "typescript": "function maxChunksToSorted(arr: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxChunksToSorted(int[] arr) {\n        \n    }\n}",
+    "c": "int maxChunksToSorted(int* arr, int arrSize) {\n    \n}",
+    "golang": "func maxChunksToSorted(arr []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxChunksToSorted(arr: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxChunksToSorted(_ arr: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_chunks_to_sorted(arr: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer}\ndef max_chunks_to_sorted(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer\n     */\n    function maxChunksToSorted($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxChunksToSorted(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxChunksToSorted(arr: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_chunks_to_sorted(arr :: [integer]) :: integer\n  def max_chunks_to_sorted(arr) do\n    \n  end\nend",
+    "erlang": "-spec max_chunks_to_sorted(Arr :: [integer()]) -> integer().\nmax_chunks_to_sorted(Arr) ->\n  .",
+    "racket": "(define/contract (max-chunks-to-sorted arr)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[4,3,2,1,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,0,2,3,4]",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[4,3,2,1,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,0,2,3,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1,2,3,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[4,4,4,4,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,3,2,1,0,4,3,2,1,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[8,6,4,2,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,4,3,2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,2,1,0,-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-4,-3,-2,-1,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The first chunk can be found as the smallest k for which A[:k+1] == [0, 1, 2, ...k]; then we repeat this process."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/max-chunks-to-make-sorted/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.129Z",
+    "sourceUpdatedAt": null
+  }
+}

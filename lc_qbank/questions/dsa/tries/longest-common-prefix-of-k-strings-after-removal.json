@@ -1,0 +1,163 @@
+{
+  "id": "3485",
+  "slug": "longest-common-prefix-of-k-strings-after-removal",
+  "title": "Longest Common Prefix of K Strings After Removal",
+  "category": "dsa",
+  "subcategory": "tries",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "String",
+    "Trie"
+  ],
+  "statement": "You are given an array of strings `words` and an integer `k`.\n\nFor each index `i` in the range `[0, words.length - 1]`, find the **length** of the **longest common prefix** among any `k` strings (selected at **distinct indices**) from the remaining array after removing the `i^(th)` element.\n\nReturn an array `answer`, where `answer[i]` is the answer for `i^(th)` element. If removing the `i^(th)` element leaves the array with fewer than `k` strings, `answer[i]` is 0.\n\n**Example 1:**\n\n**Input:** words = \\[\"jump\",\"run\",\"run\",\"jump\",\"run\"\\], k = 2\n\n**Output:** \\[3,4,4,3,4\\]\n\n**Explanation:**\n\n*   Removing index 0 (`\"jump\"`):\n    *   `words` becomes: `[\"run\", \"run\", \"jump\", \"run\"]`. `\"run\"` occurs 3 times. Choosing any two gives the longest common prefix `\"run\"` (length 3).\n*   Removing index 1 (`\"run\"`):\n    *   `words` becomes: `[\"jump\", \"run\", \"jump\", \"run\"]`. `\"jump\"` occurs twice. Choosing these two gives the longest common prefix `\"jump\"` (length 4).\n*   Removing index 2 (`\"run\"`):\n    *   `words` becomes: `[\"jump\", \"run\", \"jump\", \"run\"]`. `\"jump\"` occurs twice. Choosing these two gives the longest common prefix `\"jump\"` (length 4).\n*   Removing index 3 (`\"jump\"`):\n    *   `words` becomes: `[\"jump\", \"run\", \"run\", \"run\"]`. `\"run\"` occurs 3 times. Choosing any two gives the longest common prefix `\"run\"` (length 3).\n*   Removing index 4 (\"run\"):\n    *   `words` becomes: `[\"jump\", \"run\", \"run\", \"jump\"]`. `\"jump\"` occurs twice. Choosing these two gives the longest common prefix `\"jump\"` (length 4).\n\n**Example 2:**\n\n**Input:** words = \\[\"dog\",\"racer\",\"car\"\\], k = 2\n\n**Output:** \\[0,0,0\\]\n\n**Explanation:**\n\n*   Removing any index results in an answer of 0.\n\n**Constraints:**\n\n*   `1 <= k <= words.length <= 10^(5)`\n*   `1 <= words[i].length <= 10^(4)`\n*   `words[i]` consists of lowercase English letters.\n*   The sum of `words[i].length` is smaller than or equal `10^(5)`.",
+  "constraints": [
+    "1 <= k <= words.length <= 105",
+    "1 <= words[i].length <= 104",
+    "words[i] consists of lowercase English letters.",
+    "The sum of words[i].length is smaller than or equal 105."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"jump\",\"run\",\"run\",\"jump\",\"run\"], k = 2",
+      "output": "[3,4,4,3,4]",
+      "explanation": "Removing index 0 (\"jump\"):\n\n\t\n\t\twords becomes: [\"run\", \"run\", \"jump\", \"run\"]. \"run\" occurs 3 times. Choosing any two gives the longest common prefix \"run\" (length 3).\n\t\n\t\n\tRemoving index 1 (\"run\"):\n\t\n\t\twords becomes: [\"jump\", \"run\", \"jump\", \"run\"]. \"jump\" occurs twice. Choosing these two gives the longest common prefix \"jump\" (length 4).\n\t\n\t\n\tRemoving index 2 (\"run\"):\n\t\n\t\twords becomes: [\"jump\", \"run\", \"jump\", \"run\"]. \"jump\" occurs twice. Choosing these two gives the longest common prefix \"jump\" (length 4).\n\t\n\t\n\tRemoving index 3 (\"jump\"):\n\t\n\t\twords becomes: [\"jump\", \"run\", \"run\", \"run\"]. \"run\" occurs 3 times. Choosing any two gives the longest common prefix \"run\" (length 3).\n\t\n\t\n\tRemoving index 4 (\"run\"):\n\t\n\t\twords becomes: [\"jump\", \"run\", \"run\", \"jump\"]. \"jump\" occurs twice. Choosing these two gives the longest common prefix \"jump\" (length 4)."
+    },
+    {
+      "input": "words = [\"dog\",\"racer\",\"car\"], k = 2",
+      "output": "[0,0,0]",
+      "explanation": "Removing any index results in an answer of 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> longestCommonPrefix(vector<string>& words, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] longestCommonPrefix(String[] words, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestCommonPrefix(self, words: List[str], k: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def longestCommonPrefix(self, words, k):\n        \"\"\"\n        :type words: List[str]\n        :type k: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @param {number} k\n * @return {number[]}\n */\nvar longestCommonPrefix = function(words, k) {\n    \n};",
+    "typescript": "function longestCommonPrefix(words: string[], k: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] LongestCommonPrefix(string[] words, int k) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* longestCommonPrefix(char** words, int wordsSize, int k, int* returnSize) {\n    \n}",
+    "golang": "func longestCommonPrefix(words []string, k int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestCommonPrefix(words: Array<String>, k: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestCommonPrefix(_ words: [String], _ k: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_common_prefix(words: Vec<String>, k: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @param {Integer} k\n# @return {Integer[]}\ndef longest_common_prefix(words, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @param Integer $k\n     * @return Integer[]\n     */\n    function longestCommonPrefix($words, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> longestCommonPrefix(List<String> words, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestCommonPrefix(words: Array[String], k: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_common_prefix(words :: [String.t], k :: integer) :: [integer]\n  def longest_common_prefix(words, k) do\n    \n  end\nend",
+    "erlang": "-spec longest_common_prefix(Words :: [unicode:unicode_binary()], K :: integer()) -> [integer()].\nlongest_common_prefix(Words, K) ->\n  .",
+    "racket": "(define/contract (longest-common-prefix words k)\n  (-> (listof string?) exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"jump\",\"run\",\"run\",\"jump\",\"run\"]\n2",
+      "expectedOutput": "[3,4,4,3,4]"
+    },
+    {
+      "input": "[\"dog\",\"racer\",\"car\"]\n2",
+      "expectedOutput": "[0,0,0]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"jump\",\"run\",\"run\",\"jump\",\"run\"]\n2",
+      "expectedOutput": "[3,4,4,3,4]"
+    },
+    {
+      "input": "[\"dog\",\"racer\",\"car\"]\n2",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"jump\",\"run\"]\n2",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "[\"run\",\"jump\",\"run\"]\n2",
+      "expectedOutput": "[0,3,0]"
+    },
+    {
+      "input": "[\"jump\"]\n2",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[\"run\",\"jump\",\"run\",\"run\",\"jump\"]\n2",
+      "expectedOutput": "[4,3,4,4,3]"
+    },
+    {
+      "input": "[\"jump\",\"jump\",\"run\",\"run\",\"run\"]\n2",
+      "expectedOutput": "[3,3,4,4,4]"
+    },
+    {
+      "input": "[\"run\",\"run\",\"run\",\"jump\",\"jump\"]\n2",
+      "expectedOutput": "[4,4,4,3,3]"
+    },
+    {
+      "input": "[\"jump\",\"jump\",\"jump\",\"jump\",\"jump\"]\n2",
+      "expectedOutput": "[4,4,4,4,4]"
+    },
+    {
+      "input": "[\"jump\",\"run\",\"run\",\"jump\",\"run\",\"jump\",\"run\",\"run\",\"jump\",\"run\"]\n2",
+      "expectedOutput": "[4,4,4,4,4,4,4,4,4,4]"
+    },
+    {
+      "input": "[\"a\"]\n2",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[\"\"]\n2",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[\"a\",\"b\"]\n2",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "[\"a\",\"a\"]\n2",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]\n2",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]\n2",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n2",
+      "expectedOutput": "[1,0,0,1,1,1]"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]\n2",
+      "expectedOutput": "[0,0,0,0,0]"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]\n2",
+      "expectedOutput": "[1,0,0]"
+    },
+    {
+      "input": "[\"hello\",\"world\"]\n2",
+      "expectedOutput": "[0,0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use a trie to store all the strings initially.",
+    "For each node in the trie, maintain the count of paths ending there.",
+    "For each <code>arr[i]</code>, remove it from the trie and update the counts.",
+    "During evaluation, find the innermost node with at least <code>k</code> paths ending there.",
+    "Use a multiset or similar structure to handle updates efficiently."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-common-prefix-of-k-strings-after-removal/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.422Z",
+    "sourceUpdatedAt": null
+  }
+}

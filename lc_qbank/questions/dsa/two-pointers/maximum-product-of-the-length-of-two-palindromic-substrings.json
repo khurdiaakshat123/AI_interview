@@ -1,0 +1,162 @@
+{
+  "id": "1960",
+  "slug": "maximum-product-of-the-length-of-two-palindromic-substrings",
+  "title": "Maximum Product of the Length of Two Palindromic Substrings",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Hard",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Rolling Hash",
+    "Hash Function",
+    "Manacher",
+    "Palindromic Tree"
+  ],
+  "statement": "You are given a **0-indexed** string `s` and are tasked with finding two **non-intersecting palindromic** substrings of **odd** length such that the product of their lengths is maximized.\n\nMore formally, you want to choose four integers `i`, `j`, `k`, `l` such that `0 <= i <= j < k <= l < s.length` and both the substrings `s[i...j]` and `s[k...l]` are palindromes and have odd lengths. `s[i...j]` denotes a substring from index `i` to index `j` **inclusive**.\n\nReturn _the **maximum** possible product of the lengths of the two non-intersecting palindromic substrings._\n\nA **palindrome** is a string that is the same forward and backward. A **substring** is a contiguous sequence of characters in a string.\n\n**Example 1:**\n\n```\nInput: s = \"ababbb\"\nOutput: 9\nExplanation: Substrings \"aba\" and \"bbb\" are palindromes with odd length. product = 3 * 3 = 9.\n```\n\n**Example 2:**\n\n```\nInput: s = \"zaaaxbbby\"\nOutput: 9\nExplanation: Substrings \"aaa\" and \"bbb\" are palindromes with odd length. product = 3 * 3 = 9.\n```\n\n**Constraints:**\n\n*   `2 <= s.length <= 10^(5)`\n*   `s` consists of lowercase English letters.",
+  "constraints": [
+    "2 <= s.length <= 105",
+    "s consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"ababbb\"",
+      "output": "9",
+      "explanation": "Substrings \"aba\" and \"bbb\" are palindromes with odd length. product = 3 * 3 = 9."
+    },
+    {
+      "input": "s = \"zaaaxbbby\"",
+      "output": "9",
+      "explanation": "Substrings \"aaa\" and \"bbb\" are palindromes with odd length. product = 3 * 3 = 9."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxProduct(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxProduct(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProduct(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxProduct(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar maxProduct = function(s) {\n    \n};",
+    "typescript": "function maxProduct(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxProduct(string s) {\n        \n    }\n}",
+    "c": "long long maxProduct(char* s) {\n    \n}",
+    "golang": "func maxProduct(s string) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProduct(s: String): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProduct(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_product(s: String) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef max_product(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function maxProduct($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxProduct(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProduct(s: String): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_product(s :: String.t) :: integer\n  def max_product(s) do\n    \n  end\nend",
+    "erlang": "-spec max_product(S :: unicode:unicode_binary()) -> integer().\nmax_product(S) ->\n  .",
+    "racket": "(define/contract (max-product s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"ababbb\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"zaaaxbbby\"",
+      "expectedOutput": "9"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"ababbb\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"zaaaxbbby\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"bbb\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"bbbaba\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"ababbbababbb\"",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"ababbbbbbaba\"",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "\"ABABBB\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"racecar\"",
+      "expectedOutput": "5"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "You can use Manacher's algorithm to get the maximum palindromic substring centered at each index",
+    "After using Manacher's for each center use a line sweep from the center to the left and from the center to the right to find for each index the farthest center to it with distance ≤ palin[center]",
+    "After that, find the maximum palindrome size for each prefix in the string and for each suffix and the answer would be max(prefix[i] * suffix[i + 1])"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.422Z",
+    "sourceUpdatedAt": null
+  }
+}

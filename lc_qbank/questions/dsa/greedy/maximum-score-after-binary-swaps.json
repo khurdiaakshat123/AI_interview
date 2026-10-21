@@ -1,0 +1,163 @@
+{
+  "id": "3781",
+  "slug": "maximum-score-after-binary-swaps",
+  "title": "Maximum Score After Binary Swaps",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "You are given an integer array `nums` of length `n` and a binary string `s` of the same length.\n\nInitially, your score is 0. Each index `i` where `s[i] = '1'` contributes `nums[i]` to the score.\n\nYou may perform **any** number of operations (including zero). In one operation, you may choose an index `i` such that `0 <= i < n - 1`, where `s[i] = '0'`, and `s[i + 1] = '1'`, and swap these two characters.\n\nReturn an integer denoting the **maximum possible score** you can achieve.\n\n**Example 1:**\n\n**Input:** nums = \\[2,1,5,2,3\\], s = \"01010\"\n\n**Output:** 7\n\n**Explanation:**\n\nWe can perform the following swaps:\n\n*   Swap at index `i = 0`: `\"01010\"` changes to `\"10010\"`\n*   Swap at index `i = 2`: `\"10010\"` changes to `\"10100\"`\n\nPositions 0 and 2 contain `'1'`, contributing `nums[0] + nums[2] = 2 + 5 = 7`. This is maximum score achievable.\n\n**Example 2:**\n\n**Input:** nums = \\[4,7,2,9\\], s = \"0000\"\n\n**Output:** 0\n\n**Explanation:**\n\nThere are no `'1'` characters in `s`, so no swaps can be performed. The score remains 0.\n\n**Constraints:**\n\n*   `n == nums.length == s.length`\n*   `1 <= n <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`\n*   `s[i]` is either `'0'` or `'1'`",
+  "constraints": [
+    "n == nums.length == s.length",
+    "1 <= n <= 105",
+    "1 <= nums[i] <= 109",
+    "s[i] is either '0' or '1'"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,1,5,2,3], s = \"01010\"",
+      "output": "7",
+      "explanation": null
+    },
+    {
+      "input": "nums = [4,7,2,9], s = \"0000\"",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maximumScore(vector<int>& nums, string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maximumScore(int[] nums, String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumScore(self, nums: List[int], s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumScore(self, nums, s):\n        \"\"\"\n        :type nums: List[int]\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {string} s\n * @return {number}\n */\nvar maximumScore = function(nums, s) {\n    \n};",
+    "typescript": "function maximumScore(nums: number[], s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaximumScore(int[] nums, string s) {\n        \n    }\n}",
+    "c": "long long maximumScore(int* nums, int numsSize, char* s) {\n    \n}",
+    "golang": "func maximumScore(nums []int, s string) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumScore(nums: IntArray, s: String): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumScore(_ nums: [Int], _ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_score(nums: Vec<i32>, s: String) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {String} s\n# @return {Integer}\ndef maximum_score(nums, s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param String $s\n     * @return Integer\n     */\n    function maximumScore($nums, $s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumScore(List<int> nums, String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumScore(nums: Array[Int], s: String): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_score(nums :: [integer], s :: String.t) :: integer\n  def maximum_score(nums, s) do\n    \n  end\nend",
+    "erlang": "-spec maximum_score(Nums :: [integer()], S :: unicode:unicode_binary()) -> integer().\nmaximum_score(Nums, S) ->\n  .",
+    "racket": "(define/contract (maximum-score nums s)\n  (-> (listof exact-integer?) string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,1,5,2,3]\n\"01010\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[4,7,2,9]\n\"0000\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,1,5,2,3]\n\"01010\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[4,7,2,9]\n\"0000\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]\n\"01010\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,2,3]\n\"01010\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2]\n\"01010\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,3]\n\"01010\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,2,5,1,2]\n\"01010\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,2,2,3,5]\n\"01010\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[5,3,2,2,1]\n\"01010\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[2,2,2,2,2]\n\"01010\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,1,5,2,3,2,1,5,2,3]\n\"01010\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[4,2,10,4,6]\n\"01010\"",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[3,2,6,3,4]\n\"01010\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,0,4,1,2]\n\"01010\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-2,-1,-5,-2,-3]\n\"01010\"",
+      "expectedOutput": "-3"
+    },
+    {
+      "input": "[0,0,0,0]\n\"01010\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n\"01010\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]\n\"01010\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n\"01010\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n\"01010\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The problem can be solved greedily",
+    "The operation only allows <code>'1'</code>s to move backward",
+    "Going from left to right, maintain a priority queue (max heap)",
+    "When at a <code>'1'</code>, pop the top of the priority queue if it is not empty"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-score-after-binary-swaps/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.528Z",
+    "sourceUpdatedAt": null
+  }
+}

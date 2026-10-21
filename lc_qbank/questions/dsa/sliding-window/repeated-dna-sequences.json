@@ -1,0 +1,160 @@
+{
+  "id": "187",
+  "slug": "repeated-dna-sequences",
+  "title": "Repeated DNA Sequences",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Sliding Window",
+    "Rolling Hash",
+    "Hash Function",
+    "Z Algorithm",
+    "Boyer–Moore String-Search Algorithm"
+  ],
+  "statement": "The **DNA sequence** is composed of a series of nucleotides abbreviated as `'A'`, `'C'`, `'G'`, and `'T'`.\n\n*   For example, `\"ACGAATTCCG\"` is a **DNA sequence**.\n\nWhen studying **DNA**, it is useful to identify repeated sequences within the DNA.\n\nGiven a string `s` that represents a **DNA sequence**, return all the **`10`\\-letter-long** sequences (substrings) that occur more than once in a DNA molecule. You may return the answer in **any order**.\n\n**Example 1:**\n\n```\nInput: s = \"AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT\"\nOutput: [\"AAAAACCCCC\",\"CCCCCAAAAA\"]\n```\n\n**Example 2:**\n\n```\nInput: s = \"AAAAAAAAAAAAA\"\nOutput: [\"AAAAAAAAAA\"]\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s[i]` is either `'A'`, `'C'`, `'G'`, or `'T'`.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s[i] is either 'A', 'C', 'G', or 'T'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT\"",
+      "output": "[\"AAAAACCCCC\",\"CCCCCAAAAA\"]",
+      "explanation": null
+    },
+    {
+      "input": "s = \"AAAAAAAAAAAAA\"",
+      "output": "[\"AAAAAAAAAA\"]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> findRepeatedDnaSequences(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> findRepeatedDnaSequences(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findRepeatedDnaSequences(self, s: str) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def findRepeatedDnaSequences(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string[]}\n */\nvar findRepeatedDnaSequences = function(s) {\n    \n};",
+    "typescript": "function findRepeatedDnaSequences(s: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> FindRepeatedDnaSequences(string s) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** findRepeatedDnaSequences(char* s, int* returnSize) {\n    \n}",
+    "golang": "func findRepeatedDnaSequences(s string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findRepeatedDnaSequences(s: String): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findRepeatedDnaSequences(_ s: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_repeated_dna_sequences(s: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String[]}\ndef find_repeated_dna_sequences(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String[]\n     */\n    function findRepeatedDnaSequences($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> findRepeatedDnaSequences(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findRepeatedDnaSequences(s: String): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_repeated_dna_sequences(s :: String.t) :: [String.t]\n  def find_repeated_dna_sequences(s) do\n    \n  end\nend",
+    "erlang": "-spec find_repeated_dna_sequences(S :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nfind_repeated_dna_sequences(S) ->\n  .",
+    "racket": "(define/contract (find-repeated-dna-sequences s)\n  (-> string? (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT\"",
+      "expectedOutput": "[\"AAAAACCCCC\",\"CCCCCAAAAA\"]"
+    },
+    {
+      "input": "\"AAAAAAAAAAAAA\"",
+      "expectedOutput": "[\"AAAAAAAAAA\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT\"",
+      "expectedOutput": "[\"AAAAACCCCC\",\"CCCCCAAAAA\"]"
+    },
+    {
+      "input": "\"AAAAAAAAAAAAA\"",
+      "expectedOutput": "[\"AAAAAAAAAA\"]"
+    },
+    {
+      "input": "\"AAAAACCCCCAAAAAC\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"CCCCCAAAAAGGGTTT\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"A\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"AA\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"TTTGGGAAAAACCCCCCAAAAACCCCCAAAAA\"",
+      "expectedOutput": "[\"AAAAACCCCC\",\"CCCCCAAAAA\"]"
+    },
+    {
+      "input": "\"AAAAAA\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aaaaacccccaaaaaccccccaaaaagggttt\"",
+      "expectedOutput": "[\"aaaaaccccc\",\"cccccaaaaa\"]"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "[]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/repeated-dna-sequences/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.668Z",
+    "sourceUpdatedAt": null
+  }
+}

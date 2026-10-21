@@ -1,0 +1,160 @@
+{
+  "id": "2516",
+  "slug": "take-k-of-each-character-from-left-and-right",
+  "title": "Take K of Each Character From Left and Right",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "You are given a string `s` consisting of the characters `'a'`, `'b'`, and `'c'` and a non-negative integer `k`. Each minute, you may take either the **leftmost** character of `s`, or the **rightmost** character of `s`.\n\nReturn _the **minimum** number of minutes needed for you to take **at least**_ `k` _of each character, or return_ `-1` _if it is not possible to take_ `k` _of each character._\n\n**Example 1:**\n\n```\nInput: s = \"aabaaaacaabc\", k = 2\nOutput: 8\nExplanation: \nTake three characters from the left of s. You now have two 'a' characters, and one 'b' character.\nTake five characters from the right of s. You now have four 'a' characters, two 'b' characters, and two 'c' characters.\nA total of 3 + 5 = 8 minutes is needed.\nIt can be proven that 8 is the minimum number of minutes needed.\n```\n\n**Example 2:**\n\n```\nInput: s = \"a\", k = 1\nOutput: -1\nExplanation: It is not possible to take one 'b' or 'c' so return -1.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists of only the letters `'a'`, `'b'`, and `'c'`.\n*   `0 <= k <= s.length`",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists of only the letters 'a', 'b', and 'c'.",
+    "0 <= k <= s.length"
+  ],
+  "examples": [
+    {
+      "input": "s = \"aabaaaacaabc\", k = 2",
+      "output": "8",
+      "explanation": "Take three characters from the left of s. You now have two 'a' characters, and one 'b' character.\nTake five characters from the right of s. You now have four 'a' characters, two 'b' characters, and two 'c' characters.\nA total of 3 + 5 = 8 minutes is needed.\nIt can be proven that 8 is the minimum number of minutes needed."
+    },
+    {
+      "input": "s = \"a\", k = 1",
+      "output": "-1",
+      "explanation": "It is not possible to take one 'b' or 'c' so return -1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int takeCharacters(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int takeCharacters(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def takeCharacters(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def takeCharacters(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar takeCharacters = function(s, k) {\n    \n};",
+    "typescript": "function takeCharacters(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int TakeCharacters(string s, int k) {\n        \n    }\n}",
+    "c": "int takeCharacters(char* s, int k) {\n    \n}",
+    "golang": "func takeCharacters(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun takeCharacters(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func takeCharacters(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn take_characters(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef take_characters(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function takeCharacters($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int takeCharacters(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def takeCharacters(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec take_characters(s :: String.t, k :: integer) :: integer\n  def take_characters(s, k) do\n    \n  end\nend",
+    "erlang": "-spec take_characters(S :: unicode:unicode_binary(), K :: integer()) -> integer().\ntake_characters(S, K) ->\n  .",
+    "racket": "(define/contract (take-characters s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aabaaaacaabc\"\n2",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"a\"\n1",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aabaaaacaabc\"\n2",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"a\"\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aabaaa\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"acaabc\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"cbaacaaaabaa\"\n2",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"aaaaaa\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"AABAAAACAABC\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"edcba\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aab\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aA\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"0\"\n2",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Start by counting the frequency of each character and checking if it is possible.",
+    "If you take x characters from the left side, what is the minimum number of characters you need to take from the right side? Find this for all values of x in the range 0 ≤ x ≤ s.length.",
+    "Use a two-pointers approach to avoid computing the same information multiple times."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.834Z",
+    "sourceUpdatedAt": null
+  }
+}

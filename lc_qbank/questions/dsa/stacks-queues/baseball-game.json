@@ -1,0 +1,142 @@
+{
+  "id": "682",
+  "slug": "baseball-game",
+  "title": "Baseball Game",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Stack",
+    "Simulation"
+  ],
+  "statement": "You are keeping the scores for a baseball game with strange rules. At the beginning of the game, you start with an empty record.\n\nYou are given a list of strings `operations`, where `operations[i]` is the `i^(th)` operation you must apply to the record and is one of the following:\n\n*   An integer `x`.\n    *   Record a new score of `x`.\n*   `'+'`.\n    *   Record a new score that is the sum of the previous two scores.\n*   `'D'`.\n    *   Record a new score that is the double of the previous score.\n*   `'C'`.\n    *   Invalidate the previous score, removing it from the record.\n\nReturn _the sum of all the scores on the record after applying all the operations_.\n\nThe test cases are generated such that the answer and all intermediate calculations fit in a **32-bit** integer and that all operations are valid.\n\n**Example 1:**\n\n```\nInput: ops = [\"5\",\"2\",\"C\",\"D\",\"+\"]\nOutput: 30\nExplanation:\n\"5\" - Add 5 to the record, record is now [5].\n\"2\" - Add 2 to the record, record is now [5, 2].\n\"C\" - Invalidate and remove the previous score, record is now [5].\n\"D\" - Add 2 * 5 = 10 to the record, record is now [5, 10].\n\"+\" - Add 5 + 10 = 15 to the record, record is now [5, 10, 15].\nThe total sum is 5 + 10 + 15 = 30.\n```\n\n**Example 2:**\n\n```\nInput: ops = [\"5\",\"-2\",\"4\",\"C\",\"D\",\"9\",\"+\",\"+\"]\nOutput: 27\nExplanation:\n\"5\" - Add 5 to the record, record is now [5].\n\"-2\" - Add -2 to the record, record is now [5, -2].\n\"4\" - Add 4 to the record, record is now [5, -2, 4].\n\"C\" - Invalidate and remove the previous score, record is now [5, -2].\n\"D\" - Add 2 * -2 = -4 to the record, record is now [5, -2, -4].\n\"9\" - Add 9 to the record, record is now [5, -2, -4, 9].\n\"+\" - Add -4 + 9 = 5 to the record, record is now [5, -2, -4, 9, 5].\n\"+\" - Add 9 + 5 = 14 to the record, record is now [5, -2, -4, 9, 5, 14].\nThe total sum is 5 + -2 + -4 + 9 + 5 + 14 = 27.\n```\n\n**Example 3:**\n\n```\nInput: ops = [\"1\",\"C\"]\nOutput: 0\nExplanation:\n\"1\" - Add 1 to the record, record is now [1].\n\"C\" - Invalidate and remove the previous score, record is now [].\nSince the record is empty, the total sum is 0.\n```\n\n**Constraints:**\n\n*   `1 <= operations.length <= 1000`\n*   `operations[i]` is `\"C\"`, `\"D\"`, `\"+\"`, or a string representing an integer in the range `[-3 * 10^(4), 3 * 10^(4)]`.\n*   For operation `\"+\"`, there will always be at least two previous scores on the record.\n*   For operations `\"C\"` and `\"D\"`, there will always be at least one previous score on the record.",
+  "constraints": [
+    "1 <= operations.length <= 1000",
+    "operations[i] is \"C\", \"D\", \"+\", or a string representing an integer in the range [-3 * 104, 3 * 104].",
+    "For operation \"+\", there will always be at least two previous scores on the record.",
+    "For operations \"C\" and \"D\", there will always be at least one previous score on the record."
+  ],
+  "examples": [
+    {
+      "input": "ops = [\"5\",\"2\",\"C\",\"D\",\"+\"]",
+      "output": "30",
+      "explanation": "\"5\" - Add 5 to the record, record is now [5].\n\"2\" - Add 2 to the record, record is now [5, 2].\n\"C\" - Invalidate and remove the previous score, record is now [5].\n\"D\" - Add 2 * 5 = 10 to the record, record is now [5, 10].\n\"+\" - Add 5 + 10 = 15 to the record, record is now [5, 10, 15].\nThe total sum is 5 + 10 + 15 = 30."
+    },
+    {
+      "input": "ops = [\"5\",\"-2\",\"4\",\"C\",\"D\",\"9\",\"+\",\"+\"]",
+      "output": "27",
+      "explanation": "\"5\" - Add 5 to the record, record is now [5].\n\"-2\" - Add -2 to the record, record is now [5, -2].\n\"4\" - Add 4 to the record, record is now [5, -2, 4].\n\"C\" - Invalidate and remove the previous score, record is now [5, -2].\n\"D\" - Add 2 * -2 = -4 to the record, record is now [5, -2, -4].\n\"9\" - Add 9 to the record, record is now [5, -2, -4, 9].\n\"+\" - Add -4 + 9 = 5 to the record, record is now [5, -2, -4, 9, 5].\n\"+\" - Add 9 + 5 = 14 to the record, record is now [5, -2, -4, 9, 5, 14].\nThe total sum is 5 + -2 + -4 + 9 + 5 + 14 = 27."
+    },
+    {
+      "input": "ops = [\"1\",\"C\"]",
+      "output": "0",
+      "explanation": "\"1\" - Add 1 to the record, record is now [1].\n\"C\" - Invalidate and remove the previous score, record is now [].\nSince the record is empty, the total sum is 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int calPoints(vector<string>& operations) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int calPoints(String[] operations) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def calPoints(self, operations: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def calPoints(self, operations):\n        \"\"\"\n        :type operations: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} operations\n * @return {number}\n */\nvar calPoints = function(operations) {\n    \n};",
+    "typescript": "function calPoints(operations: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CalPoints(string[] operations) {\n        \n    }\n}",
+    "c": "int calPoints(char** operations, int operationsSize) {\n    \n}",
+    "golang": "func calPoints(operations []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun calPoints(operations: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func calPoints(_ operations: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn cal_points(operations: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} operations\n# @return {Integer}\ndef cal_points(operations)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $operations\n     * @return Integer\n     */\n    function calPoints($operations) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int calPoints(List<String> operations) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def calPoints(operations: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec cal_points(operations :: [String.t]) :: integer\n  def cal_points(operations) do\n    \n  end\nend",
+    "erlang": "-spec cal_points(Operations :: [unicode:unicode_binary()]) -> integer().\ncal_points(Operations) ->\n  .",
+    "racket": "(define/contract (cal-points operations)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"5\",\"2\",\"C\",\"D\",\"+\"]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "[\"5\",\"-2\",\"4\",\"C\",\"D\",\"9\",\"+\",\"+\"]",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "[\"1\",\"C\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"5\",\"2\",\"C\",\"D\",\"+\"]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "[\"5\",\"-2\",\"4\",\"C\",\"D\",\"9\",\"+\",\"+\"]",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "[\"1\",\"C\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"5\",\"2\"]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[\"5\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"5\",\"5\",\"5\",\"5\",\"5\"]",
+      "expectedOutput": "25"
+    },
+    {
+      "input": "[\"5\",\"2\",\"C\",\"D\",\"+\",\"5\",\"2\",\"C\",\"D\",\"+\"]",
+      "expectedOutput": "60"
+    },
+    {
+      "input": "[\"1\",\"2\",\"3\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"5\",\"-2\",\"4\",\"C\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"5\",\"-2\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"5\",\"-2\",\"4\",\"C\",\"D\",\"9\",\"+\",\"+\",\"5\",\"-2\",\"4\",\"C\",\"D\",\"9\",\"+\",\"+\"]",
+      "expectedOutput": "54"
+    },
+    {
+      "input": "[\"1\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"1\",\"1\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"1\",\"C\",\"1\",\"C\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/baseball-game/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.421Z",
+    "sourceUpdatedAt": null
+  }
+}

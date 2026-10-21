@@ -1,0 +1,64 @@
+{
+  "id": "1378",
+  "slug": "replace-employee-id-with-the-unique-identifier",
+  "title": "Replace Employee ID With The Unique Identifier",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Employees`\n\n```\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| id            | int     |\n| name          | varchar |\n+---------------+---------+\nid is the primary key (column with unique values) for this table.\nEach row of this table contains the id and the name of an employee in a company.\n```\n\nTable: `EmployeeUNI`\n\n```\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| id            | int     |\n| unique_id     | int     |\n+---------------+---------+\n(id, unique_id) is the primary key (combination of columns with unique values) for this table.\nEach row of this table contains the id and the corresponding unique id of an employee in the company.\n```\n\nWrite a solution to show the **unique ID** of each user, If a user does not have a unique ID replace just show `null`.\n\nReturn the result table in **any** order.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployees table:\n+----+----------+\n| id | name     |\n+----+----------+\n| 1  | Alice    |\n| 7  | Bob      |\n| 11 | Meir     |\n| 90 | Winston  |\n| 3  | Jonathan |\n+----+----------+\nEmployeeUNI table:\n+----+-----------+\n| id | unique_id |\n+----+-----------+\n| 3  | 1         |\n| 11 | 2         |\n| 90 | 3         |\n+----+-----------+\nOutput: \n+-----------+----------+\n| unique_id | name     |\n+-----------+----------+\n| null      | Alice    |\n| null      | Bob      |\n| 2         | Meir     |\n| 3         | Winston  |\n| 1         | Jonathan |\n+-----------+----------+\nExplanation: \nAlice and Bob do not have a unique ID, We will show null instead.\nThe unique ID of Meir is 2.\nThe unique ID of Winston is 3.\nThe unique ID of Jonathan is 1.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Employees table:\n+----+----------+\n| id | name     |\n+----+----------+\n| 1  | Alice    |\n| 7  | Bob      |\n| 11 | Meir     |\n| 90 | Winston  |\n| 3  | Jonathan |\n+----+----------+\nEmployeeUNI table:\n+----+-----------+\n| id | unique_id |\n+----+-----------+\n| 3  | 1         |\n| 11 | 2         |\n| 90 | 3         |\n+----+-----------+",
+      "output": "+-----------+----------+\n| unique_id | name     |\n+-----------+----------+\n| null      | Alice    |\n| null      | Bob      |\n| 2         | Meir     |\n| 3         | Winston  |\n| 1         | Jonathan |\n+-----------+----------+",
+      "explanation": "Alice and Bob do not have a unique ID, We will show null instead.\nThe unique ID of Meir is 2.\nThe unique ID of Winston is 3.\nThe unique ID of Jonathan is 1."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef replace_employee_id(employees: pd.DataFrame, employee_uni: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Employees\":[\"id\",\"name\"],\"EmployeeUNI\":[\"id\",\"unique_id\"]},\"rows\":{\"Employees\":[[1,\"Alice\"],[7,\"Bob\"],[11,\"Meir\"],[90,\"Winston\"],[3,\"Jonathan\"]],\"EmployeeUNI\":[[3,1],[11,2],[90,3]]}}",
+      "expectedOutput": "+-----------+----------+\n| unique_id | name     |\n+-----------+----------+\n| null      | Alice    |\n| null      | Bob      |\n| 2         | Meir     |\n| 3         | Winston  |\n| 1         | Jonathan |\n+-----------+----------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Employees\":[\"id\",\"name\"],\"EmployeeUNI\":[\"id\",\"unique_id\"]},\"rows\":{\"Employees\":[[1,\"Alice\"],[7,\"Bob\"],[11,\"Meir\"],[90,\"Winston\"],[3,\"Jonathan\"]],\"EmployeeUNI\":[[3,1],[11,2],[90,3]]}}",
+      "expectedOutput": "+-----------+----------+\n| unique_id | name     |\n+-----------+----------+\n| null      | Alice    |\n| null      | Bob      |\n| 2         | Meir     |\n| 3         | Winston  |\n| 1         | Jonathan |\n+-----------+----------+"
+    },
+    {
+      "input": "Employees table:\n+----+----------+\n| id | name     |\n+----+----------+\n| 1  | Alice    |\n| 7  | Bob      |\n| 11 | Meir     |\n| 90 | Winston  |\n| 3  | Jonathan |\n+----+----------+\nEmployeeUNI table:\n+----+-----------+\n| id | unique_id |\n+----+-----------+\n| 3  | 1         |\n| 11 | 2         |\n| 90 | 3         |\n+----+-----------+",
+      "expectedOutput": "+-----------+----------+\n| unique_id | name     |\n+-----------+----------+\n| null      | Alice    |\n| null      | Bob      |\n| 2         | Meir     |\n| 3         | Winston  |\n| 1         | Jonathan |\n+-----------+----------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Employees (id int, name varchar(20))\n\nCreate table If Not Exists EmployeeUNI (id int, unique_id int)\n\nTruncate table Employees\n\nTruncate table EmployeeUNI",
+  "sqlSetup": [
+    "insert into Employees (id, name) values ('1', 'Alice')",
+    "insert into Employees (id, name) values ('7', 'Bob')",
+    "insert into Employees (id, name) values ('11', 'Meir')",
+    "insert into Employees (id, name) values ('90', 'Winston')",
+    "insert into Employees (id, name) values ('3', 'Jonathan')",
+    "insert into EmployeeUNI (id, unique_id) values ('3', '1')",
+    "insert into EmployeeUNI (id, unique_id) values ('11', '2')",
+    "insert into EmployeeUNI (id, unique_id) values ('90', '3')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/replace-employee-id-with-the-unique-identifier/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.708Z",
+    "sourceUpdatedAt": null
+  }
+}

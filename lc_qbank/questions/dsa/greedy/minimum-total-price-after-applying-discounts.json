@@ -1,0 +1,169 @@
+{
+  "id": "4014",
+  "slug": "minimum-total-price-after-applying-discounts",
+  "title": "Minimum Total Price After Applying Discounts",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You are given two integer arrays `prices` and `discounts`.\n\nThe value `prices[i]` represents the price of the `i^(th)` item, and `discounts[j]` represents a discount percentage.\n\nYou may apply discounts subject to the following rules:\n\n*   Each discount can be applied to **at most** one item.\n*   Each item can receive **at most** one discount.\n*   An item may also receive no discount.\n\nIf a discount of `d` percent is applied to an item with price `p`, its final price becomes `(p * (100 - d)) / 100`. The final price is **not** rounded.\n\nReturn the **minimum** possible sum of final prices after assigning discounts optimally. Answers within `10^(-5)` of the actual answer will be accepted.\n\n**Example 1:**\n\n**Input:** prices = \\[10,30,21\\], discounts = \\[50,60\\]\n\n**Output:** 32.50000\n\n**Explanation:**\n\n*   Apply `discounts[1] = 60` to `prices[1] = 30`, thus `30 * (100 - 60) / 100 = 12`.\n*   Apply `discounts[0] = 50` to `prices[2] = 21`, thus `21 * (100 - 50) / 100 = 10.5`.\n*   `prices[0] = 10` receives no discount, so it stays 10.\n\nThe total is `12 + 10.5 + 10 = 32.50000`, which is the minimum possible.\n\n**Example 2:**\n\n**Input:** prices = \\[100,70\\], discounts = \\[10,40,50\\]\n\n**Output:** 92.00000\n\n**Explanation:**​​​​​​​\n\n*   Apply `discounts[2] = 50` to `prices[0] = 100`, thus `100 * (100 - 50) / 100 = 50`.\n*   Apply `discounts[1] = 40` to `prices[1] = 70`, thus `70 * (100 - 40) / 100 = 42`.\n\nThe total is `50 + 42 = 92.00000`, which is the minimum possible.\n\n**Example 3:**\n\n**Input:** prices = \\[7,3,9\\], discounts = \\[100,100\\]\n\n**Output:** 3.00000\n\n**Explanation:**\n\n*   Apply `discounts[0] = 100` to `prices[2] = 9`, thus `9 * (100 - 100) / 100 = 0`.\n*   Apply `discounts[1] = 100` to `prices[0] = 7`, thus `7 * (100 - 100) / 100 = 0`.\n*   `prices[1] = 3` receives no discount, so it stays 3.\n\nThe total is `0 + 0 + 3 = 3.00000`, which is the minimum possible.\n\n**Constraints:**\n\n*   `1 <= prices.length, discounts.length <= 10^(5)`\n*   `1 <= prices[i] <= 10^(5)`\n*   `1 <= discounts[j] <= 100`",
+  "constraints": [
+    "1 <= prices.length, discounts.length <= 105",
+    "1 <= prices[i] <= 105",
+    "1 <= discounts[j] <= 100"
+  ],
+  "examples": [
+    {
+      "input": "prices = [10,30,21], discounts = [50,60]",
+      "output": "32.50000",
+      "explanation": "Apply discounts[1] = 60 to prices[1] = 30, thus 30 * (100 - 60) / 100 = 12.\n\tApply discounts[0] = 50 to prices[2] = 21, thus 21 * (100 - 50) / 100 = 10.5.\n\tprices[0] = 10 receives no discount, so it stays 10."
+    },
+    {
+      "input": "prices = [100,70], discounts = [10,40,50]",
+      "output": "92.00000",
+      "explanation": "​​​​​​​\n\n\n\tApply discounts[2] = 50 to prices[0] = 100, thus 100 * (100 - 50) / 100 = 50.\n\tApply discounts[1] = 40 to prices[1] = 70, thus 70 * (100 - 40) / 100 = 42."
+    },
+    {
+      "input": "prices = [7,3,9], discounts = [100,100]",
+      "output": "3.00000",
+      "explanation": "Apply discounts[0] = 100 to prices[2] = 9, thus 9 * (100 - 100) / 100 = 0.\n\tApply discounts[1] = 100 to prices[0] = 7, thus 7 * (100 - 100) / 100 = 0.\n\tprices[1] = 3 receives no discount, so it stays 3."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    double minPrice(vector<int>& prices, vector<int>& discounts) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double minPrice(int[] prices, int[] discounts) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minPrice(self, prices: list[int], discounts: list[int]) -> float:\n        ",
+    "python": "class Solution(object):\n    def minPrice(self, prices, discounts):\n        \"\"\"\n        :type prices: List[int]\n        :type discounts: List[int]\n        :rtype: float\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} prices\n * @param {number[]} discounts\n * @return {number}\n */\nvar minPrice = function(prices, discounts) {\n    \n};",
+    "typescript": "function minPrice(prices: number[], discounts: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public double MinPrice(int[] prices, int[] discounts) {\n        \n    }\n}",
+    "c": "double minPrice(int* prices, int pricesSize, int* discounts, int discountsSize) {\n    \n}",
+    "golang": "func minPrice(prices []int, discounts []int) float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minPrice(prices: IntArray, discounts: IntArray): Double {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minPrice(_ prices: [Int], _ discounts: [Int]) -> Double {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_price(prices: Vec<i32>, discounts: Vec<i32>) -> f64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} prices\n# @param {Integer[]} discounts\n# @return {Float}\ndef min_price(prices, discounts)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $prices\n     * @param Integer[] $discounts\n     * @return Float\n     */\n    function minPrice($prices, $discounts) {\n        \n    }\n}",
+    "dart": "class Solution {\n  double minPrice(List<int> prices, List<int> discounts) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minPrice(prices: Array[Int], discounts: Array[Int]): Double = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_price(prices :: [integer], discounts :: [integer]) :: float\n  def min_price(prices, discounts) do\n    \n  end\nend",
+    "erlang": "-spec min_price(Prices :: [integer()], Discounts :: [integer()]) -> float().\nmin_price(Prices, Discounts) ->\n  .",
+    "racket": "(define/contract (min-price prices discounts)\n  (-> (listof exact-integer?) (listof exact-integer?) flonum?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[10,30,21]\n[50,60]",
+      "expectedOutput": "32.50000"
+    },
+    {
+      "input": "[100,70]\n[10,40,50]",
+      "expectedOutput": "92.00000"
+    },
+    {
+      "input": "[7,3,9]\n[100,100]",
+      "expectedOutput": "3.00000"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[10,30,21]\n[50,60]",
+      "expectedOutput": "32.5"
+    },
+    {
+      "input": "[100,70]\n[10,40,50]",
+      "expectedOutput": "92"
+    },
+    {
+      "input": "[7,3,9]\n[100,100]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[10]\n[50,60]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[30,21]\n[50,60]",
+      "expectedOutput": "22.5"
+    },
+    {
+      "input": "[10,21]\n[50,60]",
+      "expectedOutput": "13.4"
+    },
+    {
+      "input": "[10,30]\n[50,60]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "[21,30,10]\n[50,60]",
+      "expectedOutput": "32.5"
+    },
+    {
+      "input": "[10,21,30]\n[50,60]",
+      "expectedOutput": "32.5"
+    },
+    {
+      "input": "[30,21,10]\n[50,60]",
+      "expectedOutput": "32.5"
+    },
+    {
+      "input": "[10,10,10]\n[50,60]",
+      "expectedOutput": "19"
+    },
+    {
+      "input": "[10,30,21,10,30,21]\n[50,60]",
+      "expectedOutput": "89"
+    },
+    {
+      "input": "[20,60,42]\n[50,60]",
+      "expectedOutput": "65"
+    },
+    {
+      "input": "[11,31,22]\n[50,60]",
+      "expectedOutput": "34.4"
+    },
+    {
+      "input": "[9,29,20]\n[50,60]",
+      "expectedOutput": "30.6"
+    },
+    {
+      "input": "[-10,-30,-21]\n[50,60]",
+      "expectedOutput": "-44.5"
+    },
+    {
+      "input": "[0,0,0]\n[50,60]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]\n[50,60]",
+      "expectedOutput": "1.9"
+    },
+    {
+      "input": "[0]\n[50,60]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n[50,60]",
+      "expectedOutput": "0.4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For an item with price <code>p</code> and a discount <code>d</code>, the amount saved is <code>p * d / 100</code>.",
+    "To minimize the total final price, maximize the total amount saved. Consider sorting both arrays and pairing larger prices with larger discounts."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-total-price-after-applying-discounts/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.297Z",
+    "sourceUpdatedAt": null
+  }
+}

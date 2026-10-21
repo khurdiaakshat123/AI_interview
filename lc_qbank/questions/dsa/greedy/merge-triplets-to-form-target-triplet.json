@@ -1,0 +1,167 @@
+{
+  "id": "1899",
+  "slug": "merge-triplets-to-form-target-triplet",
+  "title": "Merge Triplets to Form Target Triplet",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "statement": "A **triplet** is an array of three integers. You are given a 2D integer array `triplets`, where `triplets[i] = [a_(i), b_(i), c_(i)]` describes the `i^(th)` **triplet**. You are also given an integer array `target = [x, y, z]` that describes the **triplet** you want to obtain.\n\nTo obtain `target`, you may apply the following operation on `triplets` **any number** of times (possibly **zero**):\n\n*   Choose two indices (**0-indexed**) `i` and `j` (`i != j`) and **update** `triplets[j]` to become `[max(a_(i), a_(j)), max(b_(i), b_(j)), max(c_(i), c_(j))]`.\n    *   For example, if `triplets[i] = [2, 5, 3]` and `triplets[j] = [1, 7, 5]`, `triplets[j]` will be updated to `[max(2, 1), max(5, 7), max(3, 5)] = [2, 7, 5]`.\n\nReturn `true` _if it is possible to obtain the_ `target` _**triplet**_ `[x, y, z]` _as an **element** of_ `triplets`_, or_ `false` _otherwise_.\n\n**Example 1:**\n\n```\nInput: triplets = [[2,5,3],[1,8,4],[1,7,5]], target = [2,7,5]\nOutput: true\nExplanation: Perform the following operations:\n- Choose the first and last triplets [[2,5,3],[1,8,4],[1,7,5]]. Update the last triplet to be [max(2,1), max(5,7), max(3,5)] = [2,7,5]. triplets = [[2,5,3],[1,8,4],[2,7,5]]\nThe target triplet [2,7,5] is now an element of triplets.\n```\n\n**Example 2:**\n\n```\nInput: triplets = [[3,4,5],[4,5,6]], target = [3,2,5]\nOutput: false\nExplanation: It is impossible to have [3,2,5] as an element because there is no 2 in any of the triplets.\n```\n\n**Example 3:**\n\n```\nInput: triplets = [[2,5,3],[2,3,4],[1,2,5],[5,2,3]], target = [5,5,5]\nOutput: true\nExplanation: Perform the following operations:\n- Choose the first and third triplets [[2,5,3],[2,3,4],[1,2,5],[5,2,3]]. Update the third triplet to be [max(2,1), max(5,2), max(3,5)] = [2,5,5]. triplets = [[2,5,3],[2,3,4],[2,5,5],[5,2,3]].\n- Choose the third and fourth triplets [[2,5,3],[2,3,4],[2,5,5],[5,2,3]]. Update the fourth triplet to be [max(2,5), max(5,2), max(5,3)] = [5,5,5]. triplets = [[2,5,3],[2,3,4],[2,5,5],[5,5,5]].\nThe target triplet [5,5,5] is now an element of triplets.\n```\n\n**Constraints:**\n\n*   `1 <= triplets.length <= 10^(5)`\n*   `triplets[i].length == target.length == 3`\n*   `1 <= a_(i), b_(i), c_(i), x, y, z <= 1000`",
+  "constraints": [
+    "1 <= triplets.length <= 105",
+    "triplets[i].length == target.length == 3",
+    "1 <= ai, bi, ci, x, y, z <= 1000"
+  ],
+  "examples": [
+    {
+      "input": "triplets = [[2,5,3],[1,8,4],[1,7,5]], target = [2,7,5]",
+      "output": "true",
+      "explanation": "Perform the following operations:\n- Choose the first and last triplets [[2,5,3],[1,8,4],[1,7,5]]. Update the last triplet to be [max(2,1), max(5,7), max(3,5)] = [2,7,5]. triplets = [[2,5,3],[1,8,4],[2,7,5]]\nThe target triplet [2,7,5] is now an element of triplets."
+    },
+    {
+      "input": "triplets = [[3,4,5],[4,5,6]], target = [3,2,5]",
+      "output": "false",
+      "explanation": "It is impossible to have [3,2,5] as an element because there is no 2 in any of the triplets."
+    },
+    {
+      "input": "triplets = [[2,5,3],[2,3,4],[1,2,5],[5,2,3]], target = [5,5,5]",
+      "output": "true",
+      "explanation": "Perform the following operations:\n- Choose the first and third triplets [[2,5,3],[2,3,4],[1,2,5],[5,2,3]]. Update the third triplet to be [max(2,1), max(5,2), max(3,5)] = [2,5,5]. triplets = [[2,5,3],[2,3,4],[2,5,5],[5,2,3]].\n- Choose the third and fourth triplets [[2,5,3],[2,3,4],[2,5,5],[5,2,3]]. Update the fourth triplet to be [max(2,5), max(5,2), max(5,3)] = [5,5,5]. triplets = [[2,5,3],[2,3,4],[2,5,5],[5,5,5]].\nThe target triplet [5,5,5] is now an element of triplets."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool mergeTriplets(vector<vector<int>>& triplets, vector<int>& target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean mergeTriplets(int[][] triplets, int[] target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def mergeTriplets(self, triplets: list[list[int]], target: list[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def mergeTriplets(self, triplets, target):\n        \"\"\"\n        :type triplets: List[List[int]]\n        :type target: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} triplets\n * @param {number[]} target\n * @return {boolean}\n */\nvar mergeTriplets = function(triplets, target) {\n    \n};",
+    "typescript": "function mergeTriplets(triplets: number[][], target: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool MergeTriplets(int[][] triplets, int[] target) {\n        \n    }\n}",
+    "c": "bool mergeTriplets(int** triplets, int tripletsSize, int* tripletsColSize, int* target, int targetSize) {\n    \n}",
+    "golang": "func mergeTriplets(triplets [][]int, target []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun mergeTriplets(triplets: Array<IntArray>, target: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func mergeTriplets(_ triplets: [[Int]], _ target: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn merge_triplets(triplets: Vec<Vec<i32>>, target: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} triplets\n# @param {Integer[]} target\n# @return {Boolean}\ndef merge_triplets(triplets, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $triplets\n     * @param Integer[] $target\n     * @return Boolean\n     */\n    function mergeTriplets($triplets, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool mergeTriplets(List<List<int>> triplets, List<int> target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def mergeTriplets(triplets: Array[Array[Int]], target: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec merge_triplets(triplets :: [[integer]], target :: [integer]) :: boolean\n  def merge_triplets(triplets, target) do\n    \n  end\nend",
+    "erlang": "-spec merge_triplets(Triplets :: [[integer()]], Target :: [integer()]) -> boolean().\nmerge_triplets(Triplets, Target) ->\n  .",
+    "racket": "(define/contract (merge-triplets triplets target)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[2,7,5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[3,4,5],[4,5,6]]\n[3,2,5]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[2,3,4],[1,2,5],[5,2,3]]\n[5,5,5]",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[2,7,5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[3,4,5],[4,5,6]]\n[3,2,5]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[2,3,4],[1,2,5],[5,2,3]]\n[5,5,5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[5,7,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[2,5,7]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[7,5,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[2,2,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[4,14,10]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[3,8,6]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[1,6,4]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[-2,-7,-5]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[1,1,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[1,2,3]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[3,2,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[0,1,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[-10,0,10]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[1,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[2,5,3],[1,8,4],[1,7,5]]\n[0,0,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[3,4,5],[4,5,6]]\n[5,2,3]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Which triplets do you actually care about?",
+    "What property of max can you use to solve the problem?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/merge-triplets-to-form-target-triplet/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.145Z",
+    "sourceUpdatedAt": null
+  }
+}

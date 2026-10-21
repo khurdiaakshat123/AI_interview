@@ -1,0 +1,168 @@
+{
+  "id": "1790",
+  "slug": "check-if-one-string-swap-can-make-strings-equal",
+  "title": "Check if One String Swap Can Make Strings Equal",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "statement": "You are given two strings `s1` and `s2` of equal length. A **string swap** is an operation where you choose two indices in a string (not necessarily different) and swap the characters at these indices.\n\nReturn `true` _if it is possible to make both strings equal by performing **at most one string swap** on **exactly one** of the strings._ Otherwise, return `false`.\n\n**Example 1:**\n\n```\nInput: s1 = \"bank\", s2 = \"kanb\"\nOutput: true\nExplanation: For example, swap the first character with the last character of s2 to make \"bank\".\n```\n\n**Example 2:**\n\n```\nInput: s1 = \"attack\", s2 = \"defend\"\nOutput: false\nExplanation: It is impossible to make them equal with one string swap.\n```\n\n**Example 3:**\n\n```\nInput: s1 = \"kelb\", s2 = \"kelb\"\nOutput: true\nExplanation: The two strings are already equal, so no string swap operation is required.\n```\n\n**Constraints:**\n\n*   `1 <= s1.length, s2.length <= 100`\n*   `s1.length == s2.length`\n*   `s1` and `s2` consist of only lowercase English letters.",
+  "constraints": [
+    "1 <= s1.length, s2.length <= 100",
+    "s1.length == s2.length",
+    "s1 and s2 consist of only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s1 = \"bank\", s2 = \"kanb\"",
+      "output": "true",
+      "explanation": "For example, swap the first character with the last character of s2 to make \"bank\"."
+    },
+    {
+      "input": "s1 = \"attack\", s2 = \"defend\"",
+      "output": "false",
+      "explanation": "It is impossible to make them equal with one string swap."
+    },
+    {
+      "input": "s1 = \"kelb\", s2 = \"kelb\"",
+      "output": "true",
+      "explanation": "The two strings are already equal, so no string swap operation is required."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool areAlmostEqual(string s1, string s2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean areAlmostEqual(String s1, String s2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def areAlmostEqual(self, s1: str, s2: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def areAlmostEqual(self, s1, s2):\n        \"\"\"\n        :type s1: str\n        :type s2: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s1\n * @param {string} s2\n * @return {boolean}\n */\nvar areAlmostEqual = function(s1, s2) {\n    \n};",
+    "typescript": "function areAlmostEqual(s1: string, s2: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool AreAlmostEqual(string s1, string s2) {\n        \n    }\n}",
+    "c": "bool areAlmostEqual(char* s1, char* s2) {\n    \n}",
+    "golang": "func areAlmostEqual(s1 string, s2 string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun areAlmostEqual(s1: String, s2: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func areAlmostEqual(_ s1: String, _ s2: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn are_almost_equal(s1: String, s2: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s1\n# @param {String} s2\n# @return {Boolean}\ndef are_almost_equal(s1, s2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s1\n     * @param String $s2\n     * @return Boolean\n     */\n    function areAlmostEqual($s1, $s2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool areAlmostEqual(String s1, String s2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def areAlmostEqual(s1: String, s2: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec are_almost_equal(s1 :: String.t, s2 :: String.t) :: boolean\n  def are_almost_equal(s1, s2) do\n    \n  end\nend",
+    "erlang": "-spec are_almost_equal(S1 :: unicode:unicode_binary(), S2 :: unicode:unicode_binary()) -> boolean().\nare_almost_equal(S1, S2) ->\n  .",
+    "racket": "(define/contract (are-almost-equal s1 s2)\n  (-> string? string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"bank\"\n\"kanb\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"attack\"\n\"defend\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"kelb\"\n\"kelb\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"bank\"\n\"kanb\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"attack\"\n\"defend\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"kelb\"\n\"kelb\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ba\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"nk\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"knab\"\n\"kanb\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"bankbank\"\n\"kanb\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"bbbb\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"bankknab\"\n\"kanb\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"BANK\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"\n\"kanb\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"\n\"kanb\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The answer is false if the number of nonequal positions in the strings is not equal to 0 or 2.",
+    "Check that these positions have the same set of characters."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.212Z",
+    "sourceUpdatedAt": null
+  }
+}

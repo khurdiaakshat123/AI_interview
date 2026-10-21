@@ -1,0 +1,164 @@
+{
+  "id": "4008",
+  "slug": "minimum-initial-strength-to-defeat-all-monsters",
+  "title": "Minimum Initial Strength to Defeat All Monsters",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `monsters`, where `monsters[i]` represents the strength of the `i^(th)` monster.\n\nYou are also given a 2D integer array `boosts`, where `boosts[i] = [l_(i), r_(i), v_(i)]` indicates that `v_(i)` is added to your **temporary bonus** while fighting any monster whose index lies in `[l_(i), r_(i)]`. Boost ranges may overlap, and the values of all applicable boosts are added together.\n\nYou start with a **non-negative** initial strength and fight the monsters from left to right.\n\nFor each monster at index `i`:\n\n*   Let `bonus` be the **sum** of the values of all boosts that apply to monster `i`.\n*   You can defeat the monster only if your current strength plus `bonus` is **at least** `monsters[i]`.\n*   After defeating the monster, only your current strength decreases by `monsters[i]`. If it becomes **negative**, it is set to 0.\n\nReturn the **minimum** initial strength required to defeat all monsters.\n\nNote: The temporary bonus is used only to determine whether the current monster can be defeated. It does not otherwise change your current strength.\n\n**Example 1:**\n\n**Input:** monsters = \\[5,10,15\\], boosts = \\[\\[1,1,10\\]\\]\n\n**Output:** 30\n\n**Explanation:**\n\nLet's start with an initial strength of 30.\n\n*   `monsters[0] = 5`: At index 0, the bonus is 0. Since `30 + 0 >= 5`, this monster can be defeated. The strength becomes `30 - 5 = 25`.\n*   `monsters[1] = 10`: At index 1, the bonus is 10. Since `25 + 10 >= 10`, this monster can be defeated. The strength becomes `25 - 10 = 15`.\n*   `monsters[2] = 15`: At index 2, the bonus is 0. Since `15 + 0 >= 15`, this monster can be defeated. The strength becomes `15 - 15 = 0`.\n\nThus, the minimum initial strength required is 30.\n\n**Example 2:**\n\n**Input:** monsters = \\[5,10,15\\], boosts = \\[\\[1,2,10\\],\\[1,2,5\\]\\]\n\n**Output:** 5\n\n**Explanation:**\n\nLet's start with an initial strength of 5.\n\n*   `monsters[0] = 5`: The bonus is 0. Since `5 + 0 >= 5`, the monster can be defeated. The strength becomes `5 - 5 = 0`.\n*   `monsters[1] = 10`: The two overlapping boosts provide `bonus = 10 + 5 = 15`. Since `0 + 15 >= 10`, the monster can be defeated. The strength remains 0.\n*   `monsters[2] = 15`: The two overlapping boosts again provide `bonus = 15`. Since `0 + 15 >= 15`, the monster can be defeated. The strength remains 0.\n\nThus, the minimum initial strength required is 5.\n\n**Constraints:**\n\n*   `1 <= monsters.length <= 5 * 10^(4)`\n*   `1 <= monsters[i] <= 10^(9)`\n*   `0 <= boosts.length <= 5 * 10^(4)`\n*   `boosts[i] == [l_(i), r_(i), v_(i)]`\n*   `0 <= l_(i) <= r_(i) < monsters.length`\n*   `1 <= v_(i) <= 10^(9)`​​​​​​​",
+  "constraints": [
+    "1 <= monsters.length <= 5 * 104",
+    "1 <= monsters[i] <= 109",
+    "0 <= boosts.length <= 5 * 104",
+    "boosts[i] == [li, ri, vi]",
+    "0 <= li <= ri < monsters.length",
+    "1 <= vi <= 109​​​​​​​"
+  ],
+  "examples": [
+    {
+      "input": "monsters = [5,10,15], boosts = [[1,1,10]]",
+      "output": "30",
+      "explanation": null
+    },
+    {
+      "input": "monsters = [5,10,15], boosts = [[1,2,10],[1,2,5]]",
+      "output": "5",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minInitialStrength(vector<int>& monsters, vector<vector<int>>& boosts) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minInitialStrength(int[] monsters, int[][] boosts) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minInitialStrength(self, monsters: list[int], boosts: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minInitialStrength(self, monsters, boosts):\n        \"\"\"\n        :type monsters: List[int]\n        :type boosts: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} monsters\n * @param {number[][]} boosts\n * @return {number}\n */\nvar minInitialStrength = function(monsters, boosts) {\n    \n};",
+    "typescript": "function minInitialStrength(monsters: number[], boosts: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinInitialStrength(int[] monsters, int[][] boosts) {\n        \n    }\n}",
+    "c": "long long minInitialStrength(int* monsters, int monstersSize, int** boosts, int boostsSize, int* boostsColSize) {\n    \n}",
+    "golang": "func minInitialStrength(monsters []int, boosts [][]int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minInitialStrength(monsters: IntArray, boosts: Array<IntArray>): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minInitialStrength(_ monsters: [Int], _ boosts: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_initial_strength(monsters: Vec<i32>, boosts: Vec<Vec<i32>>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} monsters\n# @param {Integer[][]} boosts\n# @return {Integer}\ndef min_initial_strength(monsters, boosts)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $monsters\n     * @param Integer[][] $boosts\n     * @return Integer\n     */\n    function minInitialStrength($monsters, $boosts) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minInitialStrength(List<int> monsters, List<List<int>> boosts) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minInitialStrength(monsters: Array[Int], boosts: Array[Array[Int]]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_initial_strength(monsters :: [integer], boosts :: [[integer]]) :: integer\n  def min_initial_strength(monsters, boosts) do\n    \n  end\nend",
+    "erlang": "-spec min_initial_strength(Monsters :: [integer()], Boosts :: [[integer()]]) -> integer().\nmin_initial_strength(Monsters, Boosts) ->\n  .",
+    "racket": "(define/contract (min-initial-strength monsters boosts)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[5,10,15]\n[[1,1,10]]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "[5,10,15]\n[[1,2,10],[1,2,5]]",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[5,10,15]\n[[1,1,10]]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "[5,10,15]\n[[1,2,10],[1,2,5]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[10,15]\n[[1,1,10]]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[5,15]\n[[1,1,10]]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[5,10]\n[[1,1,10]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[15,10,5]\n[[1,1,10]]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "[5,5,5]\n[[1,1,10]]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[5,10,15,5,10,15]\n[[1,1,10]]",
+      "expectedOutput": "60"
+    },
+    {
+      "input": "[10,20,30]\n[[1,1,10]]",
+      "expectedOutput": "60"
+    },
+    {
+      "input": "[6,11,16]\n[[1,1,10]]",
+      "expectedOutput": "33"
+    },
+    {
+      "input": "[4,9,14]\n[[1,1,10]]",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "[-5,-10,-15]\n[[1,1,10]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0]\n[[1,1,10]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]\n[[1,1,10]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0]\n[[1,1,10]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]\n[[1,1,10]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]\n[[1,1,10]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1]\n[[1,1,10]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,1]\n[[1,1,10]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3]\n[[1,1,10]]",
+      "expectedOutput": "6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Use a difference array to compute the total temporary bonus applied at every monster.</p>",
+    "<p>Before fighting monster <code>i</code>, your current strength is <code>max(0, initialStrength - prefixSum)</code>, where <code>prefixSum</code> is the total strength of all previously defeated monsters.</p>",
+    "<p>If <code>bonus[i] &lt; monsters[i]</code>, then the initial strength must be at least <code>prefixSum + monsters[i] - bonus[i]</code>. Take the maximum of this value over all monsters.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-initial-strength-to-defeat-all-monsters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.015Z",
+    "sourceUpdatedAt": null
+  }
+}

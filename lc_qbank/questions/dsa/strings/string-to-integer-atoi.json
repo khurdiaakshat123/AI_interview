@@ -1,0 +1,180 @@
+{
+  "id": "8",
+  "slug": "string-to-integer-atoi",
+  "title": "String to Integer (atoi)",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Medium",
+  "tags": [
+    "String"
+  ],
+  "statement": "Implement the `myAtoi(string s)` function, which converts a string to a 32-bit signed integer.\n\nThe algorithm for `myAtoi(string s)` is as follows:\n\n1.  **Whitespace**: Ignore any leading whitespace (`\" \"`).\n2.  **Signedness**: Determine the sign by checking if the next character is `'-'` or `'+'`, assuming positivity if neither present.\n3.  **Conversion**: Read the integer by skipping leading zeros until a non-digit character is encountered or the end of the string is reached. If no digits were read, then the result is 0.\n4.  **Rounding**: If the integer is out of the 32-bit signed integer range `[-2^(31), 2^(31) - 1]`, then round the integer to remain in the range. Specifically, integers less than `-2^(31)` should be rounded to `-2^(31)`, and integers greater than `2^(31) - 1` should be rounded to `2^(31) - 1`.\n\nReturn the integer as the final result.\n\n**Note:**​​​​​​​ You must not use any built-in library function that converts a string to a number (for example, `atoi`, `stoi`, `Integer.parseInt`, `int()`, `parseInt`, `Number()`). Perform the conversion manually.\n\n**Example 1:**\n\n**Input:** s = \"42\"\n\n**Output:** 42\n\n**Explanation:**\n\n```\nThe underlined characters are what is read in and the caret is the current reader position.\nStep 1: \"42\" (no characters read because there is no leading whitespace)\n         ^\nStep 2: \"42\" (no characters read because there is neither a '-' nor '+')\n         ^\nStep 3: \"42\" (\"42\" is read in)\n           ^\n```\n\n**Example 2:**\n\n**Input:** s = \" -042\"\n\n**Output:** \\-42\n\n**Explanation:**\n\n```\nStep 1: \"   -042\" (leading whitespace is read and ignored)\n            ^\nStep 2: \"   -042\" ('-' is read, so the result should be negative)\n             ^\nStep 3: \"   -042\" (\"042\" is read in, leading zeros ignored in the result)\n               ^\n```\n\n**Example 3:**\n\n**Input:** s = \"1337c0d3\"\n\n**Output:** 1337\n\n**Explanation:**\n\n```\nStep 1: \"1337c0d3\" (no characters read because there is no leading whitespace)\n         ^\nStep 2: \"1337c0d3\" (no characters read because there is neither a '-' nor '+')\n         ^\nStep 3: \"1337c0d3\" (\"1337\" is read in; reading stops because the next character is a non-digit)\n             ^\n```\n\n**Example 4:**\n\n**Input:** s = \"0-1\"\n\n**Output:** 0\n\n**Explanation:**\n\n```\nStep 1: \"0-1\" (no characters read because there is no leading whitespace)\n         ^\nStep 2: \"0-1\" (no characters read because there is neither a '-' nor '+')\n         ^\nStep 3: \"0-1\" (\"0\" is read in; reading stops because the next character is a non-digit)\n          ^\n```\n\n**Example 5:**\n\n**Input:** s = \"words and 987\"\n\n**Output:** 0\n\n**Explanation:**\n\nReading stops at the first non-digit character 'w'.\n\n**Constraints:**\n\n*   `0 <= s.length <= 200`\n*   `s` consists of English letters (lower-case and upper-case), digits (`0 - 9`), `' '`, `'+'`, `'-'`, and `'.'`.",
+  "constraints": [
+    "0 <= s.length <= 200",
+    "s consists of English letters (lower-case and upper-case), digits (0 - 9), ' ', '+', '-', and '.'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"42\"",
+      "output": "42",
+      "explanation": "The underlined characters are what is read in and the caret is the current reader position.\nStep 1: \"42\" (no characters read because there is no leading whitespace)\n         ^\nStep 2: \"42\" (no characters read because there is neither a '-' nor '+')\n         ^\nStep 3: \"42\" (\"42\" is read in)\n           ^"
+    },
+    {
+      "input": "s = \" -042\"",
+      "output": "-42",
+      "explanation": "Step 1: \"   -042\" (leading whitespace is read and ignored)\n            ^\nStep 2: \"   -042\" ('-' is read, so the result should be negative)\n             ^\nStep 3: \"   -042\" (\"042\" is read in, leading zeros ignored in the result)\n               ^"
+    },
+    {
+      "input": "s = \"1337c0d3\"",
+      "output": "1337",
+      "explanation": "Step 1: \"1337c0d3\" (no characters read because there is no leading whitespace)\n         ^\nStep 2: \"1337c0d3\" (no characters read because there is neither a '-' nor '+')\n         ^\nStep 3: \"1337c0d3\" (\"1337\" is read in; reading stops because the next character is a non-digit)\n             ^"
+    },
+    {
+      "input": "s = \"0-1\"",
+      "output": "0",
+      "explanation": "Step 1: \"0-1\" (no characters read because there is no leading whitespace)\n         ^\nStep 2: \"0-1\" (no characters read because there is neither a '-' nor '+')\n         ^\nStep 3: \"0-1\" (\"0\" is read in; reading stops because the next character is a non-digit)\n          ^"
+    },
+    {
+      "input": "s = \"words and 987\"",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int myAtoi(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int myAtoi(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def myAtoi(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def myAtoi(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar myAtoi = function(s) {\n    \n};",
+    "typescript": "function myAtoi(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MyAtoi(string s) {\n        \n    }\n}",
+    "c": "int myAtoi(char* s) {\n    \n}",
+    "golang": "func myAtoi(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun myAtoi(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func myAtoi(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn my_atoi(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef my_atoi(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function myAtoi($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int myAtoi(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def myAtoi(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec my_atoi(s :: String.t) :: integer\n  def my_atoi(s) do\n    \n  end\nend",
+    "erlang": "-spec my_atoi(S :: unicode:unicode_binary()) -> integer().\nmy_atoi(S) ->\n  .",
+    "racket": "(define/contract (my-atoi s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"42\"",
+      "expectedOutput": "42"
+    },
+    {
+      "input": "\"   -042\"",
+      "expectedOutput": "-42"
+    },
+    {
+      "input": "\"1337c0d3\"",
+      "expectedOutput": "1337"
+    },
+    {
+      "input": "\"0-1\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"words and 987\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"42\"",
+      "expectedOutput": "42"
+    },
+    {
+      "input": "\"   -042\"",
+      "expectedOutput": "-42"
+    },
+    {
+      "input": "\"1337c0d3\"",
+      "expectedOutput": "1337"
+    },
+    {
+      "input": "\"0-1\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"words and 987\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"4\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"2\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"24\"",
+      "expectedOutput": "24"
+    },
+    {
+      "input": "\"4242\"",
+      "expectedOutput": "4242"
+    },
+    {
+      "input": "\"44\"",
+      "expectedOutput": "44"
+    },
+    {
+      "input": "\"4224\"",
+      "expectedOutput": "4224"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/string-to-integer-atoi/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.329Z",
+    "sourceUpdatedAt": null
+  }
+}

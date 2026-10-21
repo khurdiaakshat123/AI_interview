@@ -1,0 +1,118 @@
+{
+  "id": "1985",
+  "slug": "find-the-kth-largest-integer-in-the-array",
+  "title": "Find the Kth Largest Integer in the Array",
+  "category": "dsa",
+  "subcategory": "heaps",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Divide and Conquer",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Quickselect"
+  ],
+  "statement": "You are given an array of strings `nums` and an integer `k`. Each string in `nums` represents an integer without leading zeros.\n\nReturn _the string that represents the_ `k^(th)` _**largest integer** in_ `nums`.\n\n**Note**: Duplicate numbers should be counted distinctly. For example, if `nums` is `[\"1\",\"2\",\"2\"]`, `\"2\"` is the first largest integer, `\"2\"` is the second-largest integer, and `\"1\"` is the third-largest integer.\n\n**Example 1:**\n\n```\nInput: nums = [\"3\",\"6\",\"7\",\"10\"], k = 4\nOutput: \"3\"\nExplanation:\nThe numbers in nums sorted in non-decreasing order are [\"3\",\"6\",\"7\",\"10\"].\nThe 4th largest integer in nums is \"3\".\n```\n\n**Example 2:**\n\n```\nInput: nums = [\"2\",\"21\",\"12\",\"1\"], k = 3\nOutput: \"2\"\nExplanation:\nThe numbers in nums sorted in non-decreasing order are [\"1\",\"2\",\"12\",\"21\"].\nThe 3rd largest integer in nums is \"2\".\n```\n\n**Example 3:**\n\n```\nInput: nums = [\"0\",\"0\"], k = 2\nOutput: \"0\"\nExplanation:\nThe numbers in nums sorted in non-decreasing order are [\"0\",\"0\"].\nThe 2nd largest integer in nums is \"0\".\n```\n\n**Constraints:**\n\n*   `1 <= k <= nums.length <= 10^(4)`\n*   `1 <= nums[i].length <= 100`\n*   `nums[i]` consists of only digits.\n*   `nums[i]` will not have any leading zeros.",
+  "constraints": [
+    "1 <= k <= nums.length <= 104",
+    "1 <= nums[i].length <= 100",
+    "nums[i] consists of only digits.",
+    "nums[i] will not have any leading zeros."
+  ],
+  "examples": [
+    {
+      "input": "nums = [\"3\",\"6\",\"7\",\"10\"], k = 4",
+      "output": "\"3\"",
+      "explanation": "The numbers in nums sorted in non-decreasing order are [\"3\",\"6\",\"7\",\"10\"].\nThe 4th largest integer in nums is \"3\"."
+    },
+    {
+      "input": "nums = [\"2\",\"21\",\"12\",\"1\"], k = 3",
+      "output": "\"2\"",
+      "explanation": "The numbers in nums sorted in non-decreasing order are [\"1\",\"2\",\"12\",\"21\"].\nThe 3rd largest integer in nums is \"2\"."
+    },
+    {
+      "input": "nums = [\"0\",\"0\"], k = 2",
+      "output": "\"0\"",
+      "explanation": "The numbers in nums sorted in non-decreasing order are [\"0\",\"0\"].\nThe 2nd largest integer in nums is \"0\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string kthLargestNumber(vector<string>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String kthLargestNumber(String[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def kthLargestNumber(self, nums: list[str], k: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def kthLargestNumber(self, nums, k):\n        \"\"\"\n        :type nums: List[str]\n        :type k: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} nums\n * @param {number} k\n * @return {string}\n */\nvar kthLargestNumber = function(nums, k) {\n    \n};",
+    "typescript": "function kthLargestNumber(nums: string[], k: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string KthLargestNumber(string[] nums, int k) {\n        \n    }\n}",
+    "c": "char* kthLargestNumber(char** nums, int numsSize, int k) {\n    \n}",
+    "golang": "func kthLargestNumber(nums []string, k int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun kthLargestNumber(nums: Array<String>, k: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func kthLargestNumber(_ nums: [String], _ k: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn kth_largest_number(nums: Vec<String>, k: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} nums\n# @param {Integer} k\n# @return {String}\ndef kth_largest_number(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $nums\n     * @param Integer $k\n     * @return String\n     */\n    function kthLargestNumber($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String kthLargestNumber(List<String> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def kthLargestNumber(nums: Array[String], k: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec kth_largest_number(nums :: [String.t], k :: integer) :: String.t\n  def kth_largest_number(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec kth_largest_number(Nums :: [unicode:unicode_binary()], K :: integer()) -> unicode:unicode_binary().\nkth_largest_number(Nums, K) ->\n  .",
+    "racket": "(define/contract (kth-largest-number nums k)\n  (-> (listof string?) exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"3\",\"6\",\"7\",\"10\"]\n4",
+      "expectedOutput": "\"3\""
+    },
+    {
+      "input": "[\"2\",\"21\",\"12\",\"1\"]\n3",
+      "expectedOutput": "\"2\""
+    },
+    {
+      "input": "[\"0\",\"0\"]\n2",
+      "expectedOutput": "\"0\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"3\",\"6\",\"7\",\"10\"]\n4",
+      "expectedOutput": "\"3\""
+    },
+    {
+      "input": "[\"2\",\"21\",\"12\",\"1\"]\n3",
+      "expectedOutput": "\"2\""
+    },
+    {
+      "input": "[\"0\",\"0\"]\n2",
+      "expectedOutput": "\"0\""
+    },
+    {
+      "input": "nums = [\"3\",\"6\",\"7\",\"10\"], k = 4",
+      "expectedOutput": "\"3\""
+    },
+    {
+      "input": "nums = [\"2\",\"21\",\"12\",\"1\"], k = 3",
+      "expectedOutput": "\"2\""
+    },
+    {
+      "input": "nums = [\"0\",\"0\"], k = 2",
+      "expectedOutput": "\"0\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If two numbers have different lengths, which one will be larger?",
+    "The longer number is the larger number.",
+    "If two numbers have the same length, which one will be larger?",
+    "Compare the two numbers starting from the most significant digit. Once you have found the first digit that differs, the one with the larger digit is the larger number."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.314Z",
+    "sourceUpdatedAt": null
+  }
+}

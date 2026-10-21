@@ -1,0 +1,163 @@
+{
+  "id": "2707",
+  "slug": "extra-characters-in-a-string",
+  "title": "Extra Characters in a String",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Trie"
+  ],
+  "statement": "You are given a **0-indexed** string `s` and a dictionary of words `dictionary`. You have to break `s` into one or more **non-overlapping** substrings such that each substring is present in `dictionary`. There may be some **extra characters** in `s` which are not present in any of the substrings.\n\nReturn _the **minimum** number of extra characters left over if you break up_ `s` _optimally._\n\n**Example 1:**\n\n```\nInput: s = \"leetscode\", dictionary = [\"leet\",\"code\",\"leetcode\"]\nOutput: 1\nExplanation: We can break s in two substrings: \"leet\" from index 0 to 3 and \"code\" from index 5 to 8. There is only 1 unused character (at index 4), so we return 1.\n```\n\n**Example 2:**\n\n```\nInput: s = \"sayhelloworld\", dictionary = [\"hello\",\"world\"]\nOutput: 3\nExplanation: We can break s in two substrings: \"hello\" from index 3 to 7 and \"world\" from index 8 to 12. The characters at indices 0, 1, 2 are not used in any substring and thus are considered as extra characters. Hence, we return 3.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 50`\n*   `1 <= dictionary.length <= 50`\n*   `1 <= dictionary[i].length <= 50`\n*   `dictionary[i]` and `s` consists of only lowercase English letters\n*   `dictionary` contains distinct words",
+  "constraints": [
+    "1 <= s.length <= 50",
+    "1 <= dictionary.length <= 50",
+    "1 <= dictionary[i].length <= 50",
+    "dictionary[i] and s consists of only lowercase English letters",
+    "dictionary contains distinct words"
+  ],
+  "examples": [
+    {
+      "input": "s = \"leetscode\", dictionary = [\"leet\",\"code\",\"leetcode\"]",
+      "output": "1",
+      "explanation": "We can break s in two substrings: \"leet\" from index 0 to 3 and \"code\" from index 5 to 8. There is only 1 unused character (at index 4), so we return 1."
+    },
+    {
+      "input": "s = \"sayhelloworld\", dictionary = [\"hello\",\"world\"]",
+      "output": "3",
+      "explanation": "We can break s in two substrings: \"hello\" from index 3 to 7 and \"world\" from index 8 to 12. The characters at indices 0, 1, 2 are not used in any substring and thus are considered as extra characters. Hence, we return 3."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minExtraChar(string s, vector<string>& dictionary) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minExtraChar(String s, String[] dictionary) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minExtraChar(self, s: str, dictionary: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minExtraChar(self, s, dictionary):\n        \"\"\"\n        :type s: str\n        :type dictionary: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string[]} dictionary\n * @return {number}\n */\nvar minExtraChar = function(s, dictionary) {\n    \n};",
+    "typescript": "function minExtraChar(s: string, dictionary: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinExtraChar(string s, string[] dictionary) {\n        \n    }\n}",
+    "c": "int minExtraChar(char* s, char** dictionary, int dictionarySize) {\n    \n}",
+    "golang": "func minExtraChar(s string, dictionary []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minExtraChar(s: String, dictionary: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minExtraChar(_ s: String, _ dictionary: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_extra_char(s: String, dictionary: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String[]} dictionary\n# @return {Integer}\ndef min_extra_char(s, dictionary)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String[] $dictionary\n     * @return Integer\n     */\n    function minExtraChar($s, $dictionary) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minExtraChar(String s, List<String> dictionary) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minExtraChar(s: String, dictionary: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_extra_char(s :: String.t, dictionary :: [String.t]) :: integer\n  def min_extra_char(s, dictionary) do\n    \n  end\nend",
+    "erlang": "-spec min_extra_char(S :: unicode:unicode_binary(), Dictionary :: [unicode:unicode_binary()]) -> integer().\nmin_extra_char(S, Dictionary) ->\n  .",
+    "racket": "(define/contract (min-extra-char s dictionary)\n  (-> string? (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"leetscode\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"sayhelloworld\"\n[\"hello\",\"world\"]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"leetscode\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"sayhelloworld\"\n[\"hello\",\"world\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"leet\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"scode\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"l\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"le\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"edocsteel\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"leetscodeleetscode\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"llllll\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"leetscodeedocsteel\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"LEETSCODE\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"a\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ba\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aba\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abba\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaa\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcde\"\n[\"leet\",\"code\",\"leetcode\"]",
+      "expectedOutput": "5"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can we use Dynamic Programming here?",
+    "Define DP[i] as the min extra character if breaking up s[0:i] optimally."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/extra-characters-in-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.211Z",
+    "sourceUpdatedAt": null
+  }
+}

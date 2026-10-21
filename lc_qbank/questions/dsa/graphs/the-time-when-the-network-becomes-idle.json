@@ -1,0 +1,167 @@
+{
+  "id": "2039",
+  "slug": "the-time-when-the-network-becomes-idle",
+  "title": "The Time When the Network Becomes Idle",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "statement": "There is a network of `n` servers, labeled from `0` to `n - 1`. You are given a 2D integer array `edges`, where `edges[i] = [u_(i), v_(i)]` indicates there is a message channel between servers `u_(i)` and `v_(i)`, and they can pass **any** number of messages to **each other** directly in **one** second. You are also given a **0-indexed** integer array `patience` of length `n`.\n\nAll servers are **connected**, i.e., a message can be passed from one server to any other server(s) directly or indirectly through the message channels.\n\nThe server labeled `0` is the **master** server. The rest are **data** servers. Each data server needs to send its message to the master server for processing and wait for a reply. Messages move between servers **optimally**, so every message takes the **least amount of time** to arrive at the master server. The master server will process all newly arrived messages **instantly** and send a reply to the originating server via the **reversed path** the message had gone through.\n\nAt the beginning of second `0`, each data server sends its message to be processed. Starting from second `1`, at the **beginning** of **every** second, each data server will check if it has received a reply to the message it sent (including any newly arrived replies) from the master server:\n\n*   If it has not, it will **resend** the message periodically. The data server `i` will resend the message every `patience[i]` second(s), i.e., the data server `i` will resend the message if `patience[i]` second(s) have **elapsed** since the **last** time the message was sent from this server.\n*   Otherwise, **no more resending** will occur from this server.\n\nThe network becomes **idle** when there are **no** messages passing between servers or arriving at servers.\n\nReturn _the **earliest second** starting from which the network becomes **idle**_.\n\n**Example 1:**\n\n![example 1](./assets/the-time-when-the-network-becomes-idle-1.png)\n```\nInput: edges = [[0,1],[1,2]], patience = [0,2,1]\nOutput: 8\nExplanation:\nAt (the beginning of) second 0,\n- Data server 1 sends its message (denoted 1A) to the master server.\n- Data server 2 sends its message (denoted 2A) to the master server.\n\nAt second 1,\n- Message 1A arrives at the master server. Master server processes message 1A instantly and sends a reply 1A back.\n- Server 1 has not received any reply. 1 second (1 < patience[1] = 2) elapsed since this server has sent the message, therefore it does not resend the message.\n- Server 2 has not received any reply. 1 second (1 == patience[2] = 1) elapsed since this server has sent the message, therefore it resends the message (denoted 2B).\n\nAt second 2,\n- The reply 1A arrives at server 1. No more resending will occur from server 1.\n- Message 2A arrives at the master server. Master server processes message 2A instantly and sends a reply 2A back.\n- Server 2 resends the message (denoted 2C).\n...\nAt second 4,\n- The reply 2A arrives at server 2. No more resending will occur from server 2.\n...\nAt second 7, reply 2D arrives at server 2.\n\nStarting from the beginning of the second 8, there are no messages passing between servers or arriving at servers.\nThis is the time when the network becomes idle.\n```\n\n**Example 2:**\n\n![example 2](./assets/the-time-when-the-network-becomes-idle-2.png)\n```\nInput: edges = [[0,1],[0,2],[1,2]], patience = [0,10,10]\nOutput: 3\nExplanation: Data servers 1 and 2 receive a reply back at the beginning of second 2.\nFrom the beginning of the second 3, the network becomes idle.\n```\n\n**Constraints:**\n\n*   `n == patience.length`\n*   `2 <= n <= 10^(5)`\n*   `patience[0] == 0`\n*   `1 <= patience[i] <= 10^(5)` for `1 <= i < n`\n*   `1 <= edges.length <= min(10^(5), n * (n - 1) / 2)`\n*   `edges[i].length == 2`\n*   `0 <= u_(i), v_(i) < n`\n*   `u_(i) != v_(i)`\n*   There are no duplicate edges.\n*   Each server can directly or indirectly reach another server.",
+  "constraints": [
+    "n == patience.length",
+    "2 <= n <= 105",
+    "patience[0] == 0",
+    "1 <= patience[i] <= 105 for 1 <= i < n",
+    "1 <= edges.length <= min(105, n * (n - 1) / 2)",
+    "edges[i].length == 2",
+    "0 <= ui, vi < n",
+    "ui != vi",
+    "There are no duplicate edges.",
+    "Each server can directly or indirectly reach another server."
+  ],
+  "examples": [
+    {
+      "input": "edges = [[0,1],[1,2]], patience = [0,2,1]",
+      "output": "8",
+      "explanation": "At (the beginning of) second 0,\n- Data server 1 sends its message (denoted 1A) to the master server.\n- Data server 2 sends its message (denoted 2A) to the master server.\n\nAt second 1,\n- Message 1A arrives at the master server. Master server processes message 1A instantly and sends a reply 1A back.\n- Server 1 has not received any reply. 1 second (1 < patience[1] = 2) elapsed since this server has sent the message, therefore it does not resend the message.\n- Server 2 has not received any reply. 1 second (1 == patience[2] = 1) elapsed since this server has sent the message, therefore it resends the message (denoted 2B).\n\nAt second 2,\n- The reply 1A arrives at server 1. No more resending will occur from server 1.\n- Message 2A arrives at the master server. Master server processes message 2A instantly and sends a reply 2A back.\n- Server 2 resends the message (denoted 2C).\n...\nAt second 4,\n- The reply 2A arrives at server 2. No more resending will occur from server 2.\n...\nAt second 7, reply 2D arrives at server 2.\n\nStarting from the beginning of the second 8, there are no messages passing between servers or arriving at servers.\nThis is the time when the network becomes idle."
+    },
+    {
+      "input": "edges = [[0,1],[0,2],[1,2]], patience = [0,10,10]",
+      "output": "3",
+      "explanation": "Data servers 1 and 2 receive a reply back at the beginning of second 2.\nFrom the beginning of the second 3, the network becomes idle."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int networkBecomesIdle(vector<vector<int>>& edges, vector<int>& patience) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int networkBecomesIdle(int[][] edges, int[] patience) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def networkBecomesIdle(self, edges: list[list[int]], patience: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def networkBecomesIdle(self, edges, patience):\n        \"\"\"\n        :type edges: List[List[int]]\n        :type patience: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} edges\n * @param {number[]} patience\n * @return {number}\n */\nvar networkBecomesIdle = function(edges, patience) {\n    \n};",
+    "typescript": "function networkBecomesIdle(edges: number[][], patience: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NetworkBecomesIdle(int[][] edges, int[] patience) {\n        \n    }\n}",
+    "c": "int networkBecomesIdle(int** edges, int edgesSize, int* edgesColSize, int* patience, int patienceSize) {\n    \n}",
+    "golang": "func networkBecomesIdle(edges [][]int, patience []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun networkBecomesIdle(edges: Array<IntArray>, patience: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func networkBecomesIdle(_ edges: [[Int]], _ patience: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn network_becomes_idle(edges: Vec<Vec<i32>>, patience: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} edges\n# @param {Integer[]} patience\n# @return {Integer}\ndef network_becomes_idle(edges, patience)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $edges\n     * @param Integer[] $patience\n     * @return Integer\n     */\n    function networkBecomesIdle($edges, $patience) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int networkBecomesIdle(List<List<int>> edges, List<int> patience) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def networkBecomesIdle(edges: Array[Array[Int]], patience: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec network_becomes_idle(edges :: [[integer]], patience :: [integer]) :: integer\n  def network_becomes_idle(edges, patience) do\n    \n  end\nend",
+    "erlang": "-spec network_becomes_idle(Edges :: [[integer()]], Patience :: [integer()]) -> integer().\nnetwork_becomes_idle(Edges, Patience) ->\n  .",
+    "racket": "(define/contract (network-becomes-idle edges patience)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1],[1,2]]\n[0,2,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[0,2],[1,2]]\n[0,10,10]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1],[1,2]]\n[0,2,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[0,2],[1,2]]\n[0,10,10]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[0,1,2]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[0,2,1,0,2,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[0,4,2]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[1,3,2]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[0,-2,-1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[1,1,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[1,2,3]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[3,2,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[1,2,3,4,5]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[5,4,3,2,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[-5,-4,-3,-2,-1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[1,3,2,5,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[1,1,2,2,3,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[10,20,30,40,50]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[0,1],[1,2]]\n[1,2,3,4]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[0,2],[1,2]]\n[0,10,10,0,10,10]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1],[0,2],[1,2]]\n[0,20,20]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1],[0,2],[1,2]]\n[1,11,11]",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "What method can you use to find the shortest time taken for a message from a data server to reach the master server? How can you use this value and the server's patience value to determine the time at which the server sends its last message?",
+    "What is the time when the last message sent from a server gets back to the server?",
+    "For each data server, by the time the server receives the first returned messages, how many messages has the server sent?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/the-time-when-the-network-becomes-idle/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.970Z",
+    "sourceUpdatedAt": null
+  }
+}

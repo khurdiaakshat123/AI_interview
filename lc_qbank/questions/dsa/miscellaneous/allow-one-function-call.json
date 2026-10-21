@@ -1,0 +1,72 @@
+{
+  "id": "2666",
+  "slug": "allow-one-function-call",
+  "title": "Allow One Function Call",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "Given a function `fn`, return a new function that is identical to the original function except that it ensures `fn` is called at most once.\n\n*   The first time the returned function is called, it should return the same result as `fn`.\n*   Every subsequent time it is called, it should return `undefined`.\n\n**Example 1:**\n\n```\nInput: fn = (a,b,c) => (a + b + c), calls = [[1,2,3],[2,3,6]]\nOutput: [{\"calls\":1,\"value\":6}]\nExplanation:\nconst onceFn = once(fn);\nonceFn(1, 2, 3); // 6\nonceFn(2, 3, 6); // undefined, fn was not called\n```\n\n**Example 2:**\n\n```\nInput: fn = (a,b,c) => (a * b * c), calls = [[5,7,4],[2,3,6],[4,6,8]]\nOutput: [{\"calls\":1,\"value\":140}]\nExplanation:\nconst onceFn = once(fn);\nonceFn(5, 7, 4); // 140\nonceFn(2, 3, 6); // undefined, fn was not called\nonceFn(4, 6, 8); // undefined, fn was not called\n```\n\n**Constraints:**\n\n*   `calls` is a valid JSON array\n*   `1 <= calls.length <= 10`\n*   `1 <= calls[i].length <= 100`\n*   `2 <= JSON.stringify(calls).length <= 1000`",
+  "constraints": [
+    "calls is a valid JSON array",
+    "1 <= calls.length <= 10",
+    "1 <= calls[i].length <= 100",
+    "2 <= JSON.stringify(calls).length <= 1000"
+  ],
+  "examples": [
+    {
+      "input": "fn = (a,b,c) => (a + b + c), calls = [[1,2,3],[2,3,6]]",
+      "output": "[{\"calls\":1,\"value\":6}]",
+      "explanation": "const onceFn = once(fn);\nonceFn(1, 2, 3); // 6\nonceFn(2, 3, 6); // undefined, fn was not called"
+    },
+    {
+      "input": "fn = (a,b,c) => (a * b * c), calls = [[5,7,4],[2,3,6],[4,6,8]]",
+      "output": "[{\"calls\":1,\"value\":140}]",
+      "explanation": "const onceFn = once(fn);\nonceFn(5, 7, 4); // 140\nonceFn(2, 3, 6); // undefined, fn was not called\nonceFn(4, 6, 8); // undefined, fn was not called"
+    }
+  ],
+  "starterCode": {
+    "javascript": "/**\n * @param {Function} fn\n * @return {Function}\n */\nvar once = function(fn) {\n    \n    return function(...args){\n        \n    }\n};\n\n/**\n * let fn = (a,b,c) => (a + b + c)\n * let onceFn = once(fn)\n *\n * onceFn(1,2,3); // 6\n * onceFn(2,3,6); // returns undefined without calling fn\n */\n",
+    "typescript": "type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };\ntype OnceFn = (...args: JSONValue[]) => JSONValue | undefined\n\nfunction once(fn: Function): OnceFn {\n    \n    return function (...args) {\n        \n    };\n}\n\n/**\n * let fn = (a,b,c) => (a + b + c)\n * let onceFn = once(fn)\n *\n * onceFn(1,2,3); // 6\n * onceFn(2,3,6); // returns undefined without calling fn\n */"
+  },
+  "publicTests": [
+    {
+      "input": "(a,b,c) => (a + b + c)\n[[1,2,3],[2,3,6]]",
+      "expectedOutput": "[{\"calls\":1,\"value\":6}]"
+    },
+    {
+      "input": "(a,b,c) => (a * b * c)\n[[5,7,4],[2,3,6],[4,6,8]]",
+      "expectedOutput": "[{\"calls\":1,\"value\":140}]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "(a,b,c) => (a + b + c)\n[[1,2,3],[2,3,6]]",
+      "expectedOutput": "[{\"calls\":1,\"value\":6}]"
+    },
+    {
+      "input": "(a,b,c) => (a * b * c)\n[[5,7,4],[2,3,6],[4,6,8]]",
+      "expectedOutput": "[{\"calls\":1,\"value\":140}]"
+    },
+    {
+      "input": "fn = (a,b,c) => (a + b + c), calls = [[1,2,3],[2,3,6]]",
+      "expectedOutput": "[{\"calls\":1,\"value\":6}]"
+    },
+    {
+      "input": "fn = (a,b,c) => (a * b * c), calls = [[5,7,4],[2,3,6],[4,6,8]]",
+      "expectedOutput": "[{\"calls\":1,\"value\":140}]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/allow-one-function-call/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.007Z",
+    "sourceUpdatedAt": null
+  }
+}

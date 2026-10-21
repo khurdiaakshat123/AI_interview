@@ -1,0 +1,166 @@
+{
+  "id": "960",
+  "slug": "delete-columns-to-make-sorted-iii",
+  "title": "Delete Columns to Make Sorted III",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given an array of `n` strings `strs`, all of the same length.\n\nWe may choose any deletion indices, and we delete all the characters in those indices for each string.\n\nFor example, if we have `strs = [\"abcdef\",\"uvwxyz\"]` and deletion indices `{0, 2, 3}`, then the final array after deletions is `[\"bef\", \"vyz\"]`.\n\nSuppose we chose a set of deletion indices `answer` such that after deletions, the final array has **every string (row) in lexicographic** order. (i.e., `(strs[0][0] <= strs[0][1] <= ... <= strs[0][strs[0].length - 1])`, and `(strs[1][0] <= strs[1][1] <= ... <= strs[1][strs[1].length - 1])`, and so on). Return _the minimum possible value of_ `answer.length`.\n\n**Example 1:**\n\n```\nInput: strs = [\"babca\",\"bbazb\"]\nOutput: 3\nExplanation: After deleting columns 0, 1, and 4, the final array is strs = [\"bc\", \"az\"].\nBoth these rows are individually in lexicographic order (ie. strs[0][0] <= strs[0][1] and strs[1][0] <= strs[1][1]).\nNote that strs[0] > strs[1] - the array strs is not necessarily in lexicographic order.\n```\n\n**Example 2:**\n\n```\nInput: strs = [\"edcba\"]\nOutput: 4\nExplanation: If we delete less than 4 columns, the only row will not be lexicographically sorted.\n```\n\n**Example 3:**\n\n```\nInput: strs = [\"ghi\",\"def\",\"abc\"]\nOutput: 0\nExplanation: All rows are already lexicographically sorted.\n```\n\n**Constraints:**\n\n*   `n == strs.length`\n*   `1 <= n <= 100`\n*   `1 <= strs[i].length <= 100`\n*   `strs[i]` consists of lowercase English letters.",
+  "constraints": [
+    "n == strs.length",
+    "1 <= n <= 100",
+    "1 <= strs[i].length <= 100",
+    "strs[i] consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "strs = [\"babca\",\"bbazb\"]",
+      "output": "3",
+      "explanation": "After deleting columns 0, 1, and 4, the final array is strs = [\"bc\", \"az\"].\nBoth these rows are individually in lexicographic order (ie. strs[0][0] <= strs[0][1] and strs[1][0] <= strs[1][1]).\nNote that strs[0] > strs[1] - the array strs is not necessarily in lexicographic order."
+    },
+    {
+      "input": "strs = [\"edcba\"]",
+      "output": "4",
+      "explanation": "If we delete less than 4 columns, the only row will not be lexicographically sorted."
+    },
+    {
+      "input": "strs = [\"ghi\",\"def\",\"abc\"]",
+      "output": "0",
+      "explanation": "All rows are already lexicographically sorted."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minDeletionSize(vector<string>& strs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minDeletionSize(String[] strs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minDeletionSize(self, strs: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minDeletionSize(self, strs):\n        \"\"\"\n        :type strs: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} strs\n * @return {number}\n */\nvar minDeletionSize = function(strs) {\n    \n};",
+    "typescript": "function minDeletionSize(strs: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinDeletionSize(string[] strs) {\n        \n    }\n}",
+    "c": "int minDeletionSize(char** strs, int strsSize) {\n    \n}",
+    "golang": "func minDeletionSize(strs []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minDeletionSize(strs: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minDeletionSize(_ strs: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_deletion_size(strs: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} strs\n# @return {Integer}\ndef min_deletion_size(strs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $strs\n     * @return Integer\n     */\n    function minDeletionSize($strs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minDeletionSize(List<String> strs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minDeletionSize(strs: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_deletion_size(strs :: [String.t]) :: integer\n  def min_deletion_size(strs) do\n    \n  end\nend",
+    "erlang": "-spec min_deletion_size(Strs :: [unicode:unicode_binary()]) -> integer().\nmin_deletion_size(Strs) ->\n  .",
+    "racket": "(define/contract (min-deletion-size strs)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"babca\",\"bbazb\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"edcba\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"ghi\",\"def\",\"abc\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"babca\",\"bbazb\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"edcba\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"ghi\",\"def\",\"abc\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"babca\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"bbazb\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"bbazb\",\"babca\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"babca\",\"babca\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"babca\",\"bbazb\",\"babca\",\"bbazb\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"flow\",\"flower\",\"flight\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"word\",\"world\",\"row\"]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/delete-columns-to-make-sorted-iii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.275Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "id": "860",
+  "slug": "lemonade-change",
+  "title": "Lemonade Change",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "statement": "At a lemonade stand, each lemonade costs `$5`. Customers are standing in a queue to buy from you and order one at a time (in the order specified by bills). Each customer will only buy one lemonade and pay with either a `$5`, `$10`, or `$20` bill. You must provide the correct change to each customer so that the net transaction is that the customer pays `$5`.\n\nNote that you do not have any change in hand at first.\n\nGiven an integer array `bills` where `bills[i]` is the bill the `i^(th)` customer pays, return `true` _if you can provide every customer with the correct change, or_ `false` _otherwise_.\n\n**Example 1:**\n\n```\nInput: bills = [5,5,5,10,20]\nOutput: true\nExplanation: \nFrom the first 3 customers, we collect three $5 bills in order.\nFrom the fourth customer, we collect a $10 bill and give back a $5.\nFrom the fifth customer, we give a $10 bill and a $5 bill.\nSince all customers got correct change, we output true.\n```\n\n**Example 2:**\n\n```\nInput: bills = [5,5,10,10,20]\nOutput: false\nExplanation: \nFrom the first two customers in order, we collect two $5 bills.\nFor the next two customers in order, we collect a $10 bill and give back a $5 bill.\nFor the last customer, we can not give the change of $15 back because we only have two $10 bills.\nSince not every customer received the correct change, the answer is false.\n```\n\n**Constraints:**\n\n*   `1 <= bills.length <= 10^(5)`\n*   `bills[i]` is either `5`, `10`, or `20`.",
+  "constraints": [
+    "1 <= bills.length <= 105",
+    "bills[i] is either 5, 10, or 20."
+  ],
+  "examples": [
+    {
+      "input": "bills = [5,5,5,10,20]",
+      "output": "true",
+      "explanation": "From the first 3 customers, we collect three $5 bills in order.\nFrom the fourth customer, we collect a $10 bill and give back a $5.\nFrom the fifth customer, we give a $10 bill and a $5 bill.\nSince all customers got correct change, we output true."
+    },
+    {
+      "input": "bills = [5,5,10,10,20]",
+      "output": "false",
+      "explanation": "From the first two customers in order, we collect two $5 bills.\nFor the next two customers in order, we collect a $10 bill and give back a $5 bill.\nFor the last customer, we can not give the change of $15 back because we only have two $10 bills.\nSince not every customer received the correct change, the answer is false."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool lemonadeChange(vector<int>& bills) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean lemonadeChange(int[] bills) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lemonadeChange(self, bills: list[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def lemonadeChange(self, bills):\n        \"\"\"\n        :type bills: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} bills\n * @return {boolean}\n */\nvar lemonadeChange = function(bills) {\n    \n};",
+    "typescript": "function lemonadeChange(bills: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool LemonadeChange(int[] bills) {\n        \n    }\n}",
+    "c": "bool lemonadeChange(int* bills, int billsSize) {\n    \n}",
+    "golang": "func lemonadeChange(bills []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun lemonadeChange(bills: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lemonadeChange(_ bills: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn lemonade_change(bills: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} bills\n# @return {Boolean}\ndef lemonade_change(bills)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $bills\n     * @return Boolean\n     */\n    function lemonadeChange($bills) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool lemonadeChange(List<int> bills) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lemonadeChange(bills: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec lemonade_change(bills :: [integer]) :: boolean\n  def lemonade_change(bills) do\n    \n  end\nend",
+    "erlang": "-spec lemonade_change(Bills :: [integer()]) -> boolean().\nlemonade_change(Bills) ->\n  .",
+    "racket": "(define/contract (lemonade-change bills)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[5,5,5,10,20]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[5,5,10,10,20]",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[5,5,5,10,20]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[5,5,10,10,20]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[5,5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[5,10,20]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[5,20]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[20,10,5,5,5]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[5,5,5,5,5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[5,5,5,10,20,5,5,5,10,20]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[10,10,10,20,40]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[6,6,6,11,21]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[4,4,4,9,19]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-5,-5,-5,-10,-20]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/lemonade-change/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.120Z",
+    "sourceUpdatedAt": null
+  }
+}

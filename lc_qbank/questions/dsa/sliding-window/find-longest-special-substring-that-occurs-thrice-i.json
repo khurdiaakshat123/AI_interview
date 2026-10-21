@@ -1,0 +1,169 @@
+{
+  "id": "2981",
+  "slug": "find-longest-special-substring-that-occurs-thrice-i",
+  "title": "Find Longest Special Substring That Occurs Thrice I",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Binary Search",
+    "Sliding Window",
+    "Counting"
+  ],
+  "statement": "You are given a string `s` that consists of lowercase English letters.\n\nA string is called **special** if it is made up of only a single character. For example, the string `\"abc\"` is not special, whereas the strings `\"ddd\"`, `\"zz\"`, and `\"f\"` are special.\n\nReturn _the length of the **longest special substring** of_ `s` _which occurs **at least thrice**_, _or_ `-1` _if no special substring occurs at least thrice_.\n\nA **substring** is a contiguous **non-empty** sequence of characters within a string.\n\n**Example 1:**\n\n```\nInput: s = \"aaaa\"\nOutput: 2\nExplanation: The longest special substring which occurs thrice is \"aa\": substrings \"aaaa\", \"aaaa\", and \"aaaa\".\nIt can be shown that the maximum length achievable is 2.\n```\n\n**Example 2:**\n\n```\nInput: s = \"abcdef\"\nOutput: -1\nExplanation: There exists no special substring which occurs at least thrice. Hence return -1.\n```\n\n**Example 3:**\n\n```\nInput: s = \"abcaba\"\nOutput: 1\nExplanation: The longest special substring which occurs thrice is \"a\": substrings \"abcaba\", \"abcaba\", and \"abcaba\".\nIt can be shown that the maximum length achievable is 1.\n```\n\n**Constraints:**\n\n*   `3 <= s.length <= 50`\n*   `s` consists of only lowercase English letters.",
+  "constraints": [
+    "3 <= s.length <= 50",
+    "s consists of only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aaaa\"",
+      "output": "2",
+      "explanation": "The longest special substring which occurs thrice is \"aa\": substrings \"aaaa\", \"aaaa\", and \"aaaa\".\nIt can be shown that the maximum length achievable is 2."
+    },
+    {
+      "input": "s = \"abcdef\"",
+      "output": "-1",
+      "explanation": "There exists no special substring which occurs at least thrice. Hence return -1."
+    },
+    {
+      "input": "s = \"abcaba\"",
+      "output": "1",
+      "explanation": "The longest special substring which occurs thrice is \"a\": substrings \"abcaba\", \"abcaba\", and \"abcaba\".\nIt can be shown that the maximum length achievable is 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumLength(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumLength(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumLength(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumLength(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar maximumLength = function(s) {\n    \n};",
+    "typescript": "function maximumLength(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumLength(string s) {\n        \n    }\n}",
+    "c": "int maximumLength(char* s) {\n    \n}",
+    "golang": "func maximumLength(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumLength(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumLength(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_length(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef maximum_length(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function maximumLength($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumLength(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumLength(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_length(s :: String.t) :: integer\n  def maximum_length(s) do\n    \n  end\nend",
+    "erlang": "-spec maximum_length(S :: unicode:unicode_binary()) -> integer().\nmaximum_length(S) ->\n  .",
+    "racket": "(define/contract (maximum-length s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aaaa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abcdef\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abcaba\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aaaa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abcdef\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abcaba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aaaaaaaa\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"AAAA\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"racecar\"",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The constraints are small.",
+    "Brute force checking all substrings."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.810Z",
+    "sourceUpdatedAt": null
+  }
+}

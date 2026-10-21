@@ -1,0 +1,156 @@
+{
+  "id": "3216",
+  "slug": "lexicographically-smallest-string-after-a-swap",
+  "title": "Lexicographically Smallest String After a Swap",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Easy",
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "statement": "Given a string `s` containing only digits, return the lexicographically smallest string that can be obtained after swapping **adjacent** digits in `s` with the same **parity** at most **once**.\n\nDigits have the same parity if both are odd or both are even. For example, 5 and 9, as well as 2 and 4, have the same parity, while 6 and 9 do not.\n\n**Example 1:**\n\n**Input:** s = \"45320\"\n\n**Output:** \"43520\"\n\n**Explanation:**\n\n`s[1] == '5'` and `s[2] == '3'` both have the same parity, and swapping them results in the lexicographically smallest string.\n\n**Example 2:**\n\n**Input:** s = \"001\"\n\n**Output:** \"001\"\n\n**Explanation:**\n\nThere is no need to perform a swap because `s` is already the lexicographically smallest.\n\n**Constraints:**\n\n*   `2 <= s.length <= 100`\n*   `s` consists only of digits.",
+  "constraints": [
+    "2 <= s.length <= 100",
+    "s consists only of digits."
+  ],
+  "examples": [
+    {
+      "input": "s = \"45320\"",
+      "output": "\"43520\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"001\"",
+      "output": "\"001\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string getSmallestString(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String getSmallestString(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getSmallestString(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def getSmallestString(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar getSmallestString = function(s) {\n    \n};",
+    "typescript": "function getSmallestString(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string GetSmallestString(string s) {\n        \n    }\n}",
+    "c": "char* getSmallestString(char* s) {\n    \n}",
+    "golang": "func getSmallestString(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun getSmallestString(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getSmallestString(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_smallest_string(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef get_smallest_string(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function getSmallestString($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String getSmallestString(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getSmallestString(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_smallest_string(s :: String.t) :: String.t\n  def get_smallest_string(s) do\n    \n  end\nend",
+    "erlang": "-spec get_smallest_string(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nget_smallest_string(S) ->\n  .",
+    "racket": "(define/contract (get-smallest-string s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"45320\"",
+      "expectedOutput": "\"43520\""
+    },
+    {
+      "input": "\"001\"",
+      "expectedOutput": "\"001\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"45320\"",
+      "expectedOutput": "\"43520\""
+    },
+    {
+      "input": "\"001\"",
+      "expectedOutput": "\"001\""
+    },
+    {
+      "input": "\"45\"",
+      "expectedOutput": "\"45\""
+    },
+    {
+      "input": "\"320\"",
+      "expectedOutput": "\"302\""
+    },
+    {
+      "input": "\"4\"",
+      "expectedOutput": "\"4\""
+    },
+    {
+      "input": "\"02354\"",
+      "expectedOutput": "\"02354\""
+    },
+    {
+      "input": "\"4532045320\"",
+      "expectedOutput": "\"4352045320\""
+    },
+    {
+      "input": "\"44444\"",
+      "expectedOutput": "\"44444\""
+    },
+    {
+      "input": "\"4532002354\"",
+      "expectedOutput": "\"4352002354\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"aab\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try all possible swaps satisfying the constraints and find the one that results in the lexicographically smallest string."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-a-swap/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.249Z",
+    "sourceUpdatedAt": null
+  }
+}

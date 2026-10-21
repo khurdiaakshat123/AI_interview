@@ -1,0 +1,164 @@
+{
+  "id": "978",
+  "slug": "longest-turbulent-subarray",
+  "title": "Longest Turbulent Subarray",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Sliding Window"
+  ],
+  "statement": "Given an integer array `arr`, return _the length of a maximum size turbulent subarray of_ `arr`.\n\nA subarray is **turbulent** if the comparison sign flips between each adjacent pair of elements in the subarray.\n\nMore formally, a subarray `[arr[i], arr[i + 1], ..., arr[j]]` of `arr` is said to be turbulent if and only if:\n\n*   For `i <= k < j`:\n    *   `arr[k] > arr[k + 1]` when `k` is odd, and\n    *   `arr[k] < arr[k + 1]` when `k` is even.\n*   Or, for `i <= k < j`:\n    *   `arr[k] > arr[k + 1]` when `k` is even, and\n    *   `arr[k] < arr[k + 1]` when `k` is odd.\n\n**Example 1:**\n\n```\nInput: arr = [9,4,2,10,7,8,8,1,9]\nOutput: 5\nExplanation: arr[1] > arr[2] < arr[3] > arr[4] < arr[5]\n```\n\n**Example 2:**\n\n```\nInput: arr = [4,8,12,16]\nOutput: 2\n```\n\n**Example 3:**\n\n```\nInput: arr = [100]\nOutput: 1\n```\n\n**Constraints:**\n\n*   `1 <= arr.length <= 4 * 10^(4)`\n*   `0 <= arr[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= arr.length <= 4 * 104",
+    "0 <= arr[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "arr = [9,4,2,10,7,8,8,1,9]",
+      "output": "5",
+      "explanation": "arr[1] > arr[2] < arr[3] > arr[4] < arr[5]"
+    },
+    {
+      "input": "arr = [4,8,12,16]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "arr = [100]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxTurbulenceSize(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxTurbulenceSize(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxTurbulenceSize(self, arr: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxTurbulenceSize(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number}\n */\nvar maxTurbulenceSize = function(arr) {\n    \n};",
+    "typescript": "function maxTurbulenceSize(arr: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxTurbulenceSize(int[] arr) {\n        \n    }\n}",
+    "c": "int maxTurbulenceSize(int* arr, int arrSize) {\n    \n}",
+    "golang": "func maxTurbulenceSize(arr []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxTurbulenceSize(arr: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxTurbulenceSize(_ arr: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_turbulence_size(arr: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer}\ndef max_turbulence_size(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer\n     */\n    function maxTurbulenceSize($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxTurbulenceSize(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxTurbulenceSize(arr: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_turbulence_size(arr :: [integer]) :: integer\n  def max_turbulence_size(arr) do\n    \n  end\nend",
+    "erlang": "-spec max_turbulence_size(Arr :: [integer()]) -> integer().\nmax_turbulence_size(Arr) ->\n  .",
+    "racket": "(define/contract (max-turbulence-size arr)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[9,4,2,10,7,8,8,1,9]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[4,8,12,16]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[100]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[9,4,2,10,7,8,8,1,9]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[4,8,12,16]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[100]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[9,4,2,10]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[7,8,8,1,9]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[9]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[9,9]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[9,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[9,1,8,8,7,10,2,4,9]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2,4,7,8,8,9,9,10]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[10,9,9,8,8,7,4,2,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[9,9,9,9,9]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[18,8,4,20,14,16,16,2,18]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[10,5,3,11,8,9,9,2,10]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[8,3,1,9,6,7,7,0,8]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-9,-4,-2,-10,-7,-8,-8,-1,-9]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-turbulent-subarray/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.722Z",
+    "sourceUpdatedAt": null
+  }
+}

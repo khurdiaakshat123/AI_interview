@@ -1,0 +1,171 @@
+{
+  "id": "1248",
+  "slug": "count-number-of-nice-subarrays",
+  "title": "Count Number of Nice Subarrays",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "statement": "Given an array of integers `nums` and an integer `k`. A continuous subarray is called **nice** if there are `k` odd numbers on it.\n\nReturn _the number of **nice** sub-arrays_.\n\n**Example 1:**\n\n```\nInput: nums = [1,1,2,1,1], k = 3\nOutput: 2\nExplanation: The only sub-arrays with 3 odd numbers are [1,1,2,1] and [1,2,1,1].\n```\n\n**Example 2:**\n\n```\nInput: nums = [2,4,6], k = 1\nOutput: 0\nExplanation: There are no odd numbers in the array.\n```\n\n**Example 3:**\n\n```\nInput: nums = [2,2,2,1,2,2,1,2,2,2], k = 2\nOutput: 16\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 50000`\n*   `1 <= nums[i] <= 10^5`\n*   `1 <= k <= nums.length`",
+  "constraints": [
+    "1 <= nums.length <= 50000",
+    "1 <= nums[i] <= 10^5",
+    "1 <= k <= nums.length"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,1,2,1,1], k = 3",
+      "output": "2",
+      "explanation": "The only sub-arrays with 3 odd numbers are [1,1,2,1] and [1,2,1,1]."
+    },
+    {
+      "input": "nums = [2,4,6], k = 1",
+      "output": "0",
+      "explanation": "There are no odd numbers in the array."
+    },
+    {
+      "input": "nums = [2,2,2,1,2,2,1,2,2,2], k = 2",
+      "output": "16",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numberOfSubarrays(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numberOfSubarrays(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfSubarrays(self, nums: list[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfSubarrays(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar numberOfSubarrays = function(nums, k) {\n    \n};",
+    "typescript": "function numberOfSubarrays(nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumberOfSubarrays(int[] nums, int k) {\n        \n    }\n}",
+    "c": "int numberOfSubarrays(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func numberOfSubarrays(nums []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfSubarrays(nums: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfSubarrays(_ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_subarrays(nums: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef number_of_subarrays(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function numberOfSubarrays($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfSubarrays(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfSubarrays(nums: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_subarrays(nums :: [integer], k :: integer) :: integer\n  def number_of_subarrays(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec number_of_subarrays(Nums :: [integer()], K :: integer()) -> integer().\nnumber_of_subarrays(Nums, K) ->\n  .",
+    "racket": "(define/contract (number-of-subarrays nums k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,1,2,1,1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4,6]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,2,2,1,2,2,1,2,2,2]\n2",
+      "expectedOutput": "16"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,1,2,1,1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4,6]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,2,2,1,2,2,1,2,2,2]\n2",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[1,1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1,1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1,2]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,1,1,1,1]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1,1,1]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,2,1,1,1,1,2,1,1]\n3",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[2,2,4,2,2]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,2,3,2,2]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,1,0,0]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-1,-2,-1,-1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0,0]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]\n3",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "After replacing each even by zero and every odd by one can we use prefix sum to find answer ?",
+    "Can we use two pointers to count number of sub-arrays ?",
+    "Can we store the indices of odd numbers and for each k indices count the number of sub-arrays that contains them ?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-number-of-nice-subarrays/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.327Z",
+    "sourceUpdatedAt": null
+  }
+}

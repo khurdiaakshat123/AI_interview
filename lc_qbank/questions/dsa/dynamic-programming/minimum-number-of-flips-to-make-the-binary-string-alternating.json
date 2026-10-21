@@ -1,0 +1,167 @@
+{
+  "id": "1888",
+  "slug": "minimum-number-of-flips-to-make-the-binary-string-alternating",
+  "title": "Minimum Number of Flips to Make the Binary String Alternating",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Sliding Window"
+  ],
+  "statement": "You are given a binary string `s`. You are allowed to perform two types of operations on the string in any sequence:\n\n*   **Type-1: Remove** the character at the start of the string `s` and **append** it to the end of the string.\n*   **Type-2: Pick** any character in `s` and **flip** its value, i.e., if its value is `'0'` it becomes `'1'` and vice-versa.\n\nReturn _the **minimum** number of **type-2** operations you need to perform_ _such that_ `s` _becomes **alternating**._\n\nThe string is called **alternating** if no two adjacent characters are equal.\n\n*   For example, the strings `\"010\"` and `\"1010\"` are alternating, while the string `\"0100\"` is not.\n\n**Example 1:**\n\n```\nInput: s = \"111000\"\nOutput: 2\nExplanation: Use the first operation two times to make s = \"100011\".\nThen, use the second operation on the third and sixth elements to make s = \"101010\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"010\"\nOutput: 0\nExplanation: The string is already alternating.\n```\n\n**Example 3:**\n\n```\nInput: s = \"1110\"\nOutput: 1\nExplanation: Use the second operation on the second element to make s = \"1010\".\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s[i]` is either `'0'` or `'1'`.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s[i] is either '0' or '1'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"111000\"",
+      "output": "2",
+      "explanation": ": Use the first operation two times to make s = \"100011\".\nThen, use the second operation on the third and sixth elements to make s = \"101010\"."
+    },
+    {
+      "input": "s = \"010\"",
+      "output": "0",
+      "explanation": ": The string is already alternating."
+    },
+    {
+      "input": "s = \"1110\"",
+      "output": "1",
+      "explanation": ": Use the second operation on the second element to make s = \"1010\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minFlips(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minFlips(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minFlips(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minFlips(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minFlips = function(s) {\n    \n};",
+    "typescript": "function minFlips(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinFlips(string s) {\n        \n    }\n}",
+    "c": "int minFlips(char* s) {\n    \n}",
+    "golang": "func minFlips(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minFlips(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minFlips(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_flips(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef min_flips(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minFlips($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minFlips(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minFlips(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_flips(s :: String.t) :: integer\n  def min_flips(s) do\n    \n  end\nend",
+    "erlang": "-spec min_flips(S :: unicode:unicode_binary()) -> integer().\nmin_flips(S) ->\n  .",
+    "racket": "(define/contract (min-flips s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"111000\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"010\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"1110\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"111000\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"010\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"1110\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"111\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"000\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"11\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"000111\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"111000111000\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"111111\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"111000000111\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Note what actually matters is how many 0s and 1s are in odd and even positions",
+    "For every cyclic shift we need to count how many 0s and 1s are at each parity and convert the minimum between them for each parity"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-flips-to-make-the-binary-string-alternating/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.245Z",
+    "sourceUpdatedAt": null
+  }
+}

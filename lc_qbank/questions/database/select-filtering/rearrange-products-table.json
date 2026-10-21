@@ -1,0 +1,58 @@
+{
+  "id": "1795",
+  "slug": "rearrange-products-table",
+  "title": "Rearrange Products Table",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Products`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| product_id  | int     |\n| store1      | int     |\n| store2      | int     |\n| store3      | int     |\n+-------------+---------+\nproduct_id is the primary key (column with unique values) for this table.\nEach row in this table indicates the product's price in 3 different stores: store1, store2, and store3.\nIf the product is not available in a store, the price will be null in that store's column.\n```\n\nWrite a solution to rearrange the `Products` table so that each row has `(product_id, store, price)`. If a product is not available in a store, do **not** include a row with that `product_id` and `store` combination in the result table.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nProducts table:\n+------------+--------+--------+--------+\n| product_id | store1 | store2 | store3 |\n+------------+--------+--------+--------+\n| 0          | 95     | 100    | 105    |\n| 1          | 70     | null   | 80     |\n+------------+--------+--------+--------+\nOutput: \n+------------+--------+-------+\n| product_id | store  | price |\n+------------+--------+-------+\n| 0          | store1 | 95    |\n| 0          | store2 | 100   |\n| 0          | store3 | 105   |\n| 1          | store1 | 70    |\n| 1          | store3 | 80    |\n+------------+--------+-------+\nExplanation: \nProduct 0 is available in all three stores with prices 95, 100, and 105 respectively.\nProduct 1 is available in store1 with price 70 and store3 with price 80. The product is not available in store2.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Products table:\n+------------+--------+--------+--------+\n| product_id | store1 | store2 | store3 |\n+------------+--------+--------+--------+\n| 0          | 95     | 100    | 105    |\n| 1          | 70     | null   | 80     |\n+------------+--------+--------+--------+",
+      "output": "+------------+--------+-------+\n| product_id | store  | price |\n+------------+--------+-------+\n| 0          | store1 | 95    |\n| 0          | store2 | 100   |\n| 0          | store3 | 105   |\n| 1          | store1 | 70    |\n| 1          | store3 | 80    |\n+------------+--------+-------+",
+      "explanation": "Product 0 is available in all three stores with prices 95, 100, and 105 respectively.\nProduct 1 is available in store1 with price 70 and store3 with price 80. The product is not available in store2."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef rearrange_products_table(products: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Products\":[\"product_id\",\"store1\",\"store2\",\"store3\"]},\"rows\":{\"Products\":[[0, 95, 100, 105], [1, 70, null, 80]]}}",
+      "expectedOutput": "+------------+--------+-------+\n| product_id | store  | price |\n+------------+--------+-------+\n| 0          | store1 | 95    |\n| 0          | store2 | 100   |\n| 0          | store3 | 105   |\n| 1          | store1 | 70    |\n| 1          | store3 | 80    |\n+------------+--------+-------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Products\":[\"product_id\",\"store1\",\"store2\",\"store3\"]},\"rows\":{\"Products\":[[0, 95, 100, 105], [1, 70, null, 80]]}}",
+      "expectedOutput": "+------------+--------+-------+\n| product_id | store  | price |\n+------------+--------+-------+\n| 0          | store1 | 95    |\n| 0          | store2 | 100   |\n| 0          | store3 | 105   |\n| 1          | store1 | 70    |\n| 1          | store3 | 80    |\n+------------+--------+-------+"
+    },
+    {
+      "input": "Products table:\n+------------+--------+--------+--------+\n| product_id | store1 | store2 | store3 |\n+------------+--------+--------+--------+\n| 0          | 95     | 100    | 105    |\n| 1          | 70     | null   | 80     |\n+------------+--------+--------+--------+",
+      "expectedOutput": "+------------+--------+-------+\n| product_id | store  | price |\n+------------+--------+-------+\n| 0          | store1 | 95    |\n| 0          | store2 | 100   |\n| 0          | store3 | 105   |\n| 1          | store1 | 70    |\n| 1          | store3 | 80    |\n+------------+--------+-------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Products (product_id int, store1 int, store2 int, store3 int)\n\nTruncate table Products",
+  "sqlSetup": [
+    "insert into Products (product_id, store1, store2, store3) values ('0', '95', '100', '105')",
+    "insert into Products (product_id, store1, store2, store3) values ('1', '70', NULL, '80')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/rearrange-products-table/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.278Z",
+    "sourceUpdatedAt": null
+  }
+}

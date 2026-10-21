@@ -1,0 +1,176 @@
+{
+  "id": "3965",
+  "slug": "finish-time-of-tasks-i",
+  "title": "Finish Time of Tasks I",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "statement": "You are given an integer `n` representing the number of tasks in a project, numbered from 0 to `n - 1`. These tasks are connected as a **tree** rooted at task 0. This is represented by a 2D integer array `edges` of length `n - 1`, where `edges[i] = [u_(i), v_(i)]` indicates that task `u_(i)` is the parent of task `v_(i)`.\n\nYou are also given an array `baseTime` of length `n`, where `baseTime[i]` represents the time to complete task `i`.\n\nThe **finish time** of each task is calculated as follows:\n\n*   Leaf task: The finish time is `baseTime[i]`.\n*   Non-leaf task:\n    *   Let `earliest` be the **minimum** finish time among its children, and `latest` be the **maximum** finish time among its children.\n    *   Let `ownDuration` be `(latest - earliest) + baseTime[i]`.\n    *   The finish time of task `i` is `latest + ownDuration`.\n\nReturn the finish time of the root task 0.\n\n**Example 1:**\n\n**Input:** n = 3, edges = \\[\\[0,1\\],\\[1,2\\]\\], baseTime = \\[9,5,3\\]\n\n**Output:** 17\n\n**Explanation:**\n\n0 9 1 5 2 3\n\n*   Task 2 is a leaf, so its finish time is `baseTime[2] = 3`.\n*   Task 1 has one child task 2:\n    *   `earliest = latest = 3`\n    *   `ownDuration = (latest - earliest) + baseTime[1] = 5`\n    *   Finish time of task 1 is `3 + 5 = 8`\n*   Task 0 has one child with finish time 8:\n    *   `earliest = latest = 8`\n    *   `ownDuration = (latest - earliest) + baseTime[0] = 9`\n    *   Finish time of task 0 is `8 + 9 = 17`\n\n**Example 2:**\n\n**Input:** n = 3, edges = \\[\\[0,1\\],\\[0,2\\]\\], baseTime = \\[4,7,6\\]\n\n**Output:** 12\n\n**Explanation:**\n\n0 4 1 7 2 6\n\n*   Task 1 is a leaf, so its finish time is `baseTime[1] = 7`.\n*   Task 2 is a leaf, so its finish time is `baseTime[2] = 6`.\n*   Task 0 has two children with finish times 7 and 6:\n    *   `earliest = 6`, `latest = 7`\n    *   `ownDuration = (latest - earliest) + baseTime[0] = (7 - 6) + 4 = 5`\n    *   Finish time of task 0 is `latest + ownDuration = 7 + 5 = 12`\n\n**Example 3:**\n\n**Input:** n = 4, edges = \\[\\[0,1\\],\\[0,2\\],\\[2,3\\]\\], baseTime = \\[5,8,2,1\\]\n\n**Output:** 18\n\n**Explanation:**\n\n*   Task 1 is a leaf, so its finish time is `baseTime[1] = 8`.\n*   Task 3 is a leaf, so its finish time is `baseTime[3] = 1`.\n*   Task 2 has one child task 3:\n    *   `earliest = latest = 1`\n    *   `ownDuration = (latest - earliest) + baseTime[2] = 0 + 2 = 2`\n    *   Finish time of task 2 is `latest + ownDuration = 1 + 2 = 3`\n*   Task 0 has two children with finish times 8 and 3:\n    *   `earliest = 3`, `latest = 8`\n    *   `ownDuration = (latest - earliest) + baseTime[0] = (8 - 3) + 5 = 10`\n    *   Finish time of task 0 is `latest + ownDuration = 8 + 10 = 18`\n\n**Constraints:**\n\n*   `1 <= n <= 10^(5)`\n*   `edges.length = n - 1`\n*   `edges[i] == [u_(i), v_(i)]`\n*   `0 <= u_(i), v_(i) <= n - 1`\n*   `u_(i) != v_(i)`\n*   The input is generated such that `edges` represents a valid tree.\n*   `baseTime.length == n`\n*   `1 <= baseTime[i] <= 10^(5)`​​​​​​​\n*   The finish time of every task is guaranteed to be less than `2^(53)`.",
+  "constraints": [
+    "1 <= n <= 105",
+    "edges.length = n - 1",
+    "edges[i] == [ui, vi]",
+    "0 <= ui, vi <= n - 1",
+    "ui != vi",
+    "The input is generated such that edges represents a valid tree.",
+    "baseTime.length == n",
+    "1 <= baseTime[i] <= 105​​​​​​​",
+    "The finish time of every task is guaranteed to be less than 253."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], baseTime = [9,5,3]",
+      "output": "17",
+      "explanation": "0 9  1 5  2 3 \n\n\n\tTask 2 is a leaf, so its finish time is baseTime[2] = 3.\n\tTask 1 has one child task 2:\n\t\n\t\tearliest = latest = 3\n\t\townDuration = (latest - earliest) + baseTime[1] = 5\n\t\tFinish time of task 1 is 3 + 5 = 8\n\t\n\t\n\tTask 0 has one child with finish time 8:\n\t\n\t\tearliest = latest = 8\n\t\townDuration = (latest - earliest) + baseTime[0] = 9\n\t\tFinish time of task 0 is 8 + 9 = 17"
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[0,2]], baseTime = [4,7,6]",
+      "output": "12",
+      "explanation": "0 4  1 7  2 6 \n\n\n\tTask 1 is a leaf, so its finish time is baseTime[1] = 7.\n\tTask 2 is a leaf, so its finish time is baseTime[2] = 6.\n\tTask 0 has two children with finish times 7 and 6:\n\t\n\t\tearliest = 6, latest = 7\n\t\townDuration = (latest - earliest) + baseTime[0] = (7 - 6) + 4 = 5\n\t\tFinish time of task 0 is latest + ownDuration = 7 + 5 = 12"
+    },
+    {
+      "input": "n = 4, edges = [[0,1],[0,2],[2,3]], baseTime = [5,8,2,1]",
+      "output": "18",
+      "explanation": "Task 1 is a leaf, so its finish time is baseTime[1] = 8.\n\tTask 3 is a leaf, so its finish time is baseTime[3] = 1.\n\tTask 2 has one child task 3:\n\t\n\t\tearliest = latest = 1\n\t\townDuration = (latest - earliest) + baseTime[2] = 0 + 2 = 2\n\t\tFinish time of task 2 is latest + ownDuration = 1 + 2 = 3\n\t\n\t\n\tTask 0 has two children with finish times 8 and 3:\n\t\n\t\tearliest = 3, latest = 8\n\t\townDuration = (latest - earliest) + baseTime[0] = (8 - 3) + 5 = 10\n\t\tFinish time of task 0 is latest + ownDuration = 8 + 10 = 18"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long finishTime(int n, vector<vector<int>>& edges, vector<int>& baseTime) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long finishTime(int n, int[][] edges, int[] baseTime) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def finishTime(self, n: int, edges: List[List[int]], baseTime: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def finishTime(self, n, edges, baseTime):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type baseTime: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number[]} baseTime\n * @return {number}\n */\nvar finishTime = function(n, edges, baseTime) {\n    \n};",
+    "typescript": "function finishTime(n: number, edges: number[][], baseTime: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long FinishTime(int n, int[][] edges, int[] baseTime) {\n        \n    }\n}",
+    "c": "long long finishTime(int n, int** edges, int edgesSize, int* edgesColSize, int* baseTime, int baseTimeSize) {\n    \n}",
+    "golang": "func finishTime(n int, edges [][]int, baseTime []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun finishTime(n: Int, edges: Array<IntArray>, baseTime: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func finishTime(_ n: Int, _ edges: [[Int]], _ baseTime: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn finish_time(n: i32, edges: Vec<Vec<i32>>, base_time: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Integer[]} base_time\n# @return {Integer}\ndef finish_time(n, edges, base_time)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Integer[] $baseTime\n     * @return Integer\n     */\n    function finishTime($n, $edges, $baseTime) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int finishTime(int n, List<List<int>> edges, List<int> baseTime) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def finishTime(n: Int, edges: Array[Array[Int]], baseTime: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec finish_time(n :: integer, edges :: [[integer]], base_time :: [integer]) :: integer\n  def finish_time(n, edges, base_time) do\n    \n  end\nend",
+    "erlang": "-spec finish_time(N :: integer(), Edges :: [[integer()]], BaseTime :: [integer()]) -> integer().\nfinish_time(N, Edges, BaseTime) ->\n  .",
+    "racket": "(define/contract (finish-time n edges baseTime)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1],[1,2]]\n[9,5,3]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "3\n[[0,1],[0,2]]\n[4,7,6]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "4\n[[0,1],[0,2],[2,3]]\n[5,8,2,1]",
+      "expectedOutput": "18"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1],[1,2]]\n[9,5,3]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "3\n[[0,1],[0,2]]\n[4,7,6]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "4\n[[0,1],[0,2],[2,3]]\n[5,8,2,1]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "4\n[[0,1],[1,2]]\n[9,5,3]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "5\n[[0,1],[1,2]]\n[9,5,3]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "6\n[[0,1],[1,2]]\n[9,5,3]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "7\n[[0,1],[1,2]]\n[9,5,3]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "8\n[[0,1],[1,2]]\n[9,5,3]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[3,5,9]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[9,9,9]",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[9,5,3,9,5,3]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[18,10,6]",
+      "expectedOutput": "34"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[10,6,4]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[8,4,2]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[-9,-5,-3]",
+      "expectedOutput": "-17"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[1,2,3]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[3,2,1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[0,1,0]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Build the children list from <code>edges</code>, since the tree is rooted and each edge already points from parent to child.",
+    "Compute finish times using a postorder DFS, so all children of a task are processed before the task itself.",
+    "For each non-leaf task, keep only the minimum and maximum finish times among its children."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/finish-time-of-tasks-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.883Z",
+    "sourceUpdatedAt": null
+  }
+}

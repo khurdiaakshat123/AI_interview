@@ -1,0 +1,155 @@
+{
+  "id": "784",
+  "slug": "letter-case-permutation",
+  "title": "Letter Case Permutation",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "statement": "Given a string `s`, you can transform every letter individually to be lowercase or uppercase to create another string.\n\nReturn _a list of all possible strings we could create_. Return the output in **any order**.\n\n**Example 1:**\n\n```\nInput: s = \"a1b2\"\nOutput: [\"a1b2\",\"a1B2\",\"A1b2\",\"A1B2\"]\n```\n\n**Example 2:**\n\n```\nInput: s = \"3z4\"\nOutput: [\"3z4\",\"3Z4\"]\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 12`\n*   `s` consists of lowercase English letters, uppercase English letters, and digits.",
+  "constraints": [
+    "1 <= s.length <= 12",
+    "s consists of lowercase English letters, uppercase English letters, and digits."
+  ],
+  "examples": [
+    {
+      "input": "s = \"a1b2\"",
+      "output": "[\"a1b2\",\"a1B2\",\"A1b2\",\"A1B2\"]",
+      "explanation": null
+    },
+    {
+      "input": "s = \"3z4\"",
+      "output": "[\"3z4\",\"3Z4\"]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> letterCasePermutation(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> letterCasePermutation(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def letterCasePermutation(self, s: str) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def letterCasePermutation(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string[]}\n */\nvar letterCasePermutation = function(s) {\n    \n};",
+    "typescript": "function letterCasePermutation(s: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> LetterCasePermutation(string s) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** letterCasePermutation(char* s, int* returnSize) {\n    \n}",
+    "golang": "func letterCasePermutation(s string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun letterCasePermutation(s: String): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func letterCasePermutation(_ s: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn letter_case_permutation(s: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String[]}\ndef letter_case_permutation(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String[]\n     */\n    function letterCasePermutation($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> letterCasePermutation(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def letterCasePermutation(s: String): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec letter_case_permutation(s :: String.t) :: [String.t]\n  def letter_case_permutation(s) do\n    \n  end\nend",
+    "erlang": "-spec letter_case_permutation(S :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nletter_case_permutation(S) ->\n  .",
+    "racket": "(define/contract (letter-case-permutation s)\n  (-> string? (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"a1b2\"",
+      "expectedOutput": "[\"a1b2\",\"a1B2\",\"A1b2\",\"A1B2\"]"
+    },
+    {
+      "input": "\"3z4\"",
+      "expectedOutput": "[\"3z4\",\"3Z4\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"a1b2\"",
+      "expectedOutput": "[\"a1b2\",\"a1B2\",\"A1B2\",\"A1b2\"]"
+    },
+    {
+      "input": "\"3z4\"",
+      "expectedOutput": "[\"3z4\",\"3Z4\"]"
+    },
+    {
+      "input": "\"a1\"",
+      "expectedOutput": "[\"a1\",\"A1\"]"
+    },
+    {
+      "input": "\"b2\"",
+      "expectedOutput": "[\"b2\",\"B2\"]"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "[\"a\",\"A\"]"
+    },
+    {
+      "input": "\"2b1a\"",
+      "expectedOutput": "[\"2b1a\",\"2b1A\",\"2B1A\",\"2B1a\"]"
+    },
+    {
+      "input": "\"a1b2a1b2\"",
+      "expectedOutput": "[\"a1b2a1b2\",\"a1b2a1B2\",\"a1b2A1B2\",\"a1b2A1b2\",\"a1B2A1b2\",\"a1B2A1B2\",\"a1B2a1B2\",\"a1B2a1b2\",\"A1B2a1b2\",\"A1B2a1B2\",\"A1B2A1B2\",\"A1B2A1b2\",\"A1b2A1b2\",\"A1b2A1B2\",\"A1b2a1B2\",\"A1b2a1b2\"]"
+    },
+    {
+      "input": "\"aaaa\"",
+      "expectedOutput": "[\"aaaa\",\"aaaA\",\"aaAA\",\"aaAa\",\"aAAa\",\"aAAA\",\"aAaA\",\"aAaa\",\"AAaa\",\"AAaA\",\"AAAA\",\"AAAa\",\"AaAa\",\"AaAA\",\"AaaA\",\"Aaaa\"]"
+    },
+    {
+      "input": "\"a1b22b1a\"",
+      "expectedOutput": "[\"a1b22b1a\",\"a1b22b1A\",\"a1b22B1A\",\"a1b22B1a\",\"a1B22B1a\",\"a1B22B1A\",\"a1B22b1A\",\"a1B22b1a\",\"A1B22b1a\",\"A1B22b1A\",\"A1B22B1A\",\"A1B22B1a\",\"A1b22B1a\",\"A1b22B1A\",\"A1b22b1A\",\"A1b22b1a\"]"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "[\"b\",\"B\"]"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "[\"aa\",\"aA\",\"AA\",\"Aa\"]"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "[\"ab\",\"aB\",\"AB\",\"Ab\"]"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "[\"ba\",\"bA\",\"BA\",\"Ba\"]"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "[\"aba\",\"abA\",\"aBA\",\"aBa\",\"ABa\",\"ABA\",\"AbA\",\"Aba\"]"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "[\"abba\",\"abbA\",\"abBA\",\"abBa\",\"aBBa\",\"aBBA\",\"aBbA\",\"aBba\",\"ABba\",\"ABbA\",\"ABBA\",\"ABBa\",\"AbBa\",\"AbBA\",\"AbbA\",\"Abba\"]"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "[\"aaaaa\",\"aaaaA\",\"aaaAA\",\"aaaAa\",\"aaAAa\",\"aaAAA\",\"aaAaA\",\"aaAaa\",\"aAAaa\",\"aAAaA\",\"aAAAA\",\"aAAAa\",\"aAaAa\",\"aAaAA\",\"aAaaA\",\"aAaaa\",\"AAaaa\",\"AAaaA\",\"AAaAA\",\"AAaAa\",\"AAAAa\",\"AAAAA\",\"AAAaA\",\"AAAaa\",\"AaAaa\",\"AaAaA\",\"AaAAA\",\"AaAAa\",\"AaaAa\",\"AaaAA\",\"AaaaA\",\"Aaaaa\"]"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "[\"abcde\",\"abcdE\",\"abcDE\",\"abcDe\",\"abCDe\",\"abCDE\",\"abCdE\",\"abCde\",\"aBCde\",\"aBCdE\",\"aBCDE\",\"aBCDe\",\"aBcDe\",\"aBcDE\",\"aBcdE\",\"aBcde\",\"ABcde\",\"ABcdE\",\"ABcDE\",\"ABcDe\",\"ABCDe\",\"ABCDE\",\"ABCdE\",\"ABCde\",\"AbCde\",\"AbCdE\",\"AbCDE\",\"AbCDe\",\"AbcDe\",\"AbcDE\",\"AbcdE\",\"Abcde\"]"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "[\"edcba\",\"edcbA\",\"edcBA\",\"edcBa\",\"edCBa\",\"edCBA\",\"edCbA\",\"edCba\",\"eDCba\",\"eDCbA\",\"eDCBA\",\"eDCBa\",\"eDcBa\",\"eDcBA\",\"eDcbA\",\"eDcba\",\"EDcba\",\"EDcbA\",\"EDcBA\",\"EDcBa\",\"EDCBa\",\"EDCBA\",\"EDCbA\",\"EDCba\",\"EdCba\",\"EdCbA\",\"EdCBA\",\"EdCBa\",\"EdcBa\",\"EdcBA\",\"EdcbA\",\"Edcba\"]"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "[\"aab\",\"aaB\",\"aAB\",\"aAb\",\"AAb\",\"AAB\",\"AaB\",\"Aab\"]"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "[\"aA\",\"aa\",\"Aa\",\"AA\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/letter-case-permutation/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.164Z",
+    "sourceUpdatedAt": null
+  }
+}

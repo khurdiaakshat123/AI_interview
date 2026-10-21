@@ -1,0 +1,156 @@
+{
+  "id": "392",
+  "slug": "is-subsequence",
+  "title": "Is Subsequence",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Easy",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "Given two strings `s` and `t`, return `true` _if_ `s` _is a **subsequence** of_ `t`_, or_ `false` _otherwise_.\n\nA **subsequence** of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., `\"ace\"` is a subsequence of `\"abcde\"` while `\"aec\"` is not).\n\n**Example 1:**\n\n```\nInput: s = \"abc\", t = \"ahbgdc\"\nOutput: true\n```\n\n**Example 2:**\n\n```\nInput: s = \"axc\", t = \"ahbgdc\"\nOutput: false\n```\n\n**Constraints:**\n\n*   `0 <= s.length <= 100`\n*   `0 <= t.length <= 10^(4)`\n*   `s` and `t` consist only of lowercase English letters.\n\n**Follow up:** Suppose there are lots of incoming `s`, say `s_(1), s_(2), ..., s_(k)` where `k >= 10^(9)`, and you want to check one by one to see if `t` has its subsequence. In this scenario, how would you change your code?",
+  "constraints": [
+    "0 <= s.length <= 100",
+    "0 <= t.length <= 104",
+    "s and t consist only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abc\", t = \"ahbgdc\"",
+      "output": "true",
+      "explanation": null
+    },
+    {
+      "input": "s = \"axc\", t = \"ahbgdc\"",
+      "output": "false",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isSubsequence(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isSubsequence(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isSubsequence(self, s: str, t: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isSubsequence(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {boolean}\n */\nvar isSubsequence = function(s, t) {\n    \n};",
+    "typescript": "function isSubsequence(s: string, t: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsSubsequence(string s, string t) {\n        \n    }\n}",
+    "c": "bool isSubsequence(char* s, char* t) {\n    \n}",
+    "golang": "func isSubsequence(s string, t string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isSubsequence(s: String, t: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isSubsequence(_ s: String, _ t: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_subsequence(s: String, t: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Boolean}\ndef is_subsequence(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Boolean\n     */\n    function isSubsequence($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isSubsequence(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isSubsequence(s: String, t: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_subsequence(s :: String.t, t :: String.t) :: boolean\n  def is_subsequence(s, t) do\n    \n  end\nend",
+    "erlang": "-spec is_subsequence(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> boolean().\nis_subsequence(S, T) ->\n  .",
+    "racket": "(define/contract (is-subsequence s t)\n  (-> string? string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abc\"\n\"ahbgdc\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"axc\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abc\"\n\"ahbgdc\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"axc\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"\n\"ahbgdc\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"bc\"\n\"ahbgdc\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ab\"\n\"ahbgdc\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"cba\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcabc\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaa\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abccba\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ABC\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n\"ahbgdc\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aa\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aA\"\n\"ahbgdc\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/is-subsequence/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.640Z",
+    "sourceUpdatedAt": null
+  }
+}

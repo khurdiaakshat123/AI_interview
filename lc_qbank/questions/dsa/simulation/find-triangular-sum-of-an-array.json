@@ -1,0 +1,160 @@
+{
+  "id": "2221",
+  "slug": "find-triangular-sum-of-an-array",
+  "title": "Find Triangular Sum of an Array",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Simulation",
+    "Combinatorics",
+    "Number Theory"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums`, where `nums[i]` is a digit between `0` and `9` (**inclusive**).\n\nThe **triangular sum** of `nums` is the value of the only element present in `nums` after the following process terminates:\n\n1.  Let `nums` comprise of `n` elements. If `n == 1`, **end** the process. Otherwise, **create** a new **0-indexed** integer array `newNums` of length `n - 1`.\n2.  For each index `i`, where `0 <= i < n - 1`, **assign** the value of `newNums[i]` as `(nums[i] + nums[i+1]) % 10`, where `%` denotes modulo operator.\n3.  **Replace** the array `nums` with `newNums`.\n4.  **Repeat** the entire process starting from step 1.\n\nReturn _the triangular sum of_ `nums`.\n\n**Example 1:**\n\n![](./assets/find-triangular-sum-of-an-array-1.png)\n```\nInput: nums = [1,2,3,4,5]\nOutput: 8\nExplanation:\nThe above diagram depicts the process from which we obtain the triangular sum of the array.\n```\n\n**Example 2:**\n\n```\nInput: nums = [5]\nOutput: 5\nExplanation:\nSince there is only one element in nums, the triangular sum is the value of that element itself.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 1000`\n*   `0 <= nums[i] <= 9`",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "0 <= nums[i] <= 9"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3,4,5]",
+      "output": "8",
+      "explanation": "The above diagram depicts the process from which we obtain the triangular sum of the array."
+    },
+    {
+      "input": "nums = [5]",
+      "output": "5",
+      "explanation": "Since there is only one element in nums, the triangular sum is the value of that element itself."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int triangularSum(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int triangularSum(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def triangularSum(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def triangularSum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar triangularSum = function(nums) {\n    \n};",
+    "typescript": "function triangularSum(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int TriangularSum(int[] nums) {\n        \n    }\n}",
+    "c": "int triangularSum(int* nums, int numsSize) {\n    \n}",
+    "golang": "func triangularSum(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun triangularSum(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func triangularSum(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn triangular_sum(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef triangular_sum(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function triangularSum($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int triangularSum(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def triangularSum(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec triangular_sum(nums :: [integer]) :: integer\n  def triangular_sum(nums) do\n    \n  end\nend",
+    "erlang": "-spec triangular_sum(Nums :: [integer()]) -> integer().\ntriangular_sum(Nums) ->\n  .",
+    "racket": "(define/contract (triangular-sum nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4,5]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[5]",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4,5]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,4,5]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,5]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[5,4,3,2,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,2,3,4,5,1,2,3,4,5]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,4,6,8,10]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,3,4,5,6]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,1,2,3,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,-2,-3,-4,-5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try simulating the entire process.",
+    "To reduce space, use a temporary array to update nums in every step instead of creating a new array at each step."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-triangular-sum-of-an-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.724Z",
+    "sourceUpdatedAt": null
+  }
+}

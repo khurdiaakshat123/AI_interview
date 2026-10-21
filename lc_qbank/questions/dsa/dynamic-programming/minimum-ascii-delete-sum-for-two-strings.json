@@ -1,0 +1,157 @@
+{
+  "id": "712",
+  "slug": "minimum-ascii-delete-sum-for-two-strings",
+  "title": "Minimum ASCII Delete Sum for Two Strings",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Longest Common Subsequence"
+  ],
+  "statement": "Given two strings `s1` and `s2`, return _the lowest **ASCII** sum of deleted characters to make two strings equal_.\n\n**Example 1:**\n\n```\nInput: s1 = \"sea\", s2 = \"eat\"\nOutput: 231\nExplanation: Deleting \"s\" from \"sea\" adds the ASCII value of \"s\" (115) to the sum.\nDeleting \"t\" from \"eat\" adds 116 to the sum.\nAt the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this.\n```\n\n**Example 2:**\n\n```\nInput: s1 = \"delete\", s2 = \"leet\"\nOutput: 403\nExplanation: Deleting \"dee\" from \"delete\" to turn the string into \"let\",\nadds 100[d] + 101[e] + 101[e] to the sum.\nDeleting \"e\" from \"leet\" adds 101[e] to the sum.\nAt the end, both strings are equal to \"let\", and the answer is 100+101+101+101 = 403.\nIf instead we turned both strings into \"lee\" or \"eet\", we would get answers of 433 or 417, which are higher.\n```\n\n**Constraints:**\n\n*   `1 <= s1.length, s2.length <= 1000`\n*   `s1` and `s2` consist of lowercase English letters.",
+  "constraints": [
+    "1 <= s1.length, s2.length <= 1000",
+    "s1 and s2 consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s1 = \"sea\", s2 = \"eat\"",
+      "output": "231",
+      "explanation": "Deleting \"s\" from \"sea\" adds the ASCII value of \"s\" (115) to the sum.\nDeleting \"t\" from \"eat\" adds 116 to the sum.\nAt the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this."
+    },
+    {
+      "input": "s1 = \"delete\", s2 = \"leet\"",
+      "output": "403",
+      "explanation": "Deleting \"dee\" from \"delete\" to turn the string into \"let\",\nadds 100[d] + 101[e] + 101[e] to the sum.\nDeleting \"e\" from \"leet\" adds 101[e] to the sum.\nAt the end, both strings are equal to \"let\", and the answer is 100+101+101+101 = 403.\nIf instead we turned both strings into \"lee\" or \"eet\", we would get answers of 433 or 417, which are higher."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumDeleteSum(string s1, string s2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumDeleteSum(String s1, String s2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumDeleteSum(self, s1: str, s2: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumDeleteSum(self, s1, s2):\n        \"\"\"\n        :type s1: str\n        :type s2: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s1\n * @param {string} s2\n * @return {number}\n */\nvar minimumDeleteSum = function(s1, s2) {\n    \n};",
+    "typescript": "function minimumDeleteSum(s1: string, s2: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumDeleteSum(string s1, string s2) {\n        \n    }\n}",
+    "c": "int minimumDeleteSum(char* s1, char* s2) {\n    \n}",
+    "golang": "func minimumDeleteSum(s1 string, s2 string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumDeleteSum(s1: String, s2: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumDeleteSum(_ s1: String, _ s2: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_delete_sum(s1: String, s2: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s1\n# @param {String} s2\n# @return {Integer}\ndef minimum_delete_sum(s1, s2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s1\n     * @param String $s2\n     * @return Integer\n     */\n    function minimumDeleteSum($s1, $s2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumDeleteSum(String s1, String s2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumDeleteSum(s1: String, s2: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_delete_sum(s1 :: String.t, s2 :: String.t) :: integer\n  def minimum_delete_sum(s1, s2) do\n    \n  end\nend",
+    "erlang": "-spec minimum_delete_sum(S1 :: unicode:unicode_binary(), S2 :: unicode:unicode_binary()) -> integer().\nminimum_delete_sum(S1, S2) ->\n  .",
+    "racket": "(define/contract (minimum-delete-sum s1 s2)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"sea\"\n\"eat\"",
+      "expectedOutput": "231"
+    },
+    {
+      "input": "\"delete\"\n\"leet\"",
+      "expectedOutput": "403"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"sea\"\n\"eat\"",
+      "expectedOutput": "231"
+    },
+    {
+      "input": "\"delete\"\n\"leet\"",
+      "expectedOutput": "403"
+    },
+    {
+      "input": "\"s\"\n\"eat\"",
+      "expectedOutput": "429"
+    },
+    {
+      "input": "\"ea\"\n\"eat\"",
+      "expectedOutput": "116"
+    },
+    {
+      "input": "\"se\"\n\"eat\"",
+      "expectedOutput": "328"
+    },
+    {
+      "input": "\"aes\"\n\"eat\"",
+      "expectedOutput": "425"
+    },
+    {
+      "input": "\"seasea\"\n\"eat\"",
+      "expectedOutput": "544"
+    },
+    {
+      "input": "\"sss\"\n\"eat\"",
+      "expectedOutput": "659"
+    },
+    {
+      "input": "\"seaaes\"\n\"eat\"",
+      "expectedOutput": "544"
+    },
+    {
+      "input": "\"SEA\"\n\"eat\"",
+      "expectedOutput": "531"
+    },
+    {
+      "input": "\"a\"\n\"eat\"",
+      "expectedOutput": "217"
+    },
+    {
+      "input": "\"b\"\n\"eat\"",
+      "expectedOutput": "412"
+    },
+    {
+      "input": "\"aa\"\n\"eat\"",
+      "expectedOutput": "314"
+    },
+    {
+      "input": "\"ab\"\n\"eat\"",
+      "expectedOutput": "315"
+    },
+    {
+      "input": "\"ba\"\n\"eat\"",
+      "expectedOutput": "315"
+    },
+    {
+      "input": "\"aba\"\n\"eat\"",
+      "expectedOutput": "412"
+    },
+    {
+      "input": "\"abba\"\n\"eat\"",
+      "expectedOutput": "510"
+    },
+    {
+      "input": "\"aaaaa\"\n\"eat\"",
+      "expectedOutput": "605"
+    },
+    {
+      "input": "\"abcde\"\n\"eat\"",
+      "expectedOutput": "607"
+    },
+    {
+      "input": "\"edcba\"\n\"eat\"",
+      "expectedOutput": "413"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let dp(i, j) be the answer for inputs s1[i:] and s2[j:]."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.460Z",
+    "sourceUpdatedAt": null
+  }
+}

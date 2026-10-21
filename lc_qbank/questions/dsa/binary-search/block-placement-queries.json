@@ -1,0 +1,101 @@
+{
+  "id": "3161",
+  "slug": "block-placement-queries",
+  "title": "Block Placement Queries",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Ordered Set"
+  ],
+  "statement": "There exists an infinite number line, with its origin at 0 and extending towards the **positive** x-axis.\n\nYou are given a 2D array `queries`, which contains two types of queries:\n\n1.  For a query of type 1, `queries[i] = [1, x]`. Build an obstacle at distance `x` from the origin. It is guaranteed that there is **no** obstacle at distance `x` when the query is asked.\n2.  For a query of type 2, `queries[i] = [2, x, sz]`. Check if it is possible to place a block of size `sz` _anywhere_ in the range `[0, x]` on the line, such that the block **entirely** lies in the range `[0, x]`. A block **cannot** be placed if it intersects with any obstacle, but it may touch it. Note that you do **not** actually place the block. Queries are separate.\n\nReturn a boolean array `results`, where `results[i]` is `true` if you can place the block specified in the `i^(th)` query of type 2, and `false` otherwise.\n\n**Example 1:**\n\n**Input:** queries = \\[\\[1,2\\],\\[2,3,3\\],\\[2,3,1\\],\\[2,2,2\\]\\]\n\n**Output:** \\[false,true,true\\]\n\n**Explanation:**\n\n**![](./assets/block-placement-queries-1.png)**\n\nFor query 0, place an obstacle at `x = 2`. A block of size at most 2 can be placed before `x = 3`.\n\n**Example 2:**\n\n**Input:** queries = \\[\\[1,7\\],\\[2,7,6\\],\\[1,2\\],\\[2,7,5\\],\\[2,7,6\\]\\]\n\n**Output:** \\[true,true,false\\]\n\n**Explanation:**\n\n**![](./assets/block-placement-queries-2.png)**\n\n*   Place an obstacle at `x = 7` for query 0. A block of size at most 7 can be placed before `x = 7`.\n*   Place an obstacle at `x = 2` for query 2. Now, a block of size at most 5 can be placed before `x = 7`, and a block of size at most 2 before `x = 2`.\n\n**Constraints:**\n\n*   `1 <= queries.length <= 15 * 10^(4)`\n*   `2 <= queries[i].length <= 3`\n*   `1 <= queries[i][0] <= 2`\n*   `1 <= x, sz <= min(5 * 10^(4), 3 * queries.length)`\n*   The input is generated such that for queries of type 1, no obstacle exists at distance `x` when the query is asked.\n*   The input is generated such that there is at least one query of type 2.",
+  "constraints": [
+    "1 <= queries.length <= 15 * 104",
+    "2 <= queries[i].length <= 3",
+    "1 <= queries[i][0] <= 2",
+    "1 <= x, sz <= min(5 * 104, 3 * queries.length)",
+    "The input is generated such that for queries of type 1, no obstacle exists at distance x when the query is asked.",
+    "The input is generated such that there is at least one query of type 2."
+  ],
+  "examples": [
+    {
+      "input": "queries = [[1,2],[2,3,3],[2,3,1],[2,2,2]]",
+      "output": "[false,true,true]",
+      "explanation": null
+    },
+    {
+      "input": "queries = [[1,7],[2,7,6],[1,2],[2,7,5],[2,7,6]]",
+      "output": "[true,true,false]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<bool> getResults(vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Boolean> getResults(int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getResults(self, queries: List[List[int]]) -> List[bool]:\n        ",
+    "python": "class Solution(object):\n    def getResults(self, queries):\n        \"\"\"\n        :type queries: List[List[int]]\n        :rtype: List[bool]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} queries\n * @return {boolean[]}\n */\nvar getResults = function(queries) {\n    \n};",
+    "typescript": "function getResults(queries: number[][]): boolean[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<bool> GetResults(int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nbool* getResults(int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func getResults(queries [][]int) []bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun getResults(queries: Array<IntArray>): List<Boolean> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getResults(_ queries: [[Int]]) -> [Bool] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_results(queries: Vec<Vec<i32>>) -> Vec<bool> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} queries\n# @return {Boolean[]}\ndef get_results(queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $queries\n     * @return Boolean[]\n     */\n    function getResults($queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<bool> getResults(List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getResults(queries: Array[Array[Int]]): List[Boolean] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_results(queries :: [[integer]]) :: [boolean]\n  def get_results(queries) do\n    \n  end\nend",
+    "erlang": "-spec get_results(Queries :: [[integer()]]) -> [boolean()].\nget_results(Queries) ->\n  .",
+    "racket": "(define/contract (get-results queries)\n  (-> (listof (listof exact-integer?)) (listof boolean?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,2],[2,3,3],[2,3,1],[2,2,2]]",
+      "expectedOutput": "[false,true,true]"
+    },
+    {
+      "input": "[[1,7],[2,7,6],[1,2],[2,7,5],[2,7,6]]",
+      "expectedOutput": "[true,true,false]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,2],[2,3,3],[2,3,1],[2,2,2]]",
+      "expectedOutput": "[false,true,true]"
+    },
+    {
+      "input": "[[1,7],[2,7,6],[1,2],[2,7,5],[2,7,6]]",
+      "expectedOutput": "[true,true,false]"
+    },
+    {
+      "input": "queries = [[1,2],[2,3,3],[2,3,1],[2,2,2]]",
+      "expectedOutput": "[false,true,true]"
+    },
+    {
+      "input": "queries = [[1,7],[2,7,6],[1,2],[2,7,5],[2,7,6]]",
+      "expectedOutput": "[true,true,false]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let <code>d[x]</code> be the distance of the next obstacle after <code>x</code>.",
+    "For each query of type 2, we just need to check if <code>max(d[0], d[1], d[2], …d[x - sz]) > sz</code>.",
+    "Use segment tree to maintain <code>d[x]</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/block-placement-queries/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.683Z",
+    "sourceUpdatedAt": null
+  }
+}

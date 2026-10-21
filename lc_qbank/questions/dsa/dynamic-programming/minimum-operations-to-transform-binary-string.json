@@ -1,0 +1,114 @@
+{
+  "id": "3980",
+  "slug": "minimum-operations-to-transform-binary-string",
+  "title": "Minimum Operations to Transform Binary String",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "statement": "You are given two binary strings `s1` and `s2` of the same length `n`.\n\nYou can perform the following operations on `s1` any number of times, in any order:\n\n*   Choose an index `i` such that `s1[i] == '0'`, and change it to `'1'`.\n*   Choose an index `i` such that `0 <= i < n - 1`, and both `s1[i]` and `s1[i + 1]` are `'1'`. Change both characters to `'0'`.\n\nReturn the **minimum** number of operations required to make `s1` equal to `s2`. If it is impossible, return -1.\n\n**Example 1:**\n\n**Input:** s1 = \"11\", s2 = \"00\"\n\n**Output:** 1\n\n**Explanation:**\n\nChange indices 0 and 1 from `'1'` to `'0'` in one operation, so `\"11\"` becomes `\"00\"`. Thus, the answer is 1.\n\n**Example 2:**\n\n**Input:** s1 = \"01\", s2 = \"10\"\n\n**Output:** 3\n\n**Explanation:**\n\n*   Change index 0 from `'0'` to `'1'`, so `\"01\"` becomes `\"11\"`.\n*   Change indices 0 and 1 from `'1'` to `'0'`, so `\"11\"` becomes `\"00\"`.\n*   Change index 0 from `'0'` to `'1'`, so `\"00\"` becomes `\"10\"`.\n*   Thus, the answer is 3.\n\n**Example 3:**\n\n**Input:** s1 = \"1\", s2 = \"0\"\n\n**Output:** \\-1\n\n**Explanation:**\n\nThe first operation cannot change `'1'` to `'0'`, and the second operation requires two adjacent characters. Therefore, it is impossible.\n\n**Constraints:**\n\n*   `1 <= n == s1.length == s2.length <= 10^(5)`\n*   `s1` and `s2` consist only of `'0'` and `'1'`.",
+  "constraints": [
+    "1 <= n == s1.length == s2.length <= 105",
+    "s1 and s2 consist only of '0' and '1'."
+  ],
+  "examples": [
+    {
+      "input": "s1 = \"11\", s2 = \"00\"",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "s1 = \"01\", s2 = \"10\"",
+      "output": "3",
+      "explanation": "Change index 0 from '0' to '1', so \"01\" becomes \"11\".\n\tChange indices 0 and 1 from '1' to '0', so \"11\" becomes \"00\".\n\tChange index 0 from '0' to '1', so \"00\" becomes \"10\".\n\tThus, the answer is 3."
+    },
+    {
+      "input": "s1 = \"1\", s2 = \"0\"",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minOperations(string s1, string s2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minOperations(String s1, String s2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, s1: str, s2: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, s1, s2):\n        \"\"\"\n        :type s1: str\n        :type s2: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s1\n * @param {string} s2\n * @return {number}\n */\nvar minOperations = function(s1, s2) {\n    \n};",
+    "typescript": "function minOperations(s1: string, s2: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinOperations(string s1, string s2) {\n        \n    }\n}",
+    "c": "int minOperations(char* s1, char* s2) {\n    \n}",
+    "golang": "func minOperations(s1 string, s2 string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(s1: String, s2: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ s1: String, _ s2: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(s1: String, s2: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s1\n# @param {String} s2\n# @return {Integer}\ndef min_operations(s1, s2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s1\n     * @param String $s2\n     * @return Integer\n     */\n    function minOperations($s1, $s2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(String s1, String s2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(s1: String, s2: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(s1 :: String.t, s2 :: String.t) :: integer\n  def min_operations(s1, s2) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(S1 :: unicode:unicode_binary(), S2 :: unicode:unicode_binary()) -> integer().\nmin_operations(S1, S2) ->\n  .",
+    "racket": "(define/contract (min-operations s1 s2)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"11\"\n\"00\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"01\"\n\"10\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"1\"\n\"0\"",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"11\"\n\"00\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"01\"\n\"10\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"1\"\n\"0\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "s1 = \"11\", s2 = \"00\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "s1 = \"01\", s2 = \"10\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "s1 = \"1\", s2 = \"0\"",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The first operation is the only way to change a <code>'0'</code> into a <code>'1'</code>.",
+    "The second operation is the only way to change a <code>'1'</code> into a <code>'0'</code>, but it affects two adjacent positions at once.",
+    "Use dynamic programming from left to right. When processing position <code>i</code>, keep enough information to know whether position <code>i</code> has already been affected by an operation involving position <code>i - 1</code>.",
+    "For each position, either make it match directly, or use the second operation on the pair <code>(i, i + 1)</code> after making both characters <code>'1'</code> if necessary.",
+    "Handle the case <code>n == 1</code> separately, since the second operation cannot be used."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-operations-to-transform-binary-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.820Z",
+    "sourceUpdatedAt": null
+  }
+}

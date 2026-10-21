@@ -1,0 +1,51 @@
+{
+  "id": "2881",
+  "slug": "create-a-new-column",
+  "title": "Create a New Column",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "```\nemployees\n```\n\nA company plans to provide its employees with a bonus.\n\nWrite a solution to create a new column name `bonus` that contains the **doubled values** of the `salary` column.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput:\nDataFrame employees\n+---------+--------+\n| name    | salary |\n+---------+--------+\n| Piper   | 4548   |\n| Grace   | 28150  |\n| Georgia | 1103   |\n| Willow  | 6593   |\n| Finn    | 74576  |\n| Thomas  | 24433  |\n+---------+--------+\nOutput:\n+---------+--------+--------+\n| name    | salary | bonus  |\n+---------+--------+--------+\n| Piper   | 4548   | 9096   |\n| Grace   | 28150  | 56300  |\n| Georgia | 1103   | 2206   |\n| Willow  | 6593   | 13186  |\n| Finn    | 74576  | 149152 |\n| Thomas  | 24433  | 48866  |\n+---------+--------+--------+\nExplanation: \nA new column bonus is created by doubling the value in the column salary.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "DataFrame employees\n+---------+--------+\n| name    | salary |\n+---------+--------+\n| Piper   | 4548   |\n| Grace   | 28150  |\n| Georgia | 1103   |\n| Willow  | 6593   |\n| Finn    | 74576  |\n| Thomas  | 24433  |\n+---------+--------+",
+      "output": "+---------+--------+--------+\n| name    | salary | bonus  |\n+---------+--------+--------+\n| Piper   | 4548   | 9096   |\n| Grace   | 28150  | 56300  |\n| Georgia | 1103   | 2206   |\n| Willow  | 6593   | 13186  |\n| Finn    | 74576  | 149152 |\n| Thomas  | 24433  | 48866  |\n+---------+--------+--------+",
+      "explanation": "A new column bonus is created by doubling the value in the column salary."
+    }
+  ],
+  "starterCode": {
+    "pythondata": "import pandas as pd\n\ndef createBonusColumn(employees: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"employees\":[\"name\",\"salary\"]},\"rows\":{\"employees\":[[\"Piper\",4548],[\"Grace\",28150],[\"Georgia\",1103],[\"Willow\",6593],[\"Finn\",74576],[\"Thomas\",24433]]}}",
+      "expectedOutput": "+---------+--------+--------+\n| name    | salary | bonus  |\n+---------+--------+--------+\n| Piper   | 4548   | 9096   |\n| Grace   | 28150  | 56300  |\n| Georgia | 1103   | 2206   |\n| Willow  | 6593   | 13186  |\n| Finn    | 74576  | 149152 |\n| Thomas  | 24433  | 48866  |\n+---------+--------+--------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"employees\":[\"name\",\"salary\"]},\"rows\":{\"employees\":[[\"Piper\",4548],[\"Grace\",28150],[\"Georgia\",1103],[\"Willow\",6593],[\"Finn\",74576],[\"Thomas\",24433]]}}",
+      "expectedOutput": "+---------+--------+--------+\n| name    | salary | bonus  |\n+---------+--------+--------+\n| Piper   | 4548   | 9096   |\n| Grace   | 28150  | 56300  |\n| Georgia | 1103   | 2206   |\n| Willow  | 6593   | 13186  |\n| Finn    | 74576  | 149152 |\n| Thomas  | 24433  | 48866  |\n+---------+--------+--------+"
+    },
+    {
+      "input": "DataFrame employees\n+---------+--------+\n| name    | salary |\n+---------+--------+\n| Piper   | 4548   |\n| Grace   | 28150  |\n| Georgia | 1103   |\n| Willow  | 6593   |\n| Finn    | 74576  |\n| Thomas  | 24433  |\n+---------+--------+",
+      "expectedOutput": "+---------+--------+--------+\n| name    | salary | bonus  |\n+---------+--------+--------+\n| Piper   | 4548   | 9096   |\n| Grace   | 28150  | 56300  |\n| Georgia | 1103   | 2206   |\n| Willow  | 6593   | 13186  |\n| Finn    | 74576  | 149152 |\n| Thomas  | 24433  | 48866  |\n+---------+--------+--------+"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider using the `[]` brackets with the new column name at the left side of the assignment. The calculation of the value is done element-wise."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/create-a-new-column/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.059Z",
+    "sourceUpdatedAt": null
+  }
+}

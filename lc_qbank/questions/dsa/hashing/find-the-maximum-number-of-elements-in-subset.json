@@ -1,0 +1,160 @@
+{
+  "id": "3020",
+  "slug": "find-the-maximum-number-of-elements-in-subset",
+  "title": "Find the Maximum Number of Elements in Subset",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Enumeration"
+  ],
+  "statement": "You are given an array of **positive** integers `nums`.\n\nYou need to select a subset of `nums` which satisfies the following condition:\n\n*   You can place the selected elements in a **0-indexed** array such that it follows the pattern: `[x, x^(2), x^(4), ..., x^(k/2), x^(k), x^(k/2), ..., x^(4), x^(2), x]` (**Note** that `k` can be any **non-negative** power of `2`). For example, `[2, 4, 16, 4, 2]` and `[3, 9, 3]` follow the pattern while `[2, 4, 8, 4, 2]` does not.\n\nReturn _the **maximum** number of elements in a subset that satisfies these conditions._\n\n**Example 1:**\n\n```\nInput: nums = [5,4,1,2,2]\nOutput: 3\nExplanation: We can select the subset {4,2,2}, which can be placed in the array as [2,4,2] which follows the pattern and 22 == 4. Hence the answer is 3.\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,3,2,4]\nOutput: 1\nExplanation: We can select the subset {1}, which can be placed in the array as [1] which follows the pattern. Hence the answer is 1. Note that we could have also selected the subsets {2}, {3}, or {4}, there may be multiple subsets which provide the same answer.\n```\n\n**Constraints:**\n\n*   `2 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "2 <= nums.length <= 105",
+    "1 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [5,4,1,2,2]",
+      "output": "3",
+      "explanation": "We can select the subset {4,2,2}, which can be placed in the array as [2,4,2] which follows the pattern and 22 == 4. Hence the answer is 3."
+    },
+    {
+      "input": "nums = [1,3,2,4]",
+      "output": "1",
+      "explanation": "We can select the subset {1}, which can be placed in the array as [1] which follows the pattern. Hence the answer is 1. Note that we could have also selected the subsets {2}, {3}, or {4}, there may be multiple subsets which provide the same answer."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumLength(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumLength(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumLength(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumLength(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maximumLength = function(nums) {\n    \n};",
+    "typescript": "function maximumLength(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumLength(int[] nums) {\n        \n    }\n}",
+    "c": "int maximumLength(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maximumLength(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumLength(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumLength(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_length(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef maximum_length(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maximumLength($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumLength(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumLength(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_length(nums :: [integer]) :: integer\n  def maximum_length(nums) do\n    \n  end\nend",
+    "erlang": "-spec maximum_length(Nums :: [integer()]) -> integer().\nmaximum_length(Nums) ->\n  .",
+    "racket": "(define/contract (maximum-length nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[5,4,1,2,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,3,2,4]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[5,4,1,2,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,3,2,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,2,1,4,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,2,4,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,4,2,2,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,5,5,5,5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,4,1,2,2,5,4,1,2,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[10,8,2,4,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[6,5,2,3,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,3,0,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-5,-4,-1,-2,-2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We can select an odd number of <code>1</code>’s.",
+    "Put all the values into a HashSet. We can start from each <code>x > 1</code> as the smallest chosen value and we can find the longest subset by checking the new values (which are the square of the previous value) in the set by brute force.",
+    "Note when <code>x > 1</code>, <code>x<sup>2</sup></code>, <code>x<sup>4</sup></code>, <code>x<sup>8</sup></code>, … increases very fast, the longest subset with smallest value x cannot be very long. (The length is <code>O(log(log(10<sup>9</sup>)))</code>.",
+    "Hence we can directly check all lengths less than <code>10</code> for all values of <code>x</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-maximum-number-of-elements-in-subset/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.432Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "id": "2895",
+  "slug": "minimum-processing-time",
+  "title": "Minimum Processing Time",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You have a certain number of processors, each having 4 cores. The number of tasks to be executed is four times the number of processors. Each task must be assigned to a unique core, and each core can only be used once.\n\nYou are given an array `processorTime` representing the time each processor becomes available and an array `tasks` representing how long each task takes to complete. Return the _minimum_ time needed to complete all tasks.\n\n**Example 1:**\n\n**Input:** processorTime = \\[8,10\\], tasks = \\[2,2,3,1,8,7,4,5\\]\n\n**Output:** 16\n\n**Explanation:**\n\nAssign the tasks at indices 4, 5, 6, 7 to the first processor which becomes available at `time = 8`, and the tasks at indices 0, 1, 2, 3 to the second processor which becomes available at `time = 10`. \n\nThe time taken by the first processor to finish the execution of all tasks is `max(8 + 8, 8 + 7, 8 + 4, 8 + 5) = 16`.\n\nThe time taken by the second processor to finish the execution of all tasks is `max(10 + 2, 10 + 2, 10 + 3, 10 + 1) = 13`.\n\n**Example 2:**\n\n**Input:** processorTime = \\[10,20\\], tasks = \\[2,3,1,2,5,8,4,3\\]\n\n**Output:** 23\n\n**Explanation:**\n\nAssign the tasks at indices 1, 4, 5, 6 to the first processor and the others to the second processor.\n\nThe time taken by the first processor to finish the execution of all tasks is `max(10 + 3, 10 + 5, 10 + 8, 10 + 4) = 18`.\n\nThe time taken by the second processor to finish the execution of all tasks is `max(20 + 2, 20 + 1, 20 + 2, 20 + 3) = 23`.\n\n**Constraints:**\n\n*   `1 <= n == processorTime.length <= 25000`\n*   `1 <= tasks.length <= 10^(5)`\n*   `0 <= processorTime[i] <= 10^(9)`\n*   `1 <= tasks[i] <= 10^(9)`\n*   `tasks.length == 4 * n`",
+  "constraints": [
+    "1 <= n == processorTime.length <= 25000",
+    "1 <= tasks.length <= 105",
+    "0 <= processorTime[i] <= 109",
+    "1 <= tasks[i] <= 109",
+    "tasks.length == 4 * n"
+  ],
+  "examples": [
+    {
+      "input": "processorTime = [8,10], tasks = [2,2,3,1,8,7,4,5]",
+      "output": "16",
+      "explanation": null
+    },
+    {
+      "input": "processorTime = [10,20], tasks = [2,3,1,2,5,8,4,3]",
+      "output": "23",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minProcessingTime(vector<int>& processorTime, vector<int>& tasks) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minProcessingTime(List<Integer> processorTime, List<Integer> tasks) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minProcessingTime(self, processorTime: List[int], tasks: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minProcessingTime(self, processorTime, tasks):\n        \"\"\"\n        :type processorTime: List[int]\n        :type tasks: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} processorTime\n * @param {number[]} tasks\n * @return {number}\n */\nvar minProcessingTime = function(processorTime, tasks) {\n    \n};",
+    "typescript": "function minProcessingTime(processorTime: number[], tasks: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinProcessingTime(IList<int> processorTime, IList<int> tasks) {\n        \n    }\n}",
+    "c": "int minProcessingTime(int* processorTime, int processorTimeSize, int* tasks, int tasksSize) {\n    \n}",
+    "golang": "func minProcessingTime(processorTime []int, tasks []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minProcessingTime(processorTime: List<Int>, tasks: List<Int>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minProcessingTime(_ processorTime: [Int], _ tasks: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_processing_time(processor_time: Vec<i32>, tasks: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} processor_time\n# @param {Integer[]} tasks\n# @return {Integer}\ndef min_processing_time(processor_time, tasks)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $processorTime\n     * @param Integer[] $tasks\n     * @return Integer\n     */\n    function minProcessingTime($processorTime, $tasks) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minProcessingTime(List<int> processorTime, List<int> tasks) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minProcessingTime(processorTime: List[Int], tasks: List[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_processing_time(processor_time :: [integer], tasks :: [integer]) :: integer\n  def min_processing_time(processor_time, tasks) do\n    \n  end\nend",
+    "erlang": "-spec min_processing_time(ProcessorTime :: [integer()], Tasks :: [integer()]) -> integer().\nmin_processing_time(ProcessorTime, Tasks) ->\n  .",
+    "racket": "(define/contract (min-processing-time processorTime tasks)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[8,10]\n[2,2,3,1,8,7,4,5]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[10,20]\n[2,3,1,2,5,8,4,3]",
+      "expectedOutput": "23"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[8,10]\n[2,2,3,1,8,7,4,5]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[10,20]\n[2,3,1,2,5,8,4,3]",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "[8,10]\n[2,3,1,2,5,8,4,3]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[10,20]\n[2,2,3,1,8,7,4,5]",
+      "expectedOutput": "23"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "It’s optimal to make the processor with earlier process time run 4 longer tasks.****",
+    "The largest <code>processTime[i] + tasks[j]</code> (when matched) is the answer."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-processing-time/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.897Z",
+    "sourceUpdatedAt": null
+  }
+}

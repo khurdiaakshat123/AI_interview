@@ -1,0 +1,175 @@
+{
+  "id": "1807",
+  "slug": "evaluate-the-bracket-pairs-of-a-string",
+  "title": "Evaluate the Bracket Pairs of a String",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "statement": "You are given a string `s` that contains some bracket pairs, with each pair containing a **non-empty** key.\n\n*   For example, in the string `\"(name)is(age)yearsold\"`, there are **two** bracket pairs that contain the keys `\"name\"` and `\"age\"`.\n\nYou know the values of a wide range of keys. This is represented by a 2D string array `knowledge` where each `knowledge[i] = [key_(i), value_(i)]` indicates that key `key_(i)` has a value of `value_(i)`.\n\nYou are tasked to evaluate **all** of the bracket pairs. When you evaluate a bracket pair that contains some key `key_(i)`, you will:\n\n*   Replace `key_(i)` and the bracket pair with the key's corresponding `value_(i)`.\n*   If you do not know the value of the key, you will replace `key_(i)` and the bracket pair with a question mark `\"?\"` (without the quotation marks).\n\nEach key will appear at most once in your `knowledge`. There will not be any nested brackets in `s`.\n\nReturn _the resulting string after evaluating **all** of the bracket pairs._\n\n**Example 1:**\n\n```\nInput: s = \"(name)is(age)yearsold\", knowledge = [[\"name\",\"bob\"],[\"age\",\"two\"]]\nOutput: \"bobistwoyearsold\"\nExplanation:\nThe key \"name\" has a value of \"bob\", so replace \"(name)\" with \"bob\".\nThe key \"age\" has a value of \"two\", so replace \"(age)\" with \"two\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"hi(name)\", knowledge = [[\"a\",\"b\"]]\nOutput: \"hi?\"\nExplanation: As you do not know the value of the key \"name\", replace \"(name)\" with \"?\".\n```\n\n**Example 3:**\n\n```\nInput: s = \"(a)(a)(a)aaa\", knowledge = [[\"a\",\"yes\"]]\nOutput: \"yesyesyesaaa\"\nExplanation: The same key can appear multiple times.\nThe key \"a\" has a value of \"yes\", so replace all occurrences of \"(a)\" with \"yes\".\nNotice that the \"a\"s not in a bracket pair are not evaluated.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `0 <= knowledge.length <= 10^(5)`\n*   `knowledge[i].length == 2`\n*   `1 <= key_(i).length, value_(i).length <= 10`\n*   `s` consists of lowercase English letters and round brackets `'('` and `')'`.\n*   Every open bracket `'('` in `s` will have a corresponding close bracket `')'`.\n*   The key in each bracket pair of `s` will be non-empty.\n*   There will not be any nested bracket pairs in `s`.\n*   `key_(i)` and `value_(i)` consist of lowercase English letters.\n*   Each `key_(i)` in `knowledge` is unique.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "0 <= knowledge.length <= 105",
+    "knowledge[i].length == 2",
+    "1 <= keyi.length, valuei.length <= 10",
+    "s consists of lowercase English letters and round brackets '(' and ')'.",
+    "Every open bracket '(' in s will have a corresponding close bracket ')'.",
+    "The key in each bracket pair of s will be non-empty.",
+    "There will not be any nested bracket pairs in s.",
+    "keyi and valuei consist of lowercase English letters.",
+    "Each keyi in knowledge is unique."
+  ],
+  "examples": [
+    {
+      "input": "s = \"(name)is(age)yearsold\", knowledge = [[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "output": "\"bobistwoyearsold\"",
+      "explanation": "The key \"name\" has a value of \"bob\", so replace \"(name)\" with \"bob\".\nThe key \"age\" has a value of \"two\", so replace \"(age)\" with \"two\"."
+    },
+    {
+      "input": "s = \"hi(name)\", knowledge = [[\"a\",\"b\"]]",
+      "output": "\"hi?\"",
+      "explanation": "As you do not know the value of the key \"name\", replace \"(name)\" with \"?\"."
+    },
+    {
+      "input": "s = \"(a)(a)(a)aaa\", knowledge = [[\"a\",\"yes\"]]",
+      "output": "\"yesyesyesaaa\"",
+      "explanation": "The same key can appear multiple times.\nThe key \"a\" has a value of \"yes\", so replace all occurrences of \"(a)\" with \"yes\".\nNotice that the \"a\"s not in a bracket pair are not evaluated."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string evaluate(string s, vector<vector<string>>& knowledge) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String evaluate(String s, List<List<String>> knowledge) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def evaluate(self, s: str, knowledge: list[list[str]]) -> str:\n        ",
+    "python": "class Solution(object):\n    def evaluate(self, s, knowledge):\n        \"\"\"\n        :type s: str\n        :type knowledge: List[List[str]]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string[][]} knowledge\n * @return {string}\n */\nvar evaluate = function(s, knowledge) {\n    \n};",
+    "typescript": "function evaluate(s: string, knowledge: string[][]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string Evaluate(string s, IList<IList<string>> knowledge) {\n        \n    }\n}",
+    "c": "char* evaluate(char* s, char*** knowledge, int knowledgeSize, int* knowledgeColSize) {\n    \n}",
+    "golang": "func evaluate(s string, knowledge [][]string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun evaluate(s: String, knowledge: List<List<String>>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func evaluate(_ s: String, _ knowledge: [[String]]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn evaluate(s: String, knowledge: Vec<Vec<String>>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String[][]} knowledge\n# @return {String}\ndef evaluate(s, knowledge)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String[][] $knowledge\n     * @return String\n     */\n    function evaluate($s, $knowledge) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String evaluate(String s, List<List<String>> knowledge) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def evaluate(s: String, knowledge: List[List[String]]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec evaluate(s :: String.t, knowledge :: [[String.t]]) :: String.t\n  def evaluate(s, knowledge) do\n    \n  end\nend",
+    "erlang": "-spec evaluate(S :: unicode:unicode_binary(), Knowledge :: [[unicode:unicode_binary()]]) -> unicode:unicode_binary().\nevaluate(S, Knowledge) ->\n  .",
+    "racket": "(define/contract (evaluate s knowledge)\n  (-> string? (listof (listof string?)) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"(name)is(age)yearsold\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"bobistwoyearsold\""
+    },
+    {
+      "input": "\"hi(name)\"\n[[\"a\",\"b\"]]",
+      "expectedOutput": "\"hi?\""
+    },
+    {
+      "input": "\"(a)(a)(a)aaa\"\n[[\"a\",\"yes\"]]",
+      "expectedOutput": "\"yesyesyesaaa\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"(name)is(age)yearsold\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"bobistwoyearsold\""
+    },
+    {
+      "input": "\"hi(name)\"\n[[\"a\",\"b\"]]",
+      "expectedOutput": "\"hi?\""
+    },
+    {
+      "input": "\"(a)(a)(a)aaa\"\n[[\"a\",\"yes\"]]",
+      "expectedOutput": "\"yesyesyesaaa\""
+    },
+    {
+      "input": "\"ge)yearsold\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"ge)yearsold\""
+    },
+    {
+      "input": "\"a\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"aab\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"aab\""
+    },
+    {
+      "input": "\"aA\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"aA\""
+    },
+    {
+      "input": "\"0\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"0\""
+    },
+    {
+      "input": "\"121\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"121\""
+    },
+    {
+      "input": "\"racecar\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"racecar\""
+    },
+    {
+      "input": "\"hello\"\n[[\"name\",\"bob\"],[\"age\",\"two\"]]",
+      "expectedOutput": "\"hello\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Process pairs from right to left to handle repeats",
+    "Keep track of the current enclosed string using another string"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.096Z",
+    "sourceUpdatedAt": null
+  }
+}

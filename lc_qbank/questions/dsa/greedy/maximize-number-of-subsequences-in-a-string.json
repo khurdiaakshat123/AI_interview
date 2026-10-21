@@ -1,0 +1,159 @@
+{
+  "id": "2207",
+  "slug": "maximize-number-of-subsequences-in-a-string",
+  "title": "Maximize Number of Subsequences in a String",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Greedy",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a **0-indexed** string `text` and another **0-indexed** string `pattern` of length `2`, both of which consist of only lowercase English letters.\n\nYou can add **either** `pattern[0]` **or** `pattern[1]` anywhere in `text` **exactly once**. Note that the character can be added even at the beginning or at the end of `text`.\n\nReturn _the **maximum** number of times_ `pattern` _can occur as a **subsequence** of the modified_ `text`.\n\nA **subsequence** is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.\n\n**Example 1:**\n\n```\nInput: text = \"abdcdbc\", pattern = \"ac\"\nOutput: 4\nExplanation:\nIf we add pattern[0] = 'a' in between text[1] and text[2], we get \"abadcdbc\". Now, the number of times \"ac\" occurs as a subsequence is 4.\nSome other strings which have 4 subsequences \"ac\" after adding a character to text are \"aabdcdbc\" and \"abdacdbc\".\nHowever, strings such as \"abdcadbc\", \"abdccdbc\", and \"abdcdbcc\", although obtainable, have only 3 subsequences \"ac\" and are thus suboptimal.\nIt can be shown that it is not possible to get more than 4 subsequences \"ac\" by adding only one character.\n```\n\n**Example 2:**\n\n```\nInput: text = \"aabb\", pattern = \"ab\"\nOutput: 6\nExplanation:\nSome of the strings which can be obtained from text and have 6 subsequences \"ab\" are \"aaabb\", \"aaabb\", and \"aabbb\".\n```\n\n**Constraints:**\n\n*   `1 <= text.length <= 10^(5)`\n*   `pattern.length == 2`\n*   `text` and `pattern` consist only of lowercase English letters.",
+  "constraints": [
+    "1 <= text.length <= 105",
+    "pattern.length == 2",
+    "text and pattern consist only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "text = \"abdcdbc\", pattern = \"ac\"",
+      "output": "4",
+      "explanation": "If we add pattern[0] = 'a' in between text[1] and text[2], we get \"abadcdbc\". Now, the number of times \"ac\" occurs as a subsequence is 4.\nSome other strings which have 4 subsequences \"ac\" after adding a character to text are \"aabdcdbc\" and \"abdacdbc\".\nHowever, strings such as \"abdcadbc\", \"abdccdbc\", and \"abdcdbcc\", although obtainable, have only 3 subsequences \"ac\" and are thus suboptimal.\nIt can be shown that it is not possible to get more than 4 subsequences \"ac\" by adding only one character."
+    },
+    {
+      "input": "text = \"aabb\", pattern = \"ab\"",
+      "output": "6",
+      "explanation": "Some of the strings which can be obtained from text and have 6 subsequences \"ab\" are \"aaabb\", \"aaabb\", and \"aabbb\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maximumSubsequenceCount(string text, string pattern) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maximumSubsequenceCount(String text, String pattern) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumSubsequenceCount(self, text: str, pattern: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumSubsequenceCount(self, text, pattern):\n        \"\"\"\n        :type text: str\n        :type pattern: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} text\n * @param {string} pattern\n * @return {number}\n */\nvar maximumSubsequenceCount = function(text, pattern) {\n    \n};",
+    "typescript": "function maximumSubsequenceCount(text: string, pattern: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaximumSubsequenceCount(string text, string pattern) {\n        \n    }\n}",
+    "c": "long long maximumSubsequenceCount(char* text, char* pattern) {\n    \n}",
+    "golang": "func maximumSubsequenceCount(text string, pattern string) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumSubsequenceCount(text: String, pattern: String): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumSubsequenceCount(_ text: String, _ pattern: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_subsequence_count(text: String, pattern: String) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {String} text\n# @param {String} pattern\n# @return {Integer}\ndef maximum_subsequence_count(text, pattern)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $text\n     * @param String $pattern\n     * @return Integer\n     */\n    function maximumSubsequenceCount($text, $pattern) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumSubsequenceCount(String text, String pattern) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumSubsequenceCount(text: String, pattern: String): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_subsequence_count(text :: String.t, pattern :: String.t) :: integer\n  def maximum_subsequence_count(text, pattern) do\n    \n  end\nend",
+    "erlang": "-spec maximum_subsequence_count(Text :: unicode:unicode_binary(), Pattern :: unicode:unicode_binary()) -> integer().\nmaximum_subsequence_count(Text, Pattern) ->\n  .",
+    "racket": "(define/contract (maximum-subsequence-count text pattern)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abdcdbc\"\n\"ac\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aabb\"\n\"ab\"",
+      "expectedOutput": "6"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abdcdbc\"\n\"ac\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aabb\"\n\"ab\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abd\"\n\"ac\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"cdbc\"\n\"ac\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"a\"\n\"ac\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"\n\"ac\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"cbdcdba\"\n\"ac\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abdcdbcabdcdbc\"\n\"ac\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"aaaaaa\"\n\"ac\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abdcdbccbdcdba\"\n\"ac\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"ABDCDBC\"\n\"ac\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"\n\"ac\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n\"ac\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ba\"\n\"ac\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"\n\"ac\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abba\"\n\"ac\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaaaa\"\n\"ac\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcde\"\n\"ac\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"edcba\"\n\"ac\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aab\"\n\"ac\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find the optimal position to add pattern[0] so that the number of subsequences is maximized. Similarly, find the optimal position to add pattern[1].",
+    "For each of the above cases, count the number of times the pattern occurs as a subsequence in text. The larger count is the required answer."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-number-of-subsequences-in-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.310Z",
+    "sourceUpdatedAt": null
+  }
+}

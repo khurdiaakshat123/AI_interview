@@ -1,0 +1,169 @@
+{
+  "id": "959",
+  "slug": "regions-cut-by-slashes",
+  "title": "Regions Cut By Slashes",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix",
+    "Planar Graph"
+  ],
+  "statement": "An `n x n` grid is composed of `1 x 1` squares where each `1 x 1` square consists of a `'/'`, `'\\'`, or blank space `' '`. These characters divide the square into contiguous regions.\n\nGiven the grid `grid` represented as a string array, return _the number of regions_.\n\nNote that backslash characters are escaped, so a `'\\'` is represented as `'\\\\'`.\n\n**Example 1:**\n\n![](./assets/regions-cut-by-slashes-1.png)\n```\nInput: grid = [\" /\",\"/ \"]\nOutput: 2\n```\n\n**Example 2:**\n\n![](./assets/regions-cut-by-slashes-2.png)\n```\nInput: grid = [\" /\",\"  \"]\nOutput: 1\n```\n\n**Example 3:**\n\n![](./assets/regions-cut-by-slashes-3.png)\n```\nInput: grid = [\"/\\\\\",\"\\\\/\"]\nOutput: 5\nExplanation: Recall that because \\ characters are escaped, \"\\\\/\" refers to \\/, and \"/\\\\\" refers to /\\.\n```\n\n**Constraints:**\n\n*   `n == grid.length == grid[i].length`\n*   `1 <= n <= 30`\n*   `grid[i][j]` is either `'/'`, `'\\'`, or `' '`.",
+  "constraints": [
+    "n == grid.length == grid[i].length",
+    "1 <= n <= 30",
+    "grid[i][j] is either '/', '\\', or ' '."
+  ],
+  "examples": [
+    {
+      "input": "grid = [\" /\",\"/ \"]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "grid = [\" /\",\"  \"]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "grid = [\"/\\\\\",\"\\\\/\"]",
+      "output": "5",
+      "explanation": "Recall that because \\ characters are escaped, \"\\\\/\" refers to \\/, and \"/\\\\\" refers to /\\."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int regionsBySlashes(vector<string>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int regionsBySlashes(String[] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def regionsBySlashes(self, grid: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def regionsBySlashes(self, grid):\n        \"\"\"\n        :type grid: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} grid\n * @return {number}\n */\nvar regionsBySlashes = function(grid) {\n    \n};",
+    "typescript": "function regionsBySlashes(grid: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int RegionsBySlashes(string[] grid) {\n        \n    }\n}",
+    "c": "int regionsBySlashes(char** grid, int gridSize) {\n    \n}",
+    "golang": "func regionsBySlashes(grid []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun regionsBySlashes(grid: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func regionsBySlashes(_ grid: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn regions_by_slashes(grid: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} grid\n# @return {Integer}\ndef regions_by_slashes(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $grid\n     * @return Integer\n     */\n    function regionsBySlashes($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int regionsBySlashes(List<String> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def regionsBySlashes(grid: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec regions_by_slashes(grid :: [String.t]) :: integer\n  def regions_by_slashes(grid) do\n    \n  end\nend",
+    "erlang": "-spec regions_by_slashes(Grid :: [unicode:unicode_binary()]) -> integer().\nregions_by_slashes(Grid) ->\n  .",
+    "racket": "(define/contract (regions-by-slashes grid)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\" /\",\"/ \"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\" /\",\"  \"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"/\\\\\",\"\\\\/\"]",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\" /\",\"/ \"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\" /\",\"  \"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"/\\\\\",\"\\\\/\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"/ \",\" /\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\" /\",\" /\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\" /\",\"/ \",\" /\",\"/ \"]",
+      "expectedOutput": "31"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "67"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "36"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]",
+      "expectedOutput": "45"
+    },
+    {
+      "input": "[\"1\",\"2\",\"3\"]",
+      "expectedOutput": "22"
+    },
+    {
+      "input": "[\"  \",\" /\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\" /\",\"  \",\" /\",\"  \"]",
+      "expectedOutput": "29"
+    },
+    {
+      "input": "[\"\\\\/\",\"/\\\\\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"/\\\\\",\"/\\\\\"]",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/regions-cut-by-slashes/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.419Z",
+    "sourceUpdatedAt": null
+  }
+}

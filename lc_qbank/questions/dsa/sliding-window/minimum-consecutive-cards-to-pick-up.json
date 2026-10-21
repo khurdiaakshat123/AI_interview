@@ -1,0 +1,158 @@
+{
+  "id": "2260",
+  "slug": "minimum-consecutive-cards-to-pick-up",
+  "title": "Minimum Consecutive Cards to Pick Up",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window"
+  ],
+  "statement": "You are given an integer array `cards` where `cards[i]` represents the **value** of the `i^(th)` card. A pair of cards are **matching** if the cards have the **same** value.\n\nReturn _the **minimum** number of **consecutive** cards you have to pick up to have a pair of **matching** cards among the picked cards._ If it is impossible to have matching cards, return `-1`.\n\n**Example 1:**\n\n```\nInput: cards = [3,4,2,3,4,7]\nOutput: 4\nExplanation: We can pick up the cards [3,4,2,3] which contain a matching pair of cards with value 3. Note that picking up the cards [4,2,3,4] is also optimal.\n```\n\n**Example 2:**\n\n```\nInput: cards = [1,0,5,3]\nOutput: -1\nExplanation: There is no way to pick up a set of consecutive cards that contain a pair of matching cards.\n```\n\n**Constraints:**\n\n*   `1 <= cards.length <= 10^(5)`\n*   `0 <= cards[i] <= 10^(6)`",
+  "constraints": [
+    "1 <= cards.length <= 105",
+    "0 <= cards[i] <= 106"
+  ],
+  "examples": [
+    {
+      "input": "cards = [3,4,2,3,4,7]",
+      "output": "4",
+      "explanation": "We can pick up the cards [3,4,2,3] which contain a matching pair of cards with value 3. Note that picking up the cards [4,2,3,4] is also optimal."
+    },
+    {
+      "input": "cards = [1,0,5,3]",
+      "output": "-1",
+      "explanation": "There is no way to pick up a set of consecutive cards that contain a pair of matching cards."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumCardPickup(vector<int>& cards) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumCardPickup(int[] cards) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumCardPickup(self, cards: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumCardPickup(self, cards):\n        \"\"\"\n        :type cards: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} cards\n * @return {number}\n */\nvar minimumCardPickup = function(cards) {\n    \n};",
+    "typescript": "function minimumCardPickup(cards: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumCardPickup(int[] cards) {\n        \n    }\n}",
+    "c": "int minimumCardPickup(int* cards, int cardsSize) {\n    \n}",
+    "golang": "func minimumCardPickup(cards []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumCardPickup(cards: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumCardPickup(_ cards: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_card_pickup(cards: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} cards\n# @return {Integer}\ndef minimum_card_pickup(cards)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $cards\n     * @return Integer\n     */\n    function minimumCardPickup($cards) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumCardPickup(List<int> cards) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumCardPickup(cards: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_card_pickup(cards :: [integer]) :: integer\n  def minimum_card_pickup(cards) do\n    \n  end\nend",
+    "erlang": "-spec minimum_card_pickup(Cards :: [integer()]) -> integer().\nminimum_card_pickup(Cards) ->\n  .",
+    "racket": "(define/contract (minimum-card-pickup cards)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,4,2,3,4,7]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,0,5,3]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,4,2,3,4,7]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,0,5,3]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,4,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,4,7]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,7]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[7,4,3,2,4,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,3,3,4,4,7]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[7,4,4,3,3,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,3,3,3,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,4,2,3,4,7,3,4,2,3,4,7]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[6,8,4,6,8,14]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,5,3,4,5,8]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,3,1,2,3,6]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-3,-4,-2,-3,-4,-7]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate through the cards and store the location of the last occurrence of each number.",
+    "What data structure could you use to get the last occurrence of a number in O(1) or O(log n)?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-consecutive-cards-to-pick-up/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.505Z",
+    "sourceUpdatedAt": null
+  }
+}

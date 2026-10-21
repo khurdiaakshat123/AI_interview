@@ -1,0 +1,171 @@
+{
+  "id": "3209",
+  "slug": "number-of-subarrays-with-and-value-of-k",
+  "title": "Number of Subarrays With AND Value of K",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Bit Manipulation",
+    "Segment Tree"
+  ],
+  "statement": "Given an array of integers `nums` and an integer `k`, return the number of subarrays of `nums` where the bitwise `AND` of the elements of the subarray equals `k`.\n\n**Example 1:**\n\n**Input:** nums = \\[1,1,1\\], k = 1\n\n**Output:** 6\n\n**Explanation:**\n\nAll subarrays contain only 1's.\n\n**Example 2:**\n\n**Input:** nums = \\[1,1,2\\], k = 1\n\n**Output:** 3\n\n**Explanation:**\n\nSubarrays having an `AND` value of 1 are: `[**1**,1,2]`, `[1,**1**,2]`, `[**1,1**,2]`.\n\n**Example 3:**\n\n**Input:** nums = \\[1,2,3\\], k = 2\n\n**Output:** 2\n\n**Explanation:**\n\nSubarrays having an `AND` value of 2 are: `[1,**2**,3]`, `[1,**2,3**]`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `0 <= nums[i], k <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "0 <= nums[i], k <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,1,1], k = 1",
+      "output": "6",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,1,2], k = 1",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,2,3], k = 2",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long countSubarrays(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long countSubarrays(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countSubarrays(self, nums: List[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countSubarrays(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar countSubarrays = function(nums, k) {\n    \n};",
+    "typescript": "function countSubarrays(nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long CountSubarrays(int[] nums, int k) {\n        \n    }\n}",
+    "c": "long long countSubarrays(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func countSubarrays(nums []int, k int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun countSubarrays(nums: IntArray, k: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countSubarrays(_ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_subarrays(nums: Vec<i32>, k: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef count_subarrays(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function countSubarrays($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countSubarrays(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countSubarrays(nums: Array[Int], k: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_subarrays(nums :: [integer], k :: integer) :: integer\n  def count_subarrays(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec count_subarrays(Nums :: [integer()], K :: integer()) -> integer().\ncount_subarrays(Nums, K) ->\n  .",
+    "racket": "(define/contract (count-subarrays nums k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,1,1]\n1",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,2]\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,3]\n2",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,1,1]\n1",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,2]\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,3]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1]\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1,1,1,1]\n1",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[2,2,2]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-1,-1]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,1]\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,1]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,1,0]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3,4,5]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,4,3,2,1]\n1",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let’s say we want to count the number of pairs <code>(l, r)</code> such that <code>nums[l] & nums[l + 1] & … & nums[r] == k</code>.",
+    "Fix the left index <code>l</code>.",
+    "Note that if you increase <code>r</code> for a fixed <code>l</code>, then the AND value of the subarray either decreases or remains unchanged.",
+    "Therefore, consider using binary search.",
+    "To calculate the AND value of a subarray, use sparse tables."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-subarrays-with-and-value-of-k/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.125Z",
+    "sourceUpdatedAt": null
+  }
+}

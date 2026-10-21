@@ -1,0 +1,167 @@
+{
+  "id": "1849",
+  "slug": "splitting-a-string-into-descending-consecutive-values",
+  "title": "Splitting a String Into Descending Consecutive Values",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Backtracking",
+    "Enumeration"
+  ],
+  "statement": "You are given a string `s` that consists of only digits.\n\nCheck if we can split `s` into **two or more non-empty substrings** such that the **numerical values** of the substrings are in **descending order** and the **difference** between numerical values of every two **adjacent** **substrings** is equal to `1`.\n\n*   For example, the string `s = \"0090089\"` can be split into `[\"0090\", \"089\"]` with numerical values `[90,89]`. The values are in descending order and adjacent values differ by `1`, so this way is valid.\n*   Another example, the string `s = \"001\"` can be split into `[\"0\", \"01\"]`, `[\"00\", \"1\"]`, or `[\"0\", \"0\", \"1\"]`. However all the ways are invalid because they have numerical values `[0,1]`, `[0,1]`, and `[0,0,1]` respectively, all of which are not in descending order.\n\nReturn `true` _if it is possible to split_ `s`​​​​​​ _as described above__, or_ `false` _otherwise._\n\nA **substring** is a contiguous sequence of characters in a string.\n\n**Example 1:**\n\n```\nInput: s = \"1234\"\nOutput: false\nExplanation: There is no valid way to split s.\n```\n\n**Example 2:**\n\n```\nInput: s = \"050043\"\nOutput: true\nExplanation: s can be split into [\"05\", \"004\", \"3\"] with numerical values [5,4,3].\nThe values are in descending order with adjacent values differing by 1.\n```\n\n**Example 3:**\n\n```\nInput: s = \"9080701\"\nOutput: false\nExplanation: There is no valid way to split s.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 20`\n*   `s` only consists of digits.",
+  "constraints": [
+    "1 <= s.length <= 20",
+    "s only consists of digits."
+  ],
+  "examples": [
+    {
+      "input": "s = \"1234\"",
+      "output": "false",
+      "explanation": "There is no valid way to split s."
+    },
+    {
+      "input": "s = \"050043\"",
+      "output": "true",
+      "explanation": "s can be split into [\"05\", \"004\", \"3\"] with numerical values [5,4,3].\nThe values are in descending order with adjacent values differing by 1."
+    },
+    {
+      "input": "s = \"9080701\"",
+      "output": "false",
+      "explanation": "There is no valid way to split s."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool splitString(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean splitString(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def splitString(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def splitString(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar splitString = function(s) {\n    \n};",
+    "typescript": "function splitString(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool SplitString(string s) {\n        \n    }\n}",
+    "c": "bool splitString(char* s) {\n    \n}",
+    "golang": "func splitString(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun splitString(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func splitString(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn split_string(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef split_string(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function splitString($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool splitString(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def splitString(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec split_string(s :: String.t) :: boolean\n  def split_string(s) do\n    \n  end\nend",
+    "erlang": "-spec split_string(S :: unicode:unicode_binary()) -> boolean().\nsplit_string(S) ->\n  .",
+    "racket": "(define/contract (split-string s)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"1234\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"050043\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"9080701\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"1234\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"050043\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"9080701\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"12\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"34\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"4321\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"12341234\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"1111\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"12344321\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"050\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"043\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"05\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"340050\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"050043050043\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"000000\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "One solution is to try all possible splits using backtrack",
+    "Look out for trailing zeros in string"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/splitting-a-string-into-descending-consecutive-values/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.181Z",
+    "sourceUpdatedAt": null
+  }
+}

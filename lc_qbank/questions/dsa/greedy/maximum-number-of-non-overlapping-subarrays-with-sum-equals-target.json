@@ -1,0 +1,160 @@
+{
+  "id": "1546",
+  "slug": "maximum-number-of-non-overlapping-subarrays-with-sum-equals-target",
+  "title": "Maximum Number of Non-Overlapping Subarrays With Sum Equals Target",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Prefix Sum"
+  ],
+  "statement": "Given an array `nums` and an integer `target`, return _the maximum number of **non-empty** **non-overlapping** subarrays such that the sum of values in each subarray is equal to_ `target`.\n\n**Example 1:**\n\n```\nInput: nums = [1,1,1,1,1], target = 2\nOutput: 2\nExplanation: There are 2 non-overlapping subarrays [1,1,1,1,1] with sum equals to target(2).\n```\n\n**Example 2:**\n\n```\nInput: nums = [-1,3,5,1,4,2,-9], target = 6\nOutput: 2\nExplanation: There are 3 subarrays with sum equal to 6.\n([5,1], [4,2], [3,5,1,4,2,-9]) but only the first 2 are non-overlapping.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `-10^(4) <= nums[i] <= 10^(4)`\n*   `0 <= target <= 10^(6)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-104 <= nums[i] <= 104",
+    "0 <= target <= 106"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,1,1,1,1], target = 2",
+      "output": "2",
+      "explanation": "There are 2 non-overlapping subarrays [1,1,1,1,1] with sum equals to target(2)."
+    },
+    {
+      "input": "nums = [-1,3,5,1,4,2,-9], target = 6",
+      "output": "2",
+      "explanation": "There are 3 subarrays with sum equal to 6.\n([5,1], [4,2], [3,5,1,4,2,-9]) but only the first 2 are non-overlapping."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxNonOverlapping(vector<int>& nums, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxNonOverlapping(int[] nums, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxNonOverlapping(self, nums: list[int], target: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxNonOverlapping(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number}\n */\nvar maxNonOverlapping = function(nums, target) {\n    \n};",
+    "typescript": "function maxNonOverlapping(nums: number[], target: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxNonOverlapping(int[] nums, int target) {\n        \n    }\n}",
+    "c": "int maxNonOverlapping(int* nums, int numsSize, int target) {\n    \n}",
+    "golang": "func maxNonOverlapping(nums []int, target int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxNonOverlapping(nums: IntArray, target: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxNonOverlapping(_ nums: [Int], _ target: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_non_overlapping(nums: Vec<i32>, target: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} target\n# @return {Integer}\ndef max_non_overlapping(nums, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $target\n     * @return Integer\n     */\n    function maxNonOverlapping($nums, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxNonOverlapping(List<int> nums, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxNonOverlapping(nums: Array[Int], target: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_non_overlapping(nums :: [integer], target :: integer) :: integer\n  def max_non_overlapping(nums, target) do\n    \n  end\nend",
+    "erlang": "-spec max_non_overlapping(Nums :: [integer()], Target :: integer()) -> integer().\nmax_non_overlapping(Nums, Target) ->\n  .",
+    "racket": "(define/contract (max-non-overlapping nums target)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,1,1,1,1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,3,5,1,4,2,-9]\n6",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,1,1,1,1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,3,5,1,4,2,-9]\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1,1,1,1,1,1,1]\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,2,2,2,2]\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0,0,0,0]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-1,-1,-1,-1]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,1]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,1,0]\n2",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Keep track of prefix sums to quickly look up what subarray that sums \"target\" can be formed at each step of scanning the input array.",
+    "It can be proved that greedily forming valid subarrays as soon as one is found is optimal."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.098Z",
+    "sourceUpdatedAt": null
+  }
+}

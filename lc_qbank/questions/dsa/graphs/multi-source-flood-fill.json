@@ -1,0 +1,175 @@
+{
+  "id": "3905",
+  "slug": "multi-source-flood-fill",
+  "title": "Multi Source Flood Fill",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "statement": "You are given two integers `n` and `m` representing the number of rows and columns of a grid, respectively.\n\nYou are also given a 2D integer array `sources`, where `sources[i] = [r_(i), c_(i), color_(​​​​​​​i)]` indicates that the cell `(r_(i), c_(i))` is initially colored with `color_(i)`. All other cells are initially uncolored and represented as 0.\n\nAt each time step, every currently colored cell spreads its color to all adjacent **uncolored** cells in the four directions: up, down, left, and right. All spreads happen simultaneously.\n\nIf **multiple** colors reach the same uncolored cell at the same time step, the cell takes the color with the **maximum** value.\n\nThe process continues until no more cells can be colored.\n\nReturn a 2D integer array representing the final state of the grid, where each cell contains its final color.\n\n**Example 1:**\n\n**Input:** n = 3, m = 3, sources = \\[\\[0,0,1\\],\\[2,2,2\\]\\]\n\n**Output:** \\[\\[1,1,2\\],\\[1,2,2\\],\\[2,2,2\\]\\]\n\n**Explanation:**\n\nThe grid at each time step is as follows:\n\n![](./assets/multi-source-flood-fill-1.png)​​​​​​​\n\nAt time step 2, cells `(0, 2)`, `(1, 1)`, and `(2, 0)` are reached by both colors, so they are assigned color 2 as it has the maximum value among them.\n\n**Example 2:**\n\n**Input:** n = 3, m = 3, sources = \\[\\[0,1,3\\],\\[1,1,5\\]\\]\n\n**Output:** \\[\\[3,3,3\\],\\[5,5,5\\],\\[5,5,5\\]\\]\n\n**Explanation:**\n\nThe grid at each time step is as follows:\n\n![](./assets/multi-source-flood-fill-2.png)\n\n**Example 3:**\n\n**Input:** n = 2, m = 2, sources = \\[\\[1,1,5\\]\\]\n\n**Output:** \\[\\[5,5\\],\\[5,5\\]\\]\n\n**Explanation:**\n\nThe grid at each time step is as follows:\n\n![](./assets/multi-source-flood-fill-3.png)​​​​​​​\n\nSince there is only one source, all cells are assigned the same color.\n\n**Constraints:**\n\n*   `1 <= n, m <= 10^(5)`\n*   `1 <= n * m <= 10^(5)`\n*   `1 <= sources.length <= n * m`\n*   `sources[i] = [r_(i), c_(i), color_(i)]`\n*   `0 <= r_(i) <= n - 1`\n*   `0 <= c_(i) <= m - 1`\n*   `1 <= color_(i) <= 10^(6)​​​​​​​`\n*   All `(r_(i), c_(i)​​​​​​​)` in `sources` are distinct.",
+  "constraints": [
+    "1 <= n, m <= 105",
+    "1 <= n * m <= 105",
+    "1 <= sources.length <= n * m",
+    "sources[i] = [ri, ci, colori]",
+    "0 <= ri <= n - 1",
+    "0 <= ci <= m - 1",
+    "1 <= colori <= 106​​​​​​​",
+    "All (ri, ci​​​​​​​) in sources are distinct."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, m = 3, sources = [[0,0,1],[2,2,2]]",
+      "output": "[[1,1,2],[1,2,2],[2,2,2]]",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, m = 3, sources = [[0,1,3],[1,1,5]]",
+      "output": "[[3,3,3],[5,5,5],[5,5,5]]",
+      "explanation": null
+    },
+    {
+      "input": "n = 2, m = 2, sources = [[1,1,5]]",
+      "output": "[[5,5],[5,5]]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> colorGrid(int n, int m, vector<vector<int>>& sources) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] colorGrid(int n, int m, int[][] sources) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def colorGrid(self, n: int, m: int, sources: list[list[int]]) -> list[list[int]]:\n        ",
+    "python": "class Solution(object):\n    def colorGrid(self, n, m, sources):\n        \"\"\"\n        :type n: int\n        :type m: int\n        :type sources: List[List[int]]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} m\n * @param {number[][]} sources\n * @return {number[][]}\n */\nvar colorGrid = function(n, m, sources) {\n    \n};",
+    "typescript": "function colorGrid(n: number, m: number, sources: number[][]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] ColorGrid(int n, int m, int[][] sources) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** colorGrid(int n, int m, int** sources, int sourcesSize, int* sourcesColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func colorGrid(n int, m int, sources [][]int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun colorGrid(n: Int, m: Int, sources: Array<IntArray>): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func colorGrid(_ n: Int, _ m: Int, _ sources: [[Int]]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn color_grid(n: i32, m: i32, sources: Vec<Vec<i32>>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} m\n# @param {Integer[][]} sources\n# @return {Integer[][]}\ndef color_grid(n, m, sources)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $m\n     * @param Integer[][] $sources\n     * @return Integer[][]\n     */\n    function colorGrid($n, $m, $sources) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> colorGrid(int n, int m, List<List<int>> sources) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def colorGrid(n: Int, m: Int, sources: Array[Array[Int]]): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec color_grid(n :: integer, m :: integer, sources :: [[integer]]) :: [[integer]]\n  def color_grid(n, m, sources) do\n    \n  end\nend",
+    "erlang": "-spec color_grid(N :: integer(), M :: integer(), Sources :: [[integer()]]) -> [[integer()]].\ncolor_grid(N, M, Sources) ->\n  .",
+    "racket": "(define/contract (color-grid n m sources)\n  (-> exact-integer? exact-integer? (listof (listof exact-integer?)) (listof (listof exact-integer?)))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n3\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2],[1,2,2],[2,2,2]]"
+    },
+    {
+      "input": "3\n3\n[[0,1,3],[1,1,5]]",
+      "expectedOutput": "[[3,3,3],[5,5,5],[5,5,5]]"
+    },
+    {
+      "input": "2\n2\n[[1,1,5]]",
+      "expectedOutput": "[[5,5],[5,5]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n3\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2],[1,2,2],[2,2,2]]"
+    },
+    {
+      "input": "3\n3\n[[0,1,3],[1,1,5]]",
+      "expectedOutput": "[[3,3,3],[5,5,5],[5,5,5]]"
+    },
+    {
+      "input": "2\n2\n[[1,1,5]]",
+      "expectedOutput": "[[5,5],[5,5]]"
+    },
+    {
+      "input": "4\n3\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2],[1,2,2],[2,2,2],[2,2,2]]"
+    },
+    {
+      "input": "5\n3\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2],[1,2,2],[2,2,2],[2,2,2],[2,2,2]]"
+    },
+    {
+      "input": "6\n3\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2],[1,2,2],[2,2,2],[2,2,2],[2,2,2],[2,2,2]]"
+    },
+    {
+      "input": "7\n3\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2],[1,2,2],[2,2,2],[2,2,2],[2,2,2],[2,2,2],[2,2,2]]"
+    },
+    {
+      "input": "8\n3\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2],[1,2,2],[2,2,2],[2,2,2],[2,2,2],[2,2,2],[2,2,2],[2,2,2]]"
+    },
+    {
+      "input": "3\n4\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2,2],[1,2,2,2],[2,2,2,2]]"
+    },
+    {
+      "input": "3\n5\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2,2,2],[1,2,2,2,2],[2,2,2,2,2]]"
+    },
+    {
+      "input": "3\n6\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2,2,2,2],[1,2,2,2,2,2],[2,2,2,2,2,2]]"
+    },
+    {
+      "input": "3\n7\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2,2,2,2,2],[1,2,2,2,2,2,2],[2,2,2,2,2,2,2]]"
+    },
+    {
+      "input": "3\n8\n[[0,0,1],[2,2,2]]",
+      "expectedOutput": "[[1,1,2,2,2,2,2,2],[1,2,2,2,2,2,2,2],[2,2,2,2,2,2,2,2]]"
+    },
+    {
+      "input": "2\n3\n[[0,1,3],[1,1,5]]",
+      "expectedOutput": "[[3,3,3],[5,5,5]]"
+    },
+    {
+      "input": "4\n3\n[[0,1,3],[1,1,5]]",
+      "expectedOutput": "[[3,3,3],[5,5,5],[5,5,5],[5,5,5]]"
+    },
+    {
+      "input": "5\n3\n[[0,1,3],[1,1,5]]",
+      "expectedOutput": "[[3,3,3],[5,5,5],[5,5,5],[5,5,5],[5,5,5]]"
+    },
+    {
+      "input": "6\n3\n[[0,1,3],[1,1,5]]",
+      "expectedOutput": "[[3,3,3],[5,5,5],[5,5,5],[5,5,5],[5,5,5],[5,5,5]]"
+    },
+    {
+      "input": "7\n3\n[[0,1,3],[1,1,5]]",
+      "expectedOutput": "[[3,3,3],[5,5,5],[5,5,5],[5,5,5],[5,5,5],[5,5,5],[5,5,5]]"
+    },
+    {
+      "input": "8\n3\n[[0,1,3],[1,1,5]]",
+      "expectedOutput": "[[3,3,3],[5,5,5],[5,5,5],[5,5,5],[5,5,5],[5,5,5],[5,5,5],[5,5,5]]"
+    },
+    {
+      "input": "3\n2\n[[0,1,3],[1,1,5]]",
+      "expectedOutput": "[[3,3],[5,5],[5,5]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Multi-source BFS",
+    "Initialize a queue with all colored cells",
+    "Spread colors level by level to adjacent cells in <code>4</code> directions",
+    "If multiple colors reach the same cell at the same time, assign the maximum color value"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/multi-source-flood-fill/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.531Z",
+    "sourceUpdatedAt": null
+  }
+}

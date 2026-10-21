@@ -1,0 +1,113 @@
+{
+  "id": "3639",
+  "slug": "minimum-time-to-activate-string",
+  "title": "Minimum Time to Activate String",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "statement": "You are given a string `s` of length `n` and an integer array `order`, where `order` is a **permutation** of the numbers in the range `[0, n - 1]`.\n\nStarting from time `t = 0`, replace the character at index `order[t]` in `s` with `'*'` at each time step.\n\nA **substring** is **valid** if it contains **at least** one `'*'`.\n\nA string is **active** if the total number of **valid** substrings is greater than or equal to `k`.\n\nReturn the **minimum** time `t` at which the string `s` becomes **active**. If it is impossible, return -1.\n\n**Example 1:**\n\n**Input:** s = \"abc\", order = \\[1,0,2\\], k = 2\n\n**Output:** 0\n\n**Explanation:**\n\n`t`\n\n`order[t]`\n\nModified `s`\n\nValid Substrings\n\nCount\n\nActive  \n(Count >= k)\n\n0\n\n1\n\n`\"a*c\"`\n\n`\"*\"`, `\"a*\"`, `\"*c\"`, `\"a*c\"`\n\n4\n\nYes\n\nThe string `s` becomes active at `t = 0`. Thus, the answer is 0.\n\n**Example 2:**\n\n**Input:** s = \"cat\", order = \\[0,2,1\\], k = 6\n\n**Output:** 2\n\n**Explanation:**\n\n`t`\n\n`order[t]`\n\nModified `s`\n\nValid Substrings\n\nCount\n\nActive  \n(Count >= k)\n\n0\n\n0\n\n`\"*at\"`\n\n`\"*\"`, `\"*a\"`, `\"*at\"`\n\n3\n\nNo\n\n1\n\n2\n\n`\"*a*\"`\n\n`\"*\"`, `\"*a\"`, `\"`*a*\"``, `\"`a*\"``, `\"*\"`\n\n5\n\nNo\n\n2\n\n1\n\n`\"***\"`\n\nAll substrings (contain `'*'`)\n\n6\n\nYes\n\nThe string `s` becomes active at `t = 2`. Thus, the answer is 2.\n\n**Example 3:**\n\n**Input:** s = \"xy\", order = \\[0,1\\], k = 4\n\n**Output:** \\-1\n\n**Explanation:**\n\nEven after all replacements, it is impossible to obtain `k = 4` valid substrings. Thus, the answer is -1.\n\n**Constraints:**\n\n*   `1 <= n == s.length <= 10^(5)`\n*   `order.length == n`\n*   `0 <= order[i] <= n - 1`\n*   `s` consists of lowercase English letters.\n*   `order` is a permutation of integers from 0 to `n - 1`.\n*   `1 <= k <= 10^(9)`",
+  "constraints": [
+    "1 <= n == s.length <= 105",
+    "order.length == n",
+    "0 <= order[i] <= n - 1",
+    "s consists of lowercase English letters.",
+    "order is a permutation of integers from 0 to n - 1.",
+    "1 <= k <= 109"
+  ],
+  "examples": [
+    {
+      "input": "s = \"abc\", order = [1,0,2], k = 2",
+      "output": "0",
+      "explanation": "t\n\t\t\torder[t]\n\t\t\tModified s\n\t\t\tValid Substrings\n\t\t\tCount\n\t\t\tActive\n\t\t\t(Count >= k)\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t1\n\t\t\t\"a*c\"\n\t\t\t\"*\", \"a*\", \"*c\", \"a*c\"\n\t\t\t4\n\t\t\tYes"
+    },
+    {
+      "input": "s = \"cat\", order = [0,2,1], k = 6",
+      "output": "2",
+      "explanation": "t\n\t\t\torder[t]\n\t\t\tModified s\n\t\t\tValid Substrings\n\t\t\tCount\n\t\t\tActive\n\t\t\t(Count >= k)\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t0\n\t\t\t\"*at\"\n\t\t\t\"*\", \"*a\", \"*at\"\n\t\t\t3\n\t\t\tNo\n\t\t\n\t\t\n\t\t\t1\n\t\t\t2\n\t\t\t\"*a*\"\n\t\t\t\"*\", \"*a\", \"*a*\", \"a*\", \"*\"\n\t\t\t5\n\t\t\tNo\n\t\t\n\t\t\n\t\t\t2\n\t\t\t1\n\t\t\t\"***\"\n\t\t\tAll substrings (contain '*')\n\t\t\t6\n\t\t\tYes"
+    },
+    {
+      "input": "s = \"xy\", order = [0,1], k = 4",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minTime(string s, vector<int>& order, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minTime(String s, int[] order, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minTime(self, s: str, order: List[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minTime(self, s, order, k):\n        \"\"\"\n        :type s: str\n        :type order: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number[]} order\n * @param {number} k\n * @return {number}\n */\nvar minTime = function(s, order, k) {\n    \n};",
+    "typescript": "function minTime(s: string, order: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinTime(string s, int[] order, int k) {\n        \n    }\n}",
+    "c": "int minTime(char* s, int* order, int orderSize, int k) {\n    \n}",
+    "golang": "func minTime(s string, order []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minTime(s: String, order: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minTime(_ s: String, _ order: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_time(s: String, order: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer[]} order\n# @param {Integer} k\n# @return {Integer}\ndef min_time(s, order, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer[] $order\n     * @param Integer $k\n     * @return Integer\n     */\n    function minTime($s, $order, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minTime(String s, List<int> order, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minTime(s: String, order: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_time(s :: String.t, order :: [integer], k :: integer) :: integer\n  def min_time(s, order, k) do\n    \n  end\nend",
+    "erlang": "-spec min_time(S :: unicode:unicode_binary(), Order :: [integer()], K :: integer()) -> integer().\nmin_time(S, Order, K) ->\n  .",
+    "racket": "(define/contract (min-time s order k)\n  (-> string? (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abc\"\n[1,0,2]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"cat\"\n[0,2,1]\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"xy\"\n[0,1]\n4",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abc\"\n[1,0,2]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"cat\"\n[0,2,1]\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"xy\"\n[0,1]\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "s = \"abc\", order = [1,0,2], k = 2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "s = \"cat\", order = [0,2,1], k = 6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "s = \"xy\", order = [0,1], k = 4",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Binary-search on <code>t</code> and for each <code>t</code> mark the first <code>t+1</code> positions in <code>order</code> as <code>*</code>, then in one pass subtract from <code>n(n+1)/2</code> the substrings of each non-<code>*</code> run of length <code>L</code> (<code>L(L+1)/2</code>) and check if the remainder >= <code>k</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-time-to-activate-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.140Z",
+    "sourceUpdatedAt": null
+  }
+}

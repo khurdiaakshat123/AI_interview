@@ -1,0 +1,61 @@
+{
+  "id": "3465",
+  "slug": "find-products-with-valid-serial-numbers",
+  "title": "Find Products with Valid Serial Numbers",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `products`\n\n```\n+--------------+------------+\n| Column Name  | Type       |\n+--------------+------------+\n| product_id   | int        |\n| product_name | varchar    |\n| description  | varchar    |\n+--------------+------------+\n(product_id) is the unique key for this table.\nEach row in the table represents a product with its unique ID, name, and description.\n```\n\nWrite a solution to find all products whose description **contains a valid serial number** pattern. A valid serial number follows these rules:\n\n*   It starts with the letters **SN** (case-sensitive).\n*   Followed by exactly `4` digits.\n*   It must have a hyphen (-) **followed by exactly** `4` digits.\n*   The serial number must be within the description (it may not necessarily start at the beginning).\n\nReturn _the result table ordered by_ `product_id` _in **ascending** order_.\n\nThe result format is in the following example.\n\n**Example:**\n\n**Input:**\n\nproducts table:\n\n```\n+------------+--------------+------------------------------------------------------+\n| product_id | product_name | description                                          |\n+------------+--------------+------------------------------------------------------+\n| 1          | Widget A     | This is a sample product with SN1234-5678            |\n| 2          | Widget B     | A product with serial SN9876-1234 in the description |\n| 3          | Widget C     | Product SN1234-56789 is available now                |\n| 4          | Widget D     | No serial number here                                |\n| 5          | Widget E     | Check out SN4321-8765 in this description            |\n+------------+--------------+------------------------------------------------------+\n```\n\n**Output:**\n\n```\n+------------+--------------+------------------------------------------------------+\n| product_id | product_name | description                                          |\n+------------+--------------+------------------------------------------------------+\n| 1          | Widget A     | This is a sample product with SN1234-5678            |\n| 2          | Widget B     | A product with serial SN9876-1234 in the description |\n| 5          | Widget E     | Check out SN4321-8765 in this description            |\n+------------+--------------+------------------------------------------------------+\n```\n\n**Explanation:**\n\n*   **Product 1:** Valid serial number SN1234-5678\n*   **Product 2:** Valid serial number SN9876-1234\n*   **Product 3:** Invalid serial number SN1234-56789 (contains 5 digits after the hyphen)\n*   **Product 4:** No serial number in the description\n*   **Product 5:** Valid serial number SN4321-8765\n\nThe result table is ordered by product\\_id in ascending order.",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "products table:\n\n\n+------------+--------------+------------------------------------------------------+\n| product_id | product_name | description                                          |\n+------------+--------------+------------------------------------------------------+\n| 1          | Widget A     | This is a sample product with SN1234-5678            |\n| 2          | Widget B     | A product with serial SN9876-1234 in the description |\n| 3          | Widget C     | Product SN1234-56789 is available now                |\n| 4          | Widget D     | No serial number here                                |\n| 5          | Widget E     | Check out SN4321-8765 in this description            |\n+------------+--------------+------------------------------------------------------+",
+      "output": "+------------+--------------+------------------------------------------------------+\n| product_id | product_name | description                                          |\n+------------+--------------+------------------------------------------------------+\n| 1          | Widget A     | This is a sample product with SN1234-5678            |\n| 2          | Widget B     | A product with serial SN9876-1234 in the description |\n| 5          | Widget E     | Check out SN4321-8765 in this description            |\n+------------+--------------+------------------------------------------------------+",
+      "explanation": "Product 1: Valid serial number SN1234-5678\n\tProduct 2: Valid serial number SN9876-1234\n\tProduct 3: Invalid serial number SN1234-56789 (contains 5 digits after the hyphen)\n\tProduct 4: No serial number in the description\n\tProduct 5: Valid serial number SN4321-8765"
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_valid_serial_products(products: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"products\":[\"product_id\",\"product_name\",\"description\"]},\"rows\":{\"products\":[[1,\"Widget A\",\"This is a sample product with SN1234-5678\"],[2,\"Widget B\",\"A product with serial SN9876-1234 in the description\"],[3,\"Widget C\",\"Product SN1234-56789 is available now\"],[4,\"Widget D\",\"No serial number here\"],[5,\"Widget E\",\"Check out SN4321-8765 in this description\"]]}}",
+      "expectedOutput": "+------------+--------------+------------------------------------------------------+\n| product_id | product_name | description                                          |\n+------------+--------------+------------------------------------------------------+\n| 1          | Widget A     | This is a sample product with SN1234-5678            |\n| 2          | Widget B     | A product with serial SN9876-1234 in the description |\n| 5          | Widget E     | Check out SN4321-8765 in this description            |\n+------------+--------------+------------------------------------------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"products\":[\"product_id\",\"product_name\",\"description\"]},\"rows\":{\"products\":[[1,\"Widget A\",\"This is a sample product with SN1234-5678\"],[2,\"Widget B\",\"A product with serial SN9876-1234 in the description\"],[3,\"Widget C\",\"Product SN1234-56789 is available now\"],[4,\"Widget D\",\"No serial number here\"],[5,\"Widget E\",\"Check out SN4321-8765 in this description\"]]}}",
+      "expectedOutput": "+------------+--------------+------------------------------------------------------+\n| product_id | product_name | description                                          |\n+------------+--------------+------------------------------------------------------+\n| 1          | Widget A     | This is a sample product with SN1234-5678            |\n| 2          | Widget B     | A product with serial SN9876-1234 in the description |\n| 5          | Widget E     | Check out SN4321-8765 in this description            |\n+------------+--------------+------------------------------------------------------+"
+    },
+    {
+      "input": "products table:\n\n\n+------------+--------------+------------------------------------------------------+\n| product_id | product_name | description                                          |\n+------------+--------------+------------------------------------------------------+\n| 1          | Widget A     | This is a sample product with SN1234-5678            |\n| 2          | Widget B     | A product with serial SN9876-1234 in the description |\n| 3          | Widget C     | Product SN1234-56789 is available now                |\n| 4          | Widget D     | No serial number here                                |\n| 5          | Widget E     | Check out SN4321-8765 in this description            |\n+------------+--------------+------------------------------------------------------+",
+      "expectedOutput": "+------------+--------------+------------------------------------------------------+\n| product_id | product_name | description                                          |\n+------------+--------------+------------------------------------------------------+\n| 1          | Widget A     | This is a sample product with SN1234-5678            |\n| 2          | Widget B     | A product with serial SN9876-1234 in the description |\n| 5          | Widget E     | Check out SN4321-8765 in this description            |\n+------------+--------------+------------------------------------------------------+"
+    }
+  ],
+  "sqlSchema": "CREATE TABLE If not exists products (\n    product_id INT,\n    product_name VARCHAR(255),\n    description VARCHAR(255)\n)\n\nTruncate table products",
+  "sqlSetup": [
+    "insert into products (product_id, product_name, description) values ('1', 'Widget A', 'This is a sample product with SN1234-5678')",
+    "insert into products (product_id, product_name, description) values ('2', 'Widget B', 'A product with serial SN9876-1234 in the description')",
+    "insert into products (product_id, product_name, description) values ('3', 'Widget C', 'Product SN1234-56789 is available now')",
+    "insert into products (product_id, product_name, description) values ('4', 'Widget D', 'No serial number here')",
+    "insert into products (product_id, product_name, description) values ('5', 'Widget E', 'Check out SN4321-8765 in this description')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-products-with-valid-serial-numbers/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.082Z",
+    "sourceUpdatedAt": null
+  }
+}

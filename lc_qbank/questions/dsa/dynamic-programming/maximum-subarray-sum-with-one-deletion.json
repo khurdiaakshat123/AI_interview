@@ -1,0 +1,167 @@
+{
+  "id": "1186",
+  "slug": "maximum-subarray-sum-with-one-deletion",
+  "title": "Maximum Subarray Sum with One Deletion",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "Given an array of integers, return the maximum sum for a **non-empty** subarray (contiguous elements) with at most one element deletion. In other words, you want to choose a subarray and optionally delete one element from it so that there is still at least one element left and the sum of the remaining elements is maximum possible.\n\nNote that the subarray needs to be **non-empty** after deleting one element.\n\n**Example 1:**\n\n```\nInput: arr = [1,-2,0,3]\nOutput: 4\nExplanation: Because we can choose [1, -2, 0, 3] and drop -2, thus the subarray [1, 0, 3] becomes the maximum value.\n```\n\n**Example 2:**\n\n```\nInput: arr = [1,-2,-2,3]\nOutput: 3\nExplanation: We just choose [3] and it's the maximum sum.\n```\n\n**Example 3:**\n\n```\nInput: arr = [-1,-1,-1,-1]\nOutput: -1\nExplanation: The final subarray needs to be non-empty. You can't choose [-1] and delete -1 from it, then get an empty subarray to make the sum equals to 0.\n```\n\n**Constraints:**\n\n*   `1 <= arr.length <= 10^(5)`\n*   `-10^(4) <= arr[i] <= 10^(4)`",
+  "constraints": [
+    "1 <= arr.length <= 105",
+    "-104 <= arr[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "arr = [1,-2,0,3]",
+      "output": "4",
+      "explanation": "Because we can choose [1, -2, 0, 3] and drop -2, thus the subarray [1, 0, 3] becomes the maximum value."
+    },
+    {
+      "input": "arr = [1,-2,-2,3]",
+      "output": "3",
+      "explanation": "We just choose [3] and it's the maximum sum."
+    },
+    {
+      "input": "arr = [-1,-1,-1,-1]",
+      "output": "-1",
+      "explanation": " The final subarray needs to be non-empty. You can't choose [-1] and delete -1 from it, then get an empty subarray to make the sum equals to 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumSum(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumSum(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumSum(self, arr: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumSum(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number}\n */\nvar maximumSum = function(arr) {\n    \n};",
+    "typescript": "function maximumSum(arr: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumSum(int[] arr) {\n        \n    }\n}",
+    "c": "int maximumSum(int* arr, int arrSize) {\n    \n}",
+    "golang": "func maximumSum(arr []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumSum(arr: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumSum(_ arr: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_sum(arr: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer}\ndef maximum_sum(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer\n     */\n    function maximumSum($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumSum(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumSum(arr: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_sum(arr :: [integer]) :: integer\n  def maximum_sum(arr) do\n    \n  end\nend",
+    "erlang": "-spec maximum_sum(Arr :: [integer()]) -> integer().\nmaximum_sum(Arr) ->\n  .",
+    "racket": "(define/contract (maximum-sum arr)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,-2,0,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,-2,-2,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,-1,-1,-1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,-2,0,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,-2,-2,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,-1,-1,-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,-2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,0,-2,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-2,0,1,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,1,0,-2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,-2,0,3,1,-2,0,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[2,-4,0,6]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[2,-1,1,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0,-3,-1,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,2,0,-3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "How to solve this problem if no deletions are allowed ?",
+    "Try deleting each element and find the maximum subarray sum to both sides of that element.",
+    "To do that efficiently, use the idea of Kadane's algorithm."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.675Z",
+    "sourceUpdatedAt": null
+  }
+}

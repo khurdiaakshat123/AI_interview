@@ -1,0 +1,172 @@
+{
+  "id": "3926",
+  "slug": "count-valid-word-occurrences",
+  "title": "Count Valid Word Occurrences",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "statement": "You are given an array of strings `chunks`. Concatenate all strings in `chunks` in order to form a string `s`.\n\nYou are also given an array of strings `queries`.\n\nA **joiner hyphen** is a hyphen character `'-'` in `s` whose previous and next characters both exist and are lowercase English letters.\n\nA **word** is a **maximal** substring of `s` consisting only of lowercase English letters and **joiner hyphens**.\n\nAll other characters, including spaces and hyphens that are not **joiner hyphens**, are treated as separators.\n\nReturn an integer array `ans`, where `ans[i]` is the number of times `queries[i]` appears as a word in `s`.\n\n**Example 1:**\n\n**Input:** chunks = \\[\"hello wor\",\"ld hello\"\\], queries = \\[\"hello\",\"world\",\"wor\"\\]\n\n**Output:** \\[2,1,0\\]\n\n**Explanation:**\n\n*   After concatenating all strings in `chunks`, `s = \"hello world hello\"`.\n*   The words are `\"hello\"`, `\"world\"`, and `\"hello\"`.\n*   The substring `\"wor\"` appears inside `\"world\"`, but it is not a full word.\n\n**Example 2:**\n\n**Input:** chunks = \\[\"a-b a--b \",\"a-\",\"b\"\\], queries = \\[\"a-b\",\"a\",\"b\"\\]\n\n**Output:** \\[2,1,1\\]\n\n**Explanation:**\n\n*   After concatenating all strings in `chunks`, `s = \"a-b a--b a-b\"`.\n*   In `\"a-b\"`, the hyphen is a joiner hyphen because it is between two lowercase English letters, so `\"a-b\"` is one word.\n*   In `\"a--b\"`, neither hyphen is a joiner hyphen, so it is split into the words `\"a\"` and `\"b\"`.\n*   Therefore, the words are `\"a-b\"`, `\"a\"`, `\"b\"`, and `\"a-b\"`.\n\n**Example 3:**\n\n**Input:** chunks = \\[\"-cat dog- mouse\"\\], queries = \\[\"cat\",\"dog\",\"mouse\",\"cat-dog\"\\]\n\n**Output:** \\[1,1,1,0\\]\n\n**Explanation:**\n\n*   After concatenating all strings in `chunks`, `s = \"-cat dog- mouse\"`.\n*   The leading hyphen before `\"cat\"` and the trailing hyphen after `\"dog\"` are not joiner hyphens, so they are separators.\n*   The words are `\"cat\"`, `\"dog\"`, and `\"mouse\"`.\n\n**Constraints:**\n\n*   `1 <= chunks.length <= 10^(5)`\n*   `1 <= chunks[i].length <= 10^(5)`\n*   The total length of all strings in `chunks` does not exceed `10^(5)`.\n*   `chunks[i]` consists only of lowercase English letters, spaces, and `'-'`.\n*   `1 <= queries.length <= 10^(5)`\n*   `1 <= queries[i].length <= 10^(5)`\n*   The total length of all strings in `queries` does not exceed `10^(5)`.\n*   `queries[i]` consists only of lowercase English letters and `'-'`.\n*   `queries[i]` is a valid word: it does not start or end with `'-'`, and it does not contain two consecutive hyphens.",
+  "constraints": [
+    "1 <= chunks.length <= 105",
+    "1 <= chunks[i].length <= 105",
+    "The total length of all strings in chunks does not exceed 105.",
+    "chunks[i] consists only of lowercase English letters, spaces, and '-'.",
+    "1 <= queries.length <= 105",
+    "1 <= queries[i].length <= 105",
+    "The total length of all strings in queries does not exceed 105.",
+    "queries[i] consists only of lowercase English letters and '-'.",
+    "queries[i] is a valid word: it does not start or end with '-', and it does not contain two consecutive hyphens."
+  ],
+  "examples": [
+    {
+      "input": "chunks = [\"hello wor\",\"ld hello\"], queries = [\"hello\",\"world\",\"wor\"]",
+      "output": "[2,1,0]",
+      "explanation": "After concatenating all strings in chunks, s = \"hello world hello\".\n\tThe words are \"hello\", \"world\", and \"hello\".\n\tThe substring \"wor\" appears inside \"world\", but it is not a full word."
+    },
+    {
+      "input": "chunks = [\"a-b a--b \",\"a-\",\"b\"], queries = [\"a-b\",\"a\",\"b\"]",
+      "output": "[2,1,1]",
+      "explanation": "After concatenating all strings in chunks, s = \"a-b a--b a-b\".\n\tIn \"a-b\", the hyphen is a joiner hyphen because it is between two lowercase English letters, so \"a-b\" is one word.\n\tIn \"a--b\", neither hyphen is a joiner hyphen, so it is split into the words \"a\" and \"b\".\n\tTherefore, the words are \"a-b\", \"a\", \"b\", and \"a-b\"."
+    },
+    {
+      "input": "chunks = [\"-cat dog- mouse\"], queries = [\"cat\",\"dog\",\"mouse\",\"cat-dog\"]",
+      "output": "[1,1,1,0]",
+      "explanation": "After concatenating all strings in chunks, s = \"-cat dog- mouse\".\n\tThe leading hyphen before \"cat\" and the trailing hyphen after \"dog\" are not joiner hyphens, so they are separators.\n\tThe words are \"cat\", \"dog\", and \"mouse\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> countWordOccurrences(vector<string>& chunks, vector<string>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] countWordOccurrences(String[] chunks, String[] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countWordOccurrences(self, chunks: list[str], queries: list[str]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def countWordOccurrences(self, chunks, queries):\n        \"\"\"\n        :type chunks: List[str]\n        :type queries: List[str]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} chunks\n * @param {string[]} queries\n * @return {number[]}\n */\nvar countWordOccurrences = function(chunks, queries) {\n    \n};",
+    "typescript": "function countWordOccurrences(chunks: string[], queries: string[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] CountWordOccurrences(string[] chunks, string[] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* countWordOccurrences(char** chunks, int chunksSize, char** queries, int queriesSize, int* returnSize) {\n    \n}",
+    "golang": "func countWordOccurrences(chunks []string, queries []string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countWordOccurrences(chunks: Array<String>, queries: Array<String>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countWordOccurrences(_ chunks: [String], _ queries: [String]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_word_occurrences(chunks: Vec<String>, queries: Vec<String>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} chunks\n# @param {String[]} queries\n# @return {Integer[]}\ndef count_word_occurrences(chunks, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $chunks\n     * @param String[] $queries\n     * @return Integer[]\n     */\n    function countWordOccurrences($chunks, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> countWordOccurrences(List<String> chunks, List<String> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countWordOccurrences(chunks: Array[String], queries: Array[String]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_word_occurrences(chunks :: [String.t], queries :: [String.t]) :: [integer]\n  def count_word_occurrences(chunks, queries) do\n    \n  end\nend",
+    "erlang": "-spec count_word_occurrences(Chunks :: [unicode:unicode_binary()], Queries :: [unicode:unicode_binary()]) -> [integer()].\ncount_word_occurrences(Chunks, Queries) ->\n  .",
+    "racket": "(define/contract (count-word-occurrences chunks queries)\n  (-> (listof string?) (listof string?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"hello wor\",\"ld hello\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[2,1,0]"
+    },
+    {
+      "input": "[\"a-b a--b \",\"a-\",\"b\"]\n[\"a-b\",\"a\",\"b\"]",
+      "expectedOutput": "[2,1,1]"
+    },
+    {
+      "input": "[\"-cat dog- mouse\"]\n[\"cat\",\"dog\",\"mouse\",\"cat-dog\"]",
+      "expectedOutput": "[1,1,1,0]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"hello wor\",\"ld hello\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[2,1,0]"
+    },
+    {
+      "input": "[\"a-b a--b \",\"a-\",\"b\"]\n[\"a-b\",\"a\",\"b\"]",
+      "expectedOutput": "[2,1,1]"
+    },
+    {
+      "input": "[\"-cat dog- mouse\"]\n[\"cat\",\"dog\",\"mouse\",\"cat-dog\"]",
+      "expectedOutput": "[1,1,1,0]"
+    },
+    {
+      "input": "[\"hello wor\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[1,0,1]"
+    },
+    {
+      "input": "[\"ld hello\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[1,0,0]"
+    },
+    {
+      "input": "[\"ld hello\",\"hello wor\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,1]"
+    },
+    {
+      "input": "[\"hello wor\",\"hello wor\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[1,0,1]"
+    },
+    {
+      "input": "[\"hello wor\",\"ld hello\",\"hello wor\",\"ld hello\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[2,2,0]"
+    },
+    {
+      "input": "[\"a\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"a\",\"b\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"a\",\"a\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"hello\",\"world\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[\"flow\",\"flower\",\"flight\"]\n[\"hello\",\"world\",\"wor\"]",
+      "expectedOutput": "[0,0,0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-valid-word-occurrences/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.902Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "id": "2110",
+  "slug": "number-of-smooth-descent-periods-of-a-stock",
+  "title": "Number of Smooth Descent Periods of a Stock",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Two Pointers",
+    "Dynamic Programming",
+    "Sliding Window"
+  ],
+  "statement": "You are given an integer array `prices` representing the daily price history of a stock, where `prices[i]` is the stock price on the `i^(th)` day.\n\nA **smooth descent period** of a stock consists of **one or more contiguous** days such that the price on each day is **lower** than the price on the **preceding day** by **exactly** `1`. The first day of the period is exempted from this rule.\n\nReturn _the number of **smooth descent periods**_.\n\n**Example 1:**\n\n```\nInput: prices = [3,2,1,4]\nOutput: 7\nExplanation: There are 7 smooth descent periods:\n[3], [2], [1], [4], [3,2], [2,1], and [3,2,1]\nNote that a period with one day is a smooth descent period by the definition.\n```\n\n**Example 2:**\n\n```\nInput: prices = [8,6,7,7]\nOutput: 4\nExplanation: There are 4 smooth descent periods: [8], [6], [7], and [7]\nNote that [8,6] is not a smooth descent period as 8 - 6 ≠ 1.\n```\n\n**Example 3:**\n\n```\nInput: prices = [1]\nOutput: 1\nExplanation: There is 1 smooth descent period: [1]\n```\n\n**Constraints:**\n\n*   `1 <= prices.length <= 10^(5)`\n*   `1 <= prices[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= prices.length <= 105",
+    "1 <= prices[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "prices = [3,2,1,4]",
+      "output": "7",
+      "explanation": "There are 7 smooth descent periods:\n[3], [2], [1], [4], [3,2], [2,1], and [3,2,1]\nNote that a period with one day is a smooth descent period by the definition."
+    },
+    {
+      "input": "prices = [8,6,7,7]",
+      "output": "4",
+      "explanation": "There are 4 smooth descent periods: [8], [6], [7], and [7]\nNote that [8,6] is not a smooth descent period as 8 - 6 != 1."
+    },
+    {
+      "input": "prices = [1]",
+      "output": "1",
+      "explanation": "There is 1 smooth descent period: [1]"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long getDescentPeriods(vector<int>& prices) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long getDescentPeriods(int[] prices) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getDescentPeriods(self, prices: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def getDescentPeriods(self, prices):\n        \"\"\"\n        :type prices: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} prices\n * @return {number}\n */\nvar getDescentPeriods = function(prices) {\n    \n};",
+    "typescript": "function getDescentPeriods(prices: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long GetDescentPeriods(int[] prices) {\n        \n    }\n}",
+    "c": "long long getDescentPeriods(int* prices, int pricesSize) {\n    \n}",
+    "golang": "func getDescentPeriods(prices []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun getDescentPeriods(prices: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getDescentPeriods(_ prices: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_descent_periods(prices: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} prices\n# @return {Integer}\ndef get_descent_periods(prices)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $prices\n     * @return Integer\n     */\n    function getDescentPeriods($prices) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int getDescentPeriods(List<int> prices) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getDescentPeriods(prices: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_descent_periods(prices :: [integer]) :: integer\n  def get_descent_periods(prices) do\n    \n  end\nend",
+    "erlang": "-spec get_descent_periods(Prices :: [integer()]) -> integer().\nget_descent_periods(Prices) ->\n  .",
+    "racket": "(define/contract (get-descent-periods prices)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,2,1,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[8,6,7,7]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,2,1,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[8,6,7,7]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,1,2,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,3,2,1]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[3,3,3,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,2,1,4,3,2,1,4]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "[6,4,2,8]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,3,2,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[2,1,0,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[-3,-2,-1,-4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Any array is a series of adjacent longest possible smooth descent periods. For example, [5,3,2,1,7,6] is [5] + [3,2,1] + [7,6].",
+    "Think of a 2-pointer approach to traverse the array and find each longest possible period.",
+    "Suppose you found the longest possible period with a length of k. How many periods are within that period? How can you count them quickly? Think of the formula to calculate the sum of 1, 2, 3, ..., k."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.063Z",
+    "sourceUpdatedAt": null
+  }
+}

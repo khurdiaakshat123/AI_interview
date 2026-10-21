@@ -1,0 +1,117 @@
+{
+  "id": "3241",
+  "slug": "time-taken-to-mark-all-nodes",
+  "title": "Time Taken to Mark All Nodes",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "Graph Theory",
+    "DP on Trees"
+  ],
+  "statement": "There exists an **undirected** tree with `n` nodes numbered `0` to `n - 1`. You are given a 2D integer array `edges` of length `n - 1`, where `edges[i] = [u_(i), v_(i)]` indicates that there is an edge between nodes `u_(i)` and `v_(i)` in the tree.\n\nInitially, **all** nodes are **unmarked**. For each node `i`:\n\n*   If `i` is odd, the node will get marked at time `x` if there is **at least** one node _adjacent_ to it which was marked at time `x - 1`.\n*   If `i` is even, the node will get marked at time `x` if there is **at least** one node _adjacent_ to it which was marked at time `x - 2`.\n\nReturn an array `times` where `times[i]` is the time when all nodes get marked in the tree, if you mark node `i` at time `t = 0`.\n\n**Note** that the answer for each `times[i]` is **independent**, i.e. when you mark node `i` all other nodes are _unmarked_.\n\n**Example 1:**\n\n**Input:** edges = \\[\\[0,1\\],\\[0,2\\]\\]\n\n**Output:** \\[2,4,3\\]\n\n**Explanation:**\n\n![](./assets/time-taken-to-mark-all-nodes-1.png)\n\n*   For `i = 0`:\n    *   Node 1 is marked at `t = 1`, and Node 2 at `t = 2`.\n*   For `i = 1`:\n    *   Node 0 is marked at `t = 2`, and Node 2 at `t = 4`.\n*   For `i = 2`:\n    *   Node 0 is marked at `t = 2`, and Node 1 at `t = 3`.\n\n**Example 2:**\n\n**Input:** edges = \\[\\[0,1\\]\\]\n\n**Output:** \\[1,2\\]\n\n**Explanation:**\n\n![](./assets/time-taken-to-mark-all-nodes-2.png)\n\n*   For `i = 0`:\n    *   Node 1 is marked at `t = 1`.\n*   For `i = 1`:\n    *   Node 0 is marked at `t = 2`.\n\n**Example 3:**\n\n**Input:** edges = \\[\\[2,4\\],\\[0,1\\],\\[2,3\\],\\[0,2\\]\\]\n\n**Output:** \\[4,6,3,5,5\\]\n\n**Explanation:**\n\n![](./assets/time-taken-to-mark-all-nodes-3.png)\n\n**Constraints:**\n\n*   `2 <= n <= 10^(5)`\n*   `edges.length == n - 1`\n*   `edges[i].length == 2`\n*   `0 <= edges[i][0], edges[i][1] <= n - 1`\n*   The input is generated such that `edges` represents a valid tree.",
+  "constraints": [
+    "2 <= n <= 105",
+    "edges.length == n - 1",
+    "edges[i].length == 2",
+    "0 <= edges[i][0], edges[i][1] <= n - 1",
+    "The input is generated such that edges represents a valid tree."
+  ],
+  "examples": [
+    {
+      "input": "edges = [[0,1],[0,2]]",
+      "output": "[2,4,3]",
+      "explanation": null
+    },
+    {
+      "input": "edges = [[0,1]]",
+      "output": "[1,2]",
+      "explanation": null
+    },
+    {
+      "input": "edges = [[2,4],[0,1],[2,3],[0,2]]",
+      "output": "[4,6,3,5,5]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> timeTaken(vector<vector<int>>& edges) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] timeTaken(int[][] edges) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def timeTaken(self, edges: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def timeTaken(self, edges):\n        \"\"\"\n        :type edges: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} edges\n * @return {number[]}\n */\nvar timeTaken = function(edges) {\n    \n};",
+    "typescript": "function timeTaken(edges: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] TimeTaken(int[][] edges) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* timeTaken(int** edges, int edgesSize, int* edgesColSize, int* returnSize) {\n    \n}",
+    "golang": "func timeTaken(edges [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun timeTaken(edges: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func timeTaken(_ edges: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn time_taken(edges: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} edges\n# @return {Integer[]}\ndef time_taken(edges)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $edges\n     * @return Integer[]\n     */\n    function timeTaken($edges) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> timeTaken(List<List<int>> edges) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def timeTaken(edges: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec time_taken(edges :: [[integer]]) :: [integer]\n  def time_taken(edges) do\n    \n  end\nend",
+    "erlang": "-spec time_taken(Edges :: [[integer()]]) -> [integer()].\ntime_taken(Edges) ->\n  .",
+    "racket": "(define/contract (time-taken edges)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1],[0,2]]",
+      "expectedOutput": "[2,4,3]"
+    },
+    {
+      "input": "[[0,1]]",
+      "expectedOutput": "[1,2]"
+    },
+    {
+      "input": "[[2,4],[0,1],[2,3],[0,2]]",
+      "expectedOutput": "[4,6,3,5,5]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1],[0,2]]",
+      "expectedOutput": "[2,4,3]"
+    },
+    {
+      "input": "[[0,1]]",
+      "expectedOutput": "[1,2]"
+    },
+    {
+      "input": "[[2,4],[0,1],[2,3],[0,2]]",
+      "expectedOutput": "[4,6,3,5,5]"
+    },
+    {
+      "input": "edges = [[0,1],[0,2]]",
+      "expectedOutput": "[2,4,3]"
+    },
+    {
+      "input": "edges = [[0,1]]",
+      "expectedOutput": "[1,2]"
+    },
+    {
+      "input": "edges = [[2,4],[0,1],[2,3],[0,2]]",
+      "expectedOutput": "[4,6,3,5,5]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can we use dp on trees?",
+    "Store the two most distant children for each node.",
+    "When re-rooting the tree, keep a variable for distance to the root node."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/time-taken-to-mark-all-nodes/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.052Z",
+    "sourceUpdatedAt": null
+  }
+}

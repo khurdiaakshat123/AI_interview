@@ -1,0 +1,166 @@
+{
+  "id": "1544",
+  "slug": "make-the-string-great",
+  "title": "Make The String Great",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Easy",
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "statement": "Given a string `s` of lower and upper case English letters.\n\nA good string is a string which doesn't have **two adjacent characters** `s[i]` and `s[i + 1]` where:\n\n*   `0 <= i <= s.length - 2`\n*   `s[i]` is a lower-case letter and `s[i + 1]` is the same letter but in upper-case or **vice-versa**.\n\nTo make the string good, you can choose **two adjacent** characters that make the string bad and remove them. You can keep doing this until the string becomes good.\n\nReturn _the string_ after making it good. The answer is guaranteed to be unique under the given constraints.\n\n**Notice** that an empty string is also good.\n\n**Example 1:**\n\n```\nInput: s = \"leEeetcode\"\nOutput: \"leetcode\"\nExplanation: In the first step, either you choose i = 1 or i = 2, both will result \"leEeetcode\" to be reduced to \"leetcode\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"abBAcC\"\nOutput: \"\"\nExplanation: We have many possible scenarios, and all lead to the same answer. For example:\n\"abBAcC\" --> \"aAcC\" --> \"cC\" --> \"\"\n\"abBAcC\" --> \"abBA\" --> \"aA\" --> \"\"\n```\n\n**Example 3:**\n\n```\nInput: s = \"s\"\nOutput: \"s\"\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 100`\n*   `s` contains only lower and upper case English letters.",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s contains only lower and upper case English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"leEeetcode\"",
+      "output": "\"leetcode\"",
+      "explanation": "In the first step, either you choose i = 1 or i = 2, both will result \"leEeetcode\" to be reduced to \"leetcode\"."
+    },
+    {
+      "input": "s = \"abBAcC\"",
+      "output": "\"\"",
+      "explanation": "We have many possible scenarios, and all lead to the same answer. For"
+    },
+    {
+      "input": "s = \"s\"",
+      "output": "\"s\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string makeGood(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String makeGood(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def makeGood(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def makeGood(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar makeGood = function(s) {\n    \n};",
+    "typescript": "function makeGood(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MakeGood(string s) {\n        \n    }\n}",
+    "c": "char* makeGood(char* s) {\n    \n}",
+    "golang": "func makeGood(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun makeGood(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func makeGood(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn make_good(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef make_good(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function makeGood($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String makeGood(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def makeGood(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec make_good(s :: String.t) :: String.t\n  def make_good(s) do\n    \n  end\nend",
+    "erlang": "-spec make_good(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nmake_good(S) ->\n  .",
+    "racket": "(define/contract (make-good s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"leEeetcode\"",
+      "expectedOutput": "\"leetcode\""
+    },
+    {
+      "input": "\"abBAcC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"s\"",
+      "expectedOutput": "\"s\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"leEeetcode\"",
+      "expectedOutput": "\"leetcode\""
+    },
+    {
+      "input": "\"abBAcC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"s\"",
+      "expectedOutput": "\"s\""
+    },
+    {
+      "input": "\"leEee\"",
+      "expectedOutput": "\"lee\""
+    },
+    {
+      "input": "\"tcode\"",
+      "expectedOutput": "\"tcode\""
+    },
+    {
+      "input": "\"l\"",
+      "expectedOutput": "\"l\""
+    },
+    {
+      "input": "\"le\"",
+      "expectedOutput": "\"le\""
+    },
+    {
+      "input": "\"edocteeEel\"",
+      "expectedOutput": "\"edocteel\""
+    },
+    {
+      "input": "\"leEeetcodeleEeetcode\"",
+      "expectedOutput": "\"leetcodeleetcode\""
+    },
+    {
+      "input": "\"llllll\"",
+      "expectedOutput": "\"llllll\""
+    },
+    {
+      "input": "\"leEeetcodeedocteeEel\"",
+      "expectedOutput": "\"leetcodeedocteel\""
+    },
+    {
+      "input": "\"leeeetcode\"",
+      "expectedOutput": "\"leeeetcode\""
+    },
+    {
+      "input": "\"LEEEETCODE\"",
+      "expectedOutput": "\"LEEEETCODE\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The order you choose 2 characters to remove doesn't matter.",
+    "Keep applying the mentioned step to s till the length of the string is not changed."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/make-the-string-great/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.976Z",
+    "sourceUpdatedAt": null
+  }
+}

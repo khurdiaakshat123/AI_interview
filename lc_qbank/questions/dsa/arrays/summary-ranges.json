@@ -1,0 +1,155 @@
+{
+  "id": "228",
+  "slug": "summary-ranges",
+  "title": "Summary Ranges",
+  "category": "dsa",
+  "subcategory": "arrays",
+  "difficulty": "Easy",
+  "tags": [
+    "Array"
+  ],
+  "statement": "You are given a **sorted unique** integer array `nums`.\n\nA **range** `[a,b]` is the set of all integers from `a` to `b` (inclusive).\n\nReturn _the **smallest sorted** list of ranges that **cover all the numbers in the array exactly**_. That is, each element of `nums` is covered by exactly one of the ranges, and there is no integer `x` such that `x` is in one of the ranges but not in `nums`.\n\nEach range `[a,b]` in the list should be output as:\n\n*   `\"a->b\"` if `a != b`\n*   `\"a\"` if `a == b`\n\n**Example 1:**\n\n```\nInput: nums = [0,1,2,4,5,7]\nOutput: [\"0->2\",\"4->5\",\"7\"]\nExplanation: The ranges are:\n[0,2] --> \"0->2\"\n[4,5] --> \"4->5\"\n[7,7] --> \"7\"\n```\n\n**Example 2:**\n\n```\nInput: nums = [0,2,3,4,6,8,9]\nOutput: [\"0\",\"2->4\",\"6\",\"8->9\"]\nExplanation: The ranges are:\n[0,0] --> \"0\"\n[2,4] --> \"2->4\"\n[6,6] --> \"6\"\n[8,9] --> \"8->9\"\n```\n\n**Constraints:**\n\n*   `0 <= nums.length <= 20`\n*   `-2^(31) <= nums[i] <= 2^(31) - 1`\n*   All the values of `nums` are **unique**.\n*   `nums` is sorted in ascending order.",
+  "constraints": [
+    "0 <= nums.length <= 20",
+    "-231 <= nums[i] <= 231 - 1",
+    "All the values of nums are unique.",
+    "nums is sorted in ascending order."
+  ],
+  "examples": [
+    {
+      "input": "nums = [0,1,2,4,5,7]",
+      "output": "[\"0->2\",\"4->5\",\"7\"]",
+      "explanation": "The ranges are:\n[0,2] --> \"0->2\"\n[4,5] --> \"4->5\"\n[7,7] --> \"7\""
+    },
+    {
+      "input": "nums = [0,2,3,4,6,8,9]",
+      "output": "[\"0\",\"2->4\",\"6\",\"8->9\"]",
+      "explanation": "The ranges are:\n[0,0] --> \"0\"\n[2,4] --> \"2->4\"\n[6,6] --> \"6\"\n[8,9] --> \"8->9\""
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> summaryRanges(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> summaryRanges(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def summaryRanges(self, nums: list[int]) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def summaryRanges(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {string[]}\n */\nvar summaryRanges = function(nums) {\n    \n};",
+    "typescript": "function summaryRanges(nums: number[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> SummaryRanges(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** summaryRanges(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func summaryRanges(nums []int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun summaryRanges(nums: IntArray): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func summaryRanges(_ nums: [Int]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn summary_ranges(nums: Vec<i32>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {String[]}\ndef summary_ranges(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return String[]\n     */\n    function summaryRanges($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> summaryRanges(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def summaryRanges(nums: Array[Int]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec summary_ranges(nums :: [integer]) :: [String.t]\n  def summary_ranges(nums) do\n    \n  end\nend",
+    "erlang": "-spec summary_ranges(Nums :: [integer()]) -> [unicode:unicode_binary()].\nsummary_ranges(Nums) ->\n  .",
+    "racket": "(define/contract (summary-ranges nums)\n  (-> (listof exact-integer?) (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[0,1,2,4,5,7]",
+      "expectedOutput": "[\"0->2\",\"4->5\",\"7\"]"
+    },
+    {
+      "input": "[0,2,3,4,6,8,9]",
+      "expectedOutput": "[\"0\",\"2->4\",\"6\",\"8->9\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[0,1,2,4,5,7]",
+      "expectedOutput": "[\"0->2\",\"4->5\",\"7\"]"
+    },
+    {
+      "input": "[0,2,3,4,6,8,9]",
+      "expectedOutput": "[\"0\",\"2->4\",\"6\",\"8->9\"]"
+    },
+    {
+      "input": "[0,1,2]",
+      "expectedOutput": "[\"0->2\"]"
+    },
+    {
+      "input": "[4,5,7]",
+      "expectedOutput": "[\"4->5\",\"7\"]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[\"0\"]"
+    },
+    {
+      "input": "[0,7]",
+      "expectedOutput": "[\"0\",\"7\"]"
+    },
+    {
+      "input": "[0,1]",
+      "expectedOutput": "[\"0->1\"]"
+    },
+    {
+      "input": "[7,5,4,2,1,0]",
+      "expectedOutput": "[\"7\",\"5\",\"4\",\"2\",\"1\",\"0\"]"
+    },
+    {
+      "input": "[0,0,0,0,0]",
+      "expectedOutput": "[\"0\",\"0\",\"0\",\"0\",\"0\"]"
+    },
+    {
+      "input": "[0,1,2,4,5,7,0,1,2,4,5,7]",
+      "expectedOutput": "[\"0->2\",\"4->5\",\"7\",\"0->2\",\"4->5\",\"7\"]"
+    },
+    {
+      "input": "[0,2,4,8,10,14]",
+      "expectedOutput": "[\"0\",\"2\",\"4\",\"8\",\"10\",\"14\"]"
+    },
+    {
+      "input": "[1,2,3,5,6,8]",
+      "expectedOutput": "[\"1->3\",\"5->6\",\"8\"]"
+    },
+    {
+      "input": "[-1,0,1,3,4,6]",
+      "expectedOutput": "[\"-1->1\",\"3->4\",\"6\"]"
+    },
+    {
+      "input": "[0,-1,-2,-4,-5,-7]",
+      "expectedOutput": "[\"0\",\"-1\",\"-2\",\"-4\",\"-5\",\"-7\"]"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "[\"0\",\"0\",\"0\",\"0\"]"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "[\"1\",\"1\",\"1\",\"1\"]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[\"1\"]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[\"-1\"]"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "[\"0\",\"0\"]"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "[\"1->2\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/summary-ranges/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.757Z",
+    "sourceUpdatedAt": null
+  }
+}

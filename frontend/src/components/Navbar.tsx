@@ -147,6 +147,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Compass },
     { id: 'jd-intake', label: 'Role Profiler', icon: Sparkles },
+    { id: 'practice', label: 'Practice', icon: Code2 },
   ];
 
   const handleNavClick = (tabId: string) => {

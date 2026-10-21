@@ -1,0 +1,161 @@
+{
+  "id": "1639",
+  "slug": "number-of-ways-to-form-a-target-string-given-a-dictionary",
+  "title": "Number of Ways to Form a Target String Given a Dictionary",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given a list of strings of the **same length** `words` and a string `target`.\n\nYour task is to form `target` using the given `words` under the following rules:\n\n*   `target` should be formed from left to right.\n*   To form the `i^(th)` character (**0-indexed**) of `target`, you can choose the `k^(th)` character of the `j^(th)` string in `words` if `target[i] = words[j][k]`.\n*   Once you use the `k^(th)` character of the `j^(th)` string of `words`, you **can no longer** use the `x^(th)` character of any string in `words` where `x <= k`. In other words, all characters to the left of or at index `k` become unusuable for every string.\n*   Repeat the process until you form the string `target`.\n\n**Notice** that you can use **multiple characters** from the **same string** in `words` provided the conditions above are met.\n\nReturn _the number of ways to form `target` from `words`_. Since the answer may be too large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n```\nInput: words = [\"acca\",\"bbbb\",\"caca\"], target = \"aba\"\nOutput: 6\nExplanation: There are 6 ways to form target.\n\"aba\" -> index 0 (\"acca\"), index 1 (\"bbbb\"), index 3 (\"caca\")\n\"aba\" -> index 0 (\"acca\"), index 2 (\"bbbb\"), index 3 (\"caca\")\n\"aba\" -> index 0 (\"acca\"), index 1 (\"bbbb\"), index 3 (\"acca\")\n\"aba\" -> index 0 (\"acca\"), index 2 (\"bbbb\"), index 3 (\"acca\")\n\"aba\" -> index 1 (\"caca\"), index 2 (\"bbbb\"), index 3 (\"acca\")\n\"aba\" -> index 1 (\"caca\"), index 2 (\"bbbb\"), index 3 (\"caca\")\n```\n\n**Example 2:**\n\n```\nInput: words = [\"abba\",\"baab\"], target = \"bab\"\nOutput: 4\nExplanation: There are 4 ways to form target.\n\"bab\" -> index 0 (\"baab\"), index 1 (\"baab\"), index 2 (\"abba\")\n\"bab\" -> index 0 (\"baab\"), index 1 (\"baab\"), index 3 (\"baab\")\n\"bab\" -> index 0 (\"baab\"), index 2 (\"baab\"), index 3 (\"baab\")\n\"bab\" -> index 1 (\"abba\"), index 2 (\"baab\"), index 3 (\"baab\")\n```\n\n**Constraints:**\n\n*   `1 <= words.length <= 1000`\n*   `1 <= words[i].length <= 1000`\n*   All strings in `words` have the same length.\n*   `1 <= target.length <= 1000`\n*   `words[i]` and `target` contain only lowercase English letters.",
+  "constraints": [
+    "1 <= words.length <= 1000",
+    "1 <= words[i].length <= 1000",
+    "All strings in words have the same length.",
+    "1 <= target.length <= 1000",
+    "words[i] and target contain only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"acca\",\"bbbb\",\"caca\"], target = \"aba\"",
+      "output": "6",
+      "explanation": "There are 6 ways to form target.\n\"aba\" -> index 0 (\"acca\"), index 1 (\"bbbb\"), index 3 (\"caca\")\n\"aba\" -> index 0 (\"acca\"), index 2 (\"bbbb\"), index 3 (\"caca\")\n\"aba\" -> index 0 (\"acca\"), index 1 (\"bbbb\"), index 3 (\"acca\")\n\"aba\" -> index 0 (\"acca\"), index 2 (\"bbbb\"), index 3 (\"acca\")\n\"aba\" -> index 1 (\"caca\"), index 2 (\"bbbb\"), index 3 (\"acca\")\n\"aba\" -> index 1 (\"caca\"), index 2 (\"bbbb\"), index 3 (\"caca\")"
+    },
+    {
+      "input": "words = [\"abba\",\"baab\"], target = \"bab\"",
+      "output": "4",
+      "explanation": "There are 4 ways to form target.\n\"bab\" -> index 0 (\"baab\"), index 1 (\"baab\"), index 2 (\"abba\")\n\"bab\" -> index 0 (\"baab\"), index 1 (\"baab\"), index 3 (\"baab\")\n\"bab\" -> index 0 (\"baab\"), index 2 (\"baab\"), index 3 (\"baab\")\n\"bab\" -> index 1 (\"abba\"), index 2 (\"baab\"), index 3 (\"baab\")"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numWays(vector<string>& words, string target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numWays(String[] words, String target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numWays(self, words: list[str], target: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def numWays(self, words, target):\n        \"\"\"\n        :type words: List[str]\n        :type target: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @param {string} target\n * @return {number}\n */\nvar numWays = function(words, target) {\n    \n};",
+    "typescript": "function numWays(words: string[], target: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumWays(string[] words, string target) {\n        \n    }\n}",
+    "c": "int numWays(char** words, int wordsSize, char* target) {\n    \n}",
+    "golang": "func numWays(words []string, target string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numWays(words: Array<String>, target: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numWays(_ words: [String], _ target: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_ways(words: Vec<String>, target: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @param {String} target\n# @return {Integer}\ndef num_ways(words, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @param String $target\n     * @return Integer\n     */\n    function numWays($words, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numWays(List<String> words, String target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numWays(words: Array[String], target: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_ways(words :: [String.t], target :: String.t) :: integer\n  def num_ways(words, target) do\n    \n  end\nend",
+    "erlang": "-spec num_ways(Words :: [unicode:unicode_binary()], Target :: unicode:unicode_binary()) -> integer().\nnum_ways(Words, Target) ->\n  .",
+    "racket": "(define/contract (num-ways words target)\n  (-> (listof string?) string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"acca\",\"bbbb\",\"caca\"]\n\"aba\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"abba\",\"baab\"]\n\"bab\"",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"acca\",\"bbbb\",\"caca\"]\n\"aba\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"abba\",\"baab\"]\n\"bab\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"acca\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"bbbb\",\"caca\"]\n\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"acca\",\"caca\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"acca\",\"bbbb\"]\n\"aba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"caca\",\"bbbb\",\"acca\"]\n\"aba\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"acca\",\"acca\",\"acca\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"acca\",\"bbbb\",\"caca\",\"acca\",\"bbbb\",\"caca\"]\n\"aba\"",
+      "expectedOutput": "48"
+    },
+    {
+      "input": "[\"a\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"b\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"a\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]\n\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"hello\",\"world\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"listen\",\"silent\"]\n\"aba\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For each index i, store the frequency of each character in the ith row.",
+    "Use dynamic programing to calculate the number of ways to get the target string using the frequency array."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.258Z",
+    "sourceUpdatedAt": null
+  }
+}

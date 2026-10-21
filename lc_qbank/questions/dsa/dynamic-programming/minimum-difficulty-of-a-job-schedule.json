@@ -1,0 +1,167 @@
+{
+  "id": "1335",
+  "slug": "minimum-difficulty-of-a-job-schedule",
+  "title": "Minimum Difficulty of a Job Schedule",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "You want to schedule a list of jobs in `d` days. Jobs are dependent (i.e To work on the `i^(th)` job, you have to finish all the jobs `j` where `0 <= j < i`).\n\nYou have to finish **at least** one task every day. The difficulty of a job schedule is the sum of difficulties of each day of the `d` days. The difficulty of a day is the maximum difficulty of a job done on that day.\n\nYou are given an integer array `jobDifficulty` and an integer `d`. The difficulty of the `i^(th)` job is `jobDifficulty[i]`.\n\nReturn _the minimum difficulty of a job schedule_. If you cannot find a schedule for the jobs return `-1`.\n\n**Example 1:**\n\n![](./assets/minimum-difficulty-of-a-job-schedule-1.png)\n```\nInput: jobDifficulty = [6,5,4,3,2,1], d = 2\nOutput: 7\nExplanation: First day you can finish the first 5 jobs, total difficulty = 6.\nSecond day you can finish the last job, total difficulty = 1.\nThe difficulty of the schedule = 6 + 1 = 7\n```\n\n**Example 2:**\n\n```\nInput: jobDifficulty = [9,9,9], d = 4\nOutput: -1\nExplanation: If you finish a job per day you will still have a free day. you cannot find a schedule for the given jobs.\n```\n\n**Example 3:**\n\n```\nInput: jobDifficulty = [1,1,1], d = 3\nOutput: 3\nExplanation: The schedule is one job per day. total difficulty will be 3.\n```\n\n**Constraints:**\n\n*   `1 <= jobDifficulty.length <= 300`\n*   `0 <= jobDifficulty[i] <= 1000`\n*   `1 <= d <= 10`",
+  "constraints": [
+    "1 <= jobDifficulty.length <= 300",
+    "0 <= jobDifficulty[i] <= 1000",
+    "1 <= d <= 10"
+  ],
+  "examples": [
+    {
+      "input": "jobDifficulty = [6,5,4,3,2,1], d = 2",
+      "output": "7",
+      "explanation": "First day you can finish the first 5 jobs, total difficulty = 6.\nSecond day you can finish the last job, total difficulty = 1.\nThe difficulty of the schedule = 6 + 1 = 7"
+    },
+    {
+      "input": "jobDifficulty = [9,9,9], d = 4",
+      "output": "-1",
+      "explanation": "If you finish a job per day you will still have a free day. you cannot find a schedule for the given jobs."
+    },
+    {
+      "input": "jobDifficulty = [1,1,1], d = 3",
+      "output": "3",
+      "explanation": "The schedule is one job per day. total difficulty will be 3."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minDifficulty(vector<int>& jobDifficulty, int d) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minDifficulty(int[] jobDifficulty, int d) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minDifficulty(self, jobDifficulty: list[int], d: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minDifficulty(self, jobDifficulty, d):\n        \"\"\"\n        :type jobDifficulty: List[int]\n        :type d: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} jobDifficulty\n * @param {number} d\n * @return {number}\n */\nvar minDifficulty = function(jobDifficulty, d) {\n    \n};",
+    "typescript": "function minDifficulty(jobDifficulty: number[], d: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinDifficulty(int[] jobDifficulty, int d) {\n        \n    }\n}",
+    "c": "int minDifficulty(int* jobDifficulty, int jobDifficultySize, int d) {\n    \n}",
+    "golang": "func minDifficulty(jobDifficulty []int, d int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minDifficulty(jobDifficulty: IntArray, d: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minDifficulty(_ jobDifficulty: [Int], _ d: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_difficulty(job_difficulty: Vec<i32>, d: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} job_difficulty\n# @param {Integer} d\n# @return {Integer}\ndef min_difficulty(job_difficulty, d)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $jobDifficulty\n     * @param Integer $d\n     * @return Integer\n     */\n    function minDifficulty($jobDifficulty, $d) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minDifficulty(List<int> jobDifficulty, int d) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minDifficulty(jobDifficulty: Array[Int], d: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_difficulty(job_difficulty :: [integer], d :: integer) :: integer\n  def min_difficulty(job_difficulty, d) do\n    \n  end\nend",
+    "erlang": "-spec min_difficulty(JobDifficulty :: [integer()], D :: integer()) -> integer().\nmin_difficulty(JobDifficulty, D) ->\n  .",
+    "racket": "(define/contract (min-difficulty jobDifficulty d)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[6,5,4,3,2,1]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[9,9,9]\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,1]\n3",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[6,5,4,3,2,1]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[9,9,9]\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,1]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,5,4]\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[3,2,1]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[6]\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[6,1]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[6,5]\n2",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[1,2,3,4,5,6]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[6,6,6,6,6]\n2",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[6,5,4,3,2,1,6,5,4,3,2,1]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[12,10,8,6,4,2]\n2",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[7,6,5,4,3,2]\n2",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[5,4,3,2,1,0]\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-6,-5,-4,-3,-2,-1]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1]\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1]\n2",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use DP. Try to cut the array into d non-empty sub-arrays. Try all possible cuts for the array.",
+    "Use dp[i][j] where DP states are i the index of the last cut and j the number of remaining cuts. Complexity is O(n * n * d)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.820Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "id": "3998",
+  "slug": "transform-binary-string-using-subsequence-sort",
+  "title": "Transform Binary String Using Subsequence Sort",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String",
+    "Greedy"
+  ],
+  "statement": "You are given a binary string `s`.\n\nYou are also given an array of strings `strs`, where each `strs[i]` has the **same** length as `s` and consists of characters `'0'`, `'1'`, and `'?'`. Each `'?'` can be replaced by either `'0'` or `'1'`.\n\nYou may perform the following operation any number of times (including zero):\n\n*   Choose any subsequence `sub` of `s`.\n*   Sort `sub` in **non-decreasing** order.\n*   Replace the chosen **subsequence** in `s` with the sorted `sub`, keeping all other characters unchanged.\n\nReturn a boolean array `ans`, where `ans[i]` is `true` if it's possible to replace all `'?'` in `strs[i]` with `'0'` or `'1'` and transform `s` into the resulting string using the allowed operation above, otherwise return `false`.\n\n**Example 1:**\n\n**Input:** s = \"101\", strs = \\[\"1?1\",\"0?1\",\"0?0\"\\]\n\n**Output:** \\[true,true,false\\]\n\n**Explanation:**\n\n`i`\n\n`strs[i]`\n\nReplacement\n\nResult `strs[i]`\n\nOperation(s)\n\nResult\n\n0\n\n`\"1?1\"`\n\n`? → 0`\n\n`\"101\"`\n\nMatches `s`.\n\n`true`\n\n1\n\n`\"0?1\"`\n\n`? → 1`\n\n`\"011\"`\n\nSelect the subsequence at indices `[0..2]` of `s` → `\"101\"`.  \nSort `\"101\"` to get `\"011\" = strs[i]`.\n\n`true`\n\n2\n\n`\"0?0\"`\n\n`? → 0` or `1`\n\n`\"000\"` or `\"010\"`\n\nNot feasible.\n\n`false`\n\nThus, `ans = [true, true, false]`.\n\n**Example 2:**\n\n**Input:** s = \"1100\", strs = \\[\"0011\",\"11?1\",\"1?1?\"\\]\n\n**Output:** \\[true,false,true\\]\n\n**Explanation:**\n\n`i`\n\n`strs[i]`\n\nReplacement\n\nResult `strs[i]`\n\nOperation(s)\n\nResult\n\n0\n\n`\"0011\"`\n\n\\-\n\n`\"0011\"`\n\nSelect the subsequence at indices `[0..3]` of `s` → `\"1100\"`.  \nSort `\"1100\"` to get `\"0011\" = strs[i]`.\n\n`true`\n\n1\n\n`\"11?1\"`\n\n`? → 0`\n\n`\"1101\"`\n\nNot feasible.\n\n`false`\n\n2\n\n`\"1?1?\"`\n\nFirst `? → 0`  \nSecond `? → 0`\n\n`\"1010\"`\n\nSelect the subsequence at indices `[1, 2]` of `s` → `\"10\"`.  \nSort `\"10\"` to get `\"01\"`, so `s = \"1010\"`.\n\n`true`\n\nThus, `ans = [true, false, true]`.\n\n**Example 3:**\n\n**Input:** s = \"1010\", strs = \\[\"0011\"\\]\n\n**Output:** \\[true\\]\n\n**Explanation:**\n\n`i`\n\n`strs[i]`\n\nReplacement\n\nResult `strs[i]`\n\nOperation(s)\n\nResult\n\n0\n\n`\"0011\"`\n\n\\-\n\n`\"0011\"`\n\nSelect the subsequence at indices `[0, 2, 3]` of `s` → `\"110\"`.  \nSort `\"110\"` to get `\"011\"`, so `s = \"0011\" = strs[i]`.\n\n`true`\n\nThus, `ans = [true]`.\n\n**Constraints:**\n\n*   `1 <= n == s.length <= 2000`\n*   `s[i]` is either `'0'` or `'1'`.\n*   `1 <= strs.length <= 2000`\n*   `strs[i].length == n`\n*   `strs[i]` is either `'0'`, `'1'`, or `'?'`​​​​​​​.",
+  "constraints": [
+    "1 <= n == s.length <= 2000",
+    "s[i] is either '0' or '1'.",
+    "1 <= strs.length <= 2000",
+    "strs[i].length == n",
+    "strs[i] is either '0', '1', or '?'​​​​​​​."
+  ],
+  "examples": [
+    {
+      "input": "s = \"101\", strs = [\"1?1\",\"0?1\",\"0?0\"]",
+      "output": "[true,true,false]",
+      "explanation": "i\n\t\t\tstrs[i]\n\t\t\tReplacement\n\t\t\tResult strs[i]\n\t\t\tOperation(s)\n\t\t\tResult\n\t\t\n\t\t\n\t\t\t0\n\t\t\t\"1?1\"\n\t\t\t? → 0\n\t\t\t\"101\"\n\t\t\tMatches s.\n\t\t\ttrue\n\t\t\n\t\t\n\t\t\t1\n\t\t\t\"0?1\"\n\t\t\t? → 1\n\t\t\t\"011\"\n\t\t\tSelect the subsequence at indices [0..2] of s → \"101\".\n\t\t\tSort \"101\" to get \"011\" = strs[i].\n\t\t\ttrue\n\t\t\n\t\t\n\t\t\t2\n\t\t\t\"0?0\"\n\t\t\t? → 0 or 1\n\t\t\t\"000\" or \"010\"\n\t\t\tNot feasible.\n\t\t\tfalse"
+    },
+    {
+      "input": "s = \"1100\", strs = [\"0011\",\"11?1\",\"1?1?\"]",
+      "output": "[true,false,true]",
+      "explanation": "i\n\t\t\tstrs[i]\n\t\t\tReplacement\n\t\t\tResult strs[i]\n\t\t\tOperation(s)\n\t\t\tResult\n\t\t\n\t\t\n\t\t\t0\n\t\t\t\"0011\"\n\t\t\t-\n\t\t\t\"0011\"\n\t\t\tSelect the subsequence at indices [0..3] of s → \"1100\".\n\t\t\tSort \"1100\" to get \"0011\" = strs[i].\n\t\t\ttrue\n\t\t\n\t\t\n\t\t\t1\n\t\t\t\"11?1\"\n\t\t\t? → 0\n\t\t\t\"1101\"\n\t\t\tNot feasible.\n\t\t\tfalse\n\t\t\n\t\t\n\t\t\t2\n\t\t\t\"1?1?\"\n\t\t\tFirst ? → 0\n\t\t\tSecond ? → 0\n\t\t\t\"1010\"\n\t\t\tSelect the subsequence at indices [1, 2] of s → \"10\".\n\t\t\tSort \"10\" to get \"01\", so s = \"1010\".\n\t\t\ttrue"
+    },
+    {
+      "input": "s = \"1010\", strs = [\"0011\"]",
+      "output": "[true]",
+      "explanation": "i\n\t\t\tstrs[i]\n\t\t\tReplacement\n\t\t\tResult strs[i]\n\t\t\tOperation(s)\n\t\t\tResult\n\t\t\n\t\t\n\t\t\t0\n\t\t\t\"0011\"\n\t\t\t-\n\t\t\t\"0011\"\n\t\t\tSelect the subsequence at indices [0, 2, 3] of s → \"110\".\n\t\t\tSort \"110\" to get \"011\", so s = \"0011\" = strs[i].\n\t\t\ttrue"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<bool> transformStr(string s, vector<string>& strs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean[] transformStr(String s, String[] strs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def transformStr(self, s: str, strs: List[str]) -> List[bool]:\n        ",
+    "python": "class Solution(object):\n    def transformStr(self, s, strs):\n        \"\"\"\n        :type s: str\n        :type strs: List[str]\n        :rtype: List[bool]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string[]} strs\n * @return {boolean[]}\n */\nvar transformStr = function(s, strs) {\n    \n};",
+    "typescript": "function transformStr(s: string, strs: string[]): boolean[] {\n    \n};",
+    "csharp": "public class Solution {\n    public bool[] TransformStr(string s, string[] strs) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nbool* transformStr(char* s, char** strs, int strsSize, int* returnSize) {\n    \n}",
+    "golang": "func transformStr(s string, strs []string) []bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun transformStr(s: String, strs: Array<String>): BooleanArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func transformStr(_ s: String, _ strs: [String]) -> [Bool] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn transform_str(s: String, strs: Vec<String>) -> Vec<bool> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String[]} strs\n# @return {Boolean[]}\ndef transform_str(s, strs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String[] $strs\n     * @return Boolean[]\n     */\n    function transformStr($s, $strs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<bool> transformStr(String s, List<String> strs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def transformStr(s: String, strs: Array[String]): Array[Boolean] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec transform_str(s :: String.t, strs :: [String.t]) :: [boolean]\n  def transform_str(s, strs) do\n    \n  end\nend",
+    "erlang": "-spec transform_str(S :: unicode:unicode_binary(), Strs :: [unicode:unicode_binary()]) -> [boolean()].\ntransform_str(S, Strs) ->\n  .",
+    "racket": "(define/contract (transform-str s strs)\n  (-> string? (listof string?) (listof boolean?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"101\"\n[\"1?1\",\"0?1\",\"0?0\"]",
+      "expectedOutput": "[true,true,false]"
+    },
+    {
+      "input": "\"1100\"\n[\"0011\",\"11?1\",\"1?1?\"]",
+      "expectedOutput": "[true,false,true]"
+    },
+    {
+      "input": "\"1010\"\n[\"0011\"]",
+      "expectedOutput": "[true]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"101\"\n[\"1?1\",\"0?1\",\"0?0\"]",
+      "expectedOutput": "[true,true,false]"
+    },
+    {
+      "input": "\"1100\"\n[\"0011\",\"11?1\",\"1?1?\"]",
+      "expectedOutput": "[true,false,true]"
+    },
+    {
+      "input": "\"1010\"\n[\"0011\"]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "s = \"101\", strs = [\"1?1\",\"0?1\",\"0?0\"]",
+      "expectedOutput": "[true,true,false]"
+    },
+    {
+      "input": "s = \"1100\", strs = [\"0011\",\"11?1\",\"1?1?\"]",
+      "expectedOutput": "[true,false,true]"
+    },
+    {
+      "input": "s = \"1010\", strs = [\"0011\"]",
+      "expectedOutput": "[true]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Sorting a binary subsequence can only move <code>'0'</code> characters to the left and <code>'1'</code> characters to the right.</p>",
+    "<p>Therefore, a binary string <code>t</code> is reachable from <code>s</code> if both strings contain the same number of <code>'1'</code> characters and, for every prefix, <code>t</code> contains no more <code>'1'</code> characters than the corresponding prefix of <code>s</code>.</p>",
+    "<p>For each string in <code>strs</code>, determine how many <code>'?'</code> characters must become <code>'1'</code>. To minimize the number of ones in every prefix, assign these ones to the rightmost possible <code>'?'</code> positions.</p>",
+    "<p>After this assignment, check the prefix condition against <code>s</code>.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/transform-binary-string-using-subsequence-sort/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.189Z",
+    "sourceUpdatedAt": null
+  }
+}

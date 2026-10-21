@@ -1,0 +1,163 @@
+{
+  "id": "2087",
+  "slug": "minimum-cost-homecoming-of-a-robot-in-a-grid",
+  "title": "Minimum Cost Homecoming of a Robot in a Grid",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "statement": "There is an `m x n` grid, where `(0, 0)` is the top-left cell and `(m - 1, n - 1)` is the bottom-right cell. You are given an integer array `startPos` where `startPos = [start_(row), start_(col)]` indicates that **initially**, a **robot** is at the cell `(start_(row), start_(col))`. You are also given an integer array `homePos` where `homePos = [home_(row), home_(col)]` indicates that its **home** is at the cell `(home_(row), home_(col))`.\n\nThe robot needs to go to its home. It can move one cell in four directions: **left**, **right**, **up**, or **down**, and it can not move outside the boundary. Every move incurs some cost. You are further given two **0-indexed** integer arrays: `rowCosts` of length `m` and `colCosts` of length `n`.\n\n*   If the robot moves **up** or **down** into a cell whose **row** is `r`, then this move costs `rowCosts[r]`.\n*   If the robot moves **left** or **right** into a cell whose **column** is `c`, then this move costs `colCosts[c]`.\n\nReturn _the **minimum total cost** for this robot to return home_.\n\n**Example 1:**\n\n![](./assets/minimum-cost-homecoming-of-a-robot-in-a-grid-1.png)\n```\nInput: startPos = [1, 0], homePos = [2, 3], rowCosts = [5, 4, 3], colCosts = [8, 2, 6, 7]\nOutput: 18\nExplanation: One optimal path is that:\nStarting from (1, 0)\n-> It goes down to (2, 0). This move costs rowCosts[2] = 3.\n-> It goes right to (2, 1). This move costs colCosts[1] = 2.\n-> It goes right to (2, 2). This move costs colCosts[2] = 6.\n-> It goes right to (2, 3). This move costs colCosts[3] = 7.\nThe total cost is 3 + 2 + 6 + 7 = 18\n```\n\n**Example 2:**\n\n```\nInput: startPos = [0, 0], homePos = [0, 0], rowCosts = [5], colCosts = [26]\nOutput: 0\nExplanation: The robot is already at its home. Since no moves occur, the total cost is 0.\n```\n\n**Constraints:**\n\n*   `m == rowCosts.length`\n*   `n == colCosts.length`\n*   `1 <= m, n <= 10^(5)`\n*   `0 <= rowCosts[r], colCosts[c] <= 10^(4)`\n*   `startPos.length == 2`\n*   `homePos.length == 2`\n*   `0 <= start_(row), home_(row) < m`\n*   `0 <= start_(col), home_(col) < n`",
+  "constraints": [
+    "m == rowCosts.length",
+    "n == colCosts.length",
+    "1 <= m, n <= 105",
+    "0 <= rowCosts[r], colCosts[c] <= 104",
+    "startPos.length == 2",
+    "homePos.length == 2",
+    "0 <= startrow, homerow < m",
+    "0 <= startcol, homecol < n"
+  ],
+  "examples": [
+    {
+      "input": "startPos = [1, 0], homePos = [2, 3], rowCosts = [5, 4, 3], colCosts = [8, 2, 6, 7]",
+      "output": "18",
+      "explanation": "One optimal path is that:\nStarting from (1, 0)\n-> It goes down to (2, 0). This move costs rowCosts[2] = 3.\n-> It goes right to (2, 1). This move costs colCosts[1] = 2.\n-> It goes right to (2, 2). This move costs colCosts[2] = 6.\n-> It goes right to (2, 3). This move costs colCosts[3] = 7.\nThe total cost is 3 + 2 + 6 + 7 = 18"
+    },
+    {
+      "input": "startPos = [0, 0], homePos = [0, 0], rowCosts = [5], colCosts = [26]",
+      "output": "0",
+      "explanation": "The robot is already at its home. Since no moves occur, the total cost is 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minCost(vector<int>& startPos, vector<int>& homePos, vector<int>& rowCosts, vector<int>& colCosts) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minCost(int[] startPos, int[] homePos, int[] rowCosts, int[] colCosts) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCost(self, startPos: list[int], homePos: list[int], rowCosts: list[int], colCosts: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minCost(self, startPos, homePos, rowCosts, colCosts):\n        \"\"\"\n        :type startPos: List[int]\n        :type homePos: List[int]\n        :type rowCosts: List[int]\n        :type colCosts: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} startPos\n * @param {number[]} homePos\n * @param {number[]} rowCosts\n * @param {number[]} colCosts\n * @return {number}\n */\nvar minCost = function(startPos, homePos, rowCosts, colCosts) {\n    \n};",
+    "typescript": "function minCost(startPos: number[], homePos: number[], rowCosts: number[], colCosts: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinCost(int[] startPos, int[] homePos, int[] rowCosts, int[] colCosts) {\n        \n    }\n}",
+    "c": "int minCost(int* startPos, int startPosSize, int* homePos, int homePosSize, int* rowCosts, int rowCostsSize, int* colCosts, int colCostsSize) {\n    \n}",
+    "golang": "func minCost(startPos []int, homePos []int, rowCosts []int, colCosts []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCost(startPos: IntArray, homePos: IntArray, rowCosts: IntArray, colCosts: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCost(_ startPos: [Int], _ homePos: [Int], _ rowCosts: [Int], _ colCosts: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_cost(start_pos: Vec<i32>, home_pos: Vec<i32>, row_costs: Vec<i32>, col_costs: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} start_pos\n# @param {Integer[]} home_pos\n# @param {Integer[]} row_costs\n# @param {Integer[]} col_costs\n# @return {Integer}\ndef min_cost(start_pos, home_pos, row_costs, col_costs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $startPos\n     * @param Integer[] $homePos\n     * @param Integer[] $rowCosts\n     * @param Integer[] $colCosts\n     * @return Integer\n     */\n    function minCost($startPos, $homePos, $rowCosts, $colCosts) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minCost(List<int> startPos, List<int> homePos, List<int> rowCosts, List<int> colCosts) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCost(startPos: Array[Int], homePos: Array[Int], rowCosts: Array[Int], colCosts: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_cost(start_pos :: [integer], home_pos :: [integer], row_costs :: [integer], col_costs :: [integer]) :: integer\n  def min_cost(start_pos, home_pos, row_costs, col_costs) do\n    \n  end\nend",
+    "erlang": "-spec min_cost(StartPos :: [integer()], HomePos :: [integer()], RowCosts :: [integer()], ColCosts :: [integer()]) -> integer().\nmin_cost(StartPos, HomePos, RowCosts, ColCosts) ->\n  .",
+    "racket": "(define/contract (min-cost startPos homePos rowCosts colCosts)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,0]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[0,0]\n[0,0]\n[5]\n[26]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,0]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[0,0]\n[0,0]\n[5]\n[26]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[1,1]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[2,0]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[2,1]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[0,-1]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "[-1,0]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "[0,0]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "22"
+    },
+    {
+      "input": "[1,2]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[-1,1]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "25"
+    },
+    {
+      "input": "[100,-100]\n[2,3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "26"
+    },
+    {
+      "input": "[1,0]\n[3,2]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[1,0]\n[2,2]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[1,0]\n[4,6]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[1,0]\n[3,4]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[1,0]\n[1,2]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,0]\n[-2,-3]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,0]\n[0,0]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,0]\n[1,1]\n[5,4,3]\n[8,2,6,7]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Irrespective of what path the robot takes, it will have to traverse all the rows between startRow and homeRow and all the columns between startCol and homeCol.",
+    "Hence, making any other move other than traversing the required rows and columns will potentially incur more cost which can be avoided."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.533Z",
+    "sourceUpdatedAt": null
+  }
+}

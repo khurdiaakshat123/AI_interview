@@ -1,0 +1,158 @@
+{
+  "id": "1539",
+  "slug": "kth-missing-positive-number",
+  "title": "Kth Missing Positive Number",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "statement": "Given an array `arr` of positive integers sorted in a **strictly increasing order**, and an integer `k`.\n\nReturn _the_ `k^(th)` _**positive** integer that is **missing** from this array._\n\n**Example 1:**\n\n```\nInput: arr = [2,3,4,7,11], k = 5\nOutput: 9\nExplanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5th missing positive integer is 9.\n```\n\n**Example 2:**\n\n```\nInput: arr = [1,2,3,4], k = 2\nOutput: 6\nExplanation: The missing positive integers are [5,6,7,...]. The 2nd missing positive integer is 6.\n```\n\n**Constraints:**\n\n*   `1 <= arr.length <= 1000`\n*   `1 <= arr[i] <= 1000`\n*   `1 <= k <= 1000`\n*   `arr[i] < arr[j]` for `1 <= i < j <= arr.length`\n\n**Follow up:**\n\nCould you solve this problem in less than O(n) complexity?",
+  "constraints": [
+    "1 <= arr.length <= 1000",
+    "1 <= arr[i] <= 1000",
+    "1 <= k <= 1000",
+    "arr[i] < arr[j] for 1 <= i < j <= arr.length"
+  ],
+  "examples": [
+    {
+      "input": "arr = [2,3,4,7,11], k = 5",
+      "output": "9",
+      "explanation": "The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5th missing positive integer is 9."
+    },
+    {
+      "input": "arr = [1,2,3,4], k = 2",
+      "output": "6",
+      "explanation": "The missing positive integers are [5,6,7,...]. The 2nd missing positive integer is 6."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findKthPositive(vector<int>& arr, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findKthPositive(int[] arr, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findKthPositive(self, arr: list[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def findKthPositive(self, arr, k):\n        \"\"\"\n        :type arr: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @param {number} k\n * @return {number}\n */\nvar findKthPositive = function(arr, k) {\n    \n};",
+    "typescript": "function findKthPositive(arr: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindKthPositive(int[] arr, int k) {\n        \n    }\n}",
+    "c": "int findKthPositive(int* arr, int arrSize, int k) {\n    \n}",
+    "golang": "func findKthPositive(arr []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findKthPositive(arr: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findKthPositive(_ arr: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_kth_positive(arr: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @param {Integer} k\n# @return {Integer}\ndef find_kth_positive(arr, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @param Integer $k\n     * @return Integer\n     */\n    function findKthPositive($arr, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findKthPositive(List<int> arr, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findKthPositive(arr: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_kth_positive(arr :: [integer], k :: integer) :: integer\n  def find_kth_positive(arr, k) do\n    \n  end\nend",
+    "erlang": "-spec find_kth_positive(Arr :: [integer()], K :: integer()) -> integer().\nfind_kth_positive(Arr, K) ->\n  .",
+    "racket": "(define/contract (find-kth-positive arr k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,3,4,7,11]\n5",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,2,3,4]\n2",
+      "expectedOutput": "6"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,3,4,7,11]\n5",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,2,3,4]\n2",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,3]\n5",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[4,7,11]\n5",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2]\n5",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,11]\n5",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[11,7,4,3,2]\n5",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,2,2,2,2]\n5",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[2,3,4,7,11,2,3,4,7,11]\n5",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[4,6,8,14,22]\n5",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[3,4,5,8,12]\n5",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,2,3,6,10]\n5",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[-2,-3,-4,-7,-11]\n5",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[0,0,0,0]\n5",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,1,1,1]\n5",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[0]\n5",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1]\n5",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[-1]\n5",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[0,0]\n5",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,2]\n5",
+      "expectedOutput": "7"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Keep track of how many positive numbers are missing as you scan the array."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/kth-missing-positive-number/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.848Z",
+    "sourceUpdatedAt": null
+  }
+}

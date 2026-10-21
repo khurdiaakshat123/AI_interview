@@ -1,0 +1,167 @@
+{
+  "id": "3584",
+  "slug": "maximum-product-of-first-and-last-elements-of-a-subsequence",
+  "title": "Maximum Product of First and Last Elements of a Subsequence",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers"
+  ],
+  "statement": "You are given an integer array `nums` and an integer `m`.\n\nReturn the **maximum** product of the first and last elements of any **subsequence** of `nums` of size `m`.\n\n**Example 1:**\n\n**Input:** nums = \\[-1,-9,2,3,-2,-3,1\\], m = 1\n\n**Output:** 81\n\n**Explanation:**\n\nThe subsequence `[-9]` has the largest product of the first and last elements: `-9 * -9 = 81`. Therefore, the answer is 81.\n\n**Example 2:**\n\n**Input:** nums = \\[1,3,-5,5,6,-4\\], m = 3\n\n**Output:** 20\n\n**Explanation:**\n\nThe subsequence `[-5, 6, -4]` has the largest product of the first and last elements.\n\n**Example 3:**\n\n**Input:** nums = \\[2,-1,2,-6,5,2,-5,7\\], m = 2\n\n**Output:** 35\n\n**Explanation:**\n\nThe subsequence `[5, 7]` has the largest product of the first and last elements.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `-10^(5) <= nums[i] <= 10^(5)`\n*   `1 <= m <= nums.length`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-105 <= nums[i] <= 105",
+    "1 <= m <= nums.length"
+  ],
+  "examples": [
+    {
+      "input": "nums = [-1,-9,2,3,-2,-3,1], m = 1",
+      "output": "81",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,3,-5,5,6,-4], m = 3",
+      "output": "20",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2,-1,2,-6,5,2,-5,7], m = 2",
+      "output": "35",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maximumProduct(vector<int>& nums, int m) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maximumProduct(int[] nums, int m) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumProduct(self, nums: List[int], m: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumProduct(self, nums, m):\n        \"\"\"\n        :type nums: List[int]\n        :type m: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} m\n * @return {number}\n */\nvar maximumProduct = function(nums, m) {\n    \n};",
+    "typescript": "function maximumProduct(nums: number[], m: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaximumProduct(int[] nums, int m) {\n        \n    }\n}",
+    "c": "long long maximumProduct(int* nums, int numsSize, int m) {\n    \n}",
+    "golang": "func maximumProduct(nums []int, m int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumProduct(nums: IntArray, m: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumProduct(_ nums: [Int], _ m: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_product(nums: Vec<i32>, m: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} m\n# @return {Integer}\ndef maximum_product(nums, m)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $m\n     * @return Integer\n     */\n    function maximumProduct($nums, $m) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumProduct(List<int> nums, int m) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumProduct(nums: Array[Int], m: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_product(nums :: [integer], m :: integer) :: integer\n  def maximum_product(nums, m) do\n    \n  end\nend",
+    "erlang": "-spec maximum_product(Nums :: [integer()], M :: integer()) -> integer().\nmaximum_product(Nums, M) ->\n  .",
+    "racket": "(define/contract (maximum-product nums m)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[-1,-9,2,3,-2,-3,1]\n1",
+      "expectedOutput": "81"
+    },
+    {
+      "input": "[1,3,-5,5,6,-4]\n3",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[2,-1,2,-6,5,2,-5,7]\n2",
+      "expectedOutput": "35"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[-1,-9,2,3,-2,-3,1]\n1",
+      "expectedOutput": "81"
+    },
+    {
+      "input": "[1,3,-5,5,6,-4]\n3",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[2,-1,2,-6,5,2,-5,7]\n2",
+      "expectedOutput": "35"
+    },
+    {
+      "input": "[-1,-9,2]\n1",
+      "expectedOutput": "81"
+    },
+    {
+      "input": "[3,-2,-3,1]\n1",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[-1]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,1]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,-9]\n1",
+      "expectedOutput": "81"
+    },
+    {
+      "input": "[1,-3,-2,3,2,-9,-1]\n1",
+      "expectedOutput": "81"
+    },
+    {
+      "input": "[-9,-3,-2,-1,1,2,3]\n1",
+      "expectedOutput": "81"
+    },
+    {
+      "input": "[3,2,1,-1,-2,-3,-9]\n1",
+      "expectedOutput": "81"
+    },
+    {
+      "input": "[-1,-1,-1,-1,-1]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,-9,2,3,-2,-3,1,-1,-9,2,3,-2,-3,1]\n1",
+      "expectedOutput": "81"
+    },
+    {
+      "input": "[-2,-18,4,6,-4,-6,2]\n1",
+      "expectedOutput": "324"
+    },
+    {
+      "input": "[0,-8,3,4,-1,-2,2]\n1",
+      "expectedOutput": "64"
+    },
+    {
+      "input": "[-2,-10,1,2,-3,-4,0]\n1",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "[1,9,-2,-3,2,3,-1]\n1",
+      "expectedOutput": "81"
+    },
+    {
+      "input": "[0,0,0,0]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]\n1",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We can select nums[i] as the first element of the subsequence, and the last one can be any of nums[i + m - 1], nums[i + m], ..., nums[n - 1].",
+    "If we select the first element from the largest i, the suffix just gets longer, and we can update the minimum and maximum values dynamically."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-product-of-first-and-last-elements-of-a-subsequence/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.401Z",
+    "sourceUpdatedAt": null
+  }
+}

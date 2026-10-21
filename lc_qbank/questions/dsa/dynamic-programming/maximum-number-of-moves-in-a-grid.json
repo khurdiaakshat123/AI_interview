@@ -1,0 +1,89 @@
+{
+  "id": "2684",
+  "slug": "maximum-number-of-moves-in-a-grid",
+  "title": "Maximum Number of Moves in a Grid",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "statement": "You are given a **0-indexed** `m x n` matrix `grid` consisting of **positive** integers.\n\nYou can start at **any** cell in the first column of the matrix, and traverse the grid in the following way:\n\n*   From a cell `(row, col)`, you can move to any of the cells: `(row - 1, col + 1)`, `(row, col + 1)` and `(row + 1, col + 1)` such that the value of the cell you move to, should be **strictly** bigger than the value of the current cell.\n\nReturn _the **maximum** number of **moves** that you can perform._\n\n**Example 1:**\n\n![](./assets/maximum-number-of-moves-in-a-grid-1.png)\n```\nInput: grid = [[2,4,3,5],[5,4,9,3],[3,4,2,11],[10,9,13,15]]\nOutput: 3\nExplanation: We can start at the cell (0, 0) and make the following moves:\n- (0, 0) -> (0, 1).\n- (0, 1) -> (1, 2).\n- (1, 2) -> (2, 3).\nIt can be shown that it is the maximum number of moves that can be made.\n```\n\n**Example 2:**\n\n```\nInput: grid = [[3,2,4],[2,1,9],[1,1,7]]\nOutput: 0\nExplanation: Starting from any cell in the first column we cannot perform any moves.\n```\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `2 <= m, n <= 1000`\n*   `4 <= m * n <= 10^(5)`\n*   `1 <= grid[i][j] <= 10^(6)`",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "2 <= m, n <= 1000",
+    "4 <= m * n <= 105",
+    "1 <= grid[i][j] <= 106"
+  ],
+  "examples": [
+    {
+      "input": "grid = [[2,4,3,5],[5,4,9,3],[3,4,2,11],[10,9,13,15]]",
+      "output": "3",
+      "explanation": "We can start at the cell (0, 0) and make the following moves:\n- (0, 0) -> (0, 1).\n- (0, 1) -> (1, 2).\n- (1, 2) -> (2, 3).\nIt can be shown that it is the maximum number of moves that can be made."
+    },
+    {
+      "input": "grid = [[3,2,4],[2,1,9],[1,1,7]]",
+      "output": "0",
+      "explanation": "Starting from any cell in the first column we cannot perform any moves."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxMoves(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxMoves(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxMoves(self, grid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxMoves(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar maxMoves = function(grid) {\n    \n};",
+    "typescript": "function maxMoves(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxMoves(int[][] grid) {\n        \n    }\n}",
+    "c": "int maxMoves(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func maxMoves(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxMoves(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxMoves(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_moves(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef max_moves(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function maxMoves($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxMoves(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxMoves(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_moves(grid :: [[integer]]) :: integer\n  def max_moves(grid) do\n    \n  end\nend",
+    "erlang": "-spec max_moves(Grid :: [[integer()]]) -> integer().\nmax_moves(Grid) ->\n  .",
+    "racket": "(define/contract (max-moves grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[2,4,3,5],[5,4,9,3],[3,4,2,11],[10,9,13,15]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[3,2,4],[2,1,9],[1,1,7]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[2,4,3,5],[5,4,9,3],[3,4,2,11],[10,9,13,15]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[3,2,4],[2,1,9],[1,1,7]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider using dynamic programming to find the maximum number of moves that can be made from each cell.",
+    "The final answer will be the maximum value in cells of the first column."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.083Z",
+    "sourceUpdatedAt": null
+  }
+}

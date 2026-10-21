@@ -1,0 +1,173 @@
+{
+  "id": "1722",
+  "slug": "minimize-hamming-distance-after-swap-operations",
+  "title": "Minimize Hamming Distance After Swap Operations",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Union-Find"
+  ],
+  "statement": "You are given two integer arrays, `source` and `target`, both of length `n`. You are also given an array `allowedSwaps` where each `allowedSwaps[i] = [a_(i), b_(i)]` indicates that you are allowed to swap the elements at index `a_(i)` and index `b_(i)` **(0-indexed)** of array `source`. Note that you can swap elements at a specific pair of indices **multiple** times and in **any** order.\n\nThe **Hamming distance** of two arrays of the same length, `source` and `target`, is the number of positions where the elements are different. Formally, it is the number of indices `i` for `0 <= i <= n-1` where `source[i] != target[i]` **(0-indexed)**.\n\nReturn _the **minimum Hamming distance** of_ `source` _and_ `target` _after performing **any** amount of swap operations on array_ `source`_._\n\n**Example 1:**\n\n```\nInput: source = [1,2,3,4], target = [2,1,4,5], allowedSwaps = [[0,1],[2,3]]\nOutput: 1\nExplanation: source can be transformed the following way:\n- Swap indices 0 and 1: source = [2,1,3,4]\n- Swap indices 2 and 3: source = [2,1,4,3]\nThe Hamming distance of source and target is 1 as they differ in 1 position: index 3.\n```\n\n**Example 2:**\n\n```\nInput: source = [1,2,3,4], target = [1,3,2,4], allowedSwaps = []\nOutput: 2\nExplanation: There are no allowed swaps.\nThe Hamming distance of source and target is 2 as they differ in 2 positions: index 1 and index 2.\n```\n\n**Example 3:**\n\n```\nInput: source = [5,1,2,4,3], target = [1,5,4,2,3], allowedSwaps = [[0,4],[4,2],[1,3],[1,4]]\nOutput: 0\n```\n\n**Constraints:**\n\n*   `n == source.length == target.length`\n*   `1 <= n <= 10^(5)`\n*   `1 <= source[i], target[i] <= 10^(5)`\n*   `0 <= allowedSwaps.length <= 10^(5)`\n*   `allowedSwaps[i].length == 2`\n*   `0 <= a_(i), b_(i) <= n - 1`\n*   `a_(i) != b_(i)`",
+  "constraints": [
+    "n == source.length == target.length",
+    "1 <= n <= 105",
+    "1 <= source[i], target[i] <= 105",
+    "0 <= allowedSwaps.length <= 105",
+    "allowedSwaps[i].length == 2",
+    "0 <= ai, bi <= n - 1",
+    "ai != bi"
+  ],
+  "examples": [
+    {
+      "input": "source = [1,2,3,4], target = [2,1,4,5], allowedSwaps = [[0,1],[2,3]]",
+      "output": "1",
+      "explanation": "source can be transformed the following way:\n- Swap indices 0 and 1: source = [2,1,3,4]\n- Swap indices 2 and 3: source = [2,1,4,3]\nThe Hamming distance of source and target is 1 as they differ in 1 position: index 3."
+    },
+    {
+      "input": "source = [1,2,3,4], target = [1,3,2,4], allowedSwaps = []",
+      "output": "2",
+      "explanation": "There are no allowed swaps.\nThe Hamming distance of source and target is 2 as they differ in 2 positions: index 1 and index 2."
+    },
+    {
+      "input": "source = [5,1,2,4,3], target = [1,5,4,2,3], allowedSwaps = [[0,4],[4,2],[1,3],[1,4]]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumHammingDistance(vector<int>& source, vector<int>& target, vector<vector<int>>& allowedSwaps) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumHammingDistance(int[] source, int[] target, int[][] allowedSwaps) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumHammingDistance(self, source: list[int], target: list[int], allowedSwaps: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumHammingDistance(self, source, target, allowedSwaps):\n        \"\"\"\n        :type source: List[int]\n        :type target: List[int]\n        :type allowedSwaps: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} source\n * @param {number[]} target\n * @param {number[][]} allowedSwaps\n * @return {number}\n */\nvar minimumHammingDistance = function(source, target, allowedSwaps) {\n    \n};",
+    "typescript": "function minimumHammingDistance(source: number[], target: number[], allowedSwaps: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumHammingDistance(int[] source, int[] target, int[][] allowedSwaps) {\n        \n    }\n}",
+    "c": "int minimumHammingDistance(int* source, int sourceSize, int* target, int targetSize, int** allowedSwaps, int allowedSwapsSize, int* allowedSwapsColSize) {\n    \n}",
+    "golang": "func minimumHammingDistance(source []int, target []int, allowedSwaps [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumHammingDistance(source: IntArray, target: IntArray, allowedSwaps: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumHammingDistance(_ source: [Int], _ target: [Int], _ allowedSwaps: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_hamming_distance(source: Vec<i32>, target: Vec<i32>, allowed_swaps: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} source\n# @param {Integer[]} target\n# @param {Integer[][]} allowed_swaps\n# @return {Integer}\ndef minimum_hamming_distance(source, target, allowed_swaps)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $source\n     * @param Integer[] $target\n     * @param Integer[][] $allowedSwaps\n     * @return Integer\n     */\n    function minimumHammingDistance($source, $target, $allowedSwaps) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumHammingDistance(List<int> source, List<int> target, List<List<int>> allowedSwaps) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumHammingDistance(source: Array[Int], target: Array[Int], allowedSwaps: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_hamming_distance(source :: [integer], target :: [integer], allowed_swaps :: [[integer]]) :: integer\n  def minimum_hamming_distance(source, target, allowed_swaps) do\n    \n  end\nend",
+    "erlang": "-spec minimum_hamming_distance(Source :: [integer()], Target :: [integer()], AllowedSwaps :: [[integer()]]) -> integer().\nminimum_hamming_distance(Source, Target, AllowedSwaps) ->\n  .",
+    "racket": "(define/contract (minimum-hamming-distance source target allowedSwaps)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3,4]\n[1,3,2,4]\n[]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,1,2,4,3]\n[1,5,4,2,3]\n[[0,4],[4,2],[1,3],[1,4]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3,4]\n[1,3,2,4]\n[]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,1,2,4,3]\n[1,5,4,2,3]\n[[0,4],[4,2],[1,3],[1,4]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,3,2,1]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,3,4,1,2,3,4]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4,6,8]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,3,4,5]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,1,2,3]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,-2,-3,-4]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,3,4,5]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,4,3,2,1]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-5,-4,-3,-2,-1]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,3,2,5,4]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,2,2,3,3]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[10,20,30,40,50]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,1,0,3,12]\n[2,1,4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,3,4]\n[2,1]\n[[0,1],[2,3]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,4]\n[4,5]\n[[0,1],[2,3]]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The source array can be imagined as a graph where each index is a node and each allowedSwaps[i] is an edge.",
+    "Nodes within the same component can be freely swapped with each other.",
+    "For each component, find the number of common elements. The elements that are not in common will contribute to the total Hamming distance."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimize-hamming-distance-after-swap-operations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.213Z",
+    "sourceUpdatedAt": null
+  }
+}

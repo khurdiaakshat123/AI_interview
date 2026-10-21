@@ -1,0 +1,168 @@
+{
+  "id": "1657",
+  "slug": "determine-if-two-strings-are-close",
+  "title": "Determine if Two Strings Are Close",
+  "category": "dsa",
+  "subcategory": "sorting",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sorting",
+    "Counting"
+  ],
+  "statement": "Two strings are considered **close** if you can attain one from the other using the following operations:\n\n*   Operation 1: Swap any two **existing** characters.\n    *   For example, `abcde -> aecdb`\n*   Operation 2: Transform **every** occurrence of one **existing** character into another **existing** character, and do the same with the other character.\n    *   For example, `aacabb -> bbcbaa` (all `a`'s turn into `b`'s, and all `b`'s turn into `a`'s)\n\nYou can use the operations on either string as many times as necessary.\n\nGiven two strings, `word1` and `word2`, return `true` _if_ `word1` _and_ `word2` _are **close**, and_ `false` _otherwise._\n\n**Example 1:**\n\n```\nInput: word1 = \"abc\", word2 = \"bca\"\nOutput: true\nExplanation: You can attain word2 from word1 in 2 operations.\nApply Operation 1: \"abc\" -> \"acb\"\nApply Operation 1: \"acb\" -> \"bca\"\n```\n\n**Example 2:**\n\n```\nInput: word1 = \"a\", word2 = \"aa\"\nOutput: false\nExplanation: It is impossible to attain word2 from word1, or vice versa, in any number of operations.\n```\n\n**Example 3:**\n\n```\nInput: word1 = \"cabbba\", word2 = \"abbccc\"\nOutput: true\nExplanation: You can attain word2 from word1 in 3 operations.\nApply Operation 1: \"cabbba\" -> \"caabbb\"\nApply Operation 2: \"caabbb\" -> \"baaccc\"\nApply Operation 2: \"baaccc\" -> \"abbccc\"\n```\n\n**Constraints:**\n\n*   `1 <= word1.length, word2.length <= 10^(5)`\n*   `word1` and `word2` contain only lowercase English letters.",
+  "constraints": [
+    "1 <= word1.length, word2.length <= 105",
+    "word1 and word2 contain only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "word1 = \"abc\", word2 = \"bca\"",
+      "output": "true",
+      "explanation": "You can attain word2 from word1 in 2 operations.\nApply Operation 1: \"abc\" -> \"acb\"\nApply Operation 1: \"acb\" -> \"bca\""
+    },
+    {
+      "input": "word1 = \"a\", word2 = \"aa\"",
+      "output": "false",
+      "explanation": "It is impossible to attain word2 from word1, or vice versa, in any number of operations."
+    },
+    {
+      "input": "word1 = \"cabbba\", word2 = \"abbccc\"",
+      "output": "true",
+      "explanation": "You can attain word2 from word1 in 3 operations.\nApply Operation 1: \"cabbba\" -> \"caabbb\"\nApply Operation 2: \"caabbb\" -> \"baaccc\"\nApply Operation 2: \"baaccc\" -> \"abbccc\""
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool closeStrings(string word1, string word2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean closeStrings(String word1, String word2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def closeStrings(self, word1: str, word2: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def closeStrings(self, word1, word2):\n        \"\"\"\n        :type word1: str\n        :type word2: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word1\n * @param {string} word2\n * @return {boolean}\n */\nvar closeStrings = function(word1, word2) {\n    \n};",
+    "typescript": "function closeStrings(word1: string, word2: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CloseStrings(string word1, string word2) {\n        \n    }\n}",
+    "c": "bool closeStrings(char* word1, char* word2) {\n    \n}",
+    "golang": "func closeStrings(word1 string, word2 string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun closeStrings(word1: String, word2: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func closeStrings(_ word1: String, _ word2: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn close_strings(word1: String, word2: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} word1\n# @param {String} word2\n# @return {Boolean}\ndef close_strings(word1, word2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word1\n     * @param String $word2\n     * @return Boolean\n     */\n    function closeStrings($word1, $word2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool closeStrings(String word1, String word2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def closeStrings(word1: String, word2: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec close_strings(word1 :: String.t, word2 :: String.t) :: boolean\n  def close_strings(word1, word2) do\n    \n  end\nend",
+    "erlang": "-spec close_strings(Word1 :: unicode:unicode_binary(), Word2 :: unicode:unicode_binary()) -> boolean().\nclose_strings(Word1, Word2) ->\n  .",
+    "racket": "(define/contract (close-strings word1 word2)\n  (-> string? string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abc\"\n\"bca\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"\n\"aa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"cabbba\"\n\"abbccc\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abc\"\n\"bca\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"\n\"aa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"cabbba\"\n\"abbccc\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"bc\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"cba\"\n\"bca\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcabc\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaa\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abccba\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ABC\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"\n\"bca\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"\n\"bca\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Operation 1 allows you to freely reorder the string.",
+    "Operation 2 allows you to freely reassign the letters' frequencies."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/determine-if-two-strings-are-close/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.597Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "id": "4027",
+  "slug": "elevator-requests-iii",
+  "title": "Elevator Requests III",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Sorting",
+    "Bitmask"
+  ],
+  "statement": "You are given an integer `n` denoting the number of floors in a building, where the floors are numbered from 0 to `n - 1`.\n\nYou are also given an integer `start` and a 2D integer array `requests`, where `requests[i] = [arrival_(i), floor_(i)]` indicates that a request for `floor_(i)` is made at time `arrival_(i)`.\n\nAt time 0, the elevator is at floor `start`.\n\nAt each second, the elevator may move **up** by 1 floor, move **down** by 1 floor, or **remain** on its current floor.\n\nA request can be fulfilled **only** at or after its arrival time; it is fulfilled **instantly** when the elevator is on its requested floor at any time from its arrival time onward.\n\nReturn the **minimum** time needed to fulfill all requests.\n\n**Example 1:**\n\n**Input:** n = 9, start = 0, requests = \\[\\[0,8\\],\\[6,5\\]\\]\n\n**Output:** 9\n\n**Explanation:**\n\n*   Move from floor 0 (`start`) to floor 5 (`requests[1][1]`) in 5 seconds, reaching at time 5. Since `requests[1][0] = 6`, wait until time 6 to fulfill it.\n*   Move from floor 5 to floor 8 (`requests[0][1]`) in 3 seconds, fulfilling it at time 9.\n\nThus, all requests are fulfilled by time 9.\n\n**Example 2:**\n\n**Input:** n = 8, start = 5, requests = \\[\\[1,7\\],\\[7,3\\]\\]\n\n**Output:** 7\n\n**Explanation:**\n\n*   Move from floor 5 (`start`) to floor 7 (`requests[0][1]`) in 2 seconds, reaching at time 2. Since `requests[0][0] = 1` has already passed, floor 7 is fulfilled at time 2.\n*   Move from floor 7 to floor 3 (`requests[1][1]`) in 4 seconds, reaching at time 6. Since `requests[1][0] = 7`, wait until time 7.\n\nThus, all requests are fulfilled by time 7.\n\n**Example 3:**\n\n**Input:** n = 7, start = 3, requests = \\[\\[0,5\\],\\[0,1\\],\\[6,3\\]\\]\n\n**Output:** 8\n\n**Explanation:**\n\n*   Move from floor 3 (`start`) to floor 5 (`requests[0][1]`) in 2 seconds, fulfilling it at time 2.\n*   Move from floor 5 to floor 1 (`requests[1][1]`) in 4 seconds, fulfilling it at time 6.\n*   Move from floor 1 to floor 3 (`requests[2][1]`) in 2 seconds, reaching at time 8. Its request arrived at `requests[2][0] = 6`, so floor 3 is fulfilled at time 8.\n\nThus, all requests are fulfilled by time 8.\n\n**Constraints:**\n\n*   `1 <= n <= 10^(9)`\n*   `1 <= requests.length <= 16`\n*   `requests[i] == [arrival_(i), floor_(i)]`\n*   `0 <= arrival_(i) <= 10^(9)`\n*   `0 <= start, floor_(i) <= n - 1`",
+  "constraints": [
+    "1 <= n <= 109",
+    "1 <= requests.length <= 16",
+    "requests[i] == [arrivali, floori]",
+    "0 <= arrivali <= 109",
+    "0 <= start, floori <= n - 1"
+  ],
+  "examples": [
+    {
+      "input": "n = 9, start = 0, requests = [[0,8],[6,5]]",
+      "output": "9",
+      "explanation": "Move from floor 0 (start) to floor 5 (requests[1][1]) in 5 seconds, reaching at time 5. Since requests[1][0] = 6, wait until time 6 to fulfill it.\n\tMove from floor 5 to floor 8 (requests[0][1]) in 3 seconds, fulfilling it at time 9."
+    },
+    {
+      "input": "n = 8, start = 5, requests = [[1,7],[7,3]]",
+      "output": "7",
+      "explanation": "Move from floor 5 (start) to floor 7 (requests[0][1]) in 2 seconds, reaching at time 2. Since requests[0][0] = 1 has already passed, floor 7 is fulfilled at time 2.\n\tMove from floor 7 to floor 3 (requests[1][1]) in 4 seconds, reaching at time 6. Since requests[1][0] = 7, wait until time 7."
+    },
+    {
+      "input": "n = 7, start = 3, requests = [[0,5],[0,1],[6,3]]",
+      "output": "8",
+      "explanation": "Move from floor 3 (start) to floor 5 (requests[0][1]) in 2 seconds, fulfilling it at time 2.\n\tMove from floor 5 to floor 1 (requests[1][1]) in 4 seconds, fulfilling it at time 6.\n\tMove from floor 1 to floor 3 (requests[2][1]) in 2 seconds, reaching at time 8. Its request arrived at requests[2][0] = 6, so floor 3 is fulfilled at time 8."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long elevatorRequests(int n, int start, vector<vector<int>>& requests) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long elevatorRequests(int n, int start, int[][] requests) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def elevatorRequests(self, n: int, start: int, requests: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def elevatorRequests(self, n, start, requests):\n        \"\"\"\n        :type n: int\n        :type start: int\n        :type requests: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} start\n * @param {number[][]} requests\n * @return {number}\n */\nvar elevatorRequests = function(n, start, requests) {\n    \n};",
+    "typescript": "function elevatorRequests(n: number, start: number, requests: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long ElevatorRequests(int n, int start, int[][] requests) {\n        \n    }\n}",
+    "c": "long long elevatorRequests(int n, int start, int** requests, int requestsSize, int* requestsColSize) {\n    \n}",
+    "golang": "func elevatorRequests(n int, start int, requests [][]int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun elevatorRequests(n: Int, start: Int, requests: Array<IntArray>): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func elevatorRequests(_ n: Int, _ start: Int, _ requests: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn elevator_requests(n: i32, start: i32, requests: Vec<Vec<i32>>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} start\n# @param {Integer[][]} requests\n# @return {Integer}\ndef elevator_requests(n, start, requests)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $start\n     * @param Integer[][] $requests\n     * @return Integer\n     */\n    function elevatorRequests($n, $start, $requests) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int elevatorRequests(int n, int start, List<List<int>> requests) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def elevatorRequests(n: Int, start: Int, requests: Array[Array[Int]]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec elevator_requests(n :: integer, start :: integer, requests :: [[integer]]) :: integer\n  def elevator_requests(n, start, requests) do\n    \n  end\nend",
+    "erlang": "-spec elevator_requests(N :: integer(), Start :: integer(), Requests :: [[integer()]]) -> integer().\nelevator_requests(N, Start, Requests) ->\n  .",
+    "racket": "(define/contract (elevator-requests n start requests)\n  (-> exact-integer? exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "9\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "8\n5\n[[1,7],[7,3]]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "7\n3\n[[0,5],[0,1],[6,3]]",
+      "expectedOutput": "8"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "9\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "8\n5\n[[1,7],[7,3]]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "7\n3\n[[0,5],[0,1],[6,3]]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "0\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "1\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "2\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "3\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "4\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "5\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "6\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "7\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "8\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "10\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "-1\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "-2\n0\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "9\n1\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "9\n2\n[[0,8],[6,5]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "9\n3\n[[0,8],[6,5]]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "9\n4\n[[0,8],[6,5]]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "9\n5\n[[0,8],[6,5]]",
+      "expectedOutput": "6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Since there are at most 16 requests, use bitmask dynamic programming over the set of requests already fulfilled.</p>",
+    "<p>Let <code>dp[mask][i]</code> be the minimum time at which all requests in <code>mask</code> can be fulfilled with request <code>i</code> being the last one visited.</p>",
+    "<p>If the elevator is at <code>floor[i]</code> at time <code>t</code> and next serves request <code>j</code>, the earliest time it can fulfill <code>j</code> is <code>max(t + abs(floor[i] - floor[j]), arrival[j])</code>.</p>",
+    "<p>Initialize each single-request state similarly using the distance from <code>start</code>, then take the minimum over all states containing every request.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/elevator-requests-iii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.973Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "id": "3983",
+  "slug": "subsequence-after-one-replacement",
+  "title": "Subsequence After One Replacement",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "You are given two strings `s` and `t` consisting of lowercase English letters.\n\nYou may choose **at most** one index in `s` and replace the character at that index with any lowercase English letter.\n\nReturn `true` if it is possible to make `s` a subsequence of `t`; otherwise, return `false`.\n\n**Example 1:**\n\n**Input:** s = \"cat\", t = \"chat\"\n\n**Output:** true\n\n**Explanation:**\n\n*   Replace `s[1]` from `'a'` to `'h'`. The resulting string is `\"cht\"`.\n*   `\"cht\"` is a subsequence of `\"chat\"` because we can match `'c'`, `'h'`, and `'t'` in order.\n\n**Example 2:**\n\n**Input:** s = \"plane\", t = \"apple\"\n\n**Output:** false\n\n**Explanation:**\n\n*   The characters `'p'`, `'l'`, and `'e'` can be matched in `t`, but the remaining characters cannot be matched while preserving the required order.\n*   Even after replacing any one character in `s`, it is impossible to make `s` a subsequence of `t`.\n\n**Constraints:**\n\n*   `1 <= s.length, t.length <= 10^(5)`\n*   `s` and `t` consist only of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length, t.length <= 105",
+    "s and t consist only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"cat\", t = \"chat\"",
+      "output": "true",
+      "explanation": "Replace s[1] from 'a' to 'h'. The resulting string is \"cht\".\n\t\"cht\" is a subsequence of \"chat\" because we can match 'c', 'h', and 't' in order."
+    },
+    {
+      "input": "s = \"plane\", t = \"apple\"",
+      "output": "false",
+      "explanation": "The characters 'p', 'l', and 'e' can be matched in t, but the remaining characters cannot be matched while preserving the required order.\n\tEven after replacing any one character in s, it is impossible to make s a subsequence of t."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool canMakeSubsequence(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canMakeSubsequence(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canMakeSubsequence(self, s: str, t: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canMakeSubsequence(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {boolean}\n */\nvar canMakeSubsequence = function(s, t) {\n    \n};",
+    "typescript": "function canMakeSubsequence(s: string, t: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanMakeSubsequence(string s, string t) {\n        \n    }\n}",
+    "c": "bool canMakeSubsequence(char* s, char* t) {\n    \n}",
+    "golang": "func canMakeSubsequence(s string, t string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canMakeSubsequence(s: String, t: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canMakeSubsequence(_ s: String, _ t: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_make_subsequence(s: String, t: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Boolean}\ndef can_make_subsequence(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Boolean\n     */\n    function canMakeSubsequence($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canMakeSubsequence(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canMakeSubsequence(s: String, t: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_make_subsequence(s :: String.t, t :: String.t) :: boolean\n  def can_make_subsequence(s, t) do\n    \n  end\nend",
+    "erlang": "-spec can_make_subsequence(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> boolean().\ncan_make_subsequence(S, T) ->\n  .",
+    "racket": "(define/contract (can-make-subsequence s t)\n  (-> string? string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"cat\"\n\"chat\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"plane\"\n\"apple\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"cat\"\n\"chat\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"plane\"\n\"apple\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"c\"\n\"chat\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"at\"\n\"chat\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ca\"\n\"chat\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"tac\"\n\"chat\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"catcat\"\n\"chat\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ccc\"\n\"chat\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"cattac\"\n\"chat\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"CAT\"\n\"chat\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"\n\"chat\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"b\"\n\"chat\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aa\"\n\"chat\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ab\"\n\"chat\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ba\"\n\"chat\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aba\"\n\"chat\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n\"chat\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n\"chat\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n\"chat\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"\n\"chat\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>If <code>s.length &gt; t.length</code>, the answer is <code>false</code>.</p>",
+    "<p>First check whether <code>s</code> is already a subsequence of <code>t</code>.</p>",
+    "<p>For each index <code>i</code> in <code>s</code>, compute the earliest position in <code>t</code> after matching <code>s[0..i-1]</code>, and the latest position in <code>t</code> before matching <code>s[i+1..s.length - 1]</code>.</p>",
+    "<p>Try each index <code>i</code> of <code>s</code> as the character to replace. The characters before <code>i</code> and after <code>i</code> must still be matchable in order inside <code>t</code>, with at least one unused position between them for the replaced character.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/subsequence-after-one-replacement/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.415Z",
+    "sourceUpdatedAt": null
+  }
+}

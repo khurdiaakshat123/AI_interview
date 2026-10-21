@@ -1,0 +1,104 @@
+{
+  "id": "4068",
+  "slug": "maximize-meeting-earnings-with-idle-gaps",
+  "title": "Maximize Meeting Earnings with Idle Gaps",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "statement": "You are given a 2D integer array `meetings`, where `meetings[i] = [start_(i), end_(i), revenue_(i)]` represents a meeting starting at time `start_(i)`, ending at time `end_(i)`, with revenue `revenue_(i)`.\n\nAll meetings use **half-open intervals** `[start, end)`, so meetings that only touch at endpoints do **not** overlap.\n\nYou may select any **non-empty subset** of meetings such that no two selected meetings overlap. You earn the revenue of each selected meeting.\n\nArrange the selected meetings in **increasing order of their start times**. For each pair of adjacent meetings in this order, you also earn 1 unit of revenue per unit of idle time between them. This idle time equals the later meeting's start time minus the earlier meeting's end time.\n\nNo idle revenue is earned before the earliest selected meeting starts or after the latest selected meeting ends. If only one meeting is selected, no idle revenue is earned.\n\nReturn the **maximum total earnings** achievable.\n\n**Example 1:**\n\n**Input:** meetings = \\[\\[2,5,4\\],\\[6,8,3\\]\\]\n\n**Output:** 8\n\n**Explanation:**\n\n*   Select both meetings. They do not overlap and earn `4 + 3 = 7` units of meeting revenue.\n*   The first meeting ends at time 5, and the second starts at time 6. This idle gap earns `6 - 5 = 1` additional unit.\n*   The maximum total earnings are `7 + 1 = 8`.\n\n**Example 2:**\n\n**Input:** meetings = \\[\\[3,5,4\\],\\[4,7,8\\],\\[8,10,3\\]\\]\n\n**Output:** 12\n\n**Explanation:**\n\n*   Select the meetings at indices 1 and 2. They do not overlap and earn `8 + 3 = 11` units of meeting revenue.\n*   In chronological order, these meetings run from time 4 to 7 and from time 8 to 10. The idle gap earns `8 - 7 = 1` additional unit.\n*   The maximum total earnings are `11 + 1 = 12`.\n\n**Example 3:**\n\n**Input:** meetings = \\[\\[1,2,2\\],\\[4,5,2\\],\\[7,9,3\\]\\]\n\n**Output:** 11\n\n**Explanation:**\n\n*   Select all three meetings. They do not overlap and earn `2 + 2 + 3 = 7` units of meeting revenue.\n*   The idle gap from time 2 to 4 earns `4 - 2 = 2` additional units.\n*   The idle gap from time 5 to 7 earns `7 - 5 = 2` additional units.\n*   The maximum total earnings are `7 + 2 + 2 = 11`.\n\n### **Constraints**\n\n*   `1 <= meetings.length <= 10^(5)`\n*   `meetings[i] = [start_(i), end_(i), revenue_(i)]`\n*   `0 <= start_(i) < end_(i) <= 10^(9)`\n*   `1 <= revenue_(i) <= 10^(9)`",
+  "constraints": [
+    "1 <= meetings.length <= 105",
+    "meetings[i] = [starti, endi, revenuei]",
+    "0 <= starti < endi <= 109",
+    "1 <= revenuei <= 109"
+  ],
+  "examples": [
+    {
+      "input": "meetings = [[2,5,4],[6,8,3]]",
+      "output": "8",
+      "explanation": "Select both meetings. They do not overlap and earn 4 + 3 = 7 units of meeting revenue.\n\tThe first meeting ends at time 5, and the second starts at time 6. This idle gap earns 6 - 5 = 1 additional unit.\n\tThe maximum total earnings are 7 + 1 = 8."
+    },
+    {
+      "input": "meetings = [[3,5,4],[4,7,8],[8,10,3]]",
+      "output": "12",
+      "explanation": "Select the meetings at indices 1 and 2. They do not overlap and earn 8 + 3 = 11 units of meeting revenue.\n\tIn chronological order, these meetings run from time 4 to 7 and from time 8 to 10. The idle gap earns 8 - 7 = 1 additional unit.\n\tThe maximum total earnings are 11 + 1 = 12."
+    },
+    {
+      "input": "meetings = [[1,2,2],[4,5,2],[7,9,3]]",
+      "output": "11",
+      "explanation": "Select all three meetings. They do not overlap and earn 2 + 2 + 3 = 7 units of meeting revenue.\n\tThe idle gap from time 2 to 4 earns 4 - 2 = 2 additional units.\n\tThe idle gap from time 5 to 7 earns 7 - 5 = 2 additional units.\n\tThe maximum total earnings are 7 + 2 + 2 = 11."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxEarnings(vector<vector<int>>& meetings) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxEarnings(int[][] meetings) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxEarnings(self, meetings: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxEarnings(self, meetings):\n        \"\"\"\n        :type meetings: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} meetings\n * @return {number}\n */\nvar maxEarnings = function(meetings) {\n    \n};",
+    "typescript": "function maxEarnings(meetings: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxEarnings(int[][] meetings) {\n        \n    }\n}",
+    "c": "long long maxEarnings(int** meetings, int meetingsSize, int* meetingsColSize) {\n    \n}",
+    "golang": "func maxEarnings(meetings [][]int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxEarnings(meetings: Array<IntArray>): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxEarnings(_ meetings: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_earnings(meetings: Vec<Vec<i32>>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} meetings\n# @return {Integer}\ndef max_earnings(meetings)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $meetings\n     * @return Integer\n     */\n    function maxEarnings($meetings) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxEarnings(List<List<int>> meetings) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxEarnings(meetings: Array[Array[Int]]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_earnings(meetings :: [[integer]]) :: integer\n  def max_earnings(meetings) do\n    \n  end\nend",
+    "erlang": "-spec max_earnings(Meetings :: [[integer()]]) -> integer().\nmax_earnings(Meetings) ->\n  .",
+    "racket": "(define/contract (max-earnings meetings)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[2,5,4],[6,8,3]]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[3,5,4],[4,7,8],[8,10,3]]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[[1,2,2],[4,5,2],[7,9,3]]",
+      "expectedOutput": "11"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[2,5,4],[6,8,3]]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[3,5,4],[4,7,8],[8,10,3]]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[[1,2,2],[4,5,2],[7,9,3]]",
+      "expectedOutput": "11"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<strong>1a (Dynamic Programming and Binary Search)</strong>: Let <code>dp[i]</code> be the maximum earnings of a schedule whose last meeting is <code>i</code>. Appending meeting <code>i</code> after meeting <code>j</code> gives <code>dp[j] - end[j] + start[i] + revenue[i]</code>.",
+    "<strong>1b (Dynamic Programming and Binary Search)</strong>: Sort meetings by end time and maintain prefix maxima of <code>dp[j] - end[j]</code>. Binary search for the last meeting ending at or before <code>start[i]</code>. Also consider selecting meeting <code>i</code> alone.",
+    "<strong>2a (Sweep Line and Heap)</strong>: Process meetings by increasing start time. Keep previously processed meetings in a min-heap ordered by end time.",
+    "<strong>2b (Sweep Line and Heap)</strong>: Before processing a meeting, remove all heap entries ending at or before its start and update the maximum eligible value of <code>dp[j] - end[j]</code>. Use this value to extend a schedule, or start a new schedule with the current meeting."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-meeting-earnings-with-idle-gaps/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.290Z",
+    "sourceUpdatedAt": null
+  }
+}

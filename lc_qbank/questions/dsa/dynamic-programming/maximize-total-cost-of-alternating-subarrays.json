@@ -1,0 +1,179 @@
+{
+  "id": "3196",
+  "slug": "maximize-total-cost-of-alternating-subarrays",
+  "title": "Maximize Total Cost of Alternating Subarrays",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given an integer array `nums` with length `n`.\n\nThe **cost** of a subarray `nums[l..r]`, where `0 <= l <= r < n`, is defined as:\n\n`cost(l, r) = nums[l] - nums[l + 1] + ... + nums[r] * (−1)^(r − l)`\n\nYour task is to **split** `nums` into subarrays such that the **total** **cost** of the subarrays is **maximized**, ensuring each element belongs to **exactly one** subarray.\n\nFormally, if `nums` is split into `k` subarrays, where `k > 1`, at indices `i_(1), i_(2), ..., i_(k − 1)`, where `0 <= i_(1) < i_(2) < ... < i_(k - 1) < n - 1`, then the total cost will be:\n\n`cost(0, i_(1)) + cost(i_(1) + 1, i_(2)) + ... + cost(i_(k − 1) + 1, n − 1)`\n\nReturn an integer denoting the _maximum total cost_ of the subarrays after splitting the array optimally.\n\n**Note:** If `nums` is not split into subarrays, i.e. `k = 1`, the total cost is simply `cost(0, n - 1)`.\n\n**Example 1:**\n\n**Input:** nums = \\[1,-2,3,4\\]\n\n**Output:** 10\n\n**Explanation:**\n\nOne way to maximize the total cost is by splitting `[1, -2, 3, 4]` into subarrays `[1, -2, 3]` and `[4]`. The total cost will be `(1 + 2 + 3) + 4 = 10`.\n\n**Example 2:**\n\n**Input:** nums = \\[1,-1,1,-1\\]\n\n**Output:** 4\n\n**Explanation:**\n\nOne way to maximize the total cost is by splitting `[1, -1, 1, -1]` into subarrays `[1, -1]` and `[1, -1]`. The total cost will be `(1 + 1) + (1 + 1) = 4`.\n\n**Example 3:**\n\n**Input:** nums = \\[0\\]\n\n**Output:** 0\n\n**Explanation:**\n\nWe cannot split the array further, so the answer is 0.\n\n**Example 4:**\n\n**Input:** nums = \\[1,-1\\]\n\n**Output:** 2\n\n**Explanation:**\n\nSelecting the whole array gives a total cost of `1 + 1 = 2`, which is the maximum.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `-10^(9) <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-109 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,-2,3,4]",
+      "output": "10",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,-1,1,-1]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "nums = [0]",
+      "output": "0",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,-1]",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maximumTotalCost(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maximumTotalCost(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumTotalCost(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumTotalCost(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maximumTotalCost = function(nums) {\n    \n};",
+    "typescript": "function maximumTotalCost(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaximumTotalCost(int[] nums) {\n        \n    }\n}",
+    "c": "long long maximumTotalCost(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maximumTotalCost(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumTotalCost(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumTotalCost(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_total_cost(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef maximum_total_cost(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maximumTotalCost($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumTotalCost(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumTotalCost(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_total_cost(nums :: [integer]) :: integer\n  def maximum_total_cost(nums) do\n    \n  end\nend",
+    "erlang": "-spec maximum_total_cost(Nums :: [integer()]) -> integer().\nmaximum_total_cost(Nums) ->\n  .",
+    "racket": "(define/contract (maximum-total-cost nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,-2,3,4]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,-1,1,-1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,-1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,-2,3,4]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,-1,1,-1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,-1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,-2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[4,3,-2,1]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[-2,1,3,4]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[4,3,1,-2]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,-2,3,4,1,-2,3,4]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[2,-4,6,8]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[2,-1,4,5]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[0,-3,2,3]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[-1,2,-3,-4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The problem can be solved using dynamic programming.",
+    "Since we can always start a new subarray, the problem is the same as selecting some elements in the array and flipping their signs to negative to maximize the sum. However, we cannot flip the signs of 2 consecutive elements, and the first element in the array cannot be negative.",
+    "Let <code>dp[i][0/1]</code> be the largest sum we can get for prefix <code>nums[0..i]</code>, where <code>dp[i][0]</code> is the maximum if the <code>i<sup>th</sup></code> element wasn't flipped, and <code>dp[i][1]</code> is the maximum if the <code>i<sup>th</sup></code> element was flipped.",
+    "Based on the restriction:<br />\r\n<code>dp[i][0] = max(dp[i - 1][0], dp[i - 1][1]) + nums[i]</code><br />\r\n<code>dp[i][1] = dp[i - 1][0] - nums[i]</code>",
+    "The initial state is:<br />\r\n<code>dp[1][0] = nums[0] + nums[1]</code><br />\r\n<code>dp[1][1] = nums[0] - nums[1]</code><br />\r\nand the answer is <code>max(dp[n - 1][0], dp[n - 1][1])</code>.",
+    "Can you optimize the space complexity?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-total-cost-of-alternating-subarrays/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.440Z",
+    "sourceUpdatedAt": null
+  }
+}

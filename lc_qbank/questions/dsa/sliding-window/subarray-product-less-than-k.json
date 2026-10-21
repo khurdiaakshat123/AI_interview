@@ -1,0 +1,159 @@
+{
+  "id": "713",
+  "slug": "subarray-product-less-than-k",
+  "title": "Subarray Product Less Than K",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an array of integers `nums` and an integer `k`.\n\nReturn the number of contiguous subarrays where the **product** of all the elements in the **subarray** is **strictly less** than `k`.\n\n**Example 1:**\n\n```\nInput: nums = [10,5,2,6], k = 100\nOutput: 8\nExplanation: The 8 subarrays that have product less than 100 are:\n[10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6]\nNote that [10, 5, 2] is not included as the product of 100 is not strictly less than k.\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,2,3], k = 0\nOutput: 0\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 3 * 10^(4)`\n*   `1 <= nums[i] <= 1000`\n*   `0 <= k <= 10^(6)`",
+  "constraints": [
+    "1 <= nums.length <= 3 * 104",
+    "1 <= nums[i] <= 1000",
+    "0 <= k <= 106"
+  ],
+  "examples": [
+    {
+      "input": "nums = [10,5,2,6], k = 100",
+      "output": "8",
+      "explanation": "The 8 subarrays that have product less than 100 are:\n[10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6]\nNote that [10, 5, 2] is not included as the product of 100 is not strictly less than k."
+    },
+    {
+      "input": "nums = [1,2,3], k = 0",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numSubarrayProductLessThanK(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numSubarrayProductLessThanK(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numSubarrayProductLessThanK(self, nums: list[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numSubarrayProductLessThanK(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar numSubarrayProductLessThanK = function(nums, k) {\n    \n};",
+    "typescript": "function numSubarrayProductLessThanK(nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumSubarrayProductLessThanK(int[] nums, int k) {\n        \n    }\n}",
+    "c": "int numSubarrayProductLessThanK(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func numSubarrayProductLessThanK(nums []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numSubarrayProductLessThanK(nums: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numSubarrayProductLessThanK(_ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_subarray_product_less_than_k(nums: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef num_subarray_product_less_than_k(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function numSubarrayProductLessThanK($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numSubarrayProductLessThanK(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numSubarrayProductLessThanK(nums: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_subarray_product_less_than_k(nums :: [integer], k :: integer) :: integer\n  def num_subarray_product_less_than_k(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec num_subarray_product_less_than_k(Nums :: [integer()], K :: integer()) -> integer().\nnum_subarray_product_less_than_k(Nums, K) ->\n  .",
+    "racket": "(define/contract (num-subarray-product-less-than-k nums k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[686, 28, 455, 675, 605, 29, 942, 48, 502, 889, 854, 206, 231, 796, 272, 565, 887, 969, 558, 13, 22, 455, 145, 804, 15]\n515854",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[542, 433, 935, 193, 280, 849, 122, 107, 688, 913, 31, 311, 814, 507, 596, 109, 340, 981, 662, 145, 955, 692, 659, 46, 276, 734, 177, 727, 329, 320, 93, 78, 451, 129, 226, 491, 595, 175, 894, 662, 699, 871, 340, 375, 98, 38, 414, 306, 20, 548, 459, 577, 626, 942, 92, 322, 665, 497, 593, 877, 247, 487, 67, 320, 78, 775, 431, 193, 175, 957, 926, 816, 776, 967, 600, 114, 474, 810, 513, 43, 586, 559, 880, 540, 122, 95, 408, 621, 850, 598]\n425740",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[686, 28, 455, 675, 605, 29, 942, 48, 502, 889, 854, 206, 231, 796, 272, 565, 887, 969, 558, 13, 22, 455, 145, 804, 15]\n515854",
+      "expectedOutput": "48"
+    },
+    {
+      "input": "[542, 433, 935, 193, 280, 849, 122, 107, 688, 913, 31, 311, 814, 507, 596, 109, 340, 981, 662, 145, 955, 692, 659, 46, 276, 734, 177, 727, 329, 320, 93, 78, 451, 129, 226, 491, 595, 175, 894, 662, 699, 871, 340, 375, 98, 38, 414, 306, 20, 548, 459, 577, 626, 942, 92, 322, 665, 497, 593, 877, 247, 487, 67, 320, 78, 775, 431, 193, 175, 957, 926, 816, 776, 967, 600, 114, 474, 810, 513, 43, 586, 559, 880, 540, 122, 95, 408, 621, 850, 598]\n425740",
+      "expectedOutput": "161"
+    },
+    {
+      "input": "[686,28,455,675,605,29,942,48,502,889,854,206]\n515854",
+      "expectedOutput": "22"
+    },
+    {
+      "input": "[231,796,272,565,887,969,558,13,22,455,145,804,15]\n515854",
+      "expectedOutput": "25"
+    },
+    {
+      "input": "[686]\n515854",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[686,15]\n515854",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[686,28]\n515854",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[15,804,145,455,22,13,558,969,887,565,272,796,231,206,854,889,502,48,942,29,605,675,455,28,686]\n515854",
+      "expectedOutput": "48"
+    },
+    {
+      "input": "[13,15,22,28,29,48,145,206,231,272,455,455,502,558,565,605,675,686,796,804,854,887,889,942,969]\n515854",
+      "expectedOutput": "49"
+    },
+    {
+      "input": "[969,942,889,887,854,804,796,686,675,605,565,558,502,455,455,272,231,206,145,48,29,28,22,15,13]\n515854",
+      "expectedOutput": "49"
+    },
+    {
+      "input": "[686,686,686,686,686]\n515854",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1372,56,910,1350,1210,58,1884,96,1004,1778,1708,412,462,1592,544,1130,1774,1938,1116,26,44,910,290,1608,30]\n515854",
+      "expectedOutput": "38"
+    },
+    {
+      "input": "[687,29,456,676,606,30,943,49,503,890,855,207,232,797,273,566,888,970,559,14,23,456,146,805,16]\n515854",
+      "expectedOutput": "48"
+    },
+    {
+      "input": "[685,27,454,674,604,28,941,47,501,888,853,205,230,795,271,564,886,968,557,12,21,454,144,803,14]\n515854",
+      "expectedOutput": "48"
+    },
+    {
+      "input": "[-686,-28,-455,-675,-605,-29,-942,-48,-502,-889,-854,-206,-231,-796,-272,-565,-887,-969,-558,-13,-22,-455,-145,-804,-15]\n515854",
+      "expectedOutput": "72"
+    },
+    {
+      "input": "[0,0,0,0]\n515854",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,1,1,1]\n515854",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[0]\n515854",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n515854",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n515854",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For each j, let opt(j) be the smallest i so that nums[i] * nums[i+1] * ... * nums[j] is less than k.  opt is an increasing function."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/subarray-product-less-than-k/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.372Z",
+    "sourceUpdatedAt": null
+  }
+}

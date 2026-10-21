@@ -1,0 +1,100 @@
+{
+  "id": "3288",
+  "slug": "length-of-the-longest-increasing-path",
+  "title": "Length of the Longest Increasing Path",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting",
+    "Longest Increasing Subsequence"
+  ],
+  "statement": "You are given a 2D array of integers `coordinates` of length `n` and an integer `k`, where `0 <= k < n`.\n\n`coordinates[i] = [x_(i), y_(i)]` indicates the point `(x_(i), y_(i))` in a 2D plane.\n\nAn **increasing path** of length `m` is defined as a list of points `(x_(1), y_(1))`, `(x_(2), y_(2))`, `(x_(3), y_(3))`, ..., `(x_(m), y_(m))` such that:\n\n*   `x_(i) < x_(i + 1)` and `y_(i) < y_(i + 1)` for all `i` where `1 <= i < m`.\n*   `(x_(i), y_(i))` is in the given coordinates for all `i` where `1 <= i <= m`.\n\nReturn the **maximum** length of an **increasing path** that contains `coordinates[k]`.\n\n**Example 1:**\n\n**Input:** coordinates = \\[\\[3,1\\],\\[2,2\\],\\[4,1\\],\\[0,0\\],\\[5,3\\]\\], k = 1\n\n**Output:** 3\n\n**Explanation:**\n\n`(0, 0)`, `(2, 2)`, `(5, 3)` is the longest increasing path that contains `(2, 2)`.\n\n**Example 2:**\n\n**Input:** coordinates = \\[\\[2,1\\],\\[7,0\\],\\[5,6\\]\\], k = 2\n\n**Output:** 2\n\n**Explanation:**\n\n`(2, 1)`, `(5, 6)` is the longest increasing path that contains `(5, 6)`.\n\n**Constraints:**\n\n*   `1 <= n == coordinates.length <= 10^(5)`\n*   `coordinates[i].length == 2`\n*   `0 <= coordinates[i][0], coordinates[i][1] <= 10^(9)`\n*   All elements in `coordinates` are **distinct**.\n*   `0 <= k <= n - 1`",
+  "constraints": [
+    "1 <= n == coordinates.length <= 105",
+    "coordinates[i].length == 2",
+    "0 <= coordinates[i][0], coordinates[i][1] <= 109",
+    "All elements in coordinates are distinct.",
+    "0 <= k <= n - 1"
+  ],
+  "examples": [
+    {
+      "input": "coordinates = [[3,1],[2,2],[4,1],[0,0],[5,3]], k = 1",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "coordinates = [[2,1],[7,0],[5,6]], k = 2",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxPathLength(vector<vector<int>>& coordinates, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxPathLength(int[][] coordinates, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxPathLength(self, coordinates: List[List[int]], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxPathLength(self, coordinates, k):\n        \"\"\"\n        :type coordinates: List[List[int]]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} coordinates\n * @param {number} k\n * @return {number}\n */\nvar maxPathLength = function(coordinates, k) {\n    \n};",
+    "typescript": "function maxPathLength(coordinates: number[][], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxPathLength(int[][] coordinates, int k) {\n        \n    }\n}",
+    "c": "int maxPathLength(int** coordinates, int coordinatesSize, int* coordinatesColSize, int k) {\n    \n}",
+    "golang": "func maxPathLength(coordinates [][]int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxPathLength(coordinates: Array<IntArray>, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxPathLength(_ coordinates: [[Int]], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_path_length(coordinates: Vec<Vec<i32>>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} coordinates\n# @param {Integer} k\n# @return {Integer}\ndef max_path_length(coordinates, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $coordinates\n     * @param Integer $k\n     * @return Integer\n     */\n    function maxPathLength($coordinates, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxPathLength(List<List<int>> coordinates, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxPathLength(coordinates: Array[Array[Int]], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_path_length(coordinates :: [[integer]], k :: integer) :: integer\n  def max_path_length(coordinates, k) do\n    \n  end\nend",
+    "erlang": "-spec max_path_length(Coordinates :: [[integer()]], K :: integer()) -> integer().\nmax_path_length(Coordinates, K) ->\n  .",
+    "racket": "(define/contract (max-path-length coordinates k)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[3,1],[2,2],[4,1],[0,0],[5,3]]\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[2,1],[7,0],[5,6]]\n2",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[3,1],[2,2],[4,1],[0,0],[5,3]]\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[2,1],[7,0],[5,6]]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "coordinates = [[3,1],[2,2],[4,1],[0,0],[5,3]], k = 1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "coordinates = [[2,1],[7,0],[5,6]], k = 2",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Only keep coordinates with both <code>x</code> and <code>y</code> being strictly less than <code>coordinates[k]</code>.",
+    "Sort them by <code>x</code>’s, in the case of equal, the <code>y</code> values should be decreasing.",
+    "Calculate LIS only using <code>y</code> values.",
+    "Do the same for coordinates with both <code>x</code> and <code>y</code> being strictly larger than <code>coordinates[k]</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/length-of-the-longest-increasing-path/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.148Z",
+    "sourceUpdatedAt": null
+  }
+}

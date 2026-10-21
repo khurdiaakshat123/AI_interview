@@ -1,0 +1,98 @@
+{
+  "id": "3671",
+  "slug": "sum-of-beautiful-subsequences",
+  "title": "Sum of Beautiful Subsequences",
+  "category": "dsa",
+  "subcategory": "advanced-data-structures",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Indexed Tree",
+    "Number Theory"
+  ],
+  "statement": "You are given an integer array `nums` of length `n`.\n\nFor every **positive** integer `g`, we define the **beauty** of `g` as the **product** of `g` and the number of **strictly increasing** **subsequences** of `nums` whose greatest common divisor (GCD) is exactly `g`.\n\nReturn the **sum** of **beauty** values for all positive integers `g`.\n\nSince the answer could be very large, return it modulo `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,3\\]\n\n**Output:** 10\n\n**Explanation:**\n\nAll strictly increasing subsequences and their GCDs are:\n\nSubsequence\n\nGCD\n\n\\[1\\]\n\n1\n\n\\[2\\]\n\n2\n\n\\[3\\]\n\n3\n\n\\[1,2\\]\n\n1\n\n\\[1,3\\]\n\n1\n\n\\[2,3\\]\n\n1\n\n\\[1,2,3\\]\n\n1\n\nCalculating beauty for each GCD:\n\nGCD\n\nCount of subsequences\n\nBeauty (GCD × Count)\n\n1\n\n5\n\n1 × 5 = 5\n\n2\n\n1\n\n2 × 1 = 2\n\n3\n\n1\n\n3 × 1 = 3\n\nTotal beauty is `5 + 2 + 3 = 10`.\n\n**Example 2:**\n\n**Input:** nums = \\[4,6\\]\n\n**Output:** 12\n\n**Explanation:**\n\nAll strictly increasing subsequences and their GCDs are:\n\nSubsequence\n\nGCD\n\n\\[4\\]\n\n4\n\n\\[6\\]\n\n6\n\n\\[4,6\\]\n\n2\n\nCalculating beauty for each GCD:\n\nGCD\n\nCount of subsequences\n\nBeauty (GCD × Count)\n\n2\n\n1\n\n2 × 1 = 2\n\n4\n\n1\n\n4 × 1 = 4\n\n6\n\n1\n\n6 × 1 = 6\n\nTotal beauty is `2 + 4 + 6 = 12`.\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 10^(4)`\n*   `1 <= nums[i] <= 7 * 10^(4)`",
+  "constraints": [
+    "1 <= n == nums.length <= 104",
+    "1 <= nums[i] <= 7 * 104"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3]",
+      "output": "10",
+      "explanation": null
+    },
+    {
+      "input": "nums = [4,6]",
+      "output": "12",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int totalBeauty(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int totalBeauty(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def totalBeauty(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def totalBeauty(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar totalBeauty = function(nums) {\n    \n};",
+    "typescript": "function totalBeauty(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int TotalBeauty(int[] nums) {\n        \n    }\n}",
+    "c": "int totalBeauty(int* nums, int numsSize) {\n    \n}",
+    "golang": "func totalBeauty(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun totalBeauty(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func totalBeauty(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn total_beauty(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef total_beauty(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function totalBeauty($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int totalBeauty(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def totalBeauty(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec total_beauty(nums :: [integer]) :: integer\n  def total_beauty(nums) do\n    \n  end\nend",
+    "erlang": "-spec total_beauty(Nums :: [integer()]) -> integer().\ntotal_beauty(Nums) ->\n  .",
+    "racket": "(define/contract (total-beauty nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[4,6]",
+      "expectedOutput": "12"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[4,6]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "nums = [1,2,3]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "nums = [4,6]",
+      "expectedOutput": "12"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Fix a candidate GCD <code>g</code> and keep, in the original order, only those array elements divisible by <code>g</code>; scale them down to <code>x / g</code> so any increasing subsequence here corresponds to a subsequence whose elements are all multiples of <code>g</code>.",
+    "Count strictly increasing subsequences of that scaled list by assigning ranks (coordinate compression) and maintaining prefix sums of ways for smaller ranks (you may use a Fenwick tree).",
+    "The count you get, call it <code>cnt_g</code>, includes subsequences whose GCD is <code>g</code> or any multiple of <code>g</code>; it is therefore an overcount for \"exactly g\".",
+    "To get the number with GCD exactly <code>g</code>, process <code>g</code> from <code>max(nums)</code> down to <code>1</code> and subtract counts already assigned to multiples: <code>F[g] = cnt_g - sum{k=2g,3g,...}*F[k]</code> (do arithmetic mod <code>MOD</code>); descending order ensures multiples are known.",
+    "The final answer is the sum of contributions <code>g * F[g]</code> for all <code>g</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sum-of-beautiful-subsequences/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.541Z",
+    "sourceUpdatedAt": null
+  }
+}

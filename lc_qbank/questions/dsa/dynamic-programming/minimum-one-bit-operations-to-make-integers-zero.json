@@ -1,0 +1,119 @@
+{
+  "id": "1611",
+  "slug": "minimum-one-bit-operations-to-make-integers-zero",
+  "title": "Minimum One Bit Operations to Make Integers Zero",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Recursion",
+    "Memoization"
+  ],
+  "statement": "Given an integer `n`, you must transform it into `0` using the following operations any number of times:\n\n*   Change the rightmost (`0^(th)`) bit in the binary representation of `n`.\n*   Change the `i^(th)` bit in the binary representation of `n` if the `(i-1)^(th)` bit is set to `1` and the `(i-2)^(th)` through `0^(th)` bits are set to `0`.\n\nReturn _the minimum number of operations to transform_ `n` _into_ `0`_._\n\n**Example 1:**\n\n```\nInput: n = 3\nOutput: 2\nExplanation: The binary representation of 3 is \"11\".\n\"11\" -> \"01\" with the 2nd operation since the 0th bit is 1.\n\"01\" -> \"00\" with the 1st operation.\n```\n\n**Example 2:**\n\n```\nInput: n = 6\nOutput: 4\nExplanation: The binary representation of 6 is \"110\".\n\"110\" -> \"010\" with the 2nd operation since the 1st bit is 1 and 0th through 0th bits are 0.\n\"010\" -> \"011\" with the 1st operation.\n\"011\" -> \"001\" with the 2nd operation since the 0th bit is 1.\n\"001\" -> \"000\" with the 1st operation.\n```\n\n**Constraints:**\n\n*   `0 <= n <= 10^(9)`",
+  "constraints": [
+    "0 <= n <= 109"
+  ],
+  "examples": [
+    {
+      "input": "n = 3",
+      "output": "2",
+      "explanation": "The binary representation of 3 is \"11\".\n\"11\" -> \"01\" with the 2nd operation since the 0th bit is 1.\n\"01\" -> \"00\" with the 1st operation."
+    },
+    {
+      "input": "n = 6",
+      "output": "4",
+      "explanation": "The binary representation of 6 is \"110\".\n\"110\" -> \"010\" with the 2nd operation since the 1st bit is 1 and 0th through 0th bits are 0.\n\"010\" -> \"011\" with the 1st operation.\n\"011\" -> \"001\" with the 2nd operation since the 0th bit is 1.\n\"001\" -> \"000\" with the 1st operation."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumOneBitOperations(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumOneBitOperations(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumOneBitOperations(self, n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumOneBitOperations(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {number}\n */\nvar minimumOneBitOperations = function(n) {\n    \n};",
+    "typescript": "function minimumOneBitOperations(n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumOneBitOperations(int n) {\n        \n    }\n}",
+    "c": "int minimumOneBitOperations(int n) {\n    \n}",
+    "golang": "func minimumOneBitOperations(n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumOneBitOperations(n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumOneBitOperations(_ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_one_bit_operations(n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Integer}\ndef minimum_one_bit_operations(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Integer\n     */\n    function minimumOneBitOperations($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumOneBitOperations(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumOneBitOperations(n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_one_bit_operations(n :: integer) :: integer\n  def minimum_one_bit_operations(n) do\n    \n  end\nend",
+    "erlang": "-spec minimum_one_bit_operations(N :: integer()) -> integer().\nminimum_one_bit_operations(N) ->\n  .",
+    "racket": "(define/contract (minimum-one-bit-operations n)\n  (-> exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "6",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "6",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "5",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "7",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "8",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "9",
+      "expectedOutput": "14"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The fastest way to convert n to zero is to remove all set bits starting from the leftmost one. Try some simple examples to learn the rule of how many steps are needed to remove one set bit.",
+    "consider n=2^k case first, then solve for all n."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-one-bit-operations-to-make-integers-zero/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.544Z",
+    "sourceUpdatedAt": null
+  }
+}

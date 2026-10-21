@@ -1,0 +1,94 @@
+{
+  "id": "3469",
+  "slug": "find-minimum-cost-to-remove-array-elements",
+  "title": "Find Minimum Cost to Remove Array Elements",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given an integer array `nums`. Your task is to remove **all elements** from the array by performing one of the following operations at each step until `nums` is empty:\n\n*   Choose any two elements from the first three elements of `nums` and remove them. The cost of this operation is the **maximum** of the two elements removed.\n*   If fewer than three elements remain in `nums`, remove all the remaining elements in a single operation. The cost of this operation is the **maximum** of the remaining elements.\n\nReturn the **minimum** cost required to remove all the elements.\n\n**Example 1:**\n\n**Input:** nums = \\[6,2,8,4\\]\n\n**Output:** 12\n\n**Explanation:**\n\nInitially, `nums = [6, 2, 8, 4]`.\n\n*   In the first operation, remove `nums[0] = 6` and `nums[2] = 8` with a cost of `max(6, 8) = 8`. Now, `nums = [2, 4]`.\n*   In the second operation, remove the remaining elements with a cost of `max(2, 4) = 4`.\n\nThe cost to remove all elements is `8 + 4 = 12`. This is the minimum cost to remove all elements in `nums`. Hence, the output is 12.\n\n**Example 2:**\n\n**Input:** nums = \\[2,1,3,3\\]\n\n**Output:** 5\n\n**Explanation:**\n\nInitially, `nums = [2, 1, 3, 3]`.\n\n*   In the first operation, remove `nums[0] = 2` and `nums[1] = 1` with a cost of `max(2, 1) = 2`. Now, `nums = [3, 3]`.\n*   In the second operation remove the remaining elements with a cost of `max(3, 3) = 3`.\n\nThe cost to remove all elements is `2 + 3 = 5`. This is the minimum cost to remove all elements in `nums`. Hence, the output is 5.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 1000`\n*   `1 <= nums[i] <= 10^(6)`",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "1 <= nums[i] <= 106"
+  ],
+  "examples": [
+    {
+      "input": "nums = [6,2,8,4]",
+      "output": "12",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2,1,3,3]",
+      "output": "5",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minCost(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minCost(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCost(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minCost(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minCost = function(nums) {\n    \n};",
+    "typescript": "function minCost(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinCost(int[] nums) {\n        \n    }\n}",
+    "c": "int minCost(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minCost(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCost(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCost(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_cost(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef min_cost(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minCost($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minCost(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCost(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_cost(nums :: [integer]) :: integer\n  def min_cost(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_cost(Nums :: [integer()]) -> integer().\nmin_cost(Nums) ->\n  .",
+    "racket": "(define/contract (min-cost nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[6,2,8,4]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,1,3,3]",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[6,2,8,4]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,1,3,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "nums = [6,2,8,4]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "nums = [2,1,3,3]",
+      "expectedOutput": "5"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can we use dynamic programming here?",
+    "Use dynamic programming. The process guarantees that the remaining elements form a prefix of the array with at most one previous element.",
+    "Define the state as <code>dp[i][j]</code>, where <code>i</code> represents the last remaining element and <code>j</code> represents the starting index of the current prefix."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-minimum-cost-to-remove-array-elements/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.898Z",
+    "sourceUpdatedAt": null
+  }
+}

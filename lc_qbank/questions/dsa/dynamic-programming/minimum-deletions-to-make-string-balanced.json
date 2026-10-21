@@ -1,0 +1,158 @@
+{
+  "id": "1653",
+  "slug": "minimum-deletions-to-make-string-balanced",
+  "title": "Minimum Deletions to Make String Balanced",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Stack"
+  ],
+  "statement": "You are given a string `s` consisting only of characters `'a'` and `'b'`​​​​.\n\nYou can delete any number of characters in `s` to make `s` **balanced**. `s` is **balanced** if there is no pair of indices `(i,j)` such that `i < j` and `s[i] = 'b'` and `s[j]= 'a'`.\n\nReturn _the **minimum** number of deletions needed to make_ `s` _**balanced**_.\n\n**Example 1:**\n\n```\nInput: s = \"aababbab\"\nOutput: 2\nExplanation: You can either:\nDelete the characters at 0-indexed positions 2 and 6 (\"aababbab\" -> \"aaabbb\"), or\nDelete the characters at 0-indexed positions 3 and 6 (\"aababbab\" -> \"aabbbb\").\n```\n\n**Example 2:**\n\n```\nInput: s = \"bbaaaaabb\"\nOutput: 2\nExplanation: The only solution is to delete the first two characters.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s[i]` is `'a'` or `'b'`​​.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s[i] is 'a' or 'b'​​."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aababbab\"",
+      "output": "2",
+      "explanation": "You can either:\nDelete the characters at 0-indexed positions 2 and 6 (\"aababbab\" -> \"aaabbb\"), or\nDelete the characters at 0-indexed positions 3 and 6 (\"aababbab\" -> \"aabbbb\")."
+    },
+    {
+      "input": "s = \"bbaaaaabb\"",
+      "output": "2",
+      "explanation": "The only solution is to delete the first two characters."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumDeletions(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumDeletions(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumDeletions(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumDeletions(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minimumDeletions = function(s) {\n    \n};",
+    "typescript": "function minimumDeletions(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumDeletions(string s) {\n        \n    }\n}",
+    "c": "int minimumDeletions(char* s) {\n    \n}",
+    "golang": "func minimumDeletions(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumDeletions(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumDeletions(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_deletions(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef minimum_deletions(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minimumDeletions($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumDeletions(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumDeletions(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_deletions(s :: String.t) :: integer\n  def minimum_deletions(s) do\n    \n  end\nend",
+    "erlang": "-spec minimum_deletions(S :: unicode:unicode_binary()) -> integer().\nminimum_deletions(S) ->\n  .",
+    "racket": "(define/contract (minimum-deletions s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aababbab\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"bbaaaaabb\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aababbab\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"bbaaaaabb\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"bbab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"babbabaa\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aababbabaababbab\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aababbabbabbabaa\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"AABABBAB\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "You need to find for every index the number of Bs before it and the number of A's after it",
+    "You can speed up the finding of A's and B's in suffix and prefix using preprocessing"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.791Z",
+    "sourceUpdatedAt": null
+  }
+}

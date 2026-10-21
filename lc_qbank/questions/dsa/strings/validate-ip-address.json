@@ -1,0 +1,161 @@
+{
+  "id": "468",
+  "slug": "validate-ip-address",
+  "title": "Validate IP Address",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Medium",
+  "tags": [
+    "String"
+  ],
+  "statement": "Given a string `queryIP`, return `\"IPv4\"` if IP is a valid IPv4 address, `\"IPv6\"` if IP is a valid IPv6 address or `\"Neither\"` if IP is not a correct IP of any type.\n\n**A valid IPv4** address is an IP in the form `\"x_(1).x_(2).x_(3).x_(4)\"` where `0 <= x_(i) <= 255` and `x_(i)` **cannot contain** leading zeros. For example, `\"192.168.1.1\"` and `\"192.168.1.0\"` are valid IPv4 addresses while `\"192.168.01.1\"`, `\"192.168.1.00\"`, and `\"192.168@1.1\"` are invalid IPv4 addresses.\n\n**A valid IPv6** address is an IP in the form `\"x_(1):x_(2):x_(3):x_(4):x_(5):x_(6):x_(7):x_(8)\"` where:\n\n*   `1 <= x_(i).length <= 4`\n*   `x_(i)` is a **hexadecimal string** which may contain digits, lowercase English letter (`'a'` to `'f'`) and upper-case English letters (`'A'` to `'F'`).\n*   Leading zeros are allowed in `x_(i)`.\n\nFor example, \"`2001:0db8:85a3:0000:0000:8a2e:0370:7334\"` and \"`2001:db8:85a3:0:0:8A2E:0370:7334\"` are valid IPv6 addresses, while \"`2001:0db8:85a3::8A2E:037j:7334\"` and \"`02001:0db8:85a3:0000:0000:8a2e:0370:7334\"` are invalid IPv6 addresses.\n\n**Example 1:**\n\n```\nInput: queryIP = \"172.16.254.1\"\nOutput: \"IPv4\"\nExplanation: This is a valid IPv4 address, return \"IPv4\".\n```\n\n**Example 2:**\n\n```\nInput: queryIP = \"2001:0db8:85a3:0:0:8A2E:0370:7334\"\nOutput: \"IPv6\"\nExplanation: This is a valid IPv6 address, return \"IPv6\".\n```\n\n**Example 3:**\n\n```\nInput: queryIP = \"256.256.256.256\"\nOutput: \"Neither\"\nExplanation: This is neither a IPv4 address nor a IPv6 address.\n```\n\n**Constraints:**\n\n*   `queryIP` consists only of English letters, digits and the characters `'.'` and `':'`.",
+  "constraints": [
+    "queryIP consists only of English letters, digits and the characters '.' and ':'."
+  ],
+  "examples": [
+    {
+      "input": "queryIP = \"172.16.254.1\"",
+      "output": "\"IPv4\"",
+      "explanation": "This is a valid IPv4 address, return \"IPv4\"."
+    },
+    {
+      "input": "queryIP = \"2001:0db8:85a3:0:0:8A2E:0370:7334\"",
+      "output": "\"IPv6\"",
+      "explanation": "This is a valid IPv6 address, return \"IPv6\"."
+    },
+    {
+      "input": "queryIP = \"256.256.256.256\"",
+      "output": "\"Neither\"",
+      "explanation": "This is neither a IPv4 address nor a IPv6 address."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string validIPAddress(string queryIP) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String validIPAddress(String queryIP) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def validIPAddress(self, queryIP: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def validIPAddress(self, queryIP):\n        \"\"\"\n        :type queryIP: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} queryIP\n * @return {string}\n */\nvar validIPAddress = function(queryIP) {\n    \n};",
+    "typescript": "function validIPAddress(queryIP: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ValidIPAddress(string queryIP) {\n        \n    }\n}",
+    "c": "char* validIPAddress(char* queryIP) {\n    \n}",
+    "golang": "func validIPAddress(queryIP string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun validIPAddress(queryIP: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func validIPAddress(_ queryIP: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn valid_ip_address(query_ip: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} query_ip\n# @return {String}\ndef valid_ip_address(query_ip)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $queryIP\n     * @return String\n     */\n    function validIPAddress($queryIP) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String validIPAddress(String queryIP) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def validIPAddress(queryIP: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec valid_ip_address(query_ip :: String.t) :: String.t\n  def valid_ip_address(query_ip) do\n    \n  end\nend",
+    "erlang": "-spec valid_ip_address(QueryIP :: unicode:unicode_binary()) -> unicode:unicode_binary().\nvalid_ip_address(QueryIP) ->\n  .",
+    "racket": "(define/contract (valid-ip-address queryIP)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"172.16.254.1\"",
+      "expectedOutput": "\"IPv4\""
+    },
+    {
+      "input": "\"2001:0db8:85a3:0:0:8A2E:0370:7334\"",
+      "expectedOutput": "\"IPv6\""
+    },
+    {
+      "input": "\"256.256.256.256\"",
+      "expectedOutput": "\"Neither\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"172.16.254.1\"",
+      "expectedOutput": "\"IPv4\""
+    },
+    {
+      "input": "\"2001:0db8:85a3:0:0:8A2E:0370:7334\"",
+      "expectedOutput": "\"IPv6\""
+    },
+    {
+      "input": "\"256.256.256.256\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"172.16\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\".254.1\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"17\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"1.452.61.271\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"111111\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"Neither\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"Neither\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/validate-ip-address/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.564Z",
+    "sourceUpdatedAt": null
+  }
+}

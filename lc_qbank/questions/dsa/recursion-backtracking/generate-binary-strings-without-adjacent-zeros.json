@@ -1,0 +1,122 @@
+{
+  "id": "3211",
+  "slug": "generate-binary-strings-without-adjacent-zeros",
+  "title": "Generate Binary Strings Without Adjacent Zeros",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given a positive integer `n`.\n\nA binary string `x` is **valid** if all substrings of `x` of length 2 contain **at least** one `\"1\"`.\n\nReturn all **valid** strings with length `n`**,** in _any_ order.\n\n**Example 1:**\n\n**Input:** n = 3\n\n**Output:** \\[\"010\",\"011\",\"101\",\"110\",\"111\"\\]\n\n**Explanation:**\n\nThe valid strings of length 3 are: `\"010\"`, `\"011\"`, `\"101\"`, `\"110\"`, and `\"111\"`.\n\n**Example 2:**\n\n**Input:** n = 1\n\n**Output:** \\[\"0\",\"1\"\\]\n\n**Explanation:**\n\nThe valid strings of length 1 are: `\"0\"` and `\"1\"`.\n\n**Constraints:**\n\n*   `1 <= n <= 18`",
+  "constraints": [
+    "1 <= n <= 18"
+  ],
+  "examples": [
+    {
+      "input": "n = 3",
+      "output": "[\"010\",\"011\",\"101\",\"110\",\"111\"]",
+      "explanation": null
+    },
+    {
+      "input": "n = 1",
+      "output": "[\"0\",\"1\"]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> validStrings(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> validStrings(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def validStrings(self, n: int) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def validStrings(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {string[]}\n */\nvar validStrings = function(n) {\n    \n};",
+    "typescript": "function validStrings(n: number): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> ValidStrings(int n) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** validStrings(int n, int* returnSize) {\n    \n}",
+    "golang": "func validStrings(n int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun validStrings(n: Int): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func validStrings(_ n: Int) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn valid_strings(n: i32) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {String[]}\ndef valid_strings(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return String[]\n     */\n    function validStrings($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> validStrings(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def validStrings(n: Int): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec valid_strings(n :: integer) :: [String.t]\n  def valid_strings(n) do\n    \n  end\nend",
+    "erlang": "-spec valid_strings(N :: integer()) -> [unicode:unicode_binary()].\nvalid_strings(N) ->\n  .",
+    "racket": "(define/contract (valid-strings n)\n  (-> exact-integer? (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3",
+      "expectedOutput": "[\"010\",\"011\",\"101\",\"110\",\"111\"]"
+    },
+    {
+      "input": "1",
+      "expectedOutput": "[\"0\",\"1\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3",
+      "expectedOutput": "[\"010\",\"011\",\"101\",\"110\",\"111\"]"
+    },
+    {
+      "input": "1",
+      "expectedOutput": "[\"0\",\"1\"]"
+    },
+    {
+      "input": "0",
+      "expectedOutput": "[\"\"]"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "[\"01\",\"10\",\"11\"]"
+    },
+    {
+      "input": "4",
+      "expectedOutput": "[\"0101\",\"0110\",\"0111\",\"1010\",\"1011\",\"1101\",\"1110\",\"1111\"]"
+    },
+    {
+      "input": "5",
+      "expectedOutput": "[\"01010\",\"01011\",\"01101\",\"01110\",\"01111\",\"10101\",\"10110\",\"10111\",\"11010\",\"11011\",\"11101\",\"11110\",\"11111\"]"
+    },
+    {
+      "input": "6",
+      "expectedOutput": "[\"010101\",\"010110\",\"010111\",\"011010\",\"011011\",\"011101\",\"011110\",\"011111\",\"101010\",\"101011\",\"101101\",\"101110\",\"101111\",\"110101\",\"110110\",\"110111\",\"111010\",\"111011\",\"111101\",\"111110\",\"111111\"]"
+    },
+    {
+      "input": "7",
+      "expectedOutput": "[\"0101010\",\"0101011\",\"0101101\",\"0101110\",\"0101111\",\"0110101\",\"0110110\",\"0110111\",\"0111010\",\"0111011\",\"0111101\",\"0111110\",\"0111111\",\"1010101\",\"1010110\",\"1010111\",\"1011010\",\"1011011\",\"1011101\",\"1011110\",\"1011111\",\"1101010\",\"1101011\",\"1101101\",\"1101110\",\"1101111\",\"1110101\",\"1110110\",\"1110111\",\"1111010\",\"1111011\",\"1111101\",\"1111110\",\"1111111\"]"
+    },
+    {
+      "input": "8",
+      "expectedOutput": "[\"01010101\",\"01010110\",\"01010111\",\"01011010\",\"01011011\",\"01011101\",\"01011110\",\"01011111\",\"01101010\",\"01101011\",\"01101101\",\"01101110\",\"01101111\",\"01110101\",\"01110110\",\"01110111\",\"01111010\",\"01111011\",\"01111101\",\"01111110\",\"01111111\",\"10101010\",\"10101011\",\"10101101\",\"10101110\",\"10101111\",\"10110101\",\"10110110\",\"10110111\",\"10111010\",\"10111011\",\"10111101\",\"10111110\",\"10111111\",\"11010101\",\"11010110\",\"11010111\",\"11011010\",\"11011011\",\"11011101\",\"11011110\",\"11011111\",\"11101010\",\"11101011\",\"11101101\",\"11101110\",\"11101111\",\"11110101\",\"11110110\",\"11110111\",\"11111010\",\"11111011\",\"11111101\",\"11111110\",\"11111111\"]"
+    },
+    {
+      "input": "-1",
+      "expectedOutput": "[\"\"]"
+    },
+    {
+      "input": "-2",
+      "expectedOutput": "[\"\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If we have a string <code>s</code> of length <code>x</code>, we can generate all strings of length <code>x + 1</code>.",
+    "If <code>s</code> has 0 as the last character, we can only append 1, whereas if the last character is 1, we can append both 0 and 1.",
+    "We can use recursion and backtracking to generate all such strings."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/generate-binary-strings-without-adjacent-zeros/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.143Z",
+    "sourceUpdatedAt": null
+  }
+}

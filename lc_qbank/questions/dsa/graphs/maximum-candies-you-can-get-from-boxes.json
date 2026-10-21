@@ -1,0 +1,168 @@
+{
+  "id": "1298",
+  "slug": "maximum-candies-you-can-get-from-boxes",
+  "title": "Maximum Candies You Can Get from Boxes",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "statement": "You have `n` boxes labeled from `0` to `n - 1`. You are given four arrays: `status`, `candies`, `keys`, and `containedBoxes` where:\n\n*   `status[i]` is `1` if the `i^(th)` box is open and `0` if the `i^(th)` box is closed,\n*   `candies[i]` is the number of candies in the `i^(th)` box,\n*   `keys[i]` is a list of the labels of the boxes you can open after opening the `i^(th)` box.\n*   `containedBoxes[i]` is a list of the boxes you found inside the `i^(th)` box.\n\nYou are given an integer array `initialBoxes` that contains the labels of the boxes you initially have. You can take all the candies in **any open box** and you can use the keys in it to open new boxes and you also can use the boxes you find in it.\n\nReturn _the maximum number of candies you can get following the rules above_.\n\n**Example 1:**\n\n```\nInput: status = [1,0,1,0], candies = [7,5,4,100], keys = [[],[],[1],[]], containedBoxes = [[1,2],[3],[],[]], initialBoxes = [0]\nOutput: 16\nExplanation: You will be initially given box 0. You will find 7 candies in it and boxes 1 and 2.\nBox 1 is closed and you do not have a key for it so you will open box 2. You will find 4 candies and a key to box 1 in box 2.\nIn box 1, you will find 5 candies and box 3 but you will not find a key to box 3 so box 3 will remain closed.\nTotal number of candies collected = 7 + 4 + 5 = 16 candy.\n```\n\n**Example 2:**\n\n```\nInput: status = [1,0,0,0,0,0], candies = [1,1,1,1,1,1], keys = [[1,2,3,4,5],[],[],[],[],[]], containedBoxes = [[1,2,3,4,5],[],[],[],[],[]], initialBoxes = [0]\nOutput: 6\nExplanation: You have initially box 0. Opening it you can find boxes 1,2,3,4 and 5 and their keys.\nThe total number of candies will be 6.\n```\n\n**Constraints:**\n\n*   `n == status.length == candies.length == keys.length == containedBoxes.length`\n*   `1 <= n <= 1000`\n*   `status[i]` is either `0` or `1`.\n*   `1 <= candies[i] <= 1000`\n*   `0 <= keys[i].length <= n`\n*   `0 <= keys[i][j] < n`\n*   All values of `keys[i]` are **unique**.\n*   `0 <= containedBoxes[i].length <= n`\n*   `0 <= containedBoxes[i][j] < n`\n*   All values of `containedBoxes[i]` are unique.\n*   Each box is contained in one box at most.\n*   `0 <= initialBoxes.length <= n`\n*   `0 <= initialBoxes[i] < n`",
+  "constraints": [
+    "n == status.length == candies.length == keys.length == containedBoxes.length",
+    "1 <= n <= 1000",
+    "status[i] is either 0 or 1.",
+    "1 <= candies[i] <= 1000",
+    "0 <= keys[i].length <= n",
+    "0 <= keys[i][j] < n",
+    "All values of keys[i] are unique.",
+    "0 <= containedBoxes[i].length <= n",
+    "0 <= containedBoxes[i][j] < n",
+    "All values of containedBoxes[i] are unique.",
+    "Each box is contained in one box at most.",
+    "0 <= initialBoxes.length <= n",
+    "0 <= initialBoxes[i] < n"
+  ],
+  "examples": [
+    {
+      "input": "status = [1,0,1,0], candies = [7,5,4,100], keys = [[],[],[1],[]], containedBoxes = [[1,2],[3],[],[]], initialBoxes = [0]",
+      "output": "16",
+      "explanation": "You will be initially given box 0. You will find 7 candies in it and boxes 1 and 2.\nBox 1 is closed and you do not have a key for it so you will open box 2. You will find 4 candies and a key to box 1 in box 2.\nIn box 1, you will find 5 candies and box 3 but you will not find a key to box 3 so box 3 will remain closed.\nTotal number of candies collected = 7 + 4 + 5 = 16 candy."
+    },
+    {
+      "input": "status = [1,0,0,0,0,0], candies = [1,1,1,1,1,1], keys = [[1,2,3,4,5],[],[],[],[],[]], containedBoxes = [[1,2,3,4,5],[],[],[],[],[]], initialBoxes = [0]",
+      "output": "6",
+      "explanation": "You have initially box 0. Opening it you can find boxes 1,2,3,4 and 5 and their keys.\nThe total number of candies will be 6."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxCandies(vector<int>& status, vector<int>& candies, vector<vector<int>>& keys, vector<vector<int>>& containedBoxes, vector<int>& initialBoxes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxCandies(int[] status, int[] candies, int[][] keys, int[][] containedBoxes, int[] initialBoxes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxCandies(self, status: list[int], candies: list[int], keys: list[list[int]], containedBoxes: list[list[int]], initialBoxes: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxCandies(self, status, candies, keys, containedBoxes, initialBoxes):\n        \"\"\"\n        :type status: List[int]\n        :type candies: List[int]\n        :type keys: List[List[int]]\n        :type containedBoxes: List[List[int]]\n        :type initialBoxes: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} status\n * @param {number[]} candies\n * @param {number[][]} keys\n * @param {number[][]} containedBoxes\n * @param {number[]} initialBoxes\n * @return {number}\n */\nvar maxCandies = function(status, candies, keys, containedBoxes, initialBoxes) {\n    \n};",
+    "typescript": "function maxCandies(status: number[], candies: number[], keys: number[][], containedBoxes: number[][], initialBoxes: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxCandies(int[] status, int[] candies, int[][] keys, int[][] containedBoxes, int[] initialBoxes) {\n        \n    }\n}",
+    "c": "int maxCandies(int* status, int statusSize, int* candies, int candiesSize, int** keys, int keysSize, int* keysColSize, int** containedBoxes, int containedBoxesSize, int* containedBoxesColSize, int* initialBoxes, int initialBoxesSize) {\n    \n}",
+    "golang": "func maxCandies(status []int, candies []int, keys [][]int, containedBoxes [][]int, initialBoxes []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxCandies(status: IntArray, candies: IntArray, keys: Array<IntArray>, containedBoxes: Array<IntArray>, initialBoxes: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxCandies(_ status: [Int], _ candies: [Int], _ keys: [[Int]], _ containedBoxes: [[Int]], _ initialBoxes: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_candies(status: Vec<i32>, candies: Vec<i32>, keys: Vec<Vec<i32>>, contained_boxes: Vec<Vec<i32>>, initial_boxes: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} status\n# @param {Integer[]} candies\n# @param {Integer[][]} keys\n# @param {Integer[][]} contained_boxes\n# @param {Integer[]} initial_boxes\n# @return {Integer}\ndef max_candies(status, candies, keys, contained_boxes, initial_boxes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $status\n     * @param Integer[] $candies\n     * @param Integer[][] $keys\n     * @param Integer[][] $containedBoxes\n     * @param Integer[] $initialBoxes\n     * @return Integer\n     */\n    function maxCandies($status, $candies, $keys, $containedBoxes, $initialBoxes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxCandies(List<int> status, List<int> candies, List<List<int>> keys, List<List<int>> containedBoxes, List<int> initialBoxes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxCandies(status: Array[Int], candies: Array[Int], keys: Array[Array[Int]], containedBoxes: Array[Array[Int]], initialBoxes: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_candies(status :: [integer], candies :: [integer], keys :: [[integer]], contained_boxes :: [[integer]], initial_boxes :: [integer]) :: integer\n  def max_candies(status, candies, keys, contained_boxes, initial_boxes) do\n    \n  end\nend",
+    "erlang": "-spec max_candies(Status :: [integer()], Candies :: [integer()], Keys :: [[integer()]], ContainedBoxes :: [[integer()]], InitialBoxes :: [integer()]) -> integer().\nmax_candies(Status, Candies, Keys, ContainedBoxes, InitialBoxes) ->\n  .",
+    "racket": "(define/contract (max-candies status candies keys containedBoxes initialBoxes)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof (listof exact-integer?)) (listof (listof exact-integer?)) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,0,1,0]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[1,0,0,0,0,0]\n[1,1,1,1,1,1]\n[[1,2,3,4,5],[],[],[],[],[]]\n[[1,2,3,4,5],[],[],[],[],[]]\n[0]",
+      "expectedOutput": "6"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,0,1,0]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[1,0,0,0,0,0]\n[1,1,1,1,1,1]\n[[1,2,3,4,5],[],[],[],[],[]]\n[[1,2,3,4,5],[],[],[],[],[]]\n[0]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[0,1,0,1]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,1,1]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,0,0]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1,1,1,1]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "116"
+    },
+    {
+      "input": "[1,0,1,0,1,0,1,0]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[2,0,2,0]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[2,1,2,1]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "116"
+    },
+    {
+      "input": "[0,-1,0,-1]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,0,-1,0]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[0,0,0,0]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1,0]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,4,5]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "116"
+    },
+    {
+      "input": "[5,4,3,2,1]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "116"
+    },
+    {
+      "input": "[-5,-4,-3,-2,-1]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "116"
+    },
+    {
+      "input": "[1,3,2,5,4]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "116"
+    },
+    {
+      "input": "[1,1,2,2,3,3]\n[7,5,4,100]\n[[],[],[1],[]]\n[[1,2],[3],[],[]]\n[0]",
+      "expectedOutput": "116"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use Breadth First Search (BFS) to traverse all possible boxes you can open. Only push to the queue the boxes the you have with their keys."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-candies-you-can-get-from-boxes/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.639Z",
+    "sourceUpdatedAt": null
+  }
+}

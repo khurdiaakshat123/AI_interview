@@ -1,0 +1,155 @@
+{
+  "id": "438",
+  "slug": "find-all-anagrams-in-a-string",
+  "title": "Find All Anagrams in a String",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "Given two strings `s` and `p`, return an array of all the start indices of `p`'s anagrams in `s`. You may return the answer in **any order**.\n\n**Example 1:**\n\n```\nInput: s = \"cbaebabacd\", p = \"abc\"\nOutput: [0,6]\nExplanation:\nThe substring with start index = 0 is \"cba\", which is an anagram of \"abc\".\nThe substring with start index = 6 is \"bac\", which is an anagram of \"abc\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"abab\", p = \"ab\"\nOutput: [0,1,2]\nExplanation:\nThe substring with start index = 0 is \"ab\", which is an anagram of \"ab\".\nThe substring with start index = 1 is \"ba\", which is an anagram of \"ab\".\nThe substring with start index = 2 is \"ab\", which is an anagram of \"ab\".\n```\n\n**Constraints:**\n\n*   `1 <= s.length, p.length <= 3 * 10^(4)`\n*   `s` and `p` consist of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length, p.length <= 3 * 104",
+    "s and p consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"cbaebabacd\", p = \"abc\"",
+      "output": "[0,6]",
+      "explanation": "The substring with start index = 0 is \"cba\", which is an anagram of \"abc\".\nThe substring with start index = 6 is \"bac\", which is an anagram of \"abc\"."
+    },
+    {
+      "input": "s = \"abab\", p = \"ab\"",
+      "output": "[0,1,2]",
+      "explanation": "The substring with start index = 0 is \"ab\", which is an anagram of \"ab\".\nThe substring with start index = 1 is \"ba\", which is an anagram of \"ab\".\nThe substring with start index = 2 is \"ab\", which is an anagram of \"ab\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findAnagrams(string s, string p) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> findAnagrams(String s, String p) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findAnagrams(self, s: str, p: str) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def findAnagrams(self, s, p):\n        \"\"\"\n        :type s: str\n        :type p: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} p\n * @return {number[]}\n */\nvar findAnagrams = function(s, p) {\n    \n};",
+    "typescript": "function findAnagrams(s: string, p: string): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> FindAnagrams(string s, string p) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findAnagrams(char* s, char* p, int* returnSize) {\n    \n}",
+    "golang": "func findAnagrams(s string, p string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findAnagrams(s: String, p: String): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findAnagrams(_ s: String, _ p: String) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_anagrams(s: String, p: String) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} p\n# @return {Integer[]}\ndef find_anagrams(s, p)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $p\n     * @return Integer[]\n     */\n    function findAnagrams($s, $p) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findAnagrams(String s, String p) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findAnagrams(s: String, p: String): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_anagrams(s :: String.t, p :: String.t) :: [integer]\n  def find_anagrams(s, p) do\n    \n  end\nend",
+    "erlang": "-spec find_anagrams(S :: unicode:unicode_binary(), P :: unicode:unicode_binary()) -> [integer()].\nfind_anagrams(S, P) ->\n  .",
+    "racket": "(define/contract (find-anagrams s p)\n  (-> string? string? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"cbaebabacd\"\n\"abc\"",
+      "expectedOutput": "[0,6]"
+    },
+    {
+      "input": "\"abab\"\n\"ab\"",
+      "expectedOutput": "[0,1,2]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"cbaebabacd\"\n\"abc\"",
+      "expectedOutput": "[0,6]"
+    },
+    {
+      "input": "\"abab\"\n\"ab\"",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "\"cbaeb\"\n\"abc\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"abacd\"\n\"abc\"",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "\"c\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"cb\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"dcababeabc\"\n\"abc\"",
+      "expectedOutput": "[1,7]"
+    },
+    {
+      "input": "\"cbaebabacdcbaebabacd\"\n\"abc\"",
+      "expectedOutput": "[0,6,10,16]"
+    },
+    {
+      "input": "\"cccccc\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"cbaebabacddcababeabc\"\n\"abc\"",
+      "expectedOutput": "[0,6,11,17]"
+    },
+    {
+      "input": "\"CBAEBABACD\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"a\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"b\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aa\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"ab\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"ba\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aba\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"abba\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aaaaa\"\n\"abc\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"abcde\"\n\"abc\"",
+      "expectedOutput": "[0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-all-anagrams-in-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.392Z",
+    "sourceUpdatedAt": null
+  }
+}

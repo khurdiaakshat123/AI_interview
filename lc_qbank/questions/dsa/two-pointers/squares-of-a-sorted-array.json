@@ -1,0 +1,156 @@
+{
+  "id": "977",
+  "slug": "squares-of-a-sorted-array",
+  "title": "Squares of a Sorted Array",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "statement": "Given an integer array `nums` sorted in **non-decreasing** order, return _an array of **the squares of each number** sorted in non-decreasing order_.\n\n**Example 1:**\n\n```\nInput: nums = [-4,-1,0,3,10]\nOutput: [0,1,9,16,100]\nExplanation: After squaring, the array becomes [16,1,0,9,100].\nAfter sorting, it becomes [0,1,9,16,100].\n```\n\n**Example 2:**\n\n```\nInput: nums = [-7,-3,2,3,11]\nOutput: [4,9,9,49,121]\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(4)`\n*   `-10^(4) <= nums[i] <= 10^(4)`\n*   `nums` is sorted in **non-decreasing** order.\n\n**Follow up:** Squaring each element and sorting the new array is very trivial, could you find an `O(n)` solution using a different approach?",
+  "constraints": [
+    "1 <= nums.length <= 104",
+    "-104 <= nums[i] <= 104",
+    "nums is sorted in non-decreasing order."
+  ],
+  "examples": [
+    {
+      "input": "nums = [-4,-1,0,3,10]",
+      "output": "[0,1,9,16,100]",
+      "explanation": "After squaring, the array becomes [16,1,0,9,100].\nAfter sorting, it becomes [0,1,9,16,100]."
+    },
+    {
+      "input": "nums = [-7,-3,2,3,11]",
+      "output": "[4,9,9,49,121]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> sortedSquares(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] sortedSquares(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sortedSquares(self, nums: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def sortedSquares(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar sortedSquares = function(nums) {\n    \n};",
+    "typescript": "function sortedSquares(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] SortedSquares(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* sortedSquares(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func sortedSquares(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun sortedSquares(nums: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sortedSquares(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sorted_squares(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef sorted_squares(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function sortedSquares($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> sortedSquares(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sortedSquares(nums: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sorted_squares(nums :: [integer]) :: [integer]\n  def sorted_squares(nums) do\n    \n  end\nend",
+    "erlang": "-spec sorted_squares(Nums :: [integer()]) -> [integer()].\nsorted_squares(Nums) ->\n  .",
+    "racket": "(define/contract (sorted-squares nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[-4,-1,0,3,10]",
+      "expectedOutput": "[0,1,9,16,100]"
+    },
+    {
+      "input": "[-7,-3,2,3,11]",
+      "expectedOutput": "[4,9,9,49,121]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[-4,-1,0,3,10]",
+      "expectedOutput": "[0,1,9,16,100]"
+    },
+    {
+      "input": "[-7,-3,2,3,11]",
+      "expectedOutput": "[4,9,9,49,121]"
+    },
+    {
+      "input": "[-4,-1]",
+      "expectedOutput": "[1,16]"
+    },
+    {
+      "input": "[0,3,10]",
+      "expectedOutput": "[0,9,100]"
+    },
+    {
+      "input": "[-4]",
+      "expectedOutput": "[16]"
+    },
+    {
+      "input": "[-4,10]",
+      "expectedOutput": "[16,100]"
+    },
+    {
+      "input": "[10,3,0,-1,-4]",
+      "expectedOutput": "[0,1,9,16,100]"
+    },
+    {
+      "input": "[-4,-4,-4,-4,-4]",
+      "expectedOutput": "[16,16,16,16,16]"
+    },
+    {
+      "input": "[-4,-1,0,3,10,-4,-1,0,3,10]",
+      "expectedOutput": "[0,9,100,16,1,0,1,9,16,100]"
+    },
+    {
+      "input": "[-8,-2,0,6,20]",
+      "expectedOutput": "[0,4,36,64,400]"
+    },
+    {
+      "input": "[-3,0,1,4,11]",
+      "expectedOutput": "[0,1,9,16,121]"
+    },
+    {
+      "input": "[-5,-2,-1,2,9]",
+      "expectedOutput": "[1,4,4,25,81]"
+    },
+    {
+      "input": "[4,1,0,-3,-10]",
+      "expectedOutput": "[0,1,9,16,100]"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "[0,0,0,0]"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "[1,1,1,1]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "[1,4]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/squares-of-a-sorted-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.189Z",
+    "sourceUpdatedAt": null
+  }
+}

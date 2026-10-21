@@ -1,0 +1,167 @@
+{
+  "id": "518",
+  "slug": "coin-change-ii",
+  "title": "Coin Change II",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Knapsack Problem",
+    "Complete Knapsack"
+  ],
+  "statement": "You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.\n\nReturn _the number of combinations that make up that amount_. If that amount of money cannot be made up by any combination of the coins, return `0`.\n\nYou may assume that you have an infinite number of each kind of coin.\n\nThe **final** answer is **guaranteed** to fit into a signed **32-bit** integer.\n\n**Example 1:**\n\n```\nInput: amount = 5, coins = [1,2,5]\nOutput: 4\nExplanation: there are four ways to make up the amount:\n5=5\n5=2+2+1\n5=2+1+1+1\n5=1+1+1+1+1\n```\n\n**Example 2:**\n\n```\nInput: amount = 3, coins = [2]\nOutput: 0\nExplanation: the amount of 3 cannot be made up just with coins of 2.\n```\n\n**Example 3:**\n\n```\nInput: amount = 10, coins = [10]\nOutput: 1\n```\n\n**Constraints:**\n\n*   `1 <= coins.length <= 300`\n*   `1 <= coins[i] <= 5000`\n*   All the values of `coins` are **unique**.\n*   `0 <= amount <= 5000`",
+  "constraints": [
+    "1 <= coins.length <= 300",
+    "1 <= coins[i] <= 5000",
+    "All the values of coins are unique.",
+    "0 <= amount <= 5000"
+  ],
+  "examples": [
+    {
+      "input": "amount = 5, coins = [1,2,5]",
+      "output": "4",
+      "explanation": "there are four ways to make up the amount:\n5=5\n5=2+2+1\n5=2+1+1+1\n5=1+1+1+1+1"
+    },
+    {
+      "input": "amount = 3, coins = [2]",
+      "output": "0",
+      "explanation": "the amount of 3 cannot be made up just with coins of 2."
+    },
+    {
+      "input": "amount = 10, coins = [10]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int change(int amount, vector<int>& coins) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int change(int amount, int[] coins) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def change(self, amount: int, coins: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def change(self, amount, coins):\n        \"\"\"\n        :type amount: int\n        :type coins: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} amount\n * @param {number[]} coins\n * @return {number}\n */\nvar change = function(amount, coins) {\n    \n};",
+    "typescript": "function change(amount: number, coins: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int Change(int amount, int[] coins) {\n        \n    }\n}",
+    "c": "int change(int amount, int* coins, int coinsSize) {\n    \n}",
+    "golang": "func change(amount int, coins []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun change(amount: Int, coins: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func change(_ amount: Int, _ coins: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn change(amount: i32, coins: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} amount\n# @param {Integer[]} coins\n# @return {Integer}\ndef change(amount, coins)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $amount\n     * @param Integer[] $coins\n     * @return Integer\n     */\n    function change($amount, $coins) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int change(int amount, List<int> coins) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def change(amount: Int, coins: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec change(amount :: integer, coins :: [integer]) :: integer\n  def change(amount, coins) do\n    \n  end\nend",
+    "erlang": "-spec change(Amount :: integer(), Coins :: [integer()]) -> integer().\nchange(Amount, Coins) ->\n  .",
+    "racket": "(define/contract (change amount coins)\n  (-> exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "5\n[1,2,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "3\n[2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "10\n[10]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "5\n[1,2,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "3\n[2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "10\n[10]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "0\n[1,2,5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "1\n[1,2,5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "2\n[1,2,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n[1,2,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "4\n[1,2,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "6\n[1,2,5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "7\n[1,2,5]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "8\n[1,2,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "9\n[1,2,5]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "5\n[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[2,5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[1,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "5\n[1,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "5\n[5,2,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "5\n[1,1,1]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "5\n[1,2,5,1,2,5]",
+      "expectedOutput": "22"
+    },
+    {
+      "input": "5\n[2,4,10]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/coin-change-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.489Z",
+    "sourceUpdatedAt": null
+  }
+}

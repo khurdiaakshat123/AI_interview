@@ -1,0 +1,63 @@
+{
+  "id": "1517",
+  "slug": "find-users-with-valid-e-mails",
+  "title": "Find Users With Valid E-Mails",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Users`\n\n```\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| user_id       | int     |\n| name          | varchar |\n| mail          | varchar |\n+---------------+---------+\nuser_id is the primary key (column with unique values) for this table.\nThis table contains information of the users signed up in a website. Some e-mails are invalid.\n```\n\nWrite a solution to find the users who have **valid emails**.\n\nA valid e-mail has a prefix name and a domain where:\n\n*   **The prefix name** is a string that may contain letters (upper or lower case), digits, underscore `'_'`, period `'.'`, and/or dash `'-'`. The prefix name **must** start with a letter.\n*   **The domain** must be exactly `'@leetcode.com'` in lowercase.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nUsers table:\n+---------+-----------+-------------------------+\n| user_id | name      | mail                    |\n+---------+-----------+-------------------------+\n| 1       | Winston   | winston@leetcode.com    |\n| 2       | Jonathan  | jonathanisgreat         |\n| 3       | Annabelle | bella-@leetcode.com     |\n| 4       | Sally     | sally.come@leetcode.com |\n| 5       | Marwan    | quarz#2020@leetcode.com |\n| 6       | David     | david69@gmail.com       |\n| 7       | Shapiro   | .shapo@leetcode.com     |\n+---------+-----------+-------------------------+\nOutput: \n+---------+-----------+-------------------------+\n| user_id | name      | mail                    |\n+---------+-----------+-------------------------+\n| 1       | Winston   | winston@leetcode.com    |\n| 3       | Annabelle | bella-@leetcode.com     |\n| 4       | Sally     | sally.come@leetcode.com |\n+---------+-----------+-------------------------+\nExplanation: \nThe mail of user 2 does not have a domain.\nThe mail of user 5 has the # sign which is not allowed.\nThe mail of user 6 does not have the leetcode domain.\nThe mail of user 7 starts with a period.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Users table:\n+---------+-----------+-------------------------+\n| user_id | name      | mail                    |\n+---------+-----------+-------------------------+\n| 1       | Winston   | winston@leetcode.com    |\n| 2       | Jonathan  | jonathanisgreat         |\n| 3       | Annabelle | bella-@leetcode.com     |\n| 4       | Sally     | sally.come@leetcode.com |\n| 5       | Marwan    | quarz#2020@leetcode.com |\n| 6       | David     | david69@gmail.com       |\n| 7       | Shapiro   | .shapo@leetcode.com     |\n+---------+-----------+-------------------------+",
+      "output": "+---------+-----------+-------------------------+\n| user_id | name      | mail                    |\n+---------+-----------+-------------------------+\n| 1       | Winston   | winston@leetcode.com    |\n| 3       | Annabelle | bella-@leetcode.com     |\n| 4       | Sally     | sally.come@leetcode.com |\n+---------+-----------+-------------------------+",
+      "explanation": "The mail of user 2 does not have a domain.\nThe mail of user 5 has the # sign which is not allowed.\nThe mail of user 6 does not have the leetcode domain.\nThe mail of user 7 starts with a period."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef valid_emails(users: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Users\":[\"user_id\",\"name\",\"mail\"]},\"rows\":{\"Users\":[[1,\"Winston\",\"winston@leetcode.com\"],[2,\"Jonathan\",\"jonathanisgreat\"],[3,\"Annabelle\",\"bella-@leetcode.com\"],[4,\"Sally\",\"sally.come@leetcode.com\"],[5,\"Marwan\",\"quarz#2020@leetcode.com\"],[6,\"David\",\"david69@gmail.com\"],[7,\"Shapiro\",\".shapo@leetcode.com\"]]}}",
+      "expectedOutput": "+---------+-----------+-------------------------+\n| user_id | name      | mail                    |\n+---------+-----------+-------------------------+\n| 1       | Winston   | winston@leetcode.com    |\n| 3       | Annabelle | bella-@leetcode.com     |\n| 4       | Sally     | sally.come@leetcode.com |\n+---------+-----------+-------------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Users\":[\"user_id\",\"name\",\"mail\"]},\"rows\":{\"Users\":[[1,\"Winston\",\"winston@leetcode.com\"],[2,\"Jonathan\",\"jonathanisgreat\"],[3,\"Annabelle\",\"bella-@leetcode.com\"],[4,\"Sally\",\"sally.come@leetcode.com\"],[5,\"Marwan\",\"quarz#2020@leetcode.com\"],[6,\"David\",\"david69@gmail.com\"],[7,\"Shapiro\",\".shapo@leetcode.com\"]]}}",
+      "expectedOutput": "+---------+-----------+-------------------------+\n| user_id | name      | mail                    |\n+---------+-----------+-------------------------+\n| 1       | Winston   | winston@leetcode.com    |\n| 3       | Annabelle | bella-@leetcode.com     |\n| 4       | Sally     | sally.come@leetcode.com |\n+---------+-----------+-------------------------+"
+    },
+    {
+      "input": "Users table:\n+---------+-----------+-------------------------+\n| user_id | name      | mail                    |\n+---------+-----------+-------------------------+\n| 1       | Winston   | winston@leetcode.com    |\n| 2       | Jonathan  | jonathanisgreat         |\n| 3       | Annabelle | bella-@leetcode.com     |\n| 4       | Sally     | sally.come@leetcode.com |\n| 5       | Marwan    | quarz#2020@leetcode.com |\n| 6       | David     | david69@gmail.com       |\n| 7       | Shapiro   | .shapo@leetcode.com     |\n+---------+-----------+-------------------------+",
+      "expectedOutput": "+---------+-----------+-------------------------+\n| user_id | name      | mail                    |\n+---------+-----------+-------------------------+\n| 1       | Winston   | winston@leetcode.com    |\n| 3       | Annabelle | bella-@leetcode.com     |\n| 4       | Sally     | sally.come@leetcode.com |\n+---------+-----------+-------------------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Users (user_id int, name varchar(30), mail varchar(50))\n\nTruncate table Users",
+  "sqlSetup": [
+    "insert into Users (user_id, name, mail) values ('1', 'Winston', 'winston@leetcode.com')",
+    "insert into Users (user_id, name, mail) values ('2', 'Jonathan', 'jonathanisgreat')",
+    "insert into Users (user_id, name, mail) values ('3', 'Annabelle', 'bella-@leetcode.com')",
+    "insert into Users (user_id, name, mail) values ('4', 'Sally', 'sally.come@leetcode.com')",
+    "insert into Users (user_id, name, mail) values ('5', 'Marwan', 'quarz#2020@leetcode.com')",
+    "insert into Users (user_id, name, mail) values ('6', 'David', 'david69@gmail.com')",
+    "insert into Users (user_id, name, mail) values ('7', 'Shapiro', '.shapo@leetcode.com')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-users-with-valid-e-mails/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.750Z",
+    "sourceUpdatedAt": null
+  }
+}

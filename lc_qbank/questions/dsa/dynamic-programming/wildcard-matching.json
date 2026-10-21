@@ -1,0 +1,166 @@
+{
+  "id": "44",
+  "slug": "wildcard-matching",
+  "title": "Wildcard Matching",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Greedy",
+    "Recursion"
+  ],
+  "statement": "Given an input string (`s`) and a pattern (`p`), implement wildcard pattern matching with support for `'?'` and `'*'` where:\n\n*   `'?'` Matches any single character.\n*   `'*'` Matches any sequence of characters (including the empty sequence).\n\nThe matching should cover the **entire** input string (not partial).\n\n**Example 1:**\n\n```\nInput: s = \"aa\", p = \"a\"\nOutput: false\nExplanation: \"a\" does not match the entire string \"aa\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"aa\", p = \"*\"\nOutput: true\nExplanation: '*' matches any sequence.\n```\n\n**Example 3:**\n\n```\nInput: s = \"cb\", p = \"?a\"\nOutput: false\nExplanation: '?' matches 'c', but the second letter is 'a', which does not match 'b'.\n```\n\n**Constraints:**\n\n*   `0 <= s.length, p.length <= 2000`\n*   `s` contains only lowercase English letters.\n*   `p` contains only lowercase English letters, `'?'` or `'*'`.",
+  "constraints": [
+    "0 <= s.length, p.length <= 2000",
+    "s contains only lowercase English letters.",
+    "p contains only lowercase English letters, '?' or '*'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aa\", p = \"a\"",
+      "output": "false",
+      "explanation": "\"a\" does not match the entire string \"aa\"."
+    },
+    {
+      "input": "s = \"aa\", p = \"*\"",
+      "output": "true",
+      "explanation": " '*' matches any sequence."
+    },
+    {
+      "input": "s = \"cb\", p = \"?a\"",
+      "output": "false",
+      "explanation": " '?' matches 'c', but the second letter is 'a', which does not match 'b'."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isMatch(string s, string p) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isMatch(String s, String p) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isMatch(self, s: str, p: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isMatch(self, s, p):\n        \"\"\"\n        :type s: str\n        :type p: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} p\n * @return {boolean}\n */\nvar isMatch = function(s, p) {\n    \n};",
+    "typescript": "function isMatch(s: string, p: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsMatch(string s, string p) {\n        \n    }\n}",
+    "c": "bool isMatch(char* s, char* p) {\n    \n}",
+    "golang": "func isMatch(s string, p string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isMatch(s: String, p: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isMatch(_ s: String, _ p: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_match(s: String, p: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} p\n# @return {Boolean}\ndef is_match(s, p)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $p\n     * @return Boolean\n     */\n    function isMatch($s, $p) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isMatch(String s, String p) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isMatch(s: String, p: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_match(s :: String.t, p :: String.t) :: boolean\n  def is_match(s, p) do\n    \n  end\nend",
+    "erlang": "-spec is_match(S :: unicode:unicode_binary(), P :: unicode:unicode_binary()) -> boolean().\nis_match(S, P) ->\n  .",
+    "racket": "(define/contract (is-match s p)\n  (-> string? string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aa\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n\"*\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"cb\"\n\"?a\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aa\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n\"*\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"cb\"\n\"?a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"\n\"a\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaaa\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"AA\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aA\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"0\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"121\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"racecar\"\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"hello\"\n\"a\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/wildcard-matching/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.747Z",
+    "sourceUpdatedAt": null
+  }
+}

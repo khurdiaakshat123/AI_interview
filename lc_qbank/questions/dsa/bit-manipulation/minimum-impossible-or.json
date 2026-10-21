@@ -1,0 +1,158 @@
+{
+  "id": "2568",
+  "slug": "minimum-impossible-or",
+  "title": "Minimum Impossible OR",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Brainteaser"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums`.\n\nWe say that an integer x is **expressible** from `nums` if there exist some integers `0 <= index_(1) < index_(2) < ... < index_(k) < nums.length` for which `nums[index_(1)] | nums[index_(2)] | ... | nums[index_(k)] = x`. In other words, an integer is expressible if it can be written as the bitwise OR of some subsequence of `nums`.\n\nReturn _the minimum **positive non-zero integer** that is not_ _expressible from_ `nums`.\n\n**Example 1:**\n\n```\nInput: nums = [2,1]\nOutput: 4\nExplanation: 1 and 2 are already present in the array. We know that 3 is expressible, since nums[0] | nums[1] = 2 | 1 = 3. Since 4 is not expressible, we return 4.\n```\n\n**Example 2:**\n\n```\nInput: nums = [5,3,2]\nOutput: 1\nExplanation: We can show that 1 is the smallest number that is not expressible.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,1]",
+      "output": "4",
+      "explanation": "1 and 2 are already present in the array. We know that 3 is expressible, since nums[0] | nums[1] = 2 | 1 = 3. Since 4 is not expressible, we return 4."
+    },
+    {
+      "input": "nums = [5,3,2]",
+      "output": "1",
+      "explanation": "We can show that 1 is the smallest number that is not expressible."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minImpossibleOR(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minImpossibleOR(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minImpossibleOR(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minImpossibleOR(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minImpossibleOR = function(nums) {\n    \n};",
+    "typescript": "function minImpossibleOR(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinImpossibleOR(int[] nums) {\n        \n    }\n}",
+    "c": "int minImpossibleOR(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minImpossibleOR(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minImpossibleOR(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minImpossibleOR(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_impossible_or(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef min_impossible_or(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minImpossibleOR($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minImpossibleOR(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minImpossibleOR(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_impossible_or(nums :: [integer]) :: integer\n  def min_impossible_or(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_impossible_or(Nums :: [integer()]) -> integer().\nmin_impossible_or(Nums) ->\n  .",
+    "racket": "(define/contract (min-impossible-or nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[5,3,2]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[5,3,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1,2,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-2,-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,0]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Think about forming numbers in the powers of 2 using their bit representation.",
+    "The minimum power of 2 not present in the array will be the first number that could not be expressed using the given operation."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-impossible-or/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.962Z",
+    "sourceUpdatedAt": null
+  }
+}

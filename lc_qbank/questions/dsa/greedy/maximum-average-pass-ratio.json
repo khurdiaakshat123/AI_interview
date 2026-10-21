@@ -1,0 +1,162 @@
+{
+  "id": "1792",
+  "slug": "maximum-average-pass-ratio",
+  "title": "Maximum Average Pass Ratio",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "There is a school that has classes of students and each class will be having a final exam. You are given a 2D integer array `classes`, where `classes[i] = [pass_(i), total_(i)]`. You know beforehand that in the `i^(th)` class, there are `total_(i)` total students, but only `pass_(i)` number of students will pass the exam.\n\nYou are also given an integer `extraStudents`. There are another `extraStudents` brilliant students that are **guaranteed** to pass the exam of any class they are assigned to. You want to assign each of the `extraStudents` students to a class in a way that **maximizes** the **average** pass ratio across **all** the classes.\n\nThe **pass ratio** of a class is equal to the number of students of the class that will pass the exam divided by the total number of students of the class. The **average pass ratio** is the sum of pass ratios of all the classes divided by the number of the classes.\n\nReturn _the **maximum** possible average pass ratio after assigning the_ `extraStudents` _students._ Answers within `10^(-5)` of the actual answer will be accepted.\n\n**Example 1:**\n\n```\nextraStudents\n```\n\n**Example 2:**\n\n```\nextraStudents\n```\n\n**Constraints:**\n\n*   `1 <= classes.length <= 10^(5)`\n*   `classes[i].length == 2`\n*   `1 <= pass_(i) <= total_(i) <= 10^(5)`\n*   `1 <= extraStudents <= 10^(5)`",
+  "constraints": [
+    "1 <= classes.length <= 105",
+    "classes[i].length == 2",
+    "1 <= passi <= totali <= 105",
+    "1 <= extraStudents <= 105"
+  ],
+  "examples": [
+    {
+      "input": "classes = [[1,2],[3,5],[2,2]], extraStudents = 2",
+      "output": "0.78333",
+      "explanation": "You can assign the two extra students to the first class. The average pass ratio will be equal to (3/4 + 3/5 + 2/2) / 3 = 0.78333."
+    },
+    {
+      "input": "classes = [[2,4],[3,9],[4,5],[2,10]], extraStudents = 4",
+      "output": "0.53485",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    double maxAverageRatio(vector<vector<int>>& classes, int extraStudents) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double maxAverageRatio(int[][] classes, int extraStudents) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxAverageRatio(self, classes: list[list[int]], extraStudents: int) -> float:\n        ",
+    "python": "class Solution(object):\n    def maxAverageRatio(self, classes, extraStudents):\n        \"\"\"\n        :type classes: List[List[int]]\n        :type extraStudents: int\n        :rtype: float\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} classes\n * @param {number} extraStudents\n * @return {number}\n */\nvar maxAverageRatio = function(classes, extraStudents) {\n    \n};",
+    "typescript": "function maxAverageRatio(classes: number[][], extraStudents: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public double MaxAverageRatio(int[][] classes, int extraStudents) {\n        \n    }\n}",
+    "c": "double maxAverageRatio(int** classes, int classesSize, int* classesColSize, int extraStudents) {\n    \n}",
+    "golang": "func maxAverageRatio(classes [][]int, extraStudents int) float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxAverageRatio(classes: Array<IntArray>, extraStudents: Int): Double {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxAverageRatio(_ classes: [[Int]], _ extraStudents: Int) -> Double {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_average_ratio(classes: Vec<Vec<i32>>, extra_students: i32) -> f64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} classes\n# @param {Integer} extra_students\n# @return {Float}\ndef max_average_ratio(classes, extra_students)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $classes\n     * @param Integer $extraStudents\n     * @return Float\n     */\n    function maxAverageRatio($classes, $extraStudents) {\n        \n    }\n}",
+    "dart": "class Solution {\n  double maxAverageRatio(List<List<int>> classes, int extraStudents) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxAverageRatio(classes: Array[Array[Int]], extraStudents: Int): Double = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_average_ratio(classes :: [[integer]], extra_students :: integer) :: float\n  def max_average_ratio(classes, extra_students) do\n    \n  end\nend",
+    "erlang": "-spec max_average_ratio(Classes :: [[integer()]], ExtraStudents :: integer()) -> float().\nmax_average_ratio(Classes, ExtraStudents) ->\n  .",
+    "racket": "(define/contract (max-average-ratio classes extraStudents)\n  (-> (listof (listof exact-integer?)) exact-integer? flonum?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,2],[3,5],[2,2]]\n2",
+      "expectedOutput": "0.78333"
+    },
+    {
+      "input": "[[2,4],[3,9],[4,5],[2,10]]\n4",
+      "expectedOutput": "0.53485"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,2],[3,5],[2,2]]\n2",
+      "expectedOutput": "0.78333"
+    },
+    {
+      "input": "[[2,4],[3,9],[4,5],[2,10]]\n4",
+      "expectedOutput": "0.53485"
+    },
+    {
+      "input": "[[1,2],[3,5],[2,2]]\n0",
+      "expectedOutput": "0.7"
+    },
+    {
+      "input": "[[1,2],[3,5],[2,2]]\n1",
+      "expectedOutput": "0.75556"
+    },
+    {
+      "input": "[[1,2],[3,5],[2,2]]\n3",
+      "expectedOutput": "0.80556"
+    },
+    {
+      "input": "[[1,2],[3,5],[2,2]]\n4",
+      "expectedOutput": "0.82222"
+    },
+    {
+      "input": "[[1,2],[3,5],[2,2]]\n5",
+      "expectedOutput": "0.8381"
+    },
+    {
+      "input": "[[1,2],[3,5],[2,2]]\n6",
+      "expectedOutput": "0.85"
+    },
+    {
+      "input": "[[1,2],[3,5],[2,2]]\n7",
+      "expectedOutput": "0.86111"
+    },
+    {
+      "input": "[[1,2],[3,5],[2,2]]\n-1",
+      "expectedOutput": "0.7"
+    },
+    {
+      "input": "[[1,2],[3,5],[2,2]]\n-2",
+      "expectedOutput": "0.7"
+    },
+    {
+      "input": "[[2,4],[3,9],[4,5],[2,10]]\n0",
+      "expectedOutput": "0.45833"
+    },
+    {
+      "input": "[[2,4],[3,9],[4,5],[2,10]]\n1",
+      "expectedOutput": "0.48333"
+    },
+    {
+      "input": "[[2,4],[3,9],[4,5],[2,10]]\n2",
+      "expectedOutput": "0.50152"
+    },
+    {
+      "input": "[[2,4],[3,9],[4,5],[2,10]]\n3",
+      "expectedOutput": "0.51818"
+    },
+    {
+      "input": "[[2,4],[3,9],[4,5],[2,10]]\n5",
+      "expectedOutput": "0.55"
+    },
+    {
+      "input": "[[2,4],[3,9],[4,5],[2,10]]\n6",
+      "expectedOutput": "0.56364"
+    },
+    {
+      "input": "[[2,4],[3,9],[4,5],[2,10]]\n7",
+      "expectedOutput": "0.57646"
+    },
+    {
+      "input": "[[2,4],[3,9],[4,5],[2,10]]\n8",
+      "expectedOutput": "0.58836"
+    },
+    {
+      "input": "[[2,4],[3,9],[4,5],[2,10]]\n9",
+      "expectedOutput": "0.59973"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Pay attention to how much the pass ratio changes when you add a student to the class. If you keep adding students, what happens to the change in pass ratio? The more students you add to a class, the smaller the change in pass ratio becomes.",
+    "Since the change in the pass ratio is always decreasing with the more students you add, then the very first student you add to each class is the one that makes the biggest change in the pass ratio.",
+    "Because each class's pass ratio is weighted equally, it's always optimal to put the student in the class that makes the biggest change among all the other classes.",
+    "Keep a max heap of the current class sizes and order them by the change in pass ratio. For each extra student, take the top of the heap, update the class size, and put it back in the heap."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-average-pass-ratio/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.531Z",
+    "sourceUpdatedAt": null
+  }
+}

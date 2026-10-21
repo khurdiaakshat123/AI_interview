@@ -1,0 +1,161 @@
+{
+  "id": "1557",
+  "slug": "minimum-number-of-vertices-to-reach-all-nodes",
+  "title": "Minimum Number of Vertices to Reach All Nodes",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Medium",
+  "tags": [
+    "Graph Theory",
+    "Directed Acyclic Graph"
+  ],
+  "statement": "Given a **directed acyclic graph**, with `n` vertices numbered from `0` to `n-1`, and an array `edges` where `edges[i] = [from_(i), to_(i)]` represents a directed edge from node `from_(i)` to node `to_(i)`.\n\nFind _the smallest set of vertices from which all nodes in the graph are reachable_. It's guaranteed that a unique solution exists.\n\nNotice that you can return the vertices in any order.\n\n**Example 1:**\n\n![](./assets/minimum-number-of-vertices-to-reach-all-nodes-1.png)\n\n```\nInput: n = 6, edges = [[0,1],[0,2],[2,5],[3,4],[4,2]]\nOutput: [0,3]\nExplanation: It's not possible to reach all the nodes from a single vertex. From 0 we can reach [0,1,2,5]. From 3 we can reach [3,4,2,5]. So we output [0,3].\n```\n\n**Example 2:**\n\n![](./assets/minimum-number-of-vertices-to-reach-all-nodes-2.png)\n\n```\nInput: n = 5, edges = [[0,1],[2,1],[3,1],[1,4],[2,4]]\nOutput: [0,2,3]\nExplanation: Notice that vertices 0, 3 and 2 are not reachable from any other node, so we must include them. Also any of these vertices can reach nodes 1 and 4.\n```\n\n**Constraints:**\n\n*   `2 <= n <= 10^5`\n*   `1 <= edges.length <= min(10^5, n * (n - 1) / 2)`\n*   `edges[i].length == 2`\n*   `0 <= from_(i,) to_(i) < n`\n*   All pairs `(from_(i), to_(i))` are distinct.",
+  "constraints": [
+    "2 <= n <= 10^5",
+    "1 <= edges.length <= min(10^5, n * (n - 1) / 2)",
+    "edges[i].length == 2",
+    "0 <= fromi, toi < n",
+    "All pairs (fromi, toi) are distinct."
+  ],
+  "examples": [
+    {
+      "input": "n = 6, edges = [[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "output": "[0,3]",
+      "explanation": "It's not possible to reach all the nodes from a single vertex. From 0 we can reach [0,1,2,5]. From 3 we can reach [3,4,2,5]. So we output [0,3]."
+    },
+    {
+      "input": "n = 5, edges = [[0,1],[2,1],[3,1],[1,4],[2,4]]",
+      "output": "[0,2,3]",
+      "explanation": "Notice that vertices 0, 3 and 2 are not reachable from any other node, so we must include them. Also any of these vertices can reach nodes 1 and 4."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findSmallestSetOfVertices(int n, vector<vector<int>>& edges) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> findSmallestSetOfVertices(int n, List<List<Integer>> edges) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findSmallestSetOfVertices(self, n: int, edges: list[list[int]]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def findSmallestSetOfVertices(self, n, edges):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @return {number[]}\n */\nvar findSmallestSetOfVertices = function(n, edges) {\n    \n};",
+    "typescript": "function findSmallestSetOfVertices(n: number, edges: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> FindSmallestSetOfVertices(int n, IList<IList<int>> edges) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findSmallestSetOfVertices(int n, int** edges, int edgesSize, int* edgesColSize, int* returnSize) {\n    \n}",
+    "golang": "func findSmallestSetOfVertices(n int, edges [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findSmallestSetOfVertices(n: Int, edges: List<List<Int>>): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findSmallestSetOfVertices(_ n: Int, _ edges: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_smallest_set_of_vertices(n: i32, edges: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @return {Integer[]}\ndef find_smallest_set_of_vertices(n, edges)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @return Integer[]\n     */\n    function findSmallestSetOfVertices($n, $edges) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findSmallestSetOfVertices(int n, List<List<int>> edges) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findSmallestSetOfVertices(n: Int, edges: List[List[Int]]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_smallest_set_of_vertices(n :: integer, edges :: [[integer]]) :: [integer]\n  def find_smallest_set_of_vertices(n, edges) do\n    \n  end\nend",
+    "erlang": "-spec find_smallest_set_of_vertices(N :: integer(), Edges :: [[integer()]]) -> [integer()].\nfind_smallest_set_of_vertices(N, Edges) ->\n  .",
+    "racket": "(define/contract (find-smallest-set-of-vertices n edges)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "6\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[0,3]"
+    },
+    {
+      "input": "5\n[[0,1],[2,1],[3,1],[1,4],[2,4]]",
+      "expectedOutput": "[0,2,3]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "6\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[0,3]"
+    },
+    {
+      "input": "5\n[[0,1],[2,1],[3,1],[1,4],[2,4]]",
+      "expectedOutput": "[0,2,3]"
+    },
+    {
+      "input": "0\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "1\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "2\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "3\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "4\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[0,3]"
+    },
+    {
+      "input": "5\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[0,3]"
+    },
+    {
+      "input": "7\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[0,3,6]"
+    },
+    {
+      "input": "8\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[0,3,6,7]"
+    },
+    {
+      "input": "9\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[0,3,6,7,8]"
+    },
+    {
+      "input": "-1\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "-2\n[[0,1],[0,2],[2,5],[3,4],[4,2]]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "0\n[[0,1],[2,1],[3,1],[1,4],[2,4]]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "1\n[[0,1],[2,1],[3,1],[1,4],[2,4]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "2\n[[0,1],[2,1],[3,1],[1,4],[2,4]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "3\n[[0,1],[2,1],[3,1],[1,4],[2,4]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "4\n[[0,1],[2,1],[3,1],[1,4],[2,4]]",
+      "expectedOutput": "[0,2,3]"
+    },
+    {
+      "input": "6\n[[0,1],[2,1],[3,1],[1,4],[2,4]]",
+      "expectedOutput": "[0,2,3,5]"
+    },
+    {
+      "input": "7\n[[0,1],[2,1],[3,1],[1,4],[2,4]]",
+      "expectedOutput": "[0,2,3,5,6]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "A node that does not have any incoming edge can only be reached by itself.",
+    "Any other node with incoming edges can be reached from some other node.",
+    "We only have to count the number of nodes with zero incoming edges."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.514Z",
+    "sourceUpdatedAt": null
+  }
+}

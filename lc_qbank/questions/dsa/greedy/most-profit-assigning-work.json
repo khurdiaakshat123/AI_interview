@@ -1,0 +1,160 @@
+{
+  "id": "826",
+  "slug": "most-profit-assigning-work",
+  "title": "Most Profit Assigning Work",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You have `n` jobs and `m` workers. You are given three arrays: `difficulty`, `profit`, and `worker` where:\n\n*   `difficulty[i]` and `profit[i]` are the difficulty and the profit of the `i^(th)` job, and\n*   `worker[j]` is the ability of `j^(th)` worker (i.e., the `j^(th)` worker can only complete a job with difficulty at most `worker[j]`).\n\nEvery worker can be assigned **at most one job**, but one job can be **completed multiple times**.\n\n*   For example, if three workers attempt the same job that pays `$1`, then the total profit will be `$3`. If a worker cannot complete any job, their profit is `$0`.\n\nReturn the maximum profit we can achieve after assigning the workers to the jobs.\n\n**Example 1:**\n\n```\nInput: difficulty = [2,4,6,8,10], profit = [10,20,30,40,50], worker = [4,5,6,7]\nOutput: 100\nExplanation: Workers are assigned jobs of difficulty [4,4,6,6] and they get a profit of [20,20,30,30] separately.\n```\n\n**Example 2:**\n\n```\nInput: difficulty = [85,47,57], profit = [24,66,99], worker = [40,25,25]\nOutput: 0\n```\n\n**Constraints:**\n\n*   `n == difficulty.length`\n*   `n == profit.length`\n*   `m == worker.length`\n*   `1 <= n, m <= 10^(4)`\n*   `1 <= difficulty[i], profit[i], worker[i] <= 10^(5)`",
+  "constraints": [
+    "n == difficulty.length",
+    "n == profit.length",
+    "m == worker.length",
+    "1 <= n, m <= 104",
+    "1 <= difficulty[i], profit[i], worker[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "difficulty = [2,4,6,8,10], profit = [10,20,30,40,50], worker = [4,5,6,7]",
+      "output": "100",
+      "explanation": "Workers are assigned jobs of difficulty [4,4,6,6] and they get a profit of [20,20,30,30] separately."
+    },
+    {
+      "input": "difficulty = [85,47,57], profit = [24,66,99], worker = [40,25,25]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxProfitAssignment(vector<int>& difficulty, vector<int>& profit, vector<int>& worker) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxProfitAssignment(int[] difficulty, int[] profit, int[] worker) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProfitAssignment(self, difficulty: list[int], profit: list[int], worker: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxProfitAssignment(self, difficulty, profit, worker):\n        \"\"\"\n        :type difficulty: List[int]\n        :type profit: List[int]\n        :type worker: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} difficulty\n * @param {number[]} profit\n * @param {number[]} worker\n * @return {number}\n */\nvar maxProfitAssignment = function(difficulty, profit, worker) {\n    \n};",
+    "typescript": "function maxProfitAssignment(difficulty: number[], profit: number[], worker: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxProfitAssignment(int[] difficulty, int[] profit, int[] worker) {\n        \n    }\n}",
+    "c": "int maxProfitAssignment(int* difficulty, int difficultySize, int* profit, int profitSize, int* worker, int workerSize) {\n    \n}",
+    "golang": "func maxProfitAssignment(difficulty []int, profit []int, worker []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProfitAssignment(difficulty: IntArray, profit: IntArray, worker: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProfitAssignment(_ difficulty: [Int], _ profit: [Int], _ worker: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_profit_assignment(difficulty: Vec<i32>, profit: Vec<i32>, worker: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} difficulty\n# @param {Integer[]} profit\n# @param {Integer[]} worker\n# @return {Integer}\ndef max_profit_assignment(difficulty, profit, worker)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $difficulty\n     * @param Integer[] $profit\n     * @param Integer[] $worker\n     * @return Integer\n     */\n    function maxProfitAssignment($difficulty, $profit, $worker) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxProfitAssignment(List<int> difficulty, List<int> profit, List<int> worker) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProfitAssignment(difficulty: Array[Int], profit: Array[Int], worker: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_profit_assignment(difficulty :: [integer], profit :: [integer], worker :: [integer]) :: integer\n  def max_profit_assignment(difficulty, profit, worker) do\n    \n  end\nend",
+    "erlang": "-spec max_profit_assignment(Difficulty :: [integer()], Profit :: [integer()], Worker :: [integer()]) -> integer().\nmax_profit_assignment(Difficulty, Profit, Worker) ->\n  .",
+    "racket": "(define/contract (max-profit-assignment difficulty profit worker)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,4,6,8,10]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "[85,47,57]\n[24,66,99]\n[40,25,25]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,4,6,8,10]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "[85,47,57]\n[24,66,99]\n[40,25,25]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,4]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "80"
+    },
+    {
+      "input": "[6,8,10]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[2]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "40"
+    },
+    {
+      "input": "[2,10]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "40"
+    },
+    {
+      "input": "[10,8,6,4,2]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "200"
+    },
+    {
+      "input": "[2,2,2,2,2]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "200"
+    },
+    {
+      "input": "[2,4,6,8,10,2,4,6,8,10]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "[4,8,12,16,20]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "40"
+    },
+    {
+      "input": "[3,5,7,9,11]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "80"
+    },
+    {
+      "input": "[1,3,5,7,9]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "120"
+    },
+    {
+      "input": "[-2,-4,-6,-8,-10]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "200"
+    },
+    {
+      "input": "[0,0,0,0]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "160"
+    },
+    {
+      "input": "[1,1,1,1]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "160"
+    },
+    {
+      "input": "[0]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "40"
+    },
+    {
+      "input": "[1]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "40"
+    },
+    {
+      "input": "[-1]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "40"
+    },
+    {
+      "input": "[0,0]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "80"
+    },
+    {
+      "input": "[1,2]\n[10,20,30,40,50]\n[4,5,6,7]",
+      "expectedOutput": "80"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/most-profit-assigning-work/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.481Z",
+    "sourceUpdatedAt": null
+  }
+}

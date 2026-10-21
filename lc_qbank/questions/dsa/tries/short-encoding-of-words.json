@@ -1,0 +1,157 @@
+{
+  "id": "820",
+  "slug": "short-encoding-of-words",
+  "title": "Short Encoding of Words",
+  "category": "dsa",
+  "subcategory": "tries",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie"
+  ],
+  "statement": "A **valid encoding** of an array of `words` is any reference string `s` and array of indices `indices` such that:\n\n*   `words.length == indices.length`\n*   The reference string `s` ends with the `'#'` character.\n*   For each index `indices[i]`, the **substring** of `s` starting from `indices[i]` and up to (but not including) the next `'#'` character is equal to `words[i]`.\n\nGiven an array of `words`, return _the **length of the shortest reference string**_ `s` _possible of any **valid encoding** of_ `words`_._\n\n**Example 1:**\n\n```\n\"time#bell#\" and indices = [0, 2, 5\n```\n\n**Example 2:**\n\n```\nInput: words = [\"t\"]\nOutput: 2\nExplanation: A valid encoding would be s = \"t#\" and indices = [0].\n```\n\n**Constraints:**\n\n*   `1 <= words.length <= 2000`\n*   `1 <= words[i].length <= 7`\n*   `words[i]` consists of only lowercase letters.",
+  "constraints": [
+    "1 <= words.length <= 2000",
+    "1 <= words[i].length <= 7",
+    "words[i] consists of only lowercase letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"time\", \"me\", \"bell\"]",
+      "output": "10",
+      "explanation": "A valid encoding would be s = \"time#bell#\" and indices = [0, 2, 5].\nwords[0] = \"time\", the substring of s starting from indices[0] = 0 to the next '#' is underlined in \"time#bell#\"\nwords[1] = \"me\", the substring of s starting from indices[1] = 2 to the next '#' is underlined in \"time#bell#\"\nwords[2] = \"bell\", the substring of s starting from indices[2] = 5 to the next '#' is underlined in \"time#bell#\""
+    },
+    {
+      "input": "words = [\"t\"]",
+      "output": "2",
+      "explanation": "A valid encoding would be s = \"t#\" and indices = [0]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumLengthEncoding(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumLengthEncoding(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumLengthEncoding(self, words: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumLengthEncoding(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {number}\n */\nvar minimumLengthEncoding = function(words) {\n    \n};",
+    "typescript": "function minimumLengthEncoding(words: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumLengthEncoding(string[] words) {\n        \n    }\n}",
+    "c": "int minimumLengthEncoding(char** words, int wordsSize) {\n    \n}",
+    "golang": "func minimumLengthEncoding(words []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumLengthEncoding(words: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumLengthEncoding(_ words: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_length_encoding(words: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Integer}\ndef minimum_length_encoding(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Integer\n     */\n    function minimumLengthEncoding($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumLengthEncoding(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumLengthEncoding(words: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_length_encoding(words :: [String.t]) :: integer\n  def minimum_length_encoding(words) do\n    \n  end\nend",
+    "erlang": "-spec minimum_length_encoding(Words :: [unicode:unicode_binary()]) -> integer().\nminimum_length_encoding(Words) ->\n  .",
+    "racket": "(define/contract (minimum-length-encoding words)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"time\",\"me\",\"bell\"]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[\"t\"]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"time\",\"me\",\"bell\"]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[\"t\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"time\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"me\",\"bell\"]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"time\",\"bell\"]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[\"time\",\"me\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"bell\",\"me\",\"time\"]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[\"time\",\"time\",\"time\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"time\",\"me\",\"bell\",\"time\",\"me\",\"bell\"]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "24"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]",
+      "expectedOutput": "8"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/short-encoding-of-words/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:28.357Z",
+    "sourceUpdatedAt": null
+  }
+}

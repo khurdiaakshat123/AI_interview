@@ -1,0 +1,148 @@
+{
+  "id": "810",
+  "slug": "chalkboard-xor-game",
+  "title": "Chalkboard XOR Game",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Bit Manipulation",
+    "Brainteaser",
+    "Game Theory",
+    "Zero-Sum Game",
+    "Impartial Game"
+  ],
+  "statement": "You are given an array of integers `nums` represents the numbers written on a chalkboard.\n\nAlice and Bob take turns erasing exactly one number from the chalkboard, with Alice starting first. If erasing a number causes the bitwise XOR of all the elements of the chalkboard to become `0`, then that player loses. The bitwise XOR of one element is that element itself, and the bitwise XOR of no elements is `0`.\n\nAlso, if any player starts their turn with the bitwise XOR of all the elements of the chalkboard equal to `0`, then that player wins.\n\nReturn `true` _if and only if Alice wins the game, assuming both players play optimally_.\n\n**Example 1:**\n\n```\nInput: nums = [1,1,2]\nOutput: false\nExplanation: \nAlice has two choices: erase 1 or erase 2. \nIf she erases 1, the nums array becomes [1, 2]. The bitwise XOR of all the elements of the chalkboard is 1 XOR 2 = 3. Now Bob can remove any element he wants, because Alice will be the one to erase the last element and she will lose. \nIf Alice erases 2 first, now nums become [1, 1]. The bitwise XOR of all the elements of the chalkboard is 1 XOR 1 = 0. Alice will lose.\n```\n\n**Example 2:**\n\n```\nInput: nums = [0,1]\nOutput: true\n```\n\n**Example 3:**\n\n```\nInput: nums = [1,2,3]\nOutput: true\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 1000`\n*   `0 <= nums[i] < 2^(16)`",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "0 <= nums[i] < 216"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,1,2]",
+      "output": "false",
+      "explanation": "Alice has two choices: erase 1 or erase 2. \nIf she erases 1, the nums array becomes [1, 2]. The bitwise XOR of all the elements of the chalkboard is 1 XOR 2 = 3. Now Bob can remove any element he wants, because Alice will be the one to erase the last element and she will lose. \nIf Alice erases 2 first, now nums become [1, 1]. The bitwise XOR of all the elements of the chalkboard is 1 XOR 1 = 0. Alice will lose."
+    },
+    {
+      "input": "nums = [0,1]",
+      "output": "true",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,2,3]",
+      "output": "true",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool xorGame(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean xorGame(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def xorGame(self, nums: list[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def xorGame(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar xorGame = function(nums) {\n    \n};",
+    "typescript": "function xorGame(nums: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool XorGame(int[] nums) {\n        \n    }\n}",
+    "c": "bool xorGame(int* nums, int numsSize) {\n    \n}",
+    "golang": "func xorGame(nums []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun xorGame(nums: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func xorGame(_ nums: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn xor_game(nums: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Boolean}\ndef xor_game(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Boolean\n     */\n    function xorGame($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool xorGame(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def xorGame(nums: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec xor_game(nums :: [integer]) :: boolean\n  def xor_game(nums) do\n    \n  end\nend",
+    "erlang": "-spec xor_game(Nums :: [integer()]) -> boolean().\nxor_game(Nums) ->\n  .",
+    "racket": "(define/contract (xor-game nums)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,1,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[0,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0,1,0,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[-1,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0,-1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[100,-100]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,1,2,2,3,3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "true"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/chalkboard-xor-game/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.980Z",
+    "sourceUpdatedAt": null
+  }
+}

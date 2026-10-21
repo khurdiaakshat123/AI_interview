@@ -1,0 +1,156 @@
+{
+  "id": "3833",
+  "slug": "count-dominant-indices",
+  "title": "Count Dominant Indices",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Enumeration"
+  ],
+  "statement": "You are given an integer array `nums` of length `n`.\n\nAn element at index `i` is called **dominant** if: `nums[i] > average(nums[i + 1], nums[i + 2], ..., nums[n - 1])`\n\nYour task is to count the number of indices `i` that are **dominant**.\n\nThe **average** of a set of numbers is the value obtained by adding all the numbers together and dividing the sum by the total number of numbers.\n\n**Note**: The **rightmost** element of any array is **not** **dominant**.\n\n**Example 1:**\n\n**Input:** nums = \\[5,4,3\\]\n\n**Output:** 2\n\n**Explanation:**\n\n*   At index `i = 0`, the value 5 is dominant as `5 > average(4, 3) = 3.5`.\n*   At index `i = 1`, the value 4 is dominant over the subarray `[3]`.\n*   Index `i = 2` is not dominant as there are no elements to its right. Thus, the answer is 2.\n\n**Example 2:**\n\n**Input:** nums = \\[4,1,2\\]\n\n**Output:** 1\n\n**Explanation:**\n\n*   At index `i = 0`, the value 4 is dominant over the subarray `[1, 2]`.\n*   At index `i = 1`, the value 1 is not dominant.\n*   Index `i = 2` is not dominant as there are no elements to its right. Thus, the answer is 1.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 100`\n*   `1 <= nums[i] <= 100`​​​​​​​",
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "1 <= nums[i] <= 100​​​​​​​"
+  ],
+  "examples": [
+    {
+      "input": "nums = [5,4,3]",
+      "output": "2",
+      "explanation": "At index i = 0, the value 5 is dominant as 5 > average(4, 3) = 3.5.\n\tAt index i = 1, the value 4 is dominant over the subarray [3].\n\tIndex i = 2 is not dominant as there are no elements to its right. Thus, the answer is 2."
+    },
+    {
+      "input": "nums = [4,1,2]",
+      "output": "1",
+      "explanation": "At index i = 0, the value 4 is dominant over the subarray [1, 2].\n\tAt index i = 1, the value 1 is not dominant.\n\tIndex i = 2 is not dominant as there are no elements to its right. Thus, the answer is 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int dominantIndices(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int dominantIndices(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def dominantIndices(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def dominantIndices(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar dominantIndices = function(nums) {\n    \n};",
+    "typescript": "function dominantIndices(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int DominantIndices(int[] nums) {\n        \n    }\n}",
+    "c": "int dominantIndices(int* nums, int numsSize) {\n    \n}",
+    "golang": "func dominantIndices(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun dominantIndices(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func dominantIndices(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn dominant_indices(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef dominant_indices(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function dominantIndices($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int dominantIndices(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def dominantIndices(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec dominant_indices(nums :: [integer]) :: integer\n  def dominant_indices(nums) do\n    \n  end\nend",
+    "erlang": "-spec dominant_indices(Nums :: [integer()]) -> integer().\ndominant_indices(Nums) ->\n  .",
+    "racket": "(define/contract (dominant-indices nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[5,4,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,1,2]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[5,4,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,4,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,5,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,4,3,5,4,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[10,8,6]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[6,5,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,3,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-5,-4,-3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Simulate as described"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-dominant-indices/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.092Z",
+    "sourceUpdatedAt": null
+  }
+}

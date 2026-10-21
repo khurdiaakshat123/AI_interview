@@ -1,0 +1,167 @@
+{
+  "id": "1223",
+  "slug": "dice-roll-simulation",
+  "title": "Dice Roll Simulation",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "A die simulator generates a random number from `1` to `6` for each roll. You introduced a constraint to the generator such that it cannot roll the number `i` more than `rollMax[i]` (**1-indexed**) consecutive times.\n\nGiven an array of integers `rollMax` and an integer `n`, return _the number of distinct sequences that can be obtained with exact_ `n` _rolls_. Since the answer may be too large, return it **modulo** `10^(9) + 7`.\n\nTwo sequences are considered different if at least one element differs from each other.\n\n**Example 1:**\n\n```\nInput: n = 2, rollMax = [1,1,2,2,2,3]\nOutput: 34\nExplanation: There will be 2 rolls of die, if there are no constraints on the die, there are 6 * 6 = 36 possible combinations. In this case, looking at rollMax array, the numbers 1 and 2 appear at most once consecutively, therefore sequences (1,1) and (2,2) cannot occur, so the final answer is 36-2 = 34.\n```\n\n**Example 2:**\n\n```\nInput: n = 2, rollMax = [1,1,1,1,1,1]\nOutput: 30\n```\n\n**Example 3:**\n\n```\nInput: n = 3, rollMax = [1,1,1,2,2,3]\nOutput: 181\n```\n\n**Constraints:**\n\n*   `1 <= n <= 5000`\n*   `rollMax.length == 6`\n*   `1 <= rollMax[i] <= 15`",
+  "constraints": [
+    "1 <= n <= 5000",
+    "rollMax.length == 6",
+    "1 <= rollMax[i] <= 15"
+  ],
+  "examples": [
+    {
+      "input": "n = 2, rollMax = [1,1,2,2,2,3]",
+      "output": "34",
+      "explanation": "There will be 2 rolls of die, if there are no constraints on the die, there are 6 * 6 = 36 possible combinations. In this case, looking at rollMax array, the numbers 1 and 2 appear at most once consecutively, therefore sequences (1,1) and (2,2) cannot occur, so the final answer is 36-2 = 34."
+    },
+    {
+      "input": "n = 2, rollMax = [1,1,1,1,1,1]",
+      "output": "30",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, rollMax = [1,1,1,2,2,3]",
+      "output": "181",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int dieSimulator(int n, vector<int>& rollMax) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int dieSimulator(int n, int[] rollMax) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def dieSimulator(self, n: int, rollMax: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def dieSimulator(self, n, rollMax):\n        \"\"\"\n        :type n: int\n        :type rollMax: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[]} rollMax\n * @return {number}\n */\nvar dieSimulator = function(n, rollMax) {\n    \n};",
+    "typescript": "function dieSimulator(n: number, rollMax: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int DieSimulator(int n, int[] rollMax) {\n        \n    }\n}",
+    "c": "int dieSimulator(int n, int* rollMax, int rollMaxSize) {\n    \n}",
+    "golang": "func dieSimulator(n int, rollMax []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun dieSimulator(n: Int, rollMax: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func dieSimulator(_ n: Int, _ rollMax: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn die_simulator(n: i32, roll_max: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[]} roll_max\n# @return {Integer}\ndef die_simulator(n, roll_max)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[] $rollMax\n     * @return Integer\n     */\n    function dieSimulator($n, $rollMax) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int dieSimulator(int n, List<int> rollMax) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def dieSimulator(n: Int, rollMax: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec die_simulator(n :: integer, roll_max :: [integer]) :: integer\n  def die_simulator(n, roll_max) do\n    \n  end\nend",
+    "erlang": "-spec die_simulator(N :: integer(), RollMax :: [integer()]) -> integer().\ndie_simulator(N, RollMax) ->\n  .",
+    "racket": "(define/contract (die-simulator n rollMax)\n  (-> exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "2\n[1,1,2,2,2,3]",
+      "expectedOutput": "34"
+    },
+    {
+      "input": "2\n[1,1,1,1,1,1]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "3\n[1,1,1,2,2,3]",
+      "expectedOutput": "181"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "2\n[1,1,2,2,2,3]",
+      "expectedOutput": "34"
+    },
+    {
+      "input": "2\n[1,1,1,1,1,1]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "3\n[1,1,1,2,2,3]",
+      "expectedOutput": "181"
+    },
+    {
+      "input": "0\n[1,1,2,2,2,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "1\n[1,1,2,2,2,3]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "3\n[1,1,2,2,2,3]",
+      "expectedOutput": "191"
+    },
+    {
+      "input": "4\n[1,1,2,2,2,3]",
+      "expectedOutput": "1072"
+    },
+    {
+      "input": "5\n[1,1,2,2,2,3]",
+      "expectedOutput": "6019"
+    },
+    {
+      "input": "6\n[1,1,2,2,2,3]",
+      "expectedOutput": "33792"
+    },
+    {
+      "input": "7\n[1,1,2,2,2,3]",
+      "expectedOutput": "189719"
+    },
+    {
+      "input": "-1\n[1,1,2,2,2,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "-2\n[1,1,2,2,2,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "2\n[3,2,2,2,1,1]",
+      "expectedOutput": "34"
+    },
+    {
+      "input": "2\n[1,1,2,2,2,3,1,1,2,2,2,3]",
+      "expectedOutput": "34"
+    },
+    {
+      "input": "2\n[2,2,4,4,4,6]",
+      "expectedOutput": "36"
+    },
+    {
+      "input": "2\n[2,2,3,3,3,4]",
+      "expectedOutput": "36"
+    },
+    {
+      "input": "2\n[0,0,1,1,1,2]",
+      "expectedOutput": "31"
+    },
+    {
+      "input": "2\n[-1,-1,-2,-2,-2,-3]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "2\n[1,1,2,2,3,3]",
+      "expectedOutput": "34"
+    },
+    {
+      "input": "0\n[1,1,1,1,1,1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Think on Dynamic Programming.",
+    "DP(pos, last) which means we are at the position pos having as last the last character seen."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/dice-roll-simulation/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.636Z",
+    "sourceUpdatedAt": null
+  }
+}

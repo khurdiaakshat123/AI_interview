@@ -1,0 +1,166 @@
+{
+  "id": "1750",
+  "slug": "minimum-length-of-string-after-deleting-similar-ends",
+  "title": "Minimum Length of String After Deleting Similar Ends",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "Given a string `s` consisting only of characters `'a'`, `'b'`, and `'c'`. You are asked to apply the following algorithm on the string any number of times:\n\n1.  Pick a **non-empty** prefix from the string `s` where all the characters in the prefix are equal.\n2.  Pick a **non-empty** suffix from the string `s` where all the characters in this suffix are equal.\n3.  The prefix and the suffix should not intersect at any index.\n4.  The characters from the prefix and suffix must be the same.\n5.  Delete both the prefix and the suffix.\n\nReturn _the **minimum length** of_ `s` _after performing the above operation any number of times (possibly zero times)_.\n\n**Example 1:**\n\n```\nInput: s = \"ca\"\nOutput: 2\nExplanation: You can't remove any characters, so the string stays as is.\n```\n\n**Example 2:**\n\n```\nInput: s = \"cabaabac\"\nOutput: 0\nExplanation: An optimal sequence of operations is:\n- Take prefix = \"c\" and suffix = \"c\" and remove them, s = \"abaaba\".\n- Take prefix = \"a\" and suffix = \"a\" and remove them, s = \"baab\".\n- Take prefix = \"b\" and suffix = \"b\" and remove them, s = \"aa\".\n- Take prefix = \"a\" and suffix = \"a\" and remove them, s = \"\".\n```\n\n**Example 3:**\n\n```\nInput: s = \"aabccabba\"\nOutput: 3\nExplanation: An optimal sequence of operations is:\n- Take prefix = \"aa\" and suffix = \"a\" and remove them, s = \"bccabb\".\n- Take prefix = \"b\" and suffix = \"bb\" and remove them, s = \"cca\".\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` only consists of characters `'a'`, `'b'`, and `'c'`.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s only consists of characters 'a', 'b', and 'c'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"ca\"",
+      "output": "2",
+      "explanation": "You can't remove any characters, so the string stays as is."
+    },
+    {
+      "input": "s = \"cabaabac\"",
+      "output": "0",
+      "explanation": "An optimal sequence of operations is:\n- Take prefix = \"c\" and suffix = \"c\" and remove them, s = \"abaaba\".\n- Take prefix = \"a\" and suffix = \"a\" and remove them, s = \"baab\".\n- Take prefix = \"b\" and suffix = \"b\" and remove them, s = \"aa\".\n- Take prefix = \"a\" and suffix = \"a\" and remove them, s = \"\"."
+    },
+    {
+      "input": "s = \"aabccabba\"",
+      "output": "3",
+      "explanation": "An optimal sequence of operations is:\n- Take prefix = \"aa\" and suffix = \"a\" and remove them, s = \"bccabb\".\n- Take prefix = \"b\" and suffix = \"bb\" and remove them, s = \"cca\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumLength(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumLength(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumLength(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumLength(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minimumLength = function(s) {\n    \n};",
+    "typescript": "function minimumLength(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumLength(string s) {\n        \n    }\n}",
+    "c": "int minimumLength(char* s) {\n    \n}",
+    "golang": "func minimumLength(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumLength(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumLength(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_length(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef minimum_length(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minimumLength($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumLength(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumLength(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_length(s :: String.t) :: integer\n  def minimum_length(s) do\n    \n  end\nend",
+    "erlang": "-spec minimum_length(S :: unicode:unicode_binary()) -> integer().\nminimum_length(S) ->\n  .",
+    "racket": "(define/contract (minimum-length s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"ca\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"cabaabac\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aabccabba\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"ca\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"cabaabac\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aabccabba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"c\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ac\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"caca\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"cc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"caac\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"CA\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If both ends have distinct characters, no more operations can be made. Otherwise, the only operation is to remove all of the same characters from both ends. We will do this as many times as we can.",
+    "Note that if the length is equal 1 the answer is 1"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.054Z",
+    "sourceUpdatedAt": null
+  }
+}

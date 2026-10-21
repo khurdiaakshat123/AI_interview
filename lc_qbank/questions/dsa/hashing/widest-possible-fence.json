@@ -1,0 +1,161 @@
+{
+  "id": "4007",
+  "slug": "widest-possible-fence",
+  "title": "Widest Possible Fence",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting",
+    "Enumeration"
+  ],
+  "statement": "You are given an integer array `planks`, where `planks[i]` represents the height of the `i^(th)` wooden plank. Each plank has a width of 1 unit.\n\nYou want to build a fence consisting of planks that all have the **same** height.\n\nYou may either use a plank as is, or combine **exactly** two distinct original planks into a single plank whose height **equals** the sum of their heights. Each original plank can be used **at most** once, and not all original planks need to be used.\n\nReturn the **maximum possible width** of the fence that can be built.\n\n**Example 1:**\n\n**Input:** planks = \\[1,3,2,5,7,5,4,2,1\\]\n\n**Output:** 4\n\n**Explanation:**\n\nWe can have four planks of height 5.\n\n*   `planks[3] = 5`\n*   `planks[5] = 5`\n*   `planks[0] + planks[6] = 1 + 4 = 5`\n*   `planks[1] + planks[2] = 3 + 2 = 5`\n\nHence, the maximum width is 4.\n\n**Example 2:**\n\n**Input:** planks = \\[2,3,7\\]\n\n**Output:** 1\n\n**Explanation:**\n\n*   It is impossible to form two planks of the same height, even after combining two distinct original planks.\n*   Since not all original planks need to be used, we can choose any one plank as the fence.\n*   Therefore, the maximum possible width is 1.\n\n**Constraints:**\n\n*   `1 <= planks.length <= 1000`\n*   `1 <= planks[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= planks.length <= 1000",
+    "1 <= planks[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "planks = [1,3,2,5,7,5,4,2,1]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "planks = [2,3,7]",
+      "output": "1",
+      "explanation": "It is impossible to form two planks of the same height, even after combining two distinct original planks.\n\tSince not all original planks need to be used, we can choose any one plank as the fence.\n\tTherefore, the maximum possible width is 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumWidth(vector<int>& planks) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumWidth(int[] planks) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumWidth(self, planks: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumWidth(self, planks):\n        \"\"\"\n        :type planks: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} planks\n * @return {number}\n */\nvar maximumWidth = function(planks) {\n    \n};",
+    "typescript": "function maximumWidth(planks: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumWidth(int[] planks) {\n        \n    }\n}",
+    "c": "int maximumWidth(int* planks, int planksSize) {\n    \n}",
+    "golang": "func maximumWidth(planks []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumWidth(planks: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumWidth(_ planks: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_width(planks: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} planks\n# @return {Integer}\ndef maximum_width(planks)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $planks\n     * @return Integer\n     */\n    function maximumWidth($planks) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumWidth(List<int> planks) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumWidth(planks: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_width(planks :: [integer]) :: integer\n  def maximum_width(planks) do\n    \n  end\nend",
+    "erlang": "-spec maximum_width(Planks :: [integer()]) -> integer().\nmaximum_width(Planks) ->\n  .",
+    "racket": "(define/contract (maximum-width planks)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,3,2,5,7,5,4,2,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,3,7]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,3,2,5,7,5,4,2,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,3,7]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3,2,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[7,5,4,2,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,4,5,7,5,2,3,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,2,2,3,4,5,5,7]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[7,5,5,4,3,2,2,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,6,4,10,14,10,8,4,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,4,3,6,8,6,5,3,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,2,1,4,6,4,3,1,0]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-1,-3,-2,-5,-7,-5,-4,-2,-1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Fix the common fence height <code>h</code>. Every original plank of height <code>h</code> can be used by itself.</p>",
+    "<p>Any remaining plank of height <code>x &lt; h</code> can only be used by pairing it with a plank of height <code>h - x</code>.</p>",
+    "<p>Using the frequency of each height, count these disjoint pairs with <code>min(freq[x], freq[h - x])</code>; when <code>x == h - x</code>, use <code>freq[x] / 2</code>.</p>",
+    "<p>It is enough to try heights that occur as an original plank height or as the sum of two original plank heights. Take the maximum number of single planks and pairs over all such heights.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/widest-possible-fence/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.727Z",
+    "sourceUpdatedAt": null
+  }
+}

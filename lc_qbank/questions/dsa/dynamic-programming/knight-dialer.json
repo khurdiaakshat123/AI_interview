@@ -1,0 +1,161 @@
+{
+  "id": "935",
+  "slug": "knight-dialer",
+  "title": "Knight Dialer",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "statement": "The chess knight has a **unique movement**, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an **L**). The possible movements of chess knight are shown in this diagram:\n\nA chess knight can move as indicated in the chess diagram below:\n\n![](./assets/knight-dialer-1.jpg)\n\nWe have a chess knight and a phone pad as shown below, the knight **can only stand on a numeric cell** (i.e. blue cell).\n\n![](./assets/knight-dialer-2.jpg)\n\nGiven an integer `n`, return how many distinct phone numbers of length `n` we can dial.\n\nYou are allowed to place the knight **on any numeric cell** initially and then you should perform `n - 1` jumps to dial a number of length `n`. All jumps should be **valid** knight jumps.\n\nAs the answer may be very large, **return the answer modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n```\nInput: n = 1\nOutput: 10\nExplanation: We need to dial a number of length 1, so placing the knight over any numeric cell of the 10 cells is sufficient.\n```\n\n**Example 2:**\n\n```\nInput: n = 2\nOutput: 20\nExplanation: All the valid number we can dial are [04, 06, 16, 18, 27, 29, 34, 38, 40, 43, 49, 60, 61, 67, 72, 76, 81, 83, 92, 94]\n```\n\n**Example 3:**\n\n```\nInput: n = 3131\nOutput: 136006598\nExplanation: Please take care of the mod.\n```\n\n**Constraints:**\n\n*   `1 <= n <= 5000`",
+  "constraints": [
+    "1 <= n <= 5000"
+  ],
+  "examples": [
+    {
+      "input": "n = 1",
+      "output": "10",
+      "explanation": "We need to dial a number of length 1, so placing the knight over any numeric cell of the 10 cells is sufficient."
+    },
+    {
+      "input": "n = 2",
+      "output": "20",
+      "explanation": "All the valid number we can dial are [04, 06, 16, 18, 27, 29, 34, 38, 40, 43, 49, 60, 61, 67, 72, 76, 81, 83, 92, 94]"
+    },
+    {
+      "input": "n = 3131",
+      "output": "136006598",
+      "explanation": "Please take care of the mod."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int knightDialer(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int knightDialer(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def knightDialer(self, n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def knightDialer(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {number}\n */\nvar knightDialer = function(n) {\n    \n};",
+    "typescript": "function knightDialer(n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int KnightDialer(int n) {\n        \n    }\n}",
+    "c": "int knightDialer(int n) {\n    \n}",
+    "golang": "func knightDialer(n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun knightDialer(n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func knightDialer(_ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn knight_dialer(n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Integer}\ndef knight_dialer(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Integer\n     */\n    function knightDialer($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int knightDialer(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def knightDialer(n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec knight_dialer(n :: integer) :: integer\n  def knight_dialer(n) do\n    \n  end\nend",
+    "erlang": "-spec knight_dialer(N :: integer()) -> integer().\nknight_dialer(N) ->\n  .",
+    "racket": "(define/contract (knight-dialer n)\n  (-> exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "1",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "3131",
+      "expectedOutput": "136006598"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "1",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "3131",
+      "expectedOutput": "136006598"
+    },
+    {
+      "input": "0",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "3",
+      "expectedOutput": "46"
+    },
+    {
+      "input": "4",
+      "expectedOutput": "104"
+    },
+    {
+      "input": "5",
+      "expectedOutput": "240"
+    },
+    {
+      "input": "6",
+      "expectedOutput": "544"
+    },
+    {
+      "input": "-1",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "-2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "7",
+      "expectedOutput": "1256"
+    },
+    {
+      "input": "3130",
+      "expectedOutput": "657107962"
+    },
+    {
+      "input": "3132",
+      "expectedOutput": "915594565"
+    },
+    {
+      "input": "3129",
+      "expectedOutput": "171040287"
+    },
+    {
+      "input": "3133",
+      "expectedOutput": "131878440"
+    },
+    {
+      "input": "3128",
+      "expectedOutput": "506763300"
+    },
+    {
+      "input": "3134",
+      "expectedOutput": "865135528"
+    },
+    {
+      "input": "1565",
+      "expectedOutput": "670032462"
+    },
+    {
+      "input": "-3131",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "-3",
+      "expectedOutput": "10"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/knight-dialer/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.813Z",
+    "sourceUpdatedAt": null
+  }
+}

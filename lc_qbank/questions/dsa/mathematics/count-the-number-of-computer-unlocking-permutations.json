@@ -1,0 +1,160 @@
+{
+  "id": "3577",
+  "slug": "count-the-number-of-computer-unlocking-permutations",
+  "title": "Count the Number of Computer Unlocking Permutations",
+  "category": "dsa",
+  "subcategory": "mathematics",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Brainteaser",
+    "Combinatorics"
+  ],
+  "statement": "You are given an array `complexity` of length `n`.\n\nThere are `n` **locked** computers in a room with labels from 0 to `n - 1`, each with its own **unique** password. The password of the computer `i` has a complexity `complexity[i]`.\n\nThe password for the computer labeled 0 is **already** decrypted and serves as the root. All other computers must be unlocked using it or another previously unlocked computer, following this information:\n\n*   You can decrypt the password for the computer `i` using the password for computer `j`, where `j` is **any** integer less than `i` with a lower complexity. (i.e. `j < i` and `complexity[j] < complexity[i]`)\n*   To decrypt the password for computer `i`, you must have already unlocked a computer `j` such that `j < i` and `complexity[j] < complexity[i]`.\n\nFind the number of permutations of `[0, 1, 2, ..., (n - 1)]` that represent a valid order in which the computers can be unlocked, starting from computer 0 as the only initially unlocked one.\n\nSince the answer may be large, return it **modulo** 10^(9) + 7.\n\n**Note** that the password for the computer **with label** 0 is decrypted, and _not_ the computer with the first position in the permutation.\n\n**Example 1:**\n\n**Input:** complexity = \\[1,2,3\\]\n\n**Output:** 2\n\n**Explanation:**\n\nThe valid permutations are:\n\n*   \\[0, 1, 2\\]\n    *   Unlock computer 0 first with root password.\n    *   Unlock computer 1 with password of computer 0 since `complexity[0] < complexity[1]`.\n    *   Unlock computer 2 with password of computer 1 since `complexity[1] < complexity[2]`.\n*   \\[0, 2, 1\\]\n    *   Unlock computer 0 first with root password.\n    *   Unlock computer 2 with password of computer 0 since `complexity[0] < complexity[2]`.\n    *   Unlock computer 1 with password of computer 0 since `complexity[0] < complexity[1]`.\n\n**Example 2:**\n\n**Input:** complexity = \\[3,3,3,4,4,4\\]\n\n**Output:** 0\n\n**Explanation:**\n\nThere are no possible permutations which can unlock all computers.\n\n**Constraints:**\n\n*   `2 <= complexity.length <= 10^(5)`\n*   `1 <= complexity[i] <= 10^(9)`",
+  "constraints": [
+    "2 <= complexity.length <= 105",
+    "1 <= complexity[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "complexity = [1,2,3]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "complexity = [3,3,3,4,4,4]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countPermutations(vector<int>& complexity) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countPermutations(int[] complexity) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countPermutations(self, complexity: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countPermutations(self, complexity):\n        \"\"\"\n        :type complexity: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} complexity\n * @return {number}\n */\nvar countPermutations = function(complexity) {\n    \n};",
+    "typescript": "function countPermutations(complexity: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountPermutations(int[] complexity) {\n        \n    }\n}",
+    "c": "int countPermutations(int* complexity, int complexitySize) {\n    \n}",
+    "golang": "func countPermutations(complexity []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countPermutations(complexity: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countPermutations(_ complexity: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_permutations(complexity: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} complexity\n# @return {Integer}\ndef count_permutations(complexity)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $complexity\n     * @return Integer\n     */\n    function countPermutations($complexity) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countPermutations(List<int> complexity) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countPermutations(complexity: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_permutations(complexity :: [integer]) :: integer\n  def count_permutations(complexity) do\n    \n  end\nend",
+    "erlang": "-spec count_permutations(Complexity :: [integer()]) -> integer().\ncount_permutations(Complexity) ->\n  .",
+    "racket": "(define/contract (count-permutations complexity)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,3,3,4,4,4]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,3,3,4,4,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,4,6]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,3,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,-2,-3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Ensure that the element at index 0 has the unique minimum complexity (no other element can match its value).",
+    "Fix index 0 as the first in the unlocking order.",
+    "The remaining indices from <code>1</code> to <code>n - 1</code> can then be arranged arbitrarily, yielding <code>factorial(n - 1)</code> possible orders."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-the-number-of-computer-unlocking-permutations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.763Z",
+    "sourceUpdatedAt": null
+  }
+}

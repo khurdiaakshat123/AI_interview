@@ -1,0 +1,63 @@
+{
+  "id": "184",
+  "slug": "department-highest-salary",
+  "title": "Department Highest Salary",
+  "category": "database",
+  "subcategory": "aggregation",
+  "difficulty": "Medium",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Employee`\n\n```\nDepartment\n```\n\nTable: `Department`\n\n```\nNULL.\n```\n\nWrite a solution to find employees who have the highest salary in each of the departments.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployee table:\n+----+-------+--------+--------------+\n| id | name  | salary | departmentId |\n+----+-------+--------+--------------+\n| 1  | Joe   | 70000  | 1            |\n| 2  | Jim   | 90000  | 1            |\n| 3  | Henry | 80000  | 2            |\n| 4  | Sam   | 60000  | 2            |\n| 5  | Max   | 90000  | 1            |\n+----+-------+--------+--------------+\nDepartment table:\n+----+-------+\n| id | name  |\n+----+-------+\n| 1  | IT    |\n| 2  | Sales |\n+----+-------+\nOutput: \n+------------+----------+--------+\n| Department | Employee | Salary |\n+------------+----------+--------+\n| IT         | Jim      | 90000  |\n| Sales      | Henry    | 80000  |\n| IT         | Max      | 90000  |\n+------------+----------+--------+\nExplanation: Max and Jim both have the highest salary in the IT department and Henry has the highest salary in the Sales department.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Employee table:\n+----+-------+--------+--------------+\n| id | name  | salary | departmentId |\n+----+-------+--------+--------------+\n| 1  | Joe   | 70000  | 1            |\n| 2  | Jim   | 90000  | 1            |\n| 3  | Henry | 80000  | 2            |\n| 4  | Sam   | 60000  | 2            |\n| 5  | Max   | 90000  | 1            |\n+----+-------+--------+--------------+\nDepartment table:\n+----+-------+\n| id | name  |\n+----+-------+\n| 1  | IT    |\n| 2  | Sales |\n+----+-------+",
+      "output": "+------------+----------+--------+\n| Department | Employee | Salary |\n+------------+----------+--------+\n| IT         | Jim      | 90000  |\n| Sales      | Henry    | 80000  |\n| IT         | Max      | 90000  |\n+------------+----------+--------+",
+      "explanation": "Max and Jim both have the highest salary in the IT department and Henry has the highest salary in the Sales department."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"Employee\": [\"id\", \"name\", \"salary\", \"departmentId\"], \"Department\": [\"id\", \"name\"]}, \"rows\": {\"Employee\": [[1, \"Joe\", 70000, 1], [2, \"Jim\", 90000, 1], [3, \"Henry\", 80000, 2], [4, \"Sam\", 60000, 2], [5, \"Max\", 90000, 1]], \"Department\": [[1, \"IT\"], [2, \"Sales\"]]}}",
+      "expectedOutput": "+------------+----------+--------+\n| Department | Employee | Salary |\n+------------+----------+--------+\n| IT         | Jim      | 90000  |\n| Sales      | Henry    | 80000  |\n| IT         | Max      | 90000  |\n+------------+----------+--------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"Employee\": [\"id\", \"name\", \"salary\", \"departmentId\"], \"Department\": [\"id\", \"name\"]}, \"rows\": {\"Employee\": [[1, \"Joe\", 70000, 1], [2, \"Jim\", 90000, 1], [3, \"Henry\", 80000, 2], [4, \"Sam\", 60000, 2], [5, \"Max\", 90000, 1]], \"Department\": [[1, \"IT\"], [2, \"Sales\"]]}}",
+      "expectedOutput": "+------------+----------+--------+\n| Department | Employee | Salary |\n+------------+----------+--------+\n| IT         | Jim      | 90000  |\n| Sales      | Henry    | 80000  |\n| IT         | Max      | 90000  |\n+------------+----------+--------+"
+    },
+    {
+      "input": "Employee table:\n+----+-------+--------+--------------+\n| id | name  | salary | departmentId |\n+----+-------+--------+--------------+\n| 1  | Joe   | 70000  | 1            |\n| 2  | Jim   | 90000  | 1            |\n| 3  | Henry | 80000  | 2            |\n| 4  | Sam   | 60000  | 2            |\n| 5  | Max   | 90000  | 1            |\n+----+-------+--------+--------------+\nDepartment table:\n+----+-------+\n| id | name  |\n+----+-------+\n| 1  | IT    |\n| 2  | Sales |\n+----+-------+",
+      "expectedOutput": "+------------+----------+--------+\n| Department | Employee | Salary |\n+------------+----------+--------+\n| IT         | Jim      | 90000  |\n| Sales      | Henry    | 80000  |\n| IT         | Max      | 90000  |\n+------------+----------+--------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Employee (id int, name varchar(255), salary int, departmentId int)\n\nCreate table If Not Exists Department (id int, name varchar(255))\n\nTruncate table Employee\n\nTruncate table Department",
+  "sqlSetup": [
+    "insert into Employee (id, name, salary, departmentId) values ('1', 'Joe', '70000', '1')",
+    "insert into Employee (id, name, salary, departmentId) values ('2', 'Jim', '90000', '1')",
+    "insert into Employee (id, name, salary, departmentId) values ('3', 'Henry', '80000', '2')",
+    "insert into Employee (id, name, salary, departmentId) values ('4', 'Sam', '60000', '2')",
+    "insert into Employee (id, name, salary, departmentId) values ('5', 'Max', '90000', '1')",
+    "insert into Department (id, name) values ('1', 'IT')",
+    "insert into Department (id, name) values ('2', 'Sales')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/department-highest-salary/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.338Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "id": "1224",
+  "slug": "maximum-equal-frequency",
+  "title": "Maximum Equal Frequency",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "statement": "Given an array `nums` of positive integers, return the longest possible length of an array prefix of `nums`, such that it is possible to remove **exactly one** element from this prefix so that every number that has appeared in it will have the same number of occurrences.\n\nIf after removing one element there are no remaining elements, it's still considered that every appeared number has the same number of ocurrences (0).\n\n**Example 1:**\n\n```\nInput: nums = [2,2,1,1,5,3,3,5]\nOutput: 7\nExplanation: For the subarray [2,2,1,1,5,3,3] of length 7, if we remove nums[4] = 5, we will get [2,2,1,1,3,3], so that each number will appear exactly twice.\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,1,1,2,2,2,3,3,3,4,4,4,5]\nOutput: 13\n```\n\n**Constraints:**\n\n*   `2 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "2 <= nums.length <= 105",
+    "1 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,2,1,1,5,3,3,5]",
+      "output": "7",
+      "explanation": "For the subarray [2,2,1,1,5,3,3] of length 7, if we remove nums[4] = 5, we will get [2,2,1,1,3,3], so that each number will appear exactly twice."
+    },
+    {
+      "input": "nums = [1,1,1,2,2,2,3,3,3,4,4,4,5]",
+      "output": "13",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxEqualFreq(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxEqualFreq(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxEqualFreq(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxEqualFreq(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxEqualFreq = function(nums) {\n    \n};",
+    "typescript": "function maxEqualFreq(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxEqualFreq(int[] nums) {\n        \n    }\n}",
+    "c": "int maxEqualFreq(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxEqualFreq(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxEqualFreq(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxEqualFreq(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_equal_freq(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_equal_freq(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxEqualFreq($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxEqualFreq(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxEqualFreq(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_equal_freq(nums :: [integer]) :: integer\n  def max_equal_freq(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_equal_freq(Nums :: [integer()]) -> integer().\nmax_equal_freq(Nums) ->\n  .",
+    "racket": "(define/contract (max-equal-freq nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,2,1,1,5,3,3,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1,1,2,2,2,3,3,3,4,4,4,5]",
+      "expectedOutput": "13"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,2,1,1,5,3,3,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1,1,2,2,2,3,3,3,4,4,4,5]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[2,2,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,3,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,3,3,5,1,1,2,2]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1,2,2,3,3,5,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[5,5,3,3,2,2,1,1]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,2,1,1,5,3,3,5,2,2,1,1,5,3,3,5]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[4,4,2,2,10,6,6,10]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[3,3,2,2,6,4,4,6]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1,0,0,4,2,2,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[-2,-2,-1,-1,-5,-3,-3,-5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Keep track of the min and max frequencies.",
+    "The number to be eliminated must have a frequency of 1, same as the others or the same +1."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-equal-frequency/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.828Z",
+    "sourceUpdatedAt": null
+  }
+}

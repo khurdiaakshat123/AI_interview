@@ -1,0 +1,166 @@
+{
+  "id": "1422",
+  "slug": "maximum-score-after-splitting-a-string",
+  "title": "Maximum Score After Splitting a String",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Easy",
+  "tags": [
+    "String",
+    "Prefix Sum"
+  ],
+  "statement": "Given a string `s` of zeros and ones, _return the maximum score after splitting the string into two **non-empty** substrings_ (i.e. **left** substring and **right** substring).\n\nThe score after splitting a string is the number of **zeros** in the **left** substring plus the number of **ones** in the **right** substring.\n\n**Example 1:**\n\n```\nInput: s = \"011101\"\nOutput: 5 \nExplanation: \nAll possible ways of splitting s into two non-empty substrings are:\nleft = \"0\" and right = \"11101\", score = 1 + 4 = 5 \nleft = \"01\" and right = \"1101\", score = 1 + 3 = 4 \nleft = \"011\" and right = \"101\", score = 1 + 2 = 3 \nleft = \"0111\" and right = \"01\", score = 1 + 1 = 2 \nleft = \"01110\" and right = \"1\", score = 2 + 1 = 3\n```\n\n**Example 2:**\n\n```\nInput: s = \"00111\"\nOutput: 5\nExplanation: When left = \"00\" and right = \"111\", we get the maximum score = 2 + 3 = 5\n```\n\n**Example 3:**\n\n```\nInput: s = \"1111\"\nOutput: 3\n```\n\n**Constraints:**\n\n*   `2 <= s.length <= 500`\n*   The string `s` consists of characters `'0'` and `'1'` only.",
+  "constraints": [
+    "2 <= s.length <= 500",
+    "The string s consists of characters '0' and '1' only."
+  ],
+  "examples": [
+    {
+      "input": "s = \"011101\"",
+      "output": "5",
+      "explanation": "All possible ways of splitting s into two non-empty substrings are:\nleft = \"0\" and right = \"11101\", score = 1 + 4 = 5 \nleft = \"01\" and right = \"1101\", score = 1 + 3 = 4 \nleft = \"011\" and right = \"101\", score = 1 + 2 = 3 \nleft = \"0111\" and right = \"01\", score = 1 + 1 = 2 \nleft = \"01110\" and right = \"1\", score = 2 + 1 = 3"
+    },
+    {
+      "input": "s = \"00111\"",
+      "output": "5",
+      "explanation": "When left = \"00\" and right = \"111\", we get the maximum score = 2 + 3 = 5"
+    },
+    {
+      "input": "s = \"1111\"",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxScore(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxScore(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxScore(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxScore(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar maxScore = function(s) {\n    \n};",
+    "typescript": "function maxScore(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxScore(string s) {\n        \n    }\n}",
+    "c": "int maxScore(char* s) {\n    \n}",
+    "golang": "func maxScore(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxScore(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxScore(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_score(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef max_score(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function maxScore($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxScore(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxScore(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_score(s :: String.t) :: integer\n  def max_score(s) do\n    \n  end\nend",
+    "erlang": "-spec max_score(S :: unicode:unicode_binary()) -> integer().\nmax_score(S) ->\n  .",
+    "racket": "(define/contract (max-score s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"011101\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"00111\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"1111\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"011101\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"00111\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"1111\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"011\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"101\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"01\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"101110\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"011101011101\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"000000\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"011101101110\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"00\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"111\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"11100\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0011100111\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"00000\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"0011111100\"",
+      "expectedOutput": "8"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Precompute a prefix sum of ones ('1').",
+    "Iterate from left to right counting the number of zeros ('0'), then use the precomputed prefix sum for counting ones ('1'). Update the answer."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-score-after-splitting-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.534Z",
+    "sourceUpdatedAt": null
+  }
+}

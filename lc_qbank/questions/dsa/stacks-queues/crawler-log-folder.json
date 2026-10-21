@@ -1,0 +1,169 @@
+{
+  "id": "1598",
+  "slug": "crawler-log-folder",
+  "title": "Crawler Log Folder",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "String",
+    "Stack"
+  ],
+  "statement": "The Leetcode file system keeps a log each time some user performs a _change folder_ operation.\n\nThe operations are described below:\n\n*   `\"../\"` : Move to the parent folder of the current folder. (If you are already in the main folder, **remain in the same folder**).\n*   `\"./\"` : Remain in the same folder.\n*   `\"x/\"` : Move to the child folder named `x` (This folder is **guaranteed to always exist**).\n\nYou are given a list of strings `logs` where `logs[i]` is the operation performed by the user at the `i^(th)` step.\n\nThe file system starts in the main folder, then the operations in `logs` are performed.\n\nReturn _the minimum number of operations needed to go back to the main folder after the change folder operations._\n\n**Example 1:**\n\n![](./assets/crawler-log-folder-1.png)\n\n```\nInput: logs = [\"d1/\",\"d2/\",\"../\",\"d21/\",\"./\"]\nOutput: 2\nExplanation: Use this change folder operation \"../\" 2 times and go back to the main folder.\n```\n\n**Example 2:**\n\n![](./assets/crawler-log-folder-2.png)\n\n```\nInput: logs = [\"d1/\",\"d2/\",\"./\",\"d3/\",\"../\",\"d31/\"]\nOutput: 3\n```\n\n**Example 3:**\n\n```\nInput: logs = [\"d1/\",\"../\",\"../\",\"../\"]\nOutput: 0\n```\n\n**Constraints:**\n\n*   `1 <= logs.length <= 10^(3)`\n*   `2 <= logs[i].length <= 10`\n*   `logs[i]` contains lowercase English letters, digits, `'.'`, and `'/'`.\n*   `logs[i]` follows the format described in the statement.\n*   Folder names consist of lowercase English letters and digits.",
+  "constraints": [
+    "1 <= logs.length <= 103",
+    "2 <= logs[i].length <= 10",
+    "logs[i] contains lowercase English letters, digits, '.', and '/'.",
+    "logs[i] follows the format described in the statement.",
+    "Folder names consist of lowercase English letters and digits."
+  ],
+  "examples": [
+    {
+      "input": "logs = [\"d1/\",\"d2/\",\"../\",\"d21/\",\"./\"]",
+      "output": "2",
+      "explanation": "Use this change folder operation \"../\" 2 times and go back to the main folder."
+    },
+    {
+      "input": "logs = [\"d1/\",\"d2/\",\"./\",\"d3/\",\"../\",\"d31/\"]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "logs = [\"d1/\",\"../\",\"../\",\"../\"]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<string>& logs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minOperations(String[] logs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, logs: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, logs):\n        \"\"\"\n        :type logs: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} logs\n * @return {number}\n */\nvar minOperations = function(logs) {\n    \n};",
+    "typescript": "function minOperations(logs: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinOperations(string[] logs) {\n        \n    }\n}",
+    "c": "int minOperations(char** logs, int logsSize) {\n    \n}",
+    "golang": "func minOperations(logs []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(logs: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ logs: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(logs: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} logs\n# @return {Integer}\ndef min_operations(logs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $logs\n     * @return Integer\n     */\n    function minOperations($logs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(List<String> logs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(logs: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(logs :: [String.t]) :: integer\n  def min_operations(logs) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(Logs :: [unicode:unicode_binary()]) -> integer().\nmin_operations(Logs) ->\n  .",
+    "racket": "(define/contract (min-operations logs)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"d1/\",\"d2/\",\"../\",\"d21/\",\"./\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"d1/\",\"d2/\",\"./\",\"d3/\",\"../\",\"d31/\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"d1/\",\"../\",\"../\",\"../\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"d1/\",\"d2/\",\"../\",\"d21/\",\"./\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"d1/\",\"d2/\",\"./\",\"d3/\",\"../\",\"d31/\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"d1/\",\"../\",\"../\",\"../\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"d1/\",\"d2/\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"../\",\"d21/\",\"./\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"d1/\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"d1/\",\"./\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"./\",\"d21/\",\"../\",\"d2/\",\"d1/\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"../\",\"./\",\"d1/\",\"d2/\",\"d21/\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"d21/\",\"d2/\",\"d1/\",\"./\",\"../\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"d1/\",\"d1/\",\"d1/\",\"d1/\",\"d1/\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"d1/\",\"d2/\",\"../\",\"d21/\",\"./\",\"d1/\",\"d2/\",\"../\",\"d21/\",\"./\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Simulate the process but don’t move the pointer beyond the main folder."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/crawler-log-folder/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.051Z",
+    "sourceUpdatedAt": null
+  }
+}

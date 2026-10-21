@@ -1,0 +1,159 @@
+{
+  "id": "4021",
+  "slug": "minimum-operations-to-make-a-rotated-palindrome-i",
+  "title": "Minimum Operations to Make a Rotated Palindrome I",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "String",
+    "Enumeration"
+  ],
+  "statement": "You are given a string `s` consisting of lowercase English letters.\n\nYou can perform the following operations any number of times (including zero) and in any order:\n\n*   **Increment**: Choose any index `i` and replace `s[i]` with the next lowercase English letter. The letter after `'z'` is `'a'`.\n*   **Left rotate**: Move the first character of the string to the end.\n\nReturn the **minimum** number of operations required to make `s` a palindrome.\n\n**Example 1:**\n\n**Input:** s = \"abc\"\n\n**Output:** 2\n\n**Explanation:**\n\nOne optimal solution:\n\n*   Left rotate the string: `\"abc\" -> \"bca\"`.\n*   Increment `'a'` to `'b'`: `\"bca\" -> \"bcb\"`.\n*   `\"bcb\"` is a palindrome. Thus, the answer is 2.\n\n**Example 2:**\n\n**Input:** s = \"yb\"\n\n**Output:** 3\n\n**Explanation:**\n\n*   Increment the first character three times: `\"yb\" -> \"zb\" -> \"ab\" -> \"bb\"`.\n*   `\"bb\"` is a palindrome. Thus, the answer is 3.\n\n**Constraints:**\n\n*   `2 <= s.length <= 2000`\n*   `s` consists only of lowercase English letters.",
+  "constraints": [
+    "2 <= s.length <= 2000",
+    "s consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abc\"",
+      "output": "2",
+      "explanation": "One optimal solution:\n\n\n\tLeft rotate the string: \"abc\" -> \"bca\".\n\tIncrement 'a' to 'b': \"bca\" -> \"bcb\".\n\t\"bcb\" is a palindrome. Thus, the answer is 2."
+    },
+    {
+      "input": "s = \"yb\"",
+      "output": "3",
+      "explanation": "Increment the first character three times: \"yb\" -> \"zb\" -> \"ab\" -> \"bb\".\n\t\"bb\" is a palindrome. Thus, the answer is 3."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minOperations(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minOperations(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minOperations = function(s) {\n    \n};",
+    "typescript": "function minOperations(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinOperations(string s) {\n        \n    }\n}",
+    "c": "int minOperations(char* s) {\n    \n}",
+    "golang": "func minOperations(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef min_operations(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minOperations($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(s :: String.t) :: integer\n  def min_operations(s) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(S :: unicode:unicode_binary()) -> integer().\nmin_operations(S) ->\n  .",
+    "racket": "(define/contract (min-operations s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"yb\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"yb\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"bc\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"cba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abcabc\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abccba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ABC\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "-6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>It is enough to consider performing <code>r</code> left rotations, where <code>0 &lt;= r &lt; s.length</code>. The increment operations can then be considered independently for each mirrored pair.</p>",
+    "<p>For two letters <code>a</code> and <code>b</code>, the minimum number of increments needed to make them equal is <code>min(abs(a - b), 26 - abs(a - b))</code>.</p>",
+    "<p>Try every rotation. For each one, sum this cost over all mirrored pairs and add the number of rotations. This gives an <code>O(n^2)</code> solution.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-operations-to-make-a-rotated-palindrome-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.633Z",
+    "sourceUpdatedAt": null
+  }
+}

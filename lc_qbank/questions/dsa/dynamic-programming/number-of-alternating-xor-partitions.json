@@ -1,0 +1,171 @@
+{
+  "id": "3811",
+  "slug": "number-of-alternating-xor-partitions",
+  "title": "Number of Alternating XOR Partitions",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given an integer array `nums` and two **distinct** integers `target1` and `target2`.\n\nA **partition** of `nums` splits it into one or more **contiguous, non-empty** blocks that cover the entire array without overlap.\n\nA partition is **valid** if the **bitwise XOR** of elements in its blocks **alternates** between `target1` and `target2`, starting with `target1`.\n\nFormally, for blocks `b1`, `b2`, …:\n\n*   `XOR(b1) = target1`\n*   `XOR(b2) = target2` (if it exists)\n*   `XOR(b3) = target1`, and so on.\n\nReturn the number of valid partitions of `nums`, modulo `10^(9) + 7`.\n\n**Note:** A single block is valid if its **XOR** equals `target1`.\n\n**Example 1:**\n\n**Input:** nums = \\[2,3,1,4\\], target1 = 1, target2 = 5\n\n**Output:** 1\n\n**Explanation:**​​​​​​​\n\n*   The XOR of `[2, 3]` is 1, which matches `target1`.\n*   The XOR of the remaining block `[1, 4]` is 5, which matches `target2`.\n*   This is the only valid alternating partition, so the answer is 1.\n\n**Example 2:**\n\n**Input:** nums = \\[1,0,0\\], target1 = 1, target2 = 0\n\n**Output:** 3\n\n**Explanation:**\n\n*   **​​​​​​​**The XOR of `[1, 0, 0]` is 1, which matches `target1`.\n*   The XOR of `[1]` and `[0, 0]` are 1 and 0, matching `target1` and `target2`.\n*   The XOR of `[1, 0]` and `[0]` are 1 and 0, matching `target1` and `target2`.\n*   Thus, the answer is 3.​​​​​​​\n\n**Example 3:**\n\n**Input:** nums = \\[7\\], target1 = 1, target2 = 7\n\n**Output:** 0\n\n**Explanation:**\n\n*   The XOR of `[7]` is 7, which does not match `target1`, so no valid partition exists.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `0 <= nums[i], target1, target2 <= 10^(5)`\n*   `target1 != target2`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "0 <= nums[i], target1, target2 <= 105",
+    "target1 != target2"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,3,1,4], target1 = 1, target2 = 5",
+      "output": "1",
+      "explanation": "​​​​​​​\n\n\n\tThe XOR of [2, 3] is 1, which matches target1.\n\tThe XOR of the remaining block [1, 4] is 5, which matches target2.\n\tThis is the only valid alternating partition, so the answer is 1."
+    },
+    {
+      "input": "nums = [1,0,0], target1 = 1, target2 = 0",
+      "output": "3",
+      "explanation": "​​​​​​​The XOR of [1, 0, 0] is 1, which matches target1.\n\tThe XOR of [1] and [0, 0] are 1 and 0, matching target1 and target2.\n\tThe XOR of [1, 0] and [0] are 1 and 0, matching target1 and target2.\n\tThus, the answer is 3.​​​​​​​"
+    },
+    {
+      "input": "nums = [7], target1 = 1, target2 = 7",
+      "output": "0",
+      "explanation": "The XOR of [7] is 7, which does not match target1, so no valid partition exists."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int alternatingXOR(vector<int>& nums, int target1, int target2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int alternatingXOR(int[] nums, int target1, int target2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def alternatingXOR(self, nums: List[int], target1: int, target2: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def alternatingXOR(self, nums, target1, target2):\n        \"\"\"\n        :type nums: List[int]\n        :type target1: int\n        :type target2: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} target1\n * @param {number} target2\n * @return {number}\n */\nvar alternatingXOR = function(nums, target1, target2) {\n    \n};",
+    "typescript": "function alternatingXOR(nums: number[], target1: number, target2: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int AlternatingXOR(int[] nums, int target1, int target2) {\n        \n    }\n}",
+    "c": "int alternatingXOR(int* nums, int numsSize, int target1, int target2) {\n    \n}",
+    "golang": "func alternatingXOR(nums []int, target1 int, target2 int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun alternatingXOR(nums: IntArray, target1: Int, target2: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func alternatingXOR(_ nums: [Int], _ target1: Int, _ target2: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn alternating_xor(nums: Vec<i32>, target1: i32, target2: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} target1\n# @param {Integer} target2\n# @return {Integer}\ndef alternating_xor(nums, target1, target2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $target1\n     * @param Integer $target2\n     * @return Integer\n     */\n    function alternatingXOR($nums, $target1, $target2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int alternatingXOR(List<int> nums, int target1, int target2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def alternatingXOR(nums: Array[Int], target1: Int, target2: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec alternating_xor(nums :: [integer], target1 :: integer, target2 :: integer) :: integer\n  def alternating_xor(nums, target1, target2) do\n    \n  end\nend",
+    "erlang": "-spec alternating_xor(Nums :: [integer()], Target1 :: integer(), Target2 :: integer()) -> integer().\nalternating_xor(Nums, Target1, Target2) ->\n  .",
+    "racket": "(define/contract (alternating-xor nums target1 target2)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,3,1,4]\n1\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,0,0]\n1\n0",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[7]\n1\n7",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,3,1,4]\n1\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,0,0]\n1\n0",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[7]\n1\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,3]\n1\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,4]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,4]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,1,3,2]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,4]\n1\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,3,2,1]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,2,2,2]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,3,1,4,2,3,1,4]\n1\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,6,2,8]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,4,2,5]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,0,3]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-2,-3,-1,-4]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]\n1\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n1\n5",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming.",
+    "Compute prefix XORs so the XOR of a block <code>[l..r]</code> can be obtained as <code>pref[r] ^ pref[l - 1]</code>.",
+    "For each position, try ending a block whose XOR equals the expected target, and transition to the next state (alternating between <code>target1</code> and <code>target2</code>).",
+    "Use a hash map or array indexed by prefix XOR values to efficiently count valid previous split points."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-alternating-xor-partitions/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.740Z",
+    "sourceUpdatedAt": null
+  }
+}

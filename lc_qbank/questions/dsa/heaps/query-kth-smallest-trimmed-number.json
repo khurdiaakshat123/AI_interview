@@ -1,0 +1,167 @@
+{
+  "id": "2343",
+  "slug": "query-kth-smallest-trimmed-number",
+  "title": "Query Kth Smallest Trimmed Number",
+  "category": "dsa",
+  "subcategory": "heaps",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Divide and Conquer",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Radix Sort",
+    "Quickselect"
+  ],
+  "statement": "You are given a **0-indexed** array of strings `nums`, where each string is of **equal length** and consists of only digits.\n\nYou are also given a **0-indexed** 2D integer array `queries` where `queries[i] = [k_(i), trim_(i)]`. For each `queries[i]`, you need to:\n\n*   **Trim** each number in `nums` to its **rightmost** `trim_(i)` digits.\n*   Determine the **index** of the `k_(i)^(th)` smallest trimmed number in `nums`. If two trimmed numbers are equal, the number with the **lower** index is considered to be smaller.\n*   Reset each number in `nums` to its original length.\n\nReturn _an array_ `answer` _of the same length as_ `queries`, _where_ `answer[i]` _is the answer to the_ `i^(th)` _query._\n\n**Note**:\n\n*   To trim to the rightmost `x` digits means to keep removing the leftmost digit, until only `x` digits remain.\n*   Strings in `nums` may contain leading zeros.\n\n**Example 1:**\n\n```\nInput: nums = [\"102\",\"473\",\"251\",\"814\"], queries = [[1,1],[2,3],[4,2],[1,2]]\nOutput: [2,2,1,0]\nExplanation:\n1. After trimming to the last digit, nums = [\"2\",\"3\",\"1\",\"4\"]. The smallest number is 1 at index 2.\n2. Trimmed to the last 3 digits, nums is unchanged. The 2nd smallest number is 251 at index 2.\n3. Trimmed to the last 2 digits, nums = [\"02\",\"73\",\"51\",\"14\"]. The 4th smallest number is 73.\n4. Trimmed to the last 2 digits, the smallest number is 2 at index 0.\n   Note that the trimmed number \"02\" is evaluated as 2.\n```\n\n**Example 2:**\n\n```\nInput: nums = [\"24\",\"37\",\"96\",\"04\"], queries = [[2,1],[2,2]]\nOutput: [3,0]\nExplanation:\n1. Trimmed to the last digit, nums = [\"4\",\"7\",\"6\",\"4\"]. The 2nd smallest number is 4 at index 3.\n   There are two occurrences of 4, but the one at index 0 is considered smaller than the one at index 3.\n2. Trimmed to the last 2 digits, nums is unchanged. The 2nd smallest number is 24.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 100`\n*   `1 <= nums[i].length <= 100`\n*   `nums[i]` consists of only digits.\n*   All `nums[i].length` are **equal**.\n*   `1 <= queries.length <= 100`\n*   `queries[i].length == 2`\n*   `1 <= k_(i) <= nums.length`\n*   `1 <= trim_(i) <= nums[i].length`\n\n**Follow up:** Could you use the **Radix Sort Algorithm** to solve this problem? What will be the complexity of that solution?",
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "1 <= nums[i].length <= 100",
+    "nums[i] consists of only digits.",
+    "All nums[i].length are equal.",
+    "1 <= queries.length <= 100",
+    "queries[i].length == 2",
+    "1 <= ki <= nums.length",
+    "1 <= trimi <= nums[i].length"
+  ],
+  "examples": [
+    {
+      "input": "nums = [\"102\",\"473\",\"251\",\"814\"], queries = [[1,1],[2,3],[4,2],[1,2]]",
+      "output": "[2,2,1,0]",
+      "explanation": "1. After trimming to the last digit, nums = [\"2\",\"3\",\"1\",\"4\"]. The smallest number is 1 at index 2.\n2. Trimmed to the last 3 digits, nums is unchanged. The 2nd smallest number is 251 at index 2.\n3. Trimmed to the last 2 digits, nums = [\"02\",\"73\",\"51\",\"14\"]. The 4th smallest number is 73.\n4. Trimmed to the last 2 digits, the smallest number is 2 at index 0.\n   Note that the trimmed number \"02\" is evaluated as 2."
+    },
+    {
+      "input": "nums = [\"24\",\"37\",\"96\",\"04\"], queries = [[2,1],[2,2]]",
+      "output": "[3,0]",
+      "explanation": "1. Trimmed to the last digit, nums = [\"4\",\"7\",\"6\",\"4\"]. The 2nd smallest number is 4 at index 3.\n   There are two occurrences of 4, but the one at index 0 is considered smaller than the one at index 3.\n2. Trimmed to the last 2 digits, nums is unchanged. The 2nd smallest number is 24."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> smallestTrimmedNumbers(vector<string>& nums, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] smallestTrimmedNumbers(String[] nums, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestTrimmedNumbers(self, nums: list[str], queries: list[list[int]]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def smallestTrimmedNumbers(self, nums, queries):\n        \"\"\"\n        :type nums: List[str]\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} nums\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar smallestTrimmedNumbers = function(nums, queries) {\n    \n};",
+    "typescript": "function smallestTrimmedNumbers(nums: string[], queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] SmallestTrimmedNumbers(string[] nums, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* smallestTrimmedNumbers(char** nums, int numsSize, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func smallestTrimmedNumbers(nums []string, queries [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestTrimmedNumbers(nums: Array<String>, queries: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestTrimmedNumbers(_ nums: [String], _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_trimmed_numbers(nums: Vec<String>, queries: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} nums\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef smallest_trimmed_numbers(nums, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $nums\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function smallestTrimmedNumbers($nums, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> smallestTrimmedNumbers(List<String> nums, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestTrimmedNumbers(nums: Array[String], queries: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_trimmed_numbers(nums :: [String.t], queries :: [[integer]]) :: [integer]\n  def smallest_trimmed_numbers(nums, queries) do\n    \n  end\nend",
+    "erlang": "-spec smallest_trimmed_numbers(Nums :: [unicode:unicode_binary()], Queries :: [[integer()]]) -> [integer()].\nsmallest_trimmed_numbers(Nums, Queries) ->\n  .",
+    "racket": "(define/contract (smallest-trimmed-numbers nums queries)\n  (-> (listof string?) (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"102\",\"473\",\"251\",\"814\"]\n[[1,1],[2,3],[4,2],[1,2]]",
+      "expectedOutput": "[2,2,1,0]"
+    },
+    {
+      "input": "[\"24\",\"37\",\"96\",\"04\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[3,0]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"102\",\"473\",\"251\",\"814\"]\n[[1,1],[2,3],[4,2],[1,2]]",
+      "expectedOutput": "[2,2,1,0]"
+    },
+    {
+      "input": "[\"24\",\"37\",\"96\",\"04\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[3,0]"
+    },
+    {
+      "input": "[\"814\",\"251\",\"473\",\"102\"]\n[[1,1],[2,3],[4,2],[1,2]]",
+      "expectedOutput": "[1,1,2,3]"
+    },
+    {
+      "input": "[\"102\",\"251\",\"473\",\"814\"]\n[[1,1],[2,3],[4,2],[1,2]]",
+      "expectedOutput": "[1,1,2,0]"
+    },
+    {
+      "input": "[\"814\",\"473\",\"251\",\"102\"]\n[[1,1],[2,3],[4,2],[1,2]]",
+      "expectedOutput": "[2,2,1,3]"
+    },
+    {
+      "input": "[\"102\",\"102\",\"102\",\"102\"]\n[[1,1],[2,3],[4,2],[1,2]]",
+      "expectedOutput": "[0,1,3,0]"
+    },
+    {
+      "input": "[\"102\",\"473\",\"251\",\"814\",\"102\",\"473\",\"251\",\"814\"]\n[[1,1],[2,3],[4,2],[1,2]]",
+      "expectedOutput": "[2,4,7,0]"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n[[1,1],[2,3],[4,2],[1,2]]",
+      "expectedOutput": "[1,5,5,2]"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]\n[[1,1],[2,3],[4,2],[1,2]]",
+      "expectedOutput": "[2,0,3,2]"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]\n[[1,1],[2,3],[4,2],[1,2]]",
+      "expectedOutput": "[0,1,3,0]"
+    },
+    {
+      "input": "[\"24\",\"37\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "[\"96\",\"04\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "[\"24\",\"04\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "[\"04\",\"96\",\"37\",\"24\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[3,3]"
+    },
+    {
+      "input": "[\"04\",\"24\",\"37\",\"96\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "[\"96\",\"37\",\"24\",\"04\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[3,2]"
+    },
+    {
+      "input": "[\"24\",\"24\",\"24\",\"24\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "[\"24\",\"37\",\"96\",\"04\",\"24\",\"37\",\"96\",\"04\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[3,7]"
+    },
+    {
+      "input": "[\"a\",\"b\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "[\"a\",\"a\"]\n[[2,1],[2,2]]",
+      "expectedOutput": "[1,1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Run a simulation to follow the requirement of each query."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/query-kth-smallest-trimmed-number/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.103Z",
+    "sourceUpdatedAt": null
+  }
+}

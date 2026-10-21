@@ -1,0 +1,176 @@
+{
+  "id": "3812",
+  "slug": "minimum-edge-toggles-on-a-tree",
+  "title": "Minimum Edge Toggles on a Tree",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Graph Theory",
+    "Topological Sort",
+    "Sorting"
+  ],
+  "statement": "You are given an **undirected tree** with `n` nodes, numbered from 0 to `n - 1`. It is represented by a 2D integer array `edges`​​​​​​​ of length `n - 1`, where `edges[i] = [a_(i), b_(i)]` indicates that there is an edge between nodes `a_(i)` and `b_(i)` in the tree.\n\nYou are also given two **binary** strings `start` and `target` of length `n`. For each node `x`, `start[x]` is its initial color and `target[x]` is its desired color.\n\nIn one operation, you may pick an edge with index `i` and **toggle** both of its endpoints. That is, if the edge is `[u, v]`, then the colors of nodes `u` and `v` **each** flip from `'0'` to `'1'` or from `'1'` to `'0'`.\n\nReturn an array of edge indices whose operations transform `start` into `target`. Among all valid sequences with **minimum possible length**, return the edge indices in **increasing**​​​​​​​ order.\n\nIf it is impossible to transform `start` into `target`, return an array containing a single element equal to -1.\n\n**Example 1:**\n\n**![](./assets/minimum-edge-toggles-on-a-tree-1.png)​​​​​​​**\n\n**Input:** n = 3, edges = \\[\\[0,1\\],\\[1,2\\]\\], start = \"010\", target = \"100\"\n\n**Output:** \\[0\\]\n\n**Explanation:**\n\nToggle edge with index 0, which flips nodes 0 and 1.  \n​​​​​​​The string changes from `\"010\"` to `\"100\"`, matching the target.\n\n**Example 2:**\n\n**![](./assets/minimum-edge-toggles-on-a-tree-2.png)**\n\n**Input:** n = 7, edges = \\[\\[0,1\\],\\[1,2\\],\\[2,3\\],\\[3,4\\],\\[3,5\\],\\[1,6\\]\\], start = \"0011000\", target = \"0010001\"\n\n**Output:** \\[1,2,5\\]\n\n**Explanation:**\n\n*   Toggle edge with index 1, which flips nodes 1 and 2.\n*   Toggle edge with index 2, which flips nodes 2 and 3.\n*   Toggle edge with index 5, which flips nodes 1 and 6.\n\nAfter these operations, the resulting string becomes `\"0010001\"`, which matches the target.\n\n**Example 3:**\n\n**![](./assets/minimum-edge-toggles-on-a-tree-3.png)​​​​​​​**\n\n**Input:** n = 2, edges = \\[\\[0,1\\]\\], start = \"00\", target = \"01\"\n\n**Output:** \\[-1\\]\n\n**Explanation:**\n\nThere is no sequence of edge toggles that transforms `\"00\"` into `\"01\"`. Therefore, we return `[-1]`.\n\n**Constraints:**\n\n*   `2 <= n == start.length == target.length <= 10^(5)`\n*   `edges.length == n - 1`\n*   `edges[i] = [a_(i), b_(i)]`\n*   `0 <= a_(i), b_(i) < n`\n*   `start[i]` is either `'0'` or `'1'`.\n*   `target[i]` is either `'0'` or `'1'`.\n*   The input is generated such that `edges` represents a valid tree.",
+  "constraints": [
+    "2 <= n == start.length == target.length <= 105",
+    "edges.length == n - 1",
+    "edges[i] = [ai, bi]",
+    "0 <= ai, bi < n",
+    "start[i] is either '0' or '1'.",
+    "target[i] is either '0' or '1'.",
+    "The input is generated such that edges represents a valid tree."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], start = \"010\", target = \"100\"",
+      "output": "[0]",
+      "explanation": null
+    },
+    {
+      "input": "n = 7, edges = [[0,1],[1,2],[2,3],[3,4],[3,5],[1,6]], start = \"0011000\", target = \"0010001\"",
+      "output": "[1,2,5]",
+      "explanation": "Toggle edge with index 1, which flips nodes 1 and 2.\n\tToggle edge with index 2, which flips nodes 2 and 3.\n\tToggle edge with index 5, which flips nodes 1 and 6."
+    },
+    {
+      "input": "n = 2, edges = [[0,1]], start = \"00\", target = \"01\"",
+      "output": "[-1]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> minimumFlips(int n, vector<vector<int>>& edges, string start, string target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> minimumFlips(int n, int[][] edges, String start, String target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumFlips(self, n: int, edges: List[List[int]], start: str, target: str) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def minimumFlips(self, n, edges, start, target):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type start: str\n        :type target: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {string} start\n * @param {string} target\n * @return {number[]}\n */\nvar minimumFlips = function(n, edges, start, target) {\n    \n};",
+    "typescript": "function minimumFlips(n: number, edges: number[][], start: string, target: string): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> MinimumFlips(int n, int[][] edges, string start, string target) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* minimumFlips(int n, int** edges, int edgesSize, int* edgesColSize, char* start, char* target, int* returnSize) {\n    \n}",
+    "golang": "func minimumFlips(n int, edges [][]int, start string, target string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumFlips(n: Int, edges: Array<IntArray>, start: String, target: String): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumFlips(_ n: Int, _ edges: [[Int]], _ start: String, _ target: String) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_flips(n: i32, edges: Vec<Vec<i32>>, start: String, target: String) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {String} start\n# @param {String} target\n# @return {Integer[]}\ndef minimum_flips(n, edges, start, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param String $start\n     * @param String $target\n     * @return Integer[]\n     */\n    function minimumFlips($n, $edges, $start, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> minimumFlips(int n, List<List<int>> edges, String start, String target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumFlips(n: Int, edges: Array[Array[Int]], start: String, target: String): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_flips(n :: integer, edges :: [[integer]], start :: String.t, target :: String.t) :: [integer]\n  def minimum_flips(n, edges, start, target) do\n    \n  end\nend",
+    "erlang": "-spec minimum_flips(N :: integer(), Edges :: [[integer()]], Start :: unicode:unicode_binary(), Target :: unicode:unicode_binary()) -> [integer()].\nminimum_flips(N, Edges, Start, Target) ->\n  .",
+    "racket": "(define/contract (minimum-flips n edges start target)\n  (-> exact-integer? (listof (listof exact-integer?)) string? string? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"010\"\n\"100\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "7\n[[0,1],[1,2],[2,3],[3,4],[3,5],[1,6]]\n\"0011000\"\n\"0010001\"",
+      "expectedOutput": "[1,2,5]"
+    },
+    {
+      "input": "2\n[[0,1]]\n\"00\"\n\"01\"",
+      "expectedOutput": "[-1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"010\"\n\"100\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "7\n[[0,1],[1,2],[2,3],[3,4],[3,5],[1,6]]\n\"0011000\"\n\"0010001\"",
+      "expectedOutput": "[1,2,5]"
+    },
+    {
+      "input": "2\n[[0,1]]\n\"00\"\n\"01\"",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "4\n[[0,1],[1,2]]\n\"010\"\n\"100\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "5\n[[0,1],[1,2]]\n\"010\"\n\"100\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "6\n[[0,1],[1,2]]\n\"010\"\n\"100\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "7\n[[0,1],[1,2]]\n\"010\"\n\"100\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "8\n[[0,1],[1,2]]\n\"010\"\n\"100\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"010010\"\n\"100\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"000\"\n\"100\"",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"aba\"\n\"100\"",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"abba\"\n\"100\"",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"aaaaa\"\n\"100\"",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"abcde\"\n\"100\"",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"edcba\"\n\"100\"",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"aab\"\n\"100\"",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"121\"\n\"100\"",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"racecar\"\n\"100\"",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"hello\"\n\"100\"",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n\"leetcode\"\n\"100\"",
+      "expectedOutput": "[-1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use a depth-first search (DFS).",
+    "Root the tree at any node. Traverse the tree, keeping track of flips applied from the parent to the subtree.",
+    "After processing a child subtree, determine whether the current node still needs to be flipped to match the target. If a flip is needed, record the corresponding edge.",
+    "Collect all flipped edges; if the transformation is impossible, return <code>[-1]</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-edge-toggles-on-a-tree/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.880Z",
+    "sourceUpdatedAt": null
+  }
+}

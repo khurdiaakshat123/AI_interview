@@ -1,0 +1,170 @@
+{
+  "id": "3992",
+  "slug": "rearrange-string-to-avoid-character-pair",
+  "title": "Rearrange String to Avoid Character Pair",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Sorting"
+  ],
+  "statement": "You are given a string `s` and two distinct lowercase English letters `x` and `y`.\n\nRearrange the characters of `s` to construct a new string `t` such that:\n\n*   `t` is a permutation of `s`.\n*   Every occurrence of `y` appears before every occurrence of `x` in `t`.\n\nReturn any valid string `t`.\n\n**Example 1:**\n\n**Input:** s = \"aabc\", x = \"a\", y = \"c\"\n\n**Output:** \"cbaa\"\n\n**Explanation:**\n\nThe string `\"cbaa\"` is a permutation of `\"aabc\"`, and every occurrence of `'c'` appears before every occurrence of `'a'`.\n\n**Example 2:**\n\n**Input:** s = \"dcab\", x = \"d\", y = \"b\"\n\n**Output:** \"cabd\"\n\n**Explanation:**\n\nThe string `\"cabd\"` is a permutation of `\"dcab\"`, and every occurrence of `'b'` appears before every occurrence of `'d'`.\n\n**Example 3:**\n\n**Input:** s = \"axe\", x = \"o\", y = \"x\"\n\n**Output:** \"axe\"\n\n**Explanation:**\n\nThe string `\"axe\"` is already valid. Since `'o'` does not occur in the string, the required condition is automatically satisfied.\n\n**Constraints:**\n\n*   `1 <= s.length <= 100`\n*   `s` consists of lowercase English letters.\n*   `x` and `y` are lowercase English letters.\n*   `x != y`",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s consists of lowercase English letters.",
+    "x and y are lowercase English letters.",
+    "x != y"
+  ],
+  "examples": [
+    {
+      "input": "s = \"aabc\", x = \"a\", y = \"c\"",
+      "output": "\"cbaa\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"dcab\", x = \"d\", y = \"b\"",
+      "output": "\"cabd\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"axe\", x = \"o\", y = \"x\"",
+      "output": "\"axe\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string rearrangeString(string s, char x, char y) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String rearrangeString(String s, char x, char y) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def rearrangeString(self, s: str, x: str, y: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def rearrangeString(self, s, x, y):\n        \"\"\"\n        :type s: str\n        :type x: str\n        :type y: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {character} x\n * @param {character} y\n * @return {string}\n */\nvar rearrangeString = function(s, x, y) {\n    \n};",
+    "typescript": "function rearrangeString(s: string, x: string, y: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string RearrangeString(string s, char x, char y) {\n        \n    }\n}",
+    "c": "char* rearrangeString(char* s, char x, char y) {\n    \n}",
+    "golang": "func rearrangeString(s string, x byte, y byte) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun rearrangeString(s: String, x: Char, y: Char): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func rearrangeString(_ s: String, _ x: Character, _ y: Character) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn rearrange_string(s: String, x: char, y: char) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Character} x\n# @param {Character} y\n# @return {String}\ndef rearrange_string(s, x, y)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $x\n     * @param String $y\n     * @return String\n     */\n    function rearrangeString($s, $x, $y) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String rearrangeString(String s, String x, String y) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def rearrangeString(s: String, x: Char, y: Char): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec rearrange_string(s :: String.t, x :: char, y :: char) :: String.t\n  def rearrange_string(s, x, y) do\n    \n  end\nend",
+    "erlang": "-spec rearrange_string(S :: unicode:unicode_binary(), X :: char(), Y :: char()) -> unicode:unicode_binary().\nrearrange_string(S, X, Y) ->\n  .",
+    "racket": "(define/contract (rearrange-string s x y)\n  (-> string? char? char? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aabc\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"cbaa\""
+    },
+    {
+      "input": "\"dcab\"\n\"d\"\n\"b\"",
+      "expectedOutput": "\"cabd\""
+    },
+    {
+      "input": "\"axe\"\n\"o\"\n\"x\"",
+      "expectedOutput": "\"axe\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aabc\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"caba\""
+    },
+    {
+      "input": "\"dcab\"\n\"d\"\n\"b\"",
+      "expectedOutput": "\"bcad\""
+    },
+    {
+      "input": "\"axe\"\n\"o\"\n\"x\"",
+      "expectedOutput": "\"xae\""
+    },
+    {
+      "input": "\"aa\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"bc\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"cb\""
+    },
+    {
+      "input": "\"a\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"cbaa\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"cbaa\""
+    },
+    {
+      "input": "\"aabcaabc\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"ccbaaaba\""
+    },
+    {
+      "input": "\"aaaa\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"aaaa\""
+    },
+    {
+      "input": "\"aabccbaa\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"ccbaabaa\""
+    },
+    {
+      "input": "\"AABC\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"AABC\""
+    },
+    {
+      "input": "\"b\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"ab\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"cbade\""
+    },
+    {
+      "input": "\"edcba\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"cdeba\""
+    },
+    {
+      "input": "\"aab\"\n\"a\"\n\"c\"",
+      "expectedOutput": "\"aab\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Only the relative order between occurrences of <code>x</code> and <code>y</code> matters.</p>",
+    "<p>One approach is to place all occurrences of <code>y</code> before all other characters, and place all occurrences of <code>x</code> after them.</p>",
+    "<p>Another approach is to sort the characters of <code>s</code>. If <code>x &lt; y</code>, sort in descending order; otherwise, sort in ascending order.</p>\r\n\r\n<p>After sorting this way, every occurrence of <code>y</code> will appear before every occurrence of <code>x</code>.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/rearrange-string-to-avoid-character-pair/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.288Z",
+    "sourceUpdatedAt": null
+  }
+}

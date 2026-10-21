@@ -1,0 +1,154 @@
+{
+  "id": "306",
+  "slug": "additive-number",
+  "title": "Additive Number",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Backtracking"
+  ],
+  "statement": "An **additive number** is a string whose digits can form an **additive sequence**.\n\nA valid **additive sequence** should contain **at least** three numbers. Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.\n\nGiven a string containing only digits, return `true` if it is an **additive number** or `false` otherwise.\n\n**Note:** Numbers in the additive sequence **cannot** have leading zeros, so sequence `1, 2, 03` or `1, 02, 3` is invalid.\n\n**Example 1:**\n\n```\nInput: \"112358\"\nOutput: true\nExplanation: \nThe digits can form an additive sequence: 1, 1, 2, 3, 5, 8. \n1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8\n```\n\n**Example 2:**\n\n```\nInput: \"199100199\"\nOutput: true\nExplanation: \nThe additive sequence is: 1, 99, 100, 199. \n1 + 99 = 100, 99 + 100 = 199\n```\n\n**Constraints:**\n\n*   `1 <= num.length <= 35`\n*   `num` consists only of digits.\n\n**Follow up:** How would you handle overflow for very large input integers?",
+  "constraints": [
+    "1 <= num.length <= 35",
+    "num consists only of digits."
+  ],
+  "examples": [
+    {
+      "input": "\"112358\"",
+      "output": "true",
+      "explanation": "The digits can form an additive sequence: 1, 1, 2, 3, 5, 8. \n1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8"
+    },
+    {
+      "input": "\"199100199\"",
+      "output": "true",
+      "explanation": "The additive sequence is: 1, 99, 100, 199. \n1 + 99 = 100, 99 + 100 = 199"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isAdditiveNumber(string num) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isAdditiveNumber(String num) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isAdditiveNumber(self, num: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isAdditiveNumber(self, num):\n        \"\"\"\n        :type num: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num\n * @return {boolean}\n */\nvar isAdditiveNumber = function(num) {\n    \n};",
+    "typescript": "function isAdditiveNumber(num: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsAdditiveNumber(string num) {\n        \n    }\n}",
+    "c": "bool isAdditiveNumber(char* num) {\n    \n}",
+    "golang": "func isAdditiveNumber(num string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isAdditiveNumber(num: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isAdditiveNumber(_ num: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_additive_number(num: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} num\n# @return {Boolean}\ndef is_additive_number(num)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num\n     * @return Boolean\n     */\n    function isAdditiveNumber($num) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isAdditiveNumber(String num) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isAdditiveNumber(num: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_additive_number(num :: String.t) :: boolean\n  def is_additive_number(num) do\n    \n  end\nend",
+    "erlang": "-spec is_additive_number(Num :: unicode:unicode_binary()) -> boolean().\nis_additive_number(Num) ->\n  .",
+    "racket": "(define/contract (is-additive-number num)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"112358\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"199100199\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"112358\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"199100199\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"112\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"358\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"11\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"853211\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"112358112358\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"111111\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"112358853211\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"()\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"(]\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/additive-number/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:12.885Z",
+    "sourceUpdatedAt": null
+  }
+}

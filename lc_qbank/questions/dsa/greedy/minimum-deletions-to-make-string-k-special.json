@@ -1,0 +1,172 @@
+{
+  "id": "3085",
+  "slug": "minimum-deletions-to-make-string-k-special",
+  "title": "Minimum Deletions to Make String K-Special",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Sorting",
+    "Counting"
+  ],
+  "statement": "You are given a string `word` and an integer `k`.\n\nWe consider `word` to be **k-special** if `|freq(word[i]) - freq(word[j])| <= k` for all indices `i` and `j` in the string.\n\nHere, `freq(x)` denotes the frequency of the character `x` in `word`, and `|y|` denotes the absolute value of `y`.\n\nReturn _the **minimum** number of characters you need to delete to make_ `word` **_k-special_**.\n\n**Example 1:**\n\n**Input:** word = \"aabcaba\", k = 0\n\n**Output:** 3\n\n**Explanation:** We can make `word` `0`\\-special by deleting `2` occurrences of `\"a\"` and `1` occurrence of `\"c\"`. Therefore, `word` becomes equal to `\"baba\"` where `freq('a') == freq('b') == 2`.\n\n**Example 2:**\n\n**Input:** word = \"dabdcbdcdcd\", k = 2\n\n**Output:** 2\n\n**Explanation:** We can make `word` `2`\\-special by deleting `1` occurrence of `\"a\"` and `1` occurrence of `\"d\"`. Therefore, `word` becomes equal to \"bdcbdcdcd\" where `freq('b') == 2`, `freq('c') == 3`, and `freq('d') == 4`.\n\n**Example 3:**\n\n**Input:** word = \"aaabaaa\", k = 2\n\n**Output:** 1\n\n**Explanation:** We can make `word` `2`\\-special by deleting `1` occurrence of `\"b\"`. Therefore, `word` becomes equal to `\"aaaaaa\"` where each letter's frequency is now uniformly `6`.\n\n**Constraints:**\n\n*   `1 <= word.length <= 10^(5)`\n*   `0 <= k <= 10^(5)`\n*   `word` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= word.length <= 105",
+    "0 <= k <= 105",
+    "word consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "word = \"aabcaba\", k = 0",
+      "output": "3",
+      "explanation": "We can make word 0-special by deleting 2 occurrences of \"a\" and 1 occurrence of \"c\". Therefore, word becomes equal to \"baba\" where freq('a') == freq('b') == 2."
+    },
+    {
+      "input": "word = \"dabdcbdcdcd\", k = 2",
+      "output": "2",
+      "explanation": "We can make word 2-special by deleting 1 occurrence of \"a\" and 1 occurrence of \"d\". Therefore, word becomes equal to \"bdcbdcdcd\" where freq('b') == 2, freq('c') == 3, and freq('d') == 4."
+    },
+    {
+      "input": "word = \"aaabaaa\", k = 2",
+      "output": "1",
+      "explanation": "We can make word 2-special by deleting 1 occurrence of \"b\". Therefore, word becomes equal to \"aaaaaa\" where each letter's frequency is now uniformly 6."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumDeletions(string word, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumDeletions(String word, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumDeletions(self, word: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumDeletions(self, word, k):\n        \"\"\"\n        :type word: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word\n * @param {number} k\n * @return {number}\n */\nvar minimumDeletions = function(word, k) {\n    \n};",
+    "typescript": "function minimumDeletions(word: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumDeletions(string word, int k) {\n        \n    }\n}",
+    "c": "int minimumDeletions(char* word, int k) {\n    \n}",
+    "golang": "func minimumDeletions(word string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumDeletions(word: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumDeletions(_ word: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_deletions(word: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} word\n# @param {Integer} k\n# @return {Integer}\ndef minimum_deletions(word, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word\n     * @param Integer $k\n     * @return Integer\n     */\n    function minimumDeletions($word, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumDeletions(String word, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumDeletions(word: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_deletions(word :: String.t, k :: integer) :: integer\n  def minimum_deletions(word, k) do\n    \n  end\nend",
+    "erlang": "-spec minimum_deletions(Word :: unicode:unicode_binary(), K :: integer()) -> integer().\nminimum_deletions(Word, K) ->\n  .",
+    "racket": "(define/contract (minimum-deletions word k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aabcaba\"\n0",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"dabdcbdcdcd\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaabaaa\"\n2",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aabcaba\"\n0",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"dabdcbdcdcd\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaabaaa\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aab\"\n0",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"caba\"\n0",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"a\"\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abacbaa\"\n0",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aabcabaaabcaba\"\n0",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"aaaaaa\"\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aabcabaabacbaa\"\n0",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"AABCABA\"\n0",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"b\"\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n0",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"\n0",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Count the frequency of each letter.",
+    "Suppose we select several characters as the final answer, and let <code>x</code> be the character with the smallest frequency in the answer. It can be shown that out of the selected characters, the optimal solution will never delete an occurrence of character <code>x</code> to obtain the answer.",
+    "We will fix a character <code>c</code> and assume that it will be the character with the smallest frequency in the answer. Suppose its frequency is <code>x</code>.",
+    "Then, for every other character, we will count the number of occurrences that will be deleted. Suppose that the current character has <code>y</code> occurrences. <ol> <li>If y < x, we need to delete all of them.</li> <li> if y > x + k, we should delete y - x - k of such character.</li> <li> Otherwise we don’t need to delete it.</li></ol>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-deletions-to-make-string-k-special/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.797Z",
+    "sourceUpdatedAt": null
+  }
+}

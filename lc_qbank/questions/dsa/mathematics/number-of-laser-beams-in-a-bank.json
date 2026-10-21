@@ -1,0 +1,163 @@
+{
+  "id": "2125",
+  "slug": "number-of-laser-beams-in-a-bank",
+  "title": "Number of Laser Beams in a Bank",
+  "category": "dsa",
+  "subcategory": "mathematics",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "String",
+    "Matrix"
+  ],
+  "statement": "Anti-theft security devices are activated inside a bank. You are given a **0-indexed** binary string array `bank` representing the floor plan of the bank, which is an `m x n` 2D matrix. `bank[i]` represents the `i^(th)` row, consisting of `'0'`s and `'1'`s. `'0'` means the cell is empty, while`'1'` means the cell has a security device.\n\nThere is **one** laser beam between any **two** security devices **if both** conditions are met:\n\n*   The two devices are located on two **different rows**: `r_(1)` and `r_(2)`, where `r_(1) < r_(2)`.\n*   For **each** row `i` where `r_(1) < i < r_(2)`, there are **no security devices** in the `i^(th)` row.\n\nLaser beams are independent, i.e., one beam does not interfere nor join with another.\n\nReturn _the total number of laser beams in the bank_.\n\n**Example 1:**\n\n![](./assets/number-of-laser-beams-in-a-bank-1.jpg)\n```\nInput: bank = [\"011001\",\"000000\",\"010100\",\"001000\"]\nOutput: 8\nExplanation: Between each of the following device pairs, there is one beam. In total, there are 8 beams:\n * bank[0][1] -- bank[2][1]\n * bank[0][1] -- bank[2][3]\n * bank[0][2] -- bank[2][1]\n * bank[0][2] -- bank[2][3]\n * bank[0][5] -- bank[2][1]\n * bank[0][5] -- bank[2][3]\n * bank[2][1] -- bank[3][2]\n * bank[2][3] -- bank[3][2]\nNote that there is no beam between any device on the 0th row with any on the 3rd row.\nThis is because the 2nd row contains security devices, which breaks the second condition.\n```\n\n**Example 2:**\n\n![](./assets/number-of-laser-beams-in-a-bank-2.jpg)\n```\nInput: bank = [\"000\",\"111\",\"000\"]\nOutput: 0\nExplanation: There does not exist two devices located on two different rows.\n```\n\n**Constraints:**\n\n*   `m == bank.length`\n*   `n == bank[i].length`\n*   `1 <= m, n <= 500`\n*   `bank[i][j]` is either `'0'` or `'1'`.",
+  "constraints": [
+    "m == bank.length",
+    "n == bank[i].length",
+    "1 <= m, n <= 500",
+    "bank[i][j] is either '0' or '1'."
+  ],
+  "examples": [
+    {
+      "input": "bank = [\"011001\",\"000000\",\"010100\",\"001000\"]",
+      "output": "8",
+      "explanation": "Between each of the following device pairs, there is one beam. In total, there are 8 beams:\n * bank[0][1] -- bank[2][1]\n * bank[0][1] -- bank[2][3]\n * bank[0][2] -- bank[2][1]\n * bank[0][2] -- bank[2][3]\n * bank[0][5] -- bank[2][1]\n * bank[0][5] -- bank[2][3]\n * bank[2][1] -- bank[3][2]\n * bank[2][3] -- bank[3][2]\nNote that there is no beam between any device on the 0th row with any on the 3rd row.\nThis is because the 2nd row contains security devices, which breaks the second condition."
+    },
+    {
+      "input": "bank = [\"000\",\"111\",\"000\"]",
+      "output": "0",
+      "explanation": "There does not exist two devices located on two different rows."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numberOfBeams(vector<string>& bank) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numberOfBeams(String[] bank) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfBeams(self, bank: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfBeams(self, bank):\n        \"\"\"\n        :type bank: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} bank\n * @return {number}\n */\nvar numberOfBeams = function(bank) {\n    \n};",
+    "typescript": "function numberOfBeams(bank: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumberOfBeams(string[] bank) {\n        \n    }\n}",
+    "c": "int numberOfBeams(char** bank, int bankSize) {\n    \n}",
+    "golang": "func numberOfBeams(bank []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfBeams(bank: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfBeams(_ bank: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_beams(bank: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} bank\n# @return {Integer}\ndef number_of_beams(bank)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $bank\n     * @return Integer\n     */\n    function numberOfBeams($bank) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfBeams(List<String> bank) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfBeams(bank: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_beams(bank :: [String.t]) :: integer\n  def number_of_beams(bank) do\n    \n  end\nend",
+    "erlang": "-spec number_of_beams(Bank :: [unicode:unicode_binary()]) -> integer().\nnumber_of_beams(Bank) ->\n  .",
+    "racket": "(define/contract (number-of-beams bank)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"011001\",\"000000\",\"010100\",\"001000\"]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"000\",\"111\",\"000\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"011001\",\"000000\",\"010100\",\"001000\"]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"000\",\"111\",\"000\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"011001\",\"000000\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"010100\",\"001000\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"011001\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"011001\",\"001000\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"001000\",\"010100\",\"000000\",\"011001\"]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"000000\",\"001000\",\"010100\",\"011001\"]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"011001\",\"010100\",\"001000\",\"000000\"]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"011001\",\"011001\",\"011001\",\"011001\"]",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "[\"011001\",\"000000\",\"010100\",\"001000\",\"011001\",\"000000\",\"010100\",\"001000\"]",
+      "expectedOutput": "19"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "What is the commonality between security devices on the same row?",
+    "Each device on the same row has the same number of beams pointing towards the devices on the next row with devices.",
+    "If you were given an integer array where each element is the number of security devices on each row, can you solve it?",
+    "Convert the input to such an array, skip any row with no security device, then find the sum of the product between adjacent elements."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-laser-beams-in-a-bank/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.950Z",
+    "sourceUpdatedAt": null
+  }
+}

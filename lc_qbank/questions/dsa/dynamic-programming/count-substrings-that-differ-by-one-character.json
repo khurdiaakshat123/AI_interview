@@ -1,0 +1,159 @@
+{
+  "id": "1638",
+  "slug": "count-substrings-that-differ-by-one-character",
+  "title": "Count Substrings That Differ by One Character",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Enumeration"
+  ],
+  "statement": "Given two strings `s` and `t`, find the number of ways you can choose a non-empty substring of `s` and replace a **single character** by a different character such that the resulting substring is a substring of `t`. In other words, find the number of substrings in `s` that differ from some substring in `t` by **exactly** one character.\n\nFor example, the underlined substrings in `\"computer\"` and `\"computation\"` only differ by the `'e'`/`'a'`, so this is a valid way.\n\nReturn _the number of substrings that satisfy the condition above._\n\nA **substring** is a contiguous sequence of characters within a string.\n\n**Example 1:**\n\n```\nInput: s = \"aba\", t = \"baba\"\nOutput: 6\nExplanation: The following are the pairs of substrings from s and t that differ by exactly 1 character:\n(\"aba\", \"baba\")\n(\"aba\", \"baba\")\n(\"aba\", \"baba\")\n(\"aba\", \"baba\")\n(\"aba\", \"baba\")\n(\"aba\", \"baba\")\nThe underlined portions are the substrings that are chosen from s and t.\n```\n​​**Example 2:**\n```\nInput: s = \"ab\", t = \"bb\"\nOutput: 3\nExplanation: The following are the pairs of substrings from s and t that differ by 1 character:\n(\"ab\", \"bb\")\n(\"ab\", \"bb\")\n(\"ab\", \"bb\")\n​​​​The underlined portions are the substrings that are chosen from s and t.\n```\n\n**Constraints:**\n\n*   `1 <= s.length, t.length <= 100`\n*   `s` and `t` consist of lowercase English letters only.",
+  "constraints": [
+    "1 <= s.length, t.length <= 100",
+    "s and t consist of lowercase English letters only."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aba\", t = \"baba\"",
+      "output": "6",
+      "explanation": "The following are the pairs of substrings from s and t that differ by exactly 1 character:\n(\"aba\", \"baba\")\n(\"aba\", \"baba\")\n(\"aba\", \"baba\")\n(\"aba\", \"baba\")\n(\"aba\", \"baba\")\n(\"aba\", \"baba\")\nThe underlined portions are the substrings that are chosen from s and t."
+    },
+    {
+      "input": "s = \"ab\", t = \"bb\"",
+      "output": "3",
+      "explanation": "The following are the pairs of substrings from s and t that differ by 1 character:\n(\"ab\", \"bb\")\n(\"ab\", \"bb\")\n(\"ab\", \"bb\")\n​​​​The underlined portions are the substrings that are chosen from s and t."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countSubstrings(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countSubstrings(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countSubstrings(self, s: str, t: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def countSubstrings(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {number}\n */\nvar countSubstrings = function(s, t) {\n    \n};",
+    "typescript": "function countSubstrings(s: string, t: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountSubstrings(string s, string t) {\n        \n    }\n}",
+    "c": "int countSubstrings(char* s, char* t) {\n    \n}",
+    "golang": "func countSubstrings(s string, t string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countSubstrings(s: String, t: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countSubstrings(_ s: String, _ t: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_substrings(s: String, t: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Integer}\ndef count_substrings(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Integer\n     */\n    function countSubstrings($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countSubstrings(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countSubstrings(s: String, t: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_substrings(s :: String.t, t :: String.t) :: integer\n  def count_substrings(s, t) do\n    \n  end\nend",
+    "erlang": "-spec count_substrings(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> integer().\ncount_substrings(S, T) ->\n  .",
+    "racket": "(define/contract (count-substrings s t)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aba\"\n\"baba\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"ab\"\n\"bb\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aba\"\n\"baba\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"ab\"\n\"bb\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"a\"\n\"baba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ba\"\n\"baba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"ab\"\n\"baba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abaaba\"\n\"baba\"",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "\"aaa\"\n\"baba\"",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "\"ABA\"\n\"baba\"",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "\"b\"\n\"baba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aa\"\n\"baba\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"abba\"\n\"baba\"",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "\"aaaaa\"\n\"baba\"",
+      "expectedOutput": "25"
+    },
+    {
+      "input": "\"abcde\"\n\"baba\"",
+      "expectedOutput": "19"
+    },
+    {
+      "input": "\"edcba\"\n\"baba\"",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "\"aab\"\n\"baba\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"aA\"\n\"baba\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"0\"\n\"baba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"121\"\n\"baba\"",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "\"racecar\"\n\"baba\"",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "\"hello\"\n\"baba\"",
+      "expectedOutput": "20"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Take every substring of s, change a character, and see how many substrings of t match that substring.",
+    "Use a Trie to store all substrings of t as a dictionary."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-substrings-that-differ-by-one-character/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.702Z",
+    "sourceUpdatedAt": null
+  }
+}

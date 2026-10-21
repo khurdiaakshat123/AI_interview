@@ -1,0 +1,110 @@
+{
+  "id": "2055",
+  "slug": "plates-between-candles",
+  "title": "Plates Between Candles",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Binary Search",
+    "Prefix Sum"
+  ],
+  "statement": "There is a long table with a line of plates and candles arranged on top of it. You are given a **0-indexed** string `s` consisting of characters `'*'` and `'|'` only, where a `'*'` represents a **plate** and a `'|'` represents a **candle**.\n\nYou are also given a **0-indexed** 2D integer array `queries` where `queries[i] = [left_(i), right_(i)]` denotes the **substring** `s[left_(i)...right_(i)]` (**inclusive**). For each query, you need to find the **number** of plates **between candles** that are **in the substring**. A plate is considered **between candles** if there is at least one candle to its left **and** at least one candle to its right **in the substring**.\n\n*   For example, `s = \"||**||**|*\"`, and a query `[3, 8]` denotes the substring `\"*||******|\"`. The number of plates between candles in this substring is `2`, as each of the two plates has at least one candle **in the substring** to its left **and** right.\n\nReturn _an integer array_ `answer` _where_ `answer[i]` _is the answer to the_ `i^(th)` _query_.\n\n**Example 1:**\n\n![ex-1](./assets/plates-between-candles-1.png)\n```\nInput: s = \"**|**|***|\", queries = [[2,5],[5,9]]\nOutput: [2,3]\nExplanation:\n- queries[0] has two plates between candles.\n- queries[1] has three plates between candles.\n```\n\n**Example 2:**\n\n![ex-2](./assets/plates-between-candles-2.png)\n```\nInput: s = \"***|**|*****|**||**|*\", queries = [[1,17],[4,5],[14,17],[5,11],[15,16]]\nOutput: [9,0,0,0,0]\nExplanation:\n- queries[0] has nine plates between candles.\n- The other queries have zero plates between candles.\n```\n\n**Constraints:**\n\n*   `3 <= s.length <= 10^(5)`\n*   `s` consists of `'*'` and `'|'` characters.\n*   `1 <= queries.length <= 10^(5)`\n*   `queries[i].length == 2`\n*   `0 <= left_(i) <= right_(i) < s.length`",
+  "constraints": [
+    "3 <= s.length <= 105",
+    "s consists of '*' and '|' characters.",
+    "1 <= queries.length <= 105",
+    "queries[i].length == 2",
+    "0 <= lefti <= righti < s.length"
+  ],
+  "examples": [
+    {
+      "input": "s = \"**|**|***|\", queries = [[2,5],[5,9]]",
+      "output": "[2,3]",
+      "explanation": "- queries[0] has two plates between candles.\n- queries[1] has three plates between candles."
+    },
+    {
+      "input": "s = \"***|**|*****|**||**|*\", queries = [[1,17],[4,5],[14,17],[5,11],[15,16]]",
+      "output": "[9,0,0,0,0]",
+      "explanation": "- queries[0] has nine plates between candles.\n- The other queries have zero plates between candles."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> platesBetweenCandles(string s, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] platesBetweenCandles(String s, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def platesBetweenCandles(self, s: str, queries: list[list[int]]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def platesBetweenCandles(self, s, queries):\n        \"\"\"\n        :type s: str\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar platesBetweenCandles = function(s, queries) {\n    \n};",
+    "typescript": "function platesBetweenCandles(s: string, queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] PlatesBetweenCandles(string s, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* platesBetweenCandles(char* s, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func platesBetweenCandles(s string, queries [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun platesBetweenCandles(s: String, queries: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func platesBetweenCandles(_ s: String, _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn plates_between_candles(s: String, queries: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef plates_between_candles(s, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function platesBetweenCandles($s, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> platesBetweenCandles(String s, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def platesBetweenCandles(s: String, queries: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec plates_between_candles(s :: String.t, queries :: [[integer]]) :: [integer]\n  def plates_between_candles(s, queries) do\n    \n  end\nend",
+    "erlang": "-spec plates_between_candles(S :: unicode:unicode_binary(), Queries :: [[integer()]]) -> [integer()].\nplates_between_candles(S, Queries) ->\n  .",
+    "racket": "(define/contract (plates-between-candles s queries)\n  (-> string? (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"**|**|***|\"\n[[2,5],[5,9]]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "\"***|**|*****|**||**|*\"\n[[1,17],[4,5],[14,17],[5,11],[15,16]]",
+      "expectedOutput": "[9,0,0,0,0]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"**|**|***|\"\n[[2,5],[5,9]]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "\"***|**|*****|**||**|*\"\n[[1,17],[4,5],[14,17],[5,11],[15,16]]",
+      "expectedOutput": "[9,0,0,0,0]"
+    },
+    {
+      "input": "\"|***|**|**\"\n[[2,5],[5,9]]",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "\"**|**|***|**|**|***|\"\n[[2,5],[5,9]]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "\"**|**|***||***|**|**\"\n[[2,5],[5,9]]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "\"*|**||**|*****|**|***\"\n[[1,17],[4,5],[14,17],[5,11],[15,16]]",
+      "expectedOutput": "[11,0,2,2,0]"
+    },
+    {
+      "input": "\"***|**|*****|**||**|*\"\n[[2,5],[5,9]]",
+      "expectedOutput": "[0,0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can you find the indices of the most left and right candles for a given substring, perhaps by using binary search (or better) over an array of indices of all the bars?",
+    "Once the indices of the most left and right bars are determined, how can you efficiently count the number of plates within the range? Prefix sums?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/plates-between-candles/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.784Z",
+    "sourceUpdatedAt": null
+  }
+}

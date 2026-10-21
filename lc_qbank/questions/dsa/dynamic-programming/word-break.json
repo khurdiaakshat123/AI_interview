@@ -1,0 +1,171 @@
+{
+  "id": "139",
+  "slug": "word-break",
+  "title": "Word Break",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Trie",
+    "Memoization",
+    "Brute-Force Search"
+  ],
+  "statement": "Given a string `s` and a dictionary of strings `wordDict`, return `true` if `s` can be segmented into a space-separated sequence of one or more dictionary words.\n\n**Note** that the same word in the dictionary may be reused multiple times in the segmentation.\n\n**Example 1:**\n\n```\nInput: s = \"leetcode\", wordDict = [\"leet\",\"code\"]\nOutput: true\nExplanation: Return true because \"leetcode\" can be segmented as \"leet code\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"applepenapple\", wordDict = [\"apple\",\"pen\"]\nOutput: true\nExplanation: Return true because \"applepenapple\" can be segmented as \"apple pen apple\".\nNote that you are allowed to reuse a dictionary word.\n```\n\n**Example 3:**\n\n```\nInput: s = \"catsandog\", wordDict = [\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]\nOutput: false\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 300`\n*   `1 <= wordDict.length <= 1000`\n*   `1 <= wordDict[i].length <= 20`\n*   `s` and `wordDict[i]` consist of only lowercase English letters.\n*   All the strings of `wordDict` are **unique**.",
+  "constraints": [
+    "1 <= s.length <= 300",
+    "1 <= wordDict.length <= 1000",
+    "1 <= wordDict[i].length <= 20",
+    "s and wordDict[i] consist of only lowercase English letters.",
+    "All the strings of wordDict are unique."
+  ],
+  "examples": [
+    {
+      "input": "s = \"leetcode\", wordDict = [\"leet\",\"code\"]",
+      "output": "true",
+      "explanation": "Return true because \"leetcode\" can be segmented as \"leet code\"."
+    },
+    {
+      "input": "s = \"applepenapple\", wordDict = [\"apple\",\"pen\"]",
+      "output": "true",
+      "explanation": "Return true because \"applepenapple\" can be segmented as \"apple pen apple\".\nNote that you are allowed to reuse a dictionary word."
+    },
+    {
+      "input": "s = \"catsandog\", wordDict = [\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]",
+      "output": "false",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool wordBreak(string s, vector<string>& wordDict) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean wordBreak(String s, List<String> wordDict) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def wordBreak(self, s: str, wordDict: list[str]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def wordBreak(self, s, wordDict):\n        \"\"\"\n        :type s: str\n        :type wordDict: List[str]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string[]} wordDict\n * @return {boolean}\n */\nvar wordBreak = function(s, wordDict) {\n    \n};",
+    "typescript": "function wordBreak(s: string, wordDict: string[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool WordBreak(string s, IList<string> wordDict) {\n        \n    }\n}",
+    "c": "bool wordBreak(char* s, char** wordDict, int wordDictSize) {\n    \n}",
+    "golang": "func wordBreak(s string, wordDict []string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun wordBreak(s: String, wordDict: List<String>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn word_break(s: String, word_dict: Vec<String>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String[]} word_dict\n# @return {Boolean}\ndef word_break(s, word_dict)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String[] $wordDict\n     * @return Boolean\n     */\n    function wordBreak($s, $wordDict) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool wordBreak(String s, List<String> wordDict) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def wordBreak(s: String, wordDict: List[String]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec word_break(s :: String.t, word_dict :: [String.t]) :: boolean\n  def word_break(s, word_dict) do\n    \n  end\nend",
+    "erlang": "-spec word_break(S :: unicode:unicode_binary(), WordDict :: [unicode:unicode_binary()]) -> boolean().\nword_break(S, WordDict) ->\n  .",
+    "racket": "(define/contract (word-break s wordDict)\n  (-> string? (listof string?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"leetcode\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"applepenapple\"\n[\"apple\",\"pen\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"catsandog\"\n[\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"leetcode\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"applepenapple\"\n[\"apple\",\"pen\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"catsandog\"\n[\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"leet\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"code\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"l\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"le\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edocteel\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"leetcodeleetcode\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"llllll\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"leetcodeedocteel\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"LEETCODE\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n[\"leet\",\"code\"]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/word-break/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.758Z",
+    "sourceUpdatedAt": null
+  }
+}

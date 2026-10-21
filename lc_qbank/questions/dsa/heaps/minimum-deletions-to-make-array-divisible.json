@@ -1,0 +1,162 @@
+{
+  "id": "2344",
+  "slug": "minimum-deletions-to-make-array-divisible",
+  "title": "Minimum Deletions to Make Array Divisible",
+  "category": "dsa",
+  "subcategory": "heaps",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Number Theory",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "statement": "You are given two positive integer arrays `nums` and `numsDivide`. You can delete any number of elements from `nums`.\n\nReturn _the **minimum** number of deletions such that the **smallest** element in_ `nums` _**divides** all the elements of_ `numsDivide`. If this is not possible, return `-1`.\n\nNote that an integer `x` divides `y` if `y % x == 0`.\n\n**Example 1:**\n\n```\nInput: nums = [2,3,2,4,3], numsDivide = [9,6,9,3,15]\nOutput: 2\nExplanation: \nThe smallest element in [2,3,2,4,3] is 2, which does not divide all the elements of numsDivide.\nWe use 2 deletions to delete the elements in nums that are equal to 2 which makes nums = [3,4,3].\nThe smallest element in [3,4,3] is 3, which divides all the elements of numsDivide.\nIt can be shown that 2 is the minimum number of deletions needed.\n```\n\n**Example 2:**\n\n```\nInput: nums = [4,3,6], numsDivide = [8,2,6,10]\nOutput: -1\nExplanation: \nWe want the smallest element in nums to divide all the elements of numsDivide.\nThere is no way to delete elements from nums to allow this.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length, numsDivide.length <= 10^(5)`\n*   `1 <= nums[i], numsDivide[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length, numsDivide.length <= 105",
+    "1 <= nums[i], numsDivide[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,3,2,4,3], numsDivide = [9,6,9,3,15]",
+      "output": "2",
+      "explanation": "The smallest element in [2,3,2,4,3] is 2, which does not divide all the elements of numsDivide.\nWe use 2 deletions to delete the elements in nums that are equal to 2 which makes nums = [3,4,3].\nThe smallest element in [3,4,3] is 3, which divides all the elements of numsDivide.\nIt can be shown that 2 is the minimum number of deletions needed."
+    },
+    {
+      "input": "nums = [4,3,6], numsDivide = [8,2,6,10]",
+      "output": "-1",
+      "explanation": "We want the smallest element in nums to divide all the elements of numsDivide.\nThere is no way to delete elements from nums to allow this."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, vector<int>& numsDivide) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minOperations(int[] nums, int[] numsDivide) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, nums: list[int], numsDivide: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, nums, numsDivide):\n        \"\"\"\n        :type nums: List[int]\n        :type numsDivide: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[]} numsDivide\n * @return {number}\n */\nvar minOperations = function(nums, numsDivide) {\n    \n};",
+    "typescript": "function minOperations(nums: number[], numsDivide: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinOperations(int[] nums, int[] numsDivide) {\n        \n    }\n}",
+    "c": "int minOperations(int* nums, int numsSize, int* numsDivide, int numsDivideSize) {\n    \n}",
+    "golang": "func minOperations(nums []int, numsDivide []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(nums: IntArray, numsDivide: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ nums: [Int], _ numsDivide: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(nums: Vec<i32>, nums_divide: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[]} nums_divide\n# @return {Integer}\ndef min_operations(nums, nums_divide)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[] $numsDivide\n     * @return Integer\n     */\n    function minOperations($nums, $numsDivide) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(List<int> nums, List<int> numsDivide) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(nums: Array[Int], numsDivide: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(nums :: [integer], nums_divide :: [integer]) :: integer\n  def min_operations(nums, nums_divide) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(Nums :: [integer()], NumsDivide :: [integer()]) -> integer().\nmin_operations(Nums, NumsDivide) ->\n  .",
+    "racket": "(define/contract (min-operations nums numsDivide)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,3,2,4,3]\n[9,6,9,3,15]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,3,6]\n[8,2,6,10]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,3,2,4,3]\n[9,6,9,3,15]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,3,6]\n[8,2,6,10]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,3]\n[9,6,9,3,15]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4,3]\n[9,6,9,3,15]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2]\n[9,6,9,3,15]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,4,2,3,2]\n[9,6,9,3,15]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,3,3,4]\n[9,6,9,3,15]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,3,3,2,2]\n[9,6,9,3,15]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,2,2,2]\n[9,6,9,3,15]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,3,2,4,3,2,3,2,4,3]\n[9,6,9,3,15]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,6,4,8,6]\n[9,6,9,3,15]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,4,3,5,4]\n[9,6,9,3,15]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,1,3,2]\n[9,6,9,3,15]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-2,-3,-2,-4,-3]\n[9,6,9,3,15]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]\n[9,6,9,3,15]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n[9,6,9,3,15]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n[9,6,9,3,15]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]\n[9,6,9,3,15]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]\n[9,6,9,3,15]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]\n[9,6,9,3,15]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "How can we find an integer x that divides all the elements of numsDivide?",
+    "Will finding GCD (Greatest Common Divisor) help here?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.780Z",
+    "sourceUpdatedAt": null
+  }
+}

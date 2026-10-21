@@ -1,0 +1,160 @@
+{
+  "id": "2206",
+  "slug": "divide-array-into-equal-pairs",
+  "title": "Divide Array Into Equal Pairs",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Counting"
+  ],
+  "statement": "You are given an integer array `nums` consisting of `2 * n` integers.\n\nYou need to divide `nums` into `n` pairs such that:\n\n*   Each element belongs to **exactly one** pair.\n*   The elements present in a pair are **equal**.\n\nReturn `true` _if nums can be divided into_ `n` _pairs, otherwise return_ `false`.\n\n**Example 1:**\n\n```\nInput: nums = [3,2,3,2,2,2]\nOutput: true\nExplanation: \nThere are 6 elements in nums, so they should be divided into 6 / 2 = 3 pairs.\nIf nums is divided into the pairs (2, 2), (3, 3), and (2, 2), it will satisfy all the conditions.\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,2,3,4]\nOutput: false\nExplanation: \nThere is no way to divide nums into 4 / 2 = 2 pairs such that the pairs satisfy every condition.\n```\n\n**Constraints:**\n\n*   `nums.length == 2 * n`\n*   `1 <= n <= 500`\n*   `1 <= nums[i] <= 500`",
+  "constraints": [
+    "nums.length == 2 * n",
+    "1 <= n <= 500",
+    "1 <= nums[i] <= 500"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,2,3,2,2,2]",
+      "output": "true",
+      "explanation": "There are 6 elements in nums, so they should be divided into 6 / 2 = 3 pairs.\nIf nums is divided into the pairs (2, 2), (3, 3), and (2, 2), it will satisfy all the conditions."
+    },
+    {
+      "input": "nums = [1,2,3,4]",
+      "output": "false",
+      "explanation": "There is no way to divide nums into 4 / 2 = 2 pairs such that the pairs satisfy every condition."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool divideArray(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean divideArray(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def divideArray(self, nums: list[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def divideArray(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar divideArray = function(nums) {\n    \n};",
+    "typescript": "function divideArray(nums: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool DivideArray(int[] nums) {\n        \n    }\n}",
+    "c": "bool divideArray(int* nums, int numsSize) {\n    \n}",
+    "golang": "func divideArray(nums []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun divideArray(nums: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func divideArray(_ nums: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn divide_array(nums: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Boolean}\ndef divide_array(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Boolean\n     */\n    function divideArray($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool divideArray(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def divideArray(nums: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec divide_array(nums :: [integer]) :: boolean\n  def divide_array(nums) do\n    \n  end\nend",
+    "erlang": "-spec divide_array(Nums :: [integer()]) -> boolean().\ndivide_array(Nums) ->\n  .",
+    "racket": "(define/contract (divide-array nums)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,2,3,2,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,2,3,2,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[3,2,3]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[2,2,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[3,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[2,2,2,3,2,3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,2,2,2,3,3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[3,3,2,2,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[3,3,3,3,3]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[3,2,3,2,2,2,3,2,3,2,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[6,4,6,4,4,4]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[4,3,4,3,3,3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,1,2,1,1,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[-3,-2,-3,-2,-2,-2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For any number x in the range [1, 500], count the number of elements in nums whose values are equal to x.",
+    "The elements with equal value can be divided completely into pairs if and only if their count is even."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/divide-array-into-equal-pairs/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.823Z",
+    "sourceUpdatedAt": null
+  }
+}

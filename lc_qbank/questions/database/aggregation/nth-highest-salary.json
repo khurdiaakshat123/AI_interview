@@ -1,0 +1,76 @@
+{
+  "id": "177",
+  "slug": "nth-highest-salary",
+  "title": "Nth Highest Salary",
+  "category": "database",
+  "subcategory": "aggregation",
+  "difficulty": "Medium",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Employee`\n\n```\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| id          | int  |\n| salary      | int  |\n+-------------+------+\nid is the primary key (column with unique values) for this table.\nEach row of this table contains information about the salary of an employee.\n```\n\nWrite a solution to find the `n^(th)` highest **distinct** salary from the `Employee` table. If there are less than `n` distinct salaries, return `null`.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n| 2  | 200    |\n| 3  | 300    |\n+----+--------+\nn = 2\nOutput: \n+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| 200                    |\n+------------------------+\n```\n\n**Example 2:**\n\n```\nInput: \nEmployee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n+----+--------+\nn = 2\nOutput: \n+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| null                   |\n+------------------------+\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Employee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n| 2  | 200    |\n| 3  | 300    |\n+----+--------+\nn = 2",
+      "output": "+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| 200                    |\n+------------------------+",
+      "explanation": null
+    },
+    {
+      "input": "Employee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n+----+--------+\nn = 2",
+      "output": "+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| null                   |\n+------------------------+",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "mysql": "CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT\nBEGIN\n  RETURN (\n      # Write your MySQL query statement below.\n\n  );\nEND",
+    "mssql": "CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS\nBEGIN\n    RETURN (\n        /* Write your T-SQL query statement below. */\n\n    );\nEND",
+    "postgresql": "CREATE OR REPLACE FUNCTION NthHighestSalary(N INT) RETURNS TABLE (Salary INT) AS $$\nBEGIN\n  RETURN QUERY (\n    -- Write your PostgreSQL query statement below.\n    \n      \n  );\nEND;\n$$ LANGUAGE plpgsql;",
+    "oraclesql": "CREATE FUNCTION getNthHighestSalary(N IN NUMBER) RETURN NUMBER IS\nresult NUMBER;\nBEGIN\n    /* Write your PL/SQL query statement below */\n\n    RETURN result;\nEND;",
+    "pythondata": "import pandas as pd\n\ndef nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:"
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"Employee\": [\"id\", \"salary\"]}, \"argument\": 2, \"rows\": {\"Employee\": [[1, 100], [2, 200], [3, 300]]}}",
+      "expectedOutput": "+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| 200                    |\n+------------------------+"
+    },
+    {
+      "input": "{\"headers\": {\"Employee\": [\"id\", \"salary\"]}, \"argument\": 2, \"rows\": {\"Employee\": [[1, 100]]}}",
+      "expectedOutput": "+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| null                   |\n+------------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"Employee\": [\"id\", \"salary\"]}, \"argument\": 2, \"rows\": {\"Employee\": [[1, 100], [2, 200], [3, 300]]}}",
+      "expectedOutput": "+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| 200                    |\n+------------------------+"
+    },
+    {
+      "input": "{\"headers\": {\"Employee\": [\"id\", \"salary\"]}, \"argument\": 2, \"rows\": {\"Employee\": [[1, 100]]}}",
+      "expectedOutput": "+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| null                   |\n+------------------------+"
+    },
+    {
+      "input": "Employee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n| 2  | 200    |\n| 3  | 300    |\n+----+--------+\nn = 2",
+      "expectedOutput": "+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| 200                    |\n+------------------------+"
+    },
+    {
+      "input": "Employee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n+----+--------+\nn = 2",
+      "expectedOutput": "+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| null                   |\n+------------------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Employee (Id int, Salary int)\n\nTruncate table Employee",
+  "sqlSetup": [
+    "insert into Employee (id, salary) values ('1', '100')",
+    "insert into Employee (id, salary) values ('2', '200')",
+    "insert into Employee (id, salary) values ('3', '300')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/nth-highest-salary/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.716Z",
+    "sourceUpdatedAt": null
+  }
+}

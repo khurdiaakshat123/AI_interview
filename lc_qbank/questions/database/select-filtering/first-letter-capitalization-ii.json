@@ -1,0 +1,62 @@
+{
+  "id": "3374",
+  "slug": "first-letter-capitalization-ii",
+  "title": "First Letter Capitalization II",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Hard",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `user_content`\n\n```\n+--------------+---------+\n| Column Name  | Type    |\n+--------------+---------+\n| content_id   | int     |\n| content_text | varchar |\n+--------------+---------+\ncontent_id is the unique key for this table.\nEach row contains a unique ID and the corresponding text content.\n```\n\nA **word** is a maximal non-empty sequence of characters that does not contain a space.\n\nWrite a solution to transform the text in the `content_text` column by applying the following rules to each word:\n\n*   If the word starts with a character that is **not** an English letter, leave the entire word **unchanged**.\n*   Otherwise, if the word consists of two or more non-empty parts of English letters connected by hyphens `-`, convert the **first letter of each part** to uppercase and the **remaining letters of each part** to lowercase. For example, `top-rated` becomes `Top-Rated` and `FR-ONT-end` becomes `Fr-Ont-End`.\n*   Otherwise, convert the **first letter** of the word to uppercase and all **remaining English letters** to lowercase. Any special characters remain unchanged.\n\nAll other **formatting** and **spacing** must remain **unchanged**.\n\nReturn _the result table that includes both the original `content_text` and the modified text following the above rules_.\n\nThe result format is in the following example.\n\n**Example:**\n\n**Input:**\n\nuser\\_content table:\n\n```\n+------------+---------------------------------+\n| content_id | content_text                    |\n+------------+---------------------------------+\n| 1          | hello world of SQL              |\n| 2          | the QUICK-brown fox             |\n| 3          | modern-day DATA science         |\n| 4          | web-based FRONT-end development |\n+------------+---------------------------------+\n```\n\n**Output:**\n\n```\n+------------+---------------------------------+---------------------------------+\n| content_id | original_text                   | converted_text                  |\n+------------+---------------------------------+---------------------------------+\n| 1          | hello world of SQL              | Hello World Of Sql              |\n| 2          | the QUICK-brown fox             | The Quick-Brown Fox             |\n| 3          | modern-day DATA science         | Modern-Day Data Science         |\n| 4          | web-based FRONT-end development | Web-Based Front-End Development |\n+------------+---------------------------------+---------------------------------+\n```\n\n**Explanation:**\n\n*   For content\\_id = 1:\n    *   Each word's first letter is capitalized: \"Hello World Of Sql\".\n*   For content\\_id = 2:\n    *   The hyphenated word \"QUICK-brown\" becomes \"Quick-Brown\".\n    *   Other words follow the normal capitalization rules.\n*   For content\\_id = 3:\n    *   The hyphenated word \"modern-day\" becomes \"Modern-Day\".\n    *   \"DATA\" is converted to \"Data\".\n*   For content\\_id = 4:\n    *   \"web-based\" becomes \"Web-Based\".\n    *   \"FRONT-end\" becomes \"Front-End\".\n\n**Constraints:**\n\n*   `content_text` contains only English letters, spaces, and the characters `\\`, `@`, `-`, `/`, `^`, and `,`.",
+  "constraints": [
+    "content_text contains only English letters, spaces, and the characters \\, @, -, /, ^, and ,."
+  ],
+  "examples": [
+    {
+      "input": "user_content table:\n\n\n+------------+---------------------------------+\n| content_id | content_text                    |\n+------------+---------------------------------+\n| 1          | hello world of SQL              |\n| 2          | the QUICK-brown fox             |\n| 3          | modern-day DATA science         |\n| 4          | web-based FRONT-end development |\n+------------+---------------------------------+",
+      "output": "+------------+---------------------------------+---------------------------------+\n| content_id | original_text                   | converted_text                  |\n+------------+---------------------------------+---------------------------------+\n| 1          | hello world of SQL              | Hello World Of Sql              |\n| 2          | the QUICK-brown fox             | The Quick-Brown Fox             |\n| 3          | modern-day DATA science         | Modern-Day Data Science         |\n| 4          | web-based FRONT-end development | Web-Based Front-End Development |\n+------------+---------------------------------+---------------------------------+",
+      "explanation": "For content_id = 1:\n\t\n\t\tEach word's first letter is capitalized: \"Hello World Of Sql\".\n\t\n\t\n\tFor content_id = 2:\n\t\n\t\tThe hyphenated word \"QUICK-brown\" becomes \"Quick-Brown\".\n\t\tOther words follow the normal capitalization rules.\n\t\n\t\n\tFor content_id = 3:\n\t\n\t\tThe hyphenated word \"modern-day\" becomes \"Modern-Day\".\n\t\t\"DATA\" is converted to \"Data\".\n\t\n\t\n\tFor content_id = 4:\n\t\n\t\t\"web-based\" becomes \"Web-Based\".\n\t\t\"FRONT-end\" becomes \"Front-End\"."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef capitalize_content(user_content: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"user_content\":[\"content_id\",\"content_text\"]},\"rows\":{\"user_content\":[[1,\"hello world of SQL\"],[2,\"the QUICK-brown fox\"],[3,\"modern-day DATA science\"],[4,\"web-based FRONT-end development\"]]}}",
+      "expectedOutput": "+------------+---------------------------------+---------------------------------+\n| content_id | original_text                   | converted_text                  |\n+------------+---------------------------------+---------------------------------+\n| 1          | hello world of SQL              | Hello World Of Sql              |\n| 2          | the QUICK-brown fox             | The Quick-Brown Fox             |\n| 3          | modern-day DATA science         | Modern-Day Data Science         |\n| 4          | web-based FRONT-end development | Web-Based Front-End Development |\n+------------+---------------------------------+---------------------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"user_content\":[\"content_id\",\"content_text\"]},\"rows\":{\"user_content\":[[1,\"hello world of SQL\"],[2,\"the QUICK-brown fox\"],[3,\"modern-day DATA science\"],[4,\"web-based FRONT-end development\"]]}}",
+      "expectedOutput": "+------------+---------------------------------+---------------------------------+\n| content_id | original_text                   | converted_text                  |\n+------------+---------------------------------+---------------------------------+\n| 1          | hello world of SQL              | Hello World Of Sql              |\n| 2          | the QUICK-brown fox             | The Quick-Brown Fox             |\n| 3          | modern-day DATA science         | Modern-Day Data Science         |\n| 4          | web-based FRONT-end development | Web-Based Front-End Development |\n+------------+---------------------------------+---------------------------------+"
+    },
+    {
+      "input": "user_content table:\n\n\n+------------+---------------------------------+\n| content_id | content_text                    |\n+------------+---------------------------------+\n| 1          | hello world of SQL              |\n| 2          | the QUICK-brown fox             |\n| 3          | modern-day DATA science         |\n| 4          | web-based FRONT-end development |\n+------------+---------------------------------+",
+      "expectedOutput": "+------------+---------------------------------+---------------------------------+\n| content_id | original_text                   | converted_text                  |\n+------------+---------------------------------+---------------------------------+\n| 1          | hello world of SQL              | Hello World Of Sql              |\n| 2          | the QUICK-brown fox             | The Quick-Brown Fox             |\n| 3          | modern-day DATA science         | Modern-Day Data Science         |\n| 4          | web-based FRONT-end development | Web-Based Front-End Development |\n+------------+---------------------------------+---------------------------------+"
+    }
+  ],
+  "sqlSchema": "CREATE TABLE If not exists user_content (\n    content_id INT,\n    content_text VARCHAR(255)\n)\n\nTruncate table user_content",
+  "sqlSetup": [
+    "insert into user_content (content_id, content_text) values ('1', 'hello world of SQL')",
+    "insert into user_content (content_id, content_text) values ('2', 'the QUICK-brown fox')",
+    "insert into user_content (content_id, content_text) values ('3', 'modern-day DATA science')",
+    "insert into user_content (content_id, content_text) values ('4', 'web-based FRONT-end development')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/first-letter-capitalization-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.903Z",
+    "sourceUpdatedAt": null
+  }
+}

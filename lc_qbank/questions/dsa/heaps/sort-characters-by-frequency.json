@@ -1,0 +1,167 @@
+{
+  "id": "451",
+  "slug": "sort-characters-by-frequency",
+  "title": "Sort Characters By Frequency",
+  "category": "dsa",
+  "subcategory": "heaps",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Bucket Sort",
+    "Counting"
+  ],
+  "statement": "Given a string `s`, sort it in **decreasing order** based on the **frequency** of the characters. The **frequency** of a character is the number of times it appears in the string.\n\nReturn _the sorted string_. If there are multiple answers, return _any of them_.\n\n**Example 1:**\n\n```\nInput: s = \"tree\"\nOutput: \"eert\"\nExplanation: 'e' appears twice while 'r' and 't' both appear once.\nSo 'e' must appear before both 'r' and 't'. Therefore \"eetr\" is also a valid answer.\n```\n\n**Example 2:**\n\n```\nInput: s = \"cccaaa\"\nOutput: \"aaaccc\"\nExplanation: Both 'c' and 'a' appear three times, so both \"cccaaa\" and \"aaaccc\" are valid answers.\nNote that \"cacaca\" is incorrect, as the same characters must be together.\n```\n\n**Example 3:**\n\n```\nInput: s = \"Aabb\"\nOutput: \"bbAa\"\nExplanation: \"bbaA\" is also a valid answer, but \"Aabb\" is incorrect.\nNote that 'A' and 'a' are treated as two different characters.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 5 * 10^(5)`\n*   `s` consists of uppercase and lowercase English letters and digits.",
+  "constraints": [
+    "1 <= s.length <= 5 * 105",
+    "s consists of uppercase and lowercase English letters and digits."
+  ],
+  "examples": [
+    {
+      "input": "s = \"tree\"",
+      "output": "\"eert\"",
+      "explanation": "'e' appears twice while 'r' and 't' both appear once.\nSo 'e' must appear before both 'r' and 't'. Therefore \"eetr\" is also a valid answer."
+    },
+    {
+      "input": "s = \"cccaaa\"",
+      "output": "\"aaaccc\"",
+      "explanation": "Both 'c' and 'a' appear three times, so both \"cccaaa\" and \"aaaccc\" are valid answers.\nNote that \"cacaca\" is incorrect, as the same characters must be together."
+    },
+    {
+      "input": "s = \"Aabb\"",
+      "output": "\"bbAa\"",
+      "explanation": "\"bbaA\" is also a valid answer, but \"Aabb\" is incorrect.\nNote that 'A' and 'a' are treated as two different characters."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string frequencySort(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String frequencySort(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def frequencySort(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def frequencySort(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar frequencySort = function(s) {\n    \n};",
+    "typescript": "function frequencySort(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string FrequencySort(string s) {\n        \n    }\n}",
+    "c": "char* frequencySort(char* s) {\n    \n}",
+    "golang": "func frequencySort(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun frequencySort(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func frequencySort(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn frequency_sort(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef frequency_sort(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function frequencySort($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String frequencySort(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def frequencySort(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec frequency_sort(s :: String.t) :: String.t\n  def frequency_sort(s) do\n    \n  end\nend",
+    "erlang": "-spec frequency_sort(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nfrequency_sort(S) ->\n  .",
+    "racket": "(define/contract (frequency-sort s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"tree\"",
+      "expectedOutput": "\"eert\""
+    },
+    {
+      "input": "\"cccaaa\"",
+      "expectedOutput": "\"aaaccc\""
+    },
+    {
+      "input": "\"Aabb\"",
+      "expectedOutput": "\"bbAa\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"tree\"",
+      "expectedOutput": "\"eetr\""
+    },
+    {
+      "input": "\"cccaaa\"",
+      "expectedOutput": "\"cccaaa\""
+    },
+    {
+      "input": "\"Aabb\"",
+      "expectedOutput": "\"bbAa\""
+    },
+    {
+      "input": "\"tr\"",
+      "expectedOutput": "\"tr\""
+    },
+    {
+      "input": "\"ee\"",
+      "expectedOutput": "\"ee\""
+    },
+    {
+      "input": "\"t\"",
+      "expectedOutput": "\"t\""
+    },
+    {
+      "input": "\"eert\"",
+      "expectedOutput": "\"eert\""
+    },
+    {
+      "input": "\"treetree\"",
+      "expectedOutput": "\"eeeettrr\""
+    },
+    {
+      "input": "\"tttt\"",
+      "expectedOutput": "\"tttt\""
+    },
+    {
+      "input": "\"treeeert\"",
+      "expectedOutput": "\"eeeettrr\""
+    },
+    {
+      "input": "\"TREE\"",
+      "expectedOutput": "\"EETR\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aab\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"aabb\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sort-characters-by-frequency/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.937Z",
+    "sourceUpdatedAt": null
+  }
+}

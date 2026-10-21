@@ -1,0 +1,165 @@
+{
+  "id": "948",
+  "slug": "bag-of-tokens",
+  "title": "Bag of Tokens",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You start with an initial **power** of `power`, an initial **score** of `0`, and a bag of tokens given as an integer array `tokens`, where each `tokens[i]` denotes the value of token__(i)_.\n\nYour goal is to **maximize** the total **score** by strategically playing these tokens. In one move, you can play an **unplayed** token in one of the two ways (but not both for the same token):\n\n*   **Face-up**: If your current power is **at least** `tokens[i]`, you may play token__(i)_, losing `tokens[i]` power and gaining `1` score.\n*   **Face-down**: If your current score is **at least** `1`, you may play token__(i)_, gaining `tokens[i]` power and losing `1` score.\n\nReturn _the **maximum** possible score you can achieve after playing **any** number of tokens_.\n\n**Example 1:**\n\n**Input:** tokens = \\[100\\], power = 50\n\n**Output:** 0\n\n**Explanation****:** Since your score is `0` initially, you cannot play the token face-down. You also cannot play it face-up since your power (`50`) is less than `tokens[0]` (`100`).\n\n**Example 2:**\n\n**Input:** tokens = \\[200,100\\], power = 150\n\n**Output:** 1\n\n**Explanation:** Play token__(1)_ (`100`) face-up, reducing your power to `50` and increasing your score to `1`.\n\nThere is no need to play token__(0)_, since you cannot play it face-up to add to your score. The maximum score achievable is `1`.\n\n**Example 3:**\n\n**Input:** tokens = \\[100,200,300,400\\], power = 200\n\n**Output:** 2\n\n**Explanation:** Play the tokens in this order to get a score of `2`:\n\n1.  Play token__(0)_ (`100`) face-up, reducing power to `100` and increasing score to `1`.\n2.  Play token__(3)_ (`400`) face-down, increasing power to `500` and reducing score to `0`.\n3.  Play token__(1)_ (`200`) face-up, reducing power to `300` and increasing score to `1`.\n4.  Play token__(2)_ (`300`) face-up, reducing power to `0` and increasing score to `2`.\n\nThe maximum score achievable is `2`.\n\n**Constraints:**\n\n*   `0 <= tokens.length <= 1000`\n*   `0 <= tokens[i], power < 10^(4)`",
+  "constraints": [
+    "0 <= tokens.length <= 1000",
+    "0 <= tokens[i], power < 104"
+  ],
+  "examples": [
+    {
+      "input": "tokens = [100], power = 50",
+      "output": "0",
+      "explanation": ": Since your score is 0 initially, you cannot play the token face-down. You also cannot play it face-up since your power (50) is less than tokens[0] (100)."
+    },
+    {
+      "input": "tokens = [200,100], power = 150",
+      "output": "1",
+      "explanation": "Play token1 (100) face-up, reducing your power to 50 and increasing your score to 1."
+    },
+    {
+      "input": "tokens = [100,200,300,400], power = 200",
+      "output": "2",
+      "explanation": "Play the tokens in this order to get a score of 2:\n\n\n\tPlay token0 (100) face-up, reducing power to 100 and increasing score to 1.\n\tPlay token3 (400) face-down, increasing power to 500 and reducing score to 0.\n\tPlay token1 (200) face-up, reducing power to 300 and increasing score to 1.\n\tPlay token2 (300) face-up, reducing power to 0 and increasing score to 2."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int bagOfTokensScore(vector<int>& tokens, int power) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int bagOfTokensScore(int[] tokens, int power) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def bagOfTokensScore(self, tokens: list[int], power: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def bagOfTokensScore(self, tokens, power):\n        \"\"\"\n        :type tokens: List[int]\n        :type power: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} tokens\n * @param {number} power\n * @return {number}\n */\nvar bagOfTokensScore = function(tokens, power) {\n    \n};",
+    "typescript": "function bagOfTokensScore(tokens: number[], power: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int BagOfTokensScore(int[] tokens, int power) {\n        \n    }\n}",
+    "c": "int bagOfTokensScore(int* tokens, int tokensSize, int power) {\n    \n}",
+    "golang": "func bagOfTokensScore(tokens []int, power int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun bagOfTokensScore(tokens: IntArray, power: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func bagOfTokensScore(_ tokens: [Int], _ power: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn bag_of_tokens_score(tokens: Vec<i32>, power: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} tokens\n# @param {Integer} power\n# @return {Integer}\ndef bag_of_tokens_score(tokens, power)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $tokens\n     * @param Integer $power\n     * @return Integer\n     */\n    function bagOfTokensScore($tokens, $power) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int bagOfTokensScore(List<int> tokens, int power) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def bagOfTokensScore(tokens: Array[Int], power: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec bag_of_tokens_score(tokens :: [integer], power :: integer) :: integer\n  def bag_of_tokens_score(tokens, power) do\n    \n  end\nend",
+    "erlang": "-spec bag_of_tokens_score(Tokens :: [integer()], Power :: integer()) -> integer().\nbag_of_tokens_score(Tokens, Power) ->\n  .",
+    "racket": "(define/contract (bag-of-tokens-score tokens power)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[100]\n50",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[200,100]\n150",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[100,200,300,400]\n200",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[100]\n50",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[200,100]\n150",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[100,200,300,400]\n200",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[100,100]\n50",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[200]\n50",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[101]\n50",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[99]\n50",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-100]\n50",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]\n50",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n50",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n50",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]\n50",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2]\n50",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1]\n50",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1]\n50",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,1]\n50",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3]\n50",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,2,1]\n50",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1]\n50",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,1,0]\n50",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/bag-of-tokens/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.391Z",
+    "sourceUpdatedAt": null
+  }
+}

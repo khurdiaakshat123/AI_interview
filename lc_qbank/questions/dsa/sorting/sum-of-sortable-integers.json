@@ -1,0 +1,170 @@
+{
+  "id": "3886",
+  "slug": "sum-of-sortable-integers",
+  "title": "Sum of Sortable Integers",
+  "category": "dsa",
+  "subcategory": "sorting",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Sorting",
+    "Enumeration"
+  ],
+  "statement": "You are given an integer array `nums` of length `n`.\n\nAn integer `k` is called **sortable** if `k` **divides** `n` and you can sort `nums` in **non-decreasing** order by sequentially performing the following operations:\n\n*   Partition `nums` into **consecutive subarrays** of length `k`.\n*   **Cyclically rotate each subarray independently** any number of times to the left or to the right.\n\nReturn an integer denoting the sum of all possible sortable integers `k`.\n\n**Example 1:**\n\n**Input:** nums = \\[3,1,2\\]\n\n**Output:** 3\n\n**Explanation:**​​​​​​​\n\n*   For `n = 3`, possible divisors are 1 and 3.\n*   For `k = 1`: each subarray has one element. No rotation can sort the array.\n*   For `k = 3`: the single subarray `[3, 1, 2]` can be rotated once to produce `[1, 2, 3]`, which is sorted.\n*   Only `k = 3` is sortable. Hence, the answer is 3.\n\n**Example 2:**\n\n**Input:** nums = \\[7,6,5\\]\n\n**Output:** 0\n\n**Explanation:**\n\n*   For `n = 3`, possible divisors are 1 and 3.\n*   For `k = 1`: each subarray has one element. No rotation can sort the array.\n*   For `k = 3`: the single subarray `[7, 6, 5]` cannot be rotated into non-decreasing order.\n*   No `k` is sortable. Hence, the answer is 0.\n\n**Example 3:**\n\n**Input:** nums = \\[5,8\\]\n\n**Output:** 3\n\n**Explanation:**​​​​​​​\n\n*   For `n = 2`, possible divisors are 1 and 2.\n*   Since `[5, 8]` is already sorted, every divisor is sortable. Hence, the answer is `1 + 2 = 3`.\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= n == nums.length <= 105",
+    "1 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,1,2]",
+      "output": "3",
+      "explanation": "​​​​​​​\n\n\n\tFor n = 3, possible divisors are 1 and 3.\n\tFor k = 1: each subarray has one element. No rotation can sort the array.\n\tFor k = 3: the single subarray [3, 1, 2] can be rotated once to produce [1, 2, 3], which is sorted.\n\tOnly k = 3 is sortable. Hence, the answer is 3."
+    },
+    {
+      "input": "nums = [7,6,5]",
+      "output": "0",
+      "explanation": "For n = 3, possible divisors are 1 and 3.\n\tFor k = 1: each subarray has one element. No rotation can sort the array.\n\tFor k = 3: the single subarray [7, 6, 5] cannot be rotated into non-decreasing order.\n\tNo k is sortable. Hence, the answer is 0."
+    },
+    {
+      "input": "nums = [5,8]",
+      "output": "3",
+      "explanation": "​​​​​​​\n\n\n\tFor n = 2, possible divisors are 1 and 2.\n\tSince [5, 8] is already sorted, every divisor is sortable. Hence, the answer is 1 + 2 = 3."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int sortableIntegers(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int sortableIntegers(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sortableIntegers(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def sortableIntegers(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar sortableIntegers = function(nums) {\n    \n};",
+    "typescript": "function sortableIntegers(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SortableIntegers(int[] nums) {\n        \n    }\n}",
+    "c": "int sortableIntegers(int* nums, int numsSize) {\n    \n}",
+    "golang": "func sortableIntegers(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun sortableIntegers(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sortableIntegers(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sortable_integers(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef sortable_integers(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function sortableIntegers($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int sortableIntegers(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sortableIntegers(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sortable_integers(nums :: [integer]) :: integer\n  def sortable_integers(nums) do\n    \n  end\nend",
+    "erlang": "-spec sortable_integers(Nums :: [integer()]) -> integer().\nsortable_integers(Nums) ->\n  .",
+    "racket": "(define/contract (sortable-integers nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,1,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[7,6,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,8]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,1,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[7,6,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,8]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,3,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,1,2,3,1,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[6,2,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[4,2,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,0,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-3,-1,-2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "First, observe that <code>k</code> must divide <code>n</code>, since the array is partitioned into subarrays of length <code>k</code>. Iterate over all divisors of <code>n</code>.",
+    "Let <code>s</code> be the sorted version of the array. For each divisor <code>k</code>, check every block <code>[i, i+k)</code>.",
+    "A block can be rotated to match its sorted counterpart if the sorted segment <code>s[i..i+k-1]</code> appears as a cyclic rotation of <code>nums[i..i+k-1]</code>.",
+    "You can test this by checking whether the sorted segment exists inside two concatenated copies of the block. If all blocks satisfy this, then <code>k</code> is sortable."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sum-of-sortable-integers/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.694Z",
+    "sourceUpdatedAt": null
+  }
+}

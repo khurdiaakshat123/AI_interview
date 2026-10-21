@@ -1,0 +1,156 @@
+{
+  "id": "945",
+  "slug": "minimum-increment-to-make-array-unique",
+  "title": "Minimum Increment to Make Array Unique",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Counting"
+  ],
+  "statement": "You are given an integer array `nums`. In one move, you can pick an index `i` where `0 <= i < nums.length` and increment `nums[i]` by `1`.\n\nReturn _the minimum number of moves to make every value in_ `nums` _**unique**_.\n\nThe test cases are generated so that the answer fits in a 32-bit integer.\n\n**Example 1:**\n\n```\nInput: nums = [1,2,2]\nOutput: 1\nExplanation: After 1 move, the array could be [1, 2, 3].\n```\n\n**Example 2:**\n\n```\nInput: nums = [3,2,1,2,1,7]\nOutput: 6\nExplanation: After 6 moves, the array could be [3, 4, 1, 2, 5, 7].\nIt can be shown that it is impossible for the array to have all unique values with 5 or less moves.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `0 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "0 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,2]",
+      "output": "1",
+      "explanation": "After 1 move, the array could be [1, 2, 3]."
+    },
+    {
+      "input": "nums = [3,2,1,2,1,7]",
+      "output": "6",
+      "explanation": "After 6 moves, the array could be [3, 4, 1, 2, 5, 7].\nIt can be shown that it is impossible for the array to have all unique values with 5 or less moves."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minIncrementForUnique(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minIncrementForUnique(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minIncrementForUnique(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minIncrementForUnique(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minIncrementForUnique = function(nums) {\n    \n};",
+    "typescript": "function minIncrementForUnique(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinIncrementForUnique(int[] nums) {\n        \n    }\n}",
+    "c": "int minIncrementForUnique(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minIncrementForUnique(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minIncrementForUnique(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minIncrementForUnique(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_increment_for_unique(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef min_increment_for_unique(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minIncrementForUnique($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minIncrementForUnique(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minIncrementForUnique(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_increment_for_unique(nums :: [integer]) :: integer\n  def min_increment_for_unique(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_increment_for_unique(Nums :: [integer()]) -> integer().\nmin_increment_for_unique(Nums) ->\n  .",
+    "racket": "(define/contract (min-increment-for-unique nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,1,2,1,7]",
+      "expectedOutput": "6"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,1,2,1,7]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,2,1,2,2]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[2,4,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,-2,-2]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-increment-to-make-array-unique/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.981Z",
+    "sourceUpdatedAt": null
+  }
+}

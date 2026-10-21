@@ -1,0 +1,159 @@
+{
+  "id": "4044",
+  "slug": "count-good-cyclic-rotations",
+  "title": "Count Good Cyclic Rotations",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `nums` of even length `n`.\n\nA **cyclic rotation** of `nums` is obtained by choosing a prefix of `nums` whose length is between 0 and `n - 1` (inclusive), and moving it to the end of the array while preserving the order of all elements.\n\nA cyclic rotation is **good** if the sum of its first `n / 2` elements is **strictly greater** than the sum of its last `n / 2` elements.\n\nReturn the number of cyclic rotations of `nums` that are good.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,3,4,5,6\\]\n\n**Output:** 3\n\n**Explanation:**\n\nThe cyclic rotations of `nums` are:\n\nCyclic rotation\n\nSum of first `n / 2` elements\n\nSum of last `n / 2` elements\n\n`[1, 2, 3, 4, 5, 6]`\n\n`1 + 2 + 3 = 6`\n\n`4 + 5 + 6 = 15`\n\n`[2, 3, 4, 5, 6, 1]`\n\n`2 + 3 + 4 = 9`\n\n`5 + 6 + 1 = 12`\n\n`[3, 4, 5, 6, 1, 2]`\n\n`3 + 4 + 5 = 12`\n\n`6 + 1 + 2 = 9`\n\n`[4, 5, 6, 1, 2, 3]`\n\n`4 + 5 + 6 = 15`\n\n`1 + 2 + 3 = 6`\n\n`[5, 6, 1, 2, 3, 4]`\n\n`5 + 6 + 1 = 12`\n\n`2 + 3 + 4 = 9`\n\n`[6, 1, 2, 3, 4, 5]`\n\n`6 + 1 + 2 = 9`\n\n`3 + 4 + 5 = 12`\n\nThe first half has a greater sum than the second half for 3 rotations. Thus, the answer is 3.\n\n**Example 2:**\n\n**Input:** nums = \\[1,2,1,2\\]\n\n**Output:** 0\n\n**Explanation:**\n\nThe cyclic rotations of `nums` are:\n\nCyclic rotation\n\nSum of first `n / 2` elements\n\nSum of last `n / 2` elements\n\n`[1, 2, 1, 2]`\n\n`1 + 2 = 3`\n\n`1 + 2 = 3`\n\n`[2, 1, 2, 1]`\n\n`2 + 1 = 3`\n\n`2 + 1 = 3`\n\n`[1, 2, 1, 2]`\n\n`1 + 2 = 3`\n\n`1 + 2 = 3`\n\n`[2, 1, 2, 1]`\n\n`2 + 1 = 3`\n\n`2 + 1 = 3`\n\nNo cyclic rotation is good because the two sums are equal for every rotation. Thus, the answer is 0.\n\n**Constraints:**\n\n*   `2 <= n == nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`\n*   `n` is even.",
+  "constraints": [
+    "2 <= n == nums.length <= 105",
+    "1 <= nums[i] <= 109",
+    "n is even."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3,4,5,6]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,2,1,2]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countGoodRotations(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countGoodRotations(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countGoodRotations(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countGoodRotations(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar countGoodRotations = function(nums) {\n    \n};",
+    "typescript": "function countGoodRotations(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountGoodRotations(int[] nums) {\n        \n    }\n}",
+    "c": "int countGoodRotations(int* nums, int numsSize) {\n    \n}",
+    "golang": "func countGoodRotations(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countGoodRotations(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countGoodRotations(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_good_rotations(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef count_good_rotations(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function countGoodRotations($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countGoodRotations(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countGoodRotations(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_good_rotations(nums :: [integer]) :: integer\n  def count_good_rotations(nums) do\n    \n  end\nend",
+    "erlang": "-spec count_good_rotations(Nums :: [integer()]) -> integer().\ncount_good_rotations(Nums) ->\n  .",
+    "racket": "(define/contract (count-good-rotations nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4,5,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,1,2]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4,5,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,1,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,5,6]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,6]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[6,5,4,3,2,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,4,5,6,1,2,3,4,5,6]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,4,6,8,10,12]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,3,4,5,6,7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,1,2,3,4,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,-2,-3,-4,-5,-6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let <code>total</code> be the sum of all elements and <code>first</code> be the sum of the first half of a rotation. The rotation is good exactly when <code>first &gt; total - first</code>.",
+    "Maintain <code>first</code> using a circular sliding window of length <code>n / 2</code>. Moving to the next rotation removes one element from the window and adds one element."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-good-cyclic-rotations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.137Z",
+    "sourceUpdatedAt": null
+  }
+}

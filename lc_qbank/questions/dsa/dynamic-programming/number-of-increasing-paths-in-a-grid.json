@@ -1,0 +1,94 @@
+{
+  "id": "2328",
+  "slug": "number-of-increasing-paths-in-a-grid",
+  "title": "Number of Increasing Paths in a Grid",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Topological Sort",
+    "Memoization",
+    "Matrix"
+  ],
+  "statement": "You are given an `m x n` integer matrix `grid`, where you can move from a cell to any adjacent cell in all `4` directions.\n\nReturn _the number of **strictly** **increasing** paths in the grid such that you can start from **any** cell and end at **any** cell._ Since the answer may be very large, return it **modulo** `10^(9) + 7`.\n\nTwo paths are considered different if they do not have exactly the same sequence of visited cells.\n\n**Example 1:**\n\n![](./assets/number-of-increasing-paths-in-a-grid-1.png)\n```\nInput: grid = [[1,1],[3,4]]\nOutput: 8\nExplanation: The strictly increasing paths are:\n- Paths with length 1: [1], [1], [3], [4].\n- Paths with length 2: [1 -> 3], [1 -> 4], [3 -> 4].\n- Paths with length 3: [1 -> 3 -> 4].\nThe total number of paths is 4 + 3 + 1 = 8.\n```\n\n**Example 2:**\n\n```\nInput: grid = [[1],[2]]\nOutput: 3\nExplanation: The strictly increasing paths are:\n- Paths with length 1: [1], [2].\n- Paths with length 2: [1 -> 2].\nThe total number of paths is 2 + 1 = 3.\n```\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 1000`\n*   `1 <= m * n <= 10^(5)`\n*   `1 <= grid[i][j] <= 10^(5)`",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 1000",
+    "1 <= m * n <= 105",
+    "1 <= grid[i][j] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "grid = [[1,1],[3,4]]",
+      "output": "8",
+      "explanation": "The strictly increasing paths are:\n- Paths with length 1: [1], [1], [3], [4].\n- Paths with length 2: [1 -> 3], [1 -> 4], [3 -> 4].\n- Paths with length 3: [1 -> 3 -> 4].\nThe total number of paths is 4 + 3 + 1 = 8."
+    },
+    {
+      "input": "grid = [[1],[2]]",
+      "output": "3",
+      "explanation": "The strictly increasing paths are:\n- Paths with length 1: [1], [2].\n- Paths with length 2: [1 -> 2].\nThe total number of paths is 2 + 1 = 3."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countPaths(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countPaths(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countPaths(self, grid: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countPaths(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar countPaths = function(grid) {\n    \n};",
+    "typescript": "function countPaths(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountPaths(int[][] grid) {\n        \n    }\n}",
+    "c": "int countPaths(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func countPaths(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countPaths(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countPaths(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_paths(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef count_paths(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function countPaths($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countPaths(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countPaths(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_paths(grid :: [[integer]]) :: integer\n  def count_paths(grid) do\n    \n  end\nend",
+    "erlang": "-spec count_paths(Grid :: [[integer()]]) -> integer().\ncount_paths(Grid) ->\n  .",
+    "racket": "(define/contract (count-paths grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,1],[3,4]]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[1],[2]]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,1],[3,4]]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[1],[2]]",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "How can you calculate the number of increasing paths that start from a cell (i, j)? Think about dynamic programming.",
+    "Define f(i, j) as the number of increasing paths starting from cell (i, j). Try to find how f(i, j) is related to each of f(i, j+1), f(i, j-1), f(i+1, j) and f(i-1, j)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.909Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "id": "3275",
+  "slug": "k-th-nearest-obstacle-queries",
+  "title": "K-th Nearest Obstacle Queries",
+  "category": "dsa",
+  "subcategory": "heaps",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "There is an infinite 2D plane.\n\nYou are given a positive integer `k`. You are also given a 2D array `queries`, which contains the following queries:\n\n*   `queries[i] = [x, y]`: Build an obstacle at coordinate `(x, y)` in the plane. It is guaranteed that there is **no** obstacle at this coordinate when this query is made.\n\nAfter each query, you need to find the **distance** of the `k^(th)` **nearest** obstacle from the origin.\n\nReturn an integer array `results` where `results[i]` denotes the `k^(th)` nearest obstacle after query `i`, or `results[i] == -1` if there are less than `k` obstacles.\n\n**Note** that initially there are **no** obstacles anywhere.\n\nThe **distance** of an obstacle at coordinate `(x, y)` from the origin is given by `|x| + |y|`.\n\n**Example 1:**\n\n**Input:** queries = \\[\\[1,2\\],\\[3,4\\],\\[2,3\\],\\[-3,0\\]\\], k = 2\n\n**Output:** \\[-1,7,5,3\\]\n\n**Explanation:**\n\n*   Initially, there are 0 obstacles.\n*   After `queries[0]`, there are less than 2 obstacles.\n*   After `queries[1]`, there are obstacles at distances 3 and 7.\n*   After `queries[2]`, there are obstacles at distances 3, 5, and 7.\n*   After `queries[3]`, there are obstacles at distances 3, 3, 5, and 7.\n\n**Example 2:**\n\n**Input:** queries = \\[\\[5,5\\],\\[4,4\\],\\[3,3\\]\\], k = 1\n\n**Output:** \\[10,8,6\\]\n\n**Explanation:**\n\n*   After `queries[0]`, there is an obstacle at distance 10.\n*   After `queries[1]`, there are obstacles at distances 8 and 10.\n*   After `queries[2]`, there are obstacles at distances 6, 8, and 10.\n\n**Constraints:**\n\n*   `1 <= queries.length <= 2 * 10^(5)`\n*   All `queries[i]` are unique.\n*   `-10^(9) <= queries[i][0], queries[i][1] <= 10^(9)`\n*   `1 <= k <= 10^(5)`",
+  "constraints": [
+    "1 <= queries.length <= 2 * 105",
+    "All queries[i] are unique.",
+    "-109 <= queries[i][0], queries[i][1] <= 109",
+    "1 <= k <= 105"
+  ],
+  "examples": [
+    {
+      "input": "queries = [[1,2],[3,4],[2,3],[-3,0]], k = 2",
+      "output": "[-1,7,5,3]",
+      "explanation": "Initially, there are 0 obstacles.\n\tAfter queries[0], there are less than 2 obstacles.\n\tAfter queries[1], there are obstacles at distances 3 and 7.\n\tAfter queries[2], there are obstacles at distances 3, 5, and 7.\n\tAfter queries[3], there are obstacles at distances 3, 3, 5, and 7."
+    },
+    {
+      "input": "queries = [[5,5],[4,4],[3,3]], k = 1",
+      "output": "[10,8,6]",
+      "explanation": "After queries[0], there is an obstacle at distance 10.\n\tAfter queries[1], there are obstacles at distances 8 and 10.\n\tAfter queries[2], there are obstacles at distances 6, 8, and 10."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> resultsArray(vector<vector<int>>& queries, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] resultsArray(int[][] queries, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def resultsArray(self, queries: List[List[int]], k: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def resultsArray(self, queries, k):\n        \"\"\"\n        :type queries: List[List[int]]\n        :type k: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} queries\n * @param {number} k\n * @return {number[]}\n */\nvar resultsArray = function(queries, k) {\n    \n};",
+    "typescript": "function resultsArray(queries: number[][], k: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] ResultsArray(int[][] queries, int k) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* resultsArray(int** queries, int queriesSize, int* queriesColSize, int k, int* returnSize) {\n    \n}",
+    "golang": "func resultsArray(queries [][]int, k int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun resultsArray(queries: Array<IntArray>, k: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func resultsArray(_ queries: [[Int]], _ k: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn results_array(queries: Vec<Vec<i32>>, k: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} queries\n# @param {Integer} k\n# @return {Integer[]}\ndef results_array(queries, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $queries\n     * @param Integer $k\n     * @return Integer[]\n     */\n    function resultsArray($queries, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> resultsArray(List<List<int>> queries, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def resultsArray(queries: Array[Array[Int]], k: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec results_array(queries :: [[integer]], k :: integer) :: [integer]\n  def results_array(queries, k) do\n    \n  end\nend",
+    "erlang": "-spec results_array(Queries :: [[integer()]], K :: integer()) -> [integer()].\nresults_array(Queries, K) ->\n  .",
+    "racket": "(define/contract (results-array queries k)\n  (-> (listof (listof exact-integer?)) exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,2],[3,4],[2,3],[-3,0]]\n2",
+      "expectedOutput": "[-1,7,5,3]"
+    },
+    {
+      "input": "[[5,5],[4,4],[3,3]]\n1",
+      "expectedOutput": "[10,8,6]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,2],[3,4],[2,3],[-3,0]]\n2",
+      "expectedOutput": "[-1,7,5,3]"
+    },
+    {
+      "input": "[[5,5],[4,4],[3,3]]\n1",
+      "expectedOutput": "[10,8,6]"
+    },
+    {
+      "input": "queries = [[1,2],[3,4],[2,3],[-3,0]], k = 2",
+      "expectedOutput": "[-1,7,5,3]"
+    },
+    {
+      "input": "queries = [[5,5],[4,4],[3,3]], k = 1",
+      "expectedOutput": "[10,8,6]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider if there are more than <code>k</code> obstacles. Can the <code>k + 1<sup>th</sup></code> obstacle ever be the answer to any query?",
+    "Maintain a max heap of size <code>k</code>, thus heap will contain minimum element at the top in that queue.",
+    "Remove top element and insert new element from input array if current max is larger than this."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/k-th-nearest-obstacle-queries/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.766Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "id": "1737",
+  "slug": "change-minimum-characters-to-satisfy-one-of-three-conditions",
+  "title": "Change Minimum Characters to Satisfy One of Three Conditions",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting",
+    "Prefix Sum"
+  ],
+  "statement": "You are given two strings `a` and `b` that consist of lowercase letters. In one operation, you can change any character in `a` or `b` to **any lowercase letter**.\n\nYour goal is to satisfy **one** of the following three conditions:\n\n*   **Every** letter in `a` is **strictly less** than **every** letter in `b` in the alphabet.\n*   **Every** letter in `b` is **strictly less** than **every** letter in `a` in the alphabet.\n*   **Both** `a` and `b` consist of **only one** distinct letter.\n\nReturn _the **minimum** number of operations needed to achieve your goal._\n\n**Example 1:**\n\n```\nInput: a = \"aba\", b = \"caa\"\nOutput: 2\nExplanation: Consider the best way to make each condition true:\n1) Change b to \"ccc\" in 2 operations, then every letter in a is less than every letter in b.\n2) Change a to \"bbb\" and b to \"aaa\" in 3 operations, then every letter in b is less than every letter in a.\n3) Change a to \"aaa\" and b to \"aaa\" in 2 operations, then a and b consist of one distinct letter.\nThe best way was done in 2 operations (either condition 1 or condition 3).\n```\n\n**Example 2:**\n\n```\nInput: a = \"dabadd\", b = \"cda\"\nOutput: 3\nExplanation: The best way is to make condition 1 true by changing b to \"eee\".\n```\n\n**Constraints:**\n\n*   `1 <= a.length, b.length <= 10^(5)`\n*   `a` and `b` consist only of lowercase letters.",
+  "constraints": [
+    "1 <= a.length, b.length <= 105",
+    "a and b consist only of lowercase letters."
+  ],
+  "examples": [
+    {
+      "input": "a = \"aba\", b = \"caa\"",
+      "output": "2",
+      "explanation": "Consider the best way to make each condition true:\n1) Change b to \"ccc\" in 2 operations, then every letter in a is less than every letter in b.\n2) Change a to \"bbb\" and b to \"aaa\" in 3 operations, then every letter in b is less than every letter in a.\n3) Change a to \"aaa\" and b to \"aaa\" in 2 operations, then a and b consist of one distinct letter.\nThe best way was done in 2 operations (either condition 1 or condition 3)."
+    },
+    {
+      "input": "a = \"dabadd\", b = \"cda\"",
+      "output": "3",
+      "explanation": "The best way is to make condition 1 true by changing b to \"eee\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minCharacters(string a, string b) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minCharacters(String a, String b) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCharacters(self, a: str, b: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minCharacters(self, a, b):\n        \"\"\"\n        :type a: str\n        :type b: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} a\n * @param {string} b\n * @return {number}\n */\nvar minCharacters = function(a, b) {\n    \n};",
+    "typescript": "function minCharacters(a: string, b: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinCharacters(string a, string b) {\n        \n    }\n}",
+    "c": "int minCharacters(char* a, char* b) {\n    \n}",
+    "golang": "func minCharacters(a string, b string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCharacters(a: String, b: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCharacters(_ a: String, _ b: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_characters(a: String, b: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} a\n# @param {String} b\n# @return {Integer}\ndef min_characters(a, b)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $a\n     * @param String $b\n     * @return Integer\n     */\n    function minCharacters($a, $b) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minCharacters(String a, String b) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCharacters(a: String, b: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_characters(a :: String.t, b :: String.t) :: integer\n  def min_characters(a, b) do\n    \n  end\nend",
+    "erlang": "-spec min_characters(A :: unicode:unicode_binary(), B :: unicode:unicode_binary()) -> integer().\nmin_characters(A, B) ->\n  .",
+    "racket": "(define/contract (min-characters a b)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aba\"\n\"caa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"dabadd\"\n\"cda\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aba\"\n\"caa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"dabadd\"\n\"cda\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"a\"\n\"caa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"\n\"caa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"\n\"caa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abaaba\"\n\"caa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaa\"\n\"caa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n\"caa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"\n\"caa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"\n\"caa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaaaa\"\n\"caa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcde\"\n\"caa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"edcba\"\n\"caa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aab\"\n\"caa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"racecar\"\n\"caa\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"hello\"\n\"caa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"leetcode\"\n\"caa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"world\"\n\"caa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n\"c\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n\"aa\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate on each letter in the alphabet, and check the smallest number of operations needed to make it one of the following: the largest letter in a and smaller than the smallest one in b, vice versa, or let a and b consist only of this letter.",
+    "For the first 2 conditions, take care that you can only change characters to lowercase letters, so you can't make 'z' the smallest letter in one of the strings or 'a' the largest letter in one of them."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.994Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "id": "1117",
+  "slug": "building-h2o",
+  "title": "Building H2O",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Medium",
+  "tags": [
+    "Concurrency"
+  ],
+  "statement": "There are two kinds of threads: `oxygen` and `hydrogen`. Your goal is to group these threads to form water molecules.\n\nThere is a barrier where each thread has to wait until a complete molecule can be formed. Hydrogen and oxygen threads will be given `releaseHydrogen` and `releaseOxygen` methods respectively, which will allow them to pass the barrier. These threads should pass the barrier in groups of three, and they must immediately bond with each other to form a water molecule. You must guarantee that all the threads from one molecule bond before any other threads from the next molecule do.\n\nIn other words:\n\n*   If an oxygen thread arrives at the barrier when no hydrogen threads are present, it must wait for two hydrogen threads.\n*   If a hydrogen thread arrives at the barrier when no other threads are present, it must wait for an oxygen thread and another hydrogen thread.\n\nWe do not have to worry about matching the threads up explicitly; the threads do not necessarily know which other threads they are paired up with. The key is that threads pass the barriers in complete sets; thus, if we examine the sequence of threads that bind and divide them into groups of three, each group should contain one oxygen and two hydrogen threads.\n\nWrite synchronization code for oxygen and hydrogen molecules that enforces these constraints.\n\n**Example 1:**\n\n```\nInput: water = \"HOH\"\nOutput: \"HHO\"\nExplanation: \"HOH\" and \"OHH\" are also valid answers.\n```\n\n**Example 2:**\n\n```\nInput: water = \"OOHHHH\"\nOutput: \"HHOHHO\"\nExplanation: \"HOHHHO\", \"OHHHHO\", \"HHOHOH\", \"HOHHOH\", \"OHHHOH\", \"HHOOHH\", \"HOHOHH\" and \"OHHOHH\" are also valid answers.\n```\n\n**Constraints:**\n\n*   `3 * n == water.length`\n*   `1 <= n <= 20`\n*   `water[i]` is either `'H'` or `'O'`.\n*   There will be exactly `2 * n` `'H'` in `water`.\n*   There will be exactly `n` `'O'` in `water`.",
+  "constraints": [
+    "3 * n == water.length",
+    "1 <= n <= 20",
+    "water[i] is either 'H' or 'O'.",
+    "There will be exactly 2 * n 'H' in water.",
+    "There will be exactly n 'O' in water."
+  ],
+  "examples": [
+    {
+      "input": "water = \"HOH\"",
+      "output": "\"HHO\"",
+      "explanation": "\"HOH\" and \"OHH\" are also valid answers."
+    },
+    {
+      "input": "water = \"OOHHHH\"",
+      "output": "\"HHOHHO\"",
+      "explanation": "\"HOHHHO\", \"OHHHHO\", \"HHOHOH\", \"HOHHOH\", \"OHHHOH\", \"HHOOHH\", \"HOHOHH\" and \"OHHOHH\" are also valid answers."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class H2O {\npublic:\n    H2O() {\n        \n    }\n\n    void hydrogen(function<void()> releaseHydrogen) {\n        \n        // releaseHydrogen() outputs \"H\". Do not change or remove this line.\n        releaseHydrogen();\n    }\n\n    void oxygen(function<void()> releaseOxygen) {\n        \n        // releaseOxygen() outputs \"O\". Do not change or remove this line.\n        releaseOxygen();\n    }\n};",
+    "java": "class H2O {\n\n    public H2O() {\n        \n    }\n\n    public void hydrogen(Runnable releaseHydrogen) throws InterruptedException {\n\t\t\n        // releaseHydrogen.run() outputs \"H\". Do not change or remove this line.\n        releaseHydrogen.run();\n    }\n\n    public void oxygen(Runnable releaseOxygen) throws InterruptedException {\n        \n        // releaseOxygen.run() outputs \"O\". Do not change or remove this line.\n\t\treleaseOxygen.run();\n    }\n}",
+    "python3": "class H2O:\n    def __init__(self):\n        pass\n\n\n    def hydrogen(self, releaseHydrogen: 'Callable[[], None]') -> None:\n        \n        # releaseHydrogen() outputs \"H\". Do not change or remove this line.\n        releaseHydrogen()\n\n\n    def oxygen(self, releaseOxygen: 'Callable[[], None]') -> None:\n        \n        # releaseOxygen() outputs \"O\". Do not change or remove this line.\n        releaseOxygen()",
+    "python": "class H2O(object):\n    def __init__(self):\n        pass\n\n\n    def hydrogen(self, releaseHydrogen):\n        \"\"\"\n        :type releaseHydrogen: method\n        :rtype: void\n        \"\"\"\n        \n        # releaseHydrogen() outputs \"H\". Do not change or remove this line.\n        releaseHydrogen()\n\n\n    def oxygen(self, releaseOxygen):\n        \"\"\"\n        :type releaseOxygen: method\n        :rtype: void\n        \"\"\"\n        \n        # releaseOxygen() outputs \"O\". Do not change or remove this line.\n        releaseOxygen()",
+    "csharp": "public class H2O {\n\n    public H2O() {\n        \n    }\n\n    public void Hydrogen(Action releaseHydrogen) {\n\t\t\n        // releaseHydrogen() outputs \"H\". Do not change or remove this line.\n        releaseHydrogen();\n    }\n\n    public void Oxygen(Action releaseOxygen) {\n        \n        // releaseOxygen() outputs \"O\". Do not change or remove this line.\n\t\treleaseOxygen();\n    }\n}",
+    "c": "typedef struct {\n    // User defined data may be declared here.\n    \n} H2O;\n\nvoid releaseHydrogen();\n\nvoid releaseOxygen();\n\nH2O* h2oCreate() {\n    H2O* obj = (H2O*) malloc(sizeof(H2O));\n    \n    // Initialize user defined data here.\n    \n    return obj;\n}\n\nvoid hydrogen(H2O* obj) {\n    \n    // releaseHydrogen() outputs \"H\". Do not change or remove this line.\n    releaseHydrogen();\n}\n\nvoid oxygen(H2O* obj) {\n    \n    // releaseOxygen() outputs \"O\". Do not change or remove this line.\n    releaseOxygen();\n}\n\nvoid h2oFree(H2O* obj) {\n    // User defined data may be cleaned up here.\n    \n}",
+    "golang": "type H2O struct {\n\n}\n\nfunc NewH2O() *H2O {\n\th := &H2O{}\n\treturn h\n}\n\nfunc (h *H2O) Hydrogen(releaseHydrogen func()) {\n\t// releaseHydrogen() outputs \"H\". Do not change or remove this line.\n\treleaseHydrogen()\n}\n\nfunc (h *H2O) Oxygen(releaseOxygen func()) {\n\t// releaseOxygen() outputs \"H\". Do not change or remove this line.\n\treleaseOxygen()\n}"
+  },
+  "publicTests": [
+    {
+      "input": "\"HOH\"",
+      "expectedOutput": "\"HHO\""
+    },
+    {
+      "input": "\"OOHHHH\"",
+      "expectedOutput": "\"HHOHHO\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"HOH\"",
+      "expectedOutput": "\"HHO\""
+    },
+    {
+      "input": "\"OOHHHH\"",
+      "expectedOutput": "\"HHOHHO\""
+    },
+    {
+      "input": "water = \"HOH\"",
+      "expectedOutput": "\"HHO\""
+    },
+    {
+      "input": "water = \"OOHHHH\"",
+      "expectedOutput": "\"HHOHHO\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/building-h2o/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.762Z",
+    "sourceUpdatedAt": null
+  }
+}

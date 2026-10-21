@@ -1,0 +1,155 @@
+{
+  "id": "3456",
+  "slug": "find-special-substring-of-length-k",
+  "title": "Find Special Substring of Length K",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Easy",
+  "tags": [
+    "String"
+  ],
+  "statement": "You are given a string `s` and an integer `k`.\n\nDetermine if there exists a substring of length **exactly** `k` in `s` that satisfies the following conditions:\n\n1.  The substring consists of **only one distinct character** (e.g., `\"aaa\"` or `\"bbb\"`).\n2.  If there is a character **immediately before** the substring, it must be different from the character in the substring.\n3.  If there is a character **immediately after** the substring, it must also be different from the character in the substring.\n\nReturn `true` if such a substring exists. Otherwise, return `false`.\n\n**Example 1:**\n\n**Input:** s = \"aaabaaa\", k = 3\n\n**Output:** true\n\n**Explanation:**\n\nThe substring `s[4..6] == \"aaa\"` satisfies the conditions.\n\n*   It has a length of 3.\n*   All characters are the same.\n*   The character before `\"aaa\"` is `'b'`, which is different from `'a'`.\n*   There is no character after `\"aaa\"`.\n\n**Example 2:**\n\n**Input:** s = \"abc\", k = 2\n\n**Output:** false\n\n**Explanation:**\n\nThere is no substring of length 2 that consists of one distinct character and satisfies the conditions.\n\n**Constraints:**\n\n*   `1 <= k <= s.length <= 100`\n*   `s` consists of lowercase English letters only.",
+  "constraints": [
+    "1 <= k <= s.length <= 100",
+    "s consists of lowercase English letters only."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aaabaaa\", k = 3",
+      "output": "true",
+      "explanation": null
+    },
+    {
+      "input": "s = \"abc\", k = 2",
+      "output": "false",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool hasSpecialSubstring(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean hasSpecialSubstring(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def hasSpecialSubstring(self, s: str, k: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def hasSpecialSubstring(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {boolean}\n */\nvar hasSpecialSubstring = function(s, k) {\n    \n};",
+    "typescript": "function hasSpecialSubstring(s: string, k: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool HasSpecialSubstring(string s, int k) {\n        \n    }\n}",
+    "c": "bool hasSpecialSubstring(char* s, int k) {\n    \n}",
+    "golang": "func hasSpecialSubstring(s string, k int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun hasSpecialSubstring(s: String, k: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func hasSpecialSubstring(_ s: String, _ k: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn has_special_substring(s: String, k: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Boolean}\ndef has_special_substring(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Boolean\n     */\n    function hasSpecialSubstring($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool hasSpecialSubstring(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def hasSpecialSubstring(s: String, k: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec has_special_substring(s :: String.t, k :: integer) :: boolean\n  def has_special_substring(s, k) do\n    \n  end\nend",
+    "erlang": "-spec has_special_substring(S :: unicode:unicode_binary(), K :: integer()) -> boolean().\nhas_special_substring(S, K) ->\n  .",
+    "racket": "(define/contract (has-special-substring s k)\n  (-> string? exact-integer? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aaabaaa\"\n3",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abc\"\n2",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aaabaaa\"\n3",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abc\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaa\"\n3",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"baaa\"\n3",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaabaaaaaabaaa\"\n3",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaaaaa\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"AAABAAA\"\n3",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"b\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aA\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"0\"\n3",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Return <code>true</code> if there is a sequence of consecutive characters of length <code>k</code>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-special-substring-of-length-k/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.117Z",
+    "sourceUpdatedAt": null
+  }
+}

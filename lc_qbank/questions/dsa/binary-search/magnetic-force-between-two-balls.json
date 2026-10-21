@@ -1,0 +1,162 @@
+{
+  "id": "1552",
+  "slug": "magnetic-force-between-two-balls",
+  "title": "Magnetic Force Between Two Balls",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting"
+  ],
+  "statement": "In the universe Earth C-137, Rick discovered a special form of magnetic force between two balls if they are put in his new invented basket. Rick has `n` empty baskets, the `i^(th)` basket is at `position[i]`, Morty has `m` balls and needs to distribute the balls into the baskets such that the **minimum magnetic force** between any two balls is **maximum**.\n\nRick stated that magnetic force between two different balls at positions `x` and `y` is `|x - y|`.\n\nGiven the integer array `position` and the integer `m`. Return _the required force_.\n\n**Example 1:**\n\n![](./assets/magnetic-force-between-two-balls-1.jpg)\n```\nInput: position = [1,2,3,4,7], m = 3\nOutput: 3\nExplanation: Distributing the 3 balls into baskets 1, 4 and 7 will make the magnetic force between ball pairs [3, 3, 6]. The minimum magnetic force is 3. We cannot achieve a larger minimum magnetic force than 3.\n```\n\n**Example 2:**\n\n```\nInput: position = [5,4,3,2,1,1000000000], m = 2\nOutput: 999999999\nExplanation: We can use baskets 1 and 1000000000.\n```\n\n**Constraints:**\n\n*   `n == position.length`\n*   `2 <= n <= 10^(5)`\n*   `1 <= position[i] <= 10^(9)`\n*   All integers in `position` are **distinct**.\n*   `2 <= m <= position.length`",
+  "constraints": [
+    "n == position.length",
+    "2 <= n <= 105",
+    "1 <= position[i] <= 109",
+    "All integers in position are distinct.",
+    "2 <= m <= position.length"
+  ],
+  "examples": [
+    {
+      "input": "position = [1,2,3,4,7], m = 3",
+      "output": "3",
+      "explanation": "Distributing the 3 balls into baskets 1, 4 and 7 will make the magnetic force between ball pairs [3, 3, 6]. The minimum magnetic force is 3. We cannot achieve a larger minimum magnetic force than 3."
+    },
+    {
+      "input": "position = [5,4,3,2,1,1000000000], m = 2",
+      "output": "999999999",
+      "explanation": "We can use baskets 1 and 1000000000."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxDistance(vector<int>& position, int m) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxDistance(int[] position, int m) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxDistance(self, position: list[int], m: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxDistance(self, position, m):\n        \"\"\"\n        :type position: List[int]\n        :type m: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} position\n * @param {number} m\n * @return {number}\n */\nvar maxDistance = function(position, m) {\n    \n};",
+    "typescript": "function maxDistance(position: number[], m: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxDistance(int[] position, int m) {\n        \n    }\n}",
+    "c": "int maxDistance(int* position, int positionSize, int m) {\n    \n}",
+    "golang": "func maxDistance(position []int, m int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxDistance(position: IntArray, m: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxDistance(_ position: [Int], _ m: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_distance(position: Vec<i32>, m: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} position\n# @param {Integer} m\n# @return {Integer}\ndef max_distance(position, m)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $position\n     * @param Integer $m\n     * @return Integer\n     */\n    function maxDistance($position, $m) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxDistance(List<int> position, int m) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxDistance(position: Array[Int], m: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_distance(position :: [integer], m :: integer) :: integer\n  def max_distance(position, m) do\n    \n  end\nend",
+    "erlang": "-spec max_distance(Position :: [integer()], M :: integer()) -> integer().\nmax_distance(Position, M) ->\n  .",
+    "racket": "(define/contract (max-distance position m)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4,7]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,4,3,2,1,1000000000]\n2",
+      "expectedOutput": "999999999"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4,7]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,4,3,2,1,1000000000]\n2",
+      "expectedOutput": "999999999"
+    },
+    {
+      "input": "[1,2]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,4,7]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,7]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[7,4,3,2,1]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1,1,1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,4,7,1,2,3,4,7]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,4,6,8,14]\n3",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,3,4,5,8]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,1,2,3,6]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,-2,-3,-4,-7]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]\n3",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If you can place balls such that the answer is x then you can do it for y where y < x.",
+    "Similarly if you cannot place balls such that the answer is x then you can do it for y where y > x.",
+    "Binary search on the answer and greedily see if it is possible."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/magnetic-force-between-two-balls/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.867Z",
+    "sourceUpdatedAt": null
+  }
+}

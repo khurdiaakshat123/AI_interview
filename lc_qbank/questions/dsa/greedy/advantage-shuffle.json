@@ -1,0 +1,157 @@
+{
+  "id": "870",
+  "slug": "advantage-shuffle",
+  "title": "Advantage Shuffle",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You are given two integer arrays `nums1` and `nums2` both of the same length. The **advantage** of `nums1` with respect to `nums2` is the number of indices `i` for which `nums1[i] > nums2[i]`.\n\nReturn _any permutation of_ `nums1` _that maximizes its **advantage** with respect to_ `nums2`.\n\n**Example 1:**\n\n```\nInput: nums1 = [2,7,11,15], nums2 = [1,10,4,11]\nOutput: [2,11,7,15]\n```\n\n**Example 2:**\n\n```\nInput: nums1 = [12,24,8,32], nums2 = [13,25,32,11]\nOutput: [24,32,8,12]\n```\n\n**Constraints:**\n\n*   `1 <= nums1.length <= 10^(5)`\n*   `nums2.length == nums1.length`\n*   `0 <= nums1[i], nums2[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= nums1.length <= 105",
+    "nums2.length == nums1.length",
+    "0 <= nums1[i], nums2[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [2,7,11,15], nums2 = [1,10,4,11]",
+      "output": "[2,11,7,15]",
+      "explanation": null
+    },
+    {
+      "input": "nums1 = [12,24,8,32], nums2 = [13,25,32,11]",
+      "output": "[24,32,8,12]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> advantageCount(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] advantageCount(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def advantageCount(self, nums1: list[int], nums2: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def advantageCount(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number[]}\n */\nvar advantageCount = function(nums1, nums2) {\n    \n};",
+    "typescript": "function advantageCount(nums1: number[], nums2: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] AdvantageCount(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* advantageCount(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {\n    \n}",
+    "golang": "func advantageCount(nums1 []int, nums2 []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun advantageCount(nums1: IntArray, nums2: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func advantageCount(_ nums1: [Int], _ nums2: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn advantage_count(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer[]}\ndef advantage_count(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer[]\n     */\n    function advantageCount($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> advantageCount(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def advantageCount(nums1: Array[Int], nums2: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec advantage_count(nums1 :: [integer], nums2 :: [integer]) :: [integer]\n  def advantage_count(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec advantage_count(Nums1 :: [integer()], Nums2 :: [integer()]) -> [integer()].\nadvantage_count(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (advantage-count nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,7,11,15]\n[1,10,4,11]",
+      "expectedOutput": "[2,11,7,15]"
+    },
+    {
+      "input": "[12,24,8,32]\n[13,25,32,11]",
+      "expectedOutput": "[24,32,8,12]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,7,11,15]\n[1,10,4,11]",
+      "expectedOutput": "[2,11,7,15]"
+    },
+    {
+      "input": "[12,24,8,32]\n[13,25,32,11]",
+      "expectedOutput": "[24,32,8,12]"
+    },
+    {
+      "input": "[2,7]\n[1,10,4,11]",
+      "expectedOutput": "[2,0,7,0]"
+    },
+    {
+      "input": "[11,15]\n[1,10,4,11]",
+      "expectedOutput": "[11,0,15,0]"
+    },
+    {
+      "input": "[2]\n[1,10,4,11]",
+      "expectedOutput": "[2,0,0,0]"
+    },
+    {
+      "input": "[2,15]\n[1,10,4,11]",
+      "expectedOutput": "[2,0,15,0]"
+    },
+    {
+      "input": "[15,11,7,2]\n[1,10,4,11]",
+      "expectedOutput": "[2,11,7,15]"
+    },
+    {
+      "input": "[2,2,2,2]\n[1,10,4,11]",
+      "expectedOutput": "[2,2,2,2]"
+    },
+    {
+      "input": "[4,14,22,30]\n[1,10,4,11]",
+      "expectedOutput": "[4,22,14,30]"
+    },
+    {
+      "input": "[3,8,12,16]\n[1,10,4,11]",
+      "expectedOutput": "[3,12,8,16]"
+    },
+    {
+      "input": "[1,6,10,14]\n[1,10,4,11]",
+      "expectedOutput": "[6,14,10,1]"
+    },
+    {
+      "input": "[-2,-7,-11,-15]\n[1,10,4,11]",
+      "expectedOutput": "[-2,-11,-7,-15]"
+    },
+    {
+      "input": "[0,0,0,0]\n[1,10,4,11]",
+      "expectedOutput": "[0,0,0,0]"
+    },
+    {
+      "input": "[1,1,1,1]\n[1,10,4,11]",
+      "expectedOutput": "[1,1,1,1]"
+    },
+    {
+      "input": "[0]\n[1,10,4,11]",
+      "expectedOutput": "[0,0,0,0]"
+    },
+    {
+      "input": "[1]\n[1,10,4,11]",
+      "expectedOutput": "[0,0,0,1]"
+    },
+    {
+      "input": "[-1]\n[1,10,4,11]",
+      "expectedOutput": "[0,0,0,-1]"
+    },
+    {
+      "input": "[0,0]\n[1,10,4,11]",
+      "expectedOutput": "[0,0,0,0]"
+    },
+    {
+      "input": "[1,2]\n[1,10,4,11]",
+      "expectedOutput": "[2,0,0,1]"
+    },
+    {
+      "input": "[2,1]\n[1,10,4,11]",
+      "expectedOutput": "[2,0,0,1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/advantage-shuffle/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:12.912Z",
+    "sourceUpdatedAt": null
+  }
+}

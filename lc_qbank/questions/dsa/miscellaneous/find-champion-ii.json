@@ -1,0 +1,129 @@
+{
+  "id": "2924",
+  "slug": "find-champion-ii",
+  "title": "Find Champion II",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Medium",
+  "tags": [
+    "Graph Theory"
+  ],
+  "statement": "There are `n` teams numbered from `0` to `n - 1` in a tournament; each team is also a node in a **DAG**.\n\nYou are given the integer `n` and a **0-indexed** 2D integer array `edges` of length `m` representing the **DAG**, where `edges[i] = [u_(i), v_(i)]` indicates that there is a directed edge from team `u_(i)` to team `v_(i)` in the graph.\n\nA directed edge from `a` to `b` in the graph means that team `a` is **stronger** than team `b` and team `b` is **weaker** than team `a`.\n\nTeam `a` will be the **champion** of the tournament if there is no team `b` that is **stronger** than team `a`.\n\nReturn _the team that will be the **champion** of the tournament if there is a **unique** champion, otherwise, return_ `-1`_._\n\n**Notes**\n\n*   A **cycle** is a series of nodes `a_(1), a_(2), ..., a_(n), a_(n+1)` such that node `a_(1)` is the same node as node `a_(n+1)`, the nodes `a_(1), a_(2), ..., a_(n)` are distinct, and there is a directed edge from the node `a_(i)` to node `a_(i+1)` for every `i` in the range `[1, n]`.\n*   A **DAG** is a directed graph that does not have any **cycle**.\n\n**Example 1:**\n\n![](./assets/find-champion-ii-1.png)\n\n```\nInput: n = 3, edges = [[0,1],[1,2]]\nOutput: 0\nExplanation: Team 1 is weaker than team 0. Team 2 is weaker than team 1. So the champion is team 0.\n```\n\n**Example 2:**\n\n![](./assets/find-champion-ii-2.png)\n\n```\nInput: n = 4, edges = [[0,2],[1,3],[1,2]]\nOutput: -1\nExplanation: Team 2 is weaker than team 0 and team 1. Team 3 is weaker than team 1. But team 1 and team 0 are not weaker than any other teams. So the answer is -1.\n```\n\n**Constraints:**\n\n*   `1 <= n <= 100`\n*   `m == edges.length`\n*   `0 <= m <= n * (n - 1) / 2`\n*   `edges[i].length == 2`\n*   `0 <= edge[i][j] <= n - 1`\n*   `edges[i][0] != edges[i][1]`\n*   The input is generated such that if team `a` is stronger than team `b`, team `b` is not stronger than team `a`.\n*   The input is generated such that if team `a` is stronger than team `b` and team `b` is stronger than team `c`, then team `a` is stronger than team `c`.",
+  "constraints": [
+    "1 <= n <= 100",
+    "m == edges.length",
+    "0 <= m <= n * (n - 1) / 2",
+    "edges[i].length == 2",
+    "0 <= edge[i][j] <= n - 1",
+    "edges[i][0] != edges[i][1]",
+    "The input is generated such that if team a is stronger than team b, team b is not stronger than team a.",
+    "The input is generated such that if team a is stronger than team b and team b is stronger than team c, then team a is stronger than team c."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]]",
+      "output": "0",
+      "explanation": "Team 1 is weaker than team 0. Team 2 is weaker than team 1. So the champion is team 0."
+    },
+    {
+      "input": "n = 4, edges = [[0,2],[1,3],[1,2]]",
+      "output": "-1",
+      "explanation": "Team 2 is weaker than team 0 and team 1. Team 3 is weaker than team 1. But team 1 and team 0 are not weaker than any other teams. So the answer is -1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findChampion(int n, vector<vector<int>>& edges) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findChampion(int n, int[][] edges) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findChampion(self, n: int, edges: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findChampion(self, n, edges):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @return {number}\n */\nvar findChampion = function(n, edges) {\n    \n};",
+    "typescript": "function findChampion(n: number, edges: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindChampion(int n, int[][] edges) {\n        \n    }\n}",
+    "c": "int findChampion(int n, int** edges, int edgesSize, int* edgesColSize) {\n    \n}",
+    "golang": "func findChampion(n int, edges [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findChampion(n: Int, edges: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findChampion(_ n: Int, _ edges: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_champion(n: i32, edges: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @return {Integer}\ndef find_champion(n, edges)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @return Integer\n     */\n    function findChampion($n, $edges) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findChampion(int n, List<List<int>> edges) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findChampion(n: Int, edges: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_champion(n :: integer, edges :: [[integer]]) :: integer\n  def find_champion(n, edges) do\n    \n  end\nend",
+    "erlang": "-spec find_champion(N :: integer(), Edges :: [[integer()]]) -> integer().\nfind_champion(N, Edges) ->\n  .",
+    "racket": "(define/contract (find-champion n edges)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1],[1,2]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "4\n[[0,2],[1,3],[1,2]]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1],[1,2]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "4\n[[0,2],[1,3],[1,2]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "4\n[[0,1],[1,2]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "5\n[[0,1],[1,2]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "6\n[[0,1],[1,2]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "7\n[[0,1],[1,2]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "8\n[[0,1],[1,2]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "5\n[[0,2],[1,3],[1,2]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "6\n[[0,2],[1,3],[1,2]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "7\n[[0,2],[1,3],[1,2]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "8\n[[0,2],[1,3],[1,2]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "9\n[[0,2],[1,3],[1,2]]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The champion(s) should have in-degree <code>0</code> in the DAG."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-champion-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.586Z",
+    "sourceUpdatedAt": null
+  }
+}

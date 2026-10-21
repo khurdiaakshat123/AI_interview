@@ -1,0 +1,157 @@
+{
+  "id": "2433",
+  "slug": "find-the-original-array-of-prefix-xor",
+  "title": "Find The Original Array of Prefix Xor",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given an **integer** array `pref` of size `n`. Find and return _the array_ `arr` _of size_ `n` _that satisfies_:\n\n*   `pref[i] = arr[0] ^ arr[1] ^ ... ^ arr[i]`.\n\nNote that `^` denotes the **bitwise-xor** operation.\n\nIt can be proven that the answer is **unique**.\n\n**Example 1:**\n\n```\nInput: pref = [5,2,0,3,1]\nOutput: [5,7,2,3,2]\nExplanation: From the array [5,7,2,3,2] we have the following:\n- pref[0] = 5.\n- pref[1] = 5 ^ 7 = 2.\n- pref[2] = 5 ^ 7 ^ 2 = 0.\n- pref[3] = 5 ^ 7 ^ 2 ^ 3 = 3.\n- pref[4] = 5 ^ 7 ^ 2 ^ 3 ^ 2 = 1.\n```\n\n**Example 2:**\n\n```\nInput: pref = [13]\nOutput: [13]\nExplanation: We have pref[0] = arr[0] = 13.\n```\n\n**Constraints:**\n\n*   `1 <= pref.length <= 10^(5)`\n*   `0 <= pref[i] <= 10^(6)`",
+  "constraints": [
+    "1 <= pref.length <= 105",
+    "0 <= pref[i] <= 106"
+  ],
+  "examples": [
+    {
+      "input": "pref = [5,2,0,3,1]",
+      "output": "[5,7,2,3,2]",
+      "explanation": "From the array [5,7,2,3,2] we have the following:\n- pref[0] = 5.\n- pref[1] = 5 ^ 7 = 2.\n- pref[2] = 5 ^ 7 ^ 2 = 0.\n- pref[3] = 5 ^ 7 ^ 2 ^ 3 = 3.\n- pref[4] = 5 ^ 7 ^ 2 ^ 3 ^ 2 = 1."
+    },
+    {
+      "input": "pref = [13]",
+      "output": "[13]",
+      "explanation": "We have pref[0] = arr[0] = 13."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findArray(vector<int>& pref) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] findArray(int[] pref) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findArray(self, pref: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def findArray(self, pref):\n        \"\"\"\n        :type pref: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} pref\n * @return {number[]}\n */\nvar findArray = function(pref) {\n    \n};",
+    "typescript": "function findArray(pref: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] FindArray(int[] pref) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findArray(int* pref, int prefSize, int* returnSize) {\n    \n}",
+    "golang": "func findArray(pref []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findArray(pref: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findArray(_ pref: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_array(pref: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} pref\n# @return {Integer[]}\ndef find_array(pref)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $pref\n     * @return Integer[]\n     */\n    function findArray($pref) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findArray(List<int> pref) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findArray(pref: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_array(pref :: [integer]) :: [integer]\n  def find_array(pref) do\n    \n  end\nend",
+    "erlang": "-spec find_array(Pref :: [integer()]) -> [integer()].\nfind_array(Pref) ->\n  .",
+    "racket": "(define/contract (find-array pref)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[5,2,0,3,1]",
+      "expectedOutput": "[5,7,2,3,2]"
+    },
+    {
+      "input": "[13]",
+      "expectedOutput": "[13]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[5,2,0,3,1]",
+      "expectedOutput": "[5,7,2,3,2]"
+    },
+    {
+      "input": "[13]",
+      "expectedOutput": "[13]"
+    },
+    {
+      "input": "[5,2]",
+      "expectedOutput": "[5,7]"
+    },
+    {
+      "input": "[0,3,1]",
+      "expectedOutput": "[0,3,2]"
+    },
+    {
+      "input": "[5]",
+      "expectedOutput": "[5]"
+    },
+    {
+      "input": "[5,1]",
+      "expectedOutput": "[5,4]"
+    },
+    {
+      "input": "[1,3,0,2,5]",
+      "expectedOutput": "[1,2,3,2,7]"
+    },
+    {
+      "input": "[0,1,2,3,5]",
+      "expectedOutput": "[0,1,3,1,6]"
+    },
+    {
+      "input": "[5,3,2,1,0]",
+      "expectedOutput": "[5,6,1,3,1]"
+    },
+    {
+      "input": "[5,5,5,5,5]",
+      "expectedOutput": "[5,0,0,0,0]"
+    },
+    {
+      "input": "[5,2,0,3,1,5,2,0,3,1]",
+      "expectedOutput": "[5,7,2,3,2,4,7,2,3,2]"
+    },
+    {
+      "input": "[10,4,0,6,2]",
+      "expectedOutput": "[10,14,4,6,4]"
+    },
+    {
+      "input": "[6,3,1,4,2]",
+      "expectedOutput": "[6,5,2,5,6]"
+    },
+    {
+      "input": "[4,1,-1,2,0]",
+      "expectedOutput": "[4,5,-2,-3,2]"
+    },
+    {
+      "input": "[-5,-2,0,-3,-1]",
+      "expectedOutput": "[-5,5,-2,-3,2]"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "[0,0,0,0]"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "[1,0,0,0]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[-1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider the following equation: x ^ a = b. How can you find x?",
+    "Notice that arr[i] ^ pref[i-1] = pref[i]. This is the same as the previous equation."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-original-array-of-prefix-xor/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.577Z",
+    "sourceUpdatedAt": null
+  }
+}

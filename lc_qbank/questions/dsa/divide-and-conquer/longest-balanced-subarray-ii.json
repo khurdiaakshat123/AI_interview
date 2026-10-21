@@ -1,0 +1,172 @@
+{
+  "id": "3721",
+  "slug": "longest-balanced-subarray-ii",
+  "title": "Longest Balanced Subarray II",
+  "category": "dsa",
+  "subcategory": "divide-and-conquer",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Divide and Conquer",
+    "Segment Tree",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nA **subarray** is called **balanced** if the number of **distinct even** numbers in the subarray is equal to the number of **distinct odd** numbers.\n\nReturn the length of the **longest** balanced subarray.\n\n**Example 1:**\n\n**Input:** nums = \\[2,5,4,3\\]\n\n**Output:** 4\n\n**Explanation:**\n\n*   The longest balanced subarray is `[2, 5, 4, 3]`.\n*   It has 2 distinct even numbers `[2, 4]` and 2 distinct odd numbers `[5, 3]`. Thus, the answer is 4.\n\n**Example 2:**\n\n**Input:** nums = \\[3,2,2,5,4\\]\n\n**Output:** 5\n\n**Explanation:**\n\n*   The longest balanced subarray is `[3, 2, 2, 5, 4]`.\n*   It has 2 distinct even numbers `[2, 4]` and 2 distinct odd numbers `[3, 5]`. Thus, the answer is 5.\n\n**Example 3:**\n\n**Input:** nums = \\[1,2,3,2\\]\n\n**Output:** 3\n\n**Explanation:**\n\n*   The longest balanced subarray is `[2, 3, 2]`.\n*   It has 1 distinct even number `[2]` and 1 distinct odd number `[3]`. Thus, the answer is 3.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,5,4,3]",
+      "output": "4",
+      "explanation": "The longest balanced subarray is [2, 5, 4, 3].\n\tIt has 2 distinct even numbers [2, 4] and 2 distinct odd numbers [5, 3]. Thus, the answer is 4."
+    },
+    {
+      "input": "nums = [3,2,2,5,4]",
+      "output": "5",
+      "explanation": "The longest balanced subarray is [3, 2, 2, 5, 4].\n\tIt has 2 distinct even numbers [2, 4] and 2 distinct odd numbers [3, 5]. Thus, the answer is 5."
+    },
+    {
+      "input": "nums = [1,2,3,2]",
+      "output": "3",
+      "explanation": "The longest balanced subarray is [2, 3, 2].\n\tIt has 1 distinct even number [2] and 1 distinct odd number [3]. Thus, the answer is 3."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestBalanced(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestBalanced(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestBalanced(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestBalanced(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar longestBalanced = function(nums) {\n    \n};",
+    "typescript": "function longestBalanced(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestBalanced(int[] nums) {\n        \n    }\n}",
+    "c": "int longestBalanced(int* nums, int numsSize) {\n    \n}",
+    "golang": "func longestBalanced(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestBalanced(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestBalanced(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_balanced(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef longest_balanced(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function longestBalanced($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestBalanced(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestBalanced(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_balanced(nums :: [integer]) :: integer\n  def longest_balanced(nums) do\n    \n  end\nend",
+    "erlang": "-spec longest_balanced(Nums :: [integer()]) -> integer().\nlongest_balanced(Nums) ->\n  .",
+    "racket": "(define/contract (longest-balanced nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,5,4,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,2,2,5,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2,3,2]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,5,4,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,2,2,5,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2,3,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,4,5,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,3,4,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[5,4,3,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,2,2,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,5,4,3,2,5,4,3]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[4,10,8,6]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,6,5,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,4,3,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-2,-5,-4,-3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Store the first (or all) occurrences for each value in <code>pos[val]</code>.",
+    "Build a lazy segment tree over start indices <code>l in [0..n-1]</code> that supports range add and can tell if any index has value <code>0</code> (keep <code>mn</code>/<code>mx</code>).",
+    "Use <code>sign = +1</code> for odd values and <code>sign = -1</code> for even values.",
+    "Initialize by adding each value's contribution with <code>update(p, n-1, sign)</code> where <code>p</code> is its current first occurrence.",
+    "Slide left <code>l</code>: pop <code>pos[nums[l]]</code>, let <code>next</code> = next occurrence or <code>n</code>, do <code>update(0, next-1, -sign)</code>, then query for any <code>r >= l</code> with value <code>0</code> and update <code>ans = max(ans, r-l+1)</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-balanced-subarray-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.384Z",
+    "sourceUpdatedAt": null
+  }
+}

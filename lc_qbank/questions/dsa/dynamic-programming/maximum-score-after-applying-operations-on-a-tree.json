@@ -1,0 +1,102 @@
+{
+  "id": "2925",
+  "slug": "maximum-score-after-applying-operations-on-a-tree",
+  "title": "Maximum Score After Applying Operations on a Tree",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "DP on Trees"
+  ],
+  "statement": "There is an undirected tree with `n` nodes labeled from 0 to `n - 1`, and rooted at node 0. You are given a 2D integer array `edges` of length `n - 1`, where `edges[i] = [a_(i), b_(i)]` indicates that there is an edge between nodes `a_(i)` and `b_(i)` in the tree.\n\nYou are also given a **0-indexed** integer array `values` of length `n`, where `values[i]` is the **value** associated with the `i^(th)` node.\n\nYou start with a score of 0. In one operation, you choose a node `i`, **add** `values[i]` to your score, and then **set** `values[i]` to 0. All three steps happen together as a single operation.\n\nA tree is **healthy** if, for **every** leaf node, the sum of the **current** values on the path from the root to that leaf is **not equal** to 0.\n\nReturn the **maximum score** you can obtain by performing this operation on the tree any number of times, so that the tree remains **healthy** at the end.\n\n**Example 1:**\n\n![](./assets/maximum-score-after-applying-operations-on-a-tree-1.png)\n```\nInput: edges = [[0,1],[0,2],[0,3],[2,4],[4,5]], values = [5,2,5,2,1,1]\nOutput: 11\nExplanation: We apply the operation to nodes 1, 2, 3, 4, and 5, so the values become [5,0,0,0,0,0]. The leaves are nodes 1, 3, and 5.\n- The sum of values on the path from 0 to 1 is equal to 5.\n- The sum of values on the path from 0 to 3 is equal to 5.\n- The sum of values on the path from 0 to 5 is equal to 5.\nEvery leaf has a non-zero path sum, so the tree is healthy. The score is the sum of the original values of the chosen nodes: 2 + 5 + 2 + 1 + 1 = 11.\nIt can be shown that 11 is the maximum score obtainable by performing any number of operations on the tree.\n```\n\n**Example 2:**\n\n![](./assets/maximum-score-after-applying-operations-on-a-tree-2.png)\n```\nInput: edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]], values = [20,10,9,7,4,3,5]\nOutput: 40\nExplanation: We apply the operation to nodes 0, 2, 3, and 4, so the values become [0,10,0,0,0,3,5]. The leaves are nodes 3, 4, 5, and 6.\n- The sum of values on the path from 0 to 3 is equal to 10.\n- The sum of values on the path from 0 to 4 is equal to 10.\n- The sum of values on the path from 0 to 5 is equal to 3.\n- The sum of values on the path from 0 to 6 is equal to 5.\nEvery leaf has a non-zero path sum, so the tree is healthy. The score is the sum of the original values of the chosen nodes: 20 + 9 + 7 + 4 = 40.\nIt can be shown that 40 is the maximum score obtainable by performing any number of operations on the tree.\n```\n\n**Constraints:**\n\n*   `2 <= n <= 2 * 10^(4)`\n*   `edges.length == n - 1`\n*   `edges[i].length == 2`\n*   `0 <= a_(i), b_(i) < n`\n*   `values.length == n`\n*   `1 <= values[i] <= 10^(9)`\n*   The input is generated such that `edges` represents a valid tree.",
+  "constraints": [
+    "2 <= n <= 2 * 104",
+    "edges.length == n - 1",
+    "edges[i].length == 2",
+    "0 <= ai, bi < n",
+    "values.length == n",
+    "1 <= values[i] <= 109",
+    "The input is generated such that edges represents a valid tree."
+  ],
+  "examples": [
+    {
+      "input": "edges = [[0,1],[0,2],[0,3],[2,4],[4,5]], values = [5,2,5,2,1,1]",
+      "output": "11",
+      "explanation": "We apply the operation to nodes 1, 2, 3, 4, and 5, so the values become [5,0,0,0,0,0]. The leaves are nodes 1, 3, and 5.\n- The sum of values on the path from 0 to 1 is equal to 5.\n- The sum of values on the path from 0 to 3 is equal to 5.\n- The sum of values on the path from 0 to 5 is equal to 5.\nEvery leaf has a non-zero path sum, so the tree is healthy. The score is the sum of the original values of the chosen nodes: 2 + 5 + 2 + 1 + 1 = 11.\nIt can be shown that 11 is the maximum score obtainable by performing any number of operations on the tree."
+    },
+    {
+      "input": "edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]], values = [20,10,9,7,4,3,5]",
+      "output": "40",
+      "explanation": "We apply the operation to nodes 0, 2, 3, and 4, so the values become [0,10,0,0,0,3,5]. The leaves are nodes 3, 4, 5, and 6.\n- The sum of values on the path from 0 to 3 is equal to 10.\n- The sum of values on the path from 0 to 4 is equal to 10.\n- The sum of values on the path from 0 to 5 is equal to 3.\n- The sum of values on the path from 0 to 6 is equal to 5.\nEvery leaf has a non-zero path sum, so the tree is healthy. The score is the sum of the original values of the chosen nodes: 20 + 9 + 7 + 4 = 40.\nIt can be shown that 40 is the maximum score obtainable by performing any number of operations on the tree."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maximumScoreAfterOperations(vector<vector<int>>& edges, vector<int>& values) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maximumScoreAfterOperations(int[][] edges, int[] values) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumScoreAfterOperations(self, edges: List[List[int]], values: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumScoreAfterOperations(self, edges, values):\n        \"\"\"\n        :type edges: List[List[int]]\n        :type values: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} edges\n * @param {number[]} values\n * @return {number}\n */\nvar maximumScoreAfterOperations = function(edges, values) {\n    \n};",
+    "typescript": "function maximumScoreAfterOperations(edges: number[][], values: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaximumScoreAfterOperations(int[][] edges, int[] values) {\n        \n    }\n}",
+    "c": "long long maximumScoreAfterOperations(int** edges, int edgesSize, int* edgesColSize, int* values, int valuesSize) {\n    \n}",
+    "golang": "func maximumScoreAfterOperations(edges [][]int, values []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumScoreAfterOperations(edges: Array<IntArray>, values: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumScoreAfterOperations(_ edges: [[Int]], _ values: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_score_after_operations(edges: Vec<Vec<i32>>, values: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} edges\n# @param {Integer[]} values\n# @return {Integer}\ndef maximum_score_after_operations(edges, values)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $edges\n     * @param Integer[] $values\n     * @return Integer\n     */\n    function maximumScoreAfterOperations($edges, $values) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumScoreAfterOperations(List<List<int>> edges, List<int> values) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumScoreAfterOperations(edges: Array[Array[Int]], values: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_score_after_operations(edges :: [[integer]], values :: [integer]) :: integer\n  def maximum_score_after_operations(edges, values) do\n    \n  end\nend",
+    "erlang": "-spec maximum_score_after_operations(Edges :: [[integer()]], Values :: [integer()]) -> integer().\nmaximum_score_after_operations(Edges, Values) ->\n  .",
+    "racket": "(define/contract (maximum-score-after-operations edges values)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1],[0,2],[0,3],[2,4],[4,5]]\n[5,2,5,2,1,1]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]\n[20,10,9,7,4,3,5]",
+      "expectedOutput": "40"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1],[0,2],[0,3],[2,4],[4,5]]\n[5,2,5,2,1,1]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]\n[20,10,9,7,4,3,5]",
+      "expectedOutput": "40"
+    },
+    {
+      "input": "edges = [[0,1],[0,2],[0,3],[2,4],[4,5]], values = [5,2,5,2,1,1]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]], values = [20,10,9,7,4,3,5]",
+      "expectedOutput": "40"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let <code>dp[i]</code> be the maximum score we can get on the subtree rooted at <code>i</code> and <code>sum[i]</code> be the sum of all the values of the subtree rooted at <code>i</code>.",
+    "If we don’t take <code>value[i]</code> into the final score, we can take all the nodes of the subtrees rooted at <code>i</code>’s children.",
+    "If we take <code>value[i]</code> into the score, then each subtree rooted at its children should satisfy the constraints.",
+    "<code>dp[x] = max(value[x] + sigma(dp[y]), sigma(sum[y]))</code>, where <code>y</code> is a direct child of <code>x</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-score-after-applying-operations-on-a-tree/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.524Z",
+    "sourceUpdatedAt": null
+  }
+}

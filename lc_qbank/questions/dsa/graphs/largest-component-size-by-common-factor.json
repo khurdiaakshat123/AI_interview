@@ -1,0 +1,168 @@
+{
+  "id": "952",
+  "slug": "largest-component-size-by-common-factor",
+  "title": "Largest Component Size by Common Factor",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Union-Find",
+    "Number Theory",
+    "Prime Factorization"
+  ],
+  "statement": "You are given an integer array of unique positive integers `nums`. Consider the following graph:\n\n*   There are `nums.length` nodes, labeled `nums[0]` to `nums[nums.length - 1]`,\n*   There is an undirected edge between `nums[i]` and `nums[j]` if `nums[i]` and `nums[j]` share a common factor greater than `1`.\n\nReturn _the size of the largest connected component in the graph_.\n\n**Example 1:**\n\n![](./assets/largest-component-size-by-common-factor-1.png)\n```\nInput: nums = [4,6,15,35]\nOutput: 4\n```\n\n**Example 2:**\n\n![](./assets/largest-component-size-by-common-factor-2.png)\n```\nInput: nums = [20,50,9,63]\nOutput: 2\n```\n\n**Example 3:**\n\n![](./assets/largest-component-size-by-common-factor-3.png)\n```\nInput: nums = [2,3,6,7,4,12,21,39]\nOutput: 8\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 2 * 10^(4)`\n*   `1 <= nums[i] <= 10^(5)`\n*   All the values of `nums` are **unique**.",
+  "constraints": [
+    "1 <= nums.length <= 2 * 104",
+    "1 <= nums[i] <= 105",
+    "All the values of nums are unique."
+  ],
+  "examples": [
+    {
+      "input": "nums = [4,6,15,35]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "nums = [20,50,9,63]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2,3,6,7,4,12,21,39]",
+      "output": "8",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int largestComponentSize(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int largestComponentSize(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestComponentSize(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def largestComponentSize(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar largestComponentSize = function(nums) {\n    \n};",
+    "typescript": "function largestComponentSize(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LargestComponentSize(int[] nums) {\n        \n    }\n}",
+    "c": "int largestComponentSize(int* nums, int numsSize) {\n    \n}",
+    "golang": "func largestComponentSize(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestComponentSize(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestComponentSize(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_component_size(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef largest_component_size(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function largestComponentSize($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int largestComponentSize(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def largestComponentSize(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec largest_component_size(nums :: [integer]) :: integer\n  def largest_component_size(nums) do\n    \n  end\nend",
+    "erlang": "-spec largest_component_size(Nums :: [integer()]) -> integer().\nlargest_component_size(Nums) ->\n  .",
+    "racket": "(define/contract (largest-component-size nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[4,6,15,35]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[20,50,9,63]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,3,6,7,4,12,21,39]",
+      "expectedOutput": "8"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[4,6,15,35]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[20,50,9,63]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,3,6,7,4,12,21,39]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[4,6]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[15,35]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,35]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[35,15,6,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,4,4,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,6,15,35,4,6,15,35]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[8,12,30,70]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[5,7,16,36]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,5,14,34]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/largest-component-size-by-common-factor/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.906Z",
+    "sourceUpdatedAt": null
+  }
+}

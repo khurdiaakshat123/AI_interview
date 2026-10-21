@@ -1,0 +1,116 @@
+{
+  "id": "3664",
+  "slug": "two-letter-card-game",
+  "title": "Two-Letter Card Game",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting",
+    "Enumeration"
+  ],
+  "statement": "You are given a deck of cards represented by a string array `cards`, and each card displays two lowercase letters.\n\nYou are also given a letter `x`. You play a game with the following rules:\n\n*   Start with 0 points.\n*   On each turn, you must find two **compatible** cards from the deck that both contain the letter `x` in any position.\n*   Remove the pair of cards and earn **1 point**.\n*   The game ends when you can no longer find a pair of compatible cards.\n\nReturn the **maximum** number of points you can gain with optimal play.\n\nTwo cards are **compatible** if the strings differ in **exactly** 1 position.\n\n**Example 1:**\n\n**Input:** cards = \\[\"aa\",\"ab\",\"ba\",\"ac\"\\], x = \"a\"\n\n**Output:** 2\n\n**Explanation:**\n\n*   On the first turn, select and remove cards `\"ab\"` and `\"ac\"`, which are compatible because they differ at only index 1.\n*   On the second turn, select and remove cards `\"aa\"` and `\"ba\"`, which are compatible because they differ at only index 0.\n\nBecause there are no more compatible pairs, the total score is 2.\n\n**Example 2:**\n\n**Input:** cards = \\[\"aa\",\"ab\",\"ba\"\\], x = \"a\"\n\n**Output:** 1\n\n**Explanation:**\n\n*   On the first turn, select and remove cards `\"aa\"` and `\"ba\"`.\n\nBecause there are no more compatible pairs, the total score is 1.\n\n**Example 3:**\n\n**Input:** cards = \\[\"aa\",\"ab\",\"ba\",\"ac\"\\], x = \"b\"\n\n**Output:** 0\n\n**Explanation:**\n\nThe only cards that contain the character `'b'` are `\"ab\"` and `\"ba\"`. However, they differ in both indices, so they are not compatible. Thus, the output is 0.\n\n**Constraints:**\n\n*   `2 <= cards.length <= 10^(5)`\n*   `cards[i].length == 2`\n*   Each `cards[i]` is composed of only lowercase English letters between `'a'` and `'j'`.\n*   `x` is a lowercase English letter between `'a'` and `'j'`.",
+  "constraints": [
+    "2 <= cards.length <= 105",
+    "cards[i].length == 2",
+    "Each cards[i] is composed of only lowercase English letters between 'a' and 'j'.",
+    "x is a lowercase English letter between 'a' and 'j'."
+  ],
+  "examples": [
+    {
+      "input": "cards = [\"aa\",\"ab\",\"ba\",\"ac\"], x = \"a\"",
+      "output": "2",
+      "explanation": "On the first turn, select and remove cards \"ab\" and \"ac\", which are compatible because they differ at only index 1.\n\tOn the second turn, select and remove cards \"aa\" and \"ba\", which are compatible because they differ at only index 0."
+    },
+    {
+      "input": "cards = [\"aa\",\"ab\",\"ba\"], x = \"a\"",
+      "output": "1",
+      "explanation": "On the first turn, select and remove cards \"aa\" and \"ba\"."
+    },
+    {
+      "input": "cards = [\"aa\",\"ab\",\"ba\",\"ac\"], x = \"b\"",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int score(vector<string>& cards, char x) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int score(String[] cards, char x) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def score(self, cards: List[str], x: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def score(self, cards, x):\n        \"\"\"\n        :type cards: List[str]\n        :type x: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} cards\n * @param {character} x\n * @return {number}\n */\nvar score = function(cards, x) {\n    \n};",
+    "typescript": "function score(cards: string[], x: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int Score(string[] cards, char x) {\n        \n    }\n}",
+    "c": "int score(char** cards, int cardsSize, char x) {\n    \n}",
+    "golang": "func score(cards []string, x byte) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun score(cards: Array<String>, x: Char): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func score(_ cards: [String], _ x: Character) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn score(cards: Vec<String>, x: char) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} cards\n# @param {Character} x\n# @return {Integer}\ndef score(cards, x)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $cards\n     * @param String $x\n     * @return Integer\n     */\n    function score($cards, $x) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int score(List<String> cards, String x) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def score(cards: Array[String], x: Char): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec score(cards :: [String.t], x :: char) :: integer\n  def score(cards, x) do\n    \n  end\nend",
+    "erlang": "-spec score(Cards :: [unicode:unicode_binary()], X :: char()) -> integer().\nscore(Cards, X) ->\n  .",
+    "racket": "(define/contract (score cards x)\n  (-> (listof string?) char? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"aa\",\"ab\",\"ba\",\"ac\"]\n\"a\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"aa\",\"ab\",\"ba\"]\n\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"aa\",\"ab\",\"ba\",\"ac\"]\n\"b\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"aa\",\"ab\",\"ba\",\"ac\"]\n\"a\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"aa\",\"ab\",\"ba\"]\n\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"aa\",\"ab\",\"ba\",\"ac\"]\n\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "cards = [\"aa\",\"ab\",\"ba\",\"ac\"], x = \"a\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "cards = [\"aa\",\"ab\",\"ba\"], x = \"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "cards = [\"aa\",\"ab\",\"ba\",\"ac\"], x = \"b\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Compute <code>both</code>, <code>cnt1</code>[c], <code>cnt2</code>[c] as the counts of cards with <code>x</code> in both positions, only the first position (other letter <code>c</code>), and only the second position.",
+    "Let <code>solve(cnt, have)</code> be the maximum pairs you can form from one‐sided counts <code>cnt</code> plus <code>have</code> two‐sided cards by sorting <code>cnt</code>, computing the total, and applying the same logic as in the solution.",
+    "Return the maximum over <code>i = 0..both</code> of <code>solve(cnt1, i) + solve(cnt2, both - i)</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/two-letter-card-game/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.303Z",
+    "sourceUpdatedAt": null
+  }
+}

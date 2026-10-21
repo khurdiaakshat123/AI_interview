@@ -1,0 +1,173 @@
+{
+  "id": "4051",
+  "slug": "count-subarrays-with-distant-sums",
+  "title": "Count Subarrays with Distant Sums",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `nums` and two integers `goal` and `k`.\n\nA subarray `nums[i..j]` is considered **distant** if the **absolute difference** between its sum and `goal` is **at least** `k`.\n\nReturn the number of **distant** subarrays.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,1\\], goal = 4, k = 1\n\n**Output:** 5\n\n**Explanation:**\n\nThe distant subarrays for `k = 1` are:\n\n`i`\n\n`j`\n\n`nums[i..j]`\n\nSum\n\n`abs(sum - goal)`\n\n0\n\n0\n\n`[1]`\n\n1\n\n3\n\n1\n\n1\n\n`[2]`\n\n2\n\n2\n\n2\n\n2\n\n`[1]`\n\n1\n\n3\n\n0\n\n1\n\n`[1, 2]`\n\n3\n\n1\n\n1\n\n2\n\n`[2, 1]`\n\n3\n\n1\n\nThus, the answer is 5.\n\n**Example 2:**\n\n**Input:** nums = \\[2,-1,3\\], goal = 2, k = 2\n\n**Output:** 2\n\n**Explanation:**\n\nThe distant subarrays for `k = 2` are:\n\n`i`\n\n`j`\n\n`nums[i..j]`\n\nSum\n\n`abs(sum - goal)`\n\n1\n\n1\n\n`[-1]`\n\n\\-1\n\n3\n\n0\n\n2\n\n`[2, -1, 3]`\n\n4\n\n2\n\nThus, the answer is 2.\n\n**Example 3:**\n\n**Input:** nums = \\[-3,1,2\\], goal = 0, k = 3\n\n**Output:** 2\n\n**Explanation:**\n\nThe distant subarrays for `k = 3` are:\n\n`i`\n\n`j`\n\n`nums[i..j]`\n\nSum\n\n`abs(sum - goal)`\n\n0\n\n0\n\n`[-3]`\n\n\\-3\n\n3\n\n1\n\n2\n\n`[1, 2]`\n\n3\n\n3\n\nThus, the answer is 2.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `-10^(9) <= nums[i] <= 10^(9)`\n*   `-10^(9) <= goal <= 10^(9)`\n*   `0 <= k <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-109 <= nums[i] <= 109",
+    "-109 <= goal <= 109",
+    "0 <= k <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,1], goal = 4, k = 1",
+      "output": "5",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2,-1,3], goal = 2, k = 2",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "nums = [-3,1,2], goal = 0, k = 3",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long distantSubarrays(vector<int>& nums, int goal, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long distantSubarrays(int[] nums, int goal, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def distantSubarrays(self, nums: list[int], goal: int, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def distantSubarrays(self, nums, goal, k):\n        \"\"\"\n        :type nums: List[int]\n        :type goal: int\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} goal\n * @param {number} k\n * @return {number}\n */\nvar distantSubarrays = function(nums, goal, k) {\n    \n};",
+    "typescript": "function distantSubarrays(nums: number[], goal: number, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long DistantSubarrays(int[] nums, int goal, int k) {\n        \n    }\n}",
+    "c": "long long distantSubarrays(int* nums, int numsSize, int goal, int k) {\n    \n}",
+    "golang": "func distantSubarrays(nums []int, goal int, k int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun distantSubarrays(nums: IntArray, goal: Int, k: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func distantSubarrays(_ nums: [Int], _ goal: Int, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn distant_subarrays(nums: Vec<i32>, goal: i32, k: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} goal\n# @param {Integer} k\n# @return {Integer}\ndef distant_subarrays(nums, goal, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $goal\n     * @param Integer $k\n     * @return Integer\n     */\n    function distantSubarrays($nums, $goal, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int distantSubarrays(List<int> nums, int goal, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def distantSubarrays(nums: Array[Int], goal: Int, k: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec distant_subarrays(nums :: [integer], goal :: integer, k :: integer) :: integer\n  def distant_subarrays(nums, goal, k) do\n    \n  end\nend",
+    "erlang": "-spec distant_subarrays(Nums :: [integer()], Goal :: integer(), K :: integer()) -> integer().\ndistant_subarrays(Nums, Goal, K) ->\n  .",
+    "racket": "(define/contract (distant-subarrays nums goal k)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,1]\n4\n1",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,-1,3]\n2\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-3,1,2]\n0\n3",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,1]\n4\n1",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,-1,3]\n2\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-3,1,2]\n0\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]\n4\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]\n4\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1]\n4\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2]\n4\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,2]\n4\n1",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,1,1]\n4\n1",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,1,1]\n4\n1",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,2,1,1,2,1]\n4\n1",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "[2,4,2]\n4\n1",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,3,2]\n4\n1",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[0,1,0]\n4\n1",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[-1,-2,-1]\n4\n1",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[0,0,0]\n4\n1",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[0]\n4\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n4\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]\n4\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,1]\n4\n1",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p><strong>1a (Fenwick Tree).</strong> If <code>k = 0</code>, every subarray is distant. Otherwise, for a current prefix sum <code>s</code> and an earlier prefix sum <code>p</code>, the subarray is distant when <code>p &lt;= s - goal - k</code> or <code>p &gt;= s - goal + k</code>.</p>",
+    "<p><strong>1b (Fenwick Tree).</strong> Compress the prefix sums and process them from left to right. Use a Fenwick tree to count earlier prefix sums in these two ranges, querying before inserting the current prefix sum.</p>",
+    "<p><strong>2a (Merge Sort).</strong> Count the complementary subarrays whose sums satisfy <code>goal - k &lt; sum &lt; goal + k</code>, then subtract this count from <code>n * (n + 1) / 2</code>. Handle <code>k = 0</code> directly.</p>",
+    "<p><strong>2b (Merge Sort).</strong> Apply merge sort to the prefix sums. At each merge, use two pointers across the sorted halves to count differences strictly between the two bounds.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-subarrays-with-distant-sums/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.622Z",
+    "sourceUpdatedAt": null
+  }
+}

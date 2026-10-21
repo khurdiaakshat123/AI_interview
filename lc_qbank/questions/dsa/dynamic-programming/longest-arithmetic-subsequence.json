@@ -1,0 +1,165 @@
+{
+  "id": "1027",
+  "slug": "longest-arithmetic-subsequence",
+  "title": "Longest Arithmetic Subsequence",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Dynamic Programming"
+  ],
+  "statement": "Given an array `nums` of integers, return _the length of the longest arithmetic subsequence in_ `nums`.\n\n**Note** that:\n\n*   A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.\n*   A sequence `seq` is arithmetic if `seq[i + 1] - seq[i]` are all the same value (for `0 <= i < seq.length - 1`).\n\n**Example 1:**\n\n**Input:** nums = \\[3, 6, 9, 12\\]\n\n**Output:** 4\n\n**Explanation:** The whole array is already an arithmetic sequence with a common difference of 3, so the longest arithmetic subsequence is `[3, 6, 9, 12]`, of length 4.\n\n**Example 2:**\n\n**Input:** nums = \\[9, 4, 7, 2, 10\\]\n\n**Output:** 3\n\n**Explanation:** The longest arithmetic subsequence is `[4, 7, 10]` (indices `1`, `2`, `4`), with a common difference of 3. There is no arithmetic subsequence of length 4.\n\n**Example 3:**\n\n**Input:** nums = \\[20, 1, 15, 3, 10, 5, 8\\]\n\n**Output:** 4\n\n**Explanation:** The longest arithmetic subsequence is `[20, 15, 10, 5]` (indices `0`, `2`, `4`, `5`), with a common difference of -5.\n\n**Constraints:**\n\n*   `2 <= nums.length <= 1500`\n*   `0 <= nums[i] <= 500`",
+  "constraints": [
+    "2 <= nums.length <= 1500",
+    "0 <= nums[i] <= 500"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3, 6, 9, 12]",
+      "output": "4",
+      "explanation": "The whole array is already an arithmetic sequence with a common difference of 3, so the longest arithmetic subsequence is [3, 6, 9, 12], of length 4."
+    },
+    {
+      "input": "nums = [9, 4, 7, 2, 10]",
+      "output": "3",
+      "explanation": "The longest arithmetic subsequence is [4, 7, 10] (indices 1, 2, 4), with a common difference of 3. There is no arithmetic subsequence of length 4."
+    },
+    {
+      "input": "nums = [20, 1, 15, 3, 10, 5, 8]",
+      "output": "4",
+      "explanation": "The longest arithmetic subsequence is [20, 15, 10, 5] (indices 0, 2, 4, 5), with a common difference of -5."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestArithSeqLength(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestArithSeqLength(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestArithSeqLength(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestArithSeqLength(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar longestArithSeqLength = function(nums) {\n    \n};",
+    "typescript": "function longestArithSeqLength(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestArithSeqLength(int[] nums) {\n        \n    }\n}",
+    "c": "int longestArithSeqLength(int* nums, int numsSize) {\n    \n}",
+    "golang": "func longestArithSeqLength(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestArithSeqLength(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestArithSeqLength(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_arith_seq_length(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef longest_arith_seq_length(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function longestArithSeqLength($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestArithSeqLength(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestArithSeqLength(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_arith_seq_length(nums :: [integer]) :: integer\n  def longest_arith_seq_length(nums) do\n    \n  end\nend",
+    "erlang": "-spec longest_arith_seq_length(Nums :: [integer()]) -> integer().\nlongest_arith_seq_length(Nums) ->\n  .",
+    "racket": "(define/contract (longest-arith-seq-length nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,6,9,12]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[9,4,7,2,10]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[20,1,15,3,10,5,8]",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,6,9,12]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[9,4,7,2,10]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[20,1,15,3,10,5,8]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,6]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[9,12]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,12]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[12,9,6,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,3,3,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,6,9,12,3,6,9,12]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[6,12,18,24]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,7,10,13]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,5,8,11]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-3,-6,-9,-12]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-arithmetic-subsequence/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.374Z",
+    "sourceUpdatedAt": null
+  }
+}

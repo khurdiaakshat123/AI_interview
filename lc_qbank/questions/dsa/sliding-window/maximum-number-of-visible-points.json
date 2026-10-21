@@ -1,0 +1,117 @@
+{
+  "id": "1610",
+  "slug": "maximum-number-of-visible-points",
+  "title": "Maximum Number of Visible Points",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry",
+    "Sliding Window",
+    "Sorting"
+  ],
+  "statement": "You are given an array `points`, an integer `angle`, and your `location`, where `location = [pos_(x), pos_(y)]` and `points[i] = [x_(i), y_(i)]` both denote **integral coordinates** on the X-Y plane.\n\nInitially, you are facing directly east from your position. You **cannot move** from your position, but you can **rotate**. In other words, `pos_(x)` and `pos_(y)` cannot be changed. Your field of view in **degrees** is represented by `angle`, determining how wide you can see from any given view direction. Let `d` be the amount in degrees that you rotate counterclockwise. Then, your field of view is the **inclusive** range of angles `[d - angle/2, d + angle/2]`.\n\nYour browser does not support the video tag or this video format.\n\nYou can **see** some set of points if, for each point, the **angle** formed by the point, your position, and the immediate east direction from your position is **in your field of view**.\n\nThere can be multiple points at one coordinate. There may be points at your location, and you can always see these points regardless of your rotation. Points do not obstruct your vision to other points.\n\nReturn _the maximum number of points you can see_.\n\n**Example 1:**\n\n![](./assets/maximum-number-of-visible-points-1.png)\n```\nInput: points = [[2,1],[2,2],[3,3]], angle = 90, location = [1,1]\nOutput: 3\nExplanation: The shaded region represents your field of view. All points can be made visible in your field of view, including [3,3] even though [2,2] is in front and in the same line of sight.\n```\n\n**Example 2:**\n\n```\nInput: points = [[2,1],[2,2],[3,4],[1,1]], angle = 90, location = [1,1]\nOutput: 4\nExplanation: All points can be made visible in your field of view, including the one at your location.\n```\n\n**Example 3:**\n\n![](./assets/maximum-number-of-visible-points-2.png)\n```\nInput: points = [[1,0],[2,1]], angle = 13, location = [1,1]\nOutput: 1\nExplanation: You can only see one of the two points, as shown above.\n```\n\n**Constraints:**\n\n*   `1 <= points.length <= 10^(5)`\n*   `points[i].length == 2`\n*   `location.length == 2`\n*   `0 <= angle < 360`\n*   `0 <= pos_(x), pos_(y), x_(i), y_(i) <= 100`",
+  "constraints": [
+    "1 <= points.length <= 105",
+    "points[i].length == 2",
+    "location.length == 2",
+    "0 <= angle < 360",
+    "0 <= posx, posy, xi, yi <= 100"
+  ],
+  "examples": [
+    {
+      "input": "points = [[2,1],[2,2],[3,3]], angle = 90, location = [1,1]",
+      "output": "3",
+      "explanation": "The shaded region represents your field of view. All points can be made visible in your field of view, including [3,3] even though [2,2] is in front and in the same line of sight."
+    },
+    {
+      "input": "points = [[2,1],[2,2],[3,4],[1,1]], angle = 90, location = [1,1]",
+      "output": "4",
+      "explanation": "All points can be made visible in your field of view, including the one at your location."
+    },
+    {
+      "input": "points = [[1,0],[2,1]], angle = 13, location = [1,1]",
+      "output": "1",
+      "explanation": "You can only see one of the two points, as shown above."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int visiblePoints(vector<vector<int>>& points, int angle, vector<int>& location) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int visiblePoints(List<List<Integer>> points, int angle, List<Integer> location) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def visiblePoints(self, points: list[list[int]], angle: int, location: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def visiblePoints(self, points, angle, location):\n        \"\"\"\n        :type points: List[List[int]]\n        :type angle: int\n        :type location: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} points\n * @param {number} angle\n * @param {number[]} location\n * @return {number}\n */\nvar visiblePoints = function(points, angle, location) {\n    \n};",
+    "typescript": "function visiblePoints(points: number[][], angle: number, location: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int VisiblePoints(IList<IList<int>> points, int angle, IList<int> location) {\n        \n    }\n}",
+    "c": "int visiblePoints(int** points, int pointsSize, int* pointsColSize, int angle, int* location, int locationSize) {\n    \n}",
+    "golang": "func visiblePoints(points [][]int, angle int, location []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun visiblePoints(points: List<List<Int>>, angle: Int, location: List<Int>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func visiblePoints(_ points: [[Int]], _ angle: Int, _ location: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn visible_points(points: Vec<Vec<i32>>, angle: i32, location: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} points\n# @param {Integer} angle\n# @param {Integer[]} location\n# @return {Integer}\ndef visible_points(points, angle, location)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $points\n     * @param Integer $angle\n     * @param Integer[] $location\n     * @return Integer\n     */\n    function visiblePoints($points, $angle, $location) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int visiblePoints(List<List<int>> points, int angle, List<int> location) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def visiblePoints(points: List[List[Int]], angle: Int, location: List[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec visible_points(points :: [[integer]], angle :: integer, location :: [integer]) :: integer\n  def visible_points(points, angle, location) do\n    \n  end\nend",
+    "erlang": "-spec visible_points(Points :: [[integer()]], Angle :: integer(), Location :: [integer()]) -> integer().\nvisible_points(Points, Angle, Location) ->\n  .",
+    "racket": "(define/contract (visible-points points angle location)\n  (-> (listof (listof exact-integer?)) exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[2,1],[2,2],[3,3]]\n90\n[1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[2,1],[2,2],[3,4],[1,1]]\n90\n[1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[1,0],[2,1]]\n13\n[1,1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[2,1],[2,2],[3,3]]\n90\n[1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[2,1],[2,2],[3,4],[1,1]]\n90\n[1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[1,0],[2,1]]\n13\n[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "points = [[2,1],[2,2],[3,3]], angle = 90, location = [1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "points = [[2,1],[2,2],[3,4],[1,1]], angle = 90, location = [1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "points = [[1,0],[2,1]], angle = 13, location = [1,1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Sort the points by polar angle with the original position. Now only a consecutive collection of points would be visible from any coordinate.",
+    "We can use two pointers to keep track of visible points for each start point",
+    "For handling the cyclic condition, it’d be helpful to append the point list to itself after sorting."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-visible-points/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.193Z",
+    "sourceUpdatedAt": null
+  }
+}

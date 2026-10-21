@@ -1,0 +1,51 @@
+{
+  "id": "2885",
+  "slug": "rename-columns",
+  "title": "Rename Columns",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "```\nstudents\n```\n\nWrite a solution to rename the columns as follows:\n\n*   `id` to `student_id`\n*   `first` to `first_name`\n*   `last` to `last_name`\n*   `age` to `age_in_years`\n\nThe result format is in the following example.\n\n```\nExample 1:\nInput:\n+----+---------+----------+-----+\n| id | first   | last     | age |\n+----+---------+----------+-----+\n| 1  | Mason   | King     | 6   |\n| 2  | Ava     | Wright   | 7   |\n| 3  | Taylor  | Hall     | 16  |\n| 4  | Georgia | Thompson | 18  |\n| 5  | Thomas  | Moore    | 10  |\n+----+---------+----------+-----+\nOutput:\n+------------+------------+-----------+--------------+\n| student_id | first_name | last_name | age_in_years |\n+------------+------------+-----------+--------------+\n| 1          | Mason      | King      | 6            |\n| 2          | Ava        | Wright    | 7            |\n| 3          | Taylor     | Hall      | 16           |\n| 4          | Georgia    | Thompson  | 18           |\n| 5          | Thomas     | Moore     | 10           |\n+------------+------------+-----------+--------------+\nExplanation: \nThe column names are changed accordingly.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "+----+---------+----------+-----+\n| id | first   | last     | age |\n+----+---------+----------+-----+\n| 1  | Mason   | King     | 6   |\n| 2  | Ava     | Wright   | 7   |\n| 3  | Taylor  | Hall     | 16  |\n| 4  | Georgia | Thompson | 18  |\n| 5  | Thomas  | Moore    | 10  |\n+----+---------+----------+-----+",
+      "output": "+------------+------------+-----------+--------------+\n| student_id | first_name | last_name | age_in_years |\n+------------+------------+-----------+--------------+\n| 1          | Mason      | King      | 6            |\n| 2          | Ava        | Wright    | 7            |\n| 3          | Taylor     | Hall      | 16           |\n| 4          | Georgia    | Thompson  | 18           |\n| 5          | Thomas     | Moore     | 10           |\n+------------+------------+-----------+--------------+",
+      "explanation": "The column names are changed accordingly."
+    }
+  ],
+  "starterCode": {
+    "pythondata": "import pandas as pd\n\ndef renameColumns(students: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"students\":[\"id\",\"first\",\"last\",\"age\"]},\"rows\":{\"employees\":[],\"students\":[[1,\"Mason\",\"King\",6],[2,\"Ava\",\"Wright\",7],[3,\"Taylor\",\"Hall\",16],[4,\"Georgia\",\"Thompson\",18],[5,\"Thomas\",\"Moore\",10]]}}",
+      "expectedOutput": "+------------+------------+-----------+--------------+\n| student_id | first_name | last_name | age_in_years |\n+------------+------------+-----------+--------------+\n| 1          | Mason      | King      | 6            |\n| 2          | Ava        | Wright    | 7            |\n| 3          | Taylor     | Hall      | 16           |\n| 4          | Georgia    | Thompson  | 18           |\n| 5          | Thomas     | Moore     | 10           |\n+------------+------------+-----------+--------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"students\":[\"id\",\"first\",\"last\",\"age\"]},\"rows\":{\"employees\":[],\"students\":[[1,\"Mason\",\"King\",6],[2,\"Ava\",\"Wright\",7],[3,\"Taylor\",\"Hall\",16],[4,\"Georgia\",\"Thompson\",18],[5,\"Thomas\",\"Moore\",10]]}}",
+      "expectedOutput": "+------------+------------+-----------+--------------+\n| student_id | first_name | last_name | age_in_years |\n+------------+------------+-----------+--------------+\n| 1          | Mason      | King      | 6            |\n| 2          | Ava        | Wright    | 7            |\n| 3          | Taylor     | Hall      | 16           |\n| 4          | Georgia    | Thompson  | 18           |\n| 5          | Thomas     | Moore     | 10           |\n+------------+------------+-----------+--------------+"
+    },
+    {
+      "input": "+----+---------+----------+-----+\n| id | first   | last     | age |\n+----+---------+----------+-----+\n| 1  | Mason   | King     | 6   |\n| 2  | Ava     | Wright   | 7   |\n| 3  | Taylor  | Hall     | 16  |\n| 4  | Georgia | Thompson | 18  |\n| 5  | Thomas  | Moore    | 10  |\n+----+---------+----------+-----+",
+      "expectedOutput": "+------------+------------+-----------+--------------+\n| student_id | first_name | last_name | age_in_years |\n+------------+------------+-----------+--------------+\n| 1          | Mason      | King      | 6            |\n| 2          | Ava        | Wright    | 7            |\n| 3          | Taylor     | Hall      | 16           |\n| 4          | Georgia    | Thompson  | 18           |\n| 5          | Thomas     | Moore     | 10           |\n+------------+------------+-----------+--------------+"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider using a build-in function in pandas library with a dictionary to rename the columns as specified."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/rename-columns/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.636Z",
+    "sourceUpdatedAt": null
+  }
+}

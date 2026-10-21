@@ -1,0 +1,172 @@
+{
+  "id": "3545",
+  "slug": "minimum-deletions-for-at-most-k-distinct-characters",
+  "title": "Minimum Deletions for At Most K Distinct Characters",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Easy",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Sorting",
+    "Counting"
+  ],
+  "statement": "You are given a string `s` consisting of lowercase English letters, and an integer `k`.\n\nYour task is to delete some (possibly none) of the characters in the string so that the number of **distinct** characters in the resulting string is **at most** `k`.\n\nReturn the **minimum** number of deletions required to achieve this.\n\n**Example 1:**\n\n**Input:** s = \"abc\", k = 2\n\n**Output:** 1\n\n**Explanation:**\n\n*   `s` has three distinct characters: `'a'`, `'b'` and `'c'`, each with a frequency of 1.\n*   Since we can have at most `k = 2` distinct characters, remove all occurrences of any one character from the string.\n*   For example, removing all occurrences of `'c'` results in at most `k` distinct characters. Thus, the answer is 1.\n\n**Example 2:**\n\n**Input:** s = \"aabb\", k = 2\n\n**Output:** 0\n\n**Explanation:**\n\n*   `s` has two distinct characters (`'a'` and `'b'`) with frequencies of 2 and 2, respectively.\n*   Since we can have at most `k = 2` distinct characters, no deletions are required. Thus, the answer is 0.\n\n**Example 3:**\n\n**Input:** s = \"yyyzz\", k = 1\n\n**Output:** 2\n\n**Explanation:**\n\n*   `s` has two distinct characters (`'y'` and `'z'`) with frequencies of 3 and 2, respectively.\n*   Since we can have at most `k = 1` distinct character, remove all occurrences of any one character from the string.\n*   Removing all `'z'` results in at most `k` distinct characters. Thus, the answer is 2.\n\n**Constraints:**\n\n*   `1 <= s.length <= 16`\n*   `1 <= k <= 16`\n*   `s` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 16",
+    "1 <= k <= 16",
+    "s consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abc\", k = 2",
+      "output": "1",
+      "explanation": "s has three distinct characters: 'a', 'b' and 'c', each with a frequency of 1.\n\tSince we can have at most k = 2 distinct characters, remove all occurrences of any one character from the string.\n\tFor example, removing all occurrences of 'c' results in at most k distinct characters. Thus, the answer is 1."
+    },
+    {
+      "input": "s = \"aabb\", k = 2",
+      "output": "0",
+      "explanation": "s has two distinct characters ('a' and 'b') with frequencies of 2 and 2, respectively.\n\tSince we can have at most k = 2 distinct characters, no deletions are required. Thus, the answer is 0."
+    },
+    {
+      "input": "s = \"yyyzz\", k = 1",
+      "output": "2",
+      "explanation": "s has two distinct characters ('y' and 'z') with frequencies of 3 and 2, respectively.\n\tSince we can have at most k = 1 distinct character, remove all occurrences of any one character from the string.\n\tRemoving all 'z' results in at most k distinct characters. Thus, the answer is 2."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minDeletion(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minDeletion(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minDeletion(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minDeletion(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar minDeletion = function(s, k) {\n    \n};",
+    "typescript": "function minDeletion(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinDeletion(string s, int k) {\n        \n    }\n}",
+    "c": "int minDeletion(char* s, int k) {\n    \n}",
+    "golang": "func minDeletion(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minDeletion(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minDeletion(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_deletion(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef min_deletion(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function minDeletion($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minDeletion(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minDeletion(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_deletion(s :: String.t, k :: integer) :: integer\n  def min_deletion(s, k) do\n    \n  end\nend",
+    "erlang": "-spec min_deletion(S :: unicode:unicode_binary(), K :: integer()) -> integer().\nmin_deletion(S, K) ->\n  .",
+    "racket": "(define/contract (min-deletion s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abc\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aabb\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"yyyzz\"\n1",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abc\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aabb\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"yyyzz\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"bc\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"cba\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcabc\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaa\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abccba\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ABC\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"edcba\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aab\"\n2",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Compute the frequency of each character in <code>s</code> and collect these into a list <code>counts</code>.",
+    "Sort <code>counts</code> in ascending order.",
+    "Let <code>d</code> = (number of distinct characters) – <code>k</code>. If <code>d <= 0</code>, return 0.",
+    "Otherwise, the minimum deletions is the sum of the first <code>d</code> entries in <code>counts</code> (removing the <code>d</code> least-frequent characters)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-deletions-for-at-most-k-distinct-characters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.760Z",
+    "sourceUpdatedAt": null
+  }
+}

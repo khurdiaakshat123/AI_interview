@@ -1,0 +1,160 @@
+{
+  "id": "1769",
+  "slug": "minimum-number-of-operations-to-move-all-balls-to-each-box",
+  "title": "Minimum Number of Operations to Move All Balls to Each Box",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Prefix Sum"
+  ],
+  "statement": "You have `n` boxes. You are given a binary string `boxes` of length `n`, where `boxes[i]` is `'0'` if the `i^(th)` box is **empty**, and `'1'` if it contains **one** ball.\n\nIn one operation, you can move **one** ball from a box to an adjacent box. Box `i` is adjacent to box `j` if `abs(i - j) == 1`. Note that after doing so, there may be more than one ball in some boxes.\n\nReturn an array `answer` of size `n`, where `answer[i]` is the **minimum** number of operations needed to move all the balls to the `i^(th)` box.\n\nEach `answer[i]` is calculated considering the **initial** state of the boxes.\n\n**Example 1:**\n\n```\nInput: boxes = \"110\"\nOutput: [1,1,3]\nExplanation: The answer for each box is as follows:\n1) First box: you will have to move one ball from the second box to the first box in one operation.\n2) Second box: you will have to move one ball from the first box to the second box in one operation.\n3) Third box: you will have to move one ball from the first box to the third box in two operations, and move one ball from the second box to the third box in one operation.\n```\n\n**Example 2:**\n\n```\nInput: boxes = \"001011\"\nOutput: [11,8,5,4,3,4]\n```\n\n**Constraints:**\n\n*   `n == boxes.length`\n*   `1 <= n <= 2000`\n*   `boxes[i]` is either `'0'` or `'1'`.",
+  "constraints": [
+    "n == boxes.length",
+    "1 <= n <= 2000",
+    "boxes[i] is either '0' or '1'."
+  ],
+  "examples": [
+    {
+      "input": "boxes = \"110\"",
+      "output": "[1,1,3]",
+      "explanation": "The answer for each box is as follows:\n1) First box: you will have to move one ball from the second box to the first box in one operation.\n2) Second box: you will have to move one ball from the first box to the second box in one operation.\n3) Third box: you will have to move one ball from the first box to the third box in two operations, and move one ball from the second box to the third box in one operation."
+    },
+    {
+      "input": "boxes = \"001011\"",
+      "output": "[11,8,5,4,3,4]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> minOperations(string boxes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] minOperations(String boxes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, boxes: str) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, boxes):\n        \"\"\"\n        :type boxes: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} boxes\n * @return {number[]}\n */\nvar minOperations = function(boxes) {\n    \n};",
+    "typescript": "function minOperations(boxes: string): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MinOperations(string boxes) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* minOperations(char* boxes, int* returnSize) {\n    \n}",
+    "golang": "func minOperations(boxes string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(boxes: String): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ boxes: String) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(boxes: String) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} boxes\n# @return {Integer[]}\ndef min_operations(boxes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $boxes\n     * @return Integer[]\n     */\n    function minOperations($boxes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> minOperations(String boxes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(boxes: String): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(boxes :: String.t) :: [integer]\n  def min_operations(boxes) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(Boxes :: unicode:unicode_binary()) -> [integer()].\nmin_operations(Boxes) ->\n  .",
+    "racket": "(define/contract (min-operations boxes)\n  (-> string? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"110\"",
+      "expectedOutput": "[1,1,3]"
+    },
+    {
+      "input": "\"001011\"",
+      "expectedOutput": "[11,8,5,4,3,4]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"110\"",
+      "expectedOutput": "[1,1,3]"
+    },
+    {
+      "input": "\"001011\"",
+      "expectedOutput": "[11,8,5,4,3,4]"
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"10\"",
+      "expectedOutput": "[0,1]"
+    },
+    {
+      "input": "\"11\"",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "\"011\"",
+      "expectedOutput": "[3,1,1]"
+    },
+    {
+      "input": "\"110110\"",
+      "expectedOutput": "[8,6,6,6,8,12]"
+    },
+    {
+      "input": "\"111\"",
+      "expectedOutput": "[3,2,3]"
+    },
+    {
+      "input": "\"110011\"",
+      "expectedOutput": "[10,8,8,8,8,10]"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "[0,0,0,0]"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "[0,0,0,0,0]"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "[0,0,0,0,0]"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "[0,0,0,0,0]"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "[0,0,0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If you want to move a ball from box i to box j, you'll need abs(i-j) moves.",
+    "To move all balls to some box, you can move them one by one.",
+    "For each box i, iterate on each ball in a box j, and add abs(i-j) to answers[i]."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.388Z",
+    "sourceUpdatedAt": null
+  }
+}

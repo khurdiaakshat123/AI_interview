@@ -1,6 +1,8 @@
+import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from backend.app.database import engine, Base, SessionLocal
 from backend.app.seed.seed_data import seed_database
 from backend.app.api import (
@@ -13,6 +15,7 @@ from backend.app.api import (
 )
 from backend.app.api.settings import router as settings_router
 from backend.app.api.candidate import router as candidate_router
+from backend.app.api.lc_practice import router as lc_practice_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -46,10 +49,17 @@ app.include_router(auth_router)
 app.include_router(candidate_router)
 app.include_router(role_profiles_router)
 app.include_router(practice_router)
+app.include_router(lc_practice_router)
 app.include_router(mock_oa_router)
 app.include_router(interview_router)
 app.include_router(admin_router)
 app.include_router(settings_router)
+
+# Mount LC assets if directory exists
+assets_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../frontend/public/lc_assets"))
+if os.path.exists(assets_dir):
+    app.mount("/lc_assets", StaticFiles(directory=assets_dir), name="lc_assets")
+
 
 @app.get("/api/health")
 def health_check():

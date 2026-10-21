@@ -1,0 +1,156 @@
+{
+  "id": "3824",
+  "slug": "minimum-k-to-reduce-array-within-limit",
+  "title": "Minimum K to Reduce Array Within Limit",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "statement": "You are given a **positive** integer array `nums`.\n\nFor a positive integer `k`, define `nonPositive(nums, k)` as the **minimum** number of **operations** needed to make every element of `nums` **non-positive**. In one operation, you can choose an index `i` and reduce `nums[i]` by `k`.\n\nReturn an integer denoting the **minimum** value of `k` such that `nonPositive(nums, k) <= k^(2)`.\n\n**Example 1:**\n\n**Input:** nums = \\[3,7,5\\]\n\n**Output:** 3\n\n**Explanation:**\n\nWhen `k = 3`, `nonPositive(nums, k) = 6 <= k^(2)`.\n\n*   Reduce `nums[0] = 3` one time. `nums[0]` becomes `3 - 3 = 0`.\n*   Reduce `nums[1] = 7` three times. `nums[1]` becomes `7 - 3 - 3 - 3 = -2`.\n*   Reduce `nums[2] = 5` two times. `nums[2]` becomes `5 - 3 - 3 = -1`.\n\n**Example 2:**\n\n**Input:** nums = \\[1\\]\n\n**Output:** 1\n\n**Explanation:**\n\nWhen `k = 1`, `nonPositive(nums, k) = 1 <= k^(2)`.\n\n*   Reduce `nums[0] = 1` one time. `nums[0]` becomes `1 - 1 = 0`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,7,5]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumK(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumK(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumK(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumK(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minimumK = function(nums) {\n    \n};",
+    "typescript": "function minimumK(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumK(int[] nums) {\n        \n    }\n}",
+    "c": "int minimumK(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minimumK(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumK(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumK(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_k(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef minimum_k(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minimumK($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumK(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumK(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_k(nums :: [integer]) :: integer\n  def minimum_k(nums) do\n    \n  end\nend",
+    "erlang": "-spec minimum_k(Nums :: [integer()]) -> integer().\nminimum_k(Nums) ->\n  .",
+    "racket": "(define/contract (minimum-k nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,7,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,7,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[7,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,7,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,5,7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[7,5,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,3,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,7,5,3,7,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[6,14,10]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,8,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,6,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-3,-7,-5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use binary search"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-k-to-reduce-array-within-limit/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.046Z",
+    "sourceUpdatedAt": null
+  }
+}

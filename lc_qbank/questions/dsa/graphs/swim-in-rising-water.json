@@ -1,0 +1,94 @@
+{
+  "id": "778",
+  "slug": "swim-in-rising-water",
+  "title": "Swim in Rising Water",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Minimax",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Dijkstra's Algorithm"
+  ],
+  "statement": "You are given an `n x n` integer matrix `grid` where each value `grid[i][j]` represents the elevation at that point `(i, j)`.\n\nIt starts raining, and water gradually rises over time. At time `t`, the water level is `t`, meaning **any** cell with elevation less than equal to `t` is submerged or reachable.\n\nYou can swim from a square to another 4-directionally adjacent square if and only if the elevation of both squares individually are at most `t`. You can swim infinite distances in zero time. Of course, you must stay within the boundaries of the grid during your swim.\n\nReturn _the minimum time until you can reach the bottom right square_ `(n - 1, n - 1)` _if you start at the top left square_ `(0, 0)`.\n\n**Example 1:**\n\n![](./assets/swim-in-rising-water-1.jpg)\n```\nInput: grid = [[0,2],[1,3]]\nOutput: 3\nExplanation:\nAt time 0, you are in grid location (0, 0).\nYou cannot go anywhere else because 4-directionally adjacent neighbors have a higher elevation than t = 0.\nYou cannot reach point (1, 1) until time 3.\nWhen the depth of water is 3, we can swim anywhere inside the grid.\n```\n\n**Example 2:**\n\n![](./assets/swim-in-rising-water-2.jpg)\n```\nInput: grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]\nOutput: 16\nExplanation: The final route is shown.\nWe need to wait until time 16 so that (0, 0) and (4, 4) are connected.\n```\n\n**Constraints:**\n\n*   `n == grid.length`\n*   `n == grid[i].length`\n*   `1 <= n <= 50`\n*   `0 <= grid[i][j] < n^(2)`\n*   Each value `grid[i][j]` is **unique**.",
+  "constraints": [
+    "n == grid.length",
+    "n == grid[i].length",
+    "1 <= n <= 50",
+    "0 <= grid[i][j] < n2",
+    "Each value grid[i][j] is unique."
+  ],
+  "examples": [
+    {
+      "input": "grid = [[0,2],[1,3]]",
+      "output": "3",
+      "explanation": "At time 0, you are in grid location (0, 0).\nYou cannot go anywhere else because 4-directionally adjacent neighbors have a higher elevation than t = 0.\nYou cannot reach point (1, 1) until time 3.\nWhen the depth of water is 3, we can swim anywhere inside the grid."
+    },
+    {
+      "input": "grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]",
+      "output": "16",
+      "explanation": "The final route is shown.\nWe need to wait until time 16 so that (0, 0) and (4, 4) are connected."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int swimInWater(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int swimInWater(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def swimInWater(self, grid: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def swimInWater(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar swimInWater = function(grid) {\n    \n};",
+    "typescript": "function swimInWater(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SwimInWater(int[][] grid) {\n        \n    }\n}",
+    "c": "int swimInWater(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func swimInWater(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun swimInWater(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func swimInWater(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn swim_in_water(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef swim_in_water(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function swimInWater($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int swimInWater(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def swimInWater(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec swim_in_water(grid :: [[integer]]) :: integer\n  def swim_in_water(grid) do\n    \n  end\nend",
+    "erlang": "-spec swim_in_water(Grid :: [[integer()]]) -> integer().\nswim_in_water(Grid) ->\n  .",
+    "racket": "(define/contract (swim-in-water grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,2],[1,3]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]",
+      "expectedOutput": "16"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,2],[1,3]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]",
+      "expectedOutput": "16"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use either Dijkstra's, or binary search for the best time T for which you can reach the end if you only step on squares at most T."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/swim-in-rising-water/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.816Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "id": "2108",
+  "slug": "find-first-palindromic-string-in-the-array",
+  "title": "Find First Palindromic String in the Array",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "Given an array of strings `words`, return _the first **palindromic** string in the array_. If there is no such string, return _an **empty string**_ `\"\"`.\n\nA string is **palindromic** if it reads the same forward and backward.\n\n**Example 1:**\n\n```\nInput: words = [\"abc\",\"car\",\"ada\",\"racecar\",\"cool\"]\nOutput: \"ada\"\nExplanation: The first string that is palindromic is \"ada\".\nNote that \"racecar\" is also palindromic, but it is not the first.\n```\n\n**Example 2:**\n\n```\nInput: words = [\"notapalindrome\",\"racecar\"]\nOutput: \"racecar\"\nExplanation: The first and only string that is palindromic is \"racecar\".\n```\n\n**Example 3:**\n\n```\nInput: words = [\"def\",\"ghi\"]\nOutput: \"\"\nExplanation: There are no palindromic strings, so the empty string is returned.\n```\n\n**Constraints:**\n\n*   `1 <= words.length <= 100`\n*   `1 <= words[i].length <= 100`\n*   `words[i]` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= words.length <= 100",
+    "1 <= words[i].length <= 100",
+    "words[i] consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"abc\",\"car\",\"ada\",\"racecar\",\"cool\"]",
+      "output": "\"ada\"",
+      "explanation": "The first string that is palindromic is \"ada\".\nNote that \"racecar\" is also palindromic, but it is not the first."
+    },
+    {
+      "input": "words = [\"notapalindrome\",\"racecar\"]",
+      "output": "\"racecar\"",
+      "explanation": "The first and only string that is palindromic is \"racecar\"."
+    },
+    {
+      "input": "words = [\"def\",\"ghi\"]",
+      "output": "\"\"",
+      "explanation": "There are no palindromic strings, so the empty string is returned."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string firstPalindrome(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String firstPalindrome(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def firstPalindrome(self, words: list[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def firstPalindrome(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {string}\n */\nvar firstPalindrome = function(words) {\n    \n};",
+    "typescript": "function firstPalindrome(words: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string FirstPalindrome(string[] words) {\n        \n    }\n}",
+    "c": "char* firstPalindrome(char** words, int wordsSize) {\n    \n}",
+    "golang": "func firstPalindrome(words []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun firstPalindrome(words: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func firstPalindrome(_ words: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn first_palindrome(words: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {String}\ndef first_palindrome(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return String\n     */\n    function firstPalindrome($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String firstPalindrome(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def firstPalindrome(words: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec first_palindrome(words :: [String.t]) :: String.t\n  def first_palindrome(words) do\n    \n  end\nend",
+    "erlang": "-spec first_palindrome(Words :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nfirst_palindrome(Words) ->\n  .",
+    "racket": "(define/contract (first-palindrome words)\n  (-> (listof string?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"abc\",\"car\",\"ada\",\"racecar\",\"cool\"]",
+      "expectedOutput": "\"ada\""
+    },
+    {
+      "input": "[\"notapalindrome\",\"racecar\"]",
+      "expectedOutput": "\"racecar\""
+    },
+    {
+      "input": "[\"def\",\"ghi\"]",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"abc\",\"car\",\"ada\",\"racecar\",\"cool\"]",
+      "expectedOutput": "\"ada\""
+    },
+    {
+      "input": "[\"notapalindrome\",\"racecar\"]",
+      "expectedOutput": "\"racecar\""
+    },
+    {
+      "input": "[\"def\",\"ghi\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"abc\",\"car\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"ada\",\"racecar\",\"cool\"]",
+      "expectedOutput": "\"ada\""
+    },
+    {
+      "input": "[\"abc\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"abc\",\"cool\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"cool\",\"racecar\",\"ada\",\"car\",\"abc\"]",
+      "expectedOutput": "\"racecar\""
+    },
+    {
+      "input": "[\"abc\",\"ada\",\"car\",\"cool\",\"racecar\"]",
+      "expectedOutput": "\"ada\""
+    },
+    {
+      "input": "[\"racecar\",\"cool\",\"car\",\"ada\",\"abc\"]",
+      "expectedOutput": "\"racecar\""
+    },
+    {
+      "input": "[\"abc\",\"abc\",\"abc\",\"abc\",\"abc\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"abc\",\"car\",\"ada\",\"racecar\",\"cool\",\"abc\",\"car\",\"ada\",\"racecar\",\"cool\"]",
+      "expectedOutput": "\"ada\""
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate through the elements in order. As soon as the current element is a palindrome, return it.",
+    "To check if an element is a palindrome, can you reverse the string?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-first-palindromic-string-in-the-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.699Z",
+    "sourceUpdatedAt": null
+  }
+}

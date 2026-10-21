@@ -1,0 +1,136 @@
+{
+  "id": "3419",
+  "slug": "minimize-the-maximum-edge-weight-of-graph",
+  "title": "Minimize the Maximum Edge Weight of Graph",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Binary Search",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Shortest Path"
+  ],
+  "statement": "You are given two integers, `n` and `threshold`, as well as a **directed** weighted graph of `n` nodes numbered from 0 to `n - 1`. The graph is represented by a **2D** integer array `edges`, where `edges[i] = [A_(i), B_(i), W_(i)]` indicates that there is an edge going from node `A_(i)` to node `B_(i)` with weight `W_(i)`.\n\nYou have to remove some edges from this graph (possibly **none**), so that it satisfies the following conditions:\n\n*   Node 0 must be reachable from all other nodes.\n*   The **maximum** edge weight in the resulting graph is **minimized**.\n*   Each node has **at most** `threshold` outgoing edges.\n\nReturn the **minimum** possible value of the **maximum** edge weight after removing the necessary edges. If it is impossible for all conditions to be satisfied, return -1.\n\n**Example 1:**\n\n**Input:** n = 5, edges = \\[\\[1,0,1\\],\\[2,0,2\\],\\[3,0,1\\],\\[4,3,1\\],\\[2,1,1\\]\\], threshold = 2\n\n**Output:** 1\n\n**Explanation:**\n\n![](./assets/minimize-the-maximum-edge-weight-of-graph-1.png)\n\nRemove the edge `2 -> 0`. The maximum weight among the remaining edges is 1.\n\n**Example 2:**\n\n**Input:** n = 5, edges = \\[\\[0,1,1\\],\\[0,2,2\\],\\[0,3,1\\],\\[0,4,1\\],\\[1,2,1\\],\\[1,4,1\\]\\], threshold = 1\n\n**Output:** \\-1\n\n**Explanation:** \n\nIt is impossible to reach node 0 from node 2.\n\n**Example 3:**\n\n**Input:** n = 5, edges = \\[\\[1,2,1\\],\\[1,3,3\\],\\[1,4,5\\],\\[2,3,2\\],\\[3,4,2\\],\\[4,0,1\\]\\], threshold = 1\n\n**Output:** 2\n\n**Explanation:** \n\n![](./assets/minimize-the-maximum-edge-weight-of-graph-2.png)\n\nRemove the edges `1 -> 3` and `1 -> 4`. The maximum weight among the remaining edges is 2.\n\n**Example 4:**\n\n**Input:** n = 5, edges = \\[\\[1,2,1\\],\\[1,3,3\\],\\[1,4,5\\],\\[2,3,2\\],\\[4,0,1\\]\\], threshold = 1\n\n**Output:** \\-1\n\n**Constraints:**\n\n*   `2 <= n <= 10^(5)`\n*   `1 <= threshold <= n - 1`\n*   `1 <= edges.length <= min(10^(5), n * (n - 1) / 2).`\n*   `edges[i].length == 3`\n*   `0 <= A_(i), B_(i) < n`\n*   `A_(i) != B_(i)`\n*   `1 <= W_(i) <= 10^(6)`\n*   There **may be** multiple edges between a pair of nodes, but they must have unique weights.",
+  "constraints": [
+    "2 <= n <= 105",
+    "1 <= threshold <= n - 1",
+    "1 <= edges.length <= min(105, n * (n - 1) / 2).",
+    "edges[i].length == 3",
+    "0 <= Ai, Bi < n",
+    "Ai != Bi",
+    "1 <= Wi <= 106",
+    "There may be multiple edges between a pair of nodes, but they must have unique weights."
+  ],
+  "examples": [
+    {
+      "input": "n = 5, edges = [[1,0,1],[2,0,2],[3,0,1],[4,3,1],[2,1,1]], threshold = 2",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "n = 5, edges = [[0,1,1],[0,2,2],[0,3,1],[0,4,1],[1,2,1],[1,4,1]], threshold = 1",
+      "output": "-1",
+      "explanation": " "
+    },
+    {
+      "input": "n = 5, edges = [[1,2,1],[1,3,3],[1,4,5],[2,3,2],[3,4,2],[4,0,1]], threshold = 1",
+      "output": "2",
+      "explanation": " "
+    },
+    {
+      "input": "n = 5, edges = [[1,2,1],[1,3,3],[1,4,5],[2,3,2],[4,0,1]], threshold = 1",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minMaxWeight(int n, vector<vector<int>>& edges, int threshold) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minMaxWeight(int n, int[][] edges, int threshold) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minMaxWeight(self, n: int, edges: List[List[int]], threshold: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minMaxWeight(self, n, edges, threshold):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type threshold: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number} threshold\n * @return {number}\n */\nvar minMaxWeight = function(n, edges, threshold) {\n    \n};",
+    "typescript": "function minMaxWeight(n: number, edges: number[][], threshold: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinMaxWeight(int n, int[][] edges, int threshold) {\n        \n    }\n}",
+    "c": "int minMaxWeight(int n, int** edges, int edgesSize, int* edgesColSize, int threshold) {\n    \n}",
+    "golang": "func minMaxWeight(n int, edges [][]int, threshold int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minMaxWeight(n: Int, edges: Array<IntArray>, threshold: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minMaxWeight(_ n: Int, _ edges: [[Int]], _ threshold: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_max_weight(n: i32, edges: Vec<Vec<i32>>, threshold: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Integer} threshold\n# @return {Integer}\ndef min_max_weight(n, edges, threshold)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Integer $threshold\n     * @return Integer\n     */\n    function minMaxWeight($n, $edges, $threshold) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minMaxWeight(int n, List<List<int>> edges, int threshold) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minMaxWeight(n: Int, edges: Array[Array[Int]], threshold: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_max_weight(n :: integer, edges :: [[integer]], threshold :: integer) :: integer\n  def min_max_weight(n, edges, threshold) do\n    \n  end\nend",
+    "erlang": "-spec min_max_weight(N :: integer(), Edges :: [[integer()]], Threshold :: integer()) -> integer().\nmin_max_weight(N, Edges, Threshold) ->\n  .",
+    "racket": "(define/contract (min-max-weight n edges threshold)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "5\n[[1,0,1],[2,0,2],[3,0,1],[4,3,1],[2,1,1]]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[[0,1,1],[0,2,2],[0,3,1],[0,4,1],[1,2,1],[1,4,1]]\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "5\n[[1,2,1],[1,3,3],[1,4,5],[2,3,2],[3,4,2],[4,0,1]]\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "5\n[[1,2,1],[1,3,3],[1,4,5],[2,3,2],[4,0,1]]\n1",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "5\n[[1,0,1],[2,0,2],[3,0,1],[4,3,1],[2,1,1]]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[[0,1,1],[0,2,2],[0,3,1],[0,4,1],[1,2,1],[1,4,1]]\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "5\n[[1,2,1],[1,3,3],[1,4,5],[2,3,2],[3,4,2],[4,0,1]]\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "5\n[[1,2,1],[1,3,3],[1,4,5],[2,3,2],[4,0,1]]\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "n = 5, edges = [[1,0,1],[2,0,2],[3,0,1],[4,3,1],[2,1,1]], threshold = 2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "n = 5, edges = [[0,1,1],[0,2,2],[0,3,1],[0,4,1],[1,2,1],[1,4,1]], threshold = 1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "n = 5, edges = [[1,2,1],[1,3,3],[1,4,5],[2,3,2],[3,4,2],[4,0,1]], threshold = 1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "n = 5, edges = [[1,2,1],[1,3,3],[1,4,5],[2,3,2],[4,0,1]], threshold = 1",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can we use binary search?",
+    "Invert the edges in the graph."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimize-the-maximum-edge-weight-of-graph/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.291Z",
+    "sourceUpdatedAt": null
+  }
+}

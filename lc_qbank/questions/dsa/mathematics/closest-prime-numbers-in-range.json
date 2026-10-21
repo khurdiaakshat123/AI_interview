@@ -1,0 +1,159 @@
+{
+  "id": "2523",
+  "slug": "closest-prime-numbers-in-range",
+  "title": "Closest Prime Numbers in Range",
+  "category": "dsa",
+  "subcategory": "mathematics",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "Number Theory",
+    "Primality Test",
+    "Sieve Theory",
+    "Prime Number Sieve"
+  ],
+  "statement": "Given two positive integers `left` and `right`, find the two integers `num1` and `num2` such that:\n\n*   `left <= num1 < num2 <= right` .\n*   Both `num1` and `num2` are prime numbers.\n*   `num2 - num1` is the **minimum** amongst all other pairs satisfying the above conditions.\n\nReturn the positive integer array `ans = [num1, num2]`. If there are multiple pairs satisfying these conditions, return the one with the **smallest** `num1` value. If no such numbers exist, return `[-1, -1]`_._\n\n**Example 1:**\n\n```\nInput: left = 10, right = 19\nOutput: [11,13]\nExplanation: The prime numbers between 10 and 19 are 11, 13, 17, and 19.\nThe closest gap between any pair is 2, which can be achieved by [11,13] or [17,19].\nSince 11 is smaller than 17, we return the first pair.\n```\n\n**Example 2:**\n\n```\nInput: left = 4, right = 6\nOutput: [-1,-1]\nExplanation: There exists only one prime number in the given range, so the conditions cannot be satisfied.\n```\n\n**Constraints:**\n\n*   `1 <= left <= right <= 10^(6)`\n\n.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;  } .spoiler {overflow:hidden;} .spoiler > div {-webkit-transition: all 0s ease;-moz-transition: margin 0s ease;-o-transition: all 0s ease;transition: margin 0s ease;} .spoilerbutton\\[value=\"Show Message\"\\] + .spoiler > div {margin-top:-500%;} .spoilerbutton\\[value=\"Hide Message\"\\] + .spoiler {padding:5px;}",
+  "constraints": [
+    "1 <= left <= right <= 106"
+  ],
+  "examples": [
+    {
+      "input": "left = 10, right = 19",
+      "output": "[11,13]",
+      "explanation": "The prime numbers between 10 and 19 are 11, 13, 17, and 19.\nThe closest gap between any pair is 2, which can be achieved by [11,13] or [17,19].\nSince 11 is smaller than 17, we return the first pair."
+    },
+    {
+      "input": "left = 4, right = 6",
+      "output": "[-1,-1]",
+      "explanation": "There exists only one prime number in the given range, so the conditions cannot be satisfied."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> closestPrimes(int left, int right) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] closestPrimes(int left, int right) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def closestPrimes(self, left: int, right: int) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def closestPrimes(self, left, right):\n        \"\"\"\n        :type left: int\n        :type right: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} left\n * @param {number} right\n * @return {number[]}\n */\nvar closestPrimes = function(left, right) {\n    \n};",
+    "typescript": "function closestPrimes(left: number, right: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] ClosestPrimes(int left, int right) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* closestPrimes(int left, int right, int* returnSize) {\n    \n}",
+    "golang": "func closestPrimes(left int, right int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun closestPrimes(left: Int, right: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func closestPrimes(_ left: Int, _ right: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn closest_primes(left: i32, right: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} left\n# @param {Integer} right\n# @return {Integer[]}\ndef closest_primes(left, right)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $left\n     * @param Integer $right\n     * @return Integer[]\n     */\n    function closestPrimes($left, $right) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> closestPrimes(int left, int right) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def closestPrimes(left: Int, right: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec closest_primes(left :: integer, right :: integer) :: [integer]\n  def closest_primes(left, right) do\n    \n  end\nend",
+    "erlang": "-spec closest_primes(Left :: integer(), Right :: integer()) -> [integer()].\nclosest_primes(Left, Right) ->\n  .",
+    "racket": "(define/contract (closest-primes left right)\n  (-> exact-integer? exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "10\n19",
+      "expectedOutput": "[11,13]"
+    },
+    {
+      "input": "4\n6",
+      "expectedOutput": "[-1,-1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "10\n19",
+      "expectedOutput": "[11,13]"
+    },
+    {
+      "input": "4\n6",
+      "expectedOutput": "[-1,-1]"
+    },
+    {
+      "input": "0\n19",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "1\n19",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "2\n19",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "3\n19",
+      "expectedOutput": "[3,5]"
+    },
+    {
+      "input": "4\n19",
+      "expectedOutput": "[5,7]"
+    },
+    {
+      "input": "5\n19",
+      "expectedOutput": "[5,7]"
+    },
+    {
+      "input": "6\n19",
+      "expectedOutput": "[11,13]"
+    },
+    {
+      "input": "7\n19",
+      "expectedOutput": "[11,13]"
+    },
+    {
+      "input": "8\n19",
+      "expectedOutput": "[11,13]"
+    },
+    {
+      "input": "9\n19",
+      "expectedOutput": "[11,13]"
+    },
+    {
+      "input": "-1\n19",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "-2\n19",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "10\n18",
+      "expectedOutput": "[11,13]"
+    },
+    {
+      "input": "10\n20",
+      "expectedOutput": "[11,13]"
+    },
+    {
+      "input": "10\n17",
+      "expectedOutput": "[11,13]"
+    },
+    {
+      "input": "10\n21",
+      "expectedOutput": "[11,13]"
+    },
+    {
+      "input": "10\n16",
+      "expectedOutput": "[11,13]"
+    },
+    {
+      "input": "10\n22",
+      "expectedOutput": "[11,13]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use Sieve of Eratosthenes to mark numbers that are primes.",
+    "Iterate from right to left and find pair with the minimum distance between marked numbers."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/closest-prime-numbers-in-range/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.463Z",
+    "sourceUpdatedAt": null
+  }
+}

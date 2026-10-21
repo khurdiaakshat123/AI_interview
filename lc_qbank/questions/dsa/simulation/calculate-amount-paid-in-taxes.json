@@ -1,0 +1,171 @@
+{
+  "id": "2303",
+  "slug": "calculate-amount-paid-in-taxes",
+  "title": "Calculate Amount Paid in Taxes",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "statement": "You are given a **0-indexed** 2D integer array `brackets` where `brackets[i] = [upper_(i), percent_(i)]` means that the `i^(th)` tax bracket has an upper bound of `upper_(i)` and is taxed at a rate of `percent_(i)`. The brackets are **sorted** by upper bound (i.e. `upper_(i-1) < upper_(i)` for `0 < i < brackets.length`).\n\nTax is calculated as follows:\n\n*   The first `upper_(0)` dollars earned are taxed at a rate of `percent_(0)`.\n*   The next `upper_(1) - upper_(0)` dollars earned are taxed at a rate of `percent_(1)`.\n*   The next `upper_(2) - upper_(1)` dollars earned are taxed at a rate of `percent_(2)`.\n*   And so on.\n\nYou are given an integer `income` representing the amount of money you earned. Return _the amount of money that you have to pay in taxes._ Answers within `10^(-5)` of the actual answer will be accepted.\n\n**Example 1:**\n\n```\nInput: brackets = [[3,50],[7,10],[12,25]], income = 10\nOutput: 2.65000\nExplanation:\nBased on your income, you have 3 dollars in the 1st tax bracket, 4 dollars in the 2nd tax bracket, and 3 dollars in the 3rd tax bracket.\nThe tax rate for the three tax brackets is 50%, 10%, and 25%, respectively.\nIn total, you pay $3 * 50% + $4 * 10% + $3 * 25% = $2.65 in taxes.\n```\n\n**Example 2:**\n\n```\nInput: brackets = [[1,0],[4,25],[5,50]], income = 2\nOutput: 0.25000\nExplanation:\nBased on your income, you have 1 dollar in the 1st tax bracket and 1 dollar in the 2nd tax bracket.\nThe tax rate for the two tax brackets is 0% and 25%, respectively.\nIn total, you pay $1 * 0% + $1 * 25% = $0.25 in taxes.\n```\n\n**Example 3:**\n\n```\nInput: brackets = [[2,50]], income = 0\nOutput: 0.00000\nExplanation:\nYou have no income to tax, so you have to pay a total of $0 in taxes.\n```\n\n**Constraints:**\n\n*   `1 <= brackets.length <= 100`\n*   `1 <= upper_(i) <= 1000`\n*   `0 <= percent_(i) <= 100`\n*   `0 <= income <= 1000`\n*   `upper_(i)` is sorted in ascending order.\n*   All the values of `upper_(i)` are **unique**.\n*   The upper bound of the last tax bracket is greater than or equal to `income`.",
+  "constraints": [
+    "1 <= brackets.length <= 100",
+    "1 <= upperi <= 1000",
+    "0 <= percenti <= 100",
+    "0 <= income <= 1000",
+    "upperi is sorted in ascending order.",
+    "All the values of upperi are unique.",
+    "The upper bound of the last tax bracket is greater than or equal to income."
+  ],
+  "examples": [
+    {
+      "input": "brackets = [[3,50],[7,10],[12,25]], income = 10",
+      "output": "2.65000",
+      "explanation": "Based on your income, you have 3 dollars in the 1st tax bracket, 4 dollars in the 2nd tax bracket, and 3 dollars in the 3rd tax bracket.\nThe tax rate for the three tax brackets is 50%, 10%, and 25%, respectively.\nIn total, you pay $3 * 50% + $4 * 10% + $3 * 25% = $2.65 in taxes."
+    },
+    {
+      "input": "brackets = [[1,0],[4,25],[5,50]], income = 2",
+      "output": "0.25000",
+      "explanation": "Based on your income, you have 1 dollar in the 1st tax bracket and 1 dollar in the 2nd tax bracket.\nThe tax rate for the two tax brackets is 0% and 25%, respectively.\nIn total, you pay $1 * 0% + $1 * 25% = $0.25 in taxes."
+    },
+    {
+      "input": "brackets = [[2,50]], income = 0",
+      "output": "0.00000",
+      "explanation": "You have no income to tax, so you have to pay a total of $0 in taxes."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    double calculateTax(vector<vector<int>>& brackets, int income) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double calculateTax(int[][] brackets, int income) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def calculateTax(self, brackets: list[list[int]], income: int) -> float:\n        ",
+    "python": "class Solution(object):\n    def calculateTax(self, brackets, income):\n        \"\"\"\n        :type brackets: List[List[int]]\n        :type income: int\n        :rtype: float\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} brackets\n * @param {number} income\n * @return {number}\n */\nvar calculateTax = function(brackets, income) {\n    \n};",
+    "typescript": "function calculateTax(brackets: number[][], income: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public double CalculateTax(int[][] brackets, int income) {\n        \n    }\n}",
+    "c": "double calculateTax(int** brackets, int bracketsSize, int* bracketsColSize, int income) {\n    \n}",
+    "golang": "func calculateTax(brackets [][]int, income int) float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun calculateTax(brackets: Array<IntArray>, income: Int): Double {\n        \n    }\n}",
+    "swift": "class Solution {\n    func calculateTax(_ brackets: [[Int]], _ income: Int) -> Double {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn calculate_tax(brackets: Vec<Vec<i32>>, income: i32) -> f64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} brackets\n# @param {Integer} income\n# @return {Float}\ndef calculate_tax(brackets, income)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $brackets\n     * @param Integer $income\n     * @return Float\n     */\n    function calculateTax($brackets, $income) {\n        \n    }\n}",
+    "dart": "class Solution {\n  double calculateTax(List<List<int>> brackets, int income) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def calculateTax(brackets: Array[Array[Int]], income: Int): Double = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec calculate_tax(brackets :: [[integer]], income :: integer) :: float\n  def calculate_tax(brackets, income) do\n    \n  end\nend",
+    "erlang": "-spec calculate_tax(Brackets :: [[integer()]], Income :: integer()) -> float().\ncalculate_tax(Brackets, Income) ->\n  .",
+    "racket": "(define/contract (calculate-tax brackets income)\n  (-> (listof (listof exact-integer?)) exact-integer? flonum?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n10",
+      "expectedOutput": "2.65000"
+    },
+    {
+      "input": "[[1,0],[4,25],[5,50]]\n2",
+      "expectedOutput": "0.25000"
+    },
+    {
+      "input": "[[2,50]]\n0",
+      "expectedOutput": "0.00000"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n10",
+      "expectedOutput": "2.65"
+    },
+    {
+      "input": "[[1,0],[4,25],[5,50]]\n2",
+      "expectedOutput": "0.25"
+    },
+    {
+      "input": "[[2,50]]\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n1",
+      "expectedOutput": "0.5"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n3",
+      "expectedOutput": "1.5"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n4",
+      "expectedOutput": "1.6"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n5",
+      "expectedOutput": "1.7"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n6",
+      "expectedOutput": "1.8"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n7",
+      "expectedOutput": "1.9"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n8",
+      "expectedOutput": "2.15"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n9",
+      "expectedOutput": "2.4"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n-1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[3,50],[7,10],[12,25]]\n-2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[1,0],[4,25],[5,50]]\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[1,0],[4,25],[5,50]]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[1,0],[4,25],[5,50]]\n3",
+      "expectedOutput": "0.5"
+    },
+    {
+      "input": "[[1,0],[4,25],[5,50]]\n4",
+      "expectedOutput": "0.75"
+    },
+    {
+      "input": "[[1,0],[4,25],[5,50]]\n5",
+      "expectedOutput": "1.25"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "As you iterate through the tax brackets, keep track of the previous tax bracket’s upper bound in a variable called prev. If there is no previous tax bracket, use 0 instead.",
+    "The amount of money in the ith tax bracket is min(income, upperi) - prev."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/calculate-amount-paid-in-taxes/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.809Z",
+    "sourceUpdatedAt": null
+  }
+}

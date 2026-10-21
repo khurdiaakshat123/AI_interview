@@ -1,0 +1,163 @@
+{
+  "id": "3805",
+  "slug": "count-caesar-cipher-pairs",
+  "title": "Count Caesar Cipher Pairs",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "String",
+    "Counting"
+  ],
+  "statement": "You are given an array `words` of `n` strings. Each string has length `m` and contains only lowercase English letters.\n\nTwo strings `s` and `t` are **similar** if we can apply the following operation any number of times (possibly zero times) so that `s` and `t` become **equal**.\n\n*   Choose either `s` or `t`.\n*   Replace **every** letter in the chosen string with the next letter in the alphabet cyclically. The next letter after `'z'` is `'a'`.\n\nCount the number of pairs of indices `(i, j)` such that:\n\n*   `i < j`\n*   `words[i]` and `words[j]` are **similar**.\n\nReturn an integer denoting the number of such pairs.\n\n**Example 1:**\n\n**Input:** words = \\[\"fusion\",\"layout\"\\]\n\n**Output:** 1\n\n**Explanation:**\n\n`words[0] = \"fusion\"` and `words[1] = \"layout\"` are similar because we can apply the operation to `\"fusion\"` 6 times. The string `\"fusion\"` changes as follows.\n\n*   `\"fusion\"`\n*   `\"gvtjpo\"`\n*   `\"hwukqp\"`\n*   `\"ixvlrq\"`\n*   `\"jywmsr\"`\n*   `\"kzxnts\"`\n*   `\"layout\"`\n\n**Example 2:**\n\n**Input:** words = \\[\"ab\",\"aa\",\"za\",\"aa\"\\]\n\n**Output:** 2\n\n**Explanation:**\n\n`words[0] = \"ab\"` and `words[2] = \"za\"` are similar. `words[1] = \"aa\"` and `words[3] = \"aa\"` are similar.\n\n**Constraints:**\n\n*   `1 <= n == words.length <= 10^(5)`\n*   `1 <= m == words[i].length <= 10^(5)`\n*   `1 <= n * m <= 10^(5)`\n*   `words[i]` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= n == words.length <= 105",
+    "1 <= m == words[i].length <= 105",
+    "1 <= n * m <= 105",
+    "words[i] consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"fusion\",\"layout\"]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "words = [\"ab\",\"aa\",\"za\",\"aa\"]",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long countPairs(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long countPairs(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countPairs(self, words: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countPairs(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {number}\n */\nvar countPairs = function(words) {\n    \n};",
+    "typescript": "function countPairs(words: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long CountPairs(string[] words) {\n        \n    }\n}",
+    "c": "long long countPairs(char** words, int wordsSize) {\n    \n}",
+    "golang": "func countPairs(words []string) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun countPairs(words: Array<String>): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countPairs(_ words: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_pairs(words: Vec<String>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Integer}\ndef count_pairs(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Integer\n     */\n    function countPairs($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countPairs(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countPairs(words: Array[String]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_pairs(words :: [String.t]) :: integer\n  def count_pairs(words) do\n    \n  end\nend",
+    "erlang": "-spec count_pairs(Words :: [unicode:unicode_binary()]) -> integer().\ncount_pairs(Words) ->\n  .",
+    "racket": "(define/contract (count-pairs words)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"fusion\",\"layout\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"ab\",\"aa\",\"za\",\"aa\"]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"fusion\",\"layout\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"ab\",\"aa\",\"za\",\"aa\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"fusion\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"layout\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"layout\",\"fusion\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"fusion\",\"fusion\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"fusion\",\"layout\",\"fusion\",\"layout\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"flow\",\"flower\",\"flight\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"word\",\"world\",\"row\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"listen\",\"silent\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Two strings are similar if the differences between consecutive characters (mod 26) are the same; normalize each string by shifting its first character to <code>'a'</code>.",
+    "Compute a hashable key for each normalized string representing its relative character differences.",
+    "Use a map to count how many strings share the same normalized key."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-caesar-cipher-pairs/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.991Z",
+    "sourceUpdatedAt": null
+  }
+}

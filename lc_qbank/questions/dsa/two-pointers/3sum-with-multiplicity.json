@@ -1,0 +1,167 @@
+{
+  "id": "923",
+  "slug": "3sum-with-multiplicity",
+  "title": "3Sum With Multiplicity",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Sorting",
+    "Counting"
+  ],
+  "statement": "Given an integer array `arr`, and an integer `target`, return the number of tuples `i, j, k` such that `i < j < k` and `arr[i] + arr[j] + arr[k] == target`.\n\nAs the answer can be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n```\nInput: arr = [1,1,2,2,3,3,4,4,5,5], target = 8\nOutput: 20\nExplanation: \nEnumerating by the values (arr[i], arr[j], arr[k]):\n(1, 2, 5) occurs 8 times;\n(1, 3, 4) occurs 8 times;\n(2, 2, 4) occurs 2 times;\n(2, 3, 3) occurs 2 times.\n```\n\n**Example 2:**\n\n```\nInput: arr = [1,1,2,2,2,2], target = 5\nOutput: 12\nExplanation: \narr[i] = 1, arr[j] = arr[k] = 2 occurs 12 times:\nWe choose one 1 from [1,1] in 2 ways,\nand two 2s from [2,2,2,2] in 6 ways.\n```\n\n**Example 3:**\n\n```\nInput: arr = [2,1,3], target = 6\nOutput: 1\nExplanation: (1, 2, 3) occured one time in the array so we return 1.\n```\n\n**Constraints:**\n\n*   `3 <= arr.length <= 3000`\n*   `0 <= arr[i] <= 100`\n*   `0 <= target <= 300`",
+  "constraints": [
+    "3 <= arr.length <= 3000",
+    "0 <= arr[i] <= 100",
+    "0 <= target <= 300"
+  ],
+  "examples": [
+    {
+      "input": "arr = [1,1,2,2,3,3,4,4,5,5], target = 8",
+      "output": "20",
+      "explanation": "Enumerating by the values (arr[i], arr[j], arr[k]):\n(1, 2, 5) occurs 8 times;\n(1, 3, 4) occurs 8 times;\n(2, 2, 4) occurs 2 times;\n(2, 3, 3) occurs 2 times."
+    },
+    {
+      "input": "arr = [1,1,2,2,2,2], target = 5",
+      "output": "12",
+      "explanation": "arr[i] = 1, arr[j] = arr[k] = 2 occurs 12 times:\nWe choose one 1 from [1,1] in 2 ways,\nand two 2s from [2,2,2,2] in 6 ways."
+    },
+    {
+      "input": "arr = [2,1,3], target = 6",
+      "output": "1",
+      "explanation": "(1, 2, 3) occured one time in the array so we return 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int threeSumMulti(vector<int>& arr, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int threeSumMulti(int[] arr, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def threeSumMulti(self, arr: list[int], target: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def threeSumMulti(self, arr, target):\n        \"\"\"\n        :type arr: List[int]\n        :type target: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @param {number} target\n * @return {number}\n */\nvar threeSumMulti = function(arr, target) {\n    \n};",
+    "typescript": "function threeSumMulti(arr: number[], target: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ThreeSumMulti(int[] arr, int target) {\n        \n    }\n}",
+    "c": "int threeSumMulti(int* arr, int arrSize, int target) {\n    \n}",
+    "golang": "func threeSumMulti(arr []int, target int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun threeSumMulti(arr: IntArray, target: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func threeSumMulti(_ arr: [Int], _ target: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn three_sum_multi(arr: Vec<i32>, target: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @param {Integer} target\n# @return {Integer}\ndef three_sum_multi(arr, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @param Integer $target\n     * @return Integer\n     */\n    function threeSumMulti($arr, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int threeSumMulti(List<int> arr, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def threeSumMulti(arr: Array[Int], target: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec three_sum_multi(arr :: [integer], target :: integer) :: integer\n  def three_sum_multi(arr, target) do\n    \n  end\nend",
+    "erlang": "-spec three_sum_multi(Arr :: [integer()], Target :: integer()) -> integer().\nthree_sum_multi(Arr, Target) ->\n  .",
+    "racket": "(define/contract (three-sum-multi arr target)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,1,2,2,3,3,4,4,5,5]\n8",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[1,1,2,2,2,2]\n5",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,1,3]\n6",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,1,2,2,3,3,4,4,5,5]\n8",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[1,1,2,2,2,2]\n5",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,1,3]\n6",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,2,2,3]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,4,4,5,5]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,5]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,5,4,4,3,3,2,2,1,1]\n8",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[1,1,1,1,1]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,2,4,4,6,6,8,8,10,10]\n8",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,3,3,4,4,5,5,6,6]\n8",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,1,1,2,2,3,3,4,4]\n8",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[-1,-1,-2,-2,-3,-3,-4,-4,-5,-5]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]\n8",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/3sum-with-multiplicity/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:12.729Z",
+    "sourceUpdatedAt": null
+  }
+}

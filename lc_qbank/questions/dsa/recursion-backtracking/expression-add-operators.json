@@ -1,0 +1,171 @@
+{
+  "id": "282",
+  "slug": "expression-add-operators",
+  "title": "Expression Add Operators",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Hard",
+  "tags": [
+    "Math",
+    "String",
+    "Backtracking"
+  ],
+  "statement": "Given a string `num` that contains only digits and an integer `target`, return _**all possibilities** to insert the binary operators_ `'+'`_,_ `'-'`_, and/or_ `'*'` _between the digits of_ `num` _so that the resultant expression evaluates to the_ `target` _value_.\n\nNote that operands in the returned expressions **should not** contain leading zeros.\n\n**Note** that a number can contain multiple digits.\n\n**Example 1:**\n\n```\nInput: num = \"123\", target = 6\nOutput: [\"1*2*3\",\"1+2+3\"]\nExplanation: Both \"1*2*3\" and \"1+2+3\" evaluate to 6.\n```\n\n**Example 2:**\n\n```\nInput: num = \"232\", target = 8\nOutput: [\"2*3+2\",\"2+3*2\"]\nExplanation: Both \"2*3+2\" and \"2+3*2\" evaluate to 8.\n```\n\n**Example 3:**\n\n```\nInput: num = \"3456237490\", target = 9191\nOutput: []\nExplanation: There are no expressions that can be created from \"3456237490\" to evaluate to 9191.\n```\n\n**Constraints:**\n\n*   `1 <= num.length <= 10`\n*   `num` consists of only digits.\n*   `-2^(31) <= target <= 2^(31) - 1`",
+  "constraints": [
+    "1 <= num.length <= 10",
+    "num consists of only digits.",
+    "-231 <= target <= 231 - 1"
+  ],
+  "examples": [
+    {
+      "input": "num = \"123\", target = 6",
+      "output": "[\"1*2*3\",\"1+2+3\"]",
+      "explanation": "Both \"1*2*3\" and \"1+2+3\" evaluate to 6."
+    },
+    {
+      "input": "num = \"232\", target = 8",
+      "output": "[\"2*3+2\",\"2+3*2\"]",
+      "explanation": "Both \"2*3+2\" and \"2+3*2\" evaluate to 8."
+    },
+    {
+      "input": "num = \"3456237490\", target = 9191",
+      "output": "[]",
+      "explanation": "There are no expressions that can be created from \"3456237490\" to evaluate to 9191."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> addOperators(string num, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> addOperators(String num, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def addOperators(self, num: str, target: int) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def addOperators(self, num, target):\n        \"\"\"\n        :type num: str\n        :type target: int\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num\n * @param {number} target\n * @return {string[]}\n */\nvar addOperators = function(num, target) {\n    \n};",
+    "typescript": "function addOperators(num: string, target: number): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> AddOperators(string num, int target) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** addOperators(char* num, int target, int* returnSize) {\n    \n}",
+    "golang": "func addOperators(num string, target int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun addOperators(num: String, target: Int): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func addOperators(_ num: String, _ target: Int) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn add_operators(num: String, target: i32) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} num\n# @param {Integer} target\n# @return {String[]}\ndef add_operators(num, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num\n     * @param Integer $target\n     * @return String[]\n     */\n    function addOperators($num, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> addOperators(String num, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def addOperators(num: String, target: Int): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec add_operators(num :: String.t, target :: integer) :: [String.t]\n  def add_operators(num, target) do\n    \n  end\nend",
+    "erlang": "-spec add_operators(Num :: unicode:unicode_binary(), Target :: integer()) -> [unicode:unicode_binary()].\nadd_operators(Num, Target) ->\n  .",
+    "racket": "(define/contract (add-operators num target)\n  (-> string? exact-integer? (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"123\"\n6",
+      "expectedOutput": "[\"1*2*3\",\"1+2+3\"]"
+    },
+    {
+      "input": "\"232\"\n8",
+      "expectedOutput": "[\"2*3+2\",\"2+3*2\"]"
+    },
+    {
+      "input": "\"3456237490\"\n9191",
+      "expectedOutput": "[]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"123\"\n6",
+      "expectedOutput": "[\"1+2+3\",\"1*2*3\"]"
+    },
+    {
+      "input": "\"232\"\n8",
+      "expectedOutput": "[\"2+3*2\",\"2*3+2\"]"
+    },
+    {
+      "input": "\"1\"\n6",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"23\"\n6",
+      "expectedOutput": "[\"2*3\"]"
+    },
+    {
+      "input": "\"12\"\n6",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"321\"\n6",
+      "expectedOutput": "[\"3+2+1\",\"3*2*1\"]"
+    },
+    {
+      "input": "\"123123\"\n6",
+      "expectedOutput": "[\"1+2+3+1+2-3\",\"1+2+3-1-2+3\",\"1+2+3*1*2-3\",\"1+2-3+1+2+3\",\"1+2-3+1*2*3\",\"1+2-3*1+2*3\",\"1+2*3+1*2-3\",\"1+2*3*1+2-3\",\"1-2+3-1+2+3\",\"1*2+3-1*2+3\",\"1*2+3*1-2+3\",\"1*2-3+1+2*3\",\"1*2*3+1+2-3\",\"1*2*3-1-2+3\",\"12+3-12+3\"]"
+    },
+    {
+      "input": "\"111\"\n6",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"123321\"\n6",
+      "expectedOutput": "[\"1+2+3+3-2-1\",\"1+2+3-3+2+1\",\"1+2-3+3+2+1\",\"1+2-3+3*2*1\",\"1+2*3-3+2*1\",\"1-2+3+3+2-1\",\"1-2+3*3-2*1\",\"1*2+3+3-2*1\",\"1*2-3+3*2+1\",\"1*2*3+3-2-1\",\"1*2*3-3+2+1\",\"1+23+3-21\",\"12-3*3+2+1\"]"
+    },
+    {
+      "input": "\"0\"\n6",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"121\"\n6",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"123\"\n0",
+      "expectedOutput": "[\"1+2-3\"]"
+    },
+    {
+      "input": "\"123\"\n1",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"123\"\n2",
+      "expectedOutput": "[\"1-2+3\"]"
+    },
+    {
+      "input": "\"123\"\n3",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"123\"\n4",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"123\"\n5",
+      "expectedOutput": "[\"1*2+3\"]"
+    },
+    {
+      "input": "\"123\"\n7",
+      "expectedOutput": "[\"1+2*3\"]"
+    },
+    {
+      "input": "\"123\"\n8",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"123\"\n9",
+      "expectedOutput": "[\"12-3\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Note that a number can contain multiple digits.",
+    "Since the question asks us to find <b>all</b> of the valid expressions, we need a way to iterate over all of them. (<b>Hint:</b> Recursion!)",
+    "We can keep track of the expression string and evaluate it at the very end. But that would take a lot of time. Can we keep track of the expression's value as well so as to avoid the evaluation at the very end of recursion?",
+    "Think carefully about the multiply operator. It has a higher precedence than the addition and subtraction operators. \r\n\r\n<br> 1 + 2 = 3  <br>\r\n1 + 2 - 4 --> 3 - 4 --> -1 <br>\r\n1 + 2 - 4 * 12 --> -1 * 12 --> -12 (WRONG!) <br>\r\n1 + 2 - 4 * 12 --> -1 - (-4) + (-4 * 12) --> 3 + (-48) --> -45 (CORRECT!)",
+    "We simply need to keep track of the last operand in our expression and reverse it's effect on the expression's value while considering the multiply operator."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/expression-add-operators/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.193Z",
+    "sourceUpdatedAt": null
+  }
+}

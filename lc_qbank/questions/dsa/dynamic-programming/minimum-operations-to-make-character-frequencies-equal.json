@@ -1,0 +1,118 @@
+{
+  "id": "3389",
+  "slug": "minimum-operations-to-make-character-frequencies-equal",
+  "title": "Minimum Operations to Make Character Frequencies Equal",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Counting",
+    "Enumeration"
+  ],
+  "statement": "You are given a string `s`.\n\nA string `t` is called **good** if all characters of `t` occur the same number of times.\n\nYou can perform the following operations **any number of times**:\n\n*   Delete a character from `s`.\n*   Insert a character in `s`.\n*   Change a character in `s` to its next letter in the alphabet.\n\n**Note** that you cannot change `'z'` to `'a'` using the third operation.\n\nReturn the **minimum** number of operations required to make `s` **good**.\n\n**Example 1:**\n\n**Input:** s = \"acab\"\n\n**Output:** 1\n\n**Explanation:**\n\nWe can make `s` good by deleting one occurrence of character `'a'`.\n\n**Example 2:**\n\n**Input:** s = \"wddw\"\n\n**Output:** 0\n\n**Explanation:**\n\nWe do not need to perform any operations since `s` is initially good.\n\n**Example 3:**\n\n**Input:** s = \"aaabc\"\n\n**Output:** 2\n\n**Explanation:**\n\nWe can make `s` good by applying these operations:\n\n*   Change one occurrence of `'a'` to `'b'`\n*   Insert one occurrence of `'c'` into `s`\n\n**Constraints:**\n\n*   `3 <= s.length <= 2 * 10^(4)`\n*   `s` contains only lowercase English letters.",
+  "constraints": [
+    "3 <= s.length <= 2 * 104",
+    "s contains only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"acab\"",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "s = \"wddw\"",
+      "output": "0",
+      "explanation": null
+    },
+    {
+      "input": "s = \"aaabc\"",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int makeStringGood(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int makeStringGood(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def makeStringGood(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def makeStringGood(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar makeStringGood = function(s) {\n    \n};",
+    "typescript": "function makeStringGood(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MakeStringGood(string s) {\n        \n    }\n}",
+    "c": "int makeStringGood(char* s) {\n    \n}",
+    "golang": "func makeStringGood(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun makeStringGood(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func makeStringGood(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn make_string_good(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef make_string_good(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function makeStringGood($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int makeStringGood(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def makeStringGood(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec make_string_good(s :: String.t) :: integer\n  def make_string_good(s) do\n    \n  end\nend",
+    "erlang": "-spec make_string_good(S :: unicode:unicode_binary()) -> integer().\nmake_string_good(S) ->\n  .",
+    "racket": "(define/contract (make-string-good s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"acab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"wddw\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaabbc\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"acab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"wddw\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaabbc\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "s = \"acab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "s = \"wddw\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "s = \"aaabc\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The order of the letters in the string is irrelevant.",
+    "Compute an occurrence array <code>occ</code> where <code>occ[x]</code> is the number of occurrences of the <code>x<supth</sup></code> character of the alphabet. How do the described operations change <code>occ</code>?",
+    "We have three types of operations: increase any <code>occ[x]</code> by 1, decrease any <code>occ[x]</code> by 1, or decrease any <code>occ[x]</code> by 1 and simultaneously increase <code>occ[x + 1]</code> by 1 at the same time. To make <code>s</code> good, we need to make <code>occ</code> good. <code>occ</code> is good if and only if every <code>occ[x]</code> equals either 0 or some constant <code>c</code>.",
+    "If you know the value of <code>c</code>, how can you calculate the minimum operations required to make <code>occ</code> good?",
+    "Observation 1: It is never optimal to apply the third type of operation (simultaneous decrease and increase) on two continuous elements <code>occ[x]</code> and <code>occ[x + 1]</code>. Instead, we can decrease <code>occ[x]</code> by 1 then increase <code>occ[x + 2]</code> by 1 to achieve the same effect.",
+    "Observation 2: It is never optimal to increase an element of <code>occ</code> then decrease it, or vice versa.",
+    "Use dynamic programming where <code>dp[i]</code> is the minimum number of operations required to make <code>occ[0..i]</code> good. You will need to use the above observations to come up with the transitions."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-operations-to-make-character-frequencies-equal/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.724Z",
+    "sourceUpdatedAt": null
+  }
+}

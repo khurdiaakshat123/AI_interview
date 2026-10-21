@@ -1,0 +1,169 @@
+{
+  "id": "1505",
+  "slug": "minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits",
+  "title": "Minimum Possible Integer After at Most K Adjacent Swaps On Digits",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Greedy",
+    "Binary Indexed Tree",
+    "Segment Tree"
+  ],
+  "statement": "You are given a string `num` representing **the digits** of a very large integer and an integer `k`. You are allowed to swap any two adjacent digits of the integer **at most** `k` times.\n\nReturn _the minimum integer you can obtain also as a string_.\n\n**Example 1:**\n\n![](./assets/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits-1.jpg)\n```\nInput: num = \"4321\", k = 4\nOutput: \"1342\"\nExplanation: The steps to obtain the minimum integer from 4321 with 4 adjacent swaps are shown.\n```\n\n**Example 2:**\n\n```\nInput: num = \"100\", k = 1\nOutput: \"010\"\nExplanation: It's ok for the output to have leading zeros, but the input is guaranteed not to have any leading zeros.\n```\n\n**Example 3:**\n\n```\nInput: num = \"36789\", k = 1000\nOutput: \"36789\"\nExplanation: We can keep the number without any swaps.\n```\n\n**Constraints:**\n\n*   `1 <= num.length <= 3 * 10^(4)`\n*   `num` consists of only **digits** and does not contain **leading zeros**.\n*   `1 <= k <= 10^(9)`",
+  "constraints": [
+    "1 <= num.length <= 3 * 104",
+    "num consists of only digits and does not contain leading zeros.",
+    "1 <= k <= 109"
+  ],
+  "examples": [
+    {
+      "input": "num = \"4321\", k = 4",
+      "output": "\"1342\"",
+      "explanation": "The steps to obtain the minimum integer from 4321 with 4 adjacent swaps are shown."
+    },
+    {
+      "input": "num = \"100\", k = 1",
+      "output": "\"010\"",
+      "explanation": "It's ok for the output to have leading zeros, but the input is guaranteed not to have any leading zeros."
+    },
+    {
+      "input": "num = \"36789\", k = 1000",
+      "output": "\"36789\"",
+      "explanation": "We can keep the number without any swaps."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string minInteger(string num, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String minInteger(String num, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minInteger(self, num: str, k: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def minInteger(self, num, k):\n        \"\"\"\n        :type num: str\n        :type k: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num\n * @param {number} k\n * @return {string}\n */\nvar minInteger = function(num, k) {\n    \n};",
+    "typescript": "function minInteger(num: string, k: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MinInteger(string num, int k) {\n        \n    }\n}",
+    "c": "char* minInteger(char* num, int k) {\n    \n}",
+    "golang": "func minInteger(num string, k int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun minInteger(num: String, k: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minInteger(_ num: String, _ k: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_integer(num: String, k: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} num\n# @param {Integer} k\n# @return {String}\ndef min_integer(num, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num\n     * @param Integer $k\n     * @return String\n     */\n    function minInteger($num, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String minInteger(String num, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minInteger(num: String, k: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_integer(num :: String.t, k :: integer) :: String.t\n  def min_integer(num, k) do\n    \n  end\nend",
+    "erlang": "-spec min_integer(Num :: unicode:unicode_binary(), K :: integer()) -> unicode:unicode_binary().\nmin_integer(Num, K) ->\n  .",
+    "racket": "(define/contract (min-integer num k)\n  (-> string? exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"4321\"\n4",
+      "expectedOutput": "\"1342\""
+    },
+    {
+      "input": "\"100\"\n1",
+      "expectedOutput": "\"010\""
+    },
+    {
+      "input": "\"36789\"\n1000",
+      "expectedOutput": "\"36789\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"4321\"\n4",
+      "expectedOutput": "\"1342\""
+    },
+    {
+      "input": "\"100\"\n1",
+      "expectedOutput": "\"010\""
+    },
+    {
+      "input": "\"36789\"\n1000",
+      "expectedOutput": "\"36789\""
+    },
+    {
+      "input": "\"43\"\n4",
+      "expectedOutput": "\"34\""
+    },
+    {
+      "input": "\"21\"\n4",
+      "expectedOutput": "\"12\""
+    },
+    {
+      "input": "\"4\"\n4",
+      "expectedOutput": "\"4\""
+    },
+    {
+      "input": "\"1234\"\n4",
+      "expectedOutput": "\"1234\""
+    },
+    {
+      "input": "\"43214321\"\n4",
+      "expectedOutput": "\"13424321\""
+    },
+    {
+      "input": "\"4444\"\n4",
+      "expectedOutput": "\"4444\""
+    },
+    {
+      "input": "\"43211234\"\n4",
+      "expectedOutput": "\"13421234\""
+    },
+    {
+      "input": "\"0\"\n4",
+      "expectedOutput": "\"0\""
+    },
+    {
+      "input": "\"121\"\n4",
+      "expectedOutput": "\"112\""
+    },
+    {
+      "input": "\"4321\"\n0",
+      "expectedOutput": "\"4321\""
+    },
+    {
+      "input": "\"4321\"\n1",
+      "expectedOutput": "\"3421\""
+    },
+    {
+      "input": "\"4321\"\n2",
+      "expectedOutput": "\"2431\""
+    },
+    {
+      "input": "\"4321\"\n3",
+      "expectedOutput": "\"1432\""
+    },
+    {
+      "input": "\"4321\"\n5",
+      "expectedOutput": "\"1243\""
+    },
+    {
+      "input": "\"4321\"\n6",
+      "expectedOutput": "\"1234\""
+    },
+    {
+      "input": "\"4321\"\n7",
+      "expectedOutput": "\"1234\""
+    },
+    {
+      "input": "\"4321\"\n8",
+      "expectedOutput": "\"1234\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We want to make the smaller digits the most significant digits in the number.",
+    "For each index i, check the smallest digit in a window of size k and append it to the answer. Update the indices of all digits in this range accordingly."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.882Z",
+    "sourceUpdatedAt": null
+  }
+}

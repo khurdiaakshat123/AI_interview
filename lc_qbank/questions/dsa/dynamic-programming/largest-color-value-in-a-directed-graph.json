@@ -1,0 +1,164 @@
+{
+  "id": "1857",
+  "slug": "largest-color-value-in-a-directed-graph",
+  "title": "Largest Color Value in a Directed Graph",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Graph Theory",
+    "Topological Sort",
+    "Memoization",
+    "Counting",
+    "Directed Acyclic Graph"
+  ],
+  "statement": "There is a **directed graph** of `n` colored nodes and `m` edges. The nodes are numbered from `0` to `n - 1`.\n\nYou are given a string `colors` where `colors[i]` is a lowercase English letter representing the **color** of the `i^(th)` node in this graph (**0-indexed**). You are also given a 2D array `edges` where `edges[j] = [a_(j), b_(j)]` indicates that there is a **directed edge** from node `a_(j)` to node `b_(j)`.\n\nA valid **path** in the graph is a sequence of nodes `x_(1) -> x_(2) -> x_(3) -> ... -> x_(k)` such that there is a directed edge from `x_(i)` to `x_(i+1)` for every `1 <= i < k`. The **color value** of the path is the number of nodes that are colored the **most frequently** occurring color along that path.\n\nReturn _the **largest color value** of any valid path in the given graph, or_ `-1` _if the graph contains a cycle_.\n\n**Example 1:**\n\n![](./assets/largest-color-value-in-a-directed-graph-1.png)\n\n```\n\"a\" (red in the above image)\n```\n\n**Example 2:**\n\n![](./assets/largest-color-value-in-a-directed-graph-2.png)\n\n```\nInput: colors = \"a\", edges = [[0,0]]\nOutput: -1\nExplanation: There is a cycle from 0 to 0.\n```\n\n**Constraints:**\n\n*   `n == colors.length`\n*   `m == edges.length`\n*   `1 <= n <= 10^(5)`\n*   `0 <= m <= 10^(5)`\n*   `colors` consists of lowercase English letters.\n*   `0 <= a_(j), b_(j) < n`",
+  "constraints": [
+    "n == colors.length",
+    "m == edges.length",
+    "1 <= n <= 105",
+    "0 <= m <= 105",
+    "colors consists of lowercase English letters.",
+    "0 <= aj, bj < n"
+  ],
+  "examples": [
+    {
+      "input": "colors = \"abaca\", edges = [[0,1],[0,2],[2,3],[3,4]]",
+      "output": "3",
+      "explanation": "The path 0 -> 2 -> 3 -> 4 contains 3 nodes that are colored \"a\" (red in the above image)."
+    },
+    {
+      "input": "colors = \"a\", edges = [[0,0]]",
+      "output": "-1",
+      "explanation": "There is a cycle from 0 to 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int largestPathValue(string colors, vector<vector<int>>& edges) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int largestPathValue(String colors, int[][] edges) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestPathValue(self, colors: str, edges: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def largestPathValue(self, colors, edges):\n        \"\"\"\n        :type colors: str\n        :type edges: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} colors\n * @param {number[][]} edges\n * @return {number}\n */\nvar largestPathValue = function(colors, edges) {\n    \n};",
+    "typescript": "function largestPathValue(colors: string, edges: number[][]): number {\n\n};",
+    "csharp": "public class Solution {\n    public int LargestPathValue(string colors, int[][] edges) {\n        \n    }\n}",
+    "c": "\n\nint largestPathValue(char * colors, int** edges, int edgesSize, int* edgesColSize){\n\n}",
+    "golang": "func largestPathValue(colors string, edges [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestPathValue(colors: String, edges: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestPathValue(_ colors: String, _ edges: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_path_value(colors: String, edges: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} colors\n# @param {Integer[][]} edges\n# @return {Integer}\ndef largest_path_value(colors, edges)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $colors\n     * @param Integer[][] $edges\n     * @return Integer\n     */\n    function largestPathValue($colors, $edges) {\n        \n    }\n}",
+    "scala": "object Solution {\n    def largestPathValue(colors: String, edges: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "racket": "(define/contract (largest-path-value colors edges)\n  (-> string? (listof (listof exact-integer?)) exact-integer?)\n\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abaca\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"a\"\n[[0,0]]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abaca\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"a\"\n[[0,0]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"acaba\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abacaabaca\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaaaa\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abacaacaba\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcde\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"edcba\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"racecar\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"hello\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"leetcode\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"world\"\n[[0,1],[0,2],[2,3],[3,4]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"\n[[0,0]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"A\"\n[[0,0]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"b\"\n[[0,0]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ab\"\n[[0,0]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ba\"\n[[0,0]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aba\"\n[[0,0]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abba\"\n[[0,0]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aaaaa\"\n[[0,0]]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use topological sort.",
+    "let dp[u][c] := the maximum count of vertices with color c of any path starting from vertex u. (by JerryJin2905)"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/largest-color-value-in-a-directed-graph/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.898Z",
+    "sourceUpdatedAt": null
+  }
+}

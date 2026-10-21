@@ -1,0 +1,156 @@
+{
+  "id": "949",
+  "slug": "largest-time-for-given-digits",
+  "title": "Largest Time for Given Digits",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Backtracking",
+    "Enumeration"
+  ],
+  "statement": "Given an array `arr` of 4 digits, find the latest 24-hour time that can be made using each digit **exactly once**.\n\n24-hour times are formatted as `\"HH:MM\"`, where `HH` is between `00` and `23`, and `MM` is between `00` and `59`. The earliest 24-hour time is `00:00`, and the latest is `23:59`.\n\nReturn _the latest 24-hour time in `\"HH:MM\"` format_. If no valid time can be made, return an empty string.\n\n**Example 1:**\n\n```\nInput: arr = [1,2,3,4]\nOutput: \"23:41\"\nExplanation: The valid 24-hour times are \"12:34\", \"12:43\", \"13:24\", \"13:42\", \"14:23\", \"14:32\", \"21:34\", \"21:43\", \"23:14\", and \"23:41\". Of these times, \"23:41\" is the latest.\n```\n\n**Example 2:**\n\n```\nInput: arr = [5,5,5,5]\nOutput: \"\"\nExplanation: There are no valid 24-hour times as \"55:55\" is not valid.\n```\n\n**Constraints:**\n\n*   `arr.length == 4`\n*   `0 <= arr[i] <= 9`",
+  "constraints": [
+    "arr.length == 4",
+    "0 <= arr[i] <= 9"
+  ],
+  "examples": [
+    {
+      "input": "arr = [1,2,3,4]",
+      "output": "\"23:41\"",
+      "explanation": "The valid 24-hour times are \"12:34\", \"12:43\", \"13:24\", \"13:42\", \"14:23\", \"14:32\", \"21:34\", \"21:43\", \"23:14\", and \"23:41\". Of these times, \"23:41\" is the latest."
+    },
+    {
+      "input": "arr = [5,5,5,5]",
+      "output": "\"\"",
+      "explanation": "There are no valid 24-hour times as \"55:55\" is not valid."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string largestTimeFromDigits(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String largestTimeFromDigits(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestTimeFromDigits(self, arr: list[int]) -> str:\n        ",
+    "python": "class Solution(object):\n    def largestTimeFromDigits(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {string}\n */\nvar largestTimeFromDigits = function(arr) {\n    \n};",
+    "typescript": "function largestTimeFromDigits(arr: number[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LargestTimeFromDigits(int[] arr) {\n        \n    }\n}",
+    "c": "char* largestTimeFromDigits(int* arr, int arrSize) {\n    \n}",
+    "golang": "func largestTimeFromDigits(arr []int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestTimeFromDigits(arr: IntArray): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestTimeFromDigits(_ arr: [Int]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_time_from_digits(arr: Vec<i32>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {String}\ndef largest_time_from_digits(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return String\n     */\n    function largestTimeFromDigits($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String largestTimeFromDigits(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def largestTimeFromDigits(arr: Array[Int]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec largest_time_from_digits(arr :: [integer]) :: String.t\n  def largest_time_from_digits(arr) do\n    \n  end\nend",
+    "erlang": "-spec largest_time_from_digits(Arr :: [integer()]) -> unicode:unicode_binary().\nlargest_time_from_digits(Arr) ->\n  .",
+    "racket": "(define/contract (largest-time-from-digits arr)\n  (-> (listof exact-integer?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "\"23:41\""
+    },
+    {
+      "input": "[5,5,5,5]",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "\"23:41\""
+    },
+    {
+      "input": "[5,5,5,5]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[3,4]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[1,4]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[4,3,2,1]",
+      "expectedOutput": "\"23:41\""
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "\"11:11\""
+    },
+    {
+      "input": "[1,2,3,4,1,2,3,4]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[2,4,6,8]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[2,3,4,5]",
+      "expectedOutput": "\"23:54\""
+    },
+    {
+      "input": "[0,1,2,3]",
+      "expectedOutput": "\"23:10\""
+    },
+    {
+      "input": "[-1,-2,-3,-4]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "\"00:00\""
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/largest-time-for-given-digits/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.036Z",
+    "sourceUpdatedAt": null
+  }
+}

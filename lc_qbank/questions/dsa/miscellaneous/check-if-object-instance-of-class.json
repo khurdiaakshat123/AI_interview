@@ -1,0 +1,106 @@
+{
+  "id": "2618",
+  "slug": "check-if-object-instance-of-class",
+  "title": "Check if Object Instance of Class",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Medium",
+  "tags": [],
+  "statement": "Write a function that checks if a given value is an instance of a given class or superclass. For this problem, an object is considered an instance of a given class if that object has access to that class's methods.\n\nThere are no constraints on the data types that can be passed to the function. For example, the value or the class could be `undefined`.\n\n**Example 1:**\n\n```\nInput: func = () => checkIfInstanceOf(new Date(), Date)\nOutput: true\nExplanation: The object returned by the Date constructor is, by definition, an instance of Date.\n```\n\n**Example 2:**\n\n```\nInput: func = () => { class Animal {}; class Dog extends Animal {}; return checkIfInstanceOf(new Dog(), Animal); }\nOutput: true\nExplanation:\nclass Animal {};\nclass Dog extends Animal {};\ncheckIfInstanceOf(new Dog(), Animal); // true\n\nDog is a subclass of Animal. Therefore, a Dog object is an instance of both Dog and Animal.\n```\n\n**Example 3:**\n\n```\nInput: func = () => checkIfInstanceOf(Date, Date)\nOutput: false\nExplanation: A date constructor cannot logically be an instance of itself.\n```\n\n**Example 4:**\n\n```\nInput: func = () => checkIfInstanceOf(5, Number)\nOutput: true\nExplanation: 5 is a Number. Note that the \"instanceof\" keyword would return false. However, it is still considered an instance of Number because it accesses the Number methods. For example \"toFixed()\".\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "func = () => checkIfInstanceOf(new Date(), Date)",
+      "output": "true",
+      "explanation": "The object returned by the Date constructor is, by definition, an instance of Date."
+    },
+    {
+      "input": "func = () => { class Animal {}; class Dog extends Animal {}; return checkIfInstanceOf(new Dog(), Animal); }",
+      "output": "true",
+      "explanation": "class Animal {};\nclass Dog extends Animal {};\ncheckIfInstanceOf(new Dog(), Animal); // true\n\nDog is a subclass of Animal. Therefore, a Dog object is an instance of both Dog and Animal."
+    },
+    {
+      "input": "func = () => checkIfInstanceOf(Date, Date)",
+      "output": "false",
+      "explanation": "A date constructor cannot logically be an instance of itself."
+    },
+    {
+      "input": "func = () => checkIfInstanceOf(5, Number)",
+      "output": "true",
+      "explanation": "5 is a Number. Note that the \"instanceof\" keyword would return false. However, it is still considered an instance of Number because it accesses the Number methods. For example \"toFixed()\"."
+    }
+  ],
+  "starterCode": {
+    "javascript": "/**\n * @param {*} obj\n * @param {*} classFunction\n * @return {boolean}\n */\nvar checkIfInstanceOf = function(obj, classFunction) {\n    \n};\n\n/**\n * checkIfInstanceOf(new Date(), Date); // true\n */",
+    "typescript": "function checkIfInstanceOf(obj: any, classFunction: any): boolean {\n    \n};\n\n/**\n * checkIfInstanceOf(new Date(), Date); // true\n */"
+  },
+  "publicTests": [
+    {
+      "input": "() => checkIfInstanceOf(new Date(), Date)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => { class Animal {}; class Dog extends Animal {}; return checkIfInstanceOf(new Dog(), Animal); }",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf(Date, Date)",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "() => checkIfInstanceOf(5, Number)",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "() => checkIfInstanceOf(new Date(), Date)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => { class Animal {}; class Dog extends Animal {}; return checkIfInstanceOf(new Dog(), Animal); }",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf(Date, Date)",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "() => checkIfInstanceOf(5, Number)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "func = () => checkIfInstanceOf(new Date(), Date)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "func = () => { class Animal {}; class Dog extends Animal {}; return checkIfInstanceOf(new Dog(), Animal); }",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "func = () => checkIfInstanceOf(Date, Date)",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "func = () => checkIfInstanceOf(5, Number)",
+      "expectedOutput": "true"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "In Javascript, inheritance is achieved with the prototype chain.",
+    "You can get the prototype of an object with the Object.getPrototypeOf(obj) function. Alternatively, you can code obj['__proto__'].",
+    "You can compare an object's __proto__ with classFunction.prototype.",
+    "Traverse the entire prototype chain until you find a match."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/check-if-object-instance-of-class/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.207Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "id": "3947",
+  "slug": "maximum-number-of-items-from-sale-ii",
+  "title": "Maximum Number of Items From Sale II",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "You are given a 2D integer array `items`, where `items[i] = [factor_(i), price_(i)]` represents the `i^(th)` item. You are also given an integer `budget`.\n\nThere are unlimited copies of each item available for purchase. You may buy any number of copies of any items such that the total cost of the purchased copies is at most `budget`.\n\nAfter buying items, you may receive free copies according to the following rules:\n\n*   Each purchased copy of item `i` can give you **at most one** free copy of another item `j`.\n*   The free item must satisfy `i != j` and `factor_(i)` divides `factor_(j)`.\n*   For each ordered pair `(i, j)`, you can receive a free copy of item `j` from purchases of item `i` **at most once**, regardless of how many copies of item `i` you buy.\n*   The same item `j` can be received multiple times for free if it is received from purchases of different item types.\n\nReturn the **maximum total number of item copies** you can obtain, including both purchased copies and free copies, while spending at most `budget` on purchased items.\n\n**Example 1:**\n\n**Input:** items = \\[\\[1,6\\],\\[2,4\\],\\[3,5\\]\\], budget = 19\n\n**Output:** 5\n\n**Explanation:**\n\n*   You can buy 2 copies of item 0 and 1 copy of item 1 for a total cost of `2 * 6 + 4 = 16`, which is not greater than `budget = 19`.\n*   One purchased copy of item 0 gives 1 free copy of item 1, because `factor_(0) = 1` divides `factor_(1) = 2`.\n*   The other purchased copy of item 0 gives 1 free copy of item 2, because `factor_(0) = 1` divides `factor_(2) = 3`.\n*   You leave with 3 purchased copies and 2 free copies, for a total of 5 item copies.\n\n**Example 2:**\n\n**Input:** items = \\[\\[2,8\\],\\[1,10\\],\\[6,6\\],\\[4,12\\],\\[5,20\\],\\[5,17\\]\\], budget = 35\n\n**Output:** 7\n\n**Explanation:**\n\n*   You can buy 2 copies of item 0, 1 copy of item 1, and 1 copy of item 2 for a total cost of `2 * 8 + 10 + 6 = 32`, which is not greater than `budget = 35`.\n*   One purchased copy of item 0 gives 1 free copy of item 2, because `factor_(0) = 2` divides `factor_(2) = 6`.\n*   The other purchased copy of item 0 gives 1 free copy of item 3, because `factor_(0) = 2` divides `factor_(3) = 4`.\n*   The purchased copy of item 1 gives 1 free copy of item 2, because `factor_(1) = 1` divides `factor_(2) = 6`.\n*   Buying item 2 gives no free copy, because `factor_(2) = 6` does not divide the factor of any other item.\n*   You leave with 4 purchased copies and 3 free copies, for a total of 7 item copies.\n\n**Constraints:**\n\n*   `1 <= items.length <= 10^(5)`\n*   `items[i] = [factor_(i), price_(i)]`\n*   `1 <= factor_(i) <= items.length`\n*   `1 <= price_(i) <= 10^(9)`\n*   `1 <= budget <= 10^(9)`",
+  "constraints": [
+    "1 <= items.length <= 105",
+    "items[i] = [factori, pricei]",
+    "1 <= factori <= items.length",
+    "1 <= pricei <= 109",
+    "1 <= budget <= 109"
+  ],
+  "examples": [
+    {
+      "input": "items = [[1,6],[2,4],[3,5]], budget = 19",
+      "output": "5",
+      "explanation": "You can buy 2 copies of item 0 and 1 copy of item 1 for a total cost of 2 * 6 + 4 = 16, which is not greater than budget = 19.\n\tOne purchased copy of item 0 gives 1 free copy of item 1, because factor0 = 1 divides factor1 = 2.\n\tThe other purchased copy of item 0 gives 1 free copy of item 2, because factor0 = 1 divides factor2 = 3.\n\tYou leave with 3 purchased copies and 2 free copies, for a total of 5 item copies."
+    },
+    {
+      "input": "items = [[2,8],[1,10],[6,6],[4,12],[5,20],[5,17]], budget = 35",
+      "output": "7",
+      "explanation": "You can buy 2 copies of item 0, 1 copy of item 1, and 1 copy of item 2 for a total cost of 2 * 8 + 10 + 6 = 32, which is not greater than budget = 35.\n\tOne purchased copy of item 0 gives 1 free copy of item 2, because factor0 = 2 divides factor2 = 6.\n\tThe other purchased copy of item 0 gives 1 free copy of item 3, because factor0 = 2 divides factor3 = 4.\n\tThe purchased copy of item 1 gives 1 free copy of item 2, because factor1 = 1 divides factor2 = 6.\n\tBuying item 2 gives no free copy, because factor2 = 6 does not divide the factor of any other item.\n\tYou leave with 4 purchased copies and 3 free copies, for a total of 7 item copies."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumSaleItems(vector<vector<int>>& items, int budget) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumSaleItems(int[][] items, int budget) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumSaleItems(self, items: List[List[int]], budget: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumSaleItems(self, items, budget):\n        \"\"\"\n        :type items: List[List[int]]\n        :type budget: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} items\n * @param {number} budget\n * @return {number}\n */\nvar maximumSaleItems = function(items, budget) {\n    \n};",
+    "typescript": "function maximumSaleItems(items: number[][], budget: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumSaleItems(int[][] items, int budget) {\n        \n    }\n}",
+    "c": "int maximumSaleItems(int** items, int itemsSize, int* itemsColSize, int budget) {\n    \n}",
+    "golang": "func maximumSaleItems(items [][]int, budget int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumSaleItems(items: Array<IntArray>, budget: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumSaleItems(_ items: [[Int]], _ budget: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_sale_items(items: Vec<Vec<i32>>, budget: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} items\n# @param {Integer} budget\n# @return {Integer}\ndef maximum_sale_items(items, budget)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $items\n     * @param Integer $budget\n     * @return Integer\n     */\n    function maximumSaleItems($items, $budget) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumSaleItems(List<List<int>> items, int budget) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumSaleItems(items: Array[Array[Int]], budget: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_sale_items(items :: [[integer]], budget :: integer) :: integer\n  def maximum_sale_items(items, budget) do\n    \n  end\nend",
+    "erlang": "-spec maximum_sale_items(Items :: [[integer()]], Budget :: integer()) -> integer().\nmaximum_sale_items(Items, Budget) ->\n  .",
+    "racket": "(define/contract (maximum-sale-items items budget)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,6],[2,4],[3,5]]\n19",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[2,8],[1,10],[6,6],[4,12],[5,20],[5,17]]\n35",
+      "expectedOutput": "7"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,6],[2,4],[3,5]]\n19",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[2,8],[1,10],[6,6],[4,12],[5,20],[5,17]]\n35",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "items = [[1,6],[2,4],[3,5]], budget = 19",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "items = [[2,8],[1,10],[6,6],[4,12],[5,20],[5,17]], budget = 35",
+      "expectedOutput": "7"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For each item <code>i</code>, compute <code>gain[i]</code> = number of other items <code>j</code> such that <code>factor[i]</code> divides <code>factor[j]</code>. This can be done by counting factors and iterating over multiples.",
+    "If you buy <code>c</code> copies of item <code>i</code>, it contributes\r\n<code>c + min(c, gain[i])</code> total copies, because only the first <code>gain[i]</code> purchased copies can be matched to distinct free items.",
+    "View purchases as marginal units: for item <code>i</code>, the first <code>gain[i]</code> copies have value <code>2</code> each, and all later copies have value <code>1</code> each.",
+    "Since extra value-1 copies should always be bought from the cheapest item, the main task is to choose the cheapest useful value-2 marginal units. Sort item types by price and process their <code>gain[i]</code> boosted copies in batches rather than expanding them one by one."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-items-from-sale-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.069Z",
+    "sourceUpdatedAt": null
+  }
+}

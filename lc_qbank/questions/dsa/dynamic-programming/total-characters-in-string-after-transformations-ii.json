@@ -1,0 +1,163 @@
+{
+  "id": "3337",
+  "slug": "total-characters-in-string-after-transformations-ii",
+  "title": "Total Characters in String After Transformations II",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Dynamic Programming",
+    "Counting"
+  ],
+  "statement": "You are given a string `s` consisting of lowercase English letters, an integer `t` representing the number of **transformations** to perform, and an array `nums` of size 26. In one **transformation**, every character in `s` is replaced according to the following rules:\n\n*   Replace `s[i]` with the **next** `nums[s[i] - 'a']` consecutive characters in the alphabet. For example, if `s[i] = 'a'` and `nums[0] = 3`, the character `'a'` transforms into the next 3 consecutive characters ahead of it, which results in `\"bcd\"`.\n*   The transformation **wraps** around the alphabet if it exceeds `'z'`. For example, if `s[i] = 'y'` and `nums[24] = 3`, the character `'y'` transforms into the next 3 consecutive characters ahead of it, which results in `\"zab\"`.\n\nReturn the length of the resulting string after **exactly** `t` transformations.\n\nSince the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** s = \"abcyy\", t = 2, nums = \\[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2\\]\n\n**Output:** 7\n\n**Explanation:**\n\n*   **First Transformation (t = 1):**\n    \n    *   `'a'` becomes `'b'` as `nums[0] == 1`\n    *   `'b'` becomes `'c'` as `nums[1] == 1`\n    *   `'c'` becomes `'d'` as `nums[2] == 1`\n    *   `'y'` becomes `'z'` as `nums[24] == 1`\n    *   `'y'` becomes `'z'` as `nums[24] == 1`\n    *   String after the first transformation: `\"bcdzz\"`\n*   **Second Transformation (t = 2):**\n    \n    *   `'b'` becomes `'c'` as `nums[1] == 1`\n    *   `'c'` becomes `'d'` as `nums[2] == 1`\n    *   `'d'` becomes `'e'` as `nums[3] == 1`\n    *   `'z'` becomes `'ab'` as `nums[25] == 2`\n    *   `'z'` becomes `'ab'` as `nums[25] == 2`\n    *   String after the second transformation: `\"cdeabab\"`\n*   **Final Length of the string:** The string is `\"cdeabab\"`, which has 7 characters.\n    \n\n**Example 2:**\n\n**Input:** s = \"azbk\", t = 1, nums = \\[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2\\]\n\n**Output:** 8\n\n**Explanation:**\n\n*   **First Transformation (t = 1):**\n    \n    *   `'a'` becomes `'bc'` as `nums[0] == 2`\n    *   `'z'` becomes `'ab'` as `nums[25] == 2`\n    *   `'b'` becomes `'cd'` as `nums[1] == 2`\n    *   `'k'` becomes `'lm'` as `nums[10] == 2`\n    *   String after the first transformation: `\"bcabcdlm\"`\n*   **Final Length of the string:** The string is `\"bcabcdlm\"`, which has 8 characters.\n    \n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists only of lowercase English letters.\n*   `1 <= t <= 10^(9)`\n*   `nums.length == 26`\n*   `1 <= nums[i] <= 25`",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists only of lowercase English letters.",
+    "1 <= t <= 109",
+    "nums.length == 26",
+    "1 <= nums[i] <= 25"
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcyy\", t = 2, nums = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "output": "7",
+      "explanation": null
+    },
+    {
+      "input": "s = \"azbk\", t = 1, nums = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]",
+      "output": "8",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int lengthAfterTransformations(string s, int t, vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int lengthAfterTransformations(String s, int t, List<Integer> nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lengthAfterTransformations(self, s: str, t: int, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def lengthAfterTransformations(self, s, t, nums):\n        \"\"\"\n        :type s: str\n        :type t: int\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} t\n * @param {number[]} nums\n * @return {number}\n */\nvar lengthAfterTransformations = function(s, t, nums) {\n    \n};",
+    "typescript": "function lengthAfterTransformations(s: string, t: number, nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LengthAfterTransformations(string s, int t, IList<int> nums) {\n        \n    }\n}",
+    "c": "int lengthAfterTransformations(char* s, int t, int* nums, int numsSize) {\n    \n}",
+    "golang": "func lengthAfterTransformations(s string, t int, nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun lengthAfterTransformations(s: String, t: Int, nums: List<Int>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lengthAfterTransformations(_ s: String, _ t: Int, _ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn length_after_transformations(s: String, t: i32, nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} t\n# @param {Integer[]} nums\n# @return {Integer}\ndef length_after_transformations(s, t, nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $t\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function lengthAfterTransformations($s, $t, $nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int lengthAfterTransformations(String s, int t, List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lengthAfterTransformations(s: String, t: Int, nums: List[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec length_after_transformations(s :: String.t, t :: integer, nums :: [integer]) :: integer\n  def length_after_transformations(s, t, nums) do\n    \n  end\nend",
+    "erlang": "-spec length_after_transformations(S :: unicode:unicode_binary(), T :: integer(), Nums :: [integer()]) -> integer().\nlength_after_transformations(S, T, Nums) ->\n  .",
+    "racket": "(define/contract (length-after-transformations s t nums)\n  (-> string? exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcyy\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"azbk\"\n1\n[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]",
+      "expectedOutput": "8"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcyy\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"azbk\"\n1\n[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"ab\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"cyy\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"a\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"yycba\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"abcyyabcyy\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "\"aaaaa\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcyyyycba\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "\"b\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ba\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aba\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abba\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcde\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"edcba\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aab\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"racecar\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"hello\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"leetcode\"\n2\n[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]",
+      "expectedOutput": "8"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Model the problem as a matrix multiplication problem.",
+    "Use exponentiation to quickly multiply matrices."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/total-characters-in-string-after-transformations-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.115Z",
+    "sourceUpdatedAt": null
+  }
+}

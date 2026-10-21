@@ -1,0 +1,152 @@
+{
+  "id": "80",
+  "slug": "remove-duplicates-from-sorted-array-ii",
+  "title": "Remove Duplicates from Sorted Array II",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers"
+  ],
+  "statement": "Given an integer array `nums` sorted in **non-decreasing order**, remove some duplicates [**in-place**](https://en.wikipedia.org/wiki/In-place_algorithm) such that each unique element appears **at most twice**. The **relative order** of the elements should be kept the **same**.\n\nSince it is impossible to change the length of the array in some languages, you must instead have the result be placed in the **first part** of the array `nums`. More formally, if there are `k` elements after removing the duplicates, then the first `k` elements of `nums` should hold the final result. It does not matter what you leave beyond the first `k` elements.\n\nReturn `k` _after placing the final result in the first_ `k` _slots of_ `nums`.\n\nDo **not** allocate extra space for another array. You must do this by **modifying the input array [in-place](https://en.wikipedia.org/wiki/In-place_algorithm)** with O(1) extra memory.\n\n**Custom Judge:**\n\nThe judge will test your solution with the following code:\n\n```\nint[] nums = [...]; // Input array\nint[] expectedNums = [...]; // The expected answer with correct length\n\nint k = removeDuplicates(nums); // Calls your implementation\n\nassert k == expectedNums.length;\nfor (int i = 0; i < k; i++) {\n    assert nums[i] == expectedNums[i];\n}\n```\n\nIf all assertions pass, then your solution will be **accepted**.\n\n**Example 1:**\n\n```\nInput: nums = [1,1,1,2,2,3]\nOutput: 5, nums = [1,1,2,2,3,_]\nExplanation: Your function should return k = 5, with the first five elements of nums being 1, 1, 2, 2 and 3 respectively.\nIt does not matter what you leave beyond the returned k (hence they are underscores).\n```\n\n**Example 2:**\n\n```\nInput: nums = [0,0,1,1,1,1,2,3,3]\nOutput: 7, nums = [0,0,1,1,2,3,3,_,_]\nExplanation: Your function should return k = 7, with the first seven elements of nums being 0, 0, 1, 1, 2, 3 and 3 respectively.\nIt does not matter what you leave beyond the returned k (hence they are underscores).\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 3 * 10^(4)`\n*   `-10^(4) <= nums[i] <= 10^(4)`\n*   `nums` is sorted in **non-decreasing** order.",
+  "constraints": [
+    "1 <= nums.length <= 3 * 104",
+    "-104 <= nums[i] <= 104",
+    "nums is sorted in non-decreasing order."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,1,1,2,2,3]",
+      "output": "5, nums = [1,1,2,2,3,_]",
+      "explanation": "Your function should return k = 5, with the first five elements of nums being 1, 1, 2, 2 and 3 respectively.\nIt does not matter what you leave beyond the returned k (hence they are underscores)."
+    },
+    {
+      "input": "nums = [0,0,1,1,1,1,2,3,3]",
+      "output": "7, nums = [0,0,1,1,2,3,3,_,_]",
+      "explanation": "Your function should return k = 7, with the first seven elements of nums being 0, 0, 1, 1, 2, 3 and 3 respectively.\nIt does not matter what you leave beyond the returned k (hence they are underscores)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int removeDuplicates(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int removeDuplicates(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def removeDuplicates(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def removeDuplicates(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar removeDuplicates = function(nums) {\n    \n};",
+    "typescript": "function removeDuplicates(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int RemoveDuplicates(int[] nums) {\n        \n    }\n}",
+    "c": "int removeDuplicates(int* nums, int numsSize) {\n    \n}",
+    "golang": "func removeDuplicates(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun removeDuplicates(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func removeDuplicates(_ nums: inout [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef remove_duplicates(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function removeDuplicates(&$nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int removeDuplicates(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def removeDuplicates(nums: Array[Int]): Int = {\n        \n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "[1,1,1,2,2,3]",
+      "expectedOutput": "5, nums = [1,1,2,2,3,_]"
+    },
+    {
+      "input": "[0,0,1,1,1,1,2,3,3]",
+      "expectedOutput": "7, nums = [0,0,1,1,2,3,3,_,_]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,1,1,2,2,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0,1,1,1,1,2,3,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2,2,1,1,1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,2,2,3,1,1,1,2,2,3]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[2,2,2,4,4,6]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,2,2,3,3,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0,0,1,1,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-1,-1,-1,-2,-2,-3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.506Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "1106",
+  "slug": "parsing-a-boolean-expression",
+  "title": "Parsing A Boolean Expression",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Stack",
+    "Recursion"
+  ],
+  "statement": "A **boolean expression** is an expression that evaluates to either `true` or `false`. It can be in one of the following shapes:\n\n*   `'t'` that evaluates to `true`.\n*   `'f'` that evaluates to `false`.\n*   `'!(subExpr)'` that evaluates to **the logical NOT** of the inner expression `subExpr`.\n*   `'&(subExpr_(1), subExpr_(2), ..., subExpr_(n))'` that evaluates to **the logical AND** of the inner expressions `subExpr_(1), subExpr_(2), ..., subExpr_(n)` where `n >= 1`.\n*   `'|(subExpr_(1), subExpr_(2), ..., subExpr_(n))'` that evaluates to **the logical OR** of the inner expressions `subExpr_(1), subExpr_(2), ..., subExpr_(n)` where `n >= 1`.\n\nGiven a string `expression` that represents a **boolean expression**, return _the evaluation of that expression_.\n\nIt is **guaranteed** that the given expression is valid and follows the given rules.\n\n**Example 1:**\n\n```\nInput: expression = \"&(|(f))\"\nOutput: false\nExplanation: \nFirst, evaluate |(f) --> f. The expression is now \"&(f)\".\nThen, evaluate &(f) --> f. The expression is now \"f\".\nFinally, return false.\n```\n\n**Example 2:**\n\n```\nInput: expression = \"|(f,f,f,t)\"\nOutput: true\nExplanation: The evaluation of (false OR false OR false OR true) is true.\n```\n\n**Example 3:**\n\n```\nInput: expression = \"!(&(f,t))\"\nOutput: true\nExplanation: \nFirst, evaluate &(f,t) --> (false AND true) --> false --> f. The expression is now \"!(f)\".\nThen, evaluate !(f) --> NOT false --> true. We return true.\n```\n\n**Constraints:**\n\n*   `1 <= expression.length <= 2 * 10^(4)`\n*   expression\\[i\\] is one following characters: `'('`, `')'`, `'&'`, `'|'`, `'!'`, `'t'`, `'f'`, and `','`.",
+  "constraints": [
+    "1 <= expression.length <= 2 * 104",
+    "expression[i] is one following characters: '(', ')', '&', '|', '!', 't', 'f', and ','."
+  ],
+  "examples": [
+    {
+      "input": "expression = \"&(|(f))\"",
+      "output": "false",
+      "explanation": "First, evaluate |(f) --> f. The expression is now \"&(f)\".\nThen, evaluate &(f) --> f. The expression is now \"f\".\nFinally, return false."
+    },
+    {
+      "input": "expression = \"|(f,f,f,t)\"",
+      "output": "true",
+      "explanation": "The evaluation of (false OR false OR false OR true) is true."
+    },
+    {
+      "input": "expression = \"!(&(f,t))\"",
+      "output": "true",
+      "explanation": "First, evaluate &(f,t) --> (false AND true) --> false --> f. The expression is now \"!(f)\".\nThen, evaluate !(f) --> NOT false --> true. We return true."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool parseBoolExpr(string expression) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean parseBoolExpr(String expression) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def parseBoolExpr(self, expression: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def parseBoolExpr(self, expression):\n        \"\"\"\n        :type expression: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @return {boolean}\n */\nvar parseBoolExpr = function(expression) {\n    \n};",
+    "typescript": "function parseBoolExpr(expression: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool ParseBoolExpr(string expression) {\n        \n    }\n}",
+    "c": "bool parseBoolExpr(char* expression) {\n    \n}",
+    "golang": "func parseBoolExpr(expression string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun parseBoolExpr(expression: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func parseBoolExpr(_ expression: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn parse_bool_expr(expression: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @return {Boolean}\ndef parse_bool_expr(expression)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @return Boolean\n     */\n    function parseBoolExpr($expression) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool parseBoolExpr(String expression) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def parseBoolExpr(expression: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec parse_bool_expr(expression :: String.t) :: boolean\n  def parse_bool_expr(expression) do\n    \n  end\nend",
+    "erlang": "-spec parse_bool_expr(Expression :: unicode:unicode_binary()) -> boolean().\nparse_bool_expr(Expression) ->\n  .",
+    "racket": "(define/contract (parse-bool-expr expression)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"&(|(f))\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"|(f,f,f,t)\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"!(&(f,t))\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"&(|(f))\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"|(f,f,f,t)\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"!(&(f,t))\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"&(|\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"&\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"&(\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"&(|(f))&(|(f))\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"&&&&&&\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"|(f,f\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"|\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"|(\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"|(f,f,f,t)|(f,f,f,t)\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"||||||\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"!(&(\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"!\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"!(\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"!(&(f,t))!(&(f,t))\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"!!!!!!\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Write a function \"parse\" which calls helper functions \"parse_or\", \"parse_and\", \"parse_not\"."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/parsing-a-boolean-expression/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.517Z",
+    "sourceUpdatedAt": null
+  }
+}

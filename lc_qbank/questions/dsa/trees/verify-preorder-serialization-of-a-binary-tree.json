@@ -1,0 +1,165 @@
+{
+  "id": "331",
+  "slug": "verify-preorder-serialization-of-a-binary-tree",
+  "title": "Verify Preorder Serialization of a Binary Tree",
+  "category": "dsa",
+  "subcategory": "trees",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Stack",
+    "Tree",
+    "Binary Tree"
+  ],
+  "statement": "One way to serialize a binary tree is to use **preorder traversal**. When we encounter a non-null node, we record the node's value. If it is a null node, we record using a sentinel value such as `'#'`.\n\n![](./assets/verify-preorder-serialization-of-a-binary-tree-1.jpg)\n\nFor example, the above binary tree can be serialized to the string `\"9,3,4,#,#,1,#,#,2,#,6,#,#\"`, where `'#'` represents a null node.\n\nGiven a string of comma-separated values `preorder`, return `true` if it is a correct preorder traversal serialization of a binary tree.\n\nIt is **guaranteed** that each comma-separated value in the string must be either an integer or a character `'#'` representing null pointer.\n\nYou may assume that the input format is always valid.\n\n*   For example, it could never contain two consecutive commas, such as `\"1,,3\"`.\n\n**Note:** You are not allowed to reconstruct the tree.\n\n**Example 1:**\n\n```\nInput: preorder = \"9,3,4,#,#,1,#,#,2,#,6,#,#\"\nOutput: true\n```\n\n**Example 2:**\n\n```\nInput: preorder = \"1,#\"\nOutput: false\n```\n\n**Example 3:**\n\n```\nInput: preorder = \"9,#,#,1\"\nOutput: false\n```\n\n**Constraints:**\n\n*   `1 <= preorder.length <= 10^(4)`\n*   `preorder` consist of integers in the range `[0, 100]` and `'#'` separated by commas `','`.",
+  "constraints": [
+    "1 <= preorder.length <= 104",
+    "preorder consist of integers in the range [0, 100] and '#' separated by commas ','."
+  ],
+  "examples": [
+    {
+      "input": "preorder = \"9,3,4,#,#,1,#,#,2,#,6,#,#\"",
+      "output": "true",
+      "explanation": null
+    },
+    {
+      "input": "preorder = \"1,#\"",
+      "output": "false",
+      "explanation": null
+    },
+    {
+      "input": "preorder = \"9,#,#,1\"",
+      "output": "false",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isValidSerialization(string preorder) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isValidSerialization(String preorder) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isValidSerialization(self, preorder: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isValidSerialization(self, preorder):\n        \"\"\"\n        :type preorder: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} preorder\n * @return {boolean}\n */\nvar isValidSerialization = function(preorder) {\n    \n};",
+    "typescript": "function isValidSerialization(preorder: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsValidSerialization(string preorder) {\n        \n    }\n}",
+    "c": "bool isValidSerialization(char* preorder) {\n    \n}",
+    "golang": "func isValidSerialization(preorder string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isValidSerialization(preorder: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isValidSerialization(_ preorder: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_valid_serialization(preorder: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} preorder\n# @return {Boolean}\ndef is_valid_serialization(preorder)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $preorder\n     * @return Boolean\n     */\n    function isValidSerialization($preorder) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isValidSerialization(String preorder) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isValidSerialization(preorder: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_valid_serialization(preorder :: String.t) :: boolean\n  def is_valid_serialization(preorder) do\n    \n  end\nend",
+    "erlang": "-spec is_valid_serialization(Preorder :: unicode:unicode_binary()) -> boolean().\nis_valid_serialization(Preorder) ->\n  .",
+    "racket": "(define/contract (is-valid-serialization preorder)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"9,3,4,#,#,1,#,#,2,#,6,#,#\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"1,#\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"9,#,#,1\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"9,3,4,#,#,1,#,#,2,#,6,#,#\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"1,#\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"9,#,#,1\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"9,3,4,#,#,1,\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"#,#,2,#,6,#,#\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"9\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"9,\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"#,#,6,#,2,#,#,1,#,#,4,3,9\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"999999\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.579Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "id": "1095",
+  "slug": "find-in-mountain-array",
+  "title": "Find in Mountain Array",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Interactive",
+    "Ternary Search"
+  ],
+  "statement": "_(This problem is an **interactive problem**.)_\n\nYou may recall that an array `arr` is a **mountain array** if and only if:\n\n*   `arr.length >= 3`\n*   There exists some `i` with `0 < i < arr.length - 1` such that:\n    *   `arr[0] < arr[1] < ... < arr[i - 1] < arr[i]`\n    *   `arr[i] > arr[i + 1] > ... > arr[arr.length - 1]`\n\nGiven a mountain array `mountainArr`, return the **minimum** `index` such that `mountainArr.get(index) == target`. If such an `index` does not exist, return `-1`.\n\n**You cannot access the mountain array directly.** You may only access the array using a `MountainArray` interface:\n\n*   `MountainArray.get(k)` returns the element of the array at index `k` (0-indexed).\n*   `MountainArray.length()` returns the length of the array.\n\nSubmissions making more than `100` calls to `MountainArray.get` will be judged _Wrong Answer_. Also, any solutions that attempt to circumvent the judge will result in disqualification.\n\n**Example 1:**\n\n```\nInput: mountainArr = [1,2,3,4,5,3,1], target = 3\nOutput: 2\nExplanation: 3 exists in the array, at index=2 and index=5. Return the minimum index, which is 2.\n```\n\n**Example 2:**\n\n```\nthe array,\n```\n\n**Constraints:**\n\n*   `3 <= mountainArr.length() <= 10^(4)`\n*   `0 <= target <= 10^(9)`\n*   `0 <= mountainArr.get(index) <= 10^(9)`",
+  "constraints": [
+    "3 <= mountainArr.length() <= 104",
+    "0 <= target <= 109",
+    "0 <= mountainArr.get(index) <= 109"
+  ],
+  "examples": [
+    {
+      "input": "mountainArr = [1,2,3,4,5,3,1], target = 3",
+      "output": "2",
+      "explanation": "3 exists in the array, at index=2 and index=5. Return the minimum index, which is 2."
+    },
+    {
+      "input": "mountainArr = [0,1,2,4,2,1], target = 3",
+      "output": "-1",
+      "explanation": "3 does not exist in the array, so we return -1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "/**\n * // This is the MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n * class MountainArray {\n *   public:\n *     int get(int index);\n *     int length();\n * };\n */\n\nclass Solution {\npublic:\n    int findInMountainArray(int target, MountainArray &mountainArr) {\n        \n    }\n};",
+    "java": "/**\n * // This is MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface MountainArray {\n *     public int get(int index) {}\n *     public int length() {}\n * }\n */\n \nclass Solution {\n    public int findInMountainArray(int target, MountainArray mountainArr) {\n        \n    }\n}",
+    "python3": "# \"\"\"\n# This is MountainArray's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n#class MountainArray:\n#    def get(self, index: int) -> int:\n#    def length(self) -> int:\n\nclass Solution:\n    def findInMountainArray(self, target: int, mountainArr: 'MountainArray') -> int:\n        ",
+    "python": "# \"\"\"\n# This is MountainArray's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n#class MountainArray(object):\n#    def get(self, index):\n#        \"\"\"\n#        :type index: int\n#        :rtype int\n#        \"\"\"\n#\n#    def length(self):\n#        \"\"\"\n#        :rtype int\n#        \"\"\"\n\nclass Solution(object):\n    def findInMountainArray(self, target, mountainArr):\n        \"\"\"\n        :type target: integer\n        :type mountain_arr: MountainArray\n        :rtype: integer\n        \"\"\"\n        ",
+    "javascript": "/**\n * // This is the MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n * function MountainArray() {\n *     @param {number} index\n *     @return {number}\n *     this.get = function(index) {\n *         ...\n *     };\n *\n *     @return {number}\n *     this.length = function() {\n *         ...\n *     };\n * };\n */\n\n/**\n * @param {number} target\n * @param {MountainArray} mountainArr\n * @return {number}\n */\nvar findInMountainArray = function(target, mountainArr) {\n    \n};",
+    "typescript": "/**\n * // This is the MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n * class MountainArray {\n *      get(index: number): number {}\n *\n *      length(): number {}\n * }\n */\n\nfunction findInMountainArray(target: number, mountainArr: MountainArray) {\n\t\n};",
+    "csharp": "/**\n * // This is MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n * class MountainArray {\n *     public int Get(int index) {}\n *     public int Length() {}\n * }\n */\n\nclass Solution {\n    public int FindInMountainArray(int target, MountainArray mountainArr) {\n        \n    }\n}",
+    "c": "/**\n * *********************************************************************\n * // This is the MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n * *********************************************************************\n *\n * int get(MountainArray *, int index);\n * int length(MountainArray *);\n */\n\nint findInMountainArray(int target, MountainArray* mountainArr) {\n\t\n}",
+    "golang": "/**\n * // This is the MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n * type MountainArray struct {\n * }\n *\n * func (this *MountainArray) get(index int) int {}\n * func (this *MountainArray) length() int {}\n */\n\nfunc findInMountainArray(target int, mountainArr *MountainArray) int {\n    \n}",
+    "kotlin": "/**\n * // This is MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n * class MountainArray {\n *     fun get(index: Int): Int {}\n *     fun length(): Int {}\n * }\n */\n\nclass Solution {\n    fun findInMountainArray(target: Int, mountainArr: MountainArray): Int {\n        \n    }\n}",
+    "swift": "/**\n * // This is MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface MountainArray {\n *     public func get(_ index: Int) -> Int {}\n *     public func length() -> Int {}\n * }\n */\n\nclass Solution {\n    func findInMountainArray(_ target: Int, _ mountainArr: MountainArray) -> Int {\n        \n    }\n}",
+    "rust": "/**\n * // This is the MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n *  struct MountainArray;\n *  impl MountainArray {\n *     fn get(index:i32)->i32;\n *     fn length()->i32;\n * };\n */\n\nimpl Solution {\n    pub fn find_in_mountain_array(target: i32, mountainArr: &MountainArray) -> i32 {\n        \n    }\n}",
+    "ruby": "# This is MountainArray's API interface.\n# You should not implement it, or speculate about its implementation\n# class MountainArray\n#    def get(index):\n#       \n#    end\n#\n#    def length()\n#\t\t\n#\t end\n# end\n\n# @param {int} int\n# @param {MountainArray} mountain_arr\n# @return {int}\ndef findInMountainArray(target, mountainArr)\n    \nend",
+    "php": "/**\n * // This is MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n * class MountainArray {\n *     function get($index) {}\n *     function length() {}\n * }\n */\n\nclass Solution {\n    /**\n     * @param Integer $target\n     * @param MountainArray $mountainArr\n     * @return Integer\n     */\n    function findInMountainArray($target, $mountainArr) {\n        \n    }\n}",
+    "scala": "/**\n * // This is MountainArray's API interface.\n * // You should not implement it, or speculate about its implementation\n * class MountainArray {\n *     def get(index: Int): Int = {}\n *     def length(): Int = {}\n * }\n */\n\nobject Solution {\n    def findInMountainArray(value: Int, mountainArr: MountainArray): Int = {\n        \n\t}\n}"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4,5,3,1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,2,4,2,1]\n3",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4,5,3,1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,2,4,2,1]\n3",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "mountainArr = [1,2,3,4,5,3,1], target = 3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "mountainArr = [0,1,2,4,2,1], target = 3",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Based on whether A[i-1] < A[i] < A[i+1], A[i-1] < A[i] > A[i+1], or A[i-1] > A[i] > A[i+1], we are either at the left side, peak, or right side of the mountain.  We can binary search to find the peak.\r\nAfter finding the peak, we can binary search two more times to find whether the value occurs on either side of the peak."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-in-mountain-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.742Z",
+    "sourceUpdatedAt": null
+  }
+}

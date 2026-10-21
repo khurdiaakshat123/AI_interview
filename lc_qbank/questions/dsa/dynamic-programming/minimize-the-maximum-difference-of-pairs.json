@@ -1,0 +1,161 @@
+{
+  "id": "2616",
+  "slug": "minimize-the-maximum-difference-of-pairs",
+  "title": "Minimize the Maximum Difference of Pairs",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums` and an integer `p`. Find `p` pairs of indices of `nums` such that the **maximum** difference amongst all the pairs is **minimized**. Also, ensure no index appears more than once amongst the `p` pairs.\n\nNote that for a pair of elements at the index `i` and `j`, the difference of this pair is `|nums[i] - nums[j]|`, where `|x|` represents the **absolute** **value** of `x`.\n\nReturn _the **minimum** **maximum** difference among all_ `p` _pairs._ We define the maximum of an empty set to be zero.\n\n**Example 1:**\n\n```\nInput: nums = [10,1,2,7,1,3], p = 2\nOutput: 1\nExplanation: The first pair is formed from the indices 1 and 4, and the second pair is formed from the indices 2 and 5. \nThe maximum difference is max(|nums[1] - nums[4]|, |nums[2] - nums[5]|) = max(0, 1) = 1. Therefore, we return 1.\n```\n\n**Example 2:**\n\n```\nInput: nums = [4,2,1,2], p = 1\nOutput: 0\nExplanation: Let the indices 1 and 3 form a pair. The difference of that pair is |2 - 2| = 0, which is the minimum we can attain.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `0 <= nums[i] <= 10^(9)`\n*   `0 <= p <= (nums.length)/2`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "0 <= nums[i] <= 109",
+    "0 <= p <= (nums.length)/2"
+  ],
+  "examples": [
+    {
+      "input": "nums = [10,1,2,7,1,3], p = 2",
+      "output": "1",
+      "explanation": "The first pair is formed from the indices 1 and 4, and the second pair is formed from the indices 2 and 5. \nThe maximum difference is max(|nums[1] - nums[4]|, |nums[2] - nums[5]|) = max(0, 1) = 1. Therefore, we return 1."
+    },
+    {
+      "input": "nums = [4,2,1,2], p = 1",
+      "output": "0",
+      "explanation": "Let the indices 1 and 3 form a pair. The difference of that pair is |2 - 2| = 0, which is the minimum we can attain."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimizeMax(vector<int>& nums, int p) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimizeMax(int[] nums, int p) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimizeMax(self, nums: List[int], p: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimizeMax(self, nums, p):\n        \"\"\"\n        :type nums: List[int]\n        :type p: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} p\n * @return {number}\n */\nvar minimizeMax = function(nums, p) {\n    \n};",
+    "typescript": "function minimizeMax(nums: number[], p: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimizeMax(int[] nums, int p) {\n        \n    }\n}",
+    "c": "int minimizeMax(int* nums, int numsSize, int p) {\n    \n}",
+    "golang": "func minimizeMax(nums []int, p int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimizeMax(nums: IntArray, p: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimizeMax(_ nums: [Int], _ p: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimize_max(nums: Vec<i32>, p: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} p\n# @return {Integer}\ndef minimize_max(nums, p)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $p\n     * @return Integer\n     */\n    function minimizeMax($nums, $p) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimizeMax(List<int> nums, int p) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimizeMax(nums: Array[Int], p: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimize_max(nums :: [integer], p :: integer) :: integer\n  def minimize_max(nums, p) do\n    \n  end\nend",
+    "erlang": "-spec minimize_max(Nums :: [integer()], P :: integer()) -> integer().\nminimize_max(Nums, P) ->\n  .",
+    "racket": "(define/contract (minimize-max nums p)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[10,1,2,7,1,3]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,2,1,2]\n1",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[10,1,2,7,1,3]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,2,1,2]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[10,1,2]\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[7,1,3]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[10]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[10,3]\n2",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[10,1]\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[3,1,7,2,1,10]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,2,3,7,10]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[10,7,3,2,1,1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[10,10,10,10,10]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[10,1,2,7,1,3,10,1,2,7,1,3]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[20,2,4,14,2,6]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[11,2,3,8,2,4]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[9,0,1,6,0,2]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-10,-1,-2,-7,-1,-3]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,0,0]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n2",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "To minimize the answer, the array should be sorted first.",
+    "Can we use binary search here?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.281Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "id": "1497",
+  "slug": "check-if-array-pairs-are-divisible-by-k",
+  "title": "Check If Array Pairs Are Divisible by k",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "statement": "Given an array of integers `arr` of even length `n` and an integer `k`.\n\nWe want to divide the array into exactly `n / 2` pairs such that the sum of each pair is divisible by `k`.\n\nReturn `true` _If you can find a way to do that or_ `false` _otherwise_.\n\n**Example 1:**\n\n```\nInput: arr = [1,2,3,4,5,10,6,7,8,9], k = 5\nOutput: true\nExplanation: Pairs are (1,9),(2,8),(3,7),(4,6) and (5,10).\n```\n\n**Example 2:**\n\n```\nInput: arr = [1,2,3,4,5,6], k = 7\nOutput: true\nExplanation: Pairs are (1,6),(2,5) and(3,4).\n```\n\n**Example 3:**\n\n```\nInput: arr = [1,2,3,4,5,6], k = 10\nOutput: false\nExplanation: You can try all possible pairs to see that there is no way to divide arr into 3 pairs each with sum divisible by 10.\n```\n\n**Constraints:**\n\n*   `arr.length == n`\n*   `1 <= n <= 10^(5)`\n*   `n` is even.\n*   `-10^(9) <= arr[i] <= 10^(9)`\n*   `1 <= k <= 10^(5)`",
+  "constraints": [
+    "arr.length == n",
+    "1 <= n <= 105",
+    "n is even.",
+    "-109 <= arr[i] <= 109",
+    "1 <= k <= 105"
+  ],
+  "examples": [
+    {
+      "input": "arr = [1,2,3,4,5,10,6,7,8,9], k = 5",
+      "output": "true",
+      "explanation": "Pairs are (1,9),(2,8),(3,7),(4,6) and (5,10)."
+    },
+    {
+      "input": "arr = [1,2,3,4,5,6], k = 7",
+      "output": "true",
+      "explanation": "Pairs are (1,6),(2,5) and(3,4)."
+    },
+    {
+      "input": "arr = [1,2,3,4,5,6], k = 10",
+      "output": "false",
+      "explanation": "You can try all possible pairs to see that there is no way to divide arr into 3 pairs each with sum divisible by 10."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool canArrange(vector<int>& arr, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canArrange(int[] arr, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canArrange(self, arr: list[int], k: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canArrange(self, arr, k):\n        \"\"\"\n        :type arr: List[int]\n        :type k: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @param {number} k\n * @return {boolean}\n */\nvar canArrange = function(arr, k) {\n    \n};",
+    "typescript": "function canArrange(arr: number[], k: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanArrange(int[] arr, int k) {\n        \n    }\n}",
+    "c": "bool canArrange(int* arr, int arrSize, int k) {\n    \n}",
+    "golang": "func canArrange(arr []int, k int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canArrange(arr: IntArray, k: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canArrange(_ arr: [Int], _ k: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_arrange(arr: Vec<i32>, k: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @param {Integer} k\n# @return {Boolean}\ndef can_arrange(arr, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @param Integer $k\n     * @return Boolean\n     */\n    function canArrange($arr, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canArrange(List<int> arr, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canArrange(arr: Array[Int], k: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_arrange(arr :: [integer], k :: integer) :: boolean\n  def can_arrange(arr, k) do\n    \n  end\nend",
+    "erlang": "-spec can_arrange(Arr :: [integer()], K :: integer()) -> boolean().\ncan_arrange(Arr, K) ->\n  .",
+    "racket": "(define/contract (can-arrange arr k)\n  (-> (listof exact-integer?) exact-integer? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4,5,10,6,7,8,9]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2,3,4,5,6]\n7",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2,3,4,5,6]\n10",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4,5,10,6,7,8,9]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2,3,4,5,6]\n7",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2,3,4,5,6]\n10",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,2,3,4,5]\n5",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[10,6,7,8,9]\n5",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1]\n5",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,9]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2]\n5",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[9,8,7,6,10,5,4,3,2,1]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2,3,4,5,6,7,8,9,10]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[10,9,8,7,6,5,4,3,2,1]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,1,1,1,1]\n5",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[2,4,6,8,10,20,12,14,16,18]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,3,4,5,6,11,7,8,9,10]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0,1,2,3,4,9,5,6,7,8]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[-1,-2,-3,-4,-5,-10,-6,-7,-8,-9]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0,0,0,0]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,1,1,1]\n5",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0]\n5",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-1]\n5",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Keep an array of the frequencies of ((x % k) + k) % k for each x in arr.",
+    "for each i in [0, k - 1] we need to check if freq[i] == freq[k - i]",
+    "Take care of the case when i == k - i and when i == 0"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.110Z",
+    "sourceUpdatedAt": null
+  }
+}

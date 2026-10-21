@@ -1,0 +1,166 @@
+{
+  "id": "825",
+  "slug": "friends-of-appropriate-ages",
+  "title": "Friends Of Appropriate Ages",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting"
+  ],
+  "statement": "There are `n` persons on a social media website. You are given an integer array `ages` where `ages[i]` is the age of the `i^(th)` person.\n\nA Person `x` will not send a friend request to a person `y` (`x != y`) if any of the following conditions is true:\n\n*   `age[y] <= 0.5 * age[x] + 7`\n*   `age[y] > age[x]`\n*   `age[y] > 100 && age[x] < 100`\n\nOtherwise, `x` will send a friend request to `y`.\n\nNote that if `x` sends a request to `y`, `y` will not necessarily send a request to `x`. Also, a person will not send a friend request to themself.\n\nReturn _the total number of friend requests made_.\n\n**Example 1:**\n\n```\nInput: ages = [16,16]\nOutput: 2\nExplanation: 2 people friend request each other.\n```\n\n**Example 2:**\n\n```\nInput: ages = [16,17,18]\nOutput: 2\nExplanation: Friend requests are made 17 -> 16, 18 -> 17.\n```\n\n**Example 3:**\n\n```\nInput: ages = [20,30,100,110,120]\nOutput: 3\nExplanation: Friend requests are made 110 -> 100, 120 -> 110, 120 -> 100.\n```\n\n**Constraints:**\n\n*   `n == ages.length`\n*   `1 <= n <= 2 * 10^(4)`\n*   `1 <= ages[i] <= 120`",
+  "constraints": [
+    "n == ages.length",
+    "1 <= n <= 2 * 104",
+    "1 <= ages[i] <= 120"
+  ],
+  "examples": [
+    {
+      "input": "ages = [16,16]",
+      "output": "2",
+      "explanation": "2 people friend request each other."
+    },
+    {
+      "input": "ages = [16,17,18]",
+      "output": "2",
+      "explanation": "Friend requests are made 17 -> 16, 18 -> 17."
+    },
+    {
+      "input": "ages = [20,30,100,110,120]",
+      "output": "3",
+      "explanation": "Friend requests are made 110 -> 100, 120 -> 110, 120 -> 100."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numFriendRequests(vector<int>& ages) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numFriendRequests(int[] ages) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numFriendRequests(self, ages: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numFriendRequests(self, ages):\n        \"\"\"\n        :type ages: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} ages\n * @return {number}\n */\nvar numFriendRequests = function(ages) {\n    \n};",
+    "typescript": "function numFriendRequests(ages: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumFriendRequests(int[] ages) {\n        \n    }\n}",
+    "c": "int numFriendRequests(int* ages, int agesSize) {\n    \n}",
+    "golang": "func numFriendRequests(ages []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numFriendRequests(ages: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numFriendRequests(_ ages: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_friend_requests(ages: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} ages\n# @return {Integer}\ndef num_friend_requests(ages)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $ages\n     * @return Integer\n     */\n    function numFriendRequests($ages) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numFriendRequests(List<int> ages) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numFriendRequests(ages: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_friend_requests(ages :: [integer]) :: integer\n  def num_friend_requests(ages) do\n    \n  end\nend",
+    "erlang": "-spec num_friend_requests(Ages :: [integer()]) -> integer().\nnum_friend_requests(Ages) ->\n  .",
+    "racket": "(define/contract (num-friend-requests ages)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[16,16]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[16,17,18]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[20,30,100,110,120]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[16,16]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[16,17,18]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[20,30,100,110,120]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[16]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[16,16,16,16]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[32,32]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[17,17]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[15,15]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-16,-16]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/friends-of-appropriate-ages/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.064Z",
+    "sourceUpdatedAt": null
+  }
+}

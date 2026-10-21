@@ -1,0 +1,159 @@
+{
+  "id": "722",
+  "slug": "remove-comments",
+  "title": "Remove Comments",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "statement": "Given a C++ program, remove comments from it. The program source is an array of strings `source` where `source[i]` is the `i^(th)` line of the source code. This represents the result of splitting the original source code string by the newline character `'\\n'`.\n\nIn C++, there are two types of comments, line comments, and block comments.\n\n*   The string `\"//\"` denotes a line comment, which represents that it and the rest of the characters to the right of it in the same line should be ignored.\n*   The string `\"/*\"` denotes a block comment, which represents that all characters until the next (non-overlapping) occurrence of `\"*/\"` should be ignored. (Here, occurrences happen in reading order: line by line from left to right.) To be clear, the string `\"/*/\"` does not yet end the block comment, as the ending would be overlapping the beginning.\n\nThe first effective comment takes precedence over others.\n\n*   For example, if the string `\"//\"` occurs in a block comment, it is ignored.\n*   Similarly, if the string `\"/*\"` occurs in a line or block comment, it is also ignored.\n\nIf a certain line of code is empty after removing comments, you must not output that line: each string in the answer list will be non-empty.\n\nThere will be no control characters, single quote, or double quote characters.\n\n*   For example, `source = \"string s = \"/* Not a comment. */\";\"` will not be a test case.\n\nAlso, nothing else such as defines or macros will interfere with the comments.\n\nIt is guaranteed that every open block comment will eventually be closed, so `\"/*\"` outside of a line or block comment always starts a new comment.\n\nFinally, implicit newline characters can be deleted by block comments. Please see the examples below for details.\n\nAfter removing the comments from the source code, return _the source code in the same format_.\n\n**Example 1:**\n\n```\nInput: source = [\"/*Test program */\", \"int main()\", \"{ \", \"  // variable declaration \", \"int a, b, c;\", \"/* This is a test\", \"   multiline  \", \"   comment for \", \"   testing */\", \"a = b + c;\", \"}\"]\nOutput: [\"int main()\",\"{ \",\"  \",\"int a, b, c;\",\"a = b + c;\",\"}\"]\nExplanation: The line by line code is visualized as below:\n/*Test program */\nint main()\n{ \n  // variable declaration \nint a, b, c;\n/* This is a test\n   multiline  \n   comment for \n   testing */\na = b + c;\n}\nThe string /* denotes a block comment, including line 1 and lines 6-9. The string // denotes line 4 as comments.\nThe line by line output code is visualized as below:\nint main()\n{ \n  \nint a, b, c;\na = b + c;\n}\n```\n\n**Example 2:**\n\n```\nInput: source = [\"a/*comment\", \"line\", \"more_comment*/b\"]\nOutput: [\"ab\"]\nExplanation: The original source string is \"a/*comment\\nline\\nmore_comment*/b\", where we have bolded the newline characters.  After deletion, the implicit newline characters are deleted, leaving the string \"ab\", which when delimited by newline characters becomes [\"ab\"].\n```\n\n**Constraints:**\n\n*   `1 <= source.length <= 100`\n*   `0 <= source[i].length <= 80`\n*   `source[i]` consists of printable **ASCII** characters.\n*   Every open block comment is eventually closed.\n*   There are no single-quote or double-quote in the input.",
+  "constraints": [
+    "1 <= source.length <= 100",
+    "0 <= source[i].length <= 80",
+    "source[i] consists of printable ASCII characters.",
+    "Every open block comment is eventually closed.",
+    "There are no single-quote or double-quote in the input."
+  ],
+  "examples": [
+    {
+      "input": "source = [\"/*Test program */\", \"int main()\", \"{ \", \"  // variable declaration \", \"int a, b, c;\", \"/* This is a test\", \"   multiline  \", \"   comment for \", \"   testing */\", \"a = b + c;\", \"}\"]",
+      "output": "[\"int main()\",\"{ \",\"  \",\"int a, b, c;\",\"a = b + c;\",\"}\"]",
+      "explanation": "The line by line code is visualized as below:\n/*Test program */\nint main()\n{ \n  // variable declaration \nint a, b, c;\n/* This is a test\n   multiline  \n   comment for \n   testing */\na = b + c;\n}\nThe string /* denotes a block comment, including line 1 and lines 6-9. The string // denotes line 4 as comments.\nThe line by line output code is visualized as below:\nint main()\n{ \n  \nint a, b, c;\na = b + c;\n}"
+    },
+    {
+      "input": "source = [\"a/*comment\", \"line\", \"more_comment*/b\"]",
+      "output": "[\"ab\"]",
+      "explanation": "The original source string is \"a/*comment\\nline\\nmore_comment*/b\", where we have bolded the newline characters.  After deletion, the implicit newline characters are deleted, leaving the string \"ab\", which when delimited by newline characters becomes [\"ab\"]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> removeComments(vector<string>& source) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> removeComments(String[] source) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def removeComments(self, source: list[str]) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def removeComments(self, source):\n        \"\"\"\n        :type source: List[str]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} source\n * @return {string[]}\n */\nvar removeComments = function(source) {\n    \n};",
+    "typescript": "function removeComments(source: string[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> RemoveComments(string[] source) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** removeComments(char** source, int sourceSize, int* returnSize) {\n    \n}",
+    "golang": "func removeComments(source []string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun removeComments(source: Array<String>): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func removeComments(_ source: [String]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn remove_comments(source: Vec<String>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} source\n# @return {String[]}\ndef remove_comments(source)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $source\n     * @return String[]\n     */\n    function removeComments($source) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> removeComments(List<String> source) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def removeComments(source: Array[String]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec remove_comments(source :: [String.t]) :: [String.t]\n  def remove_comments(source) do\n    \n  end\nend",
+    "erlang": "-spec remove_comments(Source :: [unicode:unicode_binary()]) -> [unicode:unicode_binary()].\nremove_comments(Source) ->\n  .",
+    "racket": "(define/contract (remove-comments source)\n  (-> (listof string?) (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"/*Test program */\", \"int main()\", \"{ \", \"  // variable declaration \", \"int a, b, c;\", \"/* This is a test\", \"   multiline  \", \"   comment for \", \"   testing */\", \"a = b + c;\", \"}\"]",
+      "expectedOutput": "[\"int main()\",\"{ \",\"  \",\"int a, b, c;\",\"a = b + c;\",\"}\"]"
+    },
+    {
+      "input": "[\"a/*comment\", \"line\", \"more_comment*/b\"]",
+      "expectedOutput": "[\"ab\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"/*Test program */\", \"int main()\", \"{ \", \"  // variable declaration \", \"int a, b, c;\", \"/* This is a test\", \"   multiline  \", \"   comment for \", \"   testing */\", \"a = b + c;\", \"}\"]",
+      "expectedOutput": "[\"int main()\",\"{ \",\"  \",\"int a, b, c;\",\"a = b + c;\",\"}\"]"
+    },
+    {
+      "input": "[\"a/*comment\", \"line\", \"more_comment*/b\"]",
+      "expectedOutput": "[\"ab\"]"
+    },
+    {
+      "input": "[\"/*Test program */\",\"int main()\",\"{ \",\"  // variable declaration \",\"int a, b, c;\"]",
+      "expectedOutput": "[\"int main()\",\"{ \",\"  \",\"int a, b, c;\"]"
+    },
+    {
+      "input": "[\"/* This is a test\",\"   multiline  \",\"   comment for \",\"   testing */\",\"a = b + c;\",\"}\"]",
+      "expectedOutput": "[\"a = b + c;\",\"}\"]"
+    },
+    {
+      "input": "[\"/*Test program */\"]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[\"/*Test program */\",\"}\"]",
+      "expectedOutput": "[\"}\"]"
+    },
+    {
+      "input": "[\"/*Test program */\",\"int main()\"]",
+      "expectedOutput": "[\"int main()\"]"
+    },
+    {
+      "input": "[\"}\",\"a = b + c;\",\"   testing */\",\"   comment for \",\"   multiline  \",\"/* This is a test\",\"int a, b, c;\",\"  // variable declaration \",\"{ \",\"int main()\",\"/*Test program */\"]",
+      "expectedOutput": "[\"}\",\"a = b + c;\",\"   testing */\",\"   comment for \",\"   multiline  \"]"
+    },
+    {
+      "input": "[\"   comment for \",\"   multiline  \",\"   testing */\",\"  // variable declaration \",\"/* This is a test\",\"/*Test program */\",\"a = b + c;\",\"int a, b, c;\",\"int main()\",\"{ \",\"}\"]",
+      "expectedOutput": "[\"   comment for \",\"   multiline  \",\"   testing */\",\"  \",\"a = b + c;\",\"int a, b, c;\",\"int main()\",\"{ \",\"}\"]"
+    },
+    {
+      "input": "[\"}\",\"{ \",\"int main()\",\"int a, b, c;\",\"a = b + c;\",\"/*Test program */\",\"/* This is a test\",\"  // variable declaration \",\"   testing */\",\"   multiline  \",\"   comment for \"]",
+      "expectedOutput": "[\"}\",\"{ \",\"int main()\",\"int a, b, c;\",\"a = b + c;\",\"   multiline  \",\"   comment for \"]"
+    },
+    {
+      "input": "[\"/*Test program */\",\"/*Test program */\",\"/*Test program */\",\"/*Test program */\",\"/*Test program */\"]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "[\"a\"]"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "[\"a\",\"b\"]"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "[\"a\",\"a\"]"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "[\"ab\",\"ba\"]"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "[\"abc\",\"bca\",\"cab\"]"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "[\"one\",\"two\",\"three\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Carefully parse each line according to the following rules:\r\n\r\n* If we start a block comment and we aren't in a block, then we will skip over the next two characters and change our state to be in a block.\r\n\r\n* If we end a block comment and we are in a block, then we will skip over the next two characters and change our state to be *not* in a block.\r\n\r\n* If we start a line comment and we aren't in a block, then we will ignore the rest of the line.\r\n\r\n* If we aren't in a block comment (and it wasn't the start of a comment), we will record the character we are at.\r\n\r\n* At the end of each line, if we aren't in a block, we will record the line."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/remove-comments/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.484Z",
+    "sourceUpdatedAt": null
+  }
+}

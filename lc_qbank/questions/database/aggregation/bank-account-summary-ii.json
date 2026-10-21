@@ -1,0 +1,66 @@
+{
+  "id": "1587",
+  "slug": "bank-account-summary-ii",
+  "title": "Bank Account Summary II",
+  "category": "database",
+  "subcategory": "aggregation",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Users`\n\n```\n+--------------+---------+\n| Column Name  | Type    |\n+--------------+---------+\n| account      | int     |\n| name         | varchar |\n+--------------+---------+\naccount is the primary key (column with unique values) for this table.\nEach row of this table contains the account number of each user in the bank.\nThere will be no two users having the same name in the table.\n```\n\nTable: `Transactions`\n\n```\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| trans_id      | int     |\n| account       | int     |\n| amount        | int     |\n| transacted_on | date    |\n+---------------+---------+\ntrans_id is the primary key (column with unique values) for this table.\nEach row of this table contains all changes made to all accounts.\namount is positive if the user received money and negative if they transferred money.\nAll accounts start with a balance of 0.\n```\n\nDevelop an SQL query to retrieve the customer name and total account balance for every account holder whose net balance strictly exceeds `10000`. An account's total balance is calculated by aggregating the sum of all transaction amounts tied to that specific account number (with every account beginning at a baseline balance of 0).\n\nThe final output table can be returned in **any order**.\n\nRefer to the example below for the expected output structure.\n\n**Example 1:**\n\n```\nInput: \nUsers table:\n+------------+--------------+\n| account    | name         |\n+------------+--------------+\n| 900001     | Alice        |\n| 900002     | Bob          |\n| 900003     | Charlie      |\n+------------+--------------+\nTransactions table:\n+------------+------------+------------+---------------+\n| trans_id   | account    | amount     | transacted_on |\n+------------+------------+------------+---------------+\n| 1          | 900001     | 7000       |  2020-08-01   |\n| 2          | 900001     | 7000       |  2020-09-01   |\n| 3          | 900001     | -3000      |  2020-09-02   |\n| 4          | 900002     | 1000       |  2020-09-12   |\n| 5          | 900003     | 6000       |  2020-08-07   |\n| 6          | 900003     | 6000       |  2020-09-07   |\n| 7          | 900003     | -4000      |  2020-09-11   |\n+------------+------------+------------+---------------+\nOutput: \n+------------+------------+\n| name       | balance    |\n+------------+------------+\n| Alice      | 11000      |\n+------------+------------+\nExplanation: \nAlice's balance is (7000 + 7000 - 3000) = 11000.\nBob's balance is 1000.\nCharlie's balance is (6000 + 6000 - 4000) = 8000.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Users table:\n+------------+--------------+\n| account    | name         |\n+------------+--------------+\n| 900001     | Alice        |\n| 900002     | Bob          |\n| 900003     | Charlie      |\n+------------+--------------+\nTransactions table:\n+------------+------------+------------+---------------+\n| trans_id   | account    | amount     | transacted_on |\n+------------+------------+------------+---------------+\n| 1          | 900001     | 7000       |  2020-08-01   |\n| 2          | 900001     | 7000       |  2020-09-01   |\n| 3          | 900001     | -3000      |  2020-09-02   |\n| 4          | 900002     | 1000       |  2020-09-12   |\n| 5          | 900003     | 6000       |  2020-08-07   |\n| 6          | 900003     | 6000       |  2020-09-07   |\n| 7          | 900003     | -4000      |  2020-09-11   |\n+------------+------------+------------+---------------+",
+      "output": "+------------+------------+\n| name       | balance    |\n+------------+------------+\n| Alice      | 11000      |\n+------------+------------+",
+      "explanation": "Alice's balance is (7000 + 7000 - 3000) = 11000.\nBob's balance is 1000.\nCharlie's balance is (6000 + 6000 - 4000) = 8000."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef account_summary(users: pd.DataFrame, transactions: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"Users\": [\"account\", \"name\"], \"Transactions\": [\"trans_id\", \"account\", \"amount\", \"transacted_on\"]}, \"rows\": {\"Users\": [[900001, \"Alice\"], [900002, \"Bob\"], [900003, \"Charlie\"]], \"Transactions\": [[1, 900001, 7000, \"2020-08-01\"], [2, 900001, 7000, \"2020-09-01\"], [3, 900001, -3000, \"2020-09-02\"], [4, 900002, 1000, \"2020-09-12\"], [5, 900003, 6000, \"2020-08-07\"], [6, 900003, 6000, \"2020-09-07\"], [7, 900003, -4000, \"2020-09-11\"]]}}",
+      "expectedOutput": "+------------+------------+\n| name       | balance    |\n+------------+------------+\n| Alice      | 11000      |\n+------------+------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"Users\": [\"account\", \"name\"], \"Transactions\": [\"trans_id\", \"account\", \"amount\", \"transacted_on\"]}, \"rows\": {\"Users\": [[900001, \"Alice\"], [900002, \"Bob\"], [900003, \"Charlie\"]], \"Transactions\": [[1, 900001, 7000, \"2020-08-01\"], [2, 900001, 7000, \"2020-09-01\"], [3, 900001, -3000, \"2020-09-02\"], [4, 900002, 1000, \"2020-09-12\"], [5, 900003, 6000, \"2020-08-07\"], [6, 900003, 6000, \"2020-09-07\"], [7, 900003, -4000, \"2020-09-11\"]]}}",
+      "expectedOutput": "+------------+------------+\n| name       | balance    |\n+------------+------------+\n| Alice      | 11000      |\n+------------+------------+"
+    },
+    {
+      "input": "Users table:\n+------------+--------------+\n| account    | name         |\n+------------+--------------+\n| 900001     | Alice        |\n| 900002     | Bob          |\n| 900003     | Charlie      |\n+------------+--------------+\nTransactions table:\n+------------+------------+------------+---------------+\n| trans_id   | account    | amount     | transacted_on |\n+------------+------------+------------+---------------+\n| 1          | 900001     | 7000       |  2020-08-01   |\n| 2          | 900001     | 7000       |  2020-09-01   |\n| 3          | 900001     | -3000      |  2020-09-02   |\n| 4          | 900002     | 1000       |  2020-09-12   |\n| 5          | 900003     | 6000       |  2020-08-07   |\n| 6          | 900003     | 6000       |  2020-09-07   |\n| 7          | 900003     | -4000      |  2020-09-11   |\n+------------+------------+------------+---------------+",
+      "expectedOutput": "+------------+------------+\n| name       | balance    |\n+------------+------------+\n| Alice      | 11000      |\n+------------+------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Users (account int, name varchar(20))\n\nCreate table If Not Exists Transactions (trans_id int, account int, amount int, transacted_on date)\n\nTruncate table Users\n\nTruncate table Transactions",
+  "sqlSetup": [
+    "insert into Users (account, name) values ('900001', 'Alice')",
+    "insert into Users (account, name) values ('900002', 'Bob')",
+    "insert into Users (account, name) values ('900003', 'Charlie')",
+    "insert into Transactions (trans_id, account, amount, transacted_on) values ('1', '900001', '7000', '2020-08-01')",
+    "insert into Transactions (trans_id, account, amount, transacted_on) values ('2', '900001', '7000', '2020-09-01')",
+    "insert into Transactions (trans_id, account, amount, transacted_on) values ('3', '900001', '-3000', '2020-09-02')",
+    "insert into Transactions (trans_id, account, amount, transacted_on) values ('4', '900002', '1000', '2020-09-12')",
+    "insert into Transactions (trans_id, account, amount, transacted_on) values ('5', '900003', '6000', '2020-08-07')",
+    "insert into Transactions (trans_id, account, amount, transacted_on) values ('6', '900003', '6000', '2020-09-07')",
+    "insert into Transactions (trans_id, account, amount, transacted_on) values ('7', '900003', '-4000', '2020-09-11')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/bank-account-summary-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.410Z",
+    "sourceUpdatedAt": null
+  }
+}

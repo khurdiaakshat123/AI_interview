@@ -1,0 +1,63 @@
+{
+  "id": "1174",
+  "slug": "immediate-food-delivery-ii",
+  "title": "Immediate Food Delivery II",
+  "category": "database",
+  "subcategory": "date-time",
+  "difficulty": "Medium",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Delivery`\n\n```\n+-----------------------------+---------+\n| Column Name                 | Type    |\n+-----------------------------+---------+\n| delivery_id                 | int     |\n| customer_id                 | int     |\n| order_date                  | date    |\n| customer_pref_delivery_date | date    |\n+-----------------------------+---------+\ndelivery_id is the column of unique values of this table.\nThe table holds information about food delivery to customers that make orders at some date and specify a preferred delivery date (on the same order date or after it).\n```\n\nIf the customer's preferred delivery date is the same as the order date, then the order is called **immediate;** otherwise, it is called **scheduled**.\n\nThe **first order** of a customer is the order with the earliest order date that the customer made. It is guaranteed that a customer has precisely one first order.\n\nWrite a solution to find the percentage of immediate orders in the first orders of all customers, **rounded to 2 decimal places**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nDelivery table:\n+-------------+-------------+------------+-----------------------------+\n| delivery_id | customer_id | order_date | customer_pref_delivery_date |\n+-------------+-------------+------------+-----------------------------+\n| 1           | 1           | 2019-08-01 | 2019-08-02                  |\n| 2           | 2           | 2019-08-02 | 2019-08-02                  |\n| 3           | 1           | 2019-08-11 | 2019-08-12                  |\n| 4           | 3           | 2019-08-24 | 2019-08-24                  |\n| 5           | 3           | 2019-08-21 | 2019-08-22                  |\n| 6           | 2           | 2019-08-11 | 2019-08-13                  |\n| 7           | 4           | 2019-08-09 | 2019-08-09                  |\n+-------------+-------------+------------+-----------------------------+\nOutput: \n+----------------------+\n| immediate_percentage |\n+----------------------+\n| 50.00                |\n+----------------------+\nExplanation: \nThe customer id 1 has a first order with delivery id 1 and it is scheduled.\nThe customer id 2 has a first order with delivery id 2 and it is immediate.\nThe customer id 3 has a first order with delivery id 5 and it is scheduled.\nThe customer id 4 has a first order with delivery id 7 and it is immediate.\nHence, half the customers have immediate first orders.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Delivery table:\n+-------------+-------------+------------+-----------------------------+\n| delivery_id | customer_id | order_date | customer_pref_delivery_date |\n+-------------+-------------+------------+-----------------------------+\n| 1           | 1           | 2019-08-01 | 2019-08-02                  |\n| 2           | 2           | 2019-08-02 | 2019-08-02                  |\n| 3           | 1           | 2019-08-11 | 2019-08-12                  |\n| 4           | 3           | 2019-08-24 | 2019-08-24                  |\n| 5           | 3           | 2019-08-21 | 2019-08-22                  |\n| 6           | 2           | 2019-08-11 | 2019-08-13                  |\n| 7           | 4           | 2019-08-09 | 2019-08-09                  |\n+-------------+-------------+------------+-----------------------------+",
+      "output": "+----------------------+\n| immediate_percentage |\n+----------------------+\n| 50.00                |\n+----------------------+",
+      "explanation": "The customer id 1 has a first order with delivery id 1 and it is scheduled.\nThe customer id 2 has a first order with delivery id 2 and it is immediate.\nThe customer id 3 has a first order with delivery id 5 and it is scheduled.\nThe customer id 4 has a first order with delivery id 7 and it is immediate.\nHence, half the customers have immediate first orders."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef immediate_food_delivery(delivery: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Delivery\":[\"delivery_id\",\"customer_id\",\"order_date\",\"customer_pref_delivery_date\"]},\"rows\":{\"Delivery\":[[1,1,\"2019-08-01\",\"2019-08-02\"],[2,2,\"2019-08-02\",\"2019-08-02\"],[3,1,\"2019-08-11\",\"2019-08-12\"],[4,3,\"2019-08-24\",\"2019-08-24\"],[5,3,\"2019-08-21\",\"2019-08-22\"],[6,2,\"2019-08-11\",\"2019-08-13\"],[7,4,\"2019-08-09\",\"2019-08-09\"]]}}",
+      "expectedOutput": "+----------------------+\n| immediate_percentage |\n+----------------------+\n| 50.00                |\n+----------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Delivery\":[\"delivery_id\",\"customer_id\",\"order_date\",\"customer_pref_delivery_date\"]},\"rows\":{\"Delivery\":[[1,1,\"2019-08-01\",\"2019-08-02\"],[2,2,\"2019-08-02\",\"2019-08-02\"],[3,1,\"2019-08-11\",\"2019-08-12\"],[4,3,\"2019-08-24\",\"2019-08-24\"],[5,3,\"2019-08-21\",\"2019-08-22\"],[6,2,\"2019-08-11\",\"2019-08-13\"],[7,4,\"2019-08-09\",\"2019-08-09\"]]}}",
+      "expectedOutput": "+----------------------+\n| immediate_percentage |\n+----------------------+\n| 50.00                |\n+----------------------+"
+    },
+    {
+      "input": "Delivery table:\n+-------------+-------------+------------+-----------------------------+\n| delivery_id | customer_id | order_date | customer_pref_delivery_date |\n+-------------+-------------+------------+-----------------------------+\n| 1           | 1           | 2019-08-01 | 2019-08-02                  |\n| 2           | 2           | 2019-08-02 | 2019-08-02                  |\n| 3           | 1           | 2019-08-11 | 2019-08-12                  |\n| 4           | 3           | 2019-08-24 | 2019-08-24                  |\n| 5           | 3           | 2019-08-21 | 2019-08-22                  |\n| 6           | 2           | 2019-08-11 | 2019-08-13                  |\n| 7           | 4           | 2019-08-09 | 2019-08-09                  |\n+-------------+-------------+------------+-----------------------------+",
+      "expectedOutput": "+----------------------+\n| immediate_percentage |\n+----------------------+\n| 50.00                |\n+----------------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Delivery (delivery_id int, customer_id int, order_date date, customer_pref_delivery_date date)\n\nTruncate table Delivery",
+  "sqlSetup": [
+    "insert into Delivery (delivery_id, customer_id, order_date, customer_pref_delivery_date) values ('1', '1', '2019-08-01', '2019-08-02')",
+    "insert into Delivery (delivery_id, customer_id, order_date, customer_pref_delivery_date) values ('2', '2', '2019-08-02', '2019-08-02')",
+    "insert into Delivery (delivery_id, customer_id, order_date, customer_pref_delivery_date) values ('3', '1', '2019-08-11', '2019-08-12')",
+    "insert into Delivery (delivery_id, customer_id, order_date, customer_pref_delivery_date) values ('4', '3', '2019-08-24', '2019-08-24')",
+    "insert into Delivery (delivery_id, customer_id, order_date, customer_pref_delivery_date) values ('5', '3', '2019-08-21', '2019-08-22')",
+    "insert into Delivery (delivery_id, customer_id, order_date, customer_pref_delivery_date) values ('6', '2', '2019-08-11', '2019-08-13')",
+    "insert into Delivery (delivery_id, customer_id, order_date, customer_pref_delivery_date) values ('7', '4', '2019-08-09', '2019-08-09')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/immediate-food-delivery-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.440Z",
+    "sourceUpdatedAt": null
+  }
+}

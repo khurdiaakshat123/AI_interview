@@ -1,0 +1,166 @@
+{
+  "id": "1278",
+  "slug": "palindrome-partitioning-iii",
+  "title": "Palindrome Partitioning III",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given a string `s` containing lowercase letters and an integer `k`. You need to :\n\n*   First, change some characters of `s` to other lowercase English letters.\n*   Then divide `s` into `k` non-empty disjoint substrings such that each substring is a palindrome.\n\nReturn _the minimal number of characters that you need to change to divide the string_.\n\n**Example 1:**\n\n```\nInput: s = \"abc\", k = 2\nOutput: 1\nExplanation: You can split the string into \"ab\" and \"c\", and change 1 character in \"ab\" to make it palindrome.\n```\n\n**Example 2:**\n\n```\nInput: s = \"aabbc\", k = 3\nOutput: 0\nExplanation: You can split the string into \"aa\", \"bb\" and \"c\", all of them are palindrome.\n```\n\n**Example 3:**\n\n```\nInput: s = \"leetcode\", k = 8\nOutput: 0\n```\n\n**Constraints:**\n\n*   `1 <= k <= s.length <= 100`.\n*   `s` only contains lowercase English letters.",
+  "constraints": [
+    "1 <= k <= s.length <= 100.",
+    "s only contains lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abc\", k = 2",
+      "output": "1",
+      "explanation": " You can split the string into \"ab\" and \"c\", and change 1 character in \"ab\" to make it palindrome."
+    },
+    {
+      "input": "s = \"aabbc\", k = 3",
+      "output": "0",
+      "explanation": " You can split the string into \"aa\", \"bb\" and \"c\", all of them are palindrome."
+    },
+    {
+      "input": "s = \"leetcode\", k = 8",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int palindromePartition(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int palindromePartition(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def palindromePartition(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def palindromePartition(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar palindromePartition = function(s, k) {\n    \n};",
+    "typescript": "function palindromePartition(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int PalindromePartition(string s, int k) {\n        \n    }\n}",
+    "c": "int palindromePartition(char* s, int k) {\n    \n}",
+    "golang": "func palindromePartition(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun palindromePartition(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func palindromePartition(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn palindrome_partition(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef palindrome_partition(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function palindromePartition($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int palindromePartition(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def palindromePartition(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec palindrome_partition(s :: String.t, k :: integer) :: integer\n  def palindrome_partition(s, k) do\n    \n  end\nend",
+    "erlang": "-spec palindrome_partition(S :: unicode:unicode_binary(), K :: integer()) -> integer().\npalindrome_partition(S, K) ->\n  .",
+    "racket": "(define/contract (palindrome-partition s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abc\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aabbc\"\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"leetcode\"\n8",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abc\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aabbc\"\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"leetcode\"\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"bc\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"cba\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcabc\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaa\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abccba\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ABC\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"edcba\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aab\"\n2",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For each substring calculate the minimum number of steps to make it palindrome and store it in a table.",
+    "Create a dp(pos, cnt) which means the minimum number of characters changed for the suffix of s starting on pos splitting the suffix on cnt chunks."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/palindrome-partitioning-iii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.466Z",
+    "sourceUpdatedAt": null
+  }
+}

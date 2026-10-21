@@ -1,0 +1,154 @@
+{
+  "id": "72",
+  "slug": "edit-distance",
+  "title": "Edit Distance",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "Given two strings `word1` and `word2`, return _the minimum number of operations required to convert `word1` to `word2`_.\n\nYou have the following three operations permitted on a word:\n\n*   Insert a character\n*   Delete a character\n*   Replace a character\n\n**Example 1:**\n\n```\nInput: word1 = \"horse\", word2 = \"ros\"\nOutput: 3\nExplanation: \nhorse -> rorse (replace 'h' with 'r')\nrorse -> rose (remove 'r')\nrose -> ros (remove 'e')\n```\n\n**Example 2:**\n\n```\nInput: word1 = \"intention\", word2 = \"execution\"\nOutput: 5\nExplanation: \nintention -> inention (remove 't')\ninention -> enention (replace 'i' with 'e')\nenention -> exention (replace 'n' with 'x')\nexention -> exection (replace 'n' with 'c')\nexection -> execution (insert 'u')\n```\n\n**Constraints:**\n\n*   `0 <= word1.length, word2.length <= 500`\n*   `word1` and `word2` consist of lowercase English letters.",
+  "constraints": [
+    "0 <= word1.length, word2.length <= 500",
+    "word1 and word2 consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "word1 = \"horse\", word2 = \"ros\"",
+      "output": "3",
+      "explanation": "horse -> rorse (replace 'h' with 'r')\nrorse -> rose (remove 'r')\nrose -> ros (remove 'e')"
+    },
+    {
+      "input": "word1 = \"intention\", word2 = \"execution\"",
+      "output": "5",
+      "explanation": "intention -> inention (remove 't')\ninention -> enention (replace 'i' with 'e')\nenention -> exention (replace 'n' with 'x')\nexention -> exection (replace 'n' with 'c')\nexection -> execution (insert 'u')"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minDistance(string word1, string word2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minDistance(String word1, String word2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minDistance(self, word1: str, word2: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minDistance(self, word1, word2):\n        \"\"\"\n        :type word1: str\n        :type word2: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word1\n * @param {string} word2\n * @return {number}\n */\nvar minDistance = function(word1, word2) {\n    \n};",
+    "typescript": "function minDistance(word1: string, word2: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinDistance(string word1, string word2) {\n        \n    }\n}",
+    "c": "int minDistance(char* word1, char* word2) {\n    \n}",
+    "golang": "func minDistance(word1 string, word2 string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minDistance(word1: String, word2: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minDistance(_ word1: String, _ word2: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_distance(word1: String, word2: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} word1\n# @param {String} word2\n# @return {Integer}\ndef min_distance(word1, word2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word1\n     * @param String $word2\n     * @return Integer\n     */\n    function minDistance($word1, $word2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minDistance(String word1, String word2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minDistance(word1: String, word2: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_distance(word1 :: String.t, word2 :: String.t) :: integer\n  def min_distance(word1, word2) do\n    \n  end\nend",
+    "erlang": "-spec min_distance(Word1 :: unicode:unicode_binary(), Word2 :: unicode:unicode_binary()) -> integer().\nmin_distance(Word1, Word2) ->\n  .",
+    "racket": "(define/contract (min-distance word1 word2)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"horse\"\n\"ros\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"intention\"\n\"execution\"",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"horse\"\n\"ros\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"intention\"\n\"execution\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"ho\"\n\"ros\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"rse\"\n\"ros\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"h\"\n\"ros\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"esroh\"\n\"ros\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"horsehorse\"\n\"ros\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"hhhhh\"\n\"ros\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"horseesroh\"\n\"ros\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"HORSE\"\n\"ros\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"a\"\n\"ros\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"b\"\n\"ros\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aa\"\n\"ros\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"ab\"\n\"ros\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"ba\"\n\"ros\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aba\"\n\"ros\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abba\"\n\"ros\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaa\"\n\"ros\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcde\"\n\"ros\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"edcba\"\n\"ros\"",
+      "expectedOutput": "5"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/edit-distance/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.949Z",
+    "sourceUpdatedAt": null
+  }
+}

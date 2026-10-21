@@ -1,0 +1,155 @@
+{
+  "id": "131",
+  "slug": "palindrome-partitioning",
+  "title": "Palindrome Partitioning",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Backtracking"
+  ],
+  "statement": "Given a string `s`, partition `s` such that every substring of the partition is a **palindrome**. Return _all possible palindrome partitioning of_ `s`.\n\n**Example 1:**\n\n```\nInput: s = \"aab\"\nOutput: [[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]\n```\n\n**Example 2:**\n\n```\nInput: s = \"a\"\nOutput: [[\"a\"]]\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 16`\n*   `s` contains only lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 16",
+    "s contains only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aab\"",
+      "output": "[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]",
+      "explanation": null
+    },
+    {
+      "input": "s = \"a\"",
+      "output": "[[\"a\"]]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<string>> partition(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<String>> partition(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def partition(self, s: str) -> list[list[str]]:\n        ",
+    "python": "class Solution(object):\n    def partition(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: List[List[str]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string[][]}\n */\nvar partition = function(s) {\n    \n};",
+    "typescript": "function partition(s: string): string[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<string>> Partition(string s) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nchar*** partition(char* s, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func partition(s string) [][]string {\n    \n}",
+    "kotlin": "class Solution {\n    fun partition(s: String): List<List<String>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func partition(_ s: String) -> [[String]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn partition(s: String) -> Vec<Vec<String>> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String[][]}\ndef partition(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String[][]\n     */\n    function partition($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<String>> partition(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def partition(s: String): List[List[String]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec partition(s :: String.t) :: [[String.t]]\n  def partition(s) do\n    \n  end\nend",
+    "erlang": "-spec partition(S :: unicode:unicode_binary()) -> [[unicode:unicode_binary()]].\npartition(S) ->\n  .",
+    "racket": "(define/contract (partition s)\n  (-> string? (listof (listof string?)))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "[[\"a\"]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "[[\"a\"]]"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "[[\"a\",\"b\"]]"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "[[\"a\",\"a\"],[\"aa\"]]"
+    },
+    {
+      "input": "\"baa\"",
+      "expectedOutput": "[[\"b\",\"a\",\"a\"],[\"b\",\"aa\"]]"
+    },
+    {
+      "input": "\"aabaab\"",
+      "expectedOutput": "[[\"a\",\"a\",\"b\",\"a\",\"a\",\"b\"],[\"a\",\"a\",\"b\",\"aa\",\"b\"],[\"a\",\"a\",\"baab\"],[\"a\",\"aba\",\"a\",\"b\"],[\"aa\",\"b\",\"a\",\"a\",\"b\"],[\"aa\",\"b\",\"aa\",\"b\"],[\"aa\",\"baab\"],[\"aabaa\",\"b\"]]"
+    },
+    {
+      "input": "\"aaa\"",
+      "expectedOutput": "[[\"a\",\"a\",\"a\"],[\"a\",\"aa\"],[\"aa\",\"a\"],[\"aaa\"]]"
+    },
+    {
+      "input": "\"aabbaa\"",
+      "expectedOutput": "[[\"a\",\"a\",\"b\",\"b\",\"a\",\"a\"],[\"a\",\"a\",\"b\",\"b\",\"aa\"],[\"a\",\"a\",\"bb\",\"a\",\"a\"],[\"a\",\"a\",\"bb\",\"aa\"],[\"a\",\"abba\",\"a\"],[\"aa\",\"b\",\"b\",\"a\",\"a\"],[\"aa\",\"b\",\"b\",\"aa\"],[\"aa\",\"bb\",\"a\",\"a\"],[\"aa\",\"bb\",\"aa\"],[\"aabbaa\"]]"
+    },
+    {
+      "input": "\"AAB\"",
+      "expectedOutput": "[[\"A\",\"A\",\"B\"],[\"AA\",\"B\"]]"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "[[\"b\"]]"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "[[\"b\",\"a\"]]"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "[[\"a\",\"b\",\"a\"],[\"aba\"]]"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "[[\"a\",\"b\",\"b\",\"a\"],[\"a\",\"bb\",\"a\"],[\"abba\"]]"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "[[\"a\",\"a\",\"a\",\"a\",\"a\"],[\"a\",\"a\",\"a\",\"aa\"],[\"a\",\"a\",\"aa\",\"a\"],[\"a\",\"a\",\"aaa\"],[\"a\",\"aa\",\"a\",\"a\"],[\"a\",\"aa\",\"aa\"],[\"a\",\"aaa\",\"a\"],[\"a\",\"aaaa\"],[\"aa\",\"a\",\"a\",\"a\"],[\"aa\",\"a\",\"aa\"],[\"aa\",\"aa\",\"a\"],[\"aa\",\"aaa\"],[\"aaa\",\"a\",\"a\"],[\"aaa\",\"aa\"],[\"aaaa\",\"a\"],[\"aaaaa\"]]"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "[[\"a\",\"b\",\"c\",\"d\",\"e\"]]"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "[[\"e\",\"d\",\"c\",\"b\",\"a\"]]"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "[[\"a\",\"A\"]]"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "[[\"0\"]]"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "[[\"1\",\"2\",\"1\"],[\"121\"]]"
+    },
+    {
+      "input": "\"racecar\"",
+      "expectedOutput": "[[\"r\",\"a\",\"c\",\"e\",\"c\",\"a\",\"r\"],[\"r\",\"a\",\"cec\",\"a\",\"r\"],[\"r\",\"aceca\",\"r\"],[\"racecar\"]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/palindrome-partitioning/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.473Z",
+    "sourceUpdatedAt": null
+  }
+}

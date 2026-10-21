@@ -1,0 +1,113 @@
+{
+  "id": "3377",
+  "slug": "digit-operations-to-make-two-integers-equal",
+  "title": "Digit Operations to Make Two Integers Equal",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Number Theory",
+    "Shortest Path"
+  ],
+  "statement": "You are given two integers `n` and `m` that consist of the **same** number of digits.\n\nYou can perform the following operations **any** number of times:\n\n*   Choose **any** digit from `n` that is not 9 and **increase** it by 1.\n*   Choose **any** digit from `n` that is not 0 and **decrease** it by 1.\n\nThe integer `n` must not be a prime number at any point, including its original value and after each operation.\n\nThe cost of a transformation is the sum of **all** values that `n` takes throughout the operations performed.\n\nReturn the **minimum** cost to transform `n` into `m`. If it is impossible, return -1.\n\n**Example 1:**\n\n**Input:** n = 10, m = 12\n\n**Output:** 85\n\n**Explanation:**\n\nWe perform the following operations:\n\n*   Increase the first digit, now `n = **2**0`.\n*   Increase the second digit, now `n = 2**1**`.\n*   Increase the second digit, now `n = 2**2**`.\n*   Decrease the first digit, now `n = **1**2`.\n\n**Example 2:**\n\n**Input:** n = 4, m = 8\n\n**Output:** \\-1\n\n**Explanation:**\n\nIt is impossible to make `n` equal to `m`.\n\n**Example 3:**\n\n**Input:** n = 6, m = 2\n\n**Output:** \\-1\n\n**Explanation:** \n\nSince 2 is already a prime, we can't make `n` equal to `m`.\n\n**Constraints:**\n\n*   `1 <= n, m < 10^(4)`\n*   `n` and `m` consist of the same number of digits.",
+  "constraints": [
+    "1 <= n, m < 104",
+    "n and m consist of the same number of digits."
+  ],
+  "examples": [
+    {
+      "input": "n = 10, m = 12",
+      "output": "85",
+      "explanation": null
+    },
+    {
+      "input": "n = 4, m = 8",
+      "output": "-1",
+      "explanation": null
+    },
+    {
+      "input": "n = 6, m = 2",
+      "output": "-1",
+      "explanation": " "
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minOperations(int n, int m) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minOperations(int n, int m) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, n: int, m: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, n, m):\n        \"\"\"\n        :type n: int\n        :type m: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} m\n * @return {number}\n */\nvar minOperations = function(n, m) {\n    \n};",
+    "typescript": "function minOperations(n: number, m: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinOperations(int n, int m) {\n        \n    }\n}",
+    "c": "int minOperations(int n, int m) {\n    \n}",
+    "golang": "func minOperations(n int, m int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(n: Int, m: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ n: Int, _ m: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(n: i32, m: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} m\n# @return {Integer}\ndef min_operations(n, m)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $m\n     * @return Integer\n     */\n    function minOperations($n, $m) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(int n, int m) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(n: Int, m: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(n :: integer, m :: integer) :: integer\n  def min_operations(n, m) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(N :: integer(), M :: integer()) -> integer().\nmin_operations(N, M) ->\n  .",
+    "racket": "(define/contract (min-operations n m)\n  (-> exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "10\n12",
+      "expectedOutput": "85"
+    },
+    {
+      "input": "4\n8",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "6\n2",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "10\n12",
+      "expectedOutput": "85"
+    },
+    {
+      "input": "4\n8",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "6\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "n = 10, m = 12",
+      "expectedOutput": "85"
+    },
+    {
+      "input": "n = 4, m = 8",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "n = 6, m = 2",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider a directed, weighted graph where an edge exists from a node <code>x</code> to a node <code>y</code> if and only if <code>x</code> can be transformed into <code>y</code> through a single operation.",
+    "Apply a shortest path algorithm on this graph to find the shortest path from <code>n</code> to <code>m</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/digit-operations-to-make-two-integers-equal/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.673Z",
+    "sourceUpdatedAt": null
+  }
+}

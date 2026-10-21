@@ -1,0 +1,159 @@
+{
+  "id": "1078",
+  "slug": "occurrences-after-bigram",
+  "title": "Occurrences After Bigram",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Easy",
+  "tags": [
+    "String"
+  ],
+  "statement": "Given two strings `first` and `second`, consider occurrences in some text of the form `\"first second third\"`, where `second` comes immediately after `first`, and `third` comes immediately after `second`.\n\nReturn _an array of all the words_ `third` _for each occurrence of_ `\"first second third\"`.\n\n**Example 1:**\n\n```\nInput: text = \"alice is a good girl she is a good student\", first = \"a\", second = \"good\"\nOutput: [\"girl\",\"student\"]\n```\n\n**Example 2:**\n\n```\nInput: text = \"we will we will rock you\", first = \"we\", second = \"will\"\nOutput: [\"we\",\"rock\"]\n```\n\n**Constraints:**\n\n*   `1 <= text.length <= 1000`\n*   `text` consists of lowercase English letters and spaces.\n*   All the words in `text` are separated by **a single space**.\n*   `1 <= first.length, second.length <= 10`\n*   `first` and `second` consist of lowercase English letters.\n*   `text` will not have any leading or trailing spaces.",
+  "constraints": [
+    "1 <= text.length <= 1000",
+    "text consists of lowercase English letters and spaces.",
+    "All the words in text are separated by a single space.",
+    "1 <= first.length, second.length <= 10",
+    "first and second consist of lowercase English letters.",
+    "text will not have any leading or trailing spaces."
+  ],
+  "examples": [
+    {
+      "input": "text = \"alice is a good girl she is a good student\", first = \"a\", second = \"good\"",
+      "output": "[\"girl\",\"student\"]",
+      "explanation": null
+    },
+    {
+      "input": "text = \"we will we will rock you\", first = \"we\", second = \"will\"",
+      "output": "[\"we\",\"rock\"]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> findOcurrences(string text, string first, string second) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String[] findOcurrences(String text, String first, String second) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findOcurrences(self, text: str, first: str, second: str) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def findOcurrences(self, text, first, second):\n        \"\"\"\n        :type text: str\n        :type first: str\n        :type second: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} text\n * @param {string} first\n * @param {string} second\n * @return {string[]}\n */\nvar findOcurrences = function(text, first, second) {\n    \n};",
+    "typescript": "function findOcurrences(text: string, first: string, second: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public string[] FindOcurrences(string text, string first, string second) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** findOcurrences(char* text, char* first, char* second, int* returnSize) {\n    \n}",
+    "golang": "func findOcurrences(text string, first string, second string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findOcurrences(text: String, first: String, second: String): Array<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findOcurrences(_ text: String, _ first: String, _ second: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_ocurrences(text: String, first: String, second: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} text\n# @param {String} first\n# @param {String} second\n# @return {String[]}\ndef find_ocurrences(text, first, second)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $text\n     * @param String $first\n     * @param String $second\n     * @return String[]\n     */\n    function findOcurrences($text, $first, $second) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> findOcurrences(String text, String first, String second) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findOcurrences(text: String, first: String, second: String): Array[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_ocurrences(text :: String.t, first :: String.t, second :: String.t) :: [String.t]\n  def find_ocurrences(text, first, second) do\n    \n  end\nend",
+    "erlang": "-spec find_ocurrences(Text :: unicode:unicode_binary(), First :: unicode:unicode_binary(), Second :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nfind_ocurrences(Text, First, Second) ->\n  .",
+    "racket": "(define/contract (find-ocurrences text first second)\n  (-> string? string? string? (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"alice is a good girl she is a good student\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[\"girl\",\"student\"]"
+    },
+    {
+      "input": "\"we will we will rock you\"\n\"we\"\n\"will\"",
+      "expectedOutput": "[\"we\",\"rock\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"alice is a good girl she is a good student\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[\"girl\",\"student\"]"
+    },
+    {
+      "input": "\"we will we will rock you\"\n\"we\"\n\"will\"",
+      "expectedOutput": "[\"we\",\"rock\"]"
+    },
+    {
+      "input": "\"alice is a good girl \"\n\"a\"\n\"good\"",
+      "expectedOutput": "[\"girl\"]"
+    },
+    {
+      "input": "\"she is a good student\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[\"student\"]"
+    },
+    {
+      "input": "\"a\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"al\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"tneduts doog a si ehs lrig doog a si ecila\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aaaaaa\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"b\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aa\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"ab\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"ba\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aba\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"abba\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aaaaa\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"abcde\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"edcba\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aab\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aA\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"0\"\n\"a\"\n\"good\"",
+      "expectedOutput": "[]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Split the string into words, then look at adjacent triples of words."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/occurrences-after-bigram/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.347Z",
+    "sourceUpdatedAt": null
+  }
+}

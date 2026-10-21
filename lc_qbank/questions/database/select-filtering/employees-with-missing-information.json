@@ -1,0 +1,62 @@
+{
+  "id": "1965",
+  "slug": "employees-with-missing-information",
+  "title": "Employees With Missing Information",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Employees`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| employee_id | int     |\n| name        | varchar |\n+-------------+---------+\nemployee_id is the column with unique values for this table.\nEach row of this table indicates the name of the employee whose ID is employee_id.\n```\n\nTable: `Salaries`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| employee_id | int     |\n| salary      | int     |\n+-------------+---------+\nemployee_id is the column with unique values for this table.\nEach row of this table indicates the salary of the employee whose ID is employee_id.\n```\n\nWrite a solution to report the IDs of all the employees with **missing information**. The information of an employee is missing if:\n\n*   The employee's **name** is missing, or\n*   The employee's **salary** is missing.\n\nReturn the result table ordered by `employee_id` **in ascending order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployees table:\n+-------------+----------+\n| employee_id | name     |\n+-------------+----------+\n| 2           | Crew     |\n| 4           | Haven    |\n| 5           | Kristian |\n+-------------+----------+\nSalaries table:\n+-------------+--------+\n| employee_id | salary |\n+-------------+--------+\n| 5           | 76071  |\n| 1           | 22517  |\n| 4           | 63539  |\n+-------------+--------+\nOutput: \n+-------------+\n| employee_id |\n+-------------+\n| 1           |\n| 2           |\n+-------------+\nExplanation: \nEmployees 1, 2, 4, and 5 are working at this company.\nThe name of employee 1 is missing.\nThe salary of employee 2 is missing.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Employees table:\n+-------------+----------+\n| employee_id | name     |\n+-------------+----------+\n| 2           | Crew     |\n| 4           | Haven    |\n| 5           | Kristian |\n+-------------+----------+\nSalaries table:\n+-------------+--------+\n| employee_id | salary |\n+-------------+--------+\n| 5           | 76071  |\n| 1           | 22517  |\n| 4           | 63539  |\n+-------------+--------+",
+      "output": "+-------------+\n| employee_id |\n+-------------+\n| 1           |\n| 2           |\n+-------------+",
+      "explanation": "Employees 1, 2, 4, and 5 are working at this company.\nThe name of employee 1 is missing.\nThe salary of employee 2 is missing."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_employees(employees: pd.DataFrame, salaries: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Employees\":[\"employee_id\",\"name\"],\"Salaries\":[\"employee_id\",\"salary\"]},\"rows\":{\"Employees\":[[2,\"Crew\"],[4,\"Haven\"],[5,\"Kristian\"]],\"Salaries\":[[5,76071],[1,22517],[4,63539]]}}",
+      "expectedOutput": "+-------------+\n| employee_id |\n+-------------+\n| 1           |\n| 2           |\n+-------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Employees\":[\"employee_id\",\"name\"],\"Salaries\":[\"employee_id\",\"salary\"]},\"rows\":{\"Employees\":[[2,\"Crew\"],[4,\"Haven\"],[5,\"Kristian\"]],\"Salaries\":[[5,76071],[1,22517],[4,63539]]}}",
+      "expectedOutput": "+-------------+\n| employee_id |\n+-------------+\n| 1           |\n| 2           |\n+-------------+"
+    },
+    {
+      "input": "Employees table:\n+-------------+----------+\n| employee_id | name     |\n+-------------+----------+\n| 2           | Crew     |\n| 4           | Haven    |\n| 5           | Kristian |\n+-------------+----------+\nSalaries table:\n+-------------+--------+\n| employee_id | salary |\n+-------------+--------+\n| 5           | 76071  |\n| 1           | 22517  |\n| 4           | 63539  |\n+-------------+--------+",
+      "expectedOutput": "+-------------+\n| employee_id |\n+-------------+\n| 1           |\n| 2           |\n+-------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Employees (employee_id int, name varchar(30))\n\nCreate table If Not Exists Salaries (employee_id int, salary int)\n\nTruncate table Employees\n\nTruncate table Salaries",
+  "sqlSetup": [
+    "insert into Employees (employee_id, name) values ('2', 'Crew')",
+    "insert into Employees (employee_id, name) values ('4', 'Haven')",
+    "insert into Employees (employee_id, name) values ('5', 'Kristian')",
+    "insert into Salaries (employee_id, salary) values ('5', '76071')",
+    "insert into Salaries (employee_id, salary) values ('1', '22517')",
+    "insert into Salaries (employee_id, salary) values ('4', '63539')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/employees-with-missing-information/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.004Z",
+    "sourceUpdatedAt": null
+  }
+}

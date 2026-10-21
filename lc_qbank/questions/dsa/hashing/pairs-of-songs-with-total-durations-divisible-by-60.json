@@ -1,0 +1,158 @@
+{
+  "id": "1010",
+  "slug": "pairs-of-songs-with-total-durations-divisible-by-60",
+  "title": "Pairs of Songs With Total Durations Divisible by 60",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "statement": "You are given a list of songs where the `i^(th)` song has a duration of `time[i]` seconds.\n\nReturn _the number of pairs of songs for which their total duration in seconds is divisible by_ `60`. Formally, we want the number of indices `i`, `j` such that `i < j` with `(time[i] + time[j]) % 60 == 0`.\n\n**Example 1:**\n\n```\nInput: time = [30,20,150,100,40]\nOutput: 3\nExplanation: Three pairs have a total duration divisible by 60:\n(time[0] = 30, time[2] = 150): total duration 180\n(time[1] = 20, time[3] = 100): total duration 120\n(time[1] = 20, time[4] = 40): total duration 60\n```\n\n**Example 2:**\n\n```\nInput: time = [60,60,60]\nOutput: 3\nExplanation: All three pairs have a total duration of 120, which is divisible by 60.\n```\n\n**Constraints:**\n\n*   `1 <= time.length <= 6 * 10^(4)`\n*   `1 <= time[i] <= 500`",
+  "constraints": [
+    "1 <= time.length <= 6 * 104",
+    "1 <= time[i] <= 500"
+  ],
+  "examples": [
+    {
+      "input": "time = [30,20,150,100,40]",
+      "output": "3",
+      "explanation": "Three pairs have a total duration divisible by 60:\n(time[0] = 30, time[2] = 150): total duration 180\n(time[1] = 20, time[3] = 100): total duration 120\n(time[1] = 20, time[4] = 40): total duration 60"
+    },
+    {
+      "input": "time = [60,60,60]",
+      "output": "3",
+      "explanation": "All three pairs have a total duration of 120, which is divisible by 60."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numPairsDivisibleBy60(vector<int>& time) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numPairsDivisibleBy60(int[] time) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numPairsDivisibleBy60(self, time: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numPairsDivisibleBy60(self, time):\n        \"\"\"\n        :type time: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} time\n * @return {number}\n */\nvar numPairsDivisibleBy60 = function(time) {\n    \n};",
+    "typescript": "function numPairsDivisibleBy60(time: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumPairsDivisibleBy60(int[] time) {\n        \n    }\n}",
+    "c": "int numPairsDivisibleBy60(int* time, int timeSize) {\n    \n}",
+    "golang": "func numPairsDivisibleBy60(time []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numPairsDivisibleBy60(time: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numPairsDivisibleBy60(_ time: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_pairs_divisible_by60(time: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} time\n# @return {Integer}\ndef num_pairs_divisible_by60(time)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $time\n     * @return Integer\n     */\n    function numPairsDivisibleBy60($time) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numPairsDivisibleBy60(List<int> time) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numPairsDivisibleBy60(time: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_pairs_divisible_by60(time :: [integer]) :: integer\n  def num_pairs_divisible_by60(time) do\n    \n  end\nend",
+    "erlang": "-spec num_pairs_divisible_by60(Time :: [integer()]) -> integer().\nnum_pairs_divisible_by60(Time) ->\n  .",
+    "racket": "(define/contract (num-pairs-divisible-by60 time)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[30,20,150,100,40]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[60,60,60]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[30,20,150,100,40]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[60,60,60]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[30,20]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[150,100,40]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[30]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[30,40]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[40,100,150,20,30]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[20,30,40,100,150]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[150,100,40,30,20]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[30,30,30,30,30]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[30,20,150,100,40,30,20,150,100,40]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[60,40,300,200,80]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[31,21,151,101,41]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[29,19,149,99,39]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-30,-20,-150,-100,-40]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We only need to consider each song length modulo 60.",
+    "We can count the number of songs having same (length % 60), and store that in an array of size 60."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.443Z",
+    "sourceUpdatedAt": null
+  }
+}

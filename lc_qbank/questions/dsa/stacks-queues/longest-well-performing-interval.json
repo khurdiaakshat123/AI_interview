@@ -1,0 +1,160 @@
+{
+  "id": "1124",
+  "slug": "longest-well-performing-interval",
+  "title": "Longest Well-Performing Interval",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Stack",
+    "Monotonic Stack",
+    "Prefix Sum"
+  ],
+  "statement": "We are given `hours`, a list of the number of hours worked per day for a given employee.\n\nA day is considered to be a _tiring day_ if and only if the number of hours worked is (strictly) greater than `8`.\n\nA _well-performing interval_ is an interval of days for which the number of tiring days is strictly larger than the number of non-tiring days.\n\nReturn the length of the longest well-performing interval.\n\n**Example 1:**\n\n```\nInput: hours = [9,9,6,0,6,6,9]\nOutput: 3\nExplanation: The longest well-performing interval is [9,9,6].\n```\n\n**Example 2:**\n\n```\nInput: hours = [6,6,6]\nOutput: 0\n```\n\n**Constraints:**\n\n*   `1 <= hours.length <= 10^(4)`\n*   `0 <= hours[i] <= 16`",
+  "constraints": [
+    "1 <= hours.length <= 104",
+    "0 <= hours[i] <= 16"
+  ],
+  "examples": [
+    {
+      "input": "hours = [9,9,6,0,6,6,9]",
+      "output": "3",
+      "explanation": "The longest well-performing interval is [9,9,6]."
+    },
+    {
+      "input": "hours = [6,6,6]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestWPI(vector<int>& hours) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestWPI(int[] hours) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestWPI(self, hours: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestWPI(self, hours):\n        \"\"\"\n        :type hours: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} hours\n * @return {number}\n */\nvar longestWPI = function(hours) {\n    \n};",
+    "typescript": "function longestWPI(hours: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestWPI(int[] hours) {\n        \n    }\n}",
+    "c": "int longestWPI(int* hours, int hoursSize) {\n    \n}",
+    "golang": "func longestWPI(hours []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestWPI(hours: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestWPI(_ hours: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_wpi(hours: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} hours\n# @return {Integer}\ndef longest_wpi(hours)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $hours\n     * @return Integer\n     */\n    function longestWPI($hours) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestWPI(List<int> hours) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestWPI(hours: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_wpi(hours :: [integer]) :: integer\n  def longest_wpi(hours) do\n    \n  end\nend",
+    "erlang": "-spec longest_wpi(Hours :: [integer()]) -> integer().\nlongest_wpi(Hours) ->\n  .",
+    "racket": "(define/contract (longest-wpi hours)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[9,9,6,0,6,6,9]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,6,6]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[9,9,6,0,6,6,9]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,6,6]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[9,9,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,6,6,9]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[9]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[9,9]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[9,6,6,0,6,9,9]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,6,6,6,9,9,9]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[9,9,9,6,6,6,0]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[9,9,9,9,9]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[9,9,6,0,6,6,9,9,9,6,0,6,6,9]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[18,18,12,0,12,12,18]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[10,10,7,1,7,7,10]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[8,8,5,-1,5,5,8]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-9,-9,-6,0,-6,-6,-9]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Make a new array A of +1/-1s corresponding to if hours[i] is > 8 or not. The goal is to find the longest subarray with positive sum.",
+    "Using prefix sums (PrefixSum[i+1] = A[0] + A[1] + ... + A[i]), you need to find for each j, the smallest i < j with PrefixSum[i] + 1 == PrefixSum[j]."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-well-performing-interval/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.759Z",
+    "sourceUpdatedAt": null
+  }
+}

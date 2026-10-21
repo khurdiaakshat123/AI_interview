@@ -1,0 +1,95 @@
+{
+  "id": "2290",
+  "slug": "minimum-obstacle-removal-to-reach-corner",
+  "title": "Minimum Obstacle Removal to Reach Corner",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Shortest Path",
+    "0-1 BFS",
+    "Dijkstra's Algorithm"
+  ],
+  "statement": "You are given a **0-indexed** 2D integer array `grid` of size `m x n`. Each cell has one of two values:\n\n*   `0` represents an **empty** cell,\n*   `1` represents an **obstacle** that may be removed.\n\nYou can move up, down, left, or right from and to an empty cell.\n\nReturn _the **minimum** number of **obstacles** to **remove** so you can move from the upper left corner_ `(0, 0)` _to the lower right corner_ `(m - 1, n - 1)`.\n\n**Example 1:**\n\n![](./assets/minimum-obstacle-removal-to-reach-corner-1.png)\n```\nInput: grid = [[0,1,1],[1,1,0],[1,1,0]]\nOutput: 2\nExplanation: We can remove the obstacles at (0, 1) and (0, 2) to create a path from (0, 0) to (2, 2).\nIt can be shown that we need to remove at least 2 obstacles, so we return 2.\nNote that there may be other ways to remove 2 obstacles to create a path.\n```\n\n**Example 2:**\n\n![](./assets/minimum-obstacle-removal-to-reach-corner-2.png)\n```\nInput: grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\nOutput: 0\nExplanation: We can move from (0, 0) to (2, 4) without removing any obstacles, so we return 0.\n```\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 10^(5)`\n*   `2 <= m * n <= 10^(5)`\n*   `grid[i][j]` is either `0` **or** `1`.\n*   `grid[0][0] == grid[m - 1][n - 1] == 0`",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 105",
+    "2 <= m * n <= 105",
+    "grid[i][j] is either 0 or 1.",
+    "grid[0][0] == grid[m - 1][n - 1] == 0"
+  ],
+  "examples": [
+    {
+      "input": "grid = [[0,1,1],[1,1,0],[1,1,0]]",
+      "output": "2",
+      "explanation": "We can remove the obstacles at (0, 1) and (0, 2) to create a path from (0, 0) to (2, 2).\nIt can be shown that we need to remove at least 2 obstacles, so we return 2.\nNote that there may be other ways to remove 2 obstacles to create a path."
+    },
+    {
+      "input": "grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]",
+      "output": "0",
+      "explanation": "We can move from (0, 0) to (2, 4) without removing any obstacles, so we return 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumObstacles(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumObstacles(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumObstacles(self, grid: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumObstacles(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar minimumObstacles = function(grid) {\n    \n};",
+    "typescript": "function minimumObstacles(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumObstacles(int[][] grid) {\n        \n    }\n}",
+    "c": "int minimumObstacles(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func minimumObstacles(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumObstacles(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumObstacles(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_obstacles(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef minimum_obstacles(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function minimumObstacles($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumObstacles(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumObstacles(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_obstacles(grid :: [[integer]]) :: integer\n  def minimum_obstacles(grid) do\n    \n  end\nend",
+    "erlang": "-spec minimum_obstacles(Grid :: [[integer()]]) -> integer().\nminimum_obstacles(Grid) ->\n  .",
+    "racket": "(define/contract (minimum-obstacles grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1,1],[1,1,0],[1,1,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1,1],[1,1,0],[1,1,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Model the grid as a graph where cells are nodes and edges are between adjacent cells. Edges to cells with obstacles have a cost of 1 and all other edges have a cost of 0.",
+    "Could you use 0-1 Breadth-First Search or Dijkstra’s algorithm?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.540Z",
+    "sourceUpdatedAt": null
+  }
+}

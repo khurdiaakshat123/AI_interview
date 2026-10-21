@@ -1,0 +1,158 @@
+{
+  "id": "238",
+  "slug": "product-of-array-except-self",
+  "title": "Product of Array Except Self",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "statement": "Given an integer array `nums`, return _an array_ `answer` _such that_ `answer[i]` _is equal to the product of all the elements of_ `nums` _except_ `nums[i]`.\n\nThe product of any prefix or suffix of `nums` is **guaranteed** to fit in a **32-bit** integer.\n\nYou must write an algorithm that runs in `O(n)` time and without using the division operation.\n\n**Example 1:**\n\n```\nInput: nums = [1,2,3,4]\nOutput: [24,12,8,6]\n```\n\n**Example 2:**\n\n```\nInput: nums = [-1,1,0,-3,3]\nOutput: [0,0,9,0,0]\n```\n\n**Constraints:**\n\n*   `2 <= nums.length <= 10^(5)`\n*   `-30 <= nums[i] <= 30`\n*   The input is generated such that `answer[i]` is **guaranteed** to fit in a **32-bit** integer.\n\n**Follow up:** Can you solve the problem in `O(1)` extra space complexity? (The output array **does not** count as extra space for space complexity analysis.)",
+  "constraints": [
+    "2 <= nums.length <= 105",
+    "-30 <= nums[i] <= 30",
+    "The input is generated such that answer[i] is guaranteed to fit in a 32-bit integer."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3,4]",
+      "output": "[24,12,8,6]",
+      "explanation": null
+    },
+    {
+      "input": "nums = [-1,1,0,-3,3]",
+      "output": "[0,0,9,0,0]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> productExceptSelf(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] productExceptSelf(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def productExceptSelf(self, nums: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def productExceptSelf(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar productExceptSelf = function(nums) {\n    \n};",
+    "typescript": "function productExceptSelf(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] ProductExceptSelf(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* productExceptSelf(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func productExceptSelf(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun productExceptSelf(nums: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func productExceptSelf(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn product_except_self(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef product_except_self(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function productExceptSelf($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> productExceptSelf(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def productExceptSelf(nums: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec product_except_self(nums :: [integer]) :: [integer]\n  def product_except_self(nums) do\n    \n  end\nend",
+    "erlang": "-spec product_except_self(Nums :: [integer()]) -> [integer()].\nproduct_except_self(Nums) ->\n  .",
+    "racket": "(define/contract (product-except-self nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "[24,12,8,6]"
+    },
+    {
+      "input": "[-1,1,0,-3,3]",
+      "expectedOutput": "[0,0,9,0,0]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "[24,12,8,6]"
+    },
+    {
+      "input": "[-1,1,0,-3,3]",
+      "expectedOutput": "[0,0,9,0,0]"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[3,4]",
+      "expectedOutput": "[4,3]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "[1,4]",
+      "expectedOutput": "[4,1]"
+    },
+    {
+      "input": "[4,3,2,1]",
+      "expectedOutput": "[6,8,12,24]"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "[1,1,1,1]"
+    },
+    {
+      "input": "[1,2,3,4,1,2,3,4]",
+      "expectedOutput": "[576,288,192,144,576,288,192,144]"
+    },
+    {
+      "input": "[2,4,6,8]",
+      "expectedOutput": "[192,96,64,48]"
+    },
+    {
+      "input": "[2,3,4,5]",
+      "expectedOutput": "[60,40,30,24]"
+    },
+    {
+      "input": "[0,1,2,3]",
+      "expectedOutput": "[6,0,0,0]"
+    },
+    {
+      "input": "[-1,-2,-3,-4]",
+      "expectedOutput": "[-24,-12,-8,-6]"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "[0,0,0,0]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "[1,2]"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "[1,-1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Think how you can efficiently utilize prefix and suffix products to calculate the product of all elements except self for each index. Can you pre-compute the prefix and suffix products in linear time to avoid redundant calculations?",
+    "Can you minimize additional space usage by reusing memory or modifying the input array to store intermediate results?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/product-of-array-except-self/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.998Z",
+    "sourceUpdatedAt": null
+  }
+}

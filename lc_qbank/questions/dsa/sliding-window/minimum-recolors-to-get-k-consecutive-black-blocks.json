@@ -1,0 +1,159 @@
+{
+  "id": "2379",
+  "slug": "minimum-recolors-to-get-k-consecutive-black-blocks",
+  "title": "Minimum Recolors to Get K Consecutive Black Blocks",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Easy",
+  "tags": [
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "You are given a **0-indexed** string `blocks` of length `n`, where `blocks[i]` is either `'W'` or `'B'`, representing the color of the `i^(th)` block. The characters `'W'` and `'B'` denote the colors white and black, respectively.\n\nYou are also given an integer `k`, which is the desired number of **consecutive** black blocks.\n\nIn one operation, you can **recolor** a white block such that it becomes a black block.\n\nReturn _the **minimum** number of operations needed such that there is at least **one** occurrence of_ `k` _consecutive black blocks._\n\n**Example 1:**\n\n```\nInput: blocks = \"WBBWWBBWBW\", k = 7\nOutput: 3\nExplanation:\nOne way to achieve 7 consecutive black blocks is to recolor the 0th, 3rd, and 4th blocks\nso that blocks = \"BBBBBBBWBW\". \nIt can be shown that there is no way to achieve 7 consecutive black blocks in less than 3 operations.\nTherefore, we return 3.\n```\n\n**Example 2:**\n\n```\nInput: blocks = \"WBWBBBW\", k = 2\nOutput: 0\nExplanation:\nNo changes need to be made, since 2 consecutive black blocks already exist.\nTherefore, we return 0.\n```\n\n**Constraints:**\n\n*   `n == blocks.length`\n*   `1 <= n <= 100`\n*   `blocks[i]` is either `'W'` or `'B'`.\n*   `1 <= k <= n`",
+  "constraints": [
+    "n == blocks.length",
+    "1 <= n <= 100",
+    "blocks[i] is either 'W' or 'B'.",
+    "1 <= k <= n"
+  ],
+  "examples": [
+    {
+      "input": "blocks = \"WBBWWBBWBW\", k = 7",
+      "output": "3",
+      "explanation": "One way to achieve 7 consecutive black blocks is to recolor the 0th, 3rd, and 4th blocks\nso that blocks = \"BBBBBBBWBW\". \nIt can be shown that there is no way to achieve 7 consecutive black blocks in less than 3 operations.\nTherefore, we return 3."
+    },
+    {
+      "input": "blocks = \"WBWBBBW\", k = 2",
+      "output": "0",
+      "explanation": "No changes need to be made, since 2 consecutive black blocks already exist.\nTherefore, we return 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumRecolors(string blocks, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumRecolors(String blocks, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumRecolors(self, blocks: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumRecolors(self, blocks, k):\n        \"\"\"\n        :type blocks: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} blocks\n * @param {number} k\n * @return {number}\n */\nvar minimumRecolors = function(blocks, k) {\n    \n};",
+    "typescript": "function minimumRecolors(blocks: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumRecolors(string blocks, int k) {\n        \n    }\n}",
+    "c": "int minimumRecolors(char* blocks, int k) {\n    \n}",
+    "golang": "func minimumRecolors(blocks string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumRecolors(blocks: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumRecolors(_ blocks: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_recolors(blocks: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} blocks\n# @param {Integer} k\n# @return {Integer}\ndef minimum_recolors(blocks, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $blocks\n     * @param Integer $k\n     * @return Integer\n     */\n    function minimumRecolors($blocks, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumRecolors(String blocks, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumRecolors(blocks: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_recolors(blocks :: String.t, k :: integer) :: integer\n  def minimum_recolors(blocks, k) do\n    \n  end\nend",
+    "erlang": "-spec minimum_recolors(Blocks :: unicode:unicode_binary(), K :: integer()) -> integer().\nminimum_recolors(Blocks, K) ->\n  .",
+    "racket": "(define/contract (minimum-recolors blocks k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"WBBWWBBWBW\"\n7",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"WBWBBBW\"\n2",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"WBBWWBBWBW\"\n7",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"WBWBBBW\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"WBBWW\"\n7",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"BBWBW\"\n7",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"W\"\n7",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"WB\"\n7",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"WBWBBWWBBW\"\n7",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"WBBWWBBWBWWBBWWBBWBW\"\n7",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"WWWWWW\"\n7",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"WBBWWBBWBWWBWBBWWBBW\"\n7",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"wbbwwbbwbw\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n7",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate through all possible consecutive substrings of k characters.",
+    "Find the number of changes for each substring to make all blocks black, and return the minimum of these."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.907Z",
+    "sourceUpdatedAt": null
+  }
+}

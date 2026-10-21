@@ -1,0 +1,180 @@
+{
+  "id": "2983",
+  "slug": "palindrome-rearrangement-queries",
+  "title": "Palindrome Rearrangement Queries",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a **0-indexed** string `s` having an **even** length `n`.\n\nYou are also given a **0-indexed** 2D integer array, `queries`, where `queries[i] = [a_(i), b_(i), c_(i), d_(i)]`.\n\nFor each query `i`, you are allowed to perform the following operations:\n\n*   Rearrange the characters within the **substring** `s[a_(i):b_(i)]`, where `0 <= a_(i) <= b_(i) < n / 2`.\n*   Rearrange the characters within the **substring** `s[c_(i):d_(i)]`, where `n / 2 <= c_(i) <= d_(i) < n`.\n\nFor each query, your task is to determine whether it is possible to make `s` a **palindrome** by performing the operations.\n\nEach query is answered **independently** of the others.\n\nReturn _a **0-indexed** array_ `answer`_, where_ `answer[i] == true` _if it is possible to make_ `s` _a palindrome by performing operations specified by the_ `i^(th)` _query, and_ `false` _otherwise._\n\n*   A **substring** is a contiguous sequence of characters within a string.\n*   `s[x:y]` represents the substring consisting of characters from the index `x` to index `y` in `s`, **both inclusive**.\n\n**Example 1:**\n\n```\nInput: s = \"abcabc\", queries = [[1,1,3,5],[0,2,5,5]]\nOutput: [true,true]\nExplanation: In this example, there are two queries:\nIn the first query:\n- a0 = 1, b0 = 1, c0 = 3, d0 = 5.\n- So, you are allowed to rearrange s[1:1] => abcabc and s[3:5] => abcabc.\n- To make s a palindrome, s[3:5] can be rearranged to become => abccba.\n- Now, s is a palindrome. So, answer[0] = true.\nIn the second query:\n- a1 = 0, b1 = 2, c1 = 5, d1 = 5.\n- So, you are allowed to rearrange s[0:2] => abcabc and s[5:5] => abcabc.\n- To make s a palindrome, s[0:2] can be rearranged to become => cbaabc.\n- Now, s is a palindrome. So, answer[1] = true.\n```\n\n**Example 2:**\n\n```\nInput: s = \"abbcdecbba\", queries = [[0,2,7,9]]\nOutput: [false]\nExplanation: In this example, there is only one query.\na0 = 0, b0 = 2, c0 = 7, d0 = 9.\nSo, you are allowed to rearrange s[0:2] => abbcdecbba and s[7:9] => abbcdecbba.\nIt is not possible to make s a palindrome by rearranging these substrings because s[3:6] is not a palindrome.\nSo, answer[0] = false.\n```\n\n**Example 3:**\n\n```\nInput: s = \"acbcab\", queries = [[1,2,4,5]]\nOutput: [true]\nExplanation: In this example, there is only one query.\na0 = 1, b0 = 2, c0 = 4, d0 = 5.\nSo, you are allowed to rearrange s[1:2] => acbcab and s[4:5] => acbcab.\nTo make s a palindrome s[1:2] can be rearranged to become abccab.\nThen, s[4:5] can be rearranged to become abccba.\nNow, s is a palindrome. So, answer[0] = true.\n```\n\n**Constraints:**\n\n*   `2 <= n == s.length <= 10^(5)`\n*   `1 <= queries.length <= 10^(5)`\n*   `queries[i].length == 4`\n*   `a_(i) == queries[i][0], b_(i) == queries[i][1]`\n*   `c_(i) == queries[i][2], d_(i) == queries[i][3]`\n*   `0 <= a_(i) <= b_(i) < n / 2`\n*   `n / 2 <= c_(i) <= d_(i) < n`\n*   `n` is even.\n*   `s` consists of only lowercase English letters.",
+  "constraints": [
+    "2 <= n == s.length <= 105",
+    "1 <= queries.length <= 105",
+    "queries[i].length == 4",
+    "ai == queries[i][0], bi == queries[i][1]",
+    "ci == queries[i][2], di == queries[i][3]",
+    "0 <= ai <= bi < n / 2",
+    "n / 2 <= ci <= di < n",
+    "n is even.",
+    "s consists of only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcabc\", queries = [[1,1,3,5],[0,2,5,5]]",
+      "output": "[true,true]",
+      "explanation": "In this example, there are two queries:\nIn the first query:\n- a0 = 1, b0 = 1, c0 = 3, d0 = 5.\n- So, you are allowed to rearrange s[1:1] => abcabc and s[3:5] => abcabc.\n- To make s a palindrome, s[3:5] can be rearranged to become => abccba.\n- Now, s is a palindrome. So, answer[0] = true.\nIn the second query:\n- a1 = 0, b1 = 2, c1 = 5, d1 = 5.\n- So, you are allowed to rearrange s[0:2] => abcabc and s[5:5] => abcabc.\n- To make s a palindrome, s[0:2] can be rearranged to become => cbaabc.\n- Now, s is a palindrome. So, answer[1] = true."
+    },
+    {
+      "input": "s = \"abbcdecbba\", queries = [[0,2,7,9]]",
+      "output": "[false]",
+      "explanation": "In this example, there is only one query.\na0 = 0, b0 = 2, c0 = 7, d0 = 9.\nSo, you are allowed to rearrange s[0:2] => abbcdecbba and s[7:9] => abbcdecbba.\nIt is not possible to make s a palindrome by rearranging these substrings because s[3:6] is not a palindrome.\nSo, answer[0] = false."
+    },
+    {
+      "input": "s = \"acbcab\", queries = [[1,2,4,5]]",
+      "output": "[true]",
+      "explanation": "In this example, there is only one query.\na0 = 1, b0 = 2, c0 = 4, d0 = 5.\nSo, you are allowed to rearrange s[1:2] => acbcab and s[4:5] => acbcab.\nTo make s a palindrome s[1:2] can be rearranged to become abccab.\nThen, s[4:5] can be rearranged to become abccba.\nNow, s is a palindrome. So, answer[0] = true."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<bool> canMakePalindromeQueries(string s, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean[] canMakePalindromeQueries(String s, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canMakePalindromeQueries(self, s: str, queries: List[List[int]]) -> List[bool]:\n        ",
+    "python": "class Solution(object):\n    def canMakePalindromeQueries(self, s, queries):\n        \"\"\"\n        :type s: str\n        :type queries: List[List[int]]\n        :rtype: List[bool]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number[][]} queries\n * @return {boolean[]}\n */\nvar canMakePalindromeQueries = function(s, queries) {\n    \n};",
+    "typescript": "function canMakePalindromeQueries(s: string, queries: number[][]): boolean[] {\n    \n};",
+    "csharp": "public class Solution {\n    public bool[] CanMakePalindromeQueries(string s, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nbool* canMakePalindromeQueries(char* s, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func canMakePalindromeQueries(s string, queries [][]int) []bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canMakePalindromeQueries(s: String, queries: Array<IntArray>): BooleanArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canMakePalindromeQueries(_ s: String, _ queries: [[Int]]) -> [Bool] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_make_palindrome_queries(s: String, queries: Vec<Vec<i32>>) -> Vec<bool> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer[][]} queries\n# @return {Boolean[]}\ndef can_make_palindrome_queries(s, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer[][] $queries\n     * @return Boolean[]\n     */\n    function canMakePalindromeQueries($s, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<bool> canMakePalindromeQueries(String s, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canMakePalindromeQueries(s: String, queries: Array[Array[Int]]): Array[Boolean] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_make_palindrome_queries(s :: String.t, queries :: [[integer]]) :: [boolean]\n  def can_make_palindrome_queries(s, queries) do\n    \n  end\nend",
+    "erlang": "-spec can_make_palindrome_queries(S :: unicode:unicode_binary(), Queries :: [[integer()]]) -> [boolean()].\ncan_make_palindrome_queries(S, Queries) ->\n  .",
+    "racket": "(define/contract (can-make-palindrome-queries s queries)\n  (-> string? (listof (listof exact-integer?)) (listof boolean?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcabc\"\n[[1,1,3,5],[0,2,5,5]]",
+      "expectedOutput": "[true,true]"
+    },
+    {
+      "input": "\"abbcdecbba\"\n[[0,2,7,9]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "\"acbcab\"\n[[1,2,4,5]]",
+      "expectedOutput": "[true]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcabc\"\n[[1,1,3,5],[0,2,5,5]]",
+      "expectedOutput": "[true,true]"
+    },
+    {
+      "input": "\"abbcdecbba\"\n[[0,2,7,9]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "\"acbcab\"\n[[1,2,4,5]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "\"cbacba\"\n[[1,1,3,5],[0,2,5,5]]",
+      "expectedOutput": "[true,true]"
+    },
+    {
+      "input": "\"aaaaaa\"\n[[1,1,3,5],[0,2,5,5]]",
+      "expectedOutput": "[true,true]"
+    },
+    {
+      "input": "\"abcde\"\n[[1,1,3,5],[0,2,5,5]]",
+      "expectedOutput": "[false,false]"
+    },
+    {
+      "input": "\"edcba\"\n[[1,1,3,5],[0,2,5,5]]",
+      "expectedOutput": "[false,false]"
+    },
+    {
+      "input": "\"hello\"\n[[1,1,3,5],[0,2,5,5]]",
+      "expectedOutput": "[false,false]"
+    },
+    {
+      "input": "\"leetcode\"\n[[1,1,3,5],[0,2,5,5]]",
+      "expectedOutput": "[false,false]"
+    },
+    {
+      "input": "\"world\"\n[[1,1,3,5],[0,2,5,5]]",
+      "expectedOutput": "[false,false]"
+    },
+    {
+      "input": "\"abbcedcbba\"\n[[0,2,7,9]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "\"aaaaaa\"\n[[0,2,7,9]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "\"racecar\"\n[[0,2,7,9]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "\"leetcode\"\n[[0,2,7,9]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "\"bacbca\"\n[[1,2,4,5]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "\"acbcabacbcab\"\n[[1,2,4,5]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "\"aaaaaa\"\n[[1,2,4,5]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "\"abcde\"\n[[1,2,4,5]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "\"edcba\"\n[[1,2,4,5]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "\"racecar\"\n[[1,2,4,5]]",
+      "expectedOutput": "[true]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider two indices, <code>x</code> on the left side and its symmetrical index <code>y</code> on the right side.",
+    "Store the frequencies of all of the letters in both intervals <code>[a<sub>i</sub>, b<sub>i</sub>]</code> and <code>[c<sub>i</sub>, d<sub>i</sub>]</code> in a query.",
+    "If <code>x</code> is not in <code>[a<sub>i</sub>, b<sub>i</sub>]</code> and <code>y</code> is not in <code>[c<sub>i</sub>, d<sub>i</sub>]</code>, they must be the same.",
+    "If <code>x</code> is in <code>[a<sub>i</sub>, b<sub>i</sub>]</code> and <code>y</code> is not in <code>[c<sub>i</sub>, d<sub>i</sub>]</code>, remove one occurrence of the character at index <code>y</code> from the frequency array on the left side.",
+    "Similarly, if <code>x</code> is not in <code>[a<sub>i</sub>, b<sub>i</sub>]</code> and <code>y</code> is in <code>[c<sub>i</sub>, d<sub>i</sub>]</code>, remove one occurrence of the character at index <code>x</code> from the frequency array on the right side.",
+    "Finally, check whether the two frequency arrays are the same, and the indices that don't fall into any of the intervals are the same as well.",
+    "Use prefix-sum + hashing to improve the time complexity."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/palindrome-rearrangement-queries/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.479Z",
+    "sourceUpdatedAt": null
+  }
+}

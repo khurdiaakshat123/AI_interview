@@ -1,0 +1,127 @@
+{
+  "id": "1263",
+  "slug": "minimum-moves-to-move-a-box-to-their-target-location",
+  "title": "Minimum Moves to Move a Box to Their Target Location",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Heap (Priority Queue)",
+    "Matrix"
+  ],
+  "statement": "A storekeeper is a game in which the player pushes boxes around in a warehouse trying to get them to target locations.\n\nThe game is represented by an `m x n` grid of characters `grid` where each element is a wall, floor, or box.\n\nYour task is to move the box `'B'` to the target position `'T'` under the following rules:\n\n*   The character `'S'` represents the player. The player can move up, down, left, right in `grid` if it is a floor (empty cell).\n*   The character `'.'` represents the floor which means a free cell to walk.\n*   The character `'#'` represents the wall which means an obstacle (impossible to walk there).\n*   There is only one box `'B'` and one target cell `'T'` in the `grid`.\n*   The box can be moved to an adjacent free cell by standing next to the box and then moving in the direction of the box. This is a **push**.\n*   The player cannot walk through the box.\n\nReturn _the minimum number of **pushes** to move the box to the target_. If there is no way to reach the target, return `-1`.\n\n**Example 1:**\n\n![](./assets/minimum-moves-to-move-a-box-to-their-target-location-1.png)\n```\nInput: grid = [[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],\n               [\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],\n               [\"#\",\".\",\".\",\"B\",\".\",\"#\"],\n               [\"#\",\".\",\"#\",\"#\",\".\",\"#\"],\n               [\"#\",\".\",\".\",\".\",\"S\",\"#\"],\n               [\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]\nOutput: 3\nExplanation: We return only the number of times the box is pushed.\n```\n\n**Example 2:**\n\n```\nInput: grid = [[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],\n               [\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],\n               [\"#\",\".\",\".\",\"B\",\".\",\"#\"],\n               [\"#\",\"#\",\"#\",\"#\",\".\",\"#\"],\n               [\"#\",\".\",\".\",\".\",\"S\",\"#\"],\n               [\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]\nOutput: -1\n```\n\n**Example 3:**\n\n```\nInput: grid = [[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],\n               [\"#\",\"T\",\".\",\".\",\"#\",\"#\"],\n               [\"#\",\".\",\"#\",\"B\",\".\",\"#\"],\n               [\"#\",\".\",\".\",\".\",\".\",\"#\"],\n               [\"#\",\".\",\".\",\".\",\"S\",\"#\"],\n               [\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]\nOutput: 5\nExplanation: push the box down, left, left, up and up.\n```\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 20`\n*   `grid` contains only characters `'.'`, `'#'`, `'S'`, `'T'`, or `'B'`.\n*   There is only one character `'S'`, `'B'`, and `'T'` in the `grid`.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 20",
+    "grid contains only characters '.', '#', 'S', 'T', or 'B'.",
+    "There is only one character 'S', 'B', and 'T' in the grid."
+  ],
+  "examples": [
+    {
+      "input": "grid = [[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],\n               [\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],\n               [\"#\",\".\",\".\",\"B\",\".\",\"#\"],\n               [\"#\",\".\",\"#\",\"#\",\".\",\"#\"],\n               [\"#\",\".\",\".\",\".\",\"S\",\"#\"],\n               [\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "output": "3",
+      "explanation": "We return only the number of times the box is pushed."
+    },
+    {
+      "input": "grid = [[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],\n               [\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],\n               [\"#\",\".\",\".\",\"B\",\".\",\"#\"],\n               [\"#\",\"#\",\"#\",\"#\",\".\",\"#\"],\n               [\"#\",\".\",\".\",\".\",\"S\",\"#\"],\n               [\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "output": "-1",
+      "explanation": null
+    },
+    {
+      "input": "grid = [[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],\n               [\"#\",\"T\",\".\",\".\",\"#\",\"#\"],\n               [\"#\",\".\",\"#\",\"B\",\".\",\"#\"],\n               [\"#\",\".\",\".\",\".\",\".\",\"#\"],\n               [\"#\",\".\",\".\",\".\",\"S\",\"#\"],\n               [\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "output": "5",
+      "explanation": "push the box down, left, left, up and up."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minPushBox(vector<vector<char>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minPushBox(char[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minPushBox(self, grid: list[list[str]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minPushBox(self, grid):\n        \"\"\"\n        :type grid: List[List[str]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[][]} grid\n * @return {number}\n */\nvar minPushBox = function(grid) {\n    \n};",
+    "typescript": "function minPushBox(grid: string[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinPushBox(char[][] grid) {\n        \n    }\n}",
+    "c": "int minPushBox(char** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func minPushBox(grid [][]byte) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minPushBox(grid: Array<CharArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minPushBox(_ grid: [[Character]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_push_box(grid: Vec<Vec<char>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Character[][]} grid\n# @return {Integer}\ndef min_push_box(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $grid\n     * @return Integer\n     */\n    function minPushBox($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minPushBox(List<List<String>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minPushBox(grid: Array[Array[Char]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_push_box(grid :: [[char]]) :: integer\n  def min_push_box(grid) do\n    \n  end\nend",
+    "erlang": "-spec min_push_box(Grid :: [[char()]]) -> integer().\nmin_push_box(Grid) ->\n  .",
+    "racket": "(define/contract (min-push-box grid)\n  (-> (listof (listof char?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\".\",\".\",\"B\",\".\",\"#\"],[\"#\",\".\",\"#\",\"#\",\".\",\"#\"],[\"#\",\".\",\".\",\".\",\"S\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\".\",\".\",\"B\",\".\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\".\",\"#\"],[\"#\",\".\",\".\",\".\",\"S\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\"T\",\".\",\".\",\"#\",\"#\"],[\"#\",\".\",\"#\",\"B\",\".\",\"#\"],[\"#\",\".\",\".\",\".\",\".\",\"#\"],[\"#\",\".\",\".\",\".\",\"S\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\".\",\".\",\"B\",\".\",\"#\"],[\"#\",\".\",\"#\",\"#\",\".\",\"#\"],[\"#\",\".\",\".\",\".\",\"S\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\".\",\".\",\"B\",\".\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\".\",\"#\"],[\"#\",\".\",\".\",\".\",\"S\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\"T\",\".\",\".\",\"#\",\"#\"],[\"#\",\".\",\"#\",\"B\",\".\",\"#\"],[\"#\",\".\",\".\",\".\",\".\",\"#\"],[\"#\",\".\",\".\",\".\",\"S\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\".\",\".\",\".\",\"S\",\"#\"],[\"#\",\".\",\"#\",\"#\",\".\",\"#\"],[\"#\",\".\",\".\",\"B\",\".\",\"#\"],[\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\"T\",\".\",\".\",\".\",\"#\"],[\"#\",\"#\",\".\",\"#\",\".\",\"#\"],[\"#\",\"#\",\"B\",\"#\",\".\",\"#\"],[\"#\",\"#\",\".\",\".\",\"S\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\".\",\".\",\".\",\"S\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\".\",\"#\"],[\"#\",\".\",\".\",\"B\",\".\",\"#\"],[\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\"T\",\".\",\"#\",\".\",\"#\"],[\"#\",\"#\",\".\",\"#\",\".\",\"#\"],[\"#\",\"#\",\"B\",\"#\",\".\",\"#\"],[\"#\",\"#\",\".\",\".\",\"S\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\".\",\".\",\".\",\"S\",\"#\"],[\"#\",\".\",\".\",\".\",\".\",\"#\"],[\"#\",\".\",\"#\",\"B\",\".\",\"#\"],[\"#\",\"T\",\".\",\".\",\"#\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],[\"#\",\"T\",\".\",\".\",\".\",\"#\"],[\"#\",\".\",\"#\",\".\",\".\",\"#\"],[\"#\",\".\",\"B\",\".\",\".\",\"#\"],[\"#\",\"#\",\".\",\".\",\"S\",\"#\"],[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]",
+      "expectedOutput": "5"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We represent the search state as (player_row, player_col, box_row, box_col).",
+    "You need to count only the number of pushes. Then inside of your BFS check if the box could be pushed (in any direction) given the current position of the player."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-moves-to-move-a-box-to-their-target-location/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.143Z",
+    "sourceUpdatedAt": null
+  }
+}

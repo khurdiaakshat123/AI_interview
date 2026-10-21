@@ -1,0 +1,168 @@
+{
+  "id": "2100",
+  "slug": "find-good-days-to-rob-the-bank",
+  "title": "Find Good Days to Rob the Bank",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "statement": "You and a gang of thieves are planning on robbing a bank. You are given a **0-indexed** integer array `security`, where `security[i]` is the number of guards on duty on the `i^(th)` day. The days are numbered starting from `0`. You are also given an integer `time`.\n\nThe `i^(th)` day is a good day to rob the bank if:\n\n*   There are at least `time` days before and after the `i^(th)` day,\n*   The number of guards at the bank for the `time` days **before** `i` are **non-increasing**, and\n*   The number of guards at the bank for the `time` days **after** `i` are **non-decreasing**.\n\nMore formally, this means day `i` is a good day to rob the bank if and only if `security[i - time] >= security[i - time + 1] >= ... >= security[i] <= ... <= security[i + time - 1] <= security[i + time]`.\n\nReturn _a list of **all** days **(0-indexed)** that are good days to rob the bank_. _The order that the days are returned in does **not** matter._\n\n**Example 1:**\n\n```\nInput: security = [5,3,3,3,5,6,2], time = 2\nOutput: [2,3]\nExplanation:\nOn day 2, we have security[0] >= security[1] >= security[2] <= security[3] <= security[4].\nOn day 3, we have security[1] >= security[2] >= security[3] <= security[4] <= security[5].\nNo other days satisfy this condition, so days 2 and 3 are the only good days to rob the bank.\n```\n\n**Example 2:**\n\n```\nInput: security = [1,1,1,1,1], time = 0\nOutput: [0,1,2,3,4]\nExplanation:\nSince time equals 0, every day is a good day to rob the bank, so return every day.\n```\n\n**Example 3:**\n\n```\nInput: security = [1,2,3,4,5,6], time = 2\nOutput: []\nExplanation:\nNo day has 2 days before it that have a non-increasing number of guards.\nThus, no day is a good day to rob the bank, so return an empty list.\n```\n\n**Constraints:**\n\n*   `1 <= security.length <= 10^(5)`\n*   `0 <= security[i], time <= 10^(5)`",
+  "constraints": [
+    "1 <= security.length <= 105",
+    "0 <= security[i], time <= 105"
+  ],
+  "examples": [
+    {
+      "input": "security = [5,3,3,3,5,6,2], time = 2",
+      "output": "[2,3]",
+      "explanation": "On day 2, we have security[0] >= security[1] >= security[2] <= security[3] <= security[4].\nOn day 3, we have security[1] >= security[2] >= security[3] <= security[4] <= security[5].\nNo other days satisfy this condition, so days 2 and 3 are the only good days to rob the bank."
+    },
+    {
+      "input": "security = [1,1,1,1,1], time = 0",
+      "output": "[0,1,2,3,4]",
+      "explanation": "Since time equals 0, every day is a good day to rob the bank, so return every day."
+    },
+    {
+      "input": "security = [1,2,3,4,5,6], time = 2",
+      "output": "[]",
+      "explanation": "No day has 2 days before it that have a non-increasing number of guards.\nThus, no day is a good day to rob the bank, so return an empty list."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> goodDaysToRobBank(vector<int>& security, int time) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> goodDaysToRobBank(int[] security, int time) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def goodDaysToRobBank(self, security: list[int], time: int) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def goodDaysToRobBank(self, security, time):\n        \"\"\"\n        :type security: List[int]\n        :type time: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} security\n * @param {number} time\n * @return {number[]}\n */\nvar goodDaysToRobBank = function(security, time) {\n    \n};",
+    "typescript": "function goodDaysToRobBank(security: number[], time: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> GoodDaysToRobBank(int[] security, int time) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* goodDaysToRobBank(int* security, int securitySize, int time, int* returnSize) {\n    \n}",
+    "golang": "func goodDaysToRobBank(security []int, time int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun goodDaysToRobBank(security: IntArray, time: Int): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func goodDaysToRobBank(_ security: [Int], _ time: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn good_days_to_rob_bank(security: Vec<i32>, time: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} security\n# @param {Integer} time\n# @return {Integer[]}\ndef good_days_to_rob_bank(security, time)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $security\n     * @param Integer $time\n     * @return Integer[]\n     */\n    function goodDaysToRobBank($security, $time) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> goodDaysToRobBank(List<int> security, int time) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def goodDaysToRobBank(security: Array[Int], time: Int): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec good_days_to_rob_bank(security :: [integer], time :: integer) :: [integer]\n  def good_days_to_rob_bank(security, time) do\n    \n  end\nend",
+    "erlang": "-spec good_days_to_rob_bank(Security :: [integer()], Time :: integer()) -> [integer()].\ngood_days_to_rob_bank(Security, Time) ->\n  .",
+    "racket": "(define/contract (good-days-to-rob-bank security time)\n  (-> (listof exact-integer?) exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[5,3,3,3,5,6,2]\n2",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[1,1,1,1,1]\n0",
+      "expectedOutput": "[0,1,2,3,4]"
+    },
+    {
+      "input": "[1,2,3,4,5,6]\n2",
+      "expectedOutput": "[]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[5,3,3,3,5,6,2]\n2",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[1,1,1,1,1]\n0",
+      "expectedOutput": "[0,1,2,3,4]"
+    },
+    {
+      "input": "[1,2,3,4,5,6]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[5,3,3]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[3,5,6,2]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[5]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[5,2]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[5,3]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[2,6,5,3,3,3,5]\n2",
+      "expectedOutput": "[3,4]"
+    },
+    {
+      "input": "[2,3,3,3,5,5,6]\n2",
+      "expectedOutput": "[3]"
+    },
+    {
+      "input": "[6,5,5,3,3,3,2]\n2",
+      "expectedOutput": "[3]"
+    },
+    {
+      "input": "[5,5,5,5,5]\n2",
+      "expectedOutput": "[2]"
+    },
+    {
+      "input": "[5,3,3,3,5,6,2,5,3,3,3,5,6,2]\n2",
+      "expectedOutput": "[2,3,9,10]"
+    },
+    {
+      "input": "[10,6,6,6,10,12,4]\n2",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[6,4,4,4,6,7,3]\n2",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[4,2,2,2,4,5,1]\n2",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[-5,-3,-3,-3,-5,-6,-2]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[0,0,0,0]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,1,1,1]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[0]\n2",
+      "expectedOutput": "[]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The trivial solution is to check the time days before and after each day. There are a lot of repeated operations using this solution. How could we optimize this solution?",
+    "We can use precomputation to make the solution faster.",
+    "Use an array to store the number of days before the i<sup>th</sup> day that is non-increasing, and another array to store the number of days after the i<sup>th</sup> day that is non-decreasing."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-good-days-to-rob-the-bank/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.718Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "id": "2441",
+  "slug": "largest-positive-integer-that-exists-with-its-negative",
+  "title": "Largest Positive Integer That Exists With Its Negative",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "statement": "Given an integer array `nums` that **does not contain** any zeros, find **the largest positive** integer `k` such that `-k` also exists in the array.\n\nReturn _the positive integer_ `k`. If there is no such integer, return `-1`.\n\n**Example 1:**\n\n```\nInput: nums = [-1,2,-3,3]\nOutput: 3\nExplanation: 3 is the only valid k we can find in the array.\n```\n\n**Example 2:**\n\n```\nInput: nums = [-1,10,6,7,-7,1]\nOutput: 7\nExplanation: Both 1 and 7 have their corresponding negative values in the array. 7 has a larger value.\n```\n\n**Example 3:**\n\n```\nInput: nums = [-10,8,6,7,-2,-3]\nOutput: -1\nExplanation: There is no a single valid k, we return -1.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 1000`\n*   `-1000 <= nums[i] <= 1000`\n*   `nums[i] != 0`",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "-1000 <= nums[i] <= 1000",
+    "nums[i] != 0"
+  ],
+  "examples": [
+    {
+      "input": "nums = [-1,2,-3,3]",
+      "output": "3",
+      "explanation": "3 is the only valid k we can find in the array."
+    },
+    {
+      "input": "nums = [-1,10,6,7,-7,1]",
+      "output": "7",
+      "explanation": "Both 1 and 7 have their corresponding negative values in the array. 7 has a larger value."
+    },
+    {
+      "input": "nums = [-10,8,6,7,-2,-3]",
+      "output": "-1",
+      "explanation": "There is no a single valid k, we return -1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findMaxK(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findMaxK(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findMaxK(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findMaxK(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar findMaxK = function(nums) {\n    \n};",
+    "typescript": "function findMaxK(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindMaxK(int[] nums) {\n        \n    }\n}",
+    "c": "int findMaxK(int* nums, int numsSize) {\n    \n}",
+    "golang": "func findMaxK(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findMaxK(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findMaxK(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_max_k(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef find_max_k(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function findMaxK($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findMaxK(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findMaxK(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_max_k(nums :: [integer]) :: integer\n  def find_max_k(nums) do\n    \n  end\nend",
+    "erlang": "-spec find_max_k(Nums :: [integer()]) -> integer().\nfind_max_k(Nums) ->\n  .",
+    "racket": "(define/contract (find-max-k nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[-1,2,-3,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,10,6,7,-7,1]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[-10,8,6,7,-2,-3]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[-1,2,-3,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,10,6,7,-7,1]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[-10,8,6,7,-2,-3]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-3,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1,3]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,-3,2,-1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-3,-1,2,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,2,-1,-3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,-1,-1,-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1,2,-3,3,-1,2,-3,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-2,4,-6,6]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[0,3,-2,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-2,1,-4,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,-2,3,-3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "What data structure can help you to determine if an element exists?",
+    "Would a hash table help?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.998Z",
+    "sourceUpdatedAt": null
+  }
+}

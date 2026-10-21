@@ -1,0 +1,156 @@
+{
+  "id": "1018",
+  "slug": "binary-prefix-divisible-by-5",
+  "title": "Binary Prefix Divisible By 5",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given a binary array `nums` (**0-indexed**).\n\nWe define `x_(i)` as the number whose binary representation is the subarray `nums[0..i]` (from most-significant-bit to least-significant-bit).\n\n*   For example, if `nums = [1,0,1]`, then `x_(0) = 1`, `x_(1) = 2`, and `x_(2) = 5`.\n\nReturn _an array of booleans_ `answer` _where_ `answer[i]` _is_ `true` _if_ `x_(i)` _is divisible by_ `5`.\n\n**Example 1:**\n\n```\nInput: nums = [0,1,1]\nOutput: [true,false,false]\nExplanation: The input numbers in binary are 0, 01, 011; which are 0, 1, and 3 in base-10.\nOnly the first number is divisible by 5, so answer[0] is true.\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,1,1]\nOutput: [false,false,false]\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `nums[i]` is either `0` or `1`.",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "nums[i] is either 0 or 1."
+  ],
+  "examples": [
+    {
+      "input": "nums = [0,1,1]",
+      "output": "[true,false,false]",
+      "explanation": "The input numbers in binary are 0, 01, 011; which are 0, 1, and 3 in base-10.\nOnly the first number is divisible by 5, so answer[0] is true."
+    },
+    {
+      "input": "nums = [1,1,1]",
+      "output": "[false,false,false]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<bool> prefixesDivBy5(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Boolean> prefixesDivBy5(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def prefixesDivBy5(self, nums: list[int]) -> list[bool]:\n        ",
+    "python": "class Solution(object):\n    def prefixesDivBy5(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[bool]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {boolean[]}\n */\nvar prefixesDivBy5 = function(nums) {\n    \n};",
+    "typescript": "function prefixesDivBy5(nums: number[]): boolean[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<bool> PrefixesDivBy5(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nbool* prefixesDivBy5(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func prefixesDivBy5(nums []int) []bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun prefixesDivBy5(nums: IntArray): List<Boolean> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func prefixesDivBy5(_ nums: [Int]) -> [Bool] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn prefixes_div_by5(nums: Vec<i32>) -> Vec<bool> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Boolean[]}\ndef prefixes_div_by5(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Boolean[]\n     */\n    function prefixesDivBy5($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<bool> prefixesDivBy5(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def prefixesDivBy5(nums: Array[Int]): List[Boolean] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec prefixes_div_by5(nums :: [integer]) :: [boolean]\n  def prefixes_div_by5(nums) do\n    \n  end\nend",
+    "erlang": "-spec prefixes_div_by5(Nums :: [integer()]) -> [boolean()].\nprefixes_div_by5(Nums) ->\n  .",
+    "racket": "(define/contract (prefixes-div-by5 nums)\n  (-> (listof exact-integer?) (listof boolean?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[0,1,1]",
+      "expectedOutput": "[true,false,false]"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "[false,false,false]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[0,1,1]",
+      "expectedOutput": "[true,false,false]"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "[false,false,false]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "[false,false]"
+    },
+    {
+      "input": "[0,1]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "[1,1,0]",
+      "expectedOutput": "[false,false,false]"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "[true,true,true]"
+    },
+    {
+      "input": "[0,1,1,0,1,1]",
+      "expectedOutput": "[true,false,false,false,false,false]"
+    },
+    {
+      "input": "[0,2,2]",
+      "expectedOutput": "[true,false,false]"
+    },
+    {
+      "input": "[1,2,2]",
+      "expectedOutput": "[false,false,false]"
+    },
+    {
+      "input": "[-1,0,0]",
+      "expectedOutput": "[false,false,false]"
+    },
+    {
+      "input": "[0,-1,-1]",
+      "expectedOutput": "[true,false,false]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "[true,true]"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "[false,false]"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "[false,true]"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "[false,false]"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "[false,false,false]"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "[false,false,false]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If X is the first i digits of the array as a binary number, then 2X + A[i] is the first i+1 digits."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/binary-prefix-divisible-by-5/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.561Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "id": "2576",
+  "slug": "find-the-maximum-number-of-marked-indices",
+  "title": "Find the Maximum Number of Marked Indices",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums`.\n\nInitially, all of the indices are unmarked. You are allowed to make this operation any number of times:\n\n*   Pick two **different unmarked** indices `i` and `j` such that `2 * nums[i] <= nums[j]`, then mark `i` and `j`.\n\nReturn _the maximum possible number of marked indices in `nums` using the above operation any number of times_.\n\n**Example 1:**\n\n```\nInput: nums = [3,5,2,4]\nOutput: 2\nExplanation: In the first operation: pick i = 2 and j = 1, the operation is allowed because 2 * nums[2] <= nums[1]. Then mark index 2 and 1.\nIt can be shown that there's no other valid operation so the answer is 2.\n```\n\n**Example 2:**\n\n```\nInput: nums = [9,2,5,4]\nOutput: 4\nExplanation: In the first operation: pick i = 3 and j = 0, the operation is allowed because 2 * nums[3] <= nums[0]. Then mark index 3 and 0.\nIn the second operation: pick i = 1 and j = 2, the operation is allowed because 2 * nums[1] <= nums[2]. Then mark index 1 and 2.\nSince there is no other operation, the answer is 4.\n```\n\n**Example 3:**\n\n```\nInput: nums = [7,6,8]\nOutput: 0\nExplanation: There is no valid operation to do, so the answer is 0.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`\n\n.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0; } .spoiler {overflow:hidden;} .spoiler > div {-webkit-transition: all 0s ease;-moz-transition: margin 0s ease;-o-transition: all 0s ease;transition: margin 0s ease;} .spoilerbutton\\[value=\"Show Message\"\\] + .spoiler > div {margin-top:-500%;} .spoilerbutton\\[value=\"Hide Message\"\\] + .spoiler {padding:5px;}",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,5,2,4]",
+      "output": "2",
+      "explanation": "In the first operation: pick i = 2 and j = 1, the operation is allowed because 2 * nums[2] <= nums[1]. Then mark index 2 and 1.\nIt can be shown that there's no other valid operation so the answer is 2."
+    },
+    {
+      "input": "nums = [9,2,5,4]",
+      "output": "4",
+      "explanation": "In the first operation: pick i = 3 and j = 0, the operation is allowed because 2 * nums[3] <= nums[0]. Then mark index 3 and 0.\nIn the second operation: pick i = 1 and j = 2, the operation is allowed because 2 * nums[1] <= nums[2]. Then mark index 1 and 2.\nSince there is no other operation, the answer is 4."
+    },
+    {
+      "input": "nums = [7,6,8]",
+      "output": "0",
+      "explanation": "There is no valid operation to do, so the answer is 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxNumOfMarkedIndices(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxNumOfMarkedIndices(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxNumOfMarkedIndices(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxNumOfMarkedIndices(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxNumOfMarkedIndices = function(nums) {\n    \n};",
+    "typescript": "function maxNumOfMarkedIndices(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxNumOfMarkedIndices(int[] nums) {\n        \n    }\n}",
+    "c": "int maxNumOfMarkedIndices(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxNumOfMarkedIndices(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxNumOfMarkedIndices(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxNumOfMarkedIndices(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_num_of_marked_indices(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_num_of_marked_indices(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxNumOfMarkedIndices($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxNumOfMarkedIndices(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxNumOfMarkedIndices(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_num_of_marked_indices(nums :: [integer]) :: integer\n  def max_num_of_marked_indices(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_num_of_marked_indices(Nums :: [integer()]) -> integer().\nmax_num_of_marked_indices(Nums) ->\n  .",
+    "racket": "(define/contract (max-num-of-marked-indices nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,5,2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[9,2,5,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[7,6,8]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,5,2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[9,2,5,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[7,6,8]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,2,5,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,3,4,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,4,3,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,3,3,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,5,2,4,3,5,2,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[6,10,4,8]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,6,3,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4,1,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-3,-5,-2,-4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Think about how to check that performing k operations is possible.",
+    "To perform k operations, it’s optimal to use the smallest k elements and the largest k elements and think about how to match them.",
+    "It’s optimal to match the ith smallest number with the k-i + 1 largest number.",
+    "Now we need to binary search on the answer and find the greatest possible valid k."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-maximum-number-of-marked-indices/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.443Z",
+    "sourceUpdatedAt": null
+  }
+}

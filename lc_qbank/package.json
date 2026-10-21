@@ -1,0 +1,41 @@
+{
+  "name": "leetcode-question-bank",
+  "version": "1.0.0",
+  "description": "Automated LeetCode question collection and normalization pipeline",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "discover": "node scripts/discover.mjs",
+    "collect": "node scripts/collect.mjs",
+    "normalize": "node scripts/normalize.mjs",
+    "validate": "node scripts/validate.mjs",
+    "deduplicate": "node scripts/deduplicate.mjs",
+    "sync": "node scripts/sync-github.mjs --sync",
+    "sync:dry-run": "node scripts/sync-github.mjs --dry-run",
+    "report": "node scripts/generate-report.mjs",
+    "rephrase": "node scripts/rephrase-statements.mjs",
+    "rephrase:resume": "node scripts/rephrase-statements.mjs --resume",
+    "generate-tests": "python scripts/batch_test_engine.py",
+    "test": "vitest run",
+    "full-pipeline": "node scripts/discover.mjs && node scripts/collect.mjs && node scripts/normalize.mjs && node scripts/validate.mjs && node scripts/deduplicate.mjs && node scripts/generate-report.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "dotenv": "^16.4.7",
+    "turndown": "^7.2.0"
+  },
+  "devDependencies": {
+    "vitest": "^3.1.1"
+  },
+  "keywords": [
+    "leetcode",
+    "questions",
+    "dsa",
+    "database",
+    "pipeline"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,156 @@
+{
+  "id": "78",
+  "slug": "subsets",
+  "title": "Subsets",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "statement": "Given an integer array `nums` of **unique** elements, return _all possible_ _subsets_ _(the power set)_.\n\nThe solution set **must not** contain duplicate subsets. Return the solution in **any order**.\n\n**Example 1:**\n\n```\nInput: nums = [1,2,3]\nOutput: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]\n```\n\n**Example 2:**\n\n```\nInput: nums = [0]\nOutput: [[],[0]]\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10`\n*   `-10 <= nums[i] <= 10`\n*   All the numbers of `nums` are **unique**.",
+  "constraints": [
+    "1 <= nums.length <= 10",
+    "-10 <= nums[i] <= 10",
+    "All the numbers of nums are unique."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3]",
+      "output": "[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]",
+      "explanation": null
+    },
+    {
+      "input": "nums = [0]",
+      "output": "[[],[0]]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> subsets(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> subsets(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def subsets(self, nums: list[int]) -> list[list[int]]:\n        ",
+    "python": "class Solution(object):\n    def subsets(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar subsets = function(nums) {\n    \n};",
+    "typescript": "function subsets(nums: number[]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> Subsets(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** subsets(int* nums, int numsSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func subsets(nums []int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun subsets(nums: IntArray): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func subsets(_ nums: [Int]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[][]}\ndef subsets(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[][]\n     */\n    function subsets($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> subsets(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def subsets(nums: Array[Int]): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec subsets(nums :: [integer]) :: [[integer]]\n  def subsets(nums) do\n    \n  end\nend",
+    "erlang": "-spec subsets(Nums :: [integer()]) -> [[integer()]].\nsubsets(Nums) ->\n  .",
+    "racket": "(define/contract (subsets nums)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[[],[0]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "[[],[3],[2],[2,3],[1],[1,3],[1,2],[1,2,3]]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[[],[0]]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[[],[1]]"
+    },
+    {
+      "input": "[2,3]",
+      "expectedOutput": "[[],[3],[2],[2,3]]"
+    },
+    {
+      "input": "[1,3]",
+      "expectedOutput": "[[],[3],[1],[1,3]]"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "[[],[2],[1],[1,2]]"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "[[],[1],[2],[2,1],[3],[3,1],[3,2],[3,2,1]]"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "[[],[1],[1],[1,1],[1],[1,1],[1,1],[1,1,1]]"
+    },
+    {
+      "input": "[1,2,3,1,2,3]",
+      "expectedOutput": "[[],[3],[2],[2,3],[1],[1,3],[1,2],[1,2,3],[3],[3,3],[3,2],[3,2,3],[3,1],[3,1,3],[3,1,2],[3,1,2,3],[2],[2,3],[2,2],[2,2,3],[2,1],[2,1,3],[2,1,2],[2,1,2,3],[2,3],[2,3,3],[2,3,2],[2,3,2,3],[2,3,1],[2,3,1,3],[2,3,1,2],[2,3,1,2,3],[1],[1,3],[1,2],[1,2,3],[1,1],[1,1,3],[1,1,2],[1,1,2,3],[1,3],[1,3,3],[1,3,2],[1,3,2,3],[1,3,1],[1,3,1,3],[1,3,1,2],[1,3,1,2,3],[1,2],[1,2,3],[1,2,2],[1,2,2,3],[1,2,1],[1,2,1,3],[1,2,1,2],[1,2,1,2,3],[1,2,3],[1,2,3,3],[1,2,3,2],[1,2,3,2,3],[1,2,3,1],[1,2,3,1,3],[1,2,3,1,2],[1,2,3,1,2,3]]"
+    },
+    {
+      "input": "[2,4,6]",
+      "expectedOutput": "[[],[6],[4],[4,6],[2],[2,6],[2,4],[2,4,6]]"
+    },
+    {
+      "input": "[2,3,4]",
+      "expectedOutput": "[[],[4],[3],[3,4],[2],[2,4],[2,3],[2,3,4]]"
+    },
+    {
+      "input": "[0,1,2]",
+      "expectedOutput": "[[],[2],[1],[1,2],[0],[0,2],[0,1],[0,1,2]]"
+    },
+    {
+      "input": "[-1,-2,-3]",
+      "expectedOutput": "[[],[-3],[-2],[-2,-3],[-1],[-1,-3],[-1,-2],[-1,-2,-3]]"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "[[],[0],[0],[0,0],[0],[0,0],[0,0],[0,0,0]]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[[],[-1]]"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "[[],[0],[0],[0,0]]"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "[[],[1],[2],[2,1]]"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "[[],[1],[1],[1,1]]"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "[[],[1],[-1],[-1,1]]"
+    },
+    {
+      "input": "[0,1,0]",
+      "expectedOutput": "[[],[0],[1],[1,0],[0],[0,0],[0,1],[0,1,0]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/subsets/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.439Z",
+    "sourceUpdatedAt": null
+  }
+}

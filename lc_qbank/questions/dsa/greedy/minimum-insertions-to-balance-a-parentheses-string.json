@@ -1,0 +1,168 @@
+{
+  "id": "1541",
+  "slug": "minimum-insertions-to-balance-a-parentheses-string",
+  "title": "Minimum Insertions to Balance a Parentheses String",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Stack",
+    "Greedy",
+    "Bracket Sequences"
+  ],
+  "statement": "Given a parentheses string `s` containing only the characters `'('` and `')'`. A parentheses string is **balanced** if:\n\n*   Any left parenthesis `'('` must have a corresponding two consecutive right parenthesis `'))'`.\n*   Left parenthesis `'('` must go before the corresponding two consecutive right parenthesis `'))'`.\n\nIn other words, we treat `'('` as an opening parenthesis and `'))'` as a closing parenthesis.\n\n*   For example, `\"())\"`, `\"())(())))\"` and `\"(())())))\"` are balanced, `\")()\"`, `\"()))\"` and `\"(()))\"` are not balanced.\n\nYou can insert the characters `'('` and `')'` at any position of the string to balance it if needed.\n\nReturn _the minimum number of insertions_ needed to make `s` balanced.\n\n**Example 1:**\n\n```\nInput: s = \"(()))\"\nOutput: 1\nExplanation: The second '(' has two matching '))', but the first '(' has only ')' matching. We need to add one more ')' at the end of the string to be \"(())))\" which is balanced.\n```\n\n**Example 2:**\n\n```\nInput: s = \"())\"\nOutput: 0\nExplanation: The string is already balanced.\n```\n\n**Example 3:**\n\n```\nInput: s = \"))())(\"\nOutput: 3\nExplanation: Add '(' to match the first '))', Add '))' to match the last '('.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists of `'('` and `')'` only.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists of '(' and ')' only."
+  ],
+  "examples": [
+    {
+      "input": "s = \"(()))\"",
+      "output": "1",
+      "explanation": "The second '(' has two matching '))', but the first '(' has only ')' matching. We need to add one more ')' at the end of the string to be \"(())))\" which is balanced."
+    },
+    {
+      "input": "s = \"())\"",
+      "output": "0",
+      "explanation": "The string is already balanced."
+    },
+    {
+      "input": "s = \"))())(\"",
+      "output": "3",
+      "explanation": "Add '(' to match the first '))', Add '))' to match the last '('."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minInsertions(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minInsertions(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minInsertions(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minInsertions(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minInsertions = function(s) {\n    \n};",
+    "typescript": "function minInsertions(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinInsertions(string s) {\n        \n    }\n}",
+    "c": "int minInsertions(char* s) {\n    \n}",
+    "golang": "func minInsertions(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minInsertions(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minInsertions(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_insertions(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef min_insertions(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minInsertions($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minInsertions(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minInsertions(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_insertions(s :: String.t) :: integer\n  def min_insertions(s) do\n    \n  end\nend",
+    "erlang": "-spec min_insertions(S :: unicode:unicode_binary()) -> integer().\nmin_insertions(S) ->\n  .",
+    "racket": "(define/contract (min-insertions s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"(()))\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"())\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"))())(\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"(()))\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"())\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"))())(\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"((\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\")))\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"(\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\")))((\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"(()))(()))\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"(((((\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"(())))))((\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "10"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use a stack to keep opening brackets. If you face single closing ')' add 1 to the answer and consider it as '))'.",
+    "If you have '))' with empty stack, add 1 to the answer, If after finishing you have x opening remaining in the stack, add 2x to the answer."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.025Z",
+    "sourceUpdatedAt": null
+  }
+}

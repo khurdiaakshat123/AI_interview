@@ -1,0 +1,167 @@
+{
+  "id": "1593",
+  "slug": "split-a-string-into-the-max-number-of-unique-substrings",
+  "title": "Split a String Into the Max Number of Unique Substrings",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking"
+  ],
+  "statement": "Given a string `s`, return _the maximum number of unique substrings that the given string can be split into_.\n\nYou can split string `s` into any list of **non-empty substrings**, where the concatenation of the substrings forms the original string. However, you must split the substrings such that all of them are **unique**.\n\nA **substring** is a contiguous sequence of characters within a string.\n\n**Example 1:**\n\n```\nInput: s = \"ababccc\"\nOutput: 5\nExplanation: One way to split maximally is ['a', 'b', 'ab', 'c', 'cc']. Splitting like ['a', 'b', 'a', 'b', 'c', 'cc'] is not valid as you have 'a' and 'b' multiple times.\n```\n\n**Example 2:**\n\n```\nInput: s = \"aba\"\nOutput: 2\nExplanation: One way to split maximally is ['a', 'ba'].\n```\n\n**Example 3:**\n\n```\nInput: s = \"aa\"\nOutput: 1\nExplanation: It is impossible to split the string any further.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 16`\n    \n*   `s` contains only lower case English letters.",
+  "constraints": [
+    "1 <= s.length <= 16",
+    "s contains only lower case English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"ababccc\"",
+      "output": "5",
+      "explanation": ": One way to split maximally is ['a', 'b', 'ab', 'c', 'cc']. Splitting like ['a', 'b', 'a', 'b', 'c', 'cc'] is not valid as you have 'a' and 'b' multiple times."
+    },
+    {
+      "input": "s = \"aba\"",
+      "output": "2",
+      "explanation": ": One way to split maximally is ['a', 'ba']."
+    },
+    {
+      "input": "s = \"aa\"",
+      "output": "1",
+      "explanation": ": It is impossible to split the string any further."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxUniqueSplit(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxUniqueSplit(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxUniqueSplit(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxUniqueSplit(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar maxUniqueSplit = function(s) {\n    \n};",
+    "typescript": "function maxUniqueSplit(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxUniqueSplit(string s) {\n        \n    }\n}",
+    "c": "int maxUniqueSplit(char* s) {\n    \n}",
+    "golang": "func maxUniqueSplit(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxUniqueSplit(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxUniqueSplit(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_unique_split(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef max_unique_split(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function maxUniqueSplit($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxUniqueSplit(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxUniqueSplit(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_unique_split(s :: String.t) :: integer\n  def max_unique_split(s) do\n    \n  end\nend",
+    "erlang": "-spec max_unique_split(S :: unicode:unicode_binary()) -> integer().\nmax_unique_split(S) ->\n  .",
+    "racket": "(define/contract (max-unique-split s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"ababccc\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"ababccc\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"bccc\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"cccbaba\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"ababcccababccc\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"ababccccccbaba\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"ABABCCC\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use a set to keep track of which substrings have been used already",
+    "Try each possible substring at every position and backtrack if a complete split is not possible"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/split-a-string-into-the-max-number-of-unique-substrings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.101Z",
+    "sourceUpdatedAt": null
+  }
+}

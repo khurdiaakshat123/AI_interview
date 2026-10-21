@@ -1,0 +1,162 @@
+{
+  "id": "3552",
+  "slug": "grid-teleportation-traversal",
+  "title": "Grid Teleportation Traversal",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "statement": "You are given a 2D character grid `matrix` of size `m x n`, represented as an array of strings, where `matrix[i][j]` represents the cell at the intersection of the `i^(th)` row and `j^(th)` column. Each cell is one of the following:\n\n*   `'.'` representing an empty cell.\n*   `'#'` representing an obstacle.\n*   An uppercase letter (`'A'`\\-`'Z'`) representing a teleportation portal.\n\nYou start at the top-left cell `(0, 0)`, and your goal is to reach the bottom-right cell `(m - 1, n - 1)`. You can move from the current cell to any adjacent cell (up, down, left, right) as long as the destination cell is within the grid bounds and is not an obstacle**.**\n\nIf you step on a cell containing a portal letter and you haven't used that portal letter before, you may instantly teleport to any other cell in the grid with the same letter. This teleportation does not count as a move, but each portal letter can be used **at most** once during your journey.\n\nReturn the **minimum** number of moves required to reach the bottom-right cell. If it is not possible to reach the destination, return `-1`.\n\n**Example 1:**\n\n**Input:** matrix = \\[\"A..\",\".A.\",\"...\"\\]\n\n**Output:** 2\n\n**Explanation:**\n\n![](./assets/grid-teleportation-traversal-1.png)\n\n*   Before the first move, teleport from `(0, 0)` to `(1, 1)`.\n*   In the first move, move from `(1, 1)` to `(1, 2)`.\n*   In the second move, move from `(1, 2)` to `(2, 2)`.\n\n**Example 2:**\n\n**Input:** matrix = \\[\".#...\",\".#.#.\",\".#.#.\",\"...#.\"\\]\n\n**Output:** 13\n\n**Explanation:**\n\n![](./assets/grid-teleportation-traversal-2.gif)\n\n**Constraints:**\n\n*   `1 <= m == matrix.length <= 10^(3)`\n*   `1 <= n == matrix[i].length <= 10^(3)`\n*   `matrix[i][j]` is either `'#'`, `'.'`, or an uppercase English letter.\n*   `matrix[0][0]` is not an obstacle.",
+  "constraints": [
+    "1 <= m == matrix.length <= 103",
+    "1 <= n == matrix[i].length <= 103",
+    "matrix[i][j] is either '#', '.', or an uppercase English letter.",
+    "matrix[0][0] is not an obstacle."
+  ],
+  "examples": [
+    {
+      "input": "matrix = [\"A..\",\".A.\",\"...\"]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "matrix = [\".#...\",\".#.#.\",\".#.#.\",\"...#.\"]",
+      "output": "13",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minMoves(vector<string>& matrix) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minMoves(String[] matrix) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minMoves(self, matrix: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minMoves(self, matrix):\n        \"\"\"\n        :type matrix: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} matrix\n * @return {number}\n */\nvar minMoves = function(matrix) {\n    \n};",
+    "typescript": "function minMoves(matrix: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinMoves(string[] matrix) {\n        \n    }\n}",
+    "c": "int minMoves(char** matrix, int matrixSize) {\n    \n}",
+    "golang": "func minMoves(matrix []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minMoves(matrix: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minMoves(_ matrix: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_moves(matrix: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} matrix\n# @return {Integer}\ndef min_moves(matrix)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $matrix\n     * @return Integer\n     */\n    function minMoves($matrix) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minMoves(List<String> matrix) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minMoves(matrix: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_moves(matrix :: [String.t]) :: integer\n  def min_moves(matrix) do\n    \n  end\nend",
+    "erlang": "-spec min_moves(Matrix :: [unicode:unicode_binary()]) -> integer().\nmin_moves(Matrix) ->\n  .",
+    "racket": "(define/contract (min-moves matrix)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"A..\",\".A.\",\"...\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\".#...\",\".#.#.\",\".#.#.\",\"...#.\"]",
+      "expectedOutput": "13"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"A..\",\".A.\",\"...\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\".#...\",\".#.#.\",\".#.#.\",\"...#.\"]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[\"A..\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\".A.\",\"...\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"A..\",\"...\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"A..\",\".A.\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"...\",\".A.\",\"A..\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"A..\",\"A..\",\"A..\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"A..\",\".A.\",\"...\",\"A..\",\".A.\",\"...\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"flow\",\"flower\",\"flight\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"listen\",\"silent\"]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Treat all portals with the same letter as connected-like one big super-node.",
+    "Each portal letter is used at most once, but that doesn't affect correctness since we visit each cell only once in the shortest path.",
+    "Use Breadth-First Search to find the minimum number of moves."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/grid-teleportation-traversal/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.265Z",
+    "sourceUpdatedAt": null
+  }
+}

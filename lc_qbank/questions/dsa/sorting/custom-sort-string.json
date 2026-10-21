@@ -1,0 +1,157 @@
+{
+  "id": "791",
+  "slug": "custom-sort-string",
+  "title": "Custom Sort String",
+  "category": "dsa",
+  "subcategory": "sorting",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "statement": "You are given two strings `order` and `s`. All the characters of `order` are **unique** and were sorted in some custom order previously.\n\nPermute the characters of `s` so that they match the order that `order` was sorted. More specifically, if a character `x` occurs before a character `y` in `order`, then `x` should occur before `y` in the permuted string.\n\nReturn _any permutation of_ `s` _that satisfies this property_.\n\n**Example 1:**\n\n**Input:** order = \"cba\", s = \"abcd\"\n\n**Output:** \"cbad\"\n\n**Explanation:** `\"a\"`, `\"b\"`, `\"c\"` appear in order, so the order of `\"a\"`, `\"b\"`, `\"c\"` should be `\"c\"`, `\"b\"`, and `\"a\"`.\n\nSince `\"d\"` does not appear in `order`, it can be at any position in the returned string. `\"dcba\"`, `\"cdba\"`, `\"cbda\"` are also valid outputs.\n\n**Example 2:**\n\n**Input:** order = \"bcafg\", s = \"abcd\"\n\n**Output:** \"bcad\"\n\n**Explanation:** The characters `\"b\"`, `\"c\"`, and `\"a\"` from `order` dictate the order for the characters in `s`. The character `\"d\"` in `s` does not appear in `order`, so its position is flexible.\n\nFollowing the order of appearance in `order`, `\"b\"`, `\"c\"`, and `\"a\"` from `s` should be arranged as `\"b\"`, `\"c\"`, `\"a\"`. `\"d\"` can be placed at any position since it's not in order. The output `\"bcad\"` correctly follows this rule. Other arrangements like `\"dbca\"` or `\"bcda\"` would also be valid, as long as `\"b\"`, `\"c\"`, `\"a\"` maintain their order.\n\n**Constraints:**\n\n*   `1 <= order.length <= 26`\n*   `1 <= s.length <= 200`\n*   `order` and `s` consist of lowercase English letters.\n*   All the characters of `order` are **unique**.",
+  "constraints": [
+    "1 <= order.length <= 26",
+    "1 <= s.length <= 200",
+    "order and s consist of lowercase English letters.",
+    "All the characters of order are unique."
+  ],
+  "examples": [
+    {
+      "input": "order = \"cba\", s = \"abcd\"",
+      "output": "\"cbad\"",
+      "explanation": "\"a\", \"b\", \"c\" appear in order, so the order of \"a\", \"b\", \"c\" should be \"c\", \"b\", and \"a\"."
+    },
+    {
+      "input": "order = \"bcafg\", s = \"abcd\"",
+      "output": "\"bcad\"",
+      "explanation": "The characters \"b\", \"c\", and \"a\" from order dictate the order for the characters in s. The character \"d\" in s does not appear in order, so its position is flexible."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string customSortString(string order, string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String customSortString(String order, String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def customSortString(self, order: str, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def customSortString(self, order, s):\n        \"\"\"\n        :type order: str\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} order\n * @param {string} s\n * @return {string}\n */\nvar customSortString = function(order, s) {\n    \n};",
+    "typescript": "function customSortString(order: string, s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string CustomSortString(string order, string s) {\n        \n    }\n}",
+    "c": "char* customSortString(char* order, char* s) {\n    \n}",
+    "golang": "func customSortString(order string, s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun customSortString(order: String, s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func customSortString(_ order: String, _ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn custom_sort_string(order: String, s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} order\n# @param {String} s\n# @return {String}\ndef custom_sort_string(order, s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $order\n     * @param String $s\n     * @return String\n     */\n    function customSortString($order, $s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String customSortString(String order, String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def customSortString(order: String, s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec custom_sort_string(order :: String.t, s :: String.t) :: String.t\n  def custom_sort_string(order, s) do\n    \n  end\nend",
+    "erlang": "-spec custom_sort_string(Order :: unicode:unicode_binary(), S :: unicode:unicode_binary()) -> unicode:unicode_binary().\ncustom_sort_string(Order, S) ->\n  .",
+    "racket": "(define/contract (custom-sort-string order s)\n  (-> string? string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"cba\"\n\"abcd\"",
+      "expectedOutput": "\"cbad\""
+    },
+    {
+      "input": "\"bcafg\"\n\"abcd\"",
+      "expectedOutput": "\"bcad\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"cba\"\n\"abcd\"",
+      "expectedOutput": "\"cdba\""
+    },
+    {
+      "input": "\"bcafg\"\n\"abcd\"",
+      "expectedOutput": "\"bdca\""
+    },
+    {
+      "input": "\"c\"\n\"abcd\"",
+      "expectedOutput": "\"abcd\""
+    },
+    {
+      "input": "\"ba\"\n\"abcd\"",
+      "expectedOutput": "\"bcda\""
+    },
+    {
+      "input": "\"cb\"\n\"abcd\"",
+      "expectedOutput": "\"acdb\""
+    },
+    {
+      "input": "\"abc\"\n\"abcd\"",
+      "expectedOutput": "\"adbc\""
+    },
+    {
+      "input": "\"cbacba\"\n\"abcd\"",
+      "expectedOutput": "\"dcba\""
+    },
+    {
+      "input": "\"ccc\"\n\"abcd\"",
+      "expectedOutput": "\"abdc\""
+    },
+    {
+      "input": "\"cbaabc\"\n\"abcd\"",
+      "expectedOutput": "\"dabc\""
+    },
+    {
+      "input": "\"CBA\"\n\"abcd\"",
+      "expectedOutput": "\"abcd\""
+    },
+    {
+      "input": "\"a\"\n\"abcd\"",
+      "expectedOutput": "\"abcd\""
+    },
+    {
+      "input": "\"b\"\n\"abcd\"",
+      "expectedOutput": "\"abcd\""
+    },
+    {
+      "input": "\"aa\"\n\"abcd\"",
+      "expectedOutput": "\"bcda\""
+    },
+    {
+      "input": "\"ab\"\n\"abcd\"",
+      "expectedOutput": "\"acdb\""
+    },
+    {
+      "input": "\"aba\"\n\"abcd\"",
+      "expectedOutput": "\"cdba\""
+    },
+    {
+      "input": "\"abba\"\n\"abcd\"",
+      "expectedOutput": "\"cdba\""
+    },
+    {
+      "input": "\"aaaaa\"\n\"abcd\"",
+      "expectedOutput": "\"bcda\""
+    },
+    {
+      "input": "\"abcde\"\n\"abcd\"",
+      "expectedOutput": "\"abcd\""
+    },
+    {
+      "input": "\"edcba\"\n\"abcd\"",
+      "expectedOutput": "\"dcba\""
+    },
+    {
+      "input": "\"aab\"\n\"abcd\"",
+      "expectedOutput": "\"cdab\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/custom-sort-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.106Z",
+    "sourceUpdatedAt": null
+  }
+}

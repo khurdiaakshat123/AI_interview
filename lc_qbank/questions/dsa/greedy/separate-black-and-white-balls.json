@@ -1,0 +1,167 @@
+{
+  "id": "2938",
+  "slug": "separate-black-and-white-balls",
+  "title": "Separate Black and White Balls",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Greedy"
+  ],
+  "statement": "There are `n` balls on a table, each ball has a color black or white.\n\nYou are given a **0-indexed** binary string `s` of length `n`, where `1` and `0` represent black and white balls, respectively.\n\nIn each step, you can choose two adjacent balls and swap them.\n\nReturn _the **minimum** number of steps to group all the black balls to the right and all the white balls to the left_.\n\n**Example 1:**\n\n```\nInput: s = \"101\"\nOutput: 1\nExplanation: We can group all the black balls to the right in the following way:\n- Swap s[0] and s[1], s = \"011\".\nInitially, 1s are not grouped together, requiring at least 1 step to group them to the right.\n```\n\n**Example 2:**\n\n```\nInput: s = \"100\"\nOutput: 2\nExplanation: We can group all the black balls to the right in the following way:\n- Swap s[0] and s[1], s = \"010\".\n- Swap s[1] and s[2], s = \"001\".\nIt can be proven that the minimum number of steps needed is 2.\n```\n\n**Example 3:**\n\n```\nInput: s = \"0111\"\nOutput: 0\nExplanation: All the black balls are already grouped to the right.\n```\n\n**Constraints:**\n\n*   `1 <= n == s.length <= 10^(5)`\n*   `s[i]` is either `'0'` or `'1'`.",
+  "constraints": [
+    "1 <= n == s.length <= 105",
+    "s[i] is either '0' or '1'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"101\"",
+      "output": "1",
+      "explanation": "We can group all the black balls to the right in the following way:\n- Swap s[0] and s[1], s = \"011\".\nInitially, 1s are not grouped together, requiring at least 1 step to group them to the right."
+    },
+    {
+      "input": "s = \"100\"",
+      "output": "2",
+      "explanation": "We can group all the black balls to the right in the following way:\n- Swap s[0] and s[1], s = \"010\".\n- Swap s[1] and s[2], s = \"001\".\nIt can be proven that the minimum number of steps needed is 2."
+    },
+    {
+      "input": "s = \"0111\"",
+      "output": "0",
+      "explanation": "All the black balls are already grouped to the right."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minimumSteps(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minimumSteps(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumSteps(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumSteps(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minimumSteps = function(s) {\n    \n};",
+    "typescript": "function minimumSteps(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinimumSteps(string s) {\n        \n    }\n}",
+    "c": "long long minimumSteps(char* s) {\n    \n}",
+    "golang": "func minimumSteps(s string) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumSteps(s: String): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumSteps(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_steps(s: String) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef minimum_steps(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minimumSteps($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumSteps(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumSteps(s: String): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_steps(s :: String.t) :: integer\n  def minimum_steps(s) do\n    \n  end\nend",
+    "erlang": "-spec minimum_steps(S :: unicode:unicode_binary()) -> integer().\nminimum_steps(S) ->\n  .",
+    "racket": "(define/contract (minimum-steps s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"101\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"100\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0111\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"101\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"100\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0111\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"01\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"10\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"101101\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"111\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Every <code>1</code> in the string <code>s</code> should be swapped with every <code>0</code> on its right side.",
+    "Iterate right to left and count the number of <code>0</code> that have already occurred, whenever you iterate on <code>1</code> add that counter to the answer."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/separate-black-and-white-balls/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:28.265Z",
+    "sourceUpdatedAt": null
+  }
+}

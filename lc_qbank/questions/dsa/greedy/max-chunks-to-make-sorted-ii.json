@@ -1,0 +1,159 @@
+{
+  "id": "768",
+  "slug": "max-chunks-to-make-sorted-ii",
+  "title": "Max Chunks To Make Sorted II",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Stack",
+    "Greedy",
+    "Sorting",
+    "Monotonic Stack"
+  ],
+  "statement": "You are given an integer array `arr`.\n\nWe split `arr` into some number of **chunks** (i.e., partitions), and individually sort each chunk. After concatenating them, the result should equal the sorted array.\n\nReturn _the largest number of chunks we can make to sort the array_.\n\n**Example 1:**\n\n```\nInput: arr = [5,4,3,2,1]\nOutput: 1\nExplanation:\nSplitting into two or more chunks will not return the required result.\nFor example, splitting into [5, 4], [3, 2, 1] will result in [4, 5, 1, 2, 3], which isn't sorted.\n```\n\n**Example 2:**\n\n```\nInput: arr = [2,1,3,4,4]\nOutput: 4\nExplanation:\nWe can split into two chunks, such as [2, 1], [3, 4, 4].\nHowever, splitting into [2, 1], [3], [4], [4] is the highest number of chunks possible.\n```\n\n**Constraints:**\n\n*   `1 <= arr.length <= 2000`\n*   `0 <= arr[i] <= 10^(8)`",
+  "constraints": [
+    "1 <= arr.length <= 2000",
+    "0 <= arr[i] <= 108"
+  ],
+  "examples": [
+    {
+      "input": "arr = [5,4,3,2,1]",
+      "output": "1",
+      "explanation": "Splitting into two or more chunks will not return the required result.\nFor example, splitting into [5, 4], [3, 2, 1] will result in [4, 5, 1, 2, 3], which isn't sorted."
+    },
+    {
+      "input": "arr = [2,1,3,4,4]",
+      "output": "4",
+      "explanation": "We can split into two chunks, such as [2, 1], [3, 4, 4].\nHowever, splitting into [2, 1], [3], [4], [4] is the highest number of chunks possible."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxChunksToSorted(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxChunksToSorted(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxChunksToSorted(self, arr: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxChunksToSorted(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number}\n */\nvar maxChunksToSorted = function(arr) {\n    \n};",
+    "typescript": "function maxChunksToSorted(arr: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxChunksToSorted(int[] arr) {\n        \n    }\n}",
+    "c": "int maxChunksToSorted(int* arr, int arrSize) {\n    \n}",
+    "golang": "func maxChunksToSorted(arr []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxChunksToSorted(arr: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxChunksToSorted(_ arr: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_chunks_to_sorted(arr: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer}\ndef max_chunks_to_sorted(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer\n     */\n    function maxChunksToSorted($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxChunksToSorted(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxChunksToSorted(arr: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_chunks_to_sorted(arr :: [integer]) :: integer\n  def max_chunks_to_sorted(arr) do\n    \n  end\nend",
+    "erlang": "-spec max_chunks_to_sorted(Arr :: [integer()]) -> integer().\nmax_chunks_to_sorted(Arr) ->\n  .",
+    "racket": "(define/contract (max-chunks-to-sorted arr)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[5,4,3,2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1,3,4,4]",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[5,4,3,2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1,3,4,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[5,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3,4,5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[5,5,5,5,5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[5,4,3,2,1,5,4,3,2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[10,8,6,4,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[6,5,4,3,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,3,2,1,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-5,-4,-3,-2,-1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Each k for which some permutation of arr[:k] is equal to sorted(arr)[:k] is where we should cut each chunk."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/max-chunks-to-make-sorted-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.125Z",
+    "sourceUpdatedAt": null
+  }
+}

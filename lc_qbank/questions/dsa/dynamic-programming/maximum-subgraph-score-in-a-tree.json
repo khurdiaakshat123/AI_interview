@@ -1,0 +1,116 @@
+{
+  "id": "3772",
+  "slug": "maximum-subgraph-score-in-a-tree",
+  "title": "Maximum Subgraph Score in a Tree",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "statement": "You are given an **undirected tree** with `n` nodes, numbered from 0 to `n - 1`. It is represented by a 2D integer array `edges`​​​​​​​ of length `n - 1`, where `edges[i] = [a_(i), b_(i)]` indicates that there is an edge between nodes `a_(i)` and `b_(i)` in the tree.\n\nYou are also given an integer array `good` of length `n`, where `good[i]` is 1 if the `i^(th)` node is good, and 0 if it is bad.\n\nDefine the **score** of a **subgraph** as the number of good nodes minus the number of bad nodes in that subgraph.\n\nFor each node `i`, find the **maximum** possible score among all **connected subgraphs** that contain node `i`.\n\nReturn an array of `n` integers where the `i^(th)` element is the **maximum** score for node `i`.\n\nA **subgraph** is a graph whose vertices and edges are subsets of the original graph.\n\nA **connected subgraph** is a subgraph in which every pair of its vertices is reachable from one another using only its edges.\n\n**Example 1:**\n\n![Tree Example 1](./assets/maximum-subgraph-score-in-a-tree-1.png)\n\n**Input:** n = 3, edges = \\[\\[0,1\\],\\[1,2\\]\\], good = \\[1,0,1\\]\n\n**Output:** \\[1,1,1\\]\n\n**Explanation:**\n\n*   Green nodes are good and red nodes are bad.\n*   For each node, the best connected subgraph containing it is the whole tree, which has 2 good nodes and 1 bad node, resulting in a score of 1.\n*   Other connected subgraphs containing a node may have the same score.\n\n**Example 2:**\n\n![Tree Example 2](./assets/maximum-subgraph-score-in-a-tree-2.png)\n\n**Input:** n = 5, edges = \\[\\[1,0\\],\\[1,2\\],\\[1,3\\],\\[3,4\\]\\], good = \\[0,1,0,1,1\\]\n\n**Output:** \\[2,3,2,3,3\\]\n\n**Explanation:**\n\n*   Node 0: The best connected subgraph consists of nodes `0, 1, 3, 4`, which has 3 good nodes and 1 bad node, resulting in a score of `3 - 1 = 2`.\n*   Nodes 1, 3, and 4: The best connected subgraph consists of nodes `1, 3, 4`, which has 3 good nodes, resulting in a score of 3.\n*   Node 2: The best connected subgraph consists of nodes `1, 2, 3, 4`, which has 3 good nodes and 1 bad node, resulting in a score of `3 - 1 = 2`.\n\n**Example 3:**\n\n![Tree Example 3](./assets/maximum-subgraph-score-in-a-tree-3.png)\n\n**Input:** n = 2, edges = \\[\\[0,1\\]\\], good = \\[0,0\\]\n\n**Output:** \\[-1,-1\\]\n\n**Explanation:**\n\nFor each node, including the other node only adds another bad node, so the best score for both nodes is -1.\n\n**Constraints:**\n\n*   `2 <= n <= 10^(5)`\n*   `edges.length == n - 1`\n*   `edges[i] = [a_(i), b_(i)]`\n*   `0 <= a_(i), b_(i) < n`\n*   `good.length == n`\n*   `0 <= good[i] <= 1`\n*   The input is generated such that `edges` represents a valid tree.",
+  "constraints": [
+    "2 <= n <= 105",
+    "edges.length == n - 1",
+    "edges[i] = [ai, bi]",
+    "0 <= ai, bi < n",
+    "good.length == n",
+    "0 <= good[i] <= 1",
+    "The input is generated such that edges represents a valid tree."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], good = [1,0,1]",
+      "output": "[1,1,1]",
+      "explanation": "Green nodes are good and red nodes are bad.\n\tFor each node, the best connected subgraph containing it is the whole tree, which has 2 good nodes and 1 bad node, resulting in a score of 1.\n\tOther connected subgraphs containing a node may have the same score."
+    },
+    {
+      "input": "n = 5, edges = [[1,0],[1,2],[1,3],[3,4]], good = [0,1,0,1,1]",
+      "output": "[2,3,2,3,3]",
+      "explanation": "Node 0: The best connected subgraph consists of nodes 0, 1, 3, 4, which has 3 good nodes and 1 bad node, resulting in a score of 3 - 1 = 2.\n\tNodes 1, 3, and 4: The best connected subgraph consists of nodes 1, 3, 4, which has 3 good nodes, resulting in a score of 3.\n\tNode 2: The best connected subgraph consists of nodes 1, 2, 3, 4, which has 3 good nodes and 1 bad node, resulting in a score of 3 - 1 = 2."
+    },
+    {
+      "input": "n = 2, edges = [[0,1]], good = [0,0]",
+      "output": "[-1,-1]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> maxSubgraphScore(int n, vector<vector<int>>& edges, vector<int>& good) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] maxSubgraphScore(int n, int[][] edges, int[] good) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSubgraphScore(self, n: int, edges: List[List[int]], good: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def maxSubgraphScore(self, n, edges, good):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type good: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number[]} good\n * @return {number[]}\n */\nvar maxSubgraphScore = function(n, edges, good) {\n    \n};",
+    "typescript": "function maxSubgraphScore(n: number, edges: number[][], good: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MaxSubgraphScore(int n, int[][] edges, int[] good) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* maxSubgraphScore(int n, int** edges, int edgesSize, int* edgesColSize, int* good, int goodSize, int* returnSize) {\n    \n}",
+    "golang": "func maxSubgraphScore(n int, edges [][]int, good []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSubgraphScore(n: Int, edges: Array<IntArray>, good: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSubgraphScore(_ n: Int, _ edges: [[Int]], _ good: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_subgraph_score(n: i32, edges: Vec<Vec<i32>>, good: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Integer[]} good\n# @return {Integer[]}\ndef max_subgraph_score(n, edges, good)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Integer[] $good\n     * @return Integer[]\n     */\n    function maxSubgraphScore($n, $edges, $good) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> maxSubgraphScore(int n, List<List<int>> edges, List<int> good) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSubgraphScore(n: Int, edges: Array[Array[Int]], good: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_subgraph_score(n :: integer, edges :: [[integer]], good :: [integer]) :: [integer]\n  def max_subgraph_score(n, edges, good) do\n    \n  end\nend",
+    "erlang": "-spec max_subgraph_score(N :: integer(), Edges :: [[integer()]], Good :: [integer()]) -> [integer()].\nmax_subgraph_score(N, Edges, Good) ->\n  .",
+    "racket": "(define/contract (max-subgraph-score n edges good)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1],[1,2]]\n[1,0,1]",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "5\n[[1,0],[1,2],[1,3],[3,4]]\n[0,1,0,1,1]",
+      "expectedOutput": "[2,3,2,3,3]"
+    },
+    {
+      "input": "2\n[[0,1]]\n[0,0]",
+      "expectedOutput": "[-1,-1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1],[1,2]]\n[1,0,1]",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "5\n[[1,0],[1,2],[1,3],[3,4]]\n[0,1,0,1,1]",
+      "expectedOutput": "[2,3,2,3,3]"
+    },
+    {
+      "input": "2\n[[0,1]]\n[0,0]",
+      "expectedOutput": "[-1,-1]"
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], good = [1,0,1]",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "n = 5, edges = [[1,0],[1,2],[1,3],[3,4]], good = [0,1,0,1,1]",
+      "expectedOutput": "[2,3,2,3,3]"
+    },
+    {
+      "input": "n = 2, edges = [[0,1]], good = [0,0]",
+      "expectedOutput": "[-1,-1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use rerooting dynamic programming"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-subgraph-score-in-a-tree/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.690Z",
+    "sourceUpdatedAt": null
+  }
+}

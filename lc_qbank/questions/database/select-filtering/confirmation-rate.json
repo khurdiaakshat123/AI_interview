@@ -1,0 +1,67 @@
+{
+  "id": "1934",
+  "slug": "confirmation-rate",
+  "title": "Confirmation Rate",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Medium",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Signups`\n\n```\n+----------------+----------+\n| Column Name    | Type     |\n+----------------+----------+\n| user_id        | int      |\n| time_stamp     | datetime |\n+----------------+----------+\nuser_id is the column of unique values for this table.\nEach row contains information about the signup time for the user with ID user_id.\n```\n\nTable: `Confirmations`\n\n```\n+----------------+----------+\n| Column Name    | Type     |\n+----------------+----------+\n| user_id        | int      |\n| time_stamp     | datetime |\n| action         | ENUM     |\n+----------------+----------+\n(user_id, time_stamp) is the primary key (combination of columns with unique values) for this table.\nuser_id is a foreign key (reference column) to the Signups table.\naction is an ENUM (category) of the type ('confirmed', 'timeout')\nEach row of this table indicates that the user with ID user_id requested a confirmation message at time_stamp and that confirmation message was either confirmed ('confirmed') or expired without confirming ('timeout').\n```\n\nThe **confirmation rate** of a user is the number of `'confirmed'` messages divided by the total number of requested confirmation messages. The confirmation rate of a user that did not request any confirmation messages is `0`. Round the confirmation rate to **two decimal** places.\n\nWrite a solution to find the **confirmation rate** of each user.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nSignups table:\n+---------+---------------------+\n| user_id | time_stamp          |\n+---------+---------------------+\n| 3       | 2020-03-21 10:16:13 |\n| 7       | 2020-01-04 13:57:59 |\n| 2       | 2020-07-29 23:09:44 |\n| 6       | 2020-12-09 10:39:37 |\n+---------+---------------------+\nConfirmations table:\n+---------+---------------------+-----------+\n| user_id | time_stamp          | action    |\n+---------+---------------------+-----------+\n| 3       | 2021-01-06 03:30:46 | timeout   |\n| 3       | 2021-07-14 14:00:00 | timeout   |\n| 7       | 2021-06-12 11:57:29 | confirmed |\n| 7       | 2021-06-13 12:58:28 | confirmed |\n| 7       | 2021-06-14 13:59:27 | confirmed |\n| 2       | 2021-01-22 00:00:00 | confirmed |\n| 2       | 2021-02-28 23:59:59 | timeout   |\n+---------+---------------------+-----------+\nOutput: \n+---------+-------------------+\n| user_id | confirmation_rate |\n+---------+-------------------+\n| 6       | 0.00              |\n| 3       | 0.00              |\n| 7       | 1.00              |\n| 2       | 0.50              |\n+---------+-------------------+\nExplanation: \nUser 6 did not request any confirmation messages. The confirmation rate is 0.\nUser 3 made 2 requests and both timed out. The confirmation rate is 0.\nUser 7 made 3 requests and all were confirmed. The confirmation rate is 1.\nUser 2 made 2 requests where one was confirmed and the other timed out. The confirmation rate is 1 / 2 = 0.5.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Signups table:\n+---------+---------------------+\n| user_id | time_stamp          |\n+---------+---------------------+\n| 3       | 2020-03-21 10:16:13 |\n| 7       | 2020-01-04 13:57:59 |\n| 2       | 2020-07-29 23:09:44 |\n| 6       | 2020-12-09 10:39:37 |\n+---------+---------------------+\nConfirmations table:\n+---------+---------------------+-----------+\n| user_id | time_stamp          | action    |\n+---------+---------------------+-----------+\n| 3       | 2021-01-06 03:30:46 | timeout   |\n| 3       | 2021-07-14 14:00:00 | timeout   |\n| 7       | 2021-06-12 11:57:29 | confirmed |\n| 7       | 2021-06-13 12:58:28 | confirmed |\n| 7       | 2021-06-14 13:59:27 | confirmed |\n| 2       | 2021-01-22 00:00:00 | confirmed |\n| 2       | 2021-02-28 23:59:59 | timeout   |\n+---------+---------------------+-----------+",
+      "output": "+---------+-------------------+\n| user_id | confirmation_rate |\n+---------+-------------------+\n| 6       | 0.00              |\n| 3       | 0.00              |\n| 7       | 1.00              |\n| 2       | 0.50              |\n+---------+-------------------+",
+      "explanation": "User 6 did not request any confirmation messages. The confirmation rate is 0.\nUser 3 made 2 requests and both timed out. The confirmation rate is 0.\nUser 7 made 3 requests and all were confirmed. The confirmation rate is 1.\nUser 2 made 2 requests where one was confirmed and the other timed out. The confirmation rate is 1 / 2 = 0.5."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef confirmation_rate(signups: pd.DataFrame, confirmations: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"Signups\": [\"user_id\", \"time_stamp\"], \"Confirmations\": [\"user_id\", \"time_stamp\", \"action\"]}, \"rows\": {\"Signups\": [[3, \"2020-03-21 10:16:13\"], [7, \"2020-01-04 13:57:59\"], [2, \"2020-07-29 23:09:44\"], [6, \"2020-12-09 10:39:37\"]], \"Confirmations\": [[3, \"2021-01-06 03:30:46\", \"timeout\"], [3, \"2021-07-14 14:00:00\", \"timeout\"], [7, \"2021-06-12 11:57:29\", \"confirmed\"], [7, \"2021-06-13 12:58:28\", \"confirmed\"], [7, \"2021-06-14 13:59:27\", \"confirmed\"], [2, \"2021-01-22 00:00:00\", \"confirmed\"], [2, \"2021-02-28 23:59:59\", \"timeout\"]]}}",
+      "expectedOutput": "+---------+-------------------+\n| user_id | confirmation_rate |\n+---------+-------------------+\n| 6       | 0.00              |\n| 3       | 0.00              |\n| 7       | 1.00              |\n| 2       | 0.50              |\n+---------+-------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"Signups\": [\"user_id\", \"time_stamp\"], \"Confirmations\": [\"user_id\", \"time_stamp\", \"action\"]}, \"rows\": {\"Signups\": [[3, \"2020-03-21 10:16:13\"], [7, \"2020-01-04 13:57:59\"], [2, \"2020-07-29 23:09:44\"], [6, \"2020-12-09 10:39:37\"]], \"Confirmations\": [[3, \"2021-01-06 03:30:46\", \"timeout\"], [3, \"2021-07-14 14:00:00\", \"timeout\"], [7, \"2021-06-12 11:57:29\", \"confirmed\"], [7, \"2021-06-13 12:58:28\", \"confirmed\"], [7, \"2021-06-14 13:59:27\", \"confirmed\"], [2, \"2021-01-22 00:00:00\", \"confirmed\"], [2, \"2021-02-28 23:59:59\", \"timeout\"]]}}",
+      "expectedOutput": "+---------+-------------------+\n| user_id | confirmation_rate |\n+---------+-------------------+\n| 6       | 0.00              |\n| 3       | 0.00              |\n| 7       | 1.00              |\n| 2       | 0.50              |\n+---------+-------------------+"
+    },
+    {
+      "input": "Signups table:\n+---------+---------------------+\n| user_id | time_stamp          |\n+---------+---------------------+\n| 3       | 2020-03-21 10:16:13 |\n| 7       | 2020-01-04 13:57:59 |\n| 2       | 2020-07-29 23:09:44 |\n| 6       | 2020-12-09 10:39:37 |\n+---------+---------------------+\nConfirmations table:\n+---------+---------------------+-----------+\n| user_id | time_stamp          | action    |\n+---------+---------------------+-----------+\n| 3       | 2021-01-06 03:30:46 | timeout   |\n| 3       | 2021-07-14 14:00:00 | timeout   |\n| 7       | 2021-06-12 11:57:29 | confirmed |\n| 7       | 2021-06-13 12:58:28 | confirmed |\n| 7       | 2021-06-14 13:59:27 | confirmed |\n| 2       | 2021-01-22 00:00:00 | confirmed |\n| 2       | 2021-02-28 23:59:59 | timeout   |\n+---------+---------------------+-----------+",
+      "expectedOutput": "+---------+-------------------+\n| user_id | confirmation_rate |\n+---------+-------------------+\n| 6       | 0.00              |\n| 3       | 0.00              |\n| 7       | 1.00              |\n| 2       | 0.50              |\n+---------+-------------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Signups (user_id int, time_stamp datetime)\n\nCreate table If Not Exists Confirmations (user_id int, time_stamp datetime, action ENUM('confirmed','timeout'))\n\nTruncate table Signups\n\nTruncate table Confirmations",
+  "sqlSetup": [
+    "insert into Signups (user_id, time_stamp) values ('3', '2020-03-21 10:16:13')",
+    "insert into Signups (user_id, time_stamp) values ('7', '2020-01-04 13:57:59')",
+    "insert into Signups (user_id, time_stamp) values ('2', '2020-07-29 23:09:44')",
+    "insert into Signups (user_id, time_stamp) values ('6', '2020-12-09 10:39:37')",
+    "insert into Confirmations (user_id, time_stamp, action) values ('3', '2021-01-06 03:30:46', 'timeout')",
+    "insert into Confirmations (user_id, time_stamp, action) values ('3', '2021-07-14 14:00:00', 'timeout')",
+    "insert into Confirmations (user_id, time_stamp, action) values ('7', '2021-06-12 11:57:29', 'confirmed')",
+    "insert into Confirmations (user_id, time_stamp, action) values ('7', '2021-06-13 12:58:28', 'confirmed')",
+    "insert into Confirmations (user_id, time_stamp, action) values ('7', '2021-06-14 13:59:27', 'confirmed')",
+    "insert into Confirmations (user_id, time_stamp, action) values ('2', '2021-01-22 00:00:00', 'confirmed')",
+    "insert into Confirmations (user_id, time_stamp, action) values ('2', '2021-02-28 23:59:59', 'timeout')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/confirmation-rate/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.664Z",
+    "sourceUpdatedAt": null
+  }
+}

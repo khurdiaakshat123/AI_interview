@@ -1,0 +1,160 @@
+{
+  "id": "1961",
+  "slug": "check-if-string-is-a-prefix-of-array",
+  "title": "Check If String Is a Prefix of Array",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "Given a string `s` and an array of strings `words`, determine whether `s` is a **prefix string** of `words`.\n\nA string `s` is a **prefix string** of `words` if `s` can be made by concatenating the first `k` strings in `words` for some **positive** `k` no larger than `words.length`.\n\nReturn `true` _if_ `s` _is a **prefix string** of_ `words`_, or_ `false` _otherwise_.\n\n**Example 1:**\n\n```\nInput: s = \"iloveleetcode\", words = [\"i\",\"love\",\"leetcode\",\"apples\"]\nOutput: true\nExplanation:\ns can be made by concatenating \"i\", \"love\", and \"leetcode\" together.\n```\n\n**Example 2:**\n\n```\nInput: s = \"iloveleetcode\", words = [\"apples\",\"i\",\"love\",\"leetcode\"]\nOutput: false\nExplanation:\nIt is impossible to make s using a prefix of arr.\n```\n\n**Constraints:**\n\n*   `1 <= words.length <= 100`\n*   `1 <= words[i].length <= 20`\n*   `1 <= s.length <= 1000`\n*   `words[i]` and `s` consist of only lowercase English letters.",
+  "constraints": [
+    "1 <= words.length <= 100",
+    "1 <= words[i].length <= 20",
+    "1 <= s.length <= 1000",
+    "words[i] and s consist of only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"iloveleetcode\", words = [\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "output": "true",
+      "explanation": "s can be made by concatenating \"i\", \"love\", and \"leetcode\" together."
+    },
+    {
+      "input": "s = \"iloveleetcode\", words = [\"apples\",\"i\",\"love\",\"leetcode\"]",
+      "output": "false",
+      "explanation": "It is impossible to make s using a prefix of arr."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isPrefixString(string s, vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isPrefixString(String s, String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isPrefixString(self, s: str, words: list[str]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isPrefixString(self, s, words):\n        \"\"\"\n        :type s: str\n        :type words: List[str]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string[]} words\n * @return {boolean}\n */\nvar isPrefixString = function(s, words) {\n    \n};",
+    "typescript": "function isPrefixString(s: string, words: string[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsPrefixString(string s, string[] words) {\n        \n    }\n}",
+    "c": "bool isPrefixString(char* s, char** words, int wordsSize) {\n    \n}",
+    "golang": "func isPrefixString(s string, words []string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isPrefixString(s: String, words: Array<String>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isPrefixString(_ s: String, _ words: [String]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_prefix_string(s: String, words: Vec<String>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String[]} words\n# @return {Boolean}\ndef is_prefix_string(s, words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String[] $words\n     * @return Boolean\n     */\n    function isPrefixString($s, $words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isPrefixString(String s, List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isPrefixString(s: String, words: Array[String]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_prefix_string(s :: String.t, words :: [String.t]) :: boolean\n  def is_prefix_string(s, words) do\n    \n  end\nend",
+    "erlang": "-spec is_prefix_string(S :: unicode:unicode_binary(), Words :: [unicode:unicode_binary()]) -> boolean().\nis_prefix_string(S, Words) ->\n  .",
+    "racket": "(define/contract (is-prefix-string s words)\n  (-> string? (listof string?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"iloveleetcode\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"iloveleetcode\"\n[\"apples\",\"i\",\"love\",\"leetcode\"]",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"iloveleetcode\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"iloveleetcode\"\n[\"apples\",\"i\",\"love\",\"leetcode\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ilovel\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"eetcode\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"i\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"il\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edocteelevoli\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"iiiiii\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ILOVELEETCODE\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"\n[\"i\",\"love\",\"leetcode\",\"apples\"]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "There are only words.length prefix strings.",
+    "Create all of them and see if s is one of them."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/check-if-string-is-a-prefix-of-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.221Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "id": "275",
+  "slug": "h-index-ii",
+  "title": "H-Index II",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "statement": "Given an array of integers `citations` where `citations[i]` is the number of citations a researcher received for their `i^(th)` paper and `citations` is sorted in **non-descending order**, return _the researcher's h-index_.\n\nAccording to the [definition of h-index on Wikipedia](https://en.wikipedia.org/wiki/H-index): The h-index is defined as the maximum value of `h` such that the given researcher has published at least `h` papers that have each been cited at least `h` times.\n\nYou must write an algorithm that runs in logarithmic time.\n\n**Example 1:**\n\n```\nInput: citations = [0,1,3,5,6]\nOutput: 3\nExplanation: [0,1,3,5,6] means the researcher has 5 papers in total and each of them had received 0, 1, 3, 5, 6 citations respectively.\nSince the researcher has 3 papers with at least 3 citations each and the remaining two with no more than 3 citations each, their h-index is 3.\n```\n\n**Example 2:**\n\n```\nInput: citations = [1,2,100]\nOutput: 2\n```\n\n**Constraints:**\n\n*   `n == citations.length`\n*   `1 <= n <= 10^(5)`\n*   `0 <= citations[i] <= 1000`\n*   `citations` is sorted in **ascending order**.",
+  "constraints": [
+    "n == citations.length",
+    "1 <= n <= 105",
+    "0 <= citations[i] <= 1000",
+    "citations is sorted in ascending order."
+  ],
+  "examples": [
+    {
+      "input": "citations = [0,1,3,5,6]",
+      "output": "3",
+      "explanation": "[0,1,3,5,6] means the researcher has 5 papers in total and each of them had received 0, 1, 3, 5, 6 citations respectively.\nSince the researcher has 3 papers with at least 3 citations each and the remaining two with no more than 3 citations each, their h-index is 3."
+    },
+    {
+      "input": "citations = [1,2,100]",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int hIndex(vector<int>& citations) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int hIndex(int[] citations) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def hIndex(self, citations: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def hIndex(self, citations):\n        \"\"\"\n        :type citations: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} citations\n * @return {number}\n */\nvar hIndex = function(citations) {\n    \n};",
+    "typescript": "function hIndex(citations: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int HIndex(int[] citations) {\n        \n    }\n}",
+    "c": "int hIndex(int* citations, int citationsSize) {\n    \n}",
+    "golang": "func hIndex(citations []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun hIndex(citations: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func hIndex(_ citations: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn h_index(citations: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} citations\n# @return {Integer}\ndef h_index(citations)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $citations\n     * @return Integer\n     */\n    function hIndex($citations) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int hIndex(List<int> citations) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def hIndex(citations: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec h_index(citations :: [integer]) :: integer\n  def h_index(citations) do\n    \n  end\nend",
+    "erlang": "-spec h_index(Citations :: [integer()]) -> integer().\nh_index(Citations) ->\n  .",
+    "racket": "(define/contract (h-index citations)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[0,1,3,5,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,100]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[0,1,3,5,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,100]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,5,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,6]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[6,5,3,1,0]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1,3,5,6,0,1,3,5,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,2,6,10,12]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,4,6,7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,0,2,4,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,-1,-3,-5,-6]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Expected runtime complexity is in <i>O</i>(log <i>n</i>) and the input is sorted."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/h-index-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.320Z",
+    "sourceUpdatedAt": null
+  }
+}

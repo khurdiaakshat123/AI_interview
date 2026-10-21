@@ -1,0 +1,168 @@
+{
+  "id": "2646",
+  "slug": "minimize-the-total-price-of-the-trips",
+  "title": "Minimize the Total Price of the Trips",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "Graph Theory"
+  ],
+  "statement": "There exists an undirected and unrooted tree with `n` nodes indexed from `0` to `n - 1`. You are given the integer `n` and a 2D integer array `edges` of length `n - 1`, where `edges[i] = [a_(i), b_(i)]` indicates that there is an edge between nodes `a_(i)` and `b_(i)` in the tree.\n\nEach node has an associated price. You are given an integer array `price`, where `price[i]` is the price of the `i^(th)` node.\n\nThe **price sum** of a given path is the sum of the prices of all nodes lying on that path.\n\nAdditionally, you are given a 2D integer array `trips`, where `trips[i] = [start_(i), end_(i)]` indicates that you start the `i^(th)` trip from the node `start_(i)` and travel to the node `end_(i)` by any path you like.\n\nBefore performing your first trip, you can choose some **non-adjacent** nodes and halve the prices.\n\nReturn _the minimum total price sum to perform all the given trips_.\n\n**Example 1:**\n\n![](./assets/minimize-the-total-price-of-the-trips-1.png)\n```\nInput: n = 4, edges = [[0,1],[1,2],[1,3]], price = [2,2,10,6], trips = [[0,3],[2,1],[2,3]]\nOutput: 23\nExplanation: The diagram above denotes the tree after rooting it at node 2. The first part shows the initial tree and the second part shows the tree after choosing nodes 0, 2, and 3, and making their price half.\nFor the 1st trip, we choose path [0,1,3]. The price sum of that path is 1 + 2 + 3 = 6.\nFor the 2nd trip, we choose path [2,1]. The price sum of that path is 2 + 5 = 7.\nFor the 3rd trip, we choose path [2,1,3]. The price sum of that path is 5 + 2 + 3 = 10.\nThe total price sum of all trips is 6 + 7 + 10 = 23.\nIt can be proven, that 23 is the minimum answer that we can achieve.\n```\n\n**Example 2:**\n\n![](./assets/minimize-the-total-price-of-the-trips-2.png)\n```\nInput: n = 2, edges = [[0,1]], price = [2,2], trips = [[0,0]]\nOutput: 1\nExplanation: The diagram above denotes the tree after rooting it at node 0. The first part shows the initial tree and the second part shows the tree after choosing node 0, and making its price half.\nFor the 1st trip, we choose path [0]. The price sum of that path is 1.\nThe total price sum of all trips is 1. It can be proven, that 1 is the minimum answer that we can achieve.\n```\n\n**Constraints:**\n\n*   `1 <= n <= 50`\n*   `edges.length == n - 1`\n*   `0 <= a_(i), b_(i) <= n - 1`\n*   `edges` represents a valid tree.\n*   `price.length == n`\n*   `price[i]` is an even integer.\n*   `1 <= price[i] <= 1000`\n*   `1 <= trips.length <= 100`\n*   `0 <= start_(i), end_(i) <= n - 1`",
+  "constraints": [
+    "1 <= n <= 50",
+    "edges.length == n - 1",
+    "0 <= ai, bi <= n - 1",
+    "edges represents a valid tree.",
+    "price.length == n",
+    "price[i] is an even integer.",
+    "1 <= price[i] <= 1000",
+    "1 <= trips.length <= 100",
+    "0 <= starti, endi <= n - 1"
+  ],
+  "examples": [
+    {
+      "input": "n = 4, edges = [[0,1],[1,2],[1,3]], price = [2,2,10,6], trips = [[0,3],[2,1],[2,3]]",
+      "output": "23",
+      "explanation": "The diagram above denotes the tree after rooting it at node 2. The first part shows the initial tree and the second part shows the tree after choosing nodes 0, 2, and 3, and making their price half.\nFor the 1st trip, we choose path [0,1,3]. The price sum of that path is 1 + 2 + 3 = 6.\nFor the 2nd trip, we choose path [2,1]. The price sum of that path is 2 + 5 = 7.\nFor the 3rd trip, we choose path [2,1,3]. The price sum of that path is 5 + 2 + 3 = 10.\nThe total price sum of all trips is 6 + 7 + 10 = 23.\nIt can be proven, that 23 is the minimum answer that we can achieve."
+    },
+    {
+      "input": "n = 2, edges = [[0,1]], price = [2,2], trips = [[0,0]]",
+      "output": "1",
+      "explanation": "The diagram above denotes the tree after rooting it at node 0. The first part shows the initial tree and the second part shows the tree after choosing node 0, and making its price half.\nFor the 1st trip, we choose path [0]. The price sum of that path is 1.\nThe total price sum of all trips is 1. It can be proven, that 1 is the minimum answer that we can achieve."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumTotalPrice(int n, vector<vector<int>>& edges, vector<int>& price, vector<vector<int>>& trips) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumTotalPrice(int n, int[][] edges, int[] price, int[][] trips) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumTotalPrice(self, n: int, edges: List[List[int]], price: List[int], trips: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumTotalPrice(self, n, edges, price, trips):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type price: List[int]\n        :type trips: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number[]} price\n * @param {number[][]} trips\n * @return {number}\n */\nvar minimumTotalPrice = function(n, edges, price, trips) {\n    \n};",
+    "typescript": "function minimumTotalPrice(n: number, edges: number[][], price: number[], trips: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumTotalPrice(int n, int[][] edges, int[] price, int[][] trips) {\n        \n    }\n}",
+    "c": "int minimumTotalPrice(int n, int** edges, int edgesSize, int* edgesColSize, int* price, int priceSize, int** trips, int tripsSize, int* tripsColSize) {\n    \n}",
+    "golang": "func minimumTotalPrice(n int, edges [][]int, price []int, trips [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumTotalPrice(n: Int, edges: Array<IntArray>, price: IntArray, trips: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumTotalPrice(_ n: Int, _ edges: [[Int]], _ price: [Int], _ trips: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_total_price(n: i32, edges: Vec<Vec<i32>>, price: Vec<i32>, trips: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Integer[]} price\n# @param {Integer[][]} trips\n# @return {Integer}\ndef minimum_total_price(n, edges, price, trips)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Integer[] $price\n     * @param Integer[][] $trips\n     * @return Integer\n     */\n    function minimumTotalPrice($n, $edges, $price, $trips) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumTotalPrice(int n, List<List<int>> edges, List<int> price, List<List<int>> trips) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumTotalPrice(n: Int, edges: Array[Array[Int]], price: Array[Int], trips: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_total_price(n :: integer, edges :: [[integer]], price :: [integer], trips :: [[integer]]) :: integer\n  def minimum_total_price(n, edges, price, trips) do\n    \n  end\nend",
+    "erlang": "-spec minimum_total_price(N :: integer(), Edges :: [[integer()]], Price :: [integer()], Trips :: [[integer()]]) -> integer().\nminimum_total_price(N, Edges, Price, Trips) ->\n  .",
+    "racket": "(define/contract (minimum-total-price n edges price trips)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof exact-integer?) (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[2,2,10,6]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "2\n[[0,1]]\n[2,2]\n[[0,0]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[2,2,10,6]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "2\n[[0,1]]\n[2,2]\n[[0,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[[0,1],[1,2],[1,3]]\n[2,2,10,6]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "6\n[[0,1],[1,2],[1,3]]\n[2,2,10,6]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "7\n[[0,1],[1,2],[1,3]]\n[2,2,10,6]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "8\n[[0,1],[1,2],[1,3]]\n[2,2,10,6]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "9\n[[0,1],[1,2],[1,3]]\n[2,2,10,6]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[6,10,2,2]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "29"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[2,2,6,10]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[10,6,2,2]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[2,2,2,2]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[2,2,10,6,2,2,10,6]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[4,4,20,12]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "46"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[3,3,11,7]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "28"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[1,1,9,5]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[-2,-2,-10,-6]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "-40"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[0,0,0,0]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[1,1,1,1]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[1,2,3,4,5]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[1,3]]\n[5,4,3,2,1]\n[[0,3],[2,1],[2,3]]",
+      "expectedOutput": "19"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The final answer is the price[i] * freq[i], where freq[i] is the number of times node i was visited during the trip, and price[i] is the final price.",
+    "To find freq[i] we will use dfs or bfs for each trip and update every node on the path start and end.",
+    "Finally, to find the final price[i] we will use dynamic programming on the tree. Let dp(v, 0/1) denote the minimum total price with the node v’s price being halved or not."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimize-the-total-price-of-the-trips/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.309Z",
+    "sourceUpdatedAt": null
+  }
+}

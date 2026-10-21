@@ -1,0 +1,100 @@
+{
+  "id": "1072",
+  "slug": "flip-columns-for-maximum-number-of-equal-rows",
+  "title": "Flip Columns For Maximum Number of Equal Rows",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Matrix"
+  ],
+  "statement": "You are given an `m x n` binary matrix `matrix`.\n\nYou can choose any number of columns in the matrix and flip every cell in that column (i.e., Change the value of the cell from `0` to `1` or vice versa).\n\nReturn _the maximum number of rows that have all values equal after some number of flips_.\n\n**Example 1:**\n\n```\nInput: matrix = [[0,1],[1,1]]\nOutput: 1\nExplanation: After flipping no values, 1 row has all values equal.\n```\n\n**Example 2:**\n\n```\nInput: matrix = [[0,1],[1,0]]\nOutput: 2\nExplanation: After flipping values in the first column, both rows have equal values.\n```\n\n**Example 3:**\n\n```\nInput: matrix = [[0,0,0],[0,0,1],[1,1,0]]\nOutput: 2\nExplanation: After flipping values in the first two columns, the last two rows have equal values.\n```\n\n**Constraints:**\n\n*   `m == matrix.length`\n*   `n == matrix[i].length`\n*   `1 <= m, n <= 300`\n*   `matrix[i][j]` is either `0` or `1`.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 300",
+    "matrix[i][j] is either 0 or 1."
+  ],
+  "examples": [
+    {
+      "input": "matrix = [[0,1],[1,1]]",
+      "output": "1",
+      "explanation": "After flipping no values, 1 row has all values equal."
+    },
+    {
+      "input": "matrix = [[0,1],[1,0]]",
+      "output": "2",
+      "explanation": "After flipping values in the first column, both rows have equal values."
+    },
+    {
+      "input": "matrix = [[0,0,0],[0,0,1],[1,1,0]]",
+      "output": "2",
+      "explanation": "After flipping values in the first two columns, the last two rows have equal values."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxEqualRowsAfterFlips(vector<vector<int>>& matrix) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxEqualRowsAfterFlips(int[][] matrix) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxEqualRowsAfterFlips(self, matrix: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxEqualRowsAfterFlips(self, matrix):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} matrix\n * @return {number}\n */\nvar maxEqualRowsAfterFlips = function(matrix) {\n    \n};",
+    "typescript": "function maxEqualRowsAfterFlips(matrix: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxEqualRowsAfterFlips(int[][] matrix) {\n        \n    }\n}",
+    "c": "int maxEqualRowsAfterFlips(int** matrix, int matrixSize, int* matrixColSize) {\n    \n}",
+    "golang": "func maxEqualRowsAfterFlips(matrix [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxEqualRowsAfterFlips(matrix: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxEqualRowsAfterFlips(_ matrix: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_equal_rows_after_flips(matrix: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} matrix\n# @return {Integer}\ndef max_equal_rows_after_flips(matrix)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $matrix\n     * @return Integer\n     */\n    function maxEqualRowsAfterFlips($matrix) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxEqualRowsAfterFlips(List<List<int>> matrix) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxEqualRowsAfterFlips(matrix: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_equal_rows_after_flips(matrix :: [[integer]]) :: integer\n  def max_equal_rows_after_flips(matrix) do\n    \n  end\nend",
+    "erlang": "-spec max_equal_rows_after_flips(Matrix :: [[integer()]]) -> integer().\nmax_equal_rows_after_flips(Matrix) ->\n  .",
+    "racket": "(define/contract (max-equal-rows-after-flips matrix)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1],[1,1]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,1],[1,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,0,0],[0,0,1],[1,1,0]]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1],[1,1]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,1],[1,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,0,0],[0,0,1],[1,1,0]]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Flipping a subset of columns is like doing a bitwise XOR of some number K onto each row.  We want rows X with X ^ K = all 0s or all 1s.  This is the same as X = X^K ^K = (all 0s or all 1s) ^ K, so we want to count rows that have opposite bits set.  For example, if K = 1, then we count rows X = (00000...001, or 1111....110)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/flip-columns-for-maximum-number-of-equal-rows/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.973Z",
+    "sourceUpdatedAt": null
+  }
+}

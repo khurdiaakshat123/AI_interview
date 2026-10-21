@@ -1,0 +1,157 @@
+{
+  "id": "2789",
+  "slug": "largest-element-in-an-array-after-merge-operations",
+  "title": "Largest Element in an Array after Merge Operations",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "statement": "You are given a **0-indexed** array `nums` consisting of positive integers.\n\nYou can do the following operation on the array **any** number of times:\n\n*   Choose an index `i` such that `0 <= i < nums.length - 1` and `nums[i] <= nums[i + 1]`. Replace the element `nums[i + 1]` with `nums[i] + nums[i + 1]` and delete the element `nums[i]` from the array.\n\nReturn _the value of the **largest** element that you can possibly obtain in the final array._\n\n**Example 1:**\n\n```\nInput: nums = [2,3,7,9,3]\nOutput: 21\nExplanation: We can apply the following operations on the array:\n- Choose i = 0. The resulting array will be nums = [5,7,9,3].\n- Choose i = 1. The resulting array will be nums = [5,16,3].\n- Choose i = 0. The resulting array will be nums = [21,3].\nThe largest element in the final array is 21. It can be shown that we cannot obtain a larger element.\n```\n\n**Example 2:**\n\n```\nInput: nums = [5,3,3]\nOutput: 11\nExplanation: We can do the following operations on the array:\n- Choose i = 1. The resulting array will be nums = [5,6].\n- Choose i = 0. The resulting array will be nums = [11].\nThere is only one element in the final array, which is 11.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(6)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 106"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,3,7,9,3]",
+      "output": "21",
+      "explanation": "We can apply the following operations on the array:\n- Choose i = 0. The resulting array will be nums = [5,7,9,3].\n- Choose i = 1. The resulting array will be nums = [5,16,3].\n- Choose i = 0. The resulting array will be nums = [21,3].\nThe largest element in the final array is 21. It can be shown that we cannot obtain a larger element."
+    },
+    {
+      "input": "nums = [5,3,3]",
+      "output": "11",
+      "explanation": "We can do the following operations on the array:\n- Choose i = 1. The resulting array will be nums = [5,6].\n- Choose i = 0. The resulting array will be nums = [11].\nThere is only one element in the final array, which is 11."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxArrayValue(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxArrayValue(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxArrayValue(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxArrayValue(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxArrayValue = function(nums) {\n    \n};",
+    "typescript": "function maxArrayValue(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxArrayValue(int[] nums) {\n        \n    }\n}",
+    "c": "long long maxArrayValue(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxArrayValue(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxArrayValue(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxArrayValue(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_array_value(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_array_value(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxArrayValue($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxArrayValue(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxArrayValue(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_array_value(nums :: [integer]) :: integer\n  def max_array_value(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_array_value(Nums :: [integer()]) -> integer().\nmax_array_value(Nums) ->\n  .",
+    "racket": "(define/contract (max-array-value nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,3,7,9,3]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[5,3,3]",
+      "expectedOutput": "11"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,3,7,9,3]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[5,3,3]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[2,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[7,9,3]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,9,7,3,2]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,3,3,7,9]",
+      "expectedOutput": "24"
+    },
+    {
+      "input": "[9,7,3,3,2]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[2,3,7,9,3,2,3,7,9,3]",
+      "expectedOutput": "45"
+    },
+    {
+      "input": "[4,6,14,18,6]",
+      "expectedOutput": "42"
+    },
+    {
+      "input": "[3,4,8,10,4]",
+      "expectedOutput": "25"
+    },
+    {
+      "input": "[1,2,6,8,2]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "[-2,-3,-7,-9,-3]",
+      "expectedOutput": "-2"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Start from the end of the array and keep merging elements together until it is no longer possible.",
+    "The answer will be the resulting element from the last merge operation."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/largest-element-in-an-array-after-merge-operations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.915Z",
+    "sourceUpdatedAt": null
+  }
+}

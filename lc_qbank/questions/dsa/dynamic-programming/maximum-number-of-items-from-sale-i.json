@@ -1,0 +1,162 @@
+{
+  "id": "3946",
+  "slug": "maximum-number-of-items-from-sale-i",
+  "title": "Maximum Number of Items From Sale I",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "statement": "You are given a 2D integer array `items`, where `items[i] = [factor_(i), price_(i)]` represents the `i^(th)` item. You are also given an integer `budget`.\n\nThere are unlimited copies of each item available for purchase.You may buy any number of copies of any items such that the total cost of the purchased copies is at most `budget`.\n\nAfter buying items, you may receive free copies according to the following rules:\n\n*   For each item `i` that you bought **at least one copy** of, you receive **one free copy** of every item `j` such that `j != i` and `factor_(i)` divides `factor_(j)`.\n*   Buying multiple copies of the same item `i` does **not** give additional free copies through item `i`.\n*   The same item `j` can be received multiple times for free if it is received from purchases of different item types.\n\nReturn the **maximum total number of item copies** you can obtain, including both purchased copies and free copies, while spending at most `budget` on purchased items.\n\n**Example 1:**\n\n**Input:** items = \\[\\[6,2\\],\\[2,6\\],\\[3,4\\]\\], budget = 9\n\n**Output:** 4\n\n**Explanation:**\n\n*   You can buy 2 copies of item 0 and 1 copy of item 2 for a total cost of `2 * 2 + 4 = 8`, which is not greater than `budget = 9`.\n*   Buying item 2 gives 1 free copy of item 0, because `factor_(2) = 3` divides `factor_(0) = 6`.\n*   You leave with 3 purchased copies and 1 free copy, for a total of 4 item copies.\n\n**Example 2:**\n\n**Input:** items = \\[\\[2,4\\],\\[3,2\\],\\[4,1\\],\\[6,4\\],\\[12,4\\]\\], budget = 8\n\n**Output:** 10\n\n**Explanation:**\n\n*   You can buy 1 copy of item 0, 1 copy of item 1, and 2 copies of item 2 for a total cost of `4 + 2 + 2 * 1 = 8`.\n*   Buying item 0 gives 1 free copy of items 2, 3, and 4.\n*   Buying item 1 gives 1 free copy of items 3 and 4.\n*   Buying item 2 gives 1 free copy of item 4.\n*   Thus, you receive 6 free copies. You leave with 4 purchased copies and 6 free copies, for a total of 10 item copies.\n\n**Constraints:**\n\n*   `1 <= items.length <= 1000`\n*   `items[i] = [factor_(i), price_(i)]`\n*   `1 <= factor_(i), price_(i) <= 1500`\n*   `1 <= budget <= 1500`",
+  "constraints": [
+    "1 <= items.length <= 1000",
+    "items[i] = [factori, pricei]",
+    "1 <= factori, pricei <= 1500",
+    "1 <= budget <= 1500"
+  ],
+  "examples": [
+    {
+      "input": "items = [[6,2],[2,6],[3,4]], budget = 9",
+      "output": "4",
+      "explanation": "You can buy 2 copies of item 0 and 1 copy of item 2 for a total cost of 2 * 2 + 4 = 8, which is not greater than budget = 9.\n\tBuying item 2 gives 1 free copy of item 0, because factor2 = 3 divides factor0 = 6.\n\tYou leave with 3 purchased copies and 1 free copy, for a total of 4 item copies."
+    },
+    {
+      "input": "items = [[2,4],[3,2],[4,1],[6,4],[12,4]], budget = 8",
+      "output": "10",
+      "explanation": "You can buy 1 copy of item 0, 1 copy of item 1, and 2 copies of item 2 for a total cost of 4 + 2 + 2 * 1 = 8.\n\tBuying item 0 gives 1 free copy of items 2, 3, and 4.\n\tBuying item 1 gives 1 free copy of items 3 and 4.\n\tBuying item 2 gives 1 free copy of item 4.\n\tThus, you receive 6 free copies. You leave with 4 purchased copies and 6 free copies, for a total of 10 item copies."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumSaleItems(vector<vector<int>>& items, int budget) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumSaleItems(int[][] items, int budget) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumSaleItems(self, items: List[List[int]], budget: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumSaleItems(self, items, budget):\n        \"\"\"\n        :type items: List[List[int]]\n        :type budget: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} items\n * @param {number} budget\n * @return {number}\n */\nvar maximumSaleItems = function(items, budget) {\n    \n};",
+    "typescript": "function maximumSaleItems(items: number[][], budget: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumSaleItems(int[][] items, int budget) {\n        \n    }\n}",
+    "c": "int maximumSaleItems(int** items, int itemsSize, int* itemsColSize, int budget) {\n    \n}",
+    "golang": "func maximumSaleItems(items [][]int, budget int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumSaleItems(items: Array<IntArray>, budget: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumSaleItems(_ items: [[Int]], _ budget: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_sale_items(items: Vec<Vec<i32>>, budget: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} items\n# @param {Integer} budget\n# @return {Integer}\ndef maximum_sale_items(items, budget)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $items\n     * @param Integer $budget\n     * @return Integer\n     */\n    function maximumSaleItems($items, $budget) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumSaleItems(List<List<int>> items, int budget) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumSaleItems(items: Array[Array[Int]], budget: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_sale_items(items :: [[integer]], budget :: integer) :: integer\n  def maximum_sale_items(items, budget) do\n    \n  end\nend",
+    "erlang": "-spec maximum_sale_items(Items :: [[integer()]], Budget :: integer()) -> integer().\nmaximum_sale_items(Items, Budget) ->\n  .",
+    "racket": "(define/contract (maximum-sale-items items budget)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n9",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[2,4],[3,2],[4,1],[6,4],[12,4]]\n8",
+      "expectedOutput": "10"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n9",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[2,4],[3,2],[4,1],[6,4],[12,4]]\n8",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n5",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n7",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n8",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[6,2],[2,6],[3,4]]\n10",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[2,4],[3,2],[4,1],[6,4],[12,4]]\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[2,4],[3,2],[4,1],[6,4],[12,4]]\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[2,4],[3,2],[4,1],[6,4],[12,4]]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[2,4],[3,2],[4,1],[6,4],[12,4]]\n3",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[2,4],[3,2],[4,1],[6,4],[12,4]]\n4",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[[2,4],[3,2],[4,1],[6,4],[12,4]]\n5",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[[2,4],[3,2],[4,1],[6,4],[12,4]]\n6",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[2,4],[3,2],[4,1],[6,4],[12,4]]\n7",
+      "expectedOutput": "9"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Precompute for every possible factor <code>f</code>, how many items have a factor divisible by <code>f</code>.",
+    "Buying the first copy of item <code>i</code> is special: it gives the purchased copy plus one free copy of every other item whose factor is divisible by <code>factor_i</code>.",
+    "Buying more copies of the same item does not create more free copies, so after the first copy, each extra purchase only adds one item copy.",
+    "This suggests a knapsack-style DP over item types and remaining budget, where each item can either be skipped, bought for the first time, or bought additional times after it has already been activated."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-items-from-sale-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.064Z",
+    "sourceUpdatedAt": null
+  }
+}

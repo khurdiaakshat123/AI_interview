@@ -1,0 +1,158 @@
+{
+  "id": "3403",
+  "slug": "find-the-lexicographically-largest-string-from-the-box-i",
+  "title": "Find the Lexicographically Largest String From the Box I",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Enumeration"
+  ],
+  "statement": "You are given a string `word`, and an integer `numFriends`.\n\nAlice is organizing a game for her `numFriends` friends. There are multiple rounds in the game, where in each round:\n\n*   `word` is split into `numFriends` **non-empty** strings, such that no previous round has had the **exact** same split.\n*   All the split words are put into a box.\n\nFind the lexicographically largest string from the box after all the rounds are finished.\n\n**Example 1:**\n\n**Input:** word = \"dbca\", numFriends = 2\n\n**Output:** \"dbc\"\n\n**Explanation:** \n\nAll possible splits are:\n\n*   `\"d\"` and `\"bca\"`.\n*   `\"db\"` and `\"ca\"`.\n*   `\"dbc\"` and `\"a\"`.\n\n**Example 2:**\n\n**Input:** word = \"gggg\", numFriends = 4\n\n**Output:** \"g\"\n\n**Explanation:** \n\nThe only possible split is: `\"g\"`, `\"g\"`, `\"g\"`, and `\"g\"`.\n\n**Constraints:**\n\n*   `1 <= word.length <= 5 * 10^(3)`\n*   `word` consists only of lowercase English letters.\n*   `1 <= numFriends <= word.length`",
+  "constraints": [
+    "1 <= word.length <= 5 * 103",
+    "word consists only of lowercase English letters.",
+    "1 <= numFriends <= word.length"
+  ],
+  "examples": [
+    {
+      "input": "word = \"dbca\", numFriends = 2",
+      "output": "\"dbc\"",
+      "explanation": " "
+    },
+    {
+      "input": "word = \"gggg\", numFriends = 4",
+      "output": "\"g\"",
+      "explanation": " "
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string answerString(string word, int numFriends) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String answerString(String word, int numFriends) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def answerString(self, word: str, numFriends: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def answerString(self, word, numFriends):\n        \"\"\"\n        :type word: str\n        :type numFriends: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word\n * @param {number} numFriends\n * @return {string}\n */\nvar answerString = function(word, numFriends) {\n    \n};",
+    "typescript": "function answerString(word: string, numFriends: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string AnswerString(string word, int numFriends) {\n        \n    }\n}",
+    "c": "char* answerString(char* word, int numFriends) {\n    \n}",
+    "golang": "func answerString(word string, numFriends int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun answerString(word: String, numFriends: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func answerString(_ word: String, _ numFriends: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn answer_string(word: String, num_friends: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} word\n# @param {Integer} num_friends\n# @return {String}\ndef answer_string(word, num_friends)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word\n     * @param Integer $numFriends\n     * @return String\n     */\n    function answerString($word, $numFriends) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String answerString(String word, int numFriends) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def answerString(word: String, numFriends: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec answer_string(word :: String.t, num_friends :: integer) :: String.t\n  def answer_string(word, num_friends) do\n    \n  end\nend",
+    "erlang": "-spec answer_string(Word :: unicode:unicode_binary(), NumFriends :: integer()) -> unicode:unicode_binary().\nanswer_string(Word, NumFriends) ->\n  .",
+    "racket": "(define/contract (answer-string word numFriends)\n  (-> string? exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"dbca\"\n2",
+      "expectedOutput": "\"dbc\""
+    },
+    {
+      "input": "\"gggg\"\n4",
+      "expectedOutput": "\"g\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"dbca\"\n2",
+      "expectedOutput": "\"dbc\""
+    },
+    {
+      "input": "\"gggg\"\n4",
+      "expectedOutput": "\"g\""
+    },
+    {
+      "input": "\"db\"\n2",
+      "expectedOutput": "\"d\""
+    },
+    {
+      "input": "\"ca\"\n2",
+      "expectedOutput": "\"c\""
+    },
+    {
+      "input": "\"d\"\n2",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"acbd\"\n2",
+      "expectedOutput": "\"d\""
+    },
+    {
+      "input": "\"dbcadbca\"\n2",
+      "expectedOutput": "\"dbcadbc\""
+    },
+    {
+      "input": "\"dddd\"\n2",
+      "expectedOutput": "\"ddd\""
+    },
+    {
+      "input": "\"dbcaacbd\"\n2",
+      "expectedOutput": "\"dbcaacb\""
+    },
+    {
+      "input": "\"DBCA\"\n2",
+      "expectedOutput": "\"DBC\""
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "\"bba\""
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "\"aaaa\""
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "\"e\""
+    },
+    {
+      "input": "\"edcba\"\n2",
+      "expectedOutput": "\"edcb\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find lexicographically largest substring of size <code>n - numFriends + 1</code> or less starting at every index."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.349Z",
+    "sourceUpdatedAt": null
+  }
+}

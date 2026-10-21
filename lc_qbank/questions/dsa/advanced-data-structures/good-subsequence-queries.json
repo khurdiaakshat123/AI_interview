@@ -1,0 +1,174 @@
+{
+  "id": "3901",
+  "slug": "good-subsequence-queries",
+  "title": "Good Subsequence Queries",
+  "category": "dsa",
+  "subcategory": "advanced-data-structures",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Segment Tree",
+    "Number Theory"
+  ],
+  "statement": "You are given an integer array `nums` of length `n` and an integer `p`.\n\nA **non-empty subsequence** of `nums` is called **good** if:\n\n*   Its length is **strictly less** than `n`.\n*   The **greatest common divisor (GCD)** of its elements is **exactly** `p`.\n\nYou are also given a 2D integer array `queries` of length `q`, where each `queries[i] = [ind_(i), val_(i)]` indicates that you should update `nums[ind_(i)]` to `val_(i)`.\n\nAfter each query, determine whether there exists **any good subsequence** in the current array.\n\nReturn the **number** of queries for which a **good subsequence** exists.\n\nThe term `gcd(a, b)` denotes the **greatest common divisor** of `a` and `b`.\n\n**Example 1:**\n\n**Input:** nums = \\[4,8,12,16\\], p = 2, queries = \\[\\[0,3\\],\\[2,6\\]\\]\n\n**Output:** 1\n\n**Explanation:**\n\ni\n\n`[ind_(i), val_(i)]`\n\nOperation\n\nUpdated `nums`\n\nAny good Subsequence\n\n0\n\n`[0, 3]`\n\nUpdate `nums[0]` to `3`\n\n`[3, 8, 12, 16]`\n\nNo, as no subsequence has GCD exactly `p = 2`\n\n1\n\n`[2, 6]`\n\nUpdate `nums[2]` to `6`\n\n`[3, 8, 6, 16]`\n\nYes, subsequence `[8, 6]` has GCD exactly `p = 2`\n\nThus, the answer is 1.\n\n**Example 2:**\n\n**Input:** nums = \\[4,5,7,8\\], p = 3, queries = \\[\\[0,6\\],\\[1,9\\],\\[2,3\\]\\]\n\n**Output:** 2\n\n**Explanation:**\n\ni\n\n`[ind_(i), val_(i)]`\n\nOperation\n\nUpdated `nums`\n\nAny good Subsequence\n\n0\n\n`[0, 6]`\n\nUpdate `nums[0]` to `6`\n\n`[6, 5, 7, 8]`\n\nNo, as no subsequence has GCD exactly `p = 3`\n\n1\n\n`[1, 9]`\n\nUpdate `nums[1]` to `9`\n\n`[6, 9, 7, 8]`\n\nYes, subsequence `[6, 9]` has GCD exactly `p = 3`\n\n2\n\n`[2, 3]`\n\nUpdate `nums[2]` to `3`\n\n`[6, 9, 3, 8]`\n\nYes, subsequence `[6, 9, 3]` has GCD exactly `p = 3`\n\nThus, the answer is 2.\n\n**Example 3:**\n\n**Input:** nums = \\[5,7,9\\], p = 2, queries = \\[\\[1,4\\],\\[2,8\\]\\]\n\n**Output:** 0\n\n**Explanation:**\n\ni\n\n`[ind_(i), val_(i)]`\n\nOperation\n\nUpdated `nums`\n\nAny good Subsequence\n\n0\n\n`[1, 4]`\n\nUpdate `nums[1]` to `4`\n\n`[5, 4, 9]`\n\nNo, as no subsequence has GCD exactly `p = 2`\n\n1\n\n`[2, 8]`\n\nUpdate `nums[2]` to `8`\n\n`[5, 4, 8]`\n\nNo, as no subsequence has GCD exactly `p = 2`\n\nThus, the answer is 0.\n\n**Constraints:**\n\n*   `2 <= n == nums.length <= 5 * 10^(4)`\n*   `1 <= nums[i] <= 5 * 10^(4)`\n*   `1 <= queries.length <= 5 * 10^(4)`\n*   `queries[i] = [ind_(i), val_(i)]`\n*   `1 <= val_(i), p <= 5 * 10^(4)`\n*   `0 <= ind_(i) <= n - 1`",
+  "constraints": [
+    "2 <= n == nums.length <= 5 * 104",
+    "1 <= nums[i] <= 5 * 104",
+    "1 <= queries.length <= 5 * 104",
+    "queries[i] = [indi, vali]",
+    "1 <= vali, p <= 5 * 104",
+    "0 <= indi <= n - 1"
+  ],
+  "examples": [
+    {
+      "input": "nums = [4,8,12,16], p = 2, queries = [[0,3],[2,6]]",
+      "output": "1",
+      "explanation": "i\n\t\t\t[indi, vali]\n\t\t\tOperation\n\t\t\tUpdated nums\n\t\t\tAny good Subsequence\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t[0, 3]\n\t\t\tUpdate nums[0] to 3\n\t\t\t[3, 8, 12, 16]\n\t\t\tNo, as no subsequence has GCD exactly p = 2\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[2, 6]\n\t\t\tUpdate nums[2] to 6\n\t\t\t[3, 8, 6, 16]\n\t\t\tYes, subsequence [8, 6] has GCD exactly p = 2"
+    },
+    {
+      "input": "nums = [4,5,7,8], p = 3, queries = [[0,6],[1,9],[2,3]]",
+      "output": "2",
+      "explanation": "i\n\t\t\t[indi, vali]\n\t\t\tOperation\n\t\t\tUpdated nums\n\t\t\tAny good Subsequence\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t[0, 6]\n\t\t\tUpdate nums[0] to 6\n\t\t\t[6, 5, 7, 8]\n\t\t\tNo, as no subsequence has GCD exactly p = 3\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[1, 9]\n\t\t\tUpdate nums[1] to 9\n\t\t\t[6, 9, 7, 8]\n\t\t\tYes, subsequence [6, 9] has GCD exactly p = 3\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[2, 3]\n\t\t\tUpdate nums[2] to 3\n\t\t\t[6, 9, 3, 8]\n\t\t\tYes, subsequence [6, 9, 3] has GCD exactly p = 3"
+    },
+    {
+      "input": "nums = [5,7,9], p = 2, queries = [[1,4],[2,8]]",
+      "output": "0",
+      "explanation": "i\n\t\t\t[indi, vali]\n\t\t\tOperation\n\t\t\tUpdated nums\n\t\t\tAny good Subsequence\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t[1, 4]\n\t\t\tUpdate nums[1] to 4\n\t\t\t[5, 4, 9]\n\t\t\tNo, as no subsequence has GCD exactly p = 2\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[2, 8]\n\t\t\tUpdate nums[2] to 8\n\t\t\t[5, 4, 8]\n\t\t\tNo, as no subsequence has GCD exactly p = 2"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countGoodSubseq(vector<int>& nums, int p, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countGoodSubseq(int[] nums, int p, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countGoodSubseq(self, nums: list[int], p: int, queries: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countGoodSubseq(self, nums, p, queries):\n        \"\"\"\n        :type nums: List[int]\n        :type p: int\n        :type queries: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} p\n * @param {number[][]} queries\n * @return {number}\n */\nvar countGoodSubseq = function(nums, p, queries) {\n    \n};",
+    "typescript": "function countGoodSubseq(nums: number[], p: number, queries: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountGoodSubseq(int[] nums, int p, int[][] queries) {\n        \n    }\n}",
+    "c": "int countGoodSubseq(int* nums, int numsSize, int p, int** queries, int queriesSize, int* queriesColSize) {\n    \n}",
+    "golang": "func countGoodSubseq(nums []int, p int, queries [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countGoodSubseq(nums: IntArray, p: Int, queries: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countGoodSubseq(_ nums: [Int], _ p: Int, _ queries: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_good_subseq(nums: Vec<i32>, p: i32, queries: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} p\n# @param {Integer[][]} queries\n# @return {Integer}\ndef count_good_subseq(nums, p, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $p\n     * @param Integer[][] $queries\n     * @return Integer\n     */\n    function countGoodSubseq($nums, $p, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countGoodSubseq(List<int> nums, int p, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countGoodSubseq(nums: Array[Int], p: Int, queries: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_good_subseq(nums :: [integer], p :: integer, queries :: [[integer]]) :: integer\n  def count_good_subseq(nums, p, queries) do\n    \n  end\nend",
+    "erlang": "-spec count_good_subseq(Nums :: [integer()], P :: integer(), Queries :: [[integer()]]) -> integer().\ncount_good_subseq(Nums, P, Queries) ->\n  .",
+    "racket": "(define/contract (count-good-subseq nums p queries)\n  (-> (listof exact-integer?) exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[4,8,12,16]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,5,7,8]\n3\n[[0,6],[1,9],[2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,7,9]\n2\n[[1,4],[2,8]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[4,8,12,16]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,5,7,8]\n3\n[[0,6],[1,9],[2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,7,9]\n2\n[[1,4],[2,8]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[16,12,8,4]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,4,4,4]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,8,12,16,4,8,12,16]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[8,16,24,32]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,9,13,17]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,7,11,15]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-4,-8,-12,-16]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,0,0]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2,1]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1,0]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,4,5]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,4,3,2,1]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-5,-4,-3,-2,-1]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,3,2,5,4]\n2\n[[0,3],[2,6]]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Reduce the problem to only elements divisible by <code>p</code>. Scale them down by <code>/p</code> and reason about primes on the reduced array.",
+    "A subsequence has GCD = <code>p</code> exactly when, after division, the chosen elements do not all share any common prime factor.",
+    "Track, for each prime factor, how many active indices contain it. If any prime covers all active elements, the answer is false.",
+    "Check that there is an index whose prime factors do not cover all active elements (so a subsequence of length < <code>n</code> can have GCD = <code>p</code>)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/good-subsequence-queries/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.213Z",
+    "sourceUpdatedAt": null
+  }
+}

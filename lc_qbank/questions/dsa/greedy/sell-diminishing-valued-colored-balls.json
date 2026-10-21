@@ -1,0 +1,163 @@
+{
+  "id": "1648",
+  "slug": "sell-diminishing-valued-colored-balls",
+  "title": "Sell Diminishing-Valued Colored Balls",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "You have an `inventory` of different colored balls, and there is a customer that wants `orders` balls of **any** color.\n\nThe customer weirdly values the colored balls. Each colored ball's value is the number of balls **of that color** you currently have in your `inventory`. For example, if you own `6` yellow balls, the customer would pay `6` for the first yellow ball. After the transaction, there are only `5` yellow balls left, so the next yellow ball is then valued at `5` (i.e., the value of the balls decreases as you sell more to the customer).\n\nYou are given an integer array, `inventory`, where `inventory[i]` represents the number of balls of the `i^(th)` color that you initially own. You are also given an integer `orders`, which represents the total number of balls that the customer wants. You can sell the balls **in any order**.\n\nReturn _the **maximum** total value that you can attain after selling_ `orders` _colored balls_. As the answer may be too large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n![](./assets/sell-diminishing-valued-colored-balls-1.gif)\n```\nInput: inventory = [2,5], orders = 4\nOutput: 14\nExplanation: Sell the 1st color 1 time (2) and the 2nd color 3 times (5 + 4 + 3).\nThe maximum total value is 2 + 5 + 4 + 3 = 14.\n```\n\n**Example 2:**\n\n```\nInput: inventory = [3,5], orders = 6\nOutput: 19\nExplanation: Sell the 1st color 2 times (3 + 2) and the 2nd color 4 times (5 + 4 + 3 + 2).\nThe maximum total value is 3 + 2 + 5 + 4 + 3 + 2 = 19.\n```\n\n**Constraints:**\n\n*   `1 <= inventory.length <= 10^(5)`\n*   `1 <= inventory[i] <= 10^(9)`\n*   `1 <= orders <= min(sum(inventory[i]), 10^(9))`",
+  "constraints": [
+    "1 <= inventory.length <= 105",
+    "1 <= inventory[i] <= 109",
+    "1 <= orders <= min(sum(inventory[i]), 109)"
+  ],
+  "examples": [
+    {
+      "input": "inventory = [2,5], orders = 4",
+      "output": "14",
+      "explanation": "Sell the 1st color 1 time (2) and the 2nd color 3 times (5 + 4 + 3).\nThe maximum total value is 2 + 5 + 4 + 3 = 14."
+    },
+    {
+      "input": "inventory = [3,5], orders = 6",
+      "output": "19",
+      "explanation": "Sell the 1st color 2 times (3 + 2) and the 2nd color 4 times (5 + 4 + 3 + 2).\nThe maximum total value is 3 + 2 + 5 + 4 + 3 + 2 = 19."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxProfit(vector<int>& inventory, int orders) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxProfit(int[] inventory, int orders) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProfit(self, inventory: list[int], orders: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxProfit(self, inventory, orders):\n        \"\"\"\n        :type inventory: List[int]\n        :type orders: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} inventory\n * @param {number} orders\n * @return {number}\n */\nvar maxProfit = function(inventory, orders) {\n    \n};",
+    "typescript": "function maxProfit(inventory: number[], orders: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxProfit(int[] inventory, int orders) {\n        \n    }\n}",
+    "c": "int maxProfit(int* inventory, int inventorySize, int orders) {\n    \n}",
+    "golang": "func maxProfit(inventory []int, orders int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProfit(inventory: IntArray, orders: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProfit(_ inventory: [Int], _ orders: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_profit(inventory: Vec<i32>, orders: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} inventory\n# @param {Integer} orders\n# @return {Integer}\ndef max_profit(inventory, orders)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $inventory\n     * @param Integer $orders\n     * @return Integer\n     */\n    function maxProfit($inventory, $orders) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxProfit(List<int> inventory, int orders) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProfit(inventory: Array[Int], orders: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_profit(inventory :: [integer], orders :: integer) :: integer\n  def max_profit(inventory, orders) do\n    \n  end\nend",
+    "erlang": "-spec max_profit(Inventory :: [integer()], Orders :: integer()) -> integer().\nmax_profit(Inventory, Orders) ->\n  .",
+    "racket": "(define/contract (max-profit inventory orders)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,5]\n4",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[3,5]\n6",
+      "expectedOutput": "19"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,5]\n4",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[3,5]\n6",
+      "expectedOutput": "19"
+    },
+    {
+      "input": "[5]\n4",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[5,2]\n4",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[2,2]\n4",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,5,2,5]\n4",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[4,10]\n4",
+      "expectedOutput": "34"
+    },
+    {
+      "input": "[3,6]\n4",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[1,4]\n4",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,2,3]\n4",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[3,2,1]\n4",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,2,3,4,5]\n4",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[5,4,3,2,1]\n4",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[-5,-4,-3,-2,-1]\n4",
+      "expectedOutput": "999999999"
+    },
+    {
+      "input": "[1,3,2,5,4]\n4",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[-10,0,10]\n4",
+      "expectedOutput": "34"
+    },
+    {
+      "input": "[100,-100]\n4",
+      "expectedOutput": "394"
+    },
+    {
+      "input": "[1,1,2,2,3,3]\n4",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[10,20,30,40,50]\n4",
+      "expectedOutput": "194"
+    },
+    {
+      "input": "[0,1,0,3,12]\n4",
+      "expectedOutput": "42"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Greedily sell the most expensive ball.",
+    "There is some value k where all balls of value > k are sold, and some, (maybe 0) of balls of value k are sold.",
+    "Use binary search to find this value k, and use maths to find the total sum."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sell-diminishing-valued-colored-balls/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:28.237Z",
+    "sourceUpdatedAt": null
+  }
+}

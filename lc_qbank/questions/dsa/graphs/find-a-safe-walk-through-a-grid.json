@@ -1,0 +1,173 @@
+{
+  "id": "3286",
+  "slug": "find-a-safe-walk-through-a-grid",
+  "title": "Find a Safe Walk Through a Grid",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Shortest Path"
+  ],
+  "statement": "You are given an `m x n` binary matrix `grid` and an integer `health`.\n\nYou start on the upper-left corner `(0, 0)` and would like to get to the lower-right corner `(m - 1, n - 1)`.\n\nYou can move up, down, left, or right from one cell to another adjacent cell as long as your health _remains_ **positive**.\n\nCells `(i, j)` with `grid[i][j] = 1` are considered **unsafe** and reduce your health by 1.\n\nReturn `true` if you can reach the final cell with a health value of 1 or more, and `false` otherwise.\n\n**Example 1:**\n\n**Input:** grid = \\[\\[0,1,0,0,0\\],\\[0,1,0,1,0\\],\\[0,0,0,1,0\\]\\], health = 1\n\n**Output:** true\n\n**Explanation:**\n\nThe final cell can be reached safely by walking along the gray cells below.\n\n![](./assets/find-a-safe-walk-through-a-grid-1.png)\n\n**Example 2:**\n\n**Input:** grid = \\[\\[0,1,1,0,0,0\\],\\[1,0,1,0,0,0\\],\\[0,1,1,1,0,1\\],\\[0,0,1,0,1,0\\]\\], health = 3\n\n**Output:** false\n\n**Explanation:**\n\nA minimum of 4 health points is needed to reach the final cell safely.\n\n![](./assets/find-a-safe-walk-through-a-grid-2.png)\n\n**Example 3:**\n\n**Input:** grid = \\[\\[1,1,1\\],\\[1,0,1\\],\\[1,1,1\\]\\], health = 5\n\n**Output:** true\n\n**Explanation:**\n\nThe final cell can be reached safely by walking along the gray cells below.\n\n![](./assets/find-a-safe-walk-through-a-grid-3.png)\n\nAny path that does not go through the cell `(1, 1)` is unsafe since your health will drop to 0 when reaching the final cell.\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 50`\n*   `2 <= m * n`\n*   `1 <= health <= m + n`\n*   `grid[i][j]` is either 0 or 1.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 50",
+    "2 <= m * n",
+    "1 <= health <= m + n",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "examples": [
+    {
+      "input": "grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]], health = 1",
+      "output": "true",
+      "explanation": null
+    },
+    {
+      "input": "grid = [[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]], health = 3",
+      "output": "false",
+      "explanation": null
+    },
+    {
+      "input": "grid = [[1,1,1],[1,0,1],[1,1,1]], health = 5",
+      "output": "true",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool findSafeWalk(vector<vector<int>>& grid, int health) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean findSafeWalk(List<List<Integer>> grid, int health) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findSafeWalk(self, grid: List[List[int]], health: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def findSafeWalk(self, grid, health):\n        \"\"\"\n        :type grid: List[List[int]]\n        :type health: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @param {number} health\n * @return {boolean}\n */\nvar findSafeWalk = function(grid, health) {\n    \n};",
+    "typescript": "function findSafeWalk(grid: number[][], health: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool FindSafeWalk(IList<IList<int>> grid, int health) {\n        \n    }\n}",
+    "c": "bool findSafeWalk(int** grid, int gridSize, int* gridColSize, int health) {\n    \n}",
+    "golang": "func findSafeWalk(grid [][]int, health int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun findSafeWalk(grid: List<List<Int>>, health: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findSafeWalk(_ grid: [[Int]], _ health: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_safe_walk(grid: Vec<Vec<i32>>, health: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @param {Integer} health\n# @return {Boolean}\ndef find_safe_walk(grid, health)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @param Integer $health\n     * @return Boolean\n     */\n    function findSafeWalk($grid, $health) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool findSafeWalk(List<List<int>> grid, int health) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findSafeWalk(grid: List[List[Int]], health: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_safe_walk(grid :: [[integer]], health :: integer) :: boolean\n  def find_safe_walk(grid, health) do\n    \n  end\nend",
+    "erlang": "-spec find_safe_walk(Grid :: [[integer()]], Health :: integer()) -> boolean().\nfind_safe_walk(Grid, Health) ->\n  .",
+    "racket": "(define/contract (find-safe-walk grid health)\n  (-> (listof (listof exact-integer?)) exact-integer? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\n1",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]]\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[1,1,1],[1,0,1],[1,1,1]]\n5",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\n1",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]]\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[1,1,1],[1,0,1],[1,1,1]]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\n0",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\n3",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\n-1",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\n-2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]]\n0",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]]\n1",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]]\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]]\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]]\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]]\n7",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]]\n8",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]]\n-1",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use 01 BFS."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-a-safe-walk-through-a-grid/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.376Z",
+    "sourceUpdatedAt": null
+  }
+}

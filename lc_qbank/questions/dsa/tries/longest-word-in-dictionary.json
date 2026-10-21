@@ -1,0 +1,160 @@
+{
+  "id": "720",
+  "slug": "longest-word-in-dictionary",
+  "title": "Longest Word in Dictionary",
+  "category": "dsa",
+  "subcategory": "tries",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie",
+    "Sorting"
+  ],
+  "statement": "Given an array of strings `words` representing an English Dictionary, return _the longest word in_ `words` _that can be built one character at a time by other words in_ `words`.\n\nIf there is more than one possible answer, return the longest word with the smallest lexicographical order. If there is no answer, return the empty string.\n\nNote that the word should be built from left to right with each additional character being added to the end of a previous word. \n\n**Example 1:**\n\n```\nInput: words = [\"w\",\"wo\",\"wor\",\"worl\",\"world\"]\nOutput: \"world\"\nExplanation: The word \"world\" can be built one character at a time by \"w\", \"wo\", \"wor\", and \"worl\".\n```\n\n**Example 2:**\n\n```\nInput: words = [\"a\",\"banana\",\"app\",\"appl\",\"ap\",\"apply\",\"apple\"]\nOutput: \"apple\"\nExplanation: Both \"apply\" and \"apple\" can be built from other words in the dictionary. However, \"apple\" is lexicographically smaller than \"apply\".\n```\n\n**Constraints:**\n\n*   `1 <= words.length <= 1000`\n*   `1 <= words[i].length <= 30`\n*   `words[i]` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= words.length <= 1000",
+    "1 <= words[i].length <= 30",
+    "words[i] consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"w\",\"wo\",\"wor\",\"worl\",\"world\"]",
+      "output": "\"world\"",
+      "explanation": "The word \"world\" can be built one character at a time by \"w\", \"wo\", \"wor\", and \"worl\"."
+    },
+    {
+      "input": "words = [\"a\",\"banana\",\"app\",\"appl\",\"ap\",\"apply\",\"apple\"]",
+      "output": "\"apple\"",
+      "explanation": "Both \"apply\" and \"apple\" can be built from other words in the dictionary. However, \"apple\" is lexicographically smaller than \"apply\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string longestWord(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String longestWord(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestWord(self, words: list[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def longestWord(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {string}\n */\nvar longestWord = function(words) {\n    \n};",
+    "typescript": "function longestWord(words: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LongestWord(string[] words) {\n        \n    }\n}",
+    "c": "char* longestWord(char** words, int wordsSize) {\n    \n}",
+    "golang": "func longestWord(words []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestWord(words: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestWord(_ words: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_word(words: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {String}\ndef longest_word(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return String\n     */\n    function longestWord($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String longestWord(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestWord(words: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_word(words :: [String.t]) :: String.t\n  def longest_word(words) do\n    \n  end\nend",
+    "erlang": "-spec longest_word(Words :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nlongest_word(Words) ->\n  .",
+    "racket": "(define/contract (longest-word words)\n  (-> (listof string?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"w\",\"wo\",\"wor\",\"worl\",\"world\"]",
+      "expectedOutput": "\"world\""
+    },
+    {
+      "input": "[\"a\",\"banana\",\"app\",\"appl\",\"ap\",\"apply\",\"apple\"]",
+      "expectedOutput": "\"apple\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"w\",\"wo\",\"wor\",\"worl\",\"world\"]",
+      "expectedOutput": "\"world\""
+    },
+    {
+      "input": "[\"a\",\"banana\",\"app\",\"appl\",\"ap\",\"apply\",\"apple\"]",
+      "expectedOutput": "\"apple\""
+    },
+    {
+      "input": "[\"w\",\"wo\"]",
+      "expectedOutput": "\"wo\""
+    },
+    {
+      "input": "[\"wor\",\"worl\",\"world\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"w\"]",
+      "expectedOutput": "\"w\""
+    },
+    {
+      "input": "[\"w\",\"world\"]",
+      "expectedOutput": "\"w\""
+    },
+    {
+      "input": "[\"world\",\"worl\",\"wor\",\"wo\",\"w\"]",
+      "expectedOutput": "\"world\""
+    },
+    {
+      "input": "[\"w\",\"w\",\"w\",\"w\",\"w\"]",
+      "expectedOutput": "\"w\""
+    },
+    {
+      "input": "[\"w\",\"wo\",\"wor\",\"worl\",\"world\",\"w\",\"wo\",\"wor\",\"worl\",\"world\"]",
+      "expectedOutput": "\"world\""
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]",
+      "expectedOutput": "\"a\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For every word in the input list, we can check whether all prefixes of that word are in the input list by using a Set."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-word-in-dictionary/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.780Z",
+    "sourceUpdatedAt": null
+  }
+}

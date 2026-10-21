@@ -1,0 +1,58 @@
+{
+  "id": "1683",
+  "slug": "invalid-tweets",
+  "title": "Invalid Tweets",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Tweets`\n\n```\n+----------------+---------+\n| Column Name    | Type    |\n+----------------+---------+\n| tweet_id       | int     |\n| content        | varchar |\n+----------------+---------+\ntweet_id is the primary key (column with unique values) for this table.\ncontent consists of alphanumeric characters, '!', or ' ' and no other special characters.\nThis table contains all the tweets in a social media app.\n```\n\nWrite a solution to find the IDs of the invalid tweets. The tweet is invalid if the number of characters used in the content of the tweet is **strictly greater** than `15`.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nTweets table:\n+----------+-----------------------------------+\n| tweet_id | content                           |\n+----------+-----------------------------------+\n| 1        | Let us Code                       |\n| 2        | More than fifteen chars are here! |\n+----------+-----------------------------------+\nOutput: \n+----------+\n| tweet_id |\n+----------+\n| 2        |\n+----------+\nExplanation: \nTweet 1 has length = 11. It is a valid tweet.\nTweet 2 has length = 33. It is an invalid tweet.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Tweets table:\n+----------+-----------------------------------+\n| tweet_id | content                           |\n+----------+-----------------------------------+\n| 1        | Let us Code                       |\n| 2        | More than fifteen chars are here! |\n+----------+-----------------------------------+",
+      "output": "+----------+\n| tweet_id |\n+----------+\n| 2        |\n+----------+",
+      "explanation": "Tweet 1 has length = 11. It is a valid tweet.\nTweet 2 has length = 33. It is an invalid tweet."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef invalid_tweets(tweets: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Tweets\":[\"tweet_id\",\"content\"]},\"rows\":{\"Tweets\":[[1,\"Let us Code\"],[2,\"More than fifteen chars are here!\"]]}}",
+      "expectedOutput": "+----------+\n| tweet_id |\n+----------+\n| 2        |\n+----------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Tweets\":[\"tweet_id\",\"content\"]},\"rows\":{\"Tweets\":[[1,\"Let us Code\"],[2,\"More than fifteen chars are here!\"]]}}",
+      "expectedOutput": "+----------+\n| tweet_id |\n+----------+\n| 2        |\n+----------+"
+    },
+    {
+      "input": "Tweets table:\n+----------+-----------------------------------+\n| tweet_id | content                           |\n+----------+-----------------------------------+\n| 1        | Let us Code                       |\n| 2        | More than fifteen chars are here! |\n+----------+-----------------------------------+",
+      "expectedOutput": "+----------+\n| tweet_id |\n+----------+\n| 2        |\n+----------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Tweets(tweet_id int, content varchar(50))\n\nTruncate table Tweets",
+  "sqlSetup": [
+    "insert into Tweets (tweet_id, content) values ('1', 'Let us Code')",
+    "insert into Tweets (tweet_id, content) values ('2', 'More than fifteen chars are here!')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/invalid-tweets/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.607Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "id": "523",
+  "slug": "continuous-subarray-sum",
+  "title": "Continuous Subarray Sum",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Prefix Sum",
+    "Pigeonhole Principle"
+  ],
+  "statement": "Given an integer array nums and an integer k, return `true` _if_ `nums` _has a **good subarray** or_ `false` _otherwise_.\n\nA **good subarray** is a subarray where:\n\n*   its length is **at least two**, and\n*   the sum of the elements of the subarray is a multiple of `k`.\n\n**Note** that:\n\n*   A **subarray** is a contiguous part of the array.\n*   An integer `x` is a multiple of `k` if there exists an integer `n` such that `x = n * k`. `0` is **always** a multiple of `k`.\n\n**Example 1:**\n\n```\nInput: nums = [23,2,4,6,7], k = 6\nOutput: true\nExplanation: [2, 4] is a continuous subarray of size 2 whose elements sum up to 6.\n```\n\n**Example 2:**\n\n```\nInput: nums = [23,2,6,4,7], k = 6\nOutput: true\nExplanation: [23, 2, 6, 4, 7] is an continuous subarray of size 5 whose elements sum up to 42.\n42 is a multiple of 6 because 42 = 7 * 6 and 7 is an integer.\n```\n\n**Example 3:**\n\n```\nInput: nums = [23,2,6,4,7], k = 13\nOutput: false\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `0 <= nums[i] <= 10^(9)`\n*   `0 <= sum(nums[i]) <= 2^(31) - 1`\n*   `1 <= k <= 2^(31) - 1`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "0 <= nums[i] <= 109",
+    "0 <= sum(nums[i]) <= 231 - 1",
+    "1 <= k <= 231 - 1"
+  ],
+  "examples": [
+    {
+      "input": "nums = [23,2,4,6,7], k = 6",
+      "output": "true",
+      "explanation": "[2, 4] is a continuous subarray of size 2 whose elements sum up to 6."
+    },
+    {
+      "input": "nums = [23,2,6,4,7], k = 6",
+      "output": "true",
+      "explanation": "[23, 2, 6, 4, 7] is an continuous subarray of size 5 whose elements sum up to 42.\n42 is a multiple of 6 because 42 = 7 * 6 and 7 is an integer."
+    },
+    {
+      "input": "nums = [23,2,6,4,7], k = 13",
+      "output": "false",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool checkSubarraySum(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean checkSubarraySum(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def checkSubarraySum(self, nums: list[int], k: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def checkSubarraySum(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {boolean}\n */\nvar checkSubarraySum = function(nums, k) {\n    \n};",
+    "typescript": "function checkSubarraySum(nums: number[], k: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CheckSubarraySum(int[] nums, int k) {\n        \n    }\n}",
+    "c": "bool checkSubarraySum(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func checkSubarraySum(nums []int, k int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun checkSubarraySum(nums: IntArray, k: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func checkSubarraySum(_ nums: [Int], _ k: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn check_subarray_sum(nums: Vec<i32>, k: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Boolean}\ndef check_subarray_sum(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Boolean\n     */\n    function checkSubarraySum($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool checkSubarraySum(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def checkSubarraySum(nums: Array[Int], k: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec check_subarray_sum(nums :: [integer], k :: integer) :: boolean\n  def check_subarray_sum(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec check_subarray_sum(Nums :: [integer()], K :: integer()) -> boolean().\ncheck_subarray_sum(Nums, K) ->\n  .",
+    "racket": "(define/contract (check-subarray-sum nums k)\n  (-> (listof exact-integer?) exact-integer? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[23,2,4,6,7]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[23,2,6,4,7]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[23,2,6,4,7]\n13",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[23,2,4,6,7]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[23,2,6,4,7]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[23,2,6,4,7]\n13",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[23,2]\n6",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[4,6,7]\n6",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[23]\n6",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[23,7]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[7,6,4,2,23]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,4,6,7,23]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[23,7,6,4,2]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[23,23,23,23,23]\n6",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[23,2,4,6,7,23,2,4,6,7]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[46,4,8,12,14]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[24,3,5,7,8]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[22,1,3,5,6]\n6",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-23,-2,-4,-6,-7]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0,0,0,0]\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,1,1,1]\n6",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0]\n6",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1]\n6",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/continuous-subarray-sum/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.826Z",
+    "sourceUpdatedAt": null
+  }
+}

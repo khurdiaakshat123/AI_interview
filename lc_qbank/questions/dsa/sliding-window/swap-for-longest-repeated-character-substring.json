@@ -1,0 +1,166 @@
+{
+  "id": "1156",
+  "slug": "swap-for-longest-repeated-character-substring",
+  "title": "Swap For Longest Repeated Character Substring",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "You are given a string `text`. You can swap two of the characters in the `text`.\n\nReturn _the length of the longest substring with repeated characters_.\n\n**Example 1:**\n\n```\nInput: text = \"ababa\"\nOutput: 3\nExplanation: We can swap the first 'b' with the last 'a', or the last 'b' with the first 'a'. Then, the longest repeated character substring is \"aaa\" with length 3.\n```\n\n**Example 2:**\n\n```\nInput: text = \"aaabaaa\"\nOutput: 6\nExplanation: Swap 'b' with the last 'a' (or the first 'a'), and we get longest repeated character substring \"aaaaaa\" with length 6.\n```\n\n**Example 3:**\n\n```\nInput: text = \"aaaaa\"\nOutput: 5\nExplanation: No need to swap, longest repeated character substring is \"aaaaa\" with length is 5.\n```\n\n**Constraints:**\n\n*   `1 <= text.length <= 2 * 10^(4)`\n*   `text` consist of lowercase English characters only.",
+  "constraints": [
+    "1 <= text.length <= 2 * 104",
+    "text consist of lowercase English characters only."
+  ],
+  "examples": [
+    {
+      "input": "text = \"ababa\"",
+      "output": "3",
+      "explanation": "We can swap the first 'b' with the last 'a', or the last 'b' with the first 'a'. Then, the longest repeated character substring is \"aaa\" with length 3."
+    },
+    {
+      "input": "text = \"aaabaaa\"",
+      "output": "6",
+      "explanation": "Swap 'b' with the last 'a' (or the first 'a'), and we get longest repeated character substring \"aaaaaa\" with length 6."
+    },
+    {
+      "input": "text = \"aaaaa\"",
+      "output": "5",
+      "explanation": "No need to swap, longest repeated character substring is \"aaaaa\" with length is 5."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxRepOpt1(string text) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxRepOpt1(String text) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxRepOpt1(self, text: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxRepOpt1(self, text):\n        \"\"\"\n        :type text: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} text\n * @return {number}\n */\nvar maxRepOpt1 = function(text) {\n    \n};",
+    "typescript": "function maxRepOpt1(text: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxRepOpt1(string text) {\n        \n    }\n}",
+    "c": "int maxRepOpt1(char* text) {\n    \n}",
+    "golang": "func maxRepOpt1(text string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxRepOpt1(text: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxRepOpt1(_ text: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_rep_opt1(text: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} text\n# @return {Integer}\ndef max_rep_opt1(text)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $text\n     * @return Integer\n     */\n    function maxRepOpt1($text) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxRepOpt1(String text) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxRepOpt1(text: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_rep_opt1(text :: String.t) :: integer\n  def max_rep_opt1(text) do\n    \n  end\nend",
+    "erlang": "-spec max_rep_opt1(Text :: unicode:unicode_binary()) -> integer().\nmax_rep_opt1(Text) ->\n  .",
+    "racket": "(define/contract (max-rep-opt1 text)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"bbaababbba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"bbabbbbbaaba\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abaaaaabbbbbaa\"",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"bbaababbba\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"bbabbbbbaaba\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"abaaaaabbbbbaa\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"bbaab\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abbba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"bb\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abbbabaabb\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"bbaababbbabbaababbba\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"bbbbbb\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"bbaababbbaabbbabaabb\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"BBAABABBBA\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "There are two cases:  a block of characters, or two blocks of characters between one different character. \r\n By keeping a run-length encoded version of the string, we can easily check these cases."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/swap-for-longest-repeated-character-substring/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.795Z",
+    "sourceUpdatedAt": null
+  }
+}

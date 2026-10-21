@@ -1,0 +1,159 @@
+{
+  "id": "3968",
+  "slug": "maximum-manhattan-distance-after-all-moves",
+  "title": "Maximum Manhattan Distance After All Moves",
+  "category": "dsa",
+  "subcategory": "mathematics",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "String",
+    "Counting"
+  ],
+  "statement": "You are given a string `moves` consisting of the characters `'U'`, `'D'`, `'L'`, `'R'`, and `'_'`.\n\nStarting from the origin `(0, 0)`, each character represents one move on a 2D plane:\n\n*   `'U'`: Move up by 1 unit.\n*   `'D'`: Move down by 1 unit.\n*   `'L'`: Move left by 1 unit.\n*   `'R'`: Move right by 1 unit.\n*   `'_'`: Can be independently replaced with any one of `'U'`, `'D'`, `'L'`, or `'R'`.\n\nReturn the maximum **Manhattan distance** from the origin that can be achieved after all moves have been performed.\n\n**Example 1:**\n\n**Input:** moves = \"L\\_D\\_\"\n\n**Output:** 4\n\n**Explanation:**\n\nOne optimal choice is:\n\n*   `'L'`: `(0, 0) -> (-1, 0)`\n*   `'_'` treated as `'D'`: `(-1, 0) -> (-1, -1)`\n*   `'D'`: `(-1, -1) -> (-1, -2)`\n*   `'_'` treated as `'L'`: `(-1, -2) -> (-2, -2)`\n\nThe final Manhattan distance from the origin is `|0 - (-2)| + |0 - (-2)| = 4`.\n\n**Example 2:**\n\n**Input:** moves = \"U\\_R\"\n\n**Output:** 3\n\n**Explanation:**\n\nOne optimal choice is:\n\n*   `'U'`: `(0, 0) -> (0, 1)`\n*   `'_'` treated as `'U'`: `(0, 1) -> (0, 2)`\n*   `'R'`: `(0, 2) -> (1, 2)`\n\nThe final Manhattan distance from the origin is `|0 - 1| + |0 - 2| = 3`.\n\n**Constraints:**\n\n*   `1 <= moves.length <= 10^(5)`\n*   `moves` consists of only `'U'`, `'D'`, `'L'`, `'R'`, and `'_'`.",
+  "constraints": [
+    "1 <= moves.length <= 105",
+    "moves consists of only 'U', 'D', 'L', 'R', and '_'."
+  ],
+  "examples": [
+    {
+      "input": "moves = \"L_D_\"",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "moves = \"U_R\"",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxDistance(string moves) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxDistance(String moves) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxDistance(self, moves: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxDistance(self, moves):\n        \"\"\"\n        :type moves: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} moves\n * @return {number}\n */\nvar maxDistance = function(moves) {\n    \n};",
+    "typescript": "function maxDistance(moves: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxDistance(string moves) {\n        \n    }\n}",
+    "c": "int maxDistance(char* moves) {\n    \n}",
+    "golang": "func maxDistance(moves string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxDistance(moves: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxDistance(_ moves: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_distance(moves: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} moves\n# @return {Integer}\ndef max_distance(moves)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $moves\n     * @return Integer\n     */\n    function maxDistance($moves) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxDistance(String moves) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxDistance(moves: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_distance(moves :: String.t) :: integer\n  def max_distance(moves) do\n    \n  end\nend",
+    "erlang": "-spec max_distance(Moves :: unicode:unicode_binary()) -> integer().\nmax_distance(Moves) ->\n  .",
+    "racket": "(define/contract (max-distance moves)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"L_D_\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"U_R\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"L_D_\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"U_R\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"L_\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"D_\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"L\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"_D_L\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"L_D_L_D_\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"LLLL\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"L_D__D_L\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Count the net horizontal movement, net vertical movement, and the number of underscores.",
+    "Without underscores, the final distance is <code>abs(x) + abs(y)</code>.",
+    "Each underscore can always be chosen to increase the final Manhattan distance by 1, so add the number of underscores to the fixed-move distance."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-manhattan-distance-after-all-moves/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.943Z",
+    "sourceUpdatedAt": null
+  }
+}

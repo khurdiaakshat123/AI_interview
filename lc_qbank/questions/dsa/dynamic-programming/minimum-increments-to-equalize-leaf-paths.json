@@ -1,0 +1,118 @@
+{
+  "id": "3593",
+  "slug": "minimum-increments-to-equalize-leaf-paths",
+  "title": "Minimum Increments to Equalize Leaf Paths",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "statement": "You are given an integer `n` and an undirected tree rooted at node 0 with `n` nodes numbered from 0 to `n - 1`. This is represented by a 2D array `edges` of length `n - 1`, where `edges[i] = [u_(i), v_(i)]` indicates an edge from node `u_(i)` to `v_(i)` .\n\nEach node `i` has an associated cost given by `cost[i]`, representing the cost to traverse that node.\n\nThe **score** of a path is defined as the sum of the costs of all nodes along the path.\n\nYour goal is to make the scores of all **root-to-leaf** paths **equal** by **increasing** the cost of any number of nodes by **any non-negative** amount.\n\nReturn the **minimum** number of nodes whose cost must be increased to make all root-to-leaf path scores equal.\n\n**Example 1:**\n\n**Input:** n = 3, edges = \\[\\[0,1\\],\\[0,2\\]\\], cost = \\[2,1,3\\]\n\n**Output:** 1\n\n**Explanation:**\n\n![](./assets/minimum-increments-to-equalize-leaf-paths-1.png)\n\nThere are two root-to-leaf paths:\n\n*   Path `0 → 1` has a score of `2 + 1 = 3`.\n*   Path `0 → 2` has a score of `2 + 3 = 5`.\n\nTo make all root-to-leaf path scores equal to 5, increase the cost of node 1 by 2.  \nOnly one node is increased, so the output is 1.\n\n**Example 2:**\n\n**Input:** n = 3, edges = \\[\\[0,1\\],\\[1,2\\]\\], cost = \\[5,1,4\\]\n\n**Output:** 0\n\n**Explanation:**\n\n![](./assets/minimum-increments-to-equalize-leaf-paths-2.png)\n\nThere is only one root-to-leaf path:\n\n*   Path `0 → 1 → 2` has a score of `5 + 1 + 4 = 10`.\n    \n\nSince only one root-to-leaf path exists, all path costs are trivially equal, and the output is 0.\n\n**Example 3:**\n\n**Input:** n = 5, edges = \\[\\[0,4\\],\\[0,1\\],\\[1,2\\],\\[1,3\\]\\], cost = \\[3,4,1,1,7\\]\n\n**Output:** 1\n\n**Explanation:**\n\n![](./assets/minimum-increments-to-equalize-leaf-paths-3.png)\n\nThere are three root-to-leaf paths:\n\n*   Path `0 → 4` has a score of `3 + 7 = 10`.\n*   Path `0 → 1 → 2` has a score of `3 + 4 + 1 = 8`.\n*   Path `0 → 1 → 3` has a score of `3 + 4 + 1 = 8`.\n\nTo make all root-to-leaf path scores equal to 10, increase the cost of node 1 by 2. Thus, the output is 1.\n\n**Constraints:**\n\n*   `2 <= n <= 10^(5)`\n*   `edges.length == n - 1`\n*   `edges[i] == [u_(i), v_(i)]`\n*   `0 <= u_(i), v_(i) < n`\n*   `cost.length == n`\n*   `1 <= cost[i] <= 10^(9)`\n*   The input is generated such that `edges` represents a valid tree.",
+  "constraints": [
+    "2 <= n <= 105",
+    "edges.length == n - 1",
+    "edges[i] == [ui, vi]",
+    "0 <= ui, vi < n",
+    "cost.length == n",
+    "1 <= cost[i] <= 109",
+    "The input is generated such that edges represents a valid tree."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1],[0,2]], cost = [2,1,3]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], cost = [5,1,4]",
+      "output": "0",
+      "explanation": null
+    },
+    {
+      "input": "n = 5, edges = [[0,4],[0,1],[1,2],[1,3]], cost = [3,4,1,1,7]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minIncrease(int n, vector<vector<int>>& edges, vector<int>& cost) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minIncrease(int n, int[][] edges, int[] cost) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minIncrease(self, n: int, edges: List[List[int]], cost: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minIncrease(self, n, edges, cost):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type cost: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number[]} cost\n * @return {number}\n */\nvar minIncrease = function(n, edges, cost) {\n    \n};",
+    "typescript": "function minIncrease(n: number, edges: number[][], cost: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinIncrease(int n, int[][] edges, int[] cost) {\n        \n    }\n}",
+    "c": "int minIncrease(int n, int** edges, int edgesSize, int* edgesColSize, int* cost, int costSize) {\n    \n}",
+    "golang": "func minIncrease(n int, edges [][]int, cost []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minIncrease(n: Int, edges: Array<IntArray>, cost: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minIncrease(_ n: Int, _ edges: [[Int]], _ cost: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_increase(n: i32, edges: Vec<Vec<i32>>, cost: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Integer[]} cost\n# @return {Integer}\ndef min_increase(n, edges, cost)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Integer[] $cost\n     * @return Integer\n     */\n    function minIncrease($n, $edges, $cost) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minIncrease(int n, List<List<int>> edges, List<int> cost) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minIncrease(n: Int, edges: Array[Array[Int]], cost: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_increase(n :: integer, edges :: [[integer]], cost :: [integer]) :: integer\n  def min_increase(n, edges, cost) do\n    \n  end\nend",
+    "erlang": "-spec min_increase(N :: integer(), Edges :: [[integer()]], Cost :: [integer()]) -> integer().\nmin_increase(N, Edges, Cost) ->\n  .",
+    "racket": "(define/contract (min-increase n edges cost)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1],[0,2]]\n[2,1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[5,1,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "5\n[[0,4],[0,1],[1,2],[1,3]]\n[3,4,1,1,7]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1],[0,2]]\n[2,1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[5,1,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "5\n[[0,4],[0,1],[1,2],[1,3]]\n[3,4,1,1,7]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[0,2]], cost = [2,1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], cost = [5,1,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "n = 5, edges = [[0,4],[0,1],[1,2],[1,3]], cost = [3,4,1,1,7]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Every root-to-leaf path's score must be raised to <code>maxLeafCost</code>, the maximum sum among all root-to-leaf paths.",
+    "For each <code>node</code>, compute <code>minIncrease[node]</code>, the minimum additional cost required so that every root-to-leaf path passing through that <code>node</code> reaches <code>maxLeafCost</code>.",
+    "The final answer, <code>ans</code>, is the count of <code>nodes</code> for which <code>minIncrease[node]</code> differs from <code>minIncrease[parent]</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-increments-to-equalize-leaf-paths/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.995Z",
+    "sourceUpdatedAt": null
+  }
+}

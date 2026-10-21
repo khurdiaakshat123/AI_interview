@@ -1,0 +1,161 @@
+{
+  "id": "1707",
+  "slug": "maximum-xor-with-an-element-from-array",
+  "title": "Maximum XOR With an Element From Array",
+  "category": "dsa",
+  "subcategory": "tries",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Trie"
+  ],
+  "statement": "You are given an array `nums` consisting of non-negative integers. You are also given a `queries` array, where `queries[i] = [x_(i), m_(i)]`.\n\nThe answer to the `i^(th)` query is the maximum bitwise `XOR` value of `x_(i)` and any element of `nums` that does not exceed `m_(i)`. In other words, the answer is `max(nums[j] XOR x_(i))` for all `j` such that `nums[j] <= m_(i)`. If all elements in `nums` are larger than `m_(i)`, then the answer is `-1`.\n\nReturn _an integer array_ `answer` _where_ `answer.length == queries.length` _and_ `answer[i]` _is the answer to the_ `i^(th)` _query._\n\n**Example 1:**\n\n```\nInput: nums = [0,1,2,3,4], queries = [[3,1],[1,3],[5,6]]\nOutput: [3,3,7]\nExplanation:\n1) 0 and 1 are the only two integers not greater than 1. 0 XOR 3 = 3 and 1 XOR 3 = 2. The larger of the two is 3.\n2) 1 XOR 2 = 3.\n3) 5 XOR 2 = 7.\n```\n\n**Example 2:**\n\n```\nInput: nums = [5,2,4,6,6,3], queries = [[12,4],[8,1],[6,3]]\nOutput: [15,-1,5]\n```\n\n**Constraints:**\n\n*   `1 <= nums.length, queries.length <= 10^(5)`\n*   `queries[i].length == 2`\n*   `0 <= nums[j], x_(i), m_(i) <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length, queries.length <= 105",
+    "queries[i].length == 2",
+    "0 <= nums[j], xi, mi <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [0,1,2,3,4], queries = [[3,1],[1,3],[5,6]]",
+      "output": "[3,3,7]",
+      "explanation": "1) 0 and 1 are the only two integers not greater than 1. 0 XOR 3 = 3 and 1 XOR 3 = 2. The larger of the two is 3.\n2) 1 XOR 2 = 3.\n3) 5 XOR 2 = 7."
+    },
+    {
+      "input": "nums = [5,2,4,6,6,3], queries = [[12,4],[8,1],[6,3]]",
+      "output": "[15,-1,5]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> maximizeXor(vector<int>& nums, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] maximizeXor(int[] nums, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximizeXor(self, nums: list[int], queries: list[list[int]]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def maximizeXor(self, nums, queries):\n        \"\"\"\n        :type nums: List[int]\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar maximizeXor = function(nums, queries) {\n    \n};",
+    "typescript": "function maximizeXor(nums: number[], queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MaximizeXor(int[] nums, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* maximizeXor(int* nums, int numsSize, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func maximizeXor(nums []int, queries [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximizeXor(nums: IntArray, queries: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximizeXor(_ nums: [Int], _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximize_xor(nums: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef maximize_xor(nums, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function maximizeXor($nums, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> maximizeXor(List<int> nums, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximizeXor(nums: Array[Int], queries: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximize_xor(nums :: [integer], queries :: [[integer]]) :: [integer]\n  def maximize_xor(nums, queries) do\n    \n  end\nend",
+    "erlang": "-spec maximize_xor(Nums :: [integer()], Queries :: [[integer()]]) -> [integer()].\nmaximize_xor(Nums, Queries) ->\n  .",
+    "racket": "(define/contract (maximize-xor nums queries)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[0,1,2,3,4]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[3,3,7]"
+    },
+    {
+      "input": "[5,2,4,6,6,3]\n[[12,4],[8,1],[6,3]]",
+      "expectedOutput": "[15,-1,5]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[0,1,2,3,4]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[3,3,7]"
+    },
+    {
+      "input": "[5,2,4,6,6,3]\n[[12,4],[8,1],[6,3]]",
+      "expectedOutput": "[15,-1,5]"
+    },
+    {
+      "input": "[0,1]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[3,1,5]"
+    },
+    {
+      "input": "[2,3,4]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[-1,3,7]"
+    },
+    {
+      "input": "[0]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[3,1,5]"
+    },
+    {
+      "input": "[0,4]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[3,1,5]"
+    },
+    {
+      "input": "[4,3,2,1,0]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[3,3,7]"
+    },
+    {
+      "input": "[0,0,0,0,0]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[3,1,5]"
+    },
+    {
+      "input": "[0,1,2,3,4,0,1,2,3,4]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[3,3,7]"
+    },
+    {
+      "input": "[0,2,4,6,8]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[3,3,7]"
+    },
+    {
+      "input": "[1,2,3,4,5]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[2,3,7]"
+    },
+    {
+      "input": "[-1,0,1,2,3]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[2147483644,2147483646,2147483642]"
+    },
+    {
+      "input": "[0,-1,-2,-3,-4]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[2147483647,2147483647,2147483643]"
+    },
+    {
+      "input": "[0,0,0,0]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[3,1,5]"
+    },
+    {
+      "input": "[1,1,1,1]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[2,0,4]"
+    },
+    {
+      "input": "[1]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[2,0,4]"
+    },
+    {
+      "input": "[-1]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[2147483644,2147483646,2147483642]"
+    },
+    {
+      "input": "[0,0]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[3,1,5]"
+    },
+    {
+      "input": "[1,2]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[2,3,7]"
+    },
+    {
+      "input": "[2,1]\n[[3,1],[1,3],[5,6]]",
+      "expectedOutput": "[2,3,7]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "In problems involving bitwise operations, we often think on the bits level. In this problem, we can think that to maximize the result of an xor operation, we need to maximize the most significant bit, then the next one, and so on.",
+    "If there's some number in the array that is less than m and whose the most significant bit is different than that of x, then xoring with this number maximizes the most significant bit, so I know this bit in the answer is 1.",
+    "To check the existence of such numbers and narrow your scope for further bits based on your choice, you can use trie.",
+    "You can sort the array and the queries, and maintain the trie such that in each query the trie consists exactly of the valid elements."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-xor-with-an-element-from-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.063Z",
+    "sourceUpdatedAt": null
+  }
+}

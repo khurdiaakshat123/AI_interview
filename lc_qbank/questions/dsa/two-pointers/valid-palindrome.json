@@ -1,0 +1,163 @@
+{
+  "id": "125",
+  "slug": "valid-palindrome",
+  "title": "Valid Palindrome",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "A phrase is a **palindrome** if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.\n\nGiven a string `s`, return `true` _if it is a **palindrome**, or_ `false` _otherwise_.\n\n**Example 1:**\n\n```\nInput: s = \"A man, a plan, a canal: Panama\"\nOutput: true\nExplanation: \"amanaplanacanalpanama\" is a palindrome.\n```\n\n**Example 2:**\n\n```\nInput: s = \"race a car\"\nOutput: false\nExplanation: \"raceacar\" is not a palindrome.\n```\n\n**Example 3:**\n\n```\nInput: s = \" \"\nOutput: true\nExplanation: s is an empty string \"\" after removing non-alphanumeric characters.\nSince an empty string reads the same forward and backward, it is a palindrome.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 2 * 10^(5)`\n*   `s` consists only of printable ASCII characters.",
+  "constraints": [
+    "1 <= s.length <= 2 * 105",
+    "s consists only of printable ASCII characters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"A man, a plan, a canal: Panama\"",
+      "output": "true",
+      "explanation": "\"amanaplanacanalpanama\" is a palindrome."
+    },
+    {
+      "input": "s = \"race a car\"",
+      "output": "false",
+      "explanation": "\"raceacar\" is not a palindrome."
+    },
+    {
+      "input": "s = \" \"",
+      "output": "true",
+      "explanation": "s is an empty string \"\" after removing non-alphanumeric characters.\nSince an empty string reads the same forward and backward, it is a palindrome."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isPalindrome(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isPalindrome(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isPalindrome(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isPalindrome(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar isPalindrome = function(s) {\n    \n};",
+    "typescript": "function isPalindrome(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsPalindrome(string s) {\n        \n    }\n}",
+    "c": "bool isPalindrome(char* s) {\n    \n}",
+    "golang": "func isPalindrome(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isPalindrome(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isPalindrome(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_palindrome(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef is_palindrome(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function isPalindrome($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isPalindrome(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isPalindrome(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_palindrome(s :: String.t) :: boolean\n  def is_palindrome(s) do\n    \n  end\nend",
+    "erlang": "-spec is_palindrome(S :: unicode:unicode_binary()) -> boolean().\nis_palindrome(S) ->\n  .",
+    "racket": "(define/contract (is-palindrome s)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"A man, a plan, a canal: Panama\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"race a car\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\" \"",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"A man, a plan, a canal: Panama\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"race a car\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\" \"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"A man, a plan, \"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a canal: Panama\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"A\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"A \"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"amanaP :lanac a ,nalp a ,nam A\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"AAAAAA\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/valid-palindrome/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.494Z",
+    "sourceUpdatedAt": null
+  }
+}

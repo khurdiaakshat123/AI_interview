@@ -1,0 +1,168 @@
+{
+  "id": "3297",
+  "slug": "count-substrings-that-can-be-rearranged-to-contain-a-string-i",
+  "title": "Count Substrings That Can Be Rearranged to Contain a String I",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "You are given two strings `word1` and `word2`.\n\nA string `x` is called **valid** if `x` can be rearranged to have `word2` as a prefix.\n\nReturn the total number of **valid** substrings of `word1`.\n\n**Example 1:**\n\n**Input:** word1 = \"bcca\", word2 = \"abc\"\n\n**Output:** 1\n\n**Explanation:**\n\nThe only valid substring is `\"bcca\"` which can be rearranged to `\"abcc\"` having `\"abc\"` as a prefix.\n\n**Example 2:**\n\n**Input:** word1 = \"abcabc\", word2 = \"abc\"\n\n**Output:** 10\n\n**Explanation:**\n\nAll the substrings except substrings of size 1 and size 2 are valid.\n\n**Example 3:**\n\n**Input:** word1 = \"abcabc\", word2 = \"aaabc\"\n\n**Output:** 0\n\n**Constraints:**\n\n*   `1 <= word1.length <= 10^(5)`\n*   `1 <= word2.length <= 10^(4)`\n*   `word1` and `word2` consist only of lowercase English letters.",
+  "constraints": [
+    "1 <= word1.length <= 105",
+    "1 <= word2.length <= 104",
+    "word1 and word2 consist only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "word1 = \"bcca\", word2 = \"abc\"",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "word1 = \"abcabc\", word2 = \"abc\"",
+      "output": "10",
+      "explanation": null
+    },
+    {
+      "input": "word1 = \"abcabc\", word2 = \"aaabc\"",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long validSubstringCount(string word1, string word2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long validSubstringCount(String word1, String word2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def validSubstringCount(self, word1: str, word2: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def validSubstringCount(self, word1, word2):\n        \"\"\"\n        :type word1: str\n        :type word2: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word1\n * @param {string} word2\n * @return {number}\n */\nvar validSubstringCount = function(word1, word2) {\n    \n};",
+    "typescript": "function validSubstringCount(word1: string, word2: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long ValidSubstringCount(string word1, string word2) {\n        \n    }\n}",
+    "c": "long long validSubstringCount(char* word1, char* word2) {\n    \n}",
+    "golang": "func validSubstringCount(word1 string, word2 string) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun validSubstringCount(word1: String, word2: String): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func validSubstringCount(_ word1: String, _ word2: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn valid_substring_count(word1: String, word2: String) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {String} word1\n# @param {String} word2\n# @return {Integer}\ndef valid_substring_count(word1, word2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word1\n     * @param String $word2\n     * @return Integer\n     */\n    function validSubstringCount($word1, $word2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int validSubstringCount(String word1, String word2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def validSubstringCount(word1: String, word2: String): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec valid_substring_count(word1 :: String.t, word2 :: String.t) :: integer\n  def valid_substring_count(word1, word2) do\n    \n  end\nend",
+    "erlang": "-spec valid_substring_count(Word1 :: unicode:unicode_binary(), Word2 :: unicode:unicode_binary()) -> integer().\nvalid_substring_count(Word1, Word2) ->\n  .",
+    "racket": "(define/contract (valid-substring-count word1 word2)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"bcca\"\n\"abc\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcabc\"\n\"abc\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"abcabc\"\n\"aaabc\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"bcca\"\n\"abc\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcabc\"\n\"abc\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"abcabc\"\n\"aaabc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"bc\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ca\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"accb\"\n\"abc\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"bccabcca\"\n\"abc\"",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "\"bbbb\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"bccaaccb\"\n\"abc\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"BCCA\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"\n\"abc\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n\"abc\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"edcba\"\n\"abc\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Store the frequency of each character for all prefixes.",
+    "Use Binary Search."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-substrings-that-can-be-rearranged-to-contain-a-string-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.694Z",
+    "sourceUpdatedAt": null
+  }
+}

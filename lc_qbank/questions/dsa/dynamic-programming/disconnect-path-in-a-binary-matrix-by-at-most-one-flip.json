@@ -1,0 +1,92 @@
+{
+  "id": "2556",
+  "slug": "disconnect-path-in-a-binary-matrix-by-at-most-one-flip",
+  "title": "Disconnect Path in a Binary Matrix by at Most One Flip",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "statement": "You are given a **0-indexed** `m x n` **binary** matrix `grid`. You can move from a cell `(row, col)` to any of the cells `(row + 1, col)` or `(row, col + 1)` that has the value `1`. The matrix is **disconnected** if there is no path from `(0, 0)` to `(m - 1, n - 1)`.\n\nYou can flip the value of **at most one** (possibly none) cell. You **cannot flip** the cells `(0, 0)` and `(m - 1, n - 1)`.\n\nReturn `true` _if it is possible to make the matrix disconnect or_ `false` _otherwise_.\n\n**Note** that flipping a cell changes its value from `0` to `1` or from `1` to `0`.\n\n**Example 1:**\n\n![](./assets/disconnect-path-in-a-binary-matrix-by-at-most-one-flip-1.png)\n```\nInput: grid = [[1,1,1],[1,0,0],[1,1,1]]\nOutput: true\nExplanation: We can change the cell shown in the diagram above. There is no path from (0, 0) to (2, 2) in the resulting grid.\n```\n\n**Example 2:**\n\n![](./assets/disconnect-path-in-a-binary-matrix-by-at-most-one-flip-2.png)\n```\nInput: grid = [[1,1,1],[1,0,1],[1,1,1]]\nOutput: false\nExplanation: It is not possible to change at most one cell such that there is not path from (0, 0) to (2, 2).\n```\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 1000`\n*   `1 <= m * n <= 10^(5)`\n*   `grid[i][j]` is either `0` or `1`.\n*   `grid[0][0] == grid[m - 1][n - 1] == 1`",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 1000",
+    "1 <= m * n <= 105",
+    "grid[i][j] is either 0 or 1.",
+    "grid[0][0] == grid[m - 1][n - 1] == 1"
+  ],
+  "examples": [
+    {
+      "input": "grid = [[1,1,1],[1,0,0],[1,1,1]]",
+      "output": "true",
+      "explanation": "We can change the cell shown in the diagram above. There is no path from (0, 0) to (2, 2) in the resulting grid."
+    },
+    {
+      "input": "grid = [[1,1,1],[1,0,1],[1,1,1]]",
+      "output": "false",
+      "explanation": "It is not possible to change at most one cell such that there is not path from (0, 0) to (2, 2)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isPossibleToCutPath(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isPossibleToCutPath(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isPossibleToCutPath(self, grid: list[list[int]]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isPossibleToCutPath(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {boolean}\n */\nvar isPossibleToCutPath = function(grid) {\n    \n};",
+    "typescript": "function isPossibleToCutPath(grid: number[][]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsPossibleToCutPath(int[][] grid) {\n        \n    }\n}",
+    "c": "bool isPossibleToCutPath(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func isPossibleToCutPath(grid [][]int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isPossibleToCutPath(grid: Array<IntArray>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isPossibleToCutPath(_ grid: [[Int]]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_possible_to_cut_path(grid: Vec<Vec<i32>>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Boolean}\ndef is_possible_to_cut_path(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Boolean\n     */\n    function isPossibleToCutPath($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isPossibleToCutPath(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isPossibleToCutPath(grid: Array[Array[Int]]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_possible_to_cut_path(grid :: [[integer]]) :: boolean\n  def is_possible_to_cut_path(grid) do\n    \n  end\nend",
+    "erlang": "-spec is_possible_to_cut_path(Grid :: [[integer()]]) -> boolean().\nis_possible_to_cut_path(Grid) ->\n  .",
+    "racket": "(define/contract (is-possible-to-cut-path grid)\n  (-> (listof (listof exact-integer?)) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,1,1],[1,0,0],[1,1,1]]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,1,1],[1,0,1],[1,1,1]]",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,1,1],[1,0,0],[1,1,1]]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,1,1],[1,0,1],[1,1,1]]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We can consider the grid a graph with edges between adjacent cells.",
+    "If you can find two non-intersecting paths from (0, 0) to (m - 1, n - 1) then the answer is false. Otherwise, it is always true."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.693Z",
+    "sourceUpdatedAt": null
+  }
+}

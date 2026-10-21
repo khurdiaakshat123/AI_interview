@@ -1,0 +1,171 @@
+{
+  "id": "2430",
+  "slug": "maximum-deletions-on-a-string",
+  "title": "Maximum Deletions on a String",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Rolling Hash",
+    "String Matching",
+    "Hash Function"
+  ],
+  "statement": "You are given a string `s` consisting of only lowercase English letters. In one operation, you can:\n\n*   Delete **the entire string** `s`, or\n*   Delete the **first** `i` letters of `s` if the first `i` letters of `s` are **equal** to the following `i` letters in `s`, for any `i` in the range `1 <= i <= s.length / 2`.\n\nFor example, if `s = \"ababc\"`, then in one operation, you could delete the first two letters of `s` to get `\"abc\"`, since the first two letters of `s` and the following two letters of `s` are both equal to `\"ab\"`.\n\nReturn _the **maximum** number of operations needed to delete all of_ `s`.\n\n**Example 1:**\n\n```\nInput: s = \"abcabcdabc\"\nOutput: 2\nExplanation:\n- Delete the first 3 letters (\"abc\") since the next 3 letters are equal. Now, s = \"abcdabc\".\n- Delete all the letters.\nWe used 2 operations so return 2. It can be proven that 2 is the maximum number of operations needed.\nNote that in the second operation we cannot delete \"abc\" again because the next occurrence of \"abc\" does not happen in the next 3 letters.\n```\n\n**Example 2:**\n\n```\nInput: s = \"aaabaab\"\nOutput: 4\nExplanation:\n- Delete the first letter (\"a\") since the next letter is equal. Now, s = \"aabaab\".\n- Delete the first 3 letters (\"aab\") since the next 3 letters are equal. Now, s = \"aab\".\n- Delete the first letter (\"a\") since the next letter is equal. Now, s = \"ab\".\n- Delete all the letters.\nWe used 4 operations so return 4. It can be proven that 4 is the maximum number of operations needed.\n```\n\n**Example 3:**\n\n```\nInput: s = \"aaaaa\"\nOutput: 5\nExplanation: In each operation, we can delete the first letter of s.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 4000`\n*   `s` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 4000",
+    "s consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcabcdabc\"",
+      "output": "2",
+      "explanation": "- Delete the first 3 letters (\"abc\") since the next 3 letters are equal. Now, s = \"abcdabc\".\n- Delete all the letters.\nWe used 2 operations so return 2. It can be proven that 2 is the maximum number of operations needed.\nNote that in the second operation we cannot delete \"abc\" again because the next occurrence of \"abc\" does not happen in the next 3 letters."
+    },
+    {
+      "input": "s = \"aaabaab\"",
+      "output": "4",
+      "explanation": "- Delete the first letter (\"a\") since the next letter is equal. Now, s = \"aabaab\".\n- Delete the first 3 letters (\"aab\") since the next 3 letters are equal. Now, s = \"aab\".\n- Delete the first letter (\"a\") since the next letter is equal. Now, s = \"ab\".\n- Delete all the letters.\nWe used 4 operations so return 4. It can be proven that 4 is the maximum number of operations needed."
+    },
+    {
+      "input": "s = \"aaaaa\"",
+      "output": "5",
+      "explanation": "In each operation, we can delete the first letter of s."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int deleteString(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int deleteString(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def deleteString(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def deleteString(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar deleteString = function(s) {\n    \n};",
+    "typescript": "function deleteString(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int DeleteString(string s) {\n        \n    }\n}",
+    "c": "int deleteString(char* s) {\n    \n}",
+    "golang": "func deleteString(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun deleteString(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func deleteString(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn delete_string(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef delete_string(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function deleteString($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int deleteString(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def deleteString(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec delete_string(s :: String.t) :: integer\n  def delete_string(s) do\n    \n  end\nend",
+    "erlang": "-spec delete_string(S :: unicode:unicode_binary()) -> integer().\ndelete_string(S) ->\n  .",
+    "racket": "(define/contract (delete-string s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcabcdabc\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaabaab\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcabcdabc\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaabaab\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"cdabc\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"cbadcbacba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcabcdabcabcabcdabc\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abcabcdabccbadcbacba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ABCABCDABC\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We can use dynamic programming to find the answer. Create a 0-indexed dp array where dp[i] represents the maximum number of moves needed to remove the first i + 1 letters from s.",
+    "What should we do if there is an i where it is impossible to remove the first i + 1 letters?",
+    "Use a sentinel value such as -1 to show that it is impossible.",
+    "How can we quickly determine if two substrings of s are equal? We can use hashing."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-deletions-on-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.702Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "id": "1561",
+  "slug": "maximum-number-of-coins-you-can-get",
+  "title": "Maximum Number of Coins You Can Get",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Greedy",
+    "Sorting",
+    "Game Theory"
+  ],
+  "statement": "There are `3n` piles of coins of varying size, you and your friends will take piles of coins as follows:\n\n*   In each step, you will choose **any** `3` piles of coins (not necessarily consecutive).\n*   Of your choice, Alice will pick the pile with the maximum number of coins.\n*   You will pick the next pile with the maximum number of coins.\n*   Your friend Bob will pick the last pile.\n*   Repeat until there are no more piles of coins.\n\nGiven an array of integers `piles` where `piles[i]` is the number of coins in the `i^(th)` pile.\n\nReturn the maximum number of coins that you can have.\n\n**Example 1:**\n\n```\nInput: piles = [2,4,1,2,7,8]\nOutput: 9\nExplanation: Choose the triplet (2, 7, 8), Alice Pick the pile with 8 coins, you the pile with 7 coins and Bob the last one.\nChoose the triplet (1, 2, 4), Alice Pick the pile with 4 coins, you the pile with 2 coins and Bob the last one.\nThe maximum number of coins which you can have are: 7 + 2 = 9.\nOn the other hand if we choose this arrangement (1, 2, 8), (2, 4, 7) you only get 2 + 4 = 6 coins which is not optimal.\n```\n\n**Example 2:**\n\n```\nInput: piles = [2,4,5]\nOutput: 4\n```\n\n**Example 3:**\n\n```\nInput: piles = [9,8,7,6,5,1,2,3,4]\nOutput: 18\n```\n\n**Constraints:**\n\n*   `3 <= piles.length <= 10^(5)`\n*   `piles.length % 3 == 0`\n*   `1 <= piles[i] <= 10^(4)`",
+  "constraints": [
+    "3 <= piles.length <= 105",
+    "piles.length % 3 == 0",
+    "1 <= piles[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "piles = [2,4,1,2,7,8]",
+      "output": "9",
+      "explanation": "Choose the triplet (2, 7, 8), Alice Pick the pile with 8 coins, you the pile with 7 coins and Bob the last one.\nChoose the triplet (1, 2, 4), Alice Pick the pile with 4 coins, you the pile with 2 coins and Bob the last one.\nThe maximum number of coins which you can have are: 7 + 2 = 9.\nOn the other hand if we choose this arrangement (1, 2, 8), (2, 4, 7) you only get 2 + 4 = 6 coins which is not optimal."
+    },
+    {
+      "input": "piles = [2,4,5]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "piles = [9,8,7,6,5,1,2,3,4]",
+      "output": "18",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxCoins(vector<int>& piles) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxCoins(int[] piles) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxCoins(self, piles: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxCoins(self, piles):\n        \"\"\"\n        :type piles: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} piles\n * @return {number}\n */\nvar maxCoins = function(piles) {\n    \n};",
+    "typescript": "function maxCoins(piles: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxCoins(int[] piles) {\n        \n    }\n}",
+    "c": "int maxCoins(int* piles, int pilesSize) {\n    \n}",
+    "golang": "func maxCoins(piles []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxCoins(piles: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxCoins(_ piles: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_coins(piles: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} piles\n# @return {Integer}\ndef max_coins(piles)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $piles\n     * @return Integer\n     */\n    function maxCoins($piles) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxCoins(List<int> piles) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxCoins(piles: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_coins(piles :: [integer]) :: integer\n  def max_coins(piles) do\n    \n  end\nend",
+    "erlang": "-spec max_coins(Piles :: [integer()]) -> integer().\nmax_coins(Piles) ->\n  .",
+    "racket": "(define/contract (max-coins piles)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,4,1,2,7,8]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[2,4,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[9,8,7,6,5,1,2,3,4]",
+      "expectedOutput": "18"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,4,1,2,7,8]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[2,4,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[9,8,7,6,5,1,2,3,4]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[2,4,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,7,8]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,8]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[8,7,2,1,4,2]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,2,2,4,7,8]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[8,7,4,2,2,1]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,4,1,2,7,8,2,4,1,2,7,8]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[4,8,2,4,14,16]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[3,5,2,3,8,9]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[1,3,0,1,6,7]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[-2,-4,-1,-2,-7,-8]",
+      "expectedOutput": "-6"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Which pile of coins will you never be able to pick up?",
+    "Bob is forced to take the last pile of coins, no matter what it is. Which pile should you give to him?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-coins-you-can-get/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.008Z",
+    "sourceUpdatedAt": null
+  }
+}

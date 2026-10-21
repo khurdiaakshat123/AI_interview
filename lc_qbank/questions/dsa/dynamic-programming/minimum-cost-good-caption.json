@@ -1,0 +1,110 @@
+{
+  "id": "3441",
+  "slug": "minimum-cost-good-caption",
+  "title": "Minimum Cost Good Caption",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given a string `caption` of length `n`. A **good** caption is a string where **every** character appears in groups of **at least 3** consecutive occurrences.\n\nFor example:\n\n*   `\"aaabbb\"` and `\"aaaaccc\"` are **good** captions.\n*   `\"aabbb\"` and `\"ccccd\"` are **not** good captions.\n\nYou can perform the following operation **any** number of times:\n\nChoose an index `i` (where `0 <= i < n`) and change the character at that index to either:\n\n*   The character immediately **before** it in the alphabet (if `caption[i] != 'a'`).\n*   The character immediately **after** it in the alphabet (if `caption[i] != 'z'`).\n\nYour task is to convert the given `caption` into a **good** caption using the **minimum** number of operations, and return it. If there are **multiple** possible good captions, return the **lexicographically smallest** one among them. If it is **impossible** to create a good caption, return an empty string `\"\"`.\n\n**Example 1:**\n\n**Input:** caption = \"cdcd\"\n\n**Output:** \"cccc\"\n\n**Explanation:**\n\nIt can be shown that the given caption cannot be transformed into a good caption with fewer than 2 operations. The possible good captions that can be created using exactly 2 operations are:\n\n*   `\"dddd\"`: Change `caption[0]` and `caption[2]` to their next character `'d'`.\n*   `\"cccc\"`: Change `caption[1]` and `caption[3]` to their previous character `'c'`.\n\nSince `\"cccc\"` is lexicographically smaller than `\"dddd\"`, return `\"cccc\"`.\n\n**Example 2:**\n\n**Input:** caption = \"aca\"\n\n**Output:** \"aaa\"\n\n**Explanation:**\n\nIt can be proven that the given caption requires at least 2 operations to be transformed into a good caption. The only good caption that can be obtained with exactly 2 operations is as follows:\n\n*   Operation 1: Change `caption[1]` to `'b'`. `caption = \"aba\"`.\n*   Operation 2: Change `caption[1]` to `'a'`. `caption = \"aaa\"`.\n\nThus, return `\"aaa\"`.\n\n**Example 3:**\n\n**Input:** caption = \"bc\"\n\n**Output:** \"\"\n\n**Explanation:**\n\nIt can be shown that the given caption cannot be converted to a good caption by using any number of operations.\n\n**Constraints:**\n\n*   `1 <= caption.length <= 5 * 10^(4)`\n*   `caption` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= caption.length <= 5 * 104",
+    "caption consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "caption = \"cdcd\"",
+      "output": "\"cccc\"",
+      "explanation": null
+    },
+    {
+      "input": "caption = \"aca\"",
+      "output": "\"aaa\"",
+      "explanation": null
+    },
+    {
+      "input": "caption = \"bc\"",
+      "output": "\"\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string minCostGoodCaption(string caption) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String minCostGoodCaption(String caption) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCostGoodCaption(self, caption: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def minCostGoodCaption(self, caption):\n        \"\"\"\n        :type caption: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} caption\n * @return {string}\n */\nvar minCostGoodCaption = function(caption) {\n    \n};",
+    "typescript": "function minCostGoodCaption(caption: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MinCostGoodCaption(string caption) {\n        \n    }\n}",
+    "c": "char* minCostGoodCaption(char* caption) {\n    \n}",
+    "golang": "func minCostGoodCaption(caption string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCostGoodCaption(caption: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCostGoodCaption(_ caption: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_cost_good_caption(caption: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} caption\n# @return {String}\ndef min_cost_good_caption(caption)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $caption\n     * @return String\n     */\n    function minCostGoodCaption($caption) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String minCostGoodCaption(String caption) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCostGoodCaption(caption: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_cost_good_caption(caption :: String.t) :: String.t\n  def min_cost_good_caption(caption) do\n    \n  end\nend",
+    "erlang": "-spec min_cost_good_caption(Caption :: unicode:unicode_binary()) -> unicode:unicode_binary().\nmin_cost_good_caption(Caption) ->\n  .",
+    "racket": "(define/contract (min-cost-good-caption caption)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"cdcd\"",
+      "expectedOutput": "\"cccc\""
+    },
+    {
+      "input": "\"aca\"",
+      "expectedOutput": "\"aaa\""
+    },
+    {
+      "input": "\"bc\"",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"cdcd\"",
+      "expectedOutput": "\"cccc\""
+    },
+    {
+      "input": "\"aca\"",
+      "expectedOutput": "\"aaa\""
+    },
+    {
+      "input": "\"bc\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "caption = \"cdcd\"",
+      "expectedOutput": "\"cccc\""
+    },
+    {
+      "input": "caption = \"aca\"",
+      "expectedOutput": "\"aaa\""
+    },
+    {
+      "input": "caption = \"bc\"",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Construct a DP table and try all possible characters at every index.",
+    "Choose characters greedily to get the lexicographically smallest caption."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-good-caption/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.527Z",
+    "sourceUpdatedAt": null
+  }
+}

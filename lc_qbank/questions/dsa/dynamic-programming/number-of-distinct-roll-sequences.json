@@ -1,0 +1,113 @@
+{
+  "id": "2318",
+  "slug": "number-of-distinct-roll-sequences",
+  "title": "Number of Distinct Roll Sequences",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Dynamic Programming",
+    "Memoization"
+  ],
+  "statement": "You are given an integer `n`. You roll a fair 6-sided dice `n` times. Determine the total number of **distinct** sequences of rolls possible such that the following conditions are satisfied:\n\n1.  The **greatest common divisor** of any **adjacent** values in the sequence is equal to `1`.\n2.  There is **at least** a gap of `2` rolls between **equal** valued rolls. More formally, if the value of the `i^(th)` roll is **equal** to the value of the `j^(th)` roll, then `abs(i - j) > 2`.\n\nReturn _the **total number** of distinct sequences possible_. Since the answer may be very large, return it **modulo** `10^(9) + 7`.\n\nTwo sequences are considered distinct if at least one element is different.\n\n**Example 1:**\n\n```\nInput: n = 4\nOutput: 184\nExplanation: Some of the possible sequences are (1, 2, 3, 4), (6, 1, 2, 3), (1, 2, 3, 1), etc.\nSome invalid sequences are (1, 2, 1, 3), (1, 2, 3, 6).\n(1, 2, 1, 3) is invalid since the first and third roll have an equal value and abs(1 - 3) = 2 (i and j are 1-indexed).\n(1, 2, 3, 6) is invalid since the greatest common divisor of 3 and 6 = 3.\nThere are a total of 184 distinct sequences possible, so we return 184.\n```\n\n**Example 2:**\n\n```\nInput: n = 2\nOutput: 22\nExplanation: Some of the possible sequences are (1, 2), (2, 1), (3, 2).\nSome invalid sequences are (3, 6), (2, 4) since the greatest common divisor is not equal to 1.\nThere are a total of 22 distinct sequences possible, so we return 22.\n```\n\n**Constraints:**\n\n*   `1 <= n <= 10^(4)`",
+  "constraints": [
+    "1 <= n <= 104"
+  ],
+  "examples": [
+    {
+      "input": "n = 4",
+      "output": "184",
+      "explanation": "Some of the possible sequences are (1, 2, 3, 4), (6, 1, 2, 3), (1, 2, 3, 1), etc.\nSome invalid sequences are (1, 2, 1, 3), (1, 2, 3, 6).\n(1, 2, 1, 3) is invalid since the first and third roll have an equal value and abs(1 - 3) = 2 (i and j are 1-indexed).\n(1, 2, 3, 6) is invalid since the greatest common divisor of 3 and 6 = 3.\nThere are a total of 184 distinct sequences possible, so we return 184."
+    },
+    {
+      "input": "n = 2",
+      "output": "22",
+      "explanation": "Some of the possible sequences are (1, 2), (2, 1), (3, 2).\nSome invalid sequences are (3, 6), (2, 4) since the greatest common divisor is not equal to 1.\nThere are a total of 22 distinct sequences possible, so we return 22."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int distinctSequences(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int distinctSequences(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def distinctSequences(self, n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def distinctSequences(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {number}\n */\nvar distinctSequences = function(n) {\n    \n};",
+    "typescript": "function distinctSequences(n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int DistinctSequences(int n) {\n        \n    }\n}",
+    "c": "int distinctSequences(int n) {\n    \n}",
+    "golang": "func distinctSequences(n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun distinctSequences(n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func distinctSequences(_ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn distinct_sequences(n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Integer}\ndef distinct_sequences(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Integer\n     */\n    function distinctSequences($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int distinctSequences(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def distinctSequences(n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec distinct_sequences(n :: integer) :: integer\n  def distinct_sequences(n) do\n    \n  end\nend",
+    "erlang": "-spec distinct_sequences(N :: integer()) -> integer().\ndistinct_sequences(N) ->\n  .",
+    "racket": "(define/contract (distinct-sequences n)\n  (-> exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "4",
+      "expectedOutput": "184"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "22"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "4",
+      "expectedOutput": "184"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "22"
+    },
+    {
+      "input": "1",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "3",
+      "expectedOutput": "66"
+    },
+    {
+      "input": "5",
+      "expectedOutput": "516"
+    },
+    {
+      "input": "6",
+      "expectedOutput": "1472"
+    },
+    {
+      "input": "7",
+      "expectedOutput": "4136"
+    },
+    {
+      "input": "8",
+      "expectedOutput": "11672"
+    },
+    {
+      "input": "9",
+      "expectedOutput": "33008"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can you think of a DP solution?",
+    "Consider a state that remembers the last 1 or 2 rolls.",
+    "Do you need to consider the last 3 rolls?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-distinct-roll-sequences/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.837Z",
+    "sourceUpdatedAt": null
+  }
+}

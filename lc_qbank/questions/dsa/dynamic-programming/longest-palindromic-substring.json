@@ -1,0 +1,160 @@
+{
+  "id": "5",
+  "slug": "longest-palindromic-substring",
+  "title": "Longest Palindromic Substring",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming",
+    "Manacher"
+  ],
+  "statement": "Given a string `s`, return _the longest_ _palindromic_ _substring_ in `s`.\n\n**Example 1:**\n\n```\nInput: s = \"babad\"\nOutput: \"bab\"\nExplanation: \"aba\" is also a valid answer.\n```\n\n**Example 2:**\n\n```\nInput: s = \"cbbd\"\nOutput: \"bb\"\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 1000`\n*   `s` consist of only digits and English letters.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consist of only digits and English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"babad\"",
+      "output": "\"bab\"",
+      "explanation": "\"aba\" is also a valid answer."
+    },
+    {
+      "input": "s = \"cbbd\"",
+      "output": "\"bb\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string longestPalindrome(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String longestPalindrome(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestPalindrome(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def longestPalindrome(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar longestPalindrome = function(s) {\n    \n};",
+    "typescript": "function longestPalindrome(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LongestPalindrome(string s) {\n        \n    }\n}",
+    "c": "char* longestPalindrome(char* s) {\n    \n}",
+    "golang": "func longestPalindrome(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestPalindrome(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestPalindrome(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_palindrome(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef longest_palindrome(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function longestPalindrome($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String longestPalindrome(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestPalindrome(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_palindrome(s :: String.t) :: String.t\n  def longest_palindrome(s) do\n    \n  end\nend",
+    "erlang": "-spec longest_palindrome(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nlongest_palindrome(S) ->\n  .",
+    "racket": "(define/contract (longest-palindrome s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"babad\"",
+      "expectedOutput": "\"bab\""
+    },
+    {
+      "input": "\"cbbd\"",
+      "expectedOutput": "\"bb\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"babad\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"cbbd\"",
+      "expectedOutput": "\"bb\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"bad\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"dabab\"",
+      "expectedOutput": "\"bab\""
+    },
+    {
+      "input": "\"babadbabad\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"bbbbb\"",
+      "expectedOutput": "\"bbbbb\""
+    },
+    {
+      "input": "\"babaddabab\"",
+      "expectedOutput": "\"babaddabab\""
+    },
+    {
+      "input": "\"BABAD\"",
+      "expectedOutput": "\"ABA\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"e\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "\"a\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "How can we reuse a previously computed palindrome to compute a larger palindrome?",
+    "If “aba” is a palindrome, is “xabax” a palindrome? Similarly is “xabay” a palindrome?",
+    "Complexity based hint:</br>\r\nIf we use brute-force and check whether for every start and end position a substring is a palindrome we have O(n^2) start - end pairs and O(n) palindromic checks. Can we reduce the time for palindromic checks to O(1) by reusing some previous computation."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-palindromic-substring/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.582Z",
+    "sourceUpdatedAt": null
+  }
+}

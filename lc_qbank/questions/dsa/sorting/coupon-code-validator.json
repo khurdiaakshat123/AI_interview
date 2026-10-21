@@ -1,0 +1,164 @@
+{
+  "id": "3606",
+  "slug": "coupon-code-validator",
+  "title": "Coupon Code Validator",
+  "category": "dsa",
+  "subcategory": "sorting",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "statement": "You are given three arrays of length `n` that describe the properties of `n` coupons: `code`, `businessLine`, and `isActive`. The `i^(th)` coupon has:\n\n*   `code[i]`: a **string** representing the coupon identifier.\n*   `businessLine[i]`: a **string** denoting the business category of the coupon.\n*   `isActive[i]`: a **boolean** indicating whether the coupon is currently active.\n\nA coupon is considered **valid** if all of the following conditions hold:\n\n1.  `code[i]` is non-empty and consists only of alphanumeric characters (a-z, A-Z, 0-9) and underscores (`_`).\n2.  `businessLine[i]` is one of the following four categories: `\"electronics\"`, `\"grocery\"`, `\"pharmacy\"`, `\"restaurant\"`.\n3.  `isActive[i]` is **true**.\n\nReturn an array of the **codes** of all valid coupons, **sorted** first by their **businessLine** in the order: `\"electronics\"`, `\"grocery\"`, `\"pharmacy\", \"restaurant\"`, and then by **code** in lexicographical (ascending) order within each category.\n\n**Example 1:**\n\n**Input:** code = \\[\"SAVE20\",\"\",\"PHARMA5\",\"SAVE@20\"\\], businessLine = \\[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"\\], isActive = \\[true,true,true,true\\]\n\n**Output:** \\[\"PHARMA5\",\"SAVE20\"\\]\n\n**Explanation:**\n\n*   First coupon is valid.\n*   Second coupon has empty code (invalid).\n*   Third coupon is valid.\n*   Fourth coupon has special character `@` (invalid).\n\n**Example 2:**\n\n**Input:** code = \\[\"GROCERY15\",\"ELECTRONICS\\_50\",\"DISCOUNT10\"\\], businessLine = \\[\"grocery\",\"electronics\",\"invalid\"\\], isActive = \\[false,true,true\\]\n\n**Output:** \\[\"ELECTRONICS\\_50\"\\]\n\n**Explanation:**\n\n*   First coupon is inactive (invalid).\n*   Second coupon is valid.\n*   Third coupon has invalid business line (invalid).\n\n**Constraints:**\n\n*   `n == code.length == businessLine.length == isActive.length`\n*   `1 <= n <= 100`\n*   `0 <= code[i].length, businessLine[i].length <= 100`\n*   `code[i]` and `businessLine[i]` consist of printable ASCII characters.\n*   `isActive[i]` is either `true` or `false`.",
+  "constraints": [
+    "n == code.length == businessLine.length == isActive.length",
+    "1 <= n <= 100",
+    "0 <= code[i].length, businessLine[i].length <= 100",
+    "code[i] and businessLine[i] consist of printable ASCII characters.",
+    "isActive[i] is either true or false."
+  ],
+  "examples": [
+    {
+      "input": "code = [\"SAVE20\",\"\",\"PHARMA5\",\"SAVE@20\"], businessLine = [\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"], isActive = [true,true,true,true]",
+      "output": "[\"PHARMA5\",\"SAVE20\"]",
+      "explanation": "First coupon is valid.\n\tSecond coupon has empty code (invalid).\n\tThird coupon is valid.\n\tFourth coupon has special character @ (invalid)."
+    },
+    {
+      "input": "code = [\"GROCERY15\",\"ELECTRONICS_50\",\"DISCOUNT10\"], businessLine = [\"grocery\",\"electronics\",\"invalid\"], isActive = [false,true,true]",
+      "output": "[\"ELECTRONICS_50\"]",
+      "explanation": "First coupon is inactive (invalid).\n\tSecond coupon is valid.\n\tThird coupon has invalid business line (invalid)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> validateCoupons(vector<string>& code, vector<string>& businessLine, vector<bool>& isActive) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> validateCoupons(String[] code, String[] businessLine, boolean[] isActive) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def validateCoupons(self, code: List[str], businessLine: List[str], isActive: List[bool]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def validateCoupons(self, code, businessLine, isActive):\n        \"\"\"\n        :type code: List[str]\n        :type businessLine: List[str]\n        :type isActive: List[bool]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} code\n * @param {string[]} businessLine\n * @param {boolean[]} isActive\n * @return {string[]}\n */\nvar validateCoupons = function(code, businessLine, isActive) {\n    \n};",
+    "typescript": "function validateCoupons(code: string[], businessLine: string[], isActive: boolean[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> ValidateCoupons(string[] code, string[] businessLine, bool[] isActive) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** validateCoupons(char** code, int codeSize, char** businessLine, int businessLineSize, bool* isActive, int isActiveSize, int* returnSize) {\n    \n}",
+    "golang": "func validateCoupons(code []string, businessLine []string, isActive []bool) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun validateCoupons(code: Array<String>, businessLine: Array<String>, isActive: BooleanArray): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func validateCoupons(_ code: [String], _ businessLine: [String], _ isActive: [Bool]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn validate_coupons(code: Vec<String>, business_line: Vec<String>, is_active: Vec<bool>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} code\n# @param {String[]} business_line\n# @param {Boolean[]} is_active\n# @return {String[]}\ndef validate_coupons(code, business_line, is_active)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $code\n     * @param String[] $businessLine\n     * @param Boolean[] $isActive\n     * @return String[]\n     */\n    function validateCoupons($code, $businessLine, $isActive) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> validateCoupons(List<String> code, List<String> businessLine, List<bool> isActive) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def validateCoupons(code: Array[String], businessLine: Array[String], isActive: Array[Boolean]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec validate_coupons(code :: [String.t], business_line :: [String.t], is_active :: [boolean]) :: [String.t]\n  def validate_coupons(code, business_line, is_active) do\n    \n  end\nend",
+    "erlang": "-spec validate_coupons(Code :: [unicode:unicode_binary()], BusinessLine :: [unicode:unicode_binary()], IsActive :: [boolean()]) -> [unicode:unicode_binary()].\nvalidate_coupons(Code, BusinessLine, IsActive) ->\n  .",
+    "racket": "(define/contract (validate-coupons code businessLine isActive)\n  (-> (listof string?) (listof string?) (listof boolean?) (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"SAVE20\",\"\",\"PHARMA5\",\"SAVE@20\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"PHARMA5\",\"SAVE20\"]"
+    },
+    {
+      "input": "[\"GROCERY15\",\"ELECTRONICS_50\",\"DISCOUNT10\"]\n[\"grocery\",\"electronics\",\"invalid\"]\n[false,true,true]",
+      "expectedOutput": "[\"ELECTRONICS_50\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"SAVE20\",\"\",\"PHARMA5\",\"SAVE@20\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"PHARMA5\",\"SAVE20\"]"
+    },
+    {
+      "input": "[\"GROCERY15\",\"ELECTRONICS_50\",\"DISCOUNT10\"]\n[\"grocery\",\"electronics\",\"invalid\"]\n[false,true,true]",
+      "expectedOutput": "[\"ELECTRONICS_50\"]"
+    },
+    {
+      "input": "[\"SAVE20\",\"\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"SAVE20\"]"
+    },
+    {
+      "input": "[\"PHARMA5\",\"SAVE@20\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"PHARMA5\"]"
+    },
+    {
+      "input": "[\"SAVE20\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"SAVE20\"]"
+    },
+    {
+      "input": "[\"SAVE20\",\"SAVE@20\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"SAVE20\"]"
+    },
+    {
+      "input": "[\"SAVE@20\",\"PHARMA5\",\"\",\"SAVE20\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"PHARMA5\",\"SAVE20\"]"
+    },
+    {
+      "input": "[\"\",\"PHARMA5\",\"SAVE20\",\"SAVE@20\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"PHARMA5\",\"SAVE20\"]"
+    },
+    {
+      "input": "[\"SAVE@20\",\"SAVE20\",\"PHARMA5\",\"\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"SAVE20\",\"PHARMA5\"]"
+    },
+    {
+      "input": "[\"SAVE20\",\"SAVE20\",\"SAVE20\",\"SAVE20\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"SAVE20\",\"SAVE20\",\"SAVE20\",\"SAVE20\"]"
+    },
+    {
+      "input": "[\"SAVE20\",\"\",\"PHARMA5\",\"SAVE@20\",\"SAVE20\",\"\",\"PHARMA5\",\"SAVE@20\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"PHARMA5\",\"SAVE20\"]"
+    },
+    {
+      "input": "[\"a\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"a\"]"
+    },
+    {
+      "input": "[\"\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[\"a\",\"b\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"b\",\"a\"]"
+    },
+    {
+      "input": "[\"a\",\"a\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"a\",\"a\"]"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"ba\",\"ab\"]"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"bca\",\"cab\",\"abc\"]"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"tea\",\"tan\",\"ate\",\"eat\"]"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"dog\",\"tac\",\"cat\",\"god\"]"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]\n[\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"]\n[true,true,true,true]",
+      "expectedOutput": "[\"two\",\"three\",\"one\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Filter out any coupon where <code>isActive[i]</code> is false, <code>code[i]</code> is empty or contains non‑alphanumeric/underscore chars, or <code>businessLine[i]</code> is not in the allowed set",
+    "Store each remaining coupon as a pair <code>(businessLine[i], code[i])</code>",
+    "Define a priority map, e.g. <code>{\"electronics\":0, \"grocery\":1, \"pharmacy\":2, \"restaurant\":3}</code>",
+    "Sort the list of pairs by <code>(priority[businessLine], code)</code> and return the <code>code</code> values in order"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/coupon-code-validator/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.011Z",
+    "sourceUpdatedAt": null
+  }
+}

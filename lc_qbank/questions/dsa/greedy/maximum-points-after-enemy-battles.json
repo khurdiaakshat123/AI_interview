@@ -1,0 +1,160 @@
+{
+  "id": "3207",
+  "slug": "maximum-points-after-enemy-battles",
+  "title": "Maximum Points After Enemy Battles",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "statement": "You are given an integer array `enemyEnergies` denoting the energy values of various enemies.\n\nYou are also given an integer `currentEnergy` denoting the amount of energy you have initially.\n\nYou start with 0 points, and all the enemies are unmarked initially.\n\nYou can perform **either** of the following operations **zero** or multiple times to gain points:\n\n*   Choose an **unmarked** enemy, `i`, such that `currentEnergy >= enemyEnergies[i]`. By choosing this option:\n    *   You gain 1 point.\n    *   Your energy is reduced by the enemy's energy, i.e. `currentEnergy = currentEnergy - enemyEnergies[i]`.\n*   If you have **at least** 1 point, you can choose an **unmarked** enemy, `i`. By choosing this option:\n    *   Your energy increases by the enemy's energy, i.e. `currentEnergy = currentEnergy + enemyEnergies[i]`.\n    *   The enemy `i` is **marked**.\n\nReturn an integer denoting the **maximum** points you can get in the end by optimally performing operations.\n\n**Example 1:**\n\n**Input:** enemyEnergies = \\[3,2,2\\], currentEnergy = 2\n\n**Output:** 3\n\n**Explanation:**\n\nThe following operations can be performed to get 3 points, which is the maximum:\n\n*   First operation on enemy 1: `points` increases by 1, and `currentEnergy` decreases by 2. So, `points = 1`, and `currentEnergy = 0`.\n*   Second operation on enemy 0: `currentEnergy` increases by 3, and enemy 0 is marked. So, `points = 1`, `currentEnergy = 3`, and marked enemies = `[0]`.\n*   First operation on enemy 2: `points` increases by 1, and `currentEnergy` decreases by 2. So, `points = 2`, `currentEnergy = 1`, and marked enemies = `[0]`.\n*   Second operation on enemy 2: `currentEnergy` increases by 2, and enemy 2 is marked. So, `points = 2`, `currentEnergy = 3`, and marked enemies = `[0, 2]`.\n*   First operation on enemy 1: `points` increases by 1, and `currentEnergy` decreases by 2. So, `points = 3`, `currentEnergy = 1`, and marked enemies = `[0, 2]`.\n\n**Example 2:**\n\n**Input:** enemyEnergies = \\[2\\], currentEnergy = 10\n\n**Output:** 5\n\n**Explanation:**\n\nPerforming the first operation 5 times on enemy 0 results in the maximum number of points.\n\n**Constraints:**\n\n*   `1 <= enemyEnergies.length <= 10^(5)`\n*   `1 <= enemyEnergies[i] <= 10^(9)`\n*   `0 <= currentEnergy <= 10^(9)`",
+  "constraints": [
+    "1 <= enemyEnergies.length <= 105",
+    "1 <= enemyEnergies[i] <= 109",
+    "0 <= currentEnergy <= 109"
+  ],
+  "examples": [
+    {
+      "input": "enemyEnergies = [3,2,2], currentEnergy = 2",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "enemyEnergies = [2], currentEnergy = 10",
+      "output": "5",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maximumPoints(vector<int>& enemyEnergies, int currentEnergy) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maximumPoints(int[] enemyEnergies, int currentEnergy) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumPoints(self, enemyEnergies: List[int], currentEnergy: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumPoints(self, enemyEnergies, currentEnergy):\n        \"\"\"\n        :type enemyEnergies: List[int]\n        :type currentEnergy: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} enemyEnergies\n * @param {number} currentEnergy\n * @return {number}\n */\nvar maximumPoints = function(enemyEnergies, currentEnergy) {\n    \n};",
+    "typescript": "function maximumPoints(enemyEnergies: number[], currentEnergy: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaximumPoints(int[] enemyEnergies, int currentEnergy) {\n        \n    }\n}",
+    "c": "long long maximumPoints(int* enemyEnergies, int enemyEnergiesSize, int currentEnergy) {\n    \n}",
+    "golang": "func maximumPoints(enemyEnergies []int, currentEnergy int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumPoints(enemyEnergies: IntArray, currentEnergy: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumPoints(_ enemyEnergies: [Int], _ currentEnergy: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_points(enemy_energies: Vec<i32>, current_energy: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} enemy_energies\n# @param {Integer} current_energy\n# @return {Integer}\ndef maximum_points(enemy_energies, current_energy)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $enemyEnergies\n     * @param Integer $currentEnergy\n     * @return Integer\n     */\n    function maximumPoints($enemyEnergies, $currentEnergy) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumPoints(List<int> enemyEnergies, int currentEnergy) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumPoints(enemyEnergies: Array[Int], currentEnergy: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_points(enemy_energies :: [integer], current_energy :: integer) :: integer\n  def maximum_points(enemy_energies, current_energy) do\n    \n  end\nend",
+    "erlang": "-spec maximum_points(EnemyEnergies :: [integer()], CurrentEnergy :: integer()) -> integer().\nmaximum_points(EnemyEnergies, CurrentEnergy) ->\n  .",
+    "racket": "(define/contract (maximum-points enemyEnergies currentEnergy)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,2,2]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2]\n10",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,2,2]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2]\n10",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[3]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,2]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,3]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,3,3]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,2,2,3,2,2]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[6,4,4]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,3,3]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1,1]\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-3,-2,-2]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1]\n2",
+      "expectedOutput": "-2"
+    },
+    {
+      "input": "[1,2]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,1]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,1]\n2",
+      "expectedOutput": "-3"
+    },
+    {
+      "input": "[1,2,3]\n2",
+      "expectedOutput": "7"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The problem can be solved greedily.",
+    "Mark all the others except the smallest one first.",
+    "Use the smallest one to increase the energy.",
+    "Note that the initial energy should be no less than the smallest enemy."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-points-after-enemy-battles/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.336Z",
+    "sourceUpdatedAt": null
+  }
+}

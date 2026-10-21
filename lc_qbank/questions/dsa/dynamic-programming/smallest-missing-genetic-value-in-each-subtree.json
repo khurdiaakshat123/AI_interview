@@ -1,0 +1,174 @@
+{
+  "id": "2003",
+  "slug": "smallest-missing-genetic-value-in-each-subtree",
+  "title": "Smallest Missing Genetic Value in Each Subtree",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "Union-Find"
+  ],
+  "statement": "There is a **family tree** rooted at `0` consisting of `n` nodes numbered `0` to `n - 1`. You are given a **0-indexed** integer array `parents`, where `parents[i]` is the parent for node `i`. Since node `0` is the **root**, `parents[0] == -1`.\n\nThere are `10^(5)` genetic values, each represented by an integer in the **inclusive** range `[1, 10^(5)]`. You are given a **0-indexed** integer array `nums`, where `nums[i]` is a **distinct** genetic value for node `i`.\n\nReturn _an array_ `ans` _of length_ `n` _where_ `ans[i]` _is_ _the **smallest** genetic value that is **missing** from the subtree rooted at node_ `i`.\n\nThe **subtree** rooted at a node `x` contains node `x` and all of its **descendant** nodes.\n\n**Example 1:**\n\n![](./assets/smallest-missing-genetic-value-in-each-subtree-1.png)\n```\nInput: parents = [-1,0,0,2], nums = [1,2,3,4]\nOutput: [5,1,1,1]\nExplanation: The answer for each subtree is calculated as follows:\n- 0: The subtree contains nodes [0,1,2,3] with values [1,2,3,4]. 5 is the smallest missing value.\n- 1: The subtree contains only node 1 with value 2. 1 is the smallest missing value.\n- 2: The subtree contains nodes [2,3] with values [3,4]. 1 is the smallest missing value.\n- 3: The subtree contains only node 3 with value 4. 1 is the smallest missing value.\n```\n\n**Example 2:**\n\n![](./assets/smallest-missing-genetic-value-in-each-subtree-2.png)\n```\nInput: parents = [-1,0,1,0,3,3], nums = [5,4,6,2,1,3]\nOutput: [7,1,1,4,2,1]\nExplanation: The answer for each subtree is calculated as follows:\n- 0: The subtree contains nodes [0,1,2,3,4,5] with values [5,4,6,2,1,3]. 7 is the smallest missing value.\n- 1: The subtree contains nodes [1,2] with values [4,6]. 1 is the smallest missing value.\n- 2: The subtree contains only node 2 with value 6. 1 is the smallest missing value.\n- 3: The subtree contains nodes [3,4,5] with values [2,1,3]. 4 is the smallest missing value.\n- 4: The subtree contains only node 4 with value 1. 2 is the smallest missing value.\n- 5: The subtree contains only node 5 with value 3. 1 is the smallest missing value.\n```\n\n**Example 3:**\n\n```\nInput: parents = [-1,2,3,0,2,4,1], nums = [2,3,4,5,6,7,8]\nOutput: [1,1,1,1,1,1,1]\nExplanation: The value 1 is missing from all the subtrees.\n```\n\n**Constraints:**\n\n*   `n == parents.length == nums.length`\n*   `2 <= n <= 10^(5)`\n*   `0 <= parents[i] <= n - 1` for `i != 0`\n*   `parents[0] == -1`\n*   `parents` represents a valid tree.\n*   `1 <= nums[i] <= 10^(5)`\n*   Each `nums[i]` is distinct.",
+  "constraints": [
+    "n == parents.length == nums.length",
+    "2 <= n <= 105",
+    "0 <= parents[i] <= n - 1 for i != 0",
+    "parents[0] == -1",
+    "parents represents a valid tree.",
+    "1 <= nums[i] <= 105",
+    "Each nums[i] is distinct."
+  ],
+  "examples": [
+    {
+      "input": "parents = [-1,0,0,2], nums = [1,2,3,4]",
+      "output": "[5,1,1,1]",
+      "explanation": "The answer for each subtree is calculated as follows:\n- 0: The subtree contains nodes [0,1,2,3] with values [1,2,3,4]. 5 is the smallest missing value.\n- 1: The subtree contains only node 1 with value 2. 1 is the smallest missing value.\n- 2: The subtree contains nodes [2,3] with values [3,4]. 1 is the smallest missing value.\n- 3: The subtree contains only node 3 with value 4. 1 is the smallest missing value."
+    },
+    {
+      "input": "parents = [-1,0,1,0,3,3], nums = [5,4,6,2,1,3]",
+      "output": "[7,1,1,4,2,1]",
+      "explanation": "The answer for each subtree is calculated as follows:\n- 0: The subtree contains nodes [0,1,2,3,4,5] with values [5,4,6,2,1,3]. 7 is the smallest missing value.\n- 1: The subtree contains nodes [1,2] with values [4,6]. 1 is the smallest missing value.\n- 2: The subtree contains only node 2 with value 6. 1 is the smallest missing value.\n- 3: The subtree contains nodes [3,4,5] with values [2,1,3]. 4 is the smallest missing value.\n- 4: The subtree contains only node 4 with value 1. 2 is the smallest missing value.\n- 5: The subtree contains only node 5 with value 3. 1 is the smallest missing value."
+    },
+    {
+      "input": "parents = [-1,2,3,0,2,4,1], nums = [2,3,4,5,6,7,8]",
+      "output": "[1,1,1,1,1,1,1]",
+      "explanation": "The value 1 is missing from all the subtrees."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> smallestMissingValueSubtree(vector<int>& parents, vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] smallestMissingValueSubtree(int[] parents, int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestMissingValueSubtree(self, parents: list[int], nums: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def smallestMissingValueSubtree(self, parents, nums):\n        \"\"\"\n        :type parents: List[int]\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} parents\n * @param {number[]} nums\n * @return {number[]}\n */\nvar smallestMissingValueSubtree = function(parents, nums) {\n    \n};",
+    "typescript": "function smallestMissingValueSubtree(parents: number[], nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] SmallestMissingValueSubtree(int[] parents, int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* smallestMissingValueSubtree(int* parents, int parentsSize, int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func smallestMissingValueSubtree(parents []int, nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestMissingValueSubtree(parents: IntArray, nums: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestMissingValueSubtree(_ parents: [Int], _ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_missing_value_subtree(parents: Vec<i32>, nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} parents\n# @param {Integer[]} nums\n# @return {Integer[]}\ndef smallest_missing_value_subtree(parents, nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $parents\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function smallestMissingValueSubtree($parents, $nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> smallestMissingValueSubtree(List<int> parents, List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestMissingValueSubtree(parents: Array[Int], nums: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_missing_value_subtree(parents :: [integer], nums :: [integer]) :: [integer]\n  def smallest_missing_value_subtree(parents, nums) do\n    \n  end\nend",
+    "erlang": "-spec smallest_missing_value_subtree(Parents :: [integer()], Nums :: [integer()]) -> [integer()].\nsmallest_missing_value_subtree(Parents, Nums) ->\n  .",
+    "racket": "(define/contract (smallest-missing-value-subtree parents nums)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[-1,0,0,2]\n[1,2,3,4]",
+      "expectedOutput": "[5,1,1,1]"
+    },
+    {
+      "input": "[-1,0,1,0,3,3]\n[5,4,6,2,1,3]",
+      "expectedOutput": "[7,1,1,4,2,1]"
+    },
+    {
+      "input": "[-1,2,3,0,2,4,1]\n[2,3,4,5,6,7,8]",
+      "expectedOutput": "[1,1,1,1,1,1,1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[-1,0,0,2]\n[1,2,3,4]",
+      "expectedOutput": "[5,1,1,1]"
+    },
+    {
+      "input": "[-1,0,1,0,3,3]\n[5,4,6,2,1,3]",
+      "expectedOutput": "[7,1,1,4,2,1]"
+    },
+    {
+      "input": "[-1,2,3,0,2,4,1]\n[2,3,4,5,6,7,8]",
+      "expectedOutput": "[1,1,1,1,1,1,1]"
+    },
+    {
+      "input": "[-1,0]\n[1,2,3,4]",
+      "expectedOutput": "[3,1,1,1]"
+    },
+    {
+      "input": "[-1]\n[1,2,3,4]",
+      "expectedOutput": "[2,1,1,1]"
+    },
+    {
+      "input": "[-1,2]\n[1,2,3,4]",
+      "expectedOutput": "[2,1,1,1]"
+    },
+    {
+      "input": "[-1,-1,-1,-1]\n[1,2,3,4]",
+      "expectedOutput": "[2,1,1,1]"
+    },
+    {
+      "input": "[-2,-1,-1,1]\n[1,2,3,4]",
+      "expectedOutput": "[2,1,2,1]"
+    },
+    {
+      "input": "[-1,1]\n[1,2,3,4]",
+      "expectedOutput": "[2,1,1,1]"
+    },
+    {
+      "input": "[-1,0,0,2]\n[4,3,2,1]",
+      "expectedOutput": "[5,1,3,2]"
+    },
+    {
+      "input": "[-1,0,0,2]\n[1,1,1,1]",
+      "expectedOutput": "[2,1,2,2]"
+    },
+    {
+      "input": "[-1,0,0,2]\n[1,2,3,4,1,2,3,4]",
+      "expectedOutput": "[5,1,1,1,1,1,1,1]"
+    },
+    {
+      "input": "[-1,0,0,2]\n[2,4,6,8]",
+      "expectedOutput": "[1,1,1,1]"
+    },
+    {
+      "input": "[-1,0,0,2]\n[2,3,4,5]",
+      "expectedOutput": "[1,1,1,1]"
+    },
+    {
+      "input": "[-1,0,0,2]\n[0,1,2,3]",
+      "expectedOutput": "[4,2,1,1]"
+    },
+    {
+      "input": "[-1,0,0,2]\n[-1,-2,-3,-4]",
+      "expectedOutput": "[1,1,1,1]"
+    },
+    {
+      "input": "[-1,0,0,2]\n[0,0,0,0]",
+      "expectedOutput": "[1,1,1,1]"
+    },
+    {
+      "input": "[-1,0,0,2]\n[1,2,3,4,5]",
+      "expectedOutput": "[5,1,1,1,1]"
+    },
+    {
+      "input": "[-1,0,0,2]\n[5,4,3,2,1]",
+      "expectedOutput": "[1,1,1,1,1]"
+    },
+    {
+      "input": "[-1,0,0,2]\n[-5,-4,-3,-2,-1]",
+      "expectedOutput": "[1,1,1,1,1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If the subtree doesn't contain 1, then the missing value will always be 1.",
+    "What data structure allows us to dynamically update the values that are currently not present?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.756Z",
+    "sourceUpdatedAt": null
+  }
+}

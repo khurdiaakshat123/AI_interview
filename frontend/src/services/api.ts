@@ -1,7 +1,8 @@
 import {
   RoleTopicProfile, PracticeSession, CheckAnswerResponse,
   MockOAVariant, MockOAReport, StructuredResume,
-  InterviewTurn, InterviewFinalReport, ReviewQueueItem
+  InterviewTurn, InterviewFinalReport, ReviewQueueItem,
+  LCQuestionSummary, LCQuestionDetail, LCSubmission, LCAnalytics, LCRunResult, LCSubmitResult
 } from '../types';
 
 const envBaseUrl = (import.meta as any).env?.VITE_API_BASE_URL;
@@ -381,6 +382,71 @@ export const api = {
       headers['Authorization'] = `Bearer ${token}`;
     }
     return request('/auth/me', { headers });
+  },
+
+  // LeetCode Practice Question Bank API
+  async getLCQuestions(params: {
+    category?: string;
+    subcategory?: string;
+    difficulty?: string;
+    status?: string;
+    search?: string;
+    my_list_only?: boolean;
+    page?: number;
+    limit?: number;
+    sort_by?: string;
+    order?: string;
+  } = {}): Promise<{
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+    questions: LCQuestionSummary[];
+  }> {
+    const qp = new URLSearchParams();
+    if (params.category) qp.set('category', params.category);
+    if (params.subcategory) qp.set('subcategory', params.subcategory);
+    if (params.difficulty) qp.set('difficulty', params.difficulty);
+    if (params.status) qp.set('status', params.status);
+    if (params.search) qp.set('search', params.search);
+    if (params.my_list_only) qp.set('my_list_only', 'true');
+    if (params.page) qp.set('page', String(params.page));
+    if (params.limit) qp.set('limit', String(params.limit));
+    if (params.sort_by) qp.set('sort_by', params.sort_by);
+    if (params.order) qp.set('order', params.order);
+    return request(`/practice/lc/questions?${qp.toString()}`);
+  },
+
+  async getLCQuestion(idOrSlug: string): Promise<LCQuestionDetail> {
+    return request<LCQuestionDetail>(`/practice/lc/questions/${idOrSlug}`);
+  },
+
+  async getLCAnalytics(): Promise<LCAnalytics> {
+    return request<LCAnalytics>('/practice/lc/analytics');
+  },
+
+  async runLCCode(idOrSlug: string, code: string, language: string = 'python3'): Promise<LCRunResult> {
+    return request<LCRunResult>(`/practice/lc/questions/${idOrSlug}/run`, {
+      method: 'POST',
+      body: JSON.stringify({ code, language })
+    });
+  },
+
+  async submitLCCode(idOrSlug: string, code: string, language: string = 'python3'): Promise<LCSubmitResult> {
+    return request<LCSubmitResult>(`/practice/lc/questions/${idOrSlug}/submit`, {
+      method: 'POST',
+      body: JSON.stringify({ code, language })
+    });
+  },
+
+  async toggleLCStar(idOrSlug: string): Promise<{ question_id: string; isStarred: boolean }> {
+    return request<{ question_id: string; isStarred: boolean }>(`/practice/lc/questions/${idOrSlug}/star`, {
+      method: 'POST'
+    });
+  },
+
+  async getLCSubmissions(idOrSlug: string): Promise<{ submissions: LCSubmission[] }> {
+    return request<{ submissions: LCSubmission[] }>(`/practice/lc/questions/${idOrSlug}/submissions`);
   }
 };
 

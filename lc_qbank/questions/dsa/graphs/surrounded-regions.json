@@ -1,0 +1,100 @@
+{
+  "id": "130",
+  "slug": "surrounded-regions",
+  "title": "Surrounded Regions",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix"
+  ],
+  "statement": "You are given an `m x n` matrix `board` containing **letters** `'X'` and `'O'`, **capture regions** that are **surrounded**:\n\n*   **Connect**: A cell is connected to adjacent cells horizontally or vertically.\n*   **Region**: To form a region **connect every** `'O'` cell.\n*   **Surround**: A region is surrounded if none of the `'O'` cells in that region are on the edge of the board. Such regions are **completely enclosed** by `'X'` cells.\n\nTo capture a **surrounded region**, replace all `'O'`s with `'X'`s **in-place** within the original board. You do not need to return anything.\n\n**Example 1:**\n\n**Input:** board = \\[\\[\"X\",\"X\",\"X\",\"X\"\\],\\[\"X\",\"O\",\"O\",\"X\"\\],\\[\"X\",\"X\",\"O\",\"X\"\\],\\[\"X\",\"O\",\"X\",\"X\"\\]\\]\n\n**Output:** \\[\\[\"X\",\"X\",\"X\",\"X\"\\],\\[\"X\",\"X\",\"X\",\"X\"\\],\\[\"X\",\"X\",\"X\",\"X\"\\],\\[\"X\",\"O\",\"X\",\"X\"\\]\\]\n\n**Explanation:**\n\n![](./assets/surrounded-regions-1.jpg)\n\nIn the above diagram, the bottom region is not captured because it is on the edge of the board and cannot be surrounded.\n\n**Example 2:**\n\n**Input:** board = \\[\\[\"X\"\\]\\]\n\n**Output:** \\[\\[\"X\"\\]\\]\n\n**Constraints:**\n\n*   `m == board.length`\n*   `n == board[i].length`\n*   `1 <= m, n <= 200`\n*   `board[i][j]` is `'X'` or `'O'`.",
+  "constraints": [
+    "m == board.length",
+    "n == board[i].length",
+    "1 <= m, n <= 200",
+    "board[i][j] is 'X' or 'O'."
+  ],
+  "examples": [
+    {
+      "input": "board = [[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"O\",\"X\"],[\"X\",\"X\",\"O\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]]",
+      "output": "[[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]]",
+      "explanation": null
+    },
+    {
+      "input": "board = [[\"X\"]]",
+      "output": "[[\"X\"]]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    void solve(vector<vector<char>>& board) {\n        \n    }\n};",
+    "java": "class Solution {\n    public void solve(char[][] board) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def solve(self, board: list[list[str]]) -> None:\n        \"\"\"\n        Do not return anything, modify board in-place instead.\n        \"\"\"\n        ",
+    "python": "class Solution(object):\n    def solve(self, board):\n        \"\"\"\n        :type board: List[List[str]]\n        :rtype: None Do not return anything, modify board in-place instead.\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[][]} board\n * @return {void} Do not return anything, modify board in-place instead.\n */\nvar solve = function(board) {\n    \n};",
+    "typescript": "/**\n Do not return anything, modify board in-place instead.\n */\nfunction solve(board: string[][]): void {\n    \n};",
+    "csharp": "public class Solution {\n    public void Solve(char[][] board) {\n        \n    }\n}",
+    "c": "void solve(char** board, int boardSize, int* boardColSize) {\n    \n}",
+    "golang": "func solve(board [][]byte)  {\n    \n}",
+    "kotlin": "class Solution {\n    fun solve(board: Array<CharArray>): Unit {\n        \n    }\n}",
+    "swift": "class Solution {\n    func solve(_ board: inout [[Character]]) {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn solve(board: &mut Vec<Vec<char>>) {\n        \n    }\n}",
+    "ruby": "# @param {Character[][]} board\n# @return {Void} Do not return anything, modify board in-place instead.\ndef solve(board)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $board\n     * @return NULL\n     */\n    function solve(&$board) {\n        \n    }\n}",
+    "dart": "class Solution {\n  void solve(List<List<String>> board) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def solve(board: Array[Array[Char]]): Unit = {\n        \n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "[[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"O\",\"X\"],[\"X\",\"X\",\"O\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]]",
+      "expectedOutput": "[[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]]"
+    },
+    {
+      "input": "[[\"X\"]]",
+      "expectedOutput": "[[\"X\"]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"O\",\"X\"],[\"X\",\"X\",\"O\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]]",
+      "expectedOutput": "[[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]]"
+    },
+    {
+      "input": "[[\"X\"]]",
+      "expectedOutput": "[[\"X\"]]"
+    },
+    {
+      "input": "[[\"X\",\"X\",\"X\",\"X\"]]",
+      "expectedOutput": "[[\"X\",\"X\",\"X\",\"X\"]]"
+    },
+    {
+      "input": "[[\"X\"],[\"X\"],[\"X\"],[\"X\"]]",
+      "expectedOutput": "[[\"X\"],[\"X\"],[\"X\"],[\"X\"]]"
+    },
+    {
+      "input": "[[\"X\",\"O\",\"X\",\"X\"],[\"X\",\"X\",\"O\",\"X\"],[\"X\",\"O\",\"O\",\"X\"],[\"X\",\"X\",\"X\",\"X\"]]",
+      "expectedOutput": "[[\"X\",\"O\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"]]"
+    },
+    {
+      "input": "[[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"X\",\"O\"],[\"X\",\"O\",\"O\",\"X\"],[\"X\",\"X\",\"X\",\"X\"]]",
+      "expectedOutput": "[[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"O\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/surrounded-regions/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.787Z",
+    "sourceUpdatedAt": null
+  }
+}

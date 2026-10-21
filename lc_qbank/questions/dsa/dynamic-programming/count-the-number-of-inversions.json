@@ -1,0 +1,164 @@
+{
+  "id": "3193",
+  "slug": "count-the-number-of-inversions",
+  "title": "Count the Number of Inversions",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given an integer `n` and a 2D array `requirements`, where `requirements[i] = [end_(i), cnt_(i)]` represents the end index and the **inversion** count of each requirement.\n\nA pair of indices `(i, j)` from an integer array `nums` is called an **inversion** if:\n\n*   `i < j` and `nums[i] > nums[j]`\n\nReturn the number of permutations `perm` of `[0, 1, 2, ..., n - 1]` such that for **all** `requirements[i]`, `perm[0..end_(i)]` has exactly `cnt_(i)` inversions.\n\nSince the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** n = 3, requirements = \\[\\[2,2\\],\\[0,0\\]\\]\n\n**Output:** 2\n\n**Explanation:**\n\nThe two permutations are:\n\n*   `[2, 0, 1]`\n    *   Prefix `[2, 0, 1]` has inversions `(0, 1)` and `(0, 2)`.\n    *   Prefix `[2]` has 0 inversions.\n*   `[1, 2, 0]`\n    *   Prefix `[1, 2, 0]` has inversions `(0, 2)` and `(1, 2)`.\n    *   Prefix `[1]` has 0 inversions.\n\n**Example 2:**\n\n**Input:** n = 3, requirements = \\[\\[2,2\\],\\[1,1\\],\\[0,0\\]\\]\n\n**Output:** 1\n\n**Explanation:**\n\nThe only satisfying permutation is `[2, 0, 1]`:\n\n*   Prefix `[2, 0, 1]` has inversions `(0, 1)` and `(0, 2)`.\n*   Prefix `[2, 0]` has an inversion `(0, 1)`.\n*   Prefix `[2]` has 0 inversions.\n\n**Example 3:**\n\n**Input:** n = 2, requirements = \\[\\[0,0\\],\\[1,0\\]\\]\n\n**Output:** 1\n\n**Explanation:**\n\nThe only satisfying permutation is `[0, 1]`:\n\n*   Prefix `[0]` has 0 inversions.\n*   Prefix `[0, 1]` has no inversions.\n\n**Constraints:**\n\n*   `2 <= n <= 300`\n*   `1 <= requirements.length <= n`\n*   `requirements[i] = [end_(i), cnt_(i)]`\n*   `0 <= end_(i) <= n - 1`\n*   `0 <= cnt_(i) <= 400`\n*   The input is generated such that there is at least one `i` such that `end_(i) == n - 1`.\n*   The input is generated such that all `end_(i)` are unique.",
+  "constraints": [
+    "2 <= n <= 300",
+    "1 <= requirements.length <= n",
+    "requirements[i] = [endi, cnti]",
+    "0 <= endi <= n - 1",
+    "0 <= cnti <= 400",
+    "The input is generated such that there is at least one i such that endi == n - 1.",
+    "The input is generated such that all endi are unique."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, requirements = [[2,2],[0,0]]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, requirements = [[2,2],[1,1],[0,0]]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "n = 2, requirements = [[0,0],[1,0]]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numberOfPermutations(int n, vector<vector<int>>& requirements) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numberOfPermutations(int n, int[][] requirements) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfPermutations(self, n: int, requirements: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfPermutations(self, n, requirements):\n        \"\"\"\n        :type n: int\n        :type requirements: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} requirements\n * @return {number}\n */\nvar numberOfPermutations = function(n, requirements) {\n    \n};",
+    "typescript": "function numberOfPermutations(n: number, requirements: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumberOfPermutations(int n, int[][] requirements) {\n        \n    }\n}",
+    "c": "int numberOfPermutations(int n, int** requirements, int requirementsSize, int* requirementsColSize) {\n    \n}",
+    "golang": "func numberOfPermutations(n int, requirements [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfPermutations(n: Int, requirements: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfPermutations(_ n: Int, _ requirements: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_permutations(n: i32, requirements: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} requirements\n# @return {Integer}\ndef number_of_permutations(n, requirements)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $requirements\n     * @return Integer\n     */\n    function numberOfPermutations($n, $requirements) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfPermutations(int n, List<List<int>> requirements) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfPermutations(n: Int, requirements: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_permutations(n :: integer, requirements :: [[integer]]) :: integer\n  def number_of_permutations(n, requirements) do\n    \n  end\nend",
+    "erlang": "-spec number_of_permutations(N :: integer(), Requirements :: [[integer()]]) -> integer().\nnumber_of_permutations(N, Requirements) ->\n  .",
+    "racket": "(define/contract (number-of-permutations n requirements)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[2,2],[0,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n[[2,2],[1,1],[0,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "2\n[[0,0],[1,0]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[2,2],[0,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n[[2,2],[1,1],[0,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "2\n[[0,0],[1,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "4\n[[2,2],[0,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "5\n[[2,2],[0,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "6\n[[2,2],[0,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "7\n[[2,2],[0,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "8\n[[2,2],[0,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "4\n[[2,2],[1,1],[0,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[[2,2],[1,1],[0,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "6\n[[2,2],[1,1],[0,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "7\n[[2,2],[1,1],[0,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "8\n[[2,2],[1,1],[0,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "3\n[[0,0],[1,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "4\n[[0,0],[1,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[[0,0],[1,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "6\n[[0,0],[1,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "7\n[[0,0],[1,0]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let <code>dp[i][j]</code> denote the number of arrays of length <code>i</code> with <code>j</code> inversions.",
+    "<code>dp[i][j] = dp[i - 1][j] + dp[i - 1][j - 1] + … + dp[i - 1][0]</code>.",
+    "<code>dp[i][j] = 0</code> if for some <code>x</code>, <code>requirements[x][0] == i</code> and <code>requirements[x][1] != j</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-the-number-of-inversions/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.816Z",
+    "sourceUpdatedAt": null
+  }
+}

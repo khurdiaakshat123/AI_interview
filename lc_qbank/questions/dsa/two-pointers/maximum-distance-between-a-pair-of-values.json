@@ -1,0 +1,168 @@
+{
+  "id": "1855",
+  "slug": "maximum-distance-between-a-pair-of-values",
+  "title": "Maximum Distance Between a Pair of Values",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search"
+  ],
+  "statement": "You are given two **non-increasing 0-indexed** integer arrays `nums1`​​​​​​ and `nums2`​​​​​​.\n\nA pair of indices `(i, j)`, where `0 <= i < nums1.length` and `0 <= j < nums2.length`, is **valid** if both `i <= j` and `nums1[i] <= nums2[j]`. The **distance** of the pair is `j - i`​​​​.\n\nReturn _the **maximum distance** of any **valid** pair_ `(i, j)`_. If there are no valid pairs, return_ `0`.\n\nAn array `arr` is **non-increasing** if `arr[i-1] >= arr[i]` for every `1 <= i < arr.length`.\n\n**Example 1:**\n\n```\nInput: nums1 = [55,30,5,4,2], nums2 = [100,20,10,10,5]\nOutput: 2\nExplanation: The valid pairs are (0,0), (2,2), (2,3), (2,4), (3,3), (3,4), and (4,4).\nThe maximum distance is 2 with pair (2,4).\n```\n\n**Example 2:**\n\n```\nInput: nums1 = [2,2,2], nums2 = [10,10,1]\nOutput: 1\nExplanation: The valid pairs are (0,0), (0,1), and (1,1).\nThe maximum distance is 1 with pair (0,1).\n```\n\n**Example 3:**\n\n```\nInput: nums1 = [30,29,19,5], nums2 = [25,25,25,25,25]\nOutput: 2\nExplanation: The valid pairs are (2,2), (2,3), (2,4), (3,3), and (3,4).\nThe maximum distance is 2 with pair (2,4).\n```\n\n**Constraints:**\n\n*   `1 <= nums1.length, nums2.length <= 10^(5)`\n*   `1 <= nums1[i], nums2[j] <= 10^(5)`\n*   Both `nums1` and `nums2` are **non-increasing**.",
+  "constraints": [
+    "1 <= nums1.length, nums2.length <= 105",
+    "1 <= nums1[i], nums2[j] <= 105",
+    "Both nums1 and nums2 are non-increasing."
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [55,30,5,4,2], nums2 = [100,20,10,10,5]",
+      "output": "2",
+      "explanation": "The valid pairs are (0,0), (2,2), (2,3), (2,4), (3,3), (3,4), and (4,4).\nThe maximum distance is 2 with pair (2,4)."
+    },
+    {
+      "input": "nums1 = [2,2,2], nums2 = [10,10,1]",
+      "output": "1",
+      "explanation": "The valid pairs are (0,0), (0,1), and (1,1).\nThe maximum distance is 1 with pair (0,1)."
+    },
+    {
+      "input": "nums1 = [30,29,19,5], nums2 = [25,25,25,25,25]",
+      "output": "2",
+      "explanation": "The valid pairs are (2,2), (2,3), (2,4), (3,3), and (3,4).\nThe maximum distance is 2 with pair (2,4)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxDistance(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxDistance(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxDistance(self, nums1: list[int], nums2: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxDistance(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar maxDistance = function(nums1, nums2) {\n    \n};",
+    "typescript": "function maxDistance(nums1: number[], nums2: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxDistance(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "int maxDistance(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    \n}",
+    "golang": "func maxDistance(nums1 []int, nums2 []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxDistance(nums1: IntArray, nums2: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxDistance(_ nums1: [Int], _ nums2: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_distance(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer}\ndef max_distance(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer\n     */\n    function maxDistance($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxDistance(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxDistance(nums1: Array[Int], nums2: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_distance(nums1 :: [integer], nums2 :: [integer]) :: integer\n  def max_distance(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec max_distance(Nums1 :: [integer()], Nums2 :: [integer()]) -> integer().\nmax_distance(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (max-distance nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[55,30,5,4,2]\n[100,20,10,10,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,2]\n[10,10,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[30,29,19,5]\n[25,25,25,25,25]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[55,30,5,4,2]\n[100,20,10,10,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,2]\n[10,10,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[30,29,19,5]\n[25,25,25,25,25]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[55,30]\n[100,20,10,10,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,4,2]\n[100,20,10,10,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[55]\n[100,20,10,10,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[55,2]\n[100,20,10,10,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,4,5,30,55]\n[100,20,10,10,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[55,55,55,55,55]\n[100,20,10,10,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[55,30,5,4,2,55,30,5,4,2]\n[100,20,10,10,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[110,60,10,8,4]\n[100,20,10,10,5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[56,31,6,5,3]\n[100,20,10,10,5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[54,29,4,3,1]\n[100,20,10,10,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-55,-30,-5,-4,-2]\n[100,20,10,10,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]\n[100,20,10,10,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]\n[100,20,10,10,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]\n[100,20,10,10,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1]\n[100,20,10,10,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-1]\n[100,20,10,10,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0]\n[100,20,10,10,5]",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Since both arrays are sorted in a non-increasing way, this means that for each value in the first array, we can find the farthest value larger than or equal to it using binary search.",
+    "There is another solution using a two pointers approach. Since the first array is non-increasing, the farthest <code>j</code> such that <code>nums2[j] ≥ nums1[i]</code> is at least as far as the farthest <code>j</code> such that <code>nums2[j] ≥ nums1[i-1]</code>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-distance-between-a-pair-of-values/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.777Z",
+    "sourceUpdatedAt": null
+  }
+}

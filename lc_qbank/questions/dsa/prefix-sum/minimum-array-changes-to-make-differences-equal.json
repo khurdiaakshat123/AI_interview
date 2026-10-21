@@ -1,0 +1,159 @@
+{
+  "id": "3224",
+  "slug": "minimum-array-changes-to-make-differences-equal",
+  "title": "Minimum Array Changes to Make Differences Equal",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `nums` of size `n` where `n` is **even**, and an integer `k`.\n\nYou can perform some changes on the array, where in one change you can replace **any** element in the array with **any** integer in the range from `0` to `k`.\n\nYou need to perform some changes (possibly none) such that the final array satisfies the following condition:\n\n*   There exists an integer `X` such that `abs(a[i] - a[n - i - 1]) = X` for all `(0 <= i < n)`.\n\nReturn the **minimum** number of changes required to satisfy the above condition.\n\n**Example 1:**\n\n**Input:** nums = \\[1,0,1,2,4,3\\], k = 4\n\n**Output:** 2\n\n**Explanation:**  \nWe can perform the following changes:\n\n*   Replace `nums[1]` by 2. The resulting array is `nums = [1,**2**,1,2,4,3]`.\n*   Replace `nums[3]` by 3. The resulting array is `nums = [1,2,1,**3**,4,3]`.\n\nThe integer `X` will be 2.\n\n**Example 2:**\n\n**Input:** nums = \\[0,1,2,3,3,6,5,4\\], k = 6\n\n**Output:** 2\n\n**Explanation:**  \nWe can perform the following operations:\n\n*   Replace `nums[3]` by 0. The resulting array is `nums = [0,1,2,**0**,3,6,5,4]`.\n*   Replace `nums[4]` by 4. The resulting array is `nums = [0,1,2,0,**4**,6,5,4]`.\n\nThe integer `X` will be 4.\n\n**Constraints:**\n\n*   `2 <= n == nums.length <= 10^(5)`\n*   `n` is even.\n*   `0 <= nums[i] <= k <= 10^(5)`",
+  "constraints": [
+    "2 <= n == nums.length <= 105",
+    "n is even.",
+    "0 <= nums[i] <= k <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,0,1,2,4,3], k = 4",
+      "output": "2",
+      "explanation": "We can perform the following changes:\n\n\n\tReplace nums[1] by 2. The resulting array is nums = [1,2,1,2,4,3].\n\tReplace nums[3] by 3. The resulting array is nums = [1,2,1,3,4,3]."
+    },
+    {
+      "input": "nums = [0,1,2,3,3,6,5,4], k = 6",
+      "output": "2",
+      "explanation": "We can perform the following operations:\n\n\n\tReplace nums[3] by 0. The resulting array is nums = [0,1,2,0,3,6,5,4].\n\tReplace nums[4] by 4. The resulting array is nums = [0,1,2,0,4,6,5,4]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minChanges(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minChanges(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minChanges(self, nums: List[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minChanges(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar minChanges = function(nums, k) {\n    \n};",
+    "typescript": "function minChanges(nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinChanges(int[] nums, int k) {\n        \n    }\n}",
+    "c": "int minChanges(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func minChanges(nums []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minChanges(nums: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minChanges(_ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_changes(nums: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef min_changes(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function minChanges($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minChanges(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minChanges(nums: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_changes(nums :: [integer], k :: integer) :: integer\n  def min_changes(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec min_changes(Nums :: [integer()], K :: integer()) -> integer().\nmin_changes(Nums, K) ->\n  .",
+    "racket": "(define/contract (min-changes nums k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,0,1,2,4,3]\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,2,3,3,6,5,4]\n6",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,0,1,2,4,3]\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,2,3,3,6,5,4]\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,0,1]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,4,3]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,3]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,0]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,4,2,1,0,1]\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,1,2,3,4]\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,3,2,1,1,0]\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,1,1]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,0,1,2,4,3,1,0,1,2,4,3]\n4",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]\n4",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "There are at most <code>k + 1</code> possible values of the integer <code>X</code>.",
+    "How do we calculate the minimum number of changes efficiently if we fix the value of <code>X</code> before applying any changes?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-array-changes-to-make-differences-equal/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.438Z",
+    "sourceUpdatedAt": null
+  }
+}

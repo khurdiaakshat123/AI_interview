@@ -1,0 +1,135 @@
+{
+  "id": "2858",
+  "slug": "minimum-edge-reversals-so-every-node-is-reachable",
+  "title": "Minimum Edge Reversals So Every Node Is Reachable",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Dynamic Programming",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "statement": "There is a **simple directed graph** with `n` nodes labeled from `0` to `n - 1`. The graph would form a **tree** if its edges were bi-directional.\n\nYou are given an integer `n` and a **2D** integer array `edges`, where `edges[i] = [u_(i), v_(i)]` represents a **directed edge** going from node `u_(i)` to node `v_(i)`.\n\nAn **edge reversal** changes the direction of an edge, i.e., a directed edge going from node `u_(i)` to node `v_(i)` becomes a directed edge going from node `v_(i)` to node `u_(i)`.\n\nFor every node `i` in the range `[0, n - 1]`, your task is to **independently** calculate the **minimum** number of **edge reversals** required so it is possible to reach any other node starting from node `i` through a **sequence** of **directed edges**.\n\nReturn _an integer array_ `answer`_, where_ `answer[i]` _is the_ _**minimum** number of **edge reversals** required so it is possible to reach any other node starting from node_ `i` _through a **sequence** of **directed edges**._\n\n**Example 1:**\n\n![](./assets/minimum-edge-reversals-so-every-node-is-reachable-1.png)\n\n```\nInput: n = 4, edges = [[2,0],[2,1],[1,3]]\nOutput: [1,1,0,2]\nExplanation: The image above shows the graph formed by the edges.\nFor node 0: after reversing the edge [2,0], it is possible to reach any other node starting from node 0.\nSo, answer[0] = 1.\nFor node 1: after reversing the edge [2,1], it is possible to reach any other node starting from node 1.\nSo, answer[1] = 1.\nFor node 2: it is already possible to reach any other node starting from node 2.\nSo, answer[2] = 0.\nFor node 3: after reversing the edges [1,3] and [2,1], it is possible to reach any other node starting from node 3.\nSo, answer[3] = 2.\n```\n\n**Example 2:**\n\n![](./assets/minimum-edge-reversals-so-every-node-is-reachable-2.png)\n\n```\nInput: n = 3, edges = [[1,2],[2,0]]\nOutput: [2,0,1]\nExplanation: The image above shows the graph formed by the edges.\nFor node 0: after reversing the edges [2,0] and [1,2], it is possible to reach any other node starting from node 0.\nSo, answer[0] = 2.\nFor node 1: it is already possible to reach any other node starting from node 1.\nSo, answer[1] = 0.\nFor node 2: after reversing the edge [1, 2], it is possible to reach any other node starting from node 2.\nSo, answer[2] = 1.\n```\n\n**Constraints:**\n\n*   `2 <= n <= 10^(5)`\n*   `edges.length == n - 1`\n*   `edges[i].length == 2`\n*   `0 <= u_(i) == edges[i][0] < n`\n*   `0 <= v_(i) == edges[i][1] < n`\n*   `u_(i) != v_(i)`\n*   The input is generated such that if the edges were bi-directional, the graph would be a tree.",
+  "constraints": [
+    "2 <= n <= 105",
+    "edges.length == n - 1",
+    "edges[i].length == 2",
+    "0 <= ui == edges[i][0] < n",
+    "0 <= vi == edges[i][1] < n",
+    "ui != vi",
+    "The input is generated such that if the edges were bi-directional, the graph would be a tree."
+  ],
+  "examples": [
+    {
+      "input": "n = 4, edges = [[2,0],[2,1],[1,3]]",
+      "output": "[1,1,0,2]",
+      "explanation": "The image above shows the graph formed by the edges.\nFor node 0: after reversing the edge [2,0], it is possible to reach any other node starting from node 0.\nSo, answer[0] = 1.\nFor node 1: after reversing the edge [2,1], it is possible to reach any other node starting from node 1.\nSo, answer[1] = 1.\nFor node 2: it is already possible to reach any other node starting from node 2.\nSo, answer[2] = 0.\nFor node 3: after reversing the edges [1,3] and [2,1], it is possible to reach any other node starting from node 3.\nSo, answer[3] = 2."
+    },
+    {
+      "input": "n = 3, edges = [[1,2],[2,0]]",
+      "output": "[2,0,1]",
+      "explanation": "The image above shows the graph formed by the edges.\nFor node 0: after reversing the edges [2,0] and [1,2], it is possible to reach any other node starting from node 0.\nSo, answer[0] = 2.\nFor node 1: it is already possible to reach any other node starting from node 1.\nSo, answer[1] = 0.\nFor node 2: after reversing the edge [1, 2], it is possible to reach any other node starting from node 2.\nSo, answer[2] = 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> minEdgeReversals(int n, vector<vector<int>>& edges) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] minEdgeReversals(int n, int[][] edges) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minEdgeReversals(self, n: int, edges: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def minEdgeReversals(self, n, edges):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @return {number[]}\n */\nvar minEdgeReversals = function(n, edges) {\n    \n};",
+    "typescript": "function minEdgeReversals(n: number, edges: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MinEdgeReversals(int n, int[][] edges) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* minEdgeReversals(int n, int** edges, int edgesSize, int* edgesColSize, int* returnSize) {\n    \n}",
+    "golang": "func minEdgeReversals(n int, edges [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minEdgeReversals(n: Int, edges: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minEdgeReversals(_ n: Int, _ edges: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_edge_reversals(n: i32, edges: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @return {Integer[]}\ndef min_edge_reversals(n, edges)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @return Integer[]\n     */\n    function minEdgeReversals($n, $edges) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> minEdgeReversals(int n, List<List<int>> edges) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minEdgeReversals(n: Int, edges: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_edge_reversals(n :: integer, edges :: [[integer]]) :: [integer]\n  def min_edge_reversals(n, edges) do\n    \n  end\nend",
+    "erlang": "-spec min_edge_reversals(N :: integer(), Edges :: [[integer()]]) -> [integer()].\nmin_edge_reversals(N, Edges) ->\n  .",
+    "racket": "(define/contract (min-edge-reversals n edges)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "4\n[[2,0],[2,1],[1,3]]",
+      "expectedOutput": "[1,1,0,2]"
+    },
+    {
+      "input": "3\n[[1,2],[2,0]]",
+      "expectedOutput": "[2,0,1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "4\n[[2,0],[2,1],[1,3]]",
+      "expectedOutput": "[1,1,0,2]"
+    },
+    {
+      "input": "3\n[[1,2],[2,0]]",
+      "expectedOutput": "[2,0,1]"
+    },
+    {
+      "input": "5\n[[2,0],[2,1],[1,3]]",
+      "expectedOutput": "[1,1,0,2,0]"
+    },
+    {
+      "input": "6\n[[2,0],[2,1],[1,3]]",
+      "expectedOutput": "[1,1,0,2,0,0]"
+    },
+    {
+      "input": "7\n[[2,0],[2,1],[1,3]]",
+      "expectedOutput": "[1,1,0,2,0,0,0]"
+    },
+    {
+      "input": "8\n[[2,0],[2,1],[1,3]]",
+      "expectedOutput": "[1,1,0,2,0,0,0,0]"
+    },
+    {
+      "input": "9\n[[2,0],[2,1],[1,3]]",
+      "expectedOutput": "[1,1,0,2,0,0,0,0,0]"
+    },
+    {
+      "input": "4\n[[1,2],[2,0]]",
+      "expectedOutput": "[2,0,1,0]"
+    },
+    {
+      "input": "5\n[[1,2],[2,0]]",
+      "expectedOutput": "[2,0,1,0,0]"
+    },
+    {
+      "input": "6\n[[1,2],[2,0]]",
+      "expectedOutput": "[2,0,1,0,0,0]"
+    },
+    {
+      "input": "7\n[[1,2],[2,0]]",
+      "expectedOutput": "[2,0,1,0,0,0,0]"
+    },
+    {
+      "input": "8\n[[1,2],[2,0]]",
+      "expectedOutput": "[2,0,1,0,0,0,0,0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The problem can be solved using tree DP.",
+    "Using node <code>0</code> as the root, let <code>dp[x]</code> be the minimum number of edge reversals so node <code>x</code> can reach every node in its subtree.",
+    "Using a DFS traversing the edges bidirectionally, we can compute <code>dp</code>.<br />\r\n<code>dp[x] = dp[y] +</code> (<code>1</code> if the edge between <code>x</code> and <code>y</code> is going from <code>y</code> to <code>x</code>; <code>0</code> otherwise), where <code>x</code> is the parent of <code>y</code>.",
+    "Let <code>answer[x]</code> be the minimum number of edge reversals so it is possible to reach any other node starting from node <code>x</code>.",
+    "Using another DFS starting from node <code>0</code> and traversing the edges bidirectionally, we can compute <code>answer</code>.<br />\r\n<code>answer[0] = dp[0]</code><br />\r\n<code>answer[y] = answer[x] +</code> (<code>1</code> if the edge between <code>x</code> and <code>y</code> is going from <code>x</code> to <code>y</code>; <code>-1</code> otherwise), where <code>x</code> is the parent of <code>y</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-edge-reversals-so-every-node-is-reachable/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.871Z",
+    "sourceUpdatedAt": null
+  }
+}

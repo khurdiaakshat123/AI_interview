@@ -1,0 +1,139 @@
+{
+  "id": "4039",
+  "slug": "sum-of-decoded-numbers",
+  "title": "Sum of Decoded Numbers",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Simulation"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nEach `nums[i]` is an **encoded** integer representing two positive integers `x_(i)` and `y_(i)`. To decode `nums[i]`, define:\n\n*   `width_(i) = nums[i] % 10`.\n*   `d_(i) = floor(nums[i] / 10)`.\n*   `x_(i)` as the integer formed by the first `width_(i)` digits of the decimal representation of `d_(i)`.\n*   `y_(i)` as the integer formed by all remaining digits of the decimal representation of `d_(i)`.\n\nIt is guaranteed that the decimal representation of `d_(i)` contains more than `width_(i)` digits. Therefore, both `x_(i)` and `y_(i)` contain at least one digit.\n\nThe **decoded value** of `nums[i]` is `x_(i)^(y_(i))`.\n\nReturn the sum of the decoded values of all elements in `nums`, modulo `10^(9) + 7`.\n\nThe `floor()` function returns the integer part of the division.\n\n**Example 1:**\n\n**Input:** nums = \\[231\\]\n\n**Output:** 8\n\n**Explanation:**\n\n*   For 231, we have `width = 1`, `d = 23`, `x = 2`, and `y = 3`.\n*   The decoded value of 231 is `2^(3) = 8`.\n*   Since there is only one element in `nums`, the sum of the decoded values is 8.\n\n**Example 2:**\n\n**Input:** nums = \\[2522,2101\\]\n\n**Output:** 1649\n\n**Explanation:**\n\n*   For 2522, we have `width = 2`, `d = 252`, `x = 25`, and `y = 2`.\n*   The decoded value of 2522 is `25^(2) = 625`.\n*   For 2101, we have `width = 1`, `d = 210`, `x = 2`, and `y = 10`.\n*   The decoded value of 2101 is `2^(10) = 1024`.\n*   The sum of the decoded values is `625 + 1024 = 1649`.\n\n**Example 3:**\n\n**Input:** nums = \\[2301\\]\n\n**Output:** 73741817\n\n**Explanation:**\n\n*   For 2301, we have `width = 1`, `d = 230`, `x = 2`, and `y = 30`.\n*   The decoded value is `2^(30) = 1073741824`.\n*   Therefore, the answer is `1073741824 modulo (10^(9) + 7) = 73741817`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `100 < nums[i] < 10^(15)`\n*   `1 <= width_(i) <= 9`\n*   `1 <= x_(i), y_(i) < 10^(9)`\n*   The digit sequences used to form `x_(i)` and `y_(i)` do not have leading zeros.\n*   It is guaranteed that every element in `nums` is a valid encoded integer.",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "100 < nums[i] < 1015",
+    "1 <= widthi <= 9",
+    "1 <= xi, yi < 109",
+    "The digit sequences used to form xi and yi do not have leading zeros.",
+    "It is guaranteed that every element in nums is a valid encoded integer."
+  ],
+  "examples": [
+    {
+      "input": "nums = [231]",
+      "output": "8",
+      "explanation": "For 231, we have width = 1, d = 23, x = 2, and y = 3.\n\tThe decoded value of 231 is 23 = 8.\n\tSince there is only one element in nums, the sum of the decoded values is 8."
+    },
+    {
+      "input": "nums = [2522,2101]",
+      "output": "1649",
+      "explanation": "For 2522, we have width = 2, d = 252, x = 25, and y = 2.\n\tThe decoded value of 2522 is 252 = 625.\n\tFor 2101, we have width = 1, d = 210, x = 2, and y = 10.\n\tThe decoded value of 2101 is 210 = 1024.\n\tThe sum of the decoded values is 625 + 1024 = 1649."
+    },
+    {
+      "input": "nums = [2301]",
+      "output": "73741817",
+      "explanation": "For 2301, we have width = 1, d = 230, x = 2, and y = 30.\n\tThe decoded value is 230 = 1073741824.\n\tTherefore, the answer is 1073741824 modulo (109 + 7) = 73741817."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int sumDecoded(vector<long long>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int sumDecoded(long[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sumDecoded(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def sumDecoded(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar sumDecoded = function(nums) {\n    \n};",
+    "typescript": "function sumDecoded(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SumDecoded(long[] nums) {\n        \n    }\n}",
+    "c": "int sumDecoded(long long* nums, int numsSize) {\n    \n}",
+    "golang": "func sumDecoded(nums []int64) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun sumDecoded(nums: LongArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sumDecoded(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sum_decoded(nums: Vec<i64>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef sum_decoded(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function sumDecoded($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int sumDecoded(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sumDecoded(nums: Array[Long]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sum_decoded(nums :: [integer]) :: integer\n  def sum_decoded(nums) do\n    \n  end\nend",
+    "erlang": "-spec sum_decoded(Nums :: [integer()]) -> integer().\nsum_decoded(Nums) ->\n  .",
+    "racket": "(define/contract (sum-decoded nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[231]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[2522,2101]",
+      "expectedOutput": "1649"
+    },
+    {
+      "input": "[2301]",
+      "expectedOutput": "73741817"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[231]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[2522,2101]",
+      "expectedOutput": "1649"
+    },
+    {
+      "input": "[2301]",
+      "expectedOutput": "73741817"
+    },
+    {
+      "input": "[231,231]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[2522]",
+      "expectedOutput": "625"
+    },
+    {
+      "input": "[2101]",
+      "expectedOutput": "1024"
+    },
+    {
+      "input": "[2101,2522]",
+      "expectedOutput": "1649"
+    },
+    {
+      "input": "[2522,2522]",
+      "expectedOutput": "1250"
+    },
+    {
+      "input": "[2522,2101,2522,2101]",
+      "expectedOutput": "3298"
+    },
+    {
+      "input": "[2301,2301]",
+      "expectedOutput": "147483634"
+    },
+    {
+      "input": "[4602]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2302]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "After removing the final digit <code>width<sub>i</sub></code>, determine the power of 10 that separates the first <code>width<sub>i</sub></code> decimal digits of <code>d<sub>i</sub></code> from the remaining digits.",
+    "Once <code>x<sub>i</sub></code> and <code>y<sub>i</sub></code> are decoded, use binary exponentiation to compute <code>x<sub>i</sub><sup>y<sub>i</sub></sup></code> modulo <code>10<sup>9</sup> + 7</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sum-of-decoded-numbers/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.558Z",
+    "sourceUpdatedAt": null
+  }
+}

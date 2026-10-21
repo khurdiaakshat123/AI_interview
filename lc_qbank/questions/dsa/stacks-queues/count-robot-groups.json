@@ -1,0 +1,112 @@
+{
+  "id": "4045",
+  "slug": "count-robot-groups",
+  "title": "Count Robot Groups",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "statement": "You are given a strictly increasing integer array `position`, where `position[i]` is the initial position of the `i^(th)` robot at time `t = 0`.\n\nYou are also given an integer array `speed`, where `speed[i]` is the constant speed of the `i^(th)` robot in units per second, and an integer `distance`.\n\nTime is **continuous** and measured in seconds. A robot or group with speed `v` moves `v * t` units to the right over any interval of `t` seconds.\n\nWhenever the distance between two robots or groups becomes at most `distance`, they merge into a single group.\n\nIf multiple robots or groups satisfy the merging condition at the same time, all merges happen **simultaneously**. In particular, every connected collection of robots or groups whose consecutive positions differ by at most `distance` merges into one group.\n\nAfter a merge, the resulting group takes the current position and speed of the **rightmost robot** in that group. Once merged, robots never separate.\n\nReturn the number of groups remaining after all possible merges have occurred.\n\n**Example 1:**\n\n**Input:** position = \\[1,5,6,20\\], speed = \\[4,3,2,3\\], distance = 1\n\n**Output:** 2\n\n**Explanation:**\n\n**![](./assets/count-robot-groups-1.png)**\n\n*   Initially, the groups are {R_(1)}, {R_(2)}, {R_(3)}, and {R_(​​​​​​​4)}.\n*   At `t = 0`, the robots R_(2) and R_(3) at positions 5 and 6, respectively, merge because they are 1 unit apart. The resulting group moves with the position and speed of the rightmost robot R_(3). The groups are now {R_(1)}, {R_(2), R_(3)}, and {R_(​4)}.\n*   Later at `t = 2`, the robot R_(1) catches up to the group {R_(2), R_(3)} and merges with it. The groups are now {R_(1), R_(2), R_(3)} and {R_(​4)}.\n\nThus, the answer is 2.\n\n**Example 2:**\n\n**Input:** position = \\[1,5,9\\], speed = \\[3,2,2\\], distance = 2\n\n**Output:** 2\n\n**Explanation:**\n\n**![](./assets/count-robot-groups-2.png)**\n\n*   Initially, the groups are {R_(1)}, {R_(2)}, and {R_(3)}.\n*   At `t = 2`, the robot R_(1) catches up to the robot R_(2) and merges with it. The resulting group moves with the position and speed of the rightmost robot R_(2). The groups are now {R_(1), R_(2)} and {R_(3)}.\n\nThus, the answer is 2.\n\n**Example 3:**\n\n**Input:** position = \\[9\\], speed = \\[8\\], distance = 5\n\n**Output:** 1\n\n**Explanation:**\n\nInitially, there is only one group. Therefore, the answer is 1.\n\n**Constraints:**\n\n*   `1 <= position.length == speed.length <= 10^(5)`\n*   `1 <= position[i], speed[i], distance <= 10^(9)`\n*   `position` is strictly increasing.",
+  "constraints": [
+    "1 <= position.length == speed.length <= 105",
+    "1 <= position[i], speed[i], distance <= 109",
+    "position is strictly increasing."
+  ],
+  "examples": [
+    {
+      "input": "position = [1,5,6,20], speed = [4,3,2,3], distance = 1",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "position = [1,5,9], speed = [3,2,2], distance = 2",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "position = [9], speed = [8], distance = 5",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countGroups(vector<int>& position, vector<int>& speed, int distance) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countGroups(int[] position, int[] speed, int distance) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countGroups(self, position: list[int], speed: list[int], distance: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countGroups(self, position, speed, distance):\n        \"\"\"\n        :type position: List[int]\n        :type speed: List[int]\n        :type distance: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} position\n * @param {number[]} speed\n * @param {number} distance\n * @return {number}\n */\nvar countGroups = function(position, speed, distance) {\n    \n};",
+    "typescript": "function countGroups(position: number[], speed: number[], distance: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountGroups(int[] position, int[] speed, int distance) {\n        \n    }\n}",
+    "c": "int countGroups(int* position, int positionSize, int* speed, int speedSize, int distance) {\n    \n}",
+    "golang": "func countGroups(position []int, speed []int, distance int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countGroups(position: IntArray, speed: IntArray, distance: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countGroups(_ position: [Int], _ speed: [Int], _ distance: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_groups(position: Vec<i32>, speed: Vec<i32>, distance: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} position\n# @param {Integer[]} speed\n# @param {Integer} distance\n# @return {Integer}\ndef count_groups(position, speed, distance)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $position\n     * @param Integer[] $speed\n     * @param Integer $distance\n     * @return Integer\n     */\n    function countGroups($position, $speed, $distance) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countGroups(List<int> position, List<int> speed, int distance) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countGroups(position: Array[Int], speed: Array[Int], distance: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_groups(position :: [integer], speed :: [integer], distance :: integer) :: integer\n  def count_groups(position, speed, distance) do\n    \n  end\nend",
+    "erlang": "-spec count_groups(Position :: [integer()], Speed :: [integer()], Distance :: integer()) -> integer().\ncount_groups(Position, Speed, Distance) ->\n  .",
+    "racket": "(define/contract (count-groups position speed distance)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,5,6,20]\r\n[4,3,2,3]\r\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,5,9]\r\n[3,2,2]\r\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[9]\r\n[8]\r\n5",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,5,6,20]\r\n[4,3,2,3]\r\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,5,9]\r\n[3,2,2]\r\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[9]\r\n[8]\r\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "position = [1,5,6,20], speed = [4,3,2,3], distance = 1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "position = [1,5,9], speed = [3,2,2], distance = 2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "position = [9], speed = [8], distance = 5",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "First process all merges at time <code>t = 0</code>. Each maximal block of robots whose consecutive gaps are at most <code>distance</code> becomes one group represented by its rightmost robot.",
+    "Scan these groups from right to left, maintaining the speed of the nearest final group to the right. A faster group eventually catches it; a group with equal or lower speed remains separate and becomes the new nearest final group."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-robot-groups/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.530Z",
+    "sourceUpdatedAt": null
+  }
+}

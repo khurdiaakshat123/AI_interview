@@ -1,0 +1,166 @@
+{
+  "id": "2045",
+  "slug": "second-minimum-time-to-reach-destination",
+  "title": "Second Minimum Time to Reach Destination",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Breadth-First Search",
+    "Graph Theory",
+    "Shortest Path",
+    "Dijkstra's Algorithm",
+    "K Shortest Path"
+  ],
+  "statement": "A city is represented as a **bi-directional connected** graph with `n` vertices where each vertex is labeled from `1` to `n` (**inclusive**). The edges in the graph are represented as a 2D integer array `edges`, where each `edges[i] = [u_(i), v_(i)]` denotes a bi-directional edge between vertex `u_(i)` and vertex `v_(i)`. Every vertex pair is connected by **at most one** edge, and no vertex has an edge to itself. The time taken to traverse any edge is `time` minutes.\n\nEach vertex has a traffic signal which changes its color from **green** to **red** and vice versa every `change` minutes. All signals change **at the same time**. You can enter a vertex at **any time**, but can leave a vertex **only when the signal is green**. You **cannot wait** at a vertex if the signal is **green**.\n\nThe **second minimum value** is defined as the smallest value **strictly larger** than the minimum value.\n\n*   For example the second minimum value of `[2, 3, 4]` is `3`, and the second minimum value of `[2, 2, 4]` is `4`.\n\nGiven `n`, `edges`, `time`, and `change`, return _the **second minimum time** it will take to go from vertex_ `1` _to vertex_ `n`.\n\n**Notes:**\n\n*   You can go through any vertex **any** number of times, **including** `1` and `n`.\n*   You can assume that when the journey **starts**, all signals have just turned **green**.\n\n**Example 1:**\n\n![](./assets/second-minimum-time-to-reach-destination-1.png)        ![](./assets/second-minimum-time-to-reach-destination-2.png)\n```\nInput: n = 5, edges = [[1,2],[1,3],[1,4],[3,4],[4,5]], time = 3, change = 5\nOutput: 13\nExplanation:\nThe figure on the left shows the given graph.\nThe blue path in the figure on the right is the minimum time path.\nThe time taken is:\n- Start at 1, time elapsed=0\n- 1 -> 4: 3 minutes, time elapsed=3\n- 4 -> 5: 3 minutes, time elapsed=6\nHence the minimum time needed is 6 minutes.\n\nThe red path shows the path to get the second minimum time.\n- Start at 1, time elapsed=0\n- 1 -> 3: 3 minutes, time elapsed=3\n- 3 -> 4: 3 minutes, time elapsed=6\n- Wait at 4 for 4 minutes, time elapsed=10\n- 4 -> 5: 3 minutes, time elapsed=13\nHence the second minimum time is 13 minutes.\n```\n\n**Example 2:**\n\n![](./assets/second-minimum-time-to-reach-destination-3.png)\n```\nInput: n = 2, edges = [[1,2]], time = 3, change = 2\nOutput: 11\nExplanation:\nThe minimum time path is 1 -> 2 with time = 3 minutes.\nThe second minimum time path is 1 -> 2 -> 1 -> 2 with time = 11 minutes.\n```\n\n**Constraints:**\n\n*   `2 <= n <= 10^(4)`\n*   `n - 1 <= edges.length <= min(2 * 10^(4), n * (n - 1) / 2)`\n*   `edges[i].length == 2`\n*   `1 <= u_(i), v_(i) <= n`\n*   `u_(i) != v_(i)`\n*   There are no duplicate edges.\n*   Each vertex can be reached directly or indirectly from every other vertex.\n*   `1 <= time, change <= 10^(3)`",
+  "constraints": [
+    "2 <= n <= 104",
+    "n - 1 <= edges.length <= min(2 * 104, n * (n - 1) / 2)",
+    "edges[i].length == 2",
+    "1 <= ui, vi <= n",
+    "ui != vi",
+    "There are no duplicate edges.",
+    "Each vertex can be reached directly or indirectly from every other vertex.",
+    "1 <= time, change <= 103"
+  ],
+  "examples": [
+    {
+      "input": "n = 5, edges = [[1,2],[1,3],[1,4],[3,4],[4,5]], time = 3, change = 5",
+      "output": "13",
+      "explanation": "The figure on the left shows the given graph.\nThe blue path in the figure on the right is the minimum time path.\nThe time taken is:\n- Start at 1, time elapsed=0\n- 1 -> 4: 3 minutes, time elapsed=3\n- 4 -> 5: 3 minutes, time elapsed=6\nHence the minimum time needed is 6 minutes.\n\nThe red path shows the path to get the second minimum time.\n- Start at 1, time elapsed=0\n- 1 -> 3: 3 minutes, time elapsed=3\n- 3 -> 4: 3 minutes, time elapsed=6\n- Wait at 4 for 4 minutes, time elapsed=10\n- 4 -> 5: 3 minutes, time elapsed=13\nHence the second minimum time is 13 minutes."
+    },
+    {
+      "input": "n = 2, edges = [[1,2]], time = 3, change = 2",
+      "output": "11",
+      "explanation": "The minimum time path is 1 -> 2 with time = 3 minutes.\nThe second minimum time path is 1 -> 2 -> 1 -> 2 with time = 11 minutes."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int secondMinimum(int n, vector<vector<int>>& edges, int time, int change) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int secondMinimum(int n, int[][] edges, int time, int change) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def secondMinimum(self, n: int, edges: list[list[int]], time: int, change: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def secondMinimum(self, n, edges, time, change):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type time: int\n        :type change: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number} time\n * @param {number} change\n * @return {number}\n */\nvar secondMinimum = function(n, edges, time, change) {\n    \n};",
+    "typescript": "function secondMinimum(n: number, edges: number[][], time: number, change: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SecondMinimum(int n, int[][] edges, int time, int change) {\n        \n    }\n}",
+    "c": "int secondMinimum(int n, int** edges, int edgesSize, int* edgesColSize, int time, int change) {\n    \n}",
+    "golang": "func secondMinimum(n int, edges [][]int, time int, change int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun secondMinimum(n: Int, edges: Array<IntArray>, time: Int, change: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func secondMinimum(_ n: Int, _ edges: [[Int]], _ time: Int, _ change: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn second_minimum(n: i32, edges: Vec<Vec<i32>>, time: i32, change: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Integer} time\n# @param {Integer} change\n# @return {Integer}\ndef second_minimum(n, edges, time, change)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Integer $time\n     * @param Integer $change\n     * @return Integer\n     */\n    function secondMinimum($n, $edges, $time, $change) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int secondMinimum(int n, List<List<int>> edges, int time, int change) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def secondMinimum(n: Int, edges: Array[Array[Int]], time: Int, change: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec second_minimum(n :: integer, edges :: [[integer]], time :: integer, change :: integer) :: integer\n  def second_minimum(n, edges, time, change) do\n    \n  end\nend",
+    "erlang": "-spec second_minimum(N :: integer(), Edges :: [[integer()]], Time :: integer(), Change :: integer()) -> integer().\nsecond_minimum(N, Edges, Time, Change) ->\n  .",
+    "racket": "(define/contract (second-minimum n edges time change)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n3\n5",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "2\n[[1,2]]\n3\n2",
+      "expectedOutput": "11"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n3\n5",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "2\n[[1,2]]\n3\n2",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n0\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n1\n5",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n2\n5",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n4\n5",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n5\n5",
+      "expectedOutput": "25"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n6\n5",
+      "expectedOutput": "26"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n7\n5",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n8\n5",
+      "expectedOutput": "28"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n-1\n5",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n-2\n5",
+      "expectedOutput": "-2"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n3\n1",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n3\n2",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n3\n3",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n3\n4",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n3\n6",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n3\n7",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n3\n8",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "5\n[[1,2],[1,3],[1,4],[3,4],[4,5]]\n3\n9",
+      "expectedOutput": "9"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "How much is change actually necessary while calculating the required path?",
+    "How many extra edges do we need to add to the shortest path?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/second-minimum-time-to-reach-destination/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:28.203Z",
+    "sourceUpdatedAt": null
+  }
+}

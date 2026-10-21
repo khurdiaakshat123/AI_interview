@@ -1,0 +1,165 @@
+{
+  "id": "2815",
+  "slug": "max-pair-sum-in-an-array",
+  "title": "Max Pair Sum in an Array",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "statement": "You are given an integer array `nums`. You have to find the **maximum** sum of a pair of numbers from `nums` such that the **largest digit** in both numbers is equal.\n\nFor example, 2373 is made up of three distinct digits: 2, 3, and 7, where 7 is the largest among them.\n\nReturn the **maximum** sum or -1 if no such pair exists.\n\n**Example 1:**\n\n**Input:** nums = \\[112,131,411\\]\n\n**Output:** \\-1\n\n**Explanation:**\n\nEach numbers largest digit in order is \\[2,3,4\\].\n\n**Example 2:**\n\n**Input:** nums = \\[2536,1613,3366,162\\]\n\n**Output:** 5902\n\n**Explanation:**\n\nAll the numbers have 6 as their largest digit, so the answer is 2536 + 3366 = 5902.\n\n**Example 3:**\n\n**Input:** nums = \\[51,71,17,24,42\\]\n\n**Output:** 88\n\n**Explanation:**\n\nEach number's largest digit in order is \\[5,7,7,4,4\\].\n\nSo we have only two possible pairs, 71 + 17 = 88 and 24 + 42 = 66.\n\n**Constraints:**\n\n*   `2 <= nums.length <= 100`\n*   `1 <= nums[i] <= 10^(4)`",
+  "constraints": [
+    "2 <= nums.length <= 100",
+    "1 <= nums[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "nums = [112,131,411]",
+      "output": "-1",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2536,1613,3366,162]",
+      "output": "5902",
+      "explanation": null
+    },
+    {
+      "input": "nums = [51,71,17,24,42]",
+      "output": "88",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxSum(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxSum(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSum(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxSum = function(nums) {\n    \n};",
+    "typescript": "function maxSum(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxSum(int[] nums) {\n        \n    }\n}",
+    "c": "int maxSum(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxSum(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSum(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSum(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_sum(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_sum(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxSum($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSum(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSum(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_sum(nums :: [integer]) :: integer\n  def max_sum(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_sum(Nums :: [integer()]) -> integer().\nmax_sum(Nums) ->\n  .",
+    "racket": "(define/contract (max-sum nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[112,131,411]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2536,1613,3366,162]",
+      "expectedOutput": "5902"
+    },
+    {
+      "input": "[51,71,17,24,42]",
+      "expectedOutput": "88"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[112,131,411]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2536,1613,3366,162]",
+      "expectedOutput": "5902"
+    },
+    {
+      "input": "[51,71,17,24,42]",
+      "expectedOutput": "88"
+    },
+    {
+      "input": "[112]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[131,411]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[112,411]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[112,131]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[411,131,112]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[112,112,112]",
+      "expectedOutput": "224"
+    },
+    {
+      "input": "[112,131,411,112,131,411]",
+      "expectedOutput": "822"
+    },
+    {
+      "input": "[224,262,822]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[113,132,412]",
+      "expectedOutput": "245"
+    },
+    {
+      "input": "[111,130,410]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-112,-131,-411]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find the largest and second largest element with maximum digits equal to x where 1<=x<=9."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/max-pair-sum-in-an-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.158Z",
+    "sourceUpdatedAt": null
+  }
+}

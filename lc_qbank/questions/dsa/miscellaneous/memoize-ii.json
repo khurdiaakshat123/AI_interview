@@ -1,0 +1,93 @@
+{
+  "id": "2630",
+  "slug": "memoize-ii",
+  "title": "Memoize II",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Hard",
+  "tags": [],
+  "statement": "Given a function `fn`, return a **memoized** version of that function.\n\nA **memoized** function is a function that will never be called twice with the same inputs. Instead it will return a cached value.\n\n`fn` can be any function and there are no constraints on what type of values it accepts. Inputs are considered identical if they are `===` to each other.\n\n**Example 1:**\n\n```\nInput: \ngetInputs = () => [[2,2],[2,2],[1,2]]\nfn = function (a, b) { return a + b; }\nOutput: [{\"val\":4,\"calls\":1},{\"val\":4,\"calls\":1},{\"val\":3,\"calls\":2}]\nExplanation:\nconst inputs = getInputs();\nconst memoized = memoize(fn);\nfor (const arr of inputs) {\n  memoized(...arr);\n}\n\nFor the inputs of (2, 2): 2 + 2 = 4, and it required a call to fn().\nFor the inputs of (2, 2): 2 + 2 = 4, but those inputs were seen before so no call to fn() was required.\nFor the inputs of (1, 2): 1 + 2 = 3, and it required another call to fn() for a total of 2.\n```\n\n**Example 2:**\n\n```\nInput: \ngetInputs = () => [[{},{}],[{},{}],[{},{}]] \nfn = function (a, b) { return ({...a, ...b}); }\nOutput: [{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":2},{\"val\":{},\"calls\":3}]\nExplanation:\nMerging two empty objects will always result in an empty object. It may seem like there should only be 1 call to fn() because of cache-hits, however none of those objects are === to each other.\n```\n\n**Example 3:**\n\n```\nInput: \ngetInputs = () => { const o = {}; return [[o,o],[o,o],[o,o]]; }\nfn = function (a, b) { return ({...a, ...b}); }\nOutput: [{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1}]\nExplanation:\nMerging two empty objects will always result in an empty object. The 2nd and 3rd third function calls result in a cache-hit. This is because every object passed in is identical.\n```\n\n**Constraints:**\n\n*   `1 <= inputs.length <= 10^(5)`\n*   `0 <= inputs.flat().length <= 10^(5)`\n*   `inputs[i][j] != NaN`",
+  "constraints": [
+    "1 <= inputs.length <= 105",
+    "0 <= inputs.flat().length <= 105",
+    "inputs[i][j] != NaN"
+  ],
+  "examples": [
+    {
+      "input": "getInputs = () => [[2,2],[2,2],[1,2]]\nfn = function (a, b) { return a + b; }",
+      "output": "[{\"val\":4,\"calls\":1},{\"val\":4,\"calls\":1},{\"val\":3,\"calls\":2}]",
+      "explanation": "const inputs = getInputs();\nconst memoized = memoize(fn);\nfor (const arr of inputs) {\n  memoized(...arr);\n}\n\nFor the inputs of (2, 2): 2 + 2 = 4, and it required a call to fn().\nFor the inputs of (2, 2): 2 + 2 = 4, but those inputs were seen before so no call to fn() was required.\nFor the inputs of (1, 2): 1 + 2 = 3, and it required another call to fn() for a total of 2."
+    },
+    {
+      "input": "getInputs = () => [[{},{}],[{},{}],[{},{}]] \nfn = function (a, b) { return ({...a, ...b}); }",
+      "output": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":2},{\"val\":{},\"calls\":3}]",
+      "explanation": "Merging two empty objects will always result in an empty object. It may seem like there should only be 1 call to fn() because of cache-hits, however none of those objects are === to each other."
+    },
+    {
+      "input": "getInputs = () => { const o = {}; return [[o,o],[o,o],[o,o]]; }\nfn = function (a, b) { return ({...a, ...b}); }",
+      "output": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1}]",
+      "explanation": "Merging two empty objects will always result in an empty object. The 2nd and 3rd third function calls result in a cache-hit. This is because every object passed in is identical."
+    }
+  ],
+  "starterCode": {
+    "javascript": "/**\n * @param {Function} fn\n * @return {Function}\n */\nfunction memoize(fn) {\n    \n    return function() {\n        \n    }\n}\n\n\n/** \n * let callCount = 0;\n * const memoizedFn = memoize(function (a, b) {\n *\t callCount += 1;\n *   return a + b;\n * })\n * memoizedFn(2, 3) // 5\n * memoizedFn(2, 3) // 5\n * console.log(callCount) // 1 \n */",
+    "typescript": "type Fn = (...params: any) => any\n\nfunction memoize(fn: Fn): Fn {\n    \n    return function() {\n        \n    }\n}\n\n\n/** \n * let callCount = 0;\n * const memoizedFn = memoize(function (a, b) {\n *\t callCount += 1;\n *   return a + b;\n * })\n * memoizedFn(2, 3) // 5\n * memoizedFn(2, 3) // 5\n * console.log(callCount) // 1 \n */"
+  },
+  "publicTests": [
+    {
+      "input": "() => [[2,2],[2,2],[1,2]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":4,\"calls\":1},{\"val\":4,\"calls\":1},{\"val\":3,\"calls\":2}]"
+    },
+    {
+      "input": "() => [[{},{}],[{},{}],[{},{}]]\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":2},{\"val\":{},\"calls\":3}]"
+    },
+    {
+      "input": "() => { const o = {}; return [[o,o],[o,o],[o,o]]; }\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1}]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "() => [[2,2],[2,2],[1,2]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":4,\"calls\":1},{\"val\":4,\"calls\":1},{\"val\":3,\"calls\":2}]"
+    },
+    {
+      "input": "() => [[{},{}],[{},{}],[{},{}]]\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":2},{\"val\":{},\"calls\":3}]"
+    },
+    {
+      "input": "() => { const o = {}; return [[o,o],[o,o],[o,o]]; }\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1}]"
+    },
+    {
+      "input": "getInputs = () => [[2,2],[2,2],[1,2]]\nfn = function (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":4,\"calls\":1},{\"val\":4,\"calls\":1},{\"val\":3,\"calls\":2}]"
+    },
+    {
+      "input": "getInputs = () => [[{},{}],[{},{}],[{},{}]] \nfn = function (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":2},{\"val\":{},\"calls\":3}]"
+    },
+    {
+      "input": "getInputs = () => { const o = {}; return [[o,o],[o,o],[o,o]]; }\nfn = function (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1}]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Just because JSON.stringify(obj1) === JSON.stringify(obj2), doesn't necessarily mean obj1 === obj2.",
+    "You could iterate over all previously passed inputs to check if there has been a match. However, that will be very slow.",
+    "Javascript Maps are a could way to associate arbitrary data.",
+    "Make a tree structure of Maps. The depth of the tree should match the number of input parameters."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/memoize-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.082Z",
+    "sourceUpdatedAt": null
+  }
+}

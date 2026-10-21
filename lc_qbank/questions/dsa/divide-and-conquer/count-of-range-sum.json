@@ -1,0 +1,162 @@
+{
+  "id": "327",
+  "slug": "count-of-range-sum",
+  "title": "Count of Range Sum",
+  "category": "dsa",
+  "subcategory": "divide-and-conquer",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Merge Sort",
+    "Ordered Set",
+    "Treap"
+  ],
+  "statement": "Given an integer array `nums` and two integers `lower` and `upper`, return _the number of range sums that lie in_ `[lower, upper]` _inclusive_.\n\nRange sum `S(i, j)` is defined as the sum of the elements in `nums` between indices `i` and `j` inclusive, where `i <= j`.\n\n**Example 1:**\n\n```\nInput: nums = [-2,5,-1], lower = -2, upper = 2\nOutput: 3\nExplanation: The three ranges are: [0,0], [2,2], and [0,2] and their respective sums are: -2, -1, 2.\n```\n\n**Example 2:**\n\n```\nInput: nums = [0], lower = 0, upper = 0\nOutput: 1\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `-2^(31) <= nums[i] <= 2^(31) - 1`\n*   `-10^(5) <= lower <= upper <= 10^(5)`\n*   The answer is **guaranteed** to fit in a **32-bit** integer.",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-231 <= nums[i] <= 231 - 1",
+    "-105 <= lower <= upper <= 105",
+    "The answer is guaranteed to fit in a 32-bit integer."
+  ],
+  "examples": [
+    {
+      "input": "nums = [-2,5,-1], lower = -2, upper = 2",
+      "output": "3",
+      "explanation": "The three ranges are: [0,0], [2,2], and [0,2] and their respective sums are: -2, -1, 2."
+    },
+    {
+      "input": "nums = [0], lower = 0, upper = 0",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countRangeSum(vector<int>& nums, int lower, int upper) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countRangeSum(int[] nums, int lower, int upper) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countRangeSum(self, nums: list[int], lower: int, upper: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countRangeSum(self, nums, lower, upper):\n        \"\"\"\n        :type nums: List[int]\n        :type lower: int\n        :type upper: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} lower\n * @param {number} upper\n * @return {number}\n */\nvar countRangeSum = function(nums, lower, upper) {\n    \n};",
+    "typescript": "function countRangeSum(nums: number[], lower: number, upper: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountRangeSum(int[] nums, int lower, int upper) {\n        \n    }\n}",
+    "c": "int countRangeSum(int* nums, int numsSize, int lower, int upper) {\n    \n}",
+    "golang": "func countRangeSum(nums []int, lower int, upper int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countRangeSum(nums: IntArray, lower: Int, upper: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countRangeSum(_ nums: [Int], _ lower: Int, _ upper: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_range_sum(nums: Vec<i32>, lower: i32, upper: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} lower\n# @param {Integer} upper\n# @return {Integer}\ndef count_range_sum(nums, lower, upper)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $lower\n     * @param Integer $upper\n     * @return Integer\n     */\n    function countRangeSum($nums, $lower, $upper) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countRangeSum(List<int> nums, int lower, int upper) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countRangeSum(nums: Array[Int], lower: Int, upper: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_range_sum(nums :: [integer], lower :: integer, upper :: integer) :: integer\n  def count_range_sum(nums, lower, upper) do\n    \n  end\nend",
+    "erlang": "-spec count_range_sum(Nums :: [integer()], Lower :: integer(), Upper :: integer()) -> integer().\ncount_range_sum(Nums, Lower, Upper) ->\n  .",
+    "racket": "(define/contract (count-range-sum nums lower upper)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[-2,5,-1]\n-2\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0]\n0\n0",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[-2,5,-1]\n-2\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0]\n0\n0",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-2]\n-2\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,-1]\n-2\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-2,-1]\n-2\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-2,5]\n-2\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,5,-2]\n-2\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-2,-1,5]\n-2\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,-1,-2]\n-2\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-2,-2,-2]\n-2\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-2,5,-1,-2,5,-1]\n-2\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[-4,10,-2]\n-2\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,6,0]\n-2\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-3,4,-2]\n-2\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,-5,1]\n-2\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0]\n-2\n2",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,1]\n-2\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0]\n-2\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n-2\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n-2\n2",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-of-range-sum/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.412Z",
+    "sourceUpdatedAt": null
+  }
+}

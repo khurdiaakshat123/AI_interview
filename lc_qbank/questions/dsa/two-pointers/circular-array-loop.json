@@ -1,0 +1,166 @@
+{
+  "id": "457",
+  "slug": "circular-array-loop",
+  "title": "Circular Array Loop",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Floyd's Cycle Finding Algorithm"
+  ],
+  "statement": "You are playing a game involving a **circular** array of non-zero integers `nums`. Each `nums[i]` denotes the number of indices forward/backward you must move if you are located at index `i`:\n\n*   If `nums[i]` is positive, move `nums[i]` steps **forward**, and\n*   If `nums[i]` is negative, move `abs(nums[i])` steps **backward**.\n\nSince the array is **circular**, you may assume that moving forward from the last element puts you on the first element, and moving backwards from the first element puts you on the last element.\n\nA **cycle** in the array consists of a sequence of indices `seq` of length `k` where:\n\n*   Following the movement rules above results in the repeating index sequence `seq[0] -> seq[1] -> ... -> seq[k - 1] -> seq[0] -> ...`\n*   Every `nums[seq[j]]` is either **all positive** or **all negative**.\n*   `k > 1`\n\nReturn `true` _if there is a **cycle** in_ `nums`_, or_ `false` _otherwise_.\n\n**Example 1:**\n\n![](./assets/circular-array-loop-1.jpg)\n```\nInput: nums = [2,-1,1,2,2]\nOutput: true\nExplanation: The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.\nWe can see the cycle 0 --> 2 --> 3 --> 0 --> ..., and all of its nodes are white (jumping in the same direction).\n```\n\n**Example 2:**\n\n![](./assets/circular-array-loop-2.jpg)\n```\nInput: nums = [-1,-2,-3,-4,-5,6]\nOutput: false\nExplanation: The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.\nThe only cycle is of size 1, so we return false.\n```\n\n**Example 3:**\n\n![](./assets/circular-array-loop-3.jpg)\n```\nInput: nums = [1,-1,5,1,4]\nOutput: true\nExplanation: The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.\nWe can see the cycle 0 --> 1 --> 0 --> ..., and while it is of size > 1, it has a node jumping forward and a node jumping backward, so it is not a cycle.\nWe can see the cycle 3 --> 4 --> 3 --> ..., and all of its nodes are white (jumping in the same direction).\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 5000`\n*   `-1000 <= nums[i] <= 1000`\n*   `nums[i] != 0`\n\n**Follow up:** Could you solve it in `O(n)` time complexity and `O(1)` extra space complexity?",
+  "constraints": [
+    "1 <= nums.length <= 5000",
+    "-1000 <= nums[i] <= 1000",
+    "nums[i] != 0"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,-1,1,2,2]",
+      "output": "true",
+      "explanation": "The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.\nWe can see the cycle 0 --> 2 --> 3 --> 0 --> ..., and all of its nodes are white (jumping in the same direction)."
+    },
+    {
+      "input": "nums = [-1,-2,-3,-4,-5,6]",
+      "output": "false",
+      "explanation": "The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.\nThe only cycle is of size 1, so we return false."
+    },
+    {
+      "input": "nums = [1,-1,5,1,4]",
+      "output": "true",
+      "explanation": "The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.\nWe can see the cycle 0 --> 1 --> 0 --> ..., and while it is of size > 1, it has a node jumping forward and a node jumping backward, so it is not a cycle.\nWe can see the cycle 3 --> 4 --> 3 --> ..., and all of its nodes are white (jumping in the same direction)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool circularArrayLoop(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean circularArrayLoop(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def circularArrayLoop(self, nums: list[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def circularArrayLoop(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar circularArrayLoop = function(nums) {\n    \n};",
+    "typescript": "function circularArrayLoop(nums: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CircularArrayLoop(int[] nums) {\n        \n    }\n}",
+    "c": "bool circularArrayLoop(int* nums, int numsSize) {\n    \n}",
+    "golang": "func circularArrayLoop(nums []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun circularArrayLoop(nums: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func circularArrayLoop(_ nums: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn circular_array_loop(nums: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Boolean}\ndef circular_array_loop(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Boolean\n     */\n    function circularArrayLoop($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool circularArrayLoop(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def circularArrayLoop(nums: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec circular_array_loop(nums :: [integer]) :: boolean\n  def circular_array_loop(nums) do\n    \n  end\nend",
+    "erlang": "-spec circular_array_loop(Nums :: [integer()]) -> boolean().\ncircular_array_loop(Nums) ->\n  .",
+    "racket": "(define/contract (circular-array-loop nums)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,-1,1,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[-1,-2,-3,-4,-5,6]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,-1,5,1,4]",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,-1,1,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[-1,-2,-3,-4,-5,6]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,-1,5,1,4]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,-1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[2,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[2,2,1,-1,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-1,1,2,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,2,2,1,-1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,-1,1,2,2,2,-1,1,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[4,-2,2,4,4]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[3,0,2,3,3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,-2,0,1,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-2,1,-1,-2,-2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/circular-array-loop/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.368Z",
+    "sourceUpdatedAt": null
+  }
+}

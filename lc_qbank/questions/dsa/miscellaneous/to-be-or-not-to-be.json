@@ -1,0 +1,84 @@
+{
+  "id": "2704",
+  "slug": "to-be-or-not-to-be",
+  "title": "To Be Or Not To Be",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "Write a function `expect` that helps developers test their code. It should take in any value `val` and return an object with the following two functions.\n\n*   `toBe(val)` accepts another value and returns `true` if the two values `===` each other. If they are not equal, it should throw an error `\"Not Equal\"`.\n*   `notToBe(val)` accepts another value and returns `true` if the two values `!==` each other. If they are equal, it should throw an error `\"Equal\"`.\n\n**Example 1:**\n\n```\nInput: func = () => expect(5).toBe(5)\nOutput: {\"value\": true}\nExplanation: 5 === 5 so this expression returns true.\n```\n\n**Example 2:**\n\n```\nInput: func = () => expect(5).toBe(null)\nOutput: {\"error\": \"Not Equal\"}\nExplanation: 5 !== null so this expression throw the error \"Not Equal\".\n```\n\n**Example 3:**\n\n```\nInput: func = () => expect(5).notToBe(null)\nOutput: {\"value\": true}\nExplanation: 5 !== null so this expression returns true.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "func = () => expect(5).toBe(5)",
+      "output": "{\"value\": true}",
+      "explanation": "5 === 5 so this expression returns true."
+    },
+    {
+      "input": "func = () => expect(5).toBe(null)",
+      "output": "{\"error\": \"Not Equal\"}",
+      "explanation": "5 !== null so this expression throw the error \"Not Equal\"."
+    },
+    {
+      "input": "func = () => expect(5).notToBe(null)",
+      "output": "{\"value\": true}",
+      "explanation": "5 !== null so this expression returns true."
+    }
+  ],
+  "starterCode": {
+    "javascript": "/**\n * @param {string} val\n * @return {Object}\n */\nvar expect = function(val) {\n    \n};\n\n/**\n * expect(5).toBe(5); // true\n * expect(5).notToBe(5); // throws \"Equal\"\n */",
+    "typescript": "type ToBeOrNotToBe = {\n    toBe: (val: any) => boolean;\n    notToBe: (val: any) => boolean;\n};\n\nfunction expect(val: any): ToBeOrNotToBe {\n    \n};\n\n/**\n * expect(5).toBe(5); // true\n * expect(5).notToBe(5); // throws \"Equal\"\n */"
+  },
+  "publicTests": [
+    {
+      "input": "() => expect(5).toBe(5)",
+      "expectedOutput": "{\"value\": true}"
+    },
+    {
+      "input": "() => expect(5).toBe(null)",
+      "expectedOutput": "{\"error\": \"Not Equal\"}"
+    },
+    {
+      "input": "() => expect(5).notToBe(null)",
+      "expectedOutput": "{\"value\": true}"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "() => expect(5).toBe(5)",
+      "expectedOutput": "{\"value\": true}"
+    },
+    {
+      "input": "() => expect(5).toBe(null)",
+      "expectedOutput": "{\"error\": \"Not Equal\"}"
+    },
+    {
+      "input": "() => expect(5).notToBe(null)",
+      "expectedOutput": "{\"value\": true}"
+    },
+    {
+      "input": "func = () => expect(5).toBe(5)",
+      "expectedOutput": "{\"value\": true}"
+    },
+    {
+      "input": "func = () => expect(5).toBe(null)",
+      "expectedOutput": "{\"error\": \"Not Equal\"}"
+    },
+    {
+      "input": "func = () => expect(5).notToBe(null)",
+      "expectedOutput": "{\"value\": true}"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/to-be-or-not-to-be/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.073Z",
+    "sourceUpdatedAt": null
+  }
+}

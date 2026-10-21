@@ -1,0 +1,156 @@
+{
+  "id": "1046",
+  "slug": "last-stone-weight",
+  "title": "Last Stone Weight",
+  "category": "dsa",
+  "subcategory": "heaps",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "You are given an array of integers `stones` where `stones[i]` is the weight of the `i^(th)` stone.\n\nWe are playing a game with the stones. On each turn, we choose the **heaviest two stones** and smash them together. Suppose the heaviest two stones have weights `x` and `y` with `x <= y`. The result of this smash is:\n\n*   If `x == y`, both stones are destroyed, and\n*   If `x != y`, the stone of weight `x` is destroyed, and the stone of weight `y` has new weight `y - x`.\n\nAt the end of the game, there is **at most one** stone left.\n\nReturn _the weight of the last remaining stone_. If there are no stones left, return `0`.\n\n**Example 1:**\n\n```\nInput: stones = [2,7,4,1,8,1]\nOutput: 1\nExplanation: \nWe combine 7 and 8 to get 1 so the array converts to [2,4,1,1,1] then,\nwe combine 2 and 4 to get 2 so the array converts to [2,1,1,1] then,\nwe combine 2 and 1 to get 1 so the array converts to [1,1,1] then,\nwe combine 1 and 1 to get 0 so the array converts to [1] then that's the value of the last stone.\n```\n\n**Example 2:**\n\n```\nInput: stones = [1]\nOutput: 1\n```\n\n**Constraints:**\n\n*   `1 <= stones.length <= 30`\n*   `1 <= stones[i] <= 1000`",
+  "constraints": [
+    "1 <= stones.length <= 30",
+    "1 <= stones[i] <= 1000"
+  ],
+  "examples": [
+    {
+      "input": "stones = [2,7,4,1,8,1]",
+      "output": "1",
+      "explanation": "We combine 7 and 8 to get 1 so the array converts to [2,4,1,1,1] then,\nwe combine 2 and 4 to get 2 so the array converts to [2,1,1,1] then,\nwe combine 2 and 1 to get 1 so the array converts to [1,1,1] then,\nwe combine 1 and 1 to get 0 so the array converts to [1] then that's the value of the last stone."
+    },
+    {
+      "input": "stones = [1]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int lastStoneWeight(vector<int>& stones) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int lastStoneWeight(int[] stones) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lastStoneWeight(self, stones: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def lastStoneWeight(self, stones):\n        \"\"\"\n        :type stones: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} stones\n * @return {number}\n */\nvar lastStoneWeight = function(stones) {\n    \n};",
+    "typescript": "function lastStoneWeight(stones: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LastStoneWeight(int[] stones) {\n        \n    }\n}",
+    "c": "int lastStoneWeight(int* stones, int stonesSize) {\n    \n}",
+    "golang": "func lastStoneWeight(stones []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun lastStoneWeight(stones: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lastStoneWeight(_ stones: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn last_stone_weight(stones: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} stones\n# @return {Integer}\ndef last_stone_weight(stones)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $stones\n     * @return Integer\n     */\n    function lastStoneWeight($stones) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int lastStoneWeight(List<int> stones) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lastStoneWeight(stones: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec last_stone_weight(stones :: [integer]) :: integer\n  def last_stone_weight(stones) do\n    \n  end\nend",
+    "erlang": "-spec last_stone_weight(Stones :: [integer()]) -> integer().\nlast_stone_weight(Stones) ->\n  .",
+    "racket": "(define/contract (last-stone-weight stones)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,7,4,1,8,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,7,4,1,8,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,7,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,8,1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,7]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,8,1,4,7,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,2,4,7,8]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[8,7,4,2,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,7,4,1,8,1,2,7,4,1,8,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,14,8,2,16,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,8,5,2,9,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,6,3,0,7,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-2,-7,-4,-1,-8,-1]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Simulate the process.  We can do it with a heap, or by sorting some list of stones every time we take a turn."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/last-stone-weight/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.079Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "id": "1691",
+  "slug": "maximum-height-by-stacking-cuboids",
+  "title": "Maximum Height by Stacking Cuboids ",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "statement": "Given `n` `cuboids` where the dimensions of the `i^(th)` cuboid is `cuboids[i] = [width_(i), length_(i), height_(i)]` (**0-indexed**). Choose a **subset** of `cuboids` and place them on each other.\n\nYou can place cuboid `i` on cuboid `j` if `width_(i) <= width_(j)` and `length_(i) <= length_(j)` and `height_(i) <= height_(j)`. You can rearrange any cuboid's dimensions by rotating it to put it on another cuboid.\n\nReturn _the **maximum height** of the stacked_ `cuboids`.\n\n**Example 1:**\n\n**![](./assets/maximum-height-by-stacking-cuboids-1.jpg)**\n\n```\nInput: cuboids = [[50,45,20],[95,37,53],[45,23,12]]\nOutput: 190\nExplanation:\nCuboid 1 is placed on the bottom with the 53x37 side facing down with height 95.\nCuboid 0 is placed next with the 45x20 side facing down with height 50.\nCuboid 2 is placed next with the 23x12 side facing down with height 45.\nThe total height is 95 + 50 + 45 = 190.\n```\n\n**Example 2:**\n\n```\nInput: cuboids = [[38,25,45],[76,35,3]]\nOutput: 76\nExplanation:\nYou can't place any of the cuboids on the other.\nWe choose cuboid 1 and rotate it so that the 35x3 side is facing down and its height is 76.\n```\n\n**Example 3:**\n\n```\nInput: cuboids = [[7,11,17],[7,17,11],[11,7,17],[11,17,7],[17,7,11],[17,11,7]]\nOutput: 102\nExplanation:\nAfter rearranging the cuboids, you can see that all cuboids have the same dimension.\nYou can place the 11x7 side down on all cuboids so their heights are 17.\nThe maximum height of stacked cuboids is 6 * 17 = 102.\n```\n\n**Constraints:**\n\n*   `n == cuboids.length`\n*   `1 <= n <= 100`\n*   `1 <= width_(i), length_(i), height_(i) <= 100`",
+  "constraints": [
+    "n == cuboids.length",
+    "1 <= n <= 100",
+    "1 <= widthi, lengthi, heighti <= 100"
+  ],
+  "examples": [
+    {
+      "input": "cuboids = [[50,45,20],[95,37,53],[45,23,12]]",
+      "output": "190",
+      "explanation": "Cuboid 1 is placed on the bottom with the 53x37 side facing down with height 95.\nCuboid 0 is placed next with the 45x20 side facing down with height 50.\nCuboid 2 is placed next with the 23x12 side facing down with height 45.\nThe total height is 95 + 50 + 45 = 190."
+    },
+    {
+      "input": "cuboids = [[38,25,45],[76,35,3]]",
+      "output": "76",
+      "explanation": "You can't place any of the cuboids on the other.\nWe choose cuboid 1 and rotate it so that the 35x3 side is facing down and its height is 76."
+    },
+    {
+      "input": "cuboids = [[7,11,17],[7,17,11],[11,7,17],[11,17,7],[17,7,11],[17,11,7]]",
+      "output": "102",
+      "explanation": "After rearranging the cuboids, you can see that all cuboids have the same dimension.\nYou can place the 11x7 side down on all cuboids so their heights are 17.\nThe maximum height of stacked cuboids is 6 * 17 = 102."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxHeight(vector<vector<int>>& cuboids) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxHeight(int[][] cuboids) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxHeight(self, cuboids: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxHeight(self, cuboids):\n        \"\"\"\n        :type cuboids: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} cuboids\n * @return {number}\n */\nvar maxHeight = function(cuboids) {\n    \n};",
+    "typescript": "function maxHeight(cuboids: number[][]): number {\n\n};",
+    "csharp": "public class Solution {\n    public int MaxHeight(int[][] cuboids) {\n        \n    }\n}",
+    "c": "\n\nint maxHeight(int** cuboids, int cuboidsSize, int* cuboidsColSize){\n\n}",
+    "golang": "func maxHeight(cuboids [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxHeight(cuboids: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxHeight(_ cuboids: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_height(cuboids: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} cuboids\n# @return {Integer}\ndef max_height(cuboids)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $cuboids\n     * @return Integer\n     */\n    function maxHeight($cuboids) {\n        \n    }\n}",
+    "scala": "object Solution {\n    def maxHeight(cuboids: Array[Array[Int]]): Int = {\n        \n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "[[50,45,20],[95,37,53],[45,23,12]]",
+      "expectedOutput": "190"
+    },
+    {
+      "input": "[[38,25,45],[76,35,3]]",
+      "expectedOutput": "76"
+    },
+    {
+      "input": "[[7,11,17],[7,17,11],[11,7,17],[11,17,7],[17,7,11],[17,11,7]]",
+      "expectedOutput": "102"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[50,45,20],[95,37,53],[45,23,12]]",
+      "expectedOutput": "190"
+    },
+    {
+      "input": "[[38,25,45],[76,35,3]]",
+      "expectedOutput": "76"
+    },
+    {
+      "input": "[[7,11,17],[7,17,11],[11,7,17],[11,17,7],[17,7,11],[17,11,7]]",
+      "expectedOutput": "102"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Does the dynamic programming sound like the right algorithm after sorting?",
+    "Let's say box1 can be placed on top of box2. No matter what orientation box2 is in, we can rotate box1 so that it can be placed on top. Why don't we orient everything such that height is the biggest?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-height-by-stacking-cuboids/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.902Z",
+    "sourceUpdatedAt": null
+  }
+}

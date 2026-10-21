@@ -1,0 +1,93 @@
+{
+  "id": "3939",
+  "slug": "count-non-adjacent-subsets-in-a-rooted-tree",
+  "title": "Count Non Adjacent Subsets in a Rooted Tree",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "statement": "You are given a rooted tree with `n` nodes labeled from 0 to `n - 1`, represented by an integer array `parent` of length `n`, where:\n\n*   `parent[0] = -1` (node 0 is the root).\n*   For each `1 <= i < n`, `parent[i]` is the parent of node `i` (`0 <= parent[i] < i`).\n\nYou are also given an integer array nums of length `n`, where `nums[i]` is the value of node `i`, and an integer `k`.\n\nA non-empty subset of nodes is called **valid** if:\n\n*   The **sum** of the values of the selected nodes is **divisible** by `k`.\n*   No **two** selected nodes are **adjacent** in the tree (no node and its direct parent are both included in the subset).\n\nReturn the number of valid subsets modulo `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** parent = \\[-1,0,1\\], nums = \\[1,2,3\\], k = 3\n\n**Output:** 1\n\n**Explanation:**\n\n**![](./assets/count-non-adjacent-subsets-in-a-rooted-tree-1.png)​​​​​​​**\n\nThe only valid subset is `{2}`. It contains node 2 with value 3, which is divisible by 3.\n\n**Example 2:**\n\n**Input:** parent = \\[-1,0,0,0\\], nums = \\[2,1,2,1\\], k = 3\n\n**Output:** 2\n\n**Explanation:**\n\n**![](./assets/count-non-adjacent-subsets-in-a-rooted-tree-2.png)​​​​​​​**​​​​​​​\n\nThe valid subsets are:\n\n*   `{1, 2}`: Nodes 1 and 2 are both children of node 0 and not directly connected to each other. Their values sum to `1 + 2 = 3`, which is divisible by 3.\n*   `{2, 3}`: Nodes 2 and 3 are also non-adjacent. Their values sum to `2 + 1 = 3`, which is divisible by 3.\n\nNo other subset satisfies both conditions. Therefore, the answer is 2.\n\n**Constraints:**\n\n*   `n == parent.length == nums.length`\n*   `1 <= n <= 1000`\n*   `parent[0] == -1`\n*   For all `1 <= i < n`:\n    *   `0 <= parent[i] < i`\n*   `1 <= nums[i] <= 10^(9)`\n*   `1 <= k <= 100`​​​​​​​​​​​​​​`​​​​​​​`\n*   `parent` describes a valid rooted tree.",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "parent = [-1,0,1], nums = [1,2,3], k = 3",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "parent = [-1,0,0,0], nums = [2,1,2,1], k = 3",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countValidSubsets(vector<int>& parent, vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countValidSubsets(int[] parent, int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countValidSubsets(self, parent: List[int], nums: List[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countValidSubsets(self, parent, nums, k):\n        \"\"\"\n        :type parent: List[int]\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} parent\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar countValidSubsets = function(parent, nums, k) {\n    \n};",
+    "typescript": "function countValidSubsets(parent: number[], nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountValidSubsets(int[] parent, int[] nums, int k) {\n        \n    }\n}",
+    "c": "int countValidSubsets(int* parent, int parentSize, int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func countValidSubsets(parent []int, nums []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countValidSubsets(parent: IntArray, nums: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countValidSubsets(_ parent: [Int], _ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_valid_subsets(parent: Vec<i32>, nums: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} parent\n# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef count_valid_subsets(parent, nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $parent\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function countValidSubsets($parent, $nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countValidSubsets(List<int> parent, List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countValidSubsets(parent: Array[Int], nums: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_valid_subsets(parent :: [integer], nums :: [integer], k :: integer) :: integer\n  def count_valid_subsets(parent, nums, k) do\n    \n  end\nend",
+    "erlang": "-spec count_valid_subsets(Parent :: [integer()], Nums :: [integer()], K :: integer()) -> integer().\ncount_valid_subsets(Parent, Nums, K) ->\n  .",
+    "racket": "(define/contract (count-valid-subsets parent nums k)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[-1,0,1]\n[1,2,3]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,0,0,0]\n[2,1,2,1]\n3",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[-1,0,1]\n[1,2,3]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,0,0,0]\n[2,1,2,1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "parent = [-1,0,1], nums = [1,2,3], k = 3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "parent = [-1,0,0,0], nums = [2,1,2,1], k = 3",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use tree DP. Let <code>dp0[u][r]</code> mean node <code>u</code> is not selected, and <code>dp1[u][r]</code> mean node <code>u</code> is selected, with subtree sum modulo <code>k</code> equal to <code>r</code>.",
+    "Initialize <code>dp0[u][0] = 1</code> and <code>dp1[u][nums[u] % k] = 1</code>.\r\nWhen merging child <code>v</code>: if <code>u</code> is selected, merge only with <code>dp0[v]</code>; otherwise merge with <code>dp0[v] + dp1[v]</code>.",
+    "Finally return <code>dp0[0][0] + dp1[0][0] - 1</code>, subtracting the empty subset."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-non-adjacent-subsets-in-a-rooted-tree/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.291Z",
+    "sourceUpdatedAt": null
+  }
+}

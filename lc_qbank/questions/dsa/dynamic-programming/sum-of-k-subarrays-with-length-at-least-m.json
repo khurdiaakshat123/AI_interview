@@ -1,0 +1,97 @@
+{
+  "id": "3473",
+  "slug": "sum-of-k-subarrays-with-length-at-least-m",
+  "title": "Sum of K Subarrays With Length at Least M",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `nums` and two integers, `k` and `m`.\n\nReturn the **maximum** sum of `k` non-overlapping subarrays of `nums`, where each subarray has a length of **at least** `m`.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,-1,3,3,4\\], k = 2, m = 2\n\n**Output:** 13\n\n**Explanation:**\n\nThe optimal choice is:\n\n*   Subarray `nums[3..5]` with sum `3 + 3 + 4 = 10` (length is `3 >= m`).\n*   Subarray `nums[0..1]` with sum `1 + 2 = 3` (length is `2 >= m`).\n\nThe total sum is `10 + 3 = 13`.\n\n**Example 2:**\n\n**Input:** nums = \\[-10,3,-1,-2\\], k = 4, m = 1\n\n**Output:** \\-10\n\n**Explanation:**\n\nThe optimal choice is choosing each element as a subarray. The output is `(-10) + 3 + (-1) + (-2) = -10`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 2000`\n*   `-10^(4) <= nums[i] <= 10^(4)`\n*   `1 <= k <= floor(nums.length / m)`\n*   `1 <= m <= 3`",
+  "constraints": [
+    "1 <= nums.length <= 2000",
+    "-104 <= nums[i] <= 104",
+    "1 <= k <= floor(nums.length / m)",
+    "1 <= m <= 3"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,-1,3,3,4], k = 2, m = 2",
+      "output": "13",
+      "explanation": null
+    },
+    {
+      "input": "nums = [-10,3,-1,-2], k = 4, m = 1",
+      "output": "-10",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxSum(vector<int>& nums, int k, int m) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxSum(int[] nums, int k, int m) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSum(self, nums: List[int], k: int, m: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSum(self, nums, k, m):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :type m: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @param {number} m\n * @return {number}\n */\nvar maxSum = function(nums, k, m) {\n    \n};",
+    "typescript": "function maxSum(nums: number[], k: number, m: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxSum(int[] nums, int k, int m) {\n        \n    }\n}",
+    "c": "int maxSum(int* nums, int numsSize, int k, int m) {\n    \n}",
+    "golang": "func maxSum(nums []int, k int, m int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSum(nums: IntArray, k: Int, m: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSum(_ nums: [Int], _ k: Int, _ m: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_sum(nums: Vec<i32>, k: i32, m: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @param {Integer} m\n# @return {Integer}\ndef max_sum(nums, k, m)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @param Integer $m\n     * @return Integer\n     */\n    function maxSum($nums, $k, $m) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSum(List<int> nums, int k, int m) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSum(nums: Array[Int], k: Int, m: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_sum(nums :: [integer], k :: integer, m :: integer) :: integer\n  def max_sum(nums, k, m) do\n    \n  end\nend",
+    "erlang": "-spec max_sum(Nums :: [integer()], K :: integer(), M :: integer()) -> integer().\nmax_sum(Nums, K, M) ->\n  .",
+    "racket": "(define/contract (max-sum nums k m)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,-1,3,3,4]\n2\n2",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[-10,3,-1,-2]\n4\n1",
+      "expectedOutput": "-10"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,-1,3,3,4]\n2\n2",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[-10,3,-1,-2]\n4\n1",
+      "expectedOutput": "-10"
+    },
+    {
+      "input": "nums = [1,2,-1,3,3,4], k = 2, m = 2",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "nums = [-10,3,-1,-2], k = 4, m = 1",
+      "expectedOutput": "-10"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Dynamic Programming",
+    "Prefix Sum",
+    "Let <code>dp[i][j]</code> be the maximum sum with <code>i</code> subarrays for the first <code>j</code> elements"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sum-of-k-subarrays-with-length-at-least-m/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.626Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "id": "3165",
+  "slug": "maximum-sum-of-subsequence-with-non-adjacent-elements",
+  "title": "Maximum Sum of Subsequence With Non-adjacent Elements",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Dynamic Programming",
+    "Segment Tree"
+  ],
+  "statement": "You are given an array `nums` consisting of integers. You are also given a 2D array `queries`, where `queries[i] = [pos_(i), x_(i)]`.\n\nFor query `i`, we first set `nums[pos_(i)]` equal to `x_(i)`, then we calculate the answer to query `i` which is the **maximum** sum of a subsequence of `nums` where **no two adjacent elements are selected**.\n\nReturn the _sum_ of the answers to all queries.\n\nSince the final answer may be very large, return it **modulo** `10^(9) + 7`.\n\nA **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.\n\n**Example 1:**\n\n**Input:** nums = \\[3,5,9\\], queries = \\[\\[1,-2\\],\\[0,-3\\]\\]\n\n**Output:** 21\n\n**Explanation:**  \nAfter the 1^(st) query, `nums = [3,-2,9]` and the maximum sum of a subsequence with non-adjacent elements is `3 + 9 = 12`.  \nAfter the 2^(nd) query, `nums = [-3,-2,9]` and the maximum sum of a subsequence with non-adjacent elements is 9.\n\n**Example 2:**\n\n**Input:** nums = \\[0,-1\\], queries = \\[\\[0,-5\\]\\]\n\n**Output:** 0\n\n**Explanation:**  \nAfter the 1^(st) query, `nums = [-5,-1]` and the maximum sum of a subsequence with non-adjacent elements is 0 (choosing an empty subsequence).\n\n**Constraints:**\n\n*   `1 <= nums.length <= 5 * 10^(4)`\n*   `-10^(5) <= nums[i] <= 10^(5)`\n*   `1 <= queries.length <= 5 * 10^(4)`\n*   `queries[i] == [pos_(i), x_(i)]`\n*   `0 <= pos_(i) <= nums.length - 1`\n*   `-10^(5) <= x_(i) <= 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 5 * 104",
+    "-105 <= nums[i] <= 105",
+    "1 <= queries.length <= 5 * 104",
+    "queries[i] == [posi, xi]",
+    "0 <= posi <= nums.length - 1",
+    "-105 <= xi <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,5,9], queries = [[1,-2],[0,-3]]",
+      "output": "21",
+      "explanation": "After the 1st query, nums = [3,-2,9] and the maximum sum of a subsequence with non-adjacent elements is 3 + 9 = 12.\nAfter the 2nd query, nums = [-3,-2,9] and the maximum sum of a subsequence with non-adjacent elements is 9."
+    },
+    {
+      "input": "nums = [0,-1], queries = [[0,-5]]",
+      "output": "0",
+      "explanation": "After the 1st query, nums = [-5,-1] and the maximum sum of a subsequence with non-adjacent elements is 0 (choosing an empty subsequence)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumSumSubsequence(vector<int>& nums, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumSumSubsequence(int[] nums, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumSumSubsequence(self, nums: List[int], queries: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumSumSubsequence(self, nums, queries):\n        \"\"\"\n        :type nums: List[int]\n        :type queries: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[][]} queries\n * @return {number}\n */\nvar maximumSumSubsequence = function(nums, queries) {\n    \n};",
+    "typescript": "function maximumSumSubsequence(nums: number[], queries: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumSumSubsequence(int[] nums, int[][] queries) {\n        \n    }\n}",
+    "c": "int maximumSumSubsequence(int* nums, int numsSize, int** queries, int queriesSize, int* queriesColSize) {\n    \n}",
+    "golang": "func maximumSumSubsequence(nums []int, queries [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumSumSubsequence(nums: IntArray, queries: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumSumSubsequence(_ nums: [Int], _ queries: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_sum_subsequence(nums: Vec<i32>, queries: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[][]} queries\n# @return {Integer}\ndef maximum_sum_subsequence(nums, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[][] $queries\n     * @return Integer\n     */\n    function maximumSumSubsequence($nums, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumSumSubsequence(List<int> nums, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumSumSubsequence(nums: Array[Int], queries: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_sum_subsequence(nums :: [integer], queries :: [[integer]]) :: integer\n  def maximum_sum_subsequence(nums, queries) do\n    \n  end\nend",
+    "erlang": "-spec maximum_sum_subsequence(Nums :: [integer()], Queries :: [[integer()]]) -> integer().\nmaximum_sum_subsequence(Nums, Queries) ->\n  .",
+    "racket": "(define/contract (maximum-sum-subsequence nums queries)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,5,9]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[0,-1]\n[[0,-5]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,5,9]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[0,-1]\n[[0,-5]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,9]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[3,9]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,5]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[9,5,3]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[3,3,3]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[3,5,9,3,5,9]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "39"
+    },
+    {
+      "input": "[6,10,18]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "42"
+    },
+    {
+      "input": "[4,6,10]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "24"
+    },
+    {
+      "input": "[2,4,8]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[-3,-5,-9]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]\n[[1,-2],[0,-3]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can you solve each query in <code>O(nums.length)</code> with dynamic programming?",
+    "In order to optimize, we will use segment tree where each node contains the maximum value of (front element has been chosen or not, back element has been chosen or not)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.754Z",
+    "sourceUpdatedAt": null
+  }
+}

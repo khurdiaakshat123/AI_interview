@@ -1,0 +1,63 @@
+{
+  "id": "1045",
+  "slug": "customers-who-bought-all-products",
+  "title": "Customers Who Bought All Products",
+  "category": "database",
+  "subcategory": "null-handling",
+  "difficulty": "Medium",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Customer`\n\n```\ncustomer_id\n```\n\nTable: `Product`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| product_key | int     |\n+-------------+---------+\nproduct_key is the primary key (column with unique values) for this table.\n```\n\nWrite a solution to report the customer ids from the `Customer` table that bought all the products in the `Product` table.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nCustomer table:\n+-------------+-------------+\n| customer_id | product_key |\n+-------------+-------------+\n| 1           | 5           |\n| 2           | 6           |\n| 3           | 5           |\n| 3           | 6           |\n| 1           | 6           |\n+-------------+-------------+\nProduct table:\n+-------------+\n| product_key |\n+-------------+\n| 5           |\n| 6           |\n+-------------+\nOutput: \n+-------------+\n| customer_id |\n+-------------+\n| 1           |\n| 3           |\n+-------------+\nExplanation: \nThe customers who bought all the products (5 and 6) are customers with IDs 1 and 3.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Customer table:\n+-------------+-------------+\n| customer_id | product_key |\n+-------------+-------------+\n| 1           | 5           |\n| 2           | 6           |\n| 3           | 5           |\n| 3           | 6           |\n| 1           | 6           |\n+-------------+-------------+\nProduct table:\n+-------------+\n| product_key |\n+-------------+\n| 5           |\n| 6           |\n+-------------+",
+      "output": "+-------------+\n| customer_id |\n+-------------+\n| 1           |\n| 3           |\n+-------------+",
+      "explanation": "The customers who bought all the products (5 and 6) are customers with IDs 1 and 3."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_customers(customer: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Customer\":[\"customer_id\",\"product_key\"],\"Product\":[\"product_key\"]},\"rows\":{\"Customer\":[[1,5],[2,6],[3,5],[3,6],[1,6]],\"Product\":[[5],[6]]}}",
+      "expectedOutput": "+-------------+\n| customer_id |\n+-------------+\n| 1           |\n| 3           |\n+-------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Customer\":[\"customer_id\",\"product_key\"],\"Product\":[\"product_key\"]},\"rows\":{\"Customer\":[[1,5],[2,6],[3,5],[3,6],[1,6]],\"Product\":[[5],[6]]}}",
+      "expectedOutput": "+-------------+\n| customer_id |\n+-------------+\n| 1           |\n| 3           |\n+-------------+"
+    },
+    {
+      "input": "Customer table:\n+-------------+-------------+\n| customer_id | product_key |\n+-------------+-------------+\n| 1           | 5           |\n| 2           | 6           |\n| 3           | 5           |\n| 3           | 6           |\n| 1           | 6           |\n+-------------+-------------+\nProduct table:\n+-------------+\n| product_key |\n+-------------+\n| 5           |\n| 6           |\n+-------------+",
+      "expectedOutput": "+-------------+\n| customer_id |\n+-------------+\n| 1           |\n| 3           |\n+-------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Customer (customer_id int, product_key int)\n\nCreate table Product (product_key int)\n\nTruncate table Customer\n\nTruncate table Product",
+  "sqlSetup": [
+    "insert into Customer (customer_id, product_key) values ('1', '5')",
+    "insert into Customer (customer_id, product_key) values ('2', '6')",
+    "insert into Customer (customer_id, product_key) values ('3', '5')",
+    "insert into Customer (customer_id, product_key) values ('3', '6')",
+    "insert into Customer (customer_id, product_key) values ('1', '6')",
+    "insert into Product (product_key) values ('5')",
+    "insert into Product (product_key) values ('6')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/customers-who-bought-all-products/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.118Z",
+    "sourceUpdatedAt": null
+  }
+}

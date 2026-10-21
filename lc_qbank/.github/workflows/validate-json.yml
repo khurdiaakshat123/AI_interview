@@ -1,0 +1,32 @@
+name: Validate Question Bank
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Validate JSON files
+        run: npm run validate
+
+      - name: Check for duplicates
+        run: npm run deduplicate
+
+      - name: Run tests
+        run: npm test
+
+      - name: Verify index
+        run: node scripts/generate-report.mjs --verify-only

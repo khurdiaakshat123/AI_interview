@@ -1,0 +1,160 @@
+{
+  "id": "3267",
+  "slug": "count-almost-equal-pairs-ii",
+  "title": "Count Almost Equal Pairs II",
+  "category": "dsa",
+  "subcategory": "sorting",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Counting",
+    "Enumeration"
+  ],
+  "statement": "**Attention**: In this version, the number of operations that can be performed, has been increased to **twice**.\n\nYou are given an array `nums` consisting of positive integers.\n\nWe call two integers `x` and `y` **almost equal** if both integers can become equal after performing the following operation **at most twice**:\n\n*   Choose **either** `x` or `y` and swap any two digits within the chosen number.\n\nReturn the number of indices `i` and `j` in `nums` where `i < j` such that `nums[i]` and `nums[j]` are **almost equal**.\n\n**Note** that it is allowed for an integer to have leading zeros after performing an operation.\n\n**Example 1:**\n\n**Input:** nums = \\[1023,2310,2130,213\\]\n\n**Output:** 4\n\n**Explanation:**\n\nThe almost equal pairs of elements are:\n\n*   1023 and 2310. By swapping the digits 1 and 2, and then the digits 0 and 3 in 1023, you get 2310.\n*   1023 and 213. By swapping the digits 1 and 0, and then the digits 1 and 2 in 1023, you get 0213, which is 213.\n*   2310 and 213. By swapping the digits 2 and 0, and then the digits 3 and 2 in 2310, you get 0213, which is 213.\n*   2310 and 2130. By swapping the digits 3 and 1 in 2310, you get 2130.\n\n**Example 2:**\n\n**Input:** nums = \\[1,10,100\\]\n\n**Output:** 3\n\n**Explanation:**\n\nThe almost equal pairs of elements are:\n\n*   1 and 10. By swapping the digits 1 and 0 in 10, you get 01 which is 1.\n*   1 and 100. By swapping the second 0 with the digit 1 in 100, you get 001, which is 1.\n*   10 and 100. By swapping the first 0 with the digit 1 in 100, you get 010, which is 10.\n\n**Constraints:**\n\n*   `2 <= nums.length <= 5000`\n*   `1 <= nums[i] < 10^(7)`",
+  "constraints": [
+    "2 <= nums.length <= 5000",
+    "1 <= nums[i] < 107"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1023,2310,2130,213]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,10,100]",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countPairs(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countPairs(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countPairs(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countPairs(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar countPairs = function(nums) {\n    \n};",
+    "typescript": "function countPairs(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountPairs(int[] nums) {\n        \n    }\n}",
+    "c": "int countPairs(int* nums, int numsSize) {\n    \n}",
+    "golang": "func countPairs(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countPairs(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countPairs(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_pairs(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef count_pairs(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function countPairs($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countPairs(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countPairs(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_pairs(nums :: [integer]) :: integer\n  def count_pairs(nums) do\n    \n  end\nend",
+    "erlang": "-spec count_pairs(Nums :: [integer()]) -> integer().\ncount_pairs(Nums) ->\n  .",
+    "racket": "(define/contract (count-pairs nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1023,2310,2130,213]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,10,100]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1023,2310,2130,213]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,10,100]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1023,2310]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2130,213]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1023]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1023,213]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[213,2130,2310,1023]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[213,1023,2130,2310]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2310,2130,1023,213]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1023,1023,1023,1023]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1023,2310,2130,213,1023,2310,2130,213]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[2046,4620,4260,426]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1024,2311,2131,214]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1022,2309,2129,212]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For each element, find all possible integers we can get by applying the operations.",
+    "Store the frequencies of all the integers in a hashmap."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-almost-equal-pairs-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.915Z",
+    "sourceUpdatedAt": null
+  }
+}

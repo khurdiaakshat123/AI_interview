@@ -1,0 +1,177 @@
+{
+  "id": "1655",
+  "slug": "distribute-repeating-integers",
+  "title": "Distribute Repeating Integers",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Counting",
+    "Bitmask"
+  ],
+  "statement": "You are given an array of `n` integers, `nums`, where there are at most `50` unique values in the array. You are also given an array of `m` customer order quantities, `quantity`, where `quantity[i]` is the amount of integers the `i^(th)` customer ordered. Determine if it is possible to distribute `nums` such that:\n\n*   The `i^(th)` customer gets **exactly** `quantity[i]` integers,\n*   The integers the `i^(th)` customer gets are **all equal**, and\n*   Every customer is satisfied.\n\nReturn `true` _if it is possible to distribute_ `nums` _according to the above conditions_.\n\n**Example 1:**\n\n```\nInput: nums = [1,2,3,4], quantity = [2]\nOutput: false\nExplanation: The 0th customer cannot be given two different integers.\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,2,3,3], quantity = [2]\nOutput: true\nExplanation: The 0th customer is given [3,3]. The integers [1,2] are not used.\n```\n\n**Example 3:**\n\n```\nInput: nums = [1,1,2,2], quantity = [2,2]\nOutput: true\nExplanation: The 0th customer is given [1,1], and the 1st customer is given [2,2].\n```\n\n**Constraints:**\n\n*   `n == nums.length`\n*   `1 <= n <= 10^(5)`\n*   `1 <= nums[i] <= 1000`\n*   `m == quantity.length`\n*   `1 <= m <= 10`\n*   `1 <= quantity[i] <= 10^(5)`\n*   There are at most `50` unique values in `nums`.",
+  "constraints": [
+    "n == nums.length",
+    "1 <= n <= 105",
+    "1 <= nums[i] <= 1000",
+    "m == quantity.length",
+    "1 <= m <= 10",
+    "1 <= quantity[i] <= 105",
+    "There are at most 50 unique values in nums."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3,4], quantity = [2]",
+      "output": "false",
+      "explanation": "The 0th customer cannot be given two different integers."
+    },
+    {
+      "input": "nums = [1,2,3,3], quantity = [2]",
+      "output": "true",
+      "explanation": "The 0th customer is given [3,3]. The integers [1,2] are not used."
+    },
+    {
+      "input": "nums = [1,1,2,2], quantity = [2,2]",
+      "output": "true",
+      "explanation": "The 0th customer is given [1,1], and the 1st customer is given [2,2]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool canDistribute(vector<int>& nums, vector<int>& quantity) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canDistribute(int[] nums, int[] quantity) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canDistribute(self, nums: list[int], quantity: list[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canDistribute(self, nums, quantity):\n        \"\"\"\n        :type nums: List[int]\n        :type quantity: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[]} quantity\n * @return {boolean}\n */\nvar canDistribute = function(nums, quantity) {\n    \n};",
+    "typescript": "function canDistribute(nums: number[], quantity: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanDistribute(int[] nums, int[] quantity) {\n        \n    }\n}",
+    "c": "bool canDistribute(int* nums, int numsSize, int* quantity, int quantitySize) {\n    \n}",
+    "golang": "func canDistribute(nums []int, quantity []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canDistribute(nums: IntArray, quantity: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canDistribute(_ nums: [Int], _ quantity: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_distribute(nums: Vec<i32>, quantity: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[]} quantity\n# @return {Boolean}\ndef can_distribute(nums, quantity)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[] $quantity\n     * @return Boolean\n     */\n    function canDistribute($nums, $quantity) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canDistribute(List<int> nums, List<int> quantity) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canDistribute(nums: Array[Int], quantity: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_distribute(nums :: [integer], quantity :: [integer]) :: boolean\n  def can_distribute(nums, quantity) do\n    \n  end\nend",
+    "erlang": "-spec can_distribute(Nums :: [integer()], Quantity :: [integer()]) -> boolean().\ncan_distribute(Nums, Quantity) ->\n  .",
+    "racket": "(define/contract (can-distribute nums quantity)\n  (-> (listof exact-integer?) (listof exact-integer?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,2,3,3]\n[2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,1,2,2]\n[2,2]",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,2,3,3]\n[2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,1,2,2]\n[2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[3,4]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,4]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[4,3,2,1]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,1,1,1]\n[2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,2,3,4,1,2,3,4]\n[2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,4,6,8]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[2,3,4,5]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,1,2,3]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-1,-2,-3,-4]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,0,0,0]\n[2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-1]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,0]\n[2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,1]\n[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,1]\n[2]",
+      "expectedOutput": "true"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Count the frequencies of each number. For example, if nums = [4,4,5,5,5], frequencies = [2,3].",
+    "Each customer wants all of their numbers to be the same. This means that each customer will be assigned to one number.",
+    "Use dynamic programming. Iterate through the numbers' frequencies, and choose some subset of customers to be assigned to this number."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/distribute-repeating-integers/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.790Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "2681",
+  "slug": "power-of-heroes",
+  "title": "Power of Heroes",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Sorting",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums` representing the strength of some heroes. The **power** of a group of heroes is defined as follows:\n\n*   Let `i_(0)`, `i_(1)`, ... ,`i_(k)` be the indices of the heroes in a group. Then, the power of this group is `max(nums[i_(0)], nums[i_(1)], ... ,nums[i_(k)])^(2) * min(nums[i_(0)], nums[i_(1)], ... ,nums[i_(k)])`.\n\nReturn _the sum of the **power** of all **non-empty** groups of heroes possible._ Since the sum could be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n```\nInput: nums = [2,1,4]\nOutput: 141\nExplanation: \n1st group: [2] has power = 22 * 2 = 8.\n2nd group: [1] has power = 12 * 1 = 1. \n3rd group: [4] has power = 42 * 4 = 64. \n4th group: [2,1] has power = 22 * 1 = 4. \n5th group: [2,4] has power = 42 * 2 = 32. \n6th group: [1,4] has power = 42 * 1 = 16. \n​​​​​​​7th group: [2,1,4] has power = 42​​​​​​​ * 1 = 16. \nThe sum of powers of all groups is 8 + 1 + 64 + 4 + 32 + 16 + 16 = 141.\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,1,1]\nOutput: 7\nExplanation: A total of 7 groups are possible, and the power of each group will be 1. Therefore, the sum of the powers of all groups is 7.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,1,4]",
+      "output": "141",
+      "explanation": "1st group: [2] has power = 22 * 2 = 8.\n2nd group: [1] has power = 12 * 1 = 1. \n3rd group: [4] has power = 42 * 4 = 64. \n4th group: [2,1] has power = 22 * 1 = 4. \n5th group: [2,4] has power = 42 * 2 = 32. \n6th group: [1,4] has power = 42 * 1 = 16. \n​​​​​​​7th group: [2,1,4] has power = 42​​​​​​​ * 1 = 16. \nThe sum of powers of all groups is 8 + 1 + 64 + 4 + 32 + 16 + 16 = 141."
+    },
+    {
+      "input": "nums = [1,1,1]",
+      "output": "7",
+      "explanation": "A total of 7 groups are possible, and the power of each group will be 1. Therefore, the sum of the powers of all groups is 7."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int sumOfPower(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int sumOfPower(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sumOfPower(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def sumOfPower(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar sumOfPower = function(nums) {\n    \n};",
+    "typescript": "function sumOfPower(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SumOfPower(int[] nums) {\n        \n    }\n}",
+    "c": "int sumOfPower(int* nums, int numsSize) {\n    \n}",
+    "golang": "func sumOfPower(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun sumOfPower(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sumOfPower(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sum_of_power(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef sum_of_power(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function sumOfPower($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int sumOfPower(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sumOfPower(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sum_of_power(nums :: [integer]) :: integer\n  def sum_of_power(nums) do\n    \n  end\nend",
+    "erlang": "-spec sum_of_power(Nums :: [integer()]) -> integer().\nsum_of_power(Nums) ->\n  .",
+    "racket": "(define/contract (sum-of-power nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,1,4]",
+      "expectedOutput": "141"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "7"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,1,4]",
+      "expectedOutput": "141"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,4]",
+      "expectedOutput": "81"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "104"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[4,1,2]",
+      "expectedOutput": "141"
+    },
+    {
+      "input": "[1,2,4]",
+      "expectedOutput": "141"
+    },
+    {
+      "input": "[4,2,1]",
+      "expectedOutput": "141"
+    },
+    {
+      "input": "[2,2,2]",
+      "expectedOutput": "56"
+    },
+    {
+      "input": "[2,1,4,2,1,4]",
+      "expectedOutput": "1119"
+    },
+    {
+      "input": "[4,2,8]",
+      "expectedOutput": "1128"
+    },
+    {
+      "input": "[3,2,5]",
+      "expectedOutput": "353"
+    },
+    {
+      "input": "[1,0,3]",
+      "expectedOutput": "37"
+    },
+    {
+      "input": "[-2,-1,-4]",
+      "expectedOutput": "999999908"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1000000006"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try something with sorting the array.",
+    "For a pair of array elements nums[i] and nums[j] (i < j), the power would be nums[i]*nums[j]^2 regardless of how many elements in between are included.",
+    "The number of subsets with the above as power will correspond to 2^(j-i-1).",
+    "Try collecting the terms for nums[0], nums[1], …, nums[j-1] when computing the power of heroes ending at index j to get the power in a single pass."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/power-of-heroes/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.838Z",
+    "sourceUpdatedAt": null
+  }
+}

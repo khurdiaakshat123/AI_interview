@@ -1,0 +1,165 @@
+{
+  "id": "844",
+  "slug": "backspace-string-compare",
+  "title": "Backspace String Compare",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "statement": "Given two strings `s` and `t`, return `true` _if they are equal when both are typed into empty text editors_. `'#'` means a backspace character.\n\nNote that after backspacing an empty text, the text will continue empty.\n\n**Example 1:**\n\n```\nInput: s = \"ab#c\", t = \"ad#c\"\nOutput: true\nExplanation: Both s and t become \"ac\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"ab##\", t = \"c#d#\"\nOutput: true\nExplanation: Both s and t become \"\".\n```\n\n**Example 3:**\n\n```\nInput: s = \"a#c\", t = \"b\"\nOutput: false\nExplanation: s becomes \"c\" while t becomes \"b\".\n```\n\n**Constraints:**\n\n*   `1 <= s.length, t.length <= 200`\n*   `s` and `t` only contain lowercase letters and `'#'` characters.\n\n**Follow up:** Can you solve it in `O(n)` time and `O(1)` space?",
+  "constraints": [
+    "1 <= s.length, t.length <= 200",
+    "s and t only contain lowercase letters and '#' characters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"ab#c\", t = \"ad#c\"",
+      "output": "true",
+      "explanation": "Both s and t become \"ac\"."
+    },
+    {
+      "input": "s = \"ab##\", t = \"c#d#\"",
+      "output": "true",
+      "explanation": "Both s and t become \"\"."
+    },
+    {
+      "input": "s = \"a#c\", t = \"b\"",
+      "output": "false",
+      "explanation": "s becomes \"c\" while t becomes \"b\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool backspaceCompare(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean backspaceCompare(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def backspaceCompare(self, s: str, t: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def backspaceCompare(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {boolean}\n */\nvar backspaceCompare = function(s, t) {\n    \n};",
+    "typescript": "function backspaceCompare(s: string, t: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool BackspaceCompare(string s, string t) {\n        \n    }\n}",
+    "c": "bool backspaceCompare(char* s, char* t) {\n    \n}",
+    "golang": "func backspaceCompare(s string, t string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun backspaceCompare(s: String, t: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func backspaceCompare(_ s: String, _ t: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn backspace_compare(s: String, t: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Boolean}\ndef backspace_compare(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Boolean\n     */\n    function backspaceCompare($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool backspaceCompare(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def backspaceCompare(s: String, t: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec backspace_compare(s :: String.t, t :: String.t) :: boolean\n  def backspace_compare(s, t) do\n    \n  end\nend",
+    "erlang": "-spec backspace_compare(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> boolean().\nbackspace_compare(S, T) ->\n  .",
+    "racket": "(define/contract (backspace-compare s t)\n  (-> string? string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"ab#c\"\n\"ad#c\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ab##\"\n\"c#d#\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a#c\"\n\"b\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"ab#c\"\n\"ad#c\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ab##\"\n\"c#d#\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a#c\"\n\"b\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"#c\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"c#ba\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab#cab#c\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaa\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab#cc#ba\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aA\"\n\"ad#c\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/backspace-string-compare/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.385Z",
+    "sourceUpdatedAt": null
+  }
+}

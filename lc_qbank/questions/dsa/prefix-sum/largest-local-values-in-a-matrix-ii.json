@@ -1,0 +1,123 @@
+{
+  "id": "3933",
+  "slug": "largest-local-values-in-a-matrix-ii",
+  "title": "Largest Local Values in a Matrix II",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Matrix",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an `n x m` integer matrix `matrix` containing non-negative integers.\n\nA **non-zero** cell `(row, col)` checks the cells near it as follows:\n\n*   Let `x = matrix[row][col]`.\n*   Consider every cell within `x` rows and `x` columns of `(row, col)`.\n*   Ignore cells that are outside the matrix.\n*   Ignore the cells where both the row distance and column distance are exactly `x`.\n\nThe cell `(row, col)` is a **local maximum** if it is **non-zero** and no considered cell has a value **greater than** `x`.\n\nReturn an integer denoting the number of **local maximums** in `matrix`.\n\n**​​​​​​​Example 1:**\n\n**Input:** matrix = \\[\\[0,0,0,0,0,0,0\\],\\[0,0,0,0,0,0,0\\],\\[0,0,0,0,0,0,0\\],\\[0,0,0,2,0,0,0\\],\\[0,0,0,0,0,0,0\\],\\[0,0,0,0,0,0,0\\],\\[0,0,0,0,0,0,0\\]\\]\n\n**Output:** 1\n\n![](./assets/largest-local-values-in-a-matrix-ii-1.png)​​​​​​​​​​​​​​​​​​​​​\n\n**Explanation:**\n\n*   For the non-zero cell `(3, 3)`, `x = matrix[3][3] = 2`.\n*   The highlighted cells are the considered cells within `x` rows and `x` columns of `(3, 3)`.\n*   The four cells with both row and column distances equal to `x = 2` are ignored.\n*   No considered cell has a value greater than 2, so `(3, 3)` is a local maximum.\n*   There are no other non-zero cells, so the answer is 1.\n\n**Example 2:**\n\n**Input:** matrix = \\[\\[1,2\\],\\[3,4\\]\\]\n\n**Output:** 1\n\n**Explanation:**\n\nOnly the cell with value 4 is a local maximum. Every other non-zero cell considers a cell with a greater value.\n\n**Example 3:**\n\n**Input:** matrix = \\[\\[1,0,1\\],\\[0,1,0\\],\\[1,0,1\\]\\]\n\n**Output:** 5\n\n**Explanation:**\n\n*   For a cell with value 1, the considered cells are the cell itself and its 4-directionally adjacent cells that are inside the matrix.\n*   Each of the five cells with value 1 only considers cells with values 0 or 1, so all five of them are local maximums.\n\n**Example 4:**\n\n**Input:** matrix = \\[\\[1,1\\],\\[1,1\\]\\]\n\n**Output:** 4\n\n**Explanation:**\n\nAll cells have the same value. Therefore, no cell considers another cell with a greater value, so all 4 cells are local maximums.\n\n**Constraints:**\n\n*   `1 <= n == matrix.length <= 200`\n*   `1 <= m == matrix[i].length <= 200`\n*   `0 <= matrix[i][j] <= 200`",
+  "constraints": [
+    "1 <= n == matrix.length <= 200",
+    "1 <= m == matrix[i].length <= 200",
+    "0 <= matrix[i][j] <= 200"
+  ],
+  "examples": [
+    {
+      "input": "matrix = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,2,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]",
+      "output": "1",
+      "explanation": "For the non-zero cell (3, 3), x = matrix[3][3] = 2.\n\tThe highlighted cells are the considered cells within x rows and x columns of (3, 3).\n\tThe four cells with both row and column distances equal to x = 2 are ignored.\n\tNo considered cell has a value greater than 2, so (3, 3) is a local maximum.\n\tThere are no other non-zero cells, so the answer is 1."
+    },
+    {
+      "input": "matrix = [[1,2],[3,4]]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "matrix = [[1,0,1],[0,1,0],[1,0,1]]",
+      "output": "5",
+      "explanation": "For a cell with value 1, the considered cells are the cell itself and its 4-directionally adjacent cells that are inside the matrix.\n\tEach of the five cells with value 1 only considers cells with values 0 or 1, so all five of them are local maximums."
+    },
+    {
+      "input": "matrix = [[1,1],[1,1]]",
+      "output": "4",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countLocalMaximums(vector<vector<int>>& matrix) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countLocalMaximums(int[][] matrix) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countLocalMaximums(self, matrix: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countLocalMaximums(self, matrix):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} matrix\n * @return {number}\n */\nvar countLocalMaximums = function(matrix) {\n    \n};",
+    "typescript": "function countLocalMaximums(matrix: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountLocalMaximums(int[][] matrix) {\n        \n    }\n}",
+    "c": "int countLocalMaximums(int** matrix, int matrixSize, int* matrixColSize) {\n    \n}",
+    "golang": "func countLocalMaximums(matrix [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countLocalMaximums(matrix: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countLocalMaximums(_ matrix: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_local_maximums(matrix: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} matrix\n# @return {Integer}\ndef count_local_maximums(matrix)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $matrix\n     * @return Integer\n     */\n    function countLocalMaximums($matrix) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countLocalMaximums(List<List<int>> matrix) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countLocalMaximums(matrix: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_local_maximums(matrix :: [[integer]]) :: integer\n  def count_local_maximums(matrix) do\n    \n  end\nend",
+    "erlang": "-spec count_local_maximums(Matrix :: [[integer()]]) -> integer().\ncount_local_maximums(Matrix) ->\n  .",
+    "racket": "(define/contract (count-local-maximums matrix)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,2,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[1,2],[3,4]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[1,0,1],[0,1,0],[1,0,1]]",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,2,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[1,2],[3,4]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[1,0,1],[0,1,0],[1,0,1]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "matrix = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,2,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "matrix = [[1,2],[3,4]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "matrix = [[1,0,1],[0,1,0],[1,0,1]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "matrix = [[1,1],[1,1]]",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Brute forcing every centered square can be too slow: each check may scan up to <code>200 * 200</code> cells.",
+    "Since all values are at most 200, build prefix sums by threshold: for each <code>v</code>, store how many cells have value <code>> v</code> in every prefix rectangle.",
+    "For a cell with value <code>x</code>, query its clamped square using the prefix sum for threshold <code>x</code>. If the count of values <code>> x</code> is zero, it is a local maximum.",
+    "Remember to subtract the ignored corner cells <code>(i ± x, j ± x)</code> from the queried count if they are inside the matrix and greater than <code>x</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/largest-local-values-in-a-matrix-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.930Z",
+    "sourceUpdatedAt": null
+  }
+}

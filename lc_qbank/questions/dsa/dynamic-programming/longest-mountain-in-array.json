@@ -1,0 +1,156 @@
+{
+  "id": "845",
+  "slug": "longest-mountain-in-array",
+  "title": "Longest Mountain in Array",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Dynamic Programming",
+    "Enumeration"
+  ],
+  "statement": "You may recall that an array `arr` is a **mountain array** if and only if:\n\n*   `arr.length >= 3`\n*   There exists some index `i` (**0-indexed**) with `0 < i < arr.length - 1` such that:\n    *   `arr[0] < arr[1] < ... < arr[i - 1] < arr[i]`\n    *   `arr[i] > arr[i + 1] > ... > arr[arr.length - 1]`\n\nGiven an integer array `arr`, return _the length of the longest subarray, which is a mountain_. Return `0` if there is no mountain subarray.\n\n**Example 1:**\n\n```\nInput: arr = [2,1,4,7,3,2,5]\nOutput: 5\nExplanation: The largest mountain is [1,4,7,3,2] which has length 5.\n```\n\n**Example 2:**\n\n```\nInput: arr = [2,2,2]\nOutput: 0\nExplanation: There is no mountain.\n```\n\n**Constraints:**\n\n*   `1 <= arr.length <= 10^(4)`\n*   `0 <= arr[i] <= 10^(4)`\n\n**Follow up:**\n\n*   Can you solve it using only one pass?\n*   Can you solve it in `O(1)` space?",
+  "constraints": [
+    "1 <= arr.length <= 104",
+    "0 <= arr[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "arr = [2,1,4,7,3,2,5]",
+      "output": "5",
+      "explanation": "The largest mountain is [1,4,7,3,2] which has length 5."
+    },
+    {
+      "input": "arr = [2,2,2]",
+      "output": "0",
+      "explanation": "There is no mountain."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestMountain(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestMountain(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestMountain(self, arr: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestMountain(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number}\n */\nvar longestMountain = function(arr) {\n    \n};",
+    "typescript": "function longestMountain(arr: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestMountain(int[] arr) {\n        \n    }\n}",
+    "c": "int longestMountain(int* arr, int arrSize) {\n    \n}",
+    "golang": "func longestMountain(arr []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestMountain(arr: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestMountain(_ arr: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_mountain(arr: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer}\ndef longest_mountain(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer\n     */\n    function longestMountain($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestMountain(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestMountain(arr: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_mountain(arr :: [integer]) :: integer\n  def longest_mountain(arr) do\n    \n  end\nend",
+    "erlang": "-spec longest_mountain(Arr :: [integer()]) -> integer().\nlongest_mountain(Arr) ->\n  .",
+    "racket": "(define/contract (longest-mountain arr)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,1,4,7,3,2,5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,2,2]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,1,4,7,3,2,5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,2,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[7,3,2,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,2,3,7,4,1,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2,2,3,4,5,7]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[7,5,4,3,2,2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1,4,7,3,2,5,2,1,4,7,3,2,5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[4,2,8,14,6,4,10]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[3,2,5,8,4,3,6]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,0,3,6,2,1,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-2,-1,-4,-7,-3,-2,-5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-mountain-in-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.526Z",
+    "sourceUpdatedAt": null
+  }
+}

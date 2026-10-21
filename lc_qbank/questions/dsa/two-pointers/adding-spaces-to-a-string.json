@@ -1,0 +1,172 @@
+{
+  "id": "2109",
+  "slug": "adding-spaces-to-a-string",
+  "title": "Adding Spaces to a String",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String",
+    "Simulation"
+  ],
+  "statement": "You are given a **0-indexed** string `s` and a **0-indexed** integer array `spaces` that describes the indices in the original string where spaces will be added. Each space should be inserted **before** the character at the given index.\n\n*   For example, given `s = \"EnjoyYourCoffee\"` and `spaces = [5, 9]`, we place spaces before `'Y'` and `'C'`, which are at indices `5` and `9` respectively. Thus, we obtain `\"Enjoy **Y**our **C**offee\"`.\n\nReturn _the modified string **after** the spaces have been added._\n\n**Example 1:**\n\n```\nInput: s = \"LeetcodeHelpsMeLearn\", spaces = [8,13,15]\nOutput: \"Leetcode Helps Me Learn\"\nExplanation: \nThe indices 8, 13, and 15 correspond to the underlined characters in \"LeetcodeHelpsMeLearn\".\nWe then place spaces before those characters.\n```\n\n**Example 2:**\n\n```\nInput: s = \"icodeinpython\", spaces = [1,5,7,9]\nOutput: \"i code in py thon\"\nExplanation:\nThe indices 1, 5, 7, and 9 correspond to the underlined characters in \"icodeinpython\".\nWe then place spaces before those characters.\n```\n\n**Example 3:**\n\n```\nInput: s = \"spacing\", spaces = [0,1,2,3,4,5,6]\nOutput: \" s p a c i n g\"\nExplanation:\nWe are also able to place spaces before the first character of the string.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 3 * 10^(5)`\n*   `s` consists only of lowercase and uppercase English letters.\n*   `1 <= spaces.length <= 3 * 10^(5)`\n*   `0 <= spaces[i] <= s.length - 1`\n*   All the values of `spaces` are **strictly increasing**.",
+  "constraints": [
+    "1 <= s.length <= 3 * 105",
+    "s consists only of lowercase and uppercase English letters.",
+    "1 <= spaces.length <= 3 * 105",
+    "0 <= spaces[i] <= s.length - 1",
+    "All the values of spaces are strictly increasing."
+  ],
+  "examples": [
+    {
+      "input": "s = \"LeetcodeHelpsMeLearn\", spaces = [8,13,15]",
+      "output": "\"Leetcode Helps Me Learn\"",
+      "explanation": "The indices 8, 13, and 15 correspond to the underlined characters in \"LeetcodeHelpsMeLearn\".\nWe then place spaces before those characters."
+    },
+    {
+      "input": "s = \"icodeinpython\", spaces = [1,5,7,9]",
+      "output": "\"i code in py thon\"",
+      "explanation": "The indices 1, 5, 7, and 9 correspond to the underlined characters in \"icodeinpython\".\nWe then place spaces before those characters."
+    },
+    {
+      "input": "s = \"spacing\", spaces = [0,1,2,3,4,5,6]",
+      "output": "\" s p a c i n g\"",
+      "explanation": "We are also able to place spaces before the first character of the string."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string addSpaces(string s, vector<int>& spaces) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String addSpaces(String s, int[] spaces) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def addSpaces(self, s: str, spaces: list[int]) -> str:\n        ",
+    "python": "class Solution(object):\n    def addSpaces(self, s, spaces):\n        \"\"\"\n        :type s: str\n        :type spaces: List[int]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number[]} spaces\n * @return {string}\n */\nvar addSpaces = function(s, spaces) {\n    \n};",
+    "typescript": "function addSpaces(s: string, spaces: number[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string AddSpaces(string s, int[] spaces) {\n        \n    }\n}",
+    "c": "char* addSpaces(char* s, int* spaces, int spacesSize) {\n    \n}",
+    "golang": "func addSpaces(s string, spaces []int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun addSpaces(s: String, spaces: IntArray): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func addSpaces(_ s: String, _ spaces: [Int]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn add_spaces(s: String, spaces: Vec<i32>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer[]} spaces\n# @return {String}\ndef add_spaces(s, spaces)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer[] $spaces\n     * @return String\n     */\n    function addSpaces($s, $spaces) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String addSpaces(String s, List<int> spaces) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def addSpaces(s: String, spaces: Array[Int]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec add_spaces(s :: String.t, spaces :: [integer]) :: String.t\n  def add_spaces(s, spaces) do\n    \n  end\nend",
+    "erlang": "-spec add_spaces(S :: unicode:unicode_binary(), Spaces :: [integer()]) -> unicode:unicode_binary().\nadd_spaces(S, Spaces) ->\n  .",
+    "racket": "(define/contract (add-spaces s spaces)\n  (-> string? (listof exact-integer?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"LeetcodeHelpsMeLearn\"\n[8,13,15]",
+      "expectedOutput": "\"Leetcode Helps Me Learn\""
+    },
+    {
+      "input": "\"icodeinpython\"\n[1,5,7,9]",
+      "expectedOutput": "\"i code in py thon\""
+    },
+    {
+      "input": "\"spacing\"\n[0,1,2,3,4,5,6]",
+      "expectedOutput": "\" s p a c i n g\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"LeetcodeHelpsMeLearn\"\n[8,13,15]",
+      "expectedOutput": "\"Leetcode Helps Me Learn\""
+    },
+    {
+      "input": "\"icodeinpython\"\n[1,5,7,9]",
+      "expectedOutput": "\"i code in py thon\""
+    },
+    {
+      "input": "\"spacing\"\n[0,1,2,3,4,5,6]",
+      "expectedOutput": "\" s p a c i n g\""
+    },
+    {
+      "input": "\"LeetcodeHe\"\n[8,13,15]",
+      "expectedOutput": "\"Leetcode He\""
+    },
+    {
+      "input": "\"lpsMeLearn\"\n[8,13,15]",
+      "expectedOutput": "\"lpsMeLea rn\""
+    },
+    {
+      "input": "\"L\"\n[8,13,15]",
+      "expectedOutput": "\"L\""
+    },
+    {
+      "input": "\"Le\"\n[8,13,15]",
+      "expectedOutput": "\"Le\""
+    },
+    {
+      "input": "\"nraeLeMspleHedocteeL\"\n[8,13,15]",
+      "expectedOutput": "\"nraeLeMs pleHe do cteeL\""
+    },
+    {
+      "input": "\"LLLLLL\"\n[8,13,15]",
+      "expectedOutput": "\"LLLLLL\""
+    },
+    {
+      "input": "\"leetcodehelpsmelearn\"\n[8,13,15]",
+      "expectedOutput": "\"leetcode helps me learn\""
+    },
+    {
+      "input": "\"LEETCODEHELPSMELEARN\"\n[8,13,15]",
+      "expectedOutput": "\"LEETCODE HELPS ME LEARN\""
+    },
+    {
+      "input": "\"a\"\n[8,13,15]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"\n[8,13,15]",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"\n[8,13,15]",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"\n[8,13,15]",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"\n[8,13,15]",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"\n[8,13,15]",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"\n[8,13,15]",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"\n[8,13,15]",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"\n[8,13,15]",
+      "expectedOutput": "\"abcde\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Create a new string, initially empty, as the modified string. Iterate through the original string and append each character of the original string to the new string. However, each time you reach a character that requires a space before it, append a space before appending the character.",
+    "Since the array of indices for the space locations is sorted, use a pointer to keep track of the next index to place a space. Only increment the pointer once a space has been appended.",
+    "Ensure that your append operation can be done in O(1)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/adding-spaces-to-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:12.872Z",
+    "sourceUpdatedAt": null
+  }
+}

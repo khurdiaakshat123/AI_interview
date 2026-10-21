@@ -1,0 +1,161 @@
+{
+  "id": "2193",
+  "slug": "minimum-number-of-moves-to-make-palindrome",
+  "title": "Minimum Number of Moves to Make Palindrome",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Greedy",
+    "Binary Indexed Tree"
+  ],
+  "statement": "You are given a string `s` consisting only of lowercase English letters.\n\nIn one **move**, you can select any two **adjacent** characters of `s` and swap them.\n\nReturn _the **minimum number of moves** needed to make_ `s` _a palindrome_.\n\n**Note** that the input will be generated such that `s` can always be converted to a palindrome.\n\n**Example 1:**\n\n```\nInput: s = \"aabb\"\nOutput: 2\nExplanation:\nWe can obtain two palindromes from s, \"abba\" and \"baab\". \n- We can obtain \"abba\" from s in 2 moves: \"aabb\" -> \"abab\" -> \"abba\".\n- We can obtain \"baab\" from s in 2 moves: \"aabb\" -> \"abab\" -> \"baab\".\nThus, the minimum number of moves needed to make s a palindrome is 2.\n```\n\n**Example 2:**\n\n```\nInput: s = \"letelt\"\nOutput: 2\nExplanation:\nOne of the palindromes we can obtain from s in 2 moves is \"lettel\".\nOne of the ways we can obtain it is \"letelt\" -> \"letetl\" -> \"lettel\".\nOther palindromes such as \"tleelt\" can also be obtained in 2 moves.\nIt can be shown that it is not possible to obtain a palindrome in less than 2 moves.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 2000`\n*   `s` consists only of lowercase English letters.\n*   `s` can be converted to a palindrome using a finite number of moves.",
+  "constraints": [
+    "1 <= s.length <= 2000",
+    "s consists only of lowercase English letters.",
+    "s can be converted to a palindrome using a finite number of moves."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aabb\"",
+      "output": "2",
+      "explanation": "We can obtain two palindromes from s, \"abba\" and \"baab\". \n- We can obtain \"abba\" from s in 2 moves: \"aabb\" -> \"abab\" -> \"abba\".\n- We can obtain \"baab\" from s in 2 moves: \"aabb\" -> \"abab\" -> \"baab\".\nThus, the minimum number of moves needed to make s a palindrome is 2."
+    },
+    {
+      "input": "s = \"letelt\"",
+      "output": "2",
+      "explanation": "One of the palindromes we can obtain from s in 2 moves is \"lettel\".\nOne of the ways we can obtain it is \"letelt\" -> \"letetl\" -> \"lettel\".\nOther palindromes such as \"tleelt\" can also be obtained in 2 moves.\nIt can be shown that it is not possible to obtain a palindrome in less than 2 moves."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minMovesToMakePalindrome(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minMovesToMakePalindrome(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minMovesToMakePalindrome(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minMovesToMakePalindrome(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minMovesToMakePalindrome = function(s) {\n    \n};",
+    "typescript": "function minMovesToMakePalindrome(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinMovesToMakePalindrome(string s) {\n        \n    }\n}",
+    "c": "int minMovesToMakePalindrome(char* s) {\n    \n}",
+    "golang": "func minMovesToMakePalindrome(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minMovesToMakePalindrome(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minMovesToMakePalindrome(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_moves_to_make_palindrome(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef min_moves_to_make_palindrome(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minMovesToMakePalindrome($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minMovesToMakePalindrome(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minMovesToMakePalindrome(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_moves_to_make_palindrome(s :: String.t) :: integer\n  def min_moves_to_make_palindrome(s) do\n    \n  end\nend",
+    "erlang": "-spec min_moves_to_make_palindrome(S :: unicode:unicode_binary()) -> integer().\nmin_moves_to_make_palindrome(S) ->\n  .",
+    "racket": "(define/contract (min-moves-to-make-palindrome s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aabb\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"letelt\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aabb\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"letelt\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"bb\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"bbaa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aabbaabb\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aabbbbaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"AABB\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider a greedy strategy.",
+    "Let’s start by making the leftmost and rightmost characters match with some number of swaps.",
+    "If we figure out how to do that using the minimum number of swaps, then we can delete the leftmost and rightmost characters and solve the problem recursively."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.283Z",
+    "sourceUpdatedAt": null
+  }
+}

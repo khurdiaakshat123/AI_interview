@@ -1,0 +1,160 @@
+{
+  "id": "3307",
+  "slug": "find-the-k-th-character-in-string-game-ii",
+  "title": "Find the K-th Character in String Game II",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Hard",
+  "tags": [
+    "Math",
+    "Bit Manipulation",
+    "Recursion"
+  ],
+  "statement": "Alice and Bob are playing a game. Initially, Alice has a string `word = \"a\"`.\n\nYou are given a **positive** integer `k`. You are also given an integer array `operations`, where `operations[i]` represents the **type** of the `i^(th)` operation.\n\nNow Bob will ask Alice to perform **all** operations in sequence:\n\n*   If `operations[i] == 0`, **append** a copy of `word` to itself.\n*   If `operations[i] == 1`, generate a new string by **changing** each character in `word` to its **next** character in the English alphabet, and **append** it to the _original_ `word`. For example, performing the operation on `\"c\"` generates `\"cd\"` and performing the operation on `\"zb\"` generates `\"zbac\"`.\n\nReturn the value of the `k^(th)` character in `word` after performing all the operations.\n\n**Note** that the character `'z'` can be changed to `'a'` in the second type of operation.\n\n**Example 1:**\n\n**Input:** k = 5, operations = \\[0,0,0\\]\n\n**Output:** \"a\"\n\n**Explanation:**\n\nInitially, `word == \"a\"`. Alice performs the three operations as follows:\n\n*   Appends `\"a\"` to `\"a\"`, `word` becomes `\"aa\"`.\n*   Appends `\"aa\"` to `\"aa\"`, `word` becomes `\"aaaa\"`.\n*   Appends `\"aaaa\"` to `\"aaaa\"`, `word` becomes `\"aaaaaaaa\"`.\n\n**Example 2:**\n\n**Input:** k = 10, operations = \\[0,1,0,1\\]\n\n**Output:** \"b\"\n\n**Explanation:**\n\nInitially, `word == \"a\"`. Alice performs the four operations as follows:\n\n*   Appends `\"a\"` to `\"a\"`, `word` becomes `\"aa\"`.\n*   Appends `\"bb\"` to `\"aa\"`, `word` becomes `\"aabb\"`.\n*   Appends `\"aabb\"` to `\"aabb\"`, `word` becomes `\"aabbaabb\"`.\n*   Appends `\"bbccbbcc\"` to `\"aabbaabb\"`, `word` becomes `\"aabbaabbbbccbbcc\"`.\n\n**Constraints:**\n\n*   `1 <= k <= 10^(14)`\n*   `1 <= operations.length <= 100`\n*   `operations[i]` is either 0 or 1.\n*   The input is generated such that `word` has **at least** `k` characters after all operations.",
+  "constraints": [
+    "1 <= k <= 1014",
+    "1 <= operations.length <= 100",
+    "operations[i] is either 0 or 1.",
+    "The input is generated such that word has at least k characters after all operations."
+  ],
+  "examples": [
+    {
+      "input": "k = 5, operations = [0,0,0]",
+      "output": "\"a\"",
+      "explanation": null
+    },
+    {
+      "input": "k = 10, operations = [0,1,0,1]",
+      "output": "\"b\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    char kthCharacter(long long k, vector<int>& operations) {\n        \n    }\n};",
+    "java": "class Solution {\n    public char kthCharacter(long k, int[] operations) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def kthCharacter(self, k: int, operations: List[int]) -> str:\n        ",
+    "python": "class Solution(object):\n    def kthCharacter(self, k, operations):\n        \"\"\"\n        :type k: int\n        :type operations: List[int]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} k\n * @param {number[]} operations\n * @return {character}\n */\nvar kthCharacter = function(k, operations) {\n    \n};",
+    "typescript": "function kthCharacter(k: number, operations: number[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public char KthCharacter(long k, int[] operations) {\n        \n    }\n}",
+    "c": "char kthCharacter(long long k, int* operations, int operationsSize) {\n    \n}",
+    "golang": "func kthCharacter(k int64, operations []int) byte {\n    \n}",
+    "kotlin": "class Solution {\n    fun kthCharacter(k: Long, operations: IntArray): Char {\n        \n    }\n}",
+    "swift": "class Solution {\n    func kthCharacter(_ k: Int, _ operations: [Int]) -> Character {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn kth_character(k: i64, operations: Vec<i32>) -> char {\n        \n    }\n}",
+    "ruby": "# @param {Integer} k\n# @param {Integer[]} operations\n# @return {Character}\ndef kth_character(k, operations)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $k\n     * @param Integer[] $operations\n     * @return String\n     */\n    function kthCharacter($k, $operations) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String kthCharacter(int k, List<int> operations) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def kthCharacter(k: Long, operations: Array[Int]): Char = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec kth_character(k :: integer, operations :: [integer]) :: char\n  def kth_character(k, operations) do\n    \n  end\nend",
+    "erlang": "-spec kth_character(K :: integer(), Operations :: [integer()]) -> char().\nkth_character(K, Operations) ->\n  .",
+    "racket": "(define/contract (kth-character k operations)\n  (-> exact-integer? (listof exact-integer?) char?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "5\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "10\n[0,1,0,1]",
+      "expectedOutput": "\"b\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "5\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "10\n[0,1,0,1]",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "0\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "1\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "2\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "3\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "4\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "6\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "7\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "8\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "-1\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "-2\n[0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "5\n[0,0,0,0,0,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "5\n[1,1,1]",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "5\n[-1,-1,-1]",
+      "expectedOutput": "\"z\""
+    },
+    {
+      "input": "5\n[1,2,3]",
+      "expectedOutput": "\"d\""
+    },
+    {
+      "input": "5\n[3,2,1]",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "5\n[0,1,0]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "5\n[1,2,3,4,5]",
+      "expectedOutput": "\"d\""
+    },
+    {
+      "input": "5\n[5,4,3,2,1]",
+      "expectedOutput": "\"d\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try to replay the operations <code>k<sup>th</sup></code> character was part of.",
+    "The <code>k<sup>th</sup></code> character is only affected if it is present in the first half of the string."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-k-th-character-in-string-game-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.305Z",
+    "sourceUpdatedAt": null
+  }
+}

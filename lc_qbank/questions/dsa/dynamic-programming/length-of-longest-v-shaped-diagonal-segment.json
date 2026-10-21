@@ -1,0 +1,115 @@
+{
+  "id": "3459",
+  "slug": "length-of-longest-v-shaped-diagonal-segment",
+  "title": "Length of Longest V-Shaped Diagonal Segment",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Memoization",
+    "Matrix"
+  ],
+  "statement": "You are given a 2D integer matrix `grid` of size `n x m`, where each element is either `0`, `1`, or `2`.\n\nA **V-shaped diagonal segment** is defined as:\n\n*   The segment starts with `1`.\n*   The subsequent elements follow this infinite sequence: `2, 0, 2, 0, ...`.\n*   The segment:\n    *   Starts **along** a diagonal direction (top-left to bottom-right, bottom-right to top-left, top-right to bottom-left, or bottom-left to top-right).\n    *   Continues the **sequence** in the same diagonal direction.\n    *   Makes **at most one clockwise 90-degree** **turn** to another diagonal direction while **maintaining** the sequence.\n\nReturn the **length** of the **longest** **V-shaped diagonal segment**. If no valid segment _exists_, return 0.\n\n**Example 1:**\n\n**Input:** grid = \\[\\[2,2,1,2,2\\],\\[2,0,2,2,0\\],\\[2,0,1,1,0\\],\\[1,0,2,2,2\\],\\[2,0,0,2,2\\]\\]\n\n**Output:** 5\n\n**Explanation:**\n\n![](./assets/length-of-longest-v-shaped-diagonal-segment-1.jpg)\n\nThe longest V-shaped diagonal segment has a length of 5 and follows these coordinates: `(0,2) → (1,3) → (2,4)`, takes a **90-degree clockwise turn** at `(2,4)`, and continues as `(3,3) → (4,2)`.\n\n**Example 2:**\n\n**Input:** grid = \\[\\[2,2,2,2,2\\],\\[2,0,2,2,0\\],\\[2,0,1,1,0\\],\\[1,0,2,2,2\\],\\[2,0,0,2,2\\]\\]\n\n**Output:** 4\n\n**Explanation:**\n\n**![](./assets/length-of-longest-v-shaped-diagonal-segment-2.jpg)**\n\nThe longest V-shaped diagonal segment has a length of 4 and follows these coordinates: `(2,3) → (3,2)`, takes a **90-degree clockwise turn** at `(3,2)`, and continues as `(2,1) → (1,0)`.\n\n**Example 3:**\n\n**Input:** grid = \\[\\[1,2,2,2,2\\],\\[2,2,2,2,0\\],\\[2,0,0,0,0\\],\\[0,0,2,2,2\\],\\[2,0,0,2,0\\]\\]\n\n**Output:** 5\n\n**Explanation:**\n\n**![](./assets/length-of-longest-v-shaped-diagonal-segment-3.jpg)**\n\nThe longest V-shaped diagonal segment has a length of 5 and follows these coordinates: `(0,0) → (1,1) → (2,2) → (3,3) → (4,4)`.\n\n**Example 4:**\n\n**Input:** grid = \\[\\[1\\]\\]\n\n**Output:** 1\n\n**Explanation:**\n\nThe longest V-shaped diagonal segment has a length of 1 and follows these coordinates: `(0,0)`.\n\n**Constraints:**\n\n*   `n == grid.length`\n*   `m == grid[i].length`\n*   `1 <= n, m <= 500`\n*   `grid[i][j]` is either `0`, `1` or `2`.",
+  "constraints": [
+    "n == grid.length",
+    "m == grid[i].length",
+    "1 <= n, m <= 500",
+    "grid[i][j] is either 0, 1 or 2."
+  ],
+  "examples": [
+    {
+      "input": "grid = [[2,2,1,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]",
+      "output": "5",
+      "explanation": null
+    },
+    {
+      "input": "grid = [[2,2,2,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "grid = [[1,2,2,2,2],[2,2,2,2,0],[2,0,0,0,0],[0,0,2,2,2],[2,0,0,2,0]]",
+      "output": "5",
+      "explanation": null
+    },
+    {
+      "input": "grid = [[1]]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int lenOfVDiagonal(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int lenOfVDiagonal(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lenOfVDiagonal(self, grid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def lenOfVDiagonal(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar lenOfVDiagonal = function(grid) {\n    \n};",
+    "typescript": "function lenOfVDiagonal(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LenOfVDiagonal(int[][] grid) {\n        \n    }\n}",
+    "c": "int lenOfVDiagonal(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func lenOfVDiagonal(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun lenOfVDiagonal(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lenOfVDiagonal(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn len_of_v_diagonal(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef len_of_v_diagonal(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function lenOfVDiagonal($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int lenOfVDiagonal(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lenOfVDiagonal(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec len_of_v_diagonal(grid :: [[integer]]) :: integer\n  def len_of_v_diagonal(grid) do\n    \n  end\nend",
+    "erlang": "-spec len_of_v_diagonal(Grid :: [[integer()]]) -> integer().\nlen_of_v_diagonal(Grid) ->\n  .",
+    "racket": "(define/contract (len-of-v-diagonal grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[2,2,1,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[2,2,2,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[1,2,2,2,2],[2,2,2,2,0],[2,0,0,0,0],[0,0,2,2,2],[2,0,0,2,0]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[1]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[2,2,1,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[2,2,2,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[1,2,2,2,2],[2,2,2,2,0],[2,0,0,0,0],[0,0,2,2,2],[2,0,0,2,0]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[1]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming to determine the best point to make a 90-degree rotation in the diagonal path while maintaining the required sequence.",
+    "Represent dynamic programming states as <code>(row, col, currentDirection, hasMadeTurnYet)</code>. Track the current position, direction of traversal, and whether a turn has already been made, and take transitions accordingly to find the longest V-shaped diagonal segment."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/length-of-longest-v-shaped-diagonal-segment/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.138Z",
+    "sourceUpdatedAt": null
+  }
+}

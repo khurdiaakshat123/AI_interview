@@ -1,0 +1,158 @@
+{
+  "id": "3727",
+  "slug": "maximum-alternating-sum-of-squares",
+  "title": "Maximum Alternating Sum of Squares",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You are given an integer array `nums`. You may **rearrange the elements** in any order.\n\nThe **alternating score** of an array `arr` is defined as:\n\n*   `score = arr[0]^(2) - arr[1]^(2) + arr[2]^(2) - arr[3]^(2) + ...`\n\nReturn an integer denoting the **maximum possible alternating score** of `nums` after rearranging its elements.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,3\\]\n\n**Output:** 12\n\n**Explanation:**\n\nA possible rearrangement for `nums` is `[2,1,3]`, which gives the maximum alternating score among all possible rearrangements.\n\nThe alternating score is calculated as:\n\n`score = 2^(2) - 1^(2) + 3^(2) = 4 - 1 + 9 = 12`\n\n**Example 2:**\n\n**Input:** nums = \\[1,-1,2,-2,3,-3\\]\n\n**Output:** 16\n\n**Explanation:**\n\nA possible rearrangement for `nums` is `[-3,-1,-2,1,3,2]`, which gives the maximum alternating score among all possible rearrangements.\n\nThe alternating score is calculated as:\n\n`score = (-3)^(2) - (-1)^(2) + (-2)^(2) - (1)^(2) + (3)^(2) - (2)^(2) = 9 - 1 + 4 - 1 + 9 - 4 = 16`\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `-4 * 10^(4) <= nums[i] <= 4 * 10^(4)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-4 * 104 <= nums[i] <= 4 * 104"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3]",
+      "output": "12",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,-1,2,-2,3,-3]",
+      "output": "16",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxAlternatingSum(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxAlternatingSum(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxAlternatingSum(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxAlternatingSum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxAlternatingSum = function(nums) {\n    \n};",
+    "typescript": "function maxAlternatingSum(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxAlternatingSum(int[] nums) {\n        \n    }\n}",
+    "c": "long long maxAlternatingSum(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxAlternatingSum(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxAlternatingSum(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxAlternatingSum(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_alternating_sum(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_alternating_sum(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxAlternatingSum($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxAlternatingSum(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxAlternatingSum(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_alternating_sum(nums :: [integer]) :: integer\n  def max_alternating_sum(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_alternating_sum(Nums :: [integer()]) -> integer().\nmax_alternating_sum(Nums) ->\n  .",
+    "racket": "(define/contract (max-alternating-sum nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1,-1,2,-2,3,-3]",
+      "expectedOutput": "16"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1,-1,2,-2,3,-3]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,3]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3,1,2,3]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[2,4,6]",
+      "expectedOutput": "48"
+    },
+    {
+      "input": "[2,3,4]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[0,1,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-1,-2,-3]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The score uses squares of values. The original signs of <code>nums</code> don't affect the squared terms.",
+    "In the alternating sum, even indices contribute positively and odd indices negatively."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-alternating-sum-of-squares/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.477Z",
+    "sourceUpdatedAt": null
+  }
+}

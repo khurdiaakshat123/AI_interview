@@ -1,0 +1,160 @@
+{
+  "id": "3620",
+  "slug": "network-recovery-pathways",
+  "title": "Network Recovery Pathways",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Graph Theory",
+    "Topological Sort",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "statement": "You are given a directed acyclic graph of `n` nodes numbered from 0 to `n − 1`. This is represented by a 2D array `edges` of length `m`, where `edges[i] = [u_(i), v_(i), cost_(i)]` indicates a one‑way communication from node `u_(i)` to node `v_(i)` with a recovery cost of `cost_(i)`.\n\nSome nodes may be offline. You are given a boolean array `online` where `online[i] = true` means node `i` is online. Nodes 0 and `n − 1` are always online.\n\nA path from 0 to `n − 1` is **valid** if:\n\n*   All intermediate nodes on the path are online.\n*   The total recovery cost of all edges on the path does not exceed `k`.\n\nFor each valid path, define its **score** as the minimum edge‑cost along that path.\n\nReturn the **maximum** path score (i.e., the largest **minimum**\\-edge cost) among all valid paths. If no valid path exists, return -1.\n\n**Example 1:**\n\n**Input:** edges = \\[\\[0,1,5\\],\\[1,3,10\\],\\[0,2,3\\],\\[2,3,4\\]\\], online = \\[true,true,true,true\\], k = 10\n\n**Output:** 3\n\n**Explanation:**\n\n![](./assets/network-recovery-pathways-1.png)\n\n*   The graph has two possible routes from node 0 to node 3:\n    \n    1.  Path `0 → 1 → 3`\n        \n        *   Total cost = `5 + 10 = 15`, which exceeds k (`15 > 10`), so this path is invalid.\n            \n    2.  Path `0 → 2 → 3`\n        \n        *   Total cost = `3 + 4 = 7 <= k`, so this path is valid.\n            \n        *   The minimum edge‐cost along this path is `min(3, 4) = 3`.\n            \n*   There are no other valid paths. Hence, the maximum among all valid path‐scores is 3.\n    \n\n**Example 2:**\n\n**Input:** edges = \\[\\[0,1,7\\],\\[1,4,5\\],\\[0,2,6\\],\\[2,3,6\\],\\[3,4,2\\],\\[2,4,6\\]\\], online = \\[true,true,true,false,true\\], k = 12\n\n**Output:** 6\n\n**Explanation:**\n\n![](./assets/network-recovery-pathways-2.png)\n\n*   Node 3 is offline, so any path passing through 3 is invalid.\n    \n*   Consider the remaining routes from 0 to 4:\n    \n    1.  Path `0 → 1 → 4`\n        \n        *   Total cost = `7 + 5 = 12 <= k`, so this path is valid.\n            \n        *   The minimum edge‐cost along this path is `min(7, 5) = 5`.\n            \n    2.  Path `0 → 2 → 3 → 4`\n        \n        *   Node 3 is offline, so this path is invalid regardless of cost.\n            \n    3.  Path `0 → 2 → 4`\n        \n        *   Total cost = `6 + 6 = 12 <= k`, so this path is valid.\n            \n        *   The minimum edge‐cost along this path is `min(6, 6) = 6`.\n            \n*   Among the two valid paths, their scores are 5 and 6. Therefore, the answer is 6.\n    \n\n**Constraints:**\n\n*   `n == online.length`\n*   `2 <= n <= 5 * 10^(4)`\n*   `0 <= m == edges.length <=` `min(10^(5), n * (n - 1) / 2)`\n*   `edges[i] = [u_(i), v_(i), cost_(i)]`\n*   `0 <= u_(i), v_(i) < n`\n*   `u_(i) != v_(i)`\n*   `0 <= cost_(i) <= 10^(9)`\n*   `0 <= k <= 5 * 10^(13)`\n*   `online[i]` is either `true` or `false`, and both `online[0]` and `online[n − 1]` are `true`.\n*   The given graph is a directed acyclic graph.",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "edges = [[0,1,5],[1,3,10],[0,2,3],[2,3,4]], online = [true,true,true,true], k = 10",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "edges = [[0,1,7],[1,4,5],[0,2,6],[2,3,6],[3,4,2],[2,4,6]], online = [true,true,true,false,true], k = 12",
+      "output": "6",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findMaxPathScore(vector<vector<int>>& edges, vector<bool>& online, long long k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findMaxPathScore(int[][] edges, boolean[] online, long k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findMaxPathScore(self, edges: List[List[int]], online: List[bool], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def findMaxPathScore(self, edges, online, k):\n        \"\"\"\n        :type edges: List[List[int]]\n        :type online: List[bool]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} edges\n * @param {boolean[]} online\n * @param {number} k\n * @return {number}\n */\nvar findMaxPathScore = function(edges, online, k) {\n    \n};",
+    "typescript": "function findMaxPathScore(edges: number[][], online: boolean[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindMaxPathScore(int[][] edges, bool[] online, long k) {\n        \n    }\n}",
+    "c": "int findMaxPathScore(int** edges, int edgesSize, int* edgesColSize, bool* online, int onlineSize, long long k) {\n    \n}",
+    "golang": "func findMaxPathScore(edges [][]int, online []bool, k int64) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findMaxPathScore(edges: Array<IntArray>, online: BooleanArray, k: Long): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findMaxPathScore(_ edges: [[Int]], _ online: [Bool], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_max_path_score(edges: Vec<Vec<i32>>, online: Vec<bool>, k: i64) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} edges\n# @param {Boolean[]} online\n# @param {Integer} k\n# @return {Integer}\ndef find_max_path_score(edges, online, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $edges\n     * @param Boolean[] $online\n     * @param Integer $k\n     * @return Integer\n     */\n    function findMaxPathScore($edges, $online, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findMaxPathScore(List<List<int>> edges, List<bool> online, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findMaxPathScore(edges: Array[Array[Int]], online: Array[Boolean], k: Long): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_max_path_score(edges :: [[integer]], online :: [boolean], k :: integer) :: integer\n  def find_max_path_score(edges, online, k) do\n    \n  end\nend",
+    "erlang": "-spec find_max_path_score(Edges :: [[integer()]], Online :: [boolean()], K :: integer()) -> integer().\nfind_max_path_score(Edges, Online, K) ->\n  .",
+    "racket": "(define/contract (find-max-path-score edges online k)\n  (-> (listof (listof exact-integer?)) (listof boolean?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[true,true,true,true]\n10",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1,7],[1,4,5],[0,2,6],[2,3,6],[3,4,2],[2,4,6]]\n[true,true,true,false,true]\n12",
+      "expectedOutput": "6"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[true,true,true,true]\n10",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1,7],[1,4,5],[0,2,6],[2,3,6],[3,4,2],[2,4,6]]\n[true,true,true,false,true]\n12",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[true,true,true,true,true,true,true,true]\n10",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[2,2,2,2]\n10",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[0,0,0,0]\n10",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[-1,-1,-1,-1]\n10",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[1,1,1,1]\n10",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[1,2,3,4,5]\n10",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[5,4,3,2,1]\n10",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[-5,-4,-3,-2,-1]\n10",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[1,3,2,5,4]\n10",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[1,1,2,2,3,3]\n10",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[10,20,30,40,50]\n10",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[0,1,0,3,12]\n10",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[1,0,0]\n10",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[1,2,3,4]\n10",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[true,true,true,true]\n0",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[true,true,true,true]\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[true,true,true,true]\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[0,1,5],[1,3,10],[0,2,3],[2,3,4]]\n[true,true,true,true]\n3",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use binary search on <code>ans</code>.",
+    "Check if a particular <code>ans</code> is possible by including only the edges with weights ≥ <code>mid</code> (the current binary‐search pivot).",
+    "Implement the check function using either <code>Dijkstra</code> or DP (via topological sorting, since the graph is a DAG)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/network-recovery-pathways/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.622Z",
+    "sourceUpdatedAt": null
+  }
+}

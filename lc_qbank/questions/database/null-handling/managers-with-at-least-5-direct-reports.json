@@ -1,0 +1,67 @@
+{
+  "id": "570",
+  "slug": "managers-with-at-least-5-direct-reports",
+  "title": "Managers with at Least 5 Direct Reports",
+  "category": "database",
+  "subcategory": "null-handling",
+  "difficulty": "Medium",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Employee`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| id          | int     |\n| name        | varchar |\n| department  | varchar |\n| managerId   | int     |\n+-------------+---------+\nid is the primary key (column with unique values) for this table.\nEach row of this table indicates the name of an employee, their department, and the id of their manager.\nIf managerId is null, then the employee does not have a manager.\nNo employee will be the manager of themself.\n```\n\nWrite a solution to find managers with at least **five direct reports**.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployee table:\n+-----+-------+------------+-----------+\n| id  | name  | department | managerId |\n+-----+-------+------------+-----------+\n| 101 | John  | A          | null      |\n| 102 | Dan   | A          | 101       |\n| 103 | James | A          | 101       |\n| 104 | Amy   | A          | 101       |\n| 105 | Anne  | A          | 101       |\n| 106 | Ron   | B          | 101       |\n+-----+-------+------------+-----------+\nOutput: \n+------+\n| name |\n+------+\n| John |\n+------+\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Employee table:\n+-----+-------+------------+-----------+\n| id  | name  | department | managerId |\n+-----+-------+------------+-----------+\n| 101 | John  | A          | null      |\n| 102 | Dan   | A          | 101       |\n| 103 | James | A          | 101       |\n| 104 | Amy   | A          | 101       |\n| 105 | Anne  | A          | 101       |\n| 106 | Ron   | B          | 101       |\n+-----+-------+------------+-----------+",
+      "output": "+------+\n| name |\n+------+\n| John |\n+------+",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_managers(employee: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"Employee\": [\"id\", \"name\", \"department\", \"managerId\"]}, \"rows\": {\"Employee\": [[101, \"John\", \"A\", null],[102, \"Dan\", \"A\", 101], [103, \"James\", \"A\", 101], [104, \"Amy\", \"A\", 101], [105, \"Anne\", \"A\", 101], [106, \"Ron\", \"B\", 101]]}}",
+      "expectedOutput": "+------+\n| name |\n+------+\n| John |\n+------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"Employee\": [\"id\", \"name\", \"department\", \"managerId\"]}, \"rows\": {\"Employee\": [[101, \"John\", \"A\", null],[102, \"Dan\", \"A\", 101], [103, \"James\", \"A\", 101], [104, \"Amy\", \"A\", 101], [105, \"Anne\", \"A\", 101], [106, \"Ron\", \"B\", 101]]}}",
+      "expectedOutput": "+------+\n| name |\n+------+\n| John |\n+------+"
+    },
+    {
+      "input": "Employee table:\n+-----+-------+------------+-----------+\n| id  | name  | department | managerId |\n+-----+-------+------------+-----------+\n| 101 | John  | A          | null      |\n| 102 | Dan   | A          | 101       |\n| 103 | James | A          | 101       |\n| 104 | Amy   | A          | 101       |\n| 105 | Anne  | A          | 101       |\n| 106 | Ron   | B          | 101       |\n+-----+-------+------------+-----------+",
+      "expectedOutput": "+------+\n| name |\n+------+\n| John |\n+------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Employee (id int, name varchar(255), department varchar(255), managerId int)\n\nTruncate table Employee",
+  "sqlSetup": [
+    "insert into Employee (id, name, department, managerId) values ('101', 'John', 'A', NULL)",
+    "insert into Employee (id, name, department, managerId) values ('102', 'Dan', 'A', '101')",
+    "insert into Employee (id, name, department, managerId) values ('103', 'James', 'A', '101')",
+    "insert into Employee (id, name, department, managerId) values ('104', 'Amy', 'A', '101')",
+    "insert into Employee (id, name, department, managerId) values ('105', 'Anne', 'A', '101')",
+    "insert into Employee (id, name, department, managerId) values ('106', 'Ron', 'B', '101')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try to get all the mangerIDs that have count bigger than 5",
+    "Use the last hint's result as a table and do join with origin table at id equals to managerId",
+    "This is a very good example to show the performance of SQL code. Try to work out other solutions and you may be surprised by running time difference.",
+    "If your solution uses 'IN' function and runs more than 5 seconds, try to optimize it by using 'JOIN' instead."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/managers-with-at-least-5-direct-reports/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.022Z",
+    "sourceUpdatedAt": null
+  }
+}

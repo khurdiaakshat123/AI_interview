@@ -1,0 +1,159 @@
+{
+  "id": "365",
+  "slug": "water-and-jug-problem",
+  "title": "Water and Jug Problem",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Bézout's Lemma",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor",
+    "Extended Euclidean Algorithm"
+  ],
+  "statement": "You are given two jugs with capacities `x` liters and `y` liters. You have an infinite water supply. Return whether the total amount of water in both jugs may reach `target` using the following operations:\n\n*   Fill either jug completely with water.\n*   Completely empty either jug.\n*   Pour water from one jug into another until the receiving jug is full, or the transferring jug is empty.\n\n**Example 1:**\n\n**Input:** x = 3, y = 5, target = 4\n\n**Output:** true\n\n**Explanation:**\n\nFollow these steps to reach a total of 4 liters:\n\n1.  Fill the 5-liter jug (0, 5).\n2.  Pour from the 5-liter jug into the 3-liter jug, leaving 2 liters (3, 2).\n3.  Empty the 3-liter jug (0, 2).\n4.  Transfer the 2 liters from the 5-liter jug to the 3-liter jug (2, 0).\n5.  Fill the 5-liter jug again (2, 5).\n6.  Pour from the 5-liter jug into the 3-liter jug until the 3-liter jug is full. This leaves 4 liters in the 5-liter jug (3, 4).\n7.  Empty the 3-liter jug. Now, you have exactly 4 liters in the 5-liter jug (0, 4).\n\nReference: The [Die Hard](https://www.youtube.com/watch?v=BVtQNK_ZUJg&ab_channel=notnek01) example.\n\n**Example 2:**\n\n**Input:** x = 2, y = 6, target = 5\n\n**Output:** false\n\n**Example 3:**\n\n**Input:** x = 1, y = 2, target = 3\n\n**Output:** true\n\n**Explanation:** Fill both jugs. The total amount of water in both jugs is equal to 3 now.\n\n**Constraints:**\n\n*   `1 <= x, y, target <= 10^(3)`",
+  "constraints": [
+    "1 <= x, y, target <= 103"
+  ],
+  "examples": [
+    {
+      "input": "x = 3, y = 5, target = 4",
+      "output": "true",
+      "explanation": null
+    },
+    {
+      "input": "x = 2, y = 6, target = 5",
+      "output": "false",
+      "explanation": null
+    },
+    {
+      "input": "x = 1, y = 2, target = 3",
+      "output": "true",
+      "explanation": "Fill both jugs. The total amount of water in both jugs is equal to 3 now."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool canMeasureWater(int x, int y, int target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canMeasureWater(int x, int y, int target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canMeasureWater(self, x: int, y: int, target: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canMeasureWater(self, x, y, target):\n        \"\"\"\n        :type x: int\n        :type y: int\n        :type target: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} x\n * @param {number} y\n * @param {number} target\n * @return {boolean}\n */\nvar canMeasureWater = function(x, y, target) {\n    \n};",
+    "typescript": "function canMeasureWater(x: number, y: number, target: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanMeasureWater(int x, int y, int target) {\n        \n    }\n}",
+    "c": "bool canMeasureWater(int x, int y, int target) {\n    \n}",
+    "golang": "func canMeasureWater(x int, y int, target int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canMeasureWater(x: Int, y: Int, target: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canMeasureWater(_ x: Int, _ y: Int, _ target: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_measure_water(x: i32, y: i32, target: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer} x\n# @param {Integer} y\n# @param {Integer} target\n# @return {Boolean}\ndef can_measure_water(x, y, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $x\n     * @param Integer $y\n     * @param Integer $target\n     * @return Boolean\n     */\n    function canMeasureWater($x, $y, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canMeasureWater(int x, int y, int target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canMeasureWater(x: Int, y: Int, target: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_measure_water(x :: integer, y :: integer, target :: integer) :: boolean\n  def can_measure_water(x, y, target) do\n    \n  end\nend",
+    "erlang": "-spec can_measure_water(X :: integer(), Y :: integer(), Target :: integer()) -> boolean().\ncan_measure_water(X, Y, Target) ->\n  .",
+    "racket": "(define/contract (can-measure-water x y target)\n  (-> exact-integer? exact-integer? exact-integer? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n5\n4",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n5\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "0\n5\n4",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "1\n5\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "2\n5\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "4\n5\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "5\n5\n4",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "6\n5\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "7\n5\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "8\n5\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "-1\n5\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "-2\n5\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "3\n0\n4",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "3\n1\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "3\n2\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "3\n3\n4",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "3\n4\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "3\n6\n4",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "3\n7\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "3\n8\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "3\n9\n4",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/water-and-jug-problem/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.657Z",
+    "sourceUpdatedAt": null
+  }
+}

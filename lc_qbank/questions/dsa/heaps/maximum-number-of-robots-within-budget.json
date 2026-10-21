@@ -1,0 +1,165 @@
+{
+  "id": "2398",
+  "slug": "maximum-number-of-robots-within-budget",
+  "title": "Maximum Number of Robots Within Budget",
+  "category": "dsa",
+  "subcategory": "heaps",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Queue",
+    "Sliding Window",
+    "Heap (Priority Queue)",
+    "Prefix Sum",
+    "Monotonic Queue"
+  ],
+  "statement": "You have `n` robots. You are given two **0-indexed** integer arrays, `chargeTimes` and `runningCosts`, both of length `n`. The `i^(th)` robot costs `chargeTimes[i]` units to charge and costs `runningCosts[i]` units to run. You are also given an integer `budget`.\n\nThe **total cost** of running `k` chosen robots is equal to `max(chargeTimes) + k * sum(runningCosts)`, where `max(chargeTimes)` is the largest charge cost among the `k` robots and `sum(runningCosts)` is the sum of running costs among the `k` robots.\n\nReturn _the **maximum** number of **consecutive** robots you can run such that the total cost **does not** exceed_ `budget`.\n\n**Example 1:**\n\n```\nInput: chargeTimes = [3,6,1,3,4], runningCosts = [2,1,3,4,5], budget = 25\nOutput: 3\nExplanation: \nIt is possible to run all individual and consecutive pairs of robots within budget.\nTo obtain answer 3, consider the first 3 robots. The total cost will be max(3,6,1) + 3 * sum(2,1,3) = 6 + 3 * 6 = 24 which is less than 25.\nIt can be shown that it is not possible to run more than 3 consecutive robots within budget, so we return 3.\n```\n\n**Example 2:**\n\n```\nInput: chargeTimes = [11,12,19], runningCosts = [10,8,7], budget = 19\nOutput: 0\nExplanation: No robot can be run that does not exceed the budget, so we return 0.\n```\n\n**Constraints:**\n\n*   `chargeTimes.length == runningCosts.length == n`\n*   `1 <= n <= 5 * 10^(4)`\n*   `1 <= chargeTimes[i], runningCosts[i] <= 10^(5)`\n*   `1 <= budget <= 10^(15)`",
+  "constraints": [
+    "chargeTimes.length == runningCosts.length == n",
+    "1 <= n <= 5 * 104",
+    "1 <= chargeTimes[i], runningCosts[i] <= 105",
+    "1 <= budget <= 1015"
+  ],
+  "examples": [
+    {
+      "input": "chargeTimes = [3,6,1,3,4], runningCosts = [2,1,3,4,5], budget = 25",
+      "output": "3",
+      "explanation": "It is possible to run all individual and consecutive pairs of robots within budget.\nTo obtain answer 3, consider the first 3 robots. The total cost will be max(3,6,1) + 3 * sum(2,1,3) = 6 + 3 * 6 = 24 which is less than 25.\nIt can be shown that it is not possible to run more than 3 consecutive robots within budget, so we return 3."
+    },
+    {
+      "input": "chargeTimes = [11,12,19], runningCosts = [10,8,7], budget = 19",
+      "output": "0",
+      "explanation": "No robot can be run that does not exceed the budget, so we return 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumRobots(vector<int>& chargeTimes, vector<int>& runningCosts, long long budget) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumRobots(int[] chargeTimes, int[] runningCosts, long budget) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumRobots(self, chargeTimes: list[int], runningCosts: list[int], budget: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumRobots(self, chargeTimes, runningCosts, budget):\n        \"\"\"\n        :type chargeTimes: List[int]\n        :type runningCosts: List[int]\n        :type budget: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} chargeTimes\n * @param {number[]} runningCosts\n * @param {number} budget\n * @return {number}\n */\nvar maximumRobots = function(chargeTimes, runningCosts, budget) {\n    \n};",
+    "typescript": "function maximumRobots(chargeTimes: number[], runningCosts: number[], budget: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumRobots(int[] chargeTimes, int[] runningCosts, long budget) {\n        \n    }\n}",
+    "c": "int maximumRobots(int* chargeTimes, int chargeTimesSize, int* runningCosts, int runningCostsSize, long long budget) {\n    \n}",
+    "golang": "func maximumRobots(chargeTimes []int, runningCosts []int, budget int64) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumRobots(chargeTimes: IntArray, runningCosts: IntArray, budget: Long): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumRobots(_ chargeTimes: [Int], _ runningCosts: [Int], _ budget: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_robots(charge_times: Vec<i32>, running_costs: Vec<i32>, budget: i64) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} charge_times\n# @param {Integer[]} running_costs\n# @param {Integer} budget\n# @return {Integer}\ndef maximum_robots(charge_times, running_costs, budget)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $chargeTimes\n     * @param Integer[] $runningCosts\n     * @param Integer $budget\n     * @return Integer\n     */\n    function maximumRobots($chargeTimes, $runningCosts, $budget) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumRobots(List<int> chargeTimes, List<int> runningCosts, int budget) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumRobots(chargeTimes: Array[Int], runningCosts: Array[Int], budget: Long): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_robots(charge_times :: [integer], running_costs :: [integer], budget :: integer) :: integer\n  def maximum_robots(charge_times, running_costs, budget) do\n    \n  end\nend",
+    "erlang": "-spec maximum_robots(ChargeTimes :: [integer()], RunningCosts :: [integer()], Budget :: integer()) -> integer().\nmaximum_robots(ChargeTimes, RunningCosts, Budget) ->\n  .",
+    "racket": "(define/contract (maximum-robots chargeTimes runningCosts budget)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,6,1,3,4]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[11,12,19]\n[10,8,7]\n19",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,6,1,3,4]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[11,12,19]\n[10,8,7]\n19",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,6]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,3,4]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,4]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,3,1,6,3]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,3,3,4,6]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,4,3,3,1]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,3,3,3,3]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,6,1,3,4,3,6,1,3,4]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,12,2,6,8]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,7,2,4,5]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,5,0,2,3]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-3,-6,-1,-3,-4]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0,0]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1,1]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n[2,1,3,4,5]\n25",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use binary search to convert the problem into checking if we can find a specific number of consecutive robots within the budget.",
+    "Maintain a sliding window of the consecutive robots being considered.",
+    "Use either a map, deque, or heap to find the maximum charge times in the window efficiently."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-robots-within-budget/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.169Z",
+    "sourceUpdatedAt": null
+  }
+}

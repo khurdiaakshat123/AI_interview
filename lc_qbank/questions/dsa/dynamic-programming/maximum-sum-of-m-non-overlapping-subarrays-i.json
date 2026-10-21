@@ -1,0 +1,135 @@
+{
+  "id": "3956",
+  "slug": "maximum-sum-of-m-non-overlapping-subarrays-i",
+  "title": "Maximum Sum of M Non-Overlapping Subarrays I",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Queue",
+    "Sliding Window",
+    "Prefix Sum",
+    "Monotonic Queue"
+  ],
+  "statement": "You are given an integer array `nums` of length `n`, and three integers `m`, `l`, and `r`.\n\nYour task is to select **at least** one and **at most** `m` **non-overlapping subarrays** from `nums` such that:\n\n*   Each selected **subarray** has a length between `[l, r]` (inclusive).\n*   The total sum of all selected **subarrays** is **maximized**.\n\nReturn the **maximum** total sum you can achieve.\n\n**Example 1:**\n\n**Input:** nums = \\[4,1,-5,2\\], m = 2, l = 1, r = 3\n\n**Output:** 7\n\n**Explanation:**\n\nOne optimal strategy is to:\n\n*   Select the subarray `[4, 1]` with sum `4 + 1 = 5` and the subarray `[2]` with sum 2. Both subarrays have length between `[l, r]`.\n*   The total sum of these subarrays is `5 + 2 = 7`, which is the maximum achievable sum with at most `m = 2` subarrays.\n\n**Example 2:**\n\n**Input:** nums = \\[1,0,3,4\\], m = 2, l = 1, r = 2\n\n**Output:** 8\n\n**Explanation:**\n\nOne optimal strategy is to:\n\n*   Select the subarray `[1]` with sum `1` and the subarray `[3, 4]` with sum `3 + 4 = 7`. Both subarrays have length between `[l, r]`.\n*   The total sum of these subarrays is `1 + 7 = 8`, which is the maximum achievable sum with at most `m = 2` subarrays.\n\n**Example 3:**\n\n**Input:** nums = \\[-1,7,-4\\], m = 1, l = 2, r = 3\n\n**Output:** 6\n\n**Explanation:**\n\n*   Select the subarray `[-1, 7]` from `nums` which has length between `[l, r]`.\n*   The total sum of this subarray is `-1 + 7 = 6`, which is the maximum achievable sum with at most `m = 1` subarray.\n\n**Example 4:**\n\n**Input:** nums = \\[-3,-4,-1\\], m = 2, l = 1, r = 2\n\n**Output:** \\-1\n\n**Explanation:**\n\n*   All subarrays of `nums` have negative sums. The optimal strategy is to select the subarray `[-1]`, which has length between `[l, r]`.\n*   The total sum of this subarray is -1, which is the maximum achievable sum with at most `m = 2` subarrays.\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 1000`\n*   `-10^(9) <= nums[i] <= 10^(9)​​​​​​​`\n*   `1 <= m <= n`\n*   `1 <= l <= r <= n`",
+  "constraints": [
+    "1 <= n == nums.length <= 1000",
+    "-109 <= nums[i] <= 109​​​​​​​",
+    "1 <= m <= n",
+    "1 <= l <= r <= n"
+  ],
+  "examples": [
+    {
+      "input": "nums = [4,1,-5,2], m = 2, l = 1, r = 3",
+      "output": "7",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,0,3,4], m = 2, l = 1, r = 2",
+      "output": "8",
+      "explanation": null
+    },
+    {
+      "input": "nums = [-1,7,-4], m = 1, l = 2, r = 3",
+      "output": "6",
+      "explanation": "Select the subarray [-1, 7] from nums which has length between [l, r].\n\tThe total sum of this subarray is -1 + 7 = 6, which is the maximum achievable sum with at most m = 1 subarray."
+    },
+    {
+      "input": "nums = [-3,-4,-1], m = 2, l = 1, r = 2",
+      "output": "-1",
+      "explanation": "All subarrays of nums have negative sums. The optimal strategy is to select the subarray [-1], which has length between [l, r].\n\tThe total sum of this subarray is -1, which is the maximum achievable sum with at most m = 2 subarrays."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maximumSum(vector<int>& nums, int m, int l, int r) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maximumSum(int[] nums, int m, int l, int r) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumSum(self, nums: List[int], m: int, l: int, r: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumSum(self, nums, m, l, r):\n        \"\"\"\n        :type nums: List[int]\n        :type m: int\n        :type l: int\n        :type r: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} m\n * @param {number} l\n * @param {number} r\n * @return {number}\n */\nvar maximumSum = function(nums, m, l, r) {\n    \n};",
+    "typescript": "function maximumSum(nums: number[], m: number, l: number, r: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaximumSum(int[] nums, int m, int l, int r) {\n        \n    }\n}",
+    "c": "long long maximumSum(int* nums, int numsSize, int m, int l, int r) {\n    \n}",
+    "golang": "func maximumSum(nums []int, m int, l int, r int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumSum(nums: IntArray, m: Int, l: Int, r: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumSum(_ nums: [Int], _ m: Int, _ l: Int, _ r: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_sum(nums: Vec<i32>, m: i32, l: i32, r: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} m\n# @param {Integer} l\n# @param {Integer} r\n# @return {Integer}\ndef maximum_sum(nums, m, l, r)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $m\n     * @param Integer $l\n     * @param Integer $r\n     * @return Integer\n     */\n    function maximumSum($nums, $m, $l, $r) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumSum(List<int> nums, int m, int l, int r) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumSum(nums: Array[Int], m: Int, l: Int, r: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_sum(nums :: [integer], m :: integer, l :: integer, r :: integer) :: integer\n  def maximum_sum(nums, m, l, r) do\n    \n  end\nend",
+    "erlang": "-spec maximum_sum(Nums :: [integer()], M :: integer(), L :: integer(), R :: integer()) -> integer().\nmaximum_sum(Nums, M, L, R) ->\n  .",
+    "racket": "(define/contract (maximum-sum nums m l r)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[4,1,-5,2]\n2\n1\n3",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,0,3,4]\n2\n1\n2",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[-1,7,-4]\n1\n2\n3",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[-3,-4,-1]\n2\n1\n2",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[4,1,-5,2]\n2\n1\n3",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,0,3,4]\n2\n1\n2",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[-1,7,-4]\n1\n2\n3",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[-3,-4,-1]\n2\n1\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "nums = [4,1,-5,2], m = 2, l = 1, r = 3",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "nums = [1,0,3,4], m = 2, l = 1, r = 2",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "nums = [-1,7,-4], m = 1, l = 2, r = 3",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "nums = [-3,-4,-1], m = 2, l = 1, r = 2",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let <code>dp[c][i]</code> be the maximum sum using at most <code>c</code> subarrays among the first <code>i</code> elements.",
+    "A subarray ending at <code>i</code> and starting at <code>j</code> contributes <code>prefix[i] - prefix[j]</code>, where <code>l <= i - j <= r</code>.",
+    "Rewrite the transition as <code>prefix[i] + max(dp[c - 1][j] - prefix[j])</code>, and maintain this maximum with a deque."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-sum-of-m-non-overlapping-subarrays-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.745Z",
+    "sourceUpdatedAt": null
+  }
+}

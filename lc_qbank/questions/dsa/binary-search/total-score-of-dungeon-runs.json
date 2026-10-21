@@ -1,0 +1,97 @@
+{
+  "id": "3771",
+  "slug": "total-score-of-dungeon-runs",
+  "title": "Total Score of Dungeon Runs",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a **positive** integer `hp` and two **positive** **1-indexed** integer arrays `damage` and `requirement`.\n\nThere is a dungeon with `n` trap rooms numbered from 1 to `n`. Entering room `i` reduces your health points by `damage[i]`. After that reduction, if your remaining health points are **at least** `requirement[i]`, you earn **1 point** for that room.\n\nLet `score(j)` be the number of **points** you get if you start with `hp` health points and enter the rooms `j`, `j + 1`, ..., `n` in this order.\n\nReturn the integer `score(1) + score(2) + ... + score(n)`, the sum of scores over all starting rooms.\n\n**Note**: You cannot skip rooms. You can finish your journey even if your health points become non-positive.\n\n**Example 1:**\n\n**Input:** hp = 11, damage = \\[3,6,7\\], requirement = \\[4,2,5\\]\n\n**Output:** 3\n\n**Explanation:**\n\n`score(1) = 2`, `score(2) = 1`, `score(3) = 0`. The total score is `2 + 1 + 0 = 3`.\n\nAs an example, `score(1) = 2` because you get 2 points if you start from room 1.\n\n*   You start with 11 health points.\n*   Enter room 1. Your health points are now `11 - 3 = 8`. You get 1 point because `8 >= 4`.\n*   Enter room 2. Your health points are now `8 - 6 = 2`. You get 1 point because `2 >= 2`.\n*   Enter room 3. Your health points are now `2 - 7 = -5`. You do not get any points because `-5 < 5`.\n\n**Example 2:**\n\n**Input:** hp = 2, damage = \\[10000,1\\], requirement = \\[1,1\\]\n\n**Output:** 1\n\n**Explanation:**\n\n`score(1) = 0`, `score(2) = 1`. The total score is `0 + 1 = 1`.\n\n`score(1) = 0` because you do not get any points if you start from room 1.\n\n*   You start with 2 health points.\n*   Enter room 1. Your health points are now `2 - 10000 = -9998`. You do not get any points because `-9998 < 1`.\n*   Enter room 2. Your health points are now `-9998 - 1 = -9999`. You do not get any points because `-9999 < 1`.\n\n`score(2) = 1` because you get 1 point if you start from room 2.\n\n*   You start with 2 health points.\n*   Enter room 2. Your health points are now `2 - 1 = 1`. You get 1 point because `1 >= 1`.\n\n**Constraints:**\n\n*   `1 <= hp <= 10^(9)`\n*   `1 <= n == damage.length == requirement.length <= 10^(5)`\n*   `1 <= damage[i], requirement[i] <= 10^(4)`",
+  "constraints": [
+    "1 <= hp <= 109",
+    "1 <= n == damage.length == requirement.length <= 105",
+    "1 <= damage[i], requirement[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "hp = 11, damage = [3,6,7], requirement = [4,2,5]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "hp = 2, damage = [10000,1], requirement = [1,1]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long totalScore(int hp, vector<int>& damage, vector<int>& requirement) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long totalScore(int hp, int[] damage, int[] requirement) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def totalScore(self, hp: int, damage: List[int], requirement: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def totalScore(self, hp, damage, requirement):\n        \"\"\"\n        :type hp: int\n        :type damage: List[int]\n        :type requirement: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} hp\n * @param {number[]} damage\n * @param {number[]} requirement\n * @return {number}\n */\nvar totalScore = function(hp, damage, requirement) {\n    \n};",
+    "typescript": "function totalScore(hp: number, damage: number[], requirement: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long TotalScore(int hp, int[] damage, int[] requirement) {\n        \n    }\n}",
+    "c": "long long totalScore(int hp, int* damage, int damageSize, int* requirement, int requirementSize) {\n    \n}",
+    "golang": "func totalScore(hp int, damage []int, requirement []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun totalScore(hp: Int, damage: IntArray, requirement: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func totalScore(_ hp: Int, _ damage: [Int], _ requirement: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn total_score(hp: i32, damage: Vec<i32>, requirement: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} hp\n# @param {Integer[]} damage\n# @param {Integer[]} requirement\n# @return {Integer}\ndef total_score(hp, damage, requirement)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $hp\n     * @param Integer[] $damage\n     * @param Integer[] $requirement\n     * @return Integer\n     */\n    function totalScore($hp, $damage, $requirement) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int totalScore(int hp, List<int> damage, List<int> requirement) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def totalScore(hp: Int, damage: Array[Int], requirement: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec total_score(hp :: integer, damage :: [integer], requirement :: [integer]) :: integer\n  def total_score(hp, damage, requirement) do\n    \n  end\nend",
+    "erlang": "-spec total_score(Hp :: integer(), Damage :: [integer()], Requirement :: [integer()]) -> integer().\ntotal_score(Hp, Damage, Requirement) ->\n  .",
+    "racket": "(define/contract (total-score hp damage requirement)\n  (-> exact-integer? (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "11\n[3,6,7]\n[4,2,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "2\n[10000,1]\n[1,1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "11\n[3,6,7]\n[4,2,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "2\n[10000,1]\n[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "hp = 11, damage = [3,6,7], requirement = [4,2,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "hp = 2, damage = [10000,1], requirement = [1,1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use prefix sums on the damage. Create <code>pref</code> with the prefix sums.",
+    "Initially, the total points/score is the total number of subarrays <code>n * (n + 1) / 2</code>.",
+    "We need to subtract subarrays <code>[i, j]</code> that do not satisfy <code>hp - (pref[j] - pref[i-1]) >= requirement[j]</code>. The inequality is equivalent to <code>pref[i-1] >= requirement[j] - hp + pref[j]</code>.",
+    "For each <code>j</code>, count the previous <code>i</code>s with <code>pref[i-1] < requirement[j] - hp + pref[j]</code> using binary search or an ordered data structure."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/total-score-of-dungeon-runs/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.134Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "id": "3715",
+  "slug": "sum-of-perfect-square-ancestors",
+  "title": "Sum of Perfect Square Ancestors",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Tree",
+    "Depth-First Search",
+    "Counting",
+    "Number Theory"
+  ],
+  "statement": "You are given an integer `n` and an undirected tree rooted at node 0 with `n` nodes numbered from 0 to `n - 1`. This is represented by a 2D array `edges` of length `n - 1`, where `edges[i] = [u_(i), v_(i)]` indicates an undirected edge between nodes `u_(i)` and `v_(i)`.\n\nYou are also given an integer array `nums`, where `nums[i]` is the positive integer assigned to node `i`.\n\nDefine a value `t_(i)` as the number of **ancestors** of node `i` such that the product `nums[i] * nums[ancestor]` is a **perfect square**.\n\nReturn the sum of all `t_(i)` values for all nodes `i` in range `[1, n - 1]`.\n\n**Note**:\n\n*   In a rooted tree, the **ancestors** of node `i` are all nodes on the path from node `i` to the root node 0, **excluding** `i` itself.\n\n**Example 1:**\n\n**Input:** n = 3, edges = \\[\\[0,1\\],\\[1,2\\]\\], nums = \\[2,8,2\\]\n\n**Output:** 3\n\n**Explanation:**\n\n`**i**`\n\n**Ancestors**\n\n`**nums[i] * nums[ancestor]**`\n\nSquare Check\n\n`**t_(i)**`\n\n1\n\n\\[0\\]\n\n`nums[1] * nums[0] = 8 * 2 = 16`\n\n16 is a perfect square\n\n1\n\n2\n\n\\[1, 0\\]\n\n`nums[2] * nums[1] = 2 * 8 = 16`  \n`nums[2] * nums[0] = 2 * 2 = 4`\n\nBoth 4 and 16 are perfect squares\n\n2\n\nThus, the total number of valid ancestor pairs across all non-root nodes is `1 + 2 = 3`.\n\n**Example 2:**\n\n**Input:** n = 3, edges = \\[\\[0,1\\],\\[0,2\\]\\], nums = \\[1,2,4\\]\n\n**Output:** 1\n\n**Explanation:**\n\n`**i**`\n\n**Ancestors**\n\n`**nums[i] * nums[ancestor]**`\n\nSquare Check\n\n`**t_(i)**`\n\n1\n\n\\[0\\]\n\n`nums[1] * nums[0] = 2 * 1 = 2`\n\n2 is **not** a perfect square\n\n0\n\n2\n\n\\[0\\]\n\n`nums[2] * nums[0] = 4 * 1 = 4`\n\n4 is a perfect square\n\n1\n\nThus, the total number of valid ancestor pairs across all non-root nodes is 1.\n\n**Example 3:**\n\n**Input:** n = 4, edges = \\[\\[0,1\\],\\[0,2\\],\\[1,3\\]\\], nums = \\[1,2,9,4\\]\n\n**Output:** 2\n\n**Explanation:**\n\n`i`\n\n**Ancestors**\n\n`**nums[i] * nums[ancestor]**`\n\nSquare Check\n\n`**t_(i)**`\n\n1\n\n\\[0\\]\n\n`nums[1] * nums[0] = 2 * 1 = 2`\n\n2 is **not** a perfect square\n\n0\n\n2\n\n\\[0\\]\n\n`nums[2] * nums[0] = 9 * 1 = 9`\n\n9 is a perfect square\n\n1\n\n3\n\n\\[1, 0\\]\n\n`nums[3] * nums[1] = 4 * 2 = 8`  \n`nums[3] * nums[0] = 4 * 1 = 4`\n\nOnly 4 is a perfect square\n\n1\n\nThus, the total number of valid ancestor pairs across all non-root nodes is `0 + 1 + 1 = 2`.\n\n**Constraints:**\n\n*   `1 <= n <= 10^(5)`\n*   `edges.length == n - 1`\n*   `edges[i] = [u_(i), v_(i)]`\n*   `0 <= u_(i), v_(i) <= n - 1`\n*   `nums.length == n`\n*   `1 <= nums[i] <= 10^(5)`\n*   The input is generated such that `edges` represents a valid tree.",
+  "constraints": [
+    "1 <= n <= 105",
+    "edges.length == n - 1",
+    "edges[i] = [ui, vi]",
+    "0 <= ui, vi <= n - 1",
+    "nums.length == n",
+    "1 <= nums[i] <= 105",
+    "The input is generated such that edges represents a valid tree."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], nums = [2,8,2]",
+      "output": "3",
+      "explanation": "i\n\t\t\tAncestors\n\t\t\tnums[i] * nums[ancestor]\n\t\t\tSquare Check\n\t\t\tti\n\t\t\n\t\n\t\n\t\t\n\t\t\t1\n\t\t\t[0]\n\t\t\tnums[1] * nums[0] = 8 * 2 = 16\n\t\t\t16 is a perfect square\n\t\t\t1\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[1, 0]\n\t\t\tnums[2] * nums[1] = 2 * 8 = 16\n\t\t\tnums[2] * nums[0] = 2 * 2 = 4\n\t\t\tBoth 4 and 16 are perfect squares\n\t\t\t2"
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[0,2]], nums = [1,2,4]",
+      "output": "1",
+      "explanation": "i\n\t\t\tAncestors\n\t\t\tnums[i] * nums[ancestor]\n\t\t\tSquare Check\n\t\t\tti\n\t\t\n\t\n\t\n\t\t\n\t\t\t1\n\t\t\t[0]\n\t\t\tnums[1] * nums[0] = 2 * 1 = 2\n\t\t\t2 is not a perfect square\n\t\t\t0\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[0]\n\t\t\tnums[2] * nums[0] = 4 * 1 = 4\n\t\t\t4 is a perfect square\n\t\t\t1\n\t\t\n\t\n\n\nThus, the total number of valid ancestor pairs across all non-root nodes is 1."
+    },
+    {
+      "input": "n = 4, edges = [[0,1],[0,2],[1,3]], nums = [1,2,9,4]",
+      "output": "2",
+      "explanation": "i\n\t\t\tAncestors\n\t\t\tnums[i] * nums[ancestor]\n\t\t\tSquare Check\n\t\t\tti\n\t\t\n\t\n\t\n\t\t\n\t\t\t1\n\t\t\t[0]\n\t\t\tnums[1] * nums[0] = 2 * 1 = 2\n\t\t\t2 is not a perfect square\n\t\t\t0\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[0]\n\t\t\tnums[2] * nums[0] = 9 * 1 = 9\n\t\t\t9 is a perfect square\n\t\t\t1\n\t\t\n\t\t\n\t\t\t3\n\t\t\t[1, 0]\n\t\t\tnums[3] * nums[1] = 4 * 2 = 8\n\t\t\tnums[3] * nums[0] = 4 * 1 = 4\n\t\t\tOnly 4 is a perfect square\n\t\t\t1"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long sumOfAncestors(int n, vector<vector<int>>& edges, vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long sumOfAncestors(int n, int[][] edges, int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sumOfAncestors(self, n: int, edges: List[List[int]], nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def sumOfAncestors(self, n, edges, nums):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number[]} nums\n * @return {number}\n */\nvar sumOfAncestors = function(n, edges, nums) {\n    \n};",
+    "typescript": "function sumOfAncestors(n: number, edges: number[][], nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long SumOfAncestors(int n, int[][] edges, int[] nums) {\n        \n    }\n}",
+    "c": "long long sumOfAncestors(int n, int** edges, int edgesSize, int* edgesColSize, int* nums, int numsSize) {\n    \n}",
+    "golang": "func sumOfAncestors(n int, edges [][]int, nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun sumOfAncestors(n: Int, edges: Array<IntArray>, nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sumOfAncestors(_ n: Int, _ edges: [[Int]], _ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sum_of_ancestors(n: i32, edges: Vec<Vec<i32>>, nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Integer[]} nums\n# @return {Integer}\ndef sum_of_ancestors(n, edges, nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function sumOfAncestors($n, $edges, $nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int sumOfAncestors(int n, List<List<int>> edges, List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sumOfAncestors(n: Int, edges: Array[Array[Int]], nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sum_of_ancestors(n :: integer, edges :: [[integer]], nums :: [integer]) :: integer\n  def sum_of_ancestors(n, edges, nums) do\n    \n  end\nend",
+    "erlang": "-spec sum_of_ancestors(N :: integer(), Edges :: [[integer()]], Nums :: [integer()]) -> integer().\nsum_of_ancestors(N, Edges, Nums) ->\n  .",
+    "racket": "(define/contract (sum-of-ancestors n edges nums)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1],[1,2]]\n[2,8,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "3\n[[0,1],[0,2]]\n[1,2,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "4\n[[0,1],[0,2],[1,3]]\n[1,2,9,4]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1],[1,2]]\n[2,8,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "3\n[[0,1],[0,2]]\n[1,2,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "4\n[[0,1],[0,2],[1,3]]\n[1,2,9,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], nums = [2,8,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[0,2]], nums = [1,2,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "n = 4, edges = [[0,1],[0,2],[1,3]], nums = [1,2,9,4]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Notice that the product <code>nums[i] * nums[ancestor]</code> is a perfect square if and only if both numbers have the same \"square-free kernel\" (i.e., after removing all even powers of primes, the remaining product is identical).",
+    "Precompute the square-free representation of every node's value using prime factorization up to <code>max(nums[i])</code>.",
+    "Perform a DFS from the root. While traversing down the tree, maintain a frequency map of the square-free values of the ancestors.",
+    "For each node, the number of valid ancestors equals the count of ancestors with the same square-free value.",
+    "Carefully backtrack the frequency map after finishing a subtree to maintain correctness."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sum-of-perfect-square-ancestors/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.669Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "id": "2117",
+  "slug": "abbreviating-the-product-of-a-range",
+  "title": "Abbreviating the Product of a Range",
+  "category": "dsa",
+  "subcategory": "mathematics",
+  "difficulty": "Hard",
+  "tags": [
+    "Math",
+    "Number Theory"
+  ],
+  "statement": "You are given two positive integers `left` and `right` with `left <= right`. Calculate the **product** of all integers in the **inclusive** range `[left, right]`.\n\nSince the product may be very large, you will **abbreviate** it following these steps:\n\n1.  Count all **trailing** zeros in the product and **remove** them. Let us denote this count as `C`.\n    *   For example, there are `3` trailing zeros in `1000`, and there are `0` trailing zeros in `546`.\n2.  Denote the remaining number of digits in the product as `d`. If `d > 10`, then express the product as `<pre>...<suf>` where `<pre>` denotes the **first** `5` digits of the product, and `<suf>` denotes the **last** `5` digits of the product **after** removing all trailing zeros. If `d <= 10`, we keep it unchanged.\n    *   For example, we express `1234567654321` as `12345...54321`, but `1234567` is represented as `1234567`.\n3.  Finally, represent the product as a **string** `\"<pre>...<suf>eC\"`.\n    *   For example, `12345678987600000` will be represented as `\"12345...89876e5\"`.\n\nReturn _a string denoting the **abbreviated product** of all integers in the **inclusive** range_ `[left, right]`.\n\n**Example 1:**\n\n```\nInput: left = 1, right = 4\nOutput: \"24e0\"\nExplanation: The product is 1 × 2 × 3 × 4 = 24.\nThere are no trailing zeros, so 24 remains the same. The abbreviation will end with \"e0\".\nSince the number of digits is 2, which is less than 10, we do not have to abbreviate it further.\nThus, the final representation is \"24e0\".\n```\n\n**Example 2:**\n\n```\nInput: left = 2, right = 11\nOutput: \"399168e2\"\nExplanation: The product is 39916800.\nThere are 2 trailing zeros, which we remove to get 399168. The abbreviation will end with \"e2\".\nThe number of digits after removing the trailing zeros is 6, so we do not abbreviate it further.\nHence, the abbreviated product is \"399168e2\".\n```\n\n**Example 3:**\n\n```\nInput: left = 371, right = 375\nOutput: \"7219856259e3\"\nExplanation: The product is 7219856259000.\n```\n\n**Constraints:**\n\n*   `1 <= left <= right <= 10^(4)`",
+  "constraints": [
+    "1 <= left <= right <= 104"
+  ],
+  "examples": [
+    {
+      "input": "left = 1, right = 4",
+      "output": "\"24e0\"",
+      "explanation": "The product is 1 × 2 × 3 × 4 = 24.\nThere are no trailing zeros, so 24 remains the same. The abbreviation will end with \"e0\".\nSince the number of digits is 2, which is less than 10, we do not have to abbreviate it further.\nThus, the final representation is \"24e0\"."
+    },
+    {
+      "input": "left = 2, right = 11",
+      "output": "\"399168e2\"",
+      "explanation": "The product is 39916800.\nThere are 2 trailing zeros, which we remove to get 399168. The abbreviation will end with \"e2\".\nThe number of digits after removing the trailing zeros is 6, so we do not abbreviate it further.\nHence, the abbreviated product is \"399168e2\"."
+    },
+    {
+      "input": "left = 371, right = 375",
+      "output": "\"7219856259e3\"",
+      "explanation": "The product is 7219856259000."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string abbreviateProduct(int left, int right) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String abbreviateProduct(int left, int right) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def abbreviateProduct(self, left: int, right: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def abbreviateProduct(self, left, right):\n        \"\"\"\n        :type left: int\n        :type right: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} left\n * @param {number} right\n * @return {string}\n */\nvar abbreviateProduct = function(left, right) {\n    \n};",
+    "typescript": "function abbreviateProduct(left: number, right: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string AbbreviateProduct(int left, int right) {\n        \n    }\n}",
+    "c": "char* abbreviateProduct(int left, int right) {\n    \n}",
+    "golang": "func abbreviateProduct(left int, right int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun abbreviateProduct(left: Int, right: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func abbreviateProduct(_ left: Int, _ right: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn abbreviate_product(left: i32, right: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {Integer} left\n# @param {Integer} right\n# @return {String}\ndef abbreviate_product(left, right)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $left\n     * @param Integer $right\n     * @return String\n     */\n    function abbreviateProduct($left, $right) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String abbreviateProduct(int left, int right) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def abbreviateProduct(left: Int, right: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec abbreviate_product(left :: integer, right :: integer) :: String.t\n  def abbreviate_product(left, right) do\n    \n  end\nend",
+    "erlang": "-spec abbreviate_product(Left :: integer(), Right :: integer()) -> unicode:unicode_binary().\nabbreviate_product(Left, Right) ->\n  .",
+    "racket": "(define/contract (abbreviate-product left right)\n  (-> exact-integer? exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "1\n4",
+      "expectedOutput": "\"24e0\""
+    },
+    {
+      "input": "2\n11",
+      "expectedOutput": "\"399168e2\""
+    },
+    {
+      "input": "371\n375",
+      "expectedOutput": "\"7219856259e3\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "1\n4",
+      "expectedOutput": "\"24e0\""
+    },
+    {
+      "input": "2\n11",
+      "expectedOutput": "\"399168e2\""
+    },
+    {
+      "input": "371\n375",
+      "expectedOutput": "\"7219856259e3\""
+    },
+    {
+      "input": "2\n4",
+      "expectedOutput": "\"24e0\""
+    },
+    {
+      "input": "3\n4",
+      "expectedOutput": "\"12e0\""
+    },
+    {
+      "input": "4\n4",
+      "expectedOutput": "\"4e0\""
+    },
+    {
+      "input": "5\n4",
+      "expectedOutput": "\"1e0\""
+    },
+    {
+      "input": "6\n4",
+      "expectedOutput": "\"1e0\""
+    },
+    {
+      "input": "1\n0",
+      "expectedOutput": "\"1e0\""
+    },
+    {
+      "input": "1\n1",
+      "expectedOutput": "\"1e0\""
+    },
+    {
+      "input": "1\n2",
+      "expectedOutput": "\"2e0\""
+    },
+    {
+      "input": "1\n3",
+      "expectedOutput": "\"6e0\""
+    },
+    {
+      "input": "1\n5",
+      "expectedOutput": "\"12e1\""
+    },
+    {
+      "input": "1\n6",
+      "expectedOutput": "\"72e1\""
+    },
+    {
+      "input": "1\n7",
+      "expectedOutput": "\"504e1\""
+    },
+    {
+      "input": "1\n8",
+      "expectedOutput": "\"4032e1\""
+    },
+    {
+      "input": "1\n9",
+      "expectedOutput": "\"36288e1\""
+    },
+    {
+      "input": "1\n-1",
+      "expectedOutput": "\"1e0\""
+    },
+    {
+      "input": "1\n-2",
+      "expectedOutput": "\"1e0\""
+    },
+    {
+      "input": "1\n11",
+      "expectedOutput": "\"399168e2\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Calculating the number of trailing zeros, the last five digits, and the first five digits can all be done separately.",
+    "Use a prime factorization property to find the number of trailing zeros. Use modulo to find the last 5 digits. Use a logarithm property to find the first 5 digits.",
+    "The number of trailing zeros C is nothing but the number of times the product is completely divisible by 10. Since 2 and 5 are the only prime factors of 10,  C will be equal to the minimum number of times 2 or 5 appear in the prime factorization of the product.",
+    "Iterate through the integers from left to right. For every integer, keep dividing it by 2 as long as it is divisible by 2 and C occurrences of 2 haven't been removed in total. Repeat this process for 5. Finally, multiply the integer under modulo of 10^5 with the product obtained till now to obtain the last five digits.",
+    "The product P can be represented as P=10^(x+y) where x is the integral part and y is the fractional part of x+y. Using the property \"if S = A * B, then log(S) = log(A) + log(B)\", we can write x+y = log_10(P) = sum(log_10(i)) for each integer i in [left, right]. Once we obtain the sum, the first five digits can be represented as floor(10^(y+4))."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/abbreviating-the-product-of-a-range/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:12.764Z",
+    "sourceUpdatedAt": null
+  }
+}

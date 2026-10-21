@@ -1,0 +1,166 @@
+{
+  "id": "2521",
+  "slug": "distinct-prime-factors-of-product-of-array",
+  "title": "Distinct Prime Factors of Product of Array",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Number Theory",
+    "Prime Factorization",
+    "Euclidean Algorithm",
+    "Primality Test",
+    "Greatest Common Divisor",
+    "Sieve Theory",
+    "Prime Number Sieve"
+  ],
+  "statement": "Given an array of positive integers `nums`, return _the number of **distinct prime factors** in the product of the elements of_ `nums`.\n\n**Note** that:\n\n*   A number greater than `1` is called **prime** if it is divisible by only `1` and itself.\n*   An integer `val1` is a factor of another integer `val2` if `val2 / val1` is an integer.\n\n**Example 1:**\n\n```\nInput: nums = [2,4,3,7,10,6]\nOutput: 4\nExplanation:\nThe product of all the elements in nums is: 2 * 4 * 3 * 7 * 10 * 6 = 10080 = 25 * 32 * 5 * 7.\nThere are 4 distinct prime factors so we return 4.\n```\n\n**Example 2:**\n\n```\nInput: nums = [2,4,8,16]\nOutput: 1\nExplanation:\nThe product of all the elements in nums is: 2 * 4 * 8 * 16 = 1024 = 210.\nThere is 1 distinct prime factor so we return 1.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(4)`\n*   `2 <= nums[i] <= 1000`",
+  "constraints": [
+    "1 <= nums.length <= 104",
+    "2 <= nums[i] <= 1000"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,4,3,7,10,6]",
+      "output": "4",
+      "explanation": "The product of all the elements in nums is: 2 * 4 * 3 * 7 * 10 * 6 = 10080 = 25 * 32 * 5 * 7.\nThere are 4 distinct prime factors so we return 4."
+    },
+    {
+      "input": "nums = [2,4,8,16]",
+      "output": "1",
+      "explanation": "The product of all the elements in nums is: 2 * 4 * 8 * 16 = 1024 = 210.\nThere is 1 distinct prime factor so we return 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int distinctPrimeFactors(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int distinctPrimeFactors(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def distinctPrimeFactors(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def distinctPrimeFactors(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar distinctPrimeFactors = function(nums) {\n    \n};",
+    "typescript": "function distinctPrimeFactors(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int DistinctPrimeFactors(int[] nums) {\n        \n    }\n}",
+    "c": "int distinctPrimeFactors(int* nums, int numsSize) {\n    \n}",
+    "golang": "func distinctPrimeFactors(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun distinctPrimeFactors(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func distinctPrimeFactors(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn distinct_prime_factors(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef distinct_prime_factors(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function distinctPrimeFactors($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int distinctPrimeFactors(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def distinctPrimeFactors(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec distinct_prime_factors(nums :: [integer]) :: integer\n  def distinct_prime_factors(nums) do\n    \n  end\nend",
+    "erlang": "-spec distinct_prime_factors(Nums :: [integer()]) -> integer().\ndistinct_prime_factors(Nums) ->\n  .",
+    "racket": "(define/contract (distinct-prime-factors nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,4,3,7,10,6]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,4,8,16]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,4,3,7,10,6]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,4,8,16]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[7,10,6]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,6]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[6,10,7,3,4,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,3,4,6,7,10]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[10,7,6,4,3,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4,3,7,10,6,2,4,3,7,10,6]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,8,6,14,20,12]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,5,4,8,11,7]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,3,2,6,9,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-2,-4,-3,-7,-10,-6]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Do not multiply all the numbers together, as the product is too big to store.",
+    "Think about how each individual number's prime factors contribute to the prime factors of the product of the entire array.",
+    "Find the prime factors of each element in nums, and store all of them in a set to avoid duplicates."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/distinct-prime-factors-of-product-of-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.726Z",
+    "sourceUpdatedAt": null
+  }
+}

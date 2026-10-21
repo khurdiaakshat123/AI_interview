@@ -1,0 +1,164 @@
+{
+  "id": "3816",
+  "slug": "lexicographically-smallest-string-after-deleting-duplicate-characters",
+  "title": "Lexicographically Smallest String After Deleting Duplicate Characters",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "statement": "You are given a string `s` that consists of lowercase English letters.\n\nYou can perform the following operation any number of times (possibly zero times):\n\n*   Choose any letter that appears **at least twice** in the current string `s` and delete any **one** occurrence.\n\nReturn the **lexicographically smallest** resulting string that can be formed this way.\n\n**Example 1:**\n\n**Input:** s = \"aaccb\"\n\n**Output:** \"aacb\"\n\n**Explanation:**\n\nWe can form the strings `\"acb\"`, `\"aacb\"`, `\"accb\"`, and `\"aaccb\"`. `\"aacb\"` is the lexicographically smallest one.\n\nFor example, we can obtain `\"aacb\"` by choosing `'c'` and deleting its first occurrence.\n\n**Example 2:**\n\n**Input:** s = \"z\"\n\n**Output:** \"z\"\n\n**Explanation:**\n\nWe cannot perform any operations. The only string we can form is `\"z\"`.\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` contains lowercase English letters only.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s contains lowercase English letters only."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aaccb\"",
+      "output": "\"aacb\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"z\"",
+      "output": "\"z\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string lexSmallestAfterDeletion(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String lexSmallestAfterDeletion(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lexSmallestAfterDeletion(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def lexSmallestAfterDeletion(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar lexSmallestAfterDeletion = function(s) {\n    \n};",
+    "typescript": "function lexSmallestAfterDeletion(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LexSmallestAfterDeletion(string s) {\n        \n    }\n}",
+    "c": "char* lexSmallestAfterDeletion(char* s) {\n    \n}",
+    "golang": "func lexSmallestAfterDeletion(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun lexSmallestAfterDeletion(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lexSmallestAfterDeletion(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn lex_smallest_after_deletion(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef lex_smallest_after_deletion(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function lexSmallestAfterDeletion($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String lexSmallestAfterDeletion(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lexSmallestAfterDeletion(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec lex_smallest_after_deletion(s :: String.t) :: String.t\n  def lex_smallest_after_deletion(s) do\n    \n  end\nend",
+    "erlang": "-spec lex_smallest_after_deletion(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nlex_smallest_after_deletion(S) ->\n  .",
+    "racket": "(define/contract (lex-smallest-after-deletion s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aaccb\"",
+      "expectedOutput": "\"aacb\""
+    },
+    {
+      "input": "\"z\"",
+      "expectedOutput": "\"z\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aaccb\"",
+      "expectedOutput": "\"aacb\""
+    },
+    {
+      "input": "\"z\"",
+      "expectedOutput": "\"z\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"ccb\"",
+      "expectedOutput": "\"cb\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"bccaa\"",
+      "expectedOutput": "\"bca\""
+    },
+    {
+      "input": "\"aaccbaaccb\"",
+      "expectedOutput": "\"aaaacb\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"aaccbbccaa\"",
+      "expectedOutput": "\"aabbc\""
+    },
+    {
+      "input": "\"AACCB\"",
+      "expectedOutput": "\"AACB\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"aab\""
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "\"aA\""
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "\"0\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Solve greedily.",
+    "Each distinct letter must appear at least once in the final string.",
+    "For each letter, maintain a deque of its positions.",
+    "At each step, try letters from <code>'a'</code> to <code>'z'</code> and pick the smallest letter whose earliest position lies within a safe window.",
+    "Do not pick an occurrence if choosing it would make some other letter impossible to keep.",
+    "Mark positions as used and repeat, always minimizing the next chosen character."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-deleting-duplicate-characters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.274Z",
+    "sourceUpdatedAt": null
+  }
+}

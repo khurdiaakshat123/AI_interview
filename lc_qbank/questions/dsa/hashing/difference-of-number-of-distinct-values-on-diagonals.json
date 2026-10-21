@@ -1,0 +1,86 @@
+{
+  "id": "2711",
+  "slug": "difference-of-number-of-distinct-values-on-diagonals",
+  "title": "Difference of Number of Distinct Values on Diagonals",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Matrix"
+  ],
+  "statement": "Given a 2D `grid` of size `m x n`, you should find the matrix `answer` of size `m x n`.\n\nThe cell `answer[r][c]` is calculated by looking at the diagonal values of the cell `grid[r][c]`:\n\n*   Let `leftAbove[r][c]` be the number of **distinct** values on the diagonal to the left and above the cell `grid[r][c]` not including the cell `grid[r][c]` itself.\n*   Let `rightBelow[r][c]` be the number of **distinct** values on the diagonal to the right and below the cell `grid[r][c]`, not including the cell `grid[r][c]` itself.\n*   Then `answer[r][c] = |leftAbove[r][c] - rightBelow[r][c]|`.\n\nA **matrix diagonal** is a diagonal line of cells starting from some cell in either the topmost row or leftmost column and going in the bottom-right direction until the end of the matrix is reached.\n\n*   For example, in the below diagram the diagonal is highlighted using the cell with indices `(2, 3)` colored gray:\n    *   Red-colored cells are left and above the cell.\n    *   Blue-colored cells are right and below the cell.\n\n![](./assets/difference-of-number-of-distinct-values-on-diagonals-1.png)\n\nReturn the matrix `answer`.\n\n**Example 1:**\n\n**Input:** grid = \\[\\[1,2,3\\],\\[3,1,5\\],\\[3,2,1\\]\\]\n\n**Output:** Output: \\[\\[1,1,0\\],\\[1,0,1\\],\\[0,1,1\\]\\]\n\n**Explanation:**\n\nTo calculate the `answer` cells:\n\nanswer\n\nleft-above elements\n\nleftAbove\n\nright-below elements\n\nrightBelow\n\n|leftAbove - rightBelow|\n\n\\[0\\]\\[0\\]\n\n\\[\\]\n\n0\n\n\\[grid\\[1\\]\\[1\\], grid\\[2\\]\\[2\\]\\]\n\n|{1, 1}| = 1\n\n1\n\n\\[0\\]\\[1\\]\n\n\\[\\]\n\n0\n\n\\[grid\\[1\\]\\[2\\]\\]\n\n|{5}| = 1\n\n1\n\n\\[0\\]\\[2\\]\n\n\\[\\]\n\n0\n\n\\[\\]\n\n0\n\n0\n\n\\[1\\]\\[0\\]\n\n\\[\\]\n\n0\n\n\\[grid\\[2\\]\\[1\\]\\]\n\n|{2}| = 1\n\n1\n\n\\[1\\]\\[1\\]\n\n\\[grid\\[0\\]\\[0\\]\\]\n\n|{1}| = 1\n\n\\[grid\\[2\\]\\[2\\]\\]\n\n|{1}| = 1\n\n0\n\n\\[1\\]\\[2\\]\n\n\\[grid\\[0\\]\\[1\\]\\]\n\n|{2}| = 1\n\n\\[\\]\n\n0\n\n1\n\n\\[2\\]\\[0\\]\n\n\\[\\]\n\n0\n\n\\[\\]\n\n0\n\n0\n\n\\[2\\]\\[1\\]\n\n\\[grid\\[1\\]\\[0\\]\\]\n\n|{3}| = 1\n\n\\[\\]\n\n0\n\n1\n\n\\[2\\]\\[2\\]\n\n\\[grid\\[0\\]\\[0\\], grid\\[1\\]\\[1\\]\\]\n\n|{1, 1}| = 1\n\n\\[\\]\n\n0\n\n1\n\n**Example 2:**\n\n**Input:** grid = \\[\\[1\\]\\]\n\n**Output:** Output: \\[\\[0\\]\\]\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n, grid[i][j] <= 50`",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n, grid[i][j] <= 50"
+  ],
+  "examples": [
+    {
+      "input": "grid = [[1,2,3],[3,1,5],[3,2,1]]",
+      "output": "Output: [[1,1,0],[1,0,1],[0,1,1]]",
+      "explanation": null
+    },
+    {
+      "input": "grid = [[1]]",
+      "output": "Output: [[0]]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> differenceOfDistinctValues(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] differenceOfDistinctValues(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def differenceOfDistinctValues(self, grid: List[List[int]]) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def differenceOfDistinctValues(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number[][]}\n */\nvar differenceOfDistinctValues = function(grid) {\n    \n};",
+    "typescript": "function differenceOfDistinctValues(grid: number[][]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] DifferenceOfDistinctValues(int[][] grid) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** differenceOfDistinctValues(int** grid, int gridSize, int* gridColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func differenceOfDistinctValues(grid [][]int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun differenceOfDistinctValues(grid: Array<IntArray>): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func differenceOfDistinctValues(_ grid: [[Int]]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn difference_of_distinct_values(grid: Vec<Vec<i32>>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer[][]}\ndef difference_of_distinct_values(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer[][]\n     */\n    function differenceOfDistinctValues($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> differenceOfDistinctValues(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def differenceOfDistinctValues(grid: Array[Array[Int]]): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec difference_of_distinct_values(grid :: [[integer]]) :: [[integer]]\n  def difference_of_distinct_values(grid) do\n    \n  end\nend",
+    "erlang": "-spec difference_of_distinct_values(Grid :: [[integer()]]) -> [[integer()]].\ndifference_of_distinct_values(Grid) ->\n  .",
+    "racket": "(define/contract (difference-of-distinct-values grid)\n  (-> (listof (listof exact-integer?)) (listof (listof exact-integer?)))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,2,3],[3,1,5],[3,2,1]]",
+      "expectedOutput": "Output: [[1,1,0],[1,0,1],[0,1,1]]"
+    },
+    {
+      "input": "[[1]]",
+      "expectedOutput": "Output: [[0]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,2,3],[3,1,5],[3,2,1]]",
+      "expectedOutput": "[[1,1,0],[1,0,1],[0,1,1]]"
+    },
+    {
+      "input": "[[1]]",
+      "expectedOutput": "[[0]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use the set to count the number of distinct elements on diagonals."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/difference-of-number-of-distinct-values-on-diagonals/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.659Z",
+    "sourceUpdatedAt": null
+  }
+}

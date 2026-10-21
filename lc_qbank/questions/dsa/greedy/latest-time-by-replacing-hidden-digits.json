@@ -1,0 +1,166 @@
+{
+  "id": "1736",
+  "slug": "latest-time-by-replacing-hidden-digits",
+  "title": "Latest Time by Replacing Hidden Digits",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Easy",
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "statement": "You are given a string `time` in the form of `hh:mm`, where some of the digits in the string are hidden (represented by `?`).\n\nThe valid times are those inclusively between `00:00` and `23:59`.\n\nReturn _the latest valid time you can get from_ `time` _by replacing the hidden_ _digits_.\n\n**Example 1:**\n\n```\nInput: time = \"2?:?0\"\nOutput: \"23:50\"\nExplanation: The latest hour beginning with the digit '2' is 23 and the latest minute ending with the digit '0' is 50.\n```\n\n**Example 2:**\n\n```\nInput: time = \"0?:3?\"\nOutput: \"09:39\"\n```\n\n**Example 3:**\n\n```\nInput: time = \"1?:22\"\nOutput: \"19:22\"\n```\n\n**Constraints:**\n\n*   `time` is in the format `hh:mm`.\n*   It is guaranteed that you can produce a valid time from the given string.",
+  "constraints": [
+    "time is in the format hh:mm.",
+    "It is guaranteed that you can produce a valid time from the given string."
+  ],
+  "examples": [
+    {
+      "input": "time = \"2?:?0\"",
+      "output": "\"23:50\"",
+      "explanation": "The latest hour beginning with the digit '2' is 23 and the latest minute ending with the digit '0' is 50."
+    },
+    {
+      "input": "time = \"0?:3?\"",
+      "output": "\"09:39\"",
+      "explanation": null
+    },
+    {
+      "input": "time = \"1?:22\"",
+      "output": "\"19:22\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string maximumTime(string time) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String maximumTime(String time) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumTime(self, time: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def maximumTime(self, time):\n        \"\"\"\n        :type time: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} time\n * @return {string}\n */\nvar maximumTime = function(time) {\n    \n};",
+    "typescript": "function maximumTime(time: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MaximumTime(string time) {\n        \n    }\n}",
+    "c": "char* maximumTime(char* time) {\n    \n}",
+    "golang": "func maximumTime(time string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumTime(time: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumTime(_ time: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_time(time: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} time\n# @return {String}\ndef maximum_time(time)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $time\n     * @return String\n     */\n    function maximumTime($time) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String maximumTime(String time) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumTime(time: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_time(time :: String.t) :: String.t\n  def maximum_time(time) do\n    \n  end\nend",
+    "erlang": "-spec maximum_time(Time :: unicode:unicode_binary()) -> unicode:unicode_binary().\nmaximum_time(Time) ->\n  .",
+    "racket": "(define/contract (maximum-time time)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"2?:?0\"",
+      "expectedOutput": "\"23:50\""
+    },
+    {
+      "input": "\"0?:3?\"",
+      "expectedOutput": "\"09:39\""
+    },
+    {
+      "input": "\"1?:22\"",
+      "expectedOutput": "\"19:22\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"2?:?0\"",
+      "expectedOutput": "\"23:50\""
+    },
+    {
+      "input": "\"0?:3?\"",
+      "expectedOutput": "\"09:39\""
+    },
+    {
+      "input": "\"1?:22\"",
+      "expectedOutput": "\"19:22\""
+    },
+    {
+      "input": "\"0?:?2\"",
+      "expectedOutput": "\"09:52\""
+    },
+    {
+      "input": "\"2?:?02?:?0\"",
+      "expectedOutput": "\"23:502?:?0\""
+    },
+    {
+      "input": "\"22222\"",
+      "expectedOutput": "\"22222\""
+    },
+    {
+      "input": "\"2?:?00?:?2\"",
+      "expectedOutput": "\"23:500?:?2\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"racecar\"",
+      "expectedOutput": "\"racecar\""
+    },
+    {
+      "input": "\"hello\"",
+      "expectedOutput": "\"hello\""
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "\"leetcode\""
+    },
+    {
+      "input": "\"world\"",
+      "expectedOutput": "\"world\""
+    },
+    {
+      "input": "\"()[]{}\"",
+      "expectedOutput": "\"()[]{}\""
+    },
+    {
+      "input": "\"?3:?0\"",
+      "expectedOutput": "\"23:50\""
+    },
+    {
+      "input": "\"0?:3?0?:3?\"",
+      "expectedOutput": "\"09:390?:3?\""
+    },
+    {
+      "input": "\"00000\"",
+      "expectedOutput": "\"00000\""
+    },
+    {
+      "input": "\"0?:3??3:?0\"",
+      "expectedOutput": "\"09:39?3:?0\""
+    },
+    {
+      "input": "\"22:?1\"",
+      "expectedOutput": "\"22:51\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Trying out all possible solutions from biggest to smallest would fit in the time limit.",
+    "To check if the solution is okay, you need to find out if it's valid and matches every character"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.093Z",
+    "sourceUpdatedAt": null
+  }
+}

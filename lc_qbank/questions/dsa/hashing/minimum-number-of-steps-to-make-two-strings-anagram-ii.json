@@ -1,0 +1,159 @@
+{
+  "id": "2186",
+  "slug": "minimum-number-of-steps-to-make-two-strings-anagram-ii",
+  "title": "Minimum Number of Steps to Make Two Strings Anagram II",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "statement": "You are given two strings `s` and `t`. In one step, you can append **any character** to either `s` or `t`.\n\nReturn _the minimum number of steps to make_ `s` _and_ `t` _**anagrams** of each other._\n\nAn **anagram** of a string is a string that contains the same characters with a different (or the same) ordering.\n\n**Example 1:**\n\n```\nInput: s = \"leetcode\", t = \"coats\"\nOutput: 7\nExplanation: \n- In 2 steps, we can append the letters in \"as\" onto s = \"leetcode\", forming s = \"leetcodeas\".\n- In 5 steps, we can append the letters in \"leede\" onto t = \"coats\", forming t = \"coatsleede\".\n\"leetcodeas\" and \"coatsleede\" are now anagrams of each other.\nWe used a total of 2 + 5 = 7 steps.\nIt can be shown that there is no way to make them anagrams of each other with less than 7 steps.\n```\n\n**Example 2:**\n\n```\nInput: s = \"night\", t = \"thing\"\nOutput: 0\nExplanation: The given strings are already anagrams of each other. Thus, we do not need any further steps.\n```\n\n**Constraints:**\n\n*   `1 <= s.length, t.length <= 2 * 10^(5)`\n*   `s` and `t` consist of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length, t.length <= 2 * 105",
+    "s and t consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"leetcode\", t = \"coats\"",
+      "output": "7",
+      "explanation": "- In 2 steps, we can append the letters in \"as\" onto s = \"leetcode\", forming s = \"leetcodeas\".\n- In 5 steps, we can append the letters in \"leede\" onto t = \"coats\", forming t = \"coatsleede\".\n\"leetcodeas\" and \"coatsleede\" are now anagrams of each other.\nWe used a total of 2 + 5 = 7 steps.\nIt can be shown that there is no way to make them anagrams of each other with less than 7 steps."
+    },
+    {
+      "input": "s = \"night\", t = \"thing\"",
+      "output": "0",
+      "explanation": "The given strings are already anagrams of each other. Thus, we do not need any further steps."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minSteps(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minSteps(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minSteps(self, s: str, t: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minSteps(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {number}\n */\nvar minSteps = function(s, t) {\n    \n};",
+    "typescript": "function minSteps(s: string, t: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinSteps(string s, string t) {\n        \n    }\n}",
+    "c": "int minSteps(char* s, char* t) {\n    \n}",
+    "golang": "func minSteps(s string, t string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minSteps(s: String, t: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minSteps(_ s: String, _ t: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_steps(s: String, t: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Integer}\ndef min_steps(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Integer\n     */\n    function minSteps($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minSteps(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minSteps(s: String, t: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_steps(s :: String.t, t :: String.t) :: integer\n  def min_steps(s, t) do\n    \n  end\nend",
+    "erlang": "-spec min_steps(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> integer().\nmin_steps(S, T) ->\n  .",
+    "racket": "(define/contract (min-steps s t)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"leetcode\"\n\"coats\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"night\"\n\"thing\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"leetcode\"\n\"coats\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"night\"\n\"thing\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"leet\"\n\"coats\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"code\"\n\"coats\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"l\"\n\"coats\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"le\"\n\"coats\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"edocteel\"\n\"coats\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"leetcodeleetcode\"\n\"coats\"",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "\"llllll\"\n\"coats\"",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "\"leetcodeedocteel\"\n\"coats\"",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "\"LEETCODE\"\n\"coats\"",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "\"a\"\n\"coats\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"b\"\n\"coats\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"aa\"\n\"coats\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"ab\"\n\"coats\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"ba\"\n\"coats\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aba\"\n\"coats\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abba\"\n\"coats\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"aaaaa\"\n\"coats\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"abcde\"\n\"coats\"",
+      "expectedOutput": "6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Notice that for anagrams, the order of the letters is irrelevant.",
+    "For each letter, we can count its frequency in s and t.",
+    "For each letter, its contribution to the answer is the absolute difference between its frequency in s and t."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.461Z",
+    "sourceUpdatedAt": null
+  }
+}

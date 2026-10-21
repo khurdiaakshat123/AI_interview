@@ -1,0 +1,157 @@
+{
+  "id": "1832",
+  "slug": "check-if-the-sentence-is-pangram",
+  "title": "Check if the Sentence Is Pangram",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "statement": "A **pangram** is a sentence where every letter of the English alphabet appears at least once.\n\nGiven a string `sentence` containing only lowercase English letters, return `true` _if_ `sentence` _is a **pangram**, or_ `false` _otherwise._\n\n**Example 1:**\n\n```\nInput: sentence = \"thequickbrownfoxjumpsoverthelazydog\"\nOutput: true\nExplanation: sentence contains at least one of every letter of the English alphabet.\n```\n\n**Example 2:**\n\n```\nInput: sentence = \"leetcode\"\nOutput: false\n```\n\n**Constraints:**\n\n*   `1 <= sentence.length <= 1000`\n*   `sentence` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= sentence.length <= 1000",
+    "sentence consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "sentence = \"thequickbrownfoxjumpsoverthelazydog\"",
+      "output": "true",
+      "explanation": "sentence contains at least one of every letter of the English alphabet."
+    },
+    {
+      "input": "sentence = \"leetcode\"",
+      "output": "false",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool checkIfPangram(string sentence) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean checkIfPangram(String sentence) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def checkIfPangram(self, sentence: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def checkIfPangram(self, sentence):\n        \"\"\"\n        :type sentence: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} sentence\n * @return {boolean}\n */\nvar checkIfPangram = function(sentence) {\n    \n};",
+    "typescript": "function checkIfPangram(sentence: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CheckIfPangram(string sentence) {\n        \n    }\n}",
+    "c": "bool checkIfPangram(char* sentence) {\n    \n}",
+    "golang": "func checkIfPangram(sentence string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun checkIfPangram(sentence: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func checkIfPangram(_ sentence: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn check_if_pangram(sentence: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} sentence\n# @return {Boolean}\ndef check_if_pangram(sentence)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $sentence\n     * @return Boolean\n     */\n    function checkIfPangram($sentence) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool checkIfPangram(String sentence) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def checkIfPangram(sentence: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec check_if_pangram(sentence :: String.t) :: boolean\n  def check_if_pangram(sentence) do\n    \n  end\nend",
+    "erlang": "-spec check_if_pangram(Sentence :: unicode:unicode_binary()) -> boolean().\ncheck_if_pangram(Sentence) ->\n  .",
+    "racket": "(define/contract (check-if-pangram sentence)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"thequickbrownfoxjumpsoverthelazydog\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"thequickbrownfoxjumpsoverthelazydog\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"thequickbrownfoxj\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"umpsoverthelazydog\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"t\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"th\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"godyzalehtrevospmujxofnworbkciuqeht\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"tttttt\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate over the string and mark each character as found (using a boolean array, bitmask, or any other similar way).",
+    "Check if the number of found characters equals the alphabet length."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/check-if-the-sentence-is-pangram/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.250Z",
+    "sourceUpdatedAt": null
+  }
+}

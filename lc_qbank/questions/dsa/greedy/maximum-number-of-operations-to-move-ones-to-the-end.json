@@ -1,0 +1,158 @@
+{
+  "id": "3228",
+  "slug": "maximum-number-of-operations-to-move-ones-to-the-end",
+  "title": "Maximum Number of Operations to Move Ones to the End",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Greedy",
+    "Counting"
+  ],
+  "statement": "You are given a binary string `s`.\n\nYou can perform the following operation on the string **any** number of times:\n\n*   Choose **any** index `i` from the string where `i + 1 < s.length` such that `s[i] == '1'` and `s[i + 1] == '0'`.\n*   Move the character `s[i]` to the **right** until it reaches the end of the string or another `'1'`. For example, for `s = \"010010\"`, if we choose `i = 1`, the resulting string will be `s = \"0**001**10\"`.\n\nReturn the **maximum** number of operations that you can perform.\n\n**Example 1:**\n\n**Input:** s = \"1001101\"\n\n**Output:** 4\n\n**Explanation:**\n\nWe can perform the following operations:\n\n*   Choose index `i = 0`. The resulting string is `s = \"**001**1101\"`.\n*   Choose index `i = 4`. The resulting string is `s = \"0011**01**1\"`.\n*   Choose index `i = 3`. The resulting string is `s = \"001**01**11\"`.\n*   Choose index `i = 2`. The resulting string is `s = \"00**01**111\"`.\n\n**Example 2:**\n\n**Input:** s = \"00111\"\n\n**Output:** 0\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s[i]` is either `'0'` or `'1'`.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s[i] is either '0' or '1'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"1001101\"",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "s = \"00111\"",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxOperations(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxOperations(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxOperations(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxOperations(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar maxOperations = function(s) {\n    \n};",
+    "typescript": "function maxOperations(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxOperations(string s) {\n        \n    }\n}",
+    "c": "int maxOperations(char* s) {\n    \n}",
+    "golang": "func maxOperations(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxOperations(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxOperations(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_operations(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef max_operations(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function maxOperations($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxOperations(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxOperations(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_operations(s :: String.t) :: integer\n  def max_operations(s) do\n    \n  end\nend",
+    "erlang": "-spec max_operations(S :: unicode:unicode_binary()) -> integer().\nmax_operations(S) ->\n  .",
+    "racket": "(define/contract (max-operations s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"1001101\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"00111\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"1001101\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"00111\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"100\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1101\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"10\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1011001\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"10011011001101\"",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "\"111111\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"10011011011001\"",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "It is optimal to perform the operation on the lowest index possible each time.",
+    "Traverse the string from left to right and perform the operation every time it is possible."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-operations-to-move-ones-to-the-end/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.110Z",
+    "sourceUpdatedAt": null
+  }
+}

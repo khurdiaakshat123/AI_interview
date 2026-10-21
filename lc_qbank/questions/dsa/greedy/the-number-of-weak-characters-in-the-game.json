@@ -1,0 +1,102 @@
+{
+  "id": "1996",
+  "slug": "the-number-of-weak-characters-in-the-game",
+  "title": "The Number of Weak Characters in the Game",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Stack",
+    "Greedy",
+    "Sorting",
+    "Monotonic Stack"
+  ],
+  "statement": "You are playing a game that contains multiple characters, and each of the characters has **two** main properties: **attack** and **defense**. You are given a 2D integer array `properties` where `properties[i] = [attack_(i), defense_(i)]` represents the properties of the `i^(th)` character in the game.\n\nA character is said to be **weak** if any other character has **both** attack and defense levels **strictly greater** than this character's attack and defense levels. More formally, a character `i` is said to be **weak** if there exists another character `j` where `attack_(j) > attack_(i)` and `defense_(j) > defense_(i)`.\n\nReturn _the number of **weak** characters_.\n\n**Example 1:**\n\n```\nInput: properties = [[5,5],[6,3],[3,6]]\nOutput: 0\nExplanation: No character has strictly greater attack and defense than the other.\n```\n\n**Example 2:**\n\n```\nInput: properties = [[2,2],[3,3]]\nOutput: 1\nExplanation: The first character is weak because the second character has a strictly greater attack and defense.\n```\n\n**Example 3:**\n\n```\nInput: properties = [[1,5],[10,4],[4,3]]\nOutput: 1\nExplanation: The third character is weak because the second character has a strictly greater attack and defense.\n```\n\n**Constraints:**\n\n*   `2 <= properties.length <= 10^(5)`\n*   `properties[i].length == 2`\n*   `1 <= attack_(i), defense_(i) <= 10^(5)`",
+  "constraints": [
+    "2 <= properties.length <= 105",
+    "properties[i].length == 2",
+    "1 <= attacki, defensei <= 105"
+  ],
+  "examples": [
+    {
+      "input": "properties = [[5,5],[6,3],[3,6]]",
+      "output": "0",
+      "explanation": "No character has strictly greater attack and defense than the other."
+    },
+    {
+      "input": "properties = [[2,2],[3,3]]",
+      "output": "1",
+      "explanation": "The first character is weak because the second character has a strictly greater attack and defense."
+    },
+    {
+      "input": "properties = [[1,5],[10,4],[4,3]]",
+      "output": "1",
+      "explanation": "The third character is weak because the second character has a strictly greater attack and defense."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numberOfWeakCharacters(vector<vector<int>>& properties) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numberOfWeakCharacters(int[][] properties) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfWeakCharacters(self, properties: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfWeakCharacters(self, properties):\n        \"\"\"\n        :type properties: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} properties\n * @return {number}\n */\nvar numberOfWeakCharacters = function(properties) {\n    \n};",
+    "typescript": "function numberOfWeakCharacters(properties: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumberOfWeakCharacters(int[][] properties) {\n        \n    }\n}",
+    "c": "int numberOfWeakCharacters(int** properties, int propertiesSize, int* propertiesColSize) {\n    \n}",
+    "golang": "func numberOfWeakCharacters(properties [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfWeakCharacters(properties: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfWeakCharacters(_ properties: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_weak_characters(properties: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} properties\n# @return {Integer}\ndef number_of_weak_characters(properties)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $properties\n     * @return Integer\n     */\n    function numberOfWeakCharacters($properties) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfWeakCharacters(List<List<int>> properties) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfWeakCharacters(properties: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_weak_characters(properties :: [[integer]]) :: integer\n  def number_of_weak_characters(properties) do\n    \n  end\nend",
+    "erlang": "-spec number_of_weak_characters(Properties :: [[integer()]]) -> integer().\nnumber_of_weak_characters(Properties) ->\n  .",
+    "racket": "(define/contract (number-of-weak-characters properties)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[5,5],[6,3],[3,6]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[2,2],[3,3]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[1,5],[10,4],[4,3]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[5,5],[6,3],[3,6]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[2,2],[3,3]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[1,5],[10,4],[4,3]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Sort the array on the basis of the attack values and group characters with the same attack together. How can you use these groups?",
+    "Characters in one group will always have a lesser attack value than the characters of the next group. Hence, we will only need to check if there is a higher defense value present in the next groups."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/the-number-of-weak-characters-in-the-game/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.952Z",
+    "sourceUpdatedAt": null
+  }
+}

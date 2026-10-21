@@ -1,0 +1,166 @@
+{
+  "id": "3644",
+  "slug": "maximum-k-to-sort-a-permutation",
+  "title": "Maximum K to Sort a Permutation",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given an integer array `nums` of length `n`, where `nums` is a **permutation** of the numbers in the range `[0..n - 1]`.\n\nYou may swap elements at indices `i` and `j` **only if** `nums[i] AND nums[j] == k`, where `AND` denotes the bitwise AND operation and `k` is a **non-negative** integer.\n\nReturn the **maximum** value of `k` such that the array can be sorted in **non-decreasing** order using any number of such swaps. If `nums` is already sorted, return 0.\n\n**Example 1:**\n\n**Input:** nums = \\[0,3,2,1\\]\n\n**Output:** 1\n\n**Explanation:**\n\nChoose `k = 1`. Swapping `nums[1] = 3` and `nums[3] = 1` is allowed since `nums[1] AND nums[3] == 1`, resulting in a sorted permutation: `[0, 1, 2, 3]`.\n\n**Example 2:**\n\n**Input:** nums = \\[0,1,3,2\\]\n\n**Output:** 2\n\n**Explanation:**\n\nChoose `k = 2`. Swapping `nums[2] = 3` and `nums[3] = 2` is allowed since `nums[2] AND nums[3] == 2`, resulting in a sorted permutation: `[0, 1, 2, 3]`.\n\n**Example 3:**\n\n**Input:** nums = \\[3,2,1,0\\]\n\n**Output:** 0\n\n**Explanation:**\n\nOnly `k = 0` allows sorting since no greater `k` allows the required swaps where `nums[i] AND nums[j] == k`.\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 10^(5)`\n*   `0 <= nums[i] <= n - 1`\n*   `nums` is a permutation of integers from `0` to `n - 1`.",
+  "constraints": [
+    "1 <= n == nums.length <= 105",
+    "0 <= nums[i] <= n - 1",
+    "nums is a permutation of integers from 0 to n - 1."
+  ],
+  "examples": [
+    {
+      "input": "nums = [0,3,2,1]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "nums = [0,1,3,2]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "nums = [3,2,1,0]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int sortPermutation(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int sortPermutation(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sortPermutation(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def sortPermutation(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar sortPermutation = function(nums) {\n    \n};",
+    "typescript": "function sortPermutation(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SortPermutation(int[] nums) {\n        \n    }\n}",
+    "c": "int sortPermutation(int* nums, int numsSize) {\n    \n}",
+    "golang": "func sortPermutation(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun sortPermutation(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sortPermutation(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sort_permutation(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef sort_permutation(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function sortPermutation($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int sortPermutation(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sortPermutation(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sort_permutation(nums :: [integer]) :: integer\n  def sort_permutation(nums) do\n    \n  end\nend",
+    "erlang": "-spec sort_permutation(Nums :: [integer()]) -> integer().\nsort_permutation(Nums) ->\n  .",
+    "racket": "(define/contract (sort-permutation nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[0,3,2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,1,3,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2,1,0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[0,3,2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,1,3,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2,1,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,3,2,1,0,3,2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,6,4,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,4,3,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,2,1,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,-3,-2,-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Take the bitwise AND of all elements that are not in their correct position."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-k-to-sort-a-permutation/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.915Z",
+    "sourceUpdatedAt": null
+  }
+}

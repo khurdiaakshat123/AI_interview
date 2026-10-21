@@ -1,0 +1,91 @@
+{
+  "id": "2631",
+  "slug": "group-by",
+  "title": "Group By",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Medium",
+  "tags": [],
+  "statement": "Write code that enhances all arrays such that you can call the `array.groupBy(fn)` method on any array and it will return a **grouped** version of the array.\n\nA **grouped** array is an object where each key is the output of `fn(arr[i])` and each value is an array containing all items in the original array which generate that key.\n\nThe provided callback `fn` will accept an item in the array and return a string key.\n\nThe order of each value list should be the order the items appear in the array. Any order of keys is acceptable.\n\nPlease solve it without lodash's `_.groupBy` function.\n\n**Example 1:**\n\n```\nInput: \narray = [\n  {\"id\":\"1\"},\n  {\"id\":\"1\"},\n  {\"id\":\"2\"}\n], \nfn = function (item) { \n  return item.id; \n}\nOutput: \n{ \n  \"1\": [{\"id\": \"1\"}, {\"id\": \"1\"}],   \n  \"2\": [{\"id\": \"2\"}] \n}\nExplanation:\nOutput is from array.groupBy(fn).\nThe selector function gets the \"id\" out of each item in the array.\nThere are two objects with an \"id\" of 1. Both of those objects are put in the first array.\nThere is one object with an \"id\" of 2. That object is put in the second array.\n```\n\n**Example 2:**\n\n```\nInput: \narray = [\n  [1, 2, 3],\n  [1, 3, 5],\n  [1, 5, 9]\n]\nfn = function (list) { \n  return String(list[0]); \n}\nOutput: \n{ \n  \"1\": [[1, 2, 3], [1, 3, 5], [1, 5, 9]] \n}\nExplanation:\nThe array can be of any type. In this case, the selector function defines the key as being the first element in the array. \nAll the arrays have 1 as their first element so they are grouped together.\n{\n  \"1\": [[1, 2, 3], [1, 3, 5], [1, 5, 9]]\n}\n```\n\n**Example 3:**\n\n```\nInput: \narray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nfn = function (n) { \n  return String(n > 5);\n}\nOutput:\n{\n  \"true\": [6, 7, 8, 9, 10],\n  \"false\": [1, 2, 3, 4, 5]\n}\nExplanation:\nThe selector function splits the array by whether each number is greater than 5.\n```\n\n**Constraints:**\n\n*   `0 <= array.length <= 10^(5)`\n*   `fn` returns a string",
+  "constraints": [
+    "0 <= array.length <= 105",
+    "fn returns a string"
+  ],
+  "examples": [
+    {
+      "input": "array = [\n  {\"id\":\"1\"},\n  {\"id\":\"1\"},\n  {\"id\":\"2\"}\n], \nfn = function (item) { \n  return item.id; \n}",
+      "output": "{ \n  \"1\": [{\"id\": \"1\"}, {\"id\": \"1\"}],   \n  \"2\": [{\"id\": \"2\"}] \n}",
+      "explanation": "Output is from array.groupBy(fn).\nThe selector function gets the \"id\" out of each item in the array.\nThere are two objects with an \"id\" of 1. Both of those objects are put in the first array.\nThere is one object with an \"id\" of 2. That object is put in the second array."
+    },
+    {
+      "input": "array = [\n  [1, 2, 3],\n  [1, 3, 5],\n  [1, 5, 9]\n]\nfn = function (list) { \n  return String(list[0]); \n}",
+      "output": "{ \n  \"1\": [[1, 2, 3], [1, 3, 5], [1, 5, 9]] \n}",
+      "explanation": "The array can be of any type. In this case, the selector function defines the key as being the first element in the array. \nAll the arrays have 1 as their first element so they are grouped together.\n{\n  \"1\": [[1, 2, 3], [1, 3, 5], [1, 5, 9]]\n}"
+    },
+    {
+      "input": "array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nfn = function (n) { \n  return String(n > 5);\n}",
+      "output": "{\n  \"true\": [6, 7, 8, 9, 10],\n  \"false\": [1, 2, 3, 4, 5]\n}",
+      "explanation": "The selector function splits the array by whether each number is greater than 5."
+    }
+  ],
+  "starterCode": {
+    "javascript": "/**\n * @param {Function} fn\n * @return {Object}\n */\nArray.prototype.groupBy = function(fn) {\n    \n};\n\n/**\n * [1,2,3].groupBy(String) // {\"1\":[1],\"2\":[2],\"3\":[3]}\n */",
+    "typescript": "interface Array<T> {\n    groupBy(fn: (item: T) => string): Record<string, T[]>\n}\n\n\nArray.prototype.groupBy = function(fn) {\n    \n}\n\n/**\n * [1,2,3].groupBy(String) // {\"1\":[1],\"2\":[2],\"3\":[3]}\n */"
+  },
+  "publicTests": [
+    {
+      "input": "[{\"id\":\"1\"},{\"id\":\"1\"},{\"id\":\"2\"}]\nfunction (item) { return item.id; }",
+      "expectedOutput": "{ \n  \"1\": [{\"id\": \"1\"}, {\"id\": \"1\"}],   \n  \"2\": [{\"id\": \"2\"}] \n}"
+    },
+    {
+      "input": "[[1,2,3],[1,3,5],[1,5,9]]\nfunction (list) { return String(list[0]); }",
+      "expectedOutput": "{ \n  \"1\": [[1, 2, 3], [1, 3, 5], [1, 5, 9]] \n}"
+    },
+    {
+      "input": "[1,2,3,4,5,6,7,8,9,10]\nfunction (n) { return String(n > 5); }",
+      "expectedOutput": "{\n  \"true\": [6, 7, 8, 9, 10],\n  \"false\": [1, 2, 3, 4, 5]\n}"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[{\"id\":\"1\"},{\"id\":\"1\"},{\"id\":\"2\"}]\nfunction (item) { return item.id; }",
+      "expectedOutput": "{ \n  \"1\": [{\"id\": \"1\"}, {\"id\": \"1\"}],   \n  \"2\": [{\"id\": \"2\"}] \n}"
+    },
+    {
+      "input": "[[1,2,3],[1,3,5],[1,5,9]]\nfunction (list) { return String(list[0]); }",
+      "expectedOutput": "{ \n  \"1\": [[1, 2, 3], [1, 3, 5], [1, 5, 9]] \n}"
+    },
+    {
+      "input": "[1,2,3,4,5,6,7,8,9,10]\nfunction (n) { return String(n > 5); }",
+      "expectedOutput": "{\n  \"true\": [6, 7, 8, 9, 10],\n  \"false\": [1, 2, 3, 4, 5]\n}"
+    },
+    {
+      "input": "array = [\n  {\"id\":\"1\"},\n  {\"id\":\"1\"},\n  {\"id\":\"2\"}\n], \nfn = function (item) { \n  return item.id; \n}",
+      "expectedOutput": "{ \n  \"1\": [{\"id\": \"1\"}, {\"id\": \"1\"}],   \n  \"2\": [{\"id\": \"2\"}] \n}"
+    },
+    {
+      "input": "array = [\n  [1, 2, 3],\n  [1, 3, 5],\n  [1, 5, 9]\n]\nfn = function (list) { \n  return String(list[0]); \n}",
+      "expectedOutput": "{ \n  \"1\": [[1, 2, 3], [1, 3, 5], [1, 5, 9]] \n}"
+    },
+    {
+      "input": "array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nfn = function (n) { \n  return String(n > 5);\n}",
+      "expectedOutput": "{\n  \"true\": [6, 7, 8, 9, 10],\n  \"false\": [1, 2, 3, 4, 5]\n}"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "First declare an object that will eventually be returned.",
+    "Iterate of each element in the array. You can access the array with the \"this\" keyword.",
+    "The key is fn(arr[i]). If the key already exists on the object, set the value to be an empty array. Then push the value onto the array at the key."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/group-by/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.275Z",
+    "sourceUpdatedAt": null
+  }
+}

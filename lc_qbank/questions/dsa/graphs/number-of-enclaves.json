@@ -1,0 +1,90 @@
+{
+  "id": "1020",
+  "slug": "number-of-enclaves",
+  "title": "Number of Enclaves",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix"
+  ],
+  "statement": "You are given an `m x n` binary matrix `grid`, where `0` represents a sea cell and `1` represents a land cell.\n\nA **move** consists of walking from one land cell to another adjacent (**4-directionally**) land cell or walking off the boundary of the `grid`.\n\nReturn _the number of land cells in_ `grid` _for which we cannot walk off the boundary of the grid in any number of **moves**_.\n\n**Example 1:**\n\n![](./assets/number-of-enclaves-1.jpg)\n```\nInput: grid = [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]\nOutput: 3\nExplanation: There are three 1s that are enclosed by 0s, and one 1 that is not enclosed because its on the boundary.\n```\n\n**Example 2:**\n\n![](./assets/number-of-enclaves-2.jpg)\n```\nInput: grid = [[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]\nOutput: 0\nExplanation: All 1s are either on the boundary or can reach the boundary.\n```\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 500`\n*   `grid[i][j]` is either `0` or `1`.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 500",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "examples": [
+    {
+      "input": "grid = [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]",
+      "output": "3",
+      "explanation": "There are three 1s that are enclosed by 0s, and one 1 that is not enclosed because its on the boundary."
+    },
+    {
+      "input": "grid = [[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]",
+      "output": "0",
+      "explanation": "All 1s are either on the boundary or can reach the boundary."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numEnclaves(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numEnclaves(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numEnclaves(self, grid: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numEnclaves(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar numEnclaves = function(grid) {\n    \n};",
+    "typescript": "function numEnclaves(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumEnclaves(int[][] grid) {\n        \n    }\n}",
+    "c": "int numEnclaves(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func numEnclaves(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numEnclaves(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numEnclaves(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_enclaves(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef num_enclaves(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function numEnclaves($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numEnclaves(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numEnclaves(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_enclaves(grid :: [[integer]]) :: integer\n  def num_enclaves(grid) do\n    \n  end\nend",
+    "erlang": "-spec num_enclaves(Grid :: [[integer()]]) -> integer().\nnum_enclaves(Grid) ->\n  .",
+    "racket": "(define/contract (num-enclaves grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can you model this problem as a graph problem?  Create n * m + 1 nodes where n * m nodes represents each cell of the map and one extra node to represent the exterior of the map.",
+    "In the map add edges between neighbors on land cells. And add edges between the exterior and land nodes which are in the boundary.\r\nReturn as answer the number of nodes that are not reachable from the exterior node."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-enclaves/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.855Z",
+    "sourceUpdatedAt": null
+  }
+}

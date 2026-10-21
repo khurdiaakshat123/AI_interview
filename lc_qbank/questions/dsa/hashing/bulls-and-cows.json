@@ -1,0 +1,156 @@
+{
+  "id": "299",
+  "slug": "bulls-and-cows",
+  "title": "Bulls and Cows",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "statement": "You are playing the **[Bulls and Cows](https://en.wikipedia.org/wiki/Bulls_and_Cows)** game with your friend.\n\nYou write down a secret number and ask your friend to guess what the number is. When your friend makes a guess, you provide a hint with the following info:\n\n*   The number of \"bulls\", which are digits in the guess that are in the correct position.\n*   The number of \"cows\", which are digits in the guess that are in your secret number but are located in the wrong position. Specifically, the non-bull digits in the guess that could be rearranged such that they become bulls.\n\nGiven the secret number `secret` and your friend's guess `guess`, return _the hint for your friend's guess_.\n\nThe hint should be formatted as `\"xAyB\"`, where `x` is the number of bulls and `y` is the number of cows. Note that both `secret` and `guess` may contain duplicate digits.\n\n**Example 1:**\n\n```\nInput: secret = \"1807\", guess = \"7810\"\nOutput: \"1A3B\"\nExplanation: Bulls are connected with a '|' and cows are underlined:\n\"1807\"\n  |\n\"7810\"\n```\n\n**Example 2:**\n\n```\nInput: secret = \"1123\", guess = \"0111\"\nOutput: \"1A1B\"\nExplanation: Bulls are connected with a '|' and cows are underlined:\n\"1123\"        \"1123\"\n  |      or     |\n\"0111\"        \"0111\"\nNote that only one of the two unmatched 1s is counted as a cow since the non-bull digits can only be rearranged to allow one 1 to be a bull.\n```\n\n**Constraints:**\n\n*   `1 <= secret.length, guess.length <= 1000`\n*   `secret.length == guess.length`\n*   `secret` and `guess` consist of digits only.",
+  "constraints": [
+    "1 <= secret.length, guess.length <= 1000",
+    "secret.length == guess.length",
+    "secret and guess consist of digits only."
+  ],
+  "examples": [
+    {
+      "input": "secret = \"1807\", guess = \"7810\"",
+      "output": "\"1A3B\"",
+      "explanation": "Bulls are connected with a '|' and cows are underlined:\n\"1807\"\n  |\n\"7810\""
+    },
+    {
+      "input": "secret = \"1123\", guess = \"0111\"",
+      "output": "\"1A1B\"",
+      "explanation": "Bulls are connected with a '|' and cows are underlined:\n\"1123\"        \"1123\"\n  |      or     |\n\"0111\"        \"0111\"\nNote that only one of the two unmatched 1s is counted as a cow since the non-bull digits can only be rearranged to allow one 1 to be a bull."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string getHint(string secret, string guess) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String getHint(String secret, String guess) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getHint(self, secret: str, guess: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def getHint(self, secret, guess):\n        \"\"\"\n        :type secret: str\n        :type guess: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} secret\n * @param {string} guess\n * @return {string}\n */\nvar getHint = function(secret, guess) {\n    \n};",
+    "typescript": "function getHint(secret: string, guess: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string GetHint(string secret, string guess) {\n        \n    }\n}",
+    "c": "char* getHint(char* secret, char* guess) {\n    \n}",
+    "golang": "func getHint(secret string, guess string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun getHint(secret: String, guess: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getHint(_ secret: String, _ guess: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_hint(secret: String, guess: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} secret\n# @param {String} guess\n# @return {String}\ndef get_hint(secret, guess)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $secret\n     * @param String $guess\n     * @return String\n     */\n    function getHint($secret, $guess) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String getHint(String secret, String guess) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getHint(secret: String, guess: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_hint(secret :: String.t, guess :: String.t) :: String.t\n  def get_hint(secret, guess) do\n    \n  end\nend",
+    "erlang": "-spec get_hint(Secret :: unicode:unicode_binary(), Guess :: unicode:unicode_binary()) -> unicode:unicode_binary().\nget_hint(Secret, Guess) ->\n  .",
+    "racket": "(define/contract (get-hint secret guess)\n  (-> string? string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"1807\"\n\"7810\"",
+      "expectedOutput": "\"1A3B\""
+    },
+    {
+      "input": "\"1123\"\n\"0111\"",
+      "expectedOutput": "\"1A1B\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"1807\"\n\"7810\"",
+      "expectedOutput": "\"1A3B\""
+    },
+    {
+      "input": "\"1123\"\n\"0111\"",
+      "expectedOutput": "\"1A1B\""
+    },
+    {
+      "input": "\"18\"\n\"7810\"",
+      "expectedOutput": "\"1A0B\""
+    },
+    {
+      "input": "\"07\"\n\"7810\"",
+      "expectedOutput": "\"0A1B\""
+    },
+    {
+      "input": "\"1\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    },
+    {
+      "input": "\"7081\"\n\"7810\"",
+      "expectedOutput": "\"1A3B\""
+    },
+    {
+      "input": "\"18071807\"\n\"7810\"",
+      "expectedOutput": "\"1A3B\""
+    },
+    {
+      "input": "\"1111\"\n\"7810\"",
+      "expectedOutput": "\"1A0B\""
+    },
+    {
+      "input": "\"18077081\"\n\"7810\"",
+      "expectedOutput": "\"1A3B\""
+    },
+    {
+      "input": "\"a\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    },
+    {
+      "input": "\"b\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    },
+    {
+      "input": "\"aa\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    },
+    {
+      "input": "\"ab\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    },
+    {
+      "input": "\"ba\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    },
+    {
+      "input": "\"aba\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    },
+    {
+      "input": "\"abba\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    },
+    {
+      "input": "\"aaaaa\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    },
+    {
+      "input": "\"abcde\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    },
+    {
+      "input": "\"edcba\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    },
+    {
+      "input": "\"aab\"\n\"7810\"",
+      "expectedOutput": "\"0A0B\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/bulls-and-cows/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.777Z",
+    "sourceUpdatedAt": null
+  }
+}

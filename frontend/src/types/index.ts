@@ -320,3 +320,115 @@ export interface CandidateProfile {
   resumeWordCount?: number;
   jdText?: string;
 }
+
+
+// LeetCode Practice Question Bank Types
+export interface LCQuestionSummary {
+  id: string;
+  num: number;
+  slug: string;
+  title: string;
+  category: 'dsa' | 'database';
+  subcategory: string;
+  difficulty: 'Easy' | 'Medium' | 'Hard';
+  path: string;
+  timeComplexity: string;
+  spaceComplexity: string;
+  status: 'todo' | 'attempted' | 'solved';
+  isStarred: boolean;
+}
+
+export interface LCSubmission {
+  id: string;
+  language: string;
+  code: string;
+  status: string;
+  runtime_ms: number;
+  memory_mb: number;
+  test_cases_passed: number;
+  total_test_cases: number;
+  error_message?: string;
+  submitted_at: string;
+}
+
+export interface LCQuestionDetail extends LCQuestionSummary {
+  tags: string[];
+  statement: string;
+  constraints: string[];
+  examples: {
+    input: string;
+    output: string;
+    explanation?: string | null;
+  }[];
+  sampleCases: {
+    case_number: number;
+    input: string;
+    expected: string;
+    explanation?: string;
+  }[];
+  starterCode: Record<string, string>;
+  hints: string[];
+  sqlSchema?: string | null;
+  sqlSetup?: string[] | null;
+  prevSubmissions: LCSubmission[];
+}
+
+export interface LCAnalytics {
+  totalQuestions: number;
+  solvedCount: number;
+  attemptedCount: number;
+  starredCount: number;
+  dsa: {
+    total: number;
+    solved: number;
+    percentage: number;
+  };
+  database: {
+    total: number;
+    solved: number;
+    percentage: number;
+  };
+  difficulty: {
+    easy: { total: number; solved: number };
+    medium: { total: number; solved: number };
+    hard: { total: number; solved: number };
+  };
+  topicStats: Record<string, { total: number; solved: number }>;
+}
+
+export interface LCRunResult {
+  status: string;
+  is_correct: boolean;
+  score_fraction?: number;
+  feedback?: string;
+  runtime_ms?: number;
+  memory_mb?: number;
+  passed_test_cases?: number;
+  total_test_cases?: number;
+  test_case_results?: {
+    test_case_index: number;
+    input_data: string;
+    expected_output: string;
+    actual_output: string;
+    passed: boolean;
+    runtime_ms?: number;
+    memory_mb?: number;
+    stdout?: string;
+  }[];
+  compiler_output?: string;
+  error?: string;
+}
+
+export interface LCSubmitResult {
+  submission_id: string;
+  status: string;
+  is_correct: boolean;
+  runtime_ms: number;
+  memory_mb: number;
+  beats_runtime: number;
+  beats_memory: number;
+  passed_test_cases: number;
+  total_test_cases: number;
+  test_case_results?: any[];
+  submitted_at: string;
+}

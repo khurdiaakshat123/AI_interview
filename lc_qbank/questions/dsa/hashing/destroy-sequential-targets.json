@@ -1,0 +1,168 @@
+{
+  "id": "2453",
+  "slug": "destroy-sequential-targets",
+  "title": "Destroy Sequential Targets",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "statement": "You are given a **0-indexed** array `nums` consisting of positive integers, representing targets on a number line. You are also given an integer `space`.\n\nYou have a machine which can destroy targets. **Seeding** the machine with some `nums[i]` allows it to destroy all targets with values that can be represented as `nums[i] + c * space`, where `c` is any non-negative integer. You want to destroy the **maximum** number of targets in `nums`.\n\nReturn _the **minimum value** of_ `nums[i]` _you can seed the machine with to destroy the maximum number of targets._\n\n**Example 1:**\n\n```\nInput: nums = [3,7,8,1,1,5], space = 2\nOutput: 1\nExplanation: If we seed the machine with nums[3], then we destroy all targets equal to 1,3,5,7,9,... \nIn this case, we would destroy 5 total targets (all except for nums[2]). \nIt is impossible to destroy more than 5 targets, so we return nums[3].\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,3,5,2,4,6], space = 2\nOutput: 1\nExplanation: Seeding the machine with nums[0], or nums[3] destroys 3 targets. \nIt is not possible to destroy more than 3 targets.\nSince nums[0] is the minimal integer that can destroy 3 targets, we return 1.\n```\n\n**Example 3:**\n\n```\nInput: nums = [6,2,5], space = 100\nOutput: 2\nExplanation: Whatever initial seed we select, we can only destroy 1 target. The minimal seed is nums[1].\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`\n*   `1 <= space <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 109",
+    "1 <= space <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,7,8,1,1,5], space = 2",
+      "output": "1",
+      "explanation": "If we seed the machine with nums[3], then we destroy all targets equal to 1,3,5,7,9,... \nIn this case, we would destroy 5 total targets (all except for nums[2]). \nIt is impossible to destroy more than 5 targets, so we return nums[3]."
+    },
+    {
+      "input": "nums = [1,3,5,2,4,6], space = 2",
+      "output": "1",
+      "explanation": "Seeding the machine with nums[0], or nums[3] destroys 3 targets. \nIt is not possible to destroy more than 3 targets.\nSince nums[0] is the minimal integer that can destroy 3 targets, we return 1."
+    },
+    {
+      "input": "nums = [6,2,5], space = 100",
+      "output": "2",
+      "explanation": "Whatever initial seed we select, we can only destroy 1 target. The minimal seed is nums[1]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int destroyTargets(vector<int>& nums, int space) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int destroyTargets(int[] nums, int space) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def destroyTargets(self, nums: list[int], space: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def destroyTargets(self, nums, space):\n        \"\"\"\n        :type nums: List[int]\n        :type space: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} space\n * @return {number}\n */\nvar destroyTargets = function(nums, space) {\n    \n};",
+    "typescript": "function destroyTargets(nums: number[], space: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int DestroyTargets(int[] nums, int space) {\n        \n    }\n}",
+    "c": "int destroyTargets(int* nums, int numsSize, int space) {\n    \n}",
+    "golang": "func destroyTargets(nums []int, space int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun destroyTargets(nums: IntArray, space: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func destroyTargets(_ nums: [Int], _ space: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn destroy_targets(nums: Vec<i32>, space: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} space\n# @return {Integer}\ndef destroy_targets(nums, space)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $space\n     * @return Integer\n     */\n    function destroyTargets($nums, $space) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int destroyTargets(List<int> nums, int space) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def destroyTargets(nums: Array[Int], space: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec destroy_targets(nums :: [integer], space :: integer) :: integer\n  def destroy_targets(nums, space) do\n    \n  end\nend",
+    "erlang": "-spec destroy_targets(Nums :: [integer()], Space :: integer()) -> integer().\ndestroy_targets(Nums, Space) ->\n  .",
+    "racket": "(define/contract (destroy-targets nums space)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,7,8,1,1,5]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3,5,2,4,6]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[6,2,5]\n100",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,7,8,1,1,5]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3,5,2,4,6]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[6,2,5]\n100",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,7,8]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,5]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,5]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,7]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,1,1,8,7,3]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,3,5,7,8]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[8,7,5,3,1,1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,3,3,3,3]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,7,8,1,1,5,3,7,8,1,1,5]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[6,14,16,2,2,10]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,8,9,2,2,6]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,6,7,0,0,4]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-3,-7,-8,-1,-1,-5]\n2",
+      "expectedOutput": "-7"
+    },
+    {
+      "input": "[0,0,0,0]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]\n2",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Keep track of nums[i] modulo k.",
+    "Iterate over nums in sorted order."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/destroy-sequential-targets/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.551Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "65",
+  "slug": "valid-number",
+  "title": "Valid Number",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Hard",
+  "tags": [
+    "String"
+  ],
+  "statement": "Given a string `s`, return whether `s` is a **valid number**.  \n  \nFor example, all the following are valid numbers: `\"2\", \"0089\", \"-0.1\", \"+3.14\", \"4.\", \"-.9\", \"2e10\", \"-90E3\", \"3e+7\", \"+6e-1\", \"53.5e93\", \"-123.456e789\"`, while the following are not valid numbers: `\"abc\", \"1a\", \"1e\", \"e3\", \"99e2.5\", \"--6\", \"-+3\", \"95a54e53\"`.\n\nFormally, a **valid number** is defined using one of the following definitions:\n\n1.  An **integer number** followed by an **optional exponent**.\n2.  A **decimal number** followed by an **optional exponent**.\n\nAn **integer number** is defined with an **optional sign** `'-'` or `'+'` followed by **digits**.\n\nA **decimal number** is defined with an **optional sign** `'-'` or `'+'` followed by one of the following definitions:\n\n1.  **Digits** followed by a **dot** `'.'`.\n2.  **Digits** followed by a **dot** `'.'` followed by **digits**.\n3.  A **dot** `'.'` followed by **digits**.\n\nAn **exponent** is defined with an **exponent notation** `'e'` or `'E'` followed by an **integer number**.\n\nThe **digits** are defined as one or more digits.\n\n**Example 1:**\n\n**Input:** s = \"0\"\n\n**Output:** true\n\n**Example 2:**\n\n**Input:** s = \"e\"\n\n**Output:** false\n\n**Example 3:**\n\n**Input:** s = \".\"\n\n**Output:** false\n\n**Constraints:**\n\n*   `1 <= s.length <= 20`\n*   `s` consists of only English letters (both uppercase and lowercase), digits (`0-9`), plus `'+'`, minus `'-'`, or dot `'.'`.",
+  "constraints": [
+    "1 <= s.length <= 20",
+    "s consists of only English letters (both uppercase and lowercase), digits (0-9), plus '+', minus '-', or dot '.'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"0\"",
+      "output": "true",
+      "explanation": null
+    },
+    {
+      "input": "s = \"e\"",
+      "output": "false",
+      "explanation": null
+    },
+    {
+      "input": "s = \".\"",
+      "output": "false",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isNumber(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isNumber(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isNumber(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isNumber(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar isNumber = function(s) {\n    \n};",
+    "typescript": "function isNumber(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsNumber(string s) {\n        \n    }\n}",
+    "c": "bool isNumber(char* s) {\n    \n}",
+    "golang": "func isNumber(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isNumber(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isNumber(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_number(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef is_number(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function isNumber($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isNumber(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isNumber(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_number(s :: String.t) :: boolean\n  def is_number(s) do\n    \n  end\nend",
+    "erlang": "-spec is_number(S :: unicode:unicode_binary()) -> boolean().\nis_number(S) ->\n  .",
+    "racket": "(define/contract (is-number s)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"0\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"e\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\".\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"0\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"e\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\".\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"00\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"racecar\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"hello\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/valid-number/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.484Z",
+    "sourceUpdatedAt": null
+  }
+}

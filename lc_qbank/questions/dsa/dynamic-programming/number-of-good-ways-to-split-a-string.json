@@ -1,0 +1,159 @@
+{
+  "id": "1525",
+  "slug": "number-of-good-ways-to-split-a-string",
+  "title": "Number of Good Ways to Split a String",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a string `s`.\n\nA split is called **good** if you can split `s` into two non-empty strings `s_(left)` and `s_(right)` where their concatenation is equal to `s` (i.e., `s_(left) + s_(right) = s`) and the number of distinct letters in `s_(left)` and `s_(right)` is the same.\n\nReturn _the number of **good splits** you can make in `s`_.\n\n**Example 1:**\n\n```\n\"aacaba\"\n```\n\n**Example 2:**\n\n```\nInput: s = \"abcd\"\nOutput: 1\nExplanation: Split the string as follows (\"ab\", \"cd\").\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists of only lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists of only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aacaba\"",
+      "output": "2",
+      "explanation": "There are 5 ways to split \"aacaba\" and 2 of them are good. \n(\"a\", \"acaba\") Left string and right string contains 1 and 3 different letters respectively.\n(\"aa\", \"caba\") Left string and right string contains 1 and 3 different letters respectively.\n(\"aac\", \"aba\") Left string and right string contains 2 and 2 different letters respectively (good split).\n(\"aaca\", \"ba\") Left string and right string contains 2 and 2 different letters respectively (good split).\n(\"aacab\", \"a\") Left string and right string contains 3 and 1 different letters respectively."
+    },
+    {
+      "input": "s = \"abcd\"",
+      "output": "1",
+      "explanation": "Split the string as follows (\"ab\", \"cd\")."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numSplits(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numSplits(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numSplits(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def numSplits(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar numSplits = function(s) {\n    \n};",
+    "typescript": "function numSplits(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumSplits(string s) {\n        \n    }\n}",
+    "c": "int numSplits(char* s) {\n    \n}",
+    "golang": "func numSplits(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numSplits(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numSplits(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_splits(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef num_splits(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function numSplits($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numSplits(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numSplits(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_splits(s :: String.t) :: integer\n  def num_splits(s) do\n    \n  end\nend",
+    "erlang": "-spec num_splits(S :: unicode:unicode_binary()) -> integer().\nnum_splits(S) ->\n  .",
+    "racket": "(define/contract (num-splits s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aacaba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abcd\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aacaba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abcd\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aac\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abacaa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aacabaaacaba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aacabaabacaa\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"AACABA\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use two HashMap to store the counts of distinct letters in the left and right substring divided by the current index."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-good-ways-to-split-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.897Z",
+    "sourceUpdatedAt": null
+  }
+}

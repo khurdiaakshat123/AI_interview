@@ -1,0 +1,169 @@
+{
+  "id": "1617",
+  "slug": "count-subtrees-with-max-distance-between-cities",
+  "title": "Count Subtrees With Max Distance Between Cities",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Tree",
+    "Enumeration",
+    "Bitmask"
+  ],
+  "statement": "There are `n` cities numbered from `1` to `n`. You are given an array `edges` of size `n-1`, where `edges[i] = [u_(i), v_(i)]` represents a bidirectional edge between cities `u_(i)` and `v_(i)`. There exists a unique path between each pair of cities. In other words, the cities form a **tree**.\n\nA **subtree** is a subset of cities where every city is reachable from every other city in the subset, where the path between each pair passes through only the cities from the subset. Two subtrees are different if there is a city in one subtree that is not present in the other.\n\nFor each `d` from `1` to `n-1`, find the number of subtrees in which the **maximum distance** between any two cities in the subtree is equal to `d`.\n\nReturn _an array of size_ `n-1` _where the_ `d^(th)` _element **(1-indexed)** is the number of subtrees in which the **maximum distance** between any two cities is equal to_ `d`.\n\n**Notice** that the **distance** between the two cities is the number of edges in the path between them.\n\n**Example 1:**\n\n**![](./assets/count-subtrees-with-max-distance-between-cities-1.png)**\n\n```\nInput: n = 4, edges = [[1,2],[2,3],[2,4]]\nOutput: [3,4,0]\nExplanation:\nThe subtrees with subsets {1,2}, {2,3} and {2,4} have a max distance of 1.\nThe subtrees with subsets {1,2,3}, {1,2,4}, {2,3,4} and {1,2,3,4} have a max distance of 2.\nNo subtree has two nodes where the max distance between them is 3.\n```\n\n**Example 2:**\n\n```\nInput: n = 2, edges = [[1,2]]\nOutput: [1]\n```\n\n**Example 3:**\n\n```\nInput: n = 3, edges = [[1,2],[2,3]]\nOutput: [2,1]\n```\n\n**Constraints:**\n\n*   `2 <= n <= 15`\n*   `edges.length == n-1`\n*   `edges[i].length == 2`\n*   `1 <= u_(i), v_(i) <= n`\n*   All pairs `(u_(i), v_(i))` are distinct.",
+  "constraints": [
+    "2 <= n <= 15",
+    "edges.length == n-1",
+    "edges[i].length == 2",
+    "1 <= ui, vi <= n",
+    "All pairs (ui, vi) are distinct."
+  ],
+  "examples": [
+    {
+      "input": "n = 4, edges = [[1,2],[2,3],[2,4]]",
+      "output": "[3,4,0]",
+      "explanation": "The subtrees with subsets {1,2}, {2,3} and {2,4} have a max distance of 1.\r\nThe subtrees with subsets {1,2,3}, {1,2,4}, {2,3,4} and {1,2,3,4} have a max distance of 2.\r\nNo subtree has two nodes where the max distance between them is 3."
+    },
+    {
+      "input": "n = 2, edges = [[1,2]]",
+      "output": "[1]",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, edges = [[1,2],[2,3]]",
+      "output": "[2,1]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> countSubgraphsForEachDiameter(int n, vector<vector<int>>& edges) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] countSubgraphsForEachDiameter(int n, int[][] edges) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countSubgraphsForEachDiameter(self, n: int, edges: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def countSubgraphsForEachDiameter(self, n, edges):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @return {number[]}\n */\nvar countSubgraphsForEachDiameter = function(n, edges) {\n    \n};",
+    "typescript": "function countSubgraphsForEachDiameter(n: number, edges: number[][]): number[] {\n\n};",
+    "csharp": "public class Solution {\n    public int[] CountSubgraphsForEachDiameter(int n, int[][] edges) {\n        \n    }\n}",
+    "c": "\n\n/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* countSubgraphsForEachDiameter(int n, int** edges, int edgesSize, int* edgesColSize, int* returnSize){\n\n}",
+    "golang": "func countSubgraphsForEachDiameter(n int, edges [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countSubgraphsForEachDiameter(n: Int, edges: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countSubgraphsForEachDiameter(_ n: Int, _ edges: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_subgraphs_for_each_diameter(n: i32, edges: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @return {Integer[]}\ndef count_subgraphs_for_each_diameter(n, edges)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @return Integer[]\n     */\n    function countSubgraphsForEachDiameter($n, $edges) {\n        \n    }\n}",
+    "scala": "object Solution {\n    def countSubgraphsForEachDiameter(n: Int, edges: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "4\n[[1,2],[2,3],[2,4]]",
+      "expectedOutput": "[3,4,0]"
+    },
+    {
+      "input": "2\n[[1,2]]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "3\n[[1,2],[2,3]]",
+      "expectedOutput": "[2,1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "4\n[[1,2],[2,3],[2,4]]",
+      "expectedOutput": "[3,4,0]"
+    },
+    {
+      "input": "2\n[[1,2]]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "3\n[[1,2],[2,3]]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "0\n[[1,2],[2,3],[2,4]]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "1\n[[1,2],[2,3],[2,4]]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "2\n[[1,2],[2,3],[2,4]]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "3\n[[1,2],[2,3],[2,4]]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "5\n[[1,2],[2,3],[2,4]]",
+      "expectedOutput": "[3,4,0,0]"
+    },
+    {
+      "input": "6\n[[1,2],[2,3],[2,4]]",
+      "expectedOutput": "[3,4,0,0,0]"
+    },
+    {
+      "input": "7\n[[1,2],[2,3],[2,4]]",
+      "expectedOutput": "[3,4,0,0,0,0]"
+    },
+    {
+      "input": "8\n[[1,2],[2,3],[2,4]]",
+      "expectedOutput": "[3,4,0,0,0,0,0]"
+    },
+    {
+      "input": "9\n[[1,2],[2,3],[2,4]]",
+      "expectedOutput": "[3,4,0,0,0,0,0,0]"
+    },
+    {
+      "input": "0\n[[1,2]]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "1\n[[1,2]]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "3\n[[1,2]]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "4\n[[1,2]]",
+      "expectedOutput": "[1,0,0]"
+    },
+    {
+      "input": "5\n[[1,2]]",
+      "expectedOutput": "[1,0,0,0]"
+    },
+    {
+      "input": "6\n[[1,2]]",
+      "expectedOutput": "[1,0,0,0,0]"
+    },
+    {
+      "input": "7\n[[1,2]]",
+      "expectedOutput": "[1,0,0,0,0,0]"
+    },
+    {
+      "input": "0\n[[1,2],[2,3]]",
+      "expectedOutput": "[]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate through every possible subtree by doing a bitmask on which vertices to include. How can you determine if a subtree is valid (all vertices are connected)?",
+    "To determine connectivity, count the number of reachable vertices starting from any included vertex and only traveling on edges connecting 2 vertices in the subtree. The count should be the same as the number of 1s in the bitmask.",
+    "The diameter is basically the maximum distance between any two nodes. Root the tree at a vertex. The answer is the max of the heights of the two largest subtrees or the longest diameter in any of the subtrees."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.723Z",
+    "sourceUpdatedAt": null
+  }
+}

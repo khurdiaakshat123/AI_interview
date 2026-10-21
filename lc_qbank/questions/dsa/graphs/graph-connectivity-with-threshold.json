@@ -1,0 +1,173 @@
+{
+  "id": "1627",
+  "slug": "graph-connectivity-with-threshold",
+  "title": "Graph Connectivity With Threshold",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Union-Find",
+    "Number Theory"
+  ],
+  "statement": "We have `n` cities labeled from `1` to `n`. Two different cities with labels `x` and `y` are directly connected by a bidirectional road if and only if `x` and `y` share a common divisor **strictly greater** than some `threshold`. More formally, cities with labels `x` and `y` have a road between them if there exists an integer `z` such that all of the following are true:\n\n*   `x % z == 0`,\n*   `y % z == 0`, and\n*   `z > threshold`.\n\nGiven the two integers, `n` and `threshold`, and an array of `queries`, you must determine for each `queries[i] = [a_(i), b_(i)]` if cities `a_(i)` and `b_(i)` are connected directly or indirectly. (i.e. there is some path between them).\n\nReturn _an array_ `answer`_, where_ `answer.length == queries.length` _and_ `answer[i]` _is_ `true` _if for the_ `i^(th)` _query, there is a path between_ `a_(i)` _and_ `b_(i)`_, or_ `answer[i]` _is_ `false` _if there is no path._\n\n**Example 1:**\n\n![](./assets/graph-connectivity-with-threshold-1.jpg)\n```\nInput: n = 6, threshold = 2, queries = [[1,4],[2,5],[3,6]]\nOutput: [false,false,true]\nExplanation: The divisors for each number:\n1:   1\n2:   1, 2\n3:   1, 3\n4:   1, 2, 4\n5:   1, 5\n6:   1, 2, 3, 6\nUsing the underlined divisors above the threshold, only cities 3 and 6 share a common divisor, so they are the\nonly ones directly connected. The result of each query:\n[1,4]   1 is not connected to 4\n[2,5]   2 is not connected to 5\n[3,6]   3 is connected to 6 through path 3--6\n```\n\n**Example 2:**\n\n![](./assets/graph-connectivity-with-threshold-2.jpg)\n```\nInput: n = 6, threshold = 0, queries = [[4,5],[3,4],[3,2],[2,6],[1,3]]\nOutput: [true,true,true,true,true]\nExplanation: The divisors for each number are the same as the previous example. However, since the threshold is 0,\nall divisors can be used. Since all numbers share 1 as a divisor, all cities are connected.\n```\n\n**Example 3:**\n\n![](./assets/graph-connectivity-with-threshold-3.jpg)\n```\nInput: n = 5, threshold = 1, queries = [[4,5],[4,5],[3,2],[2,3],[3,4]]\nOutput: [false,false,false,false,false]\nExplanation: Only cities 2 and 4 share a common divisor 2 which is strictly greater than the threshold 1, so they are the only ones directly connected.\nPlease notice that there can be multiple queries for the same pair of nodes [x, y], and that the query [x, y] is equivalent to the query [y, x].\n```\n\n**Constraints:**\n\n*   `2 <= n <= 10^(4)`\n*   `0 <= threshold <= n`\n*   `1 <= queries.length <= 10^(5)`\n*   `queries[i].length == 2`\n*   `1 <= a_(i), b_(i) <= cities`\n*   `a_(i) != b_(i)`",
+  "constraints": [
+    "2 <= n <= 104",
+    "0 <= threshold <= n",
+    "1 <= queries.length <= 105",
+    "queries[i].length == 2",
+    "1 <= ai, bi <= cities",
+    "ai != bi"
+  ],
+  "examples": [
+    {
+      "input": "n = 6, threshold = 2, queries = [[1,4],[2,5],[3,6]]",
+      "output": "[false,false,true]",
+      "explanation": "The divisors for each number:\n1:   1\n2:   1, 2\n3:   1, 3\n4:   1, 2, 4\n5:   1, 5\n6:   1, 2, 3, 6\nUsing the underlined divisors above the threshold, only cities 3 and 6 share a common divisor, so they are the\nonly ones directly connected. The result of each query:\n[1,4]   1 is not connected to 4\n[2,5]   2 is not connected to 5\n[3,6]   3 is connected to 6 through path 3--6"
+    },
+    {
+      "input": "n = 6, threshold = 0, queries = [[4,5],[3,4],[3,2],[2,6],[1,3]]",
+      "output": "[true,true,true,true,true]",
+      "explanation": "The divisors for each number are the same as the previous example. However, since the threshold is 0,\nall divisors can be used. Since all numbers share 1 as a divisor, all cities are connected."
+    },
+    {
+      "input": "n = 5, threshold = 1, queries = [[4,5],[4,5],[3,2],[2,3],[3,4]]",
+      "output": "[false,false,false,false,false]",
+      "explanation": "Only cities 2 and 4 share a common divisor 2 which is strictly greater than the threshold 1, so they are the only ones directly connected.\nPlease notice that there can be multiple queries for the same pair of nodes [x, y], and that the query [x, y] is equivalent to the query [y, x]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<bool> areConnected(int n, int threshold, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Boolean> areConnected(int n, int threshold, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def areConnected(self, n: int, threshold: int, queries: list[list[int]]) -> list[bool]:\n        ",
+    "python": "class Solution(object):\n    def areConnected(self, n, threshold, queries):\n        \"\"\"\n        :type n: int\n        :type threshold: int\n        :type queries: List[List[int]]\n        :rtype: List[bool]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} threshold\n * @param {number[][]} queries\n * @return {boolean[]}\n */\nvar areConnected = function(n, threshold, queries) {\n    \n};",
+    "typescript": "function areConnected(n: number, threshold: number, queries: number[][]): boolean[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<bool> AreConnected(int n, int threshold, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nbool* areConnected(int n, int threshold, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func areConnected(n int, threshold int, queries [][]int) []bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun areConnected(n: Int, threshold: Int, queries: Array<IntArray>): List<Boolean> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func areConnected(_ n: Int, _ threshold: Int, _ queries: [[Int]]) -> [Bool] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn are_connected(n: i32, threshold: i32, queries: Vec<Vec<i32>>) -> Vec<bool> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} threshold\n# @param {Integer[][]} queries\n# @return {Boolean[]}\ndef are_connected(n, threshold, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $threshold\n     * @param Integer[][] $queries\n     * @return Boolean[]\n     */\n    function areConnected($n, $threshold, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<bool> areConnected(int n, int threshold, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def areConnected(n: Int, threshold: Int, queries: Array[Array[Int]]): List[Boolean] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec are_connected(n :: integer, threshold :: integer, queries :: [[integer]]) :: [boolean]\n  def are_connected(n, threshold, queries) do\n    \n  end\nend",
+    "erlang": "-spec are_connected(N :: integer(), Threshold :: integer(), Queries :: [[integer()]]) -> [boolean()].\nare_connected(N, Threshold, Queries) ->\n  .",
+    "racket": "(define/contract (are-connected n threshold queries)\n  (-> exact-integer? exact-integer? (listof (listof exact-integer?)) (listof boolean?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "6\n2\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[false,false,true]"
+    },
+    {
+      "input": "6\n0\n[[4,5],[3,4],[3,2],[2,6],[1,3]]",
+      "expectedOutput": "[true,true,true,true,true]"
+    },
+    {
+      "input": "5\n1\n[[4,5],[4,5],[3,2],[2,3],[3,4]]",
+      "expectedOutput": "[false,false,false,false,false]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "6\n2\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[false,false,true]"
+    },
+    {
+      "input": "6\n0\n[[4,5],[3,4],[3,2],[2,6],[1,3]]",
+      "expectedOutput": "[true,true,true,true,true]"
+    },
+    {
+      "input": "5\n1\n[[4,5],[4,5],[3,2],[2,3],[3,4]]",
+      "expectedOutput": "[false,false,false,false,false]"
+    },
+    {
+      "input": "7\n2\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[false,false,true]"
+    },
+    {
+      "input": "8\n2\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[false,false,true]"
+    },
+    {
+      "input": "9\n2\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[false,false,true]"
+    },
+    {
+      "input": "6\n0\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[true,true,true]"
+    },
+    {
+      "input": "6\n1\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[false,false,true]"
+    },
+    {
+      "input": "6\n3\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[false,false,false]"
+    },
+    {
+      "input": "6\n4\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[false,false,false]"
+    },
+    {
+      "input": "6\n5\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[false,false,false]"
+    },
+    {
+      "input": "6\n6\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[false,false,false]"
+    },
+    {
+      "input": "6\n7\n[[1,4],[2,5],[3,6]]",
+      "expectedOutput": "[false,false,false]"
+    },
+    {
+      "input": "7\n0\n[[4,5],[3,4],[3,2],[2,6],[1,3]]",
+      "expectedOutput": "[true,true,true,true,true]"
+    },
+    {
+      "input": "8\n0\n[[4,5],[3,4],[3,2],[2,6],[1,3]]",
+      "expectedOutput": "[true,true,true,true,true]"
+    },
+    {
+      "input": "9\n0\n[[4,5],[3,4],[3,2],[2,6],[1,3]]",
+      "expectedOutput": "[true,true,true,true,true]"
+    },
+    {
+      "input": "6\n1\n[[4,5],[3,4],[3,2],[2,6],[1,3]]",
+      "expectedOutput": "[false,true,true,true,false]"
+    },
+    {
+      "input": "6\n2\n[[4,5],[3,4],[3,2],[2,6],[1,3]]",
+      "expectedOutput": "[false,false,false,false,false]"
+    },
+    {
+      "input": "6\n3\n[[4,5],[3,4],[3,2],[2,6],[1,3]]",
+      "expectedOutput": "[false,false,false,false,false]"
+    },
+    {
+      "input": "6\n4\n[[4,5],[3,4],[3,2],[2,6],[1,3]]",
+      "expectedOutput": "[false,false,false,false,false]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "How to build the graph of the cities?",
+    "Connect city i with all its multiples 2*i, 3*i, ...",
+    "Answer the queries using union-find data structure."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/graph-connectivity-with-threshold/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.222Z",
+    "sourceUpdatedAt": null
+  }
+}

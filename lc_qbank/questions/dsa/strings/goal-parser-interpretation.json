@@ -1,0 +1,160 @@
+{
+  "id": "1678",
+  "slug": "goal-parser-interpretation",
+  "title": "Goal Parser Interpretation",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Easy",
+  "tags": [
+    "String"
+  ],
+  "statement": "You own a **Goal Parser** that can interpret a string `command`. The `command` consists of an alphabet of `\"G\"`, `\"()\"` and/or `\"(al)\"` in some order. The Goal Parser will interpret `\"G\"` as the string `\"G\"`, `\"()\"` as the string `\"o\"`, and `\"(al)\"` as the string `\"al\"`. The interpreted strings are then concatenated in the original order.\n\nGiven the string `command`, return _the **Goal Parser**'s interpretation of_ `command`.\n\n**Example 1:**\n\n```\nInput: command = \"G()(al)\"\nOutput: \"Goal\"\nExplanation: The Goal Parser interprets the command as follows:\nG -> G\n() -> o\n(al) -> al\nThe final concatenated result is \"Goal\".\n```\n\n**Example 2:**\n\n```\nInput: command = \"G()()()()(al)\"\nOutput: \"Gooooal\"\n```\n\n**Example 3:**\n\n```\nInput: command = \"(al)G(al)()()G\"\nOutput: \"alGalooG\"\n```\n\n**Constraints:**\n\n*   `1 <= command.length <= 100`\n*   `command` consists of `\"G\"`, `\"()\"`, and/or `\"(al)\"` in some order.",
+  "constraints": [
+    "1 <= command.length <= 100",
+    "command consists of \"G\", \"()\", and/or \"(al)\" in some order."
+  ],
+  "examples": [
+    {
+      "input": "command = \"G()(al)\"",
+      "output": "\"Goal\"",
+      "explanation": " The Goal Parser interprets the command as follows:\nG -> G\n() -> o\n(al) -> al\nThe final concatenated result is \"Goal\"."
+    },
+    {
+      "input": "command = \"G()()()()(al)\"",
+      "output": "\"Gooooal\"",
+      "explanation": null
+    },
+    {
+      "input": "command = \"(al)G(al)()()G\"",
+      "output": "\"alGalooG\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string interpret(string command) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String interpret(String command) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def interpret(self, command: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def interpret(self, command):\n        \"\"\"\n        :type command: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} command\n * @return {string}\n */\nvar interpret = function(command) {\n    \n};",
+    "typescript": "function interpret(command: string): string {\n\n};",
+    "csharp": "public class Solution {\n    public string Interpret(string command) {\n        \n    }\n}",
+    "c": "\n\nchar * interpret(char * command){\n\n}",
+    "golang": "func interpret(command string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun interpret(command: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func interpret(_ command: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn interpret(command: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} command\n# @return {String}\ndef interpret(command)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $command\n     * @return String\n     */\n    function interpret($command) {\n        \n    }\n}",
+    "scala": "object Solution {\n    def interpret(command: String): String = {\n        \n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "\"G()(al)\"",
+      "expectedOutput": "\"Goal\""
+    },
+    {
+      "input": "\"G()()()()(al)\"",
+      "expectedOutput": "\"Gooooal\""
+    },
+    {
+      "input": "\"(al)G(al)()()G\"",
+      "expectedOutput": "\"alGalooG\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"G()(al)\"",
+      "expectedOutput": "\"Goal\""
+    },
+    {
+      "input": "\"G()()()()(al)\"",
+      "expectedOutput": "\"Gooooal\""
+    },
+    {
+      "input": "\"(al)G(al)()()G\"",
+      "expectedOutput": "\"alGalooG\""
+    },
+    {
+      "input": "\"G()\"",
+      "expectedOutput": "\"Go\""
+    },
+    {
+      "input": "\"(al)\"",
+      "expectedOutput": "\"al\""
+    },
+    {
+      "input": "\"G\"",
+      "expectedOutput": "\"G\""
+    },
+    {
+      "input": "\"G(\"",
+      "expectedOutput": "\"G(\""
+    },
+    {
+      "input": "\")la()(G\"",
+      "expectedOutput": "\")lao(G\""
+    },
+    {
+      "input": "\"G()(al)G()(al)\"",
+      "expectedOutput": "\"GoalGoal\""
+    },
+    {
+      "input": "\"GGGGGG\"",
+      "expectedOutput": "\"GGGGGG\""
+    },
+    {
+      "input": "\"G()(al))la()(G\"",
+      "expectedOutput": "\"Goal)lao(G\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "You need to check at most 2 characters to determine which character comes next."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/goal-parser-interpretation/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.200Z",
+    "sourceUpdatedAt": null
+  }
+}

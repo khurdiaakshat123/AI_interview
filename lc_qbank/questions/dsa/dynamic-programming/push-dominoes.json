@@ -1,0 +1,156 @@
+{
+  "id": "838",
+  "slug": "push-dominoes",
+  "title": "Push Dominoes",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "There are `n` dominoes in a line, and we place each domino vertically upright. In the beginning, we simultaneously push some of the dominoes either to the left or to the right.\n\nAfter each second, each domino that is falling to the left pushes the adjacent domino on the left. Similarly, the dominoes falling to the right push their adjacent dominoes standing on the right.\n\nWhen a vertical domino has dominoes falling on it from both sides, it stays still due to the balance of the forces.\n\nFor the purposes of this question, we will consider that a falling domino expends no additional force to a falling or already fallen domino.\n\nYou are given a string `dominoes` representing the initial state where:\n\n*   `dominoes[i] = 'L'`, if the `i^(th)` domino has been pushed to the left,\n*   `dominoes[i] = 'R'`, if the `i^(th)` domino has been pushed to the right, and\n*   `dominoes[i] = '.'`, if the `i^(th)` domino has not been pushed.\n\nReturn _a string representing the final state_.\n\n**Example 1:**\n\n```\nInput: dominoes = \"RR.L\"\nOutput: \"RR.L\"\nExplanation: The first domino expends no additional force on the second domino.\n```\n\n**Example 2:**\n\n![](./assets/push-dominoes-1.png)\n```\nInput: dominoes = \".L.R...LR..L..\"\nOutput: \"LL.RR.LLRRLL..\"\n```\n\n**Constraints:**\n\n*   `n == dominoes.length`\n*   `1 <= n <= 10^(5)`\n*   `dominoes[i]` is either `'L'`, `'R'`, or `'.'`.",
+  "constraints": [
+    "n == dominoes.length",
+    "1 <= n <= 105",
+    "dominoes[i] is either 'L', 'R', or '.'."
+  ],
+  "examples": [
+    {
+      "input": "dominoes = \"RR.L\"",
+      "output": "\"RR.L\"",
+      "explanation": "The first domino expends no additional force on the second domino."
+    },
+    {
+      "input": "dominoes = \".L.R...LR..L..\"",
+      "output": "\"LL.RR.LLRRLL..\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string pushDominoes(string dominoes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String pushDominoes(String dominoes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def pushDominoes(self, dominoes: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def pushDominoes(self, dominoes):\n        \"\"\"\n        :type dominoes: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} dominoes\n * @return {string}\n */\nvar pushDominoes = function(dominoes) {\n    \n};",
+    "typescript": "function pushDominoes(dominoes: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string PushDominoes(string dominoes) {\n        \n    }\n}",
+    "c": "char* pushDominoes(char* dominoes) {\n    \n}",
+    "golang": "func pushDominoes(dominoes string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun pushDominoes(dominoes: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func pushDominoes(_ dominoes: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn push_dominoes(dominoes: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} dominoes\n# @return {String}\ndef push_dominoes(dominoes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $dominoes\n     * @return String\n     */\n    function pushDominoes($dominoes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String pushDominoes(String dominoes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def pushDominoes(dominoes: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec push_dominoes(dominoes :: String.t) :: String.t\n  def push_dominoes(dominoes) do\n    \n  end\nend",
+    "erlang": "-spec push_dominoes(Dominoes :: unicode:unicode_binary()) -> unicode:unicode_binary().\npush_dominoes(Dominoes) ->\n  .",
+    "racket": "(define/contract (push-dominoes dominoes)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"RR.L\"",
+      "expectedOutput": "\"RR.L\""
+    },
+    {
+      "input": "\".L.R...LR..L..\"",
+      "expectedOutput": "\"LL.RR.LLRRLL..\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"RR.L\"",
+      "expectedOutput": "\"RR.L\""
+    },
+    {
+      "input": "\".L.R...LR..L..\"",
+      "expectedOutput": "\"LL.RR.LLRRLL..\""
+    },
+    {
+      "input": "\"RR\"",
+      "expectedOutput": "\"RR\""
+    },
+    {
+      "input": "\".L\"",
+      "expectedOutput": "\"LL\""
+    },
+    {
+      "input": "\"R\"",
+      "expectedOutput": "\"R\""
+    },
+    {
+      "input": "\"L.RR\"",
+      "expectedOutput": "\"L.RR\""
+    },
+    {
+      "input": "\"RR.LRR.L\"",
+      "expectedOutput": "\"RR.LRR.L\""
+    },
+    {
+      "input": "\"RRRR\"",
+      "expectedOutput": "\"RRRR\""
+    },
+    {
+      "input": "\"RR.LL.RR\"",
+      "expectedOutput": "\"RR.LL.RR\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"aab\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/push-dominoes/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.049Z",
+    "sourceUpdatedAt": null
+  }
+}

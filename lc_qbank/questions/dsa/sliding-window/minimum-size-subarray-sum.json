@@ -1,0 +1,166 @@
+{
+  "id": "209",
+  "slug": "minimum-size-subarray-sum",
+  "title": "Minimum Size Subarray Sum",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "statement": "Given an array of positive integers `nums` and a positive integer `target`, return _the **minimal length** of a_ _subarray_ _whose sum is greater than or equal to_ `target`. If there is no such subarray, return `0` instead.\n\n**Example 1:**\n\n```\nInput: target = 7, nums = [2,3,1,2,4,3]\nOutput: 2\nExplanation: The subarray [4,3] has the minimal length under the problem constraint.\n```\n\n**Example 2:**\n\n```\nInput: target = 4, nums = [1,4,4]\nOutput: 1\n```\n\n**Example 3:**\n\n```\nInput: target = 11, nums = [1,1,1,1,1,1,1,1]\nOutput: 0\n```\n\n**Constraints:**\n\n*   `1 <= target <= 10^(9)`\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(4)`\n\n**Follow up:** If you have figured out the `O(n)` solution, try coding another solution of which the time complexity is `O(n log(n))`.",
+  "constraints": [
+    "1 <= target <= 109",
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "target = 7, nums = [2,3,1,2,4,3]",
+      "output": "2",
+      "explanation": "The subarray [4,3] has the minimal length under the problem constraint."
+    },
+    {
+      "input": "target = 4, nums = [1,4,4]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "target = 11, nums = [1,1,1,1,1,1,1,1]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minSubArrayLen(int target, vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minSubArrayLen(int target, int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minSubArrayLen(self, target: int, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minSubArrayLen(self, target, nums):\n        \"\"\"\n        :type target: int\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} target\n * @param {number[]} nums\n * @return {number}\n */\nvar minSubArrayLen = function(target, nums) {\n    \n};",
+    "typescript": "function minSubArrayLen(target: number, nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinSubArrayLen(int target, int[] nums) {\n        \n    }\n}",
+    "c": "int minSubArrayLen(int target, int* nums, int numsSize) {\n    \n}",
+    "golang": "func minSubArrayLen(target int, nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minSubArrayLen(target: Int, nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minSubArrayLen(_ target: Int, _ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_sub_array_len(target: i32, nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} target\n# @param {Integer[]} nums\n# @return {Integer}\ndef min_sub_array_len(target, nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $target\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minSubArrayLen($target, $nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minSubArrayLen(int target, List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minSubArrayLen(target: Int, nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_sub_array_len(target :: integer, nums :: [integer]) :: integer\n  def min_sub_array_len(target, nums) do\n    \n  end\nend",
+    "erlang": "-spec min_sub_array_len(Target :: integer(), Nums :: [integer()]) -> integer().\nmin_sub_array_len(Target, Nums) ->\n  .",
+    "racket": "(define/contract (min-sub-array-len target nums)\n  (-> exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "7\n[2,3,1,2,4,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "4\n[1,4,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "11\n[1,1,1,1,1,1,1,1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "7\n[2,3,1,2,4,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "4\n[1,4,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "11\n[1,1,1,1,1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "0\n[2,3,1,2,4,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "1\n[2,3,1,2,4,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "2\n[2,3,1,2,4,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "3\n[2,3,1,2,4,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "4\n[2,3,1,2,4,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[2,3,1,2,4,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "6\n[2,3,1,2,4,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "8\n[2,3,1,2,4,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "9\n[2,3,1,2,4,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "10\n[2,3,1,2,4,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "-1\n[2,3,1,2,4,3]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "-2\n[2,3,1,2,4,3]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "7\n[2,3,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "7\n[2,4,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "7\n[2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "7\n[2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "7\n[3,4,2,1,3,2]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-size-subarray-sum/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.002Z",
+    "sourceUpdatedAt": null
+  }
+}

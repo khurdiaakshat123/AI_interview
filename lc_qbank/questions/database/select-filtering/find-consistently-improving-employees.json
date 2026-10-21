@@ -1,0 +1,78 @@
+{
+  "id": "3580",
+  "slug": "find-consistently-improving-employees",
+  "title": "Find Consistently Improving Employees",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Medium",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `employees`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| employee_id | int     |\n| name        | varchar |\n+-------------+---------+\nemployee_id is the unique identifier for this table.\nEach row contains information about an employee.\n```\n\nTable: `performance_reviews`\n\n```\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| review_id   | int  |\n| employee_id | int  |\n| review_date | date |\n| rating      | int  |\n+-------------+------+\nreview_id is the unique identifier for this table.\nEach row represents a performance review for an employee. The rating is on a scale of 1-5 where 5 is excellent and 1 is poor.\n```\n\nWrite a solution to find employees who have consistently improved their performance over **their last three reviews**.\n\n*   An employee must have **at least** `3` **review** to be considered\n*   The employee's **last** `3` **reviews** must show **strictly increasing ratings** (each review better than the previous)\n*   Use the most recent `3` reviews based on `review_date` for each employee\n*   Calculate the **improvement score** as the difference between the latest rating and the earliest rating among the last `3` reviews\n\nReturn _the result table ordered by **improvement score** in **descending** order, then by **name** in **ascending** order_.\n\nThe result format is in the following example.\n\n**Example:**\n\n**Input:**\n\nemployees table:\n\n```\n+-------------+----------------+\n| employee_id | name           |\n+-------------+----------------+\n| 1           | Alice Johnson  |\n| 2           | Bob Smith      |\n| 3           | Carol Davis    |\n| 4           | David Wilson   |\n| 5           | Emma Brown     |\n+-------------+----------------+\n```\n\nperformance\\_reviews table:\n\n```\n+-----------+-------------+-------------+--------+\n| review_id | employee_id | review_date | rating |\n+-----------+-------------+-------------+--------+\n| 1         | 1           | 2023-01-15  | 2      |\n| 2         | 1           | 2023-04-15  | 3      |\n| 3         | 1           | 2023-07-15  | 4      |\n| 4         | 1           | 2023-10-15  | 5      |\n| 5         | 2           | 2023-02-01  | 3      |\n| 6         | 2           | 2023-05-01  | 2      |\n| 7         | 2           | 2023-08-01  | 4      |\n| 8         | 2           | 2023-11-01  | 5      |\n| 9         | 3           | 2023-03-10  | 1      |\n| 10        | 3           | 2023-06-10  | 2      |\n| 11        | 3           | 2023-09-10  | 3      |\n| 12        | 3           | 2023-12-10  | 4      |\n| 13        | 4           | 2023-01-20  | 4      |\n| 14        | 4           | 2023-04-20  | 4      |\n| 15        | 4           | 2023-07-20  | 4      |\n| 16        | 5           | 2023-02-15  | 3      |\n| 17        | 5           | 2023-05-15  | 2      |\n+-----------+-------------+-------------+--------+\n```\n\n**Output:**\n\n```\n+-------------+----------------+-------------------+\n| employee_id | name           | improvement_score |\n+-------------+----------------+-------------------+\n| 2           | Bob Smith      | 3                 |\n| 1           | Alice Johnson  | 2                 |\n| 3           | Carol Davis    | 2                 |\n+-------------+----------------+-------------------+\n```\n\n**Explanation:**\n\n*   **Alice Johnson (employee\\_id = 1):**\n    *   Has 4 reviews with ratings: 2, 3, 4, 5\n    *   Last 3 reviews (by date): 2023-04-15 (3), 2023-07-15 (4), 2023-10-15 (5)\n    *   Ratings are strictly increasing: 3 → 4 → 5\n    *   Improvement score: 5 - 3 = 2\n*   **Carol Davis (employee\\_id = 3):**\n    *   Has 4 reviews with ratings: 1, 2, 3, 4\n    *   Last 3 reviews (by date): 2023-06-10 (2), 2023-09-10 (3), 2023-12-10 (4)\n    *   Ratings are strictly increasing: 2 → 3 → 4\n    *   Improvement score: 4 - 2 = 2\n*   **Bob Smith (employee\\_id = 2):**\n    *   Has 4 reviews with ratings: 3, 2, 4, 5\n    *   Last 3 reviews (by date): 2023-05-01 (2), 2023-08-01 (4), 2023-11-01 (5)\n    *   Ratings are strictly increasing: 2 → 4 → 5\n    *   Improvement score: 5 - 2 = 3\n*   **Employees not included:**\n    *   David Wilson (employee\\_id = 4): Last 3 reviews are all 4 (no improvement)\n    *   Emma Brown (employee\\_id = 5): Only has 2 reviews (needs at least 3)\n\nThe output table is ordered by improvement\\_score in descending order, then by name in ascending order.",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "employees table:\n\n\n+-------------+----------------+\n| employee_id | name           |\n+-------------+----------------+\n| 1           | Alice Johnson  |\n| 2           | Bob Smith      |\n| 3           | Carol Davis    |\n| 4           | David Wilson   |\n| 5           | Emma Brown     |\n+-------------+----------------+\n\n\nperformance_reviews table:\n\n\n+-----------+-------------+-------------+--------+\n| review_id | employee_id | review_date | rating |\n+-----------+-------------+-------------+--------+\n| 1         | 1           | 2023-01-15  | 2      |\n| 2         | 1           | 2023-04-15  | 3      |\n| 3         | 1           | 2023-07-15  | 4      |\n| 4         | 1           | 2023-10-15  | 5      |\n| 5         | 2           | 2023-02-01  | 3      |\n| 6         | 2           | 2023-05-01  | 2      |\n| 7         | 2           | 2023-08-01  | 4      |\n| 8         | 2           | 2023-11-01  | 5      |\n| 9         | 3           | 2023-03-10  | 1      |\n| 10        | 3           | 2023-06-10  | 2      |\n| 11        | 3           | 2023-09-10  | 3      |\n| 12        | 3           | 2023-12-10  | 4      |\n| 13        | 4           | 2023-01-20  | 4      |\n| 14        | 4           | 2023-04-20  | 4      |\n| 15        | 4           | 2023-07-20  | 4      |\n| 16        | 5           | 2023-02-15  | 3      |\n| 17        | 5           | 2023-05-15  | 2      |\n+-----------+-------------+-------------+--------+",
+      "output": "+-------------+----------------+-------------------+\n| employee_id | name           | improvement_score |\n+-------------+----------------+-------------------+\n| 2           | Bob Smith      | 3                 |\n| 1           | Alice Johnson  | 2                 |\n| 3           | Carol Davis    | 2                 |\n+-------------+----------------+-------------------+",
+      "explanation": "Alice Johnson (employee_id = 1):\n\n\t\n\t\tHas 4 reviews with ratings: 2, 3, 4, 5\n\t\tLast 3 reviews (by date): 2023-04-15 (3), 2023-07-15 (4), 2023-10-15 (5)\n\t\tRatings are strictly increasing: 3 → 4 → 5\n\t\tImprovement score: 5 - 3 = 2\n\t\n\t\n\tCarol Davis (employee_id = 3):\n\t\n\t\tHas 4 reviews with ratings: 1, 2, 3, 4\n\t\tLast 3 reviews (by date): 2023-06-10 (2), 2023-09-10 (3), 2023-12-10 (4)\n\t\tRatings are strictly increasing: 2 → 3 → 4\n\t\tImprovement score: 4 - 2 = 2\n\t\n\t\n\tBob Smith (employee_id = 2):\n\t\n\t\tHas 4 reviews with ratings: 3, 2, 4, 5\n\t\tLast 3 reviews (by date): 2023-05-01 (2), 2023-08-01 (4), 2023-11-01 (5)\n\t\tRatings are strictly increasing: 2 → 4 → 5\n\t\tImprovement score: 5 - 2 = 3\n\t\n\t\n\tEmployees not included:\n\t\n\t\tDavid Wilson (employee_id = 4): Last 3 reviews are all 4 (no improvement)\n\t\tEmma Brown (employee_id = 5): Only has 2 reviews (needs at least 3)"
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_consistently_improving_employees(employees: pd.DataFrame, performance_reviews: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"employees\":[\"employee_id\",\"name\"],\"performance_reviews\":[\"review_id\",\"employee_id\",\"review_date\",\"rating\"]},\"rows\":{\"employees\":[[1,\"Alice Johnson\"],[2,\"Bob Smith\"],[3,\"Carol Davis\"],[4,\"David Wilson\"],[5,\"Emma Brown\"]],\"performance_reviews\":[[1,1,\"2023-01-15\",2],[2,1,\"2023-04-15\",3],[3,1,\"2023-07-15\",4],[4,1,\"2023-10-15\",5],[5,2,\"2023-02-01\",3],[6,2,\"2023-05-01\",2],[7,2,\"2023-08-01\",4],[8,2,\"2023-11-01\",5],[9,3,\"2023-03-10\",1],[10,3,\"2023-06-10\",2],[11,3,\"2023-09-10\",3],[12,3,\"2023-12-10\",4],[13,4,\"2023-01-20\",4],[14,4,\"2023-04-20\",4],[15,4,\"2023-07-20\",4],[16,5,\"2023-02-15\",3],[17,5,\"2023-05-15\",2]]}}",
+      "expectedOutput": "+-------------+----------------+-------------------+\n| employee_id | name           | improvement_score |\n+-------------+----------------+-------------------+\n| 2           | Bob Smith      | 3                 |\n| 1           | Alice Johnson  | 2                 |\n| 3           | Carol Davis    | 2                 |\n+-------------+----------------+-------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"employees\":[\"employee_id\",\"name\"],\"performance_reviews\":[\"review_id\",\"employee_id\",\"review_date\",\"rating\"]},\"rows\":{\"employees\":[[1,\"Alice Johnson\"],[2,\"Bob Smith\"],[3,\"Carol Davis\"],[4,\"David Wilson\"],[5,\"Emma Brown\"]],\"performance_reviews\":[[1,1,\"2023-01-15\",2],[2,1,\"2023-04-15\",3],[3,1,\"2023-07-15\",4],[4,1,\"2023-10-15\",5],[5,2,\"2023-02-01\",3],[6,2,\"2023-05-01\",2],[7,2,\"2023-08-01\",4],[8,2,\"2023-11-01\",5],[9,3,\"2023-03-10\",1],[10,3,\"2023-06-10\",2],[11,3,\"2023-09-10\",3],[12,3,\"2023-12-10\",4],[13,4,\"2023-01-20\",4],[14,4,\"2023-04-20\",4],[15,4,\"2023-07-20\",4],[16,5,\"2023-02-15\",3],[17,5,\"2023-05-15\",2]]}}",
+      "expectedOutput": "+-------------+----------------+-------------------+\n| employee_id | name           | improvement_score |\n+-------------+----------------+-------------------+\n| 2           | Bob Smith      | 3                 |\n| 1           | Alice Johnson  | 2                 |\n| 3           | Carol Davis    | 2                 |\n+-------------+----------------+-------------------+"
+    },
+    {
+      "input": "employees table:\n\n\n+-------------+----------------+\n| employee_id | name           |\n+-------------+----------------+\n| 1           | Alice Johnson  |\n| 2           | Bob Smith      |\n| 3           | Carol Davis    |\n| 4           | David Wilson   |\n| 5           | Emma Brown     |\n+-------------+----------------+\n\n\nperformance_reviews table:\n\n\n+-----------+-------------+-------------+--------+\n| review_id | employee_id | review_date | rating |\n+-----------+-------------+-------------+--------+\n| 1         | 1           | 2023-01-15  | 2      |\n| 2         | 1           | 2023-04-15  | 3      |\n| 3         | 1           | 2023-07-15  | 4      |\n| 4         | 1           | 2023-10-15  | 5      |\n| 5         | 2           | 2023-02-01  | 3      |\n| 6         | 2           | 2023-05-01  | 2      |\n| 7         | 2           | 2023-08-01  | 4      |\n| 8         | 2           | 2023-11-01  | 5      |\n| 9         | 3           | 2023-03-10  | 1      |\n| 10        | 3           | 2023-06-10  | 2      |\n| 11        | 3           | 2023-09-10  | 3      |\n| 12        | 3           | 2023-12-10  | 4      |\n| 13        | 4           | 2023-01-20  | 4      |\n| 14        | 4           | 2023-04-20  | 4      |\n| 15        | 4           | 2023-07-20  | 4      |\n| 16        | 5           | 2023-02-15  | 3      |\n| 17        | 5           | 2023-05-15  | 2      |\n+-----------+-------------+-------------+--------+",
+      "expectedOutput": "+-------------+----------------+-------------------+\n| employee_id | name           | improvement_score |\n+-------------+----------------+-------------------+\n| 2           | Bob Smith      | 3                 |\n| 1           | Alice Johnson  | 2                 |\n| 3           | Carol Davis    | 2                 |\n+-------------+----------------+-------------------+"
+    }
+  ],
+  "sqlSchema": "CREATE TABLE employees (\n    employee_id INT,\n    name VARCHAR(255)\n)\n\nCREATE TABLE performance_reviews (\n    review_id INT,\n    employee_id INT,\n    review_date DATE,\n    rating INT\n)\n\nTruncate table employees\n\nTruncate table performance_reviews",
+  "sqlSetup": [
+    "insert into employees (employee_id, name) values ('1', 'Alice Johnson')",
+    "insert into employees (employee_id, name) values ('2', 'Bob Smith')",
+    "insert into employees (employee_id, name) values ('3', 'Carol Davis')",
+    "insert into employees (employee_id, name) values ('4', 'David Wilson')",
+    "insert into employees (employee_id, name) values ('5', 'Emma Brown')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('1', '1', '2023-01-15', '2')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('2', '1', '2023-04-15', '3')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('3', '1', '2023-07-15', '4')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('4', '1', '2023-10-15', '5')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('5', '2', '2023-02-01', '3')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('6', '2', '2023-05-01', '2')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('7', '2', '2023-08-01', '4')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('8', '2', '2023-11-01', '5')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('9', '3', '2023-03-10', '1')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('10', '3', '2023-06-10', '2')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('11', '3', '2023-09-10', '3')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('12', '3', '2023-12-10', '4')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('13', '4', '2023-01-20', '4')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('14', '4', '2023-04-20', '4')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('15', '4', '2023-07-20', '4')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('16', '5', '2023-02-15', '3')",
+    "insert into performance_reviews (review_id, employee_id, review_date, rating) values ('17', '5', '2023-05-15', '2')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-consistently-improving-employees/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.628Z",
+    "sourceUpdatedAt": null
+  }
+}

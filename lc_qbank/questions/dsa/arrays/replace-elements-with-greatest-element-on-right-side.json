@@ -1,0 +1,156 @@
+{
+  "id": "1299",
+  "slug": "replace-elements-with-greatest-element-on-right-side",
+  "title": "Replace Elements with Greatest Element on Right Side",
+  "category": "dsa",
+  "subcategory": "arrays",
+  "difficulty": "Easy",
+  "tags": [
+    "Array"
+  ],
+  "statement": "Given an array `arr`, replace every element in that array with the greatest element among the elements to its right, and replace the last element with `-1`.\n\nAfter doing so, return the array.\n\n**Example 1:**\n\n```\nInput: arr = [17,18,5,4,6,1]\nOutput: [18,6,6,6,1,-1]\nExplanation: \n- index 0 --> the greatest element to the right of index 0 is index 1 (18).\n- index 1 --> the greatest element to the right of index 1 is index 4 (6).\n- index 2 --> the greatest element to the right of index 2 is index 4 (6).\n- index 3 --> the greatest element to the right of index 3 is index 4 (6).\n- index 4 --> the greatest element to the right of index 4 is index 5 (1).\n- index 5 --> there are no elements to the right of index 5, so we put -1.\n```\n\n**Example 2:**\n\n```\nInput: arr = [400]\nOutput: [-1]\nExplanation: There are no elements to the right of index 0.\n```\n\n**Constraints:**\n\n*   `1 <= arr.length <= 10^(4)`\n*   `1 <= arr[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= arr.length <= 104",
+    "1 <= arr[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "arr = [17,18,5,4,6,1]",
+      "output": "[18,6,6,6,1,-1]",
+      "explanation": "- index 0 --> the greatest element to the right of index 0 is index 1 (18).\n- index 1 --> the greatest element to the right of index 1 is index 4 (6).\n- index 2 --> the greatest element to the right of index 2 is index 4 (6).\n- index 3 --> the greatest element to the right of index 3 is index 4 (6).\n- index 4 --> the greatest element to the right of index 4 is index 5 (1).\n- index 5 --> there are no elements to the right of index 5, so we put -1."
+    },
+    {
+      "input": "arr = [400]",
+      "output": "[-1]",
+      "explanation": "There are no elements to the right of index 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> replaceElements(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] replaceElements(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def replaceElements(self, arr: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def replaceElements(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number[]}\n */\nvar replaceElements = function(arr) {\n    \n};",
+    "typescript": "function replaceElements(arr: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] ReplaceElements(int[] arr) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* replaceElements(int* arr, int arrSize, int* returnSize) {\n    \n}",
+    "golang": "func replaceElements(arr []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun replaceElements(arr: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func replaceElements(_ arr: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn replace_elements(arr: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer[]}\ndef replace_elements(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer[]\n     */\n    function replaceElements($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> replaceElements(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def replaceElements(arr: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec replace_elements(arr :: [integer]) :: [integer]\n  def replace_elements(arr) do\n    \n  end\nend",
+    "erlang": "-spec replace_elements(Arr :: [integer()]) -> [integer()].\nreplace_elements(Arr) ->\n  .",
+    "racket": "(define/contract (replace-elements arr)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[17,18,5,4,6,1]",
+      "expectedOutput": "[18,6,6,6,1,-1]"
+    },
+    {
+      "input": "[400]",
+      "expectedOutput": "[-1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[17,18,5,4,6,1]",
+      "expectedOutput": "[18,6,6,6,1,-1]"
+    },
+    {
+      "input": "[400]",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "[17,18,5]",
+      "expectedOutput": "[18,5,-1]"
+    },
+    {
+      "input": "[4,6,1]",
+      "expectedOutput": "[6,1,-1]"
+    },
+    {
+      "input": "[17]",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "[17,1]",
+      "expectedOutput": "[1,-1]"
+    },
+    {
+      "input": "[17,18]",
+      "expectedOutput": "[18,-1]"
+    },
+    {
+      "input": "[1,6,4,5,18,17]",
+      "expectedOutput": "[18,18,18,18,17,-1]"
+    },
+    {
+      "input": "[1,4,5,6,17,18]",
+      "expectedOutput": "[18,18,18,18,18,-1]"
+    },
+    {
+      "input": "[18,17,6,5,4,1]",
+      "expectedOutput": "[17,6,5,4,1,-1]"
+    },
+    {
+      "input": "[17,17,17,17,17]",
+      "expectedOutput": "[17,17,17,17,-1]"
+    },
+    {
+      "input": "[17,18,5,4,6,1,17,18,5,4,6,1]",
+      "expectedOutput": "[18,18,18,18,18,18,18,6,6,6,1,-1]"
+    },
+    {
+      "input": "[34,36,10,8,12,2]",
+      "expectedOutput": "[36,12,12,12,2,-1]"
+    },
+    {
+      "input": "[18,19,6,5,7,2]",
+      "expectedOutput": "[19,7,7,7,2,-1]"
+    },
+    {
+      "input": "[16,17,4,3,5,0]",
+      "expectedOutput": "[17,5,5,5,0,-1]"
+    },
+    {
+      "input": "[-17,-18,-5,-4,-6,-1]",
+      "expectedOutput": "[-1,-1,-1,-1,-1,-1]"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "[0,0,0,-1]"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "[1,1,1,-1]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[-1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Loop through the array starting from the end.",
+    "Keep the maximum value seen so far."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.702Z",
+    "sourceUpdatedAt": null
+  }
+}

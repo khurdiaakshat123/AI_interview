@@ -1,0 +1,104 @@
+{
+  "id": "3530",
+  "slug": "maximum-profit-from-valid-topological-order-in-dag",
+  "title": "Maximum Profit from Valid Topological Order in DAG",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Graph Theory",
+    "Topological Sort",
+    "Bitmask"
+  ],
+  "statement": "You are given a **Directed Acyclic Graph (DAG)** with `n` nodes labeled from `0` to `n - 1`, represented by a 2D array `edges`, where `edges[i] = [u_(i), v_(i)]` indicates a directed edge from node `u_(i)` to `v_(i)`. Each node has an associated **score** given in an array `score`, where `score[i]` represents the score of node `i`.\n\nYou must process the nodes in a **valid topological order**. Each node is assigned a **1-based position** in the processing order.\n\nThe **profit** is calculated by summing up the product of each node's score and its position in the ordering.\n\nReturn the **maximum** possible profit achievable with an optimal topological order.\n\nA **topological order** of a DAG is a linear ordering of its nodes such that for every directed edge `u → v`, node `u` comes before `v` in the ordering.\n\n**Example 1:**\n\n**Input:** n = 2, edges = \\[\\[0,1\\]\\], score = \\[2,3\\]\n\n**Output:** 8\n\n**Explanation:**\n\n![](./assets/maximum-profit-from-valid-topological-order-in-dag-1.png)\n\nNode 1 depends on node 0, so a valid order is `[0, 1]`.\n\nNode\n\nProcessing Order\n\nScore\n\nMultiplier\n\nProfit Calculation\n\n0\n\n1st\n\n2\n\n1\n\n2 × 1 = 2\n\n1\n\n2nd\n\n3\n\n2\n\n3 × 2 = 6\n\nThe maximum total profit achievable over all valid topological orders is `2 + 6 = 8`.\n\n**Example 2:**\n\n**Input:** n = 3, edges = \\[\\[0,1\\],\\[0,2\\]\\], score = \\[1,6,3\\]\n\n**Output:** 25\n\n**Explanation:**\n\n![](./assets/maximum-profit-from-valid-topological-order-in-dag-2.png)\n\nNodes 1 and 2 depend on node 0, so the most optimal valid order is `[0, 2, 1]`.\n\nNode\n\nProcessing Order\n\nScore\n\nMultiplier\n\nProfit Calculation\n\n0\n\n1st\n\n1\n\n1\n\n1 × 1 = 1\n\n2\n\n2nd\n\n3\n\n2\n\n3 × 2 = 6\n\n1\n\n3rd\n\n6\n\n3\n\n6 × 3 = 18\n\nThe maximum total profit achievable over all valid topological orders is `1 + 6 + 18 = 25`.\n\n**Constraints:**\n\n*   `1 <= n == score.length <= 22`\n*   `1 <= score[i] <= 10^(5)`\n*   `0 <= edges.length <= n * (n - 1) / 2`\n*   `edges[i] == [u_(i), v_(i)]` denotes a directed edge from `u_(i)` to `v_(i)`.\n*   `0 <= u_(i), v_(i) < n`\n*   `u_(i) != v_(i)`\n*   The input graph is **guaranteed** to be a **DAG**.\n*   There are no duplicate edges.",
+  "constraints": [
+    "1 <= n == score.length <= 22",
+    "1 <= score[i] <= 105",
+    "0 <= edges.length <= n * (n - 1) / 2",
+    "edges[i] == [ui, vi] denotes a directed edge from ui to vi.",
+    "0 <= ui, vi < n",
+    "ui != vi",
+    "The input graph is guaranteed to be a DAG.",
+    "There are no duplicate edges."
+  ],
+  "examples": [
+    {
+      "input": "n = 2, edges = [[0,1]], score = [2,3]",
+      "output": "8",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[0,2]], score = [1,6,3]",
+      "output": "25",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxProfit(int n, vector<vector<int>>& edges, vector<int>& score) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxProfit(int n, int[][] edges, int[] score) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProfit(self, n: int, edges: List[List[int]], score: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxProfit(self, n, edges, score):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type score: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number[]} score\n * @return {number}\n */\nvar maxProfit = function(n, edges, score) {\n    \n};",
+    "typescript": "function maxProfit(n: number, edges: number[][], score: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxProfit(int n, int[][] edges, int[] score) {\n        \n    }\n}",
+    "c": "int maxProfit(int n, int** edges, int edgesSize, int* edgesColSize, int* score, int scoreSize) {\n    \n}",
+    "golang": "func maxProfit(n int, edges [][]int, score []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProfit(n: Int, edges: Array<IntArray>, score: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProfit(_ n: Int, _ edges: [[Int]], _ score: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_profit(n: i32, edges: Vec<Vec<i32>>, score: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Integer[]} score\n# @return {Integer}\ndef max_profit(n, edges, score)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Integer[] $score\n     * @return Integer\n     */\n    function maxProfit($n, $edges, $score) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxProfit(int n, List<List<int>> edges, List<int> score) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProfit(n: Int, edges: Array[Array[Int]], score: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_profit(n :: integer, edges :: [[integer]], score :: [integer]) :: integer\n  def max_profit(n, edges, score) do\n    \n  end\nend",
+    "erlang": "-spec max_profit(N :: integer(), Edges :: [[integer()]], Score :: [integer()]) -> integer().\nmax_profit(N, Edges, Score) ->\n  .",
+    "racket": "(define/contract (max-profit n edges score)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "2\n[[0,1]]\n[2,3]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "3\n[[0,1],[0,2]]\n[1,6,3]",
+      "expectedOutput": "25"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "2\n[[0,1]]\n[2,3]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "3\n[[0,1],[0,2]]\n[1,6,3]",
+      "expectedOutput": "25"
+    },
+    {
+      "input": "n = 2, edges = [[0,1]], score = [2,3]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[0,2]], score = [1,6,3]",
+      "expectedOutput": "25"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use bitmask dynamic programming.",
+    "States are <code>mask</code> = (bits such that if a bit is set, it means the corresponding node is removed).",
+    "Try maintaining the <code>degrees</code> across function calls."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-profit-from-valid-topological-order-in-dag/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.483Z",
+    "sourceUpdatedAt": null
+  }
+}

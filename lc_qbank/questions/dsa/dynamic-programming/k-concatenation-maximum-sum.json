@@ -1,0 +1,169 @@
+{
+  "id": "1191",
+  "slug": "k-concatenation-maximum-sum",
+  "title": "K-Concatenation Maximum Sum",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "Given an integer array `arr` and an integer `k`, modify the array by repeating it `k` times.\n\nFor example, if `arr = [1, 2]` and `k = 3` then the modified array will be `[1, 2, 1, 2, 1, 2]`.\n\nReturn the maximum sub-array sum in the modified array. Note that the length of the sub-array can be `0` and its sum in that case is `0`.\n\nAs the answer can be very large, return the answer **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n```\nInput: arr = [1,2], k = 3\nOutput: 9\n```\n\n**Example 2:**\n\n```\nInput: arr = [1,-2,1], k = 5\nOutput: 2\n```\n\n**Example 3:**\n\n```\nInput: arr = [-1,-2], k = 7\nOutput: 0\n```\n\n**Constraints:**\n\n*   `1 <= arr.length <= 10^(5)`\n*   `1 <= k <= 10^(5)`\n*   `-10^(4) <= arr[i] <= 10^(4)`",
+  "constraints": [
+    "1 <= arr.length <= 105",
+    "1 <= k <= 105",
+    "-104 <= arr[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "arr = [1,2], k = 3",
+      "output": "9",
+      "explanation": null
+    },
+    {
+      "input": "arr = [1,-2,1], k = 5",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "arr = [-1,-2], k = 7",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int kConcatenationMaxSum(vector<int>& arr, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int kConcatenationMaxSum(int[] arr, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def kConcatenationMaxSum(self, arr: list[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def kConcatenationMaxSum(self, arr, k):\n        \"\"\"\n        :type arr: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @param {number} k\n * @return {number}\n */\nvar kConcatenationMaxSum = function(arr, k) {\n    \n};",
+    "typescript": "function kConcatenationMaxSum(arr: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int KConcatenationMaxSum(int[] arr, int k) {\n        \n    }\n}",
+    "c": "int kConcatenationMaxSum(int* arr, int arrSize, int k) {\n    \n}",
+    "golang": "func kConcatenationMaxSum(arr []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun kConcatenationMaxSum(arr: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func kConcatenationMaxSum(_ arr: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn k_concatenation_max_sum(arr: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @param {Integer} k\n# @return {Integer}\ndef k_concatenation_max_sum(arr, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @param Integer $k\n     * @return Integer\n     */\n    function kConcatenationMaxSum($arr, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int kConcatenationMaxSum(List<int> arr, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def kConcatenationMaxSum(arr: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec k_concatenation_max_sum(arr :: [integer], k :: integer) :: integer\n  def k_concatenation_max_sum(arr, k) do\n    \n  end\nend",
+    "erlang": "-spec k_concatenation_max_sum(Arr :: [integer()], K :: integer()) -> integer().\nk_concatenation_max_sum(Arr, K) ->\n  .",
+    "racket": "(define/contract (k-concatenation-max-sum arr k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2]\n3",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,-2,1]\n5",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,-2]\n7",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2]\n3",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,-2,1]\n5",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,-2]\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2]\n3",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,1]\n3",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,1]\n3",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,2,1,2]\n3",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[2,4]\n3",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[2,3]\n3",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[0,1]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,-2]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3]\n3",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[3,2,1]\n3",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[1,1,1]\n3",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[0,1,0]\n3",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "How to solve the problem for k=1 ?",
+    "Use Kadane's algorithm for k=1.",
+    "What are the possible cases for the answer ?",
+    "The answer is the maximum between, the answer for k=1, the sum of the whole array multiplied by k, or the maximum suffix sum plus the maximum prefix sum plus (k-2) multiplied by the whole array sum for k > 1."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/k-concatenation-maximum-sum/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.704Z",
+    "sourceUpdatedAt": null
+  }
+}

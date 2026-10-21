@@ -1,0 +1,168 @@
+{
+  "id": "3398",
+  "slug": "smallest-substring-with-identical-characters-i",
+  "title": "Smallest Substring With Identical Characters I",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Enumeration"
+  ],
+  "statement": "You are given a binary string `s` of length `n` and an integer `numOps`.\n\nYou are allowed to perform the following operation on `s` **at most** `numOps` times:\n\n*   Select any index `i` (where `0 <= i < n`) and **flip** `s[i]`. If `s[i] == '1'`, change `s[i]` to `'0'` and vice versa.\n\nYou need to **minimize** the length of the **longest** substring of `s` such that all the characters in the substring are **identical**.\n\nReturn the **minimum** length after the operations.\n\n**Example 1:**\n\n**Input:** s = \"000001\", numOps = 1\n\n**Output:** 2\n\n**Explanation:** \n\nBy changing `s[2]` to `'1'`, `s` becomes `\"001001\"`. The longest substrings with identical characters are `s[0..1]` and `s[3..4]`.\n\n**Example 2:**\n\n**Input:** s = \"0000\", numOps = 2\n\n**Output:** 1\n\n**Explanation:** \n\nBy changing `s[0]` and `s[2]` to `'1'`, `s` becomes `\"1010\"`.\n\n**Example 3:**\n\n**Input:** s = \"0101\", numOps = 0\n\n**Output:** 1\n\n**Constraints:**\n\n*   `1 <= n == s.length <= 1000`\n*   `s` consists only of `'0'` and `'1'`.\n*   `0 <= numOps <= n`",
+  "constraints": [
+    "1 <= n == s.length <= 1000",
+    "s consists only of '0' and '1'.",
+    "0 <= numOps <= n"
+  ],
+  "examples": [
+    {
+      "input": "s = \"000001\", numOps = 1",
+      "output": "2",
+      "explanation": " "
+    },
+    {
+      "input": "s = \"0000\", numOps = 2",
+      "output": "1",
+      "explanation": " "
+    },
+    {
+      "input": "s = \"0101\", numOps = 0",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minLength(string s, int numOps) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minLength(String s, int numOps) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minLength(self, s: str, numOps: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minLength(self, s, numOps):\n        \"\"\"\n        :type s: str\n        :type numOps: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} numOps\n * @return {number}\n */\nvar minLength = function(s, numOps) {\n    \n};",
+    "typescript": "function minLength(s: string, numOps: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinLength(string s, int numOps) {\n        \n    }\n}",
+    "c": "int minLength(char* s, int numOps) {\n    \n}",
+    "golang": "func minLength(s string, numOps int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minLength(s: String, numOps: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minLength(_ s: String, _ numOps: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_length(s: String, num_ops: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} num_ops\n# @return {Integer}\ndef min_length(s, num_ops)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $numOps\n     * @return Integer\n     */\n    function minLength($s, $numOps) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minLength(String s, int numOps) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minLength(s: String, numOps: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_length(s :: String.t, num_ops :: integer) :: integer\n  def min_length(s, num_ops) do\n    \n  end\nend",
+    "erlang": "-spec min_length(S :: unicode:unicode_binary(), NumOps :: integer()) -> integer().\nmin_length(S, NumOps) ->\n  .",
+    "racket": "(define/contract (min-length s numOps)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"000001\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0000\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"0101\"\n0",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"000001\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0000\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"0101\"\n0",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"000\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"001\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"0\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"00\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"100000\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"000001000001\"\n1",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"000000\"\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"000001100000\"\n1",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"a\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaa\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcde\"\n1",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can we use binary search here?",
+    "Use DP for predicate function"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/smallest-substring-with-identical-characters-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.849Z",
+    "sourceUpdatedAt": null
+  }
+}

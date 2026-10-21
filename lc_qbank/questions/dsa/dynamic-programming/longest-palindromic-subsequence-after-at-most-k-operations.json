@@ -1,0 +1,159 @@
+{
+  "id": "3472",
+  "slug": "longest-palindromic-subsequence-after-at-most-k-operations",
+  "title": "Longest Palindromic Subsequence After at Most K Operations",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given a string `s` and an integer `k`.\n\nIn one operation, you can replace the character at any position with the next or previous letter in the alphabet (wrapping around so that `'a'` is after `'z'`). For example, replacing `'a'` with the next letter results in `'b'`, and replacing `'a'` with the previous letter results in `'z'`. Similarly, replacing `'z'` with the next letter results in `'a'`, and replacing `'z'` with the previous letter results in `'y'`.\n\nReturn the length of the **longest palindromic subsequence** of `s` that can be obtained after performing **at most** `k` operations.\n\n**Example 1:**\n\n**Input:** s = \"abced\", k = 2\n\n**Output:** 3\n\n**Explanation:**\n\n*   Replace `s[1]` with the next letter, and `s` becomes `\"acced\"`.\n*   Replace `s[4]` with the previous letter, and `s` becomes `\"accec\"`.\n\nThe subsequence `\"ccc\"` forms a palindrome of length 3, which is the maximum.\n\n**Example 2:**\n\n**Input:** s = \"aaazzz\", k = 4\n\n**Output:** 6\n\n**Explanation:**\n\n*   Replace `s[0]` with the previous letter, and `s` becomes `\"zaazzz\"`.\n*   Replace `s[4]` with the next letter, and `s` becomes `\"zaazaz\"`.\n*   Replace `s[3]` with the next letter, and `s` becomes `\"zaaaaz\"`.\n\nThe entire string forms a palindrome of length 6.\n\n**Constraints:**\n\n*   `1 <= s.length <= 200`\n*   `1 <= k <= 200`\n*   `s` consists of only lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 200",
+    "1 <= k <= 200",
+    "s consists of only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abced\", k = 2",
+      "output": "3",
+      "explanation": "Replace s[1] with the next letter, and s becomes \"acced\".\n\tReplace s[4] with the previous letter, and s becomes \"accec\"."
+    },
+    {
+      "input": "s = \"aaazzz\", k = 4",
+      "output": "6",
+      "explanation": "Replace s[0] with the previous letter, and s becomes \"zaazzz\".\n\tReplace s[4] with the next letter, and s becomes \"zaazaz\".\n\tReplace s[3] with the next letter, and s becomes \"zaaaaz\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestPalindromicSubsequence(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestPalindromicSubsequence(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestPalindromicSubsequence(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestPalindromicSubsequence(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar longestPalindromicSubsequence = function(s, k) {\n    \n};",
+    "typescript": "function longestPalindromicSubsequence(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestPalindromicSubsequence(string s, int k) {\n        \n    }\n}",
+    "c": "int longestPalindromicSubsequence(char* s, int k) {\n    \n}",
+    "golang": "func longestPalindromicSubsequence(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestPalindromicSubsequence(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestPalindromicSubsequence(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_palindromic_subsequence(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef longest_palindromic_subsequence(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function longestPalindromicSubsequence($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestPalindromicSubsequence(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestPalindromicSubsequence(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_palindromic_subsequence(s :: String.t, k :: integer) :: integer\n  def longest_palindromic_subsequence(s, k) do\n    \n  end\nend",
+    "erlang": "-spec longest_palindromic_subsequence(S :: unicode:unicode_binary(), K :: integer()) -> integer().\nlongest_palindromic_subsequence(S, K) ->\n  .",
+    "racket": "(define/contract (longest-palindromic-subsequence s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abced\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaazzz\"\n4",
+      "expectedOutput": "6"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abced\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaazzz\"\n4",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ced\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"decba\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcedabced\"\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abceddecba\"\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"ABCED\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"edcba\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aab\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aA\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0\"\n2",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming.",
+    "<code>dp[i][j][k]</code> is the length of the longest palindromic subsequence in substring <code>[i..j]</code> with cost at most <code>k</code>.",
+    "<code>dp[i][j][k] = max(dp[i + 1][j][k], dp[i][j - 1][k], dp[i + 1][j - 1][k - dist(s[i], s[j])] + 2)</code>, where <code>dist(x, y)</code> is the minimum cyclic distance between <code>x</code> and <code>y</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-palindromic-subsequence-after-at-most-k-operations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.573Z",
+    "sourceUpdatedAt": null
+  }
+}

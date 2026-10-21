@@ -1,0 +1,161 @@
+{
+  "id": "1462",
+  "slug": "course-schedule-iv",
+  "title": "Course Schedule IV",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Topological Sort"
+  ],
+  "statement": "There are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [a_(i), b_(i)]` indicates that you **must** take course `a_(i)` first if you want to take course `b_(i)`.\n\n*   For example, the pair `[0, 1]` indicates that you have to take course `0` before you can take course `1`.\n\nPrerequisites can also be **indirect**. If course `a` is a prerequisite of course `b`, and course `b` is a prerequisite of course `c`, then course `a` is a prerequisite of course `c`.\n\nYou are also given an array `queries` where `queries[j] = [u_(j), v_(j)]`. For the `j^(th)` query, you should answer whether course `u_(j)` is a prerequisite of course `v_(j)` or not.\n\nReturn _a boolean array_ `answer`_, where_ `answer[j]` _is the answer to the_ `j^(th)` _query._\n\n**Example 1:**\n\n![](./assets/course-schedule-iv-1.jpg)\n```\nInput: numCourses = 2, prerequisites = [[1,0]], queries = [[0,1],[1,0]]\nOutput: [false,true]\nExplanation: The pair [1, 0] indicates that you have to take course 1 before you can take course 0.\nCourse 0 is not a prerequisite of course 1, but the opposite is true.\n```\n\n**Example 2:**\n\n```\nInput: numCourses = 2, prerequisites = [], queries = [[1,0],[0,1]]\nOutput: [false,false]\nExplanation: There are no prerequisites, and each course is independent.\n```\n\n**Example 3:**\n\n![](./assets/course-schedule-iv-2.jpg)\n```\nInput: numCourses = 3, prerequisites = [[1,2],[1,0],[2,0]], queries = [[1,0],[1,2]]\nOutput: [true,true]\n```\n\n**Constraints:**\n\n*   `2 <= numCourses <= 100`\n*   `0 <= prerequisites.length <= (numCourses * (numCourses - 1) / 2)`\n*   `prerequisites[i].length == 2`\n*   `0 <= a_(i), b_(i) <= numCourses - 1`\n*   `a_(i) != b_(i)`\n*   All the pairs `[a_(i), b_(i)]` are **unique**.\n*   The prerequisites graph has no cycles.\n*   `1 <= queries.length <= 10^(4)`\n*   `0 <= u_(i), v_(i) <= numCourses - 1`\n*   `u_(i) != v_(i)`",
+  "constraints": [
+    "2 <= numCourses <= 100",
+    "0 <= prerequisites.length <= (numCourses * (numCourses - 1) / 2)",
+    "prerequisites[i].length == 2",
+    "0 <= ai, bi <= numCourses - 1",
+    "ai != bi",
+    "All the pairs [ai, bi] are unique.",
+    "The prerequisites graph has no cycles.",
+    "1 <= queries.length <= 104",
+    "0 <= ui, vi <= numCourses - 1",
+    "ui != vi"
+  ],
+  "examples": [
+    {
+      "input": "numCourses = 2, prerequisites = [[1,0]], queries = [[0,1],[1,0]]",
+      "output": "[false,true]",
+      "explanation": "The pair [1, 0] indicates that you have to take course 1 before you can take course 0.\nCourse 0 is not a prerequisite of course 1, but the opposite is true."
+    },
+    {
+      "input": "numCourses = 2, prerequisites = [], queries = [[1,0],[0,1]]",
+      "output": "[false,false]",
+      "explanation": "There are no prerequisites, and each course is independent."
+    },
+    {
+      "input": "numCourses = 3, prerequisites = [[1,2],[1,0],[2,0]], queries = [[1,0],[1,2]]",
+      "output": "[true,true]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<bool> checkIfPrerequisite(int numCourses, vector<vector<int>>& prerequisites, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Boolean> checkIfPrerequisite(int numCourses, int[][] prerequisites, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def checkIfPrerequisite(self, numCourses: int, prerequisites: list[list[int]], queries: list[list[int]]) -> list[bool]:\n        ",
+    "python": "class Solution(object):\n    def checkIfPrerequisite(self, numCourses, prerequisites, queries):\n        \"\"\"\n        :type numCourses: int\n        :type prerequisites: List[List[int]]\n        :type queries: List[List[int]]\n        :rtype: List[bool]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} numCourses\n * @param {number[][]} prerequisites\n * @param {number[][]} queries\n * @return {boolean[]}\n */\nvar checkIfPrerequisite = function(numCourses, prerequisites, queries) {\n    \n};",
+    "typescript": "function checkIfPrerequisite(numCourses: number, prerequisites: number[][], queries: number[][]): boolean[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<bool> CheckIfPrerequisite(int numCourses, int[][] prerequisites, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nbool* checkIfPrerequisite(int numCourses, int** prerequisites, int prerequisitesSize, int* prerequisitesColSize, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func checkIfPrerequisite(numCourses int, prerequisites [][]int, queries [][]int) []bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun checkIfPrerequisite(numCourses: Int, prerequisites: Array<IntArray>, queries: Array<IntArray>): List<Boolean> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func checkIfPrerequisite(_ numCourses: Int, _ prerequisites: [[Int]], _ queries: [[Int]]) -> [Bool] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn check_if_prerequisite(num_courses: i32, prerequisites: Vec<Vec<i32>>, queries: Vec<Vec<i32>>) -> Vec<bool> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} num_courses\n# @param {Integer[][]} prerequisites\n# @param {Integer[][]} queries\n# @return {Boolean[]}\ndef check_if_prerequisite(num_courses, prerequisites, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $numCourses\n     * @param Integer[][] $prerequisites\n     * @param Integer[][] $queries\n     * @return Boolean[]\n     */\n    function checkIfPrerequisite($numCourses, $prerequisites, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<bool> checkIfPrerequisite(int numCourses, List<List<int>> prerequisites, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def checkIfPrerequisite(numCourses: Int, prerequisites: Array[Array[Int]], queries: Array[Array[Int]]): List[Boolean] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec check_if_prerequisite(num_courses :: integer, prerequisites :: [[integer]], queries :: [[integer]]) :: [boolean]\n  def check_if_prerequisite(num_courses, prerequisites, queries) do\n    \n  end\nend",
+    "erlang": "-spec check_if_prerequisite(NumCourses :: integer(), Prerequisites :: [[integer()]], Queries :: [[integer()]]) -> [boolean()].\ncheck_if_prerequisite(NumCourses, Prerequisites, Queries) ->\n  .",
+    "racket": "(define/contract (check-if-prerequisite numCourses prerequisites queries)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof (listof exact-integer?)) (listof boolean?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "6\n[[4,5],[3,4],[2,3],[1,2],[0,1]]\n[[0,5]]",
+      "expectedOutput": "[false,true]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[[0,2]]",
+      "expectedOutput": "[false,false]"
+    },
+    {
+      "input": "4\n[[0,1],[2,3]]\n[[0,3]]",
+      "expectedOutput": "[true,true]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "6\n[[4,5],[3,4],[2,3],[1,2],[0,1]]\n[[0,5]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[[0,2]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "4\n[[0,1],[2,3]]\n[[0,3]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "7\n[[4,5],[3,4],[2,3],[1,2],[0,1]]\n[[0,5]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "8\n[[4,5],[3,4],[2,3],[1,2],[0,1]]\n[[0,5]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "9\n[[4,5],[3,4],[2,3],[1,2],[0,1]]\n[[0,5]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "4\n[[0,1],[1,2]]\n[[0,2]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "5\n[[0,1],[1,2]]\n[[0,2]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "6\n[[0,1],[1,2]]\n[[0,2]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "7\n[[0,1],[1,2]]\n[[0,2]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "8\n[[0,1],[1,2]]\n[[0,2]]",
+      "expectedOutput": "[true]"
+    },
+    {
+      "input": "5\n[[0,1],[2,3]]\n[[0,3]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "6\n[[0,1],[2,3]]\n[[0,3]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "7\n[[0,1],[2,3]]\n[[0,3]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "8\n[[0,1],[2,3]]\n[[0,3]]",
+      "expectedOutput": "[false]"
+    },
+    {
+      "input": "9\n[[0,1],[2,3]]\n[[0,3]]",
+      "expectedOutput": "[false]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Imagine if the courses are nodes of a graph. We need to build an array isReachable[i][j].",
+    "Start a bfs from each course i and assign for each course j you visit isReachable[i][j] = True.",
+    "Answer the queries from the isReachable array."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/course-schedule-iv/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.026Z",
+    "sourceUpdatedAt": null
+  }
+}

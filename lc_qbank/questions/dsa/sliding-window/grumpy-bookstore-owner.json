@@ -1,0 +1,158 @@
+{
+  "id": "1052",
+  "slug": "grumpy-bookstore-owner",
+  "title": "Grumpy Bookstore Owner",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Sliding Window"
+  ],
+  "statement": "There is a bookstore owner that has a store open for `n` minutes. You are given an integer array `customers` of length `n` where `customers[i]` is the number of the customers that enter the store at the start of the `i^(th)` minute and all those customers leave after the end of that minute.\n\nDuring certain minutes, the bookstore owner is grumpy. You are given a binary array grumpy where `grumpy[i]` is `1` if the bookstore owner is grumpy during the `i^(th)` minute, and is `0` otherwise.\n\nWhen the bookstore owner is grumpy, the customers entering during that minute are not **satisfied**. Otherwise, they are satisfied.\n\nThe bookstore owner knows a secret technique to remain **not grumpy** for `minutes` consecutive minutes, but this technique can only be used **once**.\n\nReturn the **maximum** number of customers that can be _satisfied_ throughout the day.\n\n**Example 1:**\n\n**Input:** customers = \\[1,0,1,2,1,1,7,5\\], grumpy = \\[0,1,0,1,0,1,0,1\\], minutes = 3\n\n**Output:** 16\n\n**Explanation:**\n\nThe bookstore owner keeps themselves not grumpy for the last 3 minutes.\n\nThe maximum number of customers that can be satisfied = 1 + 1 + 1 + 1 + 7 + 5 = 16.\n\n**Example 2:**\n\n**Input:** customers = \\[1\\], grumpy = \\[0\\], minutes = 1\n\n**Output:** 1\n\n**Constraints:**\n\n*   `n == customers.length == grumpy.length`\n*   `1 <= minutes <= n <= 2 * 10^(4)`\n*   `0 <= customers[i] <= 1000`\n*   `grumpy[i]` is either `0` or `1`.",
+  "constraints": [
+    "n == customers.length == grumpy.length",
+    "1 <= minutes <= n <= 2 * 104",
+    "0 <= customers[i] <= 1000",
+    "grumpy[i] is either 0 or 1."
+  ],
+  "examples": [
+    {
+      "input": "customers = [1,0,1,2,1,1,7,5], grumpy = [0,1,0,1,0,1,0,1], minutes = 3",
+      "output": "16",
+      "explanation": null
+    },
+    {
+      "input": "customers = [1], grumpy = [0], minutes = 1",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSatisfied(self, customers: list[int], grumpy: list[int], minutes: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSatisfied(self, customers, grumpy, minutes):\n        \"\"\"\n        :type customers: List[int]\n        :type grumpy: List[int]\n        :type minutes: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} customers\n * @param {number[]} grumpy\n * @param {number} minutes\n * @return {number}\n */\nvar maxSatisfied = function(customers, grumpy, minutes) {\n    \n};",
+    "typescript": "function maxSatisfied(customers: number[], grumpy: number[], minutes: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxSatisfied(int[] customers, int[] grumpy, int minutes) {\n        \n    }\n}",
+    "c": "int maxSatisfied(int* customers, int customersSize, int* grumpy, int grumpySize, int minutes) {\n    \n}",
+    "golang": "func maxSatisfied(customers []int, grumpy []int, minutes int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSatisfied(customers: IntArray, grumpy: IntArray, minutes: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSatisfied(_ customers: [Int], _ grumpy: [Int], _ minutes: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_satisfied(customers: Vec<i32>, grumpy: Vec<i32>, minutes: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} customers\n# @param {Integer[]} grumpy\n# @param {Integer} minutes\n# @return {Integer}\ndef max_satisfied(customers, grumpy, minutes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $customers\n     * @param Integer[] $grumpy\n     * @param Integer $minutes\n     * @return Integer\n     */\n    function maxSatisfied($customers, $grumpy, $minutes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSatisfied(List<int> customers, List<int> grumpy, int minutes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSatisfied(customers: Array[Int], grumpy: Array[Int], minutes: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_satisfied(customers :: [integer], grumpy :: [integer], minutes :: integer) :: integer\n  def max_satisfied(customers, grumpy, minutes) do\n    \n  end\nend",
+    "erlang": "-spec max_satisfied(Customers :: [integer()], Grumpy :: [integer()], Minutes :: integer()) -> integer().\nmax_satisfied(Customers, Grumpy, Minutes) ->\n  .",
+    "racket": "(define/contract (max-satisfied customers grumpy minutes)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,0,1,2,1,1,7,5]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[1]\n[0]\n1",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,0,1,2,1,1,7,5]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[1]\n[0]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,0,1,2]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,7,5]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[1]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,5]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,0]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,7,1,1,2,1,0,1]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[0,1,1,1,1,2,5,7]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[7,5,2,1,1,1,1,0]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "[1,1,1,1,1]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,0,2,4,2,2,14,10]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "32"
+    },
+    {
+      "input": "[2,1,2,3,2,2,8,6]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "22"
+    },
+    {
+      "input": "[0,-1,0,1,0,0,6,4]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[-1,0,-1,-2,-1,-1,-7,-5]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "-10"
+    },
+    {
+      "input": "[0,0,0,0]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]\n[0,1,0,1,0,1,0,1]\n3",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Say the store owner uses their power in minute 1 to X and we have some answer A.  If they instead use their power from minute 2 to X+1, we only have to use data from minutes 1, 2, X and X+1 to update our answer A."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/grumpy-bookstore-owner/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.296Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "id": "3210",
+  "slug": "find-the-encrypted-string",
+  "title": "Find the Encrypted String",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Easy",
+  "tags": [
+    "String"
+  ],
+  "statement": "You are given a string `s` and an integer `k`. Encrypt the string using the following algorithm:\n\n*   For each character `c` in `s`, replace `c` with the `k^(th)` character after `c` in the string (in a cyclic manner).\n\nReturn the _encrypted string_.\n\n**Example 1:**\n\n**Input:** s = \"dart\", k = 3\n\n**Output:** \"tdar\"\n\n**Explanation:**\n\n*   For `i = 0`, the 3^(rd) character after `'d'` is `'t'`.\n*   For `i = 1`, the 3^(rd) character after `'a'` is `'d'`.\n*   For `i = 2`, the 3^(rd) character after `'r'` is `'a'`.\n*   For `i = 3`, the 3^(rd) character after `'t'` is `'r'`.\n\n**Example 2:**\n\n**Input:** s = \"aaa\", k = 1\n\n**Output:** \"aaa\"\n\n**Explanation:**\n\nAs all the characters are the same, the encrypted string will also be the same.\n\n**Constraints:**\n\n*   `1 <= s.length <= 100`\n*   `1 <= k <= 10^(4)`\n*   `s` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "1 <= k <= 104",
+    "s consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"dart\", k = 3",
+      "output": "\"tdar\"",
+      "explanation": "For i = 0, the 3rd character after 'd' is 't'.\n\tFor i = 1, the 3rd character after 'a' is 'd'.\n\tFor i = 2, the 3rd character after 'r' is 'a'.\n\tFor i = 3, the 3rd character after 't' is 'r'."
+    },
+    {
+      "input": "s = \"aaa\", k = 1",
+      "output": "\"aaa\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string getEncryptedString(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String getEncryptedString(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getEncryptedString(self, s: str, k: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def getEncryptedString(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {string}\n */\nvar getEncryptedString = function(s, k) {\n    \n};",
+    "typescript": "function getEncryptedString(s: string, k: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string GetEncryptedString(string s, int k) {\n        \n    }\n}",
+    "c": "char* getEncryptedString(char* s, int k) {\n    \n}",
+    "golang": "func getEncryptedString(s string, k int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun getEncryptedString(s: String, k: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getEncryptedString(_ s: String, _ k: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_encrypted_string(s: String, k: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {String}\ndef get_encrypted_string(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return String\n     */\n    function getEncryptedString($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String getEncryptedString(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getEncryptedString(s: String, k: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_encrypted_string(s :: String.t, k :: integer) :: String.t\n  def get_encrypted_string(s, k) do\n    \n  end\nend",
+    "erlang": "-spec get_encrypted_string(S :: unicode:unicode_binary(), K :: integer()) -> unicode:unicode_binary().\nget_encrypted_string(S, K) ->\n  .",
+    "racket": "(define/contract (get-encrypted-string s k)\n  (-> string? exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"dart\"\n3",
+      "expectedOutput": "\"tdar\""
+    },
+    {
+      "input": "\"aaa\"\n1",
+      "expectedOutput": "\"aaa\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"dart\"\n3",
+      "expectedOutput": "\"tdar\""
+    },
+    {
+      "input": "\"aaa\"\n1",
+      "expectedOutput": "\"aaa\""
+    },
+    {
+      "input": "\"da\"\n3",
+      "expectedOutput": "\"ad\""
+    },
+    {
+      "input": "\"rt\"\n3",
+      "expectedOutput": "\"tr\""
+    },
+    {
+      "input": "\"d\"\n3",
+      "expectedOutput": "\"d\""
+    },
+    {
+      "input": "\"trad\"\n3",
+      "expectedOutput": "\"dtra\""
+    },
+    {
+      "input": "\"dartdart\"\n3",
+      "expectedOutput": "\"tdartdar\""
+    },
+    {
+      "input": "\"dddd\"\n3",
+      "expectedOutput": "\"dddd\""
+    },
+    {
+      "input": "\"darttrad\"\n3",
+      "expectedOutput": "\"ttraddar\""
+    },
+    {
+      "input": "\"DART\"\n3",
+      "expectedOutput": "\"TDAR\""
+    },
+    {
+      "input": "\"a\"\n3",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"\n3",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"\n3",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"\n3",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"ba\"\n3",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"aba\"\n3",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"\n3",
+      "expectedOutput": "\"aabb\""
+    },
+    {
+      "input": "\"aaaaa\"\n3",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"\n3",
+      "expectedOutput": "\"deabc\""
+    },
+    {
+      "input": "\"edcba\"\n3",
+      "expectedOutput": "\"baedc\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Make a new string such that for each character in <code>s</code>, character <code>i</code> will correspond to <code>(i + k) % s.length</code> character in the original string."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-encrypted-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.255Z",
+    "sourceUpdatedAt": null
+  }
+}

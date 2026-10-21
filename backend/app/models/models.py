@@ -170,3 +170,32 @@ class InterviewEvidence(Base):
     evaluator_reason = Column(Text, nullable=False)
     evidence_ref = Column(String(100), nullable=True)
     created_at = Column(DateTime(timezone=True), default=utc_now)
+
+class LCUserProgress(Base):
+    __tablename__ = "lc_user_progress"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    user_id = Column(String(36), ForeignKey("users.id"), index=True, nullable=False)
+    question_id = Column(String(50), index=True, nullable=False)
+    status = Column(String(20), default="todo")  # "todo" | "attempted" | "solved"
+    is_starred = Column(Boolean, default=False)
+    notes = Column(Text, nullable=True)
+    last_language = Column(String(50), nullable=True)
+    updated_at = Column(DateTime(timezone=True), default=utc_now, onupdate=utc_now)
+
+class LCSubmission(Base):
+    __tablename__ = "lc_submissions"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    user_id = Column(String(36), ForeignKey("users.id"), index=True, nullable=False)
+    question_id = Column(String(50), index=True, nullable=False)
+    language = Column(String(50), nullable=False)
+    code = Column(Text, nullable=False)
+    status = Column(String(50), nullable=False)  # "Accepted" | "Wrong Answer" | "Runtime Error" | "Compile Error" | "Time Limit Exceeded"
+    runtime_ms = Column(Float, default=0.0)
+    memory_mb = Column(Float, default=0.0)
+    test_cases_passed = Column(Integer, default=0)
+    total_test_cases = Column(Integer, default=0)
+    error_message = Column(Text, nullable=True)
+    submitted_at = Column(DateTime(timezone=True), default=utc_now)
+

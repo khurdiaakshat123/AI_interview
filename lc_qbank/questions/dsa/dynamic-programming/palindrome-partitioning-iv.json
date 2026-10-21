@@ -1,0 +1,157 @@
+{
+  "id": "1745",
+  "slug": "palindrome-partitioning-iv",
+  "title": "Palindrome Partitioning IV",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "Given a string `s`, return `true` _if it is possible to split the string_ `s` _into three **non-empty** palindromic substrings. Otherwise, return_ `false`.​​​​​\n\nA string is said to be palindrome if it the same string when reversed.\n\n**Example 1:**\n\n```\nInput: s = \"abcbdd\"\nOutput: true\nExplanation: \"abcbdd\" = \"a\" + \"bcb\" + \"dd\", and all three substrings are palindromes.\n```\n\n**Example 2:**\n\n```\nInput: s = \"bcbddxy\"\nOutput: false\nExplanation: s cannot be split into 3 palindromes.\n```\n\n**Constraints:**\n\n*   `3 <= s.length <= 2000`\n*   `s`​​​​​​ consists only of lowercase English letters.",
+  "constraints": [
+    "3 <= s.length <= 2000",
+    "s​​​​​​ consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcbdd\"",
+      "output": "true",
+      "explanation": "\"abcbdd\" = \"a\" + \"bcb\" + \"dd\", and all three substrings are palindromes."
+    },
+    {
+      "input": "s = \"bcbddxy\"",
+      "output": "false",
+      "explanation": "s cannot be split into 3 palindromes."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool checkPartitioning(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean checkPartitioning(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def checkPartitioning(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def checkPartitioning(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar checkPartitioning = function(s) {\n    \n};",
+    "typescript": "function checkPartitioning(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CheckPartitioning(string s) {\n        \n    }\n}",
+    "c": "bool checkPartitioning(char* s) {\n    \n}",
+    "golang": "func checkPartitioning(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun checkPartitioning(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func checkPartitioning(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn check_partitioning(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef check_partitioning(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function checkPartitioning($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool checkPartitioning(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def checkPartitioning(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec check_partitioning(s :: String.t) :: boolean\n  def check_partitioning(s) do\n    \n  end\nend",
+    "erlang": "-spec check_partitioning(S :: unicode:unicode_binary()) -> boolean().\ncheck_partitioning(S) ->\n  .",
+    "racket": "(define/contract (check-partitioning s)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcbdd\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"bcbddxy\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcbdd\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"bcbddxy\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"bdd\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ddbcba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcbddabcbdd\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcbddddbcba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ABCBDD\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Preprocess checking palindromes in O(1)",
+    "Note that one string is a prefix and another one is a suffix you can try brute forcing the rest"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/palindrome-partitioning-iv/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.470Z",
+    "sourceUpdatedAt": null
+  }
+}

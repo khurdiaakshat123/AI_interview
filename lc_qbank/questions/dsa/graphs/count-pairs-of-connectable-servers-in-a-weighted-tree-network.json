@@ -1,0 +1,100 @@
+{
+  "id": "3067",
+  "slug": "count-pairs-of-connectable-servers-in-a-weighted-tree-network",
+  "title": "Count Pairs of Connectable Servers in a Weighted Tree Network",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "statement": "You are given an unrooted weighted tree with `n` vertices representing servers numbered from `0` to `n - 1`, an array `edges` where `edges[i] = [a_(i), b_(i), weight_(i)]` represents a bidirectional edge between vertices `a_(i)` and `b_(i)` of weight `weight_(i)`. You are also given an integer `signalSpeed`.\n\nTwo servers `a` and `b` are **connectable** through a server `c` if:\n\n*   `a < b`, `a != c` and `b != c`.\n*   The distance from `c` to `a` is divisible by `signalSpeed`.\n*   The distance from `c` to `b` is divisible by `signalSpeed`.\n*   The path from `c` to `b` and the path from `c` to `a` do not share any edges.\n\nReturn _an integer array_ `count` _of length_ `n` _where_ `count[i]` _is the **number** of server pairs that are **connectable** through_ _the server_ `i`.\n\n**Example 1:**\n\n![](./assets/count-pairs-of-connectable-servers-in-a-weighted-tree-network-1.png)\n```\nInput: edges = [[0,1,1],[1,2,5],[2,3,13],[3,4,9],[4,5,2]], signalSpeed = 1\nOutput: [0,4,6,6,4,0]\nExplanation: Since signalSpeed is 1, count[c] is equal to the number of pairs of paths that start at c and do not share any edges.\nIn the case of the given path graph, count[c] is equal to the number of servers to the left of c multiplied by the servers to the right of c.\n```\n\n**Example 2:**\n\n![](./assets/count-pairs-of-connectable-servers-in-a-weighted-tree-network-2.png)\n```\nInput: edges = [[0,6,3],[6,5,3],[0,3,1],[3,2,7],[3,1,6],[3,4,2]], signalSpeed = 3\nOutput: [2,0,0,0,0,0,2]\nExplanation: Through server 0, there are 2 pairs of connectable servers: (4, 5) and (4, 6).\nThrough server 6, there are 2 pairs of connectable servers: (4, 5) and (0, 5).\nIt can be shown that no two servers are connectable through servers other than 0 and 6.\n```\n\n**Constraints:**\n\n*   `2 <= n <= 1000`\n*   `edges.length == n - 1`\n*   `edges[i].length == 3`\n*   `0 <= a_(i), b_(i) < n`\n*   `edges[i] = [a_(i), b_(i), weight_(i)]`\n*   `1 <= weight_(i) <= 10^(6)`\n*   `1 <= signalSpeed <= 10^(6)`\n*   The input is generated such that `edges` represents a valid tree.",
+  "constraints": [
+    "2 <= n <= 1000",
+    "edges.length == n - 1",
+    "edges[i].length == 3",
+    "0 <= ai, bi < n",
+    "edges[i] = [ai, bi, weighti]",
+    "1 <= weighti <= 106",
+    "1 <= signalSpeed <= 106",
+    "The input is generated such that edges represents a valid tree."
+  ],
+  "examples": [
+    {
+      "input": "edges = [[0,1,1],[1,2,5],[2,3,13],[3,4,9],[4,5,2]], signalSpeed = 1",
+      "output": "[0,4,6,6,4,0]",
+      "explanation": "Since signalSpeed is 1, count[c] is equal to the number of pairs of paths that start at c and do not share any edges.\nIn the case of the given path graph, count[c] is equal to the number of servers to the left of c multiplied by the servers to the right of c."
+    },
+    {
+      "input": "edges = [[0,6,3],[6,5,3],[0,3,1],[3,2,7],[3,1,6],[3,4,2]], signalSpeed = 3",
+      "output": "[2,0,0,0,0,0,2]",
+      "explanation": "Through server 0, there are 2 pairs of connectable servers: (4, 5) and (4, 6).\nThrough server 6, there are 2 pairs of connectable servers: (4, 5) and (0, 5).\nIt can be shown that no two servers are connectable through servers other than 0 and 6."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> countPairsOfConnectableServers(vector<vector<int>>& edges, int signalSpeed) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] countPairsOfConnectableServers(int[][] edges, int signalSpeed) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countPairsOfConnectableServers(self, edges: List[List[int]], signalSpeed: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def countPairsOfConnectableServers(self, edges, signalSpeed):\n        \"\"\"\n        :type edges: List[List[int]]\n        :type signalSpeed: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} edges\n * @param {number} signalSpeed\n * @return {number[]}\n */\nvar countPairsOfConnectableServers = function(edges, signalSpeed) {\n    \n};",
+    "typescript": "function countPairsOfConnectableServers(edges: number[][], signalSpeed: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] CountPairsOfConnectableServers(int[][] edges, int signalSpeed) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* countPairsOfConnectableServers(int** edges, int edgesSize, int* edgesColSize, int signalSpeed, int* returnSize) {\n    \n}",
+    "golang": "func countPairsOfConnectableServers(edges [][]int, signalSpeed int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countPairsOfConnectableServers(edges: Array<IntArray>, signalSpeed: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countPairsOfConnectableServers(_ edges: [[Int]], _ signalSpeed: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_pairs_of_connectable_servers(edges: Vec<Vec<i32>>, signal_speed: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} edges\n# @param {Integer} signal_speed\n# @return {Integer[]}\ndef count_pairs_of_connectable_servers(edges, signal_speed)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $edges\n     * @param Integer $signalSpeed\n     * @return Integer[]\n     */\n    function countPairsOfConnectableServers($edges, $signalSpeed) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> countPairsOfConnectableServers(List<List<int>> edges, int signalSpeed) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countPairsOfConnectableServers(edges: Array[Array[Int]], signalSpeed: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_pairs_of_connectable_servers(edges :: [[integer]], signal_speed :: integer) :: [integer]\n  def count_pairs_of_connectable_servers(edges, signal_speed) do\n    \n  end\nend",
+    "erlang": "-spec count_pairs_of_connectable_servers(Edges :: [[integer()]], SignalSpeed :: integer()) -> [integer()].\ncount_pairs_of_connectable_servers(Edges, SignalSpeed) ->\n  .",
+    "racket": "(define/contract (count-pairs-of-connectable-servers edges signalSpeed)\n  (-> (listof (listof exact-integer?)) exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1,1],[1,2,5],[2,3,13],[3,4,9],[4,5,2]]\n1",
+      "expectedOutput": "[0,4,6,6,4,0]"
+    },
+    {
+      "input": "[[0,6,3],[6,5,3],[0,3,1],[3,2,7],[3,1,6],[3,4,2]]\n3",
+      "expectedOutput": "[2,0,0,0,0,0,2]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1,1],[1,2,5],[2,3,13],[3,4,9],[4,5,2]]\n1",
+      "expectedOutput": "[0,4,6,6,4,0]"
+    },
+    {
+      "input": "[[0,6,3],[6,5,3],[0,3,1],[3,2,7],[3,1,6],[3,4,2]]\n3",
+      "expectedOutput": "[2,0,0,0,0,0,2]"
+    },
+    {
+      "input": "edges = [[0,1,1],[1,2,5],[2,3,13],[3,4,9],[4,5,2]], signalSpeed = 1",
+      "expectedOutput": "[0,4,6,6,4,0]"
+    },
+    {
+      "input": "edges = [[0,6,3],[6,5,3],[0,3,1],[3,2,7],[3,1,6],[3,4,2]], signalSpeed = 3",
+      "expectedOutput": "[2,0,0,0,0,0,2]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Take each node as the root of the tree, run DFS, and save for each node <code>i</code>, the number of nodes in the subtree rooted at <code>i</code> whose distance to the root is divisible by <code>signalSpeed</code>.",
+    "If the root has <code>m</code> children named <code>c<sub>1</sub>, c<sub>2</sub>, …, c<sub>m</sub></code> that respectively have <code>num[c<sub>1</sub>], num[c<sub>2</sub>], …, num[c<sub>m</sub>]</code> nodes in their subtrees whose distance is divisible by signalSpeed. Then, there are <code>((S - num[c<sub>i</sub>]) * num[c<sub>i</sub>]) / 2</code>that are connectable through the root that we have fixed, where <code>S</code> is the sum of <code>num[c<sub>i</sub>]</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-pairs-of-connectable-servers-in-a-weighted-tree-network/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.445Z",
+    "sourceUpdatedAt": null
+  }
+}

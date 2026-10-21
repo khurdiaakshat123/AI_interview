@@ -1,0 +1,95 @@
+{
+  "id": "3318",
+  "slug": "find-x-sum-of-all-k-long-subarrays-i",
+  "title": "Find X-Sum of All K-Long Subarrays I",
+  "category": "dsa",
+  "subcategory": "heaps",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "You are given an array `nums` of `n` integers and two integers `k` and `x`.\n\nThe **x-sum** of an array is calculated by the following procedure:\n\n*   Count the occurrences of all elements in the array.\n*   Keep only the occurrences of the top `x` most frequent elements. If two elements have the same number of occurrences, the element with the **bigger** value is considered more frequent.\n*   Calculate the sum of the resulting array.\n\n**Note** that if an array has less than `x` distinct elements, its **x-sum** is the sum of the array.\n\nReturn an integer array `answer` of length `n - k + 1` where `answer[i]` is the **x-sum** of the subarray `nums[i..i + k - 1]`.\n\n**Example 1:**\n\n**Input:** nums = \\[1,1,2,2,3,4,2,3\\], k = 6, x = 2\n\n**Output:** \\[6,10,12\\]\n\n**Explanation:**\n\n*   For subarray `[1, 1, 2, 2, 3, 4]`, only elements 1 and 2 will be kept in the resulting array. Hence, `answer[0] = 1 + 1 + 2 + 2`.\n*   For subarray `[1, 2, 2, 3, 4, 2]`, only elements 2 and 4 will be kept in the resulting array. Hence, `answer[1] = 2 + 2 + 2 + 4`. Note that 4 is kept in the array since it is bigger than 3 and 1 which occur the same number of times.\n*   For subarray `[2, 2, 3, 4, 2, 3]`, only elements 2 and 3 are kept in the resulting array. Hence, `answer[2] = 2 + 2 + 2 + 3 + 3`.\n\n**Example 2:**\n\n**Input:** nums = \\[3,8,7,8,7,5\\], k = 2, x = 2\n\n**Output:** \\[11,15,15,15,12\\]\n\n**Explanation:**\n\nSince `k == x`, `answer[i]` is equal to the sum of the subarray `nums[i..i + k - 1]`.\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 50`\n*   `1 <= nums[i] <= 50`\n*   `1 <= x <= k <= nums.length`",
+  "constraints": [
+    "1 <= n == nums.length <= 50",
+    "1 <= nums[i] <= 50",
+    "1 <= x <= k <= nums.length"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,1,2,2,3,4,2,3], k = 6, x = 2",
+      "output": "[6,10,12]",
+      "explanation": "For subarray [1, 1, 2, 2, 3, 4], only elements 1 and 2 will be kept in the resulting array. Hence, answer[0] = 1 + 1 + 2 + 2.\n\tFor subarray [1, 2, 2, 3, 4, 2], only elements 2 and 4 will be kept in the resulting array. Hence, answer[1] = 2 + 2 + 2 + 4. Note that 4 is kept in the array since it is bigger than 3 and 1 which occur the same number of times.\n\tFor subarray [2, 2, 3, 4, 2, 3], only elements 2 and 3 are kept in the resulting array. Hence, answer[2] = 2 + 2 + 2 + 3 + 3."
+    },
+    {
+      "input": "nums = [3,8,7,8,7,5], k = 2, x = 2",
+      "output": "[11,15,15,15,12]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findXSum(vector<int>& nums, int k, int x) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] findXSum(int[] nums, int k, int x) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findXSum(self, nums: List[int], k: int, x: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def findXSum(self, nums, k, x):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :type x: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @param {number} x\n * @return {number[]}\n */\nvar findXSum = function(nums, k, x) {\n    \n};",
+    "typescript": "function findXSum(nums: number[], k: number, x: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] FindXSum(int[] nums, int k, int x) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findXSum(int* nums, int numsSize, int k, int x, int* returnSize) {\n    \n}",
+    "golang": "func findXSum(nums []int, k int, x int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findXSum(nums: IntArray, k: Int, x: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findXSum(_ nums: [Int], _ k: Int, _ x: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_x_sum(nums: Vec<i32>, k: i32, x: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @param {Integer} x\n# @return {Integer[]}\ndef find_x_sum(nums, k, x)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @param Integer $x\n     * @return Integer[]\n     */\n    function findXSum($nums, $k, $x) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findXSum(List<int> nums, int k, int x) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findXSum(nums: Array[Int], k: Int, x: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_x_sum(nums :: [integer], k :: integer, x :: integer) :: [integer]\n  def find_x_sum(nums, k, x) do\n    \n  end\nend",
+    "erlang": "-spec find_x_sum(Nums :: [integer()], K :: integer(), X :: integer()) -> [integer()].\nfind_x_sum(Nums, K, X) ->\n  .",
+    "racket": "(define/contract (find-x-sum nums k x)\n  (-> (listof exact-integer?) exact-integer? exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,1,2,2,3,4,2,3]\n6\n2",
+      "expectedOutput": "[6,10,12]"
+    },
+    {
+      "input": "[3,8,7,8,7,5]\n2\n2",
+      "expectedOutput": "[11,15,15,15,12]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,1,2,2,3,4,2,3]\n6\n2",
+      "expectedOutput": "[6,10,12]"
+    },
+    {
+      "input": "[3,8,7,8,7,5]\n2\n2",
+      "expectedOutput": "[11,15,15,15,12]"
+    },
+    {
+      "input": "nums = [1,1,2,2,3,4,2,3], k = 6, x = 2",
+      "expectedOutput": "[6,10,12]"
+    },
+    {
+      "input": "nums = [3,8,7,8,7,5], k = 2, x = 2",
+      "expectedOutput": "[11,15,15,15,12]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Implement the x-sum function. Then, run x-sum on every subarray of <code>nums</code> of size <code>k</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.807Z",
+    "sourceUpdatedAt": null
+  }
+}

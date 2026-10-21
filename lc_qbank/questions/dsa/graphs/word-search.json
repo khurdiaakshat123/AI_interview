@@ -1,0 +1,169 @@
+{
+  "id": "79",
+  "slug": "word-search",
+  "title": "Word Search",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Backtracking",
+    "Depth-First Search",
+    "Matrix"
+  ],
+  "statement": "Given an `m x n` grid of characters `board` and a string `word`, return `true` _if_ `word` _exists in the grid_.\n\nThe word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.\n\n**Example 1:**\n\n![](./assets/word-search-1.jpg)\n```\nInput: board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCCED\"\nOutput: true\n```\n\n**Example 2:**\n\n![](./assets/word-search-2.jpg)\n```\nInput: board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"SEE\"\nOutput: true\n```\n\n**Example 3:**\n\n![](./assets/word-search-3.jpg)\n```\nInput: board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCB\"\nOutput: false\n```\n\n**Constraints:**\n\n*   `m == board.length`\n*   `n = board[i].length`\n*   `1 <= m, n <= 6`\n*   `1 <= word.length <= 15`\n*   `board` and `word` consists of only lowercase and uppercase English letters.\n\n**Follow up:** Could you use search pruning to make your solution faster with a larger `board`?",
+  "constraints": [
+    "m == board.length",
+    "n = board[i].length",
+    "1 <= m, n <= 6",
+    "1 <= word.length <= 15",
+    "board and word consists of only lowercase and uppercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCCED\"",
+      "output": "true",
+      "explanation": null
+    },
+    {
+      "input": "board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"SEE\"",
+      "output": "true",
+      "explanation": null
+    },
+    {
+      "input": "board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCB\"",
+      "output": "false",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool exist(vector<vector<char>>& board, string word) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean exist(char[][] board, String word) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def exist(self, board: list[list[str]], word: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def exist(self, board, word):\n        \"\"\"\n        :type board: List[List[str]]\n        :type word: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[][]} board\n * @param {string} word\n * @return {boolean}\n */\nvar exist = function(board, word) {\n    \n};",
+    "typescript": "function exist(board: string[][], word: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool Exist(char[][] board, string word) {\n        \n    }\n}",
+    "c": "bool exist(char** board, int boardSize, int* boardColSize, char* word) {\n    \n}",
+    "golang": "func exist(board [][]byte, word string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun exist(board: Array<CharArray>, word: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func exist(_ board: [[Character]], _ word: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn exist(board: Vec<Vec<char>>, word: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Character[][]} board\n# @param {String} word\n# @return {Boolean}\ndef exist(board, word)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $board\n     * @param String $word\n     * @return Boolean\n     */\n    function exist($board, $word) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool exist(List<List<String>> board, String word) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def exist(board: Array[Array[Char]], word: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec exist(board :: [[char]], word :: String.t) :: boolean\n  def exist(board, word) do\n    \n  end\nend",
+    "erlang": "-spec exist(Board :: [[char()]], Word :: unicode:unicode_binary()) -> boolean().\nexist(Board, Word) ->\n  .",
+    "racket": "(define/contract (exist board word)\n  (-> (listof (listof char?)) string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"ABCCED\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"SEE\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"ABCB\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"ABCCED\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"SEE\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"ABCB\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"]]\n\"ABCCED\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[\"A\"],[\"S\"],[\"A\"]]\n\"ABCCED\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[\"A\",\"D\",\"E\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"B\",\"C\",\"E\"]]\n\"ABCCED\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[\"A\",\"S\",\"A\"],[\"B\",\"F\",\"D\"],[\"C\",\"C\",\"E\"],[\"E\",\"S\",\"E\"]]\n\"ABCCED\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"ABC\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"CED\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"A\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"AB\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"DECCBA\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"ABCCEDABCCED\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"AAAAAA\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"ABCCEDDECCBA\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"abcced\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"b\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"aa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]\n\"ab\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/word-search/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.795Z",
+    "sourceUpdatedAt": null
+  }
+}

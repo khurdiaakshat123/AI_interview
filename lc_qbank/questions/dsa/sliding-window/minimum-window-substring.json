@@ -1,0 +1,171 @@
+{
+  "id": "76",
+  "slug": "minimum-window-substring",
+  "title": "Minimum Window Substring",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "Given two strings `s` and `t` of lengths `m` and `n` respectively, return _the **minimum window**_ **_substring_** _of_ `s` _such that every character in_ `t` _(**including duplicates**) is included in the window_. If there is no such substring, return _the empty string_ `\"\"`.\n\nThe testcases will be generated such that the answer is **unique**.\n\n**Example 1:**\n\n```\nInput: s = \"ADOBECODEBANC\", t = \"ABC\"\nOutput: \"BANC\"\nExplanation: The minimum window substring \"BANC\" includes 'A', 'B', and 'C' from string t.\n```\n\n**Example 2:**\n\n```\nInput: s = \"a\", t = \"a\"\nOutput: \"a\"\nExplanation: The entire string s is the minimum window.\n```\n\n**Example 3:**\n\n```\nInput: s = \"a\", t = \"aa\"\nOutput: \"\"\nExplanation: Both 'a's from t must be included in the window.\nSince the largest window of s only has one 'a', return empty string.\n```\n\n**Constraints:**\n\n*   `m == s.length`\n*   `n == t.length`\n*   `1 <= m, n <= 10^(5)`\n*   `s` and `t` consist of uppercase and lowercase English letters.\n\n**Follow up:** Could you find an algorithm that runs in `O(m + n)` time?",
+  "constraints": [
+    "m == s.length",
+    "n == t.length",
+    "1 <= m, n <= 105",
+    "s and t consist of uppercase and lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"ADOBECODEBANC\", t = \"ABC\"",
+      "output": "\"BANC\"",
+      "explanation": "The minimum window substring \"BANC\" includes 'A', 'B', and 'C' from string t."
+    },
+    {
+      "input": "s = \"a\", t = \"a\"",
+      "output": "\"a\"",
+      "explanation": "The entire string s is the minimum window."
+    },
+    {
+      "input": "s = \"a\", t = \"aa\"",
+      "output": "\"\"",
+      "explanation": "Both 'a's from t must be included in the window.\nSince the largest window of s only has one 'a', return empty string."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string minWindow(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String minWindow(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minWindow(self, s: str, t: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def minWindow(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {string}\n */\nvar minWindow = function(s, t) {\n    \n};",
+    "typescript": "function minWindow(s: string, t: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MinWindow(string s, string t) {\n        \n    }\n}",
+    "c": "char* minWindow(char* s, char* t) {\n    \n}",
+    "golang": "func minWindow(s string, t string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun minWindow(s: String, t: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minWindow(_ s: String, _ t: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_window(s: String, t: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {String}\ndef min_window(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return String\n     */\n    function minWindow($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String minWindow(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minWindow(s: String, t: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_window(s :: String.t, t :: String.t) :: String.t\n  def min_window(s, t) do\n    \n  end\nend",
+    "erlang": "-spec min_window(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> unicode:unicode_binary().\nmin_window(S, T) ->\n  .",
+    "racket": "(define/contract (min-window s t)\n  (-> string? string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"ADOBECODEBANC\"\n\"ABC\"",
+      "expectedOutput": "\"BANC\""
+    },
+    {
+      "input": "\"a\"\n\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"a\"\n\"aa\"",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"ADOBECODEBANC\"\n\"ABC\"",
+      "expectedOutput": "\"BANC\""
+    },
+    {
+      "input": "\"a\"\n\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"a\"\n\"aa\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"ADOBEC\"\n\"ABC\"",
+      "expectedOutput": "\"ADOBEC\""
+    },
+    {
+      "input": "\"ODEBANC\"\n\"ABC\"",
+      "expectedOutput": "\"BANC\""
+    },
+    {
+      "input": "\"A\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"AD\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"CNABEDOCEBODA\"\n\"ABC\"",
+      "expectedOutput": "\"CNAB\""
+    },
+    {
+      "input": "\"AAAAAA\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"adobecodebanc\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"a\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"b\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aa\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"ab\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"ba\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aba\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"abba\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aaaaa\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"abcde\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"edcba\"\n\"ABC\"",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use two pointers to create a window of letters in s, which would have all the characters from t.",
+    "Expand the right pointer until all the characters of t are covered.",
+    "Once all the characters are covered, move the left pointer and ensure that all the characters are still covered to minimize the subarray size.",
+    "Continue expanding the right and left pointers until you reach the end of s."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-window-substring/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.353Z",
+    "sourceUpdatedAt": null
+  }
+}

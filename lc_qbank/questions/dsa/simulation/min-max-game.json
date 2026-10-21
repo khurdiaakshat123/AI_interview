@@ -1,0 +1,158 @@
+{
+  "id": "2293",
+  "slug": "min-max-game",
+  "title": "Min Max Game",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums` whose length is a power of `2`.\n\nApply the following algorithm on `nums`:\n\n1.  Let `n` be the length of `nums`. If `n == 1`, **end** the process. Otherwise, **create** a new **0-indexed** integer array `newNums` of length `n / 2`.\n2.  For every **even** index `i` where `0 <= i < n / 2`, **assign** the value of `newNums[i]` as `min(nums[2 * i], nums[2 * i + 1])`.\n3.  For every **odd** index `i` where `0 <= i < n / 2`, **assign** the value of `newNums[i]` as `max(nums[2 * i], nums[2 * i + 1])`.\n4.  **Replace** the array `nums` with `newNums`.\n5.  **Repeat** the entire process starting from step 1.\n\nReturn _the last number that remains in_ `nums` _after applying the algorithm._\n\n**Example 1:**\n\n![](./assets/min-max-game-1.png)\n```\nInput: nums = [1,3,5,2,4,8,2,2]\nOutput: 1\nExplanation: The following arrays are the results of applying the algorithm repeatedly.\nFirst: nums = [1,5,4,2]\nSecond: nums = [1,4]\nThird: nums = [1]\n1 is the last remaining number, so we return 1.\n```\n\n**Example 2:**\n\n```\nInput: nums = [3]\nOutput: 3\nExplanation: 3 is already the last remaining number, so we return 3.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 1024`\n*   `1 <= nums[i] <= 10^(9)`\n*   `nums.length` is a power of `2`.",
+  "constraints": [
+    "1 <= nums.length <= 1024",
+    "1 <= nums[i] <= 109",
+    "nums.length is a power of 2."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,3,5,2,4,8,2,2]",
+      "output": "1",
+      "explanation": "The following arrays are the results of applying the algorithm repeatedly.\nFirst: nums = [1,5,4,2]\nSecond: nums = [1,4]\nThird: nums = [1]\n1 is the last remaining number, so we return 1."
+    },
+    {
+      "input": "nums = [3]",
+      "output": "3",
+      "explanation": "3 is already the last remaining number, so we return 3."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minMaxGame(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minMaxGame(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minMaxGame(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minMaxGame(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minMaxGame = function(nums) {\n    \n};",
+    "typescript": "function minMaxGame(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinMaxGame(int[] nums) {\n        \n    }\n}",
+    "c": "int minMaxGame(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minMaxGame(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minMaxGame(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minMaxGame(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_max_game(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef min_max_game(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minMaxGame($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minMaxGame(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minMaxGame(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_max_game(nums :: [integer]) :: integer\n  def min_max_game(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_max_game(Nums :: [integer()]) -> integer().\nmin_max_game(Nums) ->\n  .",
+    "racket": "(define/contract (min-max-game nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,3,5,2,4,8,2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,3,5,2,4,8,2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,3,5,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,8,2,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,2,8,4,2,5,3,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,2,2,3,4,5,8]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[8,5,4,3,2,2,2,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3,5,2,4,8,2,2,1,3,5,2,4,8,2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,6,10,4,8,16,4,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4,6,3,5,9,3,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,2,4,1,3,7,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-3,-5,-2,-4,-8,-2,-2]",
+      "expectedOutput": "-3"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Simply simulate the algorithm.",
+    "Note that the size of the array decreases exponentially, so the process will terminate after just O(log n) steps."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/min-max-game/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.183Z",
+    "sourceUpdatedAt": null
+  }
+}

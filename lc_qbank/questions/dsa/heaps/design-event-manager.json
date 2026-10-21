@@ -1,0 +1,103 @@
+{
+  "id": "3885",
+  "slug": "design-event-manager",
+  "title": "Design Event Manager",
+  "category": "dsa",
+  "subcategory": "heaps",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Design",
+    "Heap (Priority Queue)",
+    "Ordered Set"
+  ],
+  "statement": "You are given an initial list of events, where each event has a unique `eventId` and a `priority`.\n\nImplement the `EventManager` class:\n\n*   `EventManager(int[][] events)` Initializes the manager with the given events, where `events[i] = [eventId_(i), priority_(​​​​​​​i)]`.\n*   `void updatePriority(int eventId, int newPriority)` Updates the priority of the **active** event with id `eventId` to `newPriority`.\n*   `int pollHighest()` Removes and returns the `eventId` of the **active** event with the **highest** priority. If multiple active events have the same priority, return the **smallest** `eventId` among them. If there are no active events, return -1.\n\nAn event is called **active** if it has not been removed by `pollHighest()`.\n\n**Example 1:**\n\n**Input:**  \n\\[\"EventManager\", \"pollHighest\", \"updatePriority\", \"pollHighest\", \"pollHighest\"\\]  \n\\[\\[\\[\\[5, 7\\], \\[2, 7\\], \\[9, 4\\]\\]\\], \\[\\], \\[9, 7\\], \\[\\], \\[\\]\\]\n\n**Output:**  \n\\[null, 2, null, 5, 9\\]\n\n**Explanation**\n\nEventManager eventManager = new EventManager(\\[\\[5,7\\], \\[2,7\\], \\[9,4\\]\\]); // Initializes the manager with three events  \neventManager.pollHighest(); // both events 5 and 2 have priority 7, so return the smaller id 2  \neventManager.updatePriority(9, 7); // event 9 now has priority 7  \neventManager.pollHighest(); // remaining highest priority events are 5 and 9, return 5  \neventManager.pollHighest(); // return 9\n\n**Example 2:**\n\n**Input:**  \n\\[\"EventManager\", \"pollHighest\", \"pollHighest\", \"pollHighest\"\\]  \n\\[\\[\\[\\[4, 1\\], \\[7, 2\\]\\]\\], \\[\\], \\[\\], \\[\\]\\]\n\n**Output:**  \n\\[null, 7, 4, -1\\]\n\n**Explanation**\n\nEventManager eventManager = new EventManager(\\[\\[4,1\\], \\[7,2\\]\\]); // Initializes the manager with two events  \neventManager.pollHighest(); // return 7  \neventManager.pollHighest(); // return 4  \neventManager.pollHighest(); // no events remain, return -1\n\n**Constraints:**\n\n*   `1 <= events.length <= 10^(5)`\n*   `events[i] = [eventId, priority]`\n*   `1 <= eventId <= 10^(9)`\n*   `1 <= priority <= 10^(9)`\n*   All the values of `eventId` in `events` are **unique**.\n*   `1 <= newPriority <= 10^(9)`\n*   For every call to `updatePriority`, `eventId` refers to an **active** event.\n*   At most `10^(5)` calls in **total** will be made to `updatePriority` and `pollHighest`.",
+  "constraints": [
+    "1 <= events.length <= 105",
+    "events[i] = [eventId, priority]",
+    "1 <= eventId <= 109",
+    "1 <= priority <= 109",
+    "All the values of eventId in events are unique.",
+    "1 <= newPriority <= 109",
+    "For every call to updatePriority, eventId refers to an active event.",
+    "At most 105 calls in total will be made to updatePriority and pollHighest."
+  ],
+  "examples": [
+    {
+      "input": "[\"EventManager\", \"pollHighest\", \"updatePriority\", \"pollHighest\", \"pollHighest\"]\n[[[[5, 7], [2, 7], [9, 4]]], [], [9, 7], [], []]",
+      "output": "[null, 2, null, 5, 9]",
+      "explanation": "EventManager eventManager = new EventManager([[5,7], [2,7], [9,4]]); // Initializes the manager with three events\neventManager.pollHighest(); // both events 5 and 2 have priority 7, so return the smaller id 2\neventManager.updatePriority(9, 7); // event 9 now has priority 7\neventManager.pollHighest(); // remaining highest priority events are 5 and 9, return 5\neventManager.pollHighest(); // return 9"
+    },
+    {
+      "input": "[\"EventManager\", \"pollHighest\", \"pollHighest\", \"pollHighest\"]\n[[[[4, 1], [7, 2]]], [], [], []]",
+      "output": "[null, 7, 4, -1]",
+      "explanation": "EventManager eventManager = new EventManager([[4,1], [7,2]]); // Initializes the manager with two events\neventManager.pollHighest(); // return 7\neventManager.pollHighest(); // return 4\neventManager.pollHighest(); // no events remain, return -1"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class EventManager {\npublic:\n    EventManager(vector<vector<int>>& events) {\n        \n    }\n    \n    void updatePriority(int eventId, int newPriority) {\n        \n    }\n    \n    int pollHighest() {\n        \n    }\n};\n\n/**\n * Your EventManager object will be instantiated and called as such:\n * EventManager* obj = new EventManager(events);\n * obj->updatePriority(eventId,newPriority);\n * int param_2 = obj->pollHighest();\n */",
+    "java": "class EventManager {\n\n    public EventManager(int[][] events) {\n        \n    }\n    \n    public void updatePriority(int eventId, int newPriority) {\n        \n    }\n    \n    public int pollHighest() {\n        \n    }\n}\n\n/**\n * Your EventManager object will be instantiated and called as such:\n * EventManager obj = new EventManager(events);\n * obj.updatePriority(eventId,newPriority);\n * int param_2 = obj.pollHighest();\n */",
+    "python3": "class EventManager:\n\n    def __init__(self, events: list[list[int]]):\n        \n\n    def updatePriority(self, eventId: int, newPriority: int) -> None:\n        \n\n    def pollHighest(self) -> int:\n        \n\n\n# Your EventManager object will be instantiated and called as such:\n# obj = EventManager(events)\n# obj.updatePriority(eventId,newPriority)\n# param_2 = obj.pollHighest()",
+    "python": "class EventManager(object):\n\n    def __init__(self, events):\n        \"\"\"\n        :type events: List[List[int]]\n        \"\"\"\n        \n\n    def updatePriority(self, eventId, newPriority):\n        \"\"\"\n        :type eventId: int\n        :type newPriority: int\n        :rtype: None\n        \"\"\"\n        \n\n    def pollHighest(self):\n        \"\"\"\n        :rtype: int\n        \"\"\"\n        \n\n\n# Your EventManager object will be instantiated and called as such:\n# obj = EventManager(events)\n# obj.updatePriority(eventId,newPriority)\n# param_2 = obj.pollHighest()",
+    "javascript": "/**\n * @param {number[][]} events\n */\nvar EventManager = function(events) {\n    \n};\n\n/** \n * @param {number} eventId \n * @param {number} newPriority\n * @return {void}\n */\nEventManager.prototype.updatePriority = function(eventId, newPriority) {\n    \n};\n\n/**\n * @return {number}\n */\nEventManager.prototype.pollHighest = function() {\n    \n};\n\n/** \n * Your EventManager object will be instantiated and called as such:\n * var obj = new EventManager(events)\n * obj.updatePriority(eventId,newPriority)\n * var param_2 = obj.pollHighest()\n */",
+    "typescript": "class EventManager {\n    constructor(events: number[][]) {\n        \n    }\n\n    updatePriority(eventId: number, newPriority: number): void {\n        \n    }\n\n    pollHighest(): number {\n        \n    }\n}\n\n/**\n * Your EventManager object will be instantiated and called as such:\n * var obj = new EventManager(events)\n * obj.updatePriority(eventId,newPriority)\n * var param_2 = obj.pollHighest()\n */",
+    "csharp": "public class EventManager {\n\n    public EventManager(int[][] events) {\n        \n    }\n    \n    public void UpdatePriority(int eventId, int newPriority) {\n        \n    }\n    \n    public int PollHighest() {\n        \n    }\n}\n\n/**\n * Your EventManager object will be instantiated and called as such:\n * EventManager obj = new EventManager(events);\n * obj.UpdatePriority(eventId,newPriority);\n * int param_2 = obj.PollHighest();\n */",
+    "c": "\n\n\ntypedef struct {\n    \n} EventManager;\n\n\nEventManager* eventManagerCreate(int** events, int eventsSize, int* eventsColSize) {\n    \n}\n\nvoid eventManagerUpdatePriority(EventManager* obj, int eventId, int newPriority) {\n    \n}\n\nint eventManagerPollHighest(EventManager* obj) {\n    \n}\n\nvoid eventManagerFree(EventManager* obj) {\n    \n}\n\n/**\n * Your EventManager struct will be instantiated and called as such:\n * EventManager* obj = eventManagerCreate(events, eventsSize, eventsColSize);\n * eventManagerUpdatePriority(obj, eventId, newPriority);\n \n * int param_2 = eventManagerPollHighest(obj);\n \n * eventManagerFree(obj);\n*/",
+    "golang": "type EventManager struct {\n    \n}\n\n\nfunc Constructor(events [][]int) EventManager {\n    \n}\n\n\nfunc (this *EventManager) UpdatePriority(eventId int, newPriority int)  {\n    \n}\n\n\nfunc (this *EventManager) PollHighest() int {\n    \n}\n\n\n/**\n * Your EventManager object will be instantiated and called as such:\n * obj := Constructor(events);\n * obj.UpdatePriority(eventId,newPriority);\n * param_2 := obj.PollHighest();\n */",
+    "kotlin": "class EventManager(events: Array<IntArray>) {\n\n    fun updatePriority(eventId: Int, newPriority: Int) {\n        \n    }\n\n    fun pollHighest(): Int {\n        \n    }\n\n}\n\n/**\n * Your EventManager object will be instantiated and called as such:\n * var obj = EventManager(events)\n * obj.updatePriority(eventId,newPriority)\n * var param_2 = obj.pollHighest()\n */",
+    "swift": "\nclass EventManager {\n\n    init(_ events: [[Int]]) {\n        \n    }\n    \n    func updatePriority(_ eventId: Int, _ newPriority: Int) {\n        \n    }\n    \n    func pollHighest() -> Int {\n        \n    }\n}\n\n/**\n * Your EventManager object will be instantiated and called as such:\n * let obj = EventManager(events)\n * obj.updatePriority(eventId, newPriority)\n * let ret_2: Int = obj.pollHighest()\n */",
+    "rust": "struct EventManager {\n\n}\n\n\n/** \n * `&self` means the method takes an immutable reference.\n * If you need a mutable reference, change it to `&mut self` instead.\n */\nimpl EventManager {\n\n    fn new(events: Vec<Vec<i32>>) -> Self {\n        \n    }\n    \n    fn update_priority(&self, event_id: i32, new_priority: i32) {\n        \n    }\n    \n    fn poll_highest(&self) -> i32 {\n        \n    }\n}\n\n/**\n * Your EventManager object will be instantiated and called as such:\n * let obj = EventManager::new(events);\n * obj.update_priority(eventId, newPriority);\n * let ret_2: i32 = obj.poll_highest();\n */",
+    "ruby": "class EventManager\n\n=begin\n    :type events: Integer[][]\n=end\n    def initialize(events)\n        \n    end\n\n\n=begin\n    :type event_id: Integer\n    :type new_priority: Integer\n    :rtype: Void\n=end\n    def update_priority(event_id, new_priority)\n        \n    end\n\n\n=begin\n    :rtype: Integer\n=end\n    def poll_highest()\n        \n    end\n\n\nend\n\n# Your EventManager object will be instantiated and called as such:\n# obj = EventManager.new(events)\n# obj.update_priority(event_id, new_priority)\n# param_2 = obj.poll_highest()",
+    "php": "class EventManager {\n    /**\n     * @param Integer[][] $events\n     */\n    function __construct($events) {\n        \n    }\n  \n    /**\n     * @param Integer $eventId\n     * @param Integer $newPriority\n     * @return NULL\n     */\n    function updatePriority($eventId, $newPriority) {\n        \n    }\n  \n    /**\n     * @return Integer\n     */\n    function pollHighest() {\n        \n    }\n}\n\n/**\n * Your EventManager object will be instantiated and called as such:\n * $obj = EventManager($events);\n * $obj->updatePriority($eventId, $newPriority);\n * $ret_2 = $obj->pollHighest();\n */",
+    "dart": "class EventManager {\n\n  EventManager(List<List<int>> events) {\n    \n  }\n  \n  void updatePriority(int eventId, int newPriority) {\n    \n  }\n  \n  int pollHighest() {\n    \n  }\n}\n\n/**\n * Your EventManager object will be instantiated and called as such:\n * EventManager obj = EventManager(events);\n * obj.updatePriority(eventId,newPriority);\n * int param2 = obj.pollHighest();\n */",
+    "scala": "class EventManager(_events: Array[Array[Int]]) {\n\n    def updatePriority(eventId: Int, newPriority: Int): Unit = {\n        \n    }\n\n    def pollHighest(): Int = {\n        \n    }\n\n}\n\n/**\n * Your EventManager object will be instantiated and called as such:\n * val obj = new EventManager(events)\n * obj.updatePriority(eventId,newPriority)\n * val param_2 = obj.pollHighest()\n */",
+    "elixir": "defmodule EventManager do\n  @spec init_(events :: [[integer]]) :: any\n  def init_(events) do\n    \n  end\n\n  @spec update_priority(event_id :: integer, new_priority :: integer) :: any\n  def update_priority(event_id, new_priority) do\n    \n  end\n\n  @spec poll_highest() :: integer\n  def poll_highest() do\n    \n  end\nend\n\n# Your functions will be called as such:\n# EventManager.init_(events)\n# EventManager.update_priority(event_id, new_priority)\n# param_2 = EventManager.poll_highest()\n\n# EventManager.init_ will be called before every test case, in which you can do some necessary initializations.",
+    "erlang": "-spec event_manager_init_(Events :: [[integer()]]) -> any().\nevent_manager_init_(Events) ->\n  .\n\n-spec event_manager_update_priority(EventId :: integer(), NewPriority :: integer()) -> any().\nevent_manager_update_priority(EventId, NewPriority) ->\n  .\n\n-spec event_manager_poll_highest() -> integer().\nevent_manager_poll_highest() ->\n  .\n\n\n%% Your functions will be called as such:\n%% event_manager_init_(Events),\n%% event_manager_update_priority(EventId, NewPriority),\n%% Param_2 = event_manager_poll_highest(),\n\n%% event_manager_init_ will be called before every test case, in which you can do some necessary initializations.",
+    "racket": "(define event-manager%\n  (class object%\n    (super-new)\n    \n    ; events : (listof (listof exact-integer?))\n    (init-field\n      events)\n    \n    ; update-priority : exact-integer? exact-integer? -> void?\n    (define/public (update-priority event-id new-priority)\n      )\n    ; poll-highest : -> exact-integer?\n    (define/public (poll-highest)\n      )))\n\n;; Your event-manager% object will be instantiated and called as such:\n;; (define obj (new event-manager% [events events]))\n;; (send obj update-priority event-id new-priority)\n;; (define param_2 (send obj poll-highest))"
+  },
+  "publicTests": [
+    {
+      "input": "[\"EventManager\",\"pollHighest\",\"updatePriority\",\"pollHighest\",\"pollHighest\"]\n[[[[5,7],[2,7],[9,4]]],[],[9,7],[],[]]",
+      "expectedOutput": "[null, 2, null, 5, 9]"
+    },
+    {
+      "input": "[\"EventManager\",\"pollHighest\",\"pollHighest\",\"pollHighest\"]\n[[[[4,1],[7,2]]],[],[],[]]",
+      "expectedOutput": "[null, 7, 4, -1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"EventManager\",\"pollHighest\",\"updatePriority\",\"pollHighest\",\"pollHighest\"]\n[[[[5,7],[2,7],[9,4]]],[],[9,7],[],[]]",
+      "expectedOutput": "[null, 2, null, 5, 9]"
+    },
+    {
+      "input": "[\"EventManager\",\"pollHighest\",\"pollHighest\",\"pollHighest\"]\n[[[[4,1],[7,2]]],[],[],[]]",
+      "expectedOutput": "[null, 7, 4, -1]"
+    },
+    {
+      "input": "[\"EventManager\", \"pollHighest\", \"updatePriority\", \"pollHighest\", \"pollHighest\"]\n[[[[5, 7], [2, 7], [9, 4]]], [], [9, 7], [], []]",
+      "expectedOutput": "[null, 2, null, 5, 9]"
+    },
+    {
+      "input": "[\"EventManager\", \"pollHighest\", \"pollHighest\", \"pollHighest\"]\n[[[[4, 1], [7, 2]]], [], [], []]",
+      "expectedOutput": "[null, 7, 4, -1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Push every new priority version into the heap without removing old ones.",
+    "In <code>pollHighest</code>, keep popping until the top matches the live priority stored in the map.",
+    "Use <code>{priority, -eventId}</code> ordering so the max-heap returns the highest priority first and the smallest <code>eventId</code> on ties."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/design-event-manager/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.445Z",
+    "sourceUpdatedAt": null
+  }
+}

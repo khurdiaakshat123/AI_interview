@@ -1,0 +1,165 @@
+{
+  "id": "3582",
+  "slug": "generate-tag-for-video-caption",
+  "title": "Generate Tag for Video Caption",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Easy",
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "statement": "You are given a string `caption` representing the caption for a video.\n\nThe following actions must be performed **in order** to generate a **valid tag** for the video:\n\n1.  **Combine all words** in the string into a single _camelCase string_ prefixed with `'#'`. A _camelCase string_ is one where the first letter of all words _except_ the first one is capitalized. All characters after the first character in **each** word must be lowercase.\n    \n2.  **Remove** all characters that are not an English letter, **except** the first `'#'`.\n    \n3.  **Truncate** the result to a maximum of 100 characters.\n    \n\nReturn the **tag** after performing the actions on `caption`.\n\n**Example 1:**\n\n**Input:** caption = \"Leetcode daily streak achieved\"\n\n**Output:** \"#leetcodeDailyStreakAchieved\"\n\n**Explanation:**\n\nThe first letter for all words except `\"leetcode\"` should be capitalized.\n\n**Example 2:**\n\n**Input:** caption = \"can I Go There\"\n\n**Output:** \"#canIGoThere\"\n\n**Explanation:**\n\nThe first letter for all words except `\"can\"` should be capitalized.\n\n**Example 3:**\n\n**Input:** caption = \"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\"\n\n**Output:** \"#hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\"\n\n**Explanation:**\n\nSince the first word has length 101, we need to truncate the last two letters from the word.\n\n**Constraints:**\n\n*   `1 <= caption.length <= 150`\n*   `caption` consists only of English letters and `' '`.",
+  "constraints": [
+    "1 <= caption.length <= 150",
+    "caption consists only of English letters and ' '."
+  ],
+  "examples": [
+    {
+      "input": "caption = \"Leetcode daily streak achieved\"",
+      "output": "\"#leetcodeDailyStreakAchieved\"",
+      "explanation": null
+    },
+    {
+      "input": "caption = \"can I Go There\"",
+      "output": "\"#canIGoThere\"",
+      "explanation": null
+    },
+    {
+      "input": "caption = \"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\"",
+      "output": "\"#hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string generateTag(string caption) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String generateTag(String caption) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def generateTag(self, caption: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def generateTag(self, caption):\n        \"\"\"\n        :type caption: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} caption\n * @return {string}\n */\nvar generateTag = function(caption) {\n    \n};",
+    "typescript": "function generateTag(caption: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string GenerateTag(string caption) {\n        \n    }\n}",
+    "c": "char* generateTag(char* caption) {\n    \n}",
+    "golang": "func generateTag(caption string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun generateTag(caption: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func generateTag(_ caption: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn generate_tag(caption: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} caption\n# @return {String}\ndef generate_tag(caption)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $caption\n     * @return String\n     */\n    function generateTag($caption) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String generateTag(String caption) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def generateTag(caption: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec generate_tag(caption :: String.t) :: String.t\n  def generate_tag(caption) do\n    \n  end\nend",
+    "erlang": "-spec generate_tag(Caption :: unicode:unicode_binary()) -> unicode:unicode_binary().\ngenerate_tag(Caption) ->\n  .",
+    "racket": "(define/contract (generate-tag caption)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"Leetcode daily streak achieved\"",
+      "expectedOutput": "\"#leetcodeDailyStreakAchieved\""
+    },
+    {
+      "input": "\"can I Go There\"",
+      "expectedOutput": "\"#canIGoThere\""
+    },
+    {
+      "input": "\"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\"",
+      "expectedOutput": "\"#hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"Leetcode daily streak achieved\"",
+      "expectedOutput": "\"#leetcodeDailyStreakAchieved\""
+    },
+    {
+      "input": "\"can I Go There\"",
+      "expectedOutput": "\"#canIGoThere\""
+    },
+    {
+      "input": "\"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\"",
+      "expectedOutput": "\"#hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\""
+    },
+    {
+      "input": "\"Leetcode daily \"",
+      "expectedOutput": "\"#leetcodeDaily\""
+    },
+    {
+      "input": "\"streak achieved\"",
+      "expectedOutput": "\"#streakAchieved\""
+    },
+    {
+      "input": "\"L\"",
+      "expectedOutput": "\"#l\""
+    },
+    {
+      "input": "\"Le\"",
+      "expectedOutput": "\"#le\""
+    },
+    {
+      "input": "\"deveihca kaerts yliad edocteeL\"",
+      "expectedOutput": "\"#deveihcaKaertsYliadEdocteel\""
+    },
+    {
+      "input": "\"LLLLLL\"",
+      "expectedOutput": "\"#llllll\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"#a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"#b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"#aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"#ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"#ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"#aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"#abba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"#aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"#abcde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"#edcba\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"#aab\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Simulate as described"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/generate-tag-for-video-caption/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.162Z",
+    "sourceUpdatedAt": null
+  }
+}

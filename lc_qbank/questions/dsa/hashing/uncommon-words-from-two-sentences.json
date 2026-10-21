@@ -1,0 +1,157 @@
+{
+  "id": "884",
+  "slug": "uncommon-words-from-two-sentences",
+  "title": "Uncommon Words from Two Sentences",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "statement": "A **sentence** is a string of single-space separated words where each word consists only of lowercase letters.\n\nA word is **uncommon** if it appears exactly once in one of the sentences, and **does not appear** in the other sentence.\n\nGiven two **sentences** `s1` and `s2`, return _a list of all the **uncommon words**_. You may return the answer in **any order**.\n\n**Example 1:**\n\n**Input:** s1 = \"this apple is sweet\", s2 = \"this apple is sour\"\n\n**Output:** \\[\"sweet\",\"sour\"\\]\n\n**Explanation:**\n\nThe word `\"sweet\"` appears only in `s1`, while the word `\"sour\"` appears only in `s2`.\n\n**Example 2:**\n\n**Input:** s1 = \"apple apple\", s2 = \"banana\"\n\n**Output:** \\[\"banana\"\\]\n\n**Constraints:**\n\n*   `1 <= s1.length, s2.length <= 200`\n*   `s1` and `s2` consist of lowercase English letters and spaces.\n*   `s1` and `s2` do not have leading or trailing spaces.\n*   All the words in `s1` and `s2` are separated by a single space.",
+  "constraints": [
+    "1 <= s1.length, s2.length <= 200",
+    "s1 and s2 consist of lowercase English letters and spaces.",
+    "s1 and s2 do not have leading or trailing spaces.",
+    "All the words in s1 and s2 are separated by a single space."
+  ],
+  "examples": [
+    {
+      "input": "s1 = \"this apple is sweet\", s2 = \"this apple is sour\"",
+      "output": "[\"sweet\",\"sour\"]",
+      "explanation": null
+    },
+    {
+      "input": "s1 = \"apple apple\", s2 = \"banana\"",
+      "output": "[\"banana\"]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> uncommonFromSentences(string s1, string s2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String[] uncommonFromSentences(String s1, String s2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def uncommonFromSentences(self, s1: str, s2: str) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def uncommonFromSentences(self, s1, s2):\n        \"\"\"\n        :type s1: str\n        :type s2: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s1\n * @param {string} s2\n * @return {string[]}\n */\nvar uncommonFromSentences = function(s1, s2) {\n    \n};",
+    "typescript": "function uncommonFromSentences(s1: string, s2: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public string[] UncommonFromSentences(string s1, string s2) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** uncommonFromSentences(char* s1, char* s2, int* returnSize) {\n    \n}",
+    "golang": "func uncommonFromSentences(s1 string, s2 string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun uncommonFromSentences(s1: String, s2: String): Array<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func uncommonFromSentences(_ s1: String, _ s2: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn uncommon_from_sentences(s1: String, s2: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} s1\n# @param {String} s2\n# @return {String[]}\ndef uncommon_from_sentences(s1, s2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s1\n     * @param String $s2\n     * @return String[]\n     */\n    function uncommonFromSentences($s1, $s2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> uncommonFromSentences(String s1, String s2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def uncommonFromSentences(s1: String, s2: String): Array[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec uncommon_from_sentences(s1 :: String.t, s2 :: String.t) :: [String.t]\n  def uncommon_from_sentences(s1, s2) do\n    \n  end\nend",
+    "erlang": "-spec uncommon_from_sentences(S1 :: unicode:unicode_binary(), S2 :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nuncommon_from_sentences(S1, S2) ->\n  .",
+    "racket": "(define/contract (uncommon-from-sentences s1 s2)\n  (-> string? string? (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"this apple is sweet\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"sweet\",\"sour\"]"
+    },
+    {
+      "input": "\"apple apple\"\n\"banana\"",
+      "expectedOutput": "[\"banana\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"this apple is sweet\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"sweet\",\"sour\"]"
+    },
+    {
+      "input": "\"apple apple\"\n\"banana\"",
+      "expectedOutput": "[\"banana\"]"
+    },
+    {
+      "input": "\"this appl\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"appl\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"e is sweet\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"e\",\"sweet\",\"this\",\"apple\",\"sour\"]"
+    },
+    {
+      "input": "\"t\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"t\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"th\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"th\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"teews si elppa siht\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"teews\",\"si\",\"elppa\",\"siht\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"tttttt\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"tttttt\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"a\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"a\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"b\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"b\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"aa\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"aa\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"ab\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"ab\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"ba\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"ba\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"aba\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"aba\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"abba\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"abba\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"aaaaa\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"aaaaa\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"abcde\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"abcde\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"edcba\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"edcba\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"aab\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"aab\",\"this\",\"apple\",\"is\",\"sour\"]"
+    },
+    {
+      "input": "\"aA\"\n\"this apple is sour\"",
+      "expectedOutput": "[\"aA\",\"this\",\"apple\",\"is\",\"sour\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/uncommon-words-from-two-sentences/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.349Z",
+    "sourceUpdatedAt": null
+  }
+}

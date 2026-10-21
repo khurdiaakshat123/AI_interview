@@ -1,0 +1,163 @@
+{
+  "id": "3218",
+  "slug": "minimum-cost-for-cutting-cake-i",
+  "title": "Minimum Cost for Cutting Cake I",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Dynamic Programming",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "There is an `m x n` cake that needs to be cut into `1 x 1` pieces.\n\nYou are given integers `m`, `n`, and two arrays:\n\n*   `horizontalCut` of size `m - 1`, where `horizontalCut[i]` represents the cost to cut along the horizontal line `i`.\n*   `verticalCut` of size `n - 1`, where `verticalCut[j]` represents the cost to cut along the vertical line `j`.\n\nIn one operation, you can choose any piece of cake that is not yet a `1 x 1` square and perform one of the following cuts:\n\n1.  Cut along a horizontal line `i` at a cost of `horizontalCut[i]`.\n2.  Cut along a vertical line `j` at a cost of `verticalCut[j]`.\n\nAfter the cut, the piece of cake is divided into two distinct pieces.\n\nThe cost of a cut depends only on the initial cost of the line and does not change.\n\nReturn the **minimum** total cost to cut the entire cake into `1 x 1` pieces.\n\n**Example 1:**\n\n**Input:** m = 3, n = 2, horizontalCut = \\[1,3\\], verticalCut = \\[5\\]\n\n**Output:** 13\n\n**Explanation:**\n\n![](./assets/minimum-cost-for-cutting-cake-i-1.gif)\n\n*   Perform a cut on the vertical line 0 with cost 5, current total cost is 5.\n*   Perform a cut on the horizontal line 0 on `3 x 1` subgrid with cost 1.\n*   Perform a cut on the horizontal line 0 on `3 x 1` subgrid with cost 1.\n*   Perform a cut on the horizontal line 1 on `2 x 1` subgrid with cost 3.\n*   Perform a cut on the horizontal line 1 on `2 x 1` subgrid with cost 3.\n\nThe total cost is `5 + 1 + 1 + 3 + 3 = 13`.\n\n**Example 2:**\n\n**Input:** m = 2, n = 2, horizontalCut = \\[7\\], verticalCut = \\[4\\]\n\n**Output:** 15\n\n**Explanation:**\n\n*   Perform a cut on the horizontal line 0 with cost 7.\n*   Perform a cut on the vertical line 0 on `1 x 2` subgrid with cost 4.\n*   Perform a cut on the vertical line 0 on `1 x 2` subgrid with cost 4.\n\nThe total cost is `7 + 4 + 4 = 15`.\n\n**Constraints:**\n\n*   `1 <= m, n <= 20`\n*   `horizontalCut.length == m - 1`\n*   `verticalCut.length == n - 1`\n*   `1 <= horizontalCut[i], verticalCut[i] <= 10^(3)`",
+  "constraints": [
+    "1 <= m, n <= 20",
+    "horizontalCut.length == m - 1",
+    "verticalCut.length == n - 1",
+    "1 <= horizontalCut[i], verticalCut[i] <= 103"
+  ],
+  "examples": [
+    {
+      "input": "m = 3, n = 2, horizontalCut = [1,3], verticalCut = [5]",
+      "output": "13",
+      "explanation": null
+    },
+    {
+      "input": "m = 2, n = 2, horizontalCut = [7], verticalCut = [4]",
+      "output": "15",
+      "explanation": "Perform a cut on the horizontal line 0 with cost 7.\n\tPerform a cut on the vertical line 0 on 1 x 2 subgrid with cost 4.\n\tPerform a cut on the vertical line 0 on 1 x 2 subgrid with cost 4."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumCost(int m, int n, vector<int>& horizontalCut, vector<int>& verticalCut) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumCost(int m, int n, int[] horizontalCut, int[] verticalCut) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumCost(self, m: int, n: int, horizontalCut: List[int], verticalCut: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumCost(self, m, n, horizontalCut, verticalCut):\n        \"\"\"\n        :type m: int\n        :type n: int\n        :type horizontalCut: List[int]\n        :type verticalCut: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} m\n * @param {number} n\n * @param {number[]} horizontalCut\n * @param {number[]} verticalCut\n * @return {number}\n */\nvar minimumCost = function(m, n, horizontalCut, verticalCut) {\n    \n};",
+    "typescript": "function minimumCost(m: number, n: number, horizontalCut: number[], verticalCut: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumCost(int m, int n, int[] horizontalCut, int[] verticalCut) {\n        \n    }\n}",
+    "c": "int minimumCost(int m, int n, int* horizontalCut, int horizontalCutSize, int* verticalCut, int verticalCutSize) {\n    \n}",
+    "golang": "func minimumCost(m int, n int, horizontalCut []int, verticalCut []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumCost(m: Int, n: Int, horizontalCut: IntArray, verticalCut: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumCost(_ m: Int, _ n: Int, _ horizontalCut: [Int], _ verticalCut: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_cost(m: i32, n: i32, horizontal_cut: Vec<i32>, vertical_cut: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} m\n# @param {Integer} n\n# @param {Integer[]} horizontal_cut\n# @param {Integer[]} vertical_cut\n# @return {Integer}\ndef minimum_cost(m, n, horizontal_cut, vertical_cut)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $m\n     * @param Integer $n\n     * @param Integer[] $horizontalCut\n     * @param Integer[] $verticalCut\n     * @return Integer\n     */\n    function minimumCost($m, $n, $horizontalCut, $verticalCut) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumCost(int m, int n, List<int> horizontalCut, List<int> verticalCut) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumCost(m: Int, n: Int, horizontalCut: Array[Int], verticalCut: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_cost(m :: integer, n :: integer, horizontal_cut :: [integer], vertical_cut :: [integer]) :: integer\n  def minimum_cost(m, n, horizontal_cut, vertical_cut) do\n    \n  end\nend",
+    "erlang": "-spec minimum_cost(M :: integer(), N :: integer(), HorizontalCut :: [integer()], VerticalCut :: [integer()]) -> integer().\nminimum_cost(M, N, HorizontalCut, VerticalCut) ->\n  .",
+    "racket": "(define/contract (minimum-cost m n horizontalCut verticalCut)\n  (-> exact-integer? exact-integer? (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n2\n[1,3]\n[5]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "2\n2\n[7]\n[4]",
+      "expectedOutput": "15"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n2\n[1,3]\n[5]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "2\n2\n[7]\n[4]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "0\n2\n[1,3]\n[5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "1\n2\n[1,3]\n[5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "2\n2\n[1,3]\n[5]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "-1\n2\n[1,3]\n[5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "-2\n2\n[1,3]\n[5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "3\n1\n[1,3]\n[5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "3\n2\n[3,1]\n[5]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "3\n2\n[1,1]\n[5]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "3\n2\n[1,3,1,3]\n[5]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "3\n2\n[2,6]\n[5]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "3\n2\n[2,4]\n[5]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "3\n2\n[0,2]\n[5]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "3\n2\n[-1,-3]\n[5]",
+      "expectedOutput": "-3"
+    },
+    {
+      "input": "3\n2\n[0,0]\n[5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "3\n2\n[1,2]\n[5]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "3\n2\n[2,1]\n[5]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "3\n2\n[-1,1]\n[5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "3\n2\n[1,2,3]\n[5]",
+      "expectedOutput": "15"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The intended solution uses Dynamic Programming.",
+    "Let <code>dp[sx][sy][tx][ty]</code> denote the minimum cost to cut the rectangle into <code>1 x 1</code> pieces.",
+    "Iterate on the row or column on which you will perform the next cut, after the cut, the current rectangle will be decomposed into two sub-rectangles."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-for-cutting-cake-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.510Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "id": "473",
+  "slug": "matchsticks-to-square",
+  "title": "Matchsticks to Square",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "statement": "You are given an integer array `matchsticks` where `matchsticks[i]` is the length of the `i^(th)` matchstick. You want to use **all the matchsticks** to make one square. You **should not break** any stick, but you can link them up, and each matchstick must be used **exactly one time**.\n\nReturn `true` if you can make this square and `false` otherwise.\n\n**Example 1:**\n\n![](./assets/matchsticks-to-square-1.jpg)\n```\nInput: matchsticks = [1,1,2,2,2]\nOutput: true\nExplanation: You can form a square with length 2, one side of the square came two sticks with length 1.\n```\n\n**Example 2:**\n\n```\nInput: matchsticks = [3,3,3,3,4]\nOutput: false\nExplanation: You cannot find a way to form a square with all the matchsticks.\n```\n\n**Constraints:**\n\n*   `1 <= matchsticks.length <= 15`\n*   `1 <= matchsticks[i] <= 10^(8)`",
+  "constraints": [
+    "1 <= matchsticks.length <= 15",
+    "1 <= matchsticks[i] <= 108"
+  ],
+  "examples": [
+    {
+      "input": "matchsticks = [1,1,2,2,2]",
+      "output": "true",
+      "explanation": "You can form a square with length 2, one side of the square came two sticks with length 1."
+    },
+    {
+      "input": "matchsticks = [3,3,3,3,4]",
+      "output": "false",
+      "explanation": "You cannot find a way to form a square with all the matchsticks."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool makesquare(vector<int>& matchsticks) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean makesquare(int[] matchsticks) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def makesquare(self, matchsticks: list[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def makesquare(self, matchsticks):\n        \"\"\"\n        :type matchsticks: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} matchsticks\n * @return {boolean}\n */\nvar makesquare = function(matchsticks) {\n    \n};",
+    "typescript": "function makesquare(matchsticks: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool Makesquare(int[] matchsticks) {\n        \n    }\n}",
+    "c": "bool makesquare(int* matchsticks, int matchsticksSize) {\n    \n}",
+    "golang": "func makesquare(matchsticks []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun makesquare(matchsticks: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func makesquare(_ matchsticks: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn makesquare(matchsticks: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} matchsticks\n# @return {Boolean}\ndef makesquare(matchsticks)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $matchsticks\n     * @return Boolean\n     */\n    function makesquare($matchsticks) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool makesquare(List<int> matchsticks) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def makesquare(matchsticks: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec makesquare(matchsticks :: [integer]) :: boolean\n  def makesquare(matchsticks) do\n    \n  end\nend",
+    "erlang": "-spec makesquare(Matchsticks :: [integer()]) -> boolean().\nmakesquare(Matchsticks) ->\n  .",
+    "racket": "(define/contract (makesquare matchsticks)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,1,2,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[3,3,3,3,4]",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,1,2,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[3,3,3,3,4]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[2,2,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[2,2,2,1,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,1,2,2,2,1,1,2,2,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,2,4,4,4]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,2,3,3,3]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,0,1,1,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-1,-1,-2,-2,-2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Treat the matchsticks as an array. Can we split the array into 4 equal parts?",
+    "Every matchstick can belong to either of the 4 sides. We don't know which one. Maybe try out all options!",
+    "For every matchstick, we have to try out each of the 4 options i.e. which side it can belong to. We can make use of recursion for this.",
+    "We don't really need to keep track of which matchsticks belong to a particular side during recursion. We just need to keep track of the <b>length</b> of each of the 4 sides.",
+    "When all matchsticks have been used we simply need to see the length of all 4 sides. If they're equal, we have a square on our hands!"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/matchsticks-to-square/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.099Z",
+    "sourceUpdatedAt": null
+  }
+}

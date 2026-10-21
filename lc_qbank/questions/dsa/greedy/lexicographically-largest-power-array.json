@@ -1,0 +1,95 @@
+{
+  "id": "4059",
+  "slug": "lexicographically-largest-power-array",
+  "title": "Lexicographically Largest Power Array",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given an integer array `nums` of length `n`. You may rearrange its elements to form any permutation `perm`.\n\nDefine an array `power` of length 15. For each `0 <= i < 15`, `power[i]` is the largest integer `j`, where `0 <= j <= n`, such that the first `j` elements of `perm` all have the `(14 - i)^(th)` bit set.\n\nBit positions are indexed from right to left, starting with the `0^(th)` bit.\n\nReturn the lexicographically largest possible `power` array.\n\n**Example 1:**\n\n**Input:** nums = \\[7,5\\]\n\n**Output:** \\[0,0,0,0,0,0,0,0,0,0,0,0,2,1,2\\]\n\n**Explanation:**\n\nChoose `perm = [7, 5]`.\n\n*   Both elements have bit 2 set, so `power[12] = 2`.\n*   The first element has bit 1 set, but the second does not, so `power[13] = 1`.\n*   Both elements have bit 0 set, so `power[14] = 2`.\n\nAll higher bits are unset in the first element, so the remaining entries are 0.\n\n**Example 2:**\n\n**Input:** nums = \\[3,1,7\\]\n\n**Output:** \\[0,0,0,0,0,0,0,0,0,0,0,0,1,2,3\\]\n\n**Explanation:**\n\nChoose `perm = [7, 3, 1]`.\n\n*   The first element has bit 2 set, but the second does not, so `power[12] = 1`.\n*   The first two elements have bit 1 set, but the third does not, so `power[13] = 2`.\n*   All three elements have bit 0 set, so `power[14] = 3`.\n\nAll higher bits are unset in the first element, so the remaining entries are 0.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 5 * 10^(4)`\n*   `0 <= nums[i] < 2^(15)`",
+  "constraints": [
+    "1 <= nums.length <= 5 * 104",
+    "0 <= nums[i] < 215"
+  ],
+  "examples": [
+    {
+      "input": "nums = [7,5]",
+      "output": "[0,0,0,0,0,0,0,0,0,0,0,0,2,1,2]",
+      "explanation": null
+    },
+    {
+      "input": "nums = [3,1,7]",
+      "output": "[0,0,0,0,0,0,0,0,0,0,0,0,1,2,3]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> largestPower(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] largestPower(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestPower(self, nums: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def largestPower(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar largestPower = function(nums) {\n    \n};",
+    "typescript": "function largestPower(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] LargestPower(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* largestPower(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func largestPower(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestPower(nums: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestPower(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_power(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef largest_power(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function largestPower($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> largestPower(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def largestPower(nums: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec largest_power(nums :: [integer]) :: [integer]\n  def largest_power(nums) do\n    \n  end\nend",
+    "erlang": "-spec largest_power(Nums :: [integer()]) -> [integer()].\nlargest_power(Nums) ->\n  .",
+    "racket": "(define/contract (largest-power nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[7,5]",
+      "expectedOutput": "[0,0,0,0,0,0,0,0,0,0,0,0,2,1,2]"
+    },
+    {
+      "input": "[3,1,7]",
+      "expectedOutput": "[0,0,0,0,0,0,0,0,0,0,0,0,1,2,3]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[7,5]",
+      "expectedOutput": "[0,0,0,0,0,0,0,0,0,0,0,0,2,1,2]"
+    },
+    {
+      "input": "[3,1,7]",
+      "expectedOutput": "[0,0,0,0,0,0,0,0,0,0,0,0,1,2,3]"
+    },
+    {
+      "input": "nums = [7,5]",
+      "expectedOutput": "[0,0,0,0,0,0,0,0,0,0,0,0,2,1,2]"
+    },
+    {
+      "input": "nums = [3,1,7]",
+      "expectedOutput": "[0,0,0,0,0,0,0,0,0,0,0,0,1,2,3]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Process bits from 14 down to 0, maximizing each entry without changing previously maximized entries. Maintain ordered groups of elements that can still be rearranged freely within each group. Initially, all elements belong to one group.</p>",
+    "<p>For the current bit, scan the groups from the beginning. Pass over groups whose elements all have this bit set. At the first group containing an element without this bit set, split it into elements with the bit set followed by elements without it. Stop there and leave all later groups unchanged.</p>",
+    "<p>The current entry of <code>power</code> equals the total size of the fully passed groups plus the number of elements with the bit set in the split group. Preserve the resulting group order for subsequent bits. This takes <code>O(15n)</code> time.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/lexicographically-largest-power-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.183Z",
+    "sourceUpdatedAt": null
+  }
+}

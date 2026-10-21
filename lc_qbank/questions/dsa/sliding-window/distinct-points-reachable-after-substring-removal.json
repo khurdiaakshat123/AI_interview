@@ -1,0 +1,169 @@
+{
+  "id": "3694",
+  "slug": "distinct-points-reachable-after-substring-removal",
+  "title": "Distinct Points Reachable After Substring Removal",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a string `s` consisting of characters `'U'`, `'D'`, `'L'`, and `'R'`, representing moves on an infinite 2D Cartesian grid.\n\n*   `'U'`: Move from `(x, y)` to `(x, y + 1)`.\n*   `'D'`: Move from `(x, y)` to `(x, y - 1)`.\n*   `'L'`: Move from `(x, y)` to `(x - 1, y)`.\n*   `'R'`: Move from `(x, y)` to `(x + 1, y)`.\n\nYou are also given a positive integer `k`.\n\nYou **must** choose and remove **exactly one** contiguous substring of length `k` from `s`. Then, start from coordinate `(0, 0)` and perform the remaining moves in order.\n\nReturn an integer denoting the number of **distinct** final coordinates reachable.\n\n**Example 1:**\n\n**Input:** s = \"LUL\", k = 1\n\n**Output:** 2\n\n**Explanation:**\n\nAfter removing a substring of length 1, `s` can be `\"UL\"`, `\"LL\"` or `\"LU\"`. Following these moves, the final coordinates will be `(-1, 1)`, `(-2, 0)` and `(-1, 1)` respectively. There are two distinct points `(-1, 1)` and `(-2, 0)` so the answer is 2.\n\n**Example 2:**\n\n**Input:** s = \"UDLR\", k = 4\n\n**Output:** 1\n\n**Explanation:**\n\nAfter removing a substring of length 4, `s` can only be the empty string. The final coordinates will be `(0, 0)`. There is only one distinct point `(0, 0)` so the answer is 1.\n\n**Example 3:**\n\n**Input:** s = \"UU\", k = 1\n\n**Output:** 1\n\n**Explanation:**\n\nAfter removing a substring of length 1, `s` becomes `\"U\"`, which always ends at `(0, 1)`, so there is only one distinct final coordinate.\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists of only `'U'`, `'D'`, `'L'`, and `'R'`.\n*   `1 <= k <= s.length`",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists of only 'U', 'D', 'L', and 'R'.",
+    "1 <= k <= s.length"
+  ],
+  "examples": [
+    {
+      "input": "s = \"LUL\", k = 1",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "s = \"UDLR\", k = 4",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "s = \"UU\", k = 1",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int distinctPoints(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int distinctPoints(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def distinctPoints(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def distinctPoints(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar distinctPoints = function(s, k) {\n    \n};",
+    "typescript": "function distinctPoints(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int DistinctPoints(string s, int k) {\n        \n    }\n}",
+    "c": "int distinctPoints(char* s, int k) {\n    \n}",
+    "golang": "func distinctPoints(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun distinctPoints(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func distinctPoints(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn distinct_points(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef distinct_points(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function distinctPoints($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int distinctPoints(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def distinctPoints(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec distinct_points(s :: String.t, k :: integer) :: integer\n  def distinct_points(s, k) do\n    \n  end\nend",
+    "erlang": "-spec distinct_points(S :: unicode:unicode_binary(), K :: integer()) -> integer().\ndistinct_points(S, K) ->\n  .",
+    "racket": "(define/contract (distinct-points s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"LUL\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"UDLR\"\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"UU\"\n1",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"LUL\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"UDLR\"\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"UU\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"L\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"UL\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"LU\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"LULLUL\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"LLL\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"lul\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"a\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaa\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcde\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"edcba\"\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aab\"\n1",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use prefix sums for the <code>x</code>-coordinate and <code>y</code>-coordinate.",
+    "Using the prefix sum arrays, compute the <code>x</code>-coordinate and <code>y</code>-coordinate after removing a subarray of size <code>k</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/distinct-points-reachable-after-substring-removal/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.721Z",
+    "sourceUpdatedAt": null
+  }
+}

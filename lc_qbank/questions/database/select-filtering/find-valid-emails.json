@@ -1,0 +1,61 @@
+{
+  "id": "3436",
+  "slug": "find-valid-emails",
+  "title": "Find Valid Emails",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Users`\n\n```\n+-----------------+---------+\n| Column Name     | Type    |\n+-----------------+---------+\n| user_id         | int     |\n| email           | varchar |\n+-----------------+---------+\n(user_id) is the unique key for this table.\nEach row contains a user's unique ID and email address.\n```\n\nWrite a solution to find all the **valid email addresses**. A valid email address meets the following criteria:\n\n*   It contains exactly one `@` symbol.\n*   It ends with `.com`.\n*   The part before the `@` symbol contains only **alphanumeric** characters and **underscores**.\n*   The part after the `@` symbol and before `.com` contains a domain name **that contains only letters**.\n\nReturn _the result table ordered by_ `user_id` _in_ **ascending** _order_.\n\n**Example:**\n\n**Input:**\n\nUsers table:\n\n```\n+---------+---------------------+\n| user_id | email               |\n+---------+---------------------+\n| 1       | alice@example.com   |\n| 2       | bob_at_example.com  |\n| 3       | charlie@example.net |\n| 4       | david@domain.com    |\n| 5       | eve@invalid         |\n+---------+---------------------+\n```\n\n**Output:**\n\n```\n+---------+-------------------+\n| user_id | email             |\n+---------+-------------------+\n| 1       | alice@example.com |\n| 4       | david@domain.com  |\n+---------+-------------------+\n```\n\n**Explanation:**\n\n*   **alice@example.com** is valid because it contains one `@`, alice is alphanumeric, and example.com starts with a letter and ends with .com.\n*   **bob\\_at\\_example.com** is invalid because it contains an underscore instead of an `@`.\n*   **charlie@example.net** is invalid because the domain does not end with `.com`.\n*   **david@domain.com** is valid because it meets all criteria.\n*   **eve@invalid** is invalid because the domain does not end with `.com`.\n\nResult table is ordered by user\\_id in ascending order.",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Users table:\n\n\n+---------+---------------------+\n| user_id | email               |\n+---------+---------------------+\n| 1       | alice@example.com   |\n| 2       | bob_at_example.com  |\n| 3       | charlie@example.net |\n| 4       | david@domain.com    |\n| 5       | eve@invalid         |\n+---------+---------------------+",
+      "output": "+---------+-------------------+\n| user_id | email             |\n+---------+-------------------+\n| 1       | alice@example.com |\n| 4       | david@domain.com  |\n+---------+-------------------+",
+      "explanation": "alice@example.com is valid because it contains one @, alice is alphanumeric, and example.com starts with a letter and ends with .com.\n\tbob_at_example.com is invalid because it contains an underscore instead of an @.\n\tcharlie@example.net is invalid because the domain does not end with .com.\n\tdavid@domain.com is valid because it meets all criteria.\n\teve@invalid is invalid because the domain does not end with .com."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_valid_emails(users: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Users\":[\"user_id\",\"email\"]},\"rows\":{\"Users\":[[1,\"alice@example.com\"],[2,\"bob_at_example.com\"],[3,\"charlie@example.net\"],[4,\"david@domain.com\"],[5,\"eve@invalid\"]]}}",
+      "expectedOutput": "+---------+-------------------+\n| user_id | email             |\n+---------+-------------------+\n| 1       | alice@example.com |\n| 4       | david@domain.com  |\n+---------+-------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Users\":[\"user_id\",\"email\"]},\"rows\":{\"Users\":[[1,\"alice@example.com\"],[2,\"bob_at_example.com\"],[3,\"charlie@example.net\"],[4,\"david@domain.com\"],[5,\"eve@invalid\"]]}}",
+      "expectedOutput": "+---------+-------------------+\n| user_id | email             |\n+---------+-------------------+\n| 1       | alice@example.com |\n| 4       | david@domain.com  |\n+---------+-------------------+"
+    },
+    {
+      "input": "Users table:\n\n\n+---------+---------------------+\n| user_id | email               |\n+---------+---------------------+\n| 1       | alice@example.com   |\n| 2       | bob_at_example.com  |\n| 3       | charlie@example.net |\n| 4       | david@domain.com    |\n| 5       | eve@invalid         |\n+---------+---------------------+",
+      "expectedOutput": "+---------+-------------------+\n| user_id | email             |\n+---------+-------------------+\n| 1       | alice@example.com |\n| 4       | david@domain.com  |\n+---------+-------------------+"
+    }
+  ],
+  "sqlSchema": "CREATE TABLE If not Exists Users (\n    user_id INT,\n    email VARCHAR(255)\n)\n\nTruncate table Users",
+  "sqlSetup": [
+    "insert into Users (user_id, email) values ('1', 'alice@example.com')",
+    "insert into Users (user_id, email) values ('2', 'bob_at_example.com')",
+    "insert into Users (user_id, email) values ('3', 'charlie@example.net')",
+    "insert into Users (user_id, email) values ('4', 'david@domain.com')",
+    "insert into Users (user_id, email) values ('5', 'eve@invalid')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-valid-emails/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.757Z",
+    "sourceUpdatedAt": null
+  }
+}

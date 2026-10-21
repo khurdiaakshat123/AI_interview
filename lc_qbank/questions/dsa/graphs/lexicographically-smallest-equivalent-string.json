@@ -1,0 +1,168 @@
+{
+  "id": "1061",
+  "slug": "lexicographically-smallest-equivalent-string",
+  "title": "Lexicographically Smallest Equivalent String",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Union-Find"
+  ],
+  "statement": "You are given two strings of the same length `s1` and `s2` and a string `baseStr`.\n\nWe say `s1[i]` and `s2[i]` are equivalent characters.\n\n*   For example, if `s1 = \"abc\"` and `s2 = \"cde\"`, then we have `'a' == 'c'`, `'b' == 'd'`, and `'c' == 'e'`.\n\nEquivalent characters follow the usual rules of any equivalence relation:\n\n*   **Reflexivity:** `'a' == 'a'`.\n*   **Symmetry:** `'a' == 'b'` implies `'b' == 'a'`.\n*   **Transitivity:** `'a' == 'b'` and `'b' == 'c'` implies `'a' == 'c'`.\n\nFor example, given the equivalency information from `s1 = \"abc\"` and `s2 = \"cde\"`, `\"acd\"` and `\"aab\"` are equivalent strings of `baseStr = \"eed\"`, and `\"aab\"` is the lexicographically smallest equivalent string of `baseStr`.\n\nReturn _the lexicographically smallest equivalent string of_ `baseStr` _by using the equivalency information from_ `s1` _and_ `s2`.\n\n**Example 1:**\n\n```\nInput: s1 = \"parker\", s2 = \"morris\", baseStr = \"parser\"\nOutput: \"makkek\"\nExplanation: Based on the equivalency information in s1 and s2, we can group their characters as [m,p], [a,o], [k,r,s], [e,i].\nThe characters in each group are equivalent and sorted in lexicographical order.\nSo the answer is \"makkek\".\n```\n\n**Example 2:**\n\n```\nInput: s1 = \"hello\", s2 = \"world\", baseStr = \"hold\"\nOutput: \"hdld\"\nExplanation: Based on the equivalency information in s1 and s2, we can group their characters as [h,w], [d,e,o], [l,r].\nSo only the second letter 'o' in baseStr is changed to 'd', the answer is \"hdld\".\n```\n\n**Example 3:**\n\n```\nInput: s1 = \"leetcode\", s2 = \"programs\", baseStr = \"sourcecode\"\nOutput: \"aauaaaaada\"\nExplanation: We group the equivalent characters in s1 and s2 as [a,o,e,r,s,c], [l,p], [g,t] and [d,m], thus all letters in baseStr except 'u' and 'd' are transformed to 'a', the answer is \"aauaaaaada\".\n```\n\n**Constraints:**\n\n*   `1 <= s1.length, s2.length, baseStr <= 1000`\n*   `s1.length == s2.length`\n*   `s1`, `s2`, and `baseStr` consist of lowercase English letters.",
+  "constraints": [
+    "1 <= s1.length, s2.length, baseStr <= 1000",
+    "s1.length == s2.length",
+    "s1, s2, and baseStr consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s1 = \"parker\", s2 = \"morris\", baseStr = \"parser\"",
+      "output": "\"makkek\"",
+      "explanation": "Based on the equivalency information in s1 and s2, we can group their characters as [m,p], [a,o], [k,r,s], [e,i].\nThe characters in each group are equivalent and sorted in lexicographical order.\nSo the answer is \"makkek\"."
+    },
+    {
+      "input": "s1 = \"hello\", s2 = \"world\", baseStr = \"hold\"",
+      "output": "\"hdld\"",
+      "explanation": "Based on the equivalency information in s1 and s2, we can group their characters as [h,w], [d,e,o], [l,r].\nSo only the second letter 'o' in baseStr is changed to 'd', the answer is \"hdld\"."
+    },
+    {
+      "input": "s1 = \"leetcode\", s2 = \"programs\", baseStr = \"sourcecode\"",
+      "output": "\"aauaaaaada\"",
+      "explanation": "We group the equivalent characters in s1 and s2 as [a,o,e,r,s,c], [l,p], [g,t] and [d,m], thus all letters in baseStr except 'u' and 'd' are transformed to 'a', the answer is \"aauaaaaada\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string smallestEquivalentString(string s1, string s2, string baseStr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String smallestEquivalentString(String s1, String s2, String baseStr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestEquivalentString(self, s1: str, s2: str, baseStr: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def smallestEquivalentString(self, s1, s2, baseStr):\n        \"\"\"\n        :type s1: str\n        :type s2: str\n        :type baseStr: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s1\n * @param {string} s2\n * @param {string} baseStr\n * @return {string}\n */\nvar smallestEquivalentString = function(s1, s2, baseStr) {\n    \n};",
+    "typescript": "function smallestEquivalentString(s1: string, s2: string, baseStr: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string SmallestEquivalentString(string s1, string s2, string baseStr) {\n        \n    }\n}",
+    "c": "char* smallestEquivalentString(char* s1, char* s2, char* baseStr) {\n    \n}",
+    "golang": "func smallestEquivalentString(s1 string, s2 string, baseStr string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestEquivalentString(s1: String, s2: String, baseStr: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestEquivalentString(_ s1: String, _ s2: String, _ baseStr: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_equivalent_string(s1: String, s2: String, base_str: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s1\n# @param {String} s2\n# @param {String} base_str\n# @return {String}\ndef smallest_equivalent_string(s1, s2, base_str)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s1\n     * @param String $s2\n     * @param String $baseStr\n     * @return String\n     */\n    function smallestEquivalentString($s1, $s2, $baseStr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String smallestEquivalentString(String s1, String s2, String baseStr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestEquivalentString(s1: String, s2: String, baseStr: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_equivalent_string(s1 :: String.t, s2 :: String.t, base_str :: String.t) :: String.t\n  def smallest_equivalent_string(s1, s2, base_str) do\n    \n  end\nend",
+    "erlang": "-spec smallest_equivalent_string(S1 :: unicode:unicode_binary(), S2 :: unicode:unicode_binary(), BaseStr :: unicode:unicode_binary()) -> unicode:unicode_binary().\nsmallest_equivalent_string(S1, S2, BaseStr) ->\n  .",
+    "racket": "(define/contract (smallest-equivalent-string s1 s2 baseStr)\n  (-> string? string? string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"parker\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"makkek\""
+    },
+    {
+      "input": "\"hello\"\n\"world\"\n\"hold\"",
+      "expectedOutput": "\"hdld\""
+    },
+    {
+      "input": "\"leetcode\"\n\"programs\"\n\"sourcecode\"",
+      "expectedOutput": "\"aauaaaaada\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"parker\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"makkek\""
+    },
+    {
+      "input": "\"hello\"\n\"world\"\n\"hold\"",
+      "expectedOutput": "\"hdld\""
+    },
+    {
+      "input": "\"leetcode\"\n\"programs\"\n\"sourcecode\"",
+      "expectedOutput": "\"aauaaaaada\""
+    },
+    {
+      "input": "\"par\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"marser\""
+    },
+    {
+      "input": "\"ker\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"parser\""
+    },
+    {
+      "input": "\"p\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"marser\""
+    },
+    {
+      "input": "\"pa\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"marser\""
+    },
+    {
+      "input": "\"rekrap\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"pakpek\""
+    },
+    {
+      "input": "\"parkerparker\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"makkek\""
+    },
+    {
+      "input": "\"pppppp\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"iaiiei\""
+    },
+    {
+      "input": "\"parkerrekrap\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"makkek\""
+    },
+    {
+      "input": "\"a\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"parser\""
+    },
+    {
+      "input": "\"b\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"parser\""
+    },
+    {
+      "input": "\"aa\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"parser\""
+    },
+    {
+      "input": "\"ab\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"parser\""
+    },
+    {
+      "input": "\"ba\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"parser\""
+    },
+    {
+      "input": "\"aba\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"paasea\""
+    },
+    {
+      "input": "\"abba\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"paasea\""
+    },
+    {
+      "input": "\"aaaaa\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"paasea\""
+    },
+    {
+      "input": "\"abcde\"\n\"morris\"\n\"parser\"",
+      "expectedOutput": "\"pacsec\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Model these equalities as edges of a graph.",
+    "Group each connected component of the graph and assign each node of this component to the node with the lowest lexicographically character.",
+    "Finally convert the string with the precalculated information."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/lexicographically-smallest-equivalent-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.211Z",
+    "sourceUpdatedAt": null
+  }
+}

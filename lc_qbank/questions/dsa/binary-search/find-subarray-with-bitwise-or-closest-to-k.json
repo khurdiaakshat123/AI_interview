@@ -1,0 +1,170 @@
+{
+  "id": "3171",
+  "slug": "find-subarray-with-bitwise-or-closest-to-k",
+  "title": "Find Subarray With Bitwise OR Closest to K",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Bit Manipulation",
+    "Segment Tree"
+  ],
+  "statement": "You are given an array `nums` and an integer `k`. You need to find a subarray of `nums` such that the **absolute difference** between `k` and the bitwise `OR` of the subarray elements is as **small** as possible. In other words, select a subarray `nums[l..r]` such that `|k - (nums[l] OR nums[l + 1] ... OR nums[r])|` is minimum.\n\nReturn the **minimum** possible value of the absolute difference.\n\nA **subarray** is a contiguous **non-empty** sequence of elements within an array.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,4,5\\], k = 3\n\n**Output:** 0\n\n**Explanation:**\n\nThe subarray `nums[0..1]` has `OR` value 3, which gives the minimum absolute difference `|3 - 3| = 0`.\n\n**Example 2:**\n\n**Input:** nums = \\[1,3,1,3\\], k = 2\n\n**Output:** 1\n\n**Explanation:**\n\nThe subarray `nums[1..1]` has `OR` value 3, which gives the minimum absolute difference `|3 - 2| = 1`.\n\n**Example 3:**\n\n**Input:** nums = \\[1\\], k = 10\n\n**Output:** 9\n\n**Explanation:**\n\nThere is a single subarray with `OR` value 1, which gives the minimum absolute difference `|10 - 1| = 9`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`\n*   `1 <= k <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 109",
+    "1 <= k <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,4,5], k = 3",
+      "output": "0",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,3,1,3], k = 2",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1], k = 10",
+      "output": "9",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumDifference(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumDifference(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumDifference(self, nums: List[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumDifference(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar minimumDifference = function(nums, k) {\n    \n};",
+    "typescript": "function minimumDifference(nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumDifference(int[] nums, int k) {\n        \n    }\n}",
+    "c": "int minimumDifference(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func minimumDifference(nums []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumDifference(nums: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumDifference(_ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_difference(nums: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef minimum_difference(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function minimumDifference($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumDifference(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumDifference(nums: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_difference(nums :: [integer], k :: integer) :: integer\n  def minimum_difference(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec minimum_difference(Nums :: [integer()], K :: integer()) -> integer().\nminimum_difference(Nums, K) ->\n  .",
+    "racket": "(define/contract (minimum-difference nums k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,4,5]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,3,1,3]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n10",
+      "expectedOutput": "9"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,4,5]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,3,1,3]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n10",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,2]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,5]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,5]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,4,2,1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,4,5,1,2,4,5]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,4,8,10]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3,5,6]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1,3,4]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-2,-4,-5]\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1]\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,1]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]\n3",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let <code>dp[i]</code> be the set of all the bitwise <code>OR</code> of all the subarrays ending at index <code>i</code>.",
+    "We start from <code>nums[i]</code>, taking the bitwise <code>OR</code> result by including elements one by one from <code>i</code> towards left. Notice that only unset bits can become set on adding an element, and set bits never become unset again.",
+    "Hence <code>dp[i]</code> can contain at most 30 elements."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-subarray-with-bitwise-or-closest-to-k/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.140Z",
+    "sourceUpdatedAt": null
+  }
+}

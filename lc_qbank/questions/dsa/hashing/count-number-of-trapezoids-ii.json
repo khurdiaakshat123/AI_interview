@@ -1,0 +1,91 @@
+{
+  "id": "3625",
+  "slug": "count-number-of-trapezoids-ii",
+  "title": "Count Number of Trapezoids II",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Geometry"
+  ],
+  "statement": "You are given a 2D integer array `points` where `points[i] = [x_(i), y_(i)]` represents the coordinates of the `i^(th)` point on the Cartesian plane.\n\nReturn _the number of unique_ _trapezoids_ that can be formed by choosing any four distinct points from `points`.\n\nA **trapezoid** is a convex quadrilateral with **at least one pair** of parallel sides. Two lines are parallel if and only if they have the same slope.\n\n**Example 1:**\n\n**Input:** points = \\[\\[-3,2\\],\\[3,0\\],\\[2,3\\],\\[3,2\\],\\[2,-3\\]\\]\n\n**Output:** 2\n\n**Explanation:**\n\n![](./assets/count-number-of-trapezoids-ii-1.png) ![](./assets/count-number-of-trapezoids-ii-2.png)\n\nThere are two distinct ways to pick four points that form a trapezoid:\n\n*   The points `[-3,2], [2,3], [3,2], [2,-3]` form one trapezoid.\n*   The points `[2,3], [3,2], [3,0], [2,-3]` form another trapezoid.\n\n**Example 2:**\n\n**Input:** points = \\[\\[0,0\\],\\[1,0\\],\\[0,1\\],\\[2,1\\]\\]\n\n**Output:** 1\n\n**Explanation:**\n\n![](./assets/count-number-of-trapezoids-ii-3.png)\n\nThere is only one trapezoid which can be formed.\n\n**Constraints:**\n\n*   `4 <= points.length <= 500`\n*   `–1000 <= x_(i), y_(i) <= 1000`\n*   All points are pairwise distinct.",
+  "constraints": [
+    "4 <= points.length <= 500",
+    "–1000 <= xi, yi <= 1000",
+    "All points are pairwise distinct."
+  ],
+  "examples": [
+    {
+      "input": "points = [[-3,2],[3,0],[2,3],[3,2],[2,-3]]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "points = [[0,0],[1,0],[0,1],[2,1]]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countTrapezoids(vector<vector<int>>& points) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countTrapezoids(int[][] points) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countTrapezoids(self, points: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countTrapezoids(self, points):\n        \"\"\"\n        :type points: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} points\n * @return {number}\n */\nvar countTrapezoids = function(points) {\n    \n};",
+    "typescript": "function countTrapezoids(points: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountTrapezoids(int[][] points) {\n        \n    }\n}",
+    "c": "int countTrapezoids(int** points, int pointsSize, int* pointsColSize) {\n    \n}",
+    "golang": "func countTrapezoids(points [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countTrapezoids(points: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countTrapezoids(_ points: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_trapezoids(points: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} points\n# @return {Integer}\ndef count_trapezoids(points)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $points\n     * @return Integer\n     */\n    function countTrapezoids($points) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countTrapezoids(List<List<int>> points) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countTrapezoids(points: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_trapezoids(points :: [[integer]]) :: integer\n  def count_trapezoids(points) do\n    \n  end\nend",
+    "erlang": "-spec count_trapezoids(Points :: [[integer()]]) -> integer().\ncount_trapezoids(Points) ->\n  .",
+    "racket": "(define/contract (count-trapezoids points)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[-3,2],[3,0],[2,3],[3,2],[2,-3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,0],[1,0],[0,1],[2,1]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[-3,2],[3,0],[2,3],[3,2],[2,-3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,0],[1,0],[0,1],[2,1]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Hash every point-pair by its reduced slope <code>(dy,dx)</code> (normalize with GCD and fix signs).",
+    "In each slope-bucket of size <code>k</code>, there are <code>C(k,2)</code> ways to pick two segments as the trapezoid's parallel bases.",
+    "Skip any base-pair that shares an endpoint since it would not form a quadrilateral.",
+    "Subtract one count for each parallelogram. Each parallelogram was counted once for each of its two parallel-side pairs, so after subtracting once, every quadrilateral with at least one pair of parallel sides, including parallelograms, contributes exactly one to the final total.",
+    "Final answer = total valid base-pairs minus parallelogram overcounts."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-number-of-trapezoids-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.371Z",
+    "sourceUpdatedAt": null
+  }
+}

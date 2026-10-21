@@ -1,0 +1,161 @@
+{
+  "id": "1297",
+  "slug": "maximum-number-of-occurrences-of-a-substring",
+  "title": "Maximum Number of Occurrences of a Substring",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "Given a string `s`, return the maximum number of occurrences of **any** substring under the following rules:\n\n*   The number of unique characters in the substring must be less than or equal to `maxLetters`.\n*   The substring size must be between `minSize` and `maxSize` inclusive.\n\n**Example 1:**\n\n```\nInput: s = \"aababcaab\", maxLetters = 2, minSize = 3, maxSize = 4\nOutput: 2\nExplanation: Substring \"aab\" has 2 occurrences in the original string.\nIt satisfies the conditions, 2 unique letters and size 3 (between minSize and maxSize).\n```\n\n**Example 2:**\n\n```\nInput: s = \"aaaa\", maxLetters = 1, minSize = 3, maxSize = 3\nOutput: 2\nExplanation: Substring \"aaa\" occur 2 times in the string. It can overlap.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `1 <= maxLetters <= 26`\n*   `1 <= minSize <= maxSize <= min(26, s.length)`\n*   `s` consists of only lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "1 <= maxLetters <= 26",
+    "1 <= minSize <= maxSize <= min(26, s.length)",
+    "s consists of only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aababcaab\", maxLetters = 2, minSize = 3, maxSize = 4",
+      "output": "2",
+      "explanation": "Substring \"aab\" has 2 occurrences in the original string.\nIt satisfies the conditions, 2 unique letters and size 3 (between minSize and maxSize)."
+    },
+    {
+      "input": "s = \"aaaa\", maxLetters = 1, minSize = 3, maxSize = 3",
+      "output": "2",
+      "explanation": "Substring \"aaa\" occur 2 times in the string. It can overlap."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxFreq(string s, int maxLetters, int minSize, int maxSize) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxFreq(String s, int maxLetters, int minSize, int maxSize) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxFreq(self, s: str, maxLetters: int, minSize: int, maxSize: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxFreq(self, s, maxLetters, minSize, maxSize):\n        \"\"\"\n        :type s: str\n        :type maxLetters: int\n        :type minSize: int\n        :type maxSize: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} maxLetters\n * @param {number} minSize\n * @param {number} maxSize\n * @return {number}\n */\nvar maxFreq = function(s, maxLetters, minSize, maxSize) {\n    \n};",
+    "typescript": "function maxFreq(s: string, maxLetters: number, minSize: number, maxSize: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxFreq(string s, int maxLetters, int minSize, int maxSize) {\n        \n    }\n}",
+    "c": "int maxFreq(char* s, int maxLetters, int minSize, int maxSize) {\n    \n}",
+    "golang": "func maxFreq(s string, maxLetters int, minSize int, maxSize int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxFreq(s: String, maxLetters: Int, minSize: Int, maxSize: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxFreq(_ s: String, _ maxLetters: Int, _ minSize: Int, _ maxSize: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_freq(s: String, max_letters: i32, min_size: i32, max_size: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} max_letters\n# @param {Integer} min_size\n# @param {Integer} max_size\n# @return {Integer}\ndef max_freq(s, max_letters, min_size, max_size)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $maxLetters\n     * @param Integer $minSize\n     * @param Integer $maxSize\n     * @return Integer\n     */\n    function maxFreq($s, $maxLetters, $minSize, $maxSize) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxFreq(String s, int maxLetters, int minSize, int maxSize) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxFreq(s: String, maxLetters: Int, minSize: Int, maxSize: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_freq(s :: String.t, max_letters :: integer, min_size :: integer, max_size :: integer) :: integer\n  def max_freq(s, max_letters, min_size, max_size) do\n    \n  end\nend",
+    "erlang": "-spec max_freq(S :: unicode:unicode_binary(), MaxLetters :: integer(), MinSize :: integer(), MaxSize :: integer()) -> integer().\nmax_freq(S, MaxLetters, MinSize, MaxSize) ->\n  .",
+    "racket": "(define/contract (max-freq s maxLetters minSize maxSize)\n  (-> string? exact-integer? exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aababcaab\"\n2\n3\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaaa\"\n1\n3\n3",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aababcaab\"\n2\n3\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaaa\"\n1\n3\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaba\"\n2\n3\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"bcaab\"\n2\n3\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"a\"\n2\n3\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n2\n3\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"baacbabaa\"\n2\n3\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aababcaabaababcaab\"\n2\n3\n4",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaaa\"\n2\n3\n4",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aababcaabbaacbabaa\"\n2\n3\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"AABABCAAB\"\n2\n3\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"b\"\n2\n3\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n2\n3\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n2\n3\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n2\n3\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"\n2\n3\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaa\"\n2\n3\n4",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcde\"\n2\n3\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"\n2\n3\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"\n2\n3\n4",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Check out the constraints, (maxSize <=26).",
+    "This means you can explore all substrings in O(n * 26).",
+    "Find the Maximum Number of Occurrences of a Substring with bruteforce."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-occurrences-of-a-substring/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.106Z",
+    "sourceUpdatedAt": null
+  }
+}

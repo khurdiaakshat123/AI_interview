@@ -1,0 +1,103 @@
+{
+  "id": "4016",
+  "slug": "maximum-area-of-two-non-overlapping-square-submatrices",
+  "title": "Maximum Area of Two Non-Overlapping Square Submatrices",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "statement": "You are given a 2D integer matrix `mat` of size `m × n`, where:\n\n*   `mat[r][c] == 1` means the cell at row `r` and column `c` is usable.\n*   `mat[r][c] == 0` means it is not usable.\n\nYour task is to find **two submatrices** that satisfy the following conditions:\n\n*   Both submatrices must be squares of the same side length `k`.\n*   The two submatrices must not share any cell.\n*   Each submatrix can only cover cells where `mat[r][c] == 1`.\n\nReturn the **maximum possible area** of each of the two squares. If it is not possible to choose two such squares, return 0.\n\n**Example 1:**\n\n![](./assets/maximum-area-of-two-non-overlapping-square-submatrices-1.png)\n\n**Input:** mat = \\[\\[1,1,1,0\\],\\[1,1,1,1\\],\\[0,0,1,1\\]\\]\n\n**Output:** 4\n\n**Explanation:**\n\nThe largest equal non-overlapping squares have side length `k = 2` with area 4.\n\n*   First square starts at top-left `(0, 0)` and covers cells `(0, 0)`, `(0, 1)`, `(1, 0)`, and `(1, 1)`.\n*   Second square starts at top-left `(1, 2)` and covers cells `(1, 2)`, `(1, 3)`, `(2, 2)`, and `(2, 3)`.\n\nThus, the answer is 4.\n\n**Example 2:**\n\n![](./assets/maximum-area-of-two-non-overlapping-square-submatrices-2.png)\n\n**Input:** mat = \\[\\[0,1\\],\\[1,0\\]\\]\n\n**Output:** 1\n\n**Explanation:**\n\nThe largest equal non-overlapping squares have side length `k = 1` with area 1.\n\n*   First square starts at top-left `(0, 1)` and covers cell `(0, 1)`.\n*   Second square starts at top-left `(1, 0)` and covers cell `(1, 0)`.\n\nThus, the answer is 1.\n\n**Example 3:**\n\n![](./assets/maximum-area-of-two-non-overlapping-square-submatrices-3.png)\n\n**Input:** mat = \\[\\[0,0\\],\\[0,1\\]\\]\n\n**Output:** 0\n\n**Explanation:**\n\nThere is only one usable cell, so it is impossible to choose two non-overlapping squares. Thus, the answer is 0.\n\n**Constraints:**\n\n*   `mat.length == m`\n*   `mat[i].length == n`\n*   `1 <= m, n <= 500`\n*   `mat[i][j]` is either 0 or 1.",
+  "constraints": [
+    "mat.length == m",
+    "mat[i].length == n",
+    "1 <= m, n <= 500",
+    "mat[i][j] is either 0 or 1."
+  ],
+  "examples": [
+    {
+      "input": "mat = [[1,1,1,0],[1,1,1,1],[0,0,1,1]]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "mat = [[0,1],[1,0]]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "mat = [[0,0],[0,1]]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxArea(vector<vector<int>>& mat) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxArea(int[][] mat) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxArea(self, mat: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxArea(self, mat):\n        \"\"\"\n        :type mat: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} mat\n * @return {number}\n */\nvar maxArea = function(mat) {\n    \n};",
+    "typescript": "function maxArea(mat: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxArea(int[][] mat) {\n        \n    }\n}",
+    "c": "int maxArea(int** mat, int matSize, int* matColSize) {\n    \n}",
+    "golang": "func maxArea(mat [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxArea(mat: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxArea(_ mat: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_area(mat: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} mat\n# @return {Integer}\ndef max_area(mat)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $mat\n     * @return Integer\n     */\n    function maxArea($mat) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxArea(List<List<int>> mat) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxArea(mat: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_area(mat :: [[integer]]) :: integer\n  def max_area(mat) do\n    \n  end\nend",
+    "erlang": "-spec max_area(Mat :: [[integer()]]) -> integer().\nmax_area(Mat) ->\n  .",
+    "racket": "(define/contract (max-area mat)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,1,1,0],[1,1,1,1],[0,0,1,1]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[0,1],[1,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0],[0,1]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,1,1,0],[1,1,1,1],[0,0,1,1]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[0,1],[1,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0],[0,1]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Binary search for the maximum side length <code>k</code>. If two valid squares of side length <code>k</code> exist, two valid squares of every smaller side length also exist.",
+    "Build a 2D prefix sum so that you can determine in constant time whether every cell in a given square is usable.",
+    "For a fixed <code>k</code>, record the minimum and maximum row and column among the top-left corners of all valid squares. Two of them can be disjoint if the difference between the maximum and minimum row is at least <code>k</code>, or the corresponding column difference is at least <code>k</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-area-of-two-non-overlapping-square-submatrices/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.510Z",
+    "sourceUpdatedAt": null
+  }
+}

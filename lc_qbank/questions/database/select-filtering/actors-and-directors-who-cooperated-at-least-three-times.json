@@ -1,0 +1,63 @@
+{
+  "id": "1050",
+  "slug": "actors-and-directors-who-cooperated-at-least-three-times",
+  "title": "Actors and Directors Who Cooperated At Least Three Times",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `ActorDirector`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| actor_id    | int     |\n| director_id | int     |\n| timestamp   | int     |\n+-------------+---------+\ntimestamp is the primary key (column with unique values) for this table.\n```\n\nWrite a solution to find all the pairs `(actor_id, director_id)` where the actor has cooperated with the director at least three times.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nActorDirector table:\n+-------------+-------------+-------------+\n| actor_id    | director_id | timestamp   |\n+-------------+-------------+-------------+\n| 1           | 1           | 0           |\n| 1           | 1           | 1           |\n| 1           | 1           | 2           |\n| 1           | 2           | 3           |\n| 1           | 2           | 4           |\n| 2           | 1           | 5           |\n| 2           | 1           | 6           |\n+-------------+-------------+-------------+\nOutput: \n+-------------+-------------+\n| actor_id    | director_id |\n+-------------+-------------+\n| 1           | 1           |\n+-------------+-------------+\nExplanation: The only pair is (1, 1) where they cooperated exactly 3 times.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "ActorDirector table:\n+-------------+-------------+-------------+\n| actor_id    | director_id | timestamp   |\n+-------------+-------------+-------------+\n| 1           | 1           | 0           |\n| 1           | 1           | 1           |\n| 1           | 1           | 2           |\n| 1           | 2           | 3           |\n| 1           | 2           | 4           |\n| 2           | 1           | 5           |\n| 2           | 1           | 6           |\n+-------------+-------------+-------------+",
+      "output": "+-------------+-------------+\n| actor_id    | director_id |\n+-------------+-------------+\n| 1           | 1           |\n+-------------+-------------+",
+      "explanation": "The only pair is (1, 1) where they cooperated exactly 3 times."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef actors_and_directors(actor_director: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"ActorDirector\":[\"actor_id\",\"director_id\",\"timestamp\"]},\"rows\":{\"ActorDirector\":[[1,1,0],[1,1,1],[1,1,2],[1,2,3],[1,2,4],[2,1,5],[2,1,6]]}}",
+      "expectedOutput": "+-------------+-------------+\n| actor_id    | director_id |\n+-------------+-------------+\n| 1           | 1           |\n+-------------+-------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"ActorDirector\":[\"actor_id\",\"director_id\",\"timestamp\"]},\"rows\":{\"ActorDirector\":[[1,1,0],[1,1,1],[1,1,2],[1,2,3],[1,2,4],[2,1,5],[2,1,6]]}}",
+      "expectedOutput": "+-------------+-------------+\n| actor_id    | director_id |\n+-------------+-------------+\n| 1           | 1           |\n+-------------+-------------+"
+    },
+    {
+      "input": "ActorDirector table:\n+-------------+-------------+-------------+\n| actor_id    | director_id | timestamp   |\n+-------------+-------------+-------------+\n| 1           | 1           | 0           |\n| 1           | 1           | 1           |\n| 1           | 1           | 2           |\n| 1           | 2           | 3           |\n| 1           | 2           | 4           |\n| 2           | 1           | 5           |\n| 2           | 1           | 6           |\n+-------------+-------------+-------------+",
+      "expectedOutput": "+-------------+-------------+\n| actor_id    | director_id |\n+-------------+-------------+\n| 1           | 1           |\n+-------------+-------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists ActorDirector (actor_id int, director_id int, timestamp int)\n\nTruncate table ActorDirector",
+  "sqlSetup": [
+    "insert into ActorDirector (actor_id, director_id, timestamp) values ('1', '1', '0')",
+    "insert into ActorDirector (actor_id, director_id, timestamp) values ('1', '1', '1')",
+    "insert into ActorDirector (actor_id, director_id, timestamp) values ('1', '1', '2')",
+    "insert into ActorDirector (actor_id, director_id, timestamp) values ('1', '2', '3')",
+    "insert into ActorDirector (actor_id, director_id, timestamp) values ('1', '2', '4')",
+    "insert into ActorDirector (actor_id, director_id, timestamp) values ('2', '1', '5')",
+    "insert into ActorDirector (actor_id, director_id, timestamp) values ('2', '1', '6')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/actors-and-directors-who-cooperated-at-least-three-times/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:12.794Z",
+    "sourceUpdatedAt": null
+  }
+}

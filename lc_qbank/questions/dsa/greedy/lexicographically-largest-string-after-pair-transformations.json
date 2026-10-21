@@ -1,0 +1,158 @@
+{
+  "id": "4036",
+  "slug": "lexicographically-largest-string-after-pair-transformations",
+  "title": "Lexicographically Largest String After Pair Transformations",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Greedy",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nFor each integer `x` in `nums`, start with a string consisting of exactly `x` lowercase `'a'` characters.\n\nYou may perform the following operation any number of times (including zero):\n\n*   Choose two **adjacent equal** letters and replace them with the next letter in the alphabet.\n\nFor example, `\"aa\"` can be replaced with `\"b\"`, and `\"bb\"` can be replaced with `\"c\"`. The pair `\"zz\"` cannot be replaced.\n\nFor each `x`, determine the **lexicographically largest** string that can be obtained.\n\nReturn an array of strings where the `i^(th)` string is the answer for `nums[i]`.\n\nA string `a` is **lexicographically larger** than a string `b` if, at the first position where they differ, `a` contains a letter that appears later in the alphabet than the corresponding letter in `b`. If the first `min(a.length, b.length)` characters are equal, the longer string is lexicographically larger.\n\n**Example 1:**\n\n**Input:** nums = \\[2,5,7\\]\n\n**Output:** \\[\"b\",\"ca\",\"cba\"\\]\n\n**Explanation:**\n\n*   `nums[0] = 2`: `\"aa\"` → `\"b\"`.\n*   `nums[1] = 5`: `\"aaaaa\"` → `\"baaa\"` → `\"bba\"` → `\"ca\"`.\n*   `nums[2] = 7`: `\"aaaaaaa\"` → `\"baaaaa\"` → `\"bbaaa\"` → `\"bbba\"` → `\"cba\"`.\n*   Therefore, `ans = [\"b\", \"ca\", \"cba\"]`.\n\n**Example 2:**\n\n**Input:** nums = \\[3,9,1\\]\n\n**Output:** \\[\"ba\",\"da\",\"a\"\\]\n\n**Explanation:**\n\n*   `nums[0] = 3`: `\"aaa\"` → `\"ba\"`.\n*   `nums[1] = 9`: `\"aaaaaaaaa\"` → `\"baaaaaaa\"` → `\"bbaaaaa\"` → `\"bbbaaa\"` → `\"bbbba\"` → `\"cbba\"` → `\"cca\"` → `\"da\"`.\n*   `nums[2] = 1`: No transformation can be applied, so the result is `\"a\"`.\n*   Therefore, `ans = [\"ba\", \"da\", \"a\"]`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(8)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 108"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,5,7]",
+      "output": "[\"b\",\"ca\",\"cba\"]",
+      "explanation": "nums[0] = 2: \"aa\" → \"b\".\n\tnums[1] = 5: \"aaaaa\" → \"baaa\" → \"bba\" → \"ca\".\n\tnums[2] = 7: \"aaaaaaa\" → \"baaaaa\" → \"bbaaa\" → \"bbba\" → \"cba\".\n\tTherefore, ans = [\"b\", \"ca\", \"cba\"]."
+    },
+    {
+      "input": "nums = [3,9,1]",
+      "output": "[\"ba\",\"da\",\"a\"]",
+      "explanation": "nums[0] = 3: \"aaa\" → \"ba\".\n\tnums[1] = 9: \"aaaaaaaaa\" → \"baaaaaaa\" → \"bbaaaaa\" → \"bbbaaa\" → \"bbbba\" → \"cbba\" → \"cca\" → \"da\".\n\tnums[2] = 1: No transformation can be applied, so the result is \"a\".\n\tTherefore, ans = [\"ba\", \"da\", \"a\"]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> largestString(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String[] largestString(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestString(self, nums: list[int]) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def largestString(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {string[]}\n */\nvar largestString = function(nums) {\n    \n};",
+    "typescript": "function largestString(nums: number[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public string[] LargestString(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** largestString(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func largestString(nums []int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestString(nums: IntArray): Array<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestString(_ nums: [Int]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_string(nums: Vec<i32>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {String[]}\ndef largest_string(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return String[]\n     */\n    function largestString($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> largestString(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def largestString(nums: Array[Int]): Array[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec largest_string(nums :: [integer]) :: [String.t]\n  def largest_string(nums) do\n    \n  end\nend",
+    "erlang": "-spec largest_string(Nums :: [integer()]) -> [unicode:unicode_binary()].\nlargest_string(Nums) ->\n  .",
+    "racket": "(define/contract (largest-string nums)\n  (-> (listof exact-integer?) (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,5,7]",
+      "expectedOutput": "[\"b\",\"ca\",\"cba\"]"
+    },
+    {
+      "input": "[3,9,1]",
+      "expectedOutput": "[\"ba\",\"da\",\"a\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,5,7]",
+      "expectedOutput": "[\"b\",\"ca\",\"cba\"]"
+    },
+    {
+      "input": "[3,9,1]",
+      "expectedOutput": "[\"ba\",\"da\",\"a\"]"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "[\"b\"]"
+    },
+    {
+      "input": "[5,7]",
+      "expectedOutput": "[\"ca\",\"cba\"]"
+    },
+    {
+      "input": "[2,7]",
+      "expectedOutput": "[\"b\",\"cba\"]"
+    },
+    {
+      "input": "[2,5]",
+      "expectedOutput": "[\"b\",\"ca\"]"
+    },
+    {
+      "input": "[7,5,2]",
+      "expectedOutput": "[\"cba\",\"ca\",\"b\"]"
+    },
+    {
+      "input": "[2,2,2]",
+      "expectedOutput": "[\"b\",\"b\",\"b\"]"
+    },
+    {
+      "input": "[2,5,7,2,5,7]",
+      "expectedOutput": "[\"b\",\"ca\",\"cba\",\"b\",\"ca\",\"cba\"]"
+    },
+    {
+      "input": "[4,10,14]",
+      "expectedOutput": "[\"c\",\"db\",\"dcb\"]"
+    },
+    {
+      "input": "[3,6,8]",
+      "expectedOutput": "[\"ba\",\"cb\",\"d\"]"
+    },
+    {
+      "input": "[1,4,6]",
+      "expectedOutput": "[\"a\",\"c\",\"cb\"]"
+    },
+    {
+      "input": "[-2,-5,-7]",
+      "expectedOutput": "[\"yxwvutsrqponmlkjihgfedcb\",\"yxwvutsrqponmlkjihgfedba\",\"yxwvutsrqponmlkjihgfeda\"]"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "[\"\",\"\",\"\"]"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "[\"a\",\"a\",\"a\"]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[\"\"]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[\"a\"]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[\"yxwvutsrqponmlkjihgfedcba\"]"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "[\"\",\"\"]"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "[\"a\",\"b\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "A letter that is <code>k</code> positions after <code>'a'</code> represents a block of <code>2<sup>k</sup></code> original <code>'a'</code> characters. To maximize the string lexicographically, greedily place the largest possible letter first. Remember that multiple <code>'z'</code> characters may be needed because <code>\"zz\"</code> cannot be merged further."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/lexicographically-largest-string-after-pair-transformations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.188Z",
+    "sourceUpdatedAt": null
+  }
+}

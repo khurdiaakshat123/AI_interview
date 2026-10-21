@@ -1,0 +1,157 @@
+{
+  "id": "1411",
+  "slug": "number-of-ways-to-paint-n-3-grid",
+  "title": "Number of Ways to Paint N × 3 Grid",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Dynamic Programming",
+    "Graph Coloring"
+  ],
+  "statement": "You have a `grid` of size `n x 3` and you want to paint each cell of the grid with exactly one of the three colors: **Red**, **Yellow,** or **Green** while making sure that no two adjacent cells have the same color (i.e., no two cells that share vertical or horizontal sides have the same color).\n\nGiven `n` the number of rows of the grid, return _the number of ways_ you can paint this `grid`. As the answer may grow large, the answer **must be** computed modulo `10^(9) + 7`.\n\n**Example 1:**\n\n![](./assets/number-of-ways-to-paint-n-3-grid-1.png)\n```\nInput: n = 1\nOutput: 12\nExplanation: There are 12 possible way to paint the grid as shown.\n```\n\n**Example 2:**\n\n```\nInput: n = 5000\nOutput: 30228214\n```\n\n**Constraints:**\n\n*   `n == grid.length`\n*   `1 <= n <= 5000`",
+  "constraints": [
+    "n == grid.length",
+    "1 <= n <= 5000"
+  ],
+  "examples": [
+    {
+      "input": "n = 1",
+      "output": "12",
+      "explanation": "There are 12 possible way to paint the grid as shown."
+    },
+    {
+      "input": "n = 5000",
+      "output": "30228214",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numOfWays(int n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numOfWays(int n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numOfWays(self, n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numOfWays(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {number}\n */\nvar numOfWays = function(n) {\n    \n};",
+    "typescript": "function numOfWays(n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumOfWays(int n) {\n        \n    }\n}",
+    "c": "int numOfWays(int n) {\n    \n}",
+    "golang": "func numOfWays(n int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numOfWays(n: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numOfWays(_ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_of_ways(n: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Integer}\ndef num_of_ways(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Integer\n     */\n    function numOfWays($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numOfWays(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numOfWays(n: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_of_ways(n :: integer) :: integer\n  def num_of_ways(n) do\n    \n  end\nend",
+    "erlang": "-spec num_of_ways(N :: integer()) -> integer().\nnum_of_ways(N) ->\n  .",
+    "racket": "(define/contract (num-of-ways n)\n  (-> exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "1",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "5000",
+      "expectedOutput": "30228214"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "1",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "5000",
+      "expectedOutput": "30228214"
+    },
+    {
+      "input": "0",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "54"
+    },
+    {
+      "input": "3",
+      "expectedOutput": "246"
+    },
+    {
+      "input": "4",
+      "expectedOutput": "1122"
+    },
+    {
+      "input": "5",
+      "expectedOutput": "5118"
+    },
+    {
+      "input": "6",
+      "expectedOutput": "23346"
+    },
+    {
+      "input": "-1",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "-2",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "4999",
+      "expectedOutput": "134620719"
+    },
+    {
+      "input": "5001",
+      "expectedOutput": "881899639"
+    },
+    {
+      "input": "4998",
+      "expectedOutput": "821437694"
+    },
+    {
+      "input": "5002",
+      "expectedOutput": "349041739"
+    },
+    {
+      "input": "4997",
+      "expectedOutput": "486283865"
+    },
+    {
+      "input": "5003",
+      "expectedOutput": "981409424"
+    },
+    {
+      "input": "2500",
+      "expectedOutput": "80958521"
+    },
+    {
+      "input": "-5000",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "-3",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "10",
+      "expectedOutput": "10107954"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We will use Dynamic programming approach. we will try all possible configuration.",
+    "Let dp[idx][prev1col][prev2col][prev3col] be the number of ways to color the rows of the grid from idx to n-1 keeping in mind that the previous row (idx - 1) has colors prev1col, prev2col and prev3col. Build the dp array to get the answer."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-ways-to-paint-n-3-grid/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.262Z",
+    "sourceUpdatedAt": null
+  }
+}

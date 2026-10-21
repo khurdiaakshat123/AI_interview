@@ -1,0 +1,103 @@
+{
+  "id": "4033",
+  "slug": "valid-k-unique-subarrays-i",
+  "title": "Valid K-Unique Subarrays I",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Sliding Window",
+    "Hash Function",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `nums` and an integer `k`.\n\nYou are also given a 2D integer array `queries`, where `queries[i] = [l_(i), r_(i)]` represents the **subarray** `nums[l_(i)..r_(i)]`.\n\nFor each query, the **subarray** `nums[l_(i)..r_(i)]` is considered **valid** if:\n\n*   It contains **exactly** `k` **distinct** numbers, and\n*   The **frequency** of every number in the **subarray** is **even**.\n\nReturn a boolean array `ans`, where `ans[i]` is `true` if `nums[l_(i)..r_(i)]` is **valid**, and `false` otherwise.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,2,1\\], k = 2, queries = \\[\\[0,1\\],\\[0,3\\],\\[1,2\\]\\]\n\n**Output:** \\[false,true,false\\]\n\n**Explanation:**\n\n`i`\n\n`[l_(i), r_(i)]`\n\nSubarray\n\nUnique numbers\n\nFrequency\n\nValidity check\n\n0\n\n\\[0, 1\\]\n\n\\[1, 2\\]\n\n{1, 2} → 2\n\n{1: 1, 2: 1}\n\n`false`: Element counts are not even.\n\n1\n\n\\[0, 3\\]\n\n\\[1, 2, 2, 1\\]\n\n{1, 2} → 2\n\n{1: 2, 2: 2}\n\n`true`: Exactly `k = 2` distinct elements, all appear an even number of times.\n\n2\n\n\\[1, 2\\]\n\n\\[2, 2\\]\n\n{2} → 1\n\n{2: 2}\n\n`false`: Number of distinct elements is less than `k = 2`.\n\nThus, `ans = [false, true, false]`.\n\n**Example 2:**\n\n**Input:** nums = \\[3,3,3\\], k = 1, queries = \\[\\[1,2\\],\\[0,2\\]\\]\n\n**Output:** \\[true,false\\]\n\n**Explanation:**\n\n`i`\n\n`[l_(i), r_(i)]`\n\nSubarray\n\nUnique numbers\n\nFrequency\n\nValidity check\n\n0\n\n\\[1, 2\\]\n\n\\[3, 3\\]\n\n{3} → 1\n\n{3: 2}\n\n`true`: Exactly `k = 1` distinct element, appears an even number of times.\n\n1\n\n\\[0, 2\\]\n\n\\[3, 3, 3\\]\n\n{3} → 1\n\n{3: 3}\n\n`false`: 3 does not appear an even number of times.\n\nThus, `ans = [true, false]`.\n\n**Constraints:**\n\n*   `2 <= n == nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(5)`\n*   `1 <= k <= n`\n*   `1 <= queries.length <= 10^(5)`\n*   `queries[i] == [l_(i), r_(i)]`\n*   `0 <= l_(i) < r_(i) <= n - 1`",
+  "constraints": [
+    "2 <= n == nums.length <= 105",
+    "1 <= nums[i] <= 105",
+    "1 <= k <= n",
+    "1 <= queries.length <= 105",
+    "queries[i] == [li, ri]",
+    "0 <= li < ri <= n - 1"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,2,1], k = 2, queries = [[0,1],[0,3],[1,2]]",
+      "output": "[false,true,false]",
+      "explanation": "i\n\t\t\t[li, ri]\n\t\t\tSubarray\n\t\t\tUnique numbers\n\t\t\tFrequency\n\t\t\tValidity check\n\t\t\n\t\t\n\t\t\t0\n\t\t\t[0, 1]\n\t\t\t[1, 2]\n\t\t\t{1, 2} → 2\n\t\t\t{1: 1, 2: 1}\n\t\t\tfalse: Element counts are not even.\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[0, 3]\n\t\t\t[1, 2, 2, 1]\n\t\t\t{1, 2} → 2\n\t\t\t{1: 2, 2: 2}\n\t\t\ttrue: Exactly k = 2 distinct elements, all appear an even number of times.\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[1, 2]\n\t\t\t[2, 2]\n\t\t\t{2} → 1\n\t\t\t{2: 2}\n\t\t\tfalse: Number of distinct elements is less than k = 2."
+    },
+    {
+      "input": "nums = [3,3,3], k = 1, queries = [[1,2],[0,2]]",
+      "output": "[true,false]",
+      "explanation": "i\n\t\t\t[li, ri]\n\t\t\tSubarray\n\t\t\tUnique numbers\n\t\t\tFrequency\n\t\t\tValidity check\n\t\t\n\t\t\n\t\t\t0\n\t\t\t[1, 2]\n\t\t\t[3, 3]\n\t\t\t{3} → 1\n\t\t\t{3: 2}\n\t\t\ttrue: Exactly k = 1 distinct element, appears an even number of times.\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[0, 2]\n\t\t\t[3, 3, 3]\n\t\t\t{3} → 1\n\t\t\t{3: 3}\n\t\t\tfalse: 3 does not appear an even number of times."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<bool> validSubarrays(vector<int>& nums, int k, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean[] validSubarrays(int[] nums, int k, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def validSubarrays(self, nums: list[int], k: int, queries: list[list[int]]) -> list[bool]:\n        ",
+    "python": "class Solution(object):\n    def validSubarrays(self, nums, k, queries):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :type queries: List[List[int]]\n        :rtype: List[bool]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @param {number[][]} queries\n * @return {boolean[]}\n */\nvar validSubarrays = function(nums, k, queries) {\n    \n};",
+    "typescript": "function validSubarrays(nums: number[], k: number, queries: number[][]): boolean[] {\n    \n};",
+    "csharp": "public class Solution {\n    public bool[] ValidSubarrays(int[] nums, int k, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nbool* validSubarrays(int* nums, int numsSize, int k, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func validSubarrays(nums []int, k int, queries [][]int) []bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun validSubarrays(nums: IntArray, k: Int, queries: Array<IntArray>): BooleanArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func validSubarrays(_ nums: [Int], _ k: Int, _ queries: [[Int]]) -> [Bool] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn valid_subarrays(nums: Vec<i32>, k: i32, queries: Vec<Vec<i32>>) -> Vec<bool> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @param {Integer[][]} queries\n# @return {Boolean[]}\ndef valid_subarrays(nums, k, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @param Integer[][] $queries\n     * @return Boolean[]\n     */\n    function validSubarrays($nums, $k, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<bool> validSubarrays(List<int> nums, int k, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def validSubarrays(nums: Array[Int], k: Int, queries: Array[Array[Int]]): Array[Boolean] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec valid_subarrays(nums :: [integer], k :: integer, queries :: [[integer]]) :: [boolean]\n  def valid_subarrays(nums, k, queries) do\n    \n  end\nend",
+    "erlang": "-spec valid_subarrays(Nums :: [integer()], K :: integer(), Queries :: [[integer()]]) -> [boolean()].\nvalid_subarrays(Nums, K, Queries) ->\n  .",
+    "racket": "(define/contract (valid-subarrays nums k queries)\n  (-> (listof exact-integer?) exact-integer? (listof (listof exact-integer?)) (listof boolean?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,2,1]\n2\n[[0,1],[0,3],[1,2]]",
+      "expectedOutput": "[false,true,false]"
+    },
+    {
+      "input": "[3,3,3]\n1\n[[1,2],[0,2]]",
+      "expectedOutput": "[true,false]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,2,1]\n2\n[[0,1],[0,3],[1,2]]",
+      "expectedOutput": "[false,true,false]"
+    },
+    {
+      "input": "[3,3,3]\n1\n[[1,2],[0,2]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "nums = [1,2,2,1], k = 2, queries = [[0,1],[0,3],[1,2]]",
+      "expectedOutput": "[false,true,false]"
+    },
+    {
+      "input": "nums = [3,3,3], k = 1, queries = [[1,2],[0,2]]",
+      "expectedOutput": "[true,false]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Process the queries offline using Mo’s algorithm so that the current subarray can be adjusted one element at a time.",
+    "Maintain both the number of distinct values and the number of values having an odd frequency. A query is valid exactly when these quantities are <code>k</code> and 0, respectively."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/valid-k-unique-subarrays-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.475Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "id": "831",
+  "slug": "masking-personal-information",
+  "title": "Masking Personal Information",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Medium",
+  "tags": [
+    "String"
+  ],
+  "statement": "You are given a personal information string `s`, representing either an **email address** or a **phone number**. Return _the **masked** personal information using the below rules_.\n\n**Email address:**\n\nAn email address is:\n\n*   A **name** consisting of **at least** two uppercase and lowercase English letters, followed by\n*   The `'@'` symbol, followed by\n*   The **domain** consisting of uppercase and lowercase English letters with a dot `'.'` somewhere in the middle (not the first or last character).\n\nTo mask an email:\n\n*   The uppercase letters in the **name** and **domain** must be converted to lowercase letters.\n*   The middle letters of the **name** (i.e., all but the first and last letters) must be replaced by 5 asterisks `\"*****\"`.\n\n**Phone number:**\n\nA phone number is formatted as follows:\n\n*   The phone number contains 10-13 digits.\n*   The last 10 digits make up the **local number**.\n*   The remaining 0-3 digits, in the beginning, make up the **country code**.\n*   **Separation characters** from the set `{'+', '-', '(', ')', ' '}` separate the above digits in some way.\n\nTo mask a phone number:\n\n*   Remove all **separation characters**.\n*   The masked phone number should have the form:\n    *   `\"***-***-XXXX\"` if the country code has 0 digits.\n    *   `\"+*-***-***-XXXX\"` if the country code has 1 digit.\n    *   `\"+**-***-***-XXXX\"` if the country code has 2 digits.\n    *   `\"+***-***-***-XXXX\"` if the country code has 3 digits.\n*   `\"XXXX\"` is the last 4 digits of the **local number**.\n\n**Example 1:**\n\n```\nInput: s = \"LeetCode@LeetCode.com\"\nOutput: \"l*****e@leetcode.com\"\nExplanation: s is an email address.\nThe name and domain are converted to lowercase, and the middle of the name is replaced by 5 asterisks.\n```\n\n**Example 2:**\n\n```\nInput: s = \"AB@qq.com\"\nOutput: \"a*****b@qq.com\"\nExplanation: s is an email address.\nThe name and domain are converted to lowercase, and the middle of the name is replaced by 5 asterisks.\nNote that even though \"ab\" is 2 characters, it still must have 5 asterisks in the middle.\n```\n\n**Example 3:**\n\n```\nInput: s = \"1(234)567-890\"\nOutput: \"***-***-7890\"\nExplanation: s is a phone number.\nThere are 10 digits, so the local number is 10 digits and the country code is 0 digits.\nThus, the resulting masked number is \"***-***-7890\".\n```\n\n**Constraints:**\n\n*   `s` is either a **valid** email or a phone number.\n*   If `s` is an email:\n    *   `8 <= s.length <= 40`\n    *   `s` consists of uppercase and lowercase English letters and exactly one `'@'` symbol and `'.'` symbol.\n*   If `s` is a phone number:\n    *   `10 <= s.length <= 20`\n    *   `s` consists of digits, spaces, and the symbols `'('`, `')'`, `'-'`, and `'+'`.",
+  "constraints": [
+    "s is either a valid email or a phone number.",
+    "If s is an email:\n\t\n\t\t8 <= s.length <= 40",
+    "s consists of uppercase and lowercase English letters and exactly one '@' symbol and '.' symbol."
+  ],
+  "examples": [
+    {
+      "input": "s = \"LeetCode@LeetCode.com\"",
+      "output": "\"l*****e@leetcode.com\"",
+      "explanation": "s is an email address.\nThe name and domain are converted to lowercase, and the middle of the name is replaced by 5 asterisks."
+    },
+    {
+      "input": "s = \"AB@qq.com\"",
+      "output": "\"a*****b@qq.com\"",
+      "explanation": "s is an email address.\nThe name and domain are converted to lowercase, and the middle of the name is replaced by 5 asterisks.\nNote that even though \"ab\" is 2 characters, it still must have 5 asterisks in the middle."
+    },
+    {
+      "input": "s = \"1(234)567-890\"",
+      "output": "\"***-***-7890\"",
+      "explanation": "s is a phone number.\nThere are 10 digits, so the local number is 10 digits and the country code is 0 digits.\nThus, the resulting masked number is \"***-***-7890\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string maskPII(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String maskPII(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maskPII(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def maskPII(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar maskPII = function(s) {\n    \n};",
+    "typescript": "function maskPII(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MaskPII(string s) {\n        \n    }\n}",
+    "c": "char* maskPII(char* s) {\n    \n}",
+    "golang": "func maskPII(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun maskPII(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maskPII(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn mask_pii(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef mask_pii(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function maskPII($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String maskPII(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maskPII(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec mask_pii(s :: String.t) :: String.t\n  def mask_pii(s) do\n    \n  end\nend",
+    "erlang": "-spec mask_pii(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nmask_pii(S) ->\n  .",
+    "racket": "(define/contract (mask-pii s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"LeetCode@LeetCode.com\"",
+      "expectedOutput": "\"l*****e@leetcode.com\""
+    },
+    {
+      "input": "\"AB@qq.com\"",
+      "expectedOutput": "\"a*****b@qq.com\""
+    },
+    {
+      "input": "\"1(234)567-890\"",
+      "expectedOutput": "\"***-***-7890\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"LeetCode@LeetCode.com\"",
+      "expectedOutput": "\"l*****e@leetcode.com\""
+    },
+    {
+      "input": "\"AB@qq.com\"",
+      "expectedOutput": "\"a*****b@qq.com\""
+    },
+    {
+      "input": "\"1(234)567-890\"",
+      "expectedOutput": "\"***-***-7890\""
+    },
+    {
+      "input": "\"LeetCode@L\"",
+      "expectedOutput": "\"l*****e@l\""
+    },
+    {
+      "input": "\"eetCode.com\"",
+      "expectedOutput": "\"e*****om\""
+    },
+    {
+      "input": "\"L\"",
+      "expectedOutput": "\"l*****l\""
+    },
+    {
+      "input": "\"Le\"",
+      "expectedOutput": "\"l*****le\""
+    },
+    {
+      "input": "\"moc.edoCteeL@edoCteeL\"",
+      "expectedOutput": "\"m*****l@edocteel\""
+    },
+    {
+      "input": "\"LLLLLL\"",
+      "expectedOutput": "\"l*****ll\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a*****a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b*****b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"a*****aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"a*****ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"b*****ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"a*****ba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"a*****ba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"a*****aa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"a*****de\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"e*****ba\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"a*****ab\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/masking-personal-information/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.084Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "id": "1138",
+  "slug": "alphabet-board-path",
+  "title": "Alphabet Board Path",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "statement": "On an alphabet board, we start at position `(0, 0)`, corresponding to character `board[0][0]`.\n\nHere, `board = [\"abcde\", \"fghij\", \"klmno\", \"pqrst\", \"uvwxy\", \"z\"]`, as shown in the diagram below.\n\n![](./assets/alphabet-board-path-1.png)\n\nWe may make the following moves:\n\n*   `'U'` moves our position up one row, if the position exists on the board;\n*   `'D'` moves our position down one row, if the position exists on the board;\n*   `'L'` moves our position left one column, if the position exists on the board;\n*   `'R'` moves our position right one column, if the position exists on the board;\n*   `'!'` adds the character `board[r][c]` at our current position `(r, c)` to the answer.\n\n(Here, the only positions that exist on the board are positions with letters on them.)\n\nReturn a sequence of moves that makes our answer equal to `target` in the minimum number of moves.  You may return any path that does so.\n\n**Example 1:**\n\n```\nInput: target = \"leet\"\nOutput: \"DDR!UURRR!!DDD!\"\n```\n\n**Example 2:**\n\n```\nInput: target = \"code\"\nOutput: \"RR!DDRR!UUL!R!\"\n```\n\n**Constraints:**\n\n*   `1 <= target.length <= 100`\n*   `target` consists only of English lowercase letters.",
+  "constraints": [
+    "1 <= target.length <= 100",
+    "target consists only of English lowercase letters."
+  ],
+  "examples": [
+    {
+      "input": "target = \"leet\"",
+      "output": "\"DDR!UURRR!!DDD!\"",
+      "explanation": null
+    },
+    {
+      "input": "target = \"code\"",
+      "output": "\"RR!DDRR!UUL!R!\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string alphabetBoardPath(string target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String alphabetBoardPath(String target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def alphabetBoardPath(self, target: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def alphabetBoardPath(self, target):\n        \"\"\"\n        :type target: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} target\n * @return {string}\n */\nvar alphabetBoardPath = function(target) {\n    \n};",
+    "typescript": "function alphabetBoardPath(target: string): string {\n\n};",
+    "csharp": "public class Solution {\n    public string AlphabetBoardPath(string target) {\n        \n    }\n}",
+    "c": "\n\nchar * alphabetBoardPath(char * target){\n\n}",
+    "golang": "func alphabetBoardPath(target string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun alphabetBoardPath(target: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func alphabetBoardPath(_ target: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn alphabet_board_path(target: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} target\n# @return {String}\ndef alphabet_board_path(target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $target\n     * @return String\n     */\n    function alphabetBoardPath($target) {\n        \n    }\n}",
+    "scala": "object Solution {\n    def alphabetBoardPath(target: String): String = {\n        \n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "\"leet\"",
+      "expectedOutput": "\"DDR!UURRR!!DDD!\""
+    },
+    {
+      "input": "\"code\"",
+      "expectedOutput": "\"RR!DDRR!UUL!R!\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"leet\"",
+      "expectedOutput": "\"RDD!UURRR!!DDD!\""
+    },
+    {
+      "input": "\"code\"",
+      "expectedOutput": "\"RR!RRDD!LUU!R!\""
+    },
+    {
+      "input": "\"le\"",
+      "expectedOutput": "\"RDD!UURRR!\""
+    },
+    {
+      "input": "\"et\"",
+      "expectedOutput": "\"RRRR!DDD!\""
+    },
+    {
+      "input": "\"l\"",
+      "expectedOutput": "\"RDD!\""
+    },
+    {
+      "input": "\"teel\"",
+      "expectedOutput": "\"RRRRDDD!UUU!!LLLDD!\""
+    },
+    {
+      "input": "\"leetleet\"",
+      "expectedOutput": "\"RDD!UURRR!!DDD!LLLU!UURRR!!DDD!\""
+    },
+    {
+      "input": "\"llll\"",
+      "expectedOutput": "\"RDD!!!!\""
+    },
+    {
+      "input": "\"leetteel\"",
+      "expectedOutput": "\"RDD!UURRR!!DDD!!UUU!!LLLDD!\""
+    },
+    {
+      "input": "\"LEET\"",
+      "expectedOutput": "\"UUUUURRRR!LLU!!DDD!\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"!\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"R!\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"!!\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"!R!\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"R!L!\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"!R!L!\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"!R!!L!\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"!!!!!\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"!R!R!R!R!\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"RRRR!L!L!L!L!\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Create a hashmap from letter to position on the board.",
+    "Now for each letter, try moving there in steps, where at each step you check if it is inside the boundaries of the board."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/alphabet-board-path/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.015Z",
+    "sourceUpdatedAt": null
+  }
+}

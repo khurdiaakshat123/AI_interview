@@ -1,0 +1,85 @@
+{
+  "id": "909",
+  "slug": "snakes-and-ladders",
+  "title": "Snakes and Ladders",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "statement": "You are given an `n x n` integer matrix `board` where the cells are labeled from `1` to `n^(2)` in a [**Boustrophedon style**](https://en.wikipedia.org/wiki/Boustrophedon) starting from the bottom left of the board (i.e. `board[n - 1][0]`) and alternating direction each row.\n\nYou start on square `1` of the board. In each move, starting from square `curr`, do the following:\n\n*   Choose a destination square `next` with a label in the range `[curr + 1, min(curr + 6, n^(2))]`.\n    *   This choice simulates the result of a standard **6-sided die roll**: i.e., there are always at most 6 destinations, regardless of the size of the board.\n*   If `next` has a snake or ladder, you **must** move to the destination of that snake or ladder. Otherwise, you move to `next`.\n*   The game ends when you reach the square `n^(2)`.\n\nA board square on row `r` and column `c` has a snake or ladder if `board[r][c] != -1`. The destination of that snake or ladder is `board[r][c]`. Squares `1` and `n^(2)` are not the starting points of any snake or ladder.\n\nNote that you only take a snake or ladder at most once per dice roll. If the destination to a snake or ladder is the start of another snake or ladder, you do **not** follow the subsequent snake or ladder.\n\n*   For example, suppose the board is `[[-1,4],[-1,3]]`, and on the first move, your destination square is `2`. You follow the ladder to square `3`, but do **not** follow the subsequent ladder to `4`.\n\nReturn _the least number of dice rolls required to reach the square_ `n^(2)`_. If it is not possible to reach the square, return_ `-1`.\n\n**Example 1:**\n\n![](./assets/snakes-and-ladders-1.png)\n```\nInput: board = [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]\nOutput: 4\nExplanation: \nIn the beginning, you start at square 1 (at row 5, column 0).\nYou decide to move to square 2 and must take the ladder to square 15.\nYou then decide to move to square 17 and must take the snake to square 13.\nYou then decide to move to square 14 and must take the ladder to square 35.\nYou then decide to move to square 36, ending the game.\nThis is the lowest possible number of moves to reach the last square, so return 4.\n```\n\n**Example 2:**\n\n```\nInput: board = [[-1,-1],[-1,3]]\nOutput: 1\n```\n\n**Constraints:**\n\n*   `n == board.length == board[i].length`\n*   `2 <= n <= 20`\n*   `board[i][j]` is either `-1` or in the range `[1, n^(2)]`.\n*   The squares labeled `1` and `n^(2)` are not the starting points of any snake or ladder.",
+  "constraints": [
+    "n == board.length == board[i].length",
+    "2 <= n <= 20",
+    "board[i][j] is either -1 or in the range [1, n2].",
+    "The squares labeled 1 and n2 are not the starting points of any snake or ladder."
+  ],
+  "examples": [
+    {
+      "input": "board = [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]",
+      "output": "4",
+      "explanation": "In the beginning, you start at square 1 (at row 5, column 0).\nYou decide to move to square 2 and must take the ladder to square 15.\nYou then decide to move to square 17 and must take the snake to square 13.\nYou then decide to move to square 14 and must take the ladder to square 35.\nYou then decide to move to square 36, ending the game.\nThis is the lowest possible number of moves to reach the last square, so return 4."
+    },
+    {
+      "input": "board = [[-1,-1],[-1,3]]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int snakesAndLadders(vector<vector<int>>& board) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int snakesAndLadders(int[][] board) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def snakesAndLadders(self, board: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def snakesAndLadders(self, board):\n        \"\"\"\n        :type board: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} board\n * @return {number}\n */\nvar snakesAndLadders = function(board) {\n    \n};",
+    "typescript": "function snakesAndLadders(board: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SnakesAndLadders(int[][] board) {\n        \n    }\n}",
+    "c": "int snakesAndLadders(int** board, int boardSize, int* boardColSize) {\n    \n}",
+    "golang": "func snakesAndLadders(board [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun snakesAndLadders(board: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func snakesAndLadders(_ board: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} board\n# @return {Integer}\ndef snakes_and_ladders(board)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $board\n     * @return Integer\n     */\n    function snakesAndLadders($board) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int snakesAndLadders(List<List<int>> board) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def snakesAndLadders(board: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec snakes_and_ladders(board :: [[integer]]) :: integer\n  def snakes_and_ladders(board) do\n    \n  end\nend",
+    "erlang": "-spec snakes_and_ladders(Board :: [[integer()]]) -> integer().\nsnakes_and_ladders(Board) ->\n  .",
+    "racket": "(define/contract (snakes-and-ladders board)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[-1,-1],[-1,3]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[-1,-1],[-1,3]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/snakes-and-ladders/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.894Z",
+    "sourceUpdatedAt": null
+  }
+}

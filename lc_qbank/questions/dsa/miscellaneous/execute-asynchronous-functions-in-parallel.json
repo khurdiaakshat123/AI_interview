@@ -1,0 +1,87 @@
+{
+  "id": "2721",
+  "slug": "execute-asynchronous-functions-in-parallel",
+  "title": "Execute Asynchronous Functions in Parallel",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Medium",
+  "tags": [],
+  "statement": "Given an array of asynchronous functions `functions`, return a new promise `promise`. Each function in the array accepts no arguments and returns a promise. All the promises should be executed in parallel.\n\n`promise` resolves:\n\n*   When all the promises returned from `functions` were resolved successfully in parallel. The resolved value of `promise` should be an array of all the resolved values of promises in the same order as they were in the `functions`. The `promise` should resolve when all the asynchronous functions in the array have completed execution in parallel.\n\n`promise` rejects:\n\n*   When any of the promises returned from `functions` were rejected. `promise` should also reject with the reason of the first rejection.\n\nPlease solve it without using the built-in `Promise.all` function.\n\n**Example 1:**\n\n```\nInput: functions = [\n  () => new Promise(resolve => setTimeout(() => resolve(5), 200))\n]\nOutput: {\"t\": 200, \"resolved\": [5]}\nExplanation: \npromiseAll(functions).then(console.log); // [5]\n\nThe single function was resolved at 200ms with a value of 5.\n```\n\n**Example 2:**\n\n```\nInput: functions = [\n    () => new Promise(resolve => setTimeout(() => resolve(1), 200)), \n    () => new Promise((resolve, reject) => setTimeout(() => reject(\"Error\"), 100))\n]\nOutput: {\"t\": 100, \"rejected\": \"Error\"}\nExplanation: Since one of the promises rejected, the returned promise also rejected with the same error at the same time.\n```\n\n**Example 3:**\n\n```\nInput: functions = [\n    () => new Promise(resolve => setTimeout(() => resolve(4), 50)), \n    () => new Promise(resolve => setTimeout(() => resolve(10), 150)), \n    () => new Promise(resolve => setTimeout(() => resolve(16), 100))\n]\nOutput: {\"t\": 150, \"resolved\": [4, 10, 16]}\nExplanation: All the promises resolved with a value. The returned promise resolved when the last promise resolved.\n```\n\n**Constraints:**\n\n*   `functions` is an array of functions that returns promises\n*   `1 <= functions.length <= 10`",
+  "constraints": [
+    "functions is an array of functions that returns promises",
+    "1 <= functions.length <= 10"
+  ],
+  "examples": [
+    {
+      "input": "functions = [\n  () => new Promise(resolve => setTimeout(() => resolve(5), 200))\n]",
+      "output": "{\"t\": 200, \"resolved\": [5]}",
+      "explanation": "promiseAll(functions).then(console.log); // [5]\n\nThe single function was resolved at 200ms with a value of 5."
+    },
+    {
+      "input": "functions = [\n    () => new Promise(resolve => setTimeout(() => resolve(1), 200)), \n    () => new Promise((resolve, reject) => setTimeout(() => reject(\"Error\"), 100))\n]",
+      "output": "{\"t\": 100, \"rejected\": \"Error\"}",
+      "explanation": "Since one of the promises rejected, the returned promise also rejected with the same error at the same time."
+    },
+    {
+      "input": "functions = [\n    () => new Promise(resolve => setTimeout(() => resolve(4), 50)), \n    () => new Promise(resolve => setTimeout(() => resolve(10), 150)), \n    () => new Promise(resolve => setTimeout(() => resolve(16), 100))\n]",
+      "output": "{\"t\": 150, \"resolved\": [4, 10, 16]}",
+      "explanation": "All the promises resolved with a value. The returned promise resolved when the last promise resolved."
+    }
+  ],
+  "starterCode": {
+    "javascript": "/**\n * @param {Array<Function>} functions\n * @return {Promise<any>}\n */\nvar promiseAll = function(functions) {\n    \n};\n\n/**\n * const promise = promiseAll([() => new Promise(res => res(42))])\n * promise.then(console.log); // [42]\n */",
+    "typescript": "type Fn<T> = () => Promise<T>\n\nfunction promiseAll<T>(functions: Fn<T>[]): Promise<T[]> {\n    \n};\n\n/**\n * const promise = promiseAll([() => new Promise(res => res(42))])\n * promise.then(console.log); // [42]\n */"
+  },
+  "publicTests": [
+    {
+      "input": "[() => new Promise(resolve => setTimeout(() => resolve(5), 200))]",
+      "expectedOutput": "{\"t\": 200, \"resolved\": [5]}"
+    },
+    {
+      "input": "[() => new Promise(resolve => setTimeout(() => resolve(1), 200)), () => new Promise((resolve, reject) => setTimeout(() => reject(\"Error\"), 100))]",
+      "expectedOutput": "{\"t\": 100, \"rejected\": \"Error\"}"
+    },
+    {
+      "input": "[() => new Promise(resolve => setTimeout(() => resolve(4), 50)), () => new Promise(resolve => setTimeout(() => resolve(10), 150)), () => new Promise(resolve => setTimeout(() => resolve(16), 100))]",
+      "expectedOutput": "{\"t\": 150, \"resolved\": [4, 10, 16]}"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[() => new Promise(resolve => setTimeout(() => resolve(5), 200))]",
+      "expectedOutput": "{\"t\": 200, \"resolved\": [5]}"
+    },
+    {
+      "input": "[() => new Promise(resolve => setTimeout(() => resolve(1), 200)), () => new Promise((resolve, reject) => setTimeout(() => reject(\"Error\"), 100))]",
+      "expectedOutput": "{\"t\": 100, \"rejected\": \"Error\"}"
+    },
+    {
+      "input": "[() => new Promise(resolve => setTimeout(() => resolve(4), 50)), () => new Promise(resolve => setTimeout(() => resolve(10), 150)), () => new Promise(resolve => setTimeout(() => resolve(16), 100))]",
+      "expectedOutput": "{\"t\": 150, \"resolved\": [4, 10, 16]}"
+    },
+    {
+      "input": "functions = [\n  () => new Promise(resolve => setTimeout(() => resolve(5), 200))\n]",
+      "expectedOutput": "{\"t\": 200, \"resolved\": [5]}"
+    },
+    {
+      "input": "functions = [\n    () => new Promise(resolve => setTimeout(() => resolve(1), 200)), \n    () => new Promise((resolve, reject) => setTimeout(() => reject(\"Error\"), 100))\n]",
+      "expectedOutput": "{\"t\": 100, \"rejected\": \"Error\"}"
+    },
+    {
+      "input": "functions = [\n    () => new Promise(resolve => setTimeout(() => resolve(4), 50)), \n    () => new Promise(resolve => setTimeout(() => resolve(10), 150)), \n    () => new Promise(resolve => setTimeout(() => resolve(16), 100))\n]",
+      "expectedOutput": "{\"t\": 150, \"resolved\": [4, 10, 16]}"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/execute-asynchronous-functions-in-parallel/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.164Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "id": "804",
+  "slug": "unique-morse-code-words",
+  "title": "Unique Morse Code Words",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "statement": "International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows:\n\n*   `'a'` maps to `\".-\"`,\n*   `'b'` maps to `\"-...\"`,\n*   `'c'` maps to `\"-.-.\"`, and so on.\n\nFor convenience, the full table for the `26` letters of the English alphabet is given below:\n\n```\n[\".-\",\"-...\",\"-.-.\",\"-..\",\".\",\"..-.\",\"--.\",\"....\",\"..\",\".---\",\"-.-\",\".-..\",\"--\",\"-.\",\"---\",\".--.\",\"--.-\",\".-.\",\"...\",\"-\",\"..-\",\"...-\",\".--\",\"-..-\",\"-.--\",\"--..\"]\n```\n\nGiven an array of strings `words` where each word can be written as a concatenation of the Morse code of each letter.\n\n*   For example, `\"cab\"` can be written as `\"-.-..--...\"`, which is the concatenation of `\"-.-.\"`, `\".-\"`, and `\"-...\"`. We will call such a concatenation the **transformation** of a word.\n\nReturn _the number of different **transformations** among all words we have_.\n\n**Example 1:**\n\n```\nInput: words = [\"gin\",\"zen\",\"gig\",\"msg\"]\nOutput: 2\nExplanation: The transformation of each word is:\n\"gin\" -> \"--...-.\"\n\"zen\" -> \"--...-.\"\n\"gig\" -> \"--...--.\"\n\"msg\" -> \"--...--.\"\nThere are 2 different transformations: \"--...-.\" and \"--...--.\".\n```\n\n**Example 2:**\n\n```\nInput: words = [\"a\"]\nOutput: 1\n```\n\n**Constraints:**\n\n*   `1 <= words.length <= 100`\n*   `1 <= words[i].length <= 12`\n*   `words[i]` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= words.length <= 100",
+    "1 <= words[i].length <= 12",
+    "words[i] consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"gin\",\"zen\",\"gig\",\"msg\"]",
+      "output": "2",
+      "explanation": "The transformation of each word is:\n\"gin\" -> \"--...-.\"\n\"zen\" -> \"--...-.\"\n\"gig\" -> \"--...--.\"\n\"msg\" -> \"--...--.\"\nThere are 2 different transformations: \"--...-.\" and \"--...--.\"."
+    },
+    {
+      "input": "words = [\"a\"]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int uniqueMorseRepresentations(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int uniqueMorseRepresentations(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def uniqueMorseRepresentations(self, words: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def uniqueMorseRepresentations(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {number}\n */\nvar uniqueMorseRepresentations = function(words) {\n    \n};",
+    "typescript": "function uniqueMorseRepresentations(words: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int UniqueMorseRepresentations(string[] words) {\n        \n    }\n}",
+    "c": "int uniqueMorseRepresentations(char** words, int wordsSize) {\n    \n}",
+    "golang": "func uniqueMorseRepresentations(words []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun uniqueMorseRepresentations(words: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func uniqueMorseRepresentations(_ words: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn unique_morse_representations(words: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Integer}\ndef unique_morse_representations(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Integer\n     */\n    function uniqueMorseRepresentations($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int uniqueMorseRepresentations(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def uniqueMorseRepresentations(words: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec unique_morse_representations(words :: [String.t]) :: integer\n  def unique_morse_representations(words) do\n    \n  end\nend",
+    "erlang": "-spec unique_morse_representations(Words :: [unicode:unicode_binary()]) -> integer().\nunique_morse_representations(Words) ->\n  .",
+    "racket": "(define/contract (unique-morse-representations words)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"gin\",\"zen\",\"gig\",\"msg\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"gin\",\"zen\",\"gig\",\"msg\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"gin\",\"zen\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"gig\",\"msg\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"gin\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"gin\",\"msg\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"msg\",\"gig\",\"zen\",\"gin\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"gig\",\"gin\",\"msg\",\"zen\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"zen\",\"msg\",\"gin\",\"gig\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"gin\",\"gin\",\"gin\",\"gin\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"gin\",\"zen\",\"gig\",\"msg\",\"gin\",\"zen\",\"gig\",\"msg\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/unique-morse-code-words/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.398Z",
+    "sourceUpdatedAt": null
+  }
+}

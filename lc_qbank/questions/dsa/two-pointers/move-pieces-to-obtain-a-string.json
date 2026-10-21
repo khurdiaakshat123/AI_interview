@@ -1,0 +1,167 @@
+{
+  "id": "2337",
+  "slug": "move-pieces-to-obtain-a-string",
+  "title": "Move Pieces to Obtain a String",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "You are given two strings `start` and `target`, both of length `n`. Each string consists **only** of the characters `'L'`, `'R'`, and `'_'` where:\n\n*   The characters `'L'` and `'R'` represent pieces, where a piece `'L'` can move to the **left** only if there is a **blank** space directly to its left, and a piece `'R'` can move to the **right** only if there is a **blank** space directly to its right.\n*   The character `'_'` represents a blank space that can be occupied by **any** of the `'L'` or `'R'` pieces.\n\nReturn `true` _if it is possible to obtain the string_ `target` _by moving the pieces of the string_ `start` _**any** number of times_. Otherwise, return `false`.\n\n**Example 1:**\n\n```\nInput: start = \"_L__R__R_\", target = \"L______RR\"\nOutput: true\nExplanation: We can obtain the string target from start by doing the following moves:\n- Move the first piece one step to the left, start becomes equal to \"L___R__R_\".\n- Move the last piece one step to the right, start becomes equal to \"L___R___R\".\n- Move the second piece three steps to the right, start becomes equal to \"L______RR\".\nSince it is possible to get the string target from start, we return true.\n```\n\n**Example 2:**\n\n```\nInput: start = \"R_L_\", target = \"__LR\"\nOutput: false\nExplanation: The 'R' piece in the string start can move one step to the right to obtain \"_RL_\".\nAfter that, no pieces can move anymore, so it is impossible to obtain the string target from start.\n```\n\n**Example 3:**\n\n```\nInput: start = \"_R\", target = \"R_\"\nOutput: false\nExplanation: The piece in the string start can move only to the right, so it is impossible to obtain the string target from start.\n```\n\n**Constraints:**\n\n*   `n == start.length == target.length`\n*   `1 <= n <= 10^(5)`\n*   `start` and `target` consist of the characters `'L'`, `'R'`, and `'_'`.",
+  "constraints": [
+    "n == start.length == target.length",
+    "1 <= n <= 105",
+    "start and target consist of the characters 'L', 'R', and '_'."
+  ],
+  "examples": [
+    {
+      "input": "start = \"_L__R__R_\", target = \"L______RR\"",
+      "output": "true",
+      "explanation": "We can obtain the string target from start by doing the following moves:\n- Move the first piece one step to the left, start becomes equal to \"L___R__R_\".\n- Move the last piece one step to the right, start becomes equal to \"L___R___R\".\n- Move the second piece three steps to the right, start becomes equal to \"L______RR\".\nSince it is possible to get the string target from start, we return true."
+    },
+    {
+      "input": "start = \"R_L_\", target = \"__LR\"",
+      "output": "false",
+      "explanation": "The 'R' piece in the string start can move one step to the right to obtain \"_RL_\".\nAfter that, no pieces can move anymore, so it is impossible to obtain the string target from start."
+    },
+    {
+      "input": "start = \"_R\", target = \"R_\"",
+      "output": "false",
+      "explanation": "The piece in the string start can move only to the right, so it is impossible to obtain the string target from start."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool canChange(string start, string target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canChange(String start, String target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canChange(self, start: str, target: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canChange(self, start, target):\n        \"\"\"\n        :type start: str\n        :type target: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} start\n * @param {string} target\n * @return {boolean}\n */\nvar canChange = function(start, target) {\n    \n};",
+    "typescript": "function canChange(start: string, target: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanChange(string start, string target) {\n        \n    }\n}",
+    "c": "bool canChange(char* start, char* target) {\n    \n}",
+    "golang": "func canChange(start string, target string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canChange(start: String, target: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canChange(_ start: String, _ target: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_change(start: String, target: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} start\n# @param {String} target\n# @return {Boolean}\ndef can_change(start, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $start\n     * @param String $target\n     * @return Boolean\n     */\n    function canChange($start, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canChange(String start, String target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canChange(start: String, target: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_change(start :: String.t, target :: String.t) :: boolean\n  def can_change(start, target) do\n    \n  end\nend",
+    "erlang": "-spec can_change(Start :: unicode:unicode_binary(), Target :: unicode:unicode_binary()) -> boolean().\ncan_change(Start, Target) ->\n  .",
+    "racket": "(define/contract (can-change start target)\n  (-> string? string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"_L__R__R_\"\n\"L______RR\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"R_L_\"\n\"__LR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"_R\"\n\"R_\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"_L__R__R_\"\n\"L______RR\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"R_L_\"\n\"__LR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"_R\"\n\"R_\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"_L__\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"R__R_\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"_\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"_L\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"_R__R__L_\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"_L__R__R__L__R__R_\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"______\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"_L__R__R__R__R__L_\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n\"L______RR\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "After some sequence of moves, can the order of the pieces change?",
+    "Try to match each piece in s with a piece in e."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/move-pieces-to-obtain-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.504Z",
+    "sourceUpdatedAt": null
+  }
+}

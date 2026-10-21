@@ -1,0 +1,99 @@
+{
+  "id": "3081",
+  "slug": "replace-question-marks-in-string-to-minimize-its-value",
+  "title": "Replace Question Marks in String to Minimize Its Value",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Counting"
+  ],
+  "statement": "You are given a string `s`. `s[i]` is either a lowercase English letter or `'?'`.\n\nFor a string `t` having length `m` containing **only** lowercase English letters, we define the function `cost(i)` for an index `i` as the number of characters **equal** to `t[i]` that appeared before it, i.e. in the range `[0, i - 1]`.\n\nThe **value** of `t` is the **sum** of `cost(i)` for all indices `i`.\n\nFor example, for the string `t = \"aab\"`:\n\n*   `cost(0) = 0`\n*   `cost(1) = 1`\n*   `cost(2) = 0`\n*   Hence, the value of `\"aab\"` is `0 + 1 + 0 = 1`.\n\nYour task is to **replace all** occurrences of `'?'` in `s` with any lowercase English letter so that the **value** of `s` is **minimized**.\n\nReturn _a string denoting the modified string with replaced occurrences of_ `'?'`_. If there are multiple strings resulting in the **minimum value**, return the lexicographically smallest one._\n\n**Example 1:**\n\n**Input:** s = \"???\"\n\n**Output:** \"abc\"\n\n**Explanation:** In this example, we can replace the occurrences of `'?'` to make `s` equal to `\"abc\"`.\n\nFor `\"abc\"`, `cost(0) = 0`, `cost(1) = 0`, and `cost(2) = 0`.\n\nThe value of `\"abc\"` is `0`.\n\nSome other modifications of `s` that have a value of `0` are `\"cba\"`, `\"abz\"`, and, `\"hey\"`.\n\nAmong all of them, we choose the lexicographically smallest.\n\n**Example 2:**\n\n**Input:** s = \"a?a?\"\n\n**Output:** \"abac\"\n\n**Explanation:** In this example, the occurrences of `'?'` can be replaced to make `s` equal to `\"abac\"`.\n\nFor `\"abac\"`, `cost(0) = 0`, `cost(1) = 0`, `cost(2) = 1`, and `cost(3) = 0`.\n\nThe value of `\"abac\"` is `1`.\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s[i]` is either a lowercase English letter or `'?'`.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s[i] is either a lowercase English letter or '?'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"???\"",
+      "output": "\"abc\"",
+      "explanation": "In this example, we can replace the occurrences of '?' to make s equal to \"abc\"."
+    },
+    {
+      "input": "s = \"a?a?\"",
+      "output": "\"abac\"",
+      "explanation": "In this example, the occurrences of '?' can be replaced to make s equal to \"abac\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string minimizeStringValue(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String minimizeStringValue(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimizeStringValue(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def minimizeStringValue(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar minimizeStringValue = function(s) {\n    \n};",
+    "typescript": "function minimizeStringValue(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MinimizeStringValue(string s) {\n        \n    }\n}",
+    "c": "char* minimizeStringValue(char* s) {\n    \n}",
+    "golang": "func minimizeStringValue(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimizeStringValue(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimizeStringValue(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimize_string_value(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef minimize_string_value(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function minimizeStringValue($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String minimizeStringValue(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimizeStringValue(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimize_string_value(s :: String.t) :: String.t\n  def minimize_string_value(s) do\n    \n  end\nend",
+    "erlang": "-spec minimize_string_value(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nminimize_string_value(S) ->\n  .",
+    "racket": "(define/contract (minimize-string-value s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"???\"",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "\"a?a?\"",
+      "expectedOutput": "\"abac\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"???\"",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "\"a?a?\"",
+      "expectedOutput": "\"abac\""
+    },
+    {
+      "input": "s = \"???\"",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "s = \"a?a?\"",
+      "expectedOutput": "\"abac\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>The cost does not depend on the order of characters. If a character <code>c</code> appears <code>x</code> times, the cost is exactly <code>0 + 1 + 2 + … + (x − 1) = x * (x − 1) / 2</code>.</p>",
+    "<p>We know the total number of question marks; for each one, we should select the letter with the minimum frequency to replace it.</p>",
+    "<p>The letter selection can be achieved by a min-heap (or even by brute-forcing the <code>26</code> possibilities).</p>",
+    "<p>So, we know the extra letters we need to replace finally. However, we must put those letters in order from left to right so that the resulting string is the lexicographically smallest one.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/replace-question-marks-in-string-to-minimize-its-value/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.724Z",
+    "sourceUpdatedAt": null
+  }
+}

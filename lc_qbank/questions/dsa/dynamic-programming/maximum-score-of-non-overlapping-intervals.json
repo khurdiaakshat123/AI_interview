@@ -1,0 +1,93 @@
+{
+  "id": "3414",
+  "slug": "maximum-score-of-non-overlapping-intervals",
+  "title": "Maximum Score of Non-overlapping Intervals",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "statement": "You are given a 2D integer array `intervals`, where `intervals[i] = [l_(i), r_(i), weight_(i)]`. Interval `i` starts at position `l_(i)` and ends at `r_(i)`, and has a weight of `weight_(i)`. You can choose _up to_ 4 **non-overlapping** intervals. The **score** of the chosen intervals is defined as the total sum of their weights.\n\nReturn the lexicographically smallest array of at most 4 indices from `intervals` with **maximum** score, representing your choice of non-overlapping intervals.\n\nTwo intervals are said to be **non-overlapping** if they do not share any points. In particular, intervals sharing a left or right boundary are considered overlapping.\n\n**Example 1:**\n\n**Input:** intervals = \\[\\[1,3,2\\],\\[4,5,2\\],\\[1,5,5\\],\\[6,9,3\\],\\[6,7,1\\],\\[8,9,1\\]\\]\n\n**Output:** \\[2,3\\]\n\n**Explanation:**\n\nYou can choose the intervals with indices 2, and 3 with respective weights of 5, and 3.\n\n**Example 2:**\n\n**Input:** intervals = \\[\\[5,8,1\\],\\[6,7,7\\],\\[4,7,3\\],\\[9,10,6\\],\\[7,8,2\\],\\[11,14,3\\],\\[3,5,5\\]\\]\n\n**Output:** \\[1,3,5,6\\]\n\n**Explanation:**\n\nYou can choose the intervals with indices 1, 3, 5, and 6 with respective weights of 7, 6, 3, and 5.\n\n**Constraints:**\n\n*   `1 <= intevals.length <= 5 * 10^(4)`\n*   `intervals[i].length == 3`\n*   `intervals[i] = [l_(i), r_(i), weight_(i)]`\n*   `1 <= l_(i) <= r_(i) <= 10^(9)`\n*   `1 <= weight_(i) <= 10^(9)`",
+  "constraints": [
+    "1 <= intevals.length <= 5 * 104",
+    "intervals[i].length == 3",
+    "intervals[i] = [li, ri, weighti]",
+    "1 <= li <= ri <= 109",
+    "1 <= weighti <= 109"
+  ],
+  "examples": [
+    {
+      "input": "intervals = [[1,3,2],[4,5,2],[1,5,5],[6,9,3],[6,7,1],[8,9,1]]",
+      "output": "[2,3]",
+      "explanation": null
+    },
+    {
+      "input": "intervals = [[5,8,1],[6,7,7],[4,7,3],[9,10,6],[7,8,2],[11,14,3],[3,5,5]]",
+      "output": "[1,3,5,6]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> maximumWeight(vector<vector<int>>& intervals) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] maximumWeight(List<List<Integer>> intervals) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumWeight(self, intervals: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def maximumWeight(self, intervals):\n        \"\"\"\n        :type intervals: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} intervals\n * @return {number[]}\n */\nvar maximumWeight = function(intervals) {\n    \n};",
+    "typescript": "function maximumWeight(intervals: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MaximumWeight(IList<IList<int>> intervals) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* maximumWeight(int** intervals, int intervalsSize, int* intervalsColSize, int* returnSize) {\n    \n}",
+    "golang": "func maximumWeight(intervals [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumWeight(intervals: List<List<Int>>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumWeight(_ intervals: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_weight(intervals: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} intervals\n# @return {Integer[]}\ndef maximum_weight(intervals)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $intervals\n     * @return Integer[]\n     */\n    function maximumWeight($intervals) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> maximumWeight(List<List<int>> intervals) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumWeight(intervals: List[List[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_weight(intervals :: [[integer]]) :: [integer]\n  def maximum_weight(intervals) do\n    \n  end\nend",
+    "erlang": "-spec maximum_weight(Intervals :: [[integer()]]) -> [integer()].\nmaximum_weight(Intervals) ->\n  .",
+    "racket": "(define/contract (maximum-weight intervals)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,3,2],[4,5,2],[1,5,5],[6,9,3],[6,7,1],[8,9,1]]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[[5,8,1],[6,7,7],[4,7,3],[9,10,6],[7,8,2],[11,14,3],[3,5,5]]",
+      "expectedOutput": "[1,3,5,6]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,3,2],[4,5,2],[1,5,5],[6,9,3],[6,7,1],[8,9,1]]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[[5,8,1],[6,7,7],[4,7,3],[9,10,6],[7,8,2],[11,14,3],[3,5,5]]",
+      "expectedOutput": "[1,3,5,6]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use Dynamic Programming.",
+    "Sort <code>intervals</code> by right boundary.",
+    "Let <code>dp[r][i]</code> denote the maximum score having picked <code>r</code> intervals from the prefix of <code>intervals</code> ending at index <code>i</code>.",
+    "<code>dp[r][i] = max(dp[r][i - 1], intervals[i][2] + dp[r][j])</code> where <code>j</code> is the largest index such that <code>intervals[j][1] < intervals[i][0]</code>.",
+    "Since <code>intervals</code> is sorted by right boundary, we can find index <code>j</code> using binary search."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-score-of-non-overlapping-intervals/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.571Z",
+    "sourceUpdatedAt": null
+  }
+}

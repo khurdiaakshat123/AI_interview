@@ -1,0 +1,168 @@
+{
+  "id": "1524",
+  "slug": "number-of-sub-arrays-with-odd-sum",
+  "title": "Number of Sub-arrays With Odd Sum",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "statement": "Given an array of integers `arr`, return _the number of subarrays with an **odd** sum_.\n\nSince the answer can be very large, return it modulo `10^(9) + 7`.\n\n**Example 1:**\n\n```\nInput: arr = [1,3,5]\nOutput: 4\nExplanation: All subarrays are [[1],[1,3],[1,3,5],[3],[3,5],[5]]\nAll sub-arrays sum are [1,4,9,3,8,5].\nOdd sums are [1,9,3,5] so the answer is 4.\n```\n\n**Example 2:**\n\n```\nInput: arr = [2,4,6]\nOutput: 0\nExplanation: All subarrays are [[2],[2,4],[2,4,6],[4],[4,6],[6]]\nAll sub-arrays sum are [2,6,12,4,10,6].\nAll sub-arrays have even sum and the answer is 0.\n```\n\n**Example 3:**\n\n```\nInput: arr = [1,2,3,4,5,6,7]\nOutput: 16\n```\n\n**Constraints:**\n\n*   `1 <= arr.length <= 10^(5)`\n*   `1 <= arr[i] <= 100`",
+  "constraints": [
+    "1 <= arr.length <= 105",
+    "1 <= arr[i] <= 100"
+  ],
+  "examples": [
+    {
+      "input": "arr = [1,3,5]",
+      "output": "4",
+      "explanation": "All subarrays are [[1],[1,3],[1,3,5],[3],[3,5],[5]]\nAll sub-arrays sum are [1,4,9,3,8,5].\nOdd sums are [1,9,3,5] so the answer is 4."
+    },
+    {
+      "input": "arr = [2,4,6]",
+      "output": "0",
+      "explanation": "All subarrays are [[2],[2,4],[2,4,6],[4],[4,6],[6]]\nAll sub-arrays sum are [2,6,12,4,10,6].\nAll sub-arrays have even sum and the answer is 0."
+    },
+    {
+      "input": "arr = [1,2,3,4,5,6,7]",
+      "output": "16",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numOfSubarrays(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numOfSubarrays(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numOfSubarrays(self, arr: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numOfSubarrays(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number}\n */\nvar numOfSubarrays = function(arr) {\n    \n};",
+    "typescript": "function numOfSubarrays(arr: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumOfSubarrays(int[] arr) {\n        \n    }\n}",
+    "c": "int numOfSubarrays(int* arr, int arrSize) {\n    \n}",
+    "golang": "func numOfSubarrays(arr []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numOfSubarrays(arr: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numOfSubarrays(_ arr: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_of_subarrays(arr: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer}\ndef num_of_subarrays(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer\n     */\n    function numOfSubarrays($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numOfSubarrays(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numOfSubarrays(arr: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_of_subarrays(arr :: [integer]) :: integer\n  def num_of_subarrays(arr) do\n    \n  end\nend",
+    "erlang": "-spec num_of_subarrays(Arr :: [integer()]) -> integer().\nnum_of_subarrays(Arr) ->\n  .",
+    "racket": "(define/contract (num-of-subarrays arr)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,3,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,4,6]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,4,5,6,7]",
+      "expectedOutput": "16"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,3,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,4,6]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,4,5,6,7]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,3,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,3,5,1,3,5]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,6,10]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,2,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-3,-5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can we use the accumulative sum to keep track of all the odd-sum sub-arrays ?",
+    "if the current accu sum is odd, we care only about previous even accu sums and vice versa."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.111Z",
+    "sourceUpdatedAt": null
+  }
+}

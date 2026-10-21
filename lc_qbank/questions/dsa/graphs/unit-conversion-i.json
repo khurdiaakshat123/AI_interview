@@ -1,0 +1,89 @@
+{
+  "id": "3528",
+  "slug": "unit-conversion-i",
+  "title": "Unit Conversion I",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "statement": "There are `n` types of units indexed from `0` to `n - 1`. You are given a 2D integer array `conversions` of length `n - 1`, where `conversions[i] = [sourceUnit_(i), targetUnit_(i), conversionFactor_(i)]`. This indicates that a single unit of type `sourceUnit_(i)` is equivalent to `conversionFactor_(i)` units of type `targetUnit_(i)`.\n\nReturn an array `baseUnitConversion` of length `n`, where `baseUnitConversion[i]` is the number of units of type `i` equivalent to a single unit of type 0. Since the answer may be large, return each `baseUnitConversion[i]` **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** conversions = \\[\\[0,1,2\\],\\[1,2,3\\]\\]\n\n**Output:** \\[1,2,6\\]\n\n**Explanation:**\n\n*   Convert a single unit of type 0 into 2 units of type 1 using `conversions[0]`.\n*   Convert a single unit of type 0 into 6 units of type 2 using `conversions[0]`, then `conversions[1]`.\n\n![](./assets/unit-conversion-i-1.png)\n\n**Example 2:**\n\n**Input:** conversions = \\[\\[0,1,2\\],\\[0,2,3\\],\\[1,3,4\\],\\[1,4,5\\],\\[2,5,2\\],\\[4,6,3\\],\\[5,7,4\\]\\]\n\n**Output:** \\[1,2,3,8,10,6,30,24\\]\n\n**Explanation:**\n\n*   Convert a single unit of type 0 into 2 units of type 1 using `conversions[0]`.\n*   Convert a single unit of type 0 into 3 units of type 2 using `conversions[1]`.\n*   Convert a single unit of type 0 into 8 units of type 3 using `conversions[0]`, then `conversions[2]`.\n*   Convert a single unit of type 0 into 10 units of type 4 using `conversions[0]`, then `conversions[3]`.\n*   Convert a single unit of type 0 into 6 units of type 5 using `conversions[1]`, then `conversions[4]`.\n*   Convert a single unit of type 0 into 30 units of type 6 using `conversions[0]`, `conversions[3]`, then `conversions[5]`.\n*   Convert a single unit of type 0 into 24 units of type 7 using `conversions[1]`, `conversions[4]`, then `conversions[6]`.\n\n**Constraints:**\n\n*   `2 <= n <= 10^(5)`\n*   `conversions.length == n - 1`\n*   `0 <= sourceUnit_(i), targetUnit_(i) < n`\n*   `1 <= conversionFactor_(i) <= 10^(9)`\n*   It is guaranteed that unit 0 can be converted into any other unit through a **unique** combination of conversions without using any conversions in the opposite direction.",
+  "constraints": [
+    "2 <= n <= 105",
+    "conversions.length == n - 1",
+    "0 <= sourceUniti, targetUniti < n",
+    "1 <= conversionFactori <= 109",
+    "It is guaranteed that unit 0 can be converted into any other unit through a unique combination of conversions without using any conversions in the opposite direction."
+  ],
+  "examples": [
+    {
+      "input": "conversions = [[0,1,2],[1,2,3]]",
+      "output": "[1,2,6]",
+      "explanation": "Convert a single unit of type 0 into 2 units of type 1 using conversions[0].\n\tConvert a single unit of type 0 into 6 units of type 2 using conversions[0], then conversions[1]."
+    },
+    {
+      "input": "conversions = [[0,1,2],[0,2,3],[1,3,4],[1,4,5],[2,5,2],[4,6,3],[5,7,4]]",
+      "output": "[1,2,3,8,10,6,30,24]",
+      "explanation": "Convert a single unit of type 0 into 2 units of type 1 using conversions[0].\n\tConvert a single unit of type 0 into 3 units of type 2 using conversions[1].\n\tConvert a single unit of type 0 into 8 units of type 3 using conversions[0], then conversions[2].\n\tConvert a single unit of type 0 into 10 units of type 4 using conversions[0], then conversions[3].\n\tConvert a single unit of type 0 into 6 units of type 5 using conversions[1], then conversions[4].\n\tConvert a single unit of type 0 into 30 units of type 6 using conversions[0], conversions[3], then conversions[5].\n\tConvert a single unit of type 0 into 24 units of type 7 using conversions[1], conversions[4], then conversions[6]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> baseUnitConversions(vector<vector<int>>& conversions) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] baseUnitConversions(int[][] conversions) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def baseUnitConversions(self, conversions: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def baseUnitConversions(self, conversions):\n        \"\"\"\n        :type conversions: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} conversions\n * @return {number[]}\n */\nvar baseUnitConversions = function(conversions) {\n    \n};",
+    "typescript": "function baseUnitConversions(conversions: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] BaseUnitConversions(int[][] conversions) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* baseUnitConversions(int** conversions, int conversionsSize, int* conversionsColSize, int* returnSize) {\n    \n}",
+    "golang": "func baseUnitConversions(conversions [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun baseUnitConversions(conversions: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func baseUnitConversions(_ conversions: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn base_unit_conversions(conversions: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} conversions\n# @return {Integer[]}\ndef base_unit_conversions(conversions)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $conversions\n     * @return Integer[]\n     */\n    function baseUnitConversions($conversions) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> baseUnitConversions(List<List<int>> conversions) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def baseUnitConversions(conversions: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec base_unit_conversions(conversions :: [[integer]]) :: [integer]\n  def base_unit_conversions(conversions) do\n    \n  end\nend",
+    "erlang": "-spec base_unit_conversions(Conversions :: [[integer()]]) -> [integer()].\nbase_unit_conversions(Conversions) ->\n  .",
+    "racket": "(define/contract (base-unit-conversions conversions)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1,2],[1,2,3]]",
+      "expectedOutput": "[1,2,6]"
+    },
+    {
+      "input": "[[0,1,2],[0,2,3],[1,3,4],[1,4,5],[2,5,2],[4,6,3],[5,7,4]]",
+      "expectedOutput": "[1,2,3,8,10,6,30,24]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1,2],[1,2,3]]",
+      "expectedOutput": "[1,2,6]"
+    },
+    {
+      "input": "[[0,1,2],[0,2,3],[1,3,4],[1,4,5],[2,5,2],[4,6,3],[5,7,4]]",
+      "expectedOutput": "[1,2,3,8,10,6,30,24]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The input is a weighted directed tree rooted at 0.",
+    "Launch a BFS from node 0 and multiply the weights on the path."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/unit-conversion-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.425Z",
+    "sourceUpdatedAt": null
+  }
+}

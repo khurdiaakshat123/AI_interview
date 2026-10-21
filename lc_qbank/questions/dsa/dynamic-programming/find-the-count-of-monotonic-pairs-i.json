@@ -1,0 +1,161 @@
+{
+  "id": "3250",
+  "slug": "find-the-count-of-monotonic-pairs-i",
+  "title": "Find the Count of Monotonic Pairs I",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an array of **positive** integers `nums` of length `n`.\n\nWe call a pair of **non-negative** integer arrays `(arr1, arr2)` **monotonic** if:\n\n*   The lengths of both arrays are `n`.\n*   `arr1` is monotonically **non-decreasing**, in other words, `arr1[0] <= arr1[1] <= ... <= arr1[n - 1]`.\n*   `arr2` is monotonically **non-increasing**, in other words, `arr2[0] >= arr2[1] >= ... >= arr2[n - 1]`.\n*   `arr1[i] + arr2[i] == nums[i]` for all `0 <= i <= n - 1`.\n\nReturn the count of **monotonic** pairs.\n\nSince the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** nums = \\[2,3,2\\]\n\n**Output:** 4\n\n**Explanation:**\n\nThe good pairs are:\n\n1.  `([0, 1, 1], [2, 2, 1])`\n2.  `([0, 1, 2], [2, 2, 0])`\n3.  `([0, 2, 2], [2, 1, 0])`\n4.  `([1, 2, 2], [1, 1, 0])`\n\n**Example 2:**\n\n**Input:** nums = \\[5,5,5,5\\]\n\n**Output:** 126\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 2000`\n*   `1 <= nums[i] <= 50`",
+  "constraints": [
+    "1 <= n == nums.length <= 2000",
+    "1 <= nums[i] <= 50"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,3,2]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "nums = [5,5,5,5]",
+      "output": "126",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countOfPairs(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countOfPairs(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countOfPairs(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countOfPairs(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar countOfPairs = function(nums) {\n    \n};",
+    "typescript": "function countOfPairs(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountOfPairs(int[] nums) {\n        \n    }\n}",
+    "c": "int countOfPairs(int* nums, int numsSize) {\n    \n}",
+    "golang": "func countOfPairs(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countOfPairs(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countOfPairs(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_of_pairs(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef count_of_pairs(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function countOfPairs($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countOfPairs(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countOfPairs(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_of_pairs(nums :: [integer]) :: integer\n  def count_of_pairs(nums) do\n    \n  end\nend",
+    "erlang": "-spec count_of_pairs(Nums :: [integer()]) -> integer().\ncount_of_pairs(Nums) ->\n  .",
+    "racket": "(define/contract (count-of-pairs nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,3,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[5,5,5,5]",
+      "expectedOutput": "126"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,3,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[5,5,5,5]",
+      "expectedOutput": "126"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,2]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,2]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,3]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,2,3]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[3,2,2]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[2,2,2]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[2,3,2,2,3,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,6,4]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[3,4,3]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-2,-3,-2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let <code>dp[i][s]</code> is the number of monotonic pairs of length <code>i</code> with the <code>arr1[i - 1] = s</code>.",
+    "If <code>arr1[i - 1] = s</code>, <code>arr2[i - 1] = nums[i - 1] - s</code>.",
+    "Check if the state in recurrence is valid."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-count-of-monotonic-pairs-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.201Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "id": "3194",
+  "slug": "minimum-average-of-smallest-and-largest-elements",
+  "title": "Minimum Average of Smallest and Largest Elements",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "statement": "You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even.\n\nYou repeat the following procedure `n / 2` times:\n\n*   Remove the **smallest** element, `minElement`, and the **largest** element `maxElement`, from `nums`.\n*   Add `(minElement + maxElement) / 2` to `averages`.\n\nReturn the **minimum** element in `averages`.\n\n**Example 1:**\n\n**Input:** nums = \\[7,8,3,4,15,13,4,1\\]\n\n**Output:** 5.5\n\n**Explanation:**\n\nstep\n\nnums\n\naverages\n\n0\n\n\\[7,8,3,4,15,13,4,1\\]\n\n\\[\\]\n\n1\n\n\\[7,8,3,4,13,4\\]\n\n\\[8\\]\n\n2\n\n\\[7,8,4,4\\]\n\n\\[8,8\\]\n\n3\n\n\\[7,4\\]\n\n\\[8,8,6\\]\n\n4\n\n\\[\\]\n\n\\[8,8,6,5.5\\]\n\nThe smallest element of averages, 5.5, is returned.\n\n**Example 2:**\n\n**Input:** nums = \\[1,9,8,3,10,5\\]\n\n**Output:** 5.5\n\n**Explanation:**\n\nstep\n\nnums\n\naverages\n\n0\n\n\\[1,9,8,3,10,5\\]\n\n\\[\\]\n\n1\n\n\\[9,8,3,5\\]\n\n\\[5.5\\]\n\n2\n\n\\[8,5\\]\n\n\\[5.5,6\\]\n\n3\n\n\\[\\]\n\n\\[5.5,6,6.5\\]\n\n**Example 3:**\n\n**Input:** nums = \\[1,2,3,7,8,9\\]\n\n**Output:** 5.0\n\n**Explanation:**\n\nstep\n\nnums\n\naverages\n\n0\n\n\\[1,2,3,7,8,9\\]\n\n\\[\\]\n\n1\n\n\\[2,3,7,8\\]\n\n\\[5\\]\n\n2\n\n\\[3,7\\]\n\n\\[5,5\\]\n\n3\n\n\\[\\]\n\n\\[5,5,5\\]\n\n**Constraints:**\n\n*   `2 <= n == nums.length <= 50`\n*   `n` is even.\n*   `1 <= nums[i] <= 50`",
+  "constraints": [
+    "2 <= n == nums.length <= 50",
+    "n is even.",
+    "1 <= nums[i] <= 50"
+  ],
+  "examples": [
+    {
+      "input": "nums = [7,8,3,4,15,13,4,1]",
+      "output": "5.5",
+      "explanation": "step\n\t\t\tnums\n\t\t\taverages\n\t\t\n\t\t\n\t\t\t0\n\t\t\t[7,8,3,4,15,13,4,1]\n\t\t\t[]\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[7,8,3,4,13,4]\n\t\t\t[8]\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[7,8,4,4]\n\t\t\t[8,8]\n\t\t\n\t\t\n\t\t\t3\n\t\t\t[7,4]\n\t\t\t[8,8,6]\n\t\t\n\t\t\n\t\t\t4\n\t\t\t[]\n\t\t\t[8,8,6,5.5]\n\t\t\n\t\n\nThe smallest element of averages, 5.5, is returned."
+    },
+    {
+      "input": "nums = [1,9,8,3,10,5]",
+      "output": "5.5",
+      "explanation": "step\n\t\t\tnums\n\t\t\taverages\n\t\t\n\t\t\n\t\t\t0\n\t\t\t[1,9,8,3,10,5]\n\t\t\t[]\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[9,8,3,5]\n\t\t\t[5.5]\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[8,5]\n\t\t\t[5.5,6]\n\t\t\n\t\t\n\t\t\t3\n\t\t\t[]\n\t\t\t[5.5,6,6.5]"
+    },
+    {
+      "input": "nums = [1,2,3,7,8,9]",
+      "output": "5.0",
+      "explanation": "step\n\t\t\tnums\n\t\t\taverages\n\t\t\n\t\t\n\t\t\t0\n\t\t\t[1,2,3,7,8,9]\n\t\t\t[]\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[2,3,7,8]\n\t\t\t[5]\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[3,7]\n\t\t\t[5,5]\n\t\t\n\t\t\n\t\t\t3\n\t\t\t[]\n\t\t\t[5,5,5]"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    double minimumAverage(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double minimumAverage(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumAverage(self, nums: List[int]) -> float:\n        ",
+    "python": "class Solution(object):\n    def minimumAverage(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: float\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minimumAverage = function(nums) {\n    \n};",
+    "typescript": "function minimumAverage(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public double MinimumAverage(int[] nums) {\n        \n    }\n}",
+    "c": "double minimumAverage(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minimumAverage(nums []int) float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumAverage(nums: IntArray): Double {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumAverage(_ nums: [Int]) -> Double {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_average(nums: Vec<i32>) -> f64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Float}\ndef minimum_average(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Float\n     */\n    function minimumAverage($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  double minimumAverage(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumAverage(nums: Array[Int]): Double = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_average(nums :: [integer]) :: float\n  def minimum_average(nums) do\n    \n  end\nend",
+    "erlang": "-spec minimum_average(Nums :: [integer()]) -> float().\nminimum_average(Nums) ->\n  .",
+    "racket": "(define/contract (minimum-average nums)\n  (-> (listof exact-integer?) flonum?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[7,8,3,4,15,13,4,1]",
+      "expectedOutput": "5.5"
+    },
+    {
+      "input": "[1,9,8,3,10,5]",
+      "expectedOutput": "5.5"
+    },
+    {
+      "input": "[1,2,3,7,8,9]",
+      "expectedOutput": "5.0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[7,8,3,4,15,13,4,1]",
+      "expectedOutput": "5.5"
+    },
+    {
+      "input": "[1,9,8,3,10,5]",
+      "expectedOutput": "5.5"
+    },
+    {
+      "input": "[1,2,3,7,8,9]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[7,8,3,4]",
+      "expectedOutput": "5.5"
+    },
+    {
+      "input": "[15,13,4,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[7,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[7,8]",
+      "expectedOutput": "7.5"
+    },
+    {
+      "input": "[1,4,13,15,4,3,8,7]",
+      "expectedOutput": "5.5"
+    },
+    {
+      "input": "[1,3,4,4,7,8,13,15]",
+      "expectedOutput": "5.5"
+    },
+    {
+      "input": "[15,13,8,7,4,4,3,1]",
+      "expectedOutput": "5.5"
+    },
+    {
+      "input": "[7,7,7,7,7]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[7,8,3,4,15,13,4,1,7,8,3,4,15,13,4,1]",
+      "expectedOutput": "5.5"
+    },
+    {
+      "input": "[14,16,6,8,30,26,8,2]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[8,9,4,5,16,14,5,2]",
+      "expectedOutput": "6.5"
+    },
+    {
+      "input": "[6,7,2,3,14,12,3,0]",
+      "expectedOutput": "4.5"
+    },
+    {
+      "input": "[-7,-8,-3,-4,-15,-13,-4,-1]",
+      "expectedOutput": "-8"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "1.5"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If <code>nums</code> is sorted, then the elements of <code>averages</code> are <code>(nums[i] + nums[n - i - 1]) / 2</code>  for all <code>i < n / 2</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-average-of-smallest-and-largest-elements/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.470Z",
+    "sourceUpdatedAt": null
+  }
+}

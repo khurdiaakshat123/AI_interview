@@ -1,0 +1,170 @@
+{
+  "id": "1147",
+  "slug": "longest-chunked-palindrome-decomposition",
+  "title": "Longest Chunked Palindrome Decomposition",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming",
+    "Greedy",
+    "Rolling Hash",
+    "Hash Function"
+  ],
+  "statement": "You are given a string `text`. You should split it to k substrings `(subtext_(1), subtext_(2), ..., subtext_(k))` such that:\n\n*   `subtext_(i)` is a **non-empty** string.\n*   The concatenation of all the substrings is equal to `text` (i.e., `subtext_(1) + subtext_(2) + ... + subtext_(k) == text`).\n*   `subtext_(i) == subtext_(k - i + 1)` for all valid values of `i` (i.e., `1 <= i <= k`).\n\nReturn the largest possible value of `k`.\n\n**Example 1:**\n\n```\nInput: text = \"ghiabcdefhelloadamhelloabcdefghi\"\nOutput: 7\nExplanation: We can split the string on \"(ghi)(abcdef)(hello)(adam)(hello)(abcdef)(ghi)\".\n```\n\n**Example 2:**\n\n```\nInput: text = \"merchant\"\nOutput: 1\nExplanation: We can split the string on \"(merchant)\".\n```\n\n**Example 3:**\n\n```\nInput: text = \"antaprezatepzapreanta\"\nOutput: 11\nExplanation: We can split the string on \"(a)(nt)(a)(pre)(za)(tep)(za)(pre)(a)(nt)(a)\".\n```\n\n**Constraints:**\n\n*   `1 <= text.length <= 1000`\n*   `text` consists only of lowercase English characters.",
+  "constraints": [
+    "1 <= text.length <= 1000",
+    "text consists only of lowercase English characters."
+  ],
+  "examples": [
+    {
+      "input": "text = \"ghiabcdefhelloadamhelloabcdefghi\"",
+      "output": "7",
+      "explanation": "We can split the string on \"(ghi)(abcdef)(hello)(adam)(hello)(abcdef)(ghi)\"."
+    },
+    {
+      "input": "text = \"merchant\"",
+      "output": "1",
+      "explanation": "We can split the string on \"(merchant)\"."
+    },
+    {
+      "input": "text = \"antaprezatepzapreanta\"",
+      "output": "11",
+      "explanation": "We can split the string on \"(a)(nt)(a)(pre)(za)(tep)(za)(pre)(a)(nt)(a)\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestDecomposition(string text) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestDecomposition(String text) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestDecomposition(self, text: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestDecomposition(self, text):\n        \"\"\"\n        :type text: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} text\n * @return {number}\n */\nvar longestDecomposition = function(text) {\n    \n};",
+    "typescript": "function longestDecomposition(text: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestDecomposition(string text) {\n        \n    }\n}",
+    "c": "int longestDecomposition(char* text) {\n    \n}",
+    "golang": "func longestDecomposition(text string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestDecomposition(text: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestDecomposition(_ text: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_decomposition(text: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} text\n# @return {Integer}\ndef longest_decomposition(text)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $text\n     * @return Integer\n     */\n    function longestDecomposition($text) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestDecomposition(String text) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestDecomposition(text: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_decomposition(text :: String.t) :: integer\n  def longest_decomposition(text) do\n    \n  end\nend",
+    "erlang": "-spec longest_decomposition(Text :: unicode:unicode_binary()) -> integer().\nlongest_decomposition(Text) ->\n  .",
+    "racket": "(define/contract (longest-decomposition text)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"ghiabcdefhelloadamhelloabcdefghi\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"merchant\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"antaprezatepzapreanta\"",
+      "expectedOutput": "11"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"ghiabcdefhelloadamhelloabcdefghi\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"merchant\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"antaprezatepzapreanta\"",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "\"ghiabcdefhelload\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"amhelloabcdefghi\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"g\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"gh\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ihgfedcbaollehmadaollehfedcbaihg\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"gggggg\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"GHIABCDEFHELLOADAMHELLOABCDEFGHI\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Using a rolling hash, we can quickly check whether two strings are equal.",
+    "Use that as the basis of a dp."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-chunked-palindrome-decomposition/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.409Z",
+    "sourceUpdatedAt": null
+  }
+}

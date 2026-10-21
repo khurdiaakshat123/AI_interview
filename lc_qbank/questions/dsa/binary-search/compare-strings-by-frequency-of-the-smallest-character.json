@@ -1,0 +1,98 @@
+{
+  "id": "1170",
+  "slug": "compare-strings-by-frequency-of-the-smallest-character",
+  "title": "Compare Strings by Frequency of the Smallest Character",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Binary Search",
+    "Sorting"
+  ],
+  "statement": "Let the function `f(s)` be the **frequency of the lexicographically smallest character** in a non-empty string `s`. For example, if `s = \"dcce\"` then `f(s) = 2` because the lexicographically smallest character is `'c'`, which has a frequency of 2.\n\nYou are given an array of strings `words` and another array of query strings `queries`. For each query `queries[i]`, count the **number of words** in `words` such that `f(queries[i])` < `f(W)` for each `W` in `words`.\n\nReturn _an integer array_ `answer`_, where each_ `answer[i]` _is the answer to the_ `i^(th)` _query_.\n\n**Example 1:**\n\n```\nInput: queries = [\"cbd\"], words = [\"zaaaz\"]\nOutput: [1]\nExplanation: On the first query we have f(\"cbd\") = 1, f(\"zaaaz\") = 3 so f(\"cbd\") < f(\"zaaaz\").\n```\n\n**Example 2:**\n\n```\nInput: queries = [\"bbb\",\"cc\"], words = [\"a\",\"aa\",\"aaa\",\"aaaa\"]\nOutput: [1,2]\nExplanation: On the first query only f(\"bbb\") < f(\"aaaa\"). On the second query both f(\"aaa\") and f(\"aaaa\") are both > f(\"cc\").\n```\n\n**Constraints:**\n\n*   `1 <= queries.length <= 2000`\n*   `1 <= words.length <= 2000`\n*   `1 <= queries[i].length, words[i].length <= 10`\n*   `queries[i][j]`, `words[i][j]` consist of lowercase English letters.",
+  "constraints": [
+    "1 <= queries.length <= 2000",
+    "1 <= words.length <= 2000",
+    "1 <= queries[i].length, words[i].length <= 10",
+    "queries[i][j], words[i][j] consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "queries = [\"cbd\"], words = [\"zaaaz\"]",
+      "output": "[1]",
+      "explanation": "On the first query we have f(\"cbd\") = 1, f(\"zaaaz\") = 3 so f(\"cbd\") < f(\"zaaaz\")."
+    },
+    {
+      "input": "queries = [\"bbb\",\"cc\"], words = [\"a\",\"aa\",\"aaa\",\"aaaa\"]",
+      "output": "[1,2]",
+      "explanation": "On the first query only f(\"bbb\") < f(\"aaaa\"). On the second query both f(\"aaa\") and f(\"aaaa\") are both > f(\"cc\")."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> numSmallerByFrequency(vector<string>& queries, vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] numSmallerByFrequency(String[] queries, String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numSmallerByFrequency(self, queries: list[str], words: list[str]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def numSmallerByFrequency(self, queries, words):\n        \"\"\"\n        :type queries: List[str]\n        :type words: List[str]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} queries\n * @param {string[]} words\n * @return {number[]}\n */\nvar numSmallerByFrequency = function(queries, words) {\n    \n};",
+    "typescript": "function numSmallerByFrequency(queries: string[], words: string[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] NumSmallerByFrequency(string[] queries, string[] words) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* numSmallerByFrequency(char** queries, int queriesSize, char** words, int wordsSize, int* returnSize) {\n    \n}",
+    "golang": "func numSmallerByFrequency(queries []string, words []string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numSmallerByFrequency(queries: Array<String>, words: Array<String>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numSmallerByFrequency(_ queries: [String], _ words: [String]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_smaller_by_frequency(queries: Vec<String>, words: Vec<String>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} queries\n# @param {String[]} words\n# @return {Integer[]}\ndef num_smaller_by_frequency(queries, words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $queries\n     * @param String[] $words\n     * @return Integer[]\n     */\n    function numSmallerByFrequency($queries, $words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> numSmallerByFrequency(List<String> queries, List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numSmallerByFrequency(queries: Array[String], words: Array[String]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_smaller_by_frequency(queries :: [String.t], words :: [String.t]) :: [integer]\n  def num_smaller_by_frequency(queries, words) do\n    \n  end\nend",
+    "erlang": "-spec num_smaller_by_frequency(Queries :: [unicode:unicode_binary()], Words :: [unicode:unicode_binary()]) -> [integer()].\nnum_smaller_by_frequency(Queries, Words) ->\n  .",
+    "racket": "(define/contract (num-smaller-by-frequency queries words)\n  (-> (listof string?) (listof string?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"cbd\"]\n[\"zaaaz\"]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "[\"bbb\",\"cc\"]\n[\"a\",\"aa\",\"aaa\",\"aaaa\"]",
+      "expectedOutput": "[1,2]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"cbd\"]\n[\"zaaaz\"]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "[\"bbb\",\"cc\"]\n[\"a\",\"aa\",\"aaa\",\"aaaa\"]",
+      "expectedOutput": "[1,2]"
+    },
+    {
+      "input": "queries = [\"cbd\"], words = [\"zaaaz\"]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "queries = [\"bbb\",\"cc\"], words = [\"a\",\"aa\",\"aaa\",\"aaaa\"]",
+      "expectedOutput": "[1,2]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For each string from words calculate the leading count and store it in an array, then sort the integer array.",
+    "For each string from queries calculate the leading count \"p\" and in base of the sorted array calculated on the step 1 do a binary search to count the number of items greater than \"p\"."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/compare-strings-by-frequency-of-the-smallest-character/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.561Z",
+    "sourceUpdatedAt": null
+  }
+}

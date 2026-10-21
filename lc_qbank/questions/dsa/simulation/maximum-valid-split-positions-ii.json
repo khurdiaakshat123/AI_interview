@@ -1,0 +1,168 @@
+{
+  "id": "4037",
+  "slug": "maximum-valid-split-positions-ii",
+  "title": "Maximum Valid Split Positions II",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Enumeration",
+    "Number Theory"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nYou may remove **at most one** element from `nums`. Let `arr` be the array of remaining elements in their original order, and let `m` be its length.\n\nA **split position** `i` of `arr` is **valid** if:\n\n*   `0 <= i < m - 1`, and\n*   `gcd(arr[0..i]) == gcd(arr[i + 1..m - 1])`.\n\nAn array of length 1 has no valid split positions.\n\nThe **score** of `arr` is the number of valid split positions in it.\n\nReturn the **maximum possible score** of `arr`.\n\nHere, `gcd(a)` denotes the **greatest common divisor** of all elements in the array `a`.\n\n**Example 1:**\n\n**Input:** nums = \\[10,30,15,10\\]\n\n**Output:** 2\n\n**Explanation:**\n\nOne optimal solution is to remove `nums[2] = 15`. Then `arr = [10, 30, 10]`.\n\nThe split positions are:\n\nSplit Position `i`\n\n`gcd(arr[0..i])`\n\n`gcd(arr[i + 1..m - 1])`\n\n0\n\n10\n\n10\n\n1\n\n10\n\n10\n\nAll split positions are valid. Thus, the answer is 2.\n\n**Example 2:**\n\n**Input:** nums = \\[2,10,14\\]\n\n**Output:** 1\n\n**Explanation:**\n\nOne optimal solution is to not remove any element. Then `arr = [2, 10, 14]`.\n\nThe split positions are:\n\nSplit Position `i`\n\n`gcd(arr[0..i])`\n\n`gcd(arr[i + 1..m - 1])`\n\n0\n\n2\n\n2\n\n1\n\n2\n\n14\n\nOnly the split position at index 0 is valid. Thus, the answer is 1.\n\n**Example 3:**\n\n**Input:** nums = \\[2,4\\]\n\n**Output:** 0\n\n**Explanation:**\n\nThe only remaining array that has a split position is `arr = [2, 4]`.\n\nThe split positions are:\n\nSplit Position `i`\n\n`gcd(arr[0..i])`\n\n`gcd(arr[i + 1..m - 1])`\n\n0\n\n2\n\n4\n\nThere are no valid split positions. Thus, the answer is 0.\n\n**Constraints:**\n\n*   `2 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`​​​​​​​",
+  "constraints": [
+    "2 <= nums.length <= 105",
+    "1 <= nums[i] <= 109​​​​​​​"
+  ],
+  "examples": [
+    {
+      "input": "nums = [10,30,15,10]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2,10,14]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2,4]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxValidSplits(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxValidSplits(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxValidSplits(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxValidSplits(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxValidSplits = function(nums) {\n    \n};",
+    "typescript": "function maxValidSplits(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxValidSplits(int[] nums) {\n        \n    }\n}",
+    "c": "int maxValidSplits(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxValidSplits(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxValidSplits(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxValidSplits(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_valid_splits(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_valid_splits(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxValidSplits($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxValidSplits(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxValidSplits(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_valid_splits(nums :: [integer]) :: integer\n  def max_valid_splits(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_valid_splits(Nums :: [integer()]) -> integer().\nmax_valid_splits(Nums) ->\n  .",
+    "racket": "(define/contract (max-valid-splits nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[10,30,15,10]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,10,14]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[10,30,15,10]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,10,14]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[10,30]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[15,10]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[10,10]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[10,15,30,10]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[10,10,15,30]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[30,15,10,10]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[10,10,10,10]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[10,30,15,10,10,30,15,10]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[20,60,30,20]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[11,31,16,11]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[9,29,14,9]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-10,-30,-15,-10]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Precompute prefix and suffix GCDs, and also consider the case where no element is removed. For a fixed removed index <code>j</code>, splits entirely to either side of <code>j</code> can be expressed using the GCD of two unaffected ranges; if <code>0 < j < n - 1</code>, also consider the new split created between <code>nums[j - 1]</code> and <code>nums[j + 1]</code>.",
+    "Do not examine every split separately for every <code>j</code>. As one endpoint of a range moves, its GCD can change only a small number of times: every strict decrease changes it to a proper divisor. Group consecutive split positions having the same GCD and process those groups together."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-valid-split-positions-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.896Z",
+    "sourceUpdatedAt": null
+  }
+}

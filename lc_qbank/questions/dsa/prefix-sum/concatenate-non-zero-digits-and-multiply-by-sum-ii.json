@@ -1,0 +1,156 @@
+{
+  "id": "3756",
+  "slug": "concatenate-non-zero-digits-and-multiply-by-sum-ii",
+  "title": "Concatenate Non-Zero Digits and Multiply by Sum II",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "String",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a string `s` of length `m` consisting of digits. You are also given a 2D integer array `queries`, where `queries[i] = [l_(i), r_(i)]`.\n\nFor each `queries[i]`, extract the **substring** `s[l_(i)..r_(i)]`. Then, perform the following:\n\n*   Form a new integer `x` by concatenating all the **non-zero digits** from the substring in their original order. If there are no non-zero digits, `x = 0`.\n*   Let `sum` be the **sum of digits** in `x`. The answer is `x * sum`.\n\nReturn an array of integers `answer` where `answer[i]` is the answer to the `i^(th)` query.\n\nSince the answers may be very large, return them **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** s = \"10203004\", queries = \\[\\[0,7\\],\\[1,3\\],\\[4,6\\]\\]\n\n**Output:** \\[12340, 4, 9\\]\n\n**Explanation:**\n\n*   `s[0..7] = \"10203004\"`\n    *   `x = 1234`\n    *   `sum = 1 + 2 + 3 + 4 = 10`\n    *   Therefore, answer is `1234 * 10 = 12340`.\n*   `s[1..3] = \"020\"`\n    *   `x = 2`\n    *   `sum = 2`\n    *   Therefore, the answer is `2 * 2 = 4`.\n*   `s[4..6] = \"300\"`\n    *   `x = 3`\n    *   `sum = 3`\n    *   Therefore, the answer is `3 * 3 = 9`.\n\n**Example 2:**\n\n**Input:** s = \"1000\", queries = \\[\\[0,3\\],\\[1,1\\]\\]\n\n**Output:** \\[1, 0\\]\n\n**Explanation:**\n\n*   `s[0..3] = \"1000\"`\n    *   `x = 1`\n    *   `sum = 1`\n    *   Therefore, the answer is `1 * 1 = 1`.\n*   `s[1..1] = \"0\"`\n    *   `x = 0`\n    *   `sum = 0`\n    *   Therefore, the answer is `0 * 0 = 0`.\n\n**Example 3:**\n\n**Input:** s = \"9876543210\", queries = \\[\\[0,9\\]\\]\n\n**Output:** \\[444444137\\]\n\n**Explanation:**\n\n*   `s[0..9] = \"9876543210\"`\n    *   `x = 987654321`\n    *   `sum = 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45`\n    *   Therefore, the answer is `987654321 * 45 = 44444444445`.\n    *   We return `44444444445 modulo (10^(9) + 7) = 444444137`.\n\n**Constraints:**\n\n*   `1 <= m == s.length <= 10^(5)`\n*   `s` consists of digits only.\n*   `1 <= queries.length <= 10^(5)`\n*   `queries[i] = [l_(i), r_(i)]`\n*   `0 <= l_(i) <= r_(i) < m`",
+  "constraints": [
+    "1 <= m == s.length <= 105",
+    "s consists of digits only.",
+    "1 <= queries.length <= 105",
+    "queries[i] = [li, ri]",
+    "0 <= li <= ri < m"
+  ],
+  "examples": [
+    {
+      "input": "s = \"10203004\", queries = [[0,7],[1,3],[4,6]]",
+      "output": "[12340, 4, 9]",
+      "explanation": "s[0..7] = \"10203004\"\n\n\t\n\t\tx = 1234\n\t\tsum = 1 + 2 + 3 + 4 = 10\n\t\tTherefore, answer is 1234 * 10 = 12340.\n\t\n\t\n\ts[1..3] = \"020\"\n\t\n\t\tx = 2\n\t\tsum = 2\n\t\tTherefore, the answer is 2 * 2 = 4.\n\t\n\t\n\ts[4..6] = \"300\"\n\t\n\t\tx = 3\n\t\tsum = 3\n\t\tTherefore, the answer is 3 * 3 = 9."
+    },
+    {
+      "input": "s = \"1000\", queries = [[0,3],[1,1]]",
+      "output": "[1, 0]",
+      "explanation": "s[0..3] = \"1000\"\n\n\t\n\t\tx = 1\n\t\tsum = 1\n\t\tTherefore, the answer is 1 * 1 = 1.\n\t\n\t\n\ts[1..1] = \"0\"\n\t\n\t\tx = 0\n\t\tsum = 0\n\t\tTherefore, the answer is 0 * 0 = 0."
+    },
+    {
+      "input": "s = \"9876543210\", queries = [[0,9]]",
+      "output": "[444444137]",
+      "explanation": "s[0..9] = \"9876543210\"\n\n\t\n\t\tx = 987654321\n\t\tsum = 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45\n\t\tTherefore, the answer is 987654321 * 45 = 44444444445.\n\t\tWe return 44444444445 modulo (109 + 7) = 444444137."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> sumAndMultiply(string s, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] sumAndMultiply(String s, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sumAndMultiply(self, s: str, queries: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def sumAndMultiply(self, s, queries):\n        \"\"\"\n        :type s: str\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar sumAndMultiply = function(s, queries) {\n    \n};",
+    "typescript": "function sumAndMultiply(s: string, queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] SumAndMultiply(string s, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* sumAndMultiply(char* s, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func sumAndMultiply(s string, queries [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun sumAndMultiply(s: String, queries: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sumAndMultiply(_ s: String, _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sum_and_multiply(s: String, queries: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef sum_and_multiply(s, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function sumAndMultiply($s, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> sumAndMultiply(String s, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sumAndMultiply(s: String, queries: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sum_and_multiply(s :: String.t, queries :: [[integer]]) :: [integer]\n  def sum_and_multiply(s, queries) do\n    \n  end\nend",
+    "erlang": "-spec sum_and_multiply(S :: unicode:unicode_binary(), Queries :: [[integer()]]) -> [integer()].\nsum_and_multiply(S, Queries) ->\n  .",
+    "racket": "(define/contract (sum-and-multiply s queries)\n  (-> string? (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"10203004\"\n[[0,7],[1,3],[4,6]]",
+      "expectedOutput": "[12340, 4, 9]"
+    },
+    {
+      "input": "\"1000\"\n[[0,3],[1,1]]",
+      "expectedOutput": "[1, 0]"
+    },
+    {
+      "input": "\"9876543210\"\n[[0,9]]",
+      "expectedOutput": "[444444137]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"10203004\"\n[[0,7],[1,3],[4,6]]",
+      "expectedOutput": "[12340,4,9]"
+    },
+    {
+      "input": "\"1000\"\n[[0,3],[1,1]]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "\"9876543210\"\n[[0,9]]",
+      "expectedOutput": "[444444137]"
+    },
+    {
+      "input": "\"40030201\"\n[[0,7],[1,3],[4,6]]",
+      "expectedOutput": "[43210,9,4]"
+    },
+    {
+      "input": "\"1020300410203004\"\n[[0,7],[1,3],[4,6]]",
+      "expectedOutput": "[12340,4,9]"
+    },
+    {
+      "input": "\"1020300440030201\"\n[[0,7],[1,3],[4,6]]",
+      "expectedOutput": "[12340,4,9]"
+    },
+    {
+      "input": "\"0001\"\n[[0,3],[1,1]]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "\"10001000\"\n[[0,3],[1,1]]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "\"1111\"\n[[0,3],[1,1]]",
+      "expectedOutput": "[4444,1]"
+    },
+    {
+      "input": "\"10000001\"\n[[0,3],[1,1]]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "\"0123456789\"\n[[0,9]]",
+      "expectedOutput": "[555555470]"
+    },
+    {
+      "input": "\"98765432109876543210\"\n[[0,9]]",
+      "expectedOutput": "[444444137]"
+    },
+    {
+      "input": "\"98765432100123456789\"\n[[0,9]]",
+      "expectedOutput": "[444444137]"
+    },
+    {
+      "input": "\"10203004\"\n[[0,3],[1,1]]",
+      "expectedOutput": "[36,0]"
+    },
+    {
+      "input": "\"9876543210\"\n[[0,7],[1,3],[4,6]]",
+      "expectedOutput": "[345678980,18396,6516]"
+    },
+    {
+      "input": "\"9876543210\"\n[[0,3],[1,1]]",
+      "expectedOutput": "[296280,64]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Track only nonzero digits: store their values and positions and keep a prefix sum for digit sums.",
+    "Also build prefix concatenation values <code>P</code>, <code>pow10</code>, and set <code>mod = 10<sup>9</sup>+7</code> so any compressed substring number is obtainable from prefixes.",
+    "Map each query <code>[l, r]</code> to the compressed list using precomputed mapping arrays (first nonzero at or after <code>i</code>",
+    "If the mapped range is empty return <code>0</code>; otherwise get <code>x</code> from <code>P</code>, get <code>sum</code> from the digit-prefix, and return <code>(x * sum) % mod</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/concatenate-non-zero-digits-and-multiply-by-sum-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.634Z",
+    "sourceUpdatedAt": null
+  }
+}

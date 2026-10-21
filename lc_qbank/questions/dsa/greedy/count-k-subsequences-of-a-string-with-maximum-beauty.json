@@ -1,0 +1,166 @@
+{
+  "id": "2842",
+  "slug": "count-k-subsequences-of-a-string-with-maximum-beauty",
+  "title": "Count K-Subsequences of a String With Maximum Beauty",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Greedy",
+    "Sorting",
+    "Combinatorics",
+    "Fermat's Little Theorem"
+  ],
+  "statement": "You are given a string `s` and an integer `k`.\n\nA **k-subsequence** is a **subsequence** of `s`, having length `k`, and all its characters are **unique**, **i.e**., every character occurs once.\n\nLet `f(c)` denote the number of times the character `c` occurs in `s`.\n\nThe **beauty** of a **k-subsequence** is the **sum** of `f(c)` for every character `c` in the k-subsequence.\n\nFor example, consider `s = \"abbbdd\"` and `k = 2`:\n\n*   `f('a') = 1`, `f('b') = 3`, `f('d') = 2`\n*   Some k-subsequences of `s` are:\n    *   `\"**ab**bbdd\"` -> `\"ab\"` having a beauty of `f('a') + f('b') = 4`\n    *   `\"**a**bbb**d**d\"` -> `\"ad\"` having a beauty of `f('a') + f('d') = 3`\n    *   `\"a**b**bb**d**d\"` -> `\"bd\"` having a beauty of `f('b') + f('d') = 5`\n\nReturn _an integer denoting the number of k-subsequences_ _whose **beauty** is the **maximum** among all **k-subsequences**_. Since the answer may be too large, return it modulo `10^(9) + 7`.\n\nA subsequence of a string is a new string formed from the original string by deleting some (possibly none) of the characters without disturbing the relative positions of the remaining characters.\n\n**Notes**\n\n*   `f(c)` is the number of times a character `c` occurs in `s`, not a k-subsequence.\n*   Two k-subsequences are considered different if one is formed by an index that is not present in the other. So, two k-subsequences may form the same string.\n\n**Example 1:**\n\n```\nInput: s = \"bcca\", k = 2\nOutput: 4\nExplanation: From s we have f('a') = 1, f('b') = 1, and f('c') = 2.\nThe k-subsequences of s are: \nbcca having a beauty of f('b') + f('c') = 3 \nbcca having a beauty of f('b') + f('c') = 3 \nbcca having a beauty of f('b') + f('a') = 2 \nbcca having a beauty of f('c') + f('a') = 3\nbcca having a beauty of f('c') + f('a') = 3 \nThere are 4 k-subsequences that have the maximum beauty, 3. \nHence, the answer is 4.\n```\n\n**Example 2:**\n\n```\nInput: s = \"abbcd\", k = 4\nOutput: 2\nExplanation: From s we have f('a') = 1, f('b') = 2, f('c') = 1, and f('d') = 1. \nThe k-subsequences of s are: \nabbcd having a beauty of f('a') + f('b') + f('c') + f('d') = 5\nabbcd having a beauty of f('a') + f('b') + f('c') + f('d') = 5 \nThere are 2 k-subsequences that have the maximum beauty, 5. \nHence, the answer is 2.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 2 * 10^(5)`\n*   `1 <= k <= s.length`\n*   `s` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 2 * 105",
+    "1 <= k <= s.length",
+    "s consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"bcca\", k = 2",
+      "output": "4",
+      "explanation": "From s we have f('a') = 1, f('b') = 1, and f('c') = 2.\nThe k-subsequences of s are: \nbcca having a beauty of f('b') + f('c') = 3 \nbcca having a beauty of f('b') + f('c') = 3 \nbcca having a beauty of f('b') + f('a') = 2 \nbcca having a beauty of f('c') + f('a') = 3\nbcca having a beauty of f('c') + f('a') = 3 \nThere are 4 k-subsequences that have the maximum beauty, 3. \nHence, the answer is 4."
+    },
+    {
+      "input": "s = \"abbcd\", k = 4",
+      "output": "2",
+      "explanation": "From s we have f('a') = 1, f('b') = 2, f('c') = 1, and f('d') = 1. \nThe k-subsequences of s are: \nabbcd having a beauty of f('a') + f('b') + f('c') + f('d') = 5\nabbcd having a beauty of f('a') + f('b') + f('c') + f('d') = 5 \nThere are 2 k-subsequences that have the maximum beauty, 5. \nHence, the answer is 2."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countKSubsequencesWithMaxBeauty(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countKSubsequencesWithMaxBeauty(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countKSubsequencesWithMaxBeauty(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countKSubsequencesWithMaxBeauty(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar countKSubsequencesWithMaxBeauty = function(s, k) {\n    \n};",
+    "typescript": "function countKSubsequencesWithMaxBeauty(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountKSubsequencesWithMaxBeauty(string s, int k) {\n        \n    }\n}",
+    "c": "int countKSubsequencesWithMaxBeauty(char* s, int k) {\n    \n}",
+    "golang": "func countKSubsequencesWithMaxBeauty(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countKSubsequencesWithMaxBeauty(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countKSubsequencesWithMaxBeauty(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_k_subsequences_with_max_beauty(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef count_k_subsequences_with_max_beauty(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function countKSubsequencesWithMaxBeauty($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countKSubsequencesWithMaxBeauty(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countKSubsequencesWithMaxBeauty(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_k_subsequences_with_max_beauty(s :: String.t, k :: integer) :: integer\n  def count_k_subsequences_with_max_beauty(s, k) do\n    \n  end\nend",
+    "erlang": "-spec count_k_subsequences_with_max_beauty(S :: unicode:unicode_binary(), K :: integer()) -> integer().\ncount_k_subsequences_with_max_beauty(S, K) ->\n  .",
+    "racket": "(define/contract (count-k-subsequences-with-max-beauty s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"bcca\"\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abbcd\"\n4",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"bcca\"\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abbcd\"\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"bc\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ca\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"accb\"\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"bccabcca\"\n2",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "\"bbbb\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"bccaaccb\"\n2",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "\"BCCA\"\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"edcba\"\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"aab\"\n2",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Since every character appears once in a k-subsequence, we can solve the following problem first: Find the total number of ways to select <code>k</code> characters such that the sum of their frequencies is maximum.",
+    "An obvious case to eliminate is if <code>k</code> is greater than the number of distinct characters in <code>s</code>, then the answer is <code>0</code>.",
+    "We are now interested in the top frequencies among the characters. Using a map data structure, let <code>cnt[x]</code> denote the number of characters that have a frequency of <code>x</code>.",
+    "Starting from the maximum value <code>x</code> in <code>cnt</code>. Let <code>i = min(k, cnt[x])</code> we add to our result <code> <sup>cnt[x]</sup>C<sub>i</sub> * x<sup>i</sup></code> representing the number of ways to select <code>i</code> characters from all characters with frequency <code>x</code>, multiplied by the number of ways to choose each individual character. Subtract <code>i</code> from <code>k</code> and continue downwards to the next maximum value.",
+    "Powers, combinations, and additions should be done modulo <code>10<sup>9</sup> + 7</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-k-subsequences-of-a-string-with-maximum-beauty/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.240Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "id": "2325",
+  "slug": "decode-the-message",
+  "title": "Decode the Message",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "statement": "You are given the strings `key` and `message`, which represent a cipher key and a secret message, respectively. The steps to decode `message` are as follows:\n\n1.  Use the **first** appearance of all 26 lowercase English letters in `key` as the **order** of the substitution table.\n2.  Align the substitution table with the regular English alphabet.\n3.  Each letter in `message` is then **substituted** using the table.\n4.  Spaces `' '` are transformed to themselves.\n\n*   For example, given `key = \"**hap**p**y** **bo**y\"` (actual key would have **at least one** instance of each letter in the alphabet), we have the partial substitution table of (`'h' -> 'a'`, `'a' -> 'b'`, `'p' -> 'c'`, `'y' -> 'd'`, `'b' -> 'e'`, `'o' -> 'f'`).\n\nReturn _the decoded message_.\n\n**Example 1:**\n\n![](./assets/decode-the-message-1.jpg)\n```\nInput: key = \"the quick brown fox jumps over the lazy dog\", message = \"vkbs bs t suepuv\"\nOutput: \"this is a secret\"\nExplanation: The diagram above shows the substitution table.\nIt is obtained by taking the first appearance of each letter in \"the quick brown fox jumps over the lazy dog\".\n```\n\n**Example 2:**\n\n![](./assets/decode-the-message-2.jpg)\n```\nInput: key = \"eljuxhpwnyrdgtqkviszcfmabo\", message = \"zwx hnfx lqantp mnoeius ycgk vcnjrdb\"\nOutput: \"the five boxing wizards jump quickly\"\nExplanation: The diagram above shows the substitution table.\nIt is obtained by taking the first appearance of each letter in \"eljuxhpwnyrdgtqkviszcfmabo\".\n```\n\n**Constraints:**\n\n*   `26 <= key.length <= 2000`\n*   `key` consists of lowercase English letters and `' '`.\n*   `key` contains every letter in the English alphabet (`'a'` to `'z'`) **at least once**.\n*   `1 <= message.length <= 2000`\n*   `message` consists of lowercase English letters and `' '`.",
+  "constraints": [
+    "26 <= key.length <= 2000",
+    "key consists of lowercase English letters and ' '.",
+    "key contains every letter in the English alphabet ('a' to 'z') at least once.",
+    "1 <= message.length <= 2000",
+    "message consists of lowercase English letters and ' '."
+  ],
+  "examples": [
+    {
+      "input": "key = \"the quick brown fox jumps over the lazy dog\", message = \"vkbs bs t suepuv\"",
+      "output": "\"this is a secret\"",
+      "explanation": "The diagram above shows the substitution table.\nIt is obtained by taking the first appearance of each letter in \"the quick brown fox jumps over the lazy dog\"."
+    },
+    {
+      "input": "key = \"eljuxhpwnyrdgtqkviszcfmabo\", message = \"zwx hnfx lqantp mnoeius ycgk vcnjrdb\"",
+      "output": "\"the five boxing wizards jump quickly\"",
+      "explanation": "The diagram above shows the substitution table.\nIt is obtained by taking the first appearance of each letter in \"eljuxhpwnyrdgtqkviszcfmabo\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string decodeMessage(string key, string message) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String decodeMessage(String key, String message) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def decodeMessage(self, key: str, message: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def decodeMessage(self, key, message):\n        \"\"\"\n        :type key: str\n        :type message: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} key\n * @param {string} message\n * @return {string}\n */\nvar decodeMessage = function(key, message) {\n    \n};",
+    "typescript": "function decodeMessage(key: string, message: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string DecodeMessage(string key, string message) {\n        \n    }\n}",
+    "c": "char* decodeMessage(char* key, char* message) {\n    \n}",
+    "golang": "func decodeMessage(key string, message string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun decodeMessage(key: String, message: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func decodeMessage(_ key: String, _ message: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn decode_message(key: String, message: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} key\n# @param {String} message\n# @return {String}\ndef decode_message(key, message)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $key\n     * @param String $message\n     * @return String\n     */\n    function decodeMessage($key, $message) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String decodeMessage(String key, String message) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def decodeMessage(key: String, message: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec decode_message(key :: String.t, message :: String.t) :: String.t\n  def decode_message(key, message) do\n    \n  end\nend",
+    "erlang": "-spec decode_message(Key :: unicode:unicode_binary(), Message :: unicode:unicode_binary()) -> unicode:unicode_binary().\ndecode_message(Key, Message) ->\n  .",
+    "racket": "(define/contract (decode-message key message)\n  (-> string? string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"the quick brown fox jumps over the lazy dog\"\n\"vkbs bs t suepuv\"",
+      "expectedOutput": "\"this is a secret\""
+    },
+    {
+      "input": "\"eljuxhpwnyrdgtqkviszcfmabo\"\n\"zwx hnfx lqantp mnoeius ycgk vcnjrdb\"",
+      "expectedOutput": "\"the five boxing wizards jump quickly\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"the quick brown fox jumps over the lazy dog\"\n\"vkbs bs t suepuv\"",
+      "expectedOutput": "\"this is a secret\""
+    },
+    {
+      "input": "\"eljuxhpwnyrdgtqkviszcfmabo\"\n\"zwx hnfx lqantp mnoeius ycgk vcnjrdb\"",
+      "expectedOutput": "\"the five boxing wizards jump quickly\""
+    },
+    {
+      "input": "key = \"the quick brown fox jumps over the lazy dog\", message = \"vkbs bs t suepuv\"",
+      "expectedOutput": "\"this is a secret\""
+    },
+    {
+      "input": "key = \"eljuxhpwnyrdgtqkviszcfmabo\", message = \"zwx hnfx lqantp mnoeius ycgk vcnjrdb\"",
+      "expectedOutput": "\"the five boxing wizards jump quickly\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate through the characters in the key to construct a mapping to the English alphabet.",
+    "Make sure to check that the current character is not already in the mapping (only the first appearance is considered).",
+    "Map the characters in the message according to the constructed mapping."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/decode-the-message/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.190Z",
+    "sourceUpdatedAt": null
+  }
+}

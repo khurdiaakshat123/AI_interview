@@ -1,0 +1,90 @@
+{
+  "id": "2931",
+  "slug": "maximum-spending-after-buying-items",
+  "title": "Maximum Spending After Buying Items",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Matrix"
+  ],
+  "statement": "You are given a **0-indexed** `m * n` integer matrix `values`, representing the values of `m * n` different items in `m` different shops. Each shop has `n` items where the `j^(th)` item in the `i^(th)` shop has a value of `values[i][j]`. Additionally, the items in the `i^(th)` shop are sorted in non-increasing order of value. That is, `values[i][j] >= values[i][j + 1]` for all `0 <= j < n - 1`.\n\nOn each day, you would like to buy a single item from one of the shops. Specifically, On the `d^(th)` day you can:\n\n*   Pick any shop `i`.\n*   Buy the rightmost available item `j` for the price of `values[i][j] * d`. That is, find the greatest index `j` such that item `j` was never bought before, and buy it for the price of `values[i][j] * d`.\n\n**Note** that all items are pairwise different. For example, if you have bought item `0` from shop `1`, you can still buy item `0` from any other shop.\n\nReturn _the **maximum amount of money that can be spent** on buying all_ `m * n` _products_.\n\n**Example 1:**\n\n```\nInput: values = [[8,5,2],[6,4,1],[9,7,3]]\nOutput: 285\nExplanation: On the first day, we buy product 2 from shop 1 for a price of values[1][2] * 1 = 1.\nOn the second day, we buy product 2 from shop 0 for a price of values[0][2] * 2 = 4.\nOn the third day, we buy product 2 from shop 2 for a price of values[2][2] * 3 = 9.\nOn the fourth day, we buy product 1 from shop 1 for a price of values[1][1] * 4 = 16.\nOn the fifth day, we buy product 1 from shop 0 for a price of values[0][1] * 5 = 25.\nOn the sixth day, we buy product 0 from shop 1 for a price of values[1][0] * 6 = 36.\nOn the seventh day, we buy product 1 from shop 2 for a price of values[2][1] * 7 = 49.\nOn the eighth day, we buy product 0 from shop 0 for a price of values[0][0] * 8 = 64.\nOn the ninth day, we buy product 0 from shop 2 for a price of values[2][0] * 9 = 81.\nHence, our total spending is equal to 285.\nIt can be shown that 285 is the maximum amount of money that can be spent buying all m * n products.\n```\n\n**Example 2:**\n\n```\nInput: values = [[10,8,6,4,2],[9,7,5,3,2]]\nOutput: 386\nExplanation: On the first day, we buy product 4 from shop 0 for a price of values[0][4] * 1 = 2.\nOn the second day, we buy product 4 from shop 1 for a price of values[1][4] * 2 = 4.\nOn the third day, we buy product 3 from shop 1 for a price of values[1][3] * 3 = 9.\nOn the fourth day, we buy product 3 from shop 0 for a price of values[0][3] * 4 = 16.\nOn the fifth day, we buy product 2 from shop 1 for a price of values[1][2] * 5 = 25.\nOn the sixth day, we buy product 2 from shop 0 for a price of values[0][2] * 6 = 36.\nOn the seventh day, we buy product 1 from shop 1 for a price of values[1][1] * 7 = 49.\nOn the eighth day, we buy product 1 from shop 0 for a price of values[0][1] * 8 = 64\nOn the ninth day, we buy product 0 from shop 1 for a price of values[1][0] * 9 = 81.\nOn the tenth day, we buy product 0 from shop 0 for a price of values[0][0] * 10 = 100.\nHence, our total spending is equal to 386.\nIt can be shown that 386 is the maximum amount of money that can be spent buying all m * n products.\n```\n\n**Constraints:**\n\n*   `1 <= m == values.length <= 10`\n*   `1 <= n == values[i].length <= 10^(4)`\n*   `1 <= values[i][j] <= 10^(6)`\n*   `values[i]` are sorted in non-increasing order.",
+  "constraints": [
+    "1 <= m == values.length <= 10",
+    "1 <= n == values[i].length <= 104",
+    "1 <= values[i][j] <= 106",
+    "values[i] are sorted in non-increasing order."
+  ],
+  "examples": [
+    {
+      "input": "values = [[8,5,2],[6,4,1],[9,7,3]]",
+      "output": "285",
+      "explanation": "On the first day, we buy product 2 from shop 1 for a price of values[1][2] * 1 = 1.\nOn the second day, we buy product 2 from shop 0 for a price of values[0][2] * 2 = 4.\nOn the third day, we buy product 2 from shop 2 for a price of values[2][2] * 3 = 9.\nOn the fourth day, we buy product 1 from shop 1 for a price of values[1][1] * 4 = 16.\nOn the fifth day, we buy product 1 from shop 0 for a price of values[0][1] * 5 = 25.\nOn the sixth day, we buy product 0 from shop 1 for a price of values[1][0] * 6 = 36.\nOn the seventh day, we buy product 1 from shop 2 for a price of values[2][1] * 7 = 49.\nOn the eighth day, we buy product 0 from shop 0 for a price of values[0][0] * 8 = 64.\nOn the ninth day, we buy product 0 from shop 2 for a price of values[2][0] * 9 = 81.\nHence, our total spending is equal to 285.\nIt can be shown that 285 is the maximum amount of money that can be spent buying all m * n products."
+    },
+    {
+      "input": "values = [[10,8,6,4,2],[9,7,5,3,2]]",
+      "output": "386",
+      "explanation": "On the first day, we buy product 4 from shop 0 for a price of values[0][4] * 1 = 2.\nOn the second day, we buy product 4 from shop 1 for a price of values[1][4] * 2 = 4.\nOn the third day, we buy product 3 from shop 1 for a price of values[1][3] * 3 = 9.\nOn the fourth day, we buy product 3 from shop 0 for a price of values[0][3] * 4 = 16.\nOn the fifth day, we buy product 2 from shop 1 for a price of values[1][2] * 5 = 25.\nOn the sixth day, we buy product 2 from shop 0 for a price of values[0][2] * 6 = 36.\nOn the seventh day, we buy product 1 from shop 1 for a price of values[1][1] * 7 = 49.\nOn the eighth day, we buy product 1 from shop 0 for a price of values[0][1] * 8 = 64\nOn the ninth day, we buy product 0 from shop 1 for a price of values[1][0] * 9 = 81.\nOn the tenth day, we buy product 0 from shop 0 for a price of values[0][0] * 10 = 100.\nHence, our total spending is equal to 386.\nIt can be shown that 386 is the maximum amount of money that can be spent buying all m * n products."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxSpending(vector<vector<int>>& values) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxSpending(int[][] values) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSpending(self, values: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSpending(self, values):\n        \"\"\"\n        :type values: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} values\n * @return {number}\n */\nvar maxSpending = function(values) {\n    \n};",
+    "typescript": "function maxSpending(values: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxSpending(int[][] values) {\n        \n    }\n}",
+    "c": "long long maxSpending(int** values, int valuesSize, int* valuesColSize) {\n    \n}",
+    "golang": "func maxSpending(values [][]int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSpending(values: Array<IntArray>): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSpending(_ values: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_spending(values: Vec<Vec<i32>>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} values\n# @return {Integer}\ndef max_spending(values)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $values\n     * @return Integer\n     */\n    function maxSpending($values) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSpending(List<List<int>> values) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSpending(values: Array[Array[Int]]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_spending(values :: [[integer]]) :: integer\n  def max_spending(values) do\n    \n  end\nend",
+    "erlang": "-spec max_spending(Values :: [[integer()]]) -> integer().\nmax_spending(Values) ->\n  .",
+    "racket": "(define/contract (max-spending values)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[8,5,2],[6,4,1],[9,7,3]]",
+      "expectedOutput": "285"
+    },
+    {
+      "input": "[[10,8,6,4,2],[9,7,5,3,2]]",
+      "expectedOutput": "386"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[8,5,2],[6,4,1],[9,7,3]]",
+      "expectedOutput": "285"
+    },
+    {
+      "input": "[[10,8,6,4,2],[9,7,5,3,2]]",
+      "expectedOutput": "386"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate on days <code>1</code> to <code>m * n</code>.",
+    "On each day, buy the product that minimizes <code>values[i][values[i].length - 1]</code>, and pop it from <code>values[i]</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-spending-after-buying-items/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.606Z",
+    "sourceUpdatedAt": null
+  }
+}

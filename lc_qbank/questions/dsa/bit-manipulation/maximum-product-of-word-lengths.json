@@ -1,0 +1,165 @@
+{
+  "id": "318",
+  "slug": "maximum-product-of-word-lengths",
+  "title": "Maximum Product of Word Lengths",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Bit Manipulation"
+  ],
+  "statement": "Given a string array `words`, return _the maximum value of_ `length(word[i]) * length(word[j])` _where the two words do not share common letters_. If no such two words exist, return `0`.\n\n**Example 1:**\n\n```\nInput: words = [\"abcw\",\"baz\",\"foo\",\"bar\",\"xtfn\",\"abcdef\"]\nOutput: 16\nExplanation: The two words can be \"abcw\", \"xtfn\".\n```\n\n**Example 2:**\n\n```\nInput: words = [\"a\",\"ab\",\"abc\",\"d\",\"cd\",\"bcd\",\"abcd\"]\nOutput: 4\nExplanation: The two words can be \"ab\", \"cd\".\n```\n\n**Example 3:**\n\n```\nInput: words = [\"a\",\"aa\",\"aaa\",\"aaaa\"]\nOutput: 0\nExplanation: No such pair of words.\n```\n\n**Constraints:**\n\n*   `2 <= words.length <= 1000`\n*   `1 <= words[i].length <= 1000`\n*   `words[i]` consists only of lowercase English letters.",
+  "constraints": [
+    "2 <= words.length <= 1000",
+    "1 <= words[i].length <= 1000",
+    "words[i] consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"abcw\",\"baz\",\"foo\",\"bar\",\"xtfn\",\"abcdef\"]",
+      "output": "16",
+      "explanation": "The two words can be \"abcw\", \"xtfn\"."
+    },
+    {
+      "input": "words = [\"a\",\"ab\",\"abc\",\"d\",\"cd\",\"bcd\",\"abcd\"]",
+      "output": "4",
+      "explanation": "The two words can be \"ab\", \"cd\"."
+    },
+    {
+      "input": "words = [\"a\",\"aa\",\"aaa\",\"aaaa\"]",
+      "output": "0",
+      "explanation": "No such pair of words."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxProduct(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxProduct(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProduct(self, words: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxProduct(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {number}\n */\nvar maxProduct = function(words) {\n    \n};",
+    "typescript": "function maxProduct(words: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxProduct(string[] words) {\n        \n    }\n}",
+    "c": "int maxProduct(char** words, int wordsSize) {\n    \n}",
+    "golang": "func maxProduct(words []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProduct(words: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProduct(_ words: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_product(words: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Integer}\ndef max_product(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Integer\n     */\n    function maxProduct($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxProduct(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProduct(words: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_product(words :: [String.t]) :: integer\n  def max_product(words) do\n    \n  end\nend",
+    "erlang": "-spec max_product(Words :: [unicode:unicode_binary()]) -> integer().\nmax_product(Words) ->\n  .",
+    "racket": "(define/contract (max-product words)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"abcw\",\"baz\",\"foo\",\"bar\",\"xtfn\",\"abcdef\"]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[\"a\",\"ab\",\"abc\",\"d\",\"cd\",\"bcd\",\"abcd\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"a\",\"aa\",\"aaa\",\"aaaa\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"abcw\",\"baz\",\"foo\",\"bar\",\"xtfn\",\"abcdef\"]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[\"a\",\"ab\",\"abc\",\"d\",\"cd\",\"bcd\",\"abcd\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"a\",\"aa\",\"aaa\",\"aaaa\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"abcw\",\"baz\",\"foo\"]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[\"bar\",\"xtfn\",\"abcdef\"]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[\"abcw\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"abcw\",\"abcdef\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"abcw\",\"baz\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"abcdef\",\"xtfn\",\"bar\",\"foo\",\"baz\",\"abcw\"]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[\"abcdef\",\"abcw\",\"bar\",\"baz\",\"foo\",\"xtfn\"]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[\"xtfn\",\"foo\",\"baz\",\"bar\",\"abcw\",\"abcdef\"]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[\"abcw\",\"abcw\",\"abcw\",\"abcw\",\"abcw\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"abcw\",\"baz\",\"foo\",\"bar\",\"xtfn\",\"abcdef\",\"abcw\",\"baz\",\"foo\",\"bar\",\"xtfn\",\"abcdef\"]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-product-of-word-lengths/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.454Z",
+    "sourceUpdatedAt": null
+  }
+}

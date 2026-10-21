@@ -1,0 +1,158 @@
+{
+  "id": "3351",
+  "slug": "sum-of-good-subsequences",
+  "title": "Sum of Good Subsequences",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given an integer array `nums`. A **good** subsequence is defined as a subsequence of `nums` where the absolute difference between any **two** consecutive elements in the subsequence is **exactly** 1.\n\nReturn the **sum** of all _possible_ **good subsequences** of `nums`.\n\nSince the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Note** that a subsequence of size 1 is considered good by definition.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,1\\]\n\n**Output:** 14\n\n**Explanation:**\n\n*   Good subsequences are: `[1]`, `[2]`, `[1]`, `[1,2]`, `[2,1]`, `[1,2,1]`.\n*   The sum of elements in these subsequences is 14.\n\n**Example 2:**\n\n**Input:** nums = \\[3,4,5\\]\n\n**Output:** 40\n\n**Explanation:**\n\n*   Good subsequences are: `[3]`, `[4]`, `[5]`, `[3,4]`, `[4,5]`, `[3,4,5]`.\n*   The sum of elements in these subsequences is 40.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `0 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "0 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,1]",
+      "output": "14",
+      "explanation": "Good subsequences are: [1], [2], [1], [1,2], [2,1], [1,2,1].\n\tThe sum of elements in these subsequences is 14."
+    },
+    {
+      "input": "nums = [3,4,5]",
+      "output": "40",
+      "explanation": "Good subsequences are: [3], [4], [5], [3,4], [4,5], [3,4,5].\n\tThe sum of elements in these subsequences is 40."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int sumOfGoodSubsequences(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int sumOfGoodSubsequences(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sumOfGoodSubsequences(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def sumOfGoodSubsequences(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar sumOfGoodSubsequences = function(nums) {\n    \n};",
+    "typescript": "function sumOfGoodSubsequences(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SumOfGoodSubsequences(int[] nums) {\n        \n    }\n}",
+    "c": "int sumOfGoodSubsequences(int* nums, int numsSize) {\n    \n}",
+    "golang": "func sumOfGoodSubsequences(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun sumOfGoodSubsequences(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sumOfGoodSubsequences(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sum_of_good_subsequences(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef sum_of_good_subsequences(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function sumOfGoodSubsequences($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int sumOfGoodSubsequences(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sumOfGoodSubsequences(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sum_of_good_subsequences(nums :: [integer]) :: integer\n  def sum_of_good_subsequences(nums) do\n    \n  end\nend",
+    "erlang": "-spec sum_of_good_subsequences(Nums :: [integer()]) -> integer().\nsum_of_good_subsequences(Nums) ->\n  .",
+    "racket": "(define/contract (sum-of-good-subsequences nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,1]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[3,4,5]",
+      "expectedOutput": "40"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,1]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[3,4,5]",
+      "expectedOutput": "40"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,2]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[2,1,1]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,1,1,2,1]",
+      "expectedOutput": "104"
+    },
+    {
+      "input": "[2,4,2]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[2,3,2]",
+      "expectedOutput": "24"
+    },
+    {
+      "input": "[0,1,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-1,-2,-1]",
+      "expectedOutput": "999999993"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1000000006"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "20"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider counting how many times each element occurs in all possible good subsequences. This can help you derive the final answer more easily.",
+    "Use dynamic programming to track both the count and the sum of subsequences where the last element is <code>nums[i]</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sum-of-good-subsequences/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.607Z",
+    "sourceUpdatedAt": null
+  }
+}

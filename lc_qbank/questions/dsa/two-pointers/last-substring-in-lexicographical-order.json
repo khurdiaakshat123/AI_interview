@@ -1,0 +1,160 @@
+{
+  "id": "1163",
+  "slug": "last-substring-in-lexicographical-order",
+  "title": "Last Substring in Lexicographical Order",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Hard",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Lyndon Factorization"
+  ],
+  "statement": "Given a string `s`, return _the last substring of_ `s` _in lexicographical order_.\n\n**Example 1:**\n\n```\nInput: s = \"abab\"\nOutput: \"bab\"\nExplanation: The substrings are [\"a\", \"ab\", \"aba\", \"abab\", \"b\", \"ba\", \"bab\"]. The lexicographically maximum substring is \"bab\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"leetcode\"\nOutput: \"tcode\"\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 4 * 10^(5)`\n*   `s` contains only lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 4 * 105",
+    "s contains only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abab\"",
+      "output": "\"bab\"",
+      "explanation": "The substrings are [\"a\", \"ab\", \"aba\", \"abab\", \"b\", \"ba\", \"bab\"]. The lexicographically maximum substring is \"bab\"."
+    },
+    {
+      "input": "s = \"leetcode\"",
+      "output": "\"tcode\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string lastSubstring(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String lastSubstring(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lastSubstring(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def lastSubstring(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar lastSubstring = function(s) {\n    \n};",
+    "typescript": "function lastSubstring(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LastSubstring(string s) {\n        \n    }\n}",
+    "c": "char* lastSubstring(char* s) {\n    \n}",
+    "golang": "func lastSubstring(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun lastSubstring(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lastSubstring(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn last_substring(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef last_substring(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function lastSubstring($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String lastSubstring(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lastSubstring(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec last_substring(s :: String.t) :: String.t\n  def last_substring(s) do\n    \n  end\nend",
+    "erlang": "-spec last_substring(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nlast_substring(S) ->\n  .",
+    "racket": "(define/contract (last-substring s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abab\"",
+      "expectedOutput": "\"bab\""
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "\"tcode\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abab\"",
+      "expectedOutput": "\"bab\""
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "\"tcode\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"baba\"",
+      "expectedOutput": "\"baba\""
+    },
+    {
+      "input": "\"abababab\"",
+      "expectedOutput": "\"bababab\""
+    },
+    {
+      "input": "\"aaaa\"",
+      "expectedOutput": "\"aaaa\""
+    },
+    {
+      "input": "\"ababbaba\"",
+      "expectedOutput": "\"bbaba\""
+    },
+    {
+      "input": "\"ABAB\"",
+      "expectedOutput": "\"BAB\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"bba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"e\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "\"aA\""
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "\"0\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Assume that the answer is a sub-string from index i to j. If you add the character at index j+1 you get a better answer.",
+    "The answer is always a suffix of the given string.",
+    "Since the limits are high, we need an efficient data structure.",
+    "Use suffix array."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/last-substring-in-lexicographical-order/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.082Z",
+    "sourceUpdatedAt": null
+  }
+}

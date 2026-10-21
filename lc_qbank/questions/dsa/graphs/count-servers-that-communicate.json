@@ -1,0 +1,105 @@
+{
+  "id": "1267",
+  "slug": "count-servers-that-communicate",
+  "title": "Count Servers that Communicate",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix",
+    "Counting"
+  ],
+  "statement": "You are given a map of a server center, represented as a `m * n` integer matrix `grid`, where 1 means that on that cell there is a server and 0 means that it is no server. Two servers are said to communicate if they are on the same row or on the same column.  \n  \nReturn the number of servers that communicate with any other server.\n\n**Example 1:**\n\n![](./assets/count-servers-that-communicate-1.jpg)\n\n```\nInput: grid = [[1,0],[0,1]]\nOutput: 0\nExplanation: No servers can communicate with others.\n```\n\n**Example 2:**\n\n**![](./assets/count-servers-that-communicate-2.jpg)**\n\n```\nInput: grid = [[1,0],[1,1]]\nOutput: 3\nExplanation: All three servers can communicate with at least one other server.\n```\n\n**Example 3:**\n\n![](./assets/count-servers-that-communicate-3.jpg)\n\n```\nInput: grid = [[1,1,0,0],[0,0,1,0],[0,0,1,0],[0,0,0,1]]\nOutput: 4\nExplanation: The two servers in the first row can communicate with each other. The two servers in the third column can communicate with each other. The server at right bottom corner can't communicate with any other server.\n```\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m <= 250`\n*   `1 <= n <= 250`\n*   `grid[i][j] == 0 or 1`",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m <= 250",
+    "1 <= n <= 250",
+    "grid[i][j] == 0 or 1"
+  ],
+  "examples": [
+    {
+      "input": "grid = [[1,0],[0,1]]",
+      "output": "0",
+      "explanation": " No servers can communicate with others."
+    },
+    {
+      "input": "grid = [[1,0],[1,1]]",
+      "output": "3",
+      "explanation": " All three servers can communicate with at least one other server."
+    },
+    {
+      "input": "grid = [[1,1,0,0],[0,0,1,0],[0,0,1,0],[0,0,0,1]]",
+      "output": "4",
+      "explanation": " The two servers in the first row can communicate with each other. The two servers in the third column can communicate with each other. The server at right bottom corner can't communicate with any other server."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countServers(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countServers(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countServers(self, grid: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countServers(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar countServers = function(grid) {\n    \n};",
+    "typescript": "function countServers(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountServers(int[][] grid) {\n        \n    }\n}",
+    "c": "int countServers(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func countServers(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countServers(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countServers(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_servers(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef count_servers(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function countServers($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countServers(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countServers(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_servers(grid :: [[integer]]) :: integer\n  def count_servers(grid) do\n    \n  end\nend",
+    "erlang": "-spec count_servers(Grid :: [[integer()]]) -> integer().\ncount_servers(Grid) ->\n  .",
+    "racket": "(define/contract (count-servers grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,0],[0,1]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[1,0],[1,1]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[1,1,0,0],[0,0,1,0],[0,0,1,0],[0,0,0,1]]",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,0],[0,1]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[1,0],[1,1]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[1,1,0,0],[0,0,1,0],[0,0,1,0],[0,0,0,1]]",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Store number of computer in each row and column.",
+    "Count all servers that are not isolated."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-servers-that-communicate/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.548Z",
+    "sourceUpdatedAt": null
+  }
+}

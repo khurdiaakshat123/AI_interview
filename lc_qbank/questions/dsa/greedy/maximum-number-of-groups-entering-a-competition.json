@@ -1,0 +1,161 @@
+{
+  "id": "2358",
+  "slug": "maximum-number-of-groups-entering-a-competition",
+  "title": "Maximum Number of Groups Entering a Competition",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Greedy"
+  ],
+  "statement": "You are given a positive integer array `grades` which represents the grades of students in a university. You would like to enter **all** these students into a competition in **ordered** non-empty groups, such that the ordering meets the following conditions:\n\n*   The sum of the grades of students in the `i^(th)` group is **less than** the sum of the grades of students in the `(i + 1)^(th)` group, for all groups (except the last).\n*   The total number of students in the `i^(th)` group is **less than** the total number of students in the `(i + 1)^(th)` group, for all groups (except the last).\n\nReturn _the **maximum** number of groups that can be formed_.\n\n**Example 1:**\n\n```\nInput: grades = [10,6,12,7,3,5]\nOutput: 3\nExplanation: The following is a possible way to form 3 groups of students:\n- 1st group has the students with grades = [12]. Sum of grades: 12. Student count: 1\n- 2nd group has the students with grades = [6,7]. Sum of grades: 6 + 7 = 13. Student count: 2\n- 3rd group has the students with grades = [10,3,5]. Sum of grades: 10 + 3 + 5 = 18. Student count: 3\nIt can be shown that it is not possible to form more than 3 groups.\n```\n\n**Example 2:**\n\n```\nInput: grades = [8,8]\nOutput: 1\nExplanation: We can only form 1 group, since forming 2 groups would lead to an equal number of students in both groups.\n```\n\n**Constraints:**\n\n*   `1 <= grades.length <= 10^(5)`\n*   `1 <= grades[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= grades.length <= 105",
+    "1 <= grades[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "grades = [10,6,12,7,3,5]",
+      "output": "3",
+      "explanation": "The following is a possible way to form 3 groups of students:\n- 1st group has the students with grades = [12]. Sum of grades: 12. Student count: 1\n- 2nd group has the students with grades = [6,7]. Sum of grades: 6 + 7 = 13. Student count: 2\n- 3rd group has the students with grades = [10,3,5]. Sum of grades: 10 + 3 + 5 = 18. Student count: 3\nIt can be shown that it is not possible to form more than 3 groups."
+    },
+    {
+      "input": "grades = [8,8]",
+      "output": "1",
+      "explanation": "We can only form 1 group, since forming 2 groups would lead to an equal number of students in both groups."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumGroups(vector<int>& grades) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumGroups(int[] grades) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumGroups(self, grades: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumGroups(self, grades):\n        \"\"\"\n        :type grades: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} grades\n * @return {number}\n */\nvar maximumGroups = function(grades) {\n    \n};",
+    "typescript": "function maximumGroups(grades: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumGroups(int[] grades) {\n        \n    }\n}",
+    "c": "int maximumGroups(int* grades, int gradesSize) {\n    \n}",
+    "golang": "func maximumGroups(grades []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumGroups(grades: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumGroups(_ grades: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_groups(grades: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} grades\n# @return {Integer}\ndef maximum_groups(grades)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $grades\n     * @return Integer\n     */\n    function maximumGroups($grades) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumGroups(List<int> grades) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumGroups(grades: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_groups(grades :: [integer]) :: integer\n  def maximum_groups(grades) do\n    \n  end\nend",
+    "erlang": "-spec maximum_groups(Grades :: [integer()]) -> integer().\nmaximum_groups(Grades) ->\n  .",
+    "racket": "(define/contract (maximum-groups grades)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[10,6,12,7,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[8,8]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[10,6,12,7,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[8,8]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[10,6,12]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[7,3,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[10]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[10,5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[10,6]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,3,7,12,6,10]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,5,6,7,10,12]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[12,10,7,6,5,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[10,10,10,10,10]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[10,6,12,7,3,5,10,6,12,7,3,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[20,12,24,14,6,10]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[11,7,13,8,4,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[9,5,11,6,2,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-10,-6,-12,-7,-3,-5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Would it be easier to place the students into valid groups after sorting them based on their grades in ascending order?",
+    "Notice that, after sorting, we can separate them into groups of sizes 1, 2, 3, and so on.",
+    "If the last group is invalid, we can merge it with the previous group.",
+    "This creates the maximum number of groups because we always greedily form the smallest possible group."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-groups-entering-a-competition/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.047Z",
+    "sourceUpdatedAt": null
+  }
+}

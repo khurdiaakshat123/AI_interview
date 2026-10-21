@@ -1,0 +1,166 @@
+{
+  "id": "3083",
+  "slug": "existence-of-a-substring-in-a-string-and-its-reverse",
+  "title": "Existence of a Substring in a String and Its Reverse",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "statement": "Given a string `s`, find any substring of length `2` which is also present in the reverse of `s`.\n\nReturn `true` _if such a substring exists, and_ `false` _otherwise._\n\n**Example 1:**\n\n**Input:** s = \"leetcode\"\n\n**Output:** true\n\n**Explanation:** Substring `\"ee\"` is of length `2` which is also present in `reverse(s) == \"edocteel\"`.\n\n**Example 2:**\n\n**Input:** s = \"abcba\"\n\n**Output:** true\n\n**Explanation:** All of the substrings of length `2` `\"ab\"`, `\"bc\"`, `\"cb\"`, `\"ba\"` are also present in `reverse(s) == \"abcba\"`.\n\n**Example 3:**\n\n**Input:** s = \"abcd\"\n\n**Output:** false\n\n**Explanation:** There is no substring of length `2` in `s`, which is also present in the reverse of `s`.\n\n**Constraints:**\n\n*   `1 <= s.length <= 100`\n*   `s` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"leetcode\"",
+      "output": "true",
+      "explanation": "Substring \"ee\" is of length 2 which is also present in reverse(s) == \"edocteel\"."
+    },
+    {
+      "input": "s = \"abcba\"",
+      "output": "true",
+      "explanation": "All of the substrings of length 2 \"ab\", \"bc\", \"cb\", \"ba\" are also present in reverse(s) == \"abcba\"."
+    },
+    {
+      "input": "s = \"abcd\"",
+      "output": "false",
+      "explanation": "There is no substring of length 2 in s, which is also present in the reverse of s."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isSubstringPresent(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isSubstringPresent(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isSubstringPresent(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isSubstringPresent(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar isSubstringPresent = function(s) {\n    \n};",
+    "typescript": "function isSubstringPresent(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsSubstringPresent(string s) {\n        \n    }\n}",
+    "c": "bool isSubstringPresent(char* s) {\n    \n}",
+    "golang": "func isSubstringPresent(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isSubstringPresent(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isSubstringPresent(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_substring_present(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef is_substring_present(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function isSubstringPresent($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isSubstringPresent(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isSubstringPresent(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_substring_present(s :: String.t) :: boolean\n  def is_substring_present(s) do\n    \n  end\nend",
+    "erlang": "-spec is_substring_present(S :: unicode:unicode_binary()) -> boolean().\nis_substring_present(S) ->\n  .",
+    "racket": "(define/contract (is-substring-present s)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcd\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcd\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"leet\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"code\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"l\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"le\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edocteel\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"leetcodeleetcode\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"llllll\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"leetcodeedocteel\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"LEETCODE\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Make a new string by reversing the string <code>s</code>.",
+    "For every substring of length <code>2</code> in <code>s</code>, check if there is a corresponding substring in the reverse of <code>s</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/existence-of-a-substring-in-a-string-and-its-reverse/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.184Z",
+    "sourceUpdatedAt": null
+  }
+}

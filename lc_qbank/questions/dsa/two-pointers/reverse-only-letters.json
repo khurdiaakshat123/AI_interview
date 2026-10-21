@@ -1,0 +1,166 @@
+{
+  "id": "917",
+  "slug": "reverse-only-letters",
+  "title": "Reverse Only Letters",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "Given a string `s`, reverse the string according to the following rules:\n\n*   All the characters that are not English letters remain in the same position.\n*   All the English letters (lowercase or uppercase) should be reversed.\n\nReturn `s` _after reversing it_.\n\n**Example 1:**\n\n```\nInput: s = \"ab-cd\"\nOutput: \"dc-ba\"\n```\n\n**Example 2:**\n\n```\nInput: s = \"a-bC-dEf-ghIj\"\nOutput: \"j-Ih-gfE-dCba\"\n```\n\n**Example 3:**\n\n```\nInput: s = \"Test1ng-Leet=code-Q!\"\nOutput: \"Qedo1ct-eeLg=ntse-T!\"\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 100`\n*   `s` consists of characters with ASCII values in the range `[33, 122]`.\n*   `s` does not contain `'\\\"'` or `'\\\\'`.",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s consists of characters with ASCII values in the range [33, 122].",
+    "s does not contain '\\\"' or '\\\\'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"ab-cd\"",
+      "output": "\"dc-ba\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"a-bC-dEf-ghIj\"",
+      "output": "\"j-Ih-gfE-dCba\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"Test1ng-Leet=code-Q!\"",
+      "output": "\"Qedo1ct-eeLg=ntse-T!\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string reverseOnlyLetters(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String reverseOnlyLetters(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reverseOnlyLetters(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def reverseOnlyLetters(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar reverseOnlyLetters = function(s) {\n    \n};",
+    "typescript": "function reverseOnlyLetters(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ReverseOnlyLetters(string s) {\n        \n    }\n}",
+    "c": "char* reverseOnlyLetters(char* s) {\n    \n}",
+    "golang": "func reverseOnlyLetters(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun reverseOnlyLetters(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reverseOnlyLetters(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reverse_only_letters(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef reverse_only_letters(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function reverseOnlyLetters($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String reverseOnlyLetters(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reverseOnlyLetters(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reverse_only_letters(s :: String.t) :: String.t\n  def reverse_only_letters(s) do\n    \n  end\nend",
+    "erlang": "-spec reverse_only_letters(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nreverse_only_letters(S) ->\n  .",
+    "racket": "(define/contract (reverse-only-letters s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"ab-cd\"",
+      "expectedOutput": "\"dc-ba\""
+    },
+    {
+      "input": "\"a-bC-dEf-ghIj\"",
+      "expectedOutput": "\"j-Ih-gfE-dCba\""
+    },
+    {
+      "input": "\"Test1ng-Leet=code-Q!\"",
+      "expectedOutput": "\"Qedo1ct-eeLg=ntse-T!\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"ab-cd\"",
+      "expectedOutput": "\"dc-ba\""
+    },
+    {
+      "input": "\"a-bC-dEf-ghIj\"",
+      "expectedOutput": "\"j-Ih-gfE-dCba\""
+    },
+    {
+      "input": "\"Test1ng-Leet=code-Q!\"",
+      "expectedOutput": "\"Qedo1ct-eeLg=ntse-T!\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"-cd\"",
+      "expectedOutput": "\"-dc\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"dc-ba\"",
+      "expectedOutput": "\"ab-cd\""
+    },
+    {
+      "input": "\"ab-cdab-cd\"",
+      "expectedOutput": "\"dc-badc-ba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"ab-cddc-ba\"",
+      "expectedOutput": "\"ab-cddc-ba\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"baa\""
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "\"Aa\""
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "\"0\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "This problem is exactly like reversing a normal string except that there are certain characters that we have to simply skip. That should be easy enough to do if you know how to reverse a string using the two-pointer approach."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/reverse-only-letters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.858Z",
+    "sourceUpdatedAt": null
+  }
+}

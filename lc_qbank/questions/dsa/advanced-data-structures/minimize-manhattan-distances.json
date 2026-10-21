@@ -1,0 +1,98 @@
+{
+  "id": "3102",
+  "slug": "minimize-manhattan-distances",
+  "title": "Minimize Manhattan Distances",
+  "category": "dsa",
+  "subcategory": "advanced-data-structures",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry",
+    "Sorting",
+    "Ordered Set"
+  ],
+  "statement": "You are given an array `points` representing integer coordinates of some points on a 2D plane, where `points[i] = [x_(i), y_(i)]`.\n\nThe distance between two points is defined as their Manhattan distance.\n\nReturn _the **minimum** possible value for **maximum** distance between any two points by removing exactly one point_.\n\n**Example 1:**\n\n**Input:** points = \\[\\[3,10\\],\\[5,15\\],\\[10,2\\],\\[4,4\\]\\]\n\n**Output:** 12\n\n**Explanation:**\n\nThe maximum distance after removing each point is the following:\n\n*   After removing the 0^(th) point the maximum distance is between points (5, 15) and (10, 2), which is `|5 - 10| + |15 - 2| = 18`.\n*   After removing the 1^(st) point the maximum distance is between points (3, 10) and (10, 2), which is `|3 - 10| + |10 - 2| = 15`.\n*   After removing the 2^(nd) point the maximum distance is between points (5, 15) and (4, 4), which is `|5 - 4| + |15 - 4| = 12`.\n*   After removing the 3^(rd) point the maximum distance is between points (5, 15) and (10, 2), which is `|5 - 10| + |15 - 2| = 18`.\n\n12 is the minimum possible maximum distance between any two points after removing exactly one point.\n\n**Example 2:**\n\n**Input:** points = \\[\\[1,1\\],\\[1,1\\],\\[1,1\\]\\]\n\n**Output:** 0\n\n**Explanation:**\n\nRemoving any of the points results in the maximum distance between any two points of 0.\n\n**Constraints:**\n\n*   `3 <= points.length <= 10^(5)`\n*   `points[i].length == 2`\n*   `1 <= points[i][0], points[i][1] <= 10^(8)`",
+  "constraints": [
+    "3 <= points.length <= 105",
+    "points[i].length == 2",
+    "1 <= points[i][0], points[i][1] <= 108"
+  ],
+  "examples": [
+    {
+      "input": "points = [[3,10],[5,15],[10,2],[4,4]]",
+      "output": "12",
+      "explanation": null
+    },
+    {
+      "input": "points = [[1,1],[1,1],[1,1]]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumDistance(vector<vector<int>>& points) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumDistance(int[][] points) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumDistance(self, points: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumDistance(self, points):\n        \"\"\"\n        :type points: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} points\n * @return {number}\n */\nvar minimumDistance = function(points) {\n    \n};",
+    "typescript": "function minimumDistance(points: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumDistance(int[][] points) {\n        \n    }\n}",
+    "c": "int minimumDistance(int** points, int pointsSize, int* pointsColSize) {\n    \n}",
+    "golang": "func minimumDistance(points [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumDistance(points: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumDistance(_ points: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_distance(points: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} points\n# @return {Integer}\ndef minimum_distance(points)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $points\n     * @return Integer\n     */\n    function minimumDistance($points) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumDistance(List<List<int>> points) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumDistance(points: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_distance(points :: [[integer]]) :: integer\n  def minimum_distance(points) do\n    \n  end\nend",
+    "erlang": "-spec minimum_distance(Points :: [[integer()]]) -> integer().\nminimum_distance(Points) ->\n  .",
+    "racket": "(define/contract (minimum-distance points)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[3,10],[5,15],[10,2],[4,4]]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[[1,1],[1,1],[1,1]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[3,10],[5,15],[10,2],[4,4]]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[[1,1],[1,1],[1,1]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "points = [[3,10],[5,15],[10,2],[4,4]]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "points = [[1,1],[1,1],[1,1]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Notice that the Manhattan distance between two points <code>[x<sub>i</sub>, y<sub>i</sub>]</code> and <code>[x<sub>j</sub>, y<sub>j</sub>] is <code> max({x<sub>i</sub> - x<sub>j</sub> + y<sub>i</sub> - y<sub>j</sub>, x<sub>i</sub> - x<sub>j</sub> - y<sub>i</sub> + y<sub>j</sub>, - x<sub>i</sub> + x<sub>j</sub> + y<sub>i</sub> - y<sub>j</sub>, - x<sub>i</sub> + x<sub>j</sub> - y<sub>i</sub> + y<sub>j</sub>})</code></code>.",
+    "If you replace points as <code>[x<sub>i</sub> - y<sub>i</sub>, x<sub>i</sub> + y<sub>i</sub>]</code> then the Manhattan distance is <code>max(max(x<sub>i</sub>) - min(x<sub>i</sub>), max(y<sub>i</sub>) - min(y<sub>i</sub>))</code> over all <code>i</code>.",
+    "After those observations, the problem just becomes a simulation. Create multiset of points <code>[x<sub>i</sub> - y<sub>i</sub>, x<sub>i</sub> + y<sub>i</sub>]</code>, you can iterate on a point you might remove and get the maximum Manhattan distance over all other points."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimize-manhattan-distances/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.238Z",
+    "sourceUpdatedAt": null
+  }
+}

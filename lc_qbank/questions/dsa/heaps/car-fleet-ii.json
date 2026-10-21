@@ -1,0 +1,90 @@
+{
+  "id": "1776",
+  "slug": "car-fleet-ii",
+  "title": "Car Fleet II",
+  "category": "dsa",
+  "subcategory": "heaps",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Stack",
+    "Heap (Priority Queue)",
+    "Monotonic Stack"
+  ],
+  "statement": "There are `n` cars traveling at different speeds in the same direction along a one-lane road. You are given an array `cars` of length `n`, where `cars[i] = [position_(i), speed_(i)]` represents:\n\n*   `position_(i)` is the distance between the `i^(th)` car and the beginning of the road in meters. It is guaranteed that `position_(i) < position_(i+1)`.\n*   `speed_(i)` is the initial speed of the `i^(th)` car in meters per second.\n\nFor simplicity, cars can be considered as points moving along the number line. Two cars collide when they occupy the same position. Once a car collides with another car, they unite and form a single car fleet. The cars in the formed fleet will have the same position and the same speed, which is the initial speed of the **slowest** car in the fleet.\n\nReturn an array `answer`, where `answer[i]` is the time, in seconds, at which the `i^(th)` car collides with the next car, or `-1` if the car does not collide with the next car. Answers within `10^(-5)` of the actual answers are accepted.\n\n**Example 1:**\n\n```\nInput: cars = [[1,2],[2,1],[4,3],[7,2]]\nOutput: [1.00000,-1.00000,3.00000,-1.00000]\nExplanation: After exactly one second, the first car will collide with the second car, and form a car fleet with speed 1 m/s. After exactly 3 seconds, the third car will collide with the fourth car, and form a car fleet with speed 2 m/s.\n```\n\n**Example 2:**\n\n```\nInput: cars = [[3,4],[5,4],[6,3],[9,1]]\nOutput: [2.00000,1.00000,1.50000,-1.00000]\n```\n\n**Constraints:**\n\n*   `1 <= cars.length <= 10^(5)`\n*   `1 <= position_(i), speed_(i) <= 10^(6)`\n*   `position_(i) < position_(i+1)`",
+  "constraints": [
+    "1 <= cars.length <= 105",
+    "1 <= positioni, speedi <= 106",
+    "positioni < positioni+1"
+  ],
+  "examples": [
+    {
+      "input": "cars = [[1,2],[2,1],[4,3],[7,2]]",
+      "output": "[1.00000,-1.00000,3.00000,-1.00000]",
+      "explanation": "After exactly one second, the first car will collide with the second car, and form a car fleet with speed 1 m/s. After exactly 3 seconds, the third car will collide with the fourth car, and form a car fleet with speed 2 m/s."
+    },
+    {
+      "input": "cars = [[3,4],[5,4],[6,3],[9,1]]",
+      "output": "[2.00000,1.00000,1.50000,-1.00000]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<double> getCollisionTimes(vector<vector<int>>& cars) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double[] getCollisionTimes(int[][] cars) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getCollisionTimes(self, cars: list[list[int]]) -> list[float]:\n        ",
+    "python": "class Solution(object):\n    def getCollisionTimes(self, cars):\n        \"\"\"\n        :type cars: List[List[int]]\n        :rtype: List[float]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} cars\n * @return {number[]}\n */\nvar getCollisionTimes = function(cars) {\n    \n};",
+    "typescript": "function getCollisionTimes(cars: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public double[] GetCollisionTimes(int[][] cars) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\ndouble* getCollisionTimes(int** cars, int carsSize, int* carsColSize, int* returnSize) {\n    \n}",
+    "golang": "func getCollisionTimes(cars [][]int) []float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun getCollisionTimes(cars: Array<IntArray>): DoubleArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getCollisionTimes(_ cars: [[Int]]) -> [Double] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_collision_times(cars: Vec<Vec<i32>>) -> Vec<f64> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} cars\n# @return {Float[]}\ndef get_collision_times(cars)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $cars\n     * @return Float[]\n     */\n    function getCollisionTimes($cars) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<double> getCollisionTimes(List<List<int>> cars) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getCollisionTimes(cars: Array[Array[Int]]): Array[Double] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_collision_times(cars :: [[integer]]) :: [float]\n  def get_collision_times(cars) do\n    \n  end\nend",
+    "erlang": "-spec get_collision_times(Cars :: [[integer()]]) -> [float()].\nget_collision_times(Cars) ->\n  .",
+    "racket": "(define/contract (get-collision-times cars)\n  (-> (listof (listof exact-integer?)) (listof flonum?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,2],[2,1],[4,3],[7,2]]",
+      "expectedOutput": "[1.00000,-1.00000,3.00000,-1.00000]"
+    },
+    {
+      "input": "[[3,4],[5,4],[6,3],[9,1]]",
+      "expectedOutput": "[2.00000,1.00000,1.50000,-1.00000]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,2],[2,1],[4,3],[7,2]]",
+      "expectedOutput": "[1.0,-1,3.0,-1]"
+    },
+    {
+      "input": "[[3,4],[5,4],[6,3],[9,1]]",
+      "expectedOutput": "[2.0,1.0,1.5,-1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We can simply ignore the merging of any car fleet, simply assume they cross each other. Now the aim is to find the first car to the right, which intersects with the current car before any other.",
+    "Assume we have already considered all cars to the right already, now the current car is to be considered. Let’s ignore all cars with speeds higher than the current car since the current car cannot intersect with those ones. Now, all cars to the right having speed strictly less than current car are to be considered. Now, for two cars c1 and c2 with positions p1 and p2 (p1 < p2) and speed s1 and s2 (s1 > s2), if c1 and c2 intersect before the current car and c2, then c1 can never be the first car of intersection for any car to the left of current car including current car. So we can remove that car from our consideration.",
+    "We can see that we can maintain candidate cars in this way using a stack, removing cars with speed greater than or equal to current car, and then removing cars which can never be first point of intersection. The first car after this process (if any) would be first point of intersection."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/car-fleet-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.913Z",
+    "sourceUpdatedAt": null
+  }
+}

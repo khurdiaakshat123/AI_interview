@@ -1,0 +1,51 @@
+{
+  "id": "2882",
+  "slug": "drop-duplicate-rows",
+  "title": "Drop Duplicate Rows",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "```\nDataFrame customers\n+-------------+--------+\n| Column Name | Type   |\n+-------------+--------+\n| customer_id | int    |\n| name        | object |\n| email       | object |\n+-------------+--------+\n```\n\nThere are some duplicate rows in the DataFrame based on the `email` column.\n\nWrite a solution to remove these duplicate rows and keep only the **first** occurrence.\n\nThe result format is in the following example.\n\n```\nExample 1:\nInput:\n+-------------+---------+---------------------+\n| customer_id | name    | email               |\n+-------------+---------+---------------------+\n| 1           | Ella    | emily@example.com   |\n| 2           | David   | michael@example.com |\n| 3           | Zachary | sarah@example.com   |\n| 4           | Alice   | john@example.com    |\n| 5           | Finn    | john@example.com    |\n| 6           | Violet  | alice@example.com   |\n+-------------+---------+---------------------+\nOutput:  \n+-------------+---------+---------------------+\n| customer_id | name    | email               |\n+-------------+---------+---------------------+\n| 1           | Ella    | emily@example.com   |\n| 2           | David   | michael@example.com |\n| 3           | Zachary | sarah@example.com   |\n| 4           | Alice   | john@example.com    |\n| 6           | Violet  | alice@example.com   |\n+-------------+---------+---------------------+\nExplanation:\nAlic (customer_id = 4) and Finn (customer_id = 5) both use john@example.com, so only the first occurrence of this email is retained.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "+-------------+---------+---------------------+\n| customer_id | name    | email               |\n+-------------+---------+---------------------+\n| 1           | Ella    | emily@example.com   |\n| 2           | David   | michael@example.com |\n| 3           | Zachary | sarah@example.com   |\n| 4           | Alice   | john@example.com    |\n| 5           | Finn    | john@example.com    |\n| 6           | Violet  | alice@example.com   |\n+-------------+---------+---------------------+",
+      "output": "+-------------+---------+---------------------+\n| customer_id | name    | email               |\n+-------------+---------+---------------------+\n| 1           | Ella    | emily@example.com   |\n| 2           | David   | michael@example.com |\n| 3           | Zachary | sarah@example.com   |\n| 4           | Alice   | john@example.com    |\n| 6           | Violet  | alice@example.com   |\n+-------------+---------+---------------------+",
+      "explanation": "Alic (customer_id = 4) and Finn (customer_id = 5) both use john@example.com, so only the first occurrence of this email is retained."
+    }
+  ],
+  "starterCode": {
+    "pythondata": "import pandas as pd\n\ndef dropDuplicateEmails(customers: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"customers\":[\"customer_id\",\"name\",\"email\"]},\"rows\":{\"customers\":[[1,\"Ella\",\"emily@example.com\"],[2,\"David\",\"michael@example.com\"],[3,\"Zachary\",\"sarah@example.com\"],[4,\"Alice\",\"john@example.com\"],[5,\"Finn\",\"john@example.com\"],[6,\"Violet\",\"alice@example.com\"]]}}",
+      "expectedOutput": "+-------------+---------+---------------------+\n| customer_id | name    | email               |\n+-------------+---------+---------------------+\n| 1           | Ella    | emily@example.com   |\n| 2           | David   | michael@example.com |\n| 3           | Zachary | sarah@example.com   |\n| 4           | Alice   | john@example.com    |\n| 6           | Violet  | alice@example.com   |\n+-------------+---------+---------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"customers\":[\"customer_id\",\"name\",\"email\"]},\"rows\":{\"customers\":[[1,\"Ella\",\"emily@example.com\"],[2,\"David\",\"michael@example.com\"],[3,\"Zachary\",\"sarah@example.com\"],[4,\"Alice\",\"john@example.com\"],[5,\"Finn\",\"john@example.com\"],[6,\"Violet\",\"alice@example.com\"]]}}",
+      "expectedOutput": "+-------------+---------+---------------------+\n| customer_id | name    | email               |\n+-------------+---------+---------------------+\n| 1           | Ella    | emily@example.com   |\n| 2           | David   | michael@example.com |\n| 3           | Zachary | sarah@example.com   |\n| 4           | Alice   | john@example.com    |\n| 6           | Violet  | alice@example.com   |\n+-------------+---------+---------------------+"
+    },
+    {
+      "input": "+-------------+---------+---------------------+\n| customer_id | name    | email               |\n+-------------+---------+---------------------+\n| 1           | Ella    | emily@example.com   |\n| 2           | David   | michael@example.com |\n| 3           | Zachary | sarah@example.com   |\n| 4           | Alice   | john@example.com    |\n| 5           | Finn    | john@example.com    |\n| 6           | Violet  | alice@example.com   |\n+-------------+---------+---------------------+",
+      "expectedOutput": "+-------------+---------+---------------------+\n| customer_id | name    | email               |\n+-------------+---------+---------------------+\n| 1           | Ella    | emily@example.com   |\n| 2           | David   | michael@example.com |\n| 3           | Zachary | sarah@example.com   |\n| 4           | Alice   | john@example.com    |\n| 6           | Violet  | alice@example.com   |\n+-------------+---------+---------------------+"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider using a build-in function in pandas library to remove the duplicate rows based on specified data."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/drop-duplicate-rows/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.885Z",
+    "sourceUpdatedAt": null
+  }
+}

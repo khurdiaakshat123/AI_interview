@@ -1,0 +1,161 @@
+{
+  "id": "3627",
+  "slug": "maximum-median-sum-of-subsequences-of-size-3",
+  "title": "Maximum Median Sum of Subsequences of Size 3",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Greedy",
+    "Sorting",
+    "Game Theory"
+  ],
+  "statement": "You are given an integer array `nums` with a length divisible by 3.\n\nYou want to make the array empty in steps. In each step, you can select any three elements from the array, compute their **median**, and remove the selected elements from the array.\n\nThe **median** of an odd-length sequence is defined as the middle element of the sequence when it is sorted in non-decreasing order.\n\nReturn the **maximum** possible sum of the medians computed from the selected elements.\n\n**Example 1:**\n\n**Input:** nums = \\[2,1,3,2,1,3\\]\n\n**Output:** 5\n\n**Explanation:**\n\n*   In the first step, select elements at indices 2, 4, and 5, which have a median 3. After removing these elements, `nums` becomes `[2, 1, 2]`.\n*   In the second step, select elements at indices 0, 1, and 2, which have a median 2. After removing these elements, `nums` becomes empty.\n\nHence, the sum of the medians is `3 + 2 = 5`.\n\n**Example 2:**\n\n**Input:** nums = \\[1,1,10,10,10,10\\]\n\n**Output:** 20\n\n**Explanation:**\n\n*   In the first step, select elements at indices 0, 2, and 3, which have a median 10. After removing these elements, `nums` becomes `[1, 10, 10]`.\n*   In the second step, select elements at indices 0, 1, and 2, which have a median 10. After removing these elements, `nums` becomes empty.\n\nHence, the sum of the medians is `10 + 10 = 20`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 5 * 10^(5)`\n*   `nums.length % 3 == 0`\n*   `1 <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 5 * 105",
+    "nums.length % 3 == 0",
+    "1 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,1,3,2,1,3]",
+      "output": "5",
+      "explanation": "In the first step, select elements at indices 2, 4, and 5, which have a median 3. After removing these elements, nums becomes [2, 1, 2].\n\tIn the second step, select elements at indices 0, 1, and 2, which have a median 2. After removing these elements, nums becomes empty."
+    },
+    {
+      "input": "nums = [1,1,10,10,10,10]",
+      "output": "20",
+      "explanation": "In the first step, select elements at indices 0, 2, and 3, which have a median 10. After removing these elements, nums becomes [1, 10, 10].\n\tIn the second step, select elements at indices 0, 1, and 2, which have a median 10. After removing these elements, nums becomes empty."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maximumMedianSum(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maximumMedianSum(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumMedianSum(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumMedianSum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maximumMedianSum = function(nums) {\n    \n};",
+    "typescript": "function maximumMedianSum(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaximumMedianSum(int[] nums) {\n        \n    }\n}",
+    "c": "long long maximumMedianSum(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maximumMedianSum(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumMedianSum(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumMedianSum(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_median_sum(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef maximum_median_sum(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maximumMedianSum($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumMedianSum(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumMedianSum(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_median_sum(nums :: [integer]) :: integer\n  def maximum_median_sum(nums) do\n    \n  end\nend",
+    "erlang": "-spec maximum_median_sum(Nums :: [integer()]) -> integer().\nmaximum_median_sum(Nums) ->\n  .",
+    "racket": "(define/contract (maximum-median-sum nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,1,3,2,1,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,1,10,10,10,10]",
+      "expectedOutput": "20"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,1,3,2,1,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,1,10,10,10,10]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[2,1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,1,2,3,1,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,1,2,2,3,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[3,3,2,2,1,1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,1,3,2,1,3,2,1,3,2,1,3]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[4,2,6,4,2,6]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[3,2,4,3,2,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,0,2,1,0,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-2,-1,-3,-2,-1,-3]",
+      "expectedOutput": "-3"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Sort the values in <code>nums</code>.",
+    "Repeatedly pick the largest 2 values and the minimum value."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-median-sum-of-subsequences-of-size-3/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.964Z",
+    "sourceUpdatedAt": null
+  }
+}

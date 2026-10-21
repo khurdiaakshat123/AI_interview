@@ -1,0 +1,163 @@
+{
+  "id": "2901",
+  "slug": "longest-unequal-adjacent-groups-subsequence-ii",
+  "title": "Longest Unequal Adjacent Groups Subsequence II",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given a string array `words`, and an array `groups`, both arrays having length `n`.\n\nThe **hamming distance** between two strings of equal length is the number of positions at which the corresponding characters are **different**.\n\nYou need to select the **longest** subsequence from an array of indices `[0, 1, ..., n - 1]`, such that for the subsequence denoted as `[i_(0), i_(1), ..., i_(k-1)]` having length `k`, the following holds:\n\n*   For **adjacent** indices in the subsequence, their corresponding groups are **unequal**, i.e., `groups[i_(j)] != groups[i_(j+1)]`, for each `j` where `0 < j + 1 < k`.\n*   `words[i_(j)]` and `words[i_(j+1)]` are **equal** in length, and the **hamming distance** between them is `1`, where `0 < j + 1 < k`, for all indices in the subsequence.\n\nReturn _a string array containing the words corresponding to the indices **(in order)** in the selected subsequence_. If there are multiple answers, return _any of them_.\n\n**Note:** strings in `words` may be **unequal** in length.\n\n**Example 1:**\n\n**Input:** words = \\[\"bab\",\"dab\",\"cab\"\\], groups = \\[1,2,2\\]\n\n**Output:** \\[\"bab\",\"cab\"\\]\n\n**Explanation:** A subsequence that can be selected is `[0,2]`.\n\n*   `groups[0] != groups[2]`\n*   `words[0].length == words[2].length`, and the hamming distance between them is 1.\n\nSo, a valid answer is `[words[0],words[2]] = [\"bab\",\"cab\"]`.\n\nAnother subsequence that can be selected is `[0,1]`.\n\n*   `groups[0] != groups[1]`\n*   `words[0].length == words[1].length`, and the hamming distance between them is `1`.\n\nSo, another valid answer is `[words[0],words[1]] = [\"bab\",\"dab\"]`.\n\nIt can be shown that the length of the longest subsequence of indices that satisfies the conditions is `2`.\n\n**Example 2:**\n\n**Input:** words = \\[\"a\",\"b\",\"c\",\"d\"\\], groups = \\[1,2,3,4\\]\n\n**Output:** \\[\"a\",\"b\",\"c\",\"d\"\\]\n\n**Explanation:** We can select the subsequence `[0,1,2,3]`.\n\nIt satisfies both conditions.\n\nHence, the answer is `[words[0],words[1],words[2],words[3]] = [\"a\",\"b\",\"c\",\"d\"]`.\n\nIt has the longest length among all subsequences of indices that satisfy the conditions.\n\nHence, it is the only answer.\n\n**Constraints:**\n\n*   `1 <= n == words.length == groups.length <= 1000`\n*   `1 <= words[i].length <= 10`\n*   `1 <= groups[i] <= n`\n*   `words` consists of **distinct** strings.\n*   `words[i]` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= n == words.length == groups.length <= 1000",
+    "1 <= words[i].length <= 10",
+    "1 <= groups[i] <= n",
+    "words consists of distinct strings.",
+    "words[i] consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"bab\",\"dab\",\"cab\"], groups = [1,2,2]",
+      "output": "[\"bab\",\"cab\"]",
+      "explanation": "A subsequence that can be selected is [0,2].\n\n\n\tgroups[0] != groups[2]\n\twords[0].length == words[2].length, and the hamming distance between them is 1."
+    },
+    {
+      "input": "words = [\"a\",\"b\",\"c\",\"d\"], groups = [1,2,3,4]",
+      "output": "[\"a\",\"b\",\"c\",\"d\"]",
+      "explanation": "We can select the subsequence [0,1,2,3]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> getWordsInLongestSubsequence(vector<string>& words, vector<int>& groups) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> getWordsInLongestSubsequence(String[] words, int[] groups) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getWordsInLongestSubsequence(self, words: List[str], groups: List[int]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def getWordsInLongestSubsequence(self, words, groups):\n        \"\"\"\n        :type words: List[str]\n        :type groups: List[int]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @param {number[]} groups\n * @return {string[]}\n */\nvar getWordsInLongestSubsequence = function(words, groups) {\n    \n};",
+    "typescript": "function getWordsInLongestSubsequence(words: string[], groups: number[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> GetWordsInLongestSubsequence(string[] words, int[] groups) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** getWordsInLongestSubsequence(char** words, int wordsSize, int* groups, int groupsSize, int* returnSize) {\n    \n}",
+    "golang": "func getWordsInLongestSubsequence(words []string, groups []int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun getWordsInLongestSubsequence(words: Array<String>, groups: IntArray): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getWordsInLongestSubsequence(_ words: [String], _ groups: [Int]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_words_in_longest_subsequence(words: Vec<String>, groups: Vec<i32>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @param {Integer[]} groups\n# @return {String[]}\ndef get_words_in_longest_subsequence(words, groups)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @param Integer[] $groups\n     * @return String[]\n     */\n    function getWordsInLongestSubsequence($words, $groups) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> getWordsInLongestSubsequence(List<String> words, List<int> groups) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getWordsInLongestSubsequence(words: Array[String], groups: Array[Int]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_words_in_longest_subsequence(words :: [String.t], groups :: [integer]) :: [String.t]\n  def get_words_in_longest_subsequence(words, groups) do\n    \n  end\nend",
+    "erlang": "-spec get_words_in_longest_subsequence(Words :: [unicode:unicode_binary()], Groups :: [integer()]) -> [unicode:unicode_binary()].\nget_words_in_longest_subsequence(Words, Groups) ->\n  .",
+    "racket": "(define/contract (get-words-in-longest-subsequence words groups)\n  (-> (listof string?) (listof exact-integer?) (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"bab\",\"dab\",\"cab\"]\n[1,2,2]",
+      "expectedOutput": "[\"bab\",\"cab\"]"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]\n[1,2,3,4]",
+      "expectedOutput": "[\"a\",\"b\",\"c\",\"d\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"bab\",\"dab\",\"cab\"]\n[1,2,2]",
+      "expectedOutput": "[\"bab\",\"dab\"]"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]\n[1,2,3,4]",
+      "expectedOutput": "[\"a\",\"b\",\"c\",\"d\"]"
+    },
+    {
+      "input": "[\"cab\",\"dab\",\"bab\"]\n[1,2,2]",
+      "expectedOutput": "[\"cab\",\"dab\"]"
+    },
+    {
+      "input": "[\"bab\",\"cab\",\"dab\"]\n[1,2,2]",
+      "expectedOutput": "[\"bab\",\"cab\"]"
+    },
+    {
+      "input": "[\"dab\",\"cab\",\"bab\"]\n[1,2,2]",
+      "expectedOutput": "[\"dab\",\"cab\"]"
+    },
+    {
+      "input": "[\"bab\",\"bab\",\"bab\"]\n[1,2,2]",
+      "expectedOutput": "[\"bab\"]"
+    },
+    {
+      "input": "[\"bab\",\"dab\",\"cab\",\"bab\",\"dab\",\"cab\"]\n[1,2,2]",
+      "expectedOutput": "[\"bab\",\"dab\"]"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]\n[1,2,2]",
+      "expectedOutput": "[\"abc\"]"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n[1,2,2]",
+      "expectedOutput": "[\"eat\"]"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]\n[1,2,2]",
+      "expectedOutput": "[\"cat\"]"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]\n[1,2,2]",
+      "expectedOutput": "[\"one\"]"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]\n[1,2,2]",
+      "expectedOutput": "[\"a\",\"b\"]"
+    },
+    {
+      "input": "[\"flow\",\"flower\",\"flight\"]\n[1,2,2]",
+      "expectedOutput": "[\"flow\"]"
+    },
+    {
+      "input": "[\"word\",\"world\",\"row\"]\n[1,2,2]",
+      "expectedOutput": "[\"word\"]"
+    },
+    {
+      "input": "[\"apple\",\"pear\",\"banana\"]\n[1,2,2]",
+      "expectedOutput": "[\"apple\"]"
+    },
+    {
+      "input": "[\"blue\",\"red\",\"green\"]\n[1,2,2]",
+      "expectedOutput": "[\"blue\"]"
+    },
+    {
+      "input": "[\"1\",\"2\",\"3\"]\n[1,2,2]",
+      "expectedOutput": "[\"1\",\"2\"]"
+    },
+    {
+      "input": "[\"code\",\"leet\",\"love\"]\n[1,2,2]",
+      "expectedOutput": "[\"code\"]"
+    },
+    {
+      "input": "[\"bab\",\"dab\",\"cab\"]\n[1]",
+      "expectedOutput": "[\"bab\"]"
+    },
+    {
+      "input": "[\"bab\",\"dab\",\"cab\"]\n[2,2]",
+      "expectedOutput": "[\"bab\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let <code>dp[i]</code> represent the length of the longest subsequence ending with <code>words[i]</code> that satisfies the conditions.",
+    "<code>dp[i] =</code> (maximum value of <code>dp[j]</code>) <code>+ 1</code> for indices <code>j < i</code>, where <code>groups[i] != groups[j]</code>, <code>words[i]</code> and <code>words[j]</code> are equal in length, and the hamming distance between <code>words[i]</code> and <code>words[j]</code> is exactly <code>1</code>.",
+    "Keep track of the <code>j</code> values used to achieve the maximum <code>dp[i]</code> for each index <code>i</code>.",
+    "The expected array's length is <code>max(dp[0:n])</code>, and starting from the index having the maximum value in <code>dp</code>, we can trace backward to get the words."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-unequal-adjacent-groups-subsequence-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.741Z",
+    "sourceUpdatedAt": null
+  }
+}

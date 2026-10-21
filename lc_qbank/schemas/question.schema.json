@@ -1,0 +1,205 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://intervyn.com/schemas/question.schema.json",
+  "title": "LeetCode Question",
+  "description": "Schema for a normalized LeetCode question in the question bank",
+  "type": "object",
+  "required": [
+    "id",
+    "slug",
+    "title",
+    "category",
+    "subcategory",
+    "difficulty",
+    "tags",
+    "statement",
+    "source"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Source question ID from LeetCode",
+      "minLength": 1
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-safe slug for the question",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable question title",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "description": "Top-level category",
+      "enum": ["dsa", "database"]
+    },
+    "subcategory": {
+      "type": "string",
+      "description": "Topic folder name within the category",
+      "minLength": 1
+    },
+    "difficulty": {
+      "type": "string",
+      "description": "Question difficulty level",
+      "enum": ["Easy", "Medium", "Hard"]
+    },
+    "tags": {
+      "type": "array",
+      "description": "LeetCode topic tags",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": []
+    },
+    "statement": {
+      "type": "string",
+      "description": "Markdown content of the problem statement",
+      "minLength": 1
+    },
+    "constraints": {
+      "type": "array",
+      "description": "Extracted constraints from the problem",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "examples": {
+      "type": "array",
+      "description": "Example test cases",
+      "items": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "string",
+            "description": "Example input"
+          },
+          "output": {
+            "type": "string",
+            "description": "Expected output"
+          },
+          "explanation": {
+            "type": ["string", "null"],
+            "description": "Optional explanation of the example",
+            "default": null
+          }
+        },
+        "required": ["input", "output"],
+        "additionalProperties": false
+      },
+      "default": []
+    },
+    "starterCode": {
+      "type": ["object", "null"],
+      "description": "Starter code templates keyed by language slug",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "default": null
+    },
+    "publicTests": {
+      "type": ["array", "null"],
+      "description": "Public test cases provided by LeetCode",
+      "items": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "string"
+          },
+          "expectedOutput": {
+            "type": "string"
+          }
+        },
+        "required": ["input", "expectedOutput"],
+        "additionalProperties": false
+      },
+      "default": null
+    },
+    "sqlSchema": {
+      "type": ["string", "null"],
+      "description": "SQL CREATE TABLE statements for database questions",
+      "default": null
+    },
+    "sqlSetup": {
+      "type": ["array", "null"],
+      "description": "SQL INSERT statements for database question setup",
+      "items": {
+        "type": "string"
+      },
+      "default": null
+    },
+    "expectedOutput": {
+      "description": "Expected output for the question (any type)",
+      "default": null
+    },
+    "solution": {
+      "description": "Reference solution (any type)",
+      "default": null
+    },
+    "hints": {
+      "type": "array",
+      "description": "Hints provided by LeetCode",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "testCases": {
+      "type": ["array", "null"],
+      "description": "Comprehensive test cases covering boundary, edge, duplicate, and scale conditions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "string"
+          },
+          "expectedOutput": {
+            "type": "string"
+          }
+        },
+        "required": ["input", "expectedOutput"],
+        "additionalProperties": false
+      },
+      "default": null
+    },
+    "source": {
+      "type": "object",
+      "description": "Provenance information for the question",
+      "required": ["name", "url", "collectedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Source platform name",
+          "const": "LeetCode"
+        },
+        "url": {
+          "type": "string",
+          "description": "Original question URL",
+          "format": "uri"
+        },
+        "licenseOrPermissionReference": {
+          "type": "string",
+          "description": "Reference to license or permission for content usage",
+          "default": ""
+        },
+        "collectedAt": {
+          "type": "string",
+          "description": "ISO 8601 timestamp of when the question was collected",
+          "format": "date-time"
+        },
+        "sourceUpdatedAt": {
+          "type": ["string", "null"],
+          "description": "ISO 8601 timestamp of when the source was last updated",
+          "format": "date-time",
+          "default": null
+        }
+      }
+    }
+  }
+}

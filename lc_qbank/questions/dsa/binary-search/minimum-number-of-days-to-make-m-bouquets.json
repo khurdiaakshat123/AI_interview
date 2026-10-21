@@ -1,0 +1,169 @@
+{
+  "id": "1482",
+  "slug": "minimum-number-of-days-to-make-m-bouquets",
+  "title": "Minimum Number of Days to Make m Bouquets",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "statement": "You are given an integer array `bloomDay`, an integer `m` and an integer `k`.\n\nYou want to make `m` bouquets. To make a bouquet, you need to use `k` **adjacent flowers** from the garden.\n\nThe garden consists of `n` flowers, the `i^(th)` flower will bloom in the `bloomDay[i]` and then can be used in **exactly one** bouquet.\n\nReturn the **minimum** number of days you need to wait to be able to make m bouquets from the garden. If it is impossible to make m bouquets return -1.\n\n**Example 1:**\n\n```\nInput: bloomDay = [1,10,3,10,2], m = 3, k = 1\nOutput: 3\nExplanation: Let us see what happened in the first three days. x means flower bloomed and _ means flower did not bloom in the garden.\nWe need 3 bouquets each should contain 1 flower.\nAfter day 1: [x, _, _, _, _]   // we can only make one bouquet.\nAfter day 2: [x, _, _, _, x]   // we can only make two bouquets.\nAfter day 3: [x, _, x, _, x]   // we can make 3 bouquets. The answer is 3.\n```\n\n**Example 2:**\n\n```\nInput: bloomDay = [1,10,3,10,2], m = 3, k = 2\nOutput: -1\nExplanation: We need 3 bouquets each has 2 flowers, that means we need 6 flowers. We only have 5 flowers so it is impossible to get the needed bouquets and we return -1.\n```\n\n**Example 3:**\n\n```\nInput: bloomDay = [7,7,7,7,12,7,7], m = 2, k = 3\nOutput: 12\nExplanation: We need 2 bouquets each should have 3 flowers.\nHere is the garden after the 7 and 12 days:\nAfter day 7: [x, x, x, x, _, x, x]\nWe can make one bouquet of the first three flowers that bloomed. We cannot make another bouquet from the last three flowers that bloomed because they are not adjacent.\nAfter day 12: [x, x, x, x, x, x, x]\nIt is obvious that we can make two bouquets in different ways.\n```\n\n**Constraints:**\n\n*   `bloomDay.length == n`\n*   `1 <= n <= 10^(5)`\n*   `1 <= bloomDay[i] <= 10^(9)`\n*   `1 <= m <= 10^(6)`\n*   `1 <= k <= n`",
+  "constraints": [
+    "bloomDay.length == n",
+    "1 <= n <= 105",
+    "1 <= bloomDay[i] <= 109",
+    "1 <= m <= 106",
+    "1 <= k <= n"
+  ],
+  "examples": [
+    {
+      "input": "bloomDay = [1,10,3,10,2], m = 3, k = 1",
+      "output": "3",
+      "explanation": "Let us see what happened in the first three days. x means flower bloomed and _ means flower did not bloom in the garden.\nWe need 3 bouquets each should contain 1 flower.\nAfter day 1: [x, _, _, _, _]   // we can only make one bouquet.\nAfter day 2: [x, _, _, _, x]   // we can only make two bouquets.\nAfter day 3: [x, _, x, _, x]   // we can make 3 bouquets. The answer is 3."
+    },
+    {
+      "input": "bloomDay = [1,10,3,10,2], m = 3, k = 2",
+      "output": "-1",
+      "explanation": "We need 3 bouquets each has 2 flowers, that means we need 6 flowers. We only have 5 flowers so it is impossible to get the needed bouquets and we return -1."
+    },
+    {
+      "input": "bloomDay = [7,7,7,7,12,7,7], m = 2, k = 3",
+      "output": "12",
+      "explanation": "We need 2 bouquets each should have 3 flowers.\nHere is the garden after the 7 and 12 days:\nAfter day 7: [x, x, x, x, _, x, x]\nWe can make one bouquet of the first three flowers that bloomed. We cannot make another bouquet from the last three flowers that bloomed because they are not adjacent.\nAfter day 12: [x, x, x, x, x, x, x]\nIt is obvious that we can make two bouquets in different ways."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minDays(vector<int>& bloomDay, int m, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minDays(int[] bloomDay, int m, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minDays(self, bloomDay: list[int], m: int, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minDays(self, bloomDay, m, k):\n        \"\"\"\n        :type bloomDay: List[int]\n        :type m: int\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} bloomDay\n * @param {number} m\n * @param {number} k\n * @return {number}\n */\nvar minDays = function(bloomDay, m, k) {\n    \n};",
+    "typescript": "function minDays(bloomDay: number[], m: number, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinDays(int[] bloomDay, int m, int k) {\n        \n    }\n}",
+    "c": "int minDays(int* bloomDay, int bloomDaySize, int m, int k) {\n    \n}",
+    "golang": "func minDays(bloomDay []int, m int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minDays(bloomDay: IntArray, m: Int, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minDays(_ bloomDay: [Int], _ m: Int, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_days(bloom_day: Vec<i32>, m: i32, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} bloom_day\n# @param {Integer} m\n# @param {Integer} k\n# @return {Integer}\ndef min_days(bloom_day, m, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $bloomDay\n     * @param Integer $m\n     * @param Integer $k\n     * @return Integer\n     */\n    function minDays($bloomDay, $m, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minDays(List<int> bloomDay, int m, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minDays(bloomDay: Array[Int], m: Int, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_days(bloom_day :: [integer], m :: integer, k :: integer) :: integer\n  def min_days(bloom_day, m, k) do\n    \n  end\nend",
+    "erlang": "-spec min_days(BloomDay :: [integer()], M :: integer(), K :: integer()) -> integer().\nmin_days(BloomDay, M, K) ->\n  .",
+    "racket": "(define/contract (min-days bloomDay m k)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,10,3,10,2]\n3\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,10,3,10,2]\n3\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[7,7,7,7,12,7,7]\n2\n3",
+      "expectedOutput": "12"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,10,3,10,2]\n3\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,10,3,10,2]\n3\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[7,7,7,7,12,7,7]\n2\n3",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1,10]\n3\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,10,2]\n3\n1",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1]\n3\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2]\n3\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,10,3,10,1]\n3\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,3,10,10]\n3\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[10,10,3,2,1]\n3\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1,1,1]\n3\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,10,3,10,2,1,10,3,10,2]\n3\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,20,6,20,4]\n3\n1",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,11,4,11,3]\n3\n1",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,9,2,9,1]\n3\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,-10,-3,-10,-2]\n3\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0,0,0]\n3\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n3\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]\n3\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1]\n3\n1",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If we can make m or more bouquets at day x, then we can still make m or more bouquets at any day y > x.",
+    "We can check easily if we can make enough bouquets at day x if we can get group adjacent flowers at day x."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.224Z",
+    "sourceUpdatedAt": null
+  }
+}

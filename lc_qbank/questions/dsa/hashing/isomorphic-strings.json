@@ -1,0 +1,164 @@
+{
+  "id": "205",
+  "slug": "isomorphic-strings",
+  "title": "Isomorphic Strings",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "statement": "Given two strings `s` and `t`, _determine if they are isomorphic_.\n\nTwo strings `s` and `t` are isomorphic if the characters in `s` can be replaced to get `t`.\n\nAll occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.\n\n**Example 1:**\n\n**Input:** s = \"egg\", t = \"add\"\n\n**Output:** true\n\n**Explanation:**\n\nThe strings `s` and `t` can be made identical by:\n\n*   Mapping `'e'` to `'a'`.\n*   Mapping `'g'` to `'d'`.\n\n**Example 2:**\n\n**Input:** s = \"f11\", t = \"b23\"\n\n**Output:** false\n\n**Explanation:**\n\nThe strings `s` and `t` can not be made identical as `'1'` needs to be mapped to both `'2'` and `'3'`.\n\n**Example 3:**\n\n**Input:** s = \"paper\", t = \"title\"\n\n**Output:** true\n\n**Constraints:**\n\n*   `1 <= s.length <= 5 * 10^(4)`\n*   `t.length == s.length`\n*   `s` and `t` consist of any valid ascii character.",
+  "constraints": [
+    "1 <= s.length <= 5 * 104",
+    "t.length == s.length",
+    "s and t consist of any valid ascii character."
+  ],
+  "examples": [
+    {
+      "input": "s = \"egg\", t = \"add\"",
+      "output": "true",
+      "explanation": null
+    },
+    {
+      "input": "s = \"f11\", t = \"b23\"",
+      "output": "false",
+      "explanation": null
+    },
+    {
+      "input": "s = \"paper\", t = \"title\"",
+      "output": "true",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isIsomorphic(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isIsomorphic(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isIsomorphic(self, s: str, t: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isIsomorphic(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {boolean}\n */\nvar isIsomorphic = function(s, t) {\n    \n};",
+    "typescript": "function isIsomorphic(s: string, t: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsIsomorphic(string s, string t) {\n        \n    }\n}",
+    "c": "bool isIsomorphic(char* s, char* t) {\n    \n}",
+    "golang": "func isIsomorphic(s string, t string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isIsomorphic(s: String, t: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isIsomorphic(_ s: String, _ t: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_isomorphic(s: String, t: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Boolean}\ndef is_isomorphic(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Boolean\n     */\n    function isIsomorphic($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isIsomorphic(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isIsomorphic(s: String, t: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_isomorphic(s :: String.t, t :: String.t) :: boolean\n  def is_isomorphic(s, t) do\n    \n  end\nend",
+    "erlang": "-spec is_isomorphic(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> boolean().\nis_isomorphic(S, T) ->\n  .",
+    "racket": "(define/contract (is-isomorphic s t)\n  (-> string? string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"egg\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"foo\"\n\"bar\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"paper\"\n\"title\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"egg\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"foo\"\n\"bar\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"paper\"\n\"title\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"e\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"gg\"\n\"add\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"eg\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"gge\"\n\"add\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"eggegg\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"eee\"\n\"add\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"egggge\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"EGG\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"b\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aa\"\n\"add\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ba\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aba\"\n\"add\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n\"add\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaaaa\"\n\"add\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n\"add\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/isomorphic-strings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.650Z",
+    "sourceUpdatedAt": null
+  }
+}

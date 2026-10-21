@@ -1,0 +1,123 @@
+{
+  "id": "3114",
+  "slug": "latest-time-you-can-obtain-after-replacing-characters",
+  "title": "Latest Time You Can Obtain After Replacing Characters",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Easy",
+  "tags": [
+    "String",
+    "Enumeration"
+  ],
+  "statement": "You are given a string `s` representing a 12-hour format time where some of the digits (possibly none) are replaced with a `\"?\"`.\n\n12-hour times are formatted as `\"HH:MM\"`, where `HH` is between `00` and `11`, and `MM` is between `00` and `59`. The earliest 12-hour time is `00:00`, and the latest is `11:59`.\n\nYou have to replace **all** the `\"?\"` characters in `s` with digits such that the time we obtain by the resulting string is a **valid** 12-hour format time and is the **latest** possible.\n\nReturn _the resulting string_.\n\n**Example 1:**\n\n**Input:** s = \"1?:?4\"\n\n**Output:** \"11:54\"\n\n**Explanation:** The latest 12-hour format time we can achieve by replacing `\"?\"` characters is `\"11:54\"`.\n\n**Example 2:**\n\n**Input:** s = \"0?:5?\"\n\n**Output:** \"09:59\"\n\n**Explanation:** The latest 12-hour format time we can achieve by replacing `\"?\"` characters is `\"09:59\"`.\n\n**Constraints:**\n\n*   `s.length == 5`\n*   `s[2]` is equal to the character `\":\"`.\n*   All characters except `s[2]` are digits or `\"?\"` characters.\n*   The input is generated such that there is **at least** one time between `\"00:00\"` and `\"11:59\"` that you can obtain after replacing the `\"?\"` characters.",
+  "constraints": [
+    "s.length == 5",
+    "s[2] is equal to the character \":\".",
+    "All characters except s[2] are digits or \"?\" characters.",
+    "The input is generated such that there is at least one time between \"00:00\" and \"11:59\" that you can obtain after replacing the \"?\" characters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"1?:?4\"",
+      "output": "\"11:54\"",
+      "explanation": "The latest 12-hour format time we can achieve by replacing \"?\" characters is \"11:54\"."
+    },
+    {
+      "input": "s = \"0?:5?\"",
+      "output": "\"09:59\"",
+      "explanation": "The latest 12-hour format time we can achieve by replacing \"?\" characters is \"09:59\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string findLatestTime(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String findLatestTime(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findLatestTime(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def findLatestTime(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar findLatestTime = function(s) {\n    \n};",
+    "typescript": "function findLatestTime(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string FindLatestTime(string s) {\n        \n    }\n}",
+    "c": "char* findLatestTime(char* s) {\n    \n}",
+    "golang": "func findLatestTime(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findLatestTime(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findLatestTime(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_latest_time(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef find_latest_time(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function findLatestTime($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String findLatestTime(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findLatestTime(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_latest_time(s :: String.t) :: String.t\n  def find_latest_time(s) do\n    \n  end\nend",
+    "erlang": "-spec find_latest_time(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nfind_latest_time(S) ->\n  .",
+    "racket": "(define/contract (find-latest-time s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"1?:?4\"",
+      "expectedOutput": "\"11:54\""
+    },
+    {
+      "input": "\"0?:5?\"",
+      "expectedOutput": "\"09:59\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"1?:?4\"",
+      "expectedOutput": "\"11:54\""
+    },
+    {
+      "input": "\"0?:5?\"",
+      "expectedOutput": "\"09:59\""
+    },
+    {
+      "input": "\"1?\"",
+      "expectedOutput": "\"11:59\""
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "\"11:59\""
+    },
+    {
+      "input": "\"1?:?41?:?4\"",
+      "expectedOutput": "\"11:54\""
+    },
+    {
+      "input": "\"1?:?44?:?1\"",
+      "expectedOutput": "\"11:54\""
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "\"09:59\""
+    },
+    {
+      "input": "\"0?\"",
+      "expectedOutput": "\"09:59\""
+    },
+    {
+      "input": "\"?5:?0\"",
+      "expectedOutput": "\"05:50\""
+    },
+    {
+      "input": "\"0?:5?0?:5?\"",
+      "expectedOutput": "\"09:59\""
+    },
+    {
+      "input": "\"0?:5??5:?0\"",
+      "expectedOutput": "\"09:59\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try using a brute force approach.",
+    "Iterate over all possible times that can be generated from the string and find the latest one."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/latest-time-you-can-obtain-after-replacing-characters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.097Z",
+    "sourceUpdatedAt": null
+  }
+}

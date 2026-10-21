@@ -1,0 +1,180 @@
+{
+  "id": "3587",
+  "slug": "minimum-adjacent-swaps-to-alternate-parity",
+  "title": "Minimum Adjacent Swaps to Alternate Parity",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "statement": "You are given an array `nums` of **distinct** integers.\n\nIn one operation, you can swap any two **adjacent** elements in the array.\n\nAn arrangement of the array is considered **valid** if the parity of adjacent elements **alternates**, meaning every pair of neighboring elements consists of one even and one odd number.\n\nReturn the **minimum** number of adjacent swaps required to transform `nums` into any valid arrangement.\n\nIf it is impossible to rearrange `nums` such that no two adjacent elements have the same parity, return `-1`.\n\n**Example 1:**\n\n**Input:** nums = \\[2,4,6,5,7\\]\n\n**Output:** 3\n\n**Explanation:**\n\nSwapping 5 and 6, the array becomes `[2,4,5,6,7]`\n\nSwapping 5 and 4, the array becomes `[2,5,4,6,7]`\n\nSwapping 6 and 7, the array becomes `[2,5,4,7,6]`. The array is now a valid arrangement. Thus, the answer is 3.\n\n**Example 2:**\n\n**Input:** nums = \\[2,4,5,7\\]\n\n**Output:** 1\n\n**Explanation:**\n\nBy swapping 4 and 5, the array becomes `[2,5,4,7]`, which is a valid arrangement. Thus, the answer is 1.\n\n**Example 3:**\n\n**Input:** nums = \\[1,2,3\\]\n\n**Output:** 0\n\n**Explanation:**\n\nThe array is already a valid arrangement. Thus, no operations are needed.\n\n**Example 4:**\n\n**Input:** nums = \\[4,5,6,8\\]\n\n**Output:** \\-1\n\n**Explanation:**\n\nNo valid arrangement is possible. Thus, the answer is -1.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`\n*   All elements in `nums` are **distinct**.",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 109",
+    "All elements in nums are distinct."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,4,6,5,7]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2,4,5,7]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,2,3]",
+      "output": "0",
+      "explanation": null
+    },
+    {
+      "input": "nums = [4,5,6,8]",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minSwaps(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minSwaps(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minSwaps(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minSwaps(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minSwaps = function(nums) {\n    \n};",
+    "typescript": "function minSwaps(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinSwaps(int[] nums) {\n        \n    }\n}",
+    "c": "int minSwaps(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minSwaps(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minSwaps(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minSwaps(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_swaps(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef min_swaps(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minSwaps($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minSwaps(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minSwaps(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_swaps(nums :: [integer]) :: integer\n  def min_swaps(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_swaps(Nums :: [integer()]) -> integer().\nmin_swaps(Nums) ->\n  .",
+    "racket": "(define/contract (min-swaps nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,4,6,5,7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,4,5,7]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,5,6,8]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,4,6,5,7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,4,5,7]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,5,6,8]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[6,5,7]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,7]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[7,5,6,4,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,4,5,6,7]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[7,6,5,4,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,4,6,5,7,2,4,6,5,7]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,8,12,10,14]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,5,7,6,8]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,3,5,4,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-2,-4,-6,-5,-7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Compute <code>evenCnt</code> and <code>oddCnt</code> in <code>nums</code>. If abs(evenCnt - oddCnt) > 1, return -1 immediately.",
+    "Let <code>n</code> = len(nums). You’ll try at most two target parity‐patterns: one starting with even at index 0, one with odd at index 0.",
+    "If <code>n</code> is odd, only the pattern whose starting parity matches the larger of <code>evenCnt</code> or <code>oddCnt</code> is feasible. If <code>n</code> is even, both starting‐even and starting‐odd patterns are possible—compute both and take the minimum.",
+    "For a given target pattern, collect the indices of all even elements in <code>nums</code> (or odd elements) and the indices where an even (or odd) should go in the pattern.",
+    "The minimum adjacent‐swap cost to align those elements is the sum of absolute differences between each element’s current index and its target index.",
+    "Return the smallest cost over valid patterns."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-adjacent-swaps-to-alternate-parity/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.391Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "id": "2693",
+  "slug": "call-function-with-custom-context",
+  "title": "Call Function with Custom Context",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Medium",
+  "tags": [],
+  "statement": "Enhance all functions to have the `callPolyfill` method. The method accepts an object `obj` as its first parameter and any number of additional arguments. The `obj` becomes the `this` context for the function. The additional arguments are passed to the function (that the `callPolyfill` method belongs on).\n\nFor example if you had the function:\n\n```\nfunction tax(price, taxRate) {\n  const totalCost = price * (1 + taxRate);\n  console.log(`The cost of ${this.item} is ${totalCost}`);\n}\n```\n\nCalling this function like `tax(10, 0.1)` will log `\"The cost of undefined is 11\"`. This is because the `this` context was not defined.\n\nHowever, calling the function like `tax.callPolyfill({item: \"salad\"}, 10, 0.1)` will log `\"The cost of salad is 11\"`. The `this` context was appropriately set, and the function logged an appropriate output.\n\nPlease solve this without using the built-in `Function.call` method.\n\n**Example 1:**\n\n```\nInput:\nfn = function add(b) {\n  return this.a + b;\n}\nargs = [{\"a\": 5}, 7]\nOutput: 12\nExplanation:\nfn.callPolyfill({\"a\": 5}, 7); // 12\ncallPolyfill sets the \"this\" context to {\"a\": 5}. 7 is passed as an argument.\n```\n\n**Example 2:**\n\n```\nInput: \nfn = function tax(price, taxRate) { \n return `The cost of the ${this.item} is ${price * taxRate}`; \n}\nargs = [{\"item\": \"burger\"}, 10, 1.1]\nOutput: \"The cost of the burger is 11\"\nExplanation: callPolyfill sets the \"this\" context to {\"item\": \"burger\"}. 10 and 1.1 are passed as additional arguments.\n```\n\n**Constraints:**\n\n*   `typeof args[0] == 'object' and args[0] != null`\n*   `1 <= args.length <= 100`\n*   `2 <= JSON.stringify(args[0]).length <= 10^(5)`",
+  "constraints": [
+    "typeof args[0] == 'object' and args[0] != null",
+    "1 <= args.length <= 100",
+    "2 <= JSON.stringify(args[0]).length <= 105"
+  ],
+  "examples": [
+    {
+      "input": "fn = function add(b) {\n  return this.a + b;\n}\nargs = [{\"a\": 5}, 7]",
+      "output": "12",
+      "explanation": "fn.callPolyfill({\"a\": 5}, 7); // 12\ncallPolyfill sets the \"this\" context to {\"a\": 5}. 7 is passed as an argument."
+    },
+    {
+      "input": "fn = function tax(price, taxRate) { \n return `The cost of the ${this.item} is ${price * taxRate}`; \n}\nargs = [{\"item\": \"burger\"}, 10, 1.1]",
+      "output": "\"The cost of the burger is 11\"",
+      "explanation": "callPolyfill sets the \"this\" context to {\"item\": \"burger\"}. 10 and 1.1 are passed as additional arguments."
+    }
+  ],
+  "starterCode": {
+    "javascript": "/**\n * @param {Object} context\n * @param {Array} args\n * @return {null|boolean|number|string|Array|Object}\n */\nFunction.prototype.callPolyfill = function(context, ...args) {\n    \n}\n\n/**\n * function increment() { this.count++; return this.count; }\n * increment.callPolyfill({count: 1}); // 2\n */",
+    "typescript": "type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };\n\ninterface Function {\n    callPolyfill(context: Record<string, JSONValue>, ...args: JSONValue[]): JSONValue;\n}\n\n\nFunction.prototype.callPolyfill = function(context, ...args): JSONValue {\n    \n}\n\n/**\n * function increment() { this.count++; return this.count; }\n * increment.callPolyfill({count: 1}); // 2\n */"
+  },
+  "publicTests": [
+    {
+      "input": "function add(b) { return this.a + b; }\n[{\"a\":5},7]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "function tax(price, taxRate) { return `The cost of the ${this.item} is ${price * taxRate}`; }\n[{\"item\":\"burger\"},10,1.1]",
+      "expectedOutput": "\"The cost of the burger is 11\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "function add(b) { return this.a + b; }\n[{\"a\":5},7]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "function tax(price, taxRate) { return `The cost of the ${this.item} is ${price * taxRate}`; }\n[{\"item\":\"burger\"},10,1.1]",
+      "expectedOutput": "\"The cost of the burger is 11\""
+    },
+    {
+      "input": "fn = function add(b) {\n  return this.a + b;\n}\nargs = [{\"a\": 5}, 7]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "fn = function tax(price, taxRate) { \n return `The cost of the ${this.item} is ${price * taxRate}`; \n}\nargs = [{\"item\": \"burger\"}, 10, 1.1]",
+      "expectedOutput": "\"The cost of the burger is 11\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/call-function-with-custom-context/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.843Z",
+    "sourceUpdatedAt": null
+  }
+}

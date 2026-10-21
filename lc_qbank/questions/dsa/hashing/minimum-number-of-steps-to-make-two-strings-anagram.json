@@ -1,0 +1,168 @@
+{
+  "id": "1347",
+  "slug": "minimum-number-of-steps-to-make-two-strings-anagram",
+  "title": "Minimum Number of Steps to Make Two Strings Anagram",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "statement": "You are given two strings of the same length `s` and `t`. In one step you can choose **any character** of `t` and replace it with **another character**.\n\nReturn _the minimum number of steps_ to make `t` an anagram of `s`.\n\nAn **Anagram** of a string is a string that contains the same characters with a different (or the same) ordering.\n\n**Example 1:**\n\n```\nInput: s = \"bab\", t = \"aba\"\nOutput: 1\nExplanation: Replace the first 'a' in t with b, t = \"bba\" which is anagram of s.\n```\n\n**Example 2:**\n\n```\nInput: s = \"leetcode\", t = \"practice\"\nOutput: 5\nExplanation: Replace 'p', 'r', 'a', 'i' and 'c' from t with proper characters to make t anagram of s.\n```\n\n**Example 3:**\n\n```\nInput: s = \"anagram\", t = \"mangaar\"\nOutput: 0\nExplanation: \"anagram\" and \"mangaar\" are anagrams.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 5 * 10^(4)`\n*   `s.length == t.length`\n*   `s` and `t` consist of lowercase English letters only.",
+  "constraints": [
+    "1 <= s.length <= 5 * 104",
+    "s.length == t.length",
+    "s and t consist of lowercase English letters only."
+  ],
+  "examples": [
+    {
+      "input": "s = \"bab\", t = \"aba\"",
+      "output": "1",
+      "explanation": "Replace the first 'a' in t with b, t = \"bba\" which is anagram of s."
+    },
+    {
+      "input": "s = \"leetcode\", t = \"practice\"",
+      "output": "5",
+      "explanation": "Replace 'p', 'r', 'a', 'i' and 'c' from t with proper characters to make t anagram of s."
+    },
+    {
+      "input": "s = \"anagram\", t = \"mangaar\"",
+      "output": "0",
+      "explanation": "\"anagram\" and \"mangaar\" are anagrams."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minSteps(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minSteps(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minSteps(self, s: str, t: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minSteps(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {number}\n */\nvar minSteps = function(s, t) {\n    \n};",
+    "typescript": "function minSteps(s: string, t: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinSteps(string s, string t) {\n        \n    }\n}",
+    "c": "int minSteps(char* s, char* t) {\n    \n}",
+    "golang": "func minSteps(s string, t string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minSteps(s: String, t: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minSteps(_ s: String, _ t: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_steps(s: String, t: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Integer}\ndef min_steps(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Integer\n     */\n    function minSteps($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minSteps(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minSteps(s: String, t: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_steps(s :: String.t, t :: String.t) :: integer\n  def min_steps(s, t) do\n    \n  end\nend",
+    "erlang": "-spec min_steps(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> integer().\nmin_steps(S, T) ->\n  .",
+    "racket": "(define/contract (min-steps s t)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"bab\"\n\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"leetcode\"\n\"practice\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"anagram\"\n\"mangaar\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"bab\"\n\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"leetcode\"\n\"practice\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"anagram\"\n\"mangaar\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"\n\"aba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"\n\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"\n\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"babbab\"\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"bbb\"\n\"aba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"BAB\"\n\"aba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"a\"\n\"aba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aa\"\n\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"\n\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcde\"\n\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"edcba\"\n\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aab\"\n\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aA\"\n\"aba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0\"\n\"aba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"121\"\n\"aba\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Count the frequency of characters of each string.",
+    "Loop over all characters if the frequency of a character in t is less than the frequency of the same character in s then add the difference between the frequencies to the answer."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.466Z",
+    "sourceUpdatedAt": null
+  }
+}

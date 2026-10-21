@@ -1,0 +1,160 @@
+{
+  "id": "2663",
+  "slug": "lexicographically-smallest-beautiful-string",
+  "title": "Lexicographically Smallest Beautiful String",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "statement": "A string is **beautiful** if:\n\n*   It consists of the first `k` letters of the English lowercase alphabet.\n*   It does not contain any substring of length `2` or more which is a palindrome.\n\nYou are given a beautiful string `s` of length `n` and a positive integer `k`.\n\nReturn _the lexicographically smallest string of length_ `n`_, which is larger than_ `s` _and is **beautiful**_. If there is no such string, return an empty string.\n\nA string `a` is lexicographically larger than a string `b` (of the same length) if in the first position where `a` and `b` differ, `a` has a character strictly larger than the corresponding character in `b`.\n\n*   For example, `\"abcd\"` is lexicographically larger than `\"abcc\"` because the first position they differ is at the fourth character, and `d` is greater than `c`.\n\n**Example 1:**\n\n```\nInput: s = \"abcz\", k = 26\nOutput: \"abda\"\nExplanation: The string \"abda\" is beautiful and lexicographically larger than the string \"abcz\".\nIt can be proven that there is no string that is lexicographically larger than the string \"abcz\", beautiful, and lexicographically smaller than the string \"abda\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"dc\", k = 4\nOutput: \"\"\nExplanation: It can be proven that there is no string that is lexicographically larger than the string \"dc\" and is beautiful.\n```\n\n**Constraints:**\n\n*   `1 <= n == s.length <= 10^(5)`\n*   `4 <= k <= 26`\n*   `s` is a beautiful string.",
+  "constraints": [
+    "1 <= n == s.length <= 105",
+    "4 <= k <= 26",
+    "s is a beautiful string."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcz\", k = 26",
+      "output": "\"abda\"",
+      "explanation": "The string \"abda\" is beautiful and lexicographically larger than the string \"abcz\".\nIt can be proven that there is no string that is lexicographically larger than the string \"abcz\", beautiful, and lexicographically smaller than the string \"abda\"."
+    },
+    {
+      "input": "s = \"dc\", k = 4",
+      "output": "\"\"",
+      "explanation": "It can be proven that there is no string that is lexicographically larger than the string \"dc\" and is beautiful."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string smallestBeautifulString(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String smallestBeautifulString(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestBeautifulString(self, s: str, k: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def smallestBeautifulString(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {string}\n */\nvar smallestBeautifulString = function(s, k) {\n    \n};",
+    "typescript": "function smallestBeautifulString(s: string, k: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string SmallestBeautifulString(string s, int k) {\n        \n    }\n}",
+    "c": "char* smallestBeautifulString(char* s, int k) {\n    \n}",
+    "golang": "func smallestBeautifulString(s string, k int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestBeautifulString(s: String, k: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestBeautifulString(_ s: String, _ k: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_beautiful_string(s: String, k: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {String}\ndef smallest_beautiful_string(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return String\n     */\n    function smallestBeautifulString($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String smallestBeautifulString(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestBeautifulString(s: String, k: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_beautiful_string(s :: String.t, k :: integer) :: String.t\n  def smallest_beautiful_string(s, k) do\n    \n  end\nend",
+    "erlang": "-spec smallest_beautiful_string(S :: unicode:unicode_binary(), K :: integer()) -> unicode:unicode_binary().\nsmallest_beautiful_string(S, K) ->\n  .",
+    "racket": "(define/contract (smallest-beautiful-string s k)\n  (-> string? exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcz\"\n26",
+      "expectedOutput": "\"abda\""
+    },
+    {
+      "input": "\"dc\"\n4",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcz\"\n26",
+      "expectedOutput": "\"abda\""
+    },
+    {
+      "input": "\"dc\"\n4",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"ab\"\n26",
+      "expectedOutput": "\"ac\""
+    },
+    {
+      "input": "\"cz\"\n26",
+      "expectedOutput": "\"da\""
+    },
+    {
+      "input": "\"a\"\n26",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"zcba\"\n26",
+      "expectedOutput": "\"zcbd\""
+    },
+    {
+      "input": "\"abczabcz\"\n26",
+      "expectedOutput": "\"abczabda\""
+    },
+    {
+      "input": "\"aaaa\"\n26",
+      "expectedOutput": "\"aaab\""
+    },
+    {
+      "input": "\"abczzcba\"\n26",
+      "expectedOutput": "\"abczzcbd\""
+    },
+    {
+      "input": "\"ABCZ\"\n26",
+      "expectedOutput": "\"ABC[\""
+    },
+    {
+      "input": "\"b\"\n26",
+      "expectedOutput": "\"c\""
+    },
+    {
+      "input": "\"aa\"\n26",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"\n26",
+      "expectedOutput": "\"bc\""
+    },
+    {
+      "input": "\"aba\"\n26",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "\"abba\"\n26",
+      "expectedOutput": "\"abbc\""
+    },
+    {
+      "input": "\"aaaaa\"\n26",
+      "expectedOutput": "\"aaaab\""
+    },
+    {
+      "input": "\"abcde\"\n26",
+      "expectedOutput": "\"abcdf\""
+    },
+    {
+      "input": "\"edcba\"\n26",
+      "expectedOutput": "\"edcbd\""
+    },
+    {
+      "input": "\"aab\"\n26",
+      "expectedOutput": "\"aac\""
+    },
+    {
+      "input": "\"aA\"\n26",
+      "expectedOutput": "\"aB\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If the string does not contain any palindromic substrings of lengths 2 and 3, then the string does not contain any palindromic substrings at all.",
+    "Iterate from right to left and if it is possible to increase character at index i without creating any palindromic substrings of lengths 2 and 3, then increase it.",
+    "After increasing the character at index i, set every character after index i equal to character a. With this, we will ensure that we have created a lexicographically larger string than s, which does not contain any palindromes before index i and is lexicographically the smallest.",
+    "Finally, we are just left with a case to fix palindromic substrings, which come after index i. This can be done with a similar method mentioned in the second hint."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/lexicographically-smallest-beautiful-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.205Z",
+    "sourceUpdatedAt": null
+  }
+}

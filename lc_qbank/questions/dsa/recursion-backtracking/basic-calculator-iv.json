@@ -1,0 +1,119 @@
+{
+  "id": "770",
+  "slug": "basic-calculator-iv",
+  "title": "Basic Calculator IV",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Stack",
+    "Recursion"
+  ],
+  "statement": "Given an expression such as `expression = \"e + 8 - a + 5\"` and an evaluation map such as `{\"e\": 1}` (given in terms of `evalvars = [\"e\"]` and `evalints = [1]`), return a list of tokens representing the simplified expression, such as `[\"-1*a\",\"14\"]`\n\n*   An expression alternates chunks and symbols, with a space separating each chunk and symbol.\n*   A chunk is either an expression in parentheses, a variable, or a non-negative integer.\n*   A variable is a string of lowercase letters (not including digits.) Note that variables can be multiple letters, and note that variables never have a leading coefficient or unary operator like `\"2x\"` or `\"-x\"`.\n\nExpressions are evaluated in the usual order: brackets first, then multiplication, then addition and subtraction.\n\n*   For example, `expression = \"1 + 2 * 3\"` has an answer of `[\"7\"]`.\n\nThe format of the output is as follows:\n\n*   For each term of free variables with a non-zero coefficient, we write the free variables within a term in sorted order lexicographically.\n    *   For example, we would never write a term like `\"b*a*c\"`, only `\"a*b*c\"`.\n*   Terms have degrees equal to the number of free variables being multiplied, counting multiplicity. We write the largest degree terms of our answer first, breaking ties by lexicographic order ignoring the leading coefficient of the term.\n    *   For example, `\"a*a*b*c\"` has degree `4`.\n*   The leading coefficient of the term is placed directly to the left with an asterisk separating it from the variables (if they exist.) A leading coefficient of 1 is still printed.\n*   An example of a well-formatted answer is `[\"-2*a*a*a\", \"3*a*a*b\", \"3*b*b\", \"4*a\", \"5*c\", \"-6\"]`.\n*   Terms (including constant terms) with coefficient `0` are not included.\n    *   For example, an expression of `\"0\"` has an output of `[]`.\n\n**Note:** You may assume that the given expression is always valid. All intermediate results will be in the range of `[-2^(31), 2^(31) - 1]`.\n\n**Example 1:**\n\n```\nInput: expression = \"e + 8 - a + 5\", evalvars = [\"e\"], evalints = [1]\nOutput: [\"-1*a\",\"14\"]\n```\n\n**Example 2:**\n\n```\nInput: expression = \"e - 8 + temperature - pressure\", evalvars = [\"e\", \"temperature\"], evalints = [1, 12]\nOutput: [\"-1*pressure\",\"5\"]\n```\n\n**Example 3:**\n\n```\nInput: expression = \"(e + 8) * (e - 8)\", evalvars = [], evalints = []\nOutput: [\"1*e*e\",\"-64\"]\n```\n\n**Constraints:**\n\n*   `1 <= expression.length <= 250`\n*   `expression` consists of lowercase English letters, digits, `'+'`, `'-'`, `'*'`, `'('`, `')'`, `' '`.\n*   `expression` does not contain any leading or trailing spaces.\n*   All the tokens in `expression` are separated by a single space.\n*   `0 <= evalvars.length <= 100`\n*   `1 <= evalvars[i].length <= 20`\n*   `evalvars[i]` consists of lowercase English letters.\n*   `evalints.length == evalvars.length`\n*   `-100 <= evalints[i] <= 100`",
+  "constraints": [
+    "1 <= expression.length <= 250",
+    "expression consists of lowercase English letters, digits, '+', '-', '*', '(', ')', ' '.",
+    "expression does not contain any leading or trailing spaces.",
+    "All the tokens in expression are separated by a single space.",
+    "0 <= evalvars.length <= 100",
+    "1 <= evalvars[i].length <= 20",
+    "evalvars[i] consists of lowercase English letters.",
+    "evalints.length == evalvars.length",
+    "-100 <= evalints[i] <= 100"
+  ],
+  "examples": [
+    {
+      "input": "expression = \"e + 8 - a + 5\", evalvars = [\"e\"], evalints = [1]",
+      "output": "[\"-1*a\",\"14\"]",
+      "explanation": null
+    },
+    {
+      "input": "expression = \"e - 8 + temperature - pressure\", evalvars = [\"e\", \"temperature\"], evalints = [1, 12]",
+      "output": "[\"-1*pressure\",\"5\"]",
+      "explanation": null
+    },
+    {
+      "input": "expression = \"(e + 8) * (e - 8)\", evalvars = [], evalints = []",
+      "output": "[\"1*e*e\",\"-64\"]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> basicCalculatorIV(string expression, vector<string>& evalvars, vector<int>& evalints) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> basicCalculatorIV(String expression, String[] evalvars, int[] evalints) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def basicCalculatorIV(self, expression: str, evalvars: list[str], evalints: list[int]) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def basicCalculatorIV(self, expression, evalvars, evalints):\n        \"\"\"\n        :type expression: str\n        :type evalvars: List[str]\n        :type evalints: List[int]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @param {string[]} evalvars\n * @param {number[]} evalints\n * @return {string[]}\n */\nvar basicCalculatorIV = function(expression, evalvars, evalints) {\n    \n};",
+    "typescript": "function basicCalculatorIV(expression: string, evalvars: string[], evalints: number[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> BasicCalculatorIV(string expression, string[] evalvars, int[] evalints) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** basicCalculatorIV(char* expression, char** evalvars, int evalvarsSize, int* evalints, int evalintsSize, int* returnSize) {\n    \n}",
+    "golang": "func basicCalculatorIV(expression string, evalvars []string, evalints []int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun basicCalculatorIV(expression: String, evalvars: Array<String>, evalints: IntArray): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func basicCalculatorIV(_ expression: String, _ evalvars: [String], _ evalints: [Int]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn basic_calculator_iv(expression: String, evalvars: Vec<String>, evalints: Vec<i32>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @param {String[]} evalvars\n# @param {Integer[]} evalints\n# @return {String[]}\ndef basic_calculator_iv(expression, evalvars, evalints)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @param String[] $evalvars\n     * @param Integer[] $evalints\n     * @return String[]\n     */\n    function basicCalculatorIV($expression, $evalvars, $evalints) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> basicCalculatorIV(String expression, List<String> evalvars, List<int> evalints) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def basicCalculatorIV(expression: String, evalvars: Array[String], evalints: Array[Int]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec basic_calculator_iv(expression :: String.t, evalvars :: [String.t], evalints :: [integer]) :: [String.t]\n  def basic_calculator_iv(expression, evalvars, evalints) do\n    \n  end\nend",
+    "erlang": "-spec basic_calculator_iv(Expression :: unicode:unicode_binary(), Evalvars :: [unicode:unicode_binary()], Evalints :: [integer()]) -> [unicode:unicode_binary()].\nbasic_calculator_iv(Expression, Evalvars, Evalints) ->\n  .",
+    "racket": "(define/contract (basic-calculator-iv expression evalvars evalints)\n  (-> string? (listof string?) (listof exact-integer?) (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"e + 8 - a + 5\"\n[\"e\"]\n[1]",
+      "expectedOutput": "[\"-1*a\",\"14\"]"
+    },
+    {
+      "input": "\"e - 8 + temperature - pressure\"\n[\"e\", \"temperature\"]\n[1, 12]",
+      "expectedOutput": "[\"-1*pressure\",\"5\"]"
+    },
+    {
+      "input": "\"(e + 8) * (e - 8)\"\n[]\n[]",
+      "expectedOutput": "[\"1*e*e\",\"-64\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"e + 8 - a + 5\"\n[\"e\"]\n[1]",
+      "expectedOutput": "[\"-1*a\",\"14\"]"
+    },
+    {
+      "input": "\"e - 8 + temperature - pressure\"\n[\"e\", \"temperature\"]\n[1, 12]",
+      "expectedOutput": "[\"-1*pressure\",\"5\"]"
+    },
+    {
+      "input": "\"(e + 8) * (e - 8)\"\n[]\n[]",
+      "expectedOutput": "[\"1*e*e\",\"-64\"]"
+    },
+    {
+      "input": "expression = \"e + 8 - a + 5\", evalvars = [\"e\"], evalints = [1]",
+      "expectedOutput": "[\"-1*a\",\"14\"]"
+    },
+    {
+      "input": "expression = \"e - 8 + temperature - pressure\", evalvars = [\"e\", \"temperature\"], evalints = [1, 12]",
+      "expectedOutput": "[\"-1*pressure\",\"5\"]"
+    },
+    {
+      "input": "expression = \"(e + 8) * (e - 8)\", evalvars = [], evalints = []",
+      "expectedOutput": "[\"1*e*e\",\"-64\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "One way is with a Polynomial class.  For example,\r\n\r\n* `Poly:add(this, that)` returns the result of `this + that`.\r\n* `Poly:sub(this, that)` returns the result of `this - that`.\r\n* `Poly:mul(this, that)` returns the result of `this * that`.\r\n* `Poly:evaluate(this, evalmap)` returns the polynomial after replacing all free variables with constants as specified by `evalmap`.\r\n* `Poly:toList(this)` returns the polynomial in the correct output format.\r\n\r\n* `Solution::combine(left, right, symbol)` returns the result of applying the binary operator represented by `symbol` to `left` and `right`.\r\n* `Solution::make(expr)` makes a new `Poly` represented by either the constant or free variable specified by `expr`.\r\n* `Solution::parse(expr)` parses an expression into a new `Poly`."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/basic-calculator-iv/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.443Z",
+    "sourceUpdatedAt": null
+  }
+}

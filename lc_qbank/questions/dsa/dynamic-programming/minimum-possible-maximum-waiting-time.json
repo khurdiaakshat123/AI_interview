@@ -1,0 +1,115 @@
+{
+  "id": "4009",
+  "slug": "minimum-possible-maximum-waiting-time",
+  "title": "Minimum Possible Maximum Waiting Time",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Memoization"
+  ],
+  "statement": "You are given an integer array `demand`, where `demand[i]` is the amount of fuel required by the `i^(th)` car.\n\nYou are also given an integer array `fuel` of length 2. There are **exactly** two fuel dispensers, numbered 0 and 1, where `fuel[j]` is the initial amount of fuel available in dispenser `j`.\n\nCars are allowed to start refueling in **increasing** index order. Car 0 becomes allowed at time 0, and for each `i > 0`, car `i` becomes allowed **exactly** when car `i - 1` starts refueling.\n\nThe refueling process follows these rules:\n\n*   Each dispenser can serve **at most** one car at a time.\n*   When a car becomes allowed, you must choose a dispenser with **at least** `demand[i]` fuel remaining. If both dispensers have enough fuel remaining, you may choose **either** of them, regardless of when they become free.\n*   The car waits until the chosen dispenser becomes free and starts refueling **immediately**. It cannot switch dispensers or intentionally wait after the chosen dispenser becomes free.\n*   When a car starts refueling, the remaining fuel in the chosen dispenser decreases by `demand[i]`, and the dispenser remains occupied for `demand[i]` seconds.\n*   Once started, refueling cannot be interrupted.\n*   If neither dispenser has at least `demand[i]` fuel remaining when car `i` becomes allowed, the process terminates and no further cars can be served.\n\nThe **waiting time** of a car is the time between when it becomes allowed to start refueling and when it actually starts.\n\nReturn the **minimum** possible value of the **maximum** waiting time among all served cars over all assignments that **maximize** the number of served cars. If no car can be served, return -1.\n\n**Example 1:**\n\n**Input:** demand = \\[6,8,4,6,5\\], fuel = \\[16,13\\]\n\n**Output:** 6\n\n**Explanation:**\n\nThe following assignment serves all five cars:\n\nCar\n\nBecomes allowed at\n\nStarts refueling at\n\nDispenser used\n\nRemaining fuel before start  \n(dispenser 0, dispenser 1)\n\nWaiting time\n\n0\n\n0\n\n0\n\n0\n\n(16, 13)\n\n0\n\n1\n\n0\n\n0\n\n1\n\n(10, 13)\n\n0\n\n2\n\n0\n\n6\n\n0\n\n(10, 5)\n\n6\n\n3\n\n6\n\n10\n\n0\n\n(6, 5)\n\n4\n\n4\n\n10\n\n10\n\n1\n\n(0, 5)\n\n0\n\nThus, all five cars are served, and the maximum waiting time is 6.\n\nTo serve all five cars, dispenser 0 must serve the cars with demands 6, 4, and 6, while dispenser 1 must serve the cars with demands 8 and 5. Therefore, car 2 must wait until time 6 for dispenser 0 to become free, so no assignment serving all five cars can have a maximum waiting time less than 6.\n\n**Example 2:**\n\n**Input:** demand = \\[10,15\\], fuel = \\[12,17\\]\n\n**Output:** 0\n\n**Explanation:**\n\n*   At time 0, Car 0 becomes allowed and starts refuelling using dispenser 0.\n*   Car 1 becomes allowed at time 0 (when Car 0 starts) and immediately starts refuelling using dispenser 1.\n*   Both cars start without waiting, so the maximum waiting time is 0.\n\n**Example 3:**\n\n**Input:** demand = \\[10,5\\], fuel = \\[8,8\\]\n\n**Output:** \\-1\n\n**Explanation:**\n\n*   At time 0, Car 0 becomes allowed. However, neither dispenser has enough fuel to serve it, so the process terminates immediately.\n*   No car is served, so the answer is -1.\n\n**Constraints:**\n\n*   `1 <= demand.length <= 50`\n*   `1 <= demand[i] <= 20`\n*   `fuel.length == 2`\n*   `1 <= fuel[i] <= 50`",
+  "constraints": [
+    "1 <= demand.length <= 50",
+    "1 <= demand[i] <= 20",
+    "fuel.length == 2",
+    "1 <= fuel[i] <= 50"
+  ],
+  "examples": [
+    {
+      "input": "demand = [6,8,4,6,5], fuel = [16,13]",
+      "output": "6",
+      "explanation": null
+    },
+    {
+      "input": "demand = [10,15], fuel = [12,17]",
+      "output": "0",
+      "explanation": "At time 0, Car 0 becomes allowed and starts refuelling using dispenser 0.\n\tCar 1 becomes allowed at time 0 (when Car 0 starts) and immediately starts refuelling using dispenser 1.\n\tBoth cars start without waiting, so the maximum waiting time is 0."
+    },
+    {
+      "input": "demand = [10,5], fuel = [8,8]",
+      "output": "-1",
+      "explanation": "At time 0, Car 0 becomes allowed. However, neither dispenser has enough fuel to serve it, so the process terminates immediately.\n\tNo car is served, so the answer is -1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minMaxWaitingTime(vector<int>& demand, vector<int>& fuel) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minMaxWaitingTime(int[] demand, int[] fuel) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minMaxWaitingTime(self, demand: List[int], fuel: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minMaxWaitingTime(self, demand, fuel):\n        \"\"\"\n        :type demand: List[int]\n        :type fuel: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} demand\n * @param {number[]} fuel\n * @return {number}\n */\nvar minMaxWaitingTime = function(demand, fuel) {\n    \n};",
+    "typescript": "function minMaxWaitingTime(demand: number[], fuel: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinMaxWaitingTime(int[] demand, int[] fuel) {\n        \n    }\n}",
+    "c": "int minMaxWaitingTime(int* demand, int demandSize, int* fuel, int fuelSize) {\n    \n}",
+    "golang": "func minMaxWaitingTime(demand []int, fuel []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minMaxWaitingTime(demand: IntArray, fuel: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minMaxWaitingTime(_ demand: [Int], _ fuel: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_max_waiting_time(demand: Vec<i32>, fuel: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} demand\n# @param {Integer[]} fuel\n# @return {Integer}\ndef min_max_waiting_time(demand, fuel)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $demand\n     * @param Integer[] $fuel\n     * @return Integer\n     */\n    function minMaxWaitingTime($demand, $fuel) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minMaxWaitingTime(List<int> demand, List<int> fuel) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minMaxWaitingTime(demand: Array[Int], fuel: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_max_waiting_time(demand :: [integer], fuel :: [integer]) :: integer\n  def min_max_waiting_time(demand, fuel) do\n    \n  end\nend",
+    "erlang": "-spec min_max_waiting_time(Demand :: [integer()], Fuel :: [integer()]) -> integer().\nmin_max_waiting_time(Demand, Fuel) ->\n  .",
+    "racket": "(define/contract (min-max-waiting-time demand fuel)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[6,8,4,6,5]\r\n[16,13]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[10,15]\r\n[12,17]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[10,5]\r\n[8,8]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[6,8,4,6,5]\r\n[16,13]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[10,15]\r\n[12,17]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[10,5]\r\n[8,8]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "demand = [6,8,4,6,5], fuel = [16,13]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "demand = [10,15], fuel = [12,17]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "demand = [10,5], fuel = [8,8]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Use dynamic programming over the cars in order. For each dispenser, store its remaining fuel and the time until it becomes free, measured from when the current car becomes allowed.</p>",
+    "<p>If the current car is assigned to a dispenser whose remaining busy time is <code>wait</code>, its waiting time is <code>wait</code>. Decrease that dispenser's fuel and set its new busy time to <code>demand[i]</code>.</p>",
+    "<p>Because the next car becomes allowed when the current car starts, subtract <code>wait</code> from the other dispenser's busy time, stopping at <code>0</code>.</p>",
+    "<p>For every state, first maximize the number of cars that can be served. Among assignments serving that maximum number, minimize the maximum waiting time encountered.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-possible-maximum-waiting-time/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.889Z",
+    "sourceUpdatedAt": null
+  }
+}

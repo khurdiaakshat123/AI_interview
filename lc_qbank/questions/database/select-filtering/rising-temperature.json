@@ -1,0 +1,60 @@
+{
+  "id": "197",
+  "slug": "rising-temperature",
+  "title": "Rising Temperature",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Weather`\n\n```\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| id            | int     |\n| recordDate    | date    |\n| temperature   | int     |\n+---------------+---------+\nid is the column with unique values for this table.\nThere are no different rows with the same recordDate.\nThis table contains information about the temperature on a certain day.\n```\n\nWrite a solution to find all dates' `id` with higher temperatures compared to its previous dates (yesterday).\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nWeather table:\n+----+------------+-------------+\n| id | recordDate | temperature |\n+----+------------+-------------+\n| 1  | 2015-01-01 | 10          |\n| 2  | 2015-01-02 | 25          |\n| 3  | 2015-01-03 | 20          |\n| 4  | 2015-01-04 | 30          |\n+----+------------+-------------+\nOutput: \n+----+\n| id |\n+----+\n| 2  |\n| 4  |\n+----+\nExplanation: \nIn 2015-01-02, the temperature was higher than the previous day (10 -> 25).\nIn 2015-01-04, the temperature was higher than the previous day (20 -> 30).\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Weather table:\n+----+------------+-------------+\n| id | recordDate | temperature |\n+----+------------+-------------+\n| 1  | 2015-01-01 | 10          |\n| 2  | 2015-01-02 | 25          |\n| 3  | 2015-01-03 | 20          |\n| 4  | 2015-01-04 | 30          |\n+----+------------+-------------+",
+      "output": "+----+\n| id |\n+----+\n| 2  |\n| 4  |\n+----+",
+      "explanation": "In 2015-01-02, the temperature was higher than the previous day (10 -> 25).\nIn 2015-01-04, the temperature was higher than the previous day (20 -> 30)."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef rising_temperature(weather: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"Weather\": [\"id\", \"recordDate\", \"temperature\"]}, \"rows\": {\"Weather\": [[1, \"2015-01-01\", 10], [2, \"2015-01-02\", 25], [3, \"2015-01-03\", 20], [4, \"2015-01-04\", 30]]}}",
+      "expectedOutput": "+----+\n| id |\n+----+\n| 2  |\n| 4  |\n+----+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"Weather\": [\"id\", \"recordDate\", \"temperature\"]}, \"rows\": {\"Weather\": [[1, \"2015-01-01\", 10], [2, \"2015-01-02\", 25], [3, \"2015-01-03\", 20], [4, \"2015-01-04\", 30]]}}",
+      "expectedOutput": "+----+\n| id |\n+----+\n| 2  |\n| 4  |\n+----+"
+    },
+    {
+      "input": "Weather table:\n+----+------------+-------------+\n| id | recordDate | temperature |\n+----+------------+-------------+\n| 1  | 2015-01-01 | 10          |\n| 2  | 2015-01-02 | 25          |\n| 3  | 2015-01-03 | 20          |\n| 4  | 2015-01-04 | 30          |\n+----+------------+-------------+",
+      "expectedOutput": "+----+\n| id |\n+----+\n| 2  |\n| 4  |\n+----+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Weather (id int, recordDate date, temperature int)\n\nTruncate table Weather",
+  "sqlSetup": [
+    "insert into Weather (id, recordDate, temperature) values ('1', '2015-01-01', '10')",
+    "insert into Weather (id, recordDate, temperature) values ('2', '2015-01-02', '25')",
+    "insert into Weather (id, recordDate, temperature) values ('3', '2015-01-03', '20')",
+    "insert into Weather (id, recordDate, temperature) values ('4', '2015-01-04', '30')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/rising-temperature/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.948Z",
+    "sourceUpdatedAt": null
+  }
+}

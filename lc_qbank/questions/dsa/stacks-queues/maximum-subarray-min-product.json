@@ -1,0 +1,169 @@
+{
+  "id": "1856",
+  "slug": "maximum-subarray-min-product",
+  "title": "Maximum Subarray Min-Product",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack",
+    "Prefix Sum",
+    "Cartesian Tree"
+  ],
+  "statement": "The **min-product** of an array is equal to the **minimum value** in the array **multiplied by** the array's **sum**.\n\n*   For example, the array `[3,2,5]` (minimum value is `2`) has a min-product of `2 * (3+2+5) = 2 * 10 = 20`.\n\nGiven an array of integers `nums`, return _the **maximum min-product** of any **non-empty subarray** of_ `nums`. Since the answer may be large, return it **modulo** `10^(9) + 7`.\n\nNote that the min-product should be maximized **before** performing the modulo operation. Testcases are generated such that the maximum min-product **without** modulo will fit in a **64-bit signed integer**.\n\nA **subarray** is a **contiguous** part of an array.\n\n**Example 1:**\n\n```\nInput: nums = [1,2,3,2]\nOutput: 14\nExplanation: The maximum min-product is achieved with the subarray [2,3,2] (minimum value is 2).\n2 * (2+3+2) = 2 * 7 = 14.\n```\n\n**Example 2:**\n\n```\nInput: nums = [2,3,3,1,2]\nOutput: 18\nExplanation: The maximum min-product is achieved with the subarray [3,3] (minimum value is 3).\n3 * (3+3) = 3 * 6 = 18.\n```\n\n**Example 3:**\n\n```\nInput: nums = [3,1,5,6,4,2]\nOutput: 60\nExplanation: The maximum min-product is achieved with the subarray [5,6,4] (minimum value is 4).\n4 * (5+6+4) = 4 * 15 = 60.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(7)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 107"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3,2]",
+      "output": "14",
+      "explanation": "The maximum min-product is achieved with the subarray [2,3,2] (minimum value is 2).\n2 * (2+3+2) = 2 * 7 = 14."
+    },
+    {
+      "input": "nums = [2,3,3,1,2]",
+      "output": "18",
+      "explanation": "The maximum min-product is achieved with the subarray [3,3] (minimum value is 3).\n3 * (3+3) = 3 * 6 = 18."
+    },
+    {
+      "input": "nums = [3,1,5,6,4,2]",
+      "output": "60",
+      "explanation": "The maximum min-product is achieved with the subarray [5,6,4] (minimum value is 4).\n4 * (5+6+4) = 4 * 15 = 60."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxSumMinProduct(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxSumMinProduct(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSumMinProduct(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSumMinProduct(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxSumMinProduct = function(nums) {\n    \n};",
+    "typescript": "function maxSumMinProduct(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxSumMinProduct(int[] nums) {\n        \n    }\n}",
+    "c": "int maxSumMinProduct(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxSumMinProduct(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSumMinProduct(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSumMinProduct(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_sum_min_product(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_sum_min_product(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxSumMinProduct($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSumMinProduct(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSumMinProduct(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_sum_min_product(nums :: [integer]) :: integer\n  def max_sum_min_product(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_sum_min_product(Nums :: [integer()]) -> integer().\nmax_sum_min_product(Nums) ->\n  .",
+    "racket": "(define/contract (max-sum-min-product nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,2]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[2,3,3,1,2]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[3,1,5,6,4,2]",
+      "expectedOutput": "60"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,2]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[2,3,3,1,2]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[3,1,5,6,4,2]",
+      "expectedOutput": "60"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,2]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3,2,1]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[1,2,2,3]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[3,2,2,1]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,3,2,1,2,3,2]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[2,4,6,4]",
+      "expectedOutput": "56"
+    },
+    {
+      "input": "[2,3,4,3]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "[0,1,2,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-1,-2,-3,-2]",
+      "expectedOutput": "24"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Is there a way we can sort the elements to simplify the problem?",
+    "Can we find the maximum min-product for every value in the array?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-subarray-min-product/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.657Z",
+    "sourceUpdatedAt": null
+  }
+}

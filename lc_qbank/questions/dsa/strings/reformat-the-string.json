@@ -1,0 +1,165 @@
+{
+  "id": "1417",
+  "slug": "reformat-the-string",
+  "title": "Reformat The String",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Easy",
+  "tags": [
+    "String"
+  ],
+  "statement": "You are given an alphanumeric string `s`. (**Alphanumeric string** is a string consisting of lowercase English letters and digits).\n\nYou have to find a permutation of the string where no letter is followed by another letter and no digit is followed by another digit. That is, no two adjacent characters have the same type.\n\nReturn _the reformatted string_ or return **an empty string** if it is impossible to reformat the string.\n\n**Example 1:**\n\n```\nInput: s = \"a0b1c2\"\nOutput: \"0a1b2c\"\nExplanation: No two adjacent characters have the same type in \"0a1b2c\". \"a0b1c2\", \"0a1b2c\", \"0c2a1b\" are also valid permutations.\n```\n\n**Example 2:**\n\n```\nInput: s = \"leetcode\"\nOutput: \"\"\nExplanation: \"leetcode\" has only characters so we cannot separate them by digits.\n```\n\n**Example 3:**\n\n```\nInput: s = \"1229857369\"\nOutput: \"\"\nExplanation: \"1229857369\" has only digits so we cannot separate them by characters.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 500`\n*   `s` consists of only lowercase English letters and/or digits.",
+  "constraints": [
+    "1 <= s.length <= 500",
+    "s consists of only lowercase English letters and/or digits."
+  ],
+  "examples": [
+    {
+      "input": "s = \"a0b1c2\"",
+      "output": "\"0a1b2c\"",
+      "explanation": "No two adjacent characters have the same type in \"0a1b2c\". \"a0b1c2\", \"0a1b2c\", \"0c2a1b\" are also valid permutations."
+    },
+    {
+      "input": "s = \"leetcode\"",
+      "output": "\"\"",
+      "explanation": "\"leetcode\" has only characters so we cannot separate them by digits."
+    },
+    {
+      "input": "s = \"1229857369\"",
+      "output": "\"\"",
+      "explanation": "\"1229857369\" has only digits so we cannot separate them by characters."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string reformat(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String reformat(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reformat(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def reformat(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar reformat = function(s) {\n    \n};",
+    "typescript": "function reformat(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string Reformat(string s) {\n        \n    }\n}",
+    "c": "char* reformat(char* s) {\n    \n}",
+    "golang": "func reformat(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun reformat(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reformat(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reformat(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef reformat(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function reformat($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String reformat(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reformat(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reformat(s :: String.t) :: String.t\n  def reformat(s) do\n    \n  end\nend",
+    "erlang": "-spec reformat(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nreformat(S) ->\n  .",
+    "racket": "(define/contract (reformat s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"a0b1c2\"",
+      "expectedOutput": "\"0a1b2c\""
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"1229857369\"",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"a0b1c2\"",
+      "expectedOutput": "\"a0b1c2\""
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"1229857369\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"a0b\"",
+      "expectedOutput": "\"a0b\""
+    },
+    {
+      "input": "\"1c2\"",
+      "expectedOutput": "\"1c2\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"a0\"",
+      "expectedOutput": "\"a0\""
+    },
+    {
+      "input": "\"2c1b0a\"",
+      "expectedOutput": "\"c2b1a0\""
+    },
+    {
+      "input": "\"a0b1c2a0b1c2\"",
+      "expectedOutput": "\"a0b1c2a0b1c2\""
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"a0b1c22c1b0a\"",
+      "expectedOutput": "\"a0b1c2c2b1a0\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Count the number of letters and digits in the string. if cntLetters - cntDigits has any of the values [-1, 0, 1] we have an answer, otherwise we don't have any answer.",
+    "Build the string anyway as you wish. Keep in mind that you need to start with the type that has more characters if cntLetters ≠ cntDigits."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/reformat-the-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.409Z",
+    "sourceUpdatedAt": null
+  }
+}

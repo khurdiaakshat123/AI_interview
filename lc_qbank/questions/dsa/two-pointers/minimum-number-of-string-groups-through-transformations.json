@@ -1,0 +1,115 @@
+{
+  "id": "3999",
+  "slug": "minimum-number-of-string-groups-through-transformations",
+  "title": "Minimum Number of String Groups Through Transformations",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "You are given an array of strings `words`.\n\nDefine a **transformation** on a string `s` as follows:\n\n*   Let `E` be the subsequence of characters at even indices of `s`.\n*   Let `O` be the **subsequence** of characters at odd indices of `s`.\n*   **Independently** cyclically shift `E` and `O` by **any** number of positions to the right, possibly zero.\n*   Reconstruct the string by placing the shifted `E` characters back into even indices and the shifted `O` characters back into odd indices.\n\nTwo strings are **equivalent** if one can be transformed into the other by a **single** transformation.\n\nPartition `words` into the **minimum** number of groups such that:\n\n*   Every string belongs to **exactly** one group.\n*   Every pair of strings in the same group are **equivalent**.\n\nReturn an integer denoting the **minimum** number of groups.\n\n**Example 1:**\n\n**Input:** words = \\[\"ntgwz\",\"zwntg\"\\]\n\n**Output:** 1\n\n**Explanation:**\n\n*   For `\"ntgwz\"`, the even-index subsequence is `\"ngz\"` and the odd-index subsequence is `\"tw\"`.\n*   Shift `\"ngz\"` right by `1` position to obtain `\"zng\"`, and shift `\"tw\"` right by `1` position to obtain `\"wt\"`.\n*   After reconstructing the string, we obtain `\"zwntg\"`.\n*   Therefore, both strings are equivalent and belong to the same group.\n\n**Example 2:**\n\n**Input:** words = \\[\"abc\",\"cab\",\"bac\",\"acb\",\"bca\",\"cba\"\\]\n\n**Output:** 3\n\n**Explanation:**\n\nThe strings can be partitioned into the following groups:\n\n*   `[\"abc\",\"cba\"]`\n*   `[\"cab\",\"bac\"]`\n*   `[\"acb\",\"bca\"]`\n\n**Example 3:**\n\n**Input:** words = \\[\"leet\",\"abb\",\"bab\",\"deed\",\"edde\",\"code\",\"bba\"\\]\n\n**Output:** 5\n\n**Explanation:**\n\nThe strings can be partitioned into the following groups:\n\n*   `[\"abb\",\"bba\"]`\n*   `[\"deed\",\"edde\"]`\n*   `[\"leet\"]`\n*   `[\"bab\"]`\n*   `[\"code\"]`\n\n​​​​​​​​​​​​​​All pairs of strings in each group are equivalent.\n\n**Constraints:**\n\n*   `1 <= words.length <= 10^(5)`\n*   `1 <= words[i].length <= 5 * 10^(5)`\n*   The sum of `words[i].length` does not exceed `5 * 10^(5)`.\n*   `words[i]` consist of lowercase English letters.",
+  "constraints": [
+    "1 <= words.length <= 105",
+    "1 <= words[i].length <= 5 * 105",
+    "The sum of words[i].length does not exceed 5 * 105.",
+    "words[i] consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"ntgwz\",\"zwntg\"]",
+      "output": "1",
+      "explanation": "For \"ntgwz\", the even-index subsequence is \"ngz\" and the odd-index subsequence is \"tw\".\n\tShift \"ngz\" right by 1 position to obtain \"zng\", and shift \"tw\" right by 1 position to obtain \"wt\".\n\tAfter reconstructing the string, we obtain \"zwntg\".\n\tTherefore, both strings are equivalent and belong to the same group."
+    },
+    {
+      "input": "words = [\"abc\",\"cab\",\"bac\",\"acb\",\"bca\",\"cba\"]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "words = [\"leet\",\"abb\",\"bab\",\"deed\",\"edde\",\"code\",\"bba\"]",
+      "output": "5",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumGroups(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumGroups(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumGroups(self, words: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumGroups(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {number}\n */\nvar minimumGroups = function(words) {\n    \n};",
+    "typescript": "function minimumGroups(words: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumGroups(string[] words) {\n        \n    }\n}",
+    "c": "int minimumGroups(char** words, int wordsSize) {\n    \n}",
+    "golang": "func minimumGroups(words []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumGroups(words: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumGroups(_ words: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_groups(words: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Integer}\ndef minimum_groups(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Integer\n     */\n    function minimumGroups($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumGroups(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumGroups(words: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_groups(words :: [String.t]) :: integer\n  def minimum_groups(words) do\n    \n  end\nend",
+    "erlang": "-spec minimum_groups(Words :: [unicode:unicode_binary()]) -> integer().\nminimum_groups(Words) ->\n  .",
+    "racket": "(define/contract (minimum-groups words)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"ntgwz\",\"zwntg\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"abc\",\"cab\",\"bac\",\"acb\",\"bca\",\"cba\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"leet\",\"abb\",\"bab\",\"deed\",\"edde\",\"code\",\"bba\"]",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"ntgwz\",\"zwntg\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"abc\",\"cab\",\"bac\",\"acb\",\"bca\",\"cba\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"leet\",\"abb\",\"bab\",\"deed\",\"edde\",\"code\",\"bba\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "words = [\"ntgwz\",\"zwntg\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "words = [\"abc\",\"cab\",\"bac\",\"acb\",\"bca\",\"cba\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "words = [\"leet\",\"abb\",\"bab\",\"deed\",\"edde\",\"code\",\"bba\"]",
+      "expectedOutput": "5"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Separate each word into the characters at even indices and the characters at odd indices.</p>",
+    "<p>Two words are equivalent if their even-index subsequences are cyclic shifts of each other and their odd-index subsequences are cyclic shifts of each other.</p>",
+    "<p>For each subsequence, compute a canonical representative of its cyclic rotations, such as its lexicographically smallest cyclic rotation. This can be found efficiently using Booth's algorithm, Duval's algorithm, or even a suffix-array-based approach on the doubled string etc.</p>",
+    "<p>Use the pair of canonical representatives as the signature of the word. The answer is the number of distinct signatures.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-string-groups-through-transformations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.474Z",
+    "sourceUpdatedAt": null
+  }
+}

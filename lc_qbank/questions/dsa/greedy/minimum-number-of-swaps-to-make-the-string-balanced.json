@@ -1,0 +1,173 @@
+{
+  "id": "1963",
+  "slug": "minimum-number-of-swaps-to-make-the-string-balanced",
+  "title": "Minimum Number of Swaps to Make the String Balanced",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Stack",
+    "Greedy",
+    "Bracket Sequences"
+  ],
+  "statement": "You are given a **0-indexed** string `s` of **even** length `n`. The string consists of **exactly** `n / 2` opening brackets `'['` and `n / 2` closing brackets `']'`.\n\nA string is called **balanced** if and only if:\n\n*   It is the empty string, or\n*   It can be written as `AB`, where both `A` and `B` are **balanced** strings, or\n*   It can be written as `[C]`, where `C` is a **balanced** string.\n\nYou may swap the brackets at **any** two indices **any** number of times.\n\nReturn _the **minimum** number of swaps to make_ `s` _**balanced**_.\n\n**Example 1:**\n\n```\nInput: s = \"][][\"\nOutput: 1\nExplanation: You can make the string balanced by swapping index 0 with index 3.\nThe resulting string is \"[[]]\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"]]][[[\"\nOutput: 2\nExplanation: You can do the following to make the string balanced:\n- Swap index 0 with index 4. s = \"[]][][\".\n- Swap index 1 with index 5. s = \"[[][]]\".\nThe resulting string is \"[[][]]\".\n```\n\n**Example 3:**\n\n```\nInput: s = \"[]\"\nOutput: 0\nExplanation: The string is already balanced.\n```\n\n**Constraints:**\n\n*   `n == s.length`\n*   `2 <= n <= 10^(6)`\n*   `n` is even.\n*   `s[i]` is either `'['` or `']'`.\n*   The number of opening brackets `'['` equals `n / 2`, and the number of closing brackets `']'` equals `n / 2`.",
+  "constraints": [
+    "n == s.length",
+    "2 <= n <= 106",
+    "n is even.",
+    "s[i] is either '[' or ']'.",
+    "The number of opening brackets '[' equals n / 2, and the number of closing brackets ']' equals n / 2."
+  ],
+  "examples": [
+    {
+      "input": "s = \"][][\"",
+      "output": "1",
+      "explanation": "You can make the string balanced by swapping index 0 with index 3.\nThe resulting string is \"[[]]\"."
+    },
+    {
+      "input": "s = \"]]][[[\"",
+      "output": "2",
+      "explanation": "You can do the following to make the string balanced:\n- Swap index 0 with index 4. s = \"[]][][\".\n- Swap index 1 with index 5. s = \"[[][]]\".\nThe resulting string is \"[[][]]\"."
+    },
+    {
+      "input": "s = \"[]\"",
+      "output": "0",
+      "explanation": "The string is already balanced."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minSwaps(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minSwaps(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minSwaps(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minSwaps(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minSwaps = function(s) {\n    \n};",
+    "typescript": "function minSwaps(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinSwaps(string s) {\n        \n    }\n}",
+    "c": "int minSwaps(char* s) {\n    \n}",
+    "golang": "func minSwaps(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minSwaps(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minSwaps(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_swaps(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef min_swaps(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minSwaps($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minSwaps(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minSwaps(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_swaps(s :: String.t) :: integer\n  def min_swaps(s) do\n    \n  end\nend",
+    "erlang": "-spec min_swaps(S :: unicode:unicode_binary()) -> integer().\nmin_swaps(S) ->\n  .",
+    "racket": "(define/contract (min-swaps s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"][][\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"]]][[[\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"[]\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"][][\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"]]][[[\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"[]\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"][\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"]\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"[][]\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"][][][][\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"]]]]\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"][][[][]\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate over the string and keep track of the number of opening and closing brackets on each step.",
+    "If the number of closing brackets is ever larger, you need to make a swap.",
+    "Swap it with the opening bracket closest to the end of s."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.486Z",
+    "sourceUpdatedAt": null
+  }
+}

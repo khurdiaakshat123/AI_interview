@@ -1,0 +1,169 @@
+{
+  "id": "2086",
+  "slug": "minimum-number-of-food-buckets-to-feed-the-hamsters",
+  "title": "Minimum Number of Food Buckets to Feed the Hamsters",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "statement": "You are given a **0-indexed** string `hamsters` where `hamsters[i]` is either:\n\n*   `'H'` indicating that there is a hamster at index `i`, or\n*   `'.'` indicating that index `i` is empty.\n\nYou will add some number of food buckets at the empty indices in order to feed the hamsters. A hamster can be fed if there is at least one food bucket to its left or to its right. More formally, a hamster at index `i` can be fed if you place a food bucket at index `i - 1` **and/or** at index `i + 1`.\n\nReturn _the minimum number of food buckets you should **place at empty indices** to feed all the hamsters or_ `-1` _if it is impossible to feed all of them_.\n\n**Example 1:**\n\n![](./assets/minimum-number-of-food-buckets-to-feed-the-hamsters-1.png)\n```\nInput: hamsters = \"H..H\"\nOutput: 2\nExplanation: We place two food buckets at indices 1 and 2.\nIt can be shown that if we place only one food bucket, one of the hamsters will not be fed.\n```\n\n**Example 2:**\n\n![](./assets/minimum-number-of-food-buckets-to-feed-the-hamsters-2.png)\n```\nInput: hamsters = \".H.H.\"\nOutput: 1\nExplanation: We place one food bucket at index 2.\n```\n\n**Example 3:**\n\n![](./assets/minimum-number-of-food-buckets-to-feed-the-hamsters-3.png)\n```\nInput: hamsters = \".HHH.\"\nOutput: -1\nExplanation: If we place a food bucket at every empty index as shown, the hamster at index 2 will not be able to eat.\n```\n\n**Constraints:**\n\n*   `1 <= hamsters.length <= 10^(5)`\n*   `hamsters[i]` is either`'H'` or `'.'`.",
+  "constraints": [
+    "1 <= hamsters.length <= 105",
+    "hamsters[i] is either'H' or '.'."
+  ],
+  "examples": [
+    {
+      "input": "hamsters = \"H..H\"",
+      "output": "2",
+      "explanation": "We place two food buckets at indices 1 and 2.\nIt can be shown that if we place only one food bucket, one of the hamsters will not be fed."
+    },
+    {
+      "input": "hamsters = \".H.H.\"",
+      "output": "1",
+      "explanation": "We place one food bucket at index 2."
+    },
+    {
+      "input": "hamsters = \".HHH.\"",
+      "output": "-1",
+      "explanation": "If we place a food bucket at every empty index as shown, the hamster at index 2 will not be able to eat."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumBuckets(string hamsters) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumBuckets(String hamsters) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumBuckets(self, hamsters: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumBuckets(self, hamsters):\n        \"\"\"\n        :type hamsters: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} hamsters\n * @return {number}\n */\nvar minimumBuckets = function(hamsters) {\n    \n};",
+    "typescript": "function minimumBuckets(hamsters: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumBuckets(string hamsters) {\n        \n    }\n}",
+    "c": "int minimumBuckets(char* hamsters) {\n    \n}",
+    "golang": "func minimumBuckets(hamsters string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumBuckets(hamsters: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumBuckets(_ hamsters: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_buckets(hamsters: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} hamsters\n# @return {Integer}\ndef minimum_buckets(hamsters)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $hamsters\n     * @return Integer\n     */\n    function minimumBuckets($hamsters) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumBuckets(String hamsters) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumBuckets(hamsters: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_buckets(hamsters :: String.t) :: integer\n  def minimum_buckets(hamsters) do\n    \n  end\nend",
+    "erlang": "-spec minimum_buckets(Hamsters :: unicode:unicode_binary()) -> integer().\nminimum_buckets(Hamsters) ->\n  .",
+    "racket": "(define/contract (minimum-buckets hamsters)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"H..H\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\".H.H.\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\".HHH.\"",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"H..H\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\".H.H.\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\".HHH.\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"H.\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\".H\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"H\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"H..HH..H\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"HHHH\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "When is it impossible to feed all the hamsters?",
+    "When one or more hamsters do not have an empty space adjacent to it.",
+    "Assuming all previous hamsters are fed. If there is a hamster at index i and you are able to place a bucket at index i - 1 or i + 1, where should you put it?",
+    "It is always better to place a bucket at index i + 1 because it can feed the next hamster as well."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-food-buckets-to-feed-the-hamsters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.255Z",
+    "sourceUpdatedAt": null
+  }
+}

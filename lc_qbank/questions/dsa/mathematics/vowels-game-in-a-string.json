@@ -1,0 +1,160 @@
+{
+  "id": "3227",
+  "slug": "vowels-game-in-a-string",
+  "title": "Vowels Game in a String",
+  "category": "dsa",
+  "subcategory": "mathematics",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "String",
+    "Brainteaser",
+    "Game Theory"
+  ],
+  "statement": "Alice and Bob are playing a game on a string.\n\nYou are given a string `s`, Alice and Bob will take turns playing the following game where Alice starts **first**:\n\n*   On Alice's turn, she has to remove any **non-empty** substring from `s` that contains an **odd** number of vowels.\n*   On Bob's turn, he has to remove any **non-empty** substring from `s` that contains an **even** number of vowels.\n\nThe first player who cannot make a move on their turn loses the game. We assume that both Alice and Bob play **optimally**.\n\nReturn `true` if Alice wins the game, and `false` otherwise.\n\nThe English vowels are: `a`, `e`, `i`, `o`, and `u`.\n\n**Example 1:**\n\n**Input:** s = \"leetcoder\"\n\n**Output:** true\n\n**Explanation:**  \nAlice can win the game as follows:\n\n*   Alice plays first, she can delete the underlined substring in `s = \"**leetco**der\"` which contains 3 vowels. The resulting string is `s = \"der\"`.\n*   Bob plays second, he can delete the underlined substring in `s = \"**d**er\"` which contains 0 vowels. The resulting string is `s = \"er\"`.\n*   Alice plays third, she can delete the whole string `s = \"**er**\"` which contains 1 vowel.\n*   Bob plays fourth, since the string is empty, there is no valid play for Bob. So Alice wins the game.\n\n**Example 2:**\n\n**Input:** s = \"bbcd\"\n\n**Output:** false\n\n**Explanation:**  \nThere is no valid play for Alice in her first turn, so Alice loses the game.\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"leetcoder\"",
+      "output": "true",
+      "explanation": "Alice can win the game as follows:\n\n\n\tAlice plays first, she can delete the underlined substring in s = \"leetcoder\" which contains 3 vowels. The resulting string is s = \"der\".\n\tBob plays second, he can delete the underlined substring in s = \"der\" which contains 0 vowels. The resulting string is s = \"er\".\n\tAlice plays third, she can delete the whole string s = \"er\" which contains 1 vowel.\n\tBob plays fourth, since the string is empty, there is no valid play for Bob. So Alice wins the game."
+    },
+    {
+      "input": "s = \"bbcd\"",
+      "output": "false",
+      "explanation": "There is no valid play for Alice in her first turn, so Alice loses the game."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool doesAliceWin(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean doesAliceWin(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def doesAliceWin(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def doesAliceWin(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar doesAliceWin = function(s) {\n    \n};",
+    "typescript": "function doesAliceWin(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool DoesAliceWin(string s) {\n        \n    }\n}",
+    "c": "bool doesAliceWin(char* s) {\n    \n}",
+    "golang": "func doesAliceWin(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun doesAliceWin(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func doesAliceWin(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn does_alice_win(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef does_alice_win(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function doesAliceWin($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool doesAliceWin(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def doesAliceWin(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec does_alice_win(s :: String.t) :: boolean\n  def does_alice_win(s) do\n    \n  end\nend",
+    "erlang": "-spec does_alice_win(S :: unicode:unicode_binary()) -> boolean().\ndoes_alice_win(S) ->\n  .",
+    "racket": "(define/contract (does-alice-win s)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"leetcoder\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"bbcd\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"leetcoder\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"bbcd\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"leet\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"coder\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"l\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"le\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"redocteel\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"leetcoderleetcoder\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"llllll\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"leetcoderredocteel\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"LEETCODER\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If there are no vowels in the initial string, then Bob wins.",
+    "If the number of vowels in the initial string is odd, then Alice can remove the whole string on her first turn and win.",
+    "What if the number of vowels in the initial string is even? What’s the optimal play for Alice’s first turn?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/vowels-game-in-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.625Z",
+    "sourceUpdatedAt": null
+  }
+}

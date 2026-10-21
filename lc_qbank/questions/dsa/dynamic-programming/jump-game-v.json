@@ -1,0 +1,168 @@
+{
+  "id": "1340",
+  "slug": "jump-game-v",
+  "title": "Jump Game V",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "statement": "Given an array of integers `arr` and an integer `d`. In one step you can jump from index `i` to index:\n\n*   `i + x` where: `i + x < arr.length` and `0 < x <= d`.\n*   `i - x` where: `i - x >= 0` and `0 < x <= d`.\n\nIn addition, you can only jump from index `i` to index `j` if `arr[i] > arr[j]` and `arr[i] > arr[k]` for all indices `k` between `i` and `j` (More formally `min(i, j) < k < max(i, j)`).\n\nYou can choose any index of the array and start jumping. Return _the maximum number of indices_ you can visit.\n\nNotice that you can not jump outside of the array at any time.\n\n**Example 1:**\n\n![](./assets/jump-game-v-1.jpeg)\n```\nInput: arr = [6,4,14,6,8,13,9,7,10,6,12], d = 2\nOutput: 4\nExplanation: You can start at index 10. You can jump 10 --> 8 --> 6 --> 7 as shown.\nNote that if you start at index 6 you can only jump to index 7. You cannot jump to index 5 because 13 > 9. You cannot jump to index 4 because index 5 is between index 4 and 6 and 13 > 9.\nSimilarly You cannot jump from index 3 to index 2 or index 1.\n```\n\n**Example 2:**\n\n```\nInput: arr = [3,3,3,3,3], d = 3\nOutput: 1\nExplanation: You can start at any index. You always cannot jump to any index.\n```\n\n**Example 3:**\n\n```\nInput: arr = [7,6,5,4,3,2,1], d = 1\nOutput: 7\nExplanation: Start at index 0. You can visit all the indicies.\n```\n\n**Constraints:**\n\n*   `1 <= arr.length <= 1000`\n*   `1 <= arr[i] <= 10^(5)`\n*   `1 <= d <= arr.length`",
+  "constraints": [
+    "1 <= arr.length <= 1000",
+    "1 <= arr[i] <= 105",
+    "1 <= d <= arr.length"
+  ],
+  "examples": [
+    {
+      "input": "arr = [6,4,14,6,8,13,9,7,10,6,12], d = 2",
+      "output": "4",
+      "explanation": "You can start at index 10. You can jump 10 --> 8 --> 6 --> 7 as shown.\nNote that if you start at index 6 you can only jump to index 7. You cannot jump to index 5 because 13 > 9. You cannot jump to index 4 because index 5 is between index 4 and 6 and 13 > 9.\nSimilarly You cannot jump from index 3 to index 2 or index 1."
+    },
+    {
+      "input": "arr = [3,3,3,3,3], d = 3",
+      "output": "1",
+      "explanation": "You can start at any index. You always cannot jump to any index."
+    },
+    {
+      "input": "arr = [7,6,5,4,3,2,1], d = 1",
+      "output": "7",
+      "explanation": "Start at index 0. You can visit all the indicies."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxJumps(vector<int>& arr, int d) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxJumps(int[] arr, int d) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxJumps(self, arr: list[int], d: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxJumps(self, arr, d):\n        \"\"\"\n        :type arr: List[int]\n        :type d: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @param {number} d\n * @return {number}\n */\nvar maxJumps = function(arr, d) {\n    \n};",
+    "typescript": "function maxJumps(arr: number[], d: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxJumps(int[] arr, int d) {\n        \n    }\n}",
+    "c": "int maxJumps(int* arr, int arrSize, int d) {\n    \n}",
+    "golang": "func maxJumps(arr []int, d int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxJumps(arr: IntArray, d: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxJumps(_ arr: [Int], _ d: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_jumps(arr: Vec<i32>, d: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @param {Integer} d\n# @return {Integer}\ndef max_jumps(arr, d)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @param Integer $d\n     * @return Integer\n     */\n    function maxJumps($arr, $d) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxJumps(List<int> arr, int d) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxJumps(arr: Array[Int], d: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_jumps(arr :: [integer], d :: integer) :: integer\n  def max_jumps(arr, d) do\n    \n  end\nend",
+    "erlang": "-spec max_jumps(Arr :: [integer()], D :: integer()) -> integer().\nmax_jumps(Arr, D) ->\n  .",
+    "racket": "(define/contract (max-jumps arr d)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[6,4,14,6,8,13,9,7,10,6,12]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,3,3,3,3]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[7,6,5,4,3,2,1]\n1",
+      "expectedOutput": "7"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[6,4,14,6,8,13,9,7,10,6,12]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,3,3,3,3]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[7,6,5,4,3,2,1]\n1",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[6,4,14,6,8]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[13,9,7,10,6,12]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[6]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[6,12]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[6,4]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[12,6,10,7,9,13,8,6,14,4,6]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,6,6,6,7,8,9,10,12,13,14]\n2",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[14,13,12,10,9,8,7,6,6,6,4]\n2",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[6,6,6,6,6]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[12,8,28,12,16,26,18,14,20,12,24]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[7,5,15,7,9,14,10,8,11,7,13]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[5,3,13,5,7,12,8,6,9,5,11]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-6,-4,-14,-6,-8,-13,-9,-7,-10,-6,-12]\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0,0,0]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n2",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming. dp[i] is max jumps you can do starting from index i. Answer is max(dp[i]).",
+    "dp[i] = 1 + max (dp[j]) where j is all indices you can reach from i."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/jump-game-v/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.684Z",
+    "sourceUpdatedAt": null
+  }
+}

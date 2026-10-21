@@ -1,0 +1,166 @@
+{
+  "id": "953",
+  "slug": "verifying-an-alien-dictionary",
+  "title": "Verifying an Alien Dictionary",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "statement": "In an alien language, surprisingly, they also use English lowercase letters, but possibly in a different `order`. The `order` of the alphabet is some permutation of lowercase letters.\n\nGiven a sequence of `words` written in the alien language, and the `order` of the alphabet, return `true` if and only if the given `words` are sorted lexicographically in this alien language.\n\n**Example 1:**\n\n```\nInput: words = [\"hello\",\"leetcode\"], order = \"hlabcdefgijkmnopqrstuvwxyz\"\nOutput: true\nExplanation: As 'h' comes before 'l' in this language, then the sequence is sorted.\n```\n\n**Example 2:**\n\n```\nInput: words = [\"word\",\"world\",\"row\"], order = \"worldabcefghijkmnpqstuvxyz\"\nOutput: false\nExplanation: As 'd' comes after 'l' in this language, then words[0] > words[1], hence the sequence is unsorted.\n```\n\n**Example 3:**\n\n```\nInput: words = [\"apple\",\"app\"], order = \"abcdefghijklmnopqrstuvwxyz\"\nOutput: false\nExplanation: The first three characters \"app\" match, and the second string is shorter (in size.) According to lexicographical rules \"apple\" > \"app\", because 'l' > '∅', where '∅' is defined as the blank character which is less than any other character (More info).\n```\n\n**Constraints:**\n\n*   `1 <= words.length <= 100`\n*   `1 <= words[i].length <= 20`\n*   `order.length == 26`\n*   All characters in `words[i]` and `order` are English lowercase letters.",
+  "constraints": [
+    "1 <= words.length <= 100",
+    "1 <= words[i].length <= 20",
+    "order.length == 26",
+    "All characters in words[i] and order are English lowercase letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"hello\",\"leetcode\"], order = \"hlabcdefgijkmnopqrstuvwxyz\"",
+      "output": "true",
+      "explanation": "As 'h' comes before 'l' in this language, then the sequence is sorted."
+    },
+    {
+      "input": "words = [\"word\",\"world\",\"row\"], order = \"worldabcefghijkmnpqstuvxyz\"",
+      "output": "false",
+      "explanation": "As 'd' comes after 'l' in this language, then words[0] > words[1], hence the sequence is unsorted."
+    },
+    {
+      "input": "words = [\"apple\",\"app\"], order = \"abcdefghijklmnopqrstuvwxyz\"",
+      "output": "false",
+      "explanation": "The first three characters \"app\" match, and the second string is shorter (in size.) According to lexicographical rules \"apple\" > \"app\", because 'l' > '∅', where '∅' is defined as the blank character which is less than any other character (More info)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isAlienSorted(vector<string>& words, string order) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isAlienSorted(String[] words, String order) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isAlienSorted(self, words: list[str], order: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isAlienSorted(self, words, order):\n        \"\"\"\n        :type words: List[str]\n        :type order: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @param {string} order\n * @return {boolean}\n */\nvar isAlienSorted = function(words, order) {\n    \n};",
+    "typescript": "function isAlienSorted(words: string[], order: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsAlienSorted(string[] words, string order) {\n        \n    }\n}",
+    "c": "bool isAlienSorted(char** words, int wordsSize, char* order) {\n    \n}",
+    "golang": "func isAlienSorted(words []string, order string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isAlienSorted(words: Array<String>, order: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isAlienSorted(_ words: [String], _ order: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_alien_sorted(words: Vec<String>, order: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @param {String} order\n# @return {Boolean}\ndef is_alien_sorted(words, order)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @param String $order\n     * @return Boolean\n     */\n    function isAlienSorted($words, $order) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isAlienSorted(List<String> words, String order) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isAlienSorted(words: Array[String], order: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_alien_sorted(words :: [String.t], order :: String.t) :: boolean\n  def is_alien_sorted(words, order) do\n    \n  end\nend",
+    "erlang": "-spec is_alien_sorted(Words :: [unicode:unicode_binary()], Order :: unicode:unicode_binary()) -> boolean().\nis_alien_sorted(Words, Order) ->\n  .",
+    "racket": "(define/contract (is-alien-sorted words order)\n  (-> (listof string?) string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"hello\",\"leetcode\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"word\",\"world\",\"row\"]\n\"worldabcefghijkmnpqstuvxyz\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"apple\",\"app\"]\n\"abcdefghijklmnopqrstuvwxyz\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"hello\",\"leetcode\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"word\",\"world\",\"row\"]\n\"worldabcefghijkmnpqstuvxyz\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"apple\",\"app\"]\n\"abcdefghijklmnopqrstuvwxyz\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"hello\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"leetcode\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"leetcode\",\"hello\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"hello\",\"hello\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"hello\",\"leetcode\",\"hello\",\"leetcode\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"a\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"a\",\"b\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"a\",\"a\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[\"hello\",\"world\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[\"flow\",\"flower\",\"flight\"]\n\"hlabcdefgijkmnopqrstuvwxyz\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/verifying-an-alien-dictionary/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.583Z",
+    "sourceUpdatedAt": null
+  }
+}

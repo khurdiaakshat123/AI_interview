@@ -1,0 +1,160 @@
+{
+  "id": "4043",
+  "slug": "count-rotations-with-exactly-k-equal-adjacent-pairs",
+  "title": "Count Rotations With Exactly K Equal Adjacent Pairs",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Easy",
+  "tags": [
+    "String",
+    "Sliding Window",
+    "Enumeration"
+  ],
+  "statement": "You are given a string `s` of length `n` and an integer `k`.\n\nA **cyclic rotation** of `s` is obtained by choosing a prefix of `s` whose length is between 0 and `n - 1` (inclusive), and moving it to the end of the string while preserving the order of all characters.\n\nFor **every** cyclic rotation of `s`, let its **score** be the number of indices `i` such that `0 <= i < n - 1` and the characters at positions `i` and `i + 1` are equal.\n\nReturn the number of cyclic rotations of `s` whose score equals `k`.\n\n**Example 1:**\n\n**Input:** s = \"aab\", k = 1\n\n**Output:** 2\n\n**Explanation:**\n\nThe cyclic rotations of `s` are:\n\n*   `\"aab\"`: The characters at positions 0 and 1 are equal, so `score = 1`.\n*   `\"aba\"`: No two adjacent characters are equal, so `score = 0`.\n*   `\"baa\"`: The characters at positions 1 and 2 are equal, so `score = 1`.\n\nSince `score` equals `k` for 2 cyclic rotations of `s`, the answer is 2.\n\n**Example 2:**\n\n**Input:** s = \"abca\", k = 0\n\n**Output:** 1\n\n**Explanation:**\n\nThe cyclic rotations of `s` are:\n\n*   `\"abca\"`: No two adjacent characters are equal, so `score = 0`.\n*   `\"bcaa\"`: The characters at positions 2 and 3 are equal, so `score = 1`.\n*   `\"caab\"`: The characters at positions 1 and 2 are equal, so `score = 1`.\n*   `\"aabc\"`: The characters at positions 0 and 1 are equal, so `score = 1`.\n\nSince `score` equals `k` for only 1 cyclic rotation of `s`, the answer is 1.\n\n**Constraints:**\n\n*   `2 <= n == s.length <= 100`\n*   `s` only consists of lowercase English letters.\n*   `0 <= k <= n - 1`",
+  "constraints": [
+    "2 <= n == s.length <= 100",
+    "s only consists of lowercase English letters.",
+    "0 <= k <= n - 1"
+  ],
+  "examples": [
+    {
+      "input": "s = \"aab\", k = 1",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "s = \"abca\", k = 0",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countRotations(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countRotations(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countRotations(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countRotations(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar countRotations = function(s, k) {\n    \n};",
+    "typescript": "function countRotations(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountRotations(string s, int k) {\n        \n    }\n}",
+    "c": "int countRotations(char* s, int k) {\n    \n}",
+    "golang": "func countRotations(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countRotations(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countRotations(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_rotations(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef count_rotations(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function countRotations($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countRotations(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countRotations(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_rotations(s :: String.t, k :: integer) :: integer\n  def count_rotations(s, k) do\n    \n  end\nend",
+    "erlang": "-spec count_rotations(S :: unicode:unicode_binary(), K :: integer()) -> integer().\ncount_rotations(S, K) ->\n  .",
+    "racket": "(define/contract (count-rotations s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aab\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abca\"\n0",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aab\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abca\"\n0",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"a\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"baa\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aabaab\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaa\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aabbaa\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"AAB\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"b\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abba\"\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaaaa\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aA\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"0\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"121\"\n1",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<strong>1a (Simulation).</strong> Construct the rotation for each possible prefix length and count its equal adjacent pairs.",
+    "<strong>2a (Counting).</strong> Let <code>total</code> be the number of equal adjacent pairs when the string is treated as circular, including the pair formed by its last and first characters.",
+    "<strong>2b (Counting).</strong> Each rotation excludes exactly one circular adjacent pair. Its score is <code>total - 1</code> if the excluded pair has equal characters, and <code>total</code> otherwise."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-rotations-with-exactly-k-equal-adjacent-pairs/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.534Z",
+    "sourceUpdatedAt": null
+  }
+}

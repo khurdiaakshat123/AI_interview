@@ -1,0 +1,164 @@
+{
+  "id": "97",
+  "slug": "interleaving-string",
+  "title": "Interleaving String",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "Given strings `s1`, `s2`, and `s3`, find whether `s3` is formed by an **interleaving** of `s1` and `s2`.\n\nAn **interleaving** of two strings `s` and `t` is a configuration where `s` and `t` are divided into `n` and `m` substrings respectively, such that:\n\n*   `s = s_(1) + s_(2) + ... + s_(n)`\n*   `t = t_(1) + t_(2) + ... + t_(m)`\n*   `|n - m| <= 1`\n*   The **interleaving** is `s_(1) + t_(1) + s_(2) + t_(2) + s_(3) + t_(3) + ...` or `t_(1) + s_(1) + t_(2) + s_(2) + t_(3) + s_(3) + ...`\n\n**Note:** `a + b` is the concatenation of strings `a` and `b`.\n\n**Example 1:**\n\n![](./assets/interleaving-string-1.jpg)\n```\nInput: s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbcbcac\"\nOutput: true\nExplanation: One way to obtain s3 is:\nSplit s1 into s1 = \"aa\" + \"bc\" + \"c\", and s2 into s2 = \"dbbc\" + \"a\".\nInterleaving the two splits, we get \"aa\" + \"dbbc\" + \"bc\" + \"a\" + \"c\" = \"aadbbcbcac\".\nSince s3 can be obtained by interleaving s1 and s2, we return true.\n```\n\n**Example 2:**\n\n```\nInput: s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbbaccc\"\nOutput: false\nExplanation: Notice how it is impossible to interleave s2 with any other string to obtain s3.\n```\n\n**Example 3:**\n\n```\nInput: s1 = \"\", s2 = \"\", s3 = \"\"\nOutput: true\n```\n\n**Constraints:**\n\n*   `0 <= s1.length, s2.length <= 100`\n*   `0 <= s3.length <= 200`\n*   `s1`, `s2`, and `s3` consist of lowercase English letters.\n\n**Follow up:** Could you solve it using only `O(s2.length)` additional memory space?",
+  "constraints": [
+    "0 <= s1.length, s2.length <= 100",
+    "0 <= s3.length <= 200",
+    "s1, s2, and s3 consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbcbcac\"",
+      "output": "true",
+      "explanation": "One way to obtain s3 is:\nSplit s1 into s1 = \"aa\" + \"bc\" + \"c\", and s2 into s2 = \"dbbc\" + \"a\".\nInterleaving the two splits, we get \"aa\" + \"dbbc\" + \"bc\" + \"a\" + \"c\" = \"aadbbcbcac\".\nSince s3 can be obtained by interleaving s1 and s2, we return true."
+    },
+    {
+      "input": "s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbbaccc\"",
+      "output": "false",
+      "explanation": "Notice how it is impossible to interleave s2 with any other string to obtain s3."
+    },
+    {
+      "input": "s1 = \"\", s2 = \"\", s3 = \"\"",
+      "output": "true",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isInterleave(string s1, string s2, string s3) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isInterleave(String s1, String s2, String s3) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isInterleave(self, s1, s2, s3):\n        \"\"\"\n        :type s1: str\n        :type s2: str\n        :type s3: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s1\n * @param {string} s2\n * @param {string} s3\n * @return {boolean}\n */\nvar isInterleave = function(s1, s2, s3) {\n    \n};",
+    "typescript": "function isInterleave(s1: string, s2: string, s3: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsInterleave(string s1, string s2, string s3) {\n        \n    }\n}",
+    "c": "bool isInterleave(char* s1, char* s2, char* s3) {\n    \n}",
+    "golang": "func isInterleave(s1 string, s2 string, s3 string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isInterleave(s1: String, s2: String, s3: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isInterleave(_ s1: String, _ s2: String, _ s3: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_interleave(s1: String, s2: String, s3: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s1\n# @param {String} s2\n# @param {String} s3\n# @return {Boolean}\ndef is_interleave(s1, s2, s3)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s1\n     * @param String $s2\n     * @param String $s3\n     * @return Boolean\n     */\n    function isInterleave($s1, $s2, $s3) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isInterleave(String s1, String s2, String s3) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isInterleave(s1: String, s2: String, s3: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_interleave(s1 :: String.t, s2 :: String.t, s3 :: String.t) :: boolean\n  def is_interleave(s1, s2, s3) do\n    \n  end\nend",
+    "erlang": "-spec is_interleave(S1 :: unicode:unicode_binary(), S2 :: unicode:unicode_binary(), S3 :: unicode:unicode_binary()) -> boolean().\nis_interleave(S1, S2, S3) ->\n  .",
+    "racket": "(define/contract (is-interleave s1 s2 s3)\n  (-> string? string? string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aabcc\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aabcc\"\n\"dbbca\"\n\"aadbbbaccc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"\"\n\"\"\n\"\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aabcc\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aabcc\"\n\"dbbca\"\n\"aadbbbaccc\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"\"\n\"\"\n\"\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aa\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"bcc\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ccbaa\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aabccaabcc\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aabccccbaa\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"AABCC\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aA\"\n\"dbbca\"\n\"aadbbcbcac\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/interleaving-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.566Z",
+    "sourceUpdatedAt": null
+  }
+}

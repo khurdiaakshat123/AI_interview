@@ -1,0 +1,122 @@
+{
+  "id": "1896",
+  "slug": "minimum-cost-to-change-the-final-value-of-expression",
+  "title": "Minimum Cost to Change the Final Value of Expression",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Math",
+    "String",
+    "Dynamic Programming",
+    "Stack"
+  ],
+  "statement": "You are given a **valid** boolean expression as a string `expression` consisting of the characters `'1'`,`'0'`,`'&'` (bitwise **AND** operator),`'|'` (bitwise **OR** operator),`'('`, and `')'`.\n\n*   For example, `\"()1|1\"` and `\"(1)&()\"` are **not valid** while `\"1\"`, `\"(((1))|(0))\"`, and `\"1|(0&(1))\"` are **valid** expressions.\n\nReturn _the **minimum cost** to change the final value of the expression_.\n\n*   For example, if `expression = \"1|1|(0&0)&1\"`, its **value** is `1|1|(0&0)&1 = 1|1|0&1 = 1|0&1 = 1&1 = 1`. We want to apply operations so that the **new** expression evaluates to `0`.\n\nThe **cost** of changing the final value of an expression is the **number of operations** performed on the expression. The types of **operations** are described as follows:\n\n*   Turn a `'1'` into a `'0'`.\n*   Turn a `'0'` into a `'1'`.\n*   Turn a `'&'` into a `'|'`.\n*   Turn a `'|'` into a `'&'`.\n\n**Note:** `'&'` does **not** take precedence over `'|'` in the **order of calculation**. Evaluate parentheses **first**, then in **left-to-right** order.\n\n**Example 1:**\n\n```\nInput: expression = \"1&(0|1)\"\nOutput: 1\nExplanation: We can turn \"1&(0|1)\" into \"1&(0&1)\" by changing the '|' to a '&' using 1 operation.\nThe new expression evaluates to 0.\n```\n\n**Example 2:**\n\n```\nInput: expression = \"(0&0)&(0&0&0)\"\nOutput: 3\nExplanation: We can turn \"(0&0)&(0&0&0)\" into \"(0|1)|(0&0&0)\" using 3 operations.\nThe new expression evaluates to 1.\n```\n\n**Example 3:**\n\n```\nInput: expression = \"(0|(1|0&1))\"\nOutput: 1\nExplanation: We can turn \"(0|(1|0&1))\" into \"(0|(0|0&1))\" using 1 operation.\nThe new expression evaluates to 0.\n```\n\n**Constraints:**\n\n*   `1 <= expression.length <= 10^(5)`\n*   `expression` only contains `'1'`,`'0'`,`'&'`,`'|'`,`'('`, and `')'`\n*   All parentheses are properly matched.\n*   There will be no empty parentheses (i.e: `\"()\"` is not a substring of `expression`).",
+  "constraints": [
+    "1 <= expression.length <= 105",
+    "expression only contains '1','0','&','|','(', and ')'",
+    "All parentheses are properly matched.",
+    "There will be no empty parentheses (i.e: \"()\" is not a substring of expression)."
+  ],
+  "examples": [
+    {
+      "input": "expression = \"1&(0|1)\"",
+      "output": "1",
+      "explanation": "We can turn \"1&(0|1)\" into \"1&(0&1)\" by changing the '|' to a '&' using 1 operation.\nThe new expression evaluates to 0."
+    },
+    {
+      "input": "expression = \"(0&0)&(0&0&0)\"",
+      "output": "3",
+      "explanation": "We can turn \"(0&0)&(0&0&0)\" into \"(0|1)|(0&0&0)\" using 3 operations.\nThe new expression evaluates to 1."
+    },
+    {
+      "input": "expression = \"(0|(1|0&1))\"",
+      "output": "1",
+      "explanation": "We can turn \"(0|(1|0&1))\" into \"(0|(0|0&1))\" using 1 operation.\nThe new expression evaluates to 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minOperationsToFlip(string expression) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minOperationsToFlip(String expression) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperationsToFlip(self, expression: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperationsToFlip(self, expression):\n        \"\"\"\n        :type expression: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @return {number}\n */\nvar minOperationsToFlip = function(expression) {\n    \n};",
+    "typescript": "function minOperationsToFlip(expression: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinOperationsToFlip(string expression) {\n        \n    }\n}",
+    "c": "int minOperationsToFlip(char* expression) {\n    \n}",
+    "golang": "func minOperationsToFlip(expression string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperationsToFlip(expression: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperationsToFlip(_ expression: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations_to_flip(expression: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @return {Integer}\ndef min_operations_to_flip(expression)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @return Integer\n     */\n    function minOperationsToFlip($expression) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperationsToFlip(String expression) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperationsToFlip(expression: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations_to_flip(expression :: String.t) :: integer\n  def min_operations_to_flip(expression) do\n    \n  end\nend",
+    "erlang": "-spec min_operations_to_flip(Expression :: unicode:unicode_binary()) -> integer().\nmin_operations_to_flip(Expression) ->\n  .",
+    "racket": "(define/contract (min-operations-to-flip expression)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"1&(0|1)\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"(0&0)&(0&0&0)\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"(0|(1|0&1))\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"1&(0|1)\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"(0&0)&(0&0&0)\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"(0|(1|0&1))\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1&(0|1)1&(0|1)\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"111111\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"(0&0&0)\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "How many possible states are there for a given expression?",
+    "Is there a data structure that we can use to solve the problem optimally?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-to-change-the-final-value-of-expression/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.594Z",
+    "sourceUpdatedAt": null
+  }
+}

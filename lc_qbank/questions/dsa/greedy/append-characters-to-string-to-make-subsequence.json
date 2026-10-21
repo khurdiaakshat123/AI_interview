@@ -1,0 +1,168 @@
+{
+  "id": "2486",
+  "slug": "append-characters-to-string-to-make-subsequence",
+  "title": "Append Characters to String to Make Subsequence",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Greedy"
+  ],
+  "statement": "You are given two strings `s` and `t` consisting of only lowercase English letters.\n\nReturn _the minimum number of characters that need to be appended to the end of_ `s` _so that_ `t` _becomes a **subsequence** of_ `s`.\n\nA **subsequence** is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.\n\n**Example 1:**\n\n```\nInput: s = \"coaching\", t = \"coding\"\nOutput: 4\nExplanation: Append the characters \"ding\" to the end of s so that s = \"coachingding\".\nNow, t is a subsequence of s (\"coachingding\").\nIt can be shown that appending any 3 characters to the end of s will never make t a subsequence.\n```\n\n**Example 2:**\n\n```\nInput: s = \"abcde\", t = \"a\"\nOutput: 0\nExplanation: t is already a subsequence of s (\"abcde\").\n```\n\n**Example 3:**\n\n```\nInput: s = \"z\", t = \"abcde\"\nOutput: 5\nExplanation: Append the characters \"abcde\" to the end of s so that s = \"zabcde\".\nNow, t is a subsequence of s (\"zabcde\").\nIt can be shown that appending any 4 characters to the end of s will never make t a subsequence.\n```\n\n**Constraints:**\n\n*   `1 <= s.length, t.length <= 10^(5)`\n*   `s` and `t` consist only of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length, t.length <= 105",
+    "s and t consist only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"coaching\", t = \"coding\"",
+      "output": "4",
+      "explanation": "Append the characters \"ding\" to the end of s so that s = \"coachingding\".\nNow, t is a subsequence of s (\"coachingding\").\nIt can be shown that appending any 3 characters to the end of s will never make t a subsequence."
+    },
+    {
+      "input": "s = \"abcde\", t = \"a\"",
+      "output": "0",
+      "explanation": "t is already a subsequence of s (\"abcde\")."
+    },
+    {
+      "input": "s = \"z\", t = \"abcde\"",
+      "output": "5",
+      "explanation": "Append the characters \"abcde\" to the end of s so that s = \"zabcde\".\nNow, t is a subsequence of s (\"zabcde\").\nIt can be shown that appending any 4 characters to the end of s will never make t a subsequence."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int appendCharacters(string s, string t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int appendCharacters(String s, String t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def appendCharacters(self, s: str, t: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def appendCharacters(self, s, t):\n        \"\"\"\n        :type s: str\n        :type t: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {number}\n */\nvar appendCharacters = function(s, t) {\n    \n};",
+    "typescript": "function appendCharacters(s: string, t: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int AppendCharacters(string s, string t) {\n        \n    }\n}",
+    "c": "int appendCharacters(char* s, char* t) {\n    \n}",
+    "golang": "func appendCharacters(s string, t string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun appendCharacters(s: String, t: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func appendCharacters(_ s: String, _ t: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn append_characters(s: String, t: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} t\n# @return {Integer}\ndef append_characters(s, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $t\n     * @return Integer\n     */\n    function appendCharacters($s, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int appendCharacters(String s, String t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def appendCharacters(s: String, t: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec append_characters(s :: String.t, t :: String.t) :: integer\n  def append_characters(s, t) do\n    \n  end\nend",
+    "erlang": "-spec append_characters(S :: unicode:unicode_binary(), T :: unicode:unicode_binary()) -> integer().\nappend_characters(S, T) ->\n  .",
+    "racket": "(define/contract (append-characters s t)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"coaching\"\n\"coding\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcde\"\n\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"z\"\n\"abcde\"",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"coaching\"\n\"coding\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcde\"\n\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"z\"\n\"abcde\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"coac\"\n\"coding\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"hing\"\n\"coding\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"c\"\n\"coding\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"co\"\n\"coding\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"gnihcaoc\"\n\"coding\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"coachingcoaching\"\n\"coding\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"cccccc\"\n\"coding\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"coachinggnihcaoc\"\n\"coding\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"COACHING\"\n\"coding\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"a\"\n\"coding\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"b\"\n\"coding\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"aa\"\n\"coding\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"ab\"\n\"coding\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"ba\"\n\"coding\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"aba\"\n\"coding\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abba\"\n\"coding\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"aaaaa\"\n\"coding\"",
+      "expectedOutput": "6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find the longest prefix of t that is a subsequence of s.",
+    "Use two variables to keep track of your location in s and t. If the characters match, increment both variables. Otherwise, only increment the variable for s.",
+    "The remaining characters in t must be appended to the end of s."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.112Z",
+    "sourceUpdatedAt": null
+  }
+}

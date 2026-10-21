@@ -1,0 +1,176 @@
+{
+  "id": "1923",
+  "slug": "longest-common-subpath",
+  "title": "Longest Common Subpath",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Rolling Hash",
+    "Suffix Array",
+    "Hash Function",
+    "Suffix Automaton",
+    "Suffix Tree"
+  ],
+  "statement": "There is a country of `n` cities numbered from `0` to `n - 1`. In this country, there is a road connecting **every pair** of cities.\n\nThere are `m` friends numbered from `0` to `m - 1` who are traveling through the country. Each one of them will take a path consisting of some cities. Each path is represented by an integer array that contains the visited cities in order. The path may contain a city **more than once**, but the same city will not be listed consecutively.\n\nGiven an integer `n` and a 2D integer array `paths` where `paths[i]` is an integer array representing the path of the `i^(th)` friend, return _the length of the **longest common subpath** that is shared by **every** friend's path, or_ `0` _if there is no common subpath at all_.\n\nA **subpath** of a path is a contiguous sequence of cities within that path.\n\n**Example 1:**\n\n```\nInput: n = 5, paths = [[0,1,2,3,4],\n                       [2,3,4],\n                       [4,0,1,2,3]]\nOutput: 2\nExplanation: The longest common subpath is [2,3].\n```\n\n**Example 2:**\n\n```\nInput: n = 3, paths = [[0],[1],[2]]\nOutput: 0\nExplanation: There is no common subpath shared by the three paths.\n```\n\n**Example 3:**\n\n```\nInput: n = 5, paths = [[0,1,2,3,4],\n                       [4,3,2,1,0]]\nOutput: 1\nExplanation: The possible longest common subpaths are [0], [1], [2], [3], and [4]. All have a length of 1.\n```\n\n**Constraints:**\n\n*   `1 <= n <= 10^(5)`\n*   `m == paths.length`\n*   `2 <= m <= 10^(5)`\n*   `sum(paths[i].length) <= 10^(5)`\n*   `0 <= paths[i][j] < n`\n*   The same city is not listed multiple times consecutively in `paths[i]`.",
+  "constraints": [
+    "1 <= n <= 105",
+    "m == paths.length",
+    "2 <= m <= 105",
+    "sum(paths[i].length) <= 105",
+    "0 <= paths[i][j] < n",
+    "The same city is not listed multiple times consecutively in paths[i]."
+  ],
+  "examples": [
+    {
+      "input": "n = 5, paths = [[0,1,2,3,4],\n                       [2,3,4],\n                       [4,0,1,2,3]]",
+      "output": "2",
+      "explanation": "The longest common subpath is [2,3]."
+    },
+    {
+      "input": "n = 3, paths = [[0],[1],[2]]",
+      "output": "0",
+      "explanation": "There is no common subpath shared by the three paths."
+    },
+    {
+      "input": "n = 5, paths = [[0,1,2,3,4],\n                       [4,3,2,1,0]]",
+      "output": "1",
+      "explanation": "The possible longest common subpaths are [0], [1], [2], [3], and [4]. All have a length of 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestCommonSubpath(int n, vector<vector<int>>& paths) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestCommonSubpath(int n, int[][] paths) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestCommonSubpath(self, n: int, paths: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestCommonSubpath(self, n, paths):\n        \"\"\"\n        :type n: int\n        :type paths: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} paths\n * @return {number}\n */\nvar longestCommonSubpath = function(n, paths) {\n    \n};",
+    "typescript": "function longestCommonSubpath(n: number, paths: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestCommonSubpath(int n, int[][] paths) {\n        \n    }\n}",
+    "c": "int longestCommonSubpath(int n, int** paths, int pathsSize, int* pathsColSize) {\n    \n}",
+    "golang": "func longestCommonSubpath(n int, paths [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestCommonSubpath(n: Int, paths: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestCommonSubpath(_ n: Int, _ paths: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_common_subpath(n: i32, paths: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} paths\n# @return {Integer}\ndef longest_common_subpath(n, paths)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $paths\n     * @return Integer\n     */\n    function longestCommonSubpath($n, $paths) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestCommonSubpath(int n, List<List<int>> paths) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestCommonSubpath(n: Int, paths: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_common_subpath(n :: integer, paths :: [[integer]]) :: integer\n  def longest_common_subpath(n, paths) do\n    \n  end\nend",
+    "erlang": "-spec longest_common_subpath(N :: integer(), Paths :: [[integer()]]) -> integer().\nlongest_common_subpath(N, Paths) ->\n  .",
+    "racket": "(define/contract (longest-common-subpath n paths)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "5\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n[[0],[1],[2]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "5\n[[0,1,2,3,4],[4,3,2,1,0]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "5\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n[[0],[1],[2]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "5\n[[0,1,2,3,4],[4,3,2,1,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "0\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "1\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "2\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "4\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "6\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "7\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "8\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "9\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "-1\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "-2\n[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "0\n[[0],[1],[2]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "1\n[[0],[1],[2]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "2\n[[0],[1],[2]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "4\n[[0],[1],[2]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "5\n[[0],[1],[2]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "6\n[[0],[1],[2]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If there is a common path with length x, there is for sure a common path of length y where y < x.",
+    "We can use binary search over the answer with the range [0, min(path[i].length)].",
+    "Using binary search, we want to verify if we have a common path of length m. We can achieve this using hashing."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-common-subpath/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.437Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "id": "3786",
+  "slug": "total-sum-of-interaction-cost-in-tree-groups",
+  "title": "Total Sum of Interaction Cost in Tree Groups",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "statement": "You are given an integer `n` and an undirected tree with `n` nodes numbered from 0 to `n - 1`. This is represented by a 2D array `edges` of length `n - 1`, where `edges[i] = [u_(i), v_(i)]` indicates an undirected edge between nodes `u_(i)` and `v_(i)`.\n\nYou are also given an integer array `group` of length `n`, where `group[i]` denotes the group label assigned to node `i`.\n\n*   Two nodes `u` and `v` are considered part of the same group if `group[u] == group[v]`.\n*   The **interaction cost** between `u` and `v` is defined as the number of edges on the unique path connecting them in the tree.\n\nReturn an integer denoting the **sum** of interaction costs over all **unordered** pairs `(u, v)` with `u != v` such that `group[u] == group[v]`.\n\n**Example 1:**\n\n**Input:** n = 3, edges = \\[\\[0,1\\],\\[1,2\\]\\], group = \\[1,1,1\\]\n\n**Output:** 4\n\n**Explanation:**\n\n**![](./assets/total-sum-of-interaction-cost-in-tree-groups-1.png)**\n\nAll nodes belong to group 1. The interaction costs between the pairs of nodes are:\n\n*   Nodes `(0, 1)`: 1\n*   Nodes `(1, 2)`: 1\n*   Nodes `(0, 2)`: 2\n\nThus, the total interaction cost is `1 + 1 + 2 = 4`.\n\n**Example 2:**\n\n**Input:** n = 3, edges = \\[\\[0,1\\],\\[1,2\\]\\], group = \\[3,2,3\\]\n\n**Output:** 2\n\n**Explanation:**\n\n*   Nodes 0 and 2 belong to group 3. The interaction cost between this pair is 2.\n*   Node 1 belongs to a different group and forms no valid pair. Therefore, the total interaction cost is 2.\n\n**Example 3:**\n\n**Input:** n = 4, edges = \\[\\[0,1\\],\\[0,2\\],\\[0,3\\]\\], group = \\[1,1,4,4\\]\n\n**Output:** 3\n\n**Explanation:**\n\n![](./assets/total-sum-of-interaction-cost-in-tree-groups-2.png)\n\nNodes belonging to the same groups and their interaction costs are:\n\n*   Group 1: Nodes `(0, 1)`: 1\n*   Group 4: Nodes `(2, 3)`: 2\n\nThus, the total interaction cost is `1 + 2 = 3`.\n\n**Example 4:**\n\n**Input:** n = 2, edges = \\[\\[0,1\\]\\], group = \\[9,8\\]\n\n**Output:** 0\n\n**Explanation:**\n\nAll nodes belong to different groups and there are no valid pairs. Therefore, the total interaction cost is 0.\n\n**Constraints:**\n\n*   `1 <= n <= 10^(5)`\n*   `edges.length == n - 1`\n*   `edges[i] = [u_(i), v_(i)]`\n*   `0 <= u_(i), v_(i) <= n - 1`\n*   `group.length == n`\n*   `1 <= group[i] <= 20`\n*   The input is generated such that `edges` represents a valid tree.",
+  "constraints": [
+    "1 <= n <= 105",
+    "edges.length == n - 1",
+    "edges[i] = [ui, vi]",
+    "0 <= ui, vi <= n - 1",
+    "group.length == n",
+    "1 <= group[i] <= 20",
+    "The input is generated such that edges represents a valid tree."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], group = [1,1,1]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], group = [3,2,3]",
+      "output": "2",
+      "explanation": "Nodes 0 and 2 belong to group 3. The interaction cost between this pair is 2.\n\tNode 1 belongs to a different group and forms no valid pair. Therefore, the total interaction cost is 2."
+    },
+    {
+      "input": "n = 4, edges = [[0,1],[0,2],[0,3]], group = [1,1,4,4]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "n = 2, edges = [[0,1]], group = [9,8]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long interactionCosts(int n, vector<vector<int>>& edges, vector<int>& group) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long interactionCosts(int n, int[][] edges, int[] group) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def interactionCosts(self, n: int, edges: List[List[int]], group: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def interactionCosts(self, n, edges, group):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type group: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number[]} group\n * @return {number}\n */\nvar interactionCosts = function(n, edges, group) {\n    \n};",
+    "typescript": "function interactionCosts(n: number, edges: number[][], group: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long InteractionCosts(int n, int[][] edges, int[] group) {\n        \n    }\n}",
+    "c": "long long interactionCosts(int n, int** edges, int edgesSize, int* edgesColSize, int* group, int groupSize) {\n    \n}",
+    "golang": "func interactionCosts(n int, edges [][]int, group []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun interactionCosts(n: Int, edges: Array<IntArray>, group: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func interactionCosts(_ n: Int, _ edges: [[Int]], _ group: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn interaction_costs(n: i32, edges: Vec<Vec<i32>>, group: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Integer[]} group\n# @return {Integer}\ndef interaction_costs(n, edges, group)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Integer[] $group\n     * @return Integer\n     */\n    function interactionCosts($n, $edges, $group) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int interactionCosts(int n, List<List<int>> edges, List<int> group) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def interactionCosts(n: Int, edges: Array[Array[Int]], group: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec interaction_costs(n :: integer, edges :: [[integer]], group :: [integer]) :: integer\n  def interaction_costs(n, edges, group) do\n    \n  end\nend",
+    "erlang": "-spec interaction_costs(N :: integer(), Edges :: [[integer()]], Group :: [integer()]) -> integer().\ninteraction_costs(N, Edges, Group) ->\n  .",
+    "racket": "(define/contract (interaction-costs n edges group)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1],[1,2]]\n[1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[3,2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "4\n[[0,1],[0,2],[0,3]]\n[1,1,4,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "2\n[[0,1]]\n[9,8]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1],[1,2]]\n[1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "3\n[[0,1],[1,2]]\n[3,2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "4\n[[0,1],[0,2],[0,3]]\n[1,1,4,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "2\n[[0,1]]\n[9,8]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], group = [1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[1,2]], group = [3,2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "n = 4, edges = [[0,1],[0,2],[0,3]], group = [1,1,4,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "n = 2, edges = [[0,1]], group = [9,8]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Do a postorder DFS, count how many nodes of each group are in each subtree.",
+    "For each edge, contribution = <code>subtree_count * (total_count - subtree_count)</code>.",
+    "Sum these over all edges and groups."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/total-sum-of-interaction-cost-in-tree-groups/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.143Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "id": "1813",
+  "slug": "sentence-similarity-iii",
+  "title": "Sentence Similarity III",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "You are given two strings `sentence1` and `sentence2`, each representing a **sentence** composed of words. A sentence is a list of **words** that are separated by a **single** space with no leading or trailing spaces. Each word consists of only uppercase and lowercase English characters.\n\nTwo sentences `s1` and `s2` are considered **similar** if it is possible to insert an arbitrary sentence (_possibly empty_) inside one of these sentences such that the two sentences become equal. **Note** that the inserted sentence must be separated from existing words by spaces.\n\nFor example,\n\n*   `s1 = \"Hello Jane\"` and `s2 = \"Hello my name is Jane\"` can be made equal by inserting `\"my name is\"` between `\"Hello\"` and `\"Jane\"` in s1.\n*   `s1 = \"Frog cool\"` and `s2 = \"Frogs are cool\"` are **not** similar, since although there is a sentence `\"s are\"` inserted into `s1`, it is not separated from `\"Frog\"` by a space.\n\nGiven two sentences `sentence1` and `sentence2`, return **true** if `sentence1` and `sentence2` are **similar**. Otherwise, return **false**.\n\n**Example 1:**\n\n**Input:** sentence1 = \"My name is Haley\", sentence2 = \"My Haley\"\n\n**Output:** true\n\n**Explanation:**\n\n`sentence2` can be turned to `sentence1` by inserting \"name is\" between \"My\" and \"Haley\".\n\n**Example 2:**\n\n**Input:** sentence1 = \"of\", sentence2 = \"A lot of words\"\n\n**Output:** false\n\n**Explanation:**\n\nNo single sentence can be inserted inside one of the sentences to make it equal to the other.\n\n**Example 3:**\n\n**Input:** sentence1 = \"Eating right now\", sentence2 = \"Eating\"\n\n**Output:** true\n\n**Explanation:**\n\n`sentence2` can be turned to `sentence1` by inserting \"right now\" at the end of the sentence.\n\n**Constraints:**\n\n*   `1 <= sentence1.length, sentence2.length <= 100`\n*   `sentence1` and `sentence2` consist of lowercase and uppercase English letters and spaces.\n*   The words in `sentence1` and `sentence2` are separated by a single space.",
+  "constraints": [
+    "1 <= sentence1.length, sentence2.length <= 100",
+    "sentence1 and sentence2 consist of lowercase and uppercase English letters and spaces.",
+    "The words in sentence1 and sentence2 are separated by a single space."
+  ],
+  "examples": [
+    {
+      "input": "sentence1 = \"My name is Haley\", sentence2 = \"My Haley\"",
+      "output": "true",
+      "explanation": null
+    },
+    {
+      "input": "sentence1 = \"of\", sentence2 = \"A lot of words\"",
+      "output": "false",
+      "explanation": null
+    },
+    {
+      "input": "sentence1 = \"Eating right now\", sentence2 = \"Eating\"",
+      "output": "true",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool areSentencesSimilar(string sentence1, string sentence2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean areSentencesSimilar(String sentence1, String sentence2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def areSentencesSimilar(self, sentence1: str, sentence2: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def areSentencesSimilar(self, sentence1, sentence2):\n        \"\"\"\n        :type sentence1: str\n        :type sentence2: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} sentence1\n * @param {string} sentence2\n * @return {boolean}\n */\nvar areSentencesSimilar = function(sentence1, sentence2) {\n    \n};",
+    "typescript": "function areSentencesSimilar(sentence1: string, sentence2: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool AreSentencesSimilar(string sentence1, string sentence2) {\n        \n    }\n}",
+    "c": "bool areSentencesSimilar(char* sentence1, char* sentence2) {\n    \n}",
+    "golang": "func areSentencesSimilar(sentence1 string, sentence2 string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun areSentencesSimilar(sentence1: String, sentence2: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func areSentencesSimilar(_ sentence1: String, _ sentence2: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn are_sentences_similar(sentence1: String, sentence2: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} sentence1\n# @param {String} sentence2\n# @return {Boolean}\ndef are_sentences_similar(sentence1, sentence2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $sentence1\n     * @param String $sentence2\n     * @return Boolean\n     */\n    function areSentencesSimilar($sentence1, $sentence2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool areSentencesSimilar(String sentence1, String sentence2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def areSentencesSimilar(sentence1: String, sentence2: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec are_sentences_similar(sentence1 :: String.t, sentence2 :: String.t) :: boolean\n  def are_sentences_similar(sentence1, sentence2) do\n    \n  end\nend",
+    "erlang": "-spec are_sentences_similar(Sentence1 :: unicode:unicode_binary(), Sentence2 :: unicode:unicode_binary()) -> boolean().\nare_sentences_similar(Sentence1, Sentence2) ->\n  .",
+    "racket": "(define/contract (are-sentences-similar sentence1 sentence2)\n  (-> string? string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"My name is Haley\"\n\"My Haley\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"of\"\n\"A lot of words\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"Eating right now\"\n\"Eating\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"My name is Haley\"\n\"My Haley\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"of\"\n\"A lot of words\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"Eating right now\"\n\"Eating\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"My name \"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"is Haley\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"M\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"My\"\n\"My Haley\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"yelaH si eman yM\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"MMMMMM\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"\n\"My Haley\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "One way to look at it is to find one sentence as a concatenation of a prefix and suffix from the other sentence.",
+    "Get the longest common prefix between them and the longest common suffix."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sentence-similarity-iii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:28.260Z",
+    "sourceUpdatedAt": null
+  }
+}

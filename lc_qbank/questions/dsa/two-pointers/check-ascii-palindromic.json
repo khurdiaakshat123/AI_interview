@@ -1,0 +1,157 @@
+{
+  "id": "4030",
+  "slug": "check-ascii-palindromic",
+  "title": "Check ASCII Palindromic",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given a string `s` consisting of lowercase English letters.\n\nConstruct a **binary string** by replacing each character in `s` with the 8-bit binary representation of its ASCII value, **including leading zeros**, while preserving the original order of the characters.\n\nReturn `true` if the resulting binary string is a **palindrome**. Otherwise, return `false`.\n\n**Example 1:**\n\n**Input:** s = \"ff\"\n\n**Output:** true\n\n**Explanation:**\n\n*   The ASCII value of `f` is 102, whose 8-bit binary representation is `01100110`.\n*   Thus, the binary string is `0110011001100110`.\n*   Since this binary string is a **palindrome**, the output is `true`.\n\n**Example 2:**\n\n**Input:** s = \"leet\"\n\n**Output:** false\n\n**Explanation:**\n\n*   The ASCII values of `l`, `e`, `e`, and `t` are 108, 101, 101, and 116, respectively.\n*   Their 8-bit binary representations are `01101100`, `01100101`, `01100101`, and `01110100`.\n*   Thus, the binary string is `01101100011001010110010101110100`.\n*   Since this binary string is not a **palindrome**, the output is `false`.\n\n**Constraints:**\n\n*   `1 <= s.length <= 100`\n*   `s` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"ff\"",
+      "output": "true",
+      "explanation": "The ASCII value of f is 102, whose 8-bit binary representation is 01100110.\n\tThus, the binary string is 0110011001100110.\n\tSince this binary string is a palindrome, the output is true."
+    },
+    {
+      "input": "s = \"leet\"",
+      "output": "false",
+      "explanation": "The ASCII values of l, e, e, and t are 108, 101, 101, and 116, respectively.\n\tTheir 8-bit binary representations are 01101100, 01100101, 01100101, and 01110100.\n\tThus, the binary string is 01101100011001010110010101110100.\n\tSince this binary string is not a palindrome, the output is false."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isPalindromic(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isPalindromic(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isPalindromic(self, s: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isPalindromic(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar isPalindromic = function(s) {\n    \n};",
+    "typescript": "function isPalindromic(s: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsPalindromic(string s) {\n        \n    }\n}",
+    "c": "bool isPalindromic(char* s) {\n    \n}",
+    "golang": "func isPalindromic(s string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isPalindromic(s: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isPalindromic(_ s: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_palindromic(s: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Boolean}\ndef is_palindromic(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Boolean\n     */\n    function isPalindromic($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isPalindromic(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isPalindromic(s: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_palindromic(s :: String.t) :: boolean\n  def is_palindromic(s) do\n    \n  end\nend",
+    "erlang": "-spec is_palindromic(S :: unicode:unicode_binary()) -> boolean().\nis_palindromic(S) ->\n  .",
+    "racket": "(define/contract (is-palindromic s)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"ff\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"leet\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"ff\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"leet\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"f\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ffff\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"FF\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"racecar\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Convert each character to its 8-bit binary representation, concatenate the representations, and check whether the resulting string equals its reverse."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/check-ascii-palindromic/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.017Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "4015",
+  "slug": "weighted-sum-of-a-tree",
+  "title": "Weighted Sum of a Tree",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "statement": "You are given an integer array `parent` of length `n` representing a rooted tree with nodes labeled from 0 to `n - 1`.\n\nThe tree is **rooted** at node 0, so `parent[0] = -1`. For each node `i` where `1 <= i <= n - 1`, `parent[i]` denotes the parent of node `i`.\n\nYou are also given an integer array `nums` of length `n`, where `nums[i]` denotes the value of node `i`.\n\nThe weight of a node `i` at depth `d` is `nums[i] * (h - d + 1)`, where `h` is the height of the tree.\n\nReturn the **sum** of the weights of all nodes in the tree.\n\nThe **depth** of a node is the number of nodes on the path from the root to that node, inclusive, with the root having depth 1.\n\nThe **height** of the tree is the maximum depth among all nodes in the tree.\n\n**Example 1:**\n\n![](./assets/weighted-sum-of-a-tree-1.png)​​​​​​​\n\n**Input:** parent = \\[-1,0,0,0,2,2\\], nums = \\[5,2,3,1,4,6\\]\n\n**Output:** 37\n\n**Explanation:**\n\nThe height of the tree is 3.\n\nNode\n\n`nums[i]`\n\nDepth (`d`)\n\nWeight\n\n0\n\n5\n\n1\n\n`5 * (3 - 1 + 1) = 15`\n\n1\n\n2\n\n2\n\n`2 * (3 - 2 + 1) = 4`\n\n2\n\n3\n\n2\n\n`3 * (3 - 2 + 1) = 6`\n\n3\n\n1\n\n2\n\n`1 * (3 - 2 + 1) = 2`\n\n4\n\n4\n\n3\n\n`4 * (3 - 3 + 1) = 4`\n\n5\n\n6\n\n3\n\n`6 * (3 - 3 + 1) = 6`\n\nThe sum of all node weights is `15 + 4 + 6 + 2 + 4 + 6 = 37`.\n\n**Example 2:**\n\n![](./assets/weighted-sum-of-a-tree-2.png)​​​​​​​​​​​​​​\n\n**Input:** parent = \\[-1,0,1,2\\], nums = \\[1,2,3,4\\]\n\n**Output:** 20\n\n**Explanation:**\n\nThe height of the tree is 4.\n\nNode\n\n`nums[i]`\n\nDepth (`d`)\n\nWeight\n\n0\n\n1\n\n1\n\n`1 * (4 - 1 + 1) = 4`\n\n1\n\n2\n\n2\n\n`2 * (4 - 2 + 1) = 6`\n\n2\n\n3\n\n3\n\n`3 * (4 - 3 + 1) = 6`\n\n3\n\n4\n\n4\n\n`4 * (4 - 4 + 1) = 4`\n\nThe sum of all node weights is `4 + 6 + 6 + 4 = 20`.\n\n**Constraints:**\n\n*   `1 <= n <= 10^(5)`\n*   `n == parent.length == nums.length`\n*   `parent[0] == -1`\n*   `0 <= parent[i] <= n - 1` for all `i` in `[1, n - 1]`\n*   `1 <= nums[i] <= 10^(6)`\n*   The input is generated such that the array `parent` represents a valid tree rooted at node 0.",
+  "constraints": [
+    "1 <= n <= 105",
+    "n == parent.length == nums.length",
+    "parent[0] == -1",
+    "0 <= parent[i] <= n - 1 for all i in [1, n - 1]",
+    "1 <= nums[i] <= 106",
+    "The input is generated such that the array parent represents a valid tree rooted at node 0."
+  ],
+  "examples": [
+    {
+      "input": "parent = [-1,0,0,0,2,2], nums = [5,2,3,1,4,6]",
+      "output": "37",
+      "explanation": null
+    },
+    {
+      "input": "parent = [-1,0,1,2], nums = [1,2,3,4]",
+      "output": "20",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long weightedSum(vector<int>& parent, vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long weightedSum(int[] parent, int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def weightedSum(self, parent: list[int], nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def weightedSum(self, parent, nums):\n        \"\"\"\n        :type parent: List[int]\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} parent\n * @param {number[]} nums\n * @return {number}\n */\nvar weightedSum = function(parent, nums) {\n    \n};",
+    "typescript": "function weightedSum(parent: number[], nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long WeightedSum(int[] parent, int[] nums) {\n        \n    }\n}",
+    "c": "long long weightedSum(int* parent, int parentSize, int* nums, int numsSize) {\n    \n}",
+    "golang": "func weightedSum(parent []int, nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun weightedSum(parent: IntArray, nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func weightedSum(_ parent: [Int], _ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn weighted_sum(parent: Vec<i32>, nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} parent\n# @param {Integer[]} nums\n# @return {Integer}\ndef weighted_sum(parent, nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $parent\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function weightedSum($parent, $nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int weightedSum(List<int> parent, List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def weightedSum(parent: Array[Int], nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec weighted_sum(parent :: [integer], nums :: [integer]) :: integer\n  def weighted_sum(parent, nums) do\n    \n  end\nend",
+    "erlang": "-spec weighted_sum(Parent :: [integer()], Nums :: [integer()]) -> integer().\nweighted_sum(Parent, Nums) ->\n  .",
+    "racket": "(define/contract (weighted-sum parent nums)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[-1,0,0,0,2,2]\n[5,2,3,1,4,6]",
+      "expectedOutput": "37"
+    },
+    {
+      "input": "[-1,0,1,2]\n[1,2,3,4]",
+      "expectedOutput": "20"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[-1,0,0,0,2,2]\n[5,2,3,1,4,6]",
+      "expectedOutput": "37"
+    },
+    {
+      "input": "[-1,0,1,2]\n[1,2,3,4]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[2,2,0,0,0,-1]\n[5,2,3,1,4,6]",
+      "expectedOutput": "51"
+    },
+    {
+      "input": "[-1,0,0,0,2,2,-1,0,0,0,2,2]\n[5,2,3,1,4,6]",
+      "expectedOutput": "37"
+    },
+    {
+      "input": "[-2,0,0,0,4,4]\n[5,2,3,1,4,6]",
+      "expectedOutput": "36"
+    },
+    {
+      "input": "[0,1,1,1,3,3]\n[5,2,3,1,4,6]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[-2,-1,-1,-1,1,1]\n[5,2,3,1,4,6]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[1,0,0,0,-2,-2]\n[5,2,3,1,4,6]",
+      "expectedOutput": "36"
+    },
+    {
+      "input": "[1,1,2,2,3,3]\n[5,2,3,1,4,6]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[-1,0,0,0,2,2]\n[5,2,3]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[-1,0,0,0,2,2]\n[1,4,6]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[-1,0,0,0,2,2]\n[5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-1,0,0,0,2,2]\n[5,6]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[-1,0,0,0,2,2]\n[5,2]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[-1,0,0,0,2,2]\n[6,4,1,3,2,5]",
+      "expectedOutput": "41"
+    },
+    {
+      "input": "[-1,0,0,0,2,2]\n[1,2,3,4,5,6]",
+      "expectedOutput": "32"
+    },
+    {
+      "input": "[-1,0,0,0,2,2]\n[6,5,4,3,2,1]",
+      "expectedOutput": "45"
+    },
+    {
+      "input": "[-1,0,0,0,2,2]\n[5,5,5,5,5]",
+      "expectedOutput": "50"
+    },
+    {
+      "input": "[-1,0,0,0,2,2]\n[10,4,6,2,8,12]",
+      "expectedOutput": "74"
+    },
+    {
+      "input": "[-1,0,0,0,2,2]\n[6,3,4,2,5,7]",
+      "expectedOutput": "48"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Build the tree and traverse it from the root to determine the depth of every node and the height <code>h</code>.",
+    "Once <code>h</code> is known, calculate and sum <code>nums[i] * (h - depth[i] + 1)</code> for every node <code>i</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/weighted-sum-of-a-tree/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.705Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "id": "821",
+  "slug": "shortest-distance-to-a-character",
+  "title": "Shortest Distance to a Character",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "Given a string `s` and a character `c` that occurs in `s`, return _an array of integers_ `answer` _where_ `answer.length == s.length` _and_ `answer[i]` _is the **distance** from index_ `i` _to the **closest** occurrence of character_ `c` _in_ `s`.\n\nThe **distance** between two indices `i` and `j` is `abs(i - j)`, where `abs` is the absolute value function.\n\n**Example 1:**\n\n```\nInput: s = \"loveleetcode\", c = \"e\"\nOutput: [3,2,1,0,1,0,0,1,2,2,1,0]\nExplanation: The character 'e' appears at indices 3, 5, 6, and 11 (0-indexed).\nThe closest occurrence of 'e' for index 0 is at index 3, so the distance is abs(0 - 3) = 3.\nThe closest occurrence of 'e' for index 1 is at index 3, so the distance is abs(1 - 3) = 2.\nFor index 4, there is a tie between the 'e' at index 3 and the 'e' at index 5, but the distance is still the same: abs(4 - 3) == abs(4 - 5) = 1.\nThe closest occurrence of 'e' for index 8 is at index 6, so the distance is abs(8 - 6) = 2.\n```\n\n**Example 2:**\n\n```\nInput: s = \"aaab\", c = \"b\"\nOutput: [3,2,1,0]\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(4)`\n*   `s[i]` and `c` are lowercase English letters.\n*   It is guaranteed that `c` occurs at least once in `s`.",
+  "constraints": [
+    "1 <= s.length <= 104",
+    "s[i] and c are lowercase English letters.",
+    "It is guaranteed that c occurs at least once in s."
+  ],
+  "examples": [
+    {
+      "input": "s = \"loveleetcode\", c = \"e\"",
+      "output": "[3,2,1,0,1,0,0,1,2,2,1,0]",
+      "explanation": "The character 'e' appears at indices 3, 5, 6, and 11 (0-indexed).\nThe closest occurrence of 'e' for index 0 is at index 3, so the distance is abs(0 - 3) = 3.\nThe closest occurrence of 'e' for index 1 is at index 3, so the distance is abs(1 - 3) = 2.\nFor index 4, there is a tie between the 'e' at index 3 and the 'e' at index 5, but the distance is still the same: abs(4 - 3) == abs(4 - 5) = 1.\nThe closest occurrence of 'e' for index 8 is at index 6, so the distance is abs(8 - 6) = 2."
+    },
+    {
+      "input": "s = \"aaab\", c = \"b\"",
+      "output": "[3,2,1,0]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> shortestToChar(string s, char c) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] shortestToChar(String s, char c) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shortestToChar(self, s: str, c: str) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def shortestToChar(self, s, c):\n        \"\"\"\n        :type s: str\n        :type c: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {character} c\n * @return {number[]}\n */\nvar shortestToChar = function(s, c) {\n    \n};",
+    "typescript": "function shortestToChar(s: string, c: string): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] ShortestToChar(string s, char c) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* shortestToChar(char* s, char c, int* returnSize) {\n    \n}",
+    "golang": "func shortestToChar(s string, c byte) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun shortestToChar(s: String, c: Char): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shortestToChar(_ s: String, _ c: Character) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shortest_to_char(s: String, c: char) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Character} c\n# @return {Integer[]}\ndef shortest_to_char(s, c)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $c\n     * @return Integer[]\n     */\n    function shortestToChar($s, $c) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> shortestToChar(String s, String c) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shortestToChar(s: String, c: Char): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shortest_to_char(s :: String.t, c :: char) :: [integer]\n  def shortest_to_char(s, c) do\n    \n  end\nend",
+    "erlang": "-spec shortest_to_char(S :: unicode:unicode_binary(), C :: char()) -> [integer()].\nshortest_to_char(S, C) ->\n  .",
+    "racket": "(define/contract (shortest-to-char s c)\n  (-> string? char? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"loveleetcode\"\n\"e\"",
+      "expectedOutput": "[3,2,1,0,1,0,0,1,2,2,1,0]"
+    },
+    {
+      "input": "\"aaab\"\n\"b\"",
+      "expectedOutput": "[3,2,1,0]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"loveleetcode\"\n\"e\"",
+      "expectedOutput": "[3,2,1,0,1,0,0,1,2,2,1,0]"
+    },
+    {
+      "input": "\"aaab\"\n\"b\"",
+      "expectedOutput": "[3,2,1,0]"
+    },
+    {
+      "input": "\"lovele\"\n\"e\"",
+      "expectedOutput": "[3,2,1,0,1,0]"
+    },
+    {
+      "input": "\"etcode\"\n\"e\"",
+      "expectedOutput": "[0,1,2,2,1,0]"
+    },
+    {
+      "input": "\"l\"\n\"e\"",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "\"lo\"\n\"e\"",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "\"edocteelevol\"\n\"e\"",
+      "expectedOutput": "[0,1,2,2,1,0,0,1,0,1,2,3]"
+    },
+    {
+      "input": "\"llllll\"\n\"e\"",
+      "expectedOutput": "[6,6,6,6,6,6]"
+    },
+    {
+      "input": "\"LOVELEETCODE\"\n\"e\"",
+      "expectedOutput": "[12,12,12,12,12,12,12,12,12,12,12,12]"
+    },
+    {
+      "input": "\"a\"\n\"e\"",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "\"b\"\n\"e\"",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "\"aa\"\n\"e\"",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "\"ab\"\n\"e\"",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "\"ba\"\n\"e\"",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "\"aba\"\n\"e\"",
+      "expectedOutput": "[3,3,3]"
+    },
+    {
+      "input": "\"abba\"\n\"e\"",
+      "expectedOutput": "[4,4,4,4]"
+    },
+    {
+      "input": "\"aaaaa\"\n\"e\"",
+      "expectedOutput": "[5,5,5,5,5]"
+    },
+    {
+      "input": "\"abcde\"\n\"e\"",
+      "expectedOutput": "[4,3,2,1,0]"
+    },
+    {
+      "input": "\"edcba\"\n\"e\"",
+      "expectedOutput": "[0,1,2,3,4]"
+    },
+    {
+      "input": "\"aab\"\n\"e\"",
+      "expectedOutput": "[3,3,3]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/shortest-distance-to-a-character/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:28.401Z",
+    "sourceUpdatedAt": null
+  }
+}

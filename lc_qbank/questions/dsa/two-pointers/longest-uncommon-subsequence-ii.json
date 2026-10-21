@@ -1,0 +1,158 @@
+{
+  "id": "522",
+  "slug": "longest-uncommon-subsequence-ii",
+  "title": "Longest Uncommon Subsequence II",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "String",
+    "Sorting"
+  ],
+  "statement": "Given an array of strings `strs`, return _the length of the **longest uncommon subsequence** between them_. If the longest uncommon subsequence does not exist, return `-1`.\n\nAn **uncommon subsequence** between an array of strings is a string that is a **subsequence of one string but not the others**.\n\nA **subsequence** of a string `s` is a string that can be obtained after deleting any number of characters from `s`.\n\n*   For example, `\"abc\"` is a subsequence of `\"aebdc\"` because you can delete the underlined characters in `\"aebdc\"` to get `\"abc\"`. Other subsequences of `\"aebdc\"` include `\"aebdc\"`, `\"aeb\"`, and `\"\"` (empty string).\n\n**Example 1:**\n\n```\nInput: strs = [\"aba\",\"cdc\",\"eae\"]\nOutput: 3\n```\n\n**Example 2:**\n\n```\nInput: strs = [\"aaa\",\"aaa\",\"aa\"]\nOutput: -1\n```\n\n**Constraints:**\n\n*   `2 <= strs.length <= 50`\n*   `1 <= strs[i].length <= 10`\n*   `strs[i]` consists of lowercase English letters.",
+  "constraints": [
+    "2 <= strs.length <= 50",
+    "1 <= strs[i].length <= 10",
+    "strs[i] consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "strs = [\"aba\",\"cdc\",\"eae\"]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "strs = [\"aaa\",\"aaa\",\"aa\"]",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findLUSlength(vector<string>& strs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findLUSlength(String[] strs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findLUSlength(self, strs: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findLUSlength(self, strs):\n        \"\"\"\n        :type strs: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} strs\n * @return {number}\n */\nvar findLUSlength = function(strs) {\n    \n};",
+    "typescript": "function findLUSlength(strs: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindLUSlength(string[] strs) {\n        \n    }\n}",
+    "c": "int findLUSlength(char** strs, int strsSize) {\n    \n}",
+    "golang": "func findLUSlength(strs []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findLUSlength(strs: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findLUSlength(_ strs: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_lu_slength(strs: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} strs\n# @return {Integer}\ndef find_lu_slength(strs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $strs\n     * @return Integer\n     */\n    function findLUSlength($strs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findLUSlength(List<String> strs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findLUSlength(strs: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_lu_slength(strs :: [String.t]) :: integer\n  def find_lu_slength(strs) do\n    \n  end\nend",
+    "erlang": "-spec find_lu_slength(Strs :: [unicode:unicode_binary()]) -> integer().\nfind_lu_slength(Strs) ->\n  .",
+    "racket": "(define/contract (find-lu-slength strs)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"aba\",\"cdc\",\"eae\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"aaa\",\"aaa\",\"aa\"]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"aba\",\"cdc\",\"eae\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"aaa\",\"aaa\",\"aa\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"aba\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"cdc\",\"eae\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"aba\",\"eae\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"aba\",\"cdc\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"eae\",\"cdc\",\"aba\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"aba\",\"aba\",\"aba\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"aba\",\"cdc\",\"eae\",\"aba\",\"cdc\",\"eae\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-uncommon-subsequence-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.730Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "id": "1574",
+  "slug": "shortest-subarray-to-be-removed-to-make-array-sorted",
+  "title": "Shortest Subarray to be Removed to Make Array Sorted",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "statement": "Given an integer array `arr`, remove a subarray (can be empty) from `arr` such that the remaining elements in `arr` are **non-decreasing**.\n\nReturn _the length of the shortest subarray to remove_.\n\nA **subarray** is a contiguous subsequence of the array.\n\n**Example 1:**\n\n```\nInput: arr = [1,2,3,10,4,2,3,5]\nOutput: 3\nExplanation: The shortest subarray we can remove is [10,4,2] of length 3. The remaining elements after that will be [1,2,3,3,5] which are sorted.\nAnother correct solution is to remove the subarray [3,10,4].\n```\n\n**Example 2:**\n\n```\nInput: arr = [5,4,3,2,1]\nOutput: 4\nExplanation: Since the array is strictly decreasing, we can only keep a single element. Therefore we need to remove a subarray of length 4, either [5,4,3,2] or [4,3,2,1].\n```\n\n**Example 3:**\n\n```\nInput: arr = [1,2,3]\nOutput: 0\nExplanation: The array is already non-decreasing. We do not need to remove any elements.\n```\n\n**Constraints:**\n\n*   `1 <= arr.length <= 10^(5)`\n*   `0 <= arr[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= arr.length <= 105",
+    "0 <= arr[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "arr = [1,2,3,10,4,2,3,5]",
+      "output": "3",
+      "explanation": "The shortest subarray we can remove is [10,4,2] of length 3. The remaining elements after that will be [1,2,3,3,5] which are sorted.\nAnother correct solution is to remove the subarray [3,10,4]."
+    },
+    {
+      "input": "arr = [5,4,3,2,1]",
+      "output": "4",
+      "explanation": "Since the array is strictly decreasing, we can only keep a single element. Therefore we need to remove a subarray of length 4, either [5,4,3,2] or [4,3,2,1]."
+    },
+    {
+      "input": "arr = [1,2,3]",
+      "output": "0",
+      "explanation": "The array is already non-decreasing. We do not need to remove any elements."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findLengthOfShortestSubarray(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findLengthOfShortestSubarray(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findLengthOfShortestSubarray(self, arr: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findLengthOfShortestSubarray(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number}\n */\nvar findLengthOfShortestSubarray = function(arr) {\n    \n};",
+    "typescript": "function findLengthOfShortestSubarray(arr: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindLengthOfShortestSubarray(int[] arr) {\n        \n    }\n}",
+    "c": "int findLengthOfShortestSubarray(int* arr, int arrSize) {\n    \n}",
+    "golang": "func findLengthOfShortestSubarray(arr []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findLengthOfShortestSubarray(arr: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findLengthOfShortestSubarray(_ arr: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_length_of_shortest_subarray(arr: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer}\ndef find_length_of_shortest_subarray(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer\n     */\n    function findLengthOfShortestSubarray($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findLengthOfShortestSubarray(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findLengthOfShortestSubarray(arr: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_length_of_shortest_subarray(arr :: [integer]) :: integer\n  def find_length_of_shortest_subarray(arr) do\n    \n  end\nend",
+    "erlang": "-spec find_length_of_shortest_subarray(Arr :: [integer()]) -> integer().\nfind_length_of_shortest_subarray(Arr) ->\n  .",
+    "racket": "(define/contract (find-length-of-shortest-subarray arr)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[11,10,18,14,12,11,16,20,13,11]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[17,32,32,29,4,29,19,5,26,35,35,6,10,27,11,35,0,31]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,8,34,2,3,22,18,27,3,1,0,12,21,23,8,7,17]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[11,10,18,14,12,11,16,20,13,11]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[17,32,32,29,4,29,19,5,26,35,35,6,10,27,11,35,0,31]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[1,8,34,2,3,22,18,27,3,1,0,12,21,23,8,7,17]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[11,10,18,14,12]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[11,16,20,13,11]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[11]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[11,11]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[11,10]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[11,13,20,16,11,12,14,18,10,11]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[10,11,11,11,12,13,14,16,18,20]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[20,18,16,14,13,12,11,11,11,10]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[11,11,11,11,11]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[22,20,36,28,24,22,32,40,26,22]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[12,11,19,15,13,12,17,21,14,12]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[10,9,17,13,11,10,15,19,12,10]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[-11,-10,-18,-14,-12,-11,-16,-20,-13,-11]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The key is to find the longest non-decreasing subarray starting with the first element or ending with the last element, respectively.",
+    "After removing some subarray, the result is the concatenation of a sorted prefix and a sorted suffix, where the last element of the prefix is smaller than the first element of the suffix."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.538Z",
+    "sourceUpdatedAt": null
+  }
+}

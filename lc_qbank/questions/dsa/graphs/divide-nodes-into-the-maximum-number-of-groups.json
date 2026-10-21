@@ -1,0 +1,124 @@
+{
+  "id": "2493",
+  "slug": "divide-nodes-into-the-maximum-number-of-groups",
+  "title": "Divide Nodes Into the Maximum Number of Groups",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "statement": "You are given a positive integer `n` representing the number of nodes in an **undirected** graph. The nodes are labeled from `1` to `n`.\n\nYou are also given a 2D integer array `edges`, where `edges[i] = [a_(i,) b_(i)]` indicates that there is a **bidirectional** edge between nodes `a_(i)` and `b_(i)`. **Notice** that the given graph may be disconnected.\n\nDivide the nodes of the graph into `m` groups (**1-indexed**) such that:\n\n*   Each node in the graph belongs to exactly one group.\n*   For every pair of nodes in the graph that are connected by an edge `[a_(i,) b_(i)]`, if `a_(i)` belongs to the group with index `x`, and `b_(i)` belongs to the group with index `y`, then `|y - x| = 1`.\n\nReturn _the maximum number of groups (i.e., maximum_ `m`_) into which you can divide the nodes_. Return `-1` _if it is impossible to group the nodes with the given conditions_.\n\n**Example 1:**\n\n![](./assets/divide-nodes-into-the-maximum-number-of-groups-1.png)\n```\nInput: n = 6, edges = [[1,2],[1,4],[1,5],[2,6],[2,3],[4,6]]\nOutput: 4\nExplanation: As shown in the image we:\n- Add node 5 to the first group.\n- Add node 1 to the second group.\n- Add nodes 2 and 4 to the third group.\n- Add nodes 3 and 6 to the fourth group.\nWe can see that every edge is satisfied.\nIt can be shown that that if we create a fifth group and move any node from the third or fourth group to it, at least on of the edges will not be satisfied.\n```\n\n**Example 2:**\n\n```\nInput: n = 3, edges = [[1,2],[2,3],[3,1]]\nOutput: -1\nExplanation: If we add node 1 to the first group, node 2 to the second group, and node 3 to the third group to satisfy the first two edges, we can see that the third edge will not be satisfied.\nIt can be shown that no grouping is possible.\n```\n\n**Constraints:**\n\n*   `1 <= n <= 500`\n*   `1 <= edges.length <= 10^(4)`\n*   `edges[i].length == 2`\n*   `1 <= a_(i), b_(i) <= n`\n*   `a_(i) != b_(i)`\n*   There is at most one edge between any pair of vertices.",
+  "constraints": [
+    "1 <= n <= 500",
+    "1 <= edges.length <= 104",
+    "edges[i].length == 2",
+    "1 <= ai, bi <= n",
+    "ai != bi",
+    "There is at most one edge between any pair of vertices."
+  ],
+  "examples": [
+    {
+      "input": "n = 6, edges = [[1,2],[1,4],[1,5],[2,6],[2,3],[4,6]]",
+      "output": "4",
+      "explanation": "As shown in the image we:\n- Add node 5 to the first group.\n- Add node 1 to the second group.\n- Add nodes 2 and 4 to the third group.\n- Add nodes 3 and 6 to the fourth group.\nWe can see that every edge is satisfied.\nIt can be shown that that if we create a fifth group and move any node from the third or fourth group to it, at least on of the edges will not be satisfied."
+    },
+    {
+      "input": "n = 3, edges = [[1,2],[2,3],[3,1]]",
+      "output": "-1",
+      "explanation": "If we add node 1 to the first group, node 2 to the second group, and node 3 to the third group to satisfy the first two edges, we can see that the third edge will not be satisfied.\nIt can be shown that no grouping is possible."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int magnificentSets(int n, vector<vector<int>>& edges) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int magnificentSets(int n, int[][] edges) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def magnificentSets(self, n: int, edges: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def magnificentSets(self, n, edges):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @return {number}\n */\nvar magnificentSets = function(n, edges) {\n    \n};",
+    "typescript": "function magnificentSets(n: number, edges: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MagnificentSets(int n, int[][] edges) {\n        \n    }\n}",
+    "c": "int magnificentSets(int n, int** edges, int edgesSize, int* edgesColSize) {\n    \n}",
+    "golang": "func magnificentSets(n int, edges [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun magnificentSets(n: Int, edges: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func magnificentSets(_ n: Int, _ edges: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn magnificent_sets(n: i32, edges: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @return {Integer}\ndef magnificent_sets(n, edges)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @return Integer\n     */\n    function magnificentSets($n, $edges) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int magnificentSets(int n, List<List<int>> edges) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def magnificentSets(n: Int, edges: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec magnificent_sets(n :: integer, edges :: [[integer]]) :: integer\n  def magnificent_sets(n, edges) do\n    \n  end\nend",
+    "erlang": "-spec magnificent_sets(N :: integer(), Edges :: [[integer()]]) -> integer().\nmagnificent_sets(N, Edges) ->\n  .",
+    "racket": "(define/contract (magnificent-sets n edges)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "6\n[[1,2],[1,4],[1,5],[2,6],[2,3],[4,6]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "3\n[[1,2],[2,3],[3,1]]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "6\n[[1,2],[1,4],[1,5],[2,6],[2,3],[4,6]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "3\n[[1,2],[2,3],[3,1]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "7\n[[1,2],[1,4],[1,5],[2,6],[2,3],[4,6]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "8\n[[1,2],[1,4],[1,5],[2,6],[2,3],[4,6]]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "9\n[[1,2],[1,4],[1,5],[2,6],[2,3],[4,6]]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "4\n[[1,2],[2,3],[3,1]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "5\n[[1,2],[2,3],[3,1]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "6\n[[1,2],[2,3],[3,1]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "7\n[[1,2],[2,3],[3,1]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "8\n[[1,2],[2,3],[3,1]]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If the graph is not bipartite, it is not possible to group the nodes.",
+    "Notice that we can solve the problem for each connected component independently, and the final answer will be just the sum of the maximum number of groups in each component.",
+    "Finally, to solve the problem for each connected component, we can notice that if for some node v we fix its position to be in the leftmost group, then we can also evaluate the position of every other node. That position is the depth of the node in a bfs tree after rooting at node v."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.834Z",
+    "sourceUpdatedAt": null
+  }
+}

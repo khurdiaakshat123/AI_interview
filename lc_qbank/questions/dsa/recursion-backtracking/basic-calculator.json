@@ -1,0 +1,170 @@
+{
+  "id": "224",
+  "slug": "basic-calculator",
+  "title": "Basic Calculator",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Hard",
+  "tags": [
+    "Math",
+    "String",
+    "Stack",
+    "Recursion"
+  ],
+  "statement": "Given a string `s` representing a valid expression, implement a basic calculator to evaluate it, and return _the result of the evaluation_.\n\n**Note:** You are **not** allowed to use any built-in function which evaluates strings as mathematical expressions, such as `eval()`.\n\n**Example 1:**\n\n```\nInput: s = \"1 + 1\"\nOutput: 2\n```\n\n**Example 2:**\n\n```\nInput: s = \" 2-1 + 2 \"\nOutput: 3\n```\n\n**Example 3:**\n\n```\nInput: s = \"(1+(4+5+2)-3)+(6+8)\"\nOutput: 23\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 3 * 10^(5)`\n*   `s` consists of digits, `'+'`, `'-'`, `'('`, `')'`, and `' '`.\n*   `s` represents a valid expression.\n*   `'+'` is **not** used as a unary operation (i.e., `\"+1\"` and `\"+(2 + 3)\"` is invalid).\n*   `'-'` could be used as a unary operation (i.e., `\"-1\"` and `\"-(2 + 3)\"` is valid).\n*   There will be no two consecutive operators in the input.\n*   Every number and running calculation will fit in a signed 32-bit integer.",
+  "constraints": [
+    "1 <= s.length <= 3 * 105",
+    "s consists of digits, '+', '-', '(', ')', and ' '.",
+    "s represents a valid expression.",
+    "'+' is not used as a unary operation (i.e., \"+1\" and \"+(2 + 3)\" is invalid).",
+    "'-' could be used as a unary operation (i.e., \"-1\" and \"-(2 + 3)\" is valid).",
+    "There will be no two consecutive operators in the input.",
+    "Every number and running calculation will fit in a signed 32-bit integer."
+  ],
+  "examples": [
+    {
+      "input": "s = \"1 + 1\"",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "s = \" 2-1 + 2 \"",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "s = \"(1+(4+5+2)-3)+(6+8)\"",
+      "output": "23",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int calculate(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int calculate(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def calculate(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def calculate(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar calculate = function(s) {\n    \n};",
+    "typescript": "function calculate(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int Calculate(string s) {\n        \n    }\n}",
+    "c": "int calculate(char* s) {\n    \n}",
+    "golang": "func calculate(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun calculate(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func calculate(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn calculate(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef calculate(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function calculate($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int calculate(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def calculate(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec calculate(s :: String.t) :: integer\n  def calculate(s) do\n    \n  end\nend",
+    "erlang": "-spec calculate(S :: unicode:unicode_binary()) -> integer().\ncalculate(S) ->\n  .",
+    "racket": "(define/contract (calculate s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"1 + 1\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\" 2-1 + 2 \"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"(1+(4+5+2)-3)+(6+8)\"",
+      "expectedOutput": "23"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"1 + 1\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\" 2-1 + 2 \"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"(1+(4+5+2)-3)+(6+8)\"",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "\"1 \"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"+ 1\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1 + 11 + 1\"",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "\"11111\"",
+      "expectedOutput": "11111"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/basic-calculator/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.448Z",
+    "sourceUpdatedAt": null
+  }
+}

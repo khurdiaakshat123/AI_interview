@@ -1,0 +1,154 @@
+{
+  "id": "1529",
+  "slug": "minimum-suffix-flips",
+  "title": "Minimum Suffix Flips",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "statement": "You are given a **0-indexed** binary string `target` of length `n`. You have another binary string `s` of length `n` that is initially set to all zeros. You want to make `s` equal to `target`.\n\nIn one operation, you can pick an index `i` where `0 <= i < n` and flip all bits in the **inclusive** range `[i, n - 1]`. Flip means changing `'0'` to `'1'` and `'1'` to `'0'`.\n\nReturn _the minimum number of operations needed to make_ `s` _equal to_ `target`.\n\n**Example 1:**\n\n```\nInput: target = \"10111\"\nOutput: 3\nExplanation: Initially, s = \"00000\".\nChoose index i = 2: \"00000\" -> \"00111\"\nChoose index i = 0: \"00111\" -> \"11000\"\nChoose index i = 1: \"11000\" -> \"10111\"\nWe need at least 3 flip operations to form target.\n```\n\n**Example 2:**\n\n```\nInput: target = \"101\"\nOutput: 3\nExplanation: Initially, s = \"000\".\nChoose index i = 0: \"000\" -> \"111\"\nChoose index i = 1: \"111\" -> \"100\"\nChoose index i = 2: \"100\" -> \"101\"\nWe need at least 3 flip operations to form target.\n```\n\n**Example 3:**\n\n```\nInput: target = \"00000\"\nOutput: 0\nExplanation: We do not need any operations since the initial s already equals target.\n```\n\n**Constraints:**\n\n*   `n == target.length`\n*   `1 <= n <= 10^(5)`\n*   `target[i]` is either `'0'` or `'1'`.",
+  "constraints": [
+    "n == target.length",
+    "1 <= n <= 105",
+    "target[i] is either '0' or '1'."
+  ],
+  "examples": [
+    {
+      "input": "target = \"10111\"",
+      "output": "3",
+      "explanation": "Initially, s = \"00000\".\nChoose index i = 2: \"00000\" -> \"00111\"\nChoose index i = 0: \"00111\" -> \"11000\"\nChoose index i = 1: \"11000\" -> \"10111\"\nWe need at least 3 flip operations to form target."
+    },
+    {
+      "input": "target = \"101\"",
+      "output": "3",
+      "explanation": "Initially, s = \"000\".\nChoose index i = 0: \"000\" -> \"111\"\nChoose index i = 1: \"111\" -> \"100\"\nChoose index i = 2: \"100\" -> \"101\"\nWe need at least 3 flip operations to form target."
+    },
+    {
+      "input": "target = \"00000\"",
+      "output": "0",
+      "explanation": "We do not need any operations since the initial s already equals target."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minFlips(string target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minFlips(String target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minFlips(self, target: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minFlips(self, target):\n        \"\"\"\n        :type target: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} target\n * @return {number}\n */\nvar minFlips = function(target) {\n    \n};",
+    "typescript": "function minFlips(target: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinFlips(string target) {\n        \n    }\n}",
+    "c": "int minFlips(char* target) {\n    \n}",
+    "golang": "func minFlips(target string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minFlips(target: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minFlips(_ target: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_flips(target: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} target\n# @return {Integer}\ndef min_flips(target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $target\n     * @return Integer\n     */\n    function minFlips($target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minFlips(String target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minFlips(target: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_flips(target :: String.t) :: integer\n  def min_flips(target) do\n    \n  end\nend",
+    "erlang": "-spec min_flips(Target :: unicode:unicode_binary()) -> integer().\nmin_flips(Target) ->\n  .",
+    "racket": "(define/contract (min-flips target)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"10111\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"101\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"00000\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"10111\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"101\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"00000\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"10\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"111\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"11101\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"1011110111\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"11111\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1011111101\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"01\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"101101\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"00\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"000\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"0000000000\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider a strategy where the choice of bulb with number i is increasing. In such a strategy, you no longer need to worry about bulbs that have been set to the left."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-suffix-flips/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.057Z",
+    "sourceUpdatedAt": null
+  }
+}

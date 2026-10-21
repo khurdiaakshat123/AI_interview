@@ -1,0 +1,160 @@
+{
+  "id": "2501",
+  "slug": "longest-square-streak-in-an-array",
+  "title": "Longest Square Streak in an Array",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "statement": "You are given an integer array `nums`. A subsequence of `nums` is called a **square streak** if:\n\n*   The length of the subsequence is at least `2`, and\n*   **after** sorting the subsequence, each element (except the first element) is the **square** of the previous number.\n\nReturn _the length of the **longest square streak** in_ `nums`_, or return_ `-1` _if there is no **square streak**._\n\nA **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.\n\n**Example 1:**\n\n```\nInput: nums = [4,3,6,16,8,2]\nOutput: 3\nExplanation: Choose the subsequence [4,16,2]. After sorting it, it becomes [2,4,16].\n- 4 = 2 * 2.\n- 16 = 4 * 4.\nTherefore, [4,16,2] is a square streak.\nIt can be shown that every subsequence of length 4 is not a square streak.\n```\n\n**Example 2:**\n\n```\nInput: nums = [2,3,5,6,7]\nOutput: -1\nExplanation: There is no square streak in nums so return -1.\n```\n\n**Constraints:**\n\n*   `2 <= nums.length <= 10^(5)`\n*   `2 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "2 <= nums.length <= 105",
+    "2 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [4,3,6,16,8,2]",
+      "output": "3",
+      "explanation": "Choose the subsequence [4,16,2]. After sorting it, it becomes [2,4,16].\n- 4 = 2 * 2.\n- 16 = 4 * 4.\nTherefore, [4,16,2] is a square streak.\nIt can be shown that every subsequence of length 4 is not a square streak."
+    },
+    {
+      "input": "nums = [2,3,5,6,7]",
+      "output": "-1",
+      "explanation": "There is no square streak in nums so return -1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestSquareStreak(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestSquareStreak(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestSquareStreak(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestSquareStreak(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar longestSquareStreak = function(nums) {\n    \n};",
+    "typescript": "function longestSquareStreak(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestSquareStreak(int[] nums) {\n        \n    }\n}",
+    "c": "int longestSquareStreak(int* nums, int numsSize) {\n    \n}",
+    "golang": "func longestSquareStreak(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestSquareStreak(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestSquareStreak(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_square_streak(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef longest_square_streak(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function longestSquareStreak($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestSquareStreak(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestSquareStreak(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_square_streak(nums :: [integer]) :: integer\n  def longest_square_streak(nums) do\n    \n  end\nend",
+    "erlang": "-spec longest_square_streak(Nums :: [integer()]) -> integer().\nlongest_square_streak(Nums) ->\n  .",
+    "racket": "(define/contract (longest-square-streak nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[4,3,6,16,8,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,3,5,6,7]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[4,3,6,16,8,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,3,5,6,7]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,3,6]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[16,8,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,3]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,8,16,6,3,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,3,4,6,8,16]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[16,8,6,4,3,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[4,4,4,4,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,3,6,16,8,2,4,3,6,16,8,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[8,6,12,32,16,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,4,7,17,9,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-4,-3,-6,-16,-8,-2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-5,-4,-3,-2,-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[100,-100]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[10,20,30,40,50]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,3]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "With the constraints, the length of the longest square streak possible is 5.",
+    "Store the elements of nums in a set to quickly check if it exists."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-square-streak-in-an-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.614Z",
+    "sourceUpdatedAt": null
+  }
+}

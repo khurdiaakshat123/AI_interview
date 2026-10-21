@@ -1,0 +1,165 @@
+{
+  "id": "2179",
+  "slug": "count-good-triplets-in-an-array",
+  "title": "Count Good Triplets in an Array",
+  "category": "dsa",
+  "subcategory": "divide-and-conquer",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Merge Sort",
+    "Ordered Set"
+  ],
+  "statement": "You are given two **0-indexed** arrays `nums1` and `nums2` of length `n`, both of which are **permutations** of `[0, 1, ..., n - 1]`.\n\nA **good triplet** is a set of `3` **distinct** values which are present in **increasing order** by position both in `nums1` and `nums2`. In other words, if we consider `pos1_(v)` as the index of the value `v` in `nums1` and `pos2_(v)` as the index of the value `v` in `nums2`, then a good triplet will be a set `(x, y, z)` where `0 <= x, y, z <= n - 1`, such that `pos1_(x) < pos1_(y) < pos1_(z)` and `pos2_(x) < pos2_(y) < pos2_(z)`.\n\nReturn _the **total number** of good triplets_.\n\n**Example 1:**\n\n```\nInput: nums1 = [2,0,1,3], nums2 = [0,1,2,3]\nOutput: 1\nExplanation: \nThere are 4 triplets (x,y,z) such that pos1x < pos1y < pos1z. They are (2,0,1), (2,0,3), (2,1,3), and (0,1,3). \nOut of those triplets, only the triplet (0,1,3) satisfies pos2x < pos2y < pos2z. Hence, there is only 1 good triplet.\n```\n\n**Example 2:**\n\n```\nInput: nums1 = [4,0,1,3,2], nums2 = [4,1,0,2,3]\nOutput: 4\nExplanation: The 4 good triplets are (4,0,3), (4,0,2), (4,1,3), and (4,1,2).\n```\n\n**Constraints:**\n\n*   `n == nums1.length == nums2.length`\n*   `3 <= n <= 10^(5)`\n*   `0 <= nums1[i], nums2[i] <= n - 1`\n*   `nums1` and `nums2` are permutations of `[0, 1, ..., n - 1]`.",
+  "constraints": [
+    "n == nums1.length == nums2.length",
+    "3 <= n <= 105",
+    "0 <= nums1[i], nums2[i] <= n - 1",
+    "nums1 and nums2 are permutations of [0, 1, ..., n - 1]."
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [2,0,1,3], nums2 = [0,1,2,3]",
+      "output": "1",
+      "explanation": "There are 4 triplets (x,y,z) such that pos1x < pos1y < pos1z. They are (2,0,1), (2,0,3), (2,1,3), and (0,1,3). \nOut of those triplets, only the triplet (0,1,3) satisfies pos2x < pos2y < pos2z. Hence, there is only 1 good triplet."
+    },
+    {
+      "input": "nums1 = [4,0,1,3,2], nums2 = [4,1,0,2,3]",
+      "output": "4",
+      "explanation": "The 4 good triplets are (4,0,3), (4,0,2), (4,1,3), and (4,1,2)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long goodTriplets(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long goodTriplets(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def goodTriplets(self, nums1: list[int], nums2: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def goodTriplets(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar goodTriplets = function(nums1, nums2) {\n    \n};",
+    "typescript": "function goodTriplets(nums1: number[], nums2: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long GoodTriplets(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "long long goodTriplets(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    \n}",
+    "golang": "func goodTriplets(nums1 []int, nums2 []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun goodTriplets(nums1: IntArray, nums2: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func goodTriplets(_ nums1: [Int], _ nums2: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn good_triplets(nums1: Vec<i32>, nums2: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer}\ndef good_triplets(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer\n     */\n    function goodTriplets($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int goodTriplets(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def goodTriplets(nums1: Array[Int], nums2: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec good_triplets(nums1 :: [integer], nums2 :: [integer]) :: integer\n  def good_triplets(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec good_triplets(Nums1 :: [integer()], Nums2 :: [integer()]) -> integer().\ngood_triplets(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (good-triplets nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,0,1,3]\n[0,1,2,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,0,1,3,2]\n[4,1,0,2,3]",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,0,1,3]\n[0,1,2,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,0,1,3,2]\n[4,1,0,2,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,1,0,2]\n[0,1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1,2,3]\n[0,1,2,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,2,1,0]\n[0,1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,2,2,2]\n[0,1,2,3]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,0,1,3,2,0,1,3]\n[0,1,2,3]",
+      "expectedOutput": "69"
+    },
+    {
+      "input": "[0,0,0,0]\n[0,1,2,3]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[1,1,1,1]\n[0,1,2,3]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[0]\n[0,1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n[0,1,2,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1]\n[0,1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]\n[0,1,2,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,1,0]\n[0,1,2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,2,2,3,3]\n[0,1,2,3]",
+      "expectedOutput": "37"
+    },
+    {
+      "input": "[1,0,0]\n[0,1,2,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,1]\n[0,1,2,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,0,1,3]\n[3,2,1,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4]\n[4,1,0,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,3,1,0,4]\n[4,1,0,2,3]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For every value y, how can you find the number of values x  (0 ≤ x, y ≤ n - 1) such that x appears before y in both of the arrays?",
+    "Similarly, for every value y, try finding the number of values z (0 ≤ y, z ≤ n - 1) such that z appears after y in both of the arrays.",
+    "Now, for every value y, count the number of good triplets that can be formed if y is considered as the middle element."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-good-triplets-in-an-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.182Z",
+    "sourceUpdatedAt": null
+  }
+}

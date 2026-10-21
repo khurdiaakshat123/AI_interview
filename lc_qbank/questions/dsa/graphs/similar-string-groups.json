@@ -1,0 +1,160 @@
+{
+  "id": "839",
+  "slug": "similar-string-groups",
+  "title": "Similar String Groups",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find"
+  ],
+  "statement": "Two strings, `X` and `Y`, are considered similar if either they are identical or we can make them equivalent by swapping at most two letters (in distinct positions) within the string `X`.\n\nFor example, `\"tars\"` and `\"rats\"` are similar (swapping at positions `0` and `2`), and `\"rats\"` and `\"arts\"` are similar, but `\"star\"` is not similar to `\"tars\"`, `\"rats\"`, or `\"arts\"`.\n\nTogether, these form two connected groups by similarity: `{\"tars\", \"rats\", \"arts\"}` and `{\"star\"}`.  Notice that `\"tars\"` and `\"arts\"` are in the same group even though they are not similar.  Formally, each group is such that a word is in the group if and only if it is similar to at least one other word in the group.\n\nWe are given a list `strs` of strings where every string in `strs` is an anagram of every other string in `strs`. How many groups are there?\n\n**Example 1:**\n\n```\nInput: strs = [\"tars\",\"rats\",\"arts\",\"star\"]\nOutput: 2\n```\n\n**Example 2:**\n\n```\nInput: strs = [\"omv\",\"ovm\"]\nOutput: 1\n```\n\n**Constraints:**\n\n*   `1 <= strs.length <= 300`\n*   `1 <= strs[i].length <= 300`\n*   `strs[i]` consists of lowercase letters only.\n*   All words in `strs` have the same length and are anagrams of each other.",
+  "constraints": [
+    "1 <= strs.length <= 300",
+    "1 <= strs[i].length <= 300",
+    "strs[i] consists of lowercase letters only.",
+    "All words in strs have the same length and are anagrams of each other."
+  ],
+  "examples": [
+    {
+      "input": "strs = [\"tars\",\"rats\",\"arts\",\"star\"]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "strs = [\"omv\",\"ovm\"]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numSimilarGroups(vector<string>& strs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numSimilarGroups(String[] strs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numSimilarGroups(self, strs: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numSimilarGroups(self, strs):\n        \"\"\"\n        :type strs: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} strs\n * @return {number}\n */\nvar numSimilarGroups = function(strs) {\n    \n};",
+    "typescript": "function numSimilarGroups(strs: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumSimilarGroups(string[] strs) {\n        \n    }\n}",
+    "c": "int numSimilarGroups(char** strs, int strsSize) {\n    \n}",
+    "golang": "func numSimilarGroups(strs []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numSimilarGroups(strs: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numSimilarGroups(_ strs: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_similar_groups(strs: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} strs\n# @return {Integer}\ndef num_similar_groups(strs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $strs\n     * @return Integer\n     */\n    function numSimilarGroups($strs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numSimilarGroups(List<String> strs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numSimilarGroups(strs: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_similar_groups(strs :: [String.t]) :: integer\n  def num_similar_groups(strs) do\n    \n  end\nend",
+    "erlang": "-spec num_similar_groups(Strs :: [unicode:unicode_binary()]) -> integer().\nnum_similar_groups(Strs) ->\n  .",
+    "racket": "(define/contract (num-similar-groups strs)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"tars\",\"rats\",\"arts\",\"star\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"omv\",\"ovm\"]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"tars\",\"rats\",\"arts\",\"star\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"omv\",\"ovm\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"tars\",\"rats\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"arts\",\"star\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"tars\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"tars\",\"star\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"star\",\"arts\",\"rats\",\"tars\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"arts\",\"rats\",\"star\",\"tars\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"tars\",\"star\",\"rats\",\"arts\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"tars\",\"tars\",\"tars\",\"tars\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"tars\",\"rats\",\"arts\",\"star\",\"tars\",\"rats\",\"arts\",\"star\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/similar-string-groups/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.609Z",
+    "sourceUpdatedAt": null
+  }
+}

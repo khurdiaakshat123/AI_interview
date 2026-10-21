@@ -1,0 +1,173 @@
+{
+  "id": "3896",
+  "slug": "minimum-operations-to-transform-array-into-alternating-prime",
+  "title": "Minimum Operations to Transform Array into Alternating Prime",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting",
+    "Number Theory"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nAn array is considered **alternating prime** if:\n\n*   Elements at **even** indices (0-based) are **prime** numbers.\n*   Elements at **odd** indices are **non-prime** numbers.\n\nIn one operation, you may **increment** any element by 1.\n\nReturn the **minimum** number of operations required to transform `nums` into an **alternating prime** array.\n\nA **prime** number is a natural number greater than 1 with only two factors, 1 and itself.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,3,4\\]\n\n**Output:** 3\n\n**Explanation:**\n\n*   The element at index 0 must be prime. Increment `nums[0] = 1` to 2, using 1 operation.\n*   The element at index 1 must be non-prime. Increment `nums[1] = 2` to 4, using 2 operations.\n*   The element at index 2 is already prime.\n*   The element at index 3 is already non-prime.\n\nTotal operations = `1 + 2 = 3`.\n\n**Example 2:**\n\n**Input:** nums = \\[5,6,7,8\\]\n\n**Output:** 0\n\n**Explanation:**\n\n*   The elements at indices 0 and 2 are already prime.\n*   The elements at indices 1 and 3 are already non-prime.\n\nNo operations are needed.\n\n**Example 3:**\n\n**Input:** nums = \\[4,4\\]\n\n**Output:** 1\n\n**Explanation:**\n\n*   The element at index 0 must be prime. Increment `nums[0] = 4` to 5, using 1 operation.\n*   The element at index 1 is already non-prime.\n\nTotal operations = 1.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3,4]",
+      "output": "3",
+      "explanation": "The element at index 0 must be prime. Increment nums[0] = 1 to 2, using 1 operation.\n\tThe element at index 1 must be non-prime. Increment nums[1] = 2 to 4, using 2 operations.\n\tThe element at index 2 is already prime.\n\tThe element at index 3 is already non-prime."
+    },
+    {
+      "input": "nums = [5,6,7,8]",
+      "output": "0",
+      "explanation": "The elements at indices 0 and 2 are already prime.\n\tThe elements at indices 1 and 3 are already non-prime."
+    },
+    {
+      "input": "nums = [4,4]",
+      "output": "1",
+      "explanation": "The element at index 0 must be prime. Increment nums[0] = 4 to 5, using 1 operation.\n\tThe element at index 1 is already non-prime."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minOperations(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minOperations = function(nums) {\n    \n};",
+    "typescript": "function minOperations(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinOperations(int[] nums) {\n        \n    }\n}",
+    "c": "int minOperations(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minOperations(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef min_operations(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minOperations($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(nums :: [integer]) :: integer\n  def min_operations(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(Nums :: [integer()]) -> integer().\nmin_operations(Nums) ->\n  .",
+    "racket": "(define/contract (min-operations nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,6,7,8]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,4]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,6,7,8]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,3,2,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,4,1,2,3,4]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,4,6,8]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3,4,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,1,2,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,-2,-3,-4]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Each index can be handled independently. Focus on making each element valid with the minimum increments.",
+    "For even indices, find the smallest prime <code>>= nums[i]</code>.",
+    "For odd indices, find the smallest non-prime <code>>= nums[i]</code>.",
+    "Precompute primes efficiently (e.g., Sieve of Eratosthenes) to quickly check or jump to the next valid number.",
+    "For odd indices, note that any number > 2 becomes non-prime after at most 1 increment (except 2)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-operations-to-transform-array-into-alternating-prime/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.807Z",
+    "sourceUpdatedAt": null
+  }
+}

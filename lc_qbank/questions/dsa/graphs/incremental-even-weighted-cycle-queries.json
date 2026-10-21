@@ -1,0 +1,98 @@
+{
+  "id": "3887",
+  "slug": "incremental-even-weighted-cycle-queries",
+  "title": "Incremental Even-Weighted Cycle Queries",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "statement": "You are given a positive integer `n`.\n\nThere is an **undirected** graph with `n` nodes labeled from 0 to `n - 1`. Initially, the graph has no edges.\n\nYou are also given a 2D integer array `edges`, where `edges[i] = [u_(i), v_(i), w_(i)]` represents an edge between nodes `u_(i)` and `v_(i)` with weight `w_(i)`. The weight `w_(i)` is either 0 or 1.\n\nProcess the edges in `edges` in the given order. For each edge, add it to the graph only if, after adding it, the sum of the weights of the edges in **every** cycle in the resulting graph is **even**.\n\nReturn an integer denoting the number of edges that are successfully added to the graph.\n\n**Example 1:**\n\n**Input:** n = 3, edges = \\[\\[0,1,1\\],\\[1,2,1\\],\\[0,2,1\\]\\]\n\n**Output:** 2\n\n**Explanation:**\n\n![](./assets/incremental-even-weighted-cycle-queries-1.png)\n\n*   `[0, 1, 1]`: We add the edge between vertex 0 and vertex 1 with weight 1.\n*   `[1, 2, 1]`: We add the edge between vertex 1 and vertex 2 with weight 1.\n*   `[0, 2, 1]`: The edge between vertex 0 and vertex 2 (the dashed edge in the diagram) is not added because the cycle `0 - 1 - 2 - 0` has total edge weight `1 + 1 + 1 = 3`, which is an odd number.\n\n**Example 2:**\n\n**Input:** n = 3, edges = \\[\\[0,1,1\\],\\[1,2,1\\],\\[0,2,0\\]\\]\n\n**Output:** 3\n\n**Explanation:**\n\n![](./assets/incremental-even-weighted-cycle-queries-2.png)\n\n*   `[0, 1, 1]`: We add the edge between vertex 0 and vertex 1 with weight 1.\n*   `[1, 2, 1]`: We add the edge between vertex 1 and vertex 2 with weight 1.\n*   `[0, 2, 0]`: We add the edge between vertex 0 and vertex 2 with weight 0.\n*   Note that the cycle `0 - 1 - 2 - 0` has total edge weight `1 + 1 + 0 = 2`, which is an even number.\n\n**Constraints:**\n\n*   `3 <= n <= 5 * 10^(4)`\n*   `1 <= edges.length <= 5 * 10^(4)`\n*   `edges[i] = [u_(i), v_(i), w_(i)]`\n*   `0 <= u_(i) < v_(i) < n`\n*   All edges are distinct.\n*   `w_(i) = 0 or w_(i) = 1`",
+  "constraints": [
+    "3 <= n <= 5 * 104",
+    "1 <= edges.length <= 5 * 104",
+    "edges[i] = [ui, vi, wi]",
+    "0 <= ui < vi < n",
+    "All edges are distinct.",
+    "wi = 0 or wi = 1"
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,1]]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,0]]",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numberOfEdgesAdded(int n, vector<vector<int>>& edges) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numberOfEdgesAdded(int n, int[][] edges) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfEdgesAdded(self, n: int, edges: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfEdgesAdded(self, n, edges):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @return {number}\n */\nvar numberOfEdgesAdded = function(n, edges) {\n    \n};",
+    "typescript": "function numberOfEdgesAdded(n: number, edges: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumberOfEdgesAdded(int n, int[][] edges) {\n        \n    }\n}",
+    "c": "int numberOfEdgesAdded(int n, int** edges, int edgesSize, int* edgesColSize) {\n    \n}",
+    "golang": "func numberOfEdgesAdded(n int, edges [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfEdgesAdded(n: Int, edges: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfEdgesAdded(_ n: Int, _ edges: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_edges_added(n: i32, edges: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @return {Integer}\ndef number_of_edges_added(n, edges)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @return Integer\n     */\n    function numberOfEdgesAdded($n, $edges) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfEdgesAdded(int n, List<List<int>> edges) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfEdgesAdded(n: Int, edges: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_edges_added(n :: integer, edges :: [[integer]]) :: integer\n  def number_of_edges_added(n, edges) do\n    \n  end\nend",
+    "erlang": "-spec number_of_edges_added(N :: integer(), Edges :: [[integer()]]) -> integer().\nnumber_of_edges_added(N, Edges) ->\n  .",
+    "racket": "(define/contract (number-of-edges-added n edges)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1,1],[1,2,1],[0,2,1]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n[[0,1,1],[1,2,1],[0,2,0]]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1,1],[1,2,1],[0,2,1]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n[[0,1,1],[1,2,1],[0,2,0]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,1]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,0]]",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Model as parity constraints: assign bits to nodes, 0-edge requires same bit, 1-edge different.",
+    "Use DSU to track connected components and relative parities; reject if contradiction on add.",
+    "Adding edge merges or checks existing path parity matches new edge weight."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/incremental-even-weighted-cycle-queries/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.504Z",
+    "sourceUpdatedAt": null
+  }
+}

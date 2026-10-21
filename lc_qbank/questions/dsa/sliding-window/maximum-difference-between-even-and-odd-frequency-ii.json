@@ -1,0 +1,170 @@
+{
+  "id": "3445",
+  "slug": "maximum-difference-between-even-and-odd-frequency-ii",
+  "title": "Maximum Difference Between Even and Odd Frequency II",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Sliding Window",
+    "Enumeration",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a string `s` and an integer `k`. Your task is to find the **maximum** difference between the frequency of **two** characters, `freq[a] - freq[b]`, in a substring `subs` of `s`, such that:\n\n*   `subs` has a size of **at least** `k`.\n*   Character `a` has an _odd frequency_ in `subs`.\n*   Character `b` has a **non-zero** _even frequency_ in `subs`.\n\nReturn the **maximum** difference.\n\n**Note** that `subs` can contain more than 2 **distinct** characters.\n\n**Example 1:**\n\n**Input:** s = \"12233\", k = 4\n\n**Output:** \\-1\n\n**Explanation:**\n\nFor the substring `\"12233\"`, the frequency of `'1'` is 1 and the frequency of `'3'` is 2. The difference is `1 - 2 = -1`.\n\n**Example 2:**\n\n**Input:** s = \"1122211\", k = 3\n\n**Output:** 1\n\n**Explanation:**\n\nFor the substring `\"11222\"`, the frequency of `'2'` is 3 and the frequency of `'1'` is 2. The difference is `3 - 2 = 1`.\n\n**Example 3:**\n\n**Input:** s = \"110\", k = 3\n\n**Output:** \\-1\n\n**Constraints:**\n\n*   `3 <= s.length <= 3 * 10^(4)`\n*   `s` consists only of digits `'0'` to `'4'`.\n*   The input is generated that at least one substring has a character with an even frequency and a character with an odd frequency.\n*   `1 <= k <= s.length`",
+  "constraints": [
+    "3 <= s.length <= 3 * 104",
+    "s consists only of digits '0' to '4'.",
+    "The input is generated that at least one substring has a character with an even frequency and a character with an odd frequency.",
+    "1 <= k <= s.length"
+  ],
+  "examples": [
+    {
+      "input": "s = \"12233\", k = 4",
+      "output": "-1",
+      "explanation": null
+    },
+    {
+      "input": "s = \"1122211\", k = 3",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "s = \"110\", k = 3",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxDifference(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxDifference(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxDifference(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxDifference(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar maxDifference = function(s, k) {\n    \n};",
+    "typescript": "function maxDifference(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxDifference(string s, int k) {\n        \n    }\n}",
+    "c": "int maxDifference(char* s, int k) {\n    \n}",
+    "golang": "func maxDifference(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxDifference(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxDifference(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_difference(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef max_difference(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function maxDifference($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxDifference(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxDifference(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_difference(s :: String.t, k :: integer) :: integer\n  def max_difference(s, k) do\n    \n  end\nend",
+    "erlang": "-spec max_difference(S :: unicode:unicode_binary(), K :: integer()) -> integer().\nmax_difference(S, K) ->\n  .",
+    "racket": "(define/contract (max-difference s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"12233\"\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"1122211\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"110\"\n3",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"12233\"\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"1122211\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"110\"\n3",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"12\"\n4",
+      "expectedOutput": "-inf"
+    },
+    {
+      "input": "\"233\"\n4",
+      "expectedOutput": "-inf"
+    },
+    {
+      "input": "\"1\"\n4",
+      "expectedOutput": "-inf"
+    },
+    {
+      "input": "\"33221\"\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"1223312233\"\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"11111\"\n4",
+      "expectedOutput": "-inf"
+    },
+    {
+      "input": "\"1223333221\"\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"0\"\n4",
+      "expectedOutput": "-inf"
+    },
+    {
+      "input": "\"121\"\n4",
+      "expectedOutput": "-inf"
+    },
+    {
+      "input": "\"12233\"\n0",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"12233\"\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"12233\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"12233\"\n3",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"12233\"\n5",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"12233\"\n6",
+      "expectedOutput": "-inf"
+    },
+    {
+      "input": "\"12233\"\n7",
+      "expectedOutput": "-inf"
+    },
+    {
+      "input": "\"12233\"\n8",
+      "expectedOutput": "-inf"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Fix the two characters.",
+    "Use prefix sum (maintain 2 characters' parities as status)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.748Z",
+    "sourceUpdatedAt": null
+  }
+}

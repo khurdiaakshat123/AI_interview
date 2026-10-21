@@ -1,0 +1,170 @@
+{
+  "id": "1406",
+  "slug": "stone-game-iii",
+  "title": "Stone Game III",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Minimax",
+    "Game Theory",
+    "Zero-Sum Game"
+  ],
+  "statement": "Alice and Bob continue their games with piles of stones. There are several stones **arranged in a row**, and each stone has an associated value which is an integer given in the array `stoneValue`.\n\nAlice and Bob take turns, with Alice starting first. On each player's turn, that player can take `1`, `2`, or `3` stones from the **first** remaining stones in the row.\n\nThe score of each player is the sum of the values of the stones taken. The score of each player is `0` initially.\n\nThe objective of the game is to end with the highest score, and the winner is the player with the highest score and there could be a tie. The game continues until all the stones have been taken.\n\nAssume Alice and Bob **play optimally**.\n\nReturn `\"Alice\"` _if Alice will win,_ `\"Bob\"` _if Bob will win, or_ `\"Tie\"` _if they will end the game with the same score_.\n\n**Example 1:**\n\n```\nInput: stoneValue = [1,2,3,7]\nOutput: \"Bob\"\nExplanation: Alice will always lose. Her best move will be to take three piles and the score become 6. Now the score of Bob is 7 and Bob wins.\n```\n\n**Example 2:**\n\n```\nInput: stoneValue = [1,2,3,-9]\nOutput: \"Alice\"\nExplanation: Alice must choose all the three piles at the first move to win and leave Bob with negative score.\nIf Alice chooses one pile her score will be 1 and the next move Bob's score becomes 5. In the next move, Alice will take the pile with value = -9 and lose.\nIf Alice chooses two piles her score will be 3 and the next move Bob's score becomes 3. In the next move, Alice will take the pile with value = -9 and also lose.\nRemember that both play optimally so here Alice will choose the scenario that makes her win.\n```\n\n**Example 3:**\n\n```\nInput: stoneValue = [1,2,3,6]\nOutput: \"Tie\"\nExplanation: Alice cannot win this game. She can end the game in a draw if she decided to choose all the first three piles, otherwise she will lose.\n```\n\n**Constraints:**\n\n*   `1 <= stoneValue.length <= 5 * 10^(4)`\n*   `-1000 <= stoneValue[i] <= 1000`",
+  "constraints": [
+    "1 <= stoneValue.length <= 5 * 104",
+    "-1000 <= stoneValue[i] <= 1000"
+  ],
+  "examples": [
+    {
+      "input": "stoneValue = [1,2,3,7]",
+      "output": "\"Bob\"",
+      "explanation": "Alice will always lose. Her best move will be to take three piles and the score become 6. Now the score of Bob is 7 and Bob wins."
+    },
+    {
+      "input": "stoneValue = [1,2,3,-9]",
+      "output": "\"Alice\"",
+      "explanation": "Alice must choose all the three piles at the first move to win and leave Bob with negative score.\nIf Alice chooses one pile her score will be 1 and the next move Bob's score becomes 5. In the next move, Alice will take the pile with value = -9 and lose.\nIf Alice chooses two piles her score will be 3 and the next move Bob's score becomes 3. In the next move, Alice will take the pile with value = -9 and also lose.\nRemember that both play optimally so here Alice will choose the scenario that makes her win."
+    },
+    {
+      "input": "stoneValue = [1,2,3,6]",
+      "output": "\"Tie\"",
+      "explanation": "Alice cannot win this game. She can end the game in a draw if she decided to choose all the first three piles, otherwise she will lose."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string stoneGameIII(vector<int>& stoneValue) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String stoneGameIII(int[] stoneValue) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def stoneGameIII(self, stoneValue: list[int]) -> str:\n        ",
+    "python": "class Solution(object):\n    def stoneGameIII(self, stoneValue):\n        \"\"\"\n        :type stoneValue: List[int]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} stoneValue\n * @return {string}\n */\nvar stoneGameIII = function(stoneValue) {\n    \n};",
+    "typescript": "function stoneGameIII(stoneValue: number[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string StoneGameIII(int[] stoneValue) {\n        \n    }\n}",
+    "c": "char* stoneGameIII(int* stoneValue, int stoneValueSize) {\n    \n}",
+    "golang": "func stoneGameIII(stoneValue []int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun stoneGameIII(stoneValue: IntArray): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func stoneGameIII(_ stoneValue: [Int]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn stone_game_iii(stone_value: Vec<i32>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} stone_value\n# @return {String}\ndef stone_game_iii(stone_value)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $stoneValue\n     * @return String\n     */\n    function stoneGameIII($stoneValue) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String stoneGameIII(List<int> stoneValue) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def stoneGameIII(stoneValue: Array[Int]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec stone_game_iii(stone_value :: [integer]) :: String.t\n  def stone_game_iii(stone_value) do\n    \n  end\nend",
+    "erlang": "-spec stone_game_iii(StoneValue :: [integer()]) -> unicode:unicode_binary().\nstone_game_iii(StoneValue) ->\n  .",
+    "racket": "(define/contract (stone-game-iii stoneValue)\n  (-> (listof exact-integer?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,7]",
+      "expectedOutput": "\"Bob\""
+    },
+    {
+      "input": "[1,2,3,-9]",
+      "expectedOutput": "\"Alice\""
+    },
+    {
+      "input": "[1,2,3,6]",
+      "expectedOutput": "\"Tie\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,7]",
+      "expectedOutput": "\"Bob\""
+    },
+    {
+      "input": "[1,2,3,-9]",
+      "expectedOutput": "\"Alice\""
+    },
+    {
+      "input": "[1,2,3,6]",
+      "expectedOutput": "\"Tie\""
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "\"Alice\""
+    },
+    {
+      "input": "[3,7]",
+      "expectedOutput": "\"Alice\""
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "\"Alice\""
+    },
+    {
+      "input": "[1,7]",
+      "expectedOutput": "\"Alice\""
+    },
+    {
+      "input": "[7,3,2,1]",
+      "expectedOutput": "\"Alice\""
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "\"Alice\""
+    },
+    {
+      "input": "[1,2,3,7,1,2,3,7]",
+      "expectedOutput": "\"Bob\""
+    },
+    {
+      "input": "[2,4,6,14]",
+      "expectedOutput": "\"Bob\""
+    },
+    {
+      "input": "[2,3,4,8]",
+      "expectedOutput": "\"Alice\""
+    },
+    {
+      "input": "[0,1,2,6]",
+      "expectedOutput": "\"Bob\""
+    },
+    {
+      "input": "[-1,-2,-3,-7]",
+      "expectedOutput": "\"Alice\""
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "\"Tie\""
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "\"Tie\""
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "\"Bob\""
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "\"Tie\""
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "\"Alice\""
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "\"Alice\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The game can be mapped to minmax game. Alice tries to maximize the total score and Bob tries to minimize it.",
+    "Use dynamic programming to simulate the game. If the total score was 0 the game is \"Tie\", and if it has positive value then \"Alice\" wins, otherwise \"Bob\" wins."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/stone-game-iii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.239Z",
+    "sourceUpdatedAt": null
+  }
+}

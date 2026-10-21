@@ -1,0 +1,93 @@
+{
+  "id": "332",
+  "slug": "reconstruct-itinerary",
+  "title": "Reconstruct Itinerary",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "String",
+    "Depth-First Search",
+    "Graph Theory",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Eulerian Circuit",
+    "Eulerian Path",
+    "Semi-Eulerian Graph"
+  ],
+  "statement": "You are given a list of airline `tickets` where `tickets[i] = [from_(i), to_(i)]` represent the departure and the arrival airports of one flight. Reconstruct the itinerary in order and return it.\n\nAll of the tickets belong to a man who departs from `\"JFK\"`, thus, the itinerary must begin with `\"JFK\"`. If there are multiple valid itineraries, you should return the itinerary that has the smallest lexical order when read as a single string.\n\n*   For example, the itinerary `[\"JFK\", \"LGA\"]` has a smaller lexical order than `[\"JFK\", \"LGB\"]`.\n\nYou may assume all tickets form at least one valid itinerary. You must use all the tickets once and only once.\n\n**Example 1:**\n\n![](./assets/reconstruct-itinerary-1.jpg)\n```\nInput: tickets = [[\"MUC\",\"LHR\"],[\"JFK\",\"MUC\"],[\"SFO\",\"SJC\"],[\"LHR\",\"SFO\"]]\nOutput: [\"JFK\",\"MUC\",\"LHR\",\"SFO\",\"SJC\"]\n```\n\n**Example 2:**\n\n![](./assets/reconstruct-itinerary-2.jpg)\n```\nInput: tickets = [[\"JFK\",\"SFO\"],[\"JFK\",\"ATL\"],[\"SFO\",\"ATL\"],[\"ATL\",\"JFK\"],[\"ATL\",\"SFO\"]]\nOutput: [\"JFK\",\"ATL\",\"JFK\",\"SFO\",\"ATL\",\"SFO\"]\nExplanation: Another possible reconstruction is [\"JFK\",\"SFO\",\"ATL\",\"JFK\",\"ATL\",\"SFO\"] but it is larger in lexical order.\n```\n\n**Constraints:**\n\n*   `1 <= tickets.length <= 300`\n*   `tickets[i].length == 2`\n*   `from_(i).length == 3`\n*   `to_(i).length == 3`\n*   `from_(i)` and `to_(i)` consist of uppercase English letters.\n*   `from_(i) != to_(i)`",
+  "constraints": [
+    "1 <= tickets.length <= 300",
+    "tickets[i].length == 2",
+    "fromi.length == 3",
+    "toi.length == 3",
+    "fromi and toi consist of uppercase English letters.",
+    "fromi != toi"
+  ],
+  "examples": [
+    {
+      "input": "tickets = [[\"MUC\",\"LHR\"],[\"JFK\",\"MUC\"],[\"SFO\",\"SJC\"],[\"LHR\",\"SFO\"]]",
+      "output": "[\"JFK\",\"MUC\",\"LHR\",\"SFO\",\"SJC\"]",
+      "explanation": null
+    },
+    {
+      "input": "tickets = [[\"JFK\",\"SFO\"],[\"JFK\",\"ATL\"],[\"SFO\",\"ATL\"],[\"ATL\",\"JFK\"],[\"ATL\",\"SFO\"]]",
+      "output": "[\"JFK\",\"ATL\",\"JFK\",\"SFO\",\"ATL\",\"SFO\"]",
+      "explanation": "Another possible reconstruction is [\"JFK\",\"SFO\",\"ATL\",\"JFK\",\"ATL\",\"SFO\"] but it is larger in lexical order."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> findItinerary(vector<vector<string>>& tickets) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> findItinerary(List<List<String>> tickets) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findItinerary(self, tickets: list[list[str]]) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def findItinerary(self, tickets):\n        \"\"\"\n        :type tickets: List[List[str]]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[][]} tickets\n * @return {string[]}\n */\nvar findItinerary = function(tickets) {\n    \n};",
+    "typescript": "function findItinerary(tickets: string[][]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> FindItinerary(IList<IList<string>> tickets) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** findItinerary(char*** tickets, int ticketsSize, int* ticketsColSize, int* returnSize) {\n    \n}",
+    "golang": "func findItinerary(tickets [][]string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findItinerary(tickets: List<List<String>>): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findItinerary(_ tickets: [[String]]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_itinerary(tickets: Vec<Vec<String>>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[][]} tickets\n# @return {String[]}\ndef find_itinerary(tickets)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $tickets\n     * @return String[]\n     */\n    function findItinerary($tickets) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> findItinerary(List<List<String>> tickets) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findItinerary(tickets: List[List[String]]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_itinerary(tickets :: [[String.t]]) :: [String.t]\n  def find_itinerary(tickets) do\n    \n  end\nend",
+    "erlang": "-spec find_itinerary(Tickets :: [[unicode:unicode_binary()]]) -> [unicode:unicode_binary()].\nfind_itinerary(Tickets) ->\n  .",
+    "racket": "(define/contract (find-itinerary tickets)\n  (-> (listof (listof string?)) (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[\"MUC\",\"LHR\"],[\"JFK\",\"MUC\"],[\"SFO\",\"SJC\"],[\"LHR\",\"SFO\"]]",
+      "expectedOutput": "[\"JFK\",\"MUC\",\"LHR\",\"SFO\",\"SJC\"]"
+    },
+    {
+      "input": "[[\"JFK\",\"SFO\"],[\"JFK\",\"ATL\"],[\"SFO\",\"ATL\"],[\"ATL\",\"JFK\"],[\"ATL\",\"SFO\"]]",
+      "expectedOutput": "[\"JFK\",\"ATL\",\"JFK\",\"SFO\",\"ATL\",\"SFO\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[\"MUC\",\"LHR\"],[\"JFK\",\"MUC\"],[\"SFO\",\"SJC\"],[\"LHR\",\"SFO\"]]",
+      "expectedOutput": "[\"JFK\",\"MUC\",\"LHR\",\"SFO\",\"SJC\"]"
+    },
+    {
+      "input": "[[\"JFK\",\"SFO\"],[\"JFK\",\"ATL\"],[\"SFO\",\"ATL\"],[\"ATL\",\"JFK\"],[\"ATL\",\"SFO\"]]",
+      "expectedOutput": "[\"JFK\",\"ATL\",\"JFK\",\"SFO\",\"ATL\",\"SFO\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/reconstruct-itinerary/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.309Z",
+    "sourceUpdatedAt": null
+  }
+}

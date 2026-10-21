@@ -1,0 +1,155 @@
+{
+  "id": "495",
+  "slug": "teemo-attacking",
+  "title": "Teemo Attacking",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "statement": "Our hero Teemo is attacking an enemy Ashe with poison attacks! When Teemo attacks Ashe, Ashe gets poisoned for a exactly `duration` seconds. More formally, an attack at second `t` will mean Ashe is poisoned during the **inclusive** time interval `[t, t + duration - 1]`. If Teemo attacks again **before** the poison effect ends, the timer for it is **reset**, and the poison effect will end `duration` seconds after the new attack.\n\nYou are given a **non-decreasing** integer array `timeSeries`, where `timeSeries[i]` denotes that Teemo attacks Ashe at second `timeSeries[i]`, and an integer `duration`.\n\nReturn _the **total** number of seconds that Ashe is poisoned_.\n\n**Example 1:**\n\n```\nInput: timeSeries = [1,4], duration = 2\nOutput: 4\nExplanation: Teemo's attacks on Ashe go as follows:\n- At second 1, Teemo attacks, and Ashe is poisoned for seconds 1 and 2.\n- At second 4, Teemo attacks, and Ashe is poisoned for seconds 4 and 5.\nAshe is poisoned for seconds 1, 2, 4, and 5, which is 4 seconds in total.\n```\n\n**Example 2:**\n\n```\nInput: timeSeries = [1,2], duration = 2\nOutput: 3\nExplanation: Teemo's attacks on Ashe go as follows:\n- At second 1, Teemo attacks, and Ashe is poisoned for seconds 1 and 2.\n- At second 2 however, Teemo attacks again and resets the poison timer. Ashe is poisoned for seconds 2 and 3.\nAshe is poisoned for seconds 1, 2, and 3, which is 3 seconds in total.\n```\n\n**Constraints:**\n\n*   `1 <= timeSeries.length <= 10^(4)`\n*   `0 <= timeSeries[i], duration <= 10^(7)`\n*   `timeSeries` is sorted in **non-decreasing** order.",
+  "constraints": [
+    "1 <= timeSeries.length <= 104",
+    "0 <= timeSeries[i], duration <= 107",
+    "timeSeries is sorted in non-decreasing order."
+  ],
+  "examples": [
+    {
+      "input": "timeSeries = [1,4], duration = 2",
+      "output": "4",
+      "explanation": "Teemo's attacks on Ashe go as follows:\n- At second 1, Teemo attacks, and Ashe is poisoned for seconds 1 and 2.\n- At second 4, Teemo attacks, and Ashe is poisoned for seconds 4 and 5.\nAshe is poisoned for seconds 1, 2, 4, and 5, which is 4 seconds in total."
+    },
+    {
+      "input": "timeSeries = [1,2], duration = 2",
+      "output": "3",
+      "explanation": "Teemo's attacks on Ashe go as follows:\n- At second 1, Teemo attacks, and Ashe is poisoned for seconds 1 and 2.\n- At second 2 however, Teemo attacks again and resets the poison timer. Ashe is poisoned for seconds 2 and 3.\nAshe is poisoned for seconds 1, 2, and 3, which is 3 seconds in total."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findPoisonedDuration(vector<int>& timeSeries, int duration) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findPoisonedDuration(int[] timeSeries, int duration) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findPoisonedDuration(self, timeSeries: list[int], duration: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def findPoisonedDuration(self, timeSeries, duration):\n        \"\"\"\n        :type timeSeries: List[int]\n        :type duration: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} timeSeries\n * @param {number} duration\n * @return {number}\n */\nvar findPoisonedDuration = function(timeSeries, duration) {\n    \n};",
+    "typescript": "function findPoisonedDuration(timeSeries: number[], duration: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindPoisonedDuration(int[] timeSeries, int duration) {\n        \n    }\n}",
+    "c": "int findPoisonedDuration(int* timeSeries, int timeSeriesSize, int duration) {\n    \n}",
+    "golang": "func findPoisonedDuration(timeSeries []int, duration int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findPoisonedDuration(timeSeries: IntArray, duration: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findPoisonedDuration(_ timeSeries: [Int], _ duration: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_poisoned_duration(time_series: Vec<i32>, duration: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} time_series\n# @param {Integer} duration\n# @return {Integer}\ndef find_poisoned_duration(time_series, duration)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $timeSeries\n     * @param Integer $duration\n     * @return Integer\n     */\n    function findPoisonedDuration($timeSeries, $duration) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findPoisonedDuration(List<int> timeSeries, int duration) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findPoisonedDuration(timeSeries: Array[Int], duration: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_poisoned_duration(time_series :: [integer], duration :: integer) :: integer\n  def find_poisoned_duration(time_series, duration) do\n    \n  end\nend",
+    "erlang": "-spec find_poisoned_duration(TimeSeries :: [integer()], Duration :: integer()) -> integer().\nfind_poisoned_duration(TimeSeries, Duration) ->\n  .",
+    "racket": "(define/contract (find-poisoned-duration timeSeries duration)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,4]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2]\n2",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,4]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,1]\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,4,1,4]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,8]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,5]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,3]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-1,-4]\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,1]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,3]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,2,1]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,0]\n2",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/teemo-attacking/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.861Z",
+    "sourceUpdatedAt": null
+  }
+}

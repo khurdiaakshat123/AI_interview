@@ -1,0 +1,61 @@
+{
+  "id": "595",
+  "slug": "big-countries",
+  "title": "Big Countries",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `World`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| name        | varchar |\n| continent   | varchar |\n| area        | int     |\n| population  | int     |\n| gdp         | bigint  |\n+-------------+---------+\nname is the primary key (column with unique values) for this table.\nEach row of this table gives information about the name of a country, the continent to which it belongs, its area, the population, and its GDP value.\n```\n\nA country is **big** if:\n\n*   it has an area of at least three million (i.e., `3000000 km^(2)`), or\n*   it has a population of at least twenty-five million (i.e., `25000000`).\n\nWrite a solution to find the name, population, and area of the **big countries**.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nWorld table:\n+-------------+-----------+---------+------------+--------------+\n| name        | continent | area    | population | gdp          |\n+-------------+-----------+---------+------------+--------------+\n| Afghanistan | Asia      | 652230  | 25500100   | 20343000000  |\n| Albania     | Europe    | 28748   | 2831741    | 12960000000  |\n| Algeria     | Africa    | 2381741 | 37100000   | 188681000000 |\n| Andorra     | Europe    | 468     | 78115      | 3712000000   |\n| Angola      | Africa    | 1246700 | 20609294   | 100990000000 |\n+-------------+-----------+---------+------------+--------------+\nOutput: \n+-------------+------------+---------+\n| name        | population | area    |\n+-------------+------------+---------+\n| Afghanistan | 25500100   | 652230  |\n| Algeria     | 37100000   | 2381741 |\n+-------------+------------+---------+\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "World table:\n+-------------+-----------+---------+------------+--------------+\n| name        | continent | area    | population | gdp          |\n+-------------+-----------+---------+------------+--------------+\n| Afghanistan | Asia      | 652230  | 25500100   | 20343000000  |\n| Albania     | Europe    | 28748   | 2831741    | 12960000000  |\n| Algeria     | Africa    | 2381741 | 37100000   | 188681000000 |\n| Andorra     | Europe    | 468     | 78115      | 3712000000   |\n| Angola      | Africa    | 1246700 | 20609294   | 100990000000 |\n+-------------+-----------+---------+------------+--------------+",
+      "output": "+-------------+------------+---------+\n| name        | population | area    |\n+-------------+------------+---------+\n| Afghanistan | 25500100   | 652230  |\n| Algeria     | 37100000   | 2381741 |\n+-------------+------------+---------+",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef big_countries(world: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"World\": [\"name\", \"continent\",\t\"area\",\t\"population\", \"gdp\"]}, \"rows\": {\"World\": [[\"Afghanistan\", \"Asia\", 652230, 25500100, 20343000000], [\"Albania\", \"Europe\", 28748, 2831741, 12960000000], [\"Algeria\", \"Africa\", 2381741, 37100000, 188681000000], [\"Andorra\", \"Europe\", 468, 78115,\t3712000000], [\"Angola\", \"Africa\", 1246700, 20609294, 100990000000]]}}",
+      "expectedOutput": "+-------------+------------+---------+\n| name        | population | area    |\n+-------------+------------+---------+\n| Afghanistan | 25500100   | 652230  |\n| Algeria     | 37100000   | 2381741 |\n+-------------+------------+---------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"World\": [\"name\", \"continent\",\t\"area\",\t\"population\", \"gdp\"]}, \"rows\": {\"World\": [[\"Afghanistan\", \"Asia\", 652230, 25500100, 20343000000], [\"Albania\", \"Europe\", 28748, 2831741, 12960000000], [\"Algeria\", \"Africa\", 2381741, 37100000, 188681000000], [\"Andorra\", \"Europe\", 468, 78115,\t3712000000], [\"Angola\", \"Africa\", 1246700, 20609294, 100990000000]]}}",
+      "expectedOutput": "+-------------+------------+---------+\n| name        | population | area    |\n+-------------+------------+---------+\n| Afghanistan | 25500100   | 652230  |\n| Algeria     | 37100000   | 2381741 |\n+-------------+------------+---------+"
+    },
+    {
+      "input": "World table:\n+-------------+-----------+---------+------------+--------------+\n| name        | continent | area    | population | gdp          |\n+-------------+-----------+---------+------------+--------------+\n| Afghanistan | Asia      | 652230  | 25500100   | 20343000000  |\n| Albania     | Europe    | 28748   | 2831741    | 12960000000  |\n| Algeria     | Africa    | 2381741 | 37100000   | 188681000000 |\n| Andorra     | Europe    | 468     | 78115      | 3712000000   |\n| Angola      | Africa    | 1246700 | 20609294   | 100990000000 |\n+-------------+-----------+---------+------------+--------------+",
+      "expectedOutput": "+-------------+------------+---------+\n| name        | population | area    |\n+-------------+------------+---------+\n| Afghanistan | 25500100   | 652230  |\n| Algeria     | 37100000   | 2381741 |\n+-------------+------------+---------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists World (name varchar(255), continent varchar(255), area int, population int, gdp bigint)\n\nTruncate table World",
+  "sqlSetup": [
+    "insert into World (name, continent, area, population, gdp) values ('Afghanistan', 'Asia', '652230', '25500100', '20343000000')",
+    "insert into World (name, continent, area, population, gdp) values ('Albania', 'Europe', '28748', '2831741', '12960000000')",
+    "insert into World (name, continent, area, population, gdp) values ('Algeria', 'Africa', '2381741', '37100000', '188681000000')",
+    "insert into World (name, continent, area, population, gdp) values ('Andorra', 'Europe', '468', '78115', '3712000000')",
+    "insert into World (name, continent, area, population, gdp) values ('Angola', 'Africa', '1246700', '20609294', '100990000000')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/big-countries/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.544Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "id": "2000",
+  "slug": "reverse-prefix-of-word",
+  "title": "Reverse Prefix of Word",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Stack"
+  ],
+  "statement": "Given a **0-indexed** string `word` and a character `ch`, **reverse** the segment of `word` that starts at index `0` and ends at the index of the **first occurrence** of `ch` (**inclusive**). If the character `ch` does not exist in `word`, do nothing.\n\n*   For example, if `word = \"abcdefd\"` and `ch = \"d\"`, then you should **reverse** the segment that starts at `0` and ends at `3` (**inclusive**). The resulting string will be `\"dcbaefd\"`.\n\nReturn _the resulting string_.\n\n**Example 1:**\n\n```\nInput: word = \"abcdefd\", ch = \"d\"\nOutput: \"dcbaefd\"\nExplanation: The first occurrence of \"d\" is at index 3. \nReverse the part of word from 0 to 3 (inclusive), the resulting string is \"dcbaefd\".\n```\n\n**Example 2:**\n\n```\nInput: word = \"xyxzxe\", ch = \"z\"\nOutput: \"zxyxxe\"\nExplanation: The first and only occurrence of \"z\" is at index 3.\nReverse the part of word from 0 to 3 (inclusive), the resulting string is \"zxyxxe\".\n```\n\n**Example 3:**\n\n```\nInput: word = \"abcd\", ch = \"z\"\nOutput: \"abcd\"\nExplanation: \"z\" does not exist in word.\nYou should not do any reverse operation, the resulting string is \"abcd\".\n```\n\n**Constraints:**\n\n*   `1 <= word.length <= 250`\n*   `word` consists of lowercase English letters.\n*   `ch` is a lowercase English letter.",
+  "constraints": [
+    "1 <= word.length <= 250",
+    "word consists of lowercase English letters.",
+    "ch is a lowercase English letter."
+  ],
+  "examples": [
+    {
+      "input": "word = \"abcdefd\", ch = \"d\"",
+      "output": "\"dcbaefd\"",
+      "explanation": " The first occurrence of \"d\" is at index 3. \nReverse the part of word from 0 to 3 (inclusive), the resulting string is \"dcbaefd\"."
+    },
+    {
+      "input": "word = \"xyxzxe\", ch = \"z\"",
+      "output": "\"zxyxxe\"",
+      "explanation": " The first and only occurrence of \"z\" is at index 3.\nReverse the part of word from 0 to 3 (inclusive), the resulting string is \"zxyxxe\"."
+    },
+    {
+      "input": "word = \"abcd\", ch = \"z\"",
+      "output": "\"abcd\"",
+      "explanation": " \"z\" does not exist in word.\nYou should not do any reverse operation, the resulting string is \"abcd\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string reversePrefix(string word, char ch) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String reversePrefix(String word, char ch) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reversePrefix(self, word: str, ch: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def reversePrefix(self, word, ch):\n        \"\"\"\n        :type word: str\n        :type ch: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word\n * @param {character} ch\n * @return {string}\n */\nvar reversePrefix = function(word, ch) {\n    \n};",
+    "typescript": "function reversePrefix(word: string, ch: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ReversePrefix(string word, char ch) {\n        \n    }\n}",
+    "c": "char* reversePrefix(char* word, char ch) {\n    \n}",
+    "golang": "func reversePrefix(word string, ch byte) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun reversePrefix(word: String, ch: Char): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reversePrefix(_ word: String, _ ch: Character) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reverse_prefix(word: String, ch: char) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} word\n# @param {Character} ch\n# @return {String}\ndef reverse_prefix(word, ch)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word\n     * @param String $ch\n     * @return String\n     */\n    function reversePrefix($word, $ch) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String reversePrefix(String word, String ch) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reversePrefix(word: String, ch: Char): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reverse_prefix(word :: String.t, ch :: char) :: String.t\n  def reverse_prefix(word, ch) do\n    \n  end\nend",
+    "erlang": "-spec reverse_prefix(Word :: unicode:unicode_binary(), Ch :: char()) -> unicode:unicode_binary().\nreverse_prefix(Word, Ch) ->\n  .",
+    "racket": "(define/contract (reverse-prefix word ch)\n  (-> string? char? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcdefd\"\n\"d\"",
+      "expectedOutput": "\"dcbaefd\""
+    },
+    {
+      "input": "\"xyxzxe\"\n\"z\"",
+      "expectedOutput": "\"zxyxxe\""
+    },
+    {
+      "input": "\"abcd\"\n\"z\"",
+      "expectedOutput": "\"abcd\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcdefd\"\n\"d\"",
+      "expectedOutput": "\"dcbaefd\""
+    },
+    {
+      "input": "\"xyxzxe\"\n\"z\"",
+      "expectedOutput": "\"zxyxxe\""
+    },
+    {
+      "input": "\"abcd\"\n\"z\"",
+      "expectedOutput": "\"abcd\""
+    },
+    {
+      "input": "\"abc\"\n\"d\"",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "\"defd\"\n\"d\"",
+      "expectedOutput": "\"defd\""
+    },
+    {
+      "input": "\"a\"\n\"d\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"ab\"\n\"d\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"dfedcba\"\n\"d\"",
+      "expectedOutput": "\"dfedcba\""
+    },
+    {
+      "input": "\"abcdefdabcdefd\"\n\"d\"",
+      "expectedOutput": "\"dcbaefdabcdefd\""
+    },
+    {
+      "input": "\"aaaaaa\"\n\"d\"",
+      "expectedOutput": "\"aaaaaa\""
+    },
+    {
+      "input": "\"abcdefddfedcba\"\n\"d\"",
+      "expectedOutput": "\"dcbaefddfedcba\""
+    },
+    {
+      "input": "\"ABCDEFD\"\n\"d\"",
+      "expectedOutput": "\"ABCDEFD\""
+    },
+    {
+      "input": "\"b\"\n\"d\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"\n\"d\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ba\"\n\"d\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"\n\"d\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"\n\"d\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"\n\"d\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"\n\"d\"",
+      "expectedOutput": "\"dcbae\""
+    },
+    {
+      "input": "\"edcba\"\n\"d\"",
+      "expectedOutput": "\"decba\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find the first index where ch appears.",
+    "Find a way to reverse a substring of word."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/reverse-prefix-of-word/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.866Z",
+    "sourceUpdatedAt": null
+  }
+}

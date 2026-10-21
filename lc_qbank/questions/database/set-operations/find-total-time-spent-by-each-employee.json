@@ -1,0 +1,61 @@
+{
+  "id": "1741",
+  "slug": "find-total-time-spent-by-each-employee",
+  "title": "Find Total Time Spent by Each Employee",
+  "category": "database",
+  "subcategory": "set-operations",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Employees`\n\n```\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| emp_id      | int  |\n| event_day   | date |\n| in_time     | int  |\n| out_time    | int  |\n+-------------+------+\n(emp_id, event_day, in_time) is the primary key (combinations of columns with unique values) of this table.\nThe table shows the employees' entries and exits in an office.\nevent_day is the day at which this event happened, in_time is the minute at which the employee entered the office, and out_time is the minute at which they left the office.\nin_time and out_time are between 1 and 1440.\nIt is guaranteed that no two events on the same day intersect in time, and in_time < out_time.\n```\n\nWrite a solution to calculate the total time **in minutes** spent by each employee on each day at the office. Note that within one day, an employee can enter and leave more than once. The time spent in the office for a single entry is `out_time - in_time`.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployees table:\n+--------+------------+---------+----------+\n| emp_id | event_day  | in_time | out_time |\n+--------+------------+---------+----------+\n| 1      | 2020-11-28 | 4       | 32       |\n| 1      | 2020-11-28 | 55      | 200      |\n| 1      | 2020-12-03 | 1       | 42       |\n| 2      | 2020-11-28 | 3       | 33       |\n| 2      | 2020-12-09 | 47      | 74       |\n+--------+------------+---------+----------+\nOutput: \n+------------+--------+------------+\n| day        | emp_id | total_time |\n+------------+--------+------------+\n| 2020-11-28 | 1      | 173        |\n| 2020-11-28 | 2      | 30         |\n| 2020-12-03 | 1      | 41         |\n| 2020-12-09 | 2      | 27         |\n+------------+--------+------------+\nExplanation: \nEmployee 1 has three events: two on day 2020-11-28 with a total of (32 - 4) + (200 - 55) = 173, and one on day 2020-12-03 with a total of (42 - 1) = 41.\nEmployee 2 has two events: one on day 2020-11-28 with a total of (33 - 3) = 30, and one on day 2020-12-09 with a total of (74 - 47) = 27.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Employees table:\n+--------+------------+---------+----------+\n| emp_id | event_day  | in_time | out_time |\n+--------+------------+---------+----------+\n| 1      | 2020-11-28 | 4       | 32       |\n| 1      | 2020-11-28 | 55      | 200      |\n| 1      | 2020-12-03 | 1       | 42       |\n| 2      | 2020-11-28 | 3       | 33       |\n| 2      | 2020-12-09 | 47      | 74       |\n+--------+------------+---------+----------+",
+      "output": "+------------+--------+------------+\n| day        | emp_id | total_time |\n+------------+--------+------------+\n| 2020-11-28 | 1      | 173        |\n| 2020-11-28 | 2      | 30         |\n| 2020-12-03 | 1      | 41         |\n| 2020-12-09 | 2      | 27         |\n+------------+--------+------------+",
+      "explanation": "Employee 1 has three events: two on day 2020-11-28 with a total of (32 - 4) + (200 - 55) = 173, and one on day 2020-12-03 with a total of (42 - 1) = 41.\nEmployee 2 has two events: one on day 2020-11-28 with a total of (33 - 3) = 30, and one on day 2020-12-09 with a total of (74 - 47) = 27."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef total_time(employees: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Employees\":[\"emp_id\",\"event_day\",\"in_time\",\"out_time\"]},\"rows\":{\"Employees\":[[\"1\",\"2020-11-28\",\"4\",\"32\"],[\"1\",\"2020-11-28\",\"55\",\"200\"],[\"1\",\"2020-12-3\",\"1\",\"42\"],[\"2\",\"2020-11-28\",\"3\",\"33\"],[\"2\",\"2020-12-9\",\"47\",\"74\"]]}}",
+      "expectedOutput": "+------------+--------+------------+\n| day        | emp_id | total_time |\n+------------+--------+------------+\n| 2020-11-28 | 1      | 173        |\n| 2020-11-28 | 2      | 30         |\n| 2020-12-03 | 1      | 41         |\n| 2020-12-09 | 2      | 27         |\n+------------+--------+------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Employees\":[\"emp_id\",\"event_day\",\"in_time\",\"out_time\"]},\"rows\":{\"Employees\":[[\"1\",\"2020-11-28\",\"4\",\"32\"],[\"1\",\"2020-11-28\",\"55\",\"200\"],[\"1\",\"2020-12-3\",\"1\",\"42\"],[\"2\",\"2020-11-28\",\"3\",\"33\"],[\"2\",\"2020-12-9\",\"47\",\"74\"]]}}",
+      "expectedOutput": "+------------+--------+------------+\n| day        | emp_id | total_time |\n+------------+--------+------------+\n| 2020-11-28 | 1      | 173        |\n| 2020-11-28 | 2      | 30         |\n| 2020-12-03 | 1      | 41         |\n| 2020-12-09 | 2      | 27         |\n+------------+--------+------------+"
+    },
+    {
+      "input": "Employees table:\n+--------+------------+---------+----------+\n| emp_id | event_day  | in_time | out_time |\n+--------+------------+---------+----------+\n| 1      | 2020-11-28 | 4       | 32       |\n| 1      | 2020-11-28 | 55      | 200      |\n| 1      | 2020-12-03 | 1       | 42       |\n| 2      | 2020-11-28 | 3       | 33       |\n| 2      | 2020-12-09 | 47      | 74       |\n+--------+------------+---------+----------+",
+      "expectedOutput": "+------------+--------+------------+\n| day        | emp_id | total_time |\n+------------+--------+------------+\n| 2020-11-28 | 1      | 173        |\n| 2020-11-28 | 2      | 30         |\n| 2020-12-03 | 1      | 41         |\n| 2020-12-09 | 2      | 27         |\n+------------+--------+------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Employees(emp_id int, event_day date, in_time int, out_time int)\n\nTruncate table Employees",
+  "sqlSetup": [
+    "insert into Employees (emp_id, event_day, in_time, out_time) values ('1', '2020-11-28', '4', '32')",
+    "insert into Employees (emp_id, event_day, in_time, out_time) values ('1', '2020-11-28', '55', '200')",
+    "insert into Employees (emp_id, event_day, in_time, out_time) values ('1', '2020-12-3', '1', '42')",
+    "insert into Employees (emp_id, event_day, in_time, out_time) values ('2', '2020-11-28', '3', '33')",
+    "insert into Employees (emp_id, event_day, in_time, out_time) values ('2', '2020-12-9', '47', '74')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-total-time-spent-by-each-employee/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.714Z",
+    "sourceUpdatedAt": null
+  }
+}

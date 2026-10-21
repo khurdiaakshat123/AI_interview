@@ -1,0 +1,88 @@
+{
+  "id": "1353",
+  "slug": "maximum-number-of-events-that-can-be-attended",
+  "title": "Maximum Number of Events That Can Be Attended",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "You are given an array of `events` where `events[i] = [startDay_(i), endDay_(i)]`. Every event `i` starts at `startDay_(i)` and ends at `endDay_(i)`.\n\nYou can attend an event `i` at any day `d` where `startDay_(i) <= d <= endDay_(i)`. You can only attend one event at any time `d`.\n\nReturn _the maximum number of events you can attend_.\n\n**Example 1:**\n\n![](./assets/maximum-number-of-events-that-can-be-attended-1.png)\n```\nInput: events = [[1,2],[2,3],[3,4]]\nOutput: 3\nExplanation: You can attend all the three events.\nOne way to attend them all is as shown.\nAttend the first event on day 1.\nAttend the second event on day 2.\nAttend the third event on day 3.\n```\n\n**Example 2:**\n\n```\nInput: events= [[1,2],[2,3],[3,4],[1,2]]\nOutput: 4\n```\n\n**Constraints:**\n\n*   `1 <= events.length <= 10^(5)`\n*   `events[i].length == 2`\n*   `1 <= startDay_(i) <= endDay_(i) <= 10^(5)`",
+  "constraints": [
+    "1 <= events.length <= 105",
+    "events[i].length == 2",
+    "1 <= startDayi <= endDayi <= 105"
+  ],
+  "examples": [
+    {
+      "input": "events = [[1,2],[2,3],[3,4]]",
+      "output": "3",
+      "explanation": "You can attend all the three events.\nOne way to attend them all is as shown.\nAttend the first event on day 1.\nAttend the second event on day 2.\nAttend the third event on day 3."
+    },
+    {
+      "input": "events= [[1,2],[2,3],[3,4],[1,2]]",
+      "output": "4",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxEvents(vector<vector<int>>& events) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxEvents(int[][] events) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxEvents(self, events: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxEvents(self, events):\n        \"\"\"\n        :type events: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} events\n * @return {number}\n */\nvar maxEvents = function(events) {\n    \n};",
+    "typescript": "function maxEvents(events: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxEvents(int[][] events) {\n        \n    }\n}",
+    "c": "int maxEvents(int** events, int eventsSize, int* eventsColSize) {\n    \n}",
+    "golang": "func maxEvents(events [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxEvents(events: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxEvents(_ events: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_events(events: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} events\n# @return {Integer}\ndef max_events(events)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $events\n     * @return Integer\n     */\n    function maxEvents($events) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxEvents(List<List<int>> events) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxEvents(events: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_events(events :: [[integer]]) :: integer\n  def max_events(events) do\n    \n  end\nend",
+    "erlang": "-spec max_events(Events :: [[integer()]]) -> integer().\nmax_events(Events) ->\n  .",
+    "racket": "(define/contract (max-events events)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,2],[2,3],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[1,2],[2,3],[3,4],[1,2]]",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,2],[2,3],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[1,2],[2,3],[3,4],[1,2]]",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Sort the events by the start time and in case of tie by the end time in ascending order.",
+    "Loop over the sorted events. Attend as much as you can and keep the last day occupied. When you try to attend new event keep in mind the first day you can attend a new event in."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.035Z",
+    "sourceUpdatedAt": null
+  }
+}

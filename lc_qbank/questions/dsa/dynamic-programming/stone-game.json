@@ -1,0 +1,160 @@
+{
+  "id": "877",
+  "slug": "stone-game",
+  "title": "Stone Game",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Minimax",
+    "Game Theory",
+    "Zero-Sum Game"
+  ],
+  "statement": "Alice and Bob play a game with piles of stones. There are an **even** number of piles arranged in a row, and each pile has a **positive** integer number of stones `piles[i]`.\n\nThe objective of the game is to end with the most stones. The **total** number of stones across all the piles is **odd**, so there are no ties.\n\nAlice and Bob take turns, with **Alice starting first**. Each turn, a player takes the entire pile of stones either from the **beginning** or from the **end** of the row. This continues until there are no more piles left, at which point the person with the **most stones wins**.\n\nAssuming Alice and Bob play optimally, return `true` _if Alice wins the game, or_ `false` _if Bob wins_.\n\n**Example 1:**\n\n```\nInput: piles = [5,3,4,5]\nOutput: true\nExplanation: \nAlice starts first, and can only take the first 5 or the last 5.\nSay she takes the first 5, so that the row becomes [3, 4, 5].\nIf Bob takes 3, then the board is [4, 5], and Alice takes 5 to win with 10 points.\nIf Bob takes the last 5, then the board is [3, 4], and Alice takes 4 to win with 9 points.\nThis demonstrated that taking the first 5 was a winning move for Alice, so we return true.\n```\n\n**Example 2:**\n\n```\nInput: piles = [3,7,2,3]\nOutput: true\n```\n\n**Constraints:**\n\n*   `2 <= piles.length <= 500`\n*   `piles.length` is **even**.\n*   `1 <= piles[i] <= 500`\n*   `sum(piles[i])` is **odd**.",
+  "constraints": [
+    "2 <= piles.length <= 500",
+    "piles.length is even.",
+    "1 <= piles[i] <= 500",
+    "sum(piles[i]) is odd."
+  ],
+  "examples": [
+    {
+      "input": "piles = [5,3,4,5]",
+      "output": "true",
+      "explanation": "Alice starts first, and can only take the first 5 or the last 5.\nSay she takes the first 5, so that the row becomes [3, 4, 5].\nIf Bob takes 3, then the board is [4, 5], and Alice takes 5 to win with 10 points.\nIf Bob takes the last 5, then the board is [3, 4], and Alice takes 4 to win with 9 points.\nThis demonstrated that taking the first 5 was a winning move for Alice, so we return true."
+    },
+    {
+      "input": "piles = [3,7,2,3]",
+      "output": "true",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool stoneGame(vector<int>& piles) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean stoneGame(int[] piles) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def stoneGame(self, piles: list[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def stoneGame(self, piles):\n        \"\"\"\n        :type piles: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} piles\n * @return {boolean}\n */\nvar stoneGame = function(piles) {\n    \n};",
+    "typescript": "function stoneGame(piles: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool StoneGame(int[] piles) {\n        \n    }\n}",
+    "c": "bool stoneGame(int* piles, int pilesSize) {\n    \n}",
+    "golang": "func stoneGame(piles []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun stoneGame(piles: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func stoneGame(_ piles: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn stone_game(piles: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} piles\n# @return {Boolean}\ndef stone_game(piles)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $piles\n     * @return Boolean\n     */\n    function stoneGame($piles) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool stoneGame(List<int> piles) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def stoneGame(piles: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec stone_game(piles :: [integer]) :: boolean\n  def stone_game(piles) do\n    \n  end\nend",
+    "erlang": "-spec stone_game(Piles :: [integer()]) -> boolean().\nstone_game(Piles) ->\n  .",
+    "racket": "(define/contract (stone-game piles)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[5,3,4,5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[3,7,2,3]",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[5,3,4,5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[3,7,2,3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[5,3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[4,5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[5,5]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[5,4,3,5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[3,4,5,5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[5,5,4,3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[5,5,5,5]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[5,3,4,5,5,3,4,5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[10,6,8,10]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[6,4,5,6]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[4,2,3,4]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[-5,-3,-4,-5]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/stone-game/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.270Z",
+    "sourceUpdatedAt": null
+  }
+}

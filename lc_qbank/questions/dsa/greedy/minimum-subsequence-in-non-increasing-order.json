@@ -1,0 +1,157 @@
+{
+  "id": "1403",
+  "slug": "minimum-subsequence-in-non-increasing-order",
+  "title": "Minimum Subsequence in Non-Increasing Order",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "Given the array `nums`, obtain a subsequence of the array whose sum of elements is **strictly greater** than the sum of the non included elements in such subsequence. \n\nIf there are multiple solutions, return the subsequence with **minimum size** and if there still exist multiple solutions, return the subsequence with the **maximum total sum** of all its elements. A subsequence of an array can be obtained by erasing some (possibly zero) elements from the array. \n\nNote that the solution with the given constraints is guaranteed to be **unique**. Also return the answer sorted in **non-increasing** order.\n\n**Example 1:**\n\n```\nInput: nums = [4,3,10,9,8]\nOutput: [10,9] \nExplanation: The subsequences [10,9] and [10,8] are minimal such that the sum of their elements is strictly greater than the sum of elements not included. However, the subsequence [10,9] has the maximum total sum of its elements.\n```\n\n**Example 2:**\n\n```\nInput: nums = [4,4,7,6,7]\nOutput: [7,7,6] \nExplanation: The subsequence [7,7] has the sum of its elements equal to 14 which is not strictly greater than the sum of elements not included (14 = 4 + 4 + 6). Therefore, the subsequence [7,6,7] is the minimal satisfying the conditions. Note the subsequence has to be returned in non-increasing order.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 500`\n*   `1 <= nums[i] <= 100`",
+  "constraints": [
+    "1 <= nums.length <= 500",
+    "1 <= nums[i] <= 100"
+  ],
+  "examples": [
+    {
+      "input": "nums = [4,3,10,9,8]",
+      "output": "[10,9]",
+      "explanation": "The subsequences [10,9] and [10,8] are minimal such that the sum of their elements is strictly greater than the sum of elements not included. However, the subsequence [10,9] has the maximum total sum of its elements. "
+    },
+    {
+      "input": "nums = [4,4,7,6,7]",
+      "output": "[7,7,6]",
+      "explanation": "The subsequence [7,7] has the sum of its elements equal to 14 which is not strictly greater than the sum of elements not included (14 = 4 + 4 + 6). Therefore, the subsequence [7,6,7] is the minimal satisfying the conditions. Note the subsequence has to be returned in non-increasing order."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> minSubsequence(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> minSubsequence(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minSubsequence(self, nums: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def minSubsequence(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar minSubsequence = function(nums) {\n    \n};",
+    "typescript": "function minSubsequence(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> MinSubsequence(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* minSubsequence(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func minSubsequence(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minSubsequence(nums: IntArray): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minSubsequence(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_subsequence(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef min_subsequence(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function minSubsequence($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> minSubsequence(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minSubsequence(nums: Array[Int]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_subsequence(nums :: [integer]) :: [integer]\n  def min_subsequence(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_subsequence(Nums :: [integer()]) -> [integer()].\nmin_subsequence(Nums) ->\n  .",
+    "racket": "(define/contract (min-subsequence nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[4,3,10,9,8]",
+      "expectedOutput": "[10,9]"
+    },
+    {
+      "input": "[4,4,7,6,7]",
+      "expectedOutput": "[7,7,6]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[4,3,10,9,8]",
+      "expectedOutput": "[10,9]"
+    },
+    {
+      "input": "[4,4,7,6,7]",
+      "expectedOutput": "[7,7,6]"
+    },
+    {
+      "input": "[4,3]",
+      "expectedOutput": "[4]"
+    },
+    {
+      "input": "[10,9,8]",
+      "expectedOutput": "[10,9]"
+    },
+    {
+      "input": "[4]",
+      "expectedOutput": "[4]"
+    },
+    {
+      "input": "[4,8]",
+      "expectedOutput": "[8]"
+    },
+    {
+      "input": "[8,9,10,3,4]",
+      "expectedOutput": "[10,9]"
+    },
+    {
+      "input": "[3,4,8,9,10]",
+      "expectedOutput": "[10,9]"
+    },
+    {
+      "input": "[10,9,8,4,3]",
+      "expectedOutput": "[10,9]"
+    },
+    {
+      "input": "[4,4,4,4,4]",
+      "expectedOutput": "[4,4,4]"
+    },
+    {
+      "input": "[4,3,10,9,8,4,3,10,9,8]",
+      "expectedOutput": "[10,10,9,9]"
+    },
+    {
+      "input": "[8,6,20,18,16]",
+      "expectedOutput": "[20,18]"
+    },
+    {
+      "input": "[5,4,11,10,9]",
+      "expectedOutput": "[11,10]"
+    },
+    {
+      "input": "[3,2,9,8,7]",
+      "expectedOutput": "[9,8]"
+    },
+    {
+      "input": "[-4,-3,-10,-9,-8]",
+      "expectedOutput": "[-3]"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "[0,0,0,0]"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[-1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Sort elements and take each element from the largest until accomplish the conditions."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-subsequence-in-non-increasing-order/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.045Z",
+    "sourceUpdatedAt": null
+  }
+}

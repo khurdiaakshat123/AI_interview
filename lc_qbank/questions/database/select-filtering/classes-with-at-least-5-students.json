@@ -1,0 +1,65 @@
+{
+  "id": "596",
+  "slug": "classes-with-at-least-5-students",
+  "title": "Classes With at Least 5 Students",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Courses`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| student     | varchar |\n| class       | varchar |\n+-------------+---------+\n(student, class) is the primary key (combination of columns with unique values) for this table.\nEach row of this table indicates the name of a student and the class in which they are enrolled.\n```\n\nWrite a solution to find all the classes that have **at least five students**.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nCourses table:\n+---------+----------+\n| student | class    |\n+---------+----------+\n| A       | Math     |\n| B       | English  |\n| C       | Math     |\n| D       | Biology  |\n| E       | Math     |\n| F       | Computer |\n| G       | Math     |\n| H       | Math     |\n| I       | Math     |\n+---------+----------+\nOutput: \n+---------+\n| class   |\n+---------+\n| Math    |\n+---------+\nExplanation: \n- Math has 6 students, so we include it.\n- English has 1 student, so we do not include it.\n- Biology has 1 student, so we do not include it.\n- Computer has 1 student, so we do not include it.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Courses table:\n+---------+----------+\n| student | class    |\n+---------+----------+\n| A       | Math     |\n| B       | English  |\n| C       | Math     |\n| D       | Biology  |\n| E       | Math     |\n| F       | Computer |\n| G       | Math     |\n| H       | Math     |\n| I       | Math     |\n+---------+----------+",
+      "output": "+---------+\n| class   |\n+---------+\n| Math    |\n+---------+",
+      "explanation": "- Math has 6 students, so we include it.\n- English has 1 student, so we do not include it.\n- Biology has 1 student, so we do not include it.\n- Computer has 1 student, so we do not include it."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_classes(courses: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"Courses\": [\"student\", \"class\"]}, \"rows\": {\"Courses\": [[\"A\", \"Math\"], [\"B\", \"English\"], [\"C\", \"Math\"], [\"D\", \"Biology\"], [\"E\", \"Math\"], [\"F\", \"Computer\"], [\"G\", \"Math\"], [\"H\", \"Math\"], [\"I\", \"Math\"]]}}",
+      "expectedOutput": "+---------+\n| class   |\n+---------+\n| Math    |\n+---------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"Courses\": [\"student\", \"class\"]}, \"rows\": {\"Courses\": [[\"A\", \"Math\"], [\"B\", \"English\"], [\"C\", \"Math\"], [\"D\", \"Biology\"], [\"E\", \"Math\"], [\"F\", \"Computer\"], [\"G\", \"Math\"], [\"H\", \"Math\"], [\"I\", \"Math\"]]}}",
+      "expectedOutput": "+---------+\n| class   |\n+---------+\n| Math    |\n+---------+"
+    },
+    {
+      "input": "Courses table:\n+---------+----------+\n| student | class    |\n+---------+----------+\n| A       | Math     |\n| B       | English  |\n| C       | Math     |\n| D       | Biology  |\n| E       | Math     |\n| F       | Computer |\n| G       | Math     |\n| H       | Math     |\n| I       | Math     |\n+---------+----------+",
+      "expectedOutput": "+---------+\n| class   |\n+---------+\n| Math    |\n+---------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Courses (student varchar(255), class varchar(255))\n\nTruncate table Courses",
+  "sqlSetup": [
+    "insert into Courses (student, class) values ('A', 'Math')",
+    "insert into Courses (student, class) values ('B', 'English')",
+    "insert into Courses (student, class) values ('C', 'Math')",
+    "insert into Courses (student, class) values ('D', 'Biology')",
+    "insert into Courses (student, class) values ('E', 'Math')",
+    "insert into Courses (student, class) values ('F', 'Computer')",
+    "insert into Courses (student, class) values ('G', 'Math')",
+    "insert into Courses (student, class) values ('H', 'Math')",
+    "insert into Courses (student, class) values ('I', 'Math')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/classes-with-at-least-5-students/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.395Z",
+    "sourceUpdatedAt": null
+  }
+}

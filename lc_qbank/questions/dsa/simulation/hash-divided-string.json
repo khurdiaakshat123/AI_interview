@@ -1,0 +1,160 @@
+{
+  "id": "3271",
+  "slug": "hash-divided-string",
+  "title": "Hash Divided String",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "statement": "You are given a string `s` of length `n` and an integer `k`, where `n` is a **multiple** of `k`. Your task is to hash the string `s` into a new string called `result`, which has a length of `n / k`.\n\nFirst, divide `s` into `n / k` **substrings**, each with a length of `k`. Then, initialize `result` as an **empty** string.\n\nFor each **substring** in order from the beginning:\n\n*   The **hash value** of a character is the index of that character in the **English alphabet** (e.g., `'a' → 0`, `'b' → 1`, ..., `'z' → 25`).\n*   Calculate the _sum_ of all the **hash values** of the characters in the substring.\n*   Find the remainder of this sum when divided by 26, which is called `hashedChar`.\n*   Identify the character in the English lowercase alphabet that corresponds to `hashedChar`.\n*   Append that character to the end of `result`.\n\nReturn `result`.\n\n**Example 1:**\n\n**Input:** s = \"abcd\", k = 2\n\n**Output:** \"bf\"\n\n**Explanation:**\n\nFirst substring: `\"ab\"`, `0 + 1 = 1`, `1 % 26 = 1`, `result[0] = 'b'`.\n\nSecond substring: `\"cd\"`, `2 + 3 = 5`, `5 % 26 = 5`, `result[1] = 'f'`.\n\n**Example 2:**\n\n**Input:** s = \"mxz\", k = 3\n\n**Output:** \"i\"\n\n**Explanation:**\n\nThe only substring: `\"mxz\"`, `12 + 23 + 25 = 60`, `60 % 26 = 8`, `result[0] = 'i'`.\n\n**Constraints:**\n\n*   `1 <= k <= 100`\n*   `k <= s.length <= 1000`\n*   `s.length` is divisible by `k`.\n*   `s` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= k <= 100",
+    "k <= s.length <= 1000",
+    "s.length is divisible by k.",
+    "s consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcd\", k = 2",
+      "output": "\"bf\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"mxz\", k = 3",
+      "output": "\"i\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string stringHash(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String stringHash(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def stringHash(self, s: str, k: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def stringHash(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {string}\n */\nvar stringHash = function(s, k) {\n    \n};",
+    "typescript": "function stringHash(s: string, k: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string StringHash(string s, int k) {\n        \n    }\n}",
+    "c": "char* stringHash(char* s, int k) {\n    \n}",
+    "golang": "func stringHash(s string, k int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun stringHash(s: String, k: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func stringHash(_ s: String, _ k: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn string_hash(s: String, k: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {String}\ndef string_hash(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return String\n     */\n    function stringHash($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String stringHash(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def stringHash(s: String, k: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec string_hash(s :: String.t, k :: integer) :: String.t\n  def string_hash(s, k) do\n    \n  end\nend",
+    "erlang": "-spec string_hash(S :: unicode:unicode_binary(), K :: integer()) -> unicode:unicode_binary().\nstring_hash(S, K) ->\n  .",
+    "racket": "(define/contract (string-hash s k)\n  (-> string? exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcd\"\n2",
+      "expectedOutput": "\"bf\""
+    },
+    {
+      "input": "\"mxz\"\n3",
+      "expectedOutput": "\"i\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcd\"\n2",
+      "expectedOutput": "\"bf\""
+    },
+    {
+      "input": "\"mxz\"\n3",
+      "expectedOutput": "\"i\""
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"cd\"\n2",
+      "expectedOutput": "\"f\""
+    },
+    {
+      "input": "\"dcba\"\n2",
+      "expectedOutput": "\"fb\""
+    },
+    {
+      "input": "\"abcdabcd\"\n2",
+      "expectedOutput": "\"bfbf\""
+    },
+    {
+      "input": "\"aaaa\"\n2",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"abcddcba\"\n2",
+      "expectedOutput": "\"bffb\""
+    },
+    {
+      "input": "\"ABCD\"\n2",
+      "expectedOutput": "\"pt\""
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "\"bb\""
+    },
+    {
+      "input": "\"aA\"\n2",
+      "expectedOutput": "\"u\""
+    },
+    {
+      "input": "\"leetcode\"\n2",
+      "expectedOutput": "\"pxqh\""
+    },
+    {
+      "input": "\"()\"\n2",
+      "expectedOutput": "\"r\""
+    },
+    {
+      "input": "\"()[]{}\"\n2",
+      "expectedOutput": "\"rqc\""
+    },
+    {
+      "input": "\"(]\"\n2",
+      "expectedOutput": "\"r\""
+    },
+    {
+      "input": "\"([)]\"\n2",
+      "expectedOutput": "\"ps\""
+    },
+    {
+      "input": "\"{[]}\"\n2",
+      "expectedOutput": "\"uy\""
+    },
+    {
+      "input": "\"abcd\"\n1",
+      "expectedOutput": "\"abcd\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try to find each substring.",
+    "Use a for loop to find <code>hashedChar</code> of each substring.",
+    "Find the answer using <code>hashedChar</code> of each substring."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/hash-divided-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.355Z",
+    "sourceUpdatedAt": null
+  }
+}

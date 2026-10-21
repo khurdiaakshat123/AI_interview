@@ -1,0 +1,61 @@
+{
+  "id": "620",
+  "slug": "not-boring-movies",
+  "title": "Not Boring Movies",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Cinema`\n\n```\n+----------------+----------+\n| Column Name    | Type     |\n+----------------+----------+\n| id             | int      |\n| movie          | varchar  |\n| description    | varchar  |\n| rating         | float    |\n+----------------+----------+\nid is the primary key (column with unique values) for this table.\nEach row contains information about the name of a movie, its genre, and its rating.\nrating is a 2 decimal places float in the range [0, 10]\n```\n\nWrite a solution to report the movies with an odd-numbered ID and a description that is not `\"boring\"`.\n\nReturn the result table ordered by `rating` **in descending order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nCinema table:\n+----+------------+-------------+--------+\n| id | movie      | description | rating |\n+----+------------+-------------+--------+\n| 1  | War        | great 3D    | 8.9    |\n| 2  | Science    | fiction     | 8.5    |\n| 3  | irish      | boring      | 6.2    |\n| 4  | Ice song   | Fantacy     | 8.6    |\n| 5  | House card | Interesting | 9.1    |\n+----+------------+-------------+--------+\nOutput: \n+----+------------+-------------+--------+\n| id | movie      | description | rating |\n+----+------------+-------------+--------+\n| 5  | House card | Interesting | 9.1    |\n| 1  | War        | great 3D    | 8.9    |\n+----+------------+-------------+--------+\nExplanation: \nWe have three movies with odd-numbered IDs: 1, 3, and 5. The movie with ID = 3 is boring so we do not include it in the answer.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Cinema table:\n+----+------------+-------------+--------+\n| id | movie      | description | rating |\n+----+------------+-------------+--------+\n| 1  | War        | great 3D    | 8.9    |\n| 2  | Science    | fiction     | 8.5    |\n| 3  | irish      | boring      | 6.2    |\n| 4  | Ice song   | Fantacy     | 8.6    |\n| 5  | House card | Interesting | 9.1    |\n+----+------------+-------------+--------+",
+      "output": "+----+------------+-------------+--------+\n| id | movie      | description | rating |\n+----+------------+-------------+--------+\n| 5  | House card | Interesting | 9.1    |\n| 1  | War        | great 3D    | 8.9    |\n+----+------------+-------------+--------+",
+      "explanation": "We have three movies with odd-numbered IDs: 1, 3, and 5. The movie with ID = 3 is boring so we do not include it in the answer."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef not_boring_movies(cinema: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"cinema\":[\"id\", \"movie\", \"description\", \"rating\"]},\"rows\":{\"cinema\":[[1, \"War\", \"great 3D\", 8.9], [2, \"Science\", \"fiction\", 8.5], [3, \"irish\", \"boring\", 6.2], [4, \"Ice song\", \"Fantacy\", 8.6], [5, \"House card\", \"Interesting\", 9.1]]}}",
+      "expectedOutput": "+----+------------+-------------+--------+\n| id | movie      | description | rating |\n+----+------------+-------------+--------+\n| 5  | House card | Interesting | 9.1    |\n| 1  | War        | great 3D    | 8.9    |\n+----+------------+-------------+--------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"cinema\":[\"id\", \"movie\", \"description\", \"rating\"]},\"rows\":{\"cinema\":[[1, \"War\", \"great 3D\", 8.9], [2, \"Science\", \"fiction\", 8.5], [3, \"irish\", \"boring\", 6.2], [4, \"Ice song\", \"Fantacy\", 8.6], [5, \"House card\", \"Interesting\", 9.1]]}}",
+      "expectedOutput": "+----+------------+-------------+--------+\n| id | movie      | description | rating |\n+----+------------+-------------+--------+\n| 5  | House card | Interesting | 9.1    |\n| 1  | War        | great 3D    | 8.9    |\n+----+------------+-------------+--------+"
+    },
+    {
+      "input": "Cinema table:\n+----+------------+-------------+--------+\n| id | movie      | description | rating |\n+----+------------+-------------+--------+\n| 1  | War        | great 3D    | 8.9    |\n| 2  | Science    | fiction     | 8.5    |\n| 3  | irish      | boring      | 6.2    |\n| 4  | Ice song   | Fantacy     | 8.6    |\n| 5  | House card | Interesting | 9.1    |\n+----+------------+-------------+--------+",
+      "expectedOutput": "+----+------------+-------------+--------+\n| id | movie      | description | rating |\n+----+------------+-------------+--------+\n| 5  | House card | Interesting | 9.1    |\n| 1  | War        | great 3D    | 8.9    |\n+----+------------+-------------+--------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists cinema (id int, movie varchar(255), description varchar(255), rating float(2, 1))\n\nTruncate table cinema",
+  "sqlSetup": [
+    "insert into cinema (id, movie, description, rating) values ('1', 'War', 'great 3D', '8.9')",
+    "insert into cinema (id, movie, description, rating) values ('2', 'Science', 'fiction', '8.5')",
+    "insert into cinema (id, movie, description, rating) values ('3', 'irish', 'boring', '6.2')",
+    "insert into cinema (id, movie, description, rating) values ('4', 'Ice song', 'Fantacy', '8.6')",
+    "insert into cinema (id, movie, description, rating) values ('5', 'House card', 'Interesting', '9.1')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/not-boring-movies/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.700Z",
+    "sourceUpdatedAt": null
+  }
+}

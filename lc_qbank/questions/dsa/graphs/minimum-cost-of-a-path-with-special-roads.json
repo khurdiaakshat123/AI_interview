@@ -1,0 +1,175 @@
+{
+  "id": "2662",
+  "slug": "minimum-cost-of-a-path-with-special-roads",
+  "title": "Minimum Cost of a Path With Special Roads",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "statement": "You are given an array `start` where `start = [startX, startY]` represents your initial position `(startX, startY)` in a 2D space. You are also given the array `target` where `target = [targetX, targetY]` represents your target position `(targetX, targetY)`.\n\nThe **cost** of going from a position `(x1, y1)` to any other position in the space `(x2, y2)` is `|x2 - x1| + |y2 - y1|`.\n\nThere are also some **special roads**. You are given a 2D array `specialRoads` where `specialRoads[i] = [x1_(i), y1_(i), x2_(i), y2_(i), cost_(i)]` indicates that the `i^(th)` special road goes in **one direction** from `(x1_(i), y1_(i))` to `(x2_(i), y2_(i))` with a cost equal to `cost_(i)`. You can use each special road any number of times.\n\nReturn the **minimum** cost required to go from `(startX, startY)` to `(targetX, targetY)`.\n\n**Example 1:**\n\n**Input:** start = \\[1,1\\], target = \\[4,5\\], specialRoads = \\[\\[1,2,3,3,2\\],\\[3,4,4,5,1\\]\\]\n\n**Output:** 5\n\n**Explanation:**\n\n1.  (1,1) to (1,2) with a cost of |1 - 1| + |2 - 1| = 1.\n2.  (1,2) to (3,3). Use `specialRoads[0]` with the cost 2.\n3.  (3,3) to (3,4) with a cost of |3 - 3| + |4 - 3| = 1.\n4.  (3,4) to (4,5). Use `specialRoads[1]` with the cost 1.\n\nSo the total cost is 1 + 2 + 1 + 1 = 5.\n\n**Example 2:**\n\n**Input:** start = \\[3,2\\], target = \\[5,7\\], specialRoads = \\[\\[5,7,3,2,1\\],\\[3,2,3,4,4\\],\\[3,3,5,5,5\\],\\[3,4,5,6,6\\]\\]\n\n**Output:** 7\n\n**Explanation:**\n\nIt is optimal not to use any special edges and go directly from the starting to the ending position with a cost |5 - 3| + |7 - 2| = 7.\n\nNote that the `specialRoads[0]` is directed from (5,7) to (3,2).\n\n**Example 3:**\n\n**Input:** start = \\[1,1\\], target = \\[10,4\\], specialRoads = \\[\\[4,2,1,1,3\\],\\[1,2,7,4,4\\],\\[10,3,6,1,2\\],\\[6,1,1,2,3\\]\\]\n\n**Output:** 8\n\n**Explanation:**\n\n1.  (1,1) to (1,2) with a cost of |1 - 1| + |2 - 1| = 1.\n2.  (1,2) to (7,4). Use `specialRoads[1]` with the cost 4.\n3.  (7,4) to (10,4) with a cost of |10 - 7| + |4 - 4| = 3.\n\n**Constraints:**\n\n*   `start.length == target.length == 2`\n*   `1 <= startX <= targetX <= 10^(5)`\n*   `1 <= startY <= targetY <= 10^(5)`\n*   `1 <= specialRoads.length <= 200`\n*   `specialRoads[i].length == 5`\n*   `startX <= x1_(i), x2_(i) <= targetX`\n*   `startY <= y1_(i), y2_(i) <= targetY`\n*   `1 <= cost_(i) <= 10^(5)`",
+  "constraints": [
+    "start.length == target.length == 2",
+    "1 <= startX <= targetX <= 105",
+    "1 <= startY <= targetY <= 105",
+    "1 <= specialRoads.length <= 200",
+    "specialRoads[i].length == 5",
+    "startX <= x1i, x2i <= targetX",
+    "startY <= y1i, y2i <= targetY",
+    "1 <= costi <= 105"
+  ],
+  "examples": [
+    {
+      "input": "start = [1,1], target = [4,5], specialRoads = [[1,2,3,3,2],[3,4,4,5,1]]",
+      "output": "5",
+      "explanation": "(1,1) to (1,2) with a cost of |1 - 1| + |2 - 1| = 1.\n\t(1,2) to (3,3). Use specialRoads[0] with the cost 2.\n\t(3,3) to (3,4) with a cost of |3 - 3| + |4 - 3| = 1.\n\t(3,4) to (4,5). Use specialRoads[1] with the cost 1."
+    },
+    {
+      "input": "start = [3,2], target = [5,7], specialRoads = [[5,7,3,2,1],[3,2,3,4,4],[3,3,5,5,5],[3,4,5,6,6]]",
+      "output": "7",
+      "explanation": null
+    },
+    {
+      "input": "start = [1,1], target = [10,4], specialRoads = [[4,2,1,1,3],[1,2,7,4,4],[10,3,6,1,2],[6,1,1,2,3]]",
+      "output": "8",
+      "explanation": "(1,1) to (1,2) with a cost of |1 - 1| + |2 - 1| = 1.\n\t(1,2) to (7,4). Use specialRoads[1] with the cost 4.\n\t(7,4) to (10,4) with a cost of |10 - 7| + |4 - 4| = 3."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumCost(vector<int>& start, vector<int>& target, vector<vector<int>>& specialRoads) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumCost(int[] start, int[] target, int[][] specialRoads) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumCost(self, start: List[int], target: List[int], specialRoads: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumCost(self, start, target, specialRoads):\n        \"\"\"\n        :type start: List[int]\n        :type target: List[int]\n        :type specialRoads: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} start\n * @param {number[]} target\n * @param {number[][]} specialRoads\n * @return {number}\n */\nvar minimumCost = function(start, target, specialRoads) {\n    \n};",
+    "typescript": "function minimumCost(start: number[], target: number[], specialRoads: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumCost(int[] start, int[] target, int[][] specialRoads) {\n        \n    }\n}",
+    "c": "int minimumCost(int* start, int startSize, int* target, int targetSize, int** specialRoads, int specialRoadsSize, int* specialRoadsColSize) {\n    \n}",
+    "golang": "func minimumCost(start []int, target []int, specialRoads [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumCost(start: IntArray, target: IntArray, specialRoads: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumCost(_ start: [Int], _ target: [Int], _ specialRoads: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_cost(start: Vec<i32>, target: Vec<i32>, special_roads: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} start\n# @param {Integer[]} target\n# @param {Integer[][]} special_roads\n# @return {Integer}\ndef minimum_cost(start, target, special_roads)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $start\n     * @param Integer[] $target\n     * @param Integer[][] $specialRoads\n     * @return Integer\n     */\n    function minimumCost($start, $target, $specialRoads) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumCost(List<int> start, List<int> target, List<List<int>> specialRoads) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumCost(start: Array[Int], target: Array[Int], specialRoads: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_cost(start :: [integer], target :: [integer], special_roads :: [[integer]]) :: integer\n  def minimum_cost(start, target, special_roads) do\n    \n  end\nend",
+    "erlang": "-spec minimum_cost(Start :: [integer()], Target :: [integer()], SpecialRoads :: [[integer()]]) -> integer().\nminimum_cost(Start, Target, SpecialRoads) ->\n  .",
+    "racket": "(define/contract (minimum-cost start target specialRoads)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,1]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[3,2]\n[5,7]\n[[5,7,3,2,1],[3,2,3,4,4],[3,3,5,5,5],[3,4,5,6,6]]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1]\n[10,4]\n[[4,2,1,1,3],[1,2,7,4,4],[10,3,6,1,2],[6,1,1,2,3]]",
+      "expectedOutput": "8"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,1]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[3,2]\n[5,7]\n[[5,7,3,2,1],[3,2,3,4,4],[3,3,5,5,5],[3,4,5,6,6]]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1]\n[10,4]\n[[4,2,1,1,3],[1,2,7,4,4],[10,3,6,1,2],[6,1,1,2,3]]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,1,1,1]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,2]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[-1,-1]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,2]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,1]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-1,1]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,2,3]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,2,1]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,1,0]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,2,3,4,5]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[5,4,3,2,1]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-5,-4,-3,-2,-1]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[1,3,2,5,4]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-10,0,10]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "[100,-100]\n[4,5]\n[[1,2,3,3,2],[3,4,4,5,1]]",
+      "expectedOutput": "201"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "It can be proven that it is optimal to go only to the positions that are either the start or the end of a special road or the target position.",
+    "Consider all positions given to you as nodes in a graph, and the edges of the graph are the special roads.",
+    "Now the problem is equivalent to finding the shortest path in a directed graph."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-of-a-path-with-special-roads/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.538Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "529",
+  "slug": "minesweeper",
+  "title": "Minesweeper",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "statement": "Let's play the minesweeper game ([Wikipedia](https://en.wikipedia.org/wiki/Minesweeper_\\(video_game\\)), [online game](http://minesweeperonline.com))!\n\nYou are given an `m x n` char matrix `board` representing the game board where:\n\n*   `'M'` represents an unrevealed mine,\n*   `'E'` represents an unrevealed empty square,\n*   `'B'` represents a revealed blank square that has no adjacent mines (i.e., above, below, left, right, and all 4 diagonals),\n*   digit (`'1'` to `'8'`) represents how many mines are adjacent to this revealed square, and\n*   `'X'` represents a revealed mine.\n\nYou are also given an integer array `click` where `click = [click_(r), click_(c)]` represents the next click position among all the unrevealed squares (`'M'` or `'E'`).\n\nReturn _the board after revealing this position according to the following rules_:\n\n1.  If a mine `'M'` is revealed, then the game is over. You should change it to `'X'`.\n2.  If an empty square `'E'` with no adjacent mines is revealed, then change it to a revealed blank `'B'` and all of its adjacent unrevealed squares should be revealed recursively.\n3.  If an empty square `'E'` with at least one adjacent mine is revealed, then change it to a digit (`'1'` to `'8'`) representing the number of adjacent mines.\n4.  Return the board when no more squares will be revealed.\n\n**Example 1:**\n\n![](./assets/minesweeper-1.jpeg)\n```\nInput: board = [[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]], click = [3,0]\nOutput: [[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]\n```\n\n**Example 2:**\n\n![](./assets/minesweeper-2.jpeg)\n```\nInput: board = [[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]], click = [1,2]\nOutput: [[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"X\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]\n```\n\n**Constraints:**\n\n*   `m == board.length`\n*   `n == board[i].length`\n*   `1 <= m, n <= 50`\n*   `board[i][j]` is either `'M'`, `'E'`, `'B'`, or a digit from `'1'` to `'8'`.\n*   `click.length == 2`\n*   `0 <= click_(r) < m`\n*   `0 <= click_(c) < n`\n*   `board[click_(r)][click_(c)]` is either `'M'` or `'E'`.",
+  "constraints": [
+    "m == board.length",
+    "n == board[i].length",
+    "1 <= m, n <= 50",
+    "board[i][j] is either 'M', 'E', 'B', or a digit from '1' to '8'.",
+    "click.length == 2",
+    "0 <= clickr < m",
+    "0 <= clickc < n",
+    "board[clickr][clickc] is either 'M' or 'E'."
+  ],
+  "examples": [
+    {
+      "input": "board = [[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]], click = [3,0]",
+      "output": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]",
+      "explanation": null
+    },
+    {
+      "input": "board = [[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]], click = [1,2]",
+      "output": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"X\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<char>> updateBoard(vector<vector<char>>& board, vector<int>& click) {\n        \n    }\n};",
+    "java": "class Solution {\n    public char[][] updateBoard(char[][] board, int[] click) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def updateBoard(self, board: List[List[str]], click: List[int]) -> List[List[str]]:\n        ",
+    "python": "class Solution(object):\n    def updateBoard(self, board, click):\n        \"\"\"\n        :type board: List[List[str]]\n        :type click: List[int]\n        :rtype: List[List[str]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[][]} board\n * @param {number[]} click\n * @return {character[][]}\n */\nvar updateBoard = function(board, click) {\n    \n};",
+    "typescript": "function updateBoard(board: string[][], click: number[]): string[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public char[][] UpdateBoard(char[][] board, int[] click) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nchar** updateBoard(char** board, int boardSize, int* boardColSize, int* click, int clickSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func updateBoard(board [][]byte, click []int) [][]byte {\n    \n}",
+    "kotlin": "class Solution {\n    fun updateBoard(board: Array<CharArray>, click: IntArray): Array<CharArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func updateBoard(_ board: [[Character]], _ click: [Int]) -> [[Character]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn update_board(board: Vec<Vec<char>>, click: Vec<i32>) -> Vec<Vec<char>> {\n        \n    }\n}",
+    "ruby": "# @param {Character[][]} board\n# @param {Integer[]} click\n# @return {Character[][]}\ndef update_board(board, click)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[][] $board\n     * @param Integer[] $click\n     * @return String[][]\n     */\n    function updateBoard($board, $click) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<String>> updateBoard(List<List<String>> board, List<int> click) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def updateBoard(board: Array[Array[Char]], click: Array[Int]): Array[Array[Char]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec update_board(board :: [[char]], click :: [integer]) :: [[char]]\n  def update_board(board, click) do\n    \n  end\nend",
+    "erlang": "-spec update_board(Board :: [[char()]], Click :: [integer()]) -> [[char()]].\nupdate_board(Board, Click) ->\n  .",
+    "racket": "(define/contract (update-board board click)\n  (-> (listof (listof char?)) (listof exact-integer?) (listof (listof char?)))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[3,0]",
+      "expectedOutput": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]"
+    },
+    {
+      "input": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]\n[1,2]",
+      "expectedOutput": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"X\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[3,0]",
+      "expectedOutput": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]"
+    },
+    {
+      "input": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]\n[1,2]",
+      "expectedOutput": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"X\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]"
+    },
+    {
+      "input": "[[\"E\"],[\"E\"],[\"E\"],[\"E\"]]\n[3,0]",
+      "expectedOutput": "[[\"B\"],[\"B\"],[\"B\"],[\"B\"]]"
+    },
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[3,0]",
+      "expectedOutput": "[[\"B\",\"B\",\"B\",\"B\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"E\",\"1\",\"B\"]]"
+    },
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\"],[\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\"]]\n[3,0]",
+      "expectedOutput": "[[\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\"],[\"E\",\"M\",\"E\",\"E\"],[\"1\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\"]]"
+    },
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[0,3]",
+      "expectedOutput": "[[\"E\",\"E\",\"E\",\"1\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]"
+    },
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[3,3]",
+      "expectedOutput": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]"
+    },
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[2,-1]",
+      "expectedOutput": "[[\"B\",\"1\",\"E\",\"E\",\"E\"],[\"B\",\"1\",\"M\",\"E\",\"E\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]"
+    },
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[-3,0]",
+      "expectedOutput": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"B\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]"
+    },
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[0,0]",
+      "expectedOutput": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]"
+    },
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[1,1]",
+      "expectedOutput": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"1\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]"
+    },
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[1,2]",
+      "expectedOutput": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"X\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]"
+    },
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[2,1]",
+      "expectedOutput": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"1\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]"
+    },
+    {
+      "input": "[[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"M\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"],[\"E\",\"E\",\"E\",\"E\",\"E\"]]\n[-1,1]",
+      "expectedOutput": "[[\"B\",\"1\",\"1\",\"E\",\"E\"],[\"B\",\"1\",\"M\",\"E\",\"E\"],[\"B\",\"1\",\"E\",\"E\",\"E\"],[\"B\",\"B\",\"E\",\"E\",\"E\"]]"
+    },
+    {
+      "input": "[[\"B\",\"B\",\"B\",\"B\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"E\",\"1\",\"B\"]]\n[1,2]",
+      "expectedOutput": "[[\"B\",\"B\",\"B\",\"B\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"E\",\"1\",\"B\"]]"
+    },
+    {
+      "input": "[[\"B\",\"B\",\"B\",\"B\"],[\"1\",\"1\",\"1\",\"B\"],[\"E\",\"M\",\"1\",\"B\"],[\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\"]]\n[1,2]",
+      "expectedOutput": "[[\"B\",\"B\",\"B\",\"B\"],[\"1\",\"1\",\"1\",\"B\"],[\"E\",\"M\",\"1\",\"B\"],[\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\"]]"
+    },
+    {
+      "input": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]\n[2,1]",
+      "expectedOutput": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]"
+    },
+    {
+      "input": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]\n[1,1]",
+      "expectedOutput": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]"
+    },
+    {
+      "input": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]\n[2,4]",
+      "expectedOutput": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]"
+    },
+    {
+      "input": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]\n[2,3]",
+      "expectedOutput": "[[\"B\",\"1\",\"E\",\"1\",\"B\"],[\"B\",\"1\",\"M\",\"1\",\"B\"],[\"B\",\"1\",\"1\",\"1\",\"B\"],[\"B\",\"B\",\"B\",\"B\",\"B\"]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minesweeper/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.193Z",
+    "sourceUpdatedAt": null
+  }
+}

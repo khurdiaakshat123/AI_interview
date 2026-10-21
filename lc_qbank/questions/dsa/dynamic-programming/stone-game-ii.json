@@ -1,0 +1,161 @@
+{
+  "id": "1140",
+  "slug": "stone-game-ii",
+  "title": "Stone Game II",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Minimax",
+    "Prefix Sum",
+    "Game Theory",
+    "Zero-Sum Game"
+  ],
+  "statement": "Alice and Bob continue their games with piles of stones. There are a number of piles **arranged in a row**, and each pile has a positive integer number of stones `piles[i]`. The objective of the game is to end with the most stones.\n\nAlice and Bob take turns, with Alice starting first.\n\nOn each player's turn, that player can take **all the stones** in the **first** `X` remaining piles, where `1 <= X <= 2M`. Then, we set `M = max(M, X)`. Initially, M = 1.\n\nThe game continues until all the stones have been taken.\n\nAssuming Alice and Bob play optimally, return the maximum number of stones Alice can get.\n\n**Example 1:**\n\n**Input:** piles = \\[2,7,9,4,4\\]\n\n**Output:** 10\n\n**Explanation:**\n\n*   If Alice takes one pile at the beginning, Bob takes two piles, then Alice takes 2 piles again. Alice can get `2 + 4 + 4 = 10` stones in total.\n*   If Alice takes two piles at the beginning, then Bob can take all three piles left. In this case, Alice get `2 + 7 = 9` stones in total.\n\nSo we return 10 since it's larger.\n\n**Example 2:**\n\n**Input:** piles = \\[1,2,3,4,5,100\\]\n\n**Output:** 104\n\n**Constraints:**\n\n*   `1 <= piles.length <= 100`\n*   `1 <= piles[i] <= 10^(4)`",
+  "constraints": [
+    "1 <= piles.length <= 100",
+    "1 <= piles[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "piles = [2,7,9,4,4]",
+      "output": "10",
+      "explanation": "If Alice takes one pile at the beginning, Bob takes two piles, then Alice takes 2 piles again. Alice can get 2 + 4 + 4 = 10 stones in total.\n\tIf Alice takes two piles at the beginning, then Bob can take all three piles left. In this case, Alice get 2 + 7 = 9 stones in total."
+    },
+    {
+      "input": "piles = [1,2,3,4,5,100]",
+      "output": "104",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int stoneGameII(vector<int>& piles) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int stoneGameII(int[] piles) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def stoneGameII(self, piles: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def stoneGameII(self, piles):\n        \"\"\"\n        :type piles: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} piles\n * @return {number}\n */\nvar stoneGameII = function(piles) {\n    \n};",
+    "typescript": "function stoneGameII(piles: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int StoneGameII(int[] piles) {\n        \n    }\n}",
+    "c": "int stoneGameII(int* piles, int pilesSize) {\n    \n}",
+    "golang": "func stoneGameII(piles []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun stoneGameII(piles: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func stoneGameII(_ piles: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn stone_game_ii(piles: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} piles\n# @return {Integer}\ndef stone_game_ii(piles)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $piles\n     * @return Integer\n     */\n    function stoneGameII($piles) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int stoneGameII(List<int> piles) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def stoneGameII(piles: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec stone_game_ii(piles :: [integer]) :: integer\n  def stone_game_ii(piles) do\n    \n  end\nend",
+    "erlang": "-spec stone_game_ii(Piles :: [integer()]) -> integer().\nstone_game_ii(Piles) ->\n  .",
+    "racket": "(define/contract (stone-game-ii piles)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,7,9,4,4]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,2,3,4,5,100]",
+      "expectedOutput": "104"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,7,9,4,4]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,2,3,4,5,100]",
+      "expectedOutput": "104"
+    },
+    {
+      "input": "[2,7]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[9,4,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[4,4,9,7,2]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[2,4,4,7,9]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[9,7,4,4,2]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,7,9,4,4,2,7,9,4,4]",
+      "expectedOutput": "26"
+    },
+    {
+      "input": "[4,14,18,8,8]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[3,8,10,5,5]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[1,6,8,3,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[-2,-7,-9,-4,-4]",
+      "expectedOutput": "-9"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming: the states are (i, m) for the answer of piles[i:] and that given m."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/stone-game-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.233Z",
+    "sourceUpdatedAt": null
+  }
+}

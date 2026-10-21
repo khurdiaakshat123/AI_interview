@@ -1,0 +1,170 @@
+{
+  "id": "2564",
+  "slug": "substring-xor-queries",
+  "title": "Substring XOR Queries",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given a **binary string** `s`, and a **2D** integer array `queries` where `queries[i] = [first_(i), second_(i)]`.\n\nFor the `i^(th)` query, find the **shortest substring** of `s` whose **decimal value**, `val`, yields `second_(i)` when **bitwise XORed** with `first_(i)`. In other words, `val ^ first_(i) == second_(i)`.\n\nThe answer to the `i^(th)` query is the endpoints (**0-indexed**) of the substring `[left_(i), right_(i)]` or `[-1, -1]` if no such substring exists. If there are multiple answers, choose the one with the **minimum** `left_(i)`.\n\n_Return an array_ `ans` _where_ `ans[i] = [left_(i), right_(i)]` _is the answer to the_ `i^(th)` _query._\n\nA **substring** is a contiguous non-empty sequence of characters within a string.\n\n**Example 1:**\n\n```\n[0,2]\n```\n\n**Example 2:**\n\n```\n[-1,-1] is returned\n```\n\n**Example 3:**\n\n```\n[0,0]\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(4)`\n*   `s[i]` is either `'0'` or `'1'`.\n*   `1 <= queries.length <= 10^(5)`\n*   `0 <= first_(i), second_(i) <= 10^(9)`",
+  "constraints": [
+    "1 <= s.length <= 104",
+    "s[i] is either '0' or '1'.",
+    "1 <= queries.length <= 105",
+    "0 <= firsti, secondi <= 109"
+  ],
+  "examples": [
+    {
+      "input": "s = \"101101\", queries = [[0,5],[1,2]]",
+      "output": "[[0,2],[2,3]]",
+      "explanation": "For the first query the substring in range [0,2] is \"101\" which has a decimal value of 5, and 5 ^ 0 = 5, hence the answer to the first query is [0,2]. In the second query, the substring in range [2,3] is \"11\", and has a decimal value of 3, and 3 ^ 1 = 2. So, [2,3] is returned for the second query."
+    },
+    {
+      "input": "s = \"0101\", queries = [[12,8]]",
+      "output": "[[-1,-1]]",
+      "explanation": "In this example there is no substring that answers the query, hence [-1,-1] is returned."
+    },
+    {
+      "input": "s = \"1\", queries = [[4,5]]",
+      "output": "[[0,0]]",
+      "explanation": "For this example, the substring in range [0,0] has a decimal value of 1, and 1 ^ 4 = 5. So, the answer is [0,0]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> substringXorQueries(string s, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] substringXorQueries(String s, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def substringXorQueries(self, s: str, queries: List[List[int]]) -> List[List[int]]:\n        ",
+    "python": "class Solution(object):\n    def substringXorQueries(self, s, queries):\n        \"\"\"\n        :type s: str\n        :type queries: List[List[int]]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number[][]} queries\n * @return {number[][]}\n */\nvar substringXorQueries = function(s, queries) {\n    \n};",
+    "typescript": "function substringXorQueries(s: string, queries: number[][]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] SubstringXorQueries(string s, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** substringXorQueries(char* s, int** queries, int queriesSize, int* queriesColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func substringXorQueries(s string, queries [][]int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun substringXorQueries(s: String, queries: Array<IntArray>): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func substringXorQueries(_ s: String, _ queries: [[Int]]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn substring_xor_queries(s: String, queries: Vec<Vec<i32>>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer[][]} queries\n# @return {Integer[][]}\ndef substring_xor_queries(s, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer[][] $queries\n     * @return Integer[][]\n     */\n    function substringXorQueries($s, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> substringXorQueries(String s, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def substringXorQueries(s: String, queries: Array[Array[Int]]): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec substring_xor_queries(s :: String.t, queries :: [[integer]]) :: [[integer]]\n  def substring_xor_queries(s, queries) do\n    \n  end\nend",
+    "erlang": "-spec substring_xor_queries(S :: unicode:unicode_binary(), Queries :: [[integer()]]) -> [[integer()]].\nsubstring_xor_queries(S, Queries) ->\n  .",
+    "racket": "(define/contract (substring-xor-queries s queries)\n  (-> string? (listof (listof exact-integer?)) (listof (listof exact-integer?)))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"101101\"\n[[0,5],[1,2]]",
+      "expectedOutput": "[[0,2],[2,3]]"
+    },
+    {
+      "input": "\"0101\"\n[[12,8]]",
+      "expectedOutput": "[[-1,-1]]"
+    },
+    {
+      "input": "\"1\"\n[[4,5]]",
+      "expectedOutput": "[[0,0]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"101101\"\n[[0,5],[1,2]]",
+      "expectedOutput": "[[0,2],[2,3]]"
+    },
+    {
+      "input": "\"0101\"\n[[12,8]]",
+      "expectedOutput": "[[-1,-1]]"
+    },
+    {
+      "input": "\"1\"\n[[4,5]]",
+      "expectedOutput": "[[0,0]]"
+    },
+    {
+      "input": "\"101\"\n[[0,5],[1,2]]",
+      "expectedOutput": "[[0,2],[-1,-1]]"
+    },
+    {
+      "input": "\"1\"\n[[0,5],[1,2]]",
+      "expectedOutput": "[[-1,-1],[-1,-1]]"
+    },
+    {
+      "input": "\"10\"\n[[0,5],[1,2]]",
+      "expectedOutput": "[[-1,-1],[-1,-1]]"
+    },
+    {
+      "input": "\"101101101101\"\n[[0,5],[1,2]]",
+      "expectedOutput": "[[0,2],[2,3]]"
+    },
+    {
+      "input": "\"111111\"\n[[0,5],[1,2]]",
+      "expectedOutput": "[[-1,-1],[0,1]]"
+    },
+    {
+      "input": "\"0\"\n[[0,5],[1,2]]",
+      "expectedOutput": "[[-1,-1],[-1,-1]]"
+    },
+    {
+      "input": "\"121\"\n[[0,5],[1,2]]",
+      "expectedOutput": "[[0,2],[-1,-1]]"
+    },
+    {
+      "input": "\"01\"\n[[12,8]]",
+      "expectedOutput": "[[-1,-1]]"
+    },
+    {
+      "input": "\"0\"\n[[12,8]]",
+      "expectedOutput": "[[-1,-1]]"
+    },
+    {
+      "input": "\"1010\"\n[[12,8]]",
+      "expectedOutput": "[[-1,-1]]"
+    },
+    {
+      "input": "\"01010101\"\n[[12,8]]",
+      "expectedOutput": "[[-1,-1]]"
+    },
+    {
+      "input": "\"0000\"\n[[12,8]]",
+      "expectedOutput": "[[-1,-1]]"
+    },
+    {
+      "input": "\"01011010\"\n[[12,8]]",
+      "expectedOutput": "[[-1,-1]]"
+    },
+    {
+      "input": "\"121\"\n[[12,8]]",
+      "expectedOutput": "[[-1,-1]]"
+    },
+    {
+      "input": "\"11\"\n[[4,5]]",
+      "expectedOutput": "[[0,0]]"
+    },
+    {
+      "input": "\"0\"\n[[4,5]]",
+      "expectedOutput": "[[-1,-1]]"
+    },
+    {
+      "input": "\"121\"\n[[4,5]]",
+      "expectedOutput": "[[0,0]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "You do not need to consider substrings having lengths greater than 30.",
+    "Pre-process all substrings with lengths not greater than 30, and add the best endpoints to a dictionary."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/substring-xor-queries/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.459Z",
+    "sourceUpdatedAt": null
+  }
+}

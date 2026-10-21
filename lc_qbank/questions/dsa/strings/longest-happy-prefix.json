@@ -1,0 +1,160 @@
+{
+  "id": "1392",
+  "slug": "longest-happy-prefix",
+  "title": "Longest Happy Prefix",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Rolling Hash",
+    "String Matching",
+    "Hash Function",
+    "Z Algorithm",
+    "Knuth–Morris–Pratt Algorithm"
+  ],
+  "statement": "A string is called a **happy prefix** if it is a **non-empty** prefix which is also a suffix (excluding itself).\n\nGiven a string `s`, return _the **longest happy prefix** of_ `s`. Return an empty string `\"\"` if no such prefix exists.\n\n**Example 1:**\n\n```\nInput: s = \"level\"\nOutput: \"l\"\nExplanation: s contains 4 prefix excluding itself (\"l\", \"le\", \"lev\", \"leve\"), and suffix (\"l\", \"el\", \"vel\", \"evel\"). The largest prefix which is also suffix is given by \"l\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"ababab\"\nOutput: \"abab\"\nExplanation: \"abab\" is the largest prefix which is also suffix. They can overlap in the original string.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` contains only lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s contains only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"level\"",
+      "output": "\"l\"",
+      "explanation": "s contains 4 prefix excluding itself (\"l\", \"le\", \"lev\", \"leve\"), and suffix (\"l\", \"el\", \"vel\", \"evel\"). The largest prefix which is also suffix is given by \"l\"."
+    },
+    {
+      "input": "s = \"ababab\"",
+      "output": "\"abab\"",
+      "explanation": "\"abab\" is the largest prefix which is also suffix. They can overlap in the original string."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string longestPrefix(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String longestPrefix(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestPrefix(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def longestPrefix(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar longestPrefix = function(s) {\n    \n};",
+    "typescript": "function longestPrefix(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LongestPrefix(string s) {\n        \n    }\n}",
+    "c": "char* longestPrefix(char* s) {\n    \n}",
+    "golang": "func longestPrefix(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestPrefix(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestPrefix(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_prefix(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef longest_prefix(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function longestPrefix($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String longestPrefix(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestPrefix(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_prefix(s :: String.t) :: String.t\n  def longest_prefix(s) do\n    \n  end\nend",
+    "erlang": "-spec longest_prefix(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nlongest_prefix(S) ->\n  .",
+    "racket": "(define/contract (longest-prefix s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"level\"",
+      "expectedOutput": "\"l\""
+    },
+    {
+      "input": "\"ababab\"",
+      "expectedOutput": "\"abab\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"level\"",
+      "expectedOutput": "\"l\""
+    },
+    {
+      "input": "\"ababab\"",
+      "expectedOutput": "\"abab\""
+    },
+    {
+      "input": "\"le\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"vel\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"l\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"levellevel\"",
+      "expectedOutput": "\"level\""
+    },
+    {
+      "input": "\"lllll\"",
+      "expectedOutput": "\"llll\""
+    },
+    {
+      "input": "\"LEVEL\"",
+      "expectedOutput": "\"L\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use Longest Prefix Suffix (KMP-table) or String Hashing."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-happy-prefix/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.493Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "id": "4041",
+  "slug": "minimum-operations-to-form-subset-sum-ii",
+  "title": "Minimum Operations to Form Subset Sum II",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given an integer array `nums` and an integer `sum`.\n\nIn one **operation**, choose an element with current value `x` and replace it with either `2 * x` or `floor(x / 2)`.\n\nFor each element, **multiplication** and **division** operations may be performed in any order.\n\nReturn the **minimum** number of operations needed so that some subset of the resulting array has a sum **exactly** equal to `sum`. If it is impossible, return -1.\n\nThe `floor()` function returns the integer part of the division.\n\n**Example 1:**\n\n**Input:** nums = \\[10,2\\], sum = 13\n\n**Output:** 3\n\n**Explanation:**\n\n*   Divide `nums[0] = 10` once: `10 → 5`, costing 1 operation.\n*   Multiply `nums[1] = 2` twice: `2 → 4 → 8`, costing 2 operations.\n*   After these operations, `nums = [5, 8]`. The subset `{5, 8}` sums to 13 using 3 operations in total.\n\n**Example 2:**\n\n**Input:** nums = \\[6,3\\], sum = 8\n\n**Output:** 2\n\n**Explanation:**​​​​​​​\n\n*   Turn `nums[1] = 3` into 2 using 2 operations:\n    *   Divide `nums[1]` to get 1.\n    *   Multiply `nums[1] = 1` to get 2.\n*   After these operations, `nums = [6, 2]`. The subset `{6, 2}` sums to 8 using 2 operations in total.\n\n**Example 3:**\n\n**Input:** nums = \\[2,2\\], sum = 7\n\n**Output:** \\-1\n\n**Explanation:**\n\n*   No sequence of operations lets a subset of `nums` sum to 7, so the answer is -1.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 100`\n*   `1 <= nums[i] <= 500`\n*   `1 <= sum <= 5000`",
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "1 <= nums[i] <= 500",
+    "1 <= sum <= 5000"
+  ],
+  "examples": [
+    {
+      "input": "nums = [10,2], sum = 13",
+      "output": "3",
+      "explanation": "Divide nums[0] = 10 once: 10 → 5, costing 1 operation.\n\tMultiply nums[1] = 2 twice: 2 → 4 → 8, costing 2 operations.\n\tAfter these operations, nums = [5, 8]. The subset {5, 8} sums to 13 using 3 operations in total."
+    },
+    {
+      "input": "nums = [6,3], sum = 8",
+      "output": "2",
+      "explanation": "​​​​​​​\n\n\n\tTurn nums[1] = 3 into 2 using 2 operations:\n\n\t\n\t\tDivide nums[1] to get 1.\n\t\tMultiply nums[1] = 1 to get 2.\n\t\n\t\n\tAfter these operations, nums = [6, 2]. The subset {6, 2} sums to 8 using 2 operations in total."
+    },
+    {
+      "input": "nums = [2,2], sum = 7",
+      "output": "-1",
+      "explanation": "No sequence of operations lets a subset of nums sum to 7, so the answer is -1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, int sum) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minOperations(int[] nums, int sum) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, nums: list[int], sum: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, nums, sum):\n        \"\"\"\n        :type nums: List[int]\n        :type sum: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} sum\n * @return {number}\n */\nvar minOperations = function(nums, sum) {\n    \n};",
+    "typescript": "function minOperations(nums: number[], sum: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinOperations(int[] nums, int sum) {\n        \n    }\n}",
+    "c": "int minOperations(int* nums, int numsSize, int sum) {\n    \n}",
+    "golang": "func minOperations(nums []int, sum int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(nums: IntArray, sum: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ nums: [Int], _ sum: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(nums: Vec<i32>, sum: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} sum\n# @return {Integer}\ndef min_operations(nums, sum)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $sum\n     * @return Integer\n     */\n    function minOperations($nums, $sum) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(List<int> nums, int sum) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(nums: Array[Int], sum: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(nums :: [integer], sum :: integer) :: integer\n  def min_operations(nums, sum) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(Nums :: [integer()], Sum :: integer()) -> integer().\nmin_operations(Nums, Sum) ->\n  .",
+    "racket": "(define/contract (min-operations nums sum)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[10,2]\n13",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,3]\n8",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2]\n7",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[10,2]\n13",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,3]\n8",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2]\n7",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[10]\n13",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2]\n13",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,10]\n13",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[10,10]\n13",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[10,2,10,2]\n13",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[20,4]\n13",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[11,3]\n13",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[9,1]\n13",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1]\n13",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1]\n13",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2]\n13",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,1]\n13",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2,3]\n13",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2,1]\n13",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1]\n13",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2,3,4,5]\n13",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,4,3,2,1]\n13",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "In a shortest sequence of operations on one element, a multiplication followed later by a division can be canceled when they become adjacent. This lets you characterize an optimal sequence as some number of divisions followed by some number of multiplications.",
+    "Enumerate the values of the form obtained by repeatedly dividing <code>x</code>, then repeatedly doubling the result, keeping only values at most <code>sum</code> and the minimum cost for each. Combine these per-element choices with knapsack DP."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-operations-to-form-subset-sum-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.621Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "2883",
+  "slug": "drop-missing-data",
+  "title": "Drop Missing Data",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "```\nDataFrame students\n+-------------+--------+\n| Column Name | Type   |\n+-------------+--------+\n| student_id  | int    |\n| name        | object |\n| age         | int    |\n+-------------+--------+\n```\n\nThere are some rows having missing values in the `name` column.\n\nWrite a solution to remove the rows with missing values.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput:\n+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 32         | Piper   | 5   |\n| 217        | None    | 19  |\n| 779        | Georgia | 20  |\n| 849        | Willow  | 14  |\n+------------+---------+-----+\nOutput:\n+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 32         | Piper   | 5   |\n| 779        | Georgia | 20  | \n| 849        | Willow  | 14  | \n+------------+---------+-----+\nExplanation: \nStudent with id 217 havs empty value in the name column, so it will be removed.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 32         | Piper   | 5   |\n| 217        | None    | 19  |\n| 779        | Georgia | 20  |\n| 849        | Willow  | 14  |\n+------------+---------+-----+",
+      "output": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 32         | Piper   | 5   |\n| 779        | Georgia | 20  | \n| 849        | Willow  | 14  | \n+------------+---------+-----+",
+      "explanation": "Student with id 217 havs empty value in the name column, so it will be removed."
+    }
+  ],
+  "starterCode": {
+    "pythondata": "import pandas as pd\n\ndef dropMissingData(students: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[32,\"Piper\",5],[217,null,19],[779,\"Georgia\",20],[849,\"Willow\",14]]}}",
+      "expectedOutput": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 32         | Piper   | 5   |\n| 779        | Georgia | 20  | \n| 849        | Willow  | 14  | \n+------------+---------+-----+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[32,\"Piper\",5],[217,null,19],[779,\"Georgia\",20],[849,\"Willow\",14]]}}",
+      "expectedOutput": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 32         | Piper   | 5   |\n| 779        | Georgia | 20  | \n| 849        | Willow  | 14  | \n+------------+---------+-----+"
+    },
+    {
+      "input": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 32         | Piper   | 5   |\n| 217        | None    | 19  |\n| 779        | Georgia | 20  |\n| 849        | Willow  | 14  |\n+------------+---------+-----+",
+      "expectedOutput": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 32         | Piper   | 5   |\n| 779        | Georgia | 20  | \n| 849        | Willow  | 14  | \n+------------+---------+-----+"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider using a build-in function in pandas library to remove the rows with missing values based on specified data."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/drop-missing-data/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.889Z",
+    "sourceUpdatedAt": null
+  }
+}

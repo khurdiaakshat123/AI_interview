@@ -1,0 +1,120 @@
+{
+  "id": "3624",
+  "slug": "number-of-integers-with-popcount-depth-equal-to-k-ii",
+  "title": "Number of Integers With Popcount-Depth Equal to K II",
+  "category": "dsa",
+  "subcategory": "divide-and-conquer",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nFor any positive integer `x`, define the following sequence:\n\n*   `p_(0) = x`\n*   `p_(i+1) = popcount(p_(i))` for all `i >= 0`, where `popcount(y)` is the number of set bits (1's) in the binary representation of `y`.\n\nThis sequence will eventually reach the value 1.\n\nThe **popcount-depth** of `x` is defined as the **smallest** integer `d >= 0` such that `p_(d) = 1`.\n\nFor example, if `x = 7` (binary representation `\"111\"`). Then, the sequence is: `7 → 3 → 2 → 1`, so the popcount-depth of 7 is 3.\n\nYou are also given a 2D integer array `queries`, where each `queries[i]` is either:\n\n*   `[1, l, r, k]` - **Determine** the number of indices `j` such that `l <= j <= r` and the **popcount-depth** of `nums[j]` is equal to `k`.\n*   `[2, idx, val]` - **Update** `nums[idx]` to `val`.\n\nReturn an integer array `answer`, where `answer[i]` is the number of indices for the `i^(th)` query of type `[1, l, r, k]`.\n\n**Example 1:**\n\n**Input:** nums = \\[2,4\\], queries = \\[\\[1,0,1,1\\],\\[2,1,1\\],\\[1,0,1,0\\]\\]\n\n**Output:** \\[2,1\\]\n\n**Explanation:**\n\n`i`\n\n`queries[i]`\n\n`nums`\n\nbinary(`nums`)\n\npopcount-  \ndepth\n\n`[l, r]`\n\n`k`\n\nValid  \n`nums[j]`\n\nupdated  \n`nums`\n\nAnswer\n\n0\n\n\\[1,0,1,1\\]\n\n\\[2,4\\]\n\n\\[10, 100\\]\n\n\\[1, 1\\]\n\n\\[0, 1\\]\n\n1\n\n\\[0, 1\\]\n\n—\n\n2\n\n1\n\n\\[2,1,1\\]\n\n\\[2,4\\]\n\n\\[10, 100\\]\n\n\\[1, 1\\]\n\n—\n\n—\n\n—\n\n\\[2,1\\]\n\n—\n\n2\n\n\\[1,0,1,0\\]\n\n\\[2,1\\]\n\n\\[10, 1\\]\n\n\\[1, 0\\]\n\n\\[0, 1\\]\n\n0\n\n\\[1\\]\n\n—\n\n1\n\nThus, the final `answer` is `[2, 1]`.\n\n**Example 2:**\n\n**Input:** nums = \\[3,5,6\\], queries = \\[\\[1,0,2,2\\],\\[2,1,4\\],\\[1,1,2,1\\],\\[1,0,1,0\\]\\]\n\n**Output:** \\[3,1,0\\]\n\n**Explanation:**\n\n`i`\n\n`queries[i]`\n\n`nums`\n\nbinary(`nums`)\n\npopcount-  \ndepth\n\n`[l, r]`\n\n`k`\n\nValid  \n`nums[j]`\n\nupdated  \n`nums`\n\nAnswer\n\n0\n\n\\[1,0,2,2\\]\n\n\\[3, 5, 6\\]\n\n\\[11, 101, 110\\]\n\n\\[2, 2, 2\\]\n\n\\[0, 2\\]\n\n2\n\n\\[0, 1, 2\\]\n\n—\n\n3\n\n1\n\n\\[2,1,4\\]\n\n\\[3, 5, 6\\]\n\n\\[11, 101, 110\\]\n\n\\[2, 2, 2\\]\n\n—\n\n—\n\n—\n\n\\[3, 4, 6\\]\n\n—\n\n2\n\n\\[1,1,2,1\\]\n\n\\[3, 4, 6\\]\n\n\\[11, 100, 110\\]\n\n\\[2, 1, 2\\]\n\n\\[1, 2\\]\n\n1\n\n\\[1\\]\n\n—\n\n1\n\n3\n\n\\[1,0,1,0\\]\n\n\\[3, 4, 6\\]\n\n\\[11, 100, 110\\]\n\n\\[2, 1, 2\\]\n\n\\[0, 1\\]\n\n0\n\n\\[\\]\n\n—\n\n0\n\nThus, the final `answer` is `[3, 1, 0]`.\n\n**Example 3:**\n\n**Input:** nums = \\[1,2\\], queries = \\[\\[1,0,1,1\\],\\[2,0,3\\],\\[1,0,0,1\\],\\[1,0,0,2\\]\\]\n\n**Output:** \\[1,0,1\\]\n\n**Explanation:**\n\n`i`\n\n`queries[i]`\n\n`nums`\n\nbinary(`nums`)\n\npopcount-  \ndepth\n\n`[l, r]`\n\n`k`\n\nValid  \n`nums[j]`\n\nupdated  \n`nums`\n\nAnswer\n\n0\n\n\\[1,0,1,1\\]\n\n\\[1, 2\\]\n\n\\[1, 10\\]\n\n\\[0, 1\\]\n\n\\[0, 1\\]\n\n1\n\n\\[1\\]\n\n—\n\n1\n\n1\n\n\\[2,0,3\\]\n\n\\[1, 2\\]\n\n\\[1, 10\\]\n\n\\[0, 1\\]\n\n—\n\n—\n\n—\n\n\\[3, 2\\]\n\n \n\n2\n\n\\[1,0,0,1\\]\n\n\\[3, 2\\]\n\n\\[11, 10\\]\n\n\\[2, 1\\]\n\n\\[0, 0\\]\n\n1\n\n\\[\\]\n\n—\n\n0\n\n3\n\n\\[1,0,0,2\\]\n\n\\[3, 2\\]\n\n\\[11, 10\\]\n\n\\[2, 1\\]\n\n\\[0, 0\\]\n\n2\n\n\\[0\\]\n\n—\n\n1\n\nThus, the final `answer` is `[1, 0, 1]`.\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(15)`\n*   `1 <= queries.length <= 10^(5)`\n*   `queries[i].length == 3` or `4`\n    *   `queries[i] == [1, l, r, k]` or,\n    *   `queries[i] == [2, idx, val]`\n    *   `0 <= l <= r <= n - 1`\n    *   `0 <= k <= 5`\n    *   `0 <= idx <= n - 1`\n    *   `1 <= val <= 10^(15)`",
+  "constraints": [
+    "1 <= n == nums.length <= 105",
+    "1 <= nums[i] <= 1015",
+    "1 <= queries.length <= 105",
+    "queries[i].length == 3 or 4\n\t\n\t\tqueries[i] == [1, l, r, k] or,",
+    "queries[i] == [2, idx, val]",
+    "0 <= l <= r <= n - 1",
+    "0 <= k <= 5",
+    "0 <= idx <= n - 1",
+    "1 <= val <= 1015"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,4], queries = [[1,0,1,1],[2,1,1],[1,0,1,0]]",
+      "output": "[2,1]",
+      "explanation": "i\n\t\t\tqueries[i]\n\t\t\tnums\n\t\t\tbinary(nums)\n\t\t\tpopcount-\n\t\t\tdepth\n\t\t\t[l, r]\n\t\t\tk\n\t\t\tValid\n\t\t\tnums[j]\n\t\t\tupdated\n\t\t\tnums\n\t\t\tAnswer\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t[1,0,1,1]\n\t\t\t[2,4]\n\t\t\t[10, 100]\n\t\t\t[1, 1]\n\t\t\t[0, 1]\n\t\t\t1\n\t\t\t[0, 1]\n\t\t\t—\n\t\t\t2\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[2,1,1]\n\t\t\t[2,4]\n\t\t\t[10, 100]\n\t\t\t[1, 1]\n\t\t\t—\n\t\t\t—\n\t\t\t—\n\t\t\t[2,1]\n\t\t\t—\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[1,0,1,0]\n\t\t\t[2,1]\n\t\t\t[10, 1]\n\t\t\t[1, 0]\n\t\t\t[0, 1]\n\t\t\t0\n\t\t\t[1]\n\t\t\t—\n\t\t\t1"
+    },
+    {
+      "input": "nums = [3,5,6], queries = [[1,0,2,2],[2,1,4],[1,1,2,1],[1,0,1,0]]",
+      "output": "[3,1,0]",
+      "explanation": "i\n\t\t\tqueries[i]\n\t\t\tnums\n\t\t\tbinary(nums)\n\t\t\tpopcount-\n\t\t\tdepth\n\t\t\t[l, r]\n\t\t\tk\n\t\t\tValid\n\t\t\tnums[j]\n\t\t\tupdated\n\t\t\tnums\n\t\t\tAnswer\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t[1,0,2,2]\n\t\t\t[3, 5, 6]\n\t\t\t[11, 101, 110]\n\t\t\t[2, 2, 2]\n\t\t\t[0, 2]\n\t\t\t2\n\t\t\t[0, 1, 2]\n\t\t\t—\n\t\t\t3\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[2,1,4]\n\t\t\t[3, 5, 6]\n\t\t\t[11, 101, 110]\n\t\t\t[2, 2, 2]\n\t\t\t—\n\t\t\t—\n\t\t\t—\n\t\t\t[3, 4, 6]\n\t\t\t—\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[1,1,2,1]\n\t\t\t[3, 4, 6]\n\t\t\t[11, 100, 110]\n\t\t\t[2, 1, 2]\n\t\t\t[1, 2]\n\t\t\t1\n\t\t\t[1]\n\t\t\t—\n\t\t\t1\n\t\t\n\t\t\n\t\t\t3\n\t\t\t[1,0,1,0]\n\t\t\t[3, 4, 6]\n\t\t\t[11, 100, 110]\n\t\t\t[2, 1, 2]\n\t\t\t[0, 1]\n\t\t\t0\n\t\t\t[]\n\t\t\t—\n\t\t\t0"
+    },
+    {
+      "input": "nums = [1,2], queries = [[1,0,1,1],[2,0,3],[1,0,0,1],[1,0,0,2]]",
+      "output": "[1,0,1]",
+      "explanation": "i\n\t\t\tqueries[i]\n\t\t\tnums\n\t\t\tbinary(nums)\n\t\t\tpopcount-\n\t\t\tdepth\n\t\t\t[l, r]\n\t\t\tk\n\t\t\tValid\n\t\t\tnums[j]\n\t\t\tupdated\n\t\t\tnums\n\t\t\tAnswer\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t[1,0,1,1]\n\t\t\t[1, 2]\n\t\t\t[1, 10]\n\t\t\t[0, 1]\n\t\t\t[0, 1]\n\t\t\t1\n\t\t\t[1]\n\t\t\t—\n\t\t\t1\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[2,0,3]\n\t\t\t[1, 2]\n\t\t\t[1, 10]\n\t\t\t[0, 1]\n\t\t\t—\n\t\t\t—\n\t\t\t—\n\t\t\t[3, 2]\n\t\t\t \n\t\t\n\t\t\n\t\t\t2\n\t\t\t[1,0,0,1]\n\t\t\t[3, 2]\n\t\t\t[11, 10]\n\t\t\t[2, 1]\n\t\t\t[0, 0]\n\t\t\t1\n\t\t\t[]\n\t\t\t—\n\t\t\t0\n\t\t\n\t\t\n\t\t\t3\n\t\t\t[1,0,0,2]\n\t\t\t[3, 2]\n\t\t\t[11, 10]\n\t\t\t[2, 1]\n\t\t\t[0, 0]\n\t\t\t2\n\t\t\t[0]\n\t\t\t—\n\t\t\t1"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> popcountDepth(vector<long long>& nums, vector<vector<long long>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] popcountDepth(long[] nums, long[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def popcountDepth(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def popcountDepth(self, nums, queries):\n        \"\"\"\n        :type nums: List[int]\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar popcountDepth = function(nums, queries) {\n    \n};",
+    "typescript": "function popcountDepth(nums: number[], queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] PopcountDepth(long[] nums, long[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* popcountDepth(long long* nums, int numsSize, long long** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func popcountDepth(nums []int64, queries [][]int64) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun popcountDepth(nums: LongArray, queries: Array<LongArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func popcountDepth(_ nums: [Int], _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn popcount_depth(nums: Vec<i64>, queries: Vec<Vec<i64>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef popcount_depth(nums, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function popcountDepth($nums, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> popcountDepth(List<int> nums, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def popcountDepth(nums: Array[Long], queries: Array[Array[Long]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec popcount_depth(nums :: [integer], queries :: [[integer]]) :: [integer]\n  def popcount_depth(nums, queries) do\n    \n  end\nend",
+    "erlang": "-spec popcount_depth(Nums :: [integer()], Queries :: [[integer()]]) -> [integer()].\npopcount_depth(Nums, Queries) ->\n  .",
+    "racket": "(define/contract (popcount-depth nums queries)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,4]\n[[1,0,1,1],[2,1,1],[1,0,1,0]]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[3,5,6]\n[[1,0,2,2],[2,1,4],[1,1,2,1],[1,0,1,0]]",
+      "expectedOutput": "[3,1,0]"
+    },
+    {
+      "input": "[1,2]\n[[1,0,1,1],[2,0,3],[1,0,0,1],[1,0,0,2]]",
+      "expectedOutput": "[1,0,1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,4]\n[[1,0,1,1],[2,1,1],[1,0,1,0]]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[3,5,6]\n[[1,0,2,2],[2,1,4],[1,1,2,1],[1,0,1,0]]",
+      "expectedOutput": "[3,1,0]"
+    },
+    {
+      "input": "[1,2]\n[[1,0,1,1],[2,0,3],[1,0,0,1],[1,0,0,2]]",
+      "expectedOutput": "[1,0,1]"
+    },
+    {
+      "input": "nums = [2,4], queries = [[1,0,1,1],[2,1,1],[1,0,1,0]]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "nums = [3,5,6], queries = [[1,0,2,2],[2,1,4],[1,1,2,1],[1,0,1,0]]",
+      "expectedOutput": "[3,1,0]"
+    },
+    {
+      "input": "nums = [1,2], queries = [[1,0,1,1],[2,0,3],[1,0,0,1],[1,0,0,2]]",
+      "expectedOutput": "[1,0,1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Precompute <code>depth[i]</code> for each <code>nums[i]</code> by applying popcount until you reach 1.",
+    "Maintain six Fenwick trees <code>fenw[0]</code> through <code>fenw[5]</code>, where <code>fenw[d]</code> stores a 1 at index <code>i</code> iff <code>depth[i] == d</code>.",
+    "For an update <code>[2, idx, val]</code>, remove index idx from its old <code>fenw[old_depth]</code> and insert into <code>fenw[new_depth]</code>; for a query <code>[1, l, r, k]</code>, return <code>fenw[k].query(r) - fenw[k].query(l-1)</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.925Z",
+    "sourceUpdatedAt": null
+  }
+}

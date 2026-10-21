@@ -1,0 +1,160 @@
+{
+  "id": "2334",
+  "slug": "subarray-with-elements-greater-than-varying-threshold",
+  "title": "Subarray With Elements Greater Than Varying Threshold",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Stack",
+    "Union-Find",
+    "Monotonic Stack"
+  ],
+  "statement": "You are given an integer array `nums` and an integer `threshold`.\n\nFind any subarray of `nums` of length `k` such that **every** element in the subarray is **greater** than `threshold / k`.\n\nReturn _the **size** of **any** such subarray_. If there is no such subarray, return `-1`.\n\nA **subarray** is a contiguous non-empty sequence of elements within an array.\n\n**Example 1:**\n\n```\nInput: nums = [1,3,4,3,1], threshold = 6\nOutput: 3\nExplanation: The subarray [3,4,3] has a size of 3, and every element is greater than 6 / 3 = 2.\nNote that this is the only valid subarray.\n```\n\n**Example 2:**\n\n```\nInput: nums = [6,5,6,5,8], threshold = 7\nOutput: 1\nExplanation: The subarray [8] has a size of 1, and 8 > 7 / 1 = 7. So 1 is returned.\nNote that the subarray [6,5] has a size of 2, and every element is greater than 7 / 2 = 3.5. \nSimilarly, the subarrays [6,5,6], [6,5,6,5], [6,5,6,5,8] also satisfy the given conditions.\nTherefore, 2, 3, 4, or 5 may also be returned.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i], threshold <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i], threshold <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,3,4,3,1], threshold = 6",
+      "output": "3",
+      "explanation": "The subarray [3,4,3] has a size of 3, and every element is greater than 6 / 3 = 2.\nNote that this is the only valid subarray."
+    },
+    {
+      "input": "nums = [6,5,6,5,8], threshold = 7",
+      "output": "1",
+      "explanation": "The subarray [8] has a size of 1, and 8 > 7 / 1 = 7. So 1 is returned.\nNote that the subarray [6,5] has a size of 2, and every element is greater than 7 / 2 = 3.5. \nSimilarly, the subarrays [6,5,6], [6,5,6,5], [6,5,6,5,8] also satisfy the given conditions.\nTherefore, 2, 3, 4, or 5 may also be returned."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int validSubarraySize(vector<int>& nums, int threshold) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int validSubarraySize(int[] nums, int threshold) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def validSubarraySize(self, nums: list[int], threshold: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def validSubarraySize(self, nums, threshold):\n        \"\"\"\n        :type nums: List[int]\n        :type threshold: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} threshold\n * @return {number}\n */\nvar validSubarraySize = function(nums, threshold) {\n    \n};",
+    "typescript": "function validSubarraySize(nums: number[], threshold: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ValidSubarraySize(int[] nums, int threshold) {\n        \n    }\n}",
+    "c": "int validSubarraySize(int* nums, int numsSize, int threshold) {\n    \n}",
+    "golang": "func validSubarraySize(nums []int, threshold int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun validSubarraySize(nums: IntArray, threshold: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func validSubarraySize(_ nums: [Int], _ threshold: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn valid_subarray_size(nums: Vec<i32>, threshold: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} threshold\n# @return {Integer}\ndef valid_subarray_size(nums, threshold)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $threshold\n     * @return Integer\n     */\n    function validSubarraySize($nums, $threshold) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int validSubarraySize(List<int> nums, int threshold) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def validSubarraySize(nums: Array[Int], threshold: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec valid_subarray_size(nums :: [integer], threshold :: integer) :: integer\n  def valid_subarray_size(nums, threshold) do\n    \n  end\nend",
+    "erlang": "-spec valid_subarray_size(Nums :: [integer()], Threshold :: integer()) -> integer().\nvalid_subarray_size(Nums, Threshold) ->\n  .",
+    "racket": "(define/contract (valid-subarray-size nums threshold)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,3,4,3,1]\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,5,6,5,8]\n7",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,3,4,3,1]\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,5,6,5,8]\n7",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,3,1]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,3,3,4]\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[4,3,3,1,1]\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1,1,1]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,3,4,3,1,1,3,4,3,1]\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,6,8,6,2]\n6",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4,5,4,2]\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,2,3,2,0]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1,-3,-4,-3,-1]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0,0,0]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,1,1]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]\n6",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2]\n6",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For all elements to be greater than the threshold/length, the minimum element in the subarray must be greater than the threshold/length.",
+    "For a given index, could you find the largest subarray such that the given index is the minimum element?",
+    "Could you use a monotonic stack to get the next and previous smallest element for every index?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.384Z",
+    "sourceUpdatedAt": null
+  }
+}

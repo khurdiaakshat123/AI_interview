@@ -1,0 +1,159 @@
+{
+  "id": "1749",
+  "slug": "maximum-absolute-sum-of-any-subarray",
+  "title": "Maximum Absolute Sum of Any Subarray",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given an integer array `nums`. The **absolute sum** of a subarray `[nums_(l), nums_(l+1), ..., nums_(r-1), nums_(r)]` is `abs(nums_(l) + nums_(l+1) + ... + nums_(r-1) + nums_(r))`.\n\nReturn _the **maximum** absolute sum of any **(possibly empty)** subarray of_ `nums`.\n\nNote that `abs(x)` is defined as follows:\n\n*   If `x` is a negative integer, then `abs(x) = -x`.\n*   If `x` is a non-negative integer, then `abs(x) = x`.\n\n**Example 1:**\n\n```\nInput: nums = [1,-3,2,3,-4]\nOutput: 5\nExplanation: The subarray [2,3] has absolute sum = abs(2+3) = abs(5) = 5.\n```\n\n**Example 2:**\n\n```\nInput: nums = [2,-5,1,-4,3,-2]\nOutput: 8\nExplanation: The subarray [-5,1,-4] has absolute sum = abs(-5+1-4) = abs(-8) = 8.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `-10^(4) <= nums[i] <= 10^(4)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-104 <= nums[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,-3,2,3,-4]",
+      "output": "5",
+      "explanation": "The subarray [2,3] has absolute sum = abs(2+3) = abs(5) = 5."
+    },
+    {
+      "input": "nums = [2,-5,1,-4,3,-2]",
+      "output": "8",
+      "explanation": "The subarray [-5,1,-4] has absolute sum = abs(-5+1-4) = abs(-8) = 8."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxAbsoluteSum(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxAbsoluteSum(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxAbsoluteSum(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxAbsoluteSum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxAbsoluteSum = function(nums) {\n    \n};",
+    "typescript": "function maxAbsoluteSum(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxAbsoluteSum(int[] nums) {\n        \n    }\n}",
+    "c": "int maxAbsoluteSum(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxAbsoluteSum(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxAbsoluteSum(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxAbsoluteSum(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_absolute_sum(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_absolute_sum(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxAbsoluteSum($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxAbsoluteSum(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxAbsoluteSum(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_absolute_sum(nums :: [integer]) :: integer\n  def max_absolute_sum(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_absolute_sum(Nums :: [integer()]) -> integer().\nmax_absolute_sum(Nums) ->\n  .",
+    "racket": "(define/contract (max-absolute-sum nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,-3,2,3,-4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,-5,1,-4,3,-2]",
+      "expectedOutput": "8"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,-3,2,3,-4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,-5,1,-4,3,-2]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,-3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,3,-4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,-4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-4,3,2,-3,1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-4,-3,1,2,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[3,2,1,-3,-4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,-3,2,3,-4,1,-3,2,3,-4]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,-6,4,6,-8]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[2,-2,3,4,-3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0,-4,1,2,-5]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[-1,3,-2,-3,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "What if we asked for maximum sum, not absolute sum?",
+    "It's a standard problem that can be solved by Kadane's algorithm.",
+    "The key idea is the max absolute sum will be either the max sum or the min sum.",
+    "So just run kadane twice, once calculating the max sum and once calculating the min sum."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.463Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "id": "1601",
+  "slug": "maximum-number-of-achievable-transfer-requests",
+  "title": "Maximum Number of Achievable Transfer Requests",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Backtracking",
+    "Bit Manipulation",
+    "Enumeration"
+  ],
+  "statement": "We have `n` buildings numbered from `0` to `n - 1`. Each building has a number of employees. It's transfer season, and some employees want to change the building they reside in.\n\nYou are given an array `requests` where `requests[i] = [from_(i), to_(i)]` represents an employee's request to transfer from building `from_(i)` to building `to_(i)`.\n\n**All buildings are full**, so a list of requests is achievable only if for each building, the **net change in employee transfers is zero**. This means the number of employees **leaving** is **equal** to the number of employees **moving in**. For example if `n = 3` and two employees are leaving building `0`, one is leaving building `1`, and one is leaving building `2`, there should be two employees moving to building `0`, one employee moving to building `1`, and one employee moving to building `2`.\n\nReturn _the maximum number of achievable requests_.\n\n**Example 1:**\n\n![](./assets/maximum-number-of-achievable-transfer-requests-1.jpg)\n```\nInput: n = 5, requests = [[0,1],[1,0],[0,1],[1,2],[2,0],[3,4]]\nOutput: 5\nExplantion: Let's see the requests:\nFrom building 0 we have employees x and y and both want to move to building 1.\nFrom building 1 we have employees a and b and they want to move to buildings 2 and 0 respectively.\nFrom building 2 we have employee z and they want to move to building 0.\nFrom building 3 we have employee c and they want to move to building 4.\nFrom building 4 we don't have any requests.\nWe can achieve the requests of users x and b by swapping their places.\nWe can achieve the requests of users y, a and z by swapping the places in the 3 buildings.\n```\n\n**Example 2:**\n\n![](./assets/maximum-number-of-achievable-transfer-requests-2.jpg)\n```\nInput: n = 3, requests = [[0,0],[1,2],[2,1]]\nOutput: 3\nExplantion: Let's see the requests:\nFrom building 0 we have employee x and they want to stay in the same building 0.\nFrom building 1 we have employee y and they want to move to building 2.\nFrom building 2 we have employee z and they want to move to building 1.\nWe can achieve all the requests.\n```\n\n**Example 3:**\n\n```\nInput: n = 4, requests = [[0,3],[3,1],[1,2],[2,0]]\nOutput: 4\n```\n\n**Constraints:**\n\n*   `1 <= n <= 20`\n*   `1 <= requests.length <= 16`\n*   `requests[i].length == 2`\n*   `0 <= from_(i), to_(i) < n`",
+  "constraints": [
+    "1 <= n <= 20",
+    "1 <= requests.length <= 16",
+    "requests[i].length == 2",
+    "0 <= fromi, toi < n"
+  ],
+  "examples": [
+    {
+      "input": "n = 5, requests = [[0,1],[1,0],[0,1],[1,2],[2,0],[3,4]]",
+      "output": "5\nExplantion: Let's see the requests:\nFrom building 0 we have employees x and y and both want to move to building 1.\nFrom building 1 we have employees a and b and they want to move to buildings 2 and 0 respectively.\nFrom building 2 we have employee z and they want to move to building 0.\nFrom building 3 we have employee c and they want to move to building 4.\nFrom building 4 we don't have any requests.\nWe can achieve the requests of users x and b by swapping their places.\nWe can achieve the requests of users y, a and z by swapping the places in the 3 buildings.",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, requests = [[0,0],[1,2],[2,1]]",
+      "output": "3\nExplantion: Let's see the requests:\nFrom building 0 we have employee x and they want to stay in the same building 0.\nFrom building 1 we have employee y and they want to move to building 2.\nFrom building 2 we have employee z and they want to move to building 1.\nWe can achieve all the requests.",
+      "explanation": null
+    },
+    {
+      "input": "n = 4, requests = [[0,3],[3,1],[1,2],[2,0]]",
+      "output": "4",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumRequests(int n, vector<vector<int>>& requests) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumRequests(int n, int[][] requests) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumRequests(self, n: int, requests: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumRequests(self, n, requests):\n        \"\"\"\n        :type n: int\n        :type requests: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} requests\n * @return {number}\n */\nvar maximumRequests = function(n, requests) {\n    \n};",
+    "typescript": "function maximumRequests(n: number, requests: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumRequests(int n, int[][] requests) {\n        \n    }\n}",
+    "c": "int maximumRequests(int n, int** requests, int requestsSize, int* requestsColSize) {\n    \n}",
+    "golang": "func maximumRequests(n int, requests [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumRequests(n: Int, requests: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumRequests(_ n: Int, _ requests: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_requests(n: i32, requests: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} requests\n# @return {Integer}\ndef maximum_requests(n, requests)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $requests\n     * @return Integer\n     */\n    function maximumRequests($n, $requests) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumRequests(int n, List<List<int>> requests) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumRequests(n: Int, requests: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_requests(n :: integer, requests :: [[integer]]) :: integer\n  def maximum_requests(n, requests) do\n    \n  end\nend",
+    "erlang": "-spec maximum_requests(N :: integer(), Requests :: [[integer()]]) -> integer().\nmaximum_requests(N, Requests) ->\n  .",
+    "racket": "(define/contract (maximum-requests n requests)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "5\n[[0,1],[1,0],[0,1],[1,2],[2,0],[3,4]]",
+      "expectedOutput": "5\nExplantion: Let's see the requests:\nFrom building 0 we have employees x and y and both want to move to building 1.\nFrom building 1 we have employees a and b and they want to move to buildings 2 and 0 respectively.\nFrom building 2 we have employee z and they want to move to building 0.\nFrom building 3 we have employee c and they want to move to building 4.\nFrom building 4 we don't have any requests.\nWe can achieve the requests of users x and b by swapping their places.\nWe can achieve the requests of users y, a and z by swapping the places in the 3 buildings."
+    },
+    {
+      "input": "3\n[[0,0],[1,2],[2,1]]",
+      "expectedOutput": "3\nExplantion: Let's see the requests:\nFrom building 0 we have employee x and they want to stay in the same building 0.\nFrom building 1 we have employee y and they want to move to building 2.\nFrom building 2 we have employee z and they want to move to building 1.\nWe can achieve all the requests."
+    },
+    {
+      "input": "4\n[[0,3],[3,1],[1,2],[2,0]]",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "5\n[[0,1],[1,0],[0,1],[1,2],[2,0],[3,4]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "3\n[[0,0],[1,2],[2,1]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4\n[[0,3],[3,1],[1,2],[2,0]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "6\n[[0,1],[1,0],[0,1],[1,2],[2,0],[3,4]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "7\n[[0,1],[1,0],[0,1],[1,2],[2,0],[3,4]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "8\n[[0,1],[1,0],[0,1],[1,2],[2,0],[3,4]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "9\n[[0,1],[1,0],[0,1],[1,2],[2,0],[3,4]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "4\n[[0,0],[1,2],[2,1]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "5\n[[0,0],[1,2],[2,1]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "6\n[[0,0],[1,2],[2,1]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "7\n[[0,0],[1,2],[2,1]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "8\n[[0,0],[1,2],[2,1]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "5\n[[0,3],[3,1],[1,2],[2,0]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "6\n[[0,3],[3,1],[1,2],[2,0]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "7\n[[0,3],[3,1],[1,2],[2,0]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "8\n[[0,3],[3,1],[1,2],[2,0]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "9\n[[0,3],[3,1],[1,2],[2,0]]",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Think brute force",
+    "When is a subset of requests okay?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-achievable-transfer-requests/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.989Z",
+    "sourceUpdatedAt": null
+  }
+}

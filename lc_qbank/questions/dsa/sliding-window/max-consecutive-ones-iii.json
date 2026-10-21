@@ -1,0 +1,162 @@
+{
+  "id": "1004",
+  "slug": "max-consecutive-ones-iii",
+  "title": "Max Consecutive Ones III",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "statement": "Given a binary array `nums` and an integer `k`, return _the maximum number of consecutive_ `1`_'s in the array if you can flip at most_ `k` `0`'s.\n\n**Example 1:**\n\n```\nInput: nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2\nOutput: 6\nExplanation: [1,1,1,0,0,1,1,1,1,1,1]\nBolded numbers were flipped from 0 to 1. The longest subarray is underlined.\n```\n\n**Example 2:**\n\n```\nInput: nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3\nOutput: 10\nExplanation: [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]\nBolded numbers were flipped from 0 to 1. The longest subarray is underlined.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `nums[i]` is either 0 or 1.\n*   `0 <= k <= nums.length`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "nums[i] is either 0 or 1.",
+    "0 <= k <= nums.length"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2",
+      "output": "6",
+      "explanation": "[1,1,1,0,0,1,1,1,1,1,1]\nBolded numbers were flipped from 0 to 1. The longest subarray is underlined."
+    },
+    {
+      "input": "nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3",
+      "output": "10",
+      "explanation": "[0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]\nBolded numbers were flipped from 0 to 1. The longest subarray is underlined."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestOnes(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestOnes(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestOnes(self, nums: list[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestOnes(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar longestOnes = function(nums, k) {\n    \n};",
+    "typescript": "function longestOnes(nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestOnes(int[] nums, int k) {\n        \n    }\n}",
+    "c": "int longestOnes(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func longestOnes(nums []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestOnes(nums: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestOnes(_ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_ones(nums: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef longest_ones(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function longestOnes($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestOnes(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestOnes(nums: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_ones(nums :: [integer], k :: integer) :: integer\n  def longest_ones(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec longest_ones(Nums :: [integer()], K :: integer()) -> integer().\nlongest_ones(Nums, K) ->\n  .",
+    "racket": "(define/contract (longest-ones nums k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,1,1,0,0,0,1,1,1,1,0]\n2",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1]\n3",
+      "expectedOutput": "10"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,1,1,0,0,0,1,1,1,1,0]\n2",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1]\n3",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,1,1,0,0]\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,1,1,1,1,0]\n2",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,0]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,1,1,1,0,0,0,1,1,1]\n2",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[0,0,0,0,1,1,1,1,1,1,1]\n2",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,1,1,1,1,1,1,0,0,0,0]\n2",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,1,1,1,1]\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,2,2,0,0,0,2,2,2,2,0]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,2,1,1,1,2,2,2,2,1]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0,-1,-1,-1,0,0,0,0,-1]\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[-1,-1,-1,0,0,0,-1,-1,-1,-1,0]\n2",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[0,0,0,0]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,1]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]\n2",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "One thing's for sure, we will only flip a zero if it extends an existing window of 1s. Otherwise, there's no point in doing it, right? Think Sliding Window!",
+    "Since we know this problem can be solved using the sliding window construct, we might as well focus in that direction for hints. Basically, in a given window, we can never have > K zeros, right?",
+    "We don't have a fixed size window in this case. The window size can grow and shrink depending upon the number of zeros we have (we don't actually have to flip the zeros here!).",
+    "The way to shrink or expand a window would be based on the number of zeros that can still be flipped and so on."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/max-consecutive-ones-iii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.134Z",
+    "sourceUpdatedAt": null
+  }
+}

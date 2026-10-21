@@ -1,0 +1,148 @@
+{
+  "id": "2222",
+  "slug": "number-of-ways-to-select-buildings",
+  "title": "Number of Ways to Select Buildings",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a **0-indexed** binary string `s` which represents the types of buildings along a street where:\n\n*   `s[i] = '0'` denotes that the `i^(th)` building is an office and\n*   `s[i] = '1'` denotes that the `i^(th)` building is a restaurant.\n\nAs a city official, you would like to **select** 3 buildings for random inspection. However, to ensure variety, **no two consecutive** buildings out of the **selected** buildings can be of the same type.\n\n*   For example, given `s = \"0**0**1**1**0**1**\"`, we cannot select the `1^(st)`, `3^(rd)`, and `5^(th)` buildings as that would form `\"0**11**\"` which is **not** allowed due to having two consecutive buildings of the same type.\n\nReturn _the **number of valid ways** to select 3 buildings._\n\n**Example 1:**\n\n```\nInput: s = \"001101\"\nOutput: 6\nExplanation: \nThe following sets of indices selected are valid:\n- [0,2,4] from \"001101\" forms \"010\"\n- [0,3,4] from \"001101\" forms \"010\"\n- [1,2,4] from \"001101\" forms \"010\"\n- [1,3,4] from \"001101\" forms \"010\"\n- [2,4,5] from \"001101\" forms \"101\"\n- [3,4,5] from \"001101\" forms \"101\"\nNo other selection is valid. Thus, there are 6 total ways.\n```\n\n**Example 2:**\n\n```\nInput: s = \"11100\"\nOutput: 0\nExplanation: It can be shown that there are no valid selections.\n```\n\n**Constraints:**\n\n*   `3 <= s.length <= 10^(5)`\n*   `s[i]` is either `'0'` or `'1'`.",
+  "constraints": [
+    "3 <= s.length <= 105",
+    "s[i] is either '0' or '1'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"001101\"",
+      "output": "6",
+      "explanation": "The following sets of indices selected are valid:\n- [0,2,4] from \"001101\" forms \"010\"\n- [0,3,4] from \"001101\" forms \"010\"\n- [1,2,4] from \"001101\" forms \"010\"\n- [1,3,4] from \"001101\" forms \"010\"\n- [2,4,5] from \"001101\" forms \"101\"\n- [3,4,5] from \"001101\" forms \"101\"\nNo other selection is valid. Thus, there are 6 total ways."
+    },
+    {
+      "input": "s = \"11100\"",
+      "output": "0",
+      "explanation": "It can be shown that there are no valid selections."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long numberOfWays(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long numberOfWays(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfWays(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfWays(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar numberOfWays = function(s) {\n    \n};",
+    "typescript": "function numberOfWays(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long NumberOfWays(string s) {\n        \n    }\n}",
+    "c": "long long numberOfWays(char* s) {\n    \n}",
+    "golang": "func numberOfWays(s string) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfWays(s: String): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfWays(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_ways(s: String) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef number_of_ways(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function numberOfWays($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfWays(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfWays(s: String): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_ways(s :: String.t) :: integer\n  def number_of_ways(s) do\n    \n  end\nend",
+    "erlang": "-spec number_of_ways(S :: unicode:unicode_binary()) -> integer().\nnumber_of_ways(S) ->\n  .",
+    "racket": "(define/contract (number-of-ways s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"001101\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"11100\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"001101\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"11100\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"001\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"101\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"00\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"101100\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"001101001101\"",
+      "expectedOutput": "66"
+    },
+    {
+      "input": "\"000000\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"001101101100\"",
+      "expectedOutput": "66"
+    },
+    {
+      "input": "\"11\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"100\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"1\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"00111\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"1110011100\"",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "\"11111\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"1110000111\"",
+      "expectedOutput": "36"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "There are only 2 valid patterns: ‘101’ and ‘010’. Think about how we can construct these 2 patterns from smaller patterns.",
+    "Count the number of subsequences of the form ‘01’ or ‘10’ first. Let n01[i] be the number of ‘01’ subsequences that exist in the prefix of s up to the ith building. How can you compute n01[i]?",
+    "Let n0[i] and n1[i] be the number of ‘0’s and ‘1’s that exists in the prefix of s up to i respectively. Then n01[i] = n01[i – 1] if s[i] == ‘0’, otherwise n01[i] = n01[i – 1] + n0[i – 1].",
+    "The same logic applies to building the n10 array and subsequently the n101 and n010 arrays for the number of ‘101’ and ‘010‘ subsequences."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-ways-to-select-buildings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.290Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "id": "3755",
+  "slug": "find-maximum-balanced-xor-subarray-length",
+  "title": "Find Maximum Balanced XOR Subarray Length",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Prefix Sum"
+  ],
+  "statement": "Given an integer array `nums`, return the **length** of the **longest subarray** that has a bitwise XOR of zero and contains an **equal** number of **even** and **odd** numbers. If no such subarray exists, return 0.\n\n**Example 1:**\n\n**Input:** nums = \\[3,1,3,2,0\\]\n\n**Output:** 4\n\n**Explanation:**\n\nThe subarray `[1, 3, 2, 0]` has bitwise XOR `1 XOR 3 XOR 2 XOR 0 = 0` and contains 2 even and 2 odd numbers.\n\n**Example 2:**\n\n**Input:** nums = \\[3,2,8,5,4,14,9,15\\]\n\n**Output:** 8\n\n**Explanation:**\n\nThe whole array has bitwise XOR `0` and contains 4 even and 4 odd numbers.\n\n**Example 3:**\n\n**Input:** nums = \\[0\\]\n\n**Output:** 0\n\n**Explanation:**\n\nNo non-empty subarray satisfies both conditions.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `0 <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "0 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,1,3,2,0]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "nums = [3,2,8,5,4,14,9,15]",
+      "output": "8",
+      "explanation": null
+    },
+    {
+      "input": "nums = [0]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxBalancedSubarray(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxBalancedSubarray(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxBalancedSubarray(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxBalancedSubarray(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxBalancedSubarray = function(nums) {\n    \n};",
+    "typescript": "function maxBalancedSubarray(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxBalancedSubarray(int[] nums) {\n        \n    }\n}",
+    "c": "int maxBalancedSubarray(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxBalancedSubarray(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxBalancedSubarray(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxBalancedSubarray(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_balanced_subarray(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_balanced_subarray(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxBalancedSubarray($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxBalancedSubarray(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxBalancedSubarray(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_balanced_subarray(nums :: [integer]) :: integer\n  def max_balanced_subarray(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_balanced_subarray(Nums :: [integer()]) -> integer().\nmax_balanced_subarray(Nums) ->\n  .",
+    "racket": "(define/contract (max-balanced-subarray nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,1,3,2,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,2,8,5,4,14,9,15]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,1,3,2,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,2,8,5,4,14,9,15]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,2,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,2,3,1,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,1,2,3,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,3,2,1,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,3,3,3,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,1,3,2,0,3,1,3,2,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[6,2,6,4,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,2,4,3,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,0,2,1,-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-3,-1,-3,-2,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "In one pass maintain prefix <code>pxor</code> and prefix <code>diff</code> = (#evens − #odds) and record in a hash‑map the earliest index where each state (<code>pxor,diff</code>) occurs.",
+    "At each index, if the current state (<code>pxor,diff</code>) is already in the map, update the max length as the current index minus the recorded index."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-maximum-balanced-xor-subarray-length/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.833Z",
+    "sourceUpdatedAt": null
+  }
+}

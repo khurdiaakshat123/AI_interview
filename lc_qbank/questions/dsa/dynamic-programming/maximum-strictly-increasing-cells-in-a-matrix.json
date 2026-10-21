@@ -1,0 +1,108 @@
+{
+  "id": "2713",
+  "slug": "maximum-strictly-increasing-cells-in-a-matrix",
+  "title": "Maximum Strictly Increasing Cells in a Matrix",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Dynamic Programming",
+    "Memoization",
+    "Sorting",
+    "Matrix",
+    "Ordered Set"
+  ],
+  "statement": "Given a **1-indexed** `m x n` integer matrix `mat`, you can select any cell in the matrix as your **starting cell**.\n\nFrom the starting cell, you can move to any other cell **in the** **same row or column**, but only if the value of the destination cell is **strictly greater** than the value of the current cell. You can repeat this process as many times as possible, moving from cell to cell until you can no longer make any moves.\n\nYour task is to find the **maximum number of cells** that you can visit in the matrix by starting from some cell.\n\nReturn _an integer denoting the maximum number of cells that can be visited._\n\n**Example 1:**\n\n**![](./assets/maximum-strictly-increasing-cells-in-a-matrix-1.png)**\n\n```\nInput: mat = [[3,1],[3,4]]\nOutput: 2\nExplanation: The image shows how we can visit 2 cells starting from row 1, column 2. It can be shown that we cannot visit more than 2 cells no matter where we start from, so the answer is 2.\n```\n\n**Example 2:**\n\n**![](./assets/maximum-strictly-increasing-cells-in-a-matrix-2.png)**\n\n```\nInput: mat = [[1,1],[1,1]]\nOutput: 1\nExplanation: Since the cells must be strictly increasing, we can only visit one cell in this example.\n```\n\n**Example 3:**\n\n**![](./assets/maximum-strictly-increasing-cells-in-a-matrix-3.png)**\n\n```\nInput: mat = [[3,1,6],[-9,5,7]]\nOutput: 4\nExplanation: The image above shows how we can visit 4 cells starting from row 2, column 1. It can be shown that we cannot visit more than 4 cells no matter where we start from, so the answer is 4.\n```\n\n**Constraints:**\n\n*   `m == mat.length` \n*   `n == mat[i].length` \n*   `1 <= m, n <= 10^(5)`\n*   `1 <= m * n <= 10^(5)`\n*   `-10^(5) <= mat[i][j] <= 10^(5)`",
+  "constraints": [
+    "m == mat.length ",
+    "n == mat[i].length ",
+    "1 <= m, n <= 105",
+    "1 <= m * n <= 105",
+    "-105 <= mat[i][j] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "mat = [[3,1],[3,4]]",
+      "output": "2",
+      "explanation": "The image shows how we can visit 2 cells starting from row 1, column 2. It can be shown that we cannot visit more than 2 cells no matter where we start from, so the answer is 2."
+    },
+    {
+      "input": "mat = [[1,1],[1,1]]",
+      "output": "1",
+      "explanation": "Since the cells must be strictly increasing, we can only visit one cell in this example."
+    },
+    {
+      "input": "mat = [[3,1,6],[-9,5,7]]",
+      "output": "4",
+      "explanation": "The image above shows how we can visit 4 cells starting from row 2, column 1. It can be shown that we cannot visit more than 4 cells no matter where we start from, so the answer is 4."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxIncreasingCells(vector<vector<int>>& mat) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxIncreasingCells(int[][] mat) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxIncreasingCells(self, mat: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxIncreasingCells(self, mat):\n        \"\"\"\n        :type mat: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} mat\n * @return {number}\n */\nvar maxIncreasingCells = function(mat) {\n    \n};",
+    "typescript": "function maxIncreasingCells(mat: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxIncreasingCells(int[][] mat) {\n        \n    }\n}",
+    "c": "int maxIncreasingCells(int** mat, int matSize, int* matColSize) {\n    \n}",
+    "golang": "func maxIncreasingCells(mat [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxIncreasingCells(mat: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxIncreasingCells(_ mat: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_increasing_cells(mat: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} mat\n# @return {Integer}\ndef max_increasing_cells(mat)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $mat\n     * @return Integer\n     */\n    function maxIncreasingCells($mat) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxIncreasingCells(List<List<int>> mat) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxIncreasingCells(mat: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_increasing_cells(mat :: [[integer]]) :: integer\n  def max_increasing_cells(mat) do\n    \n  end\nend",
+    "erlang": "-spec max_increasing_cells(Mat :: [[integer()]]) -> integer().\nmax_increasing_cells(Mat) ->\n  .",
+    "racket": "(define/contract (max-increasing-cells mat)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[3,1],[3,4]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[1,1],[1,1]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[3,1,6],[-9,5,7]]",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[3,1],[3,4]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[1,1],[1,1]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[3,1,6],[-9,5,7]]",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We can try to build the answer in a bottom-up fashion, starting from the smallest values and increasing to the larger values.",
+    "Going through the values in sorted order, we can store the maximum path we have seen so far for a row/column.",
+    "When we are at a cell, we check its row and column to find out the best previous smaller value that we’ve got so far, and we use it to increment the current value of the row and column."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.638Z",
+    "sourceUpdatedAt": null
+  }
+}

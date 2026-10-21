@@ -1,0 +1,168 @@
+{
+  "id": "2467",
+  "slug": "most-profitable-path-in-a-tree",
+  "title": "Most Profitable Path in a Tree",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "statement": "There is an undirected tree with `n` nodes labeled from `0` to `n - 1`, rooted at node `0`. You are given a 2D integer array `edges` of length `n - 1` where `edges[i] = [a_(i), b_(i)]` indicates that there is an edge between nodes `a_(i)` and `b_(i)` in the tree.\n\nAt every node `i`, there is a gate. You are also given an array of even integers `amount`, where `amount[i]` represents:\n\n*   the price needed to open the gate at node `i`, if `amount[i]` is negative, or,\n*   the cash reward obtained on opening the gate at node `i`, otherwise.\n\nThe game goes on as follows:\n\n*   Initially, Alice is at node `0` and Bob is at node `bob`.\n*   At every second, Alice and Bob **each** move to an adjacent node. Alice moves towards some **leaf node**, while Bob moves towards node `0`.\n*   For **every** node along their path, Alice and Bob either spend money to open the gate at that node, or accept the reward. Note that:\n    *   If the gate is **already open**, no price will be required, nor will there be any cash reward.\n    *   If Alice and Bob reach the node **simultaneously**, they share the price/reward for opening the gate there. In other words, if the price to open the gate is `c`, then both Alice and Bob pay `c / 2` each. Similarly, if the reward at the gate is `c`, both of them receive `c / 2` each.\n*   If Alice reaches a leaf node, she stops moving. Similarly, if Bob reaches node `0`, he stops moving. Note that these events are **independent** of each other.\n\nReturn _the **maximum** net income Alice can have if she travels towards the optimal leaf node._\n\n**Example 1:**\n\n![](./assets/most-profitable-path-in-a-tree-1.png)\n```\nInput: edges = [[0,1],[1,2],[1,3],[3,4]], bob = 3, amount = [-2,4,2,-4,6]\nOutput: 6\nExplanation: \nThe above diagram represents the given tree. The game goes as follows:\n- Alice is initially on node 0, Bob on node 3. They open the gates of their respective nodes.\n  Alice's net income is now -2.\n- Both Alice and Bob move to node 1. \n  Since they reach here simultaneously, they open the gate together and share the reward.\n  Alice's net income becomes -2 + (4 / 2) = 0.\n- Alice moves on to node 3. Since Bob already opened its gate, Alice's income remains unchanged.\n  Bob moves on to node 0, and stops moving.\n- Alice moves on to node 4 and opens the gate there. Her net income becomes 0 + 6 = 6.\nNow, neither Alice nor Bob can make any further moves, and the game ends.\nIt is not possible for Alice to get a higher net income.\n```\n\n**Example 2:**\n\n![](./assets/most-profitable-path-in-a-tree-2.png)\n```\nInput: edges = [[0,1]], bob = 1, amount = [-7280,2350]\nOutput: -7280\nExplanation: \nAlice follows the path 0->1 whereas Bob follows the path 1->0.\nThus, Alice opens the gate at node 0 only. Hence, her net income is -7280.\n```\n\n**Constraints:**\n\n*   `2 <= n <= 10^(5)`\n*   `edges.length == n - 1`\n*   `edges[i].length == 2`\n*   `0 <= a_(i), b_(i) < n`\n*   `a_(i) != b_(i)`\n*   `edges` represents a valid tree.\n*   `1 <= bob < n`\n*   `amount.length == n`\n*   `amount[i]` is an **even** integer in the range `[-10^(4), 10^(4)]`.",
+  "constraints": [
+    "2 <= n <= 105",
+    "edges.length == n - 1",
+    "edges[i].length == 2",
+    "0 <= ai, bi < n",
+    "ai != bi",
+    "edges represents a valid tree.",
+    "1 <= bob < n",
+    "amount.length == n",
+    "amount[i] is an even integer in the range [-104, 104]."
+  ],
+  "examples": [
+    {
+      "input": "edges = [[0,1],[1,2],[1,3],[3,4]], bob = 3, amount = [-2,4,2,-4,6]",
+      "output": "6",
+      "explanation": "The above diagram represents the given tree. The game goes as follows:\n- Alice is initially on node 0, Bob on node 3. They open the gates of their respective nodes.\n  Alice's net income is now -2.\n- Both Alice and Bob move to node 1. \n  Since they reach here simultaneously, they open the gate together and share the reward.\n  Alice's net income becomes -2 + (4 / 2) = 0.\n- Alice moves on to node 3. Since Bob already opened its gate, Alice's income remains unchanged.\n  Bob moves on to node 0, and stops moving.\n- Alice moves on to node 4 and opens the gate there. Her net income becomes 0 + 6 = 6.\nNow, neither Alice nor Bob can make any further moves, and the game ends.\nIt is not possible for Alice to get a higher net income."
+    },
+    {
+      "input": "edges = [[0,1]], bob = 1, amount = [-7280,2350]",
+      "output": "-7280",
+      "explanation": "Alice follows the path 0->1 whereas Bob follows the path 1->0.\nThus, Alice opens the gate at node 0 only. Hence, her net income is -7280."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int mostProfitablePath(vector<vector<int>>& edges, int bob, vector<int>& amount) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int mostProfitablePath(int[][] edges, int bob, int[] amount) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def mostProfitablePath(self, edges: list[list[int]], bob: int, amount: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def mostProfitablePath(self, edges, bob, amount):\n        \"\"\"\n        :type edges: List[List[int]]\n        :type bob: int\n        :type amount: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} edges\n * @param {number} bob\n * @param {number[]} amount\n * @return {number}\n */\nvar mostProfitablePath = function(edges, bob, amount) {\n    \n};",
+    "typescript": "function mostProfitablePath(edges: number[][], bob: number, amount: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MostProfitablePath(int[][] edges, int bob, int[] amount) {\n        \n    }\n}",
+    "c": "int mostProfitablePath(int** edges, int edgesSize, int* edgesColSize, int bob, int* amount, int amountSize) {\n    \n}",
+    "golang": "func mostProfitablePath(edges [][]int, bob int, amount []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun mostProfitablePath(edges: Array<IntArray>, bob: Int, amount: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func mostProfitablePath(_ edges: [[Int]], _ bob: Int, _ amount: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn most_profitable_path(edges: Vec<Vec<i32>>, bob: i32, amount: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} edges\n# @param {Integer} bob\n# @param {Integer[]} amount\n# @return {Integer}\ndef most_profitable_path(edges, bob, amount)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $edges\n     * @param Integer $bob\n     * @param Integer[] $amount\n     * @return Integer\n     */\n    function mostProfitablePath($edges, $bob, $amount) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int mostProfitablePath(List<List<int>> edges, int bob, List<int> amount) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def mostProfitablePath(edges: Array[Array[Int]], bob: Int, amount: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec most_profitable_path(edges :: [[integer]], bob :: integer, amount :: [integer]) :: integer\n  def most_profitable_path(edges, bob, amount) do\n    \n  end\nend",
+    "erlang": "-spec most_profitable_path(Edges :: [[integer()]], Bob :: integer(), Amount :: [integer()]) -> integer().\nmost_profitable_path(Edges, Bob, Amount) ->\n  .",
+    "racket": "(define/contract (most-profitable-path edges bob amount)\n  (-> (listof (listof exact-integer?)) exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[-2,4,2,-4,6]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[[0,1]]\n1\n[-7280,2350]",
+      "expectedOutput": "-7280"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[-2,4,2,-4,6]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[[0,1]]\n1\n[-7280,2350]",
+      "expectedOutput": "-7280"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n0\n[-2,4,2,-4,6]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n1\n[-2,4,2,-4,6]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n2\n[-2,4,2,-4,6]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n4\n[-2,4,2,-4,6]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n-1\n[-2,4,2,-4,6]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n-2\n[-2,4,2,-4,6]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[6,-4,2,4,-2]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[-4,-2,2,4,6]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[6,4,2,-2,-4]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[-2,-2,-2,-2,-2]",
+      "expectedOutput": "-5"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[-2,4,2,-4,6,-2,4,2,-4,6]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[-4,8,4,-8,12]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[-1,5,3,-3,7]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[-3,3,1,-5,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[2,-4,-2,4,-6]",
+      "expectedOutput": "-2"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[1,2,3,4,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[5,4,3,2,1]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[[0,1],[1,2],[1,3],[3,4]]\n3\n[-5,-4,-3,-2,-1]",
+      "expectedOutput": "-8"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Bob travels along a fixed path (from node “bob” to node 0).",
+    "Calculate Alice’s distance to each node via DFS.",
+    "We can calculate Alice’s score along a path ending at some node easily using Hints 1 and 2."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/most-profitable-path-in-a-tree/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.487Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "id": "2223",
+  "slug": "sum-of-scores-of-built-strings",
+  "title": "Sum of Scores of Built Strings",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Binary Search",
+    "Rolling Hash",
+    "Suffix Array",
+    "String Matching",
+    "Hash Function",
+    "Z Algorithm",
+    "Knuth–Morris–Pratt Algorithm"
+  ],
+  "statement": "You are **building** a string `s` of length `n` **one** character at a time, **prepending** each new character to the **front** of the string. The strings are labeled from `1` to `n`, where the string with length `i` is labeled `s_(i)`.\n\n*   For example, for `s = \"abaca\"`, `s_(1) == \"a\"`, `s_(2) == \"ca\"`, `s_(3) == \"aca\"`, etc.\n\nThe **score** of `s_(i)` is the length of the **longest common prefix** between `s_(i)` and `s_(n)` (Note that `s == s_(n)`).\n\nGiven the final string `s`, return _the **sum** of the **score** of every_ `s_(i)`.\n\n**Example 1:**\n\n```\nInput: s = \"babab\"\nOutput: 9\nExplanation:\nFor s1 == \"b\", the longest common prefix is \"b\" which has a score of 1.\nFor s2 == \"ab\", there is no common prefix so the score is 0.\nFor s3 == \"bab\", the longest common prefix is \"bab\" which has a score of 3.\nFor s4 == \"abab\", there is no common prefix so the score is 0.\nFor s5 == \"babab\", the longest common prefix is \"babab\" which has a score of 5.\nThe sum of the scores is 1 + 0 + 3 + 0 + 5 = 9, so we return 9.\n```\n\n**Example 2:**\n\n```\nInput: s = \"azbazbzaz\"\nOutput: 14\nExplanation: \nFor s2 == \"az\", the longest common prefix is \"az\" which has a score of 2.\nFor s6 == \"azbzaz\", the longest common prefix is \"azb\" which has a score of 3.\nFor s9 == \"azbazbzaz\", the longest common prefix is \"azbazbzaz\" which has a score of 9.\nFor all other si, the score is 0.\nThe sum of the scores is 2 + 3 + 9 = 14, so we return 14.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"babab\"",
+      "output": "9",
+      "explanation": "For s1 == \"b\", the longest common prefix is \"b\" which has a score of 1.\nFor s2 == \"ab\", there is no common prefix so the score is 0.\nFor s3 == \"bab\", the longest common prefix is \"bab\" which has a score of 3.\nFor s4 == \"abab\", there is no common prefix so the score is 0.\nFor s5 == \"babab\", the longest common prefix is \"babab\" which has a score of 5.\nThe sum of the scores is 1 + 0 + 3 + 0 + 5 = 9, so we return 9."
+    },
+    {
+      "input": "s = \"azbazbzaz\"",
+      "output": "14",
+      "explanation": "For s2 == \"az\", the longest common prefix is \"az\" which has a score of 2.\nFor s6 == \"azbzaz\", the longest common prefix is \"azb\" which has a score of 3.\nFor s9 == \"azbazbzaz\", the longest common prefix is \"azbazbzaz\" which has a score of 9.\nFor all other si, the score is 0.\nThe sum of the scores is 2 + 3 + 9 = 14, so we return 14."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long sumScores(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long sumScores(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sumScores(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def sumScores(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar sumScores = function(s) {\n    \n};",
+    "typescript": "function sumScores(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long SumScores(string s) {\n        \n    }\n}",
+    "c": "long long sumScores(char* s) {\n    \n}",
+    "golang": "func sumScores(s string) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun sumScores(s: String): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sumScores(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sum_scores(s: String) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef sum_scores(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function sumScores($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int sumScores(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sumScores(s: String): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sum_scores(s :: String.t) :: integer\n  def sum_scores(s) do\n    \n  end\nend",
+    "erlang": "-spec sum_scores(S :: unicode:unicode_binary()) -> integer().\nsum_scores(S) ->\n  .",
+    "racket": "(define/contract (sum-scores s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"babab\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"azbazbzaz\"",
+      "expectedOutput": "14"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"babab\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"azbazbzaz\"",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"bab\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"bababbabab\"",
+      "expectedOutput": "23"
+    },
+    {
+      "input": "\"bbbbb\"",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "\"BABAB\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Each s_i is a suffix of the string s, so consider algorithms that can determine the longest prefix that is also a suffix.",
+    "Could you use the Z array from the Z algorithm to find the score of each s_i?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sum-of-scores-of-built-strings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.689Z",
+    "sourceUpdatedAt": null
+  }
+}

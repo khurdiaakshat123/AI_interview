@@ -1,0 +1,117 @@
+{
+  "id": "3695",
+  "slug": "maximize-alternating-sum-using-swaps",
+  "title": "Maximize Alternating Sum Using Swaps",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Union-Find",
+    "Sorting"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nYou want to maximize the **alternating sum** of `nums`, which is defined as the value obtained by **adding** elements at even indices and **subtracting** elements at odd indices. That is, `nums[0] - nums[1] + nums[2] - nums[3]...`\n\nYou are also given a 2D integer array `swaps` where `swaps[i] = [p_(i), q_(i)]`. For each pair `[p_(i), q_(i)]` in `swaps`, you are allowed to swap the elements at indices `p_(i)` and `q_(i)`. These swaps can be performed any number of times and in any order.\n\nReturn the maximum possible **alternating sum** of `nums`.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,3\\], swaps = \\[\\[0,2\\],\\[1,2\\]\\]\n\n**Output:** 4\n\n**Explanation:**\n\nThe maximum alternating sum is achieved when `nums` is `[2, 1, 3]` or `[3, 1, 2]`. As an example, you can obtain `nums = [2, 1, 3]` as follows.\n\n*   Swap `nums[0]` and `nums[2]`. `nums` is now `[3, 2, 1]`.\n*   Swap `nums[1]` and `nums[2]`. `nums` is now `[3, 1, 2]`.\n*   Swap `nums[0]` and `nums[2]`. `nums` is now `[2, 1, 3]`.\n\n**Example 2:**\n\n**Input:** nums = \\[1,2,3\\], swaps = \\[\\[1,2\\]\\]\n\n**Output:** 2\n\n**Explanation:**\n\nThe maximum alternating sum is achieved by not performing any swaps.\n\n**Example 3:**\n\n**Input:** nums = \\[1,1000000000,1,1000000000,1,1000000000\\], swaps = \\[\\]\n\n**Output:** \\-2999999997\n\n**Explanation:**\n\nSince we cannot perform any swaps, the maximum alternating sum is achieved by not performing any swaps.\n\n**Constraints:**\n\n*   `2 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`\n*   `0 <= swaps.length <= 10^(5)`\n*   `swaps[i] = [p_(i), q_(i)]`\n*   `0 <= p_(i) < q_(i) <= nums.length - 1`\n*   `[p_(i), q_(i)] != [p_(j), q_(j)]`",
+  "constraints": [
+    "2 <= nums.length <= 105",
+    "1 <= nums[i] <= 109",
+    "0 <= swaps.length <= 105",
+    "swaps[i] = [pi, qi]",
+    "0 <= pi < qi <= nums.length - 1",
+    "[pi, qi] != [pj, qj]"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3], swaps = [[0,2],[1,2]]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,2,3], swaps = [[1,2]]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,1000000000,1,1000000000,1,1000000000], swaps = []",
+      "output": "-2999999997",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxAlternatingSum(vector<int>& nums, vector<vector<int>>& swaps) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxAlternatingSum(int[] nums, int[][] swaps) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxAlternatingSum(self, nums: List[int], swaps: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxAlternatingSum(self, nums, swaps):\n        \"\"\"\n        :type nums: List[int]\n        :type swaps: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[][]} swaps\n * @return {number}\n */\nvar maxAlternatingSum = function(nums, swaps) {\n    \n};",
+    "typescript": "function maxAlternatingSum(nums: number[], swaps: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxAlternatingSum(int[] nums, int[][] swaps) {\n        \n    }\n}",
+    "c": "long long maxAlternatingSum(int* nums, int numsSize, int** swaps, int swapsSize, int* swapsColSize) {\n    \n}",
+    "golang": "func maxAlternatingSum(nums []int, swaps [][]int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxAlternatingSum(nums: IntArray, swaps: Array<IntArray>): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxAlternatingSum(_ nums: [Int], _ swaps: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_alternating_sum(nums: Vec<i32>, swaps: Vec<Vec<i32>>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[][]} swaps\n# @return {Integer}\ndef max_alternating_sum(nums, swaps)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[][] $swaps\n     * @return Integer\n     */\n    function maxAlternatingSum($nums, $swaps) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxAlternatingSum(List<int> nums, List<List<int>> swaps) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxAlternatingSum(nums: Array[Int], swaps: Array[Array[Int]]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_alternating_sum(nums :: [integer], swaps :: [[integer]]) :: integer\n  def max_alternating_sum(nums, swaps) do\n    \n  end\nend",
+    "erlang": "-spec max_alternating_sum(Nums :: [integer()], Swaps :: [[integer()]]) -> integer().\nmax_alternating_sum(Nums, Swaps) ->\n  .",
+    "racket": "(define/contract (max-alternating-sum nums swaps)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3]\n[[0,2],[1,2]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,3]\n[[1,2]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1000000000,1,1000000000,1,1000000000]\n[]",
+      "expectedOutput": "-2999999997"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3]\n[[0,2],[1,2]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,3]\n[[1,2]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1000000000,1,1000000000,1,1000000000]\n[]",
+      "expectedOutput": "-2999999997"
+    },
+    {
+      "input": "nums = [1,2,3], swaps = [[0,2],[1,2]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "nums = [1,2,3], swaps = [[1,2]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "nums = [1,1000000000,1,1000000000,1,1000000000], swaps = []",
+      "expectedOutput": "-2999999997"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Build connected components using a DSU (disjoint-set union).",
+    "Let <code>E</code> be the count of even indices inside that component. In each component, place the largest <code>E</code> values on the component's even indices.",
+    "The component's contribution to the alternating sum is <code>2 * sumTopE - sumAll</code>, where <code>sumTopE</code> is the sum of the largest <code>E</code> values and <code>sumAll</code> is the sum of all values in the component."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-alternating-sum-using-swaps/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.221Z",
+    "sourceUpdatedAt": null
+  }
+}

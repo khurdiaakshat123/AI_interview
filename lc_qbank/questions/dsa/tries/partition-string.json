@@ -1,0 +1,158 @@
+{
+  "id": "3597",
+  "slug": "partition-string",
+  "title": "Partition String ",
+  "category": "dsa",
+  "subcategory": "tries",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Trie",
+    "Simulation"
+  ],
+  "statement": "Given a string `s`, partition it into **unique segments** according to the following procedure:\n\n*   Start building a segment beginning at index 0.\n*   Continue extending the current segment character by character until the current segment has not been seen before.\n*   Once the segment is unique, add it to your list of segments, mark it as seen, and begin a new segment from the next index.\n*   Repeat until you reach the end of `s`.\n\nReturn an array of strings `segments`, where `segments[i]` is the `i^(th)` segment created.\n\n**Example 1:**\n\n**Input:** s = \"abbccccd\"\n\n**Output:** \\[\"a\",\"b\",\"bc\",\"c\",\"cc\",\"d\"\\]\n\n**Explanation:**\n\nIndex\n\nSegment After Adding\n\nSeen Segments\n\nCurrent Segment Seen Before?\n\nNew Segment\n\nUpdated Seen Segments\n\n0\n\n\"a\"\n\n\\[\\]\n\nNo\n\n\"\"\n\n\\[\"a\"\\]\n\n1\n\n\"b\"\n\n\\[\"a\"\\]\n\nNo\n\n\"\"\n\n\\[\"a\", \"b\"\\]\n\n2\n\n\"b\"\n\n\\[\"a\", \"b\"\\]\n\nYes\n\n\"b\"\n\n\\[\"a\", \"b\"\\]\n\n3\n\n\"bc\"\n\n\\[\"a\", \"b\"\\]\n\nNo\n\n\"\"\n\n\\[\"a\", \"b\", \"bc\"\\]\n\n4\n\n\"c\"\n\n\\[\"a\", \"b\", \"bc\"\\]\n\nNo\n\n\"\"\n\n\\[\"a\", \"b\", \"bc\", \"c\"\\]\n\n5\n\n\"c\"\n\n\\[\"a\", \"b\", \"bc\", \"c\"\\]\n\nYes\n\n\"c\"\n\n\\[\"a\", \"b\", \"bc\", \"c\"\\]\n\n6\n\n\"cc\"\n\n\\[\"a\", \"b\", \"bc\", \"c\"\\]\n\nNo\n\n\"\"\n\n\\[\"a\", \"b\", \"bc\", \"c\", \"cc\"\\]\n\n7\n\n\"d\"\n\n\\[\"a\", \"b\", \"bc\", \"c\", \"cc\"\\]\n\nNo\n\n\"\"\n\n\\[\"a\", \"b\", \"bc\", \"c\", \"cc\", \"d\"\\]\n\nHence, the final output is `[\"a\", \"b\", \"bc\", \"c\", \"cc\", \"d\"]`.\n\n**Example 2:**\n\n**Input:** s = \"aaaa\"\n\n**Output:** \\[\"a\",\"aa\"\\]\n\n**Explanation:**\n\nIndex\n\nSegment After Adding\n\nSeen Segments\n\nCurrent Segment Seen Before?\n\nNew Segment\n\nUpdated Seen Segments\n\n0\n\n\"a\"\n\n\\[\\]\n\nNo\n\n\"\"\n\n\\[\"a\"\\]\n\n1\n\n\"a\"\n\n\\[\"a\"\\]\n\nYes\n\n\"a\"\n\n\\[\"a\"\\]\n\n2\n\n\"aa\"\n\n\\[\"a\"\\]\n\nNo\n\n\"\"\n\n\\[\"a\", \"aa\"\\]\n\n3\n\n\"a\"\n\n\\[\"a\", \"aa\"\\]\n\nYes\n\n\"a\"\n\n\\[\"a\", \"aa\"\\]\n\nHence, the final output is `[\"a\", \"aa\"]`.\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` contains only lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s contains only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abbccccd\"",
+      "output": "[\"a\",\"b\",\"bc\",\"c\",\"cc\",\"d\"]",
+      "explanation": "Index\n\t\t\tSegment After Adding\n\t\t\tSeen Segments\n\t\t\tCurrent Segment Seen Before?\n\t\t\tNew Segment\n\t\t\tUpdated Seen Segments\n\t\t\n\t\t\n\t\t\t0\n\t\t\t\"a\"\n\t\t\t[]\n\t\t\tNo\n\t\t\t\"\"\n\t\t\t[\"a\"]\n\t\t\n\t\t\n\t\t\t1\n\t\t\t\"b\"\n\t\t\t[\"a\"]\n\t\t\tNo\n\t\t\t\"\"\n\t\t\t[\"a\", \"b\"]\n\t\t\n\t\t\n\t\t\t2\n\t\t\t\"b\"\n\t\t\t[\"a\", \"b\"]\n\t\t\tYes\n\t\t\t\"b\"\n\t\t\t[\"a\", \"b\"]\n\t\t\n\t\t\n\t\t\t3\n\t\t\t\"bc\"\n\t\t\t[\"a\", \"b\"]\n\t\t\tNo\n\t\t\t\"\"\n\t\t\t[\"a\", \"b\", \"bc\"]\n\t\t\n\t\t\n\t\t\t4\n\t\t\t\"c\"\n\t\t\t[\"a\", \"b\", \"bc\"]\n\t\t\tNo\n\t\t\t\"\"\n\t\t\t[\"a\", \"b\", \"bc\", \"c\"]\n\t\t\n\t\t\n\t\t\t5\n\t\t\t\"c\"\n\t\t\t[\"a\", \"b\", \"bc\", \"c\"]\n\t\t\tYes\n\t\t\t\"c\"\n\t\t\t[\"a\", \"b\", \"bc\", \"c\"]\n\t\t\n\t\t\n\t\t\t6\n\t\t\t\"cc\"\n\t\t\t[\"a\", \"b\", \"bc\", \"c\"]\n\t\t\tNo\n\t\t\t\"\"\n\t\t\t[\"a\", \"b\", \"bc\", \"c\", \"cc\"]\n\t\t\n\t\t\n\t\t\t7\n\t\t\t\"d\"\n\t\t\t[\"a\", \"b\", \"bc\", \"c\", \"cc\"]\n\t\t\tNo\n\t\t\t\"\"\n\t\t\t[\"a\", \"b\", \"bc\", \"c\", \"cc\", \"d\"]"
+    },
+    {
+      "input": "s = \"aaaa\"",
+      "output": "[\"a\",\"aa\"]",
+      "explanation": "Index\n\t\t\tSegment After Adding\n\t\t\tSeen Segments\n\t\t\tCurrent Segment Seen Before?\n\t\t\tNew Segment\n\t\t\tUpdated Seen Segments\n\t\t\n\t\t\n\t\t\t0\n\t\t\t\"a\"\n\t\t\t[]\n\t\t\tNo\n\t\t\t\"\"\n\t\t\t[\"a\"]\n\t\t\n\t\t\n\t\t\t1\n\t\t\t\"a\"\n\t\t\t[\"a\"]\n\t\t\tYes\n\t\t\t\"a\"\n\t\t\t[\"a\"]\n\t\t\n\t\t\n\t\t\t2\n\t\t\t\"aa\"\n\t\t\t[\"a\"]\n\t\t\tNo\n\t\t\t\"\"\n\t\t\t[\"a\", \"aa\"]\n\t\t\n\t\t\n\t\t\t3\n\t\t\t\"a\"\n\t\t\t[\"a\", \"aa\"]\n\t\t\tYes\n\t\t\t\"a\"\n\t\t\t[\"a\", \"aa\"]"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> partitionString(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> partitionString(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def partitionString(self, s: str) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def partitionString(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string[]}\n */\nvar partitionString = function(s) {\n    \n};",
+    "typescript": "function partitionString(s: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> PartitionString(string s) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** partitionString(char* s, int* returnSize) {\n    \n}",
+    "golang": "func partitionString(s string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun partitionString(s: String): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func partitionString(_ s: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn partition_string(s: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String[]}\ndef partition_string(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String[]\n     */\n    function partitionString($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> partitionString(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def partitionString(s: String): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec partition_string(s :: String.t) :: [String.t]\n  def partition_string(s) do\n    \n  end\nend",
+    "erlang": "-spec partition_string(S :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\npartition_string(S) ->\n  .",
+    "racket": "(define/contract (partition-string s)\n  (-> string? (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abbccccd\"",
+      "expectedOutput": "[\"a\",\"b\",\"bc\",\"c\",\"cc\",\"d\"]"
+    },
+    {
+      "input": "\"aaaa\"",
+      "expectedOutput": "[\"a\",\"aa\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abbccccd\"",
+      "expectedOutput": "[\"a\",\"b\",\"bc\",\"c\",\"cc\",\"d\"]"
+    },
+    {
+      "input": "\"aaaa\"",
+      "expectedOutput": "[\"a\",\"aa\"]"
+    },
+    {
+      "input": "\"abbc\"",
+      "expectedOutput": "[\"a\",\"b\",\"bc\"]"
+    },
+    {
+      "input": "\"cccd\"",
+      "expectedOutput": "[\"c\",\"cc\",\"d\"]"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "[\"a\"]"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "[\"a\",\"b\"]"
+    },
+    {
+      "input": "\"dccccbba\"",
+      "expectedOutput": "[\"d\",\"c\",\"cc\",\"cb\",\"b\",\"a\"]"
+    },
+    {
+      "input": "\"abbccccdabbccccd\"",
+      "expectedOutput": "[\"a\",\"b\",\"bc\",\"c\",\"cc\",\"d\",\"ab\",\"bcc\",\"ccd\"]"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "[\"a\",\"aa\",\"aaa\"]"
+    },
+    {
+      "input": "\"abbccccddccccbba\"",
+      "expectedOutput": "[\"a\",\"b\",\"bc\",\"c\",\"cc\",\"d\",\"dc\",\"ccc\",\"bb\"]"
+    },
+    {
+      "input": "\"ABBCCCCD\"",
+      "expectedOutput": "[\"A\",\"B\",\"BC\",\"C\",\"CC\",\"D\"]"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "[\"b\"]"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "[\"a\"]"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "[\"b\",\"a\"]"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "[\"a\",\"b\"]"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "[\"a\",\"b\",\"ba\"]"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "[\"a\",\"aa\"]"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "[\"a\",\"b\",\"c\",\"d\",\"e\"]"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "[\"e\",\"d\",\"c\",\"b\",\"a\"]"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "[\"a\",\"ab\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Simulate as described"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/partition-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.599Z",
+    "sourceUpdatedAt": null
+  }
+}

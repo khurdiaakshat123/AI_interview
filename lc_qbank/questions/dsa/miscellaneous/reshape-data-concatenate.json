@@ -1,0 +1,51 @@
+{
+  "id": "2888",
+  "slug": "reshape-data-concatenate",
+  "title": "Reshape Data: Concatenate",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "```\ndf1\n```\n\nWrite a solution to concatenate these two DataFrames **vertically** into one DataFrame.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput:\ndf1\n+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 1          | Mason   | 8   |\n| 2          | Ava     | 6   |\n| 3          | Taylor  | 15  |\n| 4          | Georgia | 17  |\n+------------+---------+-----+\ndf2\n+------------+------+-----+\n| student_id | name | age |\n+------------+------+-----+\n| 5          | Leo  | 7   |\n| 6          | Alex | 7   |\n+------------+------+-----+\nOutput:\n+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 1          | Mason   | 8   |\n| 2          | Ava     | 6   |\n| 3          | Taylor  | 15  |\n| 4          | Georgia | 17  |\n| 5          | Leo     | 7   |\n| 6          | Alex    | 7   |\n+------------+---------+-----+\nExplanation:\nThe two DataFramess are stacked vertically, and their rows are combined.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "df1\n+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 1          | Mason   | 8   |\n| 2          | Ava     | 6   |\n| 3          | Taylor  | 15  |\n| 4          | Georgia | 17  |\n+------------+---------+-----+\ndf2\n+------------+------+-----+\n| student_id | name | age |\n+------------+------+-----+\n| 5          | Leo  | 7   |\n| 6          | Alex | 7   |\n+------------+------+-----+",
+      "output": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 1          | Mason   | 8   |\n| 2          | Ava     | 6   |\n| 3          | Taylor  | 15  |\n| 4          | Georgia | 17  |\n| 5          | Leo     | 7   |\n| 6          | Alex    | 7   |\n+------------+---------+-----+",
+      "explanation": "The two DataFramess are stacked vertically, and their rows are combined."
+    }
+  ],
+  "starterCode": {
+    "pythondata": "import pandas as pd\n\ndef concatenateTables(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"df1\":[\"student_id\",\"name\",\"age\"],\"df2\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"df1\":[[1,\"Mason\",8],[2,\"Ava\",6],[3,\"Taylor\",15],[4,\"Georgia\",17]],\"df2\":[[5,\"Leo\",7],[6,\"Alex\",7]]}}",
+      "expectedOutput": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 1          | Mason   | 8   |\n| 2          | Ava     | 6   |\n| 3          | Taylor  | 15  |\n| 4          | Georgia | 17  |\n| 5          | Leo     | 7   |\n| 6          | Alex    | 7   |\n+------------+---------+-----+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"df1\":[\"student_id\",\"name\",\"age\"],\"df2\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"df1\":[[1,\"Mason\",8],[2,\"Ava\",6],[3,\"Taylor\",15],[4,\"Georgia\",17]],\"df2\":[[5,\"Leo\",7],[6,\"Alex\",7]]}}",
+      "expectedOutput": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 1          | Mason   | 8   |\n| 2          | Ava     | 6   |\n| 3          | Taylor  | 15  |\n| 4          | Georgia | 17  |\n| 5          | Leo     | 7   |\n| 6          | Alex    | 7   |\n+------------+---------+-----+"
+    },
+    {
+      "input": "df1\n+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 1          | Mason   | 8   |\n| 2          | Ava     | 6   |\n| 3          | Taylor  | 15  |\n| 4          | Georgia | 17  |\n+------------+---------+-----+\ndf2\n+------------+------+-----+\n| student_id | name | age |\n+------------+------+-----+\n| 5          | Leo  | 7   |\n| 6          | Alex | 7   |\n+------------+------+-----+",
+      "expectedOutput": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 1          | Mason   | 8   |\n| 2          | Ava     | 6   |\n| 3          | Taylor  | 15  |\n| 4          | Georgia | 17  |\n| 5          | Leo     | 7   |\n| 6          | Alex    | 7   |\n+------------+---------+-----+"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider using a built-in function in pandas library with the appropriate axis argument."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/reshape-data-concatenate/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.754Z",
+    "sourceUpdatedAt": null
+  }
+}

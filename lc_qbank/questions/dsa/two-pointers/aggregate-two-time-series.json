@@ -1,0 +1,114 @@
+{
+  "id": "4001",
+  "slug": "aggregate-two-time-series",
+  "title": "Aggregate Two Time Series",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers"
+  ],
+  "statement": "You are given two 2D integer arrays `series1` and `series2`.\n\nEach element in both series is of the form `[timestamp, value]`, where:\n\n*   `timestamp` is an integer representing the time.\n*   `value` is an integer representing the value at that timestamp.\n\nEach array is sorted in strictly increasing order of `timestamp`.\n\nFor any timestamp **not present** in a series, its value is taken from the **next available timestamp** in the same series if one exists. Otherwise, its value is considered 0.\n\nThe **aggregated series** is formed by summing the corresponding values from both series at every timestamp that appears in either series.\n\nReturn the **aggregated series** as a 2D integer array of `[timestamp, summedValue]` pairs, sorted in **strictly increasing** order of timestamp.\n\n**Example 1:**\n\n**Input:** series1 = \\[\\[1,3\\],\\[4,1\\]\\], series2 = \\[\\[2,2\\],\\[5,2\\]\\]\n\n**Output:** \\[\\[1,5\\],\\[2,3\\],\\[4,3\\],\\[5,2\\]\\]\n\n**Explanation:**\n\nTimestamp\n\n`series1`\n\n`series2`\n\n`summedValue`\n\n1\n\n3\n\n2\n\n5\n\n2\n\n1\n\n2\n\n3\n\n4\n\n1\n\n2\n\n3\n\n5\n\n0\n\n2\n\n2\n\nThus, the aggregated series is `[[1, 5], [2, 3], [4, 3], [5, 2]]`.\n\n**Example 2:**\n\n**Input:** series1 = \\[\\[1,5\\],\\[3,1\\]\\], series2 = \\[\\[2,2\\]\\]\n\n**Output:** \\[\\[1,7\\],\\[2,3\\],\\[3,1\\]\\]\n\n**Explanation:**\n\nTimestamp\n\n`series1`\n\n`series2`\n\n`summedValue`\n\n1\n\n5\n\n2\n\n7\n\n2\n\n1\n\n2\n\n3\n\n3\n\n1\n\n0\n\n1\n\nThus, the aggregated series is `[[1, 7], [2, 3], [3, 1]]`.\n\n**Example 3:**\n\n**Input:** series1 = \\[\\[1,5\\]\\], series2 = \\[\\[1000000000,2\\]\\]\n\n**Output:** \\[\\[1,7\\],\\[1000000000,2\\]\\]\n\n**Explanation:**\n\nAt timestamp 1, the next available value in `series2` is 2 at timestamp 1000000000. At timestamp 1000000000, there is no later timestamp in `series1`, so its value is 0. Only timestamps that appear in at least one of the two series are included.\n\n**Constraints:**\n\n*   `1 <= series1.length, series2.length <= 10^(5)`\n*   `series1[i].length == series2[i].length == 2`\n*   `1 <= series1[i][0], series2[i][0] <= 10^(9)`\n*   `1 <= series1[i][1], series2[i][1] <= 10^(9)`\n*   Each series is sorted in strictly increasing order of `timestamp`.",
+  "constraints": [
+    "1 <= series1.length, series2.length <= 105",
+    "series1[i].length == series2[i].length == 2",
+    "1 <= series1[i][0], series2[i][0] <= 109",
+    "1 <= series1[i][1], series2[i][1] <= 109",
+    "Each series is sorted in strictly increasing order of timestamp."
+  ],
+  "examples": [
+    {
+      "input": "series1 = [[1,3],[4,1]], series2 = [[2,2],[5,2]]",
+      "output": "[[1,5],[2,3],[4,3],[5,2]]",
+      "explanation": "Timestamp\n\t\t\tseries1\n\t\t\tseries2\n\t\t\tsummedValue\n\t\t\n\t\t\n\t\t\t1\n\t\t\t3\n\t\t\t2\n\t\t\t5\n\t\t\n\t\t\n\t\t\t2\n\t\t\t1\n\t\t\t2\n\t\t\t3\n\t\t\n\t\t\n\t\t\t4\n\t\t\t1\n\t\t\t2\n\t\t\t3\n\t\t\n\t\t\n\t\t\t5\n\t\t\t0\n\t\t\t2\n\t\t\t2"
+    },
+    {
+      "input": "series1 = [[1,5],[3,1]], series2 = [[2,2]]",
+      "output": "[[1,7],[2,3],[3,1]]",
+      "explanation": "Timestamp\n\t\t\tseries1\n\t\t\tseries2\n\t\t\tsummedValue\n\t\t\n\t\t\n\t\t\t1\n\t\t\t5\n\t\t\t2\n\t\t\t7\n\t\t\n\t\t\n\t\t\t2\n\t\t\t1\n\t\t\t2\n\t\t\t3\n\t\t\n\t\t\n\t\t\t3\n\t\t\t1\n\t\t\t0\n\t\t\t1"
+    },
+    {
+      "input": "series1 = [[1,5]], series2 = [[1000000000,2]]",
+      "output": "[[1,7],[1000000000,2]]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> aggregateTimeSeries(vector<vector<int>>& series1, vector<vector<int>>& series2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> aggregateTimeSeries(int[][] series1, int[][] series2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def aggregateTimeSeries(self, series1: list[list[int]], series2: list[list[int]]) -> list[list[int]]:\n        ",
+    "python": "class Solution(object):\n    def aggregateTimeSeries(self, series1, series2):\n        \"\"\"\n        :type series1: List[List[int]]\n        :type series2: List[List[int]]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} series1\n * @param {number[][]} series2\n * @return {number[][]}\n */\nvar aggregateTimeSeries = function(series1, series2) {\n    \n};",
+    "typescript": "function aggregateTimeSeries(series1: number[][], series2: number[][]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<int>> AggregateTimeSeries(int[][] series1, int[][] series2) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** aggregateTimeSeries(int** series1, int series1Size, int* series1ColSize, int** series2, int series2Size, int* series2ColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func aggregateTimeSeries(series1 [][]int, series2 [][]int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun aggregateTimeSeries(series1: Array<IntArray>, series2: Array<IntArray>): List<List<Int>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func aggregateTimeSeries(_ series1: [[Int]], _ series2: [[Int]]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn aggregate_time_series(series1: Vec<Vec<i32>>, series2: Vec<Vec<i32>>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} series1\n# @param {Integer[][]} series2\n# @return {Integer[][]}\ndef aggregate_time_series(series1, series2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $series1\n     * @param Integer[][] $series2\n     * @return Integer[][]\n     */\n    function aggregateTimeSeries($series1, $series2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> aggregateTimeSeries(List<List<int>> series1, List<List<int>> series2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def aggregateTimeSeries(series1: Array[Array[Int]], series2: Array[Array[Int]]): List[List[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec aggregate_time_series(series1 :: [[integer]], series2 :: [[integer]]) :: [[integer]]\n  def aggregate_time_series(series1, series2) do\n    \n  end\nend",
+    "erlang": "-spec aggregate_time_series(Series1 :: [[integer()]], Series2 :: [[integer()]]) -> [[integer()]].\naggregate_time_series(Series1, Series2) ->\n  .",
+    "racket": "(define/contract (aggregate-time-series series1 series2)\n  (-> (listof (listof exact-integer?)) (listof (listof exact-integer?)) (listof (listof exact-integer?)))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,3],[4,1]]\n[[2,2],[5,2]]",
+      "expectedOutput": "[[1,5],[2,3],[4,3],[5,2]]"
+    },
+    {
+      "input": "[[1,5],[3,1]]\n[[2,2]]",
+      "expectedOutput": "[[1,7],[2,3],[3,1]]"
+    },
+    {
+      "input": "[[1,5]]\n[[1000000000,2]]",
+      "expectedOutput": "[[1,7],[1000000000,2]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,3],[4,1]]\n[[2,2],[5,2]]",
+      "expectedOutput": "[[1,5],[2,3],[4,3],[5,2]]"
+    },
+    {
+      "input": "[[1,5],[3,1]]\n[[2,2]]",
+      "expectedOutput": "[[1,7],[2,3],[3,1]]"
+    },
+    {
+      "input": "[[1,5]]\n[[1000000000,2]]",
+      "expectedOutput": "[[1,7],[1000000000,2]]"
+    },
+    {
+      "input": "series1 = [[1,3],[4,1]], series2 = [[2,2],[5,2]]",
+      "expectedOutput": "[[1,5],[2,3],[4,3],[5,2]]"
+    },
+    {
+      "input": "series1 = [[1,5],[3,1]], series2 = [[2,2]]",
+      "expectedOutput": "[[1,7],[2,3],[3,1]]"
+    },
+    {
+      "input": "series1 = [[1,5]], series2 = [[1000000000,2]]",
+      "expectedOutput": "[[1,7],[1000000000,2]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Merge the timestamps from both series in increasing order, similarly to the merge step of merge sort.</p>",
+    "<p>Because a missing timestamp uses the next available value, process the merged timestamps from right to left while maintaining the next available value in each series.</p>",
+    "<p>At each timestamp, update the maintained value for every series containing that timestamp, then add the two maintained values to the answer.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/aggregate-two-time-series/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:12.921Z",
+    "sourceUpdatedAt": null
+  }
+}

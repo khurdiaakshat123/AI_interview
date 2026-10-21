@@ -1,0 +1,113 @@
+{
+  "id": "4054",
+  "slug": "count-shadow-pairs-i",
+  "title": "Count Shadow Pairs I",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "statement": "You are given an integer array `nums` of length `n`.\n\nA pair of indices `(i, j)` is called a **shadow pair** if all of the following conditions are satisfied:\n\n*   `0 <= i < j < n`\n*   `nums[i] < nums[j]`\n*   There **does not exist** an index `k` such that `i < k < j` and `nums[k] < nums[i] < nums[j]`.\n\nReturn the total number of **shadow pairs**.\n\n**Example 1:**\n\n**Input:** nums = \\[3,1,4,1,5\\]\n\n**Output:** 3\n\n**Explanation:**\n\n`(i, j)`\n\n`nums[i]`\n\n`nums[j]`\n\nShadow Pair\n\n(1, 2)\n\n1\n\n4\n\nNo index `k` exists such that `1 < k < 2`\n\n(1, 4)\n\n1\n\n5\n\n`nums[2] = 4` and `nums[3] = 1` are not smaller than 1\n\n(3, 4)\n\n1\n\n5\n\nNo index `k` exists such that `3 < k < 4`\n\nThus, the answer is 3.\n\n**Example 2:**\n\n**Input:** nums = \\[6,7,6,6,7\\]\n\n**Output:** 4\n\n**Explanation:**\n\n`(i, j)`\n\n`nums[i]`\n\n`nums[j]`\n\nShadow Pair\n\n(0, 1)\n\n6\n\n7\n\nNo index `k` exists such that `0 < k < 1`\n\n(0, 4)\n\n6\n\n7\n\n`nums[1] = 7`, `nums[2] = 6`, and `nums[3] = 6` are not smaller than 6\n\n(2, 4)\n\n6\n\n7\n\n`nums[3] = 6` is not smaller than 6\n\n(3, 4)\n\n6\n\n7\n\nNo index `k` exists such that `3 < k < 4`\n\nThus, the answer is 4.\n\n**Example 3:**\n\n**Input:** nums = \\[1,2,3,4\\]\n\n**Output:** 6\n\n**Explanation:**\n\n`(i, j)`\n\n`nums[i]`\n\n`nums[j]`\n\nShadow Pair\n\n(0, 1)\n\n1\n\n2\n\nNo index `k` exists such that `0 < k < 1`\n\n(0, 2)\n\n1\n\n3\n\n`nums[1] = 2` is not smaller than 1\n\n(0, 3)\n\n1\n\n4\n\n`nums[1] = 2` and `nums[2] = 3` are not smaller than 1\n\n(1, 2)\n\n2\n\n3\n\nNo index `k` exists such that `1 < k < 2`\n\n(1, 3)\n\n2\n\n4\n\n`nums[2] = 3` is not smaller than 2\n\n(2, 3)\n\n3\n\n4\n\nNo index `k` exists such that `2 < k < 3`\n\nThus, the answer is 6.\n\n**Constraints:**\n\n*   `3 <= n == nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "3 <= n == nums.length <= 105",
+    "1 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,1,4,1,5]",
+      "output": "3",
+      "explanation": "(i, j)\n\t\t\tnums[i]\n\t\t\tnums[j]\n\t\t\tShadow Pair\n\t\t\n\t\n\t\n\t\t\n\t\t\t(1, 2)\n\t\t\t1\n\t\t\t4\n\t\t\tNo index k exists such that 1 < k < 2\n\t\t\n\t\t\n\t\t\t(1, 4)\n\t\t\t1\n\t\t\t5\n\t\t\tnums[2] = 4 and nums[3] = 1 are not smaller than 1\n\t\t\n\t\t\n\t\t\t(3, 4)\n\t\t\t1\n\t\t\t5\n\t\t\tNo index k exists such that 3 < k < 4"
+    },
+    {
+      "input": "nums = [6,7,6,6,7]",
+      "output": "4",
+      "explanation": "(i, j)\n\t\t\tnums[i]\n\t\t\tnums[j]\n\t\t\tShadow Pair\n\t\t\n\t\n\t\n\t\t\n\t\t\t(0, 1)\n\t\t\t6\n\t\t\t7\n\t\t\tNo index k exists such that 0 < k < 1\n\t\t\n\t\t\n\t\t\t(0, 4)\n\t\t\t6\n\t\t\t7\n\t\t\tnums[1] = 7, nums[2] = 6, and nums[3] = 6 are not smaller than 6\n\t\t\n\t\t\n\t\t\t(2, 4)\n\t\t\t6\n\t\t\t7\n\t\t\tnums[3] = 6 is not smaller than 6\n\t\t\n\t\t\n\t\t\t(3, 4)\n\t\t\t6\n\t\t\t7\n\t\t\tNo index k exists such that 3 < k < 4"
+    },
+    {
+      "input": "nums = [1,2,3,4]",
+      "output": "6",
+      "explanation": "(i, j)\n\t\t\tnums[i]\n\t\t\tnums[j]\n\t\t\tShadow Pair\n\t\t\n\t\n\t\n\t\t\n\t\t\t(0, 1)\n\t\t\t1\n\t\t\t2\n\t\t\tNo index k exists such that 0 < k < 1\n\t\t\n\t\t\n\t\t\t(0, 2)\n\t\t\t1\n\t\t\t3\n\t\t\tnums[1] = 2 is not smaller than 1\n\t\t\n\t\t\n\t\t\t(0, 3)\n\t\t\t1\n\t\t\t4\n\t\t\tnums[1] = 2 and nums[2] = 3 are not smaller than 1\n\t\t\n\t\t\n\t\t\t(1, 2)\n\t\t\t2\n\t\t\t3\n\t\t\tNo index k exists such that 1 < k < 2\n\t\t\n\t\t\n\t\t\t(1, 3)\n\t\t\t2\n\t\t\t4\n\t\t\tnums[2] = 3 is not smaller than 2\n\t\t\n\t\t\n\t\t\t(2, 3)\n\t\t\t3\n\t\t\t4\n\t\t\tNo index k exists such that 2 < k < 3"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long shadowPairs(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long shadowPairs(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shadowPairs(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def shadowPairs(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar shadowPairs = function(nums) {\n    \n};",
+    "typescript": "function shadowPairs(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long ShadowPairs(int[] nums) {\n        \n    }\n}",
+    "c": "long long shadowPairs(int* nums, int numsSize) {\n    \n}",
+    "golang": "func shadowPairs(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun shadowPairs(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shadowPairs(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shadow_pairs(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef shadow_pairs(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function shadowPairs($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int shadowPairs(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shadowPairs(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shadow_pairs(nums :: [integer]) :: integer\n  def shadow_pairs(nums) do\n    \n  end\nend",
+    "erlang": "-spec shadow_pairs(Nums :: [integer()]) -> integer().\nshadow_pairs(Nums) ->\n  .",
+    "racket": "(define/contract (shadow-pairs nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,1,4,1,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,7,6,6,7]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "6"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,1,4,1,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,7,6,6,7]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "nums = [3,1,4,1,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "nums = [6,7,6,6,7]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "nums = [1,2,3,4]",
+      "expectedOutput": "6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p><strong>1a (Monotonic Stack).</strong> Process elements from left to right. When the current value is <code>x</code>, any earlier candidate with a value greater than <code>x</code> can never form a shadow pair with a later element. Remove these candidates using a non-decreasing stack.</p>",
+    "<p><strong>1b (Monotonic Stack).</strong> Among the remaining candidates, every value strictly smaller than <code>x</code> forms a shadow pair with the current index. Group equal values and maintain the total number of candidates so that each contribution can be calculated without scanning the stack.</p>",
+    "<p><strong>2a (Monotonic Stack + Fenwick Tree).</strong> For each index <code>i</code>, find the first index <code>r[i]</code> to its right with a strictly smaller value, or use <code>n</code> if none exists. Count indices <code>j</code> satisfying <code>i &lt; j &lt; r[i]</code> and <code>nums[j] &gt; nums[i]</code>.</p>",
+    "<p><strong>2b (Monotonic Stack + Fenwick Tree).</strong> Process elements in decreasing order of value, storing their indices in a Fenwick tree. Query the required index interval before inserting the current group of equal values.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-shadow-pairs-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.554Z",
+    "sourceUpdatedAt": null
+  }
+}

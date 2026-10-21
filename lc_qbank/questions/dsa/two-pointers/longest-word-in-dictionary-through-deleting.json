@@ -1,0 +1,158 @@
+{
+  "id": "524",
+  "slug": "longest-word-in-dictionary-through-deleting",
+  "title": "Longest Word in Dictionary through Deleting",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String",
+    "Sorting"
+  ],
+  "statement": "Given a string `s` and a string array `dictionary`, return _the longest string in the dictionary that can be formed by deleting some of the given string characters_. If there is more than one possible result, return the longest word with the smallest lexicographical order. If there is no possible result, return the empty string.\n\n**Example 1:**\n\n```\nInput: s = \"abpcplea\", dictionary = [\"ale\",\"apple\",\"monkey\",\"plea\"]\nOutput: \"apple\"\n```\n\n**Example 2:**\n\n```\nInput: s = \"abpcplea\", dictionary = [\"a\",\"b\",\"c\"]\nOutput: \"a\"\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 1000`\n*   `1 <= dictionary.length <= 1000`\n*   `1 <= dictionary[i].length <= 1000`\n*   `s` and `dictionary[i]` consist of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "1 <= dictionary.length <= 1000",
+    "1 <= dictionary[i].length <= 1000",
+    "s and dictionary[i] consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abpcplea\", dictionary = [\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "output": "\"apple\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"abpcplea\", dictionary = [\"a\",\"b\",\"c\"]",
+      "output": "\"a\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string findLongestWord(string s, vector<string>& dictionary) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String findLongestWord(String s, List<String> dictionary) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findLongestWord(self, s: str, dictionary: list[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def findLongestWord(self, s, dictionary):\n        \"\"\"\n        :type s: str\n        :type dictionary: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string[]} dictionary\n * @return {string}\n */\nvar findLongestWord = function(s, dictionary) {\n    \n};",
+    "typescript": "function findLongestWord(s: string, dictionary: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string FindLongestWord(string s, IList<string> dictionary) {\n        \n    }\n}",
+    "c": "char* findLongestWord(char* s, char** dictionary, int dictionarySize) {\n    \n}",
+    "golang": "func findLongestWord(s string, dictionary []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun findLongestWord(s: String, dictionary: List<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findLongestWord(_ s: String, _ dictionary: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_longest_word(s: String, dictionary: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String[]} dictionary\n# @return {String}\ndef find_longest_word(s, dictionary)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String[] $dictionary\n     * @return String\n     */\n    function findLongestWord($s, $dictionary) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String findLongestWord(String s, List<String> dictionary) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findLongestWord(s: String, dictionary: List[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_longest_word(s :: String.t, dictionary :: [String.t]) :: String.t\n  def find_longest_word(s, dictionary) do\n    \n  end\nend",
+    "erlang": "-spec find_longest_word(S :: unicode:unicode_binary(), Dictionary :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nfind_longest_word(S, Dictionary) ->\n  .",
+    "racket": "(define/contract (find-longest-word s dictionary)\n  (-> string? (listof string?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abpcplea\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"apple\""
+    },
+    {
+      "input": "\"abpcplea\"\n[\"a\",\"b\",\"c\"]",
+      "expectedOutput": "\"a\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abpcplea\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"apple\""
+    },
+    {
+      "input": "\"abpcplea\"\n[\"a\",\"b\",\"c\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"abpc\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"plea\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"plea\""
+    },
+    {
+      "input": "\"a\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"ab\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aelpcpba\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"abpcpleaabpcplea\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"apple\""
+    },
+    {
+      "input": "\"aaaaaa\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"abpcpleaaelpcpba\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"apple\""
+    },
+    {
+      "input": "\"ABPCPLEA\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"b\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aa\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"ba\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aba\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"abba\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aaaaa\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"abcde\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"edcba\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aab\"\n[\"ale\",\"apple\",\"monkey\",\"plea\"]",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.768Z",
+    "sourceUpdatedAt": null
+  }
+}

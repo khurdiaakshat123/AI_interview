@@ -1,0 +1,92 @@
+{
+  "id": "2726",
+  "slug": "calculator-with-method-chaining",
+  "title": "Calculator with Method Chaining",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "Design a `Calculator` class. The class should provide the mathematical operations of addition, subtraction, multiplication, division, and exponentiation. It should also allow consecutive operations to be performed using method chaining. The `Calculator` class constructor should accept a number which serves as the initial value of `result`.\n\nYour `Calculator` class should have the following methods:\n\n*   `add` - This method adds the given number `value` to the `result` and returns the updated `Calculator`.\n*   `subtract` - This method subtracts the given number `value` from the `result` and returns the updated `Calculator`.\n*   `multiply` - This method multiplies the `result`  by the given number `value` and returns the updated `Calculator`.\n*   `divide` - This method divides the `result` by the given number `value` and returns the updated `Calculator`. If the passed value is `0`, an error `\"Division by zero is not allowed\"` should be thrown.\n*   `power` - This method raises the `result` to the power of the given number `value` and returns the updated `Calculator`.\n*   `getResult` - This method returns the `result`.\n\nSolutions within `10^(-5)` of the actual result are considered correct.\n\n**Example 1:**\n\n```\nInput: \nactions = [\"Calculator\", \"add\", \"subtract\", \"getResult\"], \nvalues = [10, 5, 7]\nOutput: 8\nExplanation: \nnew Calculator(10).add(5).subtract(7).getResult() // 10 + 5 - 7 = 8\n```\n\n**Example 2:**\n\n```\nInput: \nactions = [\"Calculator\", \"multiply\", \"power\", \"getResult\"], \nvalues = [2, 5, 2]\nOutput: 100\nExplanation: \nnew Calculator(2).multiply(5).power(2).getResult() // (2 * 5) ^ 2 = 100\n```\n\n**Example 3:**\n\n```\nInput: \nactions = [\"Calculator\", \"divide\", \"getResult\"], \nvalues = [20, 0]\nOutput: \"Division by zero is not allowed\"\nExplanation: \nnew Calculator(20).divide(0).getResult() // 20 / 0 \n\nThe error should be thrown because we cannot divide by zero.\n```\n\n**Constraints:**\n\n*   `actions` is a valid JSON array of strings\n*   `values` is a valid JSON array of numbers\n*   `2 <= actions.length <= 2 * 10^(4)`\n*   `1 <= values.length <= 2 * 10^(4) - 1`\n*   `actions[i]` is one of \"Calculator\", \"add\", \"subtract\", \"multiply\", \"divide\", \"power\", and \"getResult\"\n*   First action is always \"Calculator\"\n*   Last action is always \"getResult\"",
+  "constraints": [
+    "actions is a valid JSON array of strings",
+    "values is a valid JSON array of numbers",
+    "2 <= actions.length <= 2 * 104",
+    "1 <= values.length <= 2 * 104 - 1",
+    "actions[i] is one of \"Calculator\", \"add\", \"subtract\", \"multiply\", \"divide\", \"power\", and \"getResult\"",
+    "First action is always \"Calculator\"",
+    "Last action is always \"getResult\""
+  ],
+  "examples": [
+    {
+      "input": "actions = [\"Calculator\", \"add\", \"subtract\", \"getResult\"], \nvalues = [10, 5, 7]",
+      "output": "8",
+      "explanation": "new Calculator(10).add(5).subtract(7).getResult() // 10 + 5 - 7 = 8"
+    },
+    {
+      "input": "actions = [\"Calculator\", \"multiply\", \"power\", \"getResult\"], \nvalues = [2, 5, 2]",
+      "output": "100",
+      "explanation": "new Calculator(2).multiply(5).power(2).getResult() // (2 * 5) ^ 2 = 100"
+    },
+    {
+      "input": "actions = [\"Calculator\", \"divide\", \"getResult\"], \nvalues = [20, 0]",
+      "output": "\"Division by zero is not allowed\"",
+      "explanation": "new Calculator(20).divide(0).getResult() // 20 / 0 \n\nThe error should be thrown because we cannot divide by zero."
+    }
+  ],
+  "starterCode": {
+    "javascript": "class Calculator {\n    \n    /** \n     * @param {number} value\n     */\n    constructor(value) {\n        \n    }\n    \n    /** \n     * @param {number} value\n     * @return {Calculator}\n     */\n    add(value){\n        \n    }\n    \n    /** \n     * @param {number} value\n     * @return {Calculator}\n     */\n    subtract(value){\n        \n    }\n    \n    /** \n     * @param {number} value\n     * @return {Calculator}\n     */  \n    multiply(value) {\n        \n    }\n    \n    /** \n     * @param {number} value\n     * @return {Calculator}\n     */\n    divide(value) {\n        \n    }\n    \n    /** \n     * @param {number} value\n     * @return {Calculator}\n     */\n    power(value) {\n        \n    }\n    \n    /** \n     * @return {number}\n     */\n    getResult() {\n        \n    }\n}",
+    "typescript": "class Calculator {\n    \n    constructor(value: number) {\n        \n    }\n    \n    add(value: number): Calculator {\n        \n    }\n    \n    subtract(value: number): Calculator {\n        \n    }\n    \n    multiply(value: number): Calculator {\n        \n    }\n    \n    divide(value: number): Calculator {\n        \n    }\n    \n    power(value: number): Calculator {\n        \n    }\n    \n    getResult(): number {\n        \n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "[\"Calculator\", \"add\", \"subtract\", \"getResult\"]\n[10, 5, 7]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"Calculator\", \"multiply\", \"power\", \"getResult\"]\n[2, 5, 2]",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "[\"Calculator\", \"divide\", \"getResult\"]\n[20, 0]",
+      "expectedOutput": "\"Division by zero is not allowed\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"Calculator\", \"add\", \"subtract\", \"getResult\"]\n[10, 5, 7]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"Calculator\", \"multiply\", \"power\", \"getResult\"]\n[2, 5, 2]",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "[\"Calculator\", \"divide\", \"getResult\"]\n[20, 0]",
+      "expectedOutput": "\"Division by zero is not allowed\""
+    },
+    {
+      "input": "actions = [\"Calculator\", \"add\", \"subtract\", \"getResult\"], \nvalues = [10, 5, 7]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "actions = [\"Calculator\", \"multiply\", \"power\", \"getResult\"], \nvalues = [2, 5, 2]",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "actions = [\"Calculator\", \"divide\", \"getResult\"], \nvalues = [20, 0]",
+      "expectedOutput": "\"Division by zero is not allowed\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/calculator-with-method-chaining/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.839Z",
+    "sourceUpdatedAt": null
+  }
+}

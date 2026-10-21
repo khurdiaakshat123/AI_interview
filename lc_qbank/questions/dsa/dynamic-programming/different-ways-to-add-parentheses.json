@@ -1,0 +1,160 @@
+{
+  "id": "241",
+  "slug": "different-ways-to-add-parentheses",
+  "title": "Different Ways to Add Parentheses",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "String",
+    "Dynamic Programming",
+    "Recursion",
+    "Memoization",
+    "Bracket Sequences"
+  ],
+  "statement": "Given a string `expression` of numbers and operators, return _all possible results from computing all the different possible ways to group numbers and operators_. You may return the answer in **any order**.\n\nThe test cases are generated such that the output values fit in a 32-bit integer and the number of different results does not exceed `10^(4)`.\n\n**Example 1:**\n\n```\nInput: expression = \"2-1-1\"\nOutput: [0,2]\nExplanation:\n((2-1)-1) = 0 \n(2-(1-1)) = 2\n```\n\n**Example 2:**\n\n```\nInput: expression = \"2*3-4*5\"\nOutput: [-34,-14,-10,-10,10]\nExplanation:\n(2*(3-(4*5))) = -34 \n((2*3)-(4*5)) = -14 \n((2*(3-4))*5) = -10 \n(2*((3-4)*5)) = -10 \n(((2*3)-4)*5) = 10\n```\n\n**Constraints:**\n\n*   `1 <= expression.length <= 20`\n*   `expression` consists of digits and the operator `'+'`, `'-'`, and `'*'`.\n*   All the integer values in the input expression are in the range `[0, 99]`.\n*   The integer values in the input expression do not have a leading `'-'` or `'+'` denoting the sign.",
+  "constraints": [
+    "1 <= expression.length <= 20",
+    "expression consists of digits and the operator '+', '-', and '*'.",
+    "All the integer values in the input expression are in the range [0, 99].",
+    "The integer values in the input expression do not have a leading '-' or '+' denoting the sign."
+  ],
+  "examples": [
+    {
+      "input": "expression = \"2-1-1\"",
+      "output": "[0,2]",
+      "explanation": "((2-1)-1) = 0 \n(2-(1-1)) = 2"
+    },
+    {
+      "input": "expression = \"2*3-4*5\"",
+      "output": "[-34,-14,-10,-10,10]",
+      "explanation": "(2*(3-(4*5))) = -34 \n((2*3)-(4*5)) = -14 \n((2*(3-4))*5) = -10 \n(2*((3-4)*5)) = -10 \n(((2*3)-4)*5) = 10"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> diffWaysToCompute(string expression) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> diffWaysToCompute(String expression) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def diffWaysToCompute(self, expression: str) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def diffWaysToCompute(self, expression):\n        \"\"\"\n        :type expression: str\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @return {number[]}\n */\nvar diffWaysToCompute = function(expression) {\n    \n};",
+    "typescript": "function diffWaysToCompute(expression: string): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> DiffWaysToCompute(string expression) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* diffWaysToCompute(char* expression, int* returnSize) {\n    \n}",
+    "golang": "func diffWaysToCompute(expression string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun diffWaysToCompute(expression: String): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func diffWaysToCompute(_ expression: String) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn diff_ways_to_compute(expression: String) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @return {Integer[]}\ndef diff_ways_to_compute(expression)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @return Integer[]\n     */\n    function diffWaysToCompute($expression) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> diffWaysToCompute(String expression) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def diffWaysToCompute(expression: String): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec diff_ways_to_compute(expression :: String.t) :: [integer]\n  def diff_ways_to_compute(expression) do\n    \n  end\nend",
+    "erlang": "-spec diff_ways_to_compute(Expression :: unicode:unicode_binary()) -> [integer()].\ndiff_ways_to_compute(Expression) ->\n  .",
+    "racket": "(define/contract (diff-ways-to-compute expression)\n  (-> string? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"2-1-1\"",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"2*3-4*5\"",
+      "expectedOutput": "[-34,-14,-10,-10,10]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"2-1-1\"",
+      "expectedOutput": "[2,0]"
+    },
+    {
+      "input": "\"2*3-4*5\"",
+      "expectedOutput": "[-34,-10,-14,-10,10]"
+    },
+    {
+      "input": "\"2-\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"1-1\"",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"2\"",
+      "expectedOutput": "[2]"
+    },
+    {
+      "input": "\"1-1-2\"",
+      "expectedOutput": "[2,-2]"
+    },
+    {
+      "input": "\"2-1-12-1-1\"",
+      "expectedOutput": "[13,11,13,13,15,-11,-9,13,-11,11,13,-11,11,-13]"
+    },
+    {
+      "input": "\"22222\"",
+      "expectedOutput": "[22222]"
+    },
+    {
+      "input": "\"2-1-11-1-2\"",
+      "expectedOutput": "[13,9,11,13,15,-11,-7,13,-9,9,11,-11,9,-13]"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "[]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/different-ways-to-add-parentheses/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.664Z",
+    "sourceUpdatedAt": null
+  }
+}

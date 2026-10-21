@@ -1,0 +1,100 @@
+{
+  "id": "2397",
+  "slug": "maximum-rows-covered-by-columns",
+  "title": "Maximum Rows Covered by Columns",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Backtracking",
+    "Bit Manipulation",
+    "Matrix",
+    "Enumeration"
+  ],
+  "statement": "You are given an `m x n` binary matrix `matrix` and an integer `numSelect`.\n\nYour goal is to select exactly `numSelect` **distinct** columns from `matrix` such that you cover as many rows as possible.\n\nA row is considered **covered** if all the `1`'s in that row are also part of a column that you have selected. If a row does not have any `1`s, it is also considered covered.\n\nMore formally, let us consider `selected = {c_(1), c_(2), ...., c_(numSelect)}` as the set of columns selected by you. A row `i` is **covered** by `selected` if:\n\n*   For each cell where `matrix[i][j] == 1`, the column `j` is in `selected`.\n*   Or, no cell in row `i` has a value of `1`.\n\nReturn the **maximum** number of rows that can be **covered** by a set of `numSelect` columns.\n\n**Example 1:**\n\n![](./assets/maximum-rows-covered-by-columns-1.png)\n\n**Input:** matrix = \\[\\[0,0,0\\],\\[1,0,1\\],\\[0,1,1\\],\\[0,0,1\\]\\], numSelect = 2\n\n**Output:** 3\n\n**Explanation:**\n\nOne possible way to cover 3 rows is shown in the diagram above.  \nWe choose s = {0, 2}.  \n\\- Row 0 is covered because it has no occurrences of 1.  \n\\- Row 1 is covered because the columns with value 1, i.e. 0 and 2 are present in s.  \n\\- Row 2 is not covered because matrix\\[2\\]\\[1\\] == 1 but 1 is not present in s.  \n\\- Row 3 is covered because matrix\\[2\\]\\[2\\] == 1 and 2 is present in s.  \nThus, we can cover three rows.  \nNote that s = {1, 2} will also cover 3 rows, but it can be shown that no more than three rows can be covered.\n\n**Example 2:**\n\n![](./assets/maximum-rows-covered-by-columns-2.png)\n\n**Input:** matrix = \\[\\[1\\],\\[0\\]\\], numSelect = 1\n\n**Output:** 2\n\n**Explanation:**\n\nSelecting the only column will result in both rows being covered since the entire matrix is selected.\n\n**Constraints:**\n\n*   `m == matrix.length`\n*   `n == matrix[i].length`\n*   `1 <= m, n <= 12`\n*   `matrix[i][j]` is either `0` or `1`.\n*   `1 <= numSelect <= n`",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 12",
+    "matrix[i][j] is either 0 or 1.",
+    "1 <= numSelect <= n"
+  ],
+  "examples": [
+    {
+      "input": "matrix = [[0,0,0],[1,0,1],[0,1,1],[0,0,1]], numSelect = 2",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "matrix = [[1],[0]], numSelect = 1",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumRows(vector<vector<int>>& matrix, int numSelect) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumRows(int[][] matrix, int numSelect) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumRows(self, matrix: list[list[int]], numSelect: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumRows(self, matrix, numSelect):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :type numSelect: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} matrix\n * @param {number} numSelect\n * @return {number}\n */\nvar maximumRows = function(matrix, numSelect) {\n    \n};",
+    "typescript": "function maximumRows(matrix: number[][], numSelect: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumRows(int[][] matrix, int numSelect) {\n        \n    }\n}",
+    "c": "int maximumRows(int** matrix, int matrixSize, int* matrixColSize, int numSelect) {\n    \n}",
+    "golang": "func maximumRows(matrix [][]int, numSelect int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumRows(matrix: Array<IntArray>, numSelect: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumRows(_ matrix: [[Int]], _ numSelect: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_rows(matrix: Vec<Vec<i32>>, num_select: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} matrix\n# @param {Integer} num_select\n# @return {Integer}\ndef maximum_rows(matrix, num_select)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $matrix\n     * @param Integer $numSelect\n     * @return Integer\n     */\n    function maximumRows($matrix, $numSelect) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumRows(List<List<int>> matrix, int numSelect) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumRows(matrix: Array[Array[Int]], numSelect: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_rows(matrix :: [[integer]], num_select :: integer) :: integer\n  def maximum_rows(matrix, num_select) do\n    \n  end\nend",
+    "erlang": "-spec maximum_rows(Matrix :: [[integer()]], NumSelect :: integer()) -> integer().\nmaximum_rows(Matrix, NumSelect) ->\n  .",
+    "racket": "(define/contract (maximum-rows matrix numSelect)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,0,0],[1,0,1],[0,1,1],[0,0,1]]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[1],[0]]\n1",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,0,0],[1,0,1],[0,1,1],[0,0,1]]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[1],[0]]\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "matrix = [[0,0,0],[1,0,1],[0,1,1],[0,0,1]], numSelect = 2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "matrix = [[1],[0]], numSelect = 1",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try a brute-force approach.",
+    "Iterate through all possible sets of exactly <code>cols</code> columns.",
+    "For each valid set, check how many rows are covered, and return the maximum."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-rows-covered-by-columns/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.515Z",
+    "sourceUpdatedAt": null
+  }
+}

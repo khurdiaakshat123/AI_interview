@@ -1,0 +1,169 @@
+{
+  "id": "3336",
+  "slug": "find-the-number-of-subsequences-with-equal-gcd",
+  "title": "Find the Number of Subsequences With Equal GCD",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Number Theory",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nYour task is to find the number of pairs of **non-empty** subsequences `(seq1, seq2)` of `nums` that satisfy the following conditions:\n\n*   The subsequences `seq1` and `seq2` are **disjoint**, meaning **no index** of `nums` is common between them.\n*   The GCD of the elements of `seq1` is equal to the GCD of the elements of `seq2`.\n\nReturn the total number of such pairs.\n\nSince the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,3,4\\]\n\n**Output:** 10\n\n**Explanation:**\n\nThe subsequence pairs which have the GCD of their elements equal to 1 are:\n\n*   `([**1**, 2, 3, 4], [1, **2**, **3**, 4])`\n*   `([**1**, 2, 3, 4], [1, **2**, **3**, **4**])`\n*   `([**1**, 2, 3, 4], [1, 2, **3**, **4**])`\n*   `([**1**, **2**, 3, 4], [1, 2, **3**, **4**])`\n*   `([**1**, 2, 3, **4**], [1, **2**, **3**, 4])`\n*   `([1, **2**, **3**, 4], [**1**, 2, 3, 4])`\n*   `([1, **2**, **3**, 4], [**1**, 2, 3, **4**])`\n*   `([1, **2**, **3**, **4**], [**1**, 2, 3, 4])`\n*   `([1, 2, **3**, **4**], [**1**, 2, 3, 4])`\n*   `([1, 2, **3**, **4**], [**1**, **2**, 3, 4])`\n\n**Example 2:**\n\n**Input:** nums = \\[10,20,30\\]\n\n**Output:** 2\n\n**Explanation:**\n\nThe subsequence pairs which have the GCD of their elements equal to 10 are:\n\n*   `([**10**, 20, 30], [10, **20**, **30**])`\n*   `([10, **20**, **30**], [**10**, 20, 30])`\n\n**Example 3:**\n\n**Input:** nums = \\[1,1,1,1\\]\n\n**Output:** 50\n\n**Constraints:**\n\n*   `1 <= nums.length <= 200`\n*   `1 <= nums[i] <= 200`",
+  "constraints": [
+    "1 <= nums.length <= 200",
+    "1 <= nums[i] <= 200"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3,4]",
+      "output": "10",
+      "explanation": null
+    },
+    {
+      "input": "nums = [10,20,30]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,1,1,1]",
+      "output": "50",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int subsequencePairCount(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int subsequencePairCount(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def subsequencePairCount(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def subsequencePairCount(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar subsequencePairCount = function(nums) {\n    \n};",
+    "typescript": "function subsequencePairCount(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SubsequencePairCount(int[] nums) {\n        \n    }\n}",
+    "c": "int subsequencePairCount(int* nums, int numsSize) {\n    \n}",
+    "golang": "func subsequencePairCount(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun subsequencePairCount(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func subsequencePairCount(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn subsequence_pair_count(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef subsequence_pair_count(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function subsequencePairCount($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int subsequencePairCount(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def subsequencePairCount(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec subsequence_pair_count(nums :: [integer]) :: integer\n  def subsequence_pair_count(nums) do\n    \n  end\nend",
+    "erlang": "-spec subsequence_pair_count(Nums :: [integer()]) -> integer().\nsubsequence_pair_count(Nums) ->\n  .",
+    "racket": "(define/contract (subsequence-pair-count nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[10,20,30]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "50"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[10,20,30]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "50"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,3,2,1]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,2,3,4,1,2,3,4]",
+      "expectedOutput": "3530"
+    },
+    {
+      "input": "[2,4,6,8]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[2,3,4,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,1,2,3]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[-1,-2,-3,-4]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "80"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming to store number of subsequences up till index <code>i</code> with GCD <code>g1</code> and <code>g2</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-number-of-subsequences-with-equal-gcd/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.551Z",
+    "sourceUpdatedAt": null
+  }
+}

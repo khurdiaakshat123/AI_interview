@@ -1,0 +1,168 @@
+{
+  "id": "4010",
+  "slug": "maximize-pair-strength-using-gcd",
+  "title": "Maximize Pair Strength Using GCD",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Math",
+    "Enumeration",
+    "Number Theory"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nChoose exactly one pair of distinct indices `i` and `j`. The strength of the pair is defined as `(nums[i] * nums[j]) / gcd(nums[i], nums[j])^(2)`.\n\nReturn the maximum strength over all possible pairs.\n\n**Example 1:**\n\n**Input:** nums = \\[2,3,5\\]\n\n**Output:** 15\n\n**Explanation:**\n\nChoosing `i = 1` and `j = 2` gives strength `(3 * 5) / gcd(3, 5)^(2) = 15 / 1 = 15`, which is the maximum over all pairs.\n\n**Example 2:**\n\n**Input:** nums = \\[4,6,8\\]\n\n**Output:** 12\n\n**Explanation:**\n\nChoosing `i = 1` and `j = 2` gives strength `(6 * 8) / gcd(6, 8)^(2) = 48 / 4 = 12`, which is the maximum over all pairs.\n\n**Example 3:**\n\n**Input:** nums = \\[3,3\\]\n\n**Output:** 1\n\n**Explanation:**\n\nChoosing `i = 0` and `j = 1` gives strength `(3 * 3) / gcd(3, 3)^(2) = 9 / 9 = 1`, the maximum over all pairs.\n\n**Constraints:**\n\n*   `2 <= nums.length <= 2000`\n*   `1 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "2 <= nums.length <= 2000",
+    "1 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,3,5]",
+      "output": "15",
+      "explanation": null
+    },
+    {
+      "input": "nums = [4,6,8]",
+      "output": "12",
+      "explanation": null
+    },
+    {
+      "input": "nums = [3,3]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxPairStrength(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxPairStrength(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxPairStrength(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxPairStrength(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxPairStrength = function(nums) {\n    \n};",
+    "typescript": "function maxPairStrength(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxPairStrength(int[] nums) {\n        \n    }\n}",
+    "c": "long long maxPairStrength(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxPairStrength(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxPairStrength(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxPairStrength(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_pair_strength(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_pair_strength(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxPairStrength($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxPairStrength(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxPairStrength(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_pair_strength(nums :: [integer]) :: integer\n  def max_pair_strength(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_pair_strength(Nums :: [integer()]) -> integer().\nmax_pair_strength(Nums) ->\n  .",
+    "racket": "(define/contract (max-pair-strength nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,3,5]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[4,6,8]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[3,3]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,3,5]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[4,6,8]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[3,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,5]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[2,5]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[2,3]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[5,3,2]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[2,2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3,5,2,3,5]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[4,6,10]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[3,4,6]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1,2,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-2,-3,-5]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Try every pair of distinct indices and compute its strength directly.</p>",
+    "<p>Use 64-bit integers when multiplying the two values.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-pair-strength-using-gcd/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.316Z",
+    "sourceUpdatedAt": null
+  }
+}

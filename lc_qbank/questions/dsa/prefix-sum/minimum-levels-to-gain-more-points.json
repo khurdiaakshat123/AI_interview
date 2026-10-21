@@ -1,0 +1,166 @@
+{
+  "id": "3096",
+  "slug": "minimum-levels-to-gain-more-points",
+  "title": "Minimum Levels to Gain More Points",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a binary array `possible` of length `n`.\n\nAlice and Bob are playing a game that consists of `n` levels. Some of the levels in the game are **impossible** to clear while others can **always** be cleared. In particular, if `possible[i] == 0`, then the `i^(th)` level is **impossible** to clear for **both** the players. A player gains `1` point on clearing a level and loses `1` point if the player fails to clear it.\n\nAt the start of the game, Alice will play some levels in the **given order** starting from the `0^(th)` level, after which Bob will play for the rest of the levels.\n\nAlice wants to know the **minimum** number of levels she should play to gain more points than Bob, if both players play optimally to **maximize** their points.\n\nReturn _the **minimum** number of levels Alice should play to gain more points_. _If this is **not** possible, return_ `-1`.\n\n**Note** that each player must play at least `1` level.\n\n**Example 1:**\n\n**Input:** possible = \\[1,0,1,0\\]\n\n**Output:** 1\n\n**Explanation:**\n\nLet's look at all the levels that Alice can play up to:\n\n*   If Alice plays only level 0 and Bob plays the rest of the levels, Alice has 1 point, while Bob has -1 + 1 - 1 = -1 point.\n*   If Alice plays till level 1 and Bob plays the rest of the levels, Alice has 1 - 1 = 0 points, while Bob has 1 - 1 = 0 points.\n*   If Alice plays till level 2 and Bob plays the rest of the levels, Alice has 1 - 1 + 1 = 1 point, while Bob has -1 point.\n\nAlice must play a minimum of 1 level to gain more points.\n\n**Example 2:**\n\n**Input:** possible = \\[1,1,1,1,1\\]\n\n**Output:** 3\n\n**Explanation:**\n\nLet's look at all the levels that Alice can play up to:\n\n*   If Alice plays only level 0 and Bob plays the rest of the levels, Alice has 1 point, while Bob has 4 points.\n*   If Alice plays till level 1 and Bob plays the rest of the levels, Alice has 2 points, while Bob has 3 points.\n*   If Alice plays till level 2 and Bob plays the rest of the levels, Alice has 3 points, while Bob has 2 points.\n*   If Alice plays till level 3 and Bob plays the rest of the levels, Alice has 4 points, while Bob has 1 point.\n\nAlice must play a minimum of 3 levels to gain more points.\n\n**Example 3:**\n\n**Input:** possible = \\[0,0\\]\n\n**Output:** \\-1\n\n**Explanation:**\n\nThe only possible way is for both players to play 1 level each. Alice plays level 0 and loses 1 point. Bob plays level 1 and loses 1 point. As both players have equal points, Alice can't gain more points than Bob.\n\n**Constraints:**\n\n*   `2 <= n == possible.length <= 10^(5)`\n*   `possible[i]` is either `0` or `1`.",
+  "constraints": [
+    "2 <= n == possible.length <= 105",
+    "possible[i] is either 0 or 1."
+  ],
+  "examples": [
+    {
+      "input": "possible = [1,0,1,0]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "possible = [1,1,1,1,1]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "possible = [0,0]",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumLevels(vector<int>& possible) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumLevels(int[] possible) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumLevels(self, possible: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumLevels(self, possible):\n        \"\"\"\n        :type possible: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} possible\n * @return {number}\n */\nvar minimumLevels = function(possible) {\n    \n};",
+    "typescript": "function minimumLevels(possible: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumLevels(int[] possible) {\n        \n    }\n}",
+    "c": "int minimumLevels(int* possible, int possibleSize) {\n    \n}",
+    "golang": "func minimumLevels(possible []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumLevels(possible: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumLevels(_ possible: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_levels(possible: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} possible\n# @return {Integer}\ndef minimum_levels(possible)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $possible\n     * @return Integer\n     */\n    function minimumLevels($possible) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumLevels(List<int> possible) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumLevels(possible: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_levels(possible :: [integer]) :: integer\n  def minimum_levels(possible) do\n    \n  end\nend",
+    "erlang": "-spec minimum_levels(Possible :: [integer()]) -> integer().\nminimum_levels(Possible) ->\n  .",
+    "racket": "(define/contract (minimum-levels possible)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,0,1,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,0,1,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,1,0,1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0,1,1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,0,1,0,1,0,1,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,0,2,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1,2,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,-1,0,-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1,0,-1,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Change all <code>0</code> in possible array into <code>-1</code>.",
+    "We need to find the shortest non-empty prefix of the new possible array such that the sum of elements in it is strictly larger than the remaining part."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-levels-to-gain-more-points/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.071Z",
+    "sourceUpdatedAt": null
+  }
+}

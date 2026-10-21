@@ -1,0 +1,62 @@
+{
+  "id": "1211",
+  "slug": "queries-quality-and-percentage",
+  "title": "Queries Quality and Percentage",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Queries`\n\n```\nposition\n```\n\nWe define query `quality` as:\n\n> The average of the ratio between query rating and its position.\n\nWe also define `poor query percentage` as:\n\n> The percentage of all queries with rating less than 3.\n\nWrite a solution to find each `query_name`, the `quality` and `poor_query_percentage`.\n\nBoth `quality` and `poor_query_percentage` should be **rounded to 2 decimal places**.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nQueries table:\n+------------+-------------------+----------+--------+\n| query_name | result            | position | rating |\n+------------+-------------------+----------+--------+\n| Dog        | Golden Retriever  | 1        | 5      |\n| Dog        | German Shepherd   | 2        | 5      |\n| Dog        | Mule              | 200      | 1      |\n| Cat        | Shirazi           | 5        | 2      |\n| Cat        | Siamese           | 3        | 3      |\n| Cat        | Sphynx            | 7        | 4      |\n+------------+-------------------+----------+--------+\nOutput: \n+------------+---------+-----------------------+\n| query_name | quality | poor_query_percentage |\n+------------+---------+-----------------------+\n| Dog        | 2.50    | 33.33                 |\n| Cat        | 0.66    | 33.33                 |\n+------------+---------+-----------------------+\nExplanation: \nDog queries quality is ((5 / 1) + (5 / 2) + (1 / 200)) / 3 = 2.50\nDog queries poor_ query_percentage is (1 / 3) * 100 = 33.33\n\nCat queries quality equals ((2 / 5) + (3 / 3) + (4 / 7)) / 3 = 0.66\nCat queries poor_ query_percentage is (1 / 3) * 100 = 33.33\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Queries table:\n+------------+-------------------+----------+--------+\n| query_name | result            | position | rating |\n+------------+-------------------+----------+--------+\n| Dog        | Golden Retriever  | 1        | 5      |\n| Dog        | German Shepherd   | 2        | 5      |\n| Dog        | Mule              | 200      | 1      |\n| Cat        | Shirazi           | 5        | 2      |\n| Cat        | Siamese           | 3        | 3      |\n| Cat        | Sphynx            | 7        | 4      |\n+------------+-------------------+----------+--------+",
+      "output": "+------------+---------+-----------------------+\n| query_name | quality | poor_query_percentage |\n+------------+---------+-----------------------+\n| Dog        | 2.50    | 33.33                 |\n| Cat        | 0.66    | 33.33                 |\n+------------+---------+-----------------------+",
+      "explanation": "Dog queries quality is ((5 / 1) + (5 / 2) + (1 / 200)) / 3 = 2.50\nDog queries poor_ query_percentage is (1 / 3) * 100 = 33.33\n\nCat queries quality equals ((2 / 5) + (3 / 3) + (4 / 7)) / 3 = 0.66\nCat queries poor_ query_percentage is (1 / 3) * 100 = 33.33"
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef queries_stats(queries: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Queries\":[\"query_name\",\"result\",\"position\",\"rating\"]},\"rows\":{\"Queries\":[[\"Dog\",\"Golden Retriever\",1,5],[\"Dog\",\"German Shepherd\",2,5],[\"Dog\",\"Mule\",200,1],[\"Cat\",\"Shirazi\",5,2],[\"Cat\",\"Siamese\",3,3],[\"Cat\",\"Sphynx\",7,4]]}}",
+      "expectedOutput": "+------------+---------+-----------------------+\n| query_name | quality | poor_query_percentage |\n+------------+---------+-----------------------+\n| Dog        | 2.50    | 33.33                 |\n| Cat        | 0.66    | 33.33                 |\n+------------+---------+-----------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Queries\":[\"query_name\",\"result\",\"position\",\"rating\"]},\"rows\":{\"Queries\":[[\"Dog\",\"Golden Retriever\",1,5],[\"Dog\",\"German Shepherd\",2,5],[\"Dog\",\"Mule\",200,1],[\"Cat\",\"Shirazi\",5,2],[\"Cat\",\"Siamese\",3,3],[\"Cat\",\"Sphynx\",7,4]]}}",
+      "expectedOutput": "+------------+---------+-----------------------+\n| query_name | quality | poor_query_percentage |\n+------------+---------+-----------------------+\n| Dog        | 2.50    | 33.33                 |\n| Cat        | 0.66    | 33.33                 |\n+------------+---------+-----------------------+"
+    },
+    {
+      "input": "Queries table:\n+------------+-------------------+----------+--------+\n| query_name | result            | position | rating |\n+------------+-------------------+----------+--------+\n| Dog        | Golden Retriever  | 1        | 5      |\n| Dog        | German Shepherd   | 2        | 5      |\n| Dog        | Mule              | 200      | 1      |\n| Cat        | Shirazi           | 5        | 2      |\n| Cat        | Siamese           | 3        | 3      |\n| Cat        | Sphynx            | 7        | 4      |\n+------------+-------------------+----------+--------+",
+      "expectedOutput": "+------------+---------+-----------------------+\n| query_name | quality | poor_query_percentage |\n+------------+---------+-----------------------+\n| Dog        | 2.50    | 33.33                 |\n| Cat        | 0.66    | 33.33                 |\n+------------+---------+-----------------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Queries (query_name varchar(30), result varchar(50), position int, rating int)\n\nTruncate table Queries",
+  "sqlSetup": [
+    "insert into Queries (query_name, result, position, rating) values ('Dog', 'Golden Retriever', '1', '5')",
+    "insert into Queries (query_name, result, position, rating) values ('Dog', 'German Shepherd', '2', '5')",
+    "insert into Queries (query_name, result, position, rating) values ('Dog', 'Mule', '200', '1')",
+    "insert into Queries (query_name, result, position, rating) values ('Cat', 'Shirazi', '5', '2')",
+    "insert into Queries (query_name, result, position, rating) values ('Cat', 'Siamese', '3', '3')",
+    "insert into Queries (query_name, result, position, rating) values ('Cat', 'Sphynx', '7', '4')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/queries-quality-and-percentage/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.095Z",
+    "sourceUpdatedAt": null
+  }
+}

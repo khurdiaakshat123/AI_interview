@@ -1,0 +1,172 @@
+{
+  "id": "2435",
+  "slug": "paths-in-matrix-whose-sum-is-divisible-by-k",
+  "title": "Paths in Matrix Whose Sum Is Divisible by K",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "statement": "You are given a **0-indexed** `m x n` integer matrix `grid` and an integer `k`. You are currently at position `(0, 0)` and you want to reach position `(m - 1, n - 1)` moving only **down** or **right**.\n\nReturn _the number of paths where the sum of the elements on the path is divisible by_ `k`. Since the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n![](./assets/paths-in-matrix-whose-sum-is-divisible-by-k-1.png)\n```\nInput: grid = [[5,2,4],[3,0,5],[0,7,2]], k = 3\nOutput: 2\nExplanation: There are two paths where the sum of the elements on the path is divisible by k.\nThe first path highlighted in red has a sum of 5 + 2 + 4 + 5 + 2 = 18 which is divisible by 3.\nThe second path highlighted in blue has a sum of 5 + 3 + 0 + 5 + 2 = 15 which is divisible by 3.\n```\n\n**Example 2:**\n\n![](./assets/paths-in-matrix-whose-sum-is-divisible-by-k-2.png)\n```\nInput: grid = [[0,0]], k = 5\nOutput: 1\nExplanation: The path highlighted in red has a sum of 0 + 0 = 0 which is divisible by 5.\n```\n\n**Example 3:**\n\n![](./assets/paths-in-matrix-whose-sum-is-divisible-by-k-3.png)\n```\nInput: grid = [[7,3,4,9],[2,3,6,2],[2,3,7,0]], k = 1\nOutput: 10\nExplanation: Every integer is divisible by 1 so the sum of the elements on every possible path is divisible by k.\n```\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 5 * 10^(4)`\n*   `1 <= m * n <= 5 * 10^(4)`\n*   `0 <= grid[i][j] <= 100`\n*   `1 <= k <= 50`",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 5 * 104",
+    "1 <= m * n <= 5 * 104",
+    "0 <= grid[i][j] <= 100",
+    "1 <= k <= 50"
+  ],
+  "examples": [
+    {
+      "input": "grid = [[5,2,4],[3,0,5],[0,7,2]], k = 3",
+      "output": "2",
+      "explanation": "There are two paths where the sum of the elements on the path is divisible by k.\nThe first path highlighted in red has a sum of 5 + 2 + 4 + 5 + 2 = 18 which is divisible by 3.\nThe second path highlighted in blue has a sum of 5 + 3 + 0 + 5 + 2 = 15 which is divisible by 3."
+    },
+    {
+      "input": "grid = [[0,0]], k = 5",
+      "output": "1",
+      "explanation": "The path highlighted in red has a sum of 0 + 0 = 0 which is divisible by 5."
+    },
+    {
+      "input": "grid = [[7,3,4,9],[2,3,6,2],[2,3,7,0]], k = 1",
+      "output": "10",
+      "explanation": "Every integer is divisible by 1 so the sum of the elements on every possible path is divisible by k."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numberOfPaths(vector<vector<int>>& grid, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numberOfPaths(int[][] grid, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfPaths(self, grid: list[list[int]], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfPaths(self, grid, k):\n        \"\"\"\n        :type grid: List[List[int]]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @param {number} k\n * @return {number}\n */\nvar numberOfPaths = function(grid, k) {\n    \n};",
+    "typescript": "function numberOfPaths(grid: number[][], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumberOfPaths(int[][] grid, int k) {\n        \n    }\n}",
+    "c": "int numberOfPaths(int** grid, int gridSize, int* gridColSize, int k) {\n    \n}",
+    "golang": "func numberOfPaths(grid [][]int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfPaths(grid: Array<IntArray>, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfPaths(_ grid: [[Int]], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_paths(grid: Vec<Vec<i32>>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @param {Integer} k\n# @return {Integer}\ndef number_of_paths(grid, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @param Integer $k\n     * @return Integer\n     */\n    function numberOfPaths($grid, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfPaths(List<List<int>> grid, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfPaths(grid: Array[Array[Int]], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_paths(grid :: [[integer]], k :: integer) :: integer\n  def number_of_paths(grid, k) do\n    \n  end\nend",
+    "erlang": "-spec number_of_paths(Grid :: [[integer()]], K :: integer()) -> integer().\nnumber_of_paths(Grid, K) ->\n  .",
+    "racket": "(define/contract (number-of-paths grid k)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[5,2,4],[3,0,5],[0,7,2]]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,0]]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[7,3,4,9],[2,3,6,2],[2,3,7,0]]\n1",
+      "expectedOutput": "10"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[5,2,4],[3,0,5],[0,7,2]]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,0]]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[7,3,4,9],[2,3,6,2],[2,3,7,0]]\n1",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[[5,2,4],[3,0,5],[0,7,2]]\n1",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[[5,2,4],[3,0,5],[0,7,2]]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[5,2,4],[3,0,5],[0,7,2]]\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[5,2,4],[3,0,5],[0,7,2]]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[5,2,4],[3,0,5],[0,7,2]]\n6",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[5,2,4],[3,0,5],[0,7,2]]\n7",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[5,2,4],[3,0,5],[0,7,2]]\n8",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0]]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0]]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0]]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0]]\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0]]\n6",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0]]\n7",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0]]\n8",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[0,0]]\n9",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[7,3,4,9],[2,3,6,2],[2,3,7,0]]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[7,3,4,9],[2,3,6,2],[2,3,7,0]]\n3",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The actual numbers in grid do not matter. What matters are the remainders you get when you divide the numbers by k.",
+    "We can use dynamic programming to solve this problem. What can we use as states?",
+    "Let dp[i][j][value] represent the number of paths where the sum of the elements on the path has a remainder of value when divided by k."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.687Z",
+    "sourceUpdatedAt": null
+  }
+}

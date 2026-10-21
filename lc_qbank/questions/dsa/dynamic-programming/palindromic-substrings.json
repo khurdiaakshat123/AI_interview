@@ -1,0 +1,159 @@
+{
+  "id": "647",
+  "slug": "palindromic-substrings",
+  "title": "Palindromic Substrings",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "Given a string `s`, return _the number of **palindromic substrings** in it_.\n\nA string is a **palindrome** when it reads the same backward as forward.\n\nA **substring** is a contiguous sequence of characters within the string.\n\n**Example 1:**\n\n```\nInput: s = \"abc\"\nOutput: 3\nExplanation: Three palindromic strings: \"a\", \"b\", \"c\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"aaa\"\nOutput: 6\nExplanation: Six palindromic strings: \"a\", \"a\", \"a\", \"aa\", \"aa\", \"aaa\".\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 1000`\n*   `s` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abc\"",
+      "output": "3",
+      "explanation": "Three palindromic strings: \"a\", \"b\", \"c\"."
+    },
+    {
+      "input": "s = \"aaa\"",
+      "output": "6",
+      "explanation": "Six palindromic strings: \"a\", \"a\", \"a\", \"aa\", \"aa\", \"aaa\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countSubstrings(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countSubstrings(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countSubstrings(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def countSubstrings(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar countSubstrings = function(s) {\n    \n};",
+    "typescript": "function countSubstrings(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountSubstrings(string s) {\n        \n    }\n}",
+    "c": "int countSubstrings(char* s) {\n    \n}",
+    "golang": "func countSubstrings(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countSubstrings(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countSubstrings(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_substrings(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef count_substrings(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function countSubstrings($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countSubstrings(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countSubstrings(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_substrings(s :: String.t) :: integer\n  def count_substrings(s) do\n    \n  end\nend",
+    "erlang": "-spec count_substrings(S :: unicode:unicode_binary()) -> integer().\ncount_substrings(S) ->\n  .",
+    "racket": "(define/contract (count-substrings s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaa\"",
+      "expectedOutput": "6"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaa\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"bc\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"cba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcabc\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"abccba\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"ABC\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "How can we reuse a previously computed palindrome to compute a larger palindrome?",
+    "If “aba” is a palindrome, is “xabax” a palindrome? Similarly is “xabay” a palindrome?",
+    "Complexity based hint:</br>\r\nIf we use brute force and check whether for every start and end position a substring is a palindrome we have O(n^2) start - end pairs and O(n) palindromic checks. Can we reduce the time for palindromic checks to O(1) by reusing some previous computation?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/palindromic-substrings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.489Z",
+    "sourceUpdatedAt": null
+  }
+}

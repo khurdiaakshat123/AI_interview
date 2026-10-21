@@ -1,0 +1,157 @@
+{
+  "id": "433",
+  "slug": "minimum-genetic-mutation",
+  "title": "Minimum Genetic Mutation",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Breadth-First Search",
+    "Bidirectional Search"
+  ],
+  "statement": "A gene string can be represented by an 8-character long string, with choices from `'A'`, `'C'`, `'G'`, and `'T'`.\n\nSuppose we need to investigate a mutation from a gene string `startGene` to a gene string `endGene` where one mutation is defined as one single character changed in the gene string.\n\n*   For example, `\"AACCGGTT\" --> \"AACCGGTA\"` is one mutation.\n\nThere is also a gene bank `bank` that records all the valid gene mutations. A gene must be in `bank` to make it a valid gene string.\n\nGiven the two gene strings `startGene` and `endGene` and the gene bank `bank`, return _the minimum number of mutations needed to mutate from_ `startGene` _to_ `endGene`. If there is no such a mutation, return `-1`.\n\nNote that the starting point is assumed to be valid, so it might not be included in the bank.\n\n**Example 1:**\n\n```\nInput: startGene = \"AACCGGTT\", endGene = \"AACCGGTA\", bank = [\"AACCGGTA\"]\nOutput: 1\n```\n\n**Example 2:**\n\n```\nInput: startGene = \"AACCGGTT\", endGene = \"AAACGGTA\", bank = [\"AACCGGTA\",\"AACCGCTA\",\"AAACGGTA\"]\nOutput: 2\n```\n\n**Constraints:**\n\n*   `0 <= bank.length <= 10`\n*   `startGene.length == endGene.length == bank[i].length == 8`\n*   `startGene`, `endGene`, and `bank[i]` consist of only the characters `['A', 'C', 'G', 'T']`.",
+  "constraints": [
+    "0 <= bank.length <= 10",
+    "startGene.length == endGene.length == bank[i].length == 8",
+    "startGene, endGene, and bank[i] consist of only the characters ['A', 'C', 'G', 'T']."
+  ],
+  "examples": [
+    {
+      "input": "startGene = \"AACCGGTT\", endGene = \"AACCGGTA\", bank = [\"AACCGGTA\"]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "startGene = \"AACCGGTT\", endGene = \"AAACGGTA\", bank = [\"AACCGGTA\",\"AACCGCTA\",\"AAACGGTA\"]",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minMutation(string startGene, string endGene, vector<string>& bank) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minMutation(String startGene, String endGene, String[] bank) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minMutation(self, startGene: str, endGene: str, bank: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minMutation(self, startGene, endGene, bank):\n        \"\"\"\n        :type startGene: str\n        :type endGene: str\n        :type bank: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} startGene\n * @param {string} endGene\n * @param {string[]} bank\n * @return {number}\n */\nvar minMutation = function(startGene, endGene, bank) {\n    \n};",
+    "typescript": "function minMutation(startGene: string, endGene: string, bank: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinMutation(string startGene, string endGene, string[] bank) {\n        \n    }\n}",
+    "c": "int minMutation(char* startGene, char* endGene, char** bank, int bankSize) {\n    \n}",
+    "golang": "func minMutation(startGene string, endGene string, bank []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minMutation(startGene: String, endGene: String, bank: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minMutation(_ startGene: String, _ endGene: String, _ bank: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_mutation(start_gene: String, end_gene: String, bank: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} start_gene\n# @param {String} end_gene\n# @param {String[]} bank\n# @return {Integer}\ndef min_mutation(start_gene, end_gene, bank)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $startGene\n     * @param String $endGene\n     * @param String[] $bank\n     * @return Integer\n     */\n    function minMutation($startGene, $endGene, $bank) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minMutation(String startGene, String endGene, List<String> bank) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minMutation(startGene: String, endGene: String, bank: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_mutation(start_gene :: String.t, end_gene :: String.t, bank :: [String.t]) :: integer\n  def min_mutation(start_gene, end_gene, bank) do\n    \n  end\nend",
+    "erlang": "-spec min_mutation(StartGene :: unicode:unicode_binary(), EndGene :: unicode:unicode_binary(), Bank :: [unicode:unicode_binary()]) -> integer().\nmin_mutation(StartGene, EndGene, Bank) ->\n  .",
+    "racket": "(define/contract (min-mutation startGene endGene bank)\n  (-> string? string? (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"AACCGGTT\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"AACCGGTT\"\n\"AAACGGTA\"\n[\"AACCGGTA\",\"AACCGCTA\",\"AAACGGTA\"]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"AACCGGTT\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"AACCGGTT\"\n\"AAACGGTA\"\n[\"AACCGGTA\",\"AACCGCTA\",\"AAACGGTA\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"AACC\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"GGTT\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"A\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"AA\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"TTGGCCAA\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"AACCGGTTAACCGGTT\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"AAAAAA\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"AACCGGTTTTGGCCAA\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaccggtt\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"a\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ab\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ba\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aba\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abba\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aaaaa\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abcde\"\n\"AACCGGTA\"\n[\"AACCGGTA\"]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-genetic-mutation/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.949Z",
+    "sourceUpdatedAt": null
+  }
+}

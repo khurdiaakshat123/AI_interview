@@ -1,0 +1,154 @@
+{
+  "id": "1534",
+  "slug": "count-good-triplets",
+  "title": "Count Good Triplets",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Enumeration"
+  ],
+  "statement": "Given an array of integers `arr`, and three integers `a`, `b` and `c`. You need to find the number of good triplets.\n\nA triplet `(arr[i], arr[j], arr[k])` is **good** if the following conditions are true:\n\n*   `0 <= i < j < k < arr.length`\n*   `|arr[i] - arr[j]| <= a`\n*   `|arr[j] - arr[k]| <= b`\n*   `|arr[i] - arr[k]| <= c`\n\nWhere `|x|` denotes the absolute value of `x`.\n\nReturn _the number of good triplets_.\n\n**Example 1:**\n\n```\nInput: arr = [3,0,1,1,9,7], a = 7, b = 2, c = 3\nOutput: 4\nExplanation: There are 4 good triplets: [(3,0,1), (3,0,1), (3,1,1), (0,1,1)].\n```\n\n**Example 2:**\n\n```\nInput: arr = [1,1,2,2,3], a = 0, b = 0, c = 1\nOutput: 0\nExplanation: No triplet satisfies all conditions.\n```\n\n**Constraints:**\n\n*   `3 <= arr.length <= 100`\n*   `0 <= arr[i] <= 1000`\n*   `0 <= a, b, c <= 1000`",
+  "constraints": [
+    "3 <= arr.length <= 100",
+    "0 <= arr[i] <= 1000",
+    "0 <= a, b, c <= 1000"
+  ],
+  "examples": [
+    {
+      "input": "arr = [3,0,1,1,9,7], a = 7, b = 2, c = 3",
+      "output": "4",
+      "explanation": " There are 4 good triplets: [(3,0,1), (3,0,1), (3,1,1), (0,1,1)]."
+    },
+    {
+      "input": "arr = [1,1,2,2,3], a = 0, b = 0, c = 1",
+      "output": "0",
+      "explanation": "No triplet satisfies all conditions."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countGoodTriplets(vector<int>& arr, int a, int b, int c) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countGoodTriplets(int[] arr, int a, int b, int c) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countGoodTriplets(self, arr: List[int], a: int, b: int, c: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countGoodTriplets(self, arr, a, b, c):\n        \"\"\"\n        :type arr: List[int]\n        :type a: int\n        :type b: int\n        :type c: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @param {number} a\n * @param {number} b\n * @param {number} c\n * @return {number}\n */\nvar countGoodTriplets = function(arr, a, b, c) {\n    \n};",
+    "typescript": "function countGoodTriplets(arr: number[], a: number, b: number, c: number): number {\n\n};",
+    "csharp": "public class Solution {\n    public int CountGoodTriplets(int[] arr, int a, int b, int c) {\n        \n    }\n}",
+    "c": "\n\nint countGoodTriplets(int* arr, int arrSize, int a, int b, int c){\n\n}",
+    "golang": "func countGoodTriplets(arr []int, a int, b int, c int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countGoodTriplets(arr: IntArray, a: Int, b: Int, c: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countGoodTriplets(_ arr: [Int], _ a: Int, _ b: Int, _ c: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_good_triplets(arr: Vec<i32>, a: i32, b: i32, c: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @param {Integer} a\n# @param {Integer} b\n# @param {Integer} c\n# @return {Integer}\ndef count_good_triplets(arr, a, b, c)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @param Integer $a\n     * @param Integer $b\n     * @param Integer $c\n     * @return Integer\n     */\n    function countGoodTriplets($arr, $a, $b, $c) {\n        \n    }\n}",
+    "scala": "object Solution {\n    def countGoodTriplets(arr: Array[Int], a: Int, b: Int, c: Int): Int = {\n        \n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "[3,0,1,1,9,7]\n7\n2\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,2,2,3]\n0\n0\n1",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,0,1,1,9,7]\n7\n2\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,2,2,3]\n0\n0\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,0,1]\n7\n2\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,9,7]\n7\n2\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3]\n7\n2\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,7]\n7\n2\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,0]\n7\n2\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[7,9,1,1,0,3]\n7\n2\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,1,3,7,9]\n7\n2\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[9,7,3,1,1,0]\n7\n2\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,3,3,3,3]\n7\n2\n3",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[3,0,1,1,9,7,3,0,1,1,9,7]\n7\n2\n3",
+      "expectedOutput": "55"
+    },
+    {
+      "input": "[6,0,2,2,18,14]\n7\n2\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,1,2,2,10,8]\n7\n2\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,-1,0,0,8,6]\n7\n2\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-3,0,-1,-1,-9,-7]\n7\n2\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]\n7\n2\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]\n7\n2\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]\n7\n2\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n7\n2\n3",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Notice that the constraints are small enough for a brute force solution to pass.",
+    "Loop through all triplets, and count the ones that are good."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-good-triplets/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.185Z",
+    "sourceUpdatedAt": null
+  }
+}

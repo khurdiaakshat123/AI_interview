@@ -1,0 +1,116 @@
+{
+  "id": "3989",
+  "slug": "maximum-consistent-columns-in-a-grid",
+  "title": "Maximum Consistent Columns in a Grid",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "statement": "You are given a 2D integer array `grid` of size `m x n`, and an integer `limit`.\n\nYou may remove zero or more columns from the grid, but at least one column must remain. The **relative** order of the remaining columns must be preserved.\n\nA grid is called **consistent** if for every row `i`, and for every pair of adjacent remaining columns `a` and `b` with `a < b`, the following holds: `|grid[i][b] - grid[i][a]| <= limit`.\n\nReturn the **maximum** number of columns that can remain such that the resulting grid is **consistent**.\n\n**Example 1:**\n\n**Input:** grid = \\[\\[-2,0,3\\]\\], limit = 2\n\n**Output:** 2\n\n**Explanation:**\n\n*   Remove column 2 and keep columns 0 and 1, which gives `|grid[0][1] − grid[0][0]| = |0 − (−2)| = 2 <= limit`.\n*   Thus, the maximum number of columns that can remain is 2.\n\n**Example 2:**\n\n**Input:** grid = \\[\\[1,-1,1\\],\\[2,2,2\\]\\], limit = 1\n\n**Output:** 2\n\n**Explanation:**\n\n*   Remove column 1 and keep columns 0 and 2, which gives\n    *   `|grid[0][2] − grid[0][0]| = |1 − 1| = 0 <= limit` and\n    *   `|grid[1][2] − grid[1][0]| = |2 − 2| = 0 <= limit`.\n*   Thus, the maximum number of columns that can remain is 2.\n\n**Example 3:**\n\n**Input:** grid = \\[\\[-5,5\\]\\], limit = 9\n\n**Output:** 1\n\n**Explanation:**\n\n*   Remove either column 0 or column 1, since `|grid[0][1] − grid[0][0]| = |5 − (−5)| = 10 > limit`.\n*   Thus, the maximum number of columns that can remain is 1.\n\n**Constraints:**\n\n*   `1 <= m == grid.length <= 250`\n*   `1 <= n == grid[i].length <= 250`\n*   `-10^(5) <= grid[i][j] <= 10^(5)`\n*   `0 <= limit <= 10^(5)​​​​​​​​​​​​​​​​`",
+  "constraints": [
+    "1 <= m == grid.length <= 250",
+    "1 <= n == grid[i].length <= 250",
+    "-105 <= grid[i][j] <= 105",
+    "0 <= limit <= 105​​​​​​​​​​​​​​​​"
+  ],
+  "examples": [
+    {
+      "input": "grid = [[-2,0,3]], limit = 2",
+      "output": "2",
+      "explanation": "Remove column 2 and keep columns 0 and 1, which gives |grid[0][1] - grid[0][0]| = |0 - (-2)| = 2 <= limit.\n\tThus, the maximum number of columns that can remain is 2."
+    },
+    {
+      "input": "grid = [[1,-1,1],[2,2,2]], limit = 1",
+      "output": "2",
+      "explanation": "Remove column 1 and keep columns 0 and 2, which gives\n\t\n\t\t|grid[0][2] - grid[0][0]| = |1 - 1| = 0 <= limit and\n\t\t|grid[1][2] - grid[1][0]| = |2 - 2| = 0 <= limit.\n\t\n\t\n\tThus, the maximum number of columns that can remain is 2."
+    },
+    {
+      "input": "grid = [[-5,5]], limit = 9",
+      "output": "1",
+      "explanation": "Remove either column 0 or column 1, since |grid[0][1] - grid[0][0]| = |5 - (-5)| = 10 > limit.\n\tThus, the maximum number of columns that can remain is 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxConsistentColumns(vector<vector<int>>& grid, int limit) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxConsistentColumns(int[][] grid, int limit) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxConsistentColumns(self, grid: List[List[int]], limit: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxConsistentColumns(self, grid, limit):\n        \"\"\"\n        :type grid: List[List[int]]\n        :type limit: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @param {number} limit\n * @return {number}\n */\nvar maxConsistentColumns = function(grid, limit) {\n    \n};",
+    "typescript": "function maxConsistentColumns(grid: number[][], limit: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxConsistentColumns(int[][] grid, int limit) {\n        \n    }\n}",
+    "c": "int maxConsistentColumns(int** grid, int gridSize, int* gridColSize, int limit) {\n    \n}",
+    "golang": "func maxConsistentColumns(grid [][]int, limit int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxConsistentColumns(grid: Array<IntArray>, limit: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxConsistentColumns(_ grid: [[Int]], _ limit: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_consistent_columns(grid: Vec<Vec<i32>>, limit: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @param {Integer} limit\n# @return {Integer}\ndef max_consistent_columns(grid, limit)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @param Integer $limit\n     * @return Integer\n     */\n    function maxConsistentColumns($grid, $limit) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxConsistentColumns(List<List<int>> grid, int limit) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxConsistentColumns(grid: Array[Array[Int]], limit: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_consistent_columns(grid :: [[integer]], limit :: integer) :: integer\n  def max_consistent_columns(grid, limit) do\n    \n  end\nend",
+    "erlang": "-spec max_consistent_columns(Grid :: [[integer()]], Limit :: integer()) -> integer().\nmax_consistent_columns(Grid, Limit) ->\n  .",
+    "racket": "(define/contract (max-consistent-columns grid limit)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[-2,0,3]]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[1,-1,1],[2,2,2]]\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[-5,5]]\n9",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[-2,0,3]]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[1,-1,1],[2,2,2]]\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[-5,5]]\n9",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "grid = [[-2,0,3]], limit = 2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "grid = [[1,-1,1],[2,2,2]], limit = 1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "grid = [[-5,5]], limit = 9",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Think of each column as one item in a subsequence. Two columns <code>a</code> and <code>b</code> with <code>a &lt; b</code> can be adjacent in the remaining grid only if <code>|grid[i][b] - grid[i][a]| &lt;= limit</code> for every row <code>i</code>.</p>",
+    "<p>Precompute whether every pair of columns <code>(a, b)</code> is compatible.</p>",
+    "<p>Let <code>dp[j]</code> be the maximum number of columns in a valid remaining grid whose last column is <code>j</code>.</p>",
+    "<p>For each <code>j</code>, try all previous columns <code>i &lt; j</code>. If columns <code>i</code> and <code>j</code> are compatible, update <code>dp[j] = max(dp[j], dp[i] + 1)</code>.</p>",
+    "<p>The answer is the maximum value of <code>dp[j]</code>.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-consistent-columns-in-a-grid/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.683Z",
+    "sourceUpdatedAt": null
+  }
+}

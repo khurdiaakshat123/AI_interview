@@ -1,0 +1,176 @@
+{
+  "id": "1514",
+  "slug": "path-with-maximum-probability",
+  "title": "Path with Maximum Probability",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path",
+    "Dijkstra's Algorithm"
+  ],
+  "statement": "You are given an undirected weighted graph of `n` nodes (0-indexed), represented by an edge list where `edges[i] = [a, b]` is an undirected edge connecting the nodes `a` and `b` with a probability of success of traversing that edge `succProb[i]`.\n\nGiven two nodes `start` and `end`, find the path with the maximum probability of success to go from `start` to `end` and return its success probability.\n\nIf there is no path from `start` to `end`, **return 0**. Your answer will be accepted if it differs from the correct answer by at most **1e-5**.\n\n**Example 1:**\n\n**![](./assets/path-with-maximum-probability-1.png)**\n\n```\nInput: n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2\nOutput: 0.25000\nExplanation: There are two paths from start to end, one having a probability of success = 0.2 and the other has 0.5 * 0.5 = 0.25.\n```\n\n**Example 2:**\n\n**![](./assets/path-with-maximum-probability-2.png)**\n\n```\nInput: n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2\nOutput: 0.30000\n```\n\n**Example 3:**\n\n**![](./assets/path-with-maximum-probability-3.png)**\n\n```\nInput: n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2\nOutput: 0.00000\nExplanation: There is no path between 0 and 2.\n```\n\n**Constraints:**\n\n*   `2 <= n <= 10^4`\n*   `0 <= start, end < n`\n*   `start != end`\n*   `0 <= a, b < n`\n*   `a != b`\n*   `0 <= succProb.length == edges.length <= 2*10^4`\n*   `0 <= succProb[i] <= 1`\n*   There is at most one edge between every two nodes.",
+  "constraints": [
+    "2 <= n <= 10^4",
+    "0 <= start, end < n",
+    "start != end",
+    "0 <= a, b < n",
+    "a != b",
+    "0 <= succProb.length == edges.length <= 2*10^4",
+    "0 <= succProb[i] <= 1",
+    "There is at most one edge between every two nodes."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2",
+      "output": "0.25000",
+      "explanation": " There are two paths from start to end, one having a probability of success = 0.2 and the other has 0.5 * 0.5 = 0.25."
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2",
+      "output": "0.30000",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2",
+      "output": "0.00000",
+      "explanation": " There is no path between 0 and 2."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start_node, int end_node) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double maxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProbability(self, n: int, edges: list[list[int]], succProb: list[float], start_node: int, end_node: int) -> float:\n        ",
+    "python": "class Solution(object):\n    def maxProbability(self, n, edges, succProb, start_node, end_node):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type succProb: List[float]\n        :type start_node: int\n        :type end_node: int\n        :rtype: float\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number[]} succProb\n * @param {number} start_node\n * @param {number} end_node\n * @return {number}\n */\nvar maxProbability = function(n, edges, succProb, start_node, end_node) {\n    \n};",
+    "typescript": "function maxProbability(n: number, edges: number[][], succProb: number[], start_node: number, end_node: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public double MaxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {\n        \n    }\n}",
+    "c": "double maxProbability(int n, int** edges, int edgesSize, int* edgesColSize, double* succProb, int succProbSize, int start_node, int end_node) {\n    \n}",
+    "golang": "func maxProbability(n int, edges [][]int, succProb []float64, start_node int, end_node int) float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProbability(n: Int, edges: Array<IntArray>, succProb: DoubleArray, start_node: Int, end_node: Int): Double {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProbability(_ n: Int, _ edges: [[Int]], _ succProb: [Double], _ start_node: Int, _ end_node: Int) -> Double {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_probability(n: i32, edges: Vec<Vec<i32>>, succ_prob: Vec<f64>, start_node: i32, end_node: i32) -> f64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Float[]} succ_prob\n# @param {Integer} start_node\n# @param {Integer} end_node\n# @return {Float}\ndef max_probability(n, edges, succ_prob, start_node, end_node)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Float[] $succProb\n     * @param Integer $start_node\n     * @param Integer $end_node\n     * @return Float\n     */\n    function maxProbability($n, $edges, $succProb, $start_node, $end_node) {\n        \n    }\n}",
+    "dart": "class Solution {\n  double maxProbability(int n, List<List<int>> edges, List<double> succProb, int start_node, int end_node) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProbability(n: Int, edges: Array[Array[Int]], succProb: Array[Double], start_node: Int, end_node: Int): Double = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_probability(n :: integer, edges :: [[integer]], succ_prob :: [float], start_node :: integer, end_node :: integer) :: float\n  def max_probability(n, edges, succ_prob, start_node, end_node) do\n    \n  end\nend",
+    "erlang": "-spec max_probability(N :: integer(), Edges :: [[integer()]], SuccProb :: [float()], Start_node :: integer(), End_node :: integer()) -> float().\nmax_probability(N, Edges, SuccProb, Start_node, End_node) ->\n  .",
+    "racket": "(define/contract (max-probability n edges succProb start_node end_node)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof flonum?) exact-integer? exact-integer? flonum?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[0.5,0.5,0.2]\n0\n2",
+      "expectedOutput": "0.25000"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[0.5,0.5,0.3]\n0\n2",
+      "expectedOutput": "0.30000"
+    },
+    {
+      "input": "3\n[[0,1]]\n[0.5]\n0\n2",
+      "expectedOutput": "0.00000"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[0.5,0.5,0.2]\n0\n2",
+      "expectedOutput": "0.25"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[0.5,0.5,0.3]\n0\n2",
+      "expectedOutput": "0.3"
+    },
+    {
+      "input": "3\n[[0,1]]\n[0.5]\n0\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "4\n[[0,1],[1,2],[0,2]]\n[0.5,0.5,0.2]\n0\n2",
+      "expectedOutput": "0.25"
+    },
+    {
+      "input": "5\n[[0,1],[1,2],[0,2]]\n[0.5,0.5,0.2]\n0\n2",
+      "expectedOutput": "0.25"
+    },
+    {
+      "input": "6\n[[0,1],[1,2],[0,2]]\n[0.5,0.5,0.2]\n0\n2",
+      "expectedOutput": "0.25"
+    },
+    {
+      "input": "7\n[[0,1],[1,2],[0,2]]\n[0.5,0.5,0.2]\n0\n2",
+      "expectedOutput": "0.25"
+    },
+    {
+      "input": "8\n[[0,1],[1,2],[0,2]]\n[0.5,0.5,0.2]\n0\n2",
+      "expectedOutput": "0.25"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[0.5]\n0\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[0.5,0.2]\n0\n2",
+      "expectedOutput": "0.1"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[0.5,0.5]\n0\n2",
+      "expectedOutput": "0.25"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[0.2,0.5,0.5]\n0\n2",
+      "expectedOutput": "0.5"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[0.5,0.5,0.5]\n0\n2",
+      "expectedOutput": "0.5"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[0.5,0.5,0.2,0.5,0.5,0.2]\n0\n2",
+      "expectedOutput": "0.25"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[1.0,1.0,0.4]\n0\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[1.5,1.5,1.2]\n0\n2",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[-0.5,-0.5,-0.8]\n0\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[-0.5,-0.5,-0.2]\n0\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[0,0,0]\n0\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n[[0,1],[1,2],[0,2]]\n[1,1,1]\n0\n2",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Multiplying probabilities will result in precision errors.",
+    "Take log probabilities to sum up numbers instead of multiplying them.",
+    "Use Dijkstra's algorithm to find the minimum path between the two nodes after negating all costs."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/path-with-maximum-probability/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.677Z",
+    "sourceUpdatedAt": null
+  }
+}

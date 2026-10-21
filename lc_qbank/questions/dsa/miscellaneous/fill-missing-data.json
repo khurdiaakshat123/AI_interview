@@ -1,0 +1,51 @@
+{
+  "id": "2887",
+  "slug": "fill-missing-data",
+  "title": "Fill Missing Data",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "```\nproducts\n```\n\nWrite a solution to fill in the missing value as `**0**` in the `quantity` column.\n\nThe result format is in the following example.\n\n```\nExample 1:\nInput:+-----------------+----------+-------+\n| name            | quantity | price |\n+-----------------+----------+-------+\n| Wristwatch      | None     | 135   |\n| WirelessEarbuds | None     | 821   |\n| GolfClubs       | 779      | 9319  |\n| Printer         | 849      | 3051  |\n+-----------------+----------+-------+\nOutput:\n+-----------------+----------+-------+\n| name            | quantity | price |\n+-----------------+----------+-------+\n| Wristwatch      | 0        | 135   |\n| WirelessEarbuds | 0        | 821   |\n| GolfClubs       | 779      | 9319  |\n| Printer         | 849      | 3051  |\n+-----------------+----------+-------+\nExplanation: \nThe quantity for Wristwatch and WirelessEarbuds are filled by 0.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "+-----------------+----------+-------+\n| name            | quantity | price |\n+-----------------+----------+-------+\n| Wristwatch      | None     | 135   |\n| WirelessEarbuds | None     | 821   |\n| GolfClubs       | 779      | 9319  |\n| Printer         | 849      | 3051  |\n+-----------------+----------+-------+",
+      "output": "+-----------------+----------+-------+\n| name            | quantity | price |\n+-----------------+----------+-------+\n| Wristwatch      | 0        | 135   |\n| WirelessEarbuds | 0        | 821   |\n| GolfClubs       | 779      | 9319  |\n| Printer         | 849      | 3051  |\n+-----------------+----------+-------+",
+      "explanation": "The quantity for Wristwatch and WirelessEarbuds are filled by 0."
+    }
+  ],
+  "starterCode": {
+    "pythondata": "import pandas as pd\n\ndef fillMissingValues(products: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"products\":[\"name\",\"quantity\",\"price\"]},\"rows\":{\"products\":[[\"Wristwatch\",null,135],[\"WirelessEarbuds\",null,821],[\"GolfClubs\",779,9319],[\"Printer\",849,3051]]}}",
+      "expectedOutput": "+-----------------+----------+-------+\n| name            | quantity | price |\n+-----------------+----------+-------+\n| Wristwatch      | 0        | 135   |\n| WirelessEarbuds | 0        | 821   |\n| GolfClubs       | 779      | 9319  |\n| Printer         | 849      | 3051  |\n+-----------------+----------+-------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"products\":[\"name\",\"quantity\",\"price\"]},\"rows\":{\"products\":[[\"Wristwatch\",null,135],[\"WirelessEarbuds\",null,821],[\"GolfClubs\",779,9319],[\"Printer\",849,3051]]}}",
+      "expectedOutput": "+-----------------+----------+-------+\n| name            | quantity | price |\n+-----------------+----------+-------+\n| Wristwatch      | 0        | 135   |\n| WirelessEarbuds | 0        | 821   |\n| GolfClubs       | 779      | 9319  |\n| Printer         | 849      | 3051  |\n+-----------------+----------+-------+"
+    },
+    {
+      "input": "+-----------------+----------+-------+\n| name            | quantity | price |\n+-----------------+----------+-------+\n| Wristwatch      | None     | 135   |\n| WirelessEarbuds | None     | 821   |\n| GolfClubs       | 779      | 9319  |\n| Printer         | 849      | 3051  |\n+-----------------+----------+-------+",
+      "expectedOutput": "+-----------------+----------+-------+\n| name            | quantity | price |\n+-----------------+----------+-------+\n| Wristwatch      | 0        | 135   |\n| WirelessEarbuds | 0        | 821   |\n| GolfClubs       | 779      | 9319  |\n| Printer         | 849      | 3051  |\n+-----------------+----------+-------+"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider using a build-in function in pandas library to fill the missing values of specified columns."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/fill-missing-data/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.290Z",
+    "sourceUpdatedAt": null
+  }
+}

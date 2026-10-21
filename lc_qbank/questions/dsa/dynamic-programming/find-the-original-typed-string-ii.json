@@ -1,0 +1,167 @@
+{
+  "id": "3333",
+  "slug": "find-the-original-typed-string-ii",
+  "title": "Find the Original Typed String II",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "statement": "Alice is attempting to type a specific string on her computer. However, she tends to be clumsy and **may** press a key for too long, resulting in a character being typed **multiple** times.\n\nYou are given a string `word`, which represents the **final** output displayed on Alice's screen. You are also given a **positive** integer `k`.\n\nReturn the total number of _possible_ original strings that Alice _might_ have intended to type, if she was trying to type a string of size **at least** `k`.\n\nSince the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** word = \"aabbccdd\", k = 7\n\n**Output:** 5\n\n**Explanation:**\n\nThe possible strings are: `\"aabbccdd\"`, `\"aabbccd\"`, `\"aabbcdd\"`, `\"aabccdd\"`, and `\"abbccdd\"`.\n\n**Example 2:**\n\n**Input:** word = \"aabbccdd\", k = 8\n\n**Output:** 1\n\n**Explanation:**\n\nThe only possible string is `\"aabbccdd\"`.\n\n**Example 3:**\n\n**Input:** word = \"aaabbb\", k = 3\n\n**Output:** 8\n\n**Constraints:**\n\n*   `1 <= word.length <= 5 * 10^(5)`\n*   `word` consists only of lowercase English letters.\n*   `1 <= k <= 2000`",
+  "constraints": [
+    "1 <= word.length <= 5 * 105",
+    "word consists only of lowercase English letters.",
+    "1 <= k <= 2000"
+  ],
+  "examples": [
+    {
+      "input": "word = \"aabbccdd\", k = 7",
+      "output": "5",
+      "explanation": null
+    },
+    {
+      "input": "word = \"aabbccdd\", k = 8",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "word = \"aaabbb\", k = 3",
+      "output": "8",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int possibleStringCount(string word, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int possibleStringCount(String word, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def possibleStringCount(self, word: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def possibleStringCount(self, word, k):\n        \"\"\"\n        :type word: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word\n * @param {number} k\n * @return {number}\n */\nvar possibleStringCount = function(word, k) {\n    \n};",
+    "typescript": "function possibleStringCount(word: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int PossibleStringCount(string word, int k) {\n        \n    }\n}",
+    "c": "int possibleStringCount(char* word, int k) {\n    \n}",
+    "golang": "func possibleStringCount(word string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun possibleStringCount(word: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func possibleStringCount(_ word: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn possible_string_count(word: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} word\n# @param {Integer} k\n# @return {Integer}\ndef possible_string_count(word, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word\n     * @param Integer $k\n     * @return Integer\n     */\n    function possibleStringCount($word, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int possibleStringCount(String word, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def possibleStringCount(word: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec possible_string_count(word :: String.t, k :: integer) :: integer\n  def possible_string_count(word, k) do\n    \n  end\nend",
+    "erlang": "-spec possible_string_count(Word :: unicode:unicode_binary(), K :: integer()) -> integer().\npossible_string_count(Word, K) ->\n  .",
+    "racket": "(define/contract (possible-string-count word k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aabbccdd\"\n7",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aabbccdd\"\n8",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaabbb\"\n3",
+      "expectedOutput": "8"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aabbccdd\"\n7",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aabbccdd\"\n8",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaabbb\"\n3",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"aabb\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ccdd\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ddccbbaa\"\n7",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aabbccddaabbccdd\"\n7",
+      "expectedOutput": "256"
+    },
+    {
+      "input": "\"aaaaaa\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aabbccddddccbbaa\"\n7",
+      "expectedOutput": "256"
+    },
+    {
+      "input": "\"AABBCCDD\"\n7",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"b\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n7",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"\n7",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Instead of solving for at least <code>k</code>, can we solve for at most <code>k - 1</code> length?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-original-typed-string-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.587Z",
+    "sourceUpdatedAt": null
+  }
+}

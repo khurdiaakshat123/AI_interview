@@ -1,0 +1,160 @@
+{
+  "id": "3976",
+  "slug": "maximum-subarray-sum-after-multiplier",
+  "title": "Maximum Subarray Sum After Multiplier",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given an integer array `nums` and a positive integer `k`.\n\nYou must choose **exactly** one subarray of `nums` and perform **exactly** one of the following operations:\n\n1.  Multiply each number in the chosen subarray by `k`.\n2.  Divide each number in the chosen subarray by `k`.\n    *   When dividing a positive number by `k`, use the **floor** value of the division result.\n    *   When dividing a negative number by `k`, use the **ceiling** value of the division result.\n\nReturn the **maximum** possible sum of a **non-empty** subarray in the resulting array.\n\nNote that the subarray chosen for the operation and the subarray chosen for the sum may be **different**.\n\n**Example 1:**\n\n**Input:** nums = \\[1,-2,3,4,-5\\], k = 2\n\n**Output:** 14\n\n**Explanation:**\n\n*   Multiply each number in the subarray `[3, 4]` by 2.\n*   This results in `nums = [1, -2, 6, 8, -5]`.\n*   The subarray with the largest sum is `[6, 8]`, so the output is `6 + 8 = 14`.\n\n**Example 2:**\n\n**Input:** nums = \\[-5,-4,-3\\], k = 2\n\n**Output:** \\-1\n\n**Explanation:**\n\n*   Divide each number in the subarray `[-3]` by 2.\n*   This results in `nums = [-5, -4, -1]`.\n*   The subarray with the largest sum is `[-1]`, so the output is -1.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `-10^(5) <= nums[i] <= 10^(5)`\n*   `1 <= k <= 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-105 <= nums[i] <= 105",
+    "1 <= k <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,-2,3,4,-5], k = 2",
+      "output": "14",
+      "explanation": "Multiply each number in the subarray [3, 4] by 2.\n\tThis results in nums = [1, -2, 6, 8, -5].\n\tThe subarray with the largest sum is [6, 8], so the output is 6 + 8 = 14."
+    },
+    {
+      "input": "nums = [-5,-4,-3], k = 2",
+      "output": "-1",
+      "explanation": "Divide each number in the subarray [-3] by 2.\n\tThis results in nums = [-5, -4, -1].\n\tThe subarray with the largest sum is [-1], so the output is -1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxSubarraySum(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxSubarraySum(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSubarraySum(self, nums: List[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSubarraySum(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar maxSubarraySum = function(nums, k) {\n    \n};",
+    "typescript": "function maxSubarraySum(nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxSubarraySum(int[] nums, int k) {\n        \n    }\n}",
+    "c": "long long maxSubarraySum(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func maxSubarraySum(nums []int, k int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSubarraySum(nums: IntArray, k: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSubarraySum(_ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_subarray_sum(nums: Vec<i32>, k: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef max_subarray_sum(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function maxSubarraySum($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSubarraySum(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSubarraySum(nums: Array[Int], k: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_subarray_sum(nums :: [integer], k :: integer) :: integer\n  def max_subarray_sum(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec max_subarray_sum(Nums :: [integer()], K :: integer()) -> integer().\nmax_subarray_sum(Nums, K) ->\n  .",
+    "racket": "(define/contract (max-subarray-sum nums k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,-2,3,4,-5]\n2",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[-5,-4,-3]\n2",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,-2,3,4,-5]\n2",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[-5,-4,-3]\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,-2]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,4,-5]\n2",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,-5]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-5,4,3,-2,1]\n2",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[-5,-2,1,3,4]\n2",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[4,3,1,-2,-5]\n2",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[1,1,1,1,1]\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,-2,3,4,-5,1,-2,3,4,-5]\n2",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[2,-4,6,8,-10]\n2",
+      "expectedOutput": "28"
+    },
+    {
+      "input": "[2,-1,4,5,-4]\n2",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[0,-3,2,3,-6]\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[-1,2,-3,-4,5]\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[0,0,0,0]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n2",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[0]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n2",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use a Kadane-style dynamic programming where the maximum-sum subarray is built from left to right.",
+    "Keep states for four cases: no operation used yet, currently multiplying, currently dividing, and operation already finished.",
+    "The divide value should be computed as truncation toward zero: floor for positive numbers and ceiling for negative numbers.",
+    "The answer is the maximum value over all states and all ending positions."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-subarray-sum-after-multiplier/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.666Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "id": "2685",
+  "slug": "count-the-number-of-complete-components",
+  "title": "Count the Number of Complete Components",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "statement": "You are given an integer `n`. There is an **undirected** graph with `n` vertices, numbered from `0` to `n - 1`. You are given a 2D integer array `edges` where `edges[i] = [a_(i), b_(i)]` denotes that there exists an **undirected** edge connecting vertices `a_(i)` and `b_(i)`.\n\nReturn _the number of **complete connected components** of the graph_.\n\nA **connected component** is a subgraph of a graph in which there exists a path between any two vertices, and no vertex of the subgraph shares an edge with a vertex outside of the subgraph.\n\nA connected component is said to be **complete** if there exists an edge between every pair of its vertices.\n\n**Example 1:**\n\n**![](./assets/count-the-number-of-complete-components-1.png)**\n\n```\nInput: n = 6, edges = [[0,1],[0,2],[1,2],[3,4]]\nOutput: 3\nExplanation: From the picture above, one can see that all of the components of this graph are complete.\n```\n\n**Example 2:**\n\n**![](./assets/count-the-number-of-complete-components-2.png)**\n\n```\nInput: n = 6, edges = [[0,1],[0,2],[1,2],[3,4],[3,5]]\nOutput: 1\nExplanation: The component containing vertices 0, 1, and 2 is complete since there is an edge between every pair of two vertices. On the other hand, the component containing vertices 3, 4, and 5 is not complete since there is no edge between vertices 4 and 5. Thus, the number of complete components in this graph is 1.\n```\n\n**Constraints:**\n\n*   `1 <= n <= 50`\n*   `0 <= edges.length <= n * (n - 1) / 2`\n*   `edges[i].length == 2`\n*   `0 <= a_(i), b_(i) <= n - 1`\n*   `a_(i) != b_(i)`\n*   There are no repeated edges.",
+  "constraints": [
+    "1 <= n <= 50",
+    "0 <= edges.length <= n * (n - 1) / 2",
+    "edges[i].length == 2",
+    "0 <= ai, bi <= n - 1",
+    "ai != bi",
+    "There are no repeated edges."
+  ],
+  "examples": [
+    {
+      "input": "n = 6, edges = [[0,1],[0,2],[1,2],[3,4]]",
+      "output": "3",
+      "explanation": "From the picture above, one can see that all of the components of this graph are complete."
+    },
+    {
+      "input": "n = 6, edges = [[0,1],[0,2],[1,2],[3,4],[3,5]]",
+      "output": "1",
+      "explanation": "The component containing vertices 0, 1, and 2 is complete since there is an edge between every pair of two vertices. On the other hand, the component containing vertices 3, 4, and 5 is not complete since there is no edge between vertices 4 and 5. Thus, the number of complete components in this graph is 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countCompleteComponents(int n, vector<vector<int>>& edges) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countCompleteComponents(int n, int[][] edges) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countCompleteComponents(self, n, edges):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @return {number}\n */\nvar countCompleteComponents = function(n, edges) {\n    \n};",
+    "typescript": "function countCompleteComponents(n: number, edges: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountCompleteComponents(int n, int[][] edges) {\n        \n    }\n}",
+    "c": "int countCompleteComponents(int n, int** edges, int edgesSize, int* edgesColSize) {\n    \n}",
+    "golang": "func countCompleteComponents(n int, edges [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countCompleteComponents(n: Int, edges: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countCompleteComponents(_ n: Int, _ edges: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_complete_components(n: i32, edges: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @return {Integer}\ndef count_complete_components(n, edges)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @return Integer\n     */\n    function countCompleteComponents($n, $edges) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countCompleteComponents(int n, List<List<int>> edges) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countCompleteComponents(n: Int, edges: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_complete_components(n :: integer, edges :: [[integer]]) :: integer\n  def count_complete_components(n, edges) do\n    \n  end\nend",
+    "erlang": "-spec count_complete_components(N :: integer(), Edges :: [[integer()]]) -> integer().\ncount_complete_components(N, Edges) ->\n  .",
+    "racket": "(define/contract (count-complete-components n edges)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "6\n[[0,1],[0,2],[1,2],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "6\n[[0,1],[0,2],[1,2],[3,4],[3,5]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "6\n[[0,1],[0,2],[1,2],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "6\n[[0,1],[0,2],[1,2],[3,4],[3,5]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "0\n[[0,1],[0,2],[1,2],[3,4]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n[[0,1],[0,2],[1,2],[3,4]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[[0,1],[0,2],[1,2],[3,4]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "7\n[[0,1],[0,2],[1,2],[3,4]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "8\n[[0,1],[0,2],[1,2],[3,4]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "9\n[[0,1],[0,2],[1,2],[3,4]]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "-1\n[[0,1],[0,2],[1,2],[3,4]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "-2\n[[0,1],[0,2],[1,2],[3,4]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "0\n[[0,1],[0,2],[1,2],[3,4],[3,5]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n[[0,1],[0,2],[1,2],[3,4],[3,5]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "7\n[[0,1],[0,2],[1,2],[3,4],[3,5]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "8\n[[0,1],[0,2],[1,2],[3,4],[3,5]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "9\n[[0,1],[0,2],[1,2],[3,4],[3,5]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "-1\n[[0,1],[0,2],[1,2],[3,4],[3,5]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "-2\n[[0,1],[0,2],[1,2],[3,4],[3,5]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find the connected components of an undirected graph using depth-first search (DFS) or breadth-first search (BFS).",
+    "For each connected component, count the number of nodes and edges in the component.",
+    "A connected component is complete if and only if the number of edges in the component is equal to m*(m-1)/2, where m is the number of nodes in the component."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-the-number-of-complete-components/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.758Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "id": "881",
+  "slug": "boats-to-save-people",
+  "title": "Boats to Save People",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting",
+    "Timsort"
+  ],
+  "statement": "You are given an array `people` where `people[i]` is the weight of the `i^(th)` person, and an **infinite number of boats** where each boat can carry a maximum weight of `limit`. Each boat carries at most two people at the same time, provided the sum of the weight of those people is at most `limit`.\n\nReturn _the minimum number of boats to carry every given person_.\n\n**Example 1:**\n\n```\nInput: people = [1,2], limit = 3\nOutput: 1\nExplanation: 1 boat (1, 2)\n```\n\n**Example 2:**\n\n```\nInput: people = [3,2,2,1], limit = 3\nOutput: 3\nExplanation: 3 boats (1, 2), (2) and (3)\n```\n\n**Example 3:**\n\n```\nInput: people = [3,5,3,4], limit = 5\nOutput: 4\nExplanation: 4 boats (3), (3), (4), (5)\n```\n\n**Constraints:**\n\n*   `1 <= people.length <= 5 * 10^(4)`\n*   `1 <= people[i] <= limit <= 3 * 10^(4)`",
+  "constraints": [
+    "1 <= people.length <= 5 * 104",
+    "1 <= people[i] <= limit <= 3 * 104"
+  ],
+  "examples": [
+    {
+      "input": "people = [1,2], limit = 3",
+      "output": "1",
+      "explanation": "1 boat (1, 2)"
+    },
+    {
+      "input": "people = [3,2,2,1], limit = 3",
+      "output": "3",
+      "explanation": "3 boats (1, 2), (2) and (3)"
+    },
+    {
+      "input": "people = [3,5,3,4], limit = 5",
+      "output": "4",
+      "explanation": "4 boats (3), (3), (4), (5)"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numRescueBoats(vector<int>& people, int limit) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numRescueBoats(int[] people, int limit) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numRescueBoats(self, people: list[int], limit: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numRescueBoats(self, people, limit):\n        \"\"\"\n        :type people: List[int]\n        :type limit: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} people\n * @param {number} limit\n * @return {number}\n */\nvar numRescueBoats = function(people, limit) {\n    \n};",
+    "typescript": "function numRescueBoats(people: number[], limit: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumRescueBoats(int[] people, int limit) {\n        \n    }\n}",
+    "c": "int numRescueBoats(int* people, int peopleSize, int limit) {\n    \n}",
+    "golang": "func numRescueBoats(people []int, limit int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numRescueBoats(people: IntArray, limit: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numRescueBoats(_ people: [Int], _ limit: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_rescue_boats(people: Vec<i32>, limit: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} people\n# @param {Integer} limit\n# @return {Integer}\ndef num_rescue_boats(people, limit)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $people\n     * @param Integer $limit\n     * @return Integer\n     */\n    function numRescueBoats($people, $limit) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numRescueBoats(List<int> people, int limit) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numRescueBoats(people: Array[Int], limit: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_rescue_boats(people :: [integer], limit :: integer) :: integer\n  def num_rescue_boats(people, limit) do\n    \n  end\nend",
+    "erlang": "-spec num_rescue_boats(People :: [integer()], Limit :: integer()) -> integer().\nnum_rescue_boats(People, Limit) ->\n  .",
+    "racket": "(define/contract (num-rescue-boats people limit)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,2,1]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,5,3,4]\n5",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,2,1]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,5,3,4]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,1,2]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,3]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,-2]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2,1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,0]\n3",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/boats-to-save-people/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.688Z",
+    "sourceUpdatedAt": null
+  }
+}

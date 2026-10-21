@@ -1,0 +1,166 @@
+{
+  "id": "1312",
+  "slug": "minimum-insertion-steps-to-make-a-string-palindrome",
+  "title": "Minimum Insertion Steps to Make a String Palindrome",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "Given a string `s`. In one step you can insert any character at any index of the string.\n\nReturn _the minimum number of steps_ to make `s` palindrome.\n\nA **Palindrome String** is one that reads the same backward as well as forward.\n\n**Example 1:**\n\n```\nInput: s = \"zzazz\"\nOutput: 0\nExplanation: The string \"zzazz\" is already palindrome we do not need any insertions.\n```\n\n**Example 2:**\n\n```\nInput: s = \"mbadm\"\nOutput: 2\nExplanation: String can be \"mbdadbm\" or \"mdbabdm\".\n```\n\n**Example 3:**\n\n```\nInput: s = \"leetcode\"\nOutput: 5\nExplanation: Inserting 5 characters the string becomes \"leetcodocteel\".\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 500`\n*   `s` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 500",
+    "s consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"zzazz\"",
+      "output": "0",
+      "explanation": "The string \"zzazz\" is already palindrome we do not need any insertions."
+    },
+    {
+      "input": "s = \"mbadm\"",
+      "output": "2",
+      "explanation": "String can be \"mbdadbm\" or \"mdbabdm\"."
+    },
+    {
+      "input": "s = \"leetcode\"",
+      "output": "5",
+      "explanation": "Inserting 5 characters the string becomes \"leetcodocteel\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minInsertions(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minInsertions(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minInsertions(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minInsertions(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minInsertions = function(s) {\n    \n};",
+    "typescript": "function minInsertions(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinInsertions(string s) {\n        \n    }\n}",
+    "c": "int minInsertions(char* s) {\n    \n}",
+    "golang": "func minInsertions(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minInsertions(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minInsertions(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_insertions(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef min_insertions(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minInsertions($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minInsertions(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minInsertions(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_insertions(s :: String.t) :: integer\n  def min_insertions(s) do\n    \n  end\nend",
+    "erlang": "-spec min_insertions(S :: unicode:unicode_binary()) -> integer().\nmin_insertions(S) ->\n  .",
+    "racket": "(define/contract (min-insertions s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"zzazz\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"mbadm\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"zzazz\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"mbadm\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"zz\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"azz\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"z\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"zzazzzzazz\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"zzzzz\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ZZAZZ\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Is dynamic programming suitable for this problem ?",
+    "If we know the longest palindromic sub-sequence is x and the length of the string is n then, what is the answer to this problem? It is n - x as we need n - x insertions to make the remaining characters also palindrome."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.020Z",
+    "sourceUpdatedAt": null
+  }
+}

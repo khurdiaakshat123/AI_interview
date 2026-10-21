@@ -1,0 +1,164 @@
+{
+  "id": "3921",
+  "slug": "score-validator",
+  "title": "Score Validator",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "String",
+    "Simulation"
+  ],
+  "statement": "You are given a string array `events`.\n\nInitially, `score = 0` and `counter = 0`. Each element in `events` is one of the following:\n\n*   `\"0\"`, `\"1\"`, `\"2\"`, `\"3\"`, `\"4\"`, `\"6\"`: Add that value to the total score.\n*   `\"W\"`: Increase the counter by 1. No score is added.\n*   `\"WD\"`: Add 1 to the total score.\n*   `\"NB\"`: Add 1 to the total score.\n\nProcess the array from left to right. Stop processing when either:\n\n*   All elements in `events` have been processed, or\n*   The counter becomes 10.\n\nReturn an integer array `[score, counter]`, where:\n\n*   `score` is the final total score.\n*   `counter` is the final counter value.\n\n**Example 1:**\n\n**Input:** events = \\[\"1\",\"4\",\"W\",\"6\",\"WD\"\\]\n\n**Output:** \\[12,1\\]\n\n**Explanation:**\n\nEvent\n\nScore\n\nCounter\n\n`\"1\"`\n\n1\n\n0\n\n`\"4\"`\n\n5\n\n0\n\n`\"W\"`\n\n5\n\n1\n\n`\"6\"`\n\n11\n\n1\n\n`\"WD\"`\n\n12\n\n1\n\nFinal result: `[12, 1]`.\n\n**Example 2:**\n\n**Input:** events = \\[\"WD\",\"NB\",\"0\",\"4\",\"4\"\\]\n\n**Output:** \\[10,0\\]\n\n**Explanation:**\n\nEvent\n\nScore\n\nCounter\n\n`\"WD\"`\n\n1\n\n0\n\n`\"NB\"`\n\n2\n\n0\n\n`\"0\"`\n\n2\n\n0\n\n`\"4\"`\n\n6\n\n0\n\n`\"4\"`\n\n10\n\n0\n\nFinal result: `[10, 0]`.\n\n**Example 3:**\n\n**Input:** events = \\[\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\"\\]\n\n**Output:** \\[0,10\\]\n\n**Explanation:**\n\nAfter 10 occurrences of `\"W\"`, the counter reaches 10, so processing stops. The remaining events are ignored.\n\n**Constraints:**\n\n*   `1 <= events.length <= 1000`\n*   `events[i]` is one of `\"0\"`, `\"1\"`, `\"2\"`, `\"3\"`, `\"4\"`, `\"6\"`, `\"W\"`, `\"WD\"`, or `\"NB\"`.",
+  "constraints": [
+    "1 <= events.length <= 1000",
+    "events[i] is one of \"0\", \"1\", \"2\", \"3\", \"4\", \"6\", \"W\", \"WD\", or \"NB\"."
+  ],
+  "examples": [
+    {
+      "input": "events = [\"1\",\"4\",\"W\",\"6\",\"WD\"]",
+      "output": "[12,1]",
+      "explanation": "Event\n\t\t\tScore\n\t\t\tCounter\n\t\t\n\t\t\n\t\t\t\"1\"\n\t\t\t1\n\t\t\t0\n\t\t\n\t\t\n\t\t\t\"4\"\n\t\t\t5\n\t\t\t0\n\t\t\n\t\t\n\t\t\t\"W\"\n\t\t\t5\n\t\t\t1\n\t\t\n\t\t\n\t\t\t\"6\"\n\t\t\t11\n\t\t\t1\n\t\t\n\t\t\n\t\t\t\"WD\"\n\t\t\t12\n\t\t\t1"
+    },
+    {
+      "input": "events = [\"WD\",\"NB\",\"0\",\"4\",\"4\"]",
+      "output": "[10,0]",
+      "explanation": "Event\n\t\t\tScore\n\t\t\tCounter\n\t\t\n\t\t\n\t\t\t\"WD\"\n\t\t\t1\n\t\t\t0\n\t\t\n\t\t\n\t\t\t\"NB\"\n\t\t\t2\n\t\t\t0\n\t\t\n\t\t\n\t\t\t\"0\"\n\t\t\t2\n\t\t\t0\n\t\t\n\t\t\n\t\t\t\"4\"\n\t\t\t6\n\t\t\t0\n\t\t\n\t\t\n\t\t\t\"4\"\n\t\t\t10\n\t\t\t0"
+    },
+    {
+      "input": "events = [\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\"]",
+      "output": "[0,10]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> scoreValidator(vector<string>& events) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] scoreValidator(String[] events) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def scoreValidator(self, events: list[str]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def scoreValidator(self, events):\n        \"\"\"\n        :type events: List[str]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} events\n * @return {number[]}\n */\nvar scoreValidator = function(events) {\n    \n};",
+    "typescript": "function scoreValidator(events: string[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] ScoreValidator(string[] events) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* scoreValidator(char** events, int eventsSize, int* returnSize) {\n    \n}",
+    "golang": "func scoreValidator(events []string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun scoreValidator(events: Array<String>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func scoreValidator(_ events: [String]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn score_validator(events: Vec<String>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} events\n# @return {Integer[]}\ndef score_validator(events)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $events\n     * @return Integer[]\n     */\n    function scoreValidator($events) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> scoreValidator(List<String> events) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def scoreValidator(events: Array[String]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec score_validator(events :: [String.t]) :: [integer]\n  def score_validator(events) do\n    \n  end\nend",
+    "erlang": "-spec score_validator(Events :: [unicode:unicode_binary()]) -> [integer()].\nscore_validator(Events) ->\n  .",
+    "racket": "(define/contract (score-validator events)\n  (-> (listof string?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"1\",\"4\",\"W\",\"6\",\"WD\"]",
+      "expectedOutput": "[12,1]"
+    },
+    {
+      "input": "[\"WD\",\"NB\",\"0\",\"4\",\"4\"]",
+      "expectedOutput": "[10,0]"
+    },
+    {
+      "input": "[\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\"]",
+      "expectedOutput": "[0,10]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"1\",\"4\",\"W\",\"6\",\"WD\"]",
+      "expectedOutput": "[12,1]"
+    },
+    {
+      "input": "[\"WD\",\"NB\",\"0\",\"4\",\"4\"]",
+      "expectedOutput": "[10,0]"
+    },
+    {
+      "input": "[\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\"]",
+      "expectedOutput": "[0,10]"
+    },
+    {
+      "input": "[\"1\",\"4\"]",
+      "expectedOutput": "[5,0]"
+    },
+    {
+      "input": "[\"W\",\"6\",\"WD\"]",
+      "expectedOutput": "[7,1]"
+    },
+    {
+      "input": "[\"1\"]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "[\"1\",\"WD\"]",
+      "expectedOutput": "[2,0]"
+    },
+    {
+      "input": "[\"WD\",\"6\",\"W\",\"4\",\"1\"]",
+      "expectedOutput": "[12,1]"
+    },
+    {
+      "input": "[\"1\",\"4\",\"6\",\"W\",\"WD\"]",
+      "expectedOutput": "[12,1]"
+    },
+    {
+      "input": "[\"WD\",\"W\",\"6\",\"4\",\"1\"]",
+      "expectedOutput": "[12,1]"
+    },
+    {
+      "input": "[\"1\",\"1\",\"1\",\"1\",\"1\"]",
+      "expectedOutput": "[5,0]"
+    },
+    {
+      "input": "[\"1\",\"4\",\"W\",\"6\",\"WD\",\"1\",\"4\",\"W\",\"6\",\"WD\"]",
+      "expectedOutput": "[24,2]"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "[2,0]"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "[2,0]"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "[2,0]"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "[3,0]"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "[6,0]"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "[5,0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/score-validator/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:28.115Z",
+    "sourceUpdatedAt": null
+  }
+}

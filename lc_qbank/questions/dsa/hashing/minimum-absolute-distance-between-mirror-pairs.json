@@ -1,0 +1,167 @@
+{
+  "id": "3761",
+  "slug": "minimum-absolute-distance-between-mirror-pairs",
+  "title": "Minimum Absolute Distance Between Mirror Pairs",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nA **mirror pair** is a pair of indices `(i, j)` such that:\n\n*   `0 <= i < j < nums.length`, and\n*   `reverse(nums[i]) == nums[j]`, where `reverse(x)` denotes the integer formed by reversing the digits of `x`. Leading zeros are omitted after reversing, for example `reverse(120) = 21`.\n\nReturn the **minimum** absolute distance between the indices of any mirror pair. The absolute distance between indices `i` and `j` is `abs(i - j)`.\n\nIf no mirror pair exists, return `-1`.\n\n**Example 1:**\n\n**Input:** nums = \\[12,21,45,33,54\\]\n\n**Output:** 1\n\n**Explanation:**\n\nThe mirror pairs are:\n\n*   (0, 1) since `reverse(nums[0]) = reverse(12) = 21 = nums[1]`, giving an absolute distance `abs(0 - 1) = 1`.\n*   (2, 4) since `reverse(nums[2]) = reverse(45) = 54 = nums[4]`, giving an absolute distance `abs(2 - 4) = 2`.\n\nThe minimum absolute distance among all pairs is 1.\n\n**Example 2:**\n\n**Input:** nums = \\[120,21\\]\n\n**Output:** 1\n\n**Explanation:**\n\nThere is only one mirror pair (0, 1) since `reverse(nums[0]) = reverse(120) = 21 = nums[1]`.\n\nThe minimum absolute distance is 1.\n\n**Example 3:**\n\n**Input:** nums = \\[21,120\\]\n\n**Output:** \\-1\n\n**Explanation:**\n\nThere are no mirror pairs in the array.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`​​​​​​​",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 109​​​​​​​"
+  ],
+  "examples": [
+    {
+      "input": "nums = [12,21,45,33,54]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "nums = [120,21]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "nums = [21,120]",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minMirrorPairDistance(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minMirrorPairDistance(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minMirrorPairDistance(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minMirrorPairDistance(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minMirrorPairDistance = function(nums) {\n    \n};",
+    "typescript": "function minMirrorPairDistance(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinMirrorPairDistance(int[] nums) {\n        \n    }\n}",
+    "c": "int minMirrorPairDistance(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minMirrorPairDistance(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minMirrorPairDistance(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minMirrorPairDistance(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_mirror_pair_distance(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef min_mirror_pair_distance(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minMirrorPairDistance($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minMirrorPairDistance(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minMirrorPairDistance(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_mirror_pair_distance(nums :: [integer]) :: integer\n  def min_mirror_pair_distance(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_mirror_pair_distance(Nums :: [integer()]) -> integer().\nmin_mirror_pair_distance(Nums) ->\n  .",
+    "racket": "(define/contract (min-mirror-pair-distance nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[12,21,45,33,54]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[120,21]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[21,120]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[12,21,45,33,54]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[120,21]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[21,120]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[12,21]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[45,33,54]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[12]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[12,54]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[54,33,45,21,12]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[12,21,33,45,54]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[54,45,33,21,12]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[12,12,12,12,12]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[12,21,45,33,54,12,21,45,33,54]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[24,42,90,66,108]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[13,22,46,34,55]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[11,20,44,32,53]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Scan left to right with a hash map: for each <code>nums[i]</code>, if the map contains key <code>nums[i]</code> then set <code>ans = min(ans, i - map[nums[i]])</code>.",
+    "Store/update the current index under key <code>reverse(nums[i])</code>, so future matches use the most recent index."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-absolute-distance-between-mirror-pairs/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.360Z",
+    "sourceUpdatedAt": null
+  }
+}

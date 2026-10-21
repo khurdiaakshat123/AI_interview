@@ -1,0 +1,165 @@
+{
+  "id": "3129",
+  "slug": "find-all-possible-stable-binary-arrays-i",
+  "title": "Find All Possible Stable Binary Arrays I",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "statement": "You are given 3 positive integers `num_zeros`, `num_ones`, and `limit`.\n\nA binary array `arr` is called **stable** if:\n\n*   The number of occurrences of 0 in `arr` is **exactly** `num_zeros`.\n*   The number of occurrences of 1 in `arr` is **exactly** `num_ones`.\n*   Each subarray of `arr` with a size greater than `limit` must contain **at least** one occurrence of **both** 0 and 1.\n\nReturn an integer denoting the _total_ number of **stable** binary arrays.\n\nSince the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** zero = 1, one = 1, limit = 2\n\n**Output:** 2\n\n**Explanation:**\n\nThe two possible stable binary arrays are `[1,0]` and `[0,1]`, as both arrays have a single 0 and a single 1, and no subarray has a length greater than 2.\n\n**Example 2:**\n\n**Input:** zero = 1, one = 2, limit = 1\n\n**Output:** 1\n\n**Explanation:**\n\nThe only possible stable binary array is `[1,0,1]`.\n\nNote that the binary arrays `[1,1,0]` and `[0,1,1]` have subarrays of length 2 with identical elements, hence, they are not stable.\n\n**Example 3:**\n\n**Input:** zero = 3, one = 3, limit = 2\n\n**Output:** 14\n\n**Explanation:**\n\nAll the possible stable binary arrays are `[0,0,1,0,1,1]`, `[0,0,1,1,0,1]`, `[0,1,0,0,1,1]`, `[0,1,0,1,0,1]`, `[0,1,0,1,1,0]`, `[0,1,1,0,0,1]`, `[0,1,1,0,1,0]`, `[1,0,0,1,0,1]`, `[1,0,0,1,1,0]`, `[1,0,1,0,0,1]`, `[1,0,1,0,1,0]`, `[1,0,1,1,0,0]`, `[1,1,0,0,1,0]`, and `[1,1,0,1,0,0]`.\n\n**Constraints:**\n\n*   `1 <= zero, one, limit <= 200`",
+  "constraints": [
+    "1 <= zero, one, limit <= 200"
+  ],
+  "examples": [
+    {
+      "input": "zero = 1, one = 1, limit = 2",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "zero = 1, one = 2, limit = 1",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "zero = 3, one = 3, limit = 2",
+      "output": "14",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numberOfStableArrays(int zero, int one, int limit) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numberOfStableArrays(int zero, int one, int limit) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfStableArrays(self, zero: int, one: int, limit: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfStableArrays(self, zero, one, limit):\n        \"\"\"\n        :type zero: int\n        :type one: int\n        :type limit: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} zero\n * @param {number} one\n * @param {number} limit\n * @return {number}\n */\nvar numberOfStableArrays = function(zero, one, limit) {\n    \n};",
+    "typescript": "function numberOfStableArrays(zero: number, one: number, limit: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumberOfStableArrays(int zero, int one, int limit) {\n        \n    }\n}",
+    "c": "int numberOfStableArrays(int zero, int one, int limit) {\n    \n}",
+    "golang": "func numberOfStableArrays(zero int, one int, limit int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfStableArrays(zero: Int, one: Int, limit: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfStableArrays(_ zero: Int, _ one: Int, _ limit: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_stable_arrays(zero: i32, one: i32, limit: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} zero\n# @param {Integer} one\n# @param {Integer} limit\n# @return {Integer}\ndef number_of_stable_arrays(zero, one, limit)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $zero\n     * @param Integer $one\n     * @param Integer $limit\n     * @return Integer\n     */\n    function numberOfStableArrays($zero, $one, $limit) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfStableArrays(int zero, int one, int limit) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfStableArrays(zero: Int, one: Int, limit: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_stable_arrays(zero :: integer, one :: integer, limit :: integer) :: integer\n  def number_of_stable_arrays(zero, one, limit) do\n    \n  end\nend",
+    "erlang": "-spec number_of_stable_arrays(Zero :: integer(), One :: integer(), Limit :: integer()) -> integer().\nnumber_of_stable_arrays(Zero, One, Limit) ->\n  .",
+    "racket": "(define/contract (number-of-stable-arrays zero one limit)\n  (-> exact-integer? exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "1\n1\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "1\n2\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "3\n3\n2",
+      "expectedOutput": "14"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "1\n1\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "1\n2\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "3\n3\n2",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "0\n1\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "2\n1\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "3\n1\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "4\n1\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n1\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "6\n1\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "1\n0\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "1\n2\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "1\n3\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "1\n4\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "1\n5\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "1\n6\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "1\n1\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "1\n1\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "1\n1\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "1\n1\n4",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "1\n1\n5",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let <code>dp[a][b][c = 0/1][d]</code> be the number of stable arrays with exactly <code>a</code> 0s, <code>b</code> 1s and consecutive <code>d</code> value of <code>c</code>’s at the end.",
+    "Try each case by appending a 0/1 at last to get the inductions."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-all-possible-stable-binary-arrays-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.456Z",
+    "sourceUpdatedAt": null
+  }
+}

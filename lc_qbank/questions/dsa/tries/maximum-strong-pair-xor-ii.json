@@ -1,0 +1,171 @@
+{
+  "id": "2935",
+  "slug": "maximum-strong-pair-xor-ii",
+  "title": "Maximum Strong Pair XOR II",
+  "category": "dsa",
+  "subcategory": "tries",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Trie",
+    "Sliding Window"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums`. A pair of integers `x` and `y` is called a **strong** pair if it satisfies the condition:\n\n*   `|x - y| <= min(x, y)`\n\nYou need to select two integers from `nums` such that they form a strong pair and their bitwise `XOR` is the **maximum** among all strong pairs in the array.\n\nReturn _the **maximum**_ `XOR` _value out of all possible strong pairs in the array_ `nums`.\n\n**Note** that you can pick the same integer twice to form a pair.\n\n**Example 1:**\n\n```\nnums\n```\n\n**Example 2:**\n\n```\nInput: nums = [10,100]\nOutput: 0\nExplanation: There are 2 strong pairs in the array nums: (10, 10) and (100, 100).\nThe maximum XOR possible from these pairs is 10 XOR 10 = 0 since the pair (100, 100) also gives 100 XOR 100 = 0.\n```\n\n**Example 3:**\n\n```\nInput: nums = [500,520,2500,3000]\nOutput: 1020\nExplanation: There are 6 strong pairs in the array nums: (500, 500), (500, 520), (520, 520), (2500, 2500), (2500, 3000) and (3000, 3000).\nThe maximum XOR possible from these pairs is 500 XOR 520 = 1020 since the only other non-zero XOR value is 2500 XOR 3000 = 636.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 5 * 10^(4)`\n*   `1 <= nums[i] <= 2^(20) - 1`",
+  "constraints": [
+    "1 <= nums.length <= 5 * 104",
+    "1 <= nums[i] <= 220 - 1"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3,4,5]",
+      "output": "7",
+      "explanation": "There are 11 strong pairs in the array nums: (1, 1), (1, 2), (2, 2), (2, 3), (2, 4), (3, 3), (3, 4), (3, 5), (4, 4), (4, 5) and (5, 5).\nThe maximum XOR possible from these pairs is 3 XOR 4 = 7."
+    },
+    {
+      "input": "nums = [10,100]",
+      "output": "0",
+      "explanation": "There are 2 strong pairs in the array nums: (10, 10) and (100, 100).\nThe maximum XOR possible from these pairs is 10 XOR 10 = 0 since the pair (100, 100) also gives 100 XOR 100 = 0."
+    },
+    {
+      "input": "nums = [500,520,2500,3000]",
+      "output": "1020",
+      "explanation": "There are 6 strong pairs in the array nums: (500, 500), (500, 520), (520, 520), (2500, 2500), (2500, 3000) and (3000, 3000).\nThe maximum XOR possible from these pairs is 500 XOR 520 = 1020 since the only other non-zero XOR value is 2500 XOR 3000 = 636."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumStrongPairXor(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumStrongPairXor(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumStrongPairXor(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumStrongPairXor(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maximumStrongPairXor = function(nums) {\n    \n};",
+    "typescript": "function maximumStrongPairXor(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumStrongPairXor(int[] nums) {\n        \n    }\n}",
+    "c": "int maximumStrongPairXor(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maximumStrongPairXor(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumStrongPairXor(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumStrongPairXor(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_strong_pair_xor(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef maximum_strong_pair_xor(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maximumStrongPairXor($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumStrongPairXor(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumStrongPairXor(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_strong_pair_xor(nums :: [integer]) :: integer\n  def maximum_strong_pair_xor(nums) do\n    \n  end\nend",
+    "erlang": "-spec maximum_strong_pair_xor(Nums :: [integer()]) -> integer().\nmaximum_strong_pair_xor(Nums) ->\n  .",
+    "racket": "(define/contract (maximum-strong-pair-xor nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[10,100]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[500,520,2500,3000]",
+      "expectedOutput": "1020"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[10,100]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[500,520,2500,3000]",
+      "expectedOutput": "1020"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,4,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,4,3,2,1]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,4,5,1,2,3,4,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[2,4,6,8,10]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[2,3,4,5,6]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0,1,2,3,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Sort the array, now let <code>x <= y</code> which means <code>|x - y| <= min(x, y)</code> can now be written as <code>y - x <= x</code> or in other words, <code>y <= 2 * x</code>.",
+    "If <code>x</code> and <code>y</code> have the same number of bits, try making<code>y</code>’s bits different from x if possible for each bit starting from the second most significant bit.",
+    "If <code>y</code> has 1 more bit than <code>x</code> and <code>y <= 2 * x</code> use the idea about Digit DP to make <code>y</code>’s prefix smaller than <code>2 * x + 1</code> as well as trying to make each bit different from <code>x</code> using a Hashmap.",
+    "Alternatively, use Trie data structure to find the pair with maximum <code>XOR</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-strong-pair-xor-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.647Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "id": "2477",
+  "slug": "minimum-fuel-cost-to-report-to-the-capital",
+  "title": "Minimum Fuel Cost to Report to the Capital",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "statement": "There is a tree (i.e., a connected, undirected graph with no cycles) structure country network consisting of `n` cities numbered from `0` to `n - 1` and exactly `n - 1` roads. The capital city is city `0`. You are given a 2D integer array `roads` where `roads[i] = [a_(i), b_(i)]` denotes that there exists a **bidirectional road** connecting cities `a_(i)` and `b_(i)`.\n\nThere is a meeting for the representatives of each city. The meeting is in the capital city.\n\nThere is a car in each city. You are given an integer `seats` that indicates the number of seats in each car.\n\nA representative can use the car in their city to travel or change the car and ride with another representative. The cost of traveling between two cities is one liter of fuel.\n\nReturn _the minimum number of liters of fuel to reach the capital city_.\n\n**Example 1:**\n\n![](./assets/minimum-fuel-cost-to-report-to-the-capital-1.png)\n```\nInput: roads = [[0,1],[0,2],[0,3]], seats = 5\nOutput: 3\nExplanation: \n- Representative1 goes directly to the capital with 1 liter of fuel.\n- Representative2 goes directly to the capital with 1 liter of fuel.\n- Representative3 goes directly to the capital with 1 liter of fuel.\nIt costs 3 liters of fuel at minimum. \nIt can be proven that 3 is the minimum number of liters of fuel needed.\n```\n\n**Example 2:**\n\n![](./assets/minimum-fuel-cost-to-report-to-the-capital-2.png)\n```\nInput: roads = [[3,1],[3,2],[1,0],[0,4],[0,5],[4,6]], seats = 2\nOutput: 7\nExplanation: \n- Representative2 goes directly to city 3 with 1 liter of fuel.\n- Representative2 and representative3 go together to city 1 with 1 liter of fuel.\n- Representative2 and representative3 go together to the capital with 1 liter of fuel.\n- Representative1 goes directly to the capital with 1 liter of fuel.\n- Representative5 goes directly to the capital with 1 liter of fuel.\n- Representative6 goes directly to city 4 with 1 liter of fuel.\n- Representative4 and representative6 go together to the capital with 1 liter of fuel.\nIt costs 7 liters of fuel at minimum. \nIt can be proven that 7 is the minimum number of liters of fuel needed.\n```\n\n**Example 3:**\n\n![](./assets/minimum-fuel-cost-to-report-to-the-capital-3.png)\n```\nInput: roads = [], seats = 1\nOutput: 0\nExplanation: No representatives need to travel to the capital city.\n```\n\n**Constraints:**\n\n*   `1 <= n <= 10^(5)`\n*   `roads.length == n - 1`\n*   `roads[i].length == 2`\n*   `0 <= a_(i), b_(i) < n`\n*   `a_(i) != b_(i)`\n*   `roads` represents a valid tree.\n*   `1 <= seats <= 10^(5)`",
+  "constraints": [
+    "1 <= n <= 105",
+    "roads.length == n - 1",
+    "roads[i].length == 2",
+    "0 <= ai, bi < n",
+    "ai != bi",
+    "roads represents a valid tree.",
+    "1 <= seats <= 105"
+  ],
+  "examples": [
+    {
+      "input": "roads = [[0,1],[0,2],[0,3]], seats = 5",
+      "output": "3",
+      "explanation": "- Representative1 goes directly to the capital with 1 liter of fuel.\n- Representative2 goes directly to the capital with 1 liter of fuel.\n- Representative3 goes directly to the capital with 1 liter of fuel.\nIt costs 3 liters of fuel at minimum. \nIt can be proven that 3 is the minimum number of liters of fuel needed."
+    },
+    {
+      "input": "roads = [[3,1],[3,2],[1,0],[0,4],[0,5],[4,6]], seats = 2",
+      "output": "7",
+      "explanation": "- Representative2 goes directly to city 3 with 1 liter of fuel.\n- Representative2 and representative3 go together to city 1 with 1 liter of fuel.\n- Representative2 and representative3 go together to the capital with 1 liter of fuel.\n- Representative1 goes directly to the capital with 1 liter of fuel.\n- Representative5 goes directly to the capital with 1 liter of fuel.\n- Representative6 goes directly to city 4 with 1 liter of fuel.\n- Representative4 and representative6 go together to the capital with 1 liter of fuel.\nIt costs 7 liters of fuel at minimum. \nIt can be proven that 7 is the minimum number of liters of fuel needed."
+    },
+    {
+      "input": "roads = [], seats = 1",
+      "output": "0",
+      "explanation": "No representatives need to travel to the capital city."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minimumFuelCost(vector<vector<int>>& roads, int seats) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minimumFuelCost(int[][] roads, int seats) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumFuelCost(self, roads: list[list[int]], seats: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumFuelCost(self, roads, seats):\n        \"\"\"\n        :type roads: List[List[int]]\n        :type seats: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} roads\n * @param {number} seats\n * @return {number}\n */\nvar minimumFuelCost = function(roads, seats) {\n    \n};",
+    "typescript": "function minimumFuelCost(roads: number[][], seats: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinimumFuelCost(int[][] roads, int seats) {\n        \n    }\n}",
+    "c": "long long minimumFuelCost(int** roads, int roadsSize, int* roadsColSize, int seats) {\n    \n}",
+    "golang": "func minimumFuelCost(roads [][]int, seats int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumFuelCost(roads: Array<IntArray>, seats: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumFuelCost(_ roads: [[Int]], _ seats: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_fuel_cost(roads: Vec<Vec<i32>>, seats: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} roads\n# @param {Integer} seats\n# @return {Integer}\ndef minimum_fuel_cost(roads, seats)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $roads\n     * @param Integer $seats\n     * @return Integer\n     */\n    function minimumFuelCost($roads, $seats) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumFuelCost(List<List<int>> roads, int seats) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumFuelCost(roads: Array[Array[Int]], seats: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_fuel_cost(roads :: [[integer]], seats :: integer) :: integer\n  def minimum_fuel_cost(roads, seats) do\n    \n  end\nend",
+    "erlang": "-spec minimum_fuel_cost(Roads :: [[integer()]], Seats :: integer()) -> integer().\nminimum_fuel_cost(Roads, Seats) ->\n  .",
+    "racket": "(define/contract (minimum-fuel-cost roads seats)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1],[0,2],[0,3]]\n5",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[3,1],[3,2],[1,0],[0,4],[0,5],[4,6]]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[]\n1",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[]\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[]\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[]\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[]\n6",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[]\n-1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[]\n-2",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can you record the size of each subtree?",
+    "If n people meet on the same node, what is the minimum number of cars needed?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-fuel-cost-to-report-to-the-capital/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.932Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "id": "809",
+  "slug": "expressive-words",
+  "title": "Expressive Words",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "Sometimes people repeat letters to represent extra feeling. For example:\n\n*   `\"hello\" -> \"heeellooo\"`\n*   `\"hi\" -> \"hiiii\"`\n\nIn these strings like `\"heeellooo\"`, we have groups of adjacent letters that are all the same: `\"h\"`, `\"eee\"`, `\"ll\"`, `\"ooo\"`.\n\nYou are given a string `s` and an array of query strings `words`. A query word is **stretchy** if it can be made to be equal to `s` by any number of applications of the following extension operation: choose a group consisting of characters `c`, and add some number of characters `c` to the group so that the size of the group is **three or more**.\n\n*   For example, starting with `\"hello\"`, we could do an extension on the group `\"o\"` to get `\"hellooo\"`, but we cannot get `\"helloo\"` since the group `\"oo\"` has a size less than three. Also, we could do another extension like `\"ll\" -> \"lllll\"` to get `\"helllllooo\"`. If `s = \"helllllooo\"`, then the query word `\"hello\"` would be **stretchy** because of these two extension operations: `query = \"hello\" -> \"hellooo\" -> \"helllllooo\" = s`.\n\nReturn _the number of query strings that are **stretchy**_.\n\n**Example 1:**\n\n```\nInput: s = \"heeellooo\", words = [\"hello\", \"hi\", \"helo\"]\nOutput: 1\nExplanation: \nWe can extend \"e\" and \"o\" in the word \"hello\" to get \"heeellooo\".\nWe can't extend \"helo\" to get \"heeellooo\" because the group \"ll\" is not size 3 or more.\n```\n\n**Example 2:**\n\n```\nInput: s = \"zzzzzyyyyy\", words = [\"zzyy\",\"zy\",\"zyy\"]\nOutput: 3\n```\n\n**Constraints:**\n\n*   `1 <= s.length, words.length <= 100`\n*   `1 <= words[i].length <= 100`\n*   `s` and `words[i]` consist of lowercase letters.",
+  "constraints": [
+    "1 <= s.length, words.length <= 100",
+    "1 <= words[i].length <= 100",
+    "s and words[i] consist of lowercase letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"heeellooo\", words = [\"hello\", \"hi\", \"helo\"]",
+      "output": "1",
+      "explanation": "We can extend \"e\" and \"o\" in the word \"hello\" to get \"heeellooo\".\nWe can't extend \"helo\" to get \"heeellooo\" because the group \"ll\" is not size 3 or more."
+    },
+    {
+      "input": "s = \"zzzzzyyyyy\", words = [\"zzyy\",\"zy\",\"zyy\"]",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int expressiveWords(string s, vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int expressiveWords(String s, String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def expressiveWords(self, s: str, words: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def expressiveWords(self, s, words):\n        \"\"\"\n        :type s: str\n        :type words: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string[]} words\n * @return {number}\n */\nvar expressiveWords = function(s, words) {\n    \n};",
+    "typescript": "function expressiveWords(s: string, words: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ExpressiveWords(string s, string[] words) {\n        \n    }\n}",
+    "c": "int expressiveWords(char* s, char** words, int wordsSize) {\n    \n}",
+    "golang": "func expressiveWords(s string, words []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun expressiveWords(s: String, words: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func expressiveWords(_ s: String, _ words: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn expressive_words(s: String, words: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String[]} words\n# @return {Integer}\ndef expressive_words(s, words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String[] $words\n     * @return Integer\n     */\n    function expressiveWords($s, $words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int expressiveWords(String s, List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def expressiveWords(s: String, words: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec expressive_words(s :: String.t, words :: [String.t]) :: integer\n  def expressive_words(s, words) do\n    \n  end\nend",
+    "erlang": "-spec expressive_words(S :: unicode:unicode_binary(), Words :: [unicode:unicode_binary()]) -> integer().\nexpressive_words(S, Words) ->\n  .",
+    "racket": "(define/contract (expressive-words s words)\n  (-> string? (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"heeellooo\"\n[\"hello\", \"hi\", \"helo\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"zzzzzyyyyy\"\n[\"zzyy\",\"zy\",\"zyy\"]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"heeellooo\"\n[\"hello\", \"hi\", \"helo\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"zzzzzyyyyy\"\n[\"zzyy\",\"zy\",\"zyy\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"heee\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"llooo\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"h\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"he\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ooolleeeh\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"heeelloooheeellooo\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"hhhhhh\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"heeelloooooolleeeh\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"heeellooo\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"HEEELLOOO\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"\n[\"hello\",\"hi\",\"helo\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/expressive-words/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.202Z",
+    "sourceUpdatedAt": null
+  }
+}

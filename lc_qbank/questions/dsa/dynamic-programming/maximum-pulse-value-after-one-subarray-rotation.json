@@ -1,0 +1,112 @@
+{
+  "id": "4058",
+  "slug": "maximum-pulse-value-after-one-subarray-rotation",
+  "title": "Maximum Pulse Value After One Subarray Rotation",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `nums` of length `n`.\n\nDefine the **pulse value** of an integer array `arr` as the **alternating sum** starting at index 0: `pulse(arr) = arr[0] - arr[1] + arr[2] - arr[3] + ...`.\n\nYou may perform **at most** one operation on `nums`:\n\n*   Choose two indices `l` and `r` such that `0 <= l < r < n`.\n*   **Left-rotate** the subarray `nums[l..r]` by **exactly** one position. For example, `[a, b, c, d]` becomes `[b, c, d, a]`.\n\nReturn the **maximum pulse value** that can be obtained after performing **at most** one such operation.\n\n**Example 1:**\n\n**Input:** nums = \\[1,5,2\\]\n\n**Output:** 6\n\n**Explanation:**\n\n*   The original pulse value is `1 - 5 + 2 = -2`.\n*   Rotate the subarray `nums[0..1]` from `[1, 5]` to `[5, 1]`.\n*   The resulting array is `[5, 1, 2]` and its pulse value is `5 - 1 + 2 = 6`, which is the maximum possible.\n\n**Example 2:**\n\n**Input:** nums = \\[6,4,3\\]\n\n**Output:** 7\n\n**Explanation:**\n\n*   The original pulse value is `6 - 4 + 3 = 5`.\n*   Rotate the subarray `nums[1..2]` from `[4, 3]` to `[3, 4]`.\n*   The resulting array is `[6, 3, 4]` and its pulse value is `6 - 3 + 4 = 7`, which is the maximum possible.\n\n**Example 3:**\n\n**Input:** nums = \\[9,7\\]\n\n**Output:** 2\n\n**Explanation:**\n\nThe original pulse value is `9 - 7 = 2`, which is already maximum. Thus, no rotation is required.\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 10^(5)`\n*   `-10^(9) <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= n == nums.length <= 105",
+    "-109 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,5,2]",
+      "output": "6",
+      "explanation": "The original pulse value is 1 - 5 + 2 = -2.\n\tRotate the subarray nums[0..1] from [1, 5] to [5, 1].\n\tThe resulting array is [5, 1, 2] and its pulse value is 5 - 1 + 2 = 6, which is the maximum possible."
+    },
+    {
+      "input": "nums = [6,4,3]",
+      "output": "7",
+      "explanation": "The original pulse value is 6 - 4 + 3 = 5.\n\tRotate the subarray nums[1..2] from [4, 3] to [3, 4].\n\tThe resulting array is [6, 3, 4] and its pulse value is 6 - 3 + 4 = 7, which is the maximum possible."
+    },
+    {
+      "input": "nums = [9,7]",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxValue(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxValue(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxValue(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxValue(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxValue = function(nums) {\n    \n};",
+    "typescript": "function maxValue(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxValue(int[] nums) {\n        \n    }\n}",
+    "c": "long long maxValue(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxValue(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxValue(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxValue(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_value(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_value(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxValue($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxValue(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxValue(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_value(nums :: [integer]) :: integer\n  def max_value(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_value(Nums :: [integer()]) -> integer().\nmax_value(Nums) ->\n  .",
+    "racket": "(define/contract (max-value nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,5,2]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[6,4,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[9,7]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,5,2]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[6,4,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[9,7]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "nums = [1,5,2]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "nums = [6,4,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "nums = [9,7]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>After rotating <code>nums[l..r]</code>, every element originally at an index from <code>l + 1</code> through <code>r</code> changes its contribution's sign. The element <code>nums[l]</code> moves to index <code>r</code>.</p>",
+    "<p>Let <code>P[t]</code> be the alternating sum of the first <code>t</code> elements, with <code>P[0] = 0</code>. The change in pulse value is <code>2 * (P[l + 1] - P[r + 1])</code> when <code>l</code> and <code>r</code> have the same parity, and <code>2 * (P[l] - P[r + 1])</code> otherwise.</p>",
+    "<p>Scan <code>r</code> from left to right. Among indices <code>l &lt; r</code>, maintain the maximum values of <code>P[l]</code> and <code>P[l + 1]</code> separately for each parity of <code>l</code>. Use these maxima to find the best gain in constant time per index, allowing a gain of zero for skipping the operation.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-pulse-value-after-one-subarray-rotation/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.504Z",
+    "sourceUpdatedAt": null
+  }
+}

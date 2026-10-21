@@ -1,0 +1,170 @@
+{
+  "id": "1400",
+  "slug": "construct-k-palindrome-strings",
+  "title": "Construct K Palindrome Strings",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Counting"
+  ],
+  "statement": "Given a string `s` and an integer `k`, return `true` if you can use all the characters in `s` to construct **non-empty** `k` palindrome strings or `false` otherwise.\n\n**Example 1:**\n\n```\nInput: s = \"annabelle\", k = 2\nOutput: true\nExplanation: You can construct two palindromes using all characters in s.\nSome possible constructions \"anna\" + \"elble\", \"anbna\" + \"elle\", \"anellena\" + \"b\"\n```\n\n**Example 2:**\n\n```\nInput: s = \"leetcode\", k = 3\nOutput: false\nExplanation: It is impossible to construct 3 palindromes using all the characters of s.\n```\n\n**Example 3:**\n\n```\nInput: s = \"true\", k = 4\nOutput: true\nExplanation: The only possible solution is to put each character in a separate string.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists of lowercase English letters.\n*   `1 <= k <= 10^(5)`",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists of lowercase English letters.",
+    "1 <= k <= 105"
+  ],
+  "examples": [
+    {
+      "input": "s = \"annabelle\", k = 2",
+      "output": "true",
+      "explanation": "You can construct two palindromes using all characters in s.\nSome possible constructions \"anna\" + \"elble\", \"anbna\" + \"elle\", \"anellena\" + \"b\""
+    },
+    {
+      "input": "s = \"leetcode\", k = 3",
+      "output": "false",
+      "explanation": "It is impossible to construct 3 palindromes using all the characters of s."
+    },
+    {
+      "input": "s = \"true\", k = 4",
+      "output": "true",
+      "explanation": "The only possible solution is to put each character in a separate string."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool canConstruct(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean canConstruct(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def canConstruct(self, s: str, k: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def canConstruct(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {boolean}\n */\nvar canConstruct = function(s, k) {\n    \n};",
+    "typescript": "function canConstruct(s: string, k: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CanConstruct(string s, int k) {\n        \n    }\n}",
+    "c": "bool canConstruct(char* s, int k) {\n    \n}",
+    "golang": "func canConstruct(s string, k int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun canConstruct(s: String, k: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func canConstruct(_ s: String, _ k: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn can_construct(s: String, k: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Boolean}\ndef can_construct(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Boolean\n     */\n    function canConstruct($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool canConstruct(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def canConstruct(s: String, k: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec can_construct(s :: String.t, k :: integer) :: boolean\n  def can_construct(s, k) do\n    \n  end\nend",
+    "erlang": "-spec can_construct(S :: unicode:unicode_binary(), K :: integer()) -> boolean().\ncan_construct(S, K) ->\n  .",
+    "racket": "(define/contract (can-construct s k)\n  (-> string? exact-integer? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"annabelle\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"leetcode\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"true\"\n4",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"annabelle\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"leetcode\"\n3",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"true\"\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"anna\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"belle\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"an\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ellebanna\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"annabelleannabelle\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaaaaa\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"annabelleellebanna\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ANNABELLE\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If the s.length < k we cannot construct k strings from s and answer is false.",
+    "If the number of characters that have odd counts is > k then the minimum number of palindrome strings we can construct is > k and answer is false.",
+    "Otherwise you can construct exactly k palindrome strings and answer is true (why ?)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/construct-k-palindrome-strings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.714Z",
+    "sourceUpdatedAt": null
+  }
+}

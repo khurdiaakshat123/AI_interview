@@ -1,0 +1,161 @@
+{
+  "id": "2163",
+  "slug": "minimum-difference-in-sums-after-removal-of-elements",
+  "title": "Minimum Difference in Sums After Removal of Elements",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums` consisting of `3 * n` elements.\n\nYou are allowed to remove any **subsequence** of elements of size **exactly** `n` from `nums`. The remaining `2 * n` elements will be divided into two **equal** parts:\n\n*   The first `n` elements belonging to the first part and their sum is `sum_(first)`.\n*   The next `n` elements belonging to the second part and their sum is `sum_(second)`.\n\nThe **difference in sums** of the two parts is denoted as `sum_(first) - sum_(second)`.\n\n*   For example, if `sum_(first) = 3` and `sum_(second) = 2`, their difference is `1`.\n*   Similarly, if `sum_(first) = 2` and `sum_(second) = 3`, their difference is `-1`.\n\nReturn _the **minimum difference** possible between the sums of the two parts after the removal of_ `n` _elements_.\n\n**Example 1:**\n\n```\nInput: nums = [3,1,2]\nOutput: -1\nExplanation: Here, nums has 3 elements, so n = 1. \nThus we have to remove 1 element from nums and divide the array into two equal parts.\n- If we remove nums[0] = 3, the array will be [1,2]. The difference in sums of the two parts will be 1 - 2 = -1.\n- If we remove nums[1] = 1, the array will be [3,2]. The difference in sums of the two parts will be 3 - 2 = 1.\n- If we remove nums[2] = 2, the array will be [3,1]. The difference in sums of the two parts will be 3 - 1 = 2.\nThe minimum difference between sums of the two parts is min(-1,1,2) = -1.\n```\n\n**Example 2:**\n\n```\nInput: nums = [7,9,5,8,1,3]\nOutput: 1\nExplanation: Here n = 2. So we must remove 2 elements and divide the remaining array into two parts containing two elements each.\nIf we remove nums[2] = 5 and nums[3] = 8, the resultant array will be [7,9,1,3]. The difference in sums will be (7+9) - (1+3) = 12.\nTo obtain the minimum difference, we should remove nums[1] = 9 and nums[4] = 1. The resultant array becomes [7,5,8,3]. The difference in sums of the two parts is (7+5) - (8+3) = 1.\nIt can be shown that it is not possible to obtain a difference smaller than 1.\n```\n\n**Constraints:**\n\n*   `nums.length == 3 * n`\n*   `1 <= n <= 10^(5)`\n*   `1 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "nums.length == 3 * n",
+    "1 <= n <= 105",
+    "1 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,1,2]",
+      "output": "-1",
+      "explanation": "Here, nums has 3 elements, so n = 1. \nThus we have to remove 1 element from nums and divide the array into two equal parts.\n- If we remove nums[0] = 3, the array will be [1,2]. The difference in sums of the two parts will be 1 - 2 = -1.\n- If we remove nums[1] = 1, the array will be [3,2]. The difference in sums of the two parts will be 3 - 2 = 1.\n- If we remove nums[2] = 2, the array will be [3,1]. The difference in sums of the two parts will be 3 - 1 = 2.\nThe minimum difference between sums of the two parts is min(-1,1,2) = -1."
+    },
+    {
+      "input": "nums = [7,9,5,8,1,3]",
+      "output": "1",
+      "explanation": "Here n = 2. So we must remove 2 elements and divide the remaining array into two parts containing two elements each.\nIf we remove nums[2] = 5 and nums[3] = 8, the resultant array will be [7,9,1,3]. The difference in sums will be (7+9) - (1+3) = 12.\nTo obtain the minimum difference, we should remove nums[1] = 9 and nums[4] = 1. The resultant array becomes [7,5,8,3]. The difference in sums of the two parts is (7+5) - (8+3) = 1.\nIt can be shown that it is not possible to obtain a difference smaller than 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minimumDifference(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minimumDifference(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumDifference(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumDifference(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minimumDifference = function(nums) {\n    \n};",
+    "typescript": "function minimumDifference(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinimumDifference(int[] nums) {\n        \n    }\n}",
+    "c": "long long minimumDifference(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minimumDifference(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumDifference(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumDifference(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_difference(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef minimum_difference(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minimumDifference($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumDifference(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumDifference(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_difference(nums :: [integer]) :: integer\n  def minimum_difference(nums) do\n    \n  end\nend",
+    "erlang": "-spec minimum_difference(Nums :: [integer()]) -> integer().\nminimum_difference(Nums) ->\n  .",
+    "racket": "(define/contract (minimum-difference nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[7,9,5,8,1,3]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[7,9,5,8,1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1,3]",
+      "expectedOutput": "-2"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "-2"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,3,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,1,2,3,1,2]",
+      "expectedOutput": "-2"
+    },
+    {
+      "input": "[6,2,4]",
+      "expectedOutput": "-2"
+    },
+    {
+      "input": "[4,2,3]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,0,1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-3,-1,-2]",
+      "expectedOutput": "-2"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The lowest possible difference can be obtained when the sum of the first n elements in the resultant array is minimum, and the sum of the next n elements is maximum.",
+    "For every index i, think about how you can find the minimum possible sum of n elements with indices lesser or equal to i, if possible.",
+    "Similarly, for every index i, try to find the maximum possible sum of n elements with indices greater or equal to i, if possible.",
+    "Now for all indices, check if we can consider it as the partitioning index and hence find the answer."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.815Z",
+    "sourceUpdatedAt": null
+  }
+}

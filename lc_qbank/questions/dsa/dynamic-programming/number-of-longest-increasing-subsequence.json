@@ -1,0 +1,158 @@
+{
+  "id": "673",
+  "slug": "number-of-longest-increasing-subsequence",
+  "title": "Number of Longest Increasing Subsequence",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Longest Increasing Subsequence"
+  ],
+  "statement": "Given an integer array `nums`, return _the number of longest increasing subsequences._\n\n**Notice** that the sequence has to be **strictly** increasing.\n\n**Example 1:**\n\n```\nInput: nums = [1,3,5,4,7]\nOutput: 2\nExplanation: The two longest increasing subsequences are [1, 3, 4, 7] and [1, 3, 5, 7].\n```\n\n**Example 2:**\n\n```\nInput: nums = [2,2,2,2,2]\nOutput: 5\nExplanation: The length of the longest increasing subsequence is 1, and there are 5 increasing subsequences of length 1, so output 5.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 2000`\n*   `-10^(6) <= nums[i] <= 10^(6)`\n*   The answer is guaranteed to fit inside a 32-bit integer.",
+  "constraints": [
+    "1 <= nums.length <= 2000",
+    "-106 <= nums[i] <= 106",
+    "The answer is guaranteed to fit inside a 32-bit integer."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,3,5,4,7]",
+      "output": "2",
+      "explanation": "The two longest increasing subsequences are [1, 3, 4, 7] and [1, 3, 5, 7]."
+    },
+    {
+      "input": "nums = [2,2,2,2,2]",
+      "output": "5",
+      "explanation": "The length of the longest increasing subsequence is 1, and there are 5 increasing subsequences of length 1, so output 5."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findNumberOfLIS(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findNumberOfLIS(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findNumberOfLIS(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findNumberOfLIS(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar findNumberOfLIS = function(nums) {\n    \n};",
+    "typescript": "function findNumberOfLIS(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindNumberOfLIS(int[] nums) {\n        \n    }\n}",
+    "c": "int findNumberOfLIS(int* nums, int numsSize) {\n    \n}",
+    "golang": "func findNumberOfLIS(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findNumberOfLIS(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findNumberOfLIS(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_number_of_lis(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef find_number_of_lis(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function findNumberOfLIS($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findNumberOfLIS(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findNumberOfLIS(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_number_of_lis(nums :: [integer]) :: integer\n  def find_number_of_lis(nums) do\n    \n  end\nend",
+    "erlang": "-spec find_number_of_lis(Nums :: [integer()]) -> integer().\nfind_number_of_lis(Nums) ->\n  .",
+    "racket": "(define/contract (find-number-of-lis nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,3,5,4,7]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,3,5,4,7]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,4,7]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,7]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[7,4,5,3,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3,4,5,7]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[7,5,4,3,1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,3,5,4,7,1,3,5,4,7]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,6,10,8,14]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4,6,5,8]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,2,4,3,6]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,-3,-5,-4,-7]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-longest-increasing-subsequence/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.958Z",
+    "sourceUpdatedAt": null
+  }
+}

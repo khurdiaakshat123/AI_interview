@@ -1,0 +1,91 @@
+{
+  "id": "802",
+  "slug": "find-eventual-safe-states",
+  "title": "Find Eventual Safe States",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Topological Sort",
+    "Kosaraju's Algorithm",
+    "Tarjan's SCC Algorithm"
+  ],
+  "statement": "There is a directed graph of `n` nodes with each node labeled from `0` to `n - 1`. The graph is represented by a **0-indexed** 2D integer array `graph` where `graph[i]` is an integer array of nodes adjacent to node `i`, meaning there is an edge from node `i` to each node in `graph[i]`.\n\nA node is a **terminal node** if there are no outgoing edges. A node is a **safe node** if every possible path starting from that node leads to a **terminal node** (or another safe node).\n\nReturn _an array containing all the **safe nodes** of the graph_. The answer should be sorted in **ascending** order.\n\n**Example 1:**\n\n![Illustration of graph](./assets/find-eventual-safe-states-1.png)\n```\nInput: graph = [[1,2],[2,3],[5],[0],[5],[],[]]\nOutput: [2,4,5,6]\nExplanation: The given graph is shown above.\nNodes 5 and 6 are terminal nodes as there are no outgoing edges from either of them.\nEvery path starting at nodes 2, 4, 5, and 6 all lead to either node 5 or 6.\n```\n\n**Example 2:**\n\n```\nInput: graph = [[1,2,3,4],[1,2],[3,4],[0,4],[]]\nOutput: [4]\nExplanation:\nOnly node 4 is a terminal node, and every path starting at node 4 leads to node 4.\n```\n\n**Constraints:**\n\n*   `n == graph.length`\n*   `1 <= n <= 10^(4)`\n*   `0 <= graph[i].length <= n`\n*   `0 <= graph[i][j] <= n - 1`\n*   `graph[i]` is sorted in a strictly increasing order.\n*   The graph may contain self-loops.\n*   The number of edges in the graph will be in the range `[1, 4 * 10^(4)]`.",
+  "constraints": [
+    "n == graph.length",
+    "1 <= n <= 104",
+    "0 <= graph[i].length <= n",
+    "0 <= graph[i][j] <= n - 1",
+    "graph[i] is sorted in a strictly increasing order.",
+    "The graph may contain self-loops.",
+    "The number of edges in the graph will be in the range [1, 4 * 104]."
+  ],
+  "examples": [
+    {
+      "input": "graph = [[1,2],[2,3],[5],[0],[5],[],[]]",
+      "output": "[2,4,5,6]",
+      "explanation": "The given graph is shown above.\nNodes 5 and 6 are terminal nodes as there are no outgoing edges from either of them.\nEvery path starting at nodes 2, 4, 5, and 6 all lead to either node 5 or 6."
+    },
+    {
+      "input": "graph = [[1,2,3,4],[1,2],[3,4],[0,4],[]]",
+      "output": "[4]",
+      "explanation": "Only node 4 is a terminal node, and every path starting at node 4 leads to node 4."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> eventualSafeNodes(int[][] graph) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def eventualSafeNodes(self, graph: list[list[int]]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def eventualSafeNodes(self, graph):\n        \"\"\"\n        :type graph: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} graph\n * @return {number[]}\n */\nvar eventualSafeNodes = function(graph) {\n    \n};",
+    "typescript": "function eventualSafeNodes(graph: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> EventualSafeNodes(int[][] graph) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* eventualSafeNodes(int** graph, int graphSize, int* graphColSize, int* returnSize) {\n    \n}",
+    "golang": "func eventualSafeNodes(graph [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun eventualSafeNodes(graph: Array<IntArray>): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func eventualSafeNodes(_ graph: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn eventual_safe_nodes(graph: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} graph\n# @return {Integer[]}\ndef eventual_safe_nodes(graph)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $graph\n     * @return Integer[]\n     */\n    function eventualSafeNodes($graph) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> eventualSafeNodes(List<List<int>> graph) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def eventualSafeNodes(graph: Array[Array[Int]]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec eventual_safe_nodes(graph :: [[integer]]) :: [integer]\n  def eventual_safe_nodes(graph) do\n    \n  end\nend",
+    "erlang": "-spec eventual_safe_nodes(Graph :: [[integer()]]) -> [integer()].\neventual_safe_nodes(Graph) ->\n  .",
+    "racket": "(define/contract (eventual-safe-nodes graph)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,2],[2,3],[5],[0],[5],[],[]]",
+      "expectedOutput": "[2,4,5,6]"
+    },
+    {
+      "input": "[[1,2,3,4],[1,2],[3,4],[0,4],[]]",
+      "expectedOutput": "[4]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,2],[2,3],[5],[0],[5],[],[]]",
+      "expectedOutput": "[2,4,5,6]"
+    },
+    {
+      "input": "[[1,2,3,4],[1,2],[3,4],[0,4],[]]",
+      "expectedOutput": "[4]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.686Z",
+    "sourceUpdatedAt": null
+  }
+}

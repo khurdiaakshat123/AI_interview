@@ -1,0 +1,167 @@
+{
+  "id": "3305",
+  "slug": "count-of-substrings-containing-every-vowel-and-k-consonants-i",
+  "title": "Count of Substrings Containing Every Vowel and K Consonants I",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "You are given a string `word` and a **non-negative** integer `k`.\n\nReturn the total number of substrings of `word` that contain every vowel (`'a'`, `'e'`, `'i'`, `'o'`, and `'u'`) **at least** once and **exactly** `k` consonants.\n\n**Example 1:**\n\n**Input:** word = \"aeioqq\", k = 1\n\n**Output:** 0\n\n**Explanation:**\n\nThere is no substring with every vowel.\n\n**Example 2:**\n\n**Input:** word = \"aeiou\", k = 0\n\n**Output:** 1\n\n**Explanation:**\n\nThe only substring with every vowel and zero consonants is `word[0..4]`, which is `\"aeiou\"`.\n\n**Example 3:**\n\n**Input:** word = \"ieaouqqieaouqq\", k = 1\n\n**Output:** 3\n\n**Explanation:**\n\nThe substrings with every vowel and one consonant are:\n\n*   `word[0..5]`, which is `\"ieaouq\"`.\n*   `word[6..11]`, which is `\"qieaou\"`.\n*   `word[7..12]`, which is `\"ieaouq\"`.\n\n**Constraints:**\n\n*   `5 <= word.length <= 250`\n*   `word` consists only of lowercase English letters.\n*   `0 <= k <= word.length - 5`",
+  "constraints": [
+    "5 <= word.length <= 250",
+    "word consists only of lowercase English letters.",
+    "0 <= k <= word.length - 5"
+  ],
+  "examples": [
+    {
+      "input": "word = \"aeioqq\", k = 1",
+      "output": "0",
+      "explanation": null
+    },
+    {
+      "input": "word = \"aeiou\", k = 0",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "word = \"ieaouqqieaouqq\", k = 1",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countOfSubstrings(string word, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countOfSubstrings(String word, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countOfSubstrings(self, word: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countOfSubstrings(self, word, k):\n        \"\"\"\n        :type word: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word\n * @param {number} k\n * @return {number}\n */\nvar countOfSubstrings = function(word, k) {\n    \n};",
+    "typescript": "function countOfSubstrings(word: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountOfSubstrings(string word, int k) {\n        \n    }\n}",
+    "c": "int countOfSubstrings(char* word, int k) {\n    \n}",
+    "golang": "func countOfSubstrings(word string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countOfSubstrings(word: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countOfSubstrings(_ word: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_of_substrings(word: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} word\n# @param {Integer} k\n# @return {Integer}\ndef count_of_substrings(word, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word\n     * @param Integer $k\n     * @return Integer\n     */\n    function countOfSubstrings($word, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countOfSubstrings(String word, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countOfSubstrings(word: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_of_substrings(word :: String.t, k :: integer) :: integer\n  def count_of_substrings(word, k) do\n    \n  end\nend",
+    "erlang": "-spec count_of_substrings(Word :: unicode:unicode_binary(), K :: integer()) -> integer().\ncount_of_substrings(Word, K) ->\n  .",
+    "racket": "(define/contract (count-of-substrings word k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aeioqq\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aeiou\"\n0",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ieaouqqieaouqq\"\n1",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aeioqq\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aeiou\"\n0",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ieaouqqieaouqq\"\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aei\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"oqq\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ae\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"qqoiea\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aeioqqaeioqq\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaaa\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aeioqqqqoiea\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"AEIOQQ\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n1",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use a HashMap and check all the substrings."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-of-substrings-containing-every-vowel-and-k-consonants-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.427Z",
+    "sourceUpdatedAt": null
+  }
+}

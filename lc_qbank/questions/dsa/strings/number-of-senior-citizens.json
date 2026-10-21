@@ -1,0 +1,144 @@
+{
+  "id": "2678",
+  "slug": "number-of-senior-citizens",
+  "title": "Number of Senior Citizens",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "statement": "You are given a **0-indexed** array of strings `details`. Each element of `details` provides information about a given passenger compressed into a string of length `15`. The system is such that:\n\n*   The first ten characters consist of the phone number of passengers.\n*   The next character denotes the gender of the person.\n*   The following two characters are used to indicate the age of the person.\n*   The last two characters determine the seat allotted to that person.\n\nReturn _the number of passengers who are **strictly** **more than 60 years old**._\n\n**Example 1:**\n\n```\nInput: details = [\"7868190130M7522\",\"5303914400F9211\",\"9273338290F4010\"]\nOutput: 2\nExplanation: The passengers at indices 0, 1, and 2 have ages 75, 92, and 40. Thus, there are 2 people who are over 60 years old.\n```\n\n**Example 2:**\n\n```\nInput: details = [\"1313579440F2036\",\"2921522980M5644\"]\nOutput: 0\nExplanation: None of the passengers are older than 60.\n```\n\n**Constraints:**\n\n*   `1 <= details.length <= 100`\n*   `details[i].length == 15`\n*   `details[i] consists of digits from '0' to '9'.`\n*   `details[i][10] is either 'M' or 'F' or 'O'.`\n*   The phone numbers and seat numbers of the passengers are distinct.",
+  "constraints": [
+    "1 <= details.length <= 100",
+    "details[i].length == 15",
+    "details[i] consists of digits from '0' to '9'.",
+    "details[i][10] is either 'M' or 'F' or 'O'.",
+    "The phone numbers and seat numbers of the passengers are distinct."
+  ],
+  "examples": [
+    {
+      "input": "details = [\"7868190130M7522\",\"5303914400F9211\",\"9273338290F4010\"]",
+      "output": "2",
+      "explanation": "The passengers at indices 0, 1, and 2 have ages 75, 92, and 40. Thus, there are 2 people who are over 60 years old."
+    },
+    {
+      "input": "details = [\"1313579440F2036\",\"2921522980M5644\"]",
+      "output": "0",
+      "explanation": "None of the passengers are older than 60."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countSeniors(vector<string>& details) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countSeniors(String[] details) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countSeniors(self, details: List[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countSeniors(self, details):\n        \"\"\"\n        :type details: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} details\n * @return {number}\n */\nvar countSeniors = function(details) {\n    \n};",
+    "typescript": "function countSeniors(details: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountSeniors(string[] details) {\n        \n    }\n}",
+    "c": "int countSeniors(char** details, int detailsSize) {\n    \n}",
+    "golang": "func countSeniors(details []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countSeniors(details: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countSeniors(_ details: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_seniors(details: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} details\n# @return {Integer}\ndef count_seniors(details)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $details\n     * @return Integer\n     */\n    function countSeniors($details) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countSeniors(List<String> details) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countSeniors(details: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_seniors(details :: [String.t]) :: integer\n  def count_seniors(details) do\n    \n  end\nend",
+    "erlang": "-spec count_seniors(Details :: [unicode:unicode_binary()]) -> integer().\ncount_seniors(Details) ->\n  .",
+    "racket": "(define/contract (count-seniors details)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"7868190130M7522\",\"5303914400F9211\",\"9273338290F4010\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"1313579440F2036\",\"2921522980M5644\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"7868190130M7522\",\"5303914400F9211\",\"9273338290F4010\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"1313579440F2036\",\"2921522980M5644\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"7868190130M7522\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"5303914400F9211\",\"9273338290F4010\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"7868190130M7522\",\"9273338290F4010\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"7868190130M7522\",\"5303914400F9211\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"9273338290F4010\",\"5303914400F9211\",\"7868190130M7522\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"5303914400F9211\",\"7868190130M7522\",\"9273338290F4010\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"9273338290F4010\",\"7868190130M7522\",\"5303914400F9211\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"7868190130M7522\",\"7868190130M7522\",\"7868190130M7522\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"7868190130M7522\",\"5303914400F9211\",\"9273338290F4010\",\"7868190130M7522\",\"5303914400F9211\",\"9273338290F4010\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"1313579440F2036\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"2921522980M5644\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"2921522980M5644\",\"1313579440F2036\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"1313579440F2036\",\"1313579440F2036\"]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"1313579440F2036\",\"2921522980M5644\",\"1313579440F2036\",\"2921522980M5644\"]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Convert the value at index 11 and 12 to a numerical value.",
+    "The age of the person at index i is equal to details[i][11]*10+details[i][12]."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-senior-citizens/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.053Z",
+    "sourceUpdatedAt": null
+  }
+}

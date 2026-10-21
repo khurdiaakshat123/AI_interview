@@ -1,0 +1,169 @@
+{
+  "id": "3728",
+  "slug": "stable-subarrays-with-equal-boundary-and-interior-sum",
+  "title": "Stable Subarrays With Equal Boundary and Interior Sum",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `capacity`.\n\nA subarray `capacity[l..r]` is considered **stable** if:\n\n*   Its length is **at least** 3.\n*   The **first** and **last** elements are each equal to the **sum** of all elements **strictly between** them (i.e., `capacity[l] = capacity[r] = capacity[l + 1] + capacity[l + 2] + ... + capacity[r - 1]`).\n\nReturn an integer denoting the number of **stable subarrays**.\n\n**Example 1:**\n\n**Input:** capacity = \\[9,3,3,3,9\\]\n\n**Output:** 2\n\n**Explanation:**\n\n*   `[9,3,3,3,9]` is stable because the first and last elements are both 9, and the sum of the elements strictly between them is `3 + 3 + 3 = 9`.\n*   `[3,3,3]` is stable because the first and last elements are both 3, and the sum of the elements strictly between them is 3.\n\n**Example 2:**\n\n**Input:** capacity = \\[1,2,3,4,5\\]\n\n**Output:** 0\n\n**Explanation:**\n\nNo subarray of length at least 3 has equal first and last elements, so the answer is 0.\n\n**Example 3:**\n\n**Input:** capacity = \\[-4,4,0,0,-8,-4\\]\n\n**Output:** 1\n\n**Explanation:**\n\n`[-4,4,0,0,-8,-4]` is stable because the first and last elements are both -4, and the sum of the elements strictly between them is `4 + 0 + 0 + (-8) = -4`\n\n**Constraints:**\n\n*   `3 <= capacity.length <= 10^(5)`\n*   `-10^(9) <= capacity[i] <= 10^(9)`",
+  "constraints": [
+    "3 <= capacity.length <= 105",
+    "-109 <= capacity[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "capacity = [9,3,3,3,9]",
+      "output": "2",
+      "explanation": "[9,3,3,3,9] is stable because the first and last elements are both 9, and the sum of the elements strictly between them is 3 + 3 + 3 = 9.\n\t[3,3,3] is stable because the first and last elements are both 3, and the sum of the elements strictly between them is 3."
+    },
+    {
+      "input": "capacity = [1,2,3,4,5]",
+      "output": "0",
+      "explanation": null
+    },
+    {
+      "input": "capacity = [-4,4,0,0,-8,-4]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long countStableSubarrays(vector<int>& capacity) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long countStableSubarrays(int[] capacity) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countStableSubarrays(self, capacity: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countStableSubarrays(self, capacity):\n        \"\"\"\n        :type capacity: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} capacity\n * @return {number}\n */\nvar countStableSubarrays = function(capacity) {\n    \n};",
+    "typescript": "function countStableSubarrays(capacity: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long CountStableSubarrays(int[] capacity) {\n        \n    }\n}",
+    "c": "long long countStableSubarrays(int* capacity, int capacitySize) {\n    \n}",
+    "golang": "func countStableSubarrays(capacity []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun countStableSubarrays(capacity: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countStableSubarrays(_ capacity: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_stable_subarrays(capacity: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} capacity\n# @return {Integer}\ndef count_stable_subarrays(capacity)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $capacity\n     * @return Integer\n     */\n    function countStableSubarrays($capacity) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countStableSubarrays(List<int> capacity) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countStableSubarrays(capacity: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_stable_subarrays(capacity :: [integer]) :: integer\n  def count_stable_subarrays(capacity) do\n    \n  end\nend",
+    "erlang": "-spec count_stable_subarrays(Capacity :: [integer()]) -> integer().\ncount_stable_subarrays(Capacity) ->\n  .",
+    "racket": "(define/contract (count-stable-subarrays capacity)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[9,3,3,3,9]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,4,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-4,4,0,0,-8,-4]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[9,3,3,3,9]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,4,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-4,4,0,0,-8,-4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[9,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,3,9]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[9]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[9,9]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,3,3,9,9]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[9,9,3,3,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[9,9,9,9,9]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[9,3,3,3,9,9,3,3,3,9]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[18,6,6,6,18]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[10,4,4,4,10]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[8,2,2,2,8]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-9,-3,-3,-3,-9]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use prefix sums",
+    "Let the prefix sum array be <code>p</code>; notice that for a stable range <code>[l, r]</code>, the condition becomes <code>p[r - 1] - p[l] == a[r]</code> and <code>a[l] == a[r]</code>",
+    "For each index <code>r</code>, you want to count the number of previous indices <code>l</code> such that <code>p[l] == p[r - 1] - a[r]</code> and <code>a[l] == a[r]</code>",
+    "You can do this efficiently by maintaining a map from <code>(a[i], p[i])</code> to a frequency count as you iterate"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/stable-subarrays-with-equal-boundary-and-interior-sum/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.194Z",
+    "sourceUpdatedAt": null
+  }
+}

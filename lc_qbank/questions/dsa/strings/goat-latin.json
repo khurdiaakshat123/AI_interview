@@ -1,0 +1,155 @@
+{
+  "id": "824",
+  "slug": "goat-latin",
+  "title": "Goat Latin",
+  "category": "dsa",
+  "subcategory": "strings",
+  "difficulty": "Easy",
+  "tags": [
+    "String"
+  ],
+  "statement": "You are given a string `sentence` that consist of words separated by spaces. Each word consists of lowercase and uppercase letters only.\n\nWe would like to convert the sentence to \"Goat Latin\" (a made-up language similar to Pig Latin.) The rules of Goat Latin are as follows:\n\n*   If a word begins with a vowel (`'a'`, `'e'`, `'i'`, `'o'`, or `'u'`), append `\"ma\"` to the end of the word.\n    *   For example, the word `\"apple\"` becomes `\"applema\"`.\n*   If a word begins with a consonant (i.e., not a vowel), remove the first letter and append it to the end, then add `\"ma\"`.\n    *   For example, the word `\"goat\"` becomes `\"oatgma\"`.\n*   Add one letter `'a'` to the end of each word per its word index in the sentence, starting with `1`.\n    *   For example, the first word gets `\"a\"` added to the end, the second word gets `\"aa\"` added to the end, and so on.\n\nReturn _the final sentence representing the conversion from sentence to Goat Latin_.\n\n**Example 1:**\n\n```\nInput: sentence = \"I speak Goat Latin\"\nOutput: \"Imaa peaksmaaa oatGmaaaa atinLmaaaaa\"\n```\n\n**Example 2:**\n\n```\nInput: sentence = \"The quick brown fox jumped over the lazy dog\"\nOutput: \"heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa\"\n```\n\n**Constraints:**\n\n*   `1 <= sentence.length <= 150`\n*   `sentence` consists of English letters and spaces.\n*   `sentence` has no leading or trailing spaces.\n*   All the words in `sentence` are separated by a single space.",
+  "constraints": [
+    "1 <= sentence.length <= 150",
+    "sentence consists of English letters and spaces.",
+    "sentence has no leading or trailing spaces.",
+    "All the words in sentence are separated by a single space."
+  ],
+  "examples": [
+    {
+      "input": "sentence = \"I speak Goat Latin\"",
+      "output": "\"Imaa peaksmaaa oatGmaaaa atinLmaaaaa\"",
+      "explanation": null
+    },
+    {
+      "input": "sentence = \"The quick brown fox jumped over the lazy dog\"",
+      "output": "\"heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string toGoatLatin(string sentence) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String toGoatLatin(String sentence) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def toGoatLatin(self, sentence: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def toGoatLatin(self, sentence):\n        \"\"\"\n        :type sentence: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} sentence\n * @return {string}\n */\nvar toGoatLatin = function(sentence) {\n    \n};",
+    "typescript": "function toGoatLatin(sentence: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ToGoatLatin(string sentence) {\n        \n    }\n}",
+    "c": "char* toGoatLatin(char* sentence) {\n    \n}",
+    "golang": "func toGoatLatin(sentence string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun toGoatLatin(sentence: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func toGoatLatin(_ sentence: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn to_goat_latin(sentence: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} sentence\n# @return {String}\ndef to_goat_latin(sentence)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $sentence\n     * @return String\n     */\n    function toGoatLatin($sentence) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String toGoatLatin(String sentence) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def toGoatLatin(sentence: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec to_goat_latin(sentence :: String.t) :: String.t\n  def to_goat_latin(sentence) do\n    \n  end\nend",
+    "erlang": "-spec to_goat_latin(Sentence :: unicode:unicode_binary()) -> unicode:unicode_binary().\nto_goat_latin(Sentence) ->\n  .",
+    "racket": "(define/contract (to-goat-latin sentence)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"I speak Goat Latin\"",
+      "expectedOutput": "\"Imaa peaksmaaa oatGmaaaa atinLmaaaaa\""
+    },
+    {
+      "input": "\"The quick brown fox jumped over the lazy dog\"",
+      "expectedOutput": "\"heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"I speak Goat Latin\"",
+      "expectedOutput": "\"Imaa peaksmaaa oatGmaaaa atinLmaaaaa\""
+    },
+    {
+      "input": "\"The quick brown fox jumped over the lazy dog\"",
+      "expectedOutput": "\"heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa\""
+    },
+    {
+      "input": "\"I speak G\"",
+      "expectedOutput": "\"Imaa peaksmaaa Gmaaaa\""
+    },
+    {
+      "input": "\"oat Latin\"",
+      "expectedOutput": "\"oatmaa atinLmaaa\""
+    },
+    {
+      "input": "\"I\"",
+      "expectedOutput": "\"Imaa\""
+    },
+    {
+      "input": "\"I \"",
+      "expectedOutput": "\"Imaa\""
+    },
+    {
+      "input": "\"nitaL taoG kaeps I\"",
+      "expectedOutput": "\"itaLnmaa aoGtmaaa aepskmaaaa Imaaaaa\""
+    },
+    {
+      "input": "\"IIIIII\"",
+      "expectedOutput": "\"IIIIIImaa\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"amaa\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"bmaa\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aamaa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"abmaa\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"abmaa\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"abamaa\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abbamaa\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaamaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcdemaa\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"edcbamaa\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"aabmaa\""
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "\"aAmaa\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/goat-latin/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.205Z",
+    "sourceUpdatedAt": null
+  }
+}

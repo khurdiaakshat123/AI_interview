@@ -1,0 +1,96 @@
+{
+  "id": "3449",
+  "slug": "maximize-the-minimum-game-score",
+  "title": "Maximize the Minimum Game Score",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy"
+  ],
+  "statement": "You are given an array `points` of size `n` and an integer `m`. There is another array `gameScore` of size `n`, where `gameScore[i]` represents the score achieved at the `i^(th)` game. Initially, `gameScore[i] == 0` for all `i`.\n\nYou start at index -1, which is outside the array (before the first position at index 0). You can make **at most** `m` moves. In each move, you can either:\n\n*   Increase the index by 1 and add `points[i]` to `gameScore[i]`.\n*   Decrease the index by 1 and add `points[i]` to `gameScore[i]`.\n\n**Note** that the index must always remain within the bounds of the array after the first move.\n\nReturn the **maximum possible minimum** value in `gameScore` after **at most** `m` moves.\n\n**Example 1:**\n\n**Input:** points = \\[2,4\\], m = 3\n\n**Output:** 4\n\n**Explanation:**\n\nInitially, index `i = -1` and `gameScore = [0, 0]`.\n\nMove\n\nIndex\n\ngameScore\n\nIncrease `i`\n\n0\n\n`[2, 0]`\n\nIncrease `i`\n\n1\n\n`[2, 4]`\n\nDecrease `i`\n\n0\n\n`[4, 4]`\n\nThe minimum value in `gameScore` is 4, and this is the maximum possible minimum among all configurations. Hence, 4 is the output.\n\n**Example 2:**\n\n**Input:** points = \\[1,2,3\\], m = 5\n\n**Output:** 2\n\n**Explanation:**\n\nInitially, index `i = -1` and `gameScore = [0, 0, 0]`.\n\nMove\n\nIndex\n\ngameScore\n\nIncrease `i`\n\n0\n\n`[1, 0, 0]`\n\nIncrease `i`\n\n1\n\n`[1, 2, 0]`\n\nDecrease `i`\n\n0\n\n`[2, 2, 0]`\n\nIncrease `i`\n\n1\n\n`[2, 4, 0]`\n\nIncrease `i`\n\n2\n\n`[2, 4, 3]`\n\nThe minimum value in `gameScore` is 2, and this is the maximum possible minimum among all configurations. Hence, 2 is the output.\n\n**Constraints:**\n\n*   `2 <= n == points.length <= 5 * 10^(4)`\n*   `1 <= points[i] <= 10^(6)`\n*   `1 <= m <= 10^(9)`",
+  "constraints": [
+    "2 <= n == points.length <= 5 * 104",
+    "1 <= points[i] <= 106",
+    "1 <= m <= 109"
+  ],
+  "examples": [
+    {
+      "input": "points = [2,4], m = 3",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "points = [1,2,3], m = 5",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxScore(vector<int>& points, int m) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxScore(int[] points, int m) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxScore(self, points: List[int], m: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxScore(self, points, m):\n        \"\"\"\n        :type points: List[int]\n        :type m: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} points\n * @param {number} m\n * @return {number}\n */\nvar maxScore = function(points, m) {\n    \n};",
+    "typescript": "function maxScore(points: number[], m: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxScore(int[] points, int m) {\n        \n    }\n}",
+    "c": "long long maxScore(int* points, int pointsSize, int m) {\n    \n}",
+    "golang": "func maxScore(points []int, m int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxScore(points: IntArray, m: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxScore(_ points: [Int], _ m: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_score(points: Vec<i32>, m: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} points\n# @param {Integer} m\n# @return {Integer}\ndef max_score(points, m)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $points\n     * @param Integer $m\n     * @return Integer\n     */\n    function maxScore($points, $m) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxScore(List<int> points, int m) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxScore(points: Array[Int], m: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_score(points :: [integer], m :: integer) :: integer\n  def max_score(points, m) do\n    \n  end\nend",
+    "erlang": "-spec max_score(Points :: [integer()], M :: integer()) -> integer().\nmax_score(Points, M) ->\n  .",
+    "racket": "(define/contract (max-score points m)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,4]\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,3]\n5",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,4]\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,3]\n5",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "points = [2,4], m = 3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "points = [1,2,3], m = 5",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can we use binary search?",
+    "What happens if you fix the game score as x?",
+    "We should go from i to (i + 1) back and forth, making the value for each index i (from left to right) no less than x."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-the-minimum-game-score/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.401Z",
+    "sourceUpdatedAt": null
+  }
+}

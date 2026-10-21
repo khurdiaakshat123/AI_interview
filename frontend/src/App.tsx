@@ -6,6 +6,7 @@ import { LandingPage } from './pages/LandingPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { JDIntakePage } from './pages/JDIntakePage';
 import { PracticeConfigPage } from './pages/PracticeConfigPage';
+import { PracticePage } from './pages/PracticePage';
 import { PracticeRunnerPage } from './pages/PracticeRunnerPage';
 import { MockOARunnerPage } from './pages/MockOARunnerPage';
 import { OAReportPage } from './pages/OAReportPage';
@@ -213,9 +214,8 @@ export const App: React.FC = () => {
         )}
 
         {currentTab === 'practice' && (
-          <PracticeConfigPage
-            initialCompany={navState.company}
-            initialRole={navState.role}
+          <PracticePage
+            initialQuestionId={navState.questionId}
             onNavigate={handleNavigate}
           />
         )}

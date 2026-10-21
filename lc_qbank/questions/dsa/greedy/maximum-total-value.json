@@ -1,0 +1,116 @@
+{
+  "id": "3971",
+  "slug": "maximum-total-value",
+  "title": "Maximum Total Value",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Greedy"
+  ],
+  "statement": "You are given two integer arrays `value` and `decay`, and an integer `m`.\n\n*   `value[i]` represents the initial value at index `i`.\n*   `decay[i]` represents how much the value decreases after each selection of index `i`.\n\nYou may select any index **multiple** times. The total number of selections across all indices must not exceed `m`.\n\nIf you select index `i` for the `t^(th)` time, where `t` is 1-indexed, the value gained is `value[i] - decay[i] * (t - 1)`.\n\nReturn the **maximum** total value you can obtain. Since the answer may be large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** value = \\[6,5,4\\], decay = \\[2,1,1\\], m = 4\n\n**Output:** 19\n\n**Explanation:**\n\nOne optimal sequence of selections is as follows:\n\n*   By selecting index 0, the value gained is 6.\n*   By selecting index 1, the value gained is 5.\n*   By selecting index 2, the value gained is 4.\n*   By selecting index 0 again, the value gained is `6 - 2 = 4`.\n\nThe total value is `6 + 5 + 4 + 4 = 19`. No other sequence of at most 4 selections gives a higher total value.\n\n**Example 2:**\n\n**Input:** value = \\[7,2,2\\], decay = \\[3,2,1\\], m = 2\n\n**Output:** 11\n\n**Explanation:**\n\nOne optimal sequence of selections is as follows:\n\n*   By selecting index 0, the value gained is 7.\n*   By selecting index 0 again, the value gained is `7 - 3 = 4`.\n\nThe total value is `7 + 4 = 11`.\n\n**Example 3:**\n\n**Input:** value = \\[4,3\\], decay = \\[5,4\\], m = 5\n\n**Output:** 7\n\n**Explanation:**\n\nOne optimal sequence of selections is as follows:\n\n*   By selecting index 0, the value gained is 4.\n*   By selecting index 1, the value gained is 3.\n\nThe total value is `4 + 3 = 7`.\n\n**Constraints:**\n\n*   `1 <= value.length == decay.length <= 10^(5)`\n*   `1 <= value[i], decay[i] <= 10^(9)​​​​​​​`\n*   `1 <= m <= 10^(9)`",
+  "constraints": [
+    "1 <= value.length == decay.length <= 105",
+    "1 <= value[i], decay[i] <= 109​​​​​​​",
+    "1 <= m <= 109"
+  ],
+  "examples": [
+    {
+      "input": "value = [6,5,4], decay = [2,1,1], m = 4",
+      "output": "19",
+      "explanation": null
+    },
+    {
+      "input": "value = [7,2,2], decay = [3,2,1], m = 2",
+      "output": "11",
+      "explanation": null
+    },
+    {
+      "input": "value = [4,3], decay = [5,4], m = 5",
+      "output": "7",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxTotalValue(vector<int>& value, vector<int>& decay, int m) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxTotalValue(int[] value, int[] decay, int m) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxTotalValue(self, value: list[int], decay: list[int], m: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxTotalValue(self, value, decay, m):\n        \"\"\"\n        :type value: List[int]\n        :type decay: List[int]\n        :type m: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} value\n * @param {number[]} decay\n * @param {number} m\n * @return {number}\n */\nvar maxTotalValue = function(value, decay, m) {\n    \n};",
+    "typescript": "function maxTotalValue(value: number[], decay: number[], m: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxTotalValue(int[] value, int[] decay, int m) {\n        \n    }\n}",
+    "c": "int maxTotalValue(int* value, int valueSize, int* decay, int decaySize, int m) {\n    \n}",
+    "golang": "func maxTotalValue(value []int, decay []int, m int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxTotalValue(value: IntArray, decay: IntArray, m: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxTotalValue(_ value: [Int], _ decay: [Int], _ m: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_total_value(value: Vec<i32>, decay: Vec<i32>, m: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} value\n# @param {Integer[]} decay\n# @param {Integer} m\n# @return {Integer}\ndef max_total_value(value, decay, m)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $value\n     * @param Integer[] $decay\n     * @param Integer $m\n     * @return Integer\n     */\n    function maxTotalValue($value, $decay, $m) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxTotalValue(List<int> value, List<int> decay, int m) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxTotalValue(value: Array[Int], decay: Array[Int], m: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_total_value(value :: [integer], decay :: [integer], m :: integer) :: integer\n  def max_total_value(value, decay, m) do\n    \n  end\nend",
+    "erlang": "-spec max_total_value(Value :: [integer()], Decay :: [integer()], M :: integer()) -> integer().\nmax_total_value(Value, Decay, M) ->\n  .",
+    "racket": "(define/contract (max-total-value value decay m)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[6,5,4]\n[2,1,1]\n4",
+      "expectedOutput": "19"
+    },
+    {
+      "input": "[7,2,2]\n[3,2,1]\n2",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[4,3]\n[5,4]\n5",
+      "expectedOutput": "7"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[6,5,4]\n[2,1,1]\n4",
+      "expectedOutput": "19"
+    },
+    {
+      "input": "[7,2,2]\n[3,2,1]\n2",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[4,3]\n[5,4]\n5",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "value = [6,5,4], decay = [2,1,1], m = 4",
+      "expectedOutput": "19"
+    },
+    {
+      "input": "value = [7,2,2], decay = [3,2,1], m = 2",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "value = [4,3], decay = [5,4], m = 5",
+      "expectedOutput": "7"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For each index, the gained values form a decreasing arithmetic sequence: <code>value[i]</code>, <code>value[i] - decay[i]</code>, <code>value[i] - 2 * decay[i]</code>, and so on.",
+    "Since you may use fewer than <code>m</code> selections, never take a non-positive gain.",
+    "Binary search the minimum gain threshold that should be included among the selected values.",
+    "For a fixed threshold <code>g</code>, compute how many terms in each arithmetic sequence are at least <code>g</code>, and also compute their sum using the arithmetic progression formula.",
+    "If more than <code>m</code> terms are counted at the final threshold, subtract the extra copies of that threshold value."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-total-value/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.851Z",
+    "sourceUpdatedAt": null
+  }
+}

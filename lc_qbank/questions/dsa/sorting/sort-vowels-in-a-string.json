@@ -1,0 +1,157 @@
+{
+  "id": "2785",
+  "slug": "sort-vowels-in-a-string",
+  "title": "Sort Vowels in a String",
+  "category": "dsa",
+  "subcategory": "sorting",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Sorting"
+  ],
+  "statement": "Given a **0-indexed** string `s`, **permute** `s` to get a new string `t` such that:\n\n*   All consonants remain in their original places. More formally, if there is an index `i` with `0 <= i < s.length` such that `s[i]` is a consonant, then `t[i] = s[i]`.\n*   The vowels must be sorted in the **nondecreasing** order of their **ASCII** values. More formally, for pairs of indices `i`, `j` with `0 <= i < j < s.length` such that `s[i]` and `s[j]` are vowels, then `t[i]` must not have a higher ASCII value than `t[j]`.\n\nReturn _the resulting string_.\n\nThe vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`, and they can appear in lowercase or uppercase. Consonants comprise all letters that are not vowels.\n\n**Example 1:**\n\n```\nInput: s = \"lEetcOde\"\nOutput: \"lEOtcede\"\nExplanation: 'E', 'O', and 'e' are the vowels in s; 'l', 't', 'c', and 'd' are all consonants. The vowels are sorted according to their ASCII values, and the consonants remain in the same places.\n```\n\n**Example 2:**\n\n```\nInput: s = \"lYmpH\"\nOutput: \"lYmpH\"\nExplanation: There are no vowels in s (all characters in s are consonants), so we return \"lYmpH\".\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists only of letters of the English alphabet in **uppercase and lowercase**.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists only of letters of the English alphabet in uppercase and lowercase."
+  ],
+  "examples": [
+    {
+      "input": "s = \"lEetcOde\"",
+      "output": "\"lEOtcede\"",
+      "explanation": "'E', 'O', and 'e' are the vowels in s; 'l', 't', 'c', and 'd' are all consonants. The vowels are sorted according to their ASCII values, and the consonants remain in the same places."
+    },
+    {
+      "input": "s = \"lYmpH\"",
+      "output": "\"lYmpH\"",
+      "explanation": "There are no vowels in s (all characters in s are consonants), so we return \"lYmpH\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string sortVowels(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String sortVowels(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sortVowels(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def sortVowels(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar sortVowels = function(s) {\n    \n};",
+    "typescript": "function sortVowels(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string SortVowels(string s) {\n        \n    }\n}",
+    "c": "char* sortVowels(char* s) {\n    \n}",
+    "golang": "func sortVowels(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun sortVowels(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sortVowels(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sort_vowels(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef sort_vowels(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function sortVowels($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String sortVowels(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sortVowels(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sort_vowels(s :: String.t) :: String.t\n  def sort_vowels(s) do\n    \n  end\nend",
+    "erlang": "-spec sort_vowels(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nsort_vowels(S) ->\n  .",
+    "racket": "(define/contract (sort-vowels s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"lEetcOde\"",
+      "expectedOutput": "\"lEOtcede\""
+    },
+    {
+      "input": "\"lYmpH\"",
+      "expectedOutput": "\"lYmpH\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"lEetcOde\"",
+      "expectedOutput": "\"lEOtcede\""
+    },
+    {
+      "input": "\"lYmpH\"",
+      "expectedOutput": "\"lYmpH\""
+    },
+    {
+      "input": "\"lEet\"",
+      "expectedOutput": "\"lEet\""
+    },
+    {
+      "input": "\"cOde\"",
+      "expectedOutput": "\"cOde\""
+    },
+    {
+      "input": "\"l\"",
+      "expectedOutput": "\"l\""
+    },
+    {
+      "input": "\"lE\"",
+      "expectedOutput": "\"lE\""
+    },
+    {
+      "input": "\"edOcteEl\"",
+      "expectedOutput": "\"EdOcteel\""
+    },
+    {
+      "input": "\"lEetcOdelEetcOde\"",
+      "expectedOutput": "\"lEEtcOdOleetcede\""
+    },
+    {
+      "input": "\"llllll\"",
+      "expectedOutput": "\"llllll\""
+    },
+    {
+      "input": "\"lEetcOdeedOcteEl\"",
+      "expectedOutput": "\"lEEtcOdOedecteel\""
+    },
+    {
+      "input": "\"leetcode\"",
+      "expectedOutput": "\"leetcedo\""
+    },
+    {
+      "input": "\"LEETCODE\"",
+      "expectedOutput": "\"LEETCEDO\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Add all the vowels in an array and sort the array.",
+    "Replace characters in string s if it's a vowel from the new array."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sort-vowels-in-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.014Z",
+    "sourceUpdatedAt": null
+  }
+}

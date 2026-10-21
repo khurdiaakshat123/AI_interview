@@ -1,0 +1,158 @@
+{
+  "id": "3170",
+  "slug": "lexicographically-minimum-string-after-removing-stars",
+  "title": "Lexicographically Minimum String After Removing Stars",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Stack",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "You are given a string `s`. It may contain any number of `'*'` characters. Your task is to remove all `'*'` characters.\n\nWhile there is a `'*'`, do the following operation:\n\n*   Delete the leftmost `'*'` and the **smallest** non-`'*'` character to its _left_. If there are several smallest characters, you can delete any of them.\n\nReturn the lexicographically smallest resulting string after removing all `'*'` characters.\n\n**Example 1:**\n\n**Input:** s = \"aaba\\*\"\n\n**Output:** \"aab\"\n\n**Explanation:**\n\nWe should delete one of the `'a'` characters with `'*'`. If we choose `s[3]`, `s` becomes the lexicographically smallest.\n\n**Example 2:**\n\n**Input:** s = \"abc\"\n\n**Output:** \"abc\"\n\n**Explanation:**\n\nThere is no `'*'` in the string.\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists only of lowercase English letters and `'*'`.\n*   The input is generated such that it is possible to delete all `'*'` characters.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists only of lowercase English letters and '*'.",
+    "The input is generated such that it is possible to delete all '*' characters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aaba*\"",
+      "output": "\"aab\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"abc\"",
+      "output": "\"abc\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string clearStars(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String clearStars(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def clearStars(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def clearStars(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar clearStars = function(s) {\n    \n};",
+    "typescript": "function clearStars(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ClearStars(string s) {\n        \n    }\n}",
+    "c": "char* clearStars(char* s) {\n    \n}",
+    "golang": "func clearStars(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun clearStars(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func clearStars(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn clear_stars(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef clear_stars(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function clearStars($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String clearStars(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def clearStars(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec clear_stars(s :: String.t) :: String.t\n  def clear_stars(s) do\n    \n  end\nend",
+    "erlang": "-spec clear_stars(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nclear_stars(S) ->\n  .",
+    "racket": "(define/contract (clear-stars s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aaba*\"",
+      "expectedOutput": "\"aab\""
+    },
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "\"abc\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"bc\"",
+      "expectedOutput": "\"bc\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"cba\"",
+      "expectedOutput": "\"cba\""
+    },
+    {
+      "input": "\"abcabc\"",
+      "expectedOutput": "\"abcabc\""
+    },
+    {
+      "input": "\"aaa\"",
+      "expectedOutput": "\"aaa\""
+    },
+    {
+      "input": "\"abccba\"",
+      "expectedOutput": "\"abccba\""
+    },
+    {
+      "input": "\"ABC\"",
+      "expectedOutput": "\"ABC\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"aab\""
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "\"aA\""
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "\"0\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.200Z",
+    "sourceUpdatedAt": null
+  }
+}

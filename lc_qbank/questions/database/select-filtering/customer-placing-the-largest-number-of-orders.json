@@ -1,0 +1,62 @@
+{
+  "id": "586",
+  "slug": "customer-placing-the-largest-number-of-orders",
+  "title": "Customer Placing the Largest Number of Orders",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Orders`\n\n```\n+-----------------+----------+\n| Column Name     | Type     |\n+-----------------+----------+\n| order_number    | int      |\n| customer_number | int      |\n+-----------------+----------+\norder_number is the primary key (column with unique values) for this table.\nThis table contains information about the order ID and the customer ID.\n```\n\nWrite a solution to find the `customer_number` for the customer who has placed **the largest number of orders**.\n\nThe test cases are generated so that **exactly one customer** will have placed more orders than any other customer.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nOrders table:\n+--------------+-----------------+\n| order_number | customer_number |\n+--------------+-----------------+\n| 1            | 1               |\n| 2            | 2               |\n| 3            | 3               |\n| 4            | 3               |\n+--------------+-----------------+\nOutput: \n+-----------------+\n| customer_number |\n+-----------------+\n| 3               |\n+-----------------+\nExplanation: \nThe customer with number 3 has two orders, which is greater than either customer 1 or 2 because each of them only has one order. \nSo the result is customer_number 3.\n```\n\n**Follow up:** What if more than one customer has the largest number of orders, can you find all the `customer_number` in this case?",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Orders table:\n+--------------+-----------------+\n| order_number | customer_number |\n+--------------+-----------------+\n| 1            | 1               |\n| 2            | 2               |\n| 3            | 3               |\n| 4            | 3               |\n+--------------+-----------------+",
+      "output": "+-----------------+\n| customer_number |\n+-----------------+\n| 3               |\n+-----------------+",
+      "explanation": "The customer with number 3 has two orders, which is greater than either customer 1 or 2 because each of them only has one order. \nSo the result is customer_number 3."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef largest_orders(orders: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"orders\":[\"order_number\",\"customer_number\"]},\"rows\":{\"orders\":[[1,1],[2,2],[3,3],[4,3]]}}",
+      "expectedOutput": "+-----------------+\n| customer_number |\n+-----------------+\n| 3               |\n+-----------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"orders\":[\"order_number\",\"customer_number\"]},\"rows\":{\"orders\":[[1,1],[2,2],[3,3],[4,3]]}}",
+      "expectedOutput": "+-----------------+\n| customer_number |\n+-----------------+\n| 3               |\n+-----------------+"
+    },
+    {
+      "input": "Orders table:\n+--------------+-----------------+\n| order_number | customer_number |\n+--------------+-----------------+\n| 1            | 1               |\n| 2            | 2               |\n| 3            | 3               |\n| 4            | 3               |\n+--------------+-----------------+",
+      "expectedOutput": "+-----------------+\n| customer_number |\n+-----------------+\n| 3               |\n+-----------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists orders (order_number int, customer_number int)\n\nTruncate table orders",
+  "sqlSetup": [
+    "insert into orders (order_number, customer_number) values ('1', '1')",
+    "insert into orders (order_number, customer_number) values ('2', '2')",
+    "insert into orders (order_number, customer_number) values ('3', '3')",
+    "insert into orders (order_number, customer_number) values ('4', '3')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "MySQL uses a different expression to get the first records other than MSSQL's TOP expression."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.110Z",
+    "sourceUpdatedAt": null
+  }
+}

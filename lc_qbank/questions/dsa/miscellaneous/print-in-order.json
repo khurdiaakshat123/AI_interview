@@ -1,0 +1,77 @@
+{
+  "id": "1114",
+  "slug": "print-in-order",
+  "title": "Print in Order",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [
+    "Concurrency"
+  ],
+  "statement": "Suppose we have a class:\n\n```\npublic class Foo {\n  public void first() { print(\"first\"); }\n  public void second() { print(\"second\"); }\n  public void third() { print(\"third\"); }\n}\n```\n\nThe same instance of `Foo` will be passed to three different threads. Thread A will call `first()`, thread B will call `second()`, and thread C will call `third()`. Design a mechanism and modify the program to ensure that `second()` is executed after `first()`, and `third()` is executed after `second()`.\n\n**Note:**\n\nWe do not know how the threads will be scheduled in the operating system, even though the numbers in the input seem to imply the ordering. The input format you see is mainly to ensure our tests' comprehensiveness.\n\n**Example 1:**\n\n```\nInput: nums = [1,2,3]\nOutput: \"firstsecondthird\"\nExplanation: There are three threads being fired asynchronously. The input [1,2,3] means thread A calls first(), thread B calls second(), and thread C calls third(). \"firstsecondthird\" is the correct output.\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,3,2]\nOutput: \"firstsecondthird\"\nExplanation: The input [1,3,2] means thread A calls first(), thread B calls third(), and thread C calls second(). \"firstsecondthird\" is the correct output.\n```\n\n**Constraints:**\n\n*   `nums` is a permutation of `[1, 2, 3]`.",
+  "constraints": [
+    "nums is a permutation of [1, 2, 3]."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3]",
+      "output": "\"firstsecondthird\"",
+      "explanation": "There are three threads being fired asynchronously. The input [1,2,3] means thread A calls first(), thread B calls second(), and thread C calls third(). \"firstsecondthird\" is the correct output."
+    },
+    {
+      "input": "nums = [1,3,2]",
+      "output": "\"firstsecondthird\"",
+      "explanation": "The input [1,3,2] means thread A calls first(), thread B calls third(), and thread C calls second(). \"firstsecondthird\" is the correct output."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Foo {\npublic:\n    Foo() {\n        \n    }\n\n    void first(function<void()> printFirst) {\n        \n        // printFirst() outputs \"first\". Do not change or remove this line.\n        printFirst();\n    }\n\n    void second(function<void()> printSecond) {\n        \n        // printSecond() outputs \"second\". Do not change or remove this line.\n        printSecond();\n    }\n\n    void third(function<void()> printThird) {\n        \n        // printThird() outputs \"third\". Do not change or remove this line.\n        printThird();\n    }\n};",
+    "java": "class Foo {\n\n    public Foo() {\n        \n    }\n\n    public void first(Runnable printFirst) throws InterruptedException {\n        \n        // printFirst.run() outputs \"first\". Do not change or remove this line.\n        printFirst.run();\n    }\n\n    public void second(Runnable printSecond) throws InterruptedException {\n        \n        // printSecond.run() outputs \"second\". Do not change or remove this line.\n        printSecond.run();\n    }\n\n    public void third(Runnable printThird) throws InterruptedException {\n        \n        // printThird.run() outputs \"third\". Do not change or remove this line.\n        printThird.run();\n    }\n}",
+    "python3": "class Foo:\n    def __init__(self):\n        pass\n\n\n    def first(self, printFirst: 'Callable[[], None]') -> None:\n        \n        # printFirst() outputs \"first\". Do not change or remove this line.\n        printFirst()\n\n\n    def second(self, printSecond: 'Callable[[], None]') -> None:\n        \n        # printSecond() outputs \"second\". Do not change or remove this line.\n        printSecond()\n\n\n    def third(self, printThird: 'Callable[[], None]') -> None:\n        \n        # printThird() outputs \"third\". Do not change or remove this line.\n        printThird()",
+    "python": "class Foo(object):\n    def __init__(self):\n        pass\n\n\n    def first(self, printFirst):\n        \"\"\"\n        :type printFirst: method\n        :rtype: void\n        \"\"\"\n        \n        # printFirst() outputs \"first\". Do not change or remove this line.\n        printFirst()\n\n\n    def second(self, printSecond):\n        \"\"\"\n        :type printSecond: method\n        :rtype: void\n        \"\"\"\n        \n        # printSecond() outputs \"second\". Do not change or remove this line.\n        printSecond()\n            \n            \n    def third(self, printThird):\n        \"\"\"\n        :type printThird: method\n        :rtype: void\n        \"\"\"\n        \n        # printThird() outputs \"third\". Do not change or remove this line.\n        printThird()",
+    "csharp": "public class Foo {\n\n    public Foo() {\n        \n    }\n\n    public void First(Action printFirst) {\n        \n        // printFirst() outputs \"first\". Do not change or remove this line.\n        printFirst();\n    }\n\n    public void Second(Action printSecond) {\n        \n        // printSecond() outputs \"second\". Do not change or remove this line.\n        printSecond();\n    }\n\n    public void Third(Action printThird) {\n        \n        // printThird() outputs \"third\". Do not change or remove this line.\n        printThird();\n    }\n}",
+    "c": "typedef struct {\n    // User defined data may be declared here.\n    \n} Foo;\n\n// Function Declaration, do not remove\nvoid printFirst();\nvoid printSecond();\nvoid printThird();\n\nFoo* fooCreate() {\n    Foo* obj = (Foo*) malloc(sizeof(Foo));\n    \n    // Initialize user defined data here.\n    \n    return obj;\n}\n\nvoid first(Foo* obj) {\n    \n    // printFirst() outputs \"first\". Do not change or remove this line.\n    printFirst();\n}\n\nvoid second(Foo* obj) {\n    \n    // printSecond() outputs \"second\". Do not change or remove this line.\n    printSecond();\n}\n\nvoid third(Foo* obj) {\n    \n    // printThird() outputs \"third\". Do not change or remove this line.\n    printThird();\n}\n\nvoid fooFree(Foo* obj) {\n    // User defined data may be cleaned up here.\n    \n}",
+    "golang": "type Foo struct {\n\n}\n\nfunc NewFoo() *Foo {\n\treturn &Foo{\n\t}\n}\n\nfunc (f *Foo) First(printFirst func()) {\n\t// Do not change this line\n\tprintFirst()\n}\n\nfunc (f *Foo) Second(printSecond func()) {\n\t/// Do not change this line\n\tprintSecond()\n}\n\nfunc (f *Foo) Third(printThird func()) {\n\t// Do not change this line\n\tprintThird()\n}",
+    "rust": "struct Foo {\n    \n};\n\nimpl Foo {\n    fn new() -> Self {\n        Foo {\n            \n        }\n    }\n\n    fn first<F>(&self, print_first: F)\n    where\n        F: FnOnce(),\n    {\n        // Do not change this line\n        print_first();\n    }\n\n    fn second<F>(&self, print_second: F)\n    where\n        F: FnOnce(),\n    {\n        // Do not change this line\n        print_second();\n    }\n\n    fn third<F>(&self, print_third: F)\n    where\n        F: FnOnce(),\n    {\n        // Do not change this line\n        print_third();\n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "\"firstsecondthird\""
+    },
+    {
+      "input": "[1,3,2]",
+      "expectedOutput": "\"firstsecondthird\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "\"firstsecondthird\""
+    },
+    {
+      "input": "[1,3,2]",
+      "expectedOutput": "\"firstsecondthird\""
+    },
+    {
+      "input": "nums = [1,2,3]",
+      "expectedOutput": "\"firstsecondthird\""
+    },
+    {
+      "input": "nums = [1,3,2]",
+      "expectedOutput": "\"firstsecondthird\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/print-in-order/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.937Z",
+    "sourceUpdatedAt": null
+  }
+}

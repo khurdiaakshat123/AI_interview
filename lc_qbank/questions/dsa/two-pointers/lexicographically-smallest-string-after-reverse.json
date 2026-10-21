@@ -1,0 +1,166 @@
+{
+  "id": "3722",
+  "slug": "lexicographically-smallest-string-after-reverse",
+  "title": "Lexicographically Smallest String After Reverse",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "Binary Search",
+    "Enumeration"
+  ],
+  "statement": "You are given a string `s` of length `n` consisting of lowercase English letters.\n\nYou must perform **exactly** one operation by choosing any integer `k` such that `1 <= k <= n` and either:\n\n*   reverse the **first** `k` characters of `s`, or\n*   reverse the **last** `k` characters of `s`.\n\nReturn the **lexicographically smallest** string that can be obtained after **exactly** one such operation.\n\n**Example 1:**\n\n**Input:** s = \"dcab\"\n\n**Output:** \"acdb\"\n\n**Explanation:**\n\n*   Choose `k = 3`, reverse the first 3 characters.\n*   Reverse `\"dca\"` to `\"acd\"`, resulting string `s = \"acdb\"`, which is the lexicographically smallest string achievable.\n\n**Example 2:**\n\n**Input:** s = \"abba\"\n\n**Output:** \"aabb\"\n\n**Explanation:**\n\n*   Choose `k = 3`, reverse the last 3 characters.\n*   Reverse `\"bba\"` to `\"abb\"`, so the resulting string is `\"aabb\"`, which is the lexicographically smallest string achievable.\n\n**Example 3:**\n\n**Input:** s = \"zxy\"\n\n**Output:** \"xzy\"\n\n**Explanation:**\n\n*   Choose `k = 2`, reverse the first 2 characters.\n*   Reverse `\"zx\"` to `\"xz\"`, so the resulting string is `\"xzy\"`, which is the lexicographically smallest string achievable.\n\n**Constraints:**\n\n*   `1 <= n == s.length <= 1000`\n*   `s` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= n == s.length <= 1000",
+    "s consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"dcab\"",
+      "output": "\"acdb\"",
+      "explanation": "Choose k = 3, reverse the first 3 characters.\n\tReverse \"dca\" to \"acd\", resulting string s = \"acdb\", which is the lexicographically smallest string achievable."
+    },
+    {
+      "input": "s = \"abba\"",
+      "output": "\"aabb\"",
+      "explanation": "Choose k = 3, reverse the last 3 characters.\n\tReverse \"bba\" to \"abb\", so the resulting string is \"aabb\", which is the lexicographically smallest string achievable."
+    },
+    {
+      "input": "s = \"zxy\"",
+      "output": "\"xzy\"",
+      "explanation": "Choose k = 2, reverse the first 2 characters.\n\tReverse \"zx\" to \"xz\", so the resulting string is \"xzy\", which is the lexicographically smallest string achievable."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string lexSmallest(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String lexSmallest(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lexSmallest(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def lexSmallest(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar lexSmallest = function(s) {\n    \n};",
+    "typescript": "function lexSmallest(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LexSmallest(string s) {\n        \n    }\n}",
+    "c": "char* lexSmallest(char* s) {\n    \n}",
+    "golang": "func lexSmallest(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun lexSmallest(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lexSmallest(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn lex_smallest(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef lex_smallest(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function lexSmallest($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String lexSmallest(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lexSmallest(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec lex_smallest(s :: String.t) :: String.t\n  def lex_smallest(s) do\n    \n  end\nend",
+    "erlang": "-spec lex_smallest(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nlex_smallest(S) ->\n  .",
+    "racket": "(define/contract (lex-smallest s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"dcab\"",
+      "expectedOutput": "\"acdb\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"aabb\""
+    },
+    {
+      "input": "\"zxy\"",
+      "expectedOutput": "\"xzy\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"dcab\"",
+      "expectedOutput": "\"acdb\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"aabb\""
+    },
+    {
+      "input": "\"zxy\"",
+      "expectedOutput": "\"xzy\""
+    },
+    {
+      "input": "\"dc\"",
+      "expectedOutput": "\"cd\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"d\"",
+      "expectedOutput": "\"d\""
+    },
+    {
+      "input": "\"bacd\"",
+      "expectedOutput": "\"abcd\""
+    },
+    {
+      "input": "\"dcabdcab\"",
+      "expectedOutput": "\"acdbacdb\""
+    },
+    {
+      "input": "\"dddd\"",
+      "expectedOutput": "\"dddd\""
+    },
+    {
+      "input": "\"dcabbacd\"",
+      "expectedOutput": "\"abbacdcd\""
+    },
+    {
+      "input": "\"DCAB\"",
+      "expectedOutput": "\"ACDB\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aab\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"aab\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use bruteforce"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-reverse/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.284Z",
+    "sourceUpdatedAt": null
+  }
+}

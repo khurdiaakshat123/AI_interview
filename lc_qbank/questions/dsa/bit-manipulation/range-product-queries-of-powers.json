@@ -1,0 +1,119 @@
+{
+  "id": "2438",
+  "slug": "range-product-queries-of-powers",
+  "title": "Range Product Queries of Powers",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Prefix Sum"
+  ],
+  "statement": "Given a positive integer `n`, there exists a **0-indexed** array called `powers`, composed of the **minimum** number of powers of `2` that sum to `n`. The array is sorted in **non-decreasing** order, and there is **only one** way to form the array.\n\nYou are also given a **0-indexed** 2D integer array `queries`, where `queries[i] = [left_(i), right_(i)]`. Each `queries[i]` represents a query where you have to find the product of all `powers[j]` with `left_(i) <= j <= right_(i)`.\n\nReturn _an array_ `answers`_, equal in length to_ `queries`_, where_ `answers[i]` _is the answer to the_ `i^(th)` _query_. Since the answer to the `i^(th)` query may be too large, each `answers[i]` should be returned **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n```\nInput: n = 15, queries = [[0,1],[2,2],[0,3]]\nOutput: [2,4,64]\nExplanation:\nFor n = 15, powers = [1,2,4,8]. It can be shown that powers cannot be a smaller size.\nAnswer to 1st query: powers[0] * powers[1] = 1 * 2 = 2.\nAnswer to 2nd query: powers[2] = 4.\nAnswer to 3rd query: powers[0] * powers[1] * powers[2] * powers[3] = 1 * 2 * 4 * 8 = 64.\nEach answer modulo 109 + 7 yields the same answer, so [2,4,64] is returned.\n```\n\n**Example 2:**\n\n```\nInput: n = 2, queries = [[0,0]]\nOutput: [2]\nExplanation:\nFor n = 2, powers = [2].\nThe answer to the only query is powers[0] = 2. The answer modulo 109 + 7 is the same, so [2] is returned.\n```\n\n**Constraints:**\n\n*   `1 <= n <= 10^(9)`\n*   `1 <= queries.length <= 10^(5)`\n*   `0 <= start_(i) <= end_(i) < powers.length`",
+  "constraints": [
+    "1 <= n <= 109",
+    "1 <= queries.length <= 105",
+    "0 <= starti <= endi < powers.length"
+  ],
+  "examples": [
+    {
+      "input": "n = 15, queries = [[0,1],[2,2],[0,3]]",
+      "output": "[2,4,64]",
+      "explanation": "For n = 15, powers = [1,2,4,8]. It can be shown that powers cannot be a smaller size.\nAnswer to 1st query: powers[0] * powers[1] = 1 * 2 = 2.\nAnswer to 2nd query: powers[2] = 4.\nAnswer to 3rd query: powers[0] * powers[1] * powers[2] * powers[3] = 1 * 2 * 4 * 8 = 64.\nEach answer modulo 109 + 7 yields the same answer, so [2,4,64] is returned."
+    },
+    {
+      "input": "n = 2, queries = [[0,0]]",
+      "output": "[2]",
+      "explanation": "For n = 2, powers = [2].\nThe answer to the only query is powers[0] = 2. The answer modulo 109 + 7 is the same, so [2] is returned."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> productQueries(int n, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] productQueries(int n, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def productQueries(self, n: int, queries: list[list[int]]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def productQueries(self, n, queries):\n        \"\"\"\n        :type n: int\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar productQueries = function(n, queries) {\n    \n};",
+    "typescript": "function productQueries(n: number, queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] ProductQueries(int n, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* productQueries(int n, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func productQueries(n int, queries [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun productQueries(n: Int, queries: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func productQueries(_ n: Int, _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn product_queries(n: i32, queries: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef product_queries(n, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function productQueries($n, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> productQueries(int n, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def productQueries(n: Int, queries: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec product_queries(n :: integer, queries :: [[integer]]) :: [integer]\n  def product_queries(n, queries) do\n    \n  end\nend",
+    "erlang": "-spec product_queries(N :: integer(), Queries :: [[integer()]]) -> [integer()].\nproduct_queries(N, Queries) ->\n  .",
+    "racket": "(define/contract (product-queries n queries)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "15\n[[0,1],[2,2],[0,3]]",
+      "expectedOutput": "[2,4,64]"
+    },
+    {
+      "input": "2\n[[0,0]]",
+      "expectedOutput": "[2]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "15\n[[0,1],[2,2],[0,3]]",
+      "expectedOutput": "[2,4,64]"
+    },
+    {
+      "input": "2\n[[0,0]]",
+      "expectedOutput": "[2]"
+    },
+    {
+      "input": "30\n[[0,1],[2,2],[0,3]]",
+      "expectedOutput": "[8,8,1024]"
+    },
+    {
+      "input": "1\n[[0,0]]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "3\n[[0,0]]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "4\n[[0,0]]",
+      "expectedOutput": "[4]"
+    },
+    {
+      "input": "5\n[[0,0]]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "6\n[[0,0]]",
+      "expectedOutput": "[2]"
+    },
+    {
+      "input": "7\n[[0,0]]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "15\n[[0,0]]",
+      "expectedOutput": "[1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The <code>powers</code> array can be created using the binary representation of <code>n</code>.",
+    "Once <code>powers</code> is formed, the products can be taken using brute force."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/range-product-queries-of-powers/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.172Z",
+    "sourceUpdatedAt": null
+  }
+}

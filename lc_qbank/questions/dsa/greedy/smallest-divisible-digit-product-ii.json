@@ -1,0 +1,172 @@
+{
+  "id": "3348",
+  "slug": "smallest-divisible-digit-product-ii",
+  "title": "Smallest Divisible Digit Product II",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Math",
+    "String",
+    "Backtracking",
+    "Greedy",
+    "Number Theory"
+  ],
+  "statement": "You are given a string `num` which represents a **positive** integer, and an integer `t`.\n\nA number is called **zero-free** if _none_ of its digits are 0.\n\nReturn a string representing the **smallest** **zero-free** number greater than or equal to `num` such that the **product of its digits** is divisible by `t`. If no such number exists, return `\"-1\"`.\n\n**Example 1:**\n\n**Input:** num = \"1234\", t = 256\n\n**Output:** \"1488\"\n\n**Explanation:**\n\nThe smallest zero-free number that is greater than 1234 and has the product of its digits divisible by 256 is 1488, with the product of its digits equal to 256.\n\n**Example 2:**\n\n**Input:** num = \"12355\", t = 50\n\n**Output:** \"12355\"\n\n**Explanation:**\n\n12355 is already zero-free and has the product of its digits divisible by 50, with the product of its digits equal to 150.\n\n**Example 3:**\n\n**Input:** num = \"11111\", t = 26\n\n**Output:** \"-1\"\n\n**Explanation:**\n\nNo number greater than 11111 has the product of its digits divisible by 26.\n\n**Constraints:**\n\n*   `2 <= num.length <= 2 * 10^(5)`\n*   `num` consists only of digits in the range `['0', '9']`.\n*   `num` does not contain leading zeros.\n*   `1 <= t <= 10^(14)`",
+  "constraints": [
+    "2 <= num.length <= 2 * 105",
+    "num consists only of digits in the range ['0', '9'].",
+    "num does not contain leading zeros.",
+    "1 <= t <= 1014"
+  ],
+  "examples": [
+    {
+      "input": "num = \"1234\", t = 256",
+      "output": "\"1488\"",
+      "explanation": null
+    },
+    {
+      "input": "num = \"12355\", t = 50",
+      "output": "\"12355\"",
+      "explanation": null
+    },
+    {
+      "input": "num = \"11111\", t = 26",
+      "output": "\"-1\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string smallestNumber(string num, long long t) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String smallestNumber(String num, long t) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestNumber(self, num: str, t: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def smallestNumber(self, num, t):\n        \"\"\"\n        :type num: str\n        :type t: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num\n * @param {number} t\n * @return {string}\n */\nvar smallestNumber = function(num, t) {\n    \n};",
+    "typescript": "function smallestNumber(num: string, t: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string SmallestNumber(string num, long t) {\n        \n    }\n}",
+    "c": "char* smallestNumber(char* num, long long t) {\n    \n}",
+    "golang": "func smallestNumber(num string, t int64) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestNumber(num: String, t: Long): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestNumber(_ num: String, _ t: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_number(num: String, t: i64) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} num\n# @param {Integer} t\n# @return {String}\ndef smallest_number(num, t)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num\n     * @param Integer $t\n     * @return String\n     */\n    function smallestNumber($num, $t) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String smallestNumber(String num, int t) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestNumber(num: String, t: Long): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_number(num :: String.t, t :: integer) :: String.t\n  def smallest_number(num, t) do\n    \n  end\nend",
+    "erlang": "-spec smallest_number(Num :: unicode:unicode_binary(), T :: integer()) -> unicode:unicode_binary().\nsmallest_number(Num, T) ->\n  .",
+    "racket": "(define/contract (smallest-number num t)\n  (-> string? exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"1234\"\n256",
+      "expectedOutput": "\"1488\""
+    },
+    {
+      "input": "\"12355\"\n50",
+      "expectedOutput": "\"12355\""
+    },
+    {
+      "input": "\"11111\"\n26",
+      "expectedOutput": "\"-1\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"1234\"\n256",
+      "expectedOutput": "\"1488\""
+    },
+    {
+      "input": "\"12355\"\n50",
+      "expectedOutput": "\"12355\""
+    },
+    {
+      "input": "\"11111\"\n26",
+      "expectedOutput": "\"-1\""
+    },
+    {
+      "input": "\"12\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"34\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"1\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"4321\"\n256",
+      "expectedOutput": "\"4388\""
+    },
+    {
+      "input": "\"12341234\"\n256",
+      "expectedOutput": "\"12341244\""
+    },
+    {
+      "input": "\"1111\"\n256",
+      "expectedOutput": "\"1488\""
+    },
+    {
+      "input": "\"12344321\"\n256",
+      "expectedOutput": "\"12344324\""
+    },
+    {
+      "input": "\"a\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"b\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"aa\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"ab\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"ba\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"aA\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"0\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"121\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"()\"\n256",
+      "expectedOutput": "\"488\""
+    },
+    {
+      "input": "\"(]\"\n256",
+      "expectedOutput": "\"488\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<code>t</code> should only have 2, 3, 5 and 7 as prime factors.",
+    "Find the shortest suffix that must be changed.",
+    "Try to form the string greedily."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/smallest-divisible-digit-product-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.717Z",
+    "sourceUpdatedAt": null
+  }
+}

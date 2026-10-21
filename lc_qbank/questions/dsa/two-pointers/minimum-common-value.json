@@ -1,0 +1,160 @@
+{
+  "id": "2540",
+  "slug": "minimum-common-value",
+  "title": "Minimum Common Value",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Binary Search"
+  ],
+  "statement": "Given two integer arrays `nums1` and `nums2`, sorted in non-decreasing order, return _the **minimum integer common** to both arrays_. If there is no common integer amongst `nums1` and `nums2`, return `-1`.\n\nNote that an integer is said to be **common** to `nums1` and `nums2` if both arrays have **at least one** occurrence of that integer.\n\n**Example 1:**\n\n```\nInput: nums1 = [1,2,3], nums2 = [2,4]\nOutput: 2\nExplanation: The smallest element common to both arrays is 2, so we return 2.\n```\n\n**Example 2:**\n\n```\nInput: nums1 = [1,2,3,6], nums2 = [2,3,4,5]\nOutput: 2\nExplanation: There are two common elements in the array 2 and 3 out of which 2 is the smallest, so 2 is returned.\n```\n\n**Constraints:**\n\n*   `1 <= nums1.length, nums2.length <= 10^(5)`\n*   `1 <= nums1[i], nums2[j] <= 10^(9)`\n*   Both `nums1` and `nums2` are sorted in **non-decreasing** order.",
+  "constraints": [
+    "1 <= nums1.length, nums2.length <= 105",
+    "1 <= nums1[i], nums2[j] <= 109",
+    "Both nums1 and nums2 are sorted in non-decreasing order."
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [1,2,3], nums2 = [2,4]",
+      "output": "2",
+      "explanation": "The smallest element common to both arrays is 2, so we return 2."
+    },
+    {
+      "input": "nums1 = [1,2,3,6], nums2 = [2,3,4,5]",
+      "output": "2",
+      "explanation": "There are two common elements in the array 2 and 3 out of which 2 is the smallest, so 2 is returned."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int getCommon(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int getCommon(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getCommon(self, nums1: list[int], nums2: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def getCommon(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar getCommon = function(nums1, nums2) {\n    \n};",
+    "typescript": "function getCommon(nums1: number[], nums2: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int GetCommon(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "int getCommon(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    \n}",
+    "golang": "func getCommon(nums1 []int, nums2 []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun getCommon(nums1: IntArray, nums2: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getCommon(_ nums1: [Int], _ nums2: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_common(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer}\ndef get_common(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer\n     */\n    function getCommon($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int getCommon(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getCommon(nums1: Array[Int], nums2: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_common(nums1 :: [integer], nums2 :: [integer]) :: integer\n  def get_common(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec get_common(Nums1 :: [integer()], Nums2 :: [integer()]) -> integer().\nget_common(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (get-common nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3]\n[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,6]\n[2,3,4,5]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3]\n[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,6]\n[2,3,4,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]\n[2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,3]\n[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,3]\n[2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2]\n[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2,1]\n[2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,1]\n[2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2,3,1,2,3]\n[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4,6]\n[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,3,4]\n[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,1,2]\n[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,-2,-3]\n[2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0,0]\n[2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0]\n[2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1]\n[2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]\n[2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,1]\n[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1]\n[2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1,1]\n[2,4]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try to use a set.",
+    "Otherwise, try to use a two-pointer approach."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-common-value/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.499Z",
+    "sourceUpdatedAt": null
+  }
+}

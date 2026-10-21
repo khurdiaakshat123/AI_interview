@@ -1,0 +1,156 @@
+{
+  "id": "921",
+  "slug": "minimum-add-to-make-parentheses-valid",
+  "title": "Minimum Add to Make Parentheses Valid",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Stack",
+    "Greedy",
+    "Bracket Sequences"
+  ],
+  "statement": "A parentheses string is valid if and only if:\n\n*   It is the empty string,\n*   It can be written as `AB` (`A` concatenated with `B`), where `A` and `B` are valid strings, or\n*   It can be written as `(A)`, where `A` is a valid string.\n\nYou are given a parentheses string `s`. In one move, you can insert a parenthesis at any position of the string.\n\n*   For example, if `s = \"()))\"`, you can insert an opening parenthesis to be `\"(**(**)))\"` or a closing parenthesis to be `\"())**)**)\"`.\n\nReturn _the minimum number of moves required to make_ `s` _valid_.\n\n**Example 1:**\n\n```\nInput: s = \"())\"\nOutput: 1\n```\n\n**Example 2:**\n\n```\nInput: s = \"(((\"\nOutput: 3\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 1000`\n*   `s[i]` is either `'('` or `')'`.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s[i] is either '(' or ')'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"())\"",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "s = \"(((\"",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minAddToMakeValid(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minAddToMakeValid(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minAddToMakeValid(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minAddToMakeValid(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minAddToMakeValid = function(s) {\n    \n};",
+    "typescript": "function minAddToMakeValid(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinAddToMakeValid(string s) {\n        \n    }\n}",
+    "c": "int minAddToMakeValid(char* s) {\n    \n}",
+    "golang": "func minAddToMakeValid(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minAddToMakeValid(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minAddToMakeValid(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_add_to_make_valid(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef min_add_to_make_valid(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minAddToMakeValid($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minAddToMakeValid(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minAddToMakeValid(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_add_to_make_valid(s :: String.t) :: integer\n  def min_add_to_make_valid(s) do\n    \n  end\nend",
+    "erlang": "-spec min_add_to_make_valid(S :: unicode:unicode_binary()) -> integer().\nmin_add_to_make_valid(S) ->\n  .",
+    "racket": "(define/contract (min-add-to-make-valid s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"())\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"(((\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"())\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"(((\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"(\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"))\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"()\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"))(\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"())())\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"())))(\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.371Z",
+    "sourceUpdatedAt": null
+  }
+}

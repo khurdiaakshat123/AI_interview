@@ -1,0 +1,158 @@
+{
+  "id": "2511",
+  "slug": "maximum-enemy-forts-that-can-be-captured",
+  "title": "Maximum Enemy Forts That Can Be Captured",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Two Pointers"
+  ],
+  "statement": "You are given a **0-indexed** integer array `forts` of length `n` representing the positions of several forts. `forts[i]` can be `-1`, `0`, or `1` where:\n\n*   `-1` represents there is **no fort** at the `i^(th)` position.\n*   `0` indicates there is an **enemy** fort at the `i^(th)` position.\n*   `1` indicates the fort at the `i^(th)` the position is under your command.\n\nNow you have decided to move your army from one of your forts at position `i` to an empty position `j` such that:\n\n*   `0 <= i, j <= n - 1`\n*   The army travels over enemy forts **only**. Formally, for all `k` where `min(i,j) < k < max(i,j)`, `forts[k] == 0.`\n\nWhile moving the army, all the enemy forts that come in the way are **captured**.\n\nReturn _the **maximum** number of enemy forts that can be captured_. In case it is **impossible** to move your army, or you do not have any fort under your command, return `0`_._\n\n**Example 1:**\n\n```\nInput: forts = [1,0,0,-1,0,0,0,0,1]\nOutput: 4\nExplanation:\n- Moving the army from position 0 to position 3 captures 2 enemy forts, at 1 and 2.\n- Moving the army from position 8 to position 3 captures 4 enemy forts.\nSince 4 is the maximum number of enemy forts that can be captured, we return 4.\n```\n\n**Example 2:**\n\n```\nInput: forts = [0,0,1,-1]\nOutput: 0\nExplanation: Since no enemy fort can be captured, 0 is returned.\n```\n\n**Constraints:**\n\n*   `1 <= forts.length <= 1000`\n*   `-1 <= forts[i] <= 1`",
+  "constraints": [
+    "1 <= forts.length <= 1000",
+    "-1 <= forts[i] <= 1"
+  ],
+  "examples": [
+    {
+      "input": "forts = [1,0,0,-1,0,0,0,0,1]",
+      "output": "4",
+      "explanation": "- Moving the army from position 0 to position 3 captures 2 enemy forts, at 1 and 2.\n- Moving the army from position 8 to position 3 captures 4 enemy forts.\nSince 4 is the maximum number of enemy forts that can be captured, we return 4."
+    },
+    {
+      "input": "forts = [0,0,1,-1]",
+      "output": "0",
+      "explanation": "Since no enemy fort can be captured, 0 is returned."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int captureForts(vector<int>& forts) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int captureForts(int[] forts) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def captureForts(self, forts: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def captureForts(self, forts):\n        \"\"\"\n        :type forts: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} forts\n * @return {number}\n */\nvar captureForts = function(forts) {\n    \n};",
+    "typescript": "function captureForts(forts: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CaptureForts(int[] forts) {\n        \n    }\n}",
+    "c": "int captureForts(int* forts, int fortsSize) {\n    \n}",
+    "golang": "func captureForts(forts []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun captureForts(forts: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func captureForts(_ forts: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn capture_forts(forts: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} forts\n# @return {Integer}\ndef capture_forts(forts)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $forts\n     * @return Integer\n     */\n    function captureForts($forts) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int captureForts(List<int> forts) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def captureForts(forts: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec capture_forts(forts :: [integer]) :: integer\n  def capture_forts(forts) do\n    \n  end\nend",
+    "erlang": "-spec capture_forts(Forts :: [integer()]) -> integer().\ncapture_forts(Forts) ->\n  .",
+    "racket": "(define/contract (capture-forts forts)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,0,0,-1,0,0,0,0,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,1,-1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,0,0,-1,0,0,0,0,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,1,-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,0,0,-1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0,0,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,0,0,0,0,-1,0,0,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-1,0,0,0,0,0,0,1,1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,0,0,0,0,0,0,-1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,0,0,-2,0,0,0,0,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,1,1,0,1,1,1,1,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,-1,-1,-2,-1,-1,-1,-1,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,0,0,1,0,0,0,0,-1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For each fort under your command, check if you can move the army from here.",
+    "If yes, find the closest empty positions satisfying all criteria.",
+    "How can two-pointers be used to solve this problem optimally?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-enemy-forts-that-can-be-captured/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.813Z",
+    "sourceUpdatedAt": null
+  }
+}

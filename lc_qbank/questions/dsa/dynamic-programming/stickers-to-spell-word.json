@@ -1,0 +1,165 @@
+{
+  "id": "691",
+  "slug": "stickers-to-spell-word",
+  "title": "Stickers to Spell Word",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Memoization",
+    "Bitmask"
+  ],
+  "statement": "We are given `n` different types of `stickers`. Each sticker has a lowercase English word on it.\n\nYou would like to spell out the given string `target` by cutting individual letters from your collection of stickers and rearranging them. You can use each sticker more than once if you want, and you have infinite quantities of each sticker.\n\nReturn _the minimum number of stickers that you need to spell out_ `target`. If the task is impossible, return `-1`.\n\n**Note:** In all test cases, all words were chosen randomly from the `1000` most common US English words, and `target` was chosen as a concatenation of two random words.\n\n**Example 1:**\n\n```\nInput: stickers = [\"with\",\"example\",\"science\"], target = \"thehat\"\nOutput: 3\nExplanation:\nWe can use 2 \"with\" stickers, and 1 \"example\" sticker.\nAfter cutting and rearrange the letters of those stickers, we can form the target \"thehat\".\nAlso, this is the minimum number of stickers necessary to form the target string.\n```\n\n**Example 2:**\n\n```\nInput: stickers = [\"notice\",\"possible\"], target = \"basicbasic\"\nOutput: -1\nExplanation:\nWe cannot form the target \"basicbasic\" from cutting letters from the given stickers.\n```\n\n**Constraints:**\n\n*   `n == stickers.length`\n*   `1 <= n <= 50`\n*   `1 <= stickers[i].length <= 10`\n*   `1 <= target.length <= 15`\n*   `stickers[i]` and `target` consist of lowercase English letters.",
+  "constraints": [
+    "n == stickers.length",
+    "1 <= n <= 50",
+    "1 <= stickers[i].length <= 10",
+    "1 <= target.length <= 15",
+    "stickers[i] and target consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "stickers = [\"with\",\"example\",\"science\"], target = \"thehat\"",
+      "output": "3",
+      "explanation": "We can use 2 \"with\" stickers, and 1 \"example\" sticker.\nAfter cutting and rearrange the letters of those stickers, we can form the target \"thehat\".\nAlso, this is the minimum number of stickers necessary to form the target string."
+    },
+    {
+      "input": "stickers = [\"notice\",\"possible\"], target = \"basicbasic\"",
+      "output": "-1",
+      "explanation": "We cannot form the target \"basicbasic\" from cutting letters from the given stickers."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minStickers(vector<string>& stickers, string target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minStickers(String[] stickers, String target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minStickers(self, stickers: list[str], target: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minStickers(self, stickers, target):\n        \"\"\"\n        :type stickers: List[str]\n        :type target: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} stickers\n * @param {string} target\n * @return {number}\n */\nvar minStickers = function(stickers, target) {\n    \n};",
+    "typescript": "function minStickers(stickers: string[], target: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinStickers(string[] stickers, string target) {\n        \n    }\n}",
+    "c": "int minStickers(char** stickers, int stickersSize, char* target) {\n    \n}",
+    "golang": "func minStickers(stickers []string, target string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minStickers(stickers: Array<String>, target: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minStickers(_ stickers: [String], _ target: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_stickers(stickers: Vec<String>, target: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} stickers\n# @param {String} target\n# @return {Integer}\ndef min_stickers(stickers, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $stickers\n     * @param String $target\n     * @return Integer\n     */\n    function minStickers($stickers, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minStickers(List<String> stickers, String target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minStickers(stickers: Array[String], target: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_stickers(stickers :: [String.t], target :: String.t) :: integer\n  def min_stickers(stickers, target) do\n    \n  end\nend",
+    "erlang": "-spec min_stickers(Stickers :: [unicode:unicode_binary()], Target :: unicode:unicode_binary()) -> integer().\nmin_stickers(Stickers, Target) ->\n  .",
+    "racket": "(define/contract (min-stickers stickers target)\n  (-> (listof string?) string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"with\",\"example\",\"science\"]\n\"thehat\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"notice\",\"possible\"]\n\"basicbasic\"",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"with\",\"example\",\"science\"]\n\"thehat\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"notice\",\"possible\"]\n\"basicbasic\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"with\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"example\",\"science\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"with\",\"science\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"with\",\"example\"]\n\"thehat\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"science\",\"example\",\"with\"]\n\"thehat\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"example\",\"science\",\"with\"]\n\"thehat\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"with\",\"science\",\"example\"]\n\"thehat\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"with\",\"with\",\"with\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"with\",\"example\",\"science\",\"with\",\"example\",\"science\"]\n\"thehat\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"a\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"a\",\"b\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"a\",\"a\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]\n\"thehat\"",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We want to perform an exhaustive search, but we need to speed it up based on the input data being random.  \r\n\r\nFor all stickers, we can ignore any letters that are not in the target word.  \r\n\r\nWhen our candidate answer won't be smaller than an answer we have already found, we can stop searching this path.  \r\n\r\nWhen a sticker dominates another, we shouldn't include the dominated sticker in our sticker collection.  [Here, we say a sticker `A` dominates `B` if `A.count(letter) >= B.count(letter)` for all letters.]"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/stickers-to-spell-word/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.221Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "id": "1456",
+  "slug": "maximum-number-of-vowels-in-a-substring-of-given-length",
+  "title": "Maximum Number of Vowels in a Substring of Given Length",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "Given a string `s` and an integer `k`, return _the maximum number of vowel letters in any substring of_ `s` _with length_ `k`.\n\n**Vowel letters** in English are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.\n\n**Example 1:**\n\n```\nInput: s = \"abciiidef\", k = 3\nOutput: 3\nExplanation: The substring \"iii\" contains 3 vowel letters.\n```\n\n**Example 2:**\n\n```\nInput: s = \"aeiou\", k = 2\nOutput: 2\nExplanation: Any substring of length 2 contains 2 vowels.\n```\n\n**Example 3:**\n\n```\nInput: s = \"leetcode\", k = 3\nOutput: 2\nExplanation: \"lee\", \"eet\" and \"ode\" contain 2 vowels.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists of lowercase English letters.\n*   `1 <= k <= s.length`",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists of lowercase English letters.",
+    "1 <= k <= s.length"
+  ],
+  "examples": [
+    {
+      "input": "s = \"abciiidef\", k = 3",
+      "output": "3",
+      "explanation": "The substring \"iii\" contains 3 vowel letters."
+    },
+    {
+      "input": "s = \"aeiou\", k = 2",
+      "output": "2",
+      "explanation": "Any substring of length 2 contains 2 vowels."
+    },
+    {
+      "input": "s = \"leetcode\", k = 3",
+      "output": "2",
+      "explanation": "\"lee\", \"eet\" and \"ode\" contain 2 vowels."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxVowels(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxVowels(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxVowels(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxVowels(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar maxVowels = function(s, k) {\n    \n};",
+    "typescript": "function maxVowels(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxVowels(string s, int k) {\n        \n    }\n}",
+    "c": "int maxVowels(char* s, int k) {\n    \n}",
+    "golang": "func maxVowels(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxVowels(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxVowels(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_vowels(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef max_vowels(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function maxVowels($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxVowels(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxVowels(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_vowels(s :: String.t, k :: integer) :: integer\n  def max_vowels(s, k) do\n    \n  end\nend",
+    "erlang": "-spec max_vowels(S :: unicode:unicode_binary(), K :: integer()) -> integer().\nmax_vowels(S, K) ->\n  .",
+    "racket": "(define/contract (max-vowels s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abciiidef\"\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aeiou\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"leetcode\"\n3",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abciiidef\"\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aeiou\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"leetcode\"\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abci\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"iidef\"\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"a\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"fediiicba\"\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abciiidefabciiidef\"\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaaaaa\"\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abciiideffediiicba\"\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"ABCIIIDEF\"\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ba\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abba\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaa\"\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcde\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"edcba\"\n3",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Keep a window of size k and maintain the number of vowels in it.",
+    "Keep moving the window and update the number of vowels while moving. Answer is max number of vowels of any window."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.199Z",
+    "sourceUpdatedAt": null
+  }
+}

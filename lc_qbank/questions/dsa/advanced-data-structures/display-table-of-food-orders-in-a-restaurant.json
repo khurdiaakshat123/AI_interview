@@ -1,0 +1,100 @@
+{
+  "id": "1418",
+  "slug": "display-table-of-food-orders-in-a-restaurant",
+  "title": "Display Table of Food Orders in a Restaurant",
+  "category": "dsa",
+  "subcategory": "advanced-data-structures",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting",
+    "Ordered Set"
+  ],
+  "statement": "Given the array `orders`, which represents the orders that customers have done in a restaurant. More specifically `orders[i]=[customerName_(i),tableNumber_(i),foodItem_(i)]` where `customerName_(i)` is the name of the customer, `tableNumber_(i)` is the table customer sit at, and `foodItem_(i)` is the item customer orders.\n\n_Return the restaurant's “**display table**”_. The “**display table**” is a table whose row entries denote how many of each food item each table ordered. The first column is the table number and the remaining columns correspond to each food item in alphabetical order. The first row should be a header whose first column is “Table”, followed by the names of the food items. Note that the customer names are not part of the table. Additionally, the rows should be sorted in numerically increasing order.\n\n**Example 1:**\n\n```\nInput: orders = [[\"David\",\"3\",\"Ceviche\"],[\"Corina\",\"10\",\"Beef Burrito\"],[\"David\",\"3\",\"Fried Chicken\"],[\"Carla\",\"5\",\"Water\"],[\"Carla\",\"5\",\"Ceviche\"],[\"Rous\",\"3\",\"Ceviche\"]]\nOutput: [[\"Table\",\"Beef Burrito\",\"Ceviche\",\"Fried Chicken\",\"Water\"],[\"3\",\"0\",\"2\",\"1\",\"0\"],[\"5\",\"0\",\"1\",\"0\",\"1\"],[\"10\",\"1\",\"0\",\"0\",\"0\"]] \nExplanation:\nThe displaying table looks like:\nTable,Beef Burrito,Ceviche,Fried Chicken,Water\n3    ,0           ,2      ,1            ,0\n5    ,0           ,1      ,0            ,1\n10   ,1           ,0      ,0            ,0\nFor the table 3: David orders \"Ceviche\" and \"Fried Chicken\", and Rous orders \"Ceviche\".\nFor the table 5: Carla orders \"Water\" and \"Ceviche\".\nFor the table 10: Corina orders \"Beef Burrito\".\n```\n\n**Example 2:**\n\n```\nInput: orders = [[\"James\",\"12\",\"Fried Chicken\"],[\"Ratesh\",\"12\",\"Fried Chicken\"],[\"Amadeus\",\"12\",\"Fried Chicken\"],[\"Adam\",\"1\",\"Canadian Waffles\"],[\"Brianna\",\"1\",\"Canadian Waffles\"]]\nOutput: [[\"Table\",\"Canadian Waffles\",\"Fried Chicken\"],[\"1\",\"2\",\"0\"],[\"12\",\"0\",\"3\"]] \nExplanation: \nFor the table 1: Adam and Brianna order \"Canadian Waffles\".\nFor the table 12: James, Ratesh and Amadeus order \"Fried Chicken\".\n```\n\n**Example 3:**\n\n```\nInput: orders = [[\"Laura\",\"2\",\"Bean Burrito\"],[\"Jhon\",\"2\",\"Beef Burrito\"],[\"Melissa\",\"2\",\"Soda\"]]\nOutput: [[\"Table\",\"Bean Burrito\",\"Beef Burrito\",\"Soda\"],[\"2\",\"1\",\"1\",\"1\"]]\n```\n\n**Constraints:**\n\n*   `1 <= orders.length <= 5 * 10^4`\n*   `orders[i].length == 3`\n*   `1 <= customerName_(i).length, foodItem_(i).length <= 20`\n*   `customerName_(i)` and `foodItem_(i)` consist of lowercase and uppercase English letters and the space character.\n*   `tableNumber_(i)` is a valid integer between `1` and `500`.",
+  "constraints": [
+    "1 <= orders.length <= 5 * 10^4",
+    "orders[i].length == 3",
+    "1 <= customerNamei.length, foodItemi.length <= 20",
+    "customerNamei and foodItemi consist of lowercase and uppercase English letters and the space character.",
+    "tableNumberi is a valid integer between 1 and 500."
+  ],
+  "examples": [
+    {
+      "input": "orders = [[\"David\",\"3\",\"Ceviche\"],[\"Corina\",\"10\",\"Beef Burrito\"],[\"David\",\"3\",\"Fried Chicken\"],[\"Carla\",\"5\",\"Water\"],[\"Carla\",\"5\",\"Ceviche\"],[\"Rous\",\"3\",\"Ceviche\"]]",
+      "output": "[[\"Table\",\"Beef Burrito\",\"Ceviche\",\"Fried Chicken\",\"Water\"],[\"3\",\"0\",\"2\",\"1\",\"0\"],[\"5\",\"0\",\"1\",\"0\",\"1\"],[\"10\",\"1\",\"0\",\"0\",\"0\"]]",
+      "explanation": "The displaying table looks like:\r\nTable,Beef Burrito,Ceviche,Fried Chicken,Water\r\n3    ,0           ,2      ,1            ,0\r\n5    ,0           ,1      ,0            ,1\r\n10   ,1           ,0      ,0            ,0\r\nFor the table 3: David orders \"Ceviche\" and \"Fried Chicken\", and Rous orders \"Ceviche\".\r\nFor the table 5: Carla orders \"Water\" and \"Ceviche\".\r\nFor the table 10: Corina orders \"Beef Burrito\"."
+    },
+    {
+      "input": "orders = [[\"James\",\"12\",\"Fried Chicken\"],[\"Ratesh\",\"12\",\"Fried Chicken\"],[\"Amadeus\",\"12\",\"Fried Chicken\"],[\"Adam\",\"1\",\"Canadian Waffles\"],[\"Brianna\",\"1\",\"Canadian Waffles\"]]",
+      "output": "[[\"Table\",\"Canadian Waffles\",\"Fried Chicken\"],[\"1\",\"2\",\"0\"],[\"12\",\"0\",\"3\"]]",
+      "explanation": "For the table 1: Adam and Brianna order \"Canadian Waffles\".\r\nFor the table 12: James, Ratesh and Amadeus order \"Fried Chicken\"."
+    },
+    {
+      "input": "orders = [[\"Laura\",\"2\",\"Bean Burrito\"],[\"Jhon\",\"2\",\"Beef Burrito\"],[\"Melissa\",\"2\",\"Soda\"]]",
+      "output": "[[\"Table\",\"Bean Burrito\",\"Beef Burrito\",\"Soda\"],[\"2\",\"1\",\"1\",\"1\"]]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\r\npublic:\r\n    vector<vector<string>> displayTable(vector<vector<string>>& orders) {\r\n        \r\n    }\r\n};",
+    "java": "class Solution {\r\n    public List<List<String>> displayTable(List<List<String>> orders) {\r\n        \r\n    }\r\n}",
+    "python3": "class Solution:\r\n    def displayTable(self, orders: List[List[str]]) -> List[List[str]]:",
+    "python": "class Solution(object):\r\n    def displayTable(self, orders):\r\n        \"\"\"\r\n        :type orders: List[List[str]]\r\n        :rtype: List[List[str]]\r\n        \"\"\"",
+    "javascript": "/**\r\n * @param {string[][]} orders\r\n * @return {string[][]}\r\n */\r\nvar displayTable = function(orders) {\r\n    \r\n};",
+    "typescript": "function displayTable(orders: string[][]): string[][] {\r\n\r\n};",
+    "csharp": "public class Solution {\r\n    public IList<IList<string>> DisplayTable(IList<IList<string>> orders) {\r\n        \r\n    }\r\n}",
+    "c": "/**\r\n * Return an array of arrays of size *returnSize.\r\n * The sizes of the arrays are returned as *returnColumnSizes array.\r\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\r\n */\r\nchar *** displayTable(char *** orders, int ordersSize, int* ordersColSize, int* returnSize, int** returnColumnSizes){\r\n\r\n}",
+    "golang": "func displayTable(orders [][]string) [][]string {\r\n    \r\n}",
+    "kotlin": "class Solution {\r\n    fun displayTable(orders: List<List<String>>): List<List<String>> {\r\n        \r\n    }\r\n}",
+    "swift": "class Solution {\r\n    func displayTable(_ orders: [[String]]) -> [[String]] {\r\n        \r\n    }\r\n}",
+    "rust": "impl Solution {\r\n    pub fn display_table(orders: Vec<Vec<String>>) -> Vec<Vec<String>> {\r\n        \r\n    }\r\n}",
+    "ruby": "# @param {String[][]} orders\r\n# @return {String[][]}\r\ndef display_table(orders)\r\n    \r\nend",
+    "php": "class Solution {\r\n\r\n    /**\r\n     * @param String[][] $orders\r\n     * @return String[][]\r\n     */\r\n    function displayTable($orders) {\r\n        \r\n    }\r\n}",
+    "scala": "object Solution {\r\n    def displayTable(orders: List[List[String]]): List[List[String]] = {\r\n        \r\n    }\r\n}"
+  },
+  "publicTests": [
+    {
+      "input": "[[\"David\",\"3\",\"Ceviche\"],[\"Corina\",\"10\",\"Beef Burrito\"],[\"David\",\"3\",\"Fried Chicken\"],[\"Carla\",\"5\",\"Water\"],[\"Carla\",\"5\",\"Ceviche\"],[\"Rous\",\"3\",\"Ceviche\"]]",
+      "expectedOutput": "[[\"Table\",\"Beef Burrito\",\"Ceviche\",\"Fried Chicken\",\"Water\"],[\"3\",\"0\",\"2\",\"1\",\"0\"],[\"5\",\"0\",\"1\",\"0\",\"1\"],[\"10\",\"1\",\"0\",\"0\",\"0\"]]"
+    },
+    {
+      "input": "[[\"James\",\"12\",\"Fried Chicken\"],[\"Ratesh\",\"12\",\"Fried Chicken\"],[\"Amadeus\",\"12\",\"Fried Chicken\"],[\"Adam\",\"1\",\"Canadian Waffles\"],[\"Brianna\",\"1\",\"Canadian Waffles\"]]",
+      "expectedOutput": "[[\"Table\",\"Canadian Waffles\",\"Fried Chicken\"],[\"1\",\"2\",\"0\"],[\"12\",\"0\",\"3\"]]"
+    },
+    {
+      "input": "[[\"Laura\",\"2\",\"Bean Burrito\"],[\"Jhon\",\"2\",\"Beef Burrito\"],[\"Melissa\",\"2\",\"Soda\"]]",
+      "expectedOutput": "[[\"Table\",\"Bean Burrito\",\"Beef Burrito\",\"Soda\"],[\"2\",\"1\",\"1\",\"1\"]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[\"David\",\"3\",\"Ceviche\"],[\"Corina\",\"10\",\"Beef Burrito\"],[\"David\",\"3\",\"Fried Chicken\"],[\"Carla\",\"5\",\"Water\"],[\"Carla\",\"5\",\"Ceviche\"],[\"Rous\",\"3\",\"Ceviche\"]]",
+      "expectedOutput": "[[\"Table\",\"Beef Burrito\",\"Ceviche\",\"Fried Chicken\",\"Water\"],[\"3\",\"0\",\"2\",\"1\",\"0\"],[\"5\",\"0\",\"1\",\"0\",\"1\"],[\"10\",\"1\",\"0\",\"0\",\"0\"]]"
+    },
+    {
+      "input": "[[\"James\",\"12\",\"Fried Chicken\"],[\"Ratesh\",\"12\",\"Fried Chicken\"],[\"Amadeus\",\"12\",\"Fried Chicken\"],[\"Adam\",\"1\",\"Canadian Waffles\"],[\"Brianna\",\"1\",\"Canadian Waffles\"]]",
+      "expectedOutput": "[[\"Table\",\"Canadian Waffles\",\"Fried Chicken\"],[\"1\",\"2\",\"0\"],[\"12\",\"0\",\"3\"]]"
+    },
+    {
+      "input": "[[\"Laura\",\"2\",\"Bean Burrito\"],[\"Jhon\",\"2\",\"Beef Burrito\"],[\"Melissa\",\"2\",\"Soda\"]]",
+      "expectedOutput": "[[\"Table\",\"Bean Burrito\",\"Beef Burrito\",\"Soda\"],[\"2\",\"1\",\"1\",\"1\"]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Keep the frequency of all pairs (tableNumber, foodItem) using a hashmap.",
+    "Sort rows by tableNumber and columns by foodItem, then process the resulted table."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.698Z",
+    "sourceUpdatedAt": null
+  }
+}

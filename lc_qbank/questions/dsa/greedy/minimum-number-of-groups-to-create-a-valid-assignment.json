@@ -1,0 +1,158 @@
+{
+  "id": "2910",
+  "slug": "minimum-number-of-groups-to-create-a-valid-assignment",
+  "title": "Minimum Number of Groups to Create a Valid Assignment",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy"
+  ],
+  "statement": "You are given a collection of numbered `balls` and instructed to sort them into boxes for a nearly balanced distribution. There are two rules you must follow:\n\n*   Balls with the same box must have the same value. But, if you have more than one ball with the same number, you can put them in different boxes.\n*   The biggest box can only have one more ball than the smallest box.\n\n​Return the _fewest number of boxes_ to sort these balls following these rules.\n\n**Example 1:**\n\n**Input:** balls = \\[3,2,3,2,3\\]\n\n**Output:** 2\n\n**Explanation:**\n\nWe can sort `balls` into boxes as follows:\n\n*   `[3,3,3]`\n*   `[2,2]`\n\nThe size difference between the two boxes doesn't exceed one.\n\n**Example 2:**\n\n**Input:** balls = \\[10,10,10,3,1,1\\]\n\n**Output:** 4\n\n**Explanation:**\n\nWe can sort `balls` into boxes as follows:\n\n*   `[10]`\n*   `[10,10]`\n*   `[3]`\n*   `[1,1]`\n\nYou can't use fewer than four boxes while still following the rules. For example, putting all three balls numbered 10 in one box would break the rule about the maximum size difference between boxes.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "balls = [3,2,3,2,3]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "balls = [10,10,10,3,1,1]",
+      "output": "4",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minGroupsForValidAssignment(vector<int>& balls) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minGroupsForValidAssignment(int[] balls) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minGroupsForValidAssignment(self, balls: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minGroupsForValidAssignment(self, balls):\n        \"\"\"\n        :type balls: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} balls\n * @return {number}\n */\nvar minGroupsForValidAssignment = function(balls) {\n    \n};",
+    "typescript": "function minGroupsForValidAssignment(balls: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinGroupsForValidAssignment(int[] balls) {\n        \n    }\n}",
+    "c": "int minGroupsForValidAssignment(int* balls, int ballsSize) {\n    \n}",
+    "golang": "func minGroupsForValidAssignment(balls []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minGroupsForValidAssignment(balls: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minGroupsForValidAssignment(_ balls: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_groups_for_valid_assignment(balls: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} balls\n# @return {Integer}\ndef min_groups_for_valid_assignment(balls)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $balls\n     * @return Integer\n     */\n    function minGroupsForValidAssignment($balls) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minGroupsForValidAssignment(List<int> balls) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minGroupsForValidAssignment(balls: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_groups_for_valid_assignment(balls :: [integer]) :: integer\n  def min_groups_for_valid_assignment(balls) do\n    \n  end\nend",
+    "erlang": "-spec min_groups_for_valid_assignment(Balls :: [integer()]) -> integer().\nmin_groups_for_valid_assignment(Balls) ->\n  .",
+    "racket": "(define/contract (min-groups-for-valid-assignment balls)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,2,3,2,3]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,2,3,2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,2,3,3,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,3,3,2,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,3,3,3,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,3,2,3,3,2,3,2,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[6,4,6,4,6]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,3,4,3,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1,2,1,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-3,-2,-3,-2,-3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Calculate the frequency of each number.",
+    "For each <code>x</code> in the range <code>[1, minimum_frequency]</code>, try to create groups with either <code>x</code> or <code>x + 1</code> indices assigned to them while minimizing the total number of groups.",
+    "For each distinct number, using its frequency, check that all its occurrences can be assigned to groups of size <code>x</code> or <code>x + 1</code> while minimizing the number of groups used.",
+    "To get the minimum number of groups needed for a number having frequency <code>f</code> to be assigned to groups of size <code>x</code> or <code>x + 1</code>, let <code>a = f / (x + 1)</code> and <code>b = f % (x + 1)</code>. <ul> <li>If <code>b == 0</code>, then we can simply create <code>a</code> groups of size <code>x + 1</code>.</li> <li>If <code>x - b <= a</code>, we can have <code>a - (x - b)</code> groups of size <code>x + 1</code> and <code>x - b + 1</code> groups of size <code>x</code>. So, in total, we have <code>a + 1</code> groups.</li> <li>Otherwise, it's impossible.</li> </ul>",
+    "The minimum number of groups needed for some <code>x</code> is the total minimized number of groups needed for each distinct number.",
+    "The answer is the minimum number of groups needed for each <code>x</code> in the range <code>[1, minimum_frequency]</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-groups-to-create-a-valid-assignment/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.269Z",
+    "sourceUpdatedAt": null
+  }
+}

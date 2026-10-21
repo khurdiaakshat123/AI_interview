@@ -1,0 +1,156 @@
+{
+  "id": "14",
+  "slug": "longest-common-prefix",
+  "title": "Longest Common Prefix",
+  "category": "dsa",
+  "subcategory": "tries",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "String",
+    "Trie"
+  ],
+  "statement": "Write a function to find the longest common prefix string amongst an array of strings.\n\nIf there is no common prefix, return an empty string `\"\"`.\n\n**Example 1:**\n\n```\nInput: strs = [\"flower\",\"flow\",\"flight\"]\nOutput: \"fl\"\n```\n\n**Example 2:**\n\n```\nInput: strs = [\"dog\",\"racecar\",\"car\"]\nOutput: \"\"\nExplanation: There is no common prefix among the input strings.\n```\n\n**Constraints:**\n\n*   `1 <= strs.length <= 200`\n*   `0 <= strs[i].length <= 200`\n*   `strs[i]` consists of only lowercase English letters if it is non-empty.",
+  "constraints": [
+    "1 <= strs.length <= 200",
+    "0 <= strs[i].length <= 200",
+    "strs[i] consists of only lowercase English letters if it is non-empty."
+  ],
+  "examples": [
+    {
+      "input": "strs = [\"flower\",\"flow\",\"flight\"]",
+      "output": "\"fl\"",
+      "explanation": null
+    },
+    {
+      "input": "strs = [\"dog\",\"racecar\",\"car\"]",
+      "output": "\"\"",
+      "explanation": "There is no common prefix among the input strings."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string longestCommonPrefix(vector<string>& strs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String longestCommonPrefix(String[] strs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestCommonPrefix(self, strs: list[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def longestCommonPrefix(self, strs):\n        \"\"\"\n        :type strs: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} strs\n * @return {string}\n */\nvar longestCommonPrefix = function(strs) {\n    \n};",
+    "typescript": "function longestCommonPrefix(strs: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string LongestCommonPrefix(string[] strs) {\n        \n    }\n}",
+    "c": "char* longestCommonPrefix(char** strs, int strsSize) {\n    \n}",
+    "golang": "func longestCommonPrefix(strs []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestCommonPrefix(strs: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestCommonPrefix(_ strs: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_common_prefix(strs: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} strs\n# @return {String}\ndef longest_common_prefix(strs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $strs\n     * @return String\n     */\n    function longestCommonPrefix($strs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String longestCommonPrefix(List<String> strs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestCommonPrefix(strs: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_common_prefix(strs :: [String.t]) :: String.t\n  def longest_common_prefix(strs) do\n    \n  end\nend",
+    "erlang": "-spec longest_common_prefix(Strs :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nlongest_common_prefix(Strs) ->\n  .",
+    "racket": "(define/contract (longest-common-prefix strs)\n  (-> (listof string?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"flower\",\"flow\",\"flight\"]",
+      "expectedOutput": "\"fl\""
+    },
+    {
+      "input": "[\"dog\",\"racecar\",\"car\"]",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"flower\",\"flow\",\"flight\"]",
+      "expectedOutput": "\"fl\""
+    },
+    {
+      "input": "[\"dog\",\"racecar\",\"car\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"flower\"]",
+      "expectedOutput": "\"flower\""
+    },
+    {
+      "input": "[\"flow\",\"flight\"]",
+      "expectedOutput": "\"fl\""
+    },
+    {
+      "input": "[\"flower\",\"flight\"]",
+      "expectedOutput": "\"fl\""
+    },
+    {
+      "input": "[\"flower\",\"flow\"]",
+      "expectedOutput": "\"flow\""
+    },
+    {
+      "input": "[\"flight\",\"flow\",\"flower\"]",
+      "expectedOutput": "\"fl\""
+    },
+    {
+      "input": "[\"flower\",\"flower\",\"flower\"]",
+      "expectedOutput": "\"flower\""
+    },
+    {
+      "input": "[\"flower\",\"flow\",\"flight\",\"flower\",\"flow\",\"flight\"]",
+      "expectedOutput": "\"fl\""
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-common-prefix/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.431Z",
+    "sourceUpdatedAt": null
+  }
+}

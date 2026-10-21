@@ -1,0 +1,154 @@
+{
+  "id": "1238",
+  "slug": "circular-permutation-in-binary-representation",
+  "title": "Circular Permutation in Binary Representation",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "statement": "Given 2 integers `n` and `start`. Your task is return **any** permutation `p` of `(0,1,2.....,2^n -1)` such that :\n\n*   `p[0] = start`\n*   `p[i]` and `p[i+1]` differ by only one bit in their binary representation.\n*   `p[0]` and `p[2^n -1]` must also differ by only one bit in their binary representation.\n\n**Example 1:**\n\n```\nInput: n = 2, start = 3\nOutput: [3,2,0,1]\nExplanation: The binary representation of the permutation is (11,10,00,01). \nAll the adjacent element differ by one bit. Another valid permutation is [3,1,0,2]\n```\n\n**Example 2:**\n\n```\nInput: n = 3, start = 2\nOutput: [2,6,7,5,4,0,1,3]\nExplanation: The binary representation of the permutation is (010,110,111,101,100,000,001,011).\n```\n\n**Constraints:**\n\n*   `1 <= n <= 16`\n*   `0 <= start < 2 ^ n`",
+  "constraints": [
+    "1 <= n <= 16",
+    "0 <= start < 2 ^ n"
+  ],
+  "examples": [
+    {
+      "input": "n = 2, start = 3",
+      "output": "[3,2,0,1]",
+      "explanation": "The binary representation of the permutation is (11,10,00,01). \r\nAll the adjacent element differ by one bit. Another valid permutation is [3,1,0,2]"
+    },
+    {
+      "input": "n = 3, start = 2",
+      "output": "[2,6,7,5,4,0,1,3]",
+      "explanation": "The binary representation of the permutation is (010,110,111,101,100,000,001,011)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> circularPermutation(int n, int start) {\r\n        \r\n    }\r\n};",
+    "java": "class Solution {\r\n    public List<Integer> circularPermutation(int n, int start) {\r\n        \r\n    }\r\n}",
+    "python3": "class Solution:\r\n    def circularPermutation(self, n: int, start: int) -> List[int]:",
+    "python": "class Solution(object):\r\n    def circularPermutation(self, n, start):\r\n        \"\"\"\r\n        :type n: int\r\n        :type start: int\r\n        :rtype: List[int]\r\n        \"\"\"",
+    "javascript": "/**\r\n * @param {number} n\r\n * @param {number} start\r\n * @return {number[]}\r\n */\r\nvar circularPermutation = function(n, start) {\r\n    \r\n};",
+    "typescript": "function circularPermutation(n: number, start: number): number[] {\r\n\r\n};",
+    "csharp": "public class Solution {\r\n    public IList<int> CircularPermutation(int n, int start) {\r\n        \r\n    }\r\n}",
+    "c": "/**\r\n * Note: The returned array must be malloced, assume caller calls free().\r\n */\r\nint* circularPermutation(int n, int start, int* returnSize){\r\n\r\n}",
+    "golang": "func circularPermutation(n int, start int) []int {\r\n    \r\n}",
+    "kotlin": "class Solution {\r\n    fun circularPermutation(n: Int, start: Int): List<Int> {\r\n        \r\n    }\r\n}",
+    "swift": "class Solution {\r\n    func circularPermutation(_ n: Int, _ start: Int) -> [Int] {\r\n        \r\n    }\r\n}",
+    "rust": "impl Solution {\r\n    pub fn circular_permutation(n: i32, start: i32) -> Vec<i32> {\r\n        \r\n    }\r\n}",
+    "ruby": "# @param {Integer} n\r\n# @param {Integer} start\r\n# @return {Integer[]}\r\ndef circular_permutation(n, start)\r\n    \r\nend",
+    "php": "class Solution {\r\n\r\n    /**\r\n     * @param Integer $n\r\n     * @param Integer $start\r\n     * @return Integer[]\r\n     */\r\n    function circularPermutation($n, $start) {\r\n        \r\n    }\r\n}",
+    "scala": "object Solution {\r\n    def circularPermutation(n: Int, start: Int): List[Int] = {\r\n        \r\n    }\r\n}"
+  },
+  "publicTests": [
+    {
+      "input": "2\n3",
+      "expectedOutput": "[3,2,0,1]"
+    },
+    {
+      "input": "3\n2",
+      "expectedOutput": "[2,6,7,5,4,0,1,3]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "2\n3",
+      "expectedOutput": "[3,2,0,1]"
+    },
+    {
+      "input": "3\n2",
+      "expectedOutput": "[2,6,7,5,4,0,1,3]"
+    },
+    {
+      "input": "3\n3",
+      "expectedOutput": "[3,2,6,7,5,4,0,1]"
+    },
+    {
+      "input": "4\n3",
+      "expectedOutput": "[3,2,6,7,5,4,12,13,15,14,10,11,9,8,0,1]"
+    },
+    {
+      "input": "5\n3",
+      "expectedOutput": "[3,2,6,7,5,4,12,13,15,14,10,11,9,8,24,25,27,26,30,31,29,28,20,21,23,22,18,19,17,16,0,1]"
+    },
+    {
+      "input": "6\n3",
+      "expectedOutput": "[3,2,6,7,5,4,12,13,15,14,10,11,9,8,24,25,27,26,30,31,29,28,20,21,23,22,18,19,17,16,48,49,51,50,54,55,53,52,60,61,63,62,58,59,57,56,40,41,43,42,46,47,45,44,36,37,39,38,34,35,33,32,0,1]"
+    },
+    {
+      "input": "7\n3",
+      "expectedOutput": "[3,2,6,7,5,4,12,13,15,14,10,11,9,8,24,25,27,26,30,31,29,28,20,21,23,22,18,19,17,16,48,49,51,50,54,55,53,52,60,61,63,62,58,59,57,56,40,41,43,42,46,47,45,44,36,37,39,38,34,35,33,32,96,97,99,98,102,103,101,100,108,109,111,110,106,107,105,104,120,121,123,122,126,127,125,124,116,117,119,118,114,115,113,112,80,81,83,82,86,87,85,84,92,93,95,94,90,91,89,88,72,73,75,74,78,79,77,76,68,69,71,70,66,67,65,64,0,1]"
+    },
+    {
+      "input": "2\n0",
+      "expectedOutput": "[0,1,3,2]"
+    },
+    {
+      "input": "2\n1",
+      "expectedOutput": "[1,3,2,0]"
+    },
+    {
+      "input": "2\n2",
+      "expectedOutput": "[2,0,1,3]"
+    },
+    {
+      "input": "4\n2",
+      "expectedOutput": "[2,6,7,5,4,12,13,15,14,10,11,9,8,0,1,3]"
+    },
+    {
+      "input": "5\n2",
+      "expectedOutput": "[2,6,7,5,4,12,13,15,14,10,11,9,8,24,25,27,26,30,31,29,28,20,21,23,22,18,19,17,16,0,1,3]"
+    },
+    {
+      "input": "6\n2",
+      "expectedOutput": "[2,6,7,5,4,12,13,15,14,10,11,9,8,24,25,27,26,30,31,29,28,20,21,23,22,18,19,17,16,48,49,51,50,54,55,53,52,60,61,63,62,58,59,57,56,40,41,43,42,46,47,45,44,36,37,39,38,34,35,33,32,0,1,3]"
+    },
+    {
+      "input": "7\n2",
+      "expectedOutput": "[2,6,7,5,4,12,13,15,14,10,11,9,8,24,25,27,26,30,31,29,28,20,21,23,22,18,19,17,16,48,49,51,50,54,55,53,52,60,61,63,62,58,59,57,56,40,41,43,42,46,47,45,44,36,37,39,38,34,35,33,32,96,97,99,98,102,103,101,100,108,109,111,110,106,107,105,104,120,121,123,122,126,127,125,124,116,117,119,118,114,115,113,112,80,81,83,82,86,87,85,84,92,93,95,94,90,91,89,88,72,73,75,74,78,79,77,76,68,69,71,70,66,67,65,64,0,1,3]"
+    },
+    {
+      "input": "8\n2",
+      "expectedOutput": "[2,6,7,5,4,12,13,15,14,10,11,9,8,24,25,27,26,30,31,29,28,20,21,23,22,18,19,17,16,48,49,51,50,54,55,53,52,60,61,63,62,58,59,57,56,40,41,43,42,46,47,45,44,36,37,39,38,34,35,33,32,96,97,99,98,102,103,101,100,108,109,111,110,106,107,105,104,120,121,123,122,126,127,125,124,116,117,119,118,114,115,113,112,80,81,83,82,86,87,85,84,92,93,95,94,90,91,89,88,72,73,75,74,78,79,77,76,68,69,71,70,66,67,65,64,192,193,195,194,198,199,197,196,204,205,207,206,202,203,201,200,216,217,219,218,222,223,221,220,212,213,215,214,210,211,209,208,240,241,243,242,246,247,245,244,252,253,255,254,250,251,249,248,232,233,235,234,238,239,237,236,228,229,231,230,226,227,225,224,160,161,163,162,166,167,165,164,172,173,175,174,170,171,169,168,184,185,187,186,190,191,189,188,180,181,183,182,178,179,177,176,144,145,147,146,150,151,149,148,156,157,159,158,154,155,153,152,136,137,139,138,142,143,141,140,132,133,135,134,130,131,129,128,0,1,3]"
+    },
+    {
+      "input": "3\n0",
+      "expectedOutput": "[0,1,3,2,6,7,5,4]"
+    },
+    {
+      "input": "3\n1",
+      "expectedOutput": "[1,3,2,6,7,5,4,0]"
+    },
+    {
+      "input": "3\n4",
+      "expectedOutput": "[4,0,1,3,2,6,7,5]"
+    },
+    {
+      "input": "3\n5",
+      "expectedOutput": "[5,4,0,1,3,2,6,7]"
+    },
+    {
+      "input": "3\n6",
+      "expectedOutput": "[6,7,5,4,0,1,3,2]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use gray code to generate a n-bit sequence.",
+    "Rotate the sequence such that its first element is start."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/circular-permutation-in-binary-representation/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.374Z",
+    "sourceUpdatedAt": null
+  }
+}

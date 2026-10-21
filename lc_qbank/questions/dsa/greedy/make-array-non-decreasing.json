@@ -1,0 +1,159 @@
+{
+  "id": "3523",
+  "slug": "make-array-non-decreasing",
+  "title": "Make Array Non-decreasing",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "statement": "You are given an integer array `nums`. In one operation, you can select a subarray and replace it with a single element equal to its **maximum** value.\n\nReturn the **maximum possible size** of the array after performing zero or more operations such that the resulting array is **non-decreasing**.\n\n**Example 1:**\n\n**Input:** nums = \\[4,2,5,3,5\\]\n\n**Output:** 3\n\n**Explanation:**\n\nOne way to achieve the maximum size is:\n\n1.  Replace subarray `nums[1..2] = [2, 5]` with `5` → `[4, 5, 3, 5]`.\n2.  Replace subarray `nums[2..3] = [3, 5]` with `5` → `[4, 5, 5]`.\n\nThe final array `[4, 5, 5]` is non-decreasing with size 3.\n\n**Example 2:**\n\n**Input:** nums = \\[1,2,3\\]\n\n**Output:** 3\n\n**Explanation:**\n\nNo operation is needed as the array `[1,2,3]` is already non-decreasing.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 2 * 10^(5)`\n*   `1 <= nums[i] <= 2 * 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 2 * 105",
+    "1 <= nums[i] <= 2 * 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [4,2,5,3,5]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,2,3]",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximumPossibleSize(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximumPossibleSize(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumPossibleSize(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumPossibleSize(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maximumPossibleSize = function(nums) {\n    \n};",
+    "typescript": "function maximumPossibleSize(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximumPossibleSize(int[] nums) {\n        \n    }\n}",
+    "c": "int maximumPossibleSize(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maximumPossibleSize(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumPossibleSize(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumPossibleSize(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_possible_size(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef maximum_possible_size(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maximumPossibleSize($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumPossibleSize(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumPossibleSize(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_possible_size(nums :: [integer]) :: integer\n  def maximum_possible_size(nums) do\n    \n  end\nend",
+    "erlang": "-spec maximum_possible_size(Nums :: [integer()]) -> integer().\nmaximum_possible_size(Nums) ->\n  .",
+    "racket": "(define/contract (maximum-possible-size nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[4,2,5,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[4,2,5,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[4,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,3,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,3,5,2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,3,4,5,5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[5,5,4,3,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,4,4,4,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[4,2,5,3,5,4,2,5,3,5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[8,4,10,6,10]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,3,6,4,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,1,4,2,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-4,-2,-5,-3,-5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate backwards.",
+    "Can you remove the largest element in the array? Is that ever helpful?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/make-array-non-decreasing/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.919Z",
+    "sourceUpdatedAt": null
+  }
+}

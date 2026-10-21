@@ -1,0 +1,91 @@
+{
+  "id": "2634",
+  "slug": "filter-elements-from-array",
+  "title": "Filter Elements from Array",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "Given an integer array `arr` and a filtering function `fn`, return a filtered array `filteredArr`.\n\nThe `fn` function takes one or two arguments:\n\n*   `arr[i]` - number from the `arr`\n*   `i` - index of `arr[i]`\n\n`filteredArr` should only contain the elements from the `arr` for which the expression `fn(arr[i], i)` evaluates to a **truthy** value. A **truthy** value is a value where `Boolean(value)` returns `true`.\n\nPlease solve it without the built-in `Array.filter` method.\n\n**Example 1:**\n\n```\nInput: arr = [0,10,20,30], fn = function greaterThan10(n) { return n > 10; }\nOutput: [20,30]\nExplanation:\nconst newArray = filter(arr, fn); // [20, 30]\nThe function filters out values that are not greater than 10\n```\n\n**Example 2:**\n\n```\nInput: arr = [1,2,3], fn = function firstIndex(n, i) { return i === 0; }\nOutput: [1]\nExplanation:\nfn can also accept the index of each element\nIn this case, the function removes elements not at index 0\n```\n\n**Example 3:**\n\n```\nInput: arr = [-2,-1,0,1,2], fn = function plusOne(n) { return n + 1 }\nOutput: [-2,0,1,2]\nExplanation:\nFalsey values such as 0 should be filtered out\n```\n\n**Constraints:**\n\n*   `0 <= arr.length <= 1000`\n*   `-10^(9) <= arr[i] <= 10^(9)`",
+  "constraints": [
+    "0 <= arr.length <= 1000",
+    "-109 <= arr[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "arr = [0,10,20,30], fn = function greaterThan10(n) { return n > 10; }",
+      "output": "[20,30]",
+      "explanation": "const newArray = filter(arr, fn); // [20, 30]\nThe function filters out values that are not greater than 10"
+    },
+    {
+      "input": "arr = [1,2,3], fn = function firstIndex(n, i) { return i === 0; }",
+      "output": "[1]",
+      "explanation": "fn can also accept the index of each element\nIn this case, the function removes elements not at index 0"
+    },
+    {
+      "input": "arr = [-2,-1,0,1,2], fn = function plusOne(n) { return n + 1 }",
+      "output": "[-2,0,1,2]",
+      "explanation": "Falsey values such as 0 should be filtered out"
+    }
+  ],
+  "starterCode": {
+    "javascript": "/**\n * @param {number[]} arr\n * @param {Function} fn\n * @return {number[]}\n */\nvar filter = function(arr, fn) {\n    \n};",
+    "typescript": "type Fn = (n: number, i: number) => any\n\nfunction filter(arr: number[], fn: Fn): number[] {\n    \n};"
+  },
+  "publicTests": [
+    {
+      "input": "function greaterThan10(n) { return n > 10; }\n[0,10,20,30]",
+      "expectedOutput": "[20,30]"
+    },
+    {
+      "input": "function firstIndex(n, i) { return i === 0; }\n[1,2,3]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "function plusOne(n) { return n + 1 }\n[-2,-1,0,1,2]",
+      "expectedOutput": "[-2,0,1,2]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "function greaterThan10(n) { return n > 10; }\n[0,10,20,30]",
+      "expectedOutput": "[20,30]"
+    },
+    {
+      "input": "function firstIndex(n, i) { return i === 0; }\n[1,2,3]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "function plusOne(n) { return n + 1 }\n[-2,-1,0,1,2]",
+      "expectedOutput": "[-2,0,1,2]"
+    },
+    {
+      "input": "arr = [0,10,20,30], fn = function greaterThan10(n) { return n > 10; }",
+      "expectedOutput": "[20,30]"
+    },
+    {
+      "input": "arr = [1,2,3], fn = function firstIndex(n, i) { return i === 0; }",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "arr = [-2,-1,0,1,2], fn = function plusOne(n) { return n + 1 }",
+      "expectedOutput": "[-2,0,1,2]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Start by declaring a new array which will eventually be returned.",
+    "In Javascript, there is the concept of \"truthiness\" and \"falsiness\". Values such as 0, undefined, null, and false are falsy. Most values are truthy: 1, {}, [], true, etc. In Javascript, the contents of if-statements don't need to be booleans. You can say \"if ([1,2,3]) {}\", and it's equivalent to saying 'if (true) {}\".",
+    "Loop over each element in the array. If fn(arr[i]) is truthy, push it to the array."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/filter-elements-from-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.303Z",
+    "sourceUpdatedAt": null
+  }
+}

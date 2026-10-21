@@ -1,0 +1,165 @@
+{
+  "id": "2213",
+  "slug": "longest-substring-of-one-repeating-character",
+  "title": "Longest Substring of One Repeating Character",
+  "category": "dsa",
+  "subcategory": "advanced-data-structures",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "String",
+    "Segment Tree",
+    "Ordered Set"
+  ],
+  "statement": "You are given a **0-indexed** string `s`. You are also given a **0-indexed** string `queryCharacters` of length `k` and a **0-indexed** array of integer **indices** `queryIndices` of length `k`, both of which are used to describe `k` queries.\n\nThe `i^(th)` query updates the character in `s` at index `queryIndices[i]` to the character `queryCharacters[i]`.\n\nReturn _an array_ `lengths` _of length_ `k` _where_ `lengths[i]` _is the **length** of the **longest substring** of_ `s` _consisting of **only one repeating** character **after** the_ `i^(th)` _query_ _is performed._\n\n**Example 1:**\n\n```\nInput: s = \"babacc\", queryCharacters = \"bcb\", queryIndices = [1,3,3]\nOutput: [3,3,4]\nExplanation: \n- 1st query updates s = \"bbbacc\". The longest substring consisting of one repeating character is \"bbb\" with length 3.\n- 2nd query updates s = \"bbbccc\". \n  The longest substring consisting of one repeating character can be \"bbb\" or \"ccc\" with length 3.\n- 3rd query updates s = \"bbbbcc\". The longest substring consisting of one repeating character is \"bbbb\" with length 4.\nThus, we return [3,3,4].\n```\n\n**Example 2:**\n\n```\nInput: s = \"abyzz\", queryCharacters = \"aa\", queryIndices = [2,1]\nOutput: [2,3]\nExplanation:\n- 1st query updates s = \"abazz\". The longest substring consisting of one repeating character is \"zz\" with length 2.\n- 2nd query updates s = \"aaazz\". The longest substring consisting of one repeating character is \"aaa\" with length 3.\nThus, we return [2,3].\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists of lowercase English letters.\n*   `k == queryCharacters.length == queryIndices.length`\n*   `1 <= k <= 10^(5)`\n*   `queryCharacters` consists of lowercase English letters.\n*   `0 <= queryIndices[i] < s.length`",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists of lowercase English letters.",
+    "k == queryCharacters.length == queryIndices.length",
+    "1 <= k <= 105",
+    "queryCharacters consists of lowercase English letters.",
+    "0 <= queryIndices[i] < s.length"
+  ],
+  "examples": [
+    {
+      "input": "s = \"babacc\", queryCharacters = \"bcb\", queryIndices = [1,3,3]",
+      "output": "[3,3,4]",
+      "explanation": "- 1st query updates s = \"bbbacc\". The longest substring consisting of one repeating character is \"bbb\" with length 3.\n- 2nd query updates s = \"bbbccc\". \n  The longest substring consisting of one repeating character can be \"bbb\" or \"ccc\" with length 3.\n- 3rd query updates s = \"bbbbcc\". The longest substring consisting of one repeating character is \"bbbb\" with length 4.\nThus, we return [3,3,4]."
+    },
+    {
+      "input": "s = \"abyzz\", queryCharacters = \"aa\", queryIndices = [2,1]",
+      "output": "[2,3]",
+      "explanation": "- 1st query updates s = \"abazz\". The longest substring consisting of one repeating character is \"zz\" with length 2.\n- 2nd query updates s = \"aaazz\". The longest substring consisting of one repeating character is \"aaa\" with length 3.\nThus, we return [2,3]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> longestRepeating(string s, string queryCharacters, vector<int>& queryIndices) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] longestRepeating(String s, String queryCharacters, int[] queryIndices) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestRepeating(self, s: str, queryCharacters: str, queryIndices: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def longestRepeating(self, s, queryCharacters, queryIndices):\n        \"\"\"\n        :type s: str\n        :type queryCharacters: str\n        :type queryIndices: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {string} queryCharacters\n * @param {number[]} queryIndices\n * @return {number[]}\n */\nvar longestRepeating = function(s, queryCharacters, queryIndices) {\n    \n};",
+    "typescript": "function longestRepeating(s: string, queryCharacters: string, queryIndices: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] LongestRepeating(string s, string queryCharacters, int[] queryIndices) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* longestRepeating(char* s, char* queryCharacters, int* queryIndices, int queryIndicesSize, int* returnSize) {\n    \n}",
+    "golang": "func longestRepeating(s string, queryCharacters string, queryIndices []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestRepeating(s: String, queryCharacters: String, queryIndices: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestRepeating(_ s: String, _ queryCharacters: String, _ queryIndices: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_repeating(s: String, query_characters: String, query_indices: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {String} query_characters\n# @param {Integer[]} query_indices\n# @return {Integer[]}\ndef longest_repeating(s, query_characters, query_indices)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param String $queryCharacters\n     * @param Integer[] $queryIndices\n     * @return Integer[]\n     */\n    function longestRepeating($s, $queryCharacters, $queryIndices) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> longestRepeating(String s, String queryCharacters, List<int> queryIndices) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestRepeating(s: String, queryCharacters: String, queryIndices: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_repeating(s :: String.t, query_characters :: String.t, query_indices :: [integer]) :: [integer]\n  def longest_repeating(s, query_characters, query_indices) do\n    \n  end\nend",
+    "erlang": "-spec longest_repeating(S :: unicode:unicode_binary(), QueryCharacters :: unicode:unicode_binary(), QueryIndices :: [integer()]) -> [integer()].\nlongest_repeating(S, QueryCharacters, QueryIndices) ->\n  .",
+    "racket": "(define/contract (longest-repeating s queryCharacters queryIndices)\n  (-> string? string? (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"babacc\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[3,3,4]"
+    },
+    {
+      "input": "\"abyzz\"\n\"aa\"\n[2,1]",
+      "expectedOutput": "[2,3]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"babacc\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[3,3,4]"
+    },
+    {
+      "input": "\"abyzz\"\n\"aa\"\n[2,1]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "\"ccabab\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "\"babaccbabacc\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[3,3,4]"
+    },
+    {
+      "input": "\"bbbbbb\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[6,3,6]"
+    },
+    {
+      "input": "\"babaccccabab\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[4,5,4]"
+    },
+    {
+      "input": "\"BABACC\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[2,2,2]"
+    },
+    {
+      "input": "\"abba\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[2,2,3]"
+    },
+    {
+      "input": "\"aaaaa\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[3,1,1]"
+    },
+    {
+      "input": "\"abcde\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[1,2,1]"
+    },
+    {
+      "input": "\"edcba\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[1,2,1]"
+    },
+    {
+      "input": "\"racecar\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[1,3,1]"
+    },
+    {
+      "input": "\"hello\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[2,1,1]"
+    },
+    {
+      "input": "\"leetcode\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[1,2,1]"
+    },
+    {
+      "input": "\"world\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "\"()[]{}\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "\"([)]\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "\"{[]}\"\n\"bcb\"\n[1,3,3]",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "\"babacc\"\n\"b\"\n[1,3,3]",
+      "expectedOutput": "[3]"
+    },
+    {
+      "input": "\"babacc\"\n\"cb\"\n[1,3,3]",
+      "expectedOutput": "[2,2]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use a segment tree to perform fast point updates and range queries.",
+    "We need each segment tree node to store the length of the longest substring of that segment consisting of only 1 repeating character.",
+    "We will also have each segment tree node store the leftmost and rightmost character of the segment, the max length of a prefix substring consisting of only 1 repeating character, and the max length of a suffix substring consisting of only 1 repeating character.",
+    "Use this information to properly merge the two segment tree nodes together."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-substring-of-one-repeating-character/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.709Z",
+    "sourceUpdatedAt": null
+  }
+}

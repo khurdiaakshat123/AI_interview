@@ -1,0 +1,114 @@
+{
+  "id": "3296",
+  "slug": "minimum-number-of-seconds-to-make-mountain-height-zero",
+  "title": "Minimum Number of Seconds to Make Mountain Height Zero",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "You are given an integer `mountainHeight` denoting the height of a mountain.\n\nYou are also given an integer array `workerTimes` representing the work time of workers in **seconds**.\n\nEach worker may reduce the mountain's height by any **non-negative integer** amount. If worker `i` reduces the height by `x`, then:\n\n*   reducing the first unit of height takes `workerTimes[i]` seconds,\n*   reducing the second unit takes `workerTimes[i] * 2` seconds,\n*   ...\n*   reducing the `x`\\-th unit takes `workerTimes[i] * x` seconds.\n\nThe total time spent by worker `i` is the sum of the times required for all `x` units they reduce. As all workers operate simultaneously, the total time required is the **maximum** time spent by any worker.\n\nReturn an integer representing the **minimum** number of seconds required for the workers to make the height of the mountain 0.\n\n**Example 1:**\n\n**Input:** mountainHeight = 4, workerTimes = \\[2,1,1\\]\n\n**Output:** 3\n\n**Explanation:**\n\nOne way the height of the mountain can be reduced to 0 is:\n\n*   Worker 0 reduces the height by 1, taking `workerTimes[0] = 2` seconds.\n*   Worker 1 reduces the height by 2, taking `workerTimes[1] + workerTimes[1] * 2 = 3` seconds.\n*   Worker 2 reduces the height by 1, taking `workerTimes[2] = 1` second.\n\nSince they work simultaneously, the minimum time needed is `max(2, 3, 1) = 3` seconds.\n\n**Example 2:**\n\n**Input:** mountainHeight = 10, workerTimes = \\[3,2,2,4\\]\n\n**Output:** 12\n\n**Explanation:**\n\n*   Worker 0 reduces the height by 2, taking `workerTimes[0] + workerTimes[0] * 2 = 9` seconds.\n*   Worker 1 reduces the height by 3, taking `workerTimes[1] + workerTimes[1] * 2 + workerTimes[1] * 3 = 12` seconds.\n*   Worker 2 reduces the height by 3, taking `workerTimes[2] + workerTimes[2] * 2 + workerTimes[2] * 3 = 12` seconds.\n*   Worker 3 reduces the height by 2, taking `workerTimes[3] + workerTimes[3] * 2 = 12` seconds.\n\nThe number of seconds needed is `max(9, 12, 12, 12) = 12` seconds.\n\n**Example 3:**\n\n**Input:** mountainHeight = 5, workerTimes = \\[1\\]\n\n**Output:** 15\n\n**Explanation:**\n\nThere is only one worker in this example, so the answer is `workerTimes[0] + workerTimes[0] * 2 + workerTimes[0] * 3 + workerTimes[0] * 4 + workerTimes[0] * 5 = 15`.\n\n**Constraints:**\n\n*   `1 <= mountainHeight <= 10^(5)`\n*   `1 <= workerTimes.length <= 10^(4)`\n*   `1 <= workerTimes[i] <= 10^(6)`",
+  "constraints": [
+    "1 <= mountainHeight <= 105",
+    "1 <= workerTimes.length <= 104",
+    "1 <= workerTimes[i] <= 106"
+  ],
+  "examples": [
+    {
+      "input": "mountainHeight = 4, workerTimes = [2,1,1]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "mountainHeight = 10, workerTimes = [3,2,2,4]",
+      "output": "12",
+      "explanation": "Worker 0 reduces the height by 2, taking workerTimes[0] + workerTimes[0] * 2 = 9 seconds.\n\tWorker 1 reduces the height by 3, taking workerTimes[1] + workerTimes[1] * 2 + workerTimes[1] * 3 = 12 seconds.\n\tWorker 2 reduces the height by 3, taking workerTimes[2] + workerTimes[2] * 2 + workerTimes[2] * 3 = 12 seconds.\n\tWorker 3 reduces the height by 2, taking workerTimes[3] + workerTimes[3] * 2 = 12 seconds."
+    },
+    {
+      "input": "mountainHeight = 5, workerTimes = [1]",
+      "output": "15",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minNumberOfSeconds(int mountainHeight, vector<int>& workerTimes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minNumberOfSeconds(int mountainHeight, int[] workerTimes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minNumberOfSeconds(self, mountainHeight: int, workerTimes: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minNumberOfSeconds(self, mountainHeight, workerTimes):\n        \"\"\"\n        :type mountainHeight: int\n        :type workerTimes: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} mountainHeight\n * @param {number[]} workerTimes\n * @return {number}\n */\nvar minNumberOfSeconds = function(mountainHeight, workerTimes) {\n    \n};",
+    "typescript": "function minNumberOfSeconds(mountainHeight: number, workerTimes: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinNumberOfSeconds(int mountainHeight, int[] workerTimes) {\n        \n    }\n}",
+    "c": "long long minNumberOfSeconds(int mountainHeight, int* workerTimes, int workerTimesSize) {\n    \n}",
+    "golang": "func minNumberOfSeconds(mountainHeight int, workerTimes []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minNumberOfSeconds(mountainHeight: Int, workerTimes: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minNumberOfSeconds(_ mountainHeight: Int, _ workerTimes: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_number_of_seconds(mountain_height: i32, worker_times: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} mountain_height\n# @param {Integer[]} worker_times\n# @return {Integer}\ndef min_number_of_seconds(mountain_height, worker_times)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $mountainHeight\n     * @param Integer[] $workerTimes\n     * @return Integer\n     */\n    function minNumberOfSeconds($mountainHeight, $workerTimes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minNumberOfSeconds(int mountainHeight, List<int> workerTimes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minNumberOfSeconds(mountainHeight: Int, workerTimes: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_number_of_seconds(mountain_height :: integer, worker_times :: [integer]) :: integer\n  def min_number_of_seconds(mountain_height, worker_times) do\n    \n  end\nend",
+    "erlang": "-spec min_number_of_seconds(MountainHeight :: integer(), WorkerTimes :: [integer()]) -> integer().\nmin_number_of_seconds(MountainHeight, WorkerTimes) ->\n  .",
+    "racket": "(define/contract (min-number-of-seconds mountainHeight workerTimes)\n  (-> exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "4\n[2,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "10\n[3,2,2,4]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "5\n[1]",
+      "expectedOutput": "15"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "4\n[2,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "10\n[3,2,2,4]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "5\n[1]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "mountainHeight = 4, workerTimes = [2,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "mountainHeight = 10, workerTimes = [3,2,2,4]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "mountainHeight = 5, workerTimes = [1]",
+      "expectedOutput": "15"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can we use binary search to solve this problem?",
+    "Do a binary search on the number of seconds to check if it's enough to reduce the mountain height to 0 or less with all workers working simultaneously."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-seconds-to-make-mountain-height-zero/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.456Z",
+    "sourceUpdatedAt": null
+  }
+}

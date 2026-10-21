@@ -1,0 +1,116 @@
+{
+  "id": "3605",
+  "slug": "minimum-stability-factor-of-array",
+  "title": "Minimum Stability Factor of Array",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Greedy",
+    "Segment Tree",
+    "Number Theory"
+  ],
+  "statement": "You are given an integer array `nums` and an integer `maxC`.\n\nA **subarray** is called **stable** if the _highest common factor (HCF)_ of all its elements is **greater than or equal to** 2.\n\nThe **stability factor** of an array is defined as the length of its **longest** stable subarray.\n\nYou may modify **at most** `maxC` elements of the array to any integer.\n\nReturn the **minimum** possible stability factor of the array after at most `maxC` modifications. If no stable subarray remains, return 0.\n\n**Note:**\n\n*   The **highest common factor (HCF)** of an array is the largest integer that evenly divides all the array elements.\n*   A **subarray** of length 1 is stable if its only element is greater than or equal to 2, since `HCF([x]) = x`.\n\n**Example 1:**\n\n**Input:** nums = \\[3,5,10\\], maxC = 1\n\n**Output:** 1\n\n**Explanation:**\n\n*   The stable subarray `[5, 10]` has `HCF = 5`, which has a stability factor of 2.\n*   Since `maxC = 1`, one optimal strategy is to change `nums[1]` to `7`, resulting in `nums = [3, 7, 10]`.\n*   Now, no subarray of length greater than 1 has `HCF >= 2`. Thus, the minimum possible stability factor is 1.\n\n**Example 2:**\n\n**Input:** nums = \\[2,6,8\\], maxC = 2\n\n**Output:** 1\n\n**Explanation:**\n\n*   The subarray `[2, 6, 8]` has `HCF = 2`, which has a stability factor of 3.\n*   Since `maxC = 2`, one optimal strategy is to change `nums[1]` to 3 and `nums[2]` to 5, resulting in `nums = [2, 3, 5]`.\n*   Now, no subarray of length greater than 1 has `HCF >= 2`. Thus, the minimum possible stability factor is 1.\n\n**Example 3:**\n\n**Input:** nums = \\[2,4,9,6\\], maxC = 1\n\n**Output:** 2\n\n**Explanation:**\n\n*   The stable subarrays are:\n    *   `[2, 4]` with `HCF = 2` and stability factor of 2.\n    *   `[9, 6]` with `HCF = 3` and stability factor of 2.\n*   Since `maxC = 1`, the stability factor of 2 cannot be reduced due to two separate stable subarrays. Thus, the minimum possible stability factor is 2.\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`\n*   `0 <= maxC <= n`",
+  "constraints": [
+    "1 <= n == nums.length <= 105",
+    "1 <= nums[i] <= 109",
+    "0 <= maxC <= n"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,5,10], maxC = 1",
+      "output": "1",
+      "explanation": "The stable subarray [5, 10] has HCF = 5, which has a stability factor of 2.\n\tSince maxC = 1, one optimal strategy is to change nums[1] to 7, resulting in nums = [3, 7, 10].\n\tNow, no subarray of length greater than 1 has HCF >= 2. Thus, the minimum possible stability factor is 1."
+    },
+    {
+      "input": "nums = [2,6,8], maxC = 2",
+      "output": "1",
+      "explanation": "The subarray [2, 6, 8] has HCF = 2, which has a stability factor of 3.\n\tSince maxC = 2, one optimal strategy is to change nums[1] to 3 and nums[2] to 5, resulting in nums = [2, 3, 5].\n\tNow, no subarray of length greater than 1 has HCF >= 2. Thus, the minimum possible stability factor is 1."
+    },
+    {
+      "input": "nums = [2,4,9,6], maxC = 1",
+      "output": "2",
+      "explanation": "The stable subarrays are:\n\t\n\t\t[2, 4] with HCF = 2 and stability factor of 2.\n\t\t[9, 6] with HCF = 3 and stability factor of 2.\n\t\n\t\n\tSince maxC = 1, the stability factor of 2 cannot be reduced due to two separate stable subarrays. Thus, the minimum possible stability factor is 2."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minStable(vector<int>& nums, int maxC) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minStable(int[] nums, int maxC) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minStable(self, nums: List[int], maxC: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minStable(self, nums, maxC):\n        \"\"\"\n        :type nums: List[int]\n        :type maxC: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} maxC\n * @return {number}\n */\nvar minStable = function(nums, maxC) {\n    \n};",
+    "typescript": "function minStable(nums: number[], maxC: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinStable(int[] nums, int maxC) {\n        \n    }\n}",
+    "c": "int minStable(int* nums, int numsSize, int maxC) {\n    \n}",
+    "golang": "func minStable(nums []int, maxC int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minStable(nums: IntArray, maxC: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minStable(_ nums: [Int], _ maxC: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_stable(nums: Vec<i32>, max_c: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} max_c\n# @return {Integer}\ndef min_stable(nums, max_c)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $maxC\n     * @return Integer\n     */\n    function minStable($nums, $maxC) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minStable(List<int> nums, int maxC) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minStable(nums: Array[Int], maxC: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_stable(nums :: [integer], max_c :: integer) :: integer\n  def min_stable(nums, max_c) do\n    \n  end\nend",
+    "erlang": "-spec min_stable(Nums :: [integer()], MaxC :: integer()) -> integer().\nmin_stable(Nums, MaxC) ->\n  .",
+    "racket": "(define/contract (min-stable nums maxC)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,5,10]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,6,8]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4,9,6]\n1",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,5,10]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,6,8]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4,9,6]\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "nums = [3,5,10], maxC = 1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "nums = [2,6,8], maxC = 2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "nums = [2,4,9,6], maxC = 1",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Binary‐search the target length <code>k</code>",
+    "For each <code>k</code>, use fast range‐GCD queries",
+    "Greedily \"hit\" every window of size <code>k+1</code> with an edit if its <code>GCD > 1</code>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-stability-factor-of-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.022Z",
+    "sourceUpdatedAt": null
+  }
+}

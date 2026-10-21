@@ -1,0 +1,110 @@
+{
+  "id": "3927",
+  "slug": "minimize-array-sum-using-divisible-replacements",
+  "title": "Minimize Array Sum Using Divisible Replacements",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Greedy",
+    "Number Theory"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nYou can perform the following operation any number of times:\n\n*   Choose two indices `a` and `b` such that `nums[a] % nums[b] == 0`.\n*   Replace `nums[a]` with `nums[b]`.\n\nReturn the **minimum** possible sum of the array after performing any number of operations.\n\n**Example 1:**\n\n**Input:** nums = \\[3,6,2\\]\n\n**Output:** 7\n\n**Explanation:**\n\n*   Choose `a = 1`, `b = 2`, where `nums[a] = 6` and `nums[b] = 2`. Since `6 % 2 == 0`, replace `nums[1]` with `nums[2]`.\n*   The array becomes `[3, 2, 2]`.\n*   No further operation reduces the sum. Thus, the final sum is `3 + 2 + 2 = 7`.\n\n**Example 2:**\n\n**Input:** nums = \\[4,2,8,3\\]\n\n**Output:** 9\n\n**Explanation:**\n\n*   Choose `a = 0`, `b = 1`, where `nums[a] = 4` and `nums[b] = 2`. Since `4 % 2 == 0`, replace `nums[0]` with `nums[1]`.\n*   Choose `a = 2`, `b = 1`, where `nums[a] = 8` and `nums[b] = 2`. Since `8 % 2 == 0`, replace `nums[2]` with `nums[1]`.\n*   The array becomes `[2, 2, 2, 3]`.\n*   No further operation reduces the sum. Thus, the final sum is `2 + 2 + 2 + 3 = 9`.\n\n**Example 3:**\n\n**Input:** nums = \\[7,5,9\\]\n\n**Output:** 21\n\n**Explanation:**\n\n*   There is no pair `(a, b)` such that `nums[a] % nums[b] == 0`.\n*   Hence, no operation can be performed. The sum remains `7 + 5 + 9 = 21`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(​​​​​​​5)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 10​​​​​​​5"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,6,2]",
+      "output": "7",
+      "explanation": "Choose a = 1, b = 2, where nums[a] = 6 and nums[b] = 2. Since 6 % 2 == 0, replace nums[1] with nums[2].\n\tThe array becomes [3, 2, 2].\n\tNo further operation reduces the sum. Thus, the final sum is 3 + 2 + 2 = 7."
+    },
+    {
+      "input": "nums = [4,2,8,3]",
+      "output": "9",
+      "explanation": "Choose a = 0, b = 1, where nums[a] = 4 and nums[b] = 2. Since 4 % 2 == 0, replace nums[0] with nums[1].\n\tChoose a = 2, b = 1, where nums[a] = 8 and nums[b] = 2. Since 8 % 2 == 0, replace nums[2] with nums[1].\n\tThe array becomes [2, 2, 2, 3].\n\tNo further operation reduces the sum. Thus, the final sum is 2 + 2 + 2 + 3 = 9."
+    },
+    {
+      "input": "nums = [7,5,9]",
+      "output": "21",
+      "explanation": "There is no pair (a, b) such that nums[a] % nums[b] == 0.\n\tHence, no operation can be performed. The sum remains 7 + 5 + 9 = 21."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minArraySum(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minArraySum(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minArraySum(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minArraySum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minArraySum = function(nums) {\n    \n};",
+    "typescript": "function minArraySum(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinArraySum(int[] nums) {\n        \n    }\n}",
+    "c": "long long minArraySum(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minArraySum(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minArraySum(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minArraySum(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_array_sum(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef min_array_sum(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minArraySum($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minArraySum(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minArraySum(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_array_sum(nums :: [integer]) :: integer\n  def min_array_sum(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_array_sum(Nums :: [integer()]) -> integer().\nmin_array_sum(Nums) ->\n  .",
+    "racket": "(define/contract (min-array-sum nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,6,2]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[4,2,8,3]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[7,5,9]",
+      "expectedOutput": "21"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,6,2]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[4,2,8,3]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[7,5,9]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "nums = [3,6,2]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "nums = [4,2,8,3]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "nums = [7,5,9]",
+      "expectedOutput": "21"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimize-array-sum-using-divisible-replacements/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.202Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "id": "2333",
+  "slug": "minimum-sum-of-squared-difference",
+  "title": "Minimum Sum of Squared Difference",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "You are given two positive **0-indexed** integer arrays `nums1` and `nums2`, both of length `n`.\n\nThe **sum of squared difference** of arrays `nums1` and `nums2` is defined as the **sum** of `(nums1[i] - nums2[i])^(2)` for each `0 <= i < n`.\n\nYou are also given two positive integers `k1` and `k2`. You can modify any of the elements of `nums1` by `+1` or `-1` at most `k1` times. Similarly, you can modify any of the elements of `nums2` by `+1` or `-1` at most `k2` times.\n\nReturn _the minimum **sum of squared difference** after modifying array_ `nums1` _at most_ `k1` _times and modifying array_ `nums2` _at most_ `k2` _times_.\n\n**Note**: You are allowed to modify the array elements to become **negative** integers.\n\n**Example 1:**\n\n```\nInput: nums1 = [1,2,3,4], nums2 = [2,10,20,19], k1 = 0, k2 = 0\nOutput: 579\nExplanation: The elements in nums1 and nums2 cannot be modified because k1 = 0 and k2 = 0. \nThe sum of square difference will be: (1 - 2)2 + (2 - 10)2 + (3 - 20)2 + (4 - 19)2 = 579.\n```\n\n**Example 2:**\n\n```\nInput: nums1 = [1,4,10,12], nums2 = [5,8,6,9], k1 = 1, k2 = 1\nOutput: 43\nExplanation: One way to obtain the minimum sum of square difference is: \n- Increase nums1[0] once.\n- Increase nums2[2] once.\nThe minimum of the sum of square difference will be: \n(2 - 5)2 + (4 - 8)2 + (10 - 7)2 + (12 - 9)2 = 43.\nNote that, there are other ways to obtain the minimum of the sum of square difference, but there is no way to obtain a sum smaller than 43.\n```\n\n**Constraints:**\n\n*   `n == nums1.length == nums2.length`\n*   `1 <= n <= 10^(5)`\n*   `0 <= nums1[i], nums2[i] <= 10^(5)`\n*   `0 <= k1, k2 <= 10^(9)`",
+  "constraints": [
+    "n == nums1.length == nums2.length",
+    "1 <= n <= 105",
+    "0 <= nums1[i], nums2[i] <= 105",
+    "0 <= k1, k2 <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [1,2,3,4], nums2 = [2,10,20,19], k1 = 0, k2 = 0",
+      "output": "579",
+      "explanation": "The elements in nums1 and nums2 cannot be modified because k1 = 0 and k2 = 0. \nThe sum of square difference will be: (1 - 2)2 + (2 - 10)2 + (3 - 20)2 + (4 - 19)2 = 579."
+    },
+    {
+      "input": "nums1 = [1,4,10,12], nums2 = [5,8,6,9], k1 = 1, k2 = 1",
+      "output": "43",
+      "explanation": "One way to obtain the minimum sum of square difference is: \n- Increase nums1[0] once.\n- Increase nums2[2] once.\nThe minimum of the sum of square difference will be: \n(2 - 5)2 + (4 - 8)2 + (10 - 7)2 + (12 - 9)2 = 43.\nNote that, there are other ways to obtain the minimum of the sum of square difference, but there is no way to obtain a sum smaller than 43."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minSumSquareDiff(vector<int>& nums1, vector<int>& nums2, int k1, int k2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minSumSquareDiff(int[] nums1, int[] nums2, int k1, int k2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minSumSquareDiff(self, nums1: list[int], nums2: list[int], k1: int, k2: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minSumSquareDiff(self, nums1, nums2, k1, k2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :type k1: int\n        :type k2: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @param {number} k1\n * @param {number} k2\n * @return {number}\n */\nvar minSumSquareDiff = function(nums1, nums2, k1, k2) {\n    \n};",
+    "typescript": "function minSumSquareDiff(nums1: number[], nums2: number[], k1: number, k2: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinSumSquareDiff(int[] nums1, int[] nums2, int k1, int k2) {\n        \n    }\n}",
+    "c": "long long minSumSquareDiff(int* nums1, int nums1Size, int* nums2, int nums2Size, int k1, int k2) {\n    \n}",
+    "golang": "func minSumSquareDiff(nums1 []int, nums2 []int, k1 int, k2 int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minSumSquareDiff(nums1: IntArray, nums2: IntArray, k1: Int, k2: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minSumSquareDiff(_ nums1: [Int], _ nums2: [Int], _ k1: Int, _ k2: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_sum_square_diff(nums1: Vec<i32>, nums2: Vec<i32>, k1: i32, k2: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @param {Integer} k1\n# @param {Integer} k2\n# @return {Integer}\ndef min_sum_square_diff(nums1, nums2, k1, k2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @param Integer $k1\n     * @param Integer $k2\n     * @return Integer\n     */\n    function minSumSquareDiff($nums1, $nums2, $k1, $k2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minSumSquareDiff(List<int> nums1, List<int> nums2, int k1, int k2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minSumSquareDiff(nums1: Array[Int], nums2: Array[Int], k1: Int, k2: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_sum_square_diff(nums1 :: [integer], nums2 :: [integer], k1 :: integer, k2 :: integer) :: integer\n  def min_sum_square_diff(nums1, nums2, k1, k2) do\n    \n  end\nend",
+    "erlang": "-spec min_sum_square_diff(Nums1 :: [integer()], Nums2 :: [integer()], K1 :: integer(), K2 :: integer()) -> integer().\nmin_sum_square_diff(Nums1, Nums2, K1, K2) ->\n  .",
+    "racket": "(define/contract (min-sum-square-diff nums1 nums2 k1 k2)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "579"
+    },
+    {
+      "input": "[1,4,10,12]\n[5,8,6,9]\n1\n1",
+      "expectedOutput": "43"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "579"
+    },
+    {
+      "input": "[1,4,10,12]\n[5,8,6,9]\n1\n1",
+      "expectedOutput": "43"
+    },
+    {
+      "input": "[1,2]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "65"
+    },
+    {
+      "input": "[3,4]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "37"
+    },
+    {
+      "input": "[1]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,4]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "37"
+    },
+    {
+      "input": "[4,3,2,1]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "701"
+    },
+    {
+      "input": "[1,1,1,1]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "767"
+    },
+    {
+      "input": "[1,2,3,4,1,2,3,4]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "579"
+    },
+    {
+      "input": "[2,4,6,8]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "353"
+    },
+    {
+      "input": "[2,3,4,5]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "501"
+    },
+    {
+      "input": "[0,1,2,3]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "665"
+    },
+    {
+      "input": "[-1,-2,-3,-4]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "1211"
+    },
+    {
+      "input": "[0,0,0,0]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "865"
+    },
+    {
+      "input": "[0]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-1]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[0,0]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "104"
+    },
+    {
+      "input": "[2,1]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "81"
+    },
+    {
+      "input": "[1,1]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "82"
+    },
+    {
+      "input": "[-1,1]\n[2,10,20,19]\n0\n0",
+      "expectedOutput": "90"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "There is no difference between the purpose of k1 and k2. Adding +1 to one element in nums1 is same as performing -1 to one element in nums2, and vice versa.",
+    "Reduce the sum of squared difference greedily. One operation of k should use the index that has the current maximum difference.",
+    "Binary search the maximum difference for the final result."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-sum-of-squared-difference/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.079Z",
+    "sourceUpdatedAt": null
+  }
+}

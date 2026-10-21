@@ -1,0 +1,116 @@
+{
+  "id": "3604",
+  "slug": "minimum-time-to-reach-destination-in-directed-graph",
+  "title": "Minimum Time to Reach Destination in Directed Graph",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "statement": "You are given an integer `n` and a **directed** graph with `n` nodes labeled from 0 to `n - 1`. This is represented by a 2D array `edges`, where `edges[i] = [u_(i), v_(i), start_(i), end_(i)]` indicates an edge from node `u_(i)` to `v_(i)` that can **only** be used at any integer time `t` such that `start_(i) <= t <= end_(i)`.\n\nYou start at node 0 at time 0.\n\nIn one unit of time, you can either:\n\n*   Wait at your current node without moving, or\n*   Travel along an outgoing edge from your current node if the current time `t` satisfies `start_(i) <= t <= end_(i)`.\n\nReturn the **minimum** time required to reach node `n - 1`. If it is impossible, return `-1`.\n\n**Example 1:**\n\n**Input:** n = 3, edges = \\[\\[0,1,0,1\\],\\[1,2,2,5\\]\\]\n\n**Output:** 3\n\n**Explanation:**\n\n![](./assets/minimum-time-to-reach-destination-in-directed-graph-1.png)\n\nThe optimal path is:\n\n*   At time `t = 0`, take the edge `(0 → 1)` which is available from 0 to 1. You arrive at node 1 at time `t = 1`, then wait until `t = 2`.\n*   At time `t = `2``, take the edge `(1 → 2)` which is available from 2 to 5. You arrive at node 2 at time 3.\n\nHence, the minimum time to reach node 2 is 3.\n\n**Example 2:**\n\n**Input:** n = 4, edges = \\[\\[0,1,0,3\\],\\[1,3,7,8\\],\\[0,2,1,5\\],\\[2,3,4,7\\]\\]\n\n**Output:** 5\n\n**Explanation:**\n\n![](./assets/minimum-time-to-reach-destination-in-directed-graph-2.png)\n\nThe optimal path is:\n\n*   Wait at node 0 until time `t = 1`, then take the edge `(0 → 2)` which is available from 1 to 5. You arrive at node 2 at `t = 2`.\n*   Wait at node 2 until time `t = 4`, then take the edge `(2 → 3)` which is available from 4 to 7. You arrive at node 3 at `t = 5`.\n\nHence, the minimum time to reach node 3 is 5.\n\n**Example 3:**\n\n**Input:** n = 3, edges = \\[\\[1,0,1,3\\],\\[1,2,3,5\\]\\]\n\n**Output:** \\-1\n\n**Explanation:**\n\n![](./assets/minimum-time-to-reach-destination-in-directed-graph-3.png)\n\n*   Since there is no outgoing edge from node 0, it is impossible to reach node 2. Hence, the output is -1.\n\n**Constraints:**\n\n*   `1 <= n <= 10^(5)`\n*   `0 <= edges.length <= 10^(5)`\n*   `edges[i] == [u_(i), v_(i), start_(i), end_(i)]`\n*   `0 <= u_(i), v_(i) <= n - 1`\n*   `u_(i) != v_(i)`\n*   `0 <= start_(i) <= end_(i) <= 10^(9)`",
+  "constraints": [
+    "1 <= n <= 105",
+    "0 <= edges.length <= 105",
+    "edges[i] == [ui, vi, starti, endi]",
+    "0 <= ui, vi <= n - 1",
+    "ui != vi",
+    "0 <= starti <= endi <= 109"
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1,0,1],[1,2,2,5]]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "n = 4, edges = [[0,1,0,3],[1,3,7,8],[0,2,1,5],[2,3,4,7]]",
+      "output": "5",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, edges = [[1,0,1,3],[1,2,3,5]]",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minTime(int n, vector<vector<int>>& edges) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minTime(int n, int[][] edges) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minTime(self, n: int, edges: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minTime(self, n, edges):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @return {number}\n */\nvar minTime = function(n, edges) {\n    \n};",
+    "typescript": "function minTime(n: number, edges: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinTime(int n, int[][] edges) {\n        \n    }\n}",
+    "c": "int minTime(int n, int** edges, int edgesSize, int* edgesColSize) {\n    \n}",
+    "golang": "func minTime(n int, edges [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minTime(n: Int, edges: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minTime(_ n: Int, _ edges: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_time(n: i32, edges: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @return {Integer}\ndef min_time(n, edges)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @return Integer\n     */\n    function minTime($n, $edges) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minTime(int n, List<List<int>> edges) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minTime(n: Int, edges: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_time(n :: integer, edges :: [[integer]]) :: integer\n  def min_time(n, edges) do\n    \n  end\nend",
+    "erlang": "-spec min_time(N :: integer(), Edges :: [[integer()]]) -> integer().\nmin_time(N, Edges) ->\n  .",
+    "racket": "(define/contract (min-time n edges)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1,0,1],[1,2,2,5]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4\n[[0,1,0,3],[1,3,7,8],[0,2,1,5],[2,3,4,7]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "3\n[[1,0,1,3],[1,2,3,5]]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1,0,1],[1,2,2,5]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4\n[[0,1,0,3],[1,3,7,8],[0,2,1,5],[2,3,4,7]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "3\n[[1,0,1,3],[1,2,3,5]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "n = 3, edges = [[0,1,0,1],[1,2,2,5]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "n = 4, edges = [[0,1,0,3],[1,3,7,8],[0,2,1,5],[2,3,4,7]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "n = 3, edges = [[1,0,1,3],[1,2,3,5]]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use the <code>Dijkstra</code> algorithm over states (node, time).",
+    "At node <code>u</code> with current time <code>t</code>, you can only use an edge <code>[u, v, start, end]</code> if <code>t <= end</code>.",
+    "If <code>t < start</code>, wait until <code>start</code>, then traverse (arriving at <code>start + 1</code>)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-time-to-reach-destination-in-directed-graph/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.198Z",
+    "sourceUpdatedAt": null
+  }
+}

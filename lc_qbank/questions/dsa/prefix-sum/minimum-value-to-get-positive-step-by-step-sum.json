@@ -1,0 +1,165 @@
+{
+  "id": "1413",
+  "slug": "minimum-value-to-get-positive-step-by-step-sum",
+  "title": "Minimum Value to Get Positive Step by Step Sum",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "statement": "Given an array of integers `nums`, you start with an initial **positive** value _startValue__._\n\nIn each iteration, you calculate the step by step sum of _startValue_ plus elements in `nums` (from left to right).\n\nReturn the minimum **positive** value of _startValue_ such that the step by step sum is never less than 1.\n\n**Example 1:**\n\n```\nInput: nums = [-3,2,-3,4,2]\nOutput: 5\nExplanation: If you choose startValue = 4, in the third iteration your step by step sum is less than 1.\nstep by step sum\nstartValue = 4 | startValue = 5 | nums\n  (4 -3 ) = 1  | (5 -3 ) = 2    |  -3\n  (1 +2 ) = 3  | (2 +2 ) = 4    |   2\n  (3 -3 ) = 0  | (4 -3 ) = 1    |  -3\n  (0 +4 ) = 4  | (1 +4 ) = 5    |   4\n  (4 +2 ) = 6  | (5 +2 ) = 7    |   2\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,2]\nOutput: 1\nExplanation: Minimum start value should be positive.\n```\n\n**Example 3:**\n\n```\nInput: nums = [1,-2,-3]\nOutput: 5\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 100`\n*   `-100 <= nums[i] <= 100`",
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "-100 <= nums[i] <= 100"
+  ],
+  "examples": [
+    {
+      "input": "nums = [-3,2,-3,4,2]",
+      "output": "5",
+      "explanation": "If you choose startValue = 4, in the third iteration your step by step sum is less than 1.\nstep by step sum\nstartValue = 4 | startValue = 5 | nums\n  (4 -3 ) = 1  | (5 -3 ) = 2    |  -3\n  (1 +2 ) = 3  | (2 +2 ) = 4    |   2\n  (3 -3 ) = 0  | (4 -3 ) = 1    |  -3\n  (0 +4 ) = 4  | (1 +4 ) = 5    |   4\n  (4 +2 ) = 6  | (5 +2 ) = 7    |   2"
+    },
+    {
+      "input": "nums = [1,2]",
+      "output": "1",
+      "explanation": "Minimum start value should be positive."
+    },
+    {
+      "input": "nums = [1,-2,-3]",
+      "output": "5",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minStartValue(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minStartValue(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minStartValue(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minStartValue(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minStartValue = function(nums) {\n    \n};",
+    "typescript": "function minStartValue(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinStartValue(int[] nums) {\n        \n    }\n}",
+    "c": "int minStartValue(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minStartValue(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minStartValue(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minStartValue(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_start_value(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef min_start_value(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minStartValue($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minStartValue(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minStartValue(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_start_value(nums :: [integer]) :: integer\n  def min_start_value(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_start_value(Nums :: [integer()]) -> integer().\nmin_start_value(Nums) ->\n  .",
+    "racket": "(define/contract (min-start-value nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[-3,2,-3,4,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,-2,-3]",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[-3,2,-3,4,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,-2,-3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-3,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-3,4,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,4,-3,2,-3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-3,-3,2,2,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[4,2,2,-3,-3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-3,-3,-3,-3,-3]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[-3,2,-3,4,2,-3,2,-3,4,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-6,4,-6,8,4]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[-2,3,-2,5,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-4,1,-4,3,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[3,-2,3,-4,-2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find the minimum prefix sum."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.320Z",
+    "sourceUpdatedAt": null
+  }
+}

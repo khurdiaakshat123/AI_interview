@@ -1,0 +1,163 @@
+{
+  "id": "864",
+  "slug": "shortest-path-to-get-all-keys",
+  "title": "Shortest Path to Get All Keys",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "statement": "You are given an `m x n` grid `grid` where:\n\n*   `'.'` is an empty cell.\n*   `'#'` is a wall.\n*   `'@'` is the starting point.\n*   Lowercase letters represent keys.\n*   Uppercase letters represent locks.\n\nYou start at the starting point and one move consists of walking one space in one of the four cardinal directions. You cannot walk outside the grid, or walk into a wall.\n\nIf you walk over a key, you can pick it up and you cannot walk over a lock unless you have its corresponding key.\n\nFor some `1 <= k <= 6`, there is exactly one lowercase and one uppercase letter of the first `k` letters of the English alphabet in the grid. This means that there is exactly one key for each lock, and one lock for each key; and also that the letters used to represent the keys and locks were chosen in the same order as the English alphabet.\n\nReturn _the lowest number of moves to acquire all keys_. If it is impossible, return `-1`.\n\n**Example 1:**\n\n![](./assets/shortest-path-to-get-all-keys-1.jpg)\n```\nInput: grid = [\"@.a..\",\"###.#\",\"b.A.B\"]\nOutput: 8\nExplanation: Note that the goal is to obtain all the keys not to open all the locks.\n```\n\n**Example 2:**\n\n![](./assets/shortest-path-to-get-all-keys-2.jpg)\n```\nInput: grid = [\"@..aA\",\"..B#.\",\"....b\"]\nOutput: 6\n```\n\n**Example 3:**\n\n![](./assets/shortest-path-to-get-all-keys-3.jpg)\n```\nInput: grid = [\"@Aa\"]\nOutput: -1\n```\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 30`\n*   `grid[i][j]` is either an English letter, `'.'`, `'#'`, or `'@'`. \n*   There is exactly one `'@'` in the grid.\n*   The number of keys in the grid is in the range `[1, 6]`.\n*   Each key in the grid is **unique**.\n*   Each key in the grid has a matching lock.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 30",
+    "grid[i][j] is either an English letter, '.', '#', or '@'. ",
+    "There is exactly one '@' in the grid.",
+    "The number of keys in the grid is in the range [1, 6].",
+    "Each key in the grid is unique.",
+    "Each key in the grid has a matching lock."
+  ],
+  "examples": [
+    {
+      "input": "grid = [\"@.a..\",\"###.#\",\"b.A.B\"]",
+      "output": "8",
+      "explanation": "Note that the goal is to obtain all the keys not to open all the locks."
+    },
+    {
+      "input": "grid = [\"@..aA\",\"..B#.\",\"....b\"]",
+      "output": "6",
+      "explanation": null
+    },
+    {
+      "input": "grid = [\"@Aa\"]",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int shortestPathAllKeys(vector<string>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int shortestPathAllKeys(String[] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shortestPathAllKeys(self, grid: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def shortestPathAllKeys(self, grid):\n        \"\"\"\n        :type grid: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} grid\n * @return {number}\n */\nvar shortestPathAllKeys = function(grid) {\n    \n};",
+    "typescript": "function shortestPathAllKeys(grid: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ShortestPathAllKeys(string[] grid) {\n        \n    }\n}",
+    "c": "int shortestPathAllKeys(char** grid, int gridSize) {\n    \n}",
+    "golang": "func shortestPathAllKeys(grid []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun shortestPathAllKeys(grid: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shortestPathAllKeys(_ grid: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shortest_path_all_keys(grid: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} grid\n# @return {Integer}\ndef shortest_path_all_keys(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $grid\n     * @return Integer\n     */\n    function shortestPathAllKeys($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int shortestPathAllKeys(List<String> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shortestPathAllKeys(grid: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shortest_path_all_keys(grid :: [String.t]) :: integer\n  def shortest_path_all_keys(grid) do\n    \n  end\nend",
+    "erlang": "-spec shortest_path_all_keys(Grid :: [unicode:unicode_binary()]) -> integer().\nshortest_path_all_keys(Grid) ->\n  .",
+    "racket": "(define/contract (shortest-path-all-keys grid)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"@.a..\",\"###.#\",\"b.A.B\"]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"@..aA\",\"..B#.\",\"....b\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"@Aa\"]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"@.a..\",\"###.#\",\"b.A.B\"]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"@..aA\",\"..B#.\",\"....b\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"@Aa\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"@.a..\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"@.a..\",\"b.A.B\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"@.a..\",\"###.#\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"b.A.B\",\"###.#\",\"@.a..\"]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"###.#\",\"@.a..\",\"b.A.B\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"b.A.B\",\"@.a..\",\"###.#\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"@.a..\",\"@.a..\",\"@.a..\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"@.a..\",\"###.#\",\"b.A.B\",\"@.a..\",\"###.#\",\"b.A.B\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"@..aA\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"@..aA\",\"....b\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"@..aA\",\"..B#.\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"....b\",\"..B#.\",\"@..aA\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"@..aA\",\"@..aA\",\"@..aA\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"@..aA\",\"..B#.\",\"....b\",\"@..aA\",\"..B#.\",\"....b\"]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[\"@Aa\",\"@Aa\"]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/shortest-path-to-get-all-keys/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.501Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "id": "1334",
+  "slug": "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance",
+  "title": "Find the City With the Smallest Number of Neighbors at a Threshold Distance",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Dynamic Programming",
+    "Graph Theory",
+    "Shortest Path",
+    "Dijkstra's Algorithm",
+    "Bellman–Ford Algorithm",
+    "Floyd–Warshall Algorithm"
+  ],
+  "statement": "There are `n` cities numbered from `0` to `n-1`. Given the array `edges` where `edges[i] = [from_(i), to_(i), weight_(i)]` represents a bidirectional and weighted edge between cities `from_(i)` and `to_(i)`, and given the integer `distanceThreshold`.\n\nReturn the city with the smallest number of cities that are reachable through some path and whose distance is **at most** `distanceThreshold`, If there are multiple such cities, return the city with the greatest number.\n\nNotice that the distance of a path connecting cities _**i**_ and _**j**_ is equal to the sum of the edges' weights along that path.\n\n**Example 1:**\n\n![](./assets/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance-1.png)\n\n```\nInput: n = 4, edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]], distanceThreshold = 4\nOutput: 3\nExplanation: The figure above describes the graph. \nThe neighboring cities at a distanceThreshold = 4 for each city are:\nCity 0 -> [City 1, City 2] \nCity 1 -> [City 0, City 2, City 3] \nCity 2 -> [City 0, City 1, City 3] \nCity 3 -> [City 1, City 2] \nCities 0 and 3 have 2 neighboring cities at a distanceThreshold = 4, but we have to return city 3 since it has the greatest number.\n```\n\n**Example 2:**\n\n![](./assets/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance-2.png)\n\n```\nInput: n = 5, edges = [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]], distanceThreshold = 2\nOutput: 0\nExplanation: The figure above describes the graph. \nThe neighboring cities at a distanceThreshold = 2 for each city are:\nCity 0 -> [City 1] \nCity 1 -> [City 0, City 4] \nCity 2 -> [City 3, City 4] \nCity 3 -> [City 2, City 4]\nCity 4 -> [City 1, City 2, City 3] \nThe city 0 has 1 neighboring city at a distanceThreshold = 2.\n```\n\n**Constraints:**\n\n*   `2 <= n <= 100`\n*   `1 <= edges.length <= n * (n - 1) / 2`\n*   `edges[i].length == 3`\n*   `0 <= from_(i) < to_(i) < n`\n*   `1 <= weight_(i), distanceThreshold <= 10^4`\n*   All pairs `(from_(i), to_(i))` are distinct.",
+  "constraints": [
+    "2 <= n <= 100",
+    "1 <= edges.length <= n * (n - 1) / 2",
+    "edges[i].length == 3",
+    "0 <= fromi < toi < n",
+    "1 <= weighti, distanceThreshold <= 10^4",
+    "All pairs (fromi, toi) are distinct."
+  ],
+  "examples": [
+    {
+      "input": "n = 4, edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]], distanceThreshold = 4",
+      "output": "3",
+      "explanation": "The figure above describes the graph. \nThe neighboring cities at a distanceThreshold = 4 for each city are:\nCity 0 -> [City 1, City 2] \nCity 1 -> [City 0, City 2, City 3] \nCity 2 -> [City 0, City 1, City 3] \nCity 3 -> [City 1, City 2] \nCities 0 and 3 have 2 neighboring cities at a distanceThreshold = 4, but we have to return city 3 since it has the greatest number."
+    },
+    {
+      "input": "n = 5, edges = [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]], distanceThreshold = 2",
+      "output": "0",
+      "explanation": "The figure above describes the graph. \nThe neighboring cities at a distanceThreshold = 2 for each city are:\nCity 0 -> [City 1] \nCity 1 -> [City 0, City 4] \nCity 2 -> [City 3, City 4] \nCity 3 -> [City 2, City 4]\nCity 4 -> [City 1, City 2, City 3] \nThe city 0 has 1 neighboring city at a distanceThreshold = 2."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findTheCity(int n, int[][] edges, int distanceThreshold) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findTheCity(self, n: int, edges: list[list[int]], distanceThreshold: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def findTheCity(self, n, edges, distanceThreshold):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type distanceThreshold: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number} distanceThreshold\n * @return {number}\n */\nvar findTheCity = function(n, edges, distanceThreshold) {\n    \n};",
+    "typescript": "function findTheCity(n: number, edges: number[][], distanceThreshold: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindTheCity(int n, int[][] edges, int distanceThreshold) {\n        \n    }\n}",
+    "c": "int findTheCity(int n, int** edges, int edgesSize, int* edgesColSize, int distanceThreshold) {\n    \n}",
+    "golang": "func findTheCity(n int, edges [][]int, distanceThreshold int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findTheCity(n: Int, edges: Array<IntArray>, distanceThreshold: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findTheCity(_ n: Int, _ edges: [[Int]], _ distanceThreshold: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_the_city(n: i32, edges: Vec<Vec<i32>>, distance_threshold: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Integer} distance_threshold\n# @return {Integer}\ndef find_the_city(n, edges, distance_threshold)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Integer $distanceThreshold\n     * @return Integer\n     */\n    function findTheCity($n, $edges, $distanceThreshold) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findTheCity(int n, List<List<int>> edges, int distanceThreshold) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findTheCity(n: Int, edges: Array[Array[Int]], distanceThreshold: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_the_city(n :: integer, edges :: [[integer]], distance_threshold :: integer) :: integer\n  def find_the_city(n, edges, distance_threshold) do\n    \n  end\nend",
+    "erlang": "-spec find_the_city(N :: integer(), Edges :: [[integer()]], DistanceThreshold :: integer()) -> integer().\nfind_the_city(N, Edges, DistanceThreshold) ->\n  .",
+    "racket": "(define/contract (find-the-city n edges distanceThreshold)\n  (-> exact-integer? (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n4",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "5\n[[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]]\n2",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n4",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "5\n[[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "5\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n4",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "6\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n4",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "7\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n4",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "8\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n4",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "9\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n4",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n0",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n5",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n7",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n8",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n9",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n-1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4\n[[0,1,3],[1,2,1],[1,3,4],[2,3,1]]\n-2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "6\n[[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]]\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "7\n[[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]]\n2",
+      "expectedOutput": "6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use Floyd-Warshall's algorithm to compute any-point to any-point distances. (Or can also do Dijkstra from every node due to the weights are non-negative).",
+    "For each city calculate the number of reachable cities within the threshold, then search for the optimal city."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.187Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "id": "3981",
+  "slug": "count-distinct-ways-to-form-target-from-two-strings",
+  "title": "Count Distinct Ways to Form Target from Two Strings",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "statement": "You are given three strings `word1`, `word2`, and `target`.\n\nYour task is to count the number of ways to form `target` by choosing characters from `word1` and `word2` under the following conditions:\n\n*   For each character of `target`, choose one matching character from either `word1` or `word2`.\n*   The chosen indices from `word1` must be **strictly** increasing.\n*   The chosen indices from `word2` must be **strictly** increasing.\n*   **At least** one character must be chosen from **both** `word1` and `word2`.\n\nTwo ways are considered different if, for **at least** one position in `target`, the chosen character comes from a different string or a different index.\n\nReturn the number of ways. Since the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** word1 = \"abc\", word2 = \"bac\", target = \"abc\"\n\n**Output:** 5\n\n**Explanation:**\n\nThere are 5 ways to form `target`:\n\n*   `word1[0] = 'a'`, `word1[1] = 'b'`, `word2[2] = 'c'`\n*   `word1[0] = 'a'`, `word2[0] = 'b'`, `word1[2] = 'c'`\n*   `word1[0] = 'a'`, `word2[0] = 'b'`, `word2[2] = 'c'`\n*   `word2[1] = 'a'`, `word1[1] = 'b'`, `word1[2] = 'c'`\n*   `word2[1] = 'a'`, `word1[1] = 'b'`, `word2[2] = 'c'`\n\nAll ways preserve the increasing index order inside each string and choose at least one character from each string.\n\n**Example 2:**\n\n**Input:** word1 = \"cd\", word2 = \"cd\", target = \"ccd\"\n\n**Output:** 4\n\n**Explanation:**\n\nThere are 4 ways to form `target`:\n\n*   `word1[0] = 'c'`, `word2[0] = 'c'`, `word1[1] = 'd'`\n*   `word1[0] = 'c'`, `word2[0] = 'c'`, `word2[1] = 'd'`\n*   `word2[0] = 'c'`, `word1[0] = 'c'`, `word1[1] = 'd'`\n*   `word2[0] = 'c'`, `word1[0] = 'c'`, `word2[1] = 'd'`\n\nThe first two `'c'` characters in `target` must come one from each string. The final `'d'` can be chosen from either string.\n\n**Example 3:**\n\n**Input:** word1 = \"xy\", word2 = \"xy\", target = \"xyxy\"\n\n**Output:** 2\n\n**Explanation:**\n\nThere are 2 ways to form `target`:\n\n*   `word1[0] = 'x'`, `word1[1] = 'y'`, `word2[0] = 'x'`, `word2[1] = 'y'`\n*   `word2[0] = 'x'`, `word2[1] = 'y'`, `word1[0] = 'x'`, `word1[1] = 'y'`\n\nEach `\"xy\"` part in `target` comes entirely from one string.\n\n**Example 4:**\n\n**Input:** word1 = \"ab\", word2 = \"cde\", target = \"ace\"\n\n**Output:** 1\n\n**Explanation:**\n\nThe only way is to choose `word1[0] = 'a'`, `word2[0] = 'c'`, and `word2[2] = 'e'`. Thus, the answer is 1.\n\n**Constraints:**\n\n*   `1 <= word1.length, word2.length, target.length <= 100`\n*   `word1`, `word2`, and `target` consist of lowercase English letters only.",
+  "constraints": [
+    "1 <= word1.length, word2.length, target.length <= 100",
+    "word1, word2, and target consist of lowercase English letters only."
+  ],
+  "examples": [
+    {
+      "input": "word1 = \"abc\", word2 = \"bac\", target = \"abc\"",
+      "output": "5",
+      "explanation": null
+    },
+    {
+      "input": "word1 = \"cd\", word2 = \"cd\", target = \"ccd\"",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "word1 = \"xy\", word2 = \"xy\", target = \"xyxy\"",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "word1 = \"ab\", word2 = \"cde\", target = \"ace\"",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int interleaveCharacters(string word1, string word2, string target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int interleaveCharacters(String word1, String word2, String target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def interleaveCharacters(self, word1: str, word2: str, target: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def interleaveCharacters(self, word1, word2, target):\n        \"\"\"\n        :type word1: str\n        :type word2: str\n        :type target: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word1\n * @param {string} word2\n * @param {string} target\n * @return {number}\n */\nvar interleaveCharacters = function(word1, word2, target) {\n    \n};",
+    "typescript": "function interleaveCharacters(word1: string, word2: string, target: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int InterleaveCharacters(string word1, string word2, string target) {\n        \n    }\n}",
+    "c": "int interleaveCharacters(char* word1, char* word2, char* target) {\n    \n}",
+    "golang": "func interleaveCharacters(word1 string, word2 string, target string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun interleaveCharacters(word1: String, word2: String, target: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func interleaveCharacters(_ word1: String, _ word2: String, _ target: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn interleave_characters(word1: String, word2: String, target: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} word1\n# @param {String} word2\n# @param {String} target\n# @return {Integer}\ndef interleave_characters(word1, word2, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word1\n     * @param String $word2\n     * @param String $target\n     * @return Integer\n     */\n    function interleaveCharacters($word1, $word2, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int interleaveCharacters(String word1, String word2, String target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def interleaveCharacters(word1: String, word2: String, target: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec interleave_characters(word1 :: String.t, word2 :: String.t, target :: String.t) :: integer\n  def interleave_characters(word1, word2, target) do\n    \n  end\nend",
+    "erlang": "-spec interleave_characters(Word1 :: unicode:unicode_binary(), Word2 :: unicode:unicode_binary(), Target :: unicode:unicode_binary()) -> integer().\ninterleave_characters(Word1, Word2, Target) ->\n  .",
+    "racket": "(define/contract (interleave-characters word1 word2 target)\n  (-> string? string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abc\"\n\"bac\"\n\"abc\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"cd\"\n\"cd\"\n\"ccd\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"xy\"\n\"xy\"\n\"xyxy\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"\n\"cde\"\n\"ace\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abc\"\n\"bac\"\n\"abc\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"cd\"\n\"cd\"\n\"ccd\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"xy\"\n\"xy\"\n\"xyxy\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"\n\"cde\"\n\"ace\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "word1 = \"abc\", word2 = \"bac\", target = \"abc\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "word1 = \"cd\", word2 = \"cd\", target = \"ccd\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "word1 = \"xy\", word2 = \"xy\", target = \"xyxy\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "word1 = \"ab\", word2 = \"cde\", target = \"ace\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Use dynamic programming over the current position in <code>target</code> and the next available indices in <code>word1</code> and <code>word2</code>.</p>",
+    "<p>For each character of <code>target</code>, try choosing a matching character from <code>word1</code> or from <code>word2</code>, then move only the corresponding string's index forward.</p>",
+    "<p>Track whether at least one character has been chosen from each string. This can be represented using a bitmask.</p>",
+    "<p>The final answer is the number of ways where all characters of <code>target</code> have been formed and both strings have been used.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-distinct-ways-to-form-target-from-two-strings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.088Z",
+    "sourceUpdatedAt": null
+  }
+}

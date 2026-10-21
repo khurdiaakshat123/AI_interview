@@ -1,0 +1,114 @@
+{
+  "id": "1488",
+  "slug": "avoid-flood-in-the-city",
+  "title": "Avoid Flood in The City",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "Your country has 10^(9) lakes. Initially, all the lakes are empty, but when it rains over the `n^(th)` lake, the `n^(th)` lake becomes full of water. If it rains over a lake that is **full of water**, there will be a **flood**. Your goal is to avoid floods in any lake.\n\nGiven an integer array `rains` where:\n\n*   `rains[i] > 0` means there will be rains over the `rains[i]` lake.\n*   `rains[i] == 0` means there are no rains this day and you **must** choose **one lake** this day and **dry it**.\n\nReturn _an array `ans`_ where:\n\n*   `ans.length == rains.length`\n*   `ans[i] == -1` if `rains[i] > 0`.\n*   `ans[i]` is the lake you choose to dry in the `ith` day if `rains[i] == 0`.\n\nIf there are multiple valid answers return **any** of them. If it is impossible to avoid flood return **an empty array**.\n\nNotice that if you chose to dry a full lake, it becomes empty, but if you chose to dry an empty lake, nothing changes.\n\n**Example 1:**\n\n```\nInput: rains = [1,2,3,4]\nOutput: [-1,-1,-1,-1]\nExplanation: After the first day full lakes are [1]\nAfter the second day full lakes are [1,2]\nAfter the third day full lakes are [1,2,3]\nAfter the fourth day full lakes are [1,2,3,4]\nThere's no day to dry any lake and there is no flood in any lake.\n```\n\n**Example 2:**\n\n```\nInput: rains = [1,2,0,0,2,1]\nOutput: [-1,-1,2,1,-1,-1]\nExplanation: After the first day full lakes are [1]\nAfter the second day full lakes are [1,2]\nAfter the third day, we dry lake 2. Full lakes are [1]\nAfter the fourth day, we dry lake 1. There is no full lakes.\nAfter the fifth day, full lakes are [2].\nAfter the sixth day, full lakes are [1,2].\nIt is easy that this scenario is flood-free. [-1,-1,1,2,-1,-1] is another acceptable scenario.\n```\n\n**Example 3:**\n\n```\nInput: rains = [1,2,0,1,2]\nOutput: []\nExplanation: After the second day, full lakes are  [1,2]. We have to dry one lake in the third day.\nAfter that, it will rain over lakes [1,2]. It's easy to prove that no matter which lake you choose to dry in the 3rd day, the other one will flood.\n```\n\n**Constraints:**\n\n*   `1 <= rains.length <= 10^(5)`\n*   `0 <= rains[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= rains.length <= 105",
+    "0 <= rains[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "rains = [1,2,3,4]",
+      "output": "[-1,-1,-1,-1]",
+      "explanation": "After the first day full lakes are [1]\nAfter the second day full lakes are [1,2]\nAfter the third day full lakes are [1,2,3]\nAfter the fourth day full lakes are [1,2,3,4]\nThere's no day to dry any lake and there is no flood in any lake."
+    },
+    {
+      "input": "rains = [1,2,0,0,2,1]",
+      "output": "[-1,-1,2,1,-1,-1]",
+      "explanation": "After the first day full lakes are [1]\nAfter the second day full lakes are [1,2]\nAfter the third day, we dry lake 2. Full lakes are [1]\nAfter the fourth day, we dry lake 1. There is no full lakes.\nAfter the fifth day, full lakes are [2].\nAfter the sixth day, full lakes are [1,2].\nIt is easy that this scenario is flood-free. [-1,-1,1,2,-1,-1] is another acceptable scenario."
+    },
+    {
+      "input": "rains = [1,2,0,1,2]",
+      "output": "[]",
+      "explanation": "After the second day, full lakes are  [1,2]. We have to dry one lake in the third day.\nAfter that, it will rain over lakes [1,2]. It's easy to prove that no matter which lake you choose to dry in the 3rd day, the other one will flood."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> avoidFlood(vector<int>& rains) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] avoidFlood(int[] rains) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def avoidFlood(self, rains: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def avoidFlood(self, rains):\n        \"\"\"\n        :type rains: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} rains\n * @return {number[]}\n */\nvar avoidFlood = function(rains) {\n    \n};",
+    "typescript": "function avoidFlood(rains: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] AvoidFlood(int[] rains) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* avoidFlood(int* rains, int rainsSize, int* returnSize) {\n    \n}",
+    "golang": "func avoidFlood(rains []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun avoidFlood(rains: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func avoidFlood(_ rains: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn avoid_flood(rains: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} rains\n# @return {Integer[]}\ndef avoid_flood(rains)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $rains\n     * @return Integer[]\n     */\n    function avoidFlood($rains) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> avoidFlood(List<int> rains) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def avoidFlood(rains: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec avoid_flood(rains :: [integer]) :: [integer]\n  def avoid_flood(rains) do\n    \n  end\nend",
+    "erlang": "-spec avoid_flood(Rains :: [integer()]) -> [integer()].\navoid_flood(Rains) ->\n  .",
+    "racket": "(define/contract (avoid-flood rains)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "[-1,-1,-1,-1]"
+    },
+    {
+      "input": "[1,2,0,0,2,1]",
+      "expectedOutput": "[-1,-1,2,1,-1,-1]"
+    },
+    {
+      "input": "[1,2,0,1,2]",
+      "expectedOutput": "[]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "[-1,-1,-1,-1]"
+    },
+    {
+      "input": "[1,2,0,0,2,1]",
+      "expectedOutput": "[-1,-1,2,1,-1,-1]"
+    },
+    {
+      "input": "[1,2,0,1,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "rains = [1,2,3,4]",
+      "expectedOutput": "[-1,-1,-1,-1]"
+    },
+    {
+      "input": "rains = [1,2,0,0,2,1]",
+      "expectedOutput": "[-1,-1,2,1,-1,-1]"
+    },
+    {
+      "input": "rains = [1,2,0,1,2]",
+      "expectedOutput": "[]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Keep An array of the last day there was rains over each city.",
+    "Keep an array of the days you can dry a lake when you face one.",
+    "When it rains over a lake, check the first possible day you can dry this lake and assign this day to this lake."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/avoid-flood-in-the-city/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.381Z",
+    "sourceUpdatedAt": null
+  }
+}

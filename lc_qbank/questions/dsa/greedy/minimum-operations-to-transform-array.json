@@ -1,0 +1,170 @@
+{
+  "id": "3724",
+  "slug": "minimum-operations-to-transform-array",
+  "title": "Minimum Operations to Transform Array",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "statement": "You are given two integer arrays `nums1` of length `n` and `nums2` of length `n + 1`.\n\nYou want to transform `nums1` into `nums2` using the **minimum** number of operations.\n\nYou may perform the following operations **any** number of times, each time choosing an index `i`:\n\n*   **Increase** `nums1[i]` by 1.\n*   **Decrease** `nums1[i]` by 1.\n*   **Append** `nums1[i]` to the **end** of the array.\n\nReturn the **minimum** number of operations required to transform `nums1` into `nums2`.\n\n**Example 1:**\n\n**Input:** nums1 = \\[2,8\\], nums2 = \\[1,7,3\\]\n\n**Output:** 4\n\n**Explanation:**\n\nStep\n\n`i`\n\nOperation\n\n`nums1[i]`\n\nUpdated `nums1`\n\n1\n\n0\n\nAppend\n\n\\-\n\n\\[2, 8, 2\\]\n\n2\n\n0\n\nDecrement\n\nDecreases to 1\n\n\\[1, 8, 2\\]\n\n3\n\n1\n\nDecrement\n\nDecreases to 7\n\n\\[1, 7, 2\\]\n\n4\n\n2\n\nIncrement\n\nIncreases to 3\n\n\\[1, 7, 3\\]\n\nThus, after 4 operations `nums1` is transformed into `nums2`.\n\n**Example 2:**\n\n**Input:** nums1 = \\[1,3,6\\], nums2 = \\[2,4,5,3\\]\n\n**Output:** 4\n\n**Explanation:**\n\nStep\n\n`i`\n\nOperation\n\n`nums1[i]`\n\nUpdated `nums1`\n\n1\n\n1\n\nAppend\n\n\\-\n\n\\[1, 3, 6, 3\\]\n\n2\n\n0\n\nIncrement\n\nIncreases to 2\n\n\\[2, 3, 6, 3\\]\n\n3\n\n1\n\nIncrement\n\nIncreases to 4\n\n\\[2, 4, 6, 3\\]\n\n4\n\n2\n\nDecrement\n\nDecreases to 5\n\n\\[2, 4, 5, 3\\]\n\nThus, after 4 operations `nums1` is transformed into `nums2`.\n\n**Example 3:**\n\n**Input:** nums1 = \\[2\\], nums2 = \\[3,4\\]\n\n**Output:** 3\n\n**Explanation:**\n\nStep\n\n`i`\n\nOperation\n\n`nums1[i]`\n\nUpdated `nums1`\n\n1\n\n0\n\nIncrement\n\nIncreases to 3\n\n\\[3\\]\n\n2\n\n0\n\nAppend\n\n\\-\n\n\\[3, 3\\]\n\n3\n\n1\n\nIncrement\n\nIncreases to 4\n\n\\[3, 4\\]\n\nThus, after 3 operations `nums1` is transformed into `nums2`.\n\n**Constraints:**\n\n*   `1 <= n == nums1.length <= 10^(5)`\n*   `nums2.length == n + 1`\n*   `1 <= nums1[i], nums2[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= n == nums1.length <= 105",
+    "nums2.length == n + 1",
+    "1 <= nums1[i], nums2[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [2,8], nums2 = [1,7,3]",
+      "output": "4",
+      "explanation": "Step\n\t\t\ti\n\t\t\tOperation\n\t\t\tnums1[i]\n\t\t\tUpdated nums1\n\t\t\n\t\n\t\n\t\t\n\t\t\t1\n\t\t\t0\n\t\t\tAppend\n\t\t\t-\n\t\t\t[2, 8, 2]\n\t\t\n\t\t\n\t\t\t2\n\t\t\t0\n\t\t\tDecrement\n\t\t\tDecreases to 1\n\t\t\t[1, 8, 2]\n\t\t\n\t\t\n\t\t\t3\n\t\t\t1\n\t\t\tDecrement\n\t\t\tDecreases to 7\n\t\t\t[1, 7, 2]\n\t\t\n\t\t\n\t\t\t4\n\t\t\t2\n\t\t\tIncrement\n\t\t\tIncreases to 3\n\t\t\t[1, 7, 3]"
+    },
+    {
+      "input": "nums1 = [1,3,6], nums2 = [2,4,5,3]",
+      "output": "4",
+      "explanation": "Step\n\t\t\ti\n\t\t\tOperation\n\t\t\tnums1[i]\n\t\t\tUpdated nums1\n\t\t\n\t\n\t\n\t\t\n\t\t\t1\n\t\t\t1\n\t\t\tAppend\n\t\t\t-\n\t\t\t[1, 3, 6, 3]\n\t\t\n\t\t\n\t\t\t2\n\t\t\t0\n\t\t\tIncrement\n\t\t\tIncreases to 2\n\t\t\t[2, 3, 6, 3]\n\t\t\n\t\t\n\t\t\t3\n\t\t\t1\n\t\t\tIncrement\n\t\t\tIncreases to 4\n\t\t\t[2, 4, 6, 3]\n\t\t\n\t\t\n\t\t\t4\n\t\t\t2\n\t\t\tDecrement\n\t\t\tDecreases to 5\n\t\t\t[2, 4, 5, 3]"
+    },
+    {
+      "input": "nums1 = [2], nums2 = [3,4]",
+      "output": "3",
+      "explanation": "Step\n\t\t\ti\n\t\t\tOperation\n\t\t\tnums1[i]\n\t\t\tUpdated nums1\n\t\t\n\t\n\t\n\t\t\n\t\t\t1\n\t\t\t0\n\t\t\tIncrement\n\t\t\tIncreases to 3\n\t\t\t[3]\n\t\t\n\t\t\n\t\t\t2\n\t\t\t0\n\t\t\tAppend\n\t\t\t-\n\t\t\t[3, 3]\n\t\t\n\t\t\n\t\t\t3\n\t\t\t1\n\t\t\tIncrement\n\t\t\tIncreases to 4\n\t\t\t[3, 4]"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minOperations(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minOperations(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, nums1: List[int], nums2: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar minOperations = function(nums1, nums2) {\n    \n};",
+    "typescript": "function minOperations(nums1: number[], nums2: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinOperations(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "long long minOperations(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    \n}",
+    "golang": "func minOperations(nums1 []int, nums2 []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(nums1: IntArray, nums2: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ nums1: [Int], _ nums2: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(nums1: Vec<i32>, nums2: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer}\ndef min_operations(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer\n     */\n    function minOperations($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(nums1: Array[Int], nums2: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(nums1 :: [integer], nums2 :: [integer]) :: integer\n  def min_operations(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(Nums1 :: [integer()], Nums2 :: [integer()]) -> integer().\nmin_operations(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (min-operations nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,8]\n[1,7,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,3,6]\n[2,4,5,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2]\n[3,4]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,8]\n[1,7,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,3,6]\n[2,4,5,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2]\n[3,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2]\n[1,7,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[8]\n[1,7,3]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[8,2]\n[1,7,3]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[2,2]\n[1,7,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[2,8,2,8]\n[1,7,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,16]\n[1,7,3]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[3,9]\n[1,7,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,7]\n[1,7,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-2,-8]\n[1,7,3]",
+      "expectedOutput": "19"
+    },
+    {
+      "input": "[0,0]\n[1,7,3]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,1]\n[1,7,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0]\n[1,7,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1]\n[1,7,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1]\n[1,7,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2]\n[1,7,3]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,1]\n[1,7,3]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[-1,1]\n[1,7,3]",
+      "expectedOutput": "9"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Notice that <code>nums2</code> has exactly one extra element compared to <code>nums1</code>. That extra element must be produced by an append operation.",
+    "Suppose we choose index <code>j</code> in <code>nums1</code> to append. Then <code>nums1[j]</code> must eventually become both <code>nums2[j]</code> and <code>nums2.back()</code>.",
+    "The cost for index <code>j</code> is: adjust <code>nums1[j]</code> so that one copy matches <code>nums2[j]</code> and the appended copy matches <code>nums2.back()</code>.",
+    "For each <code>j</code>, compute this adjustment cost, add the cost of transforming all other positions, and take the minimum.",
+    "Use prefix sums."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-operations-to-transform-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.815Z",
+    "sourceUpdatedAt": null
+  }
+}

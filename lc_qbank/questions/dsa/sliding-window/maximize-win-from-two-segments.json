@@ -1,0 +1,160 @@
+{
+  "id": "2555",
+  "slug": "maximize-win-from-two-segments",
+  "title": "Maximize Win From Two Segments",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sliding Window"
+  ],
+  "statement": "There are some prizes on the **X-axis**. You are given an integer array `prizePositions` that is **sorted in non-decreasing order**, where `prizePositions[i]` is the position of the `i^(th)` prize. There could be different prizes at the same position on the line. You are also given an integer `k`.\n\nYou are allowed to select two segments with integer endpoints. The length of each segment must be `k`. You will collect all prizes whose position falls within at least one of the two selected segments (including the endpoints of the segments). The two selected segments may intersect.\n\n*   For example if `k = 2`, you can choose segments `[1, 3]` and `[2, 4]`, and you will win any prize i that satisfies `1 <= prizePositions[i] <= 3` or `2 <= prizePositions[i] <= 4`.\n\nReturn _the **maximum** number of prizes you can win if you choose the two segments optimally_.\n\n**Example 1:**\n\n```\nInput: prizePositions = [1,1,2,2,3,3,5], k = 2\nOutput: 7\nExplanation: In this example, you can win all 7 prizes by selecting two segments [1, 3] and [3, 5].\n```\n\n**Example 2:**\n\n```\n[3, 3]\n```\n\n**Constraints:**\n\n*   `1 <= prizePositions.length <= 10^(5)`\n*   `1 <= prizePositions[i] <= 10^(9)`\n*   `0 <= k <= 10^(9)`\n*   `prizePositions` is sorted in non-decreasing order.\n\n.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0; } .spoiler {overflow:hidden;} .spoiler > div {-webkit-transition: all 0s ease;-moz-transition: margin 0s ease;-o-transition: all 0s ease;transition: margin 0s ease;} .spoilerbutton\\[value=\"Show Message\"\\] + .spoiler > div {margin-top:-500%;} .spoilerbutton\\[value=\"Hide Message\"\\] + .spoiler {padding:5px;}",
+  "constraints": [
+    "1 <= prizePositions.length <= 105",
+    "1 <= prizePositions[i] <= 109",
+    "0 <= k <= 109",
+    "prizePositions is sorted in non-decreasing order."
+  ],
+  "examples": [
+    {
+      "input": "prizePositions = [1,1,2,2,3,3,5], k = 2",
+      "output": "7",
+      "explanation": "In this example, you can win all 7 prizes by selecting two segments [1, 3] and [3, 5]."
+    },
+    {
+      "input": "prizePositions = [1,2,3,4], k = 0",
+      "output": "2",
+      "explanation": "For this example, one choice for the segments is [3, 3] and [4, 4], and you will be able to get 2 prizes."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maximizeWin(vector<int>& prizePositions, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maximizeWin(int[] prizePositions, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximizeWin(self, prizePositions: list[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximizeWin(self, prizePositions, k):\n        \"\"\"\n        :type prizePositions: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} prizePositions\n * @param {number} k\n * @return {number}\n */\nvar maximizeWin = function(prizePositions, k) {\n    \n};",
+    "typescript": "function maximizeWin(prizePositions: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaximizeWin(int[] prizePositions, int k) {\n        \n    }\n}",
+    "c": "int maximizeWin(int* prizePositions, int prizePositionsSize, int k) {\n    \n}",
+    "golang": "func maximizeWin(prizePositions []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximizeWin(prizePositions: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximizeWin(_ prizePositions: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximize_win(prize_positions: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} prize_positions\n# @param {Integer} k\n# @return {Integer}\ndef maximize_win(prize_positions, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $prizePositions\n     * @param Integer $k\n     * @return Integer\n     */\n    function maximizeWin($prizePositions, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximizeWin(List<int> prizePositions, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximizeWin(prizePositions: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximize_win(prize_positions :: [integer], k :: integer) :: integer\n  def maximize_win(prize_positions, k) do\n    \n  end\nend",
+    "erlang": "-spec maximize_win(PrizePositions :: [integer()], K :: integer()) -> integer().\nmaximize_win(PrizePositions, K) ->\n  .",
+    "racket": "(define/contract (maximize-win prizePositions k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,1,2,2,3,3,5]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,2,3,4]\n0",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,1,2,2,3,3,5]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,2,3,4]\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,2]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,3,3,5]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,5]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,3,3,2,2,1,1]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1,1,1,1]\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,1,2,2,3,3,5,1,1,2,2,3,3,5]\n2",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[2,2,4,4,6,6,10]\n2",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,2,3,3,4,4,6]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0,0,1,1,2,2,4]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[-1,-1,-2,-2,-3,-3,-5]\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0,0,0,0]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2]\n2",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try solving the problem for one interval.",
+    "Using the solution with one interval, how can you combine that with a second interval?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-win-from-two-segments/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.450Z",
+    "sourceUpdatedAt": null
+  }
+}

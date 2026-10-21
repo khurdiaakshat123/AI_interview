@@ -1,0 +1,76 @@
+{
+  "id": "176",
+  "slug": "second-highest-salary",
+  "title": "Second Highest Salary",
+  "category": "database",
+  "subcategory": "aggregation",
+  "difficulty": "Medium",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Employee`\n\n```\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| id          | int  |\n| salary      | int  |\n+-------------+------+\nid is the primary key (column with unique values) for this table.\nEach row of this table contains information about the salary of an employee.\n```\n\nWrite a solution to find the second highest **distinct** salary from the `Employee` table. If there is no second highest salary, return `null (return None in Pandas)`.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n| 2  | 200    |\n| 3  | 300    |\n+----+--------+\nOutput: \n+---------------------+\n| SecondHighestSalary |\n+---------------------+\n| 200                 |\n+---------------------+\n```\n\n**Example 2:**\n\n```\nInput: \nEmployee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n+----+--------+\nOutput: \n+---------------------+\n| SecondHighestSalary |\n+---------------------+\n| null                |\n+---------------------+\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Employee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n| 2  | 200    |\n| 3  | 300    |\n+----+--------+",
+      "output": "+---------------------+\n| SecondHighestSalary |\n+---------------------+\n| 200                 |\n+---------------------+",
+      "explanation": null
+    },
+    {
+      "input": "Employee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n+----+--------+",
+      "output": "+---------------------+\n| SecondHighestSalary |\n+---------------------+\n| null                |\n+---------------------+",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef second_highest_salary(employee: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Employee\":[\"id\",\"salary\"]},\"rows\":{\"Employee\":[[1,100],[2,200],[3,300]]}}",
+      "expectedOutput": "+---------------------+\n| SecondHighestSalary |\n+---------------------+\n| 200                 |\n+---------------------+"
+    },
+    {
+      "input": "{\"headers\":{\"Employee\":[\"id\",\"salary\"]},\"rows\":{\"Employee\":[[1,100]]}}",
+      "expectedOutput": "+---------------------+\n| SecondHighestSalary |\n+---------------------+\n| null                |\n+---------------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Employee\":[\"id\",\"salary\"]},\"rows\":{\"Employee\":[[1,100],[2,200],[3,300]]}}",
+      "expectedOutput": "+---------------------+\n| SecondHighestSalary |\n+---------------------+\n| 200                 |\n+---------------------+"
+    },
+    {
+      "input": "{\"headers\":{\"Employee\":[\"id\",\"salary\"]},\"rows\":{\"Employee\":[[1,100]]}}",
+      "expectedOutput": "+---------------------+\n| SecondHighestSalary |\n+---------------------+\n| null                |\n+---------------------+"
+    },
+    {
+      "input": "Employee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n| 2  | 200    |\n| 3  | 300    |\n+----+--------+",
+      "expectedOutput": "+---------------------+\n| SecondHighestSalary |\n+---------------------+\n| 200                 |\n+---------------------+"
+    },
+    {
+      "input": "Employee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n+----+--------+",
+      "expectedOutput": "+---------------------+\n| SecondHighestSalary |\n+---------------------+\n| null                |\n+---------------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Employee (id int, salary int)\n\nTruncate table Employee",
+  "sqlSetup": [
+    "insert into Employee (id, salary) values ('1', '100')",
+    "insert into Employee (id, salary) values ('2', '200')",
+    "insert into Employee (id, salary) values ('3', '300')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/second-highest-salary/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:28.185Z",
+    "sourceUpdatedAt": null
+  }
+}

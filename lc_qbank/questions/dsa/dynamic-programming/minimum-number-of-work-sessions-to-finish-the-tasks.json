@@ -1,0 +1,171 @@
+{
+  "id": "1986",
+  "slug": "minimum-number-of-work-sessions-to-finish-the-tasks",
+  "title": "Minimum Number of Work Sessions to Finish the Tasks",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "statement": "There are `n` tasks assigned to you. The task times are represented as an integer array `tasks` of length `n`, where the `i^(th)` task takes `tasks[i]` hours to finish. A **work session** is when you work for **at most** `sessionTime` consecutive hours and then take a break.\n\nYou should finish the given tasks in a way that satisfies the following conditions:\n\n*   If you start a task in a work session, you must complete it in the **same** work session.\n*   You can start a new task **immediately** after finishing the previous one.\n*   You may complete the tasks in **any order**.\n\nGiven `tasks` and `sessionTime`, return _the **minimum** number of **work sessions** needed to finish all the tasks following the conditions above._\n\nThe tests are generated such that `sessionTime` is **greater** than or **equal** to the **maximum** element in `tasks[i]`.\n\n**Example 1:**\n\n```\nInput: tasks = [1,2,3], sessionTime = 3\nOutput: 2\nExplanation: You can finish the tasks in two work sessions.\n- First work session: finish the first and the second tasks in 1 + 2 = 3 hours.\n- Second work session: finish the third task in 3 hours.\n```\n\n**Example 2:**\n\n```\nInput: tasks = [3,1,3,1,1], sessionTime = 8\nOutput: 2\nExplanation: You can finish the tasks in two work sessions.\n- First work session: finish all the tasks except the last one in 3 + 1 + 3 + 1 = 8 hours.\n- Second work session: finish the last task in 1 hour.\n```\n\n**Example 3:**\n\n```\nInput: tasks = [1,2,3,4,5], sessionTime = 15\nOutput: 1\nExplanation: You can finish all the tasks in one work session.\n```\n\n**Constraints:**\n\n*   `n == tasks.length`\n*   `1 <= n <= 14`\n*   `1 <= tasks[i] <= 10`\n*   `max(tasks[i]) <= sessionTime <= 15`",
+  "constraints": [
+    "n == tasks.length",
+    "1 <= n <= 14",
+    "1 <= tasks[i] <= 10",
+    "max(tasks[i]) <= sessionTime <= 15"
+  ],
+  "examples": [
+    {
+      "input": "tasks = [1,2,3], sessionTime = 3",
+      "output": "2",
+      "explanation": "You can finish the tasks in two work sessions.\n- First work session: finish the first and the second tasks in 1 + 2 = 3 hours.\n- Second work session: finish the third task in 3 hours."
+    },
+    {
+      "input": "tasks = [3,1,3,1,1], sessionTime = 8",
+      "output": "2",
+      "explanation": "You can finish the tasks in two work sessions.\n- First work session: finish all the tasks except the last one in 3 + 1 + 3 + 1 = 8 hours.\n- Second work session: finish the last task in 1 hour."
+    },
+    {
+      "input": "tasks = [1,2,3,4,5], sessionTime = 15",
+      "output": "1",
+      "explanation": "You can finish all the tasks in one work session."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minSessions(vector<int>& tasks, int sessionTime) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minSessions(int[] tasks, int sessionTime) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minSessions(self, tasks: list[int], sessionTime: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minSessions(self, tasks, sessionTime):\n        \"\"\"\n        :type tasks: List[int]\n        :type sessionTime: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} tasks\n * @param {number} sessionTime\n * @return {number}\n */\nvar minSessions = function(tasks, sessionTime) {\n    \n};",
+    "typescript": "function minSessions(tasks: number[], sessionTime: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinSessions(int[] tasks, int sessionTime) {\n        \n    }\n}",
+    "c": "int minSessions(int* tasks, int tasksSize, int sessionTime) {\n    \n}",
+    "golang": "func minSessions(tasks []int, sessionTime int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minSessions(tasks: IntArray, sessionTime: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minSessions(_ tasks: [Int], _ sessionTime: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_sessions(tasks: Vec<i32>, session_time: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} tasks\n# @param {Integer} session_time\n# @return {Integer}\ndef min_sessions(tasks, session_time)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $tasks\n     * @param Integer $sessionTime\n     * @return Integer\n     */\n    function minSessions($tasks, $sessionTime) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minSessions(List<int> tasks, int sessionTime) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minSessions(tasks: Array[Int], sessionTime: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_sessions(tasks :: [integer], session_time :: integer) :: integer\n  def min_sessions(tasks, session_time) do\n    \n  end\nend",
+    "erlang": "-spec min_sessions(Tasks :: [integer()], SessionTime :: integer()) -> integer().\nmin_sessions(Tasks, SessionTime) ->\n  .",
+    "racket": "(define/contract (min-sessions tasks sessionTime)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,1,3,1,1]\n8",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,4,5]\n15",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,1,3,1,1]\n8",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,4,5]\n15",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,3]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,1]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3,1,2,3]\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,4,6]\n3",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "[2,3,4]\n3",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "[0,1,2]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,-2,-3]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,0]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1]\n3",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try all possible ways of assignment.",
+    "If we can store the assignments in form of a state then we can reuse that state and solve the problem in a faster way."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.528Z",
+    "sourceUpdatedAt": null
+  }
+}

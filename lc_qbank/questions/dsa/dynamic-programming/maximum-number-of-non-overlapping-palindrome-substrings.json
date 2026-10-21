@@ -1,0 +1,160 @@
+{
+  "id": "2472",
+  "slug": "maximum-number-of-non-overlapping-palindrome-substrings",
+  "title": "Maximum Number of Non-overlapping Palindrome Substrings",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "statement": "You are given a string `s` and a **positive** integer `k`.\n\nSelect a set of **non-overlapping** substrings from the string `s` that satisfy the following conditions:\n\n*   The **length** of each substring is **at least** `k`.\n*   Each substring is a **palindrome**.\n\nReturn _the **maximum** number of substrings in an optimal selection_.\n\nA **substring** is a contiguous sequence of characters within a string.\n\n**Example 1:**\n\n```\nInput: s = \"abaccdbbd\", k = 3\nOutput: 2\nExplanation: We can select the substrings underlined in s = \"abaccdbbd\". Both \"aba\" and \"dbbd\" are palindromes and have a length of at least k = 3.\nIt can be shown that we cannot find a selection with more than two valid substrings.\n```\n\n**Example 2:**\n\n```\nInput: s = \"adbcda\", k = 2\nOutput: 0\nExplanation: There is no palindrome substring of length at least 2 in the string.\n```\n\n**Constraints:**\n\n*   `1 <= k <= s.length <= 2000`\n*   `s` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= k <= s.length <= 2000",
+    "s consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abaccdbbd\", k = 3",
+      "output": "2",
+      "explanation": "We can select the substrings underlined in s = \"abaccdbbd\". Both \"aba\" and \"dbbd\" are palindromes and have a length of at least k = 3.\nIt can be shown that we cannot find a selection with more than two valid substrings."
+    },
+    {
+      "input": "s = \"adbcda\", k = 2",
+      "output": "0",
+      "explanation": "There is no palindrome substring of length at least 2 in the string."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxPalindromes(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxPalindromes(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxPalindromes(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxPalindromes(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar maxPalindromes = function(s, k) {\n    \n};",
+    "typescript": "function maxPalindromes(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxPalindromes(string s, int k) {\n        \n    }\n}",
+    "c": "int maxPalindromes(char* s, int k) {\n    \n}",
+    "golang": "func maxPalindromes(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxPalindromes(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxPalindromes(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_palindromes(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef max_palindromes(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function maxPalindromes($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxPalindromes(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxPalindromes(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_palindromes(s :: String.t, k :: integer) :: integer\n  def max_palindromes(s, k) do\n    \n  end\nend",
+    "erlang": "-spec max_palindromes(S :: unicode:unicode_binary(), K :: integer()) -> integer().\nmax_palindromes(S, K) ->\n  .",
+    "racket": "(define/contract (max-palindromes s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abaccdbbd\"\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"adbcda\"\n2",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abaccdbbd\"\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"adbcda\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abac\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"cdbbd\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"a\"\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"dbbdccaba\"\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abaccdbbdabaccdbbd\"\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaaa\"\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abaccdbbddbbdccaba\"\n3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"ABACCDBBD\"\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"b\"\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaa\"\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcde\"\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"\n3",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try to use dynamic programming to solve the problem.",
+    "let dp[i] be the answer for the prefix s[0…i].",
+    "The final answer to the problem will be dp[n-1]. How do you compute this dp?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.094Z",
+    "sourceUpdatedAt": null
+  }
+}

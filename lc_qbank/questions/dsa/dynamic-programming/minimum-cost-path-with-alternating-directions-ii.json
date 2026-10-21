@@ -1,0 +1,116 @@
+{
+  "id": "3603",
+  "slug": "minimum-cost-path-with-alternating-directions-ii",
+  "title": "Minimum Cost Path with Alternating Directions II",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "statement": "You are given two integers `m` and `n` representing the number of rows and columns of a grid, respectively.\n\nThe cost to enter cell `(i, j)` is defined as `(i + 1) * (j + 1)`.\n\nYou are also given a 2D integer array `waitCost` where `waitCost[i][j]` defines the cost to **wait** on that cell.\n\nThe path will always begin by entering cell `(0, 0)` on move 1 and paying the entrance cost.\n\nAt each step, you follow an alternating pattern:\n\n*   On **odd-numbered** seconds, you must move **right** or **down** to an **adjacent** cell, paying its entry cost.\n*   On **even-numbered** seconds, you must **wait** in place for **exactly** one second and pay `waitCost[i][j]` during that second.\n\nReturn the **minimum** total cost required to reach `(m - 1, n - 1)`.\n\n**Example 1:**\n\n**Input:** m = 1, n = 2, waitCost = \\[\\[1,2\\]\\]\n\n**Output:** 3\n\n**Explanation:**\n\nThe optimal path is:\n\n*   Start at cell `(0, 0)` at second 1 with entry cost `(0 + 1) * (0 + 1) = 1`.\n*   **Second 1**: Move right to cell `(0, 1)` with entry cost `(0 + 1) * (1 + 1) = 2`.\n\nThus, the total cost is `1 + 2 = 3`.\n\n**Example 2:**\n\n**Input:** m = 2, n = 2, waitCost = \\[\\[3,5\\],\\[2,4\\]\\]\n\n**Output:** 9\n\n**Explanation:**\n\nThe optimal path is:\n\n*   Start at cell `(0, 0)` at second 1 with entry cost `(0 + 1) * (0 + 1) = 1`.\n*   **Second 1**: Move down to cell `(1, 0)` with entry cost `(1 + 1) * (0 + 1) = 2`.\n*   **Second 2**: Wait at cell `(1, 0)`, paying `waitCost[1][0] = 2`.\n*   **Second 3**: Move right to cell `(1, 1)` with entry cost `(1 + 1) * (1 + 1) = 4`.\n\nThus, the total cost is `1 + 2 + 2 + 4 = 9`.\n\n**Example 3:**\n\n**Input:** m = 2, n = 3, waitCost = \\[\\[6,1,4\\],\\[3,2,5\\]\\]\n\n**Output:** 16\n\n**Explanation:**\n\nThe optimal path is:\n\n*   Start at cell `(0, 0)` at second 1 with entry cost `(0 + 1) * (0 + 1) = 1`.\n*   **Second 1**: Move right to cell `(0, 1)` with entry cost `(0 + 1) * (1 + 1) = 2`.\n*   **Second 2**: Wait at cell `(0, 1)`, paying `waitCost[0][1] = 1`.\n*   **Second 3**: Move down to cell `(1, 1)` with entry cost `(1 + 1) * (1 + 1) = 4`.\n*   **Second 4**: Wait at cell `(1, 1)`, paying `waitCost[1][1] = 2`.\n*   **Second 5**: Move right to cell `(1, 2)` with entry cost `(1 + 1) * (2 + 1) = 6`.\n\nThus, the total cost is `1 + 2 + 1 + 4 + 2 + 6 = 16`.\n\n**Constraints:**\n\n*   `1 <= m, n <= 10^(5)`\n*   `2 <= m * n <= 10^(5)`\n*   `waitCost.length == m`\n*   `waitCost[0].length == n`\n*   `0 <= waitCost[i][j] <= 10^(5)`",
+  "constraints": [
+    "1 <= m, n <= 105",
+    "2 <= m * n <= 105",
+    "waitCost.length == m",
+    "waitCost[0].length == n",
+    "0 <= waitCost[i][j] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "m = 1, n = 2, waitCost = [[1,2]]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "m = 2, n = 2, waitCost = [[3,5],[2,4]]",
+      "output": "9",
+      "explanation": null
+    },
+    {
+      "input": "m = 2, n = 3, waitCost = [[6,1,4],[3,2,5]]",
+      "output": "16",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minCost(int m, int n, vector<vector<int>>& waitCost) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minCost(int m, int n, int[][] waitCost) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCost(self, m: int, n: int, waitCost: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minCost(self, m, n, waitCost):\n        \"\"\"\n        :type m: int\n        :type n: int\n        :type waitCost: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} m\n * @param {number} n\n * @param {number[][]} waitCost\n * @return {number}\n */\nvar minCost = function(m, n, waitCost) {\n    \n};",
+    "typescript": "function minCost(m: number, n: number, waitCost: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinCost(int m, int n, int[][] waitCost) {\n        \n    }\n}",
+    "c": "long long minCost(int m, int n, int** waitCost, int waitCostSize, int* waitCostColSize) {\n    \n}",
+    "golang": "func minCost(m int, n int, waitCost [][]int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCost(m: Int, n: Int, waitCost: Array<IntArray>): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCost(_ m: Int, _ n: Int, _ waitCost: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_cost(m: i32, n: i32, wait_cost: Vec<Vec<i32>>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} m\n# @param {Integer} n\n# @param {Integer[][]} wait_cost\n# @return {Integer}\ndef min_cost(m, n, wait_cost)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $m\n     * @param Integer $n\n     * @param Integer[][] $waitCost\n     * @return Integer\n     */\n    function minCost($m, $n, $waitCost) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minCost(int m, int n, List<List<int>> waitCost) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCost(m: Int, n: Int, waitCost: Array[Array[Int]]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_cost(m :: integer, n :: integer, wait_cost :: [[integer]]) :: integer\n  def min_cost(m, n, wait_cost) do\n    \n  end\nend",
+    "erlang": "-spec min_cost(M :: integer(), N :: integer(), WaitCost :: [[integer()]]) -> integer().\nmin_cost(M, N, WaitCost) ->\n  .",
+    "racket": "(define/contract (min-cost m n waitCost)\n  (-> exact-integer? exact-integer? (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "1\n2\n[[1,2]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "2\n2\n[[3,5],[2,4]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "2\n3\n[[6,1,4],[3,2,5]]",
+      "expectedOutput": "16"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "1\n2\n[[1,2]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "2\n2\n[[3,5],[2,4]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "2\n3\n[[6,1,4],[3,2,5]]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "m = 1, n = 2, waitCost = [[1,2]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "m = 2, n = 2, waitCost = [[3,5],[2,4]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "m = 2, n = 3, waitCost = [[6,1,4],[3,2,5]]",
+      "expectedOutput": "16"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming",
+    "Observe that you need to wait at each cell except the first and last",
+    "Transition: <code>dp[i][j]</code> <- min(<code>dp[i‑1][j]</code>, <code>dp[i][j‑1]</code>) + <code>waitCost[i][j]</code> + (<code>i+1</code>)*(<code>j+1</code>)",
+    "The answer is <code>dp[m‑1][n‑1]</code> - <code>waitCost[m‑1][n‑1]</code>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-path-with-alternating-directions-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.549Z",
+    "sourceUpdatedAt": null
+  }
+}

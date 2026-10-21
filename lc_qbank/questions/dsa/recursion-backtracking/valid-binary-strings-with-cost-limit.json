@@ -1,0 +1,160 @@
+{
+  "id": "3955",
+  "slug": "valid-binary-strings-with-cost-limit",
+  "title": "Valid Binary Strings With Cost Limit",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Backtracking",
+    "Bit Manipulation",
+    "Enumeration"
+  ],
+  "statement": "You are given two integers `n` and `k`.\n\nThe **cost** of a binary string `s` is defined as the sum of all indices `i` (0-based) such that `s[i] == '1'`.\n\nA binary string is considered **valid** if:\n\n*   It does not contain two consecutive `'1'` characters.\n*   Its cost is **less than or equal** to `k`.\n\nReturn a list of all valid binary strings of length `n` in any order.\n\n**Example 1:**\n\n**Input:** n = 3, k = 1\n\n**Output:** \\[\"000\",\"010\",\"100\"\\]\n\n**Explanation:**\n\nThe binary strings of length 3 without consecutive `'1'` characters are:\n\n*   `\"000\"` : `cost = 0`\n*   \"`100\"` : `cost = 0`\n*   `\"010\"` : `cost = 1`\n*   `\"001\"` : `cost = 2`\n*   `\"101\"` : `cost = 0 + 2 = 2`\n\nAmong these, the strings with cost less than or equal to `k = 1` are `\"000\"`, `\"010\"` and `\"100\"`.\n\nThus, the valid strings are `[\"000\", \"010\", \"100\"]`.\n\n**Example 2:**\n\n**Input:** n = 1, k = 0\n\n**Output:** \\[\"0\",\"1\"\\]\n\n**Explanation:**\n\nThe valid binary strings of length 1 are `\"0\"` and `\"1\"`.\n\nThus the answer is `[\"0\", \"1\"]`.\n\n**Constraints:**\n\n*   `1 <= n <= 12`\n*   `0 <= k <= n * (n - 1) / 2`",
+  "constraints": [
+    "1 <= n <= 12",
+    "0 <= k <= n * (n - 1) / 2"
+  ],
+  "examples": [
+    {
+      "input": "n = 3, k = 1",
+      "output": "[\"000\",\"010\",\"100\"]",
+      "explanation": null
+    },
+    {
+      "input": "n = 1, k = 0",
+      "output": "[\"0\",\"1\"]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> generateValidStrings(int n, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> generateValidStrings(int n, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def generateValidStrings(self, n: int, k: int) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def generateValidStrings(self, n, k):\n        \"\"\"\n        :type n: int\n        :type k: int\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} k\n * @return {string[]}\n */\nvar generateValidStrings = function(n, k) {\n    \n};",
+    "typescript": "function generateValidStrings(n: number, k: number): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> GenerateValidStrings(int n, int k) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** generateValidStrings(int n, int k, int* returnSize) {\n    \n}",
+    "golang": "func generateValidStrings(n int, k int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun generateValidStrings(n: Int, k: Int): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func generateValidStrings(_ n: Int, _ k: Int) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn generate_valid_strings(n: i32, k: i32) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} k\n# @return {String[]}\ndef generate_valid_strings(n, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $k\n     * @return String[]\n     */\n    function generateValidStrings($n, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> generateValidStrings(int n, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def generateValidStrings(n: Int, k: Int): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec generate_valid_strings(n :: integer, k :: integer) :: [String.t]\n  def generate_valid_strings(n, k) do\n    \n  end\nend",
+    "erlang": "-spec generate_valid_strings(N :: integer(), K :: integer()) -> [unicode:unicode_binary()].\ngenerate_valid_strings(N, K) ->\n  .",
+    "racket": "(define/contract (generate-valid-strings n k)\n  (-> exact-integer? exact-integer? (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n1",
+      "expectedOutput": "[\"000\",\"010\",\"100\"]"
+    },
+    {
+      "input": "1\n0",
+      "expectedOutput": "[\"0\",\"1\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n1",
+      "expectedOutput": "[\"000\",\"010\",\"100\"]"
+    },
+    {
+      "input": "1\n0",
+      "expectedOutput": "[\"0\",\"1\"]"
+    },
+    {
+      "input": "0\n1",
+      "expectedOutput": "[\"\"]"
+    },
+    {
+      "input": "1\n1",
+      "expectedOutput": "[\"0\",\"1\"]"
+    },
+    {
+      "input": "2\n1",
+      "expectedOutput": "[\"00\",\"01\",\"10\"]"
+    },
+    {
+      "input": "4\n1",
+      "expectedOutput": "[\"0000\",\"0100\",\"1000\"]"
+    },
+    {
+      "input": "5\n1",
+      "expectedOutput": "[\"00000\",\"01000\",\"10000\"]"
+    },
+    {
+      "input": "6\n1",
+      "expectedOutput": "[\"000000\",\"010000\",\"100000\"]"
+    },
+    {
+      "input": "7\n1",
+      "expectedOutput": "[\"0000000\",\"0100000\",\"1000000\"]"
+    },
+    {
+      "input": "8\n1",
+      "expectedOutput": "[\"00000000\",\"01000000\",\"10000000\"]"
+    },
+    {
+      "input": "-1\n1",
+      "expectedOutput": "[\"\"]"
+    },
+    {
+      "input": "-2\n1",
+      "expectedOutput": "[\"\"]"
+    },
+    {
+      "input": "3\n0",
+      "expectedOutput": "[\"000\",\"100\"]"
+    },
+    {
+      "input": "3\n2",
+      "expectedOutput": "[\"000\",\"001\",\"010\",\"100\",\"101\"]"
+    },
+    {
+      "input": "3\n3",
+      "expectedOutput": "[\"000\",\"001\",\"010\",\"100\",\"101\"]"
+    },
+    {
+      "input": "3\n4",
+      "expectedOutput": "[\"000\",\"001\",\"010\",\"100\",\"101\"]"
+    },
+    {
+      "input": "3\n5",
+      "expectedOutput": "[\"000\",\"001\",\"010\",\"100\",\"101\"]"
+    },
+    {
+      "input": "3\n6",
+      "expectedOutput": "[\"000\",\"001\",\"010\",\"100\",\"101\"]"
+    },
+    {
+      "input": "3\n-1",
+      "expectedOutput": "[\"000\"]"
+    },
+    {
+      "input": "3\n-2",
+      "expectedOutput": "[\"000\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Build the string from left to right using backtracking.",
+    "At index <code>i</code>, you can place <code>'1'</code> only if the previous character is not <code>'1'</code> and the new cost does not exceed <code>k</code>.",
+    "Whenever the string reaches length <code>n</code>, add it to the answer."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/valid-binary-strings-with-cost-limit/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.457Z",
+    "sourceUpdatedAt": null
+  }
+}

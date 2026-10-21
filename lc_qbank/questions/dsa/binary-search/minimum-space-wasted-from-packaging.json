@@ -1,0 +1,175 @@
+{
+  "id": "1889",
+  "slug": "minimum-space-wasted-from-packaging",
+  "title": "Minimum Space Wasted From Packaging",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting",
+    "Prefix Sum"
+  ],
+  "statement": "You have `n` packages that you are trying to place in boxes, **one package in each box**. There are `m` suppliers that each produce boxes of **different sizes** (with infinite supply). A package can be placed in a box if the size of the package is **less than or equal to** the size of the box.\n\nThe package sizes are given as an integer array `packages`, where `packages[i]` is the **size** of the `i^(th)` package. The suppliers are given as a 2D integer array `boxes`, where `boxes[j]` is an array of **box sizes** that the `j^(th)` supplier produces.\n\nYou want to choose a **single supplier** and use boxes from them such that the **total wasted space** is **minimized**. For each package in a box, we define the space **wasted** to be `size of the box - size of the package`. The **total wasted space** is the sum of the space wasted in **all** the boxes.\n\n*   For example, if you have to fit packages with sizes `[2,3,5]` and the supplier offers boxes of sizes `[4,8]`, you can fit the packages of size-`2` and size-`3` into two boxes of size-`4` and the package with size-`5` into a box of size-`8`. This would result in a waste of `(4-2) + (4-3) + (8-5) = 6`.\n\nReturn _the **minimum total wasted space** by choosing the box supplier **optimally**, or_ `-1` _if it is **impossible** to fit all the packages inside boxes._ Since the answer may be **large**, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n```\nInput: packages = [2,3,5], boxes = [[4,8],[2,8]]\nOutput: 6\nExplanation: It is optimal to choose the first supplier, using two size-4 boxes and one size-8 box.\nThe total waste is (4-2) + (4-3) + (8-5) = 6.\n```\n\n**Example 2:**\n\n```\nInput: packages = [2,3,5], boxes = [[1,4],[2,3],[3,4]]\nOutput: -1\nExplanation: There is no box that the package of size 5 can fit in.\n```\n\n**Example 3:**\n\n```\nInput: packages = [3,5,8,10,11,12], boxes = [[12],[11,9],[10,5,14]]\nOutput: 9\nExplanation: It is optimal to choose the third supplier, using two size-5 boxes, two size-10 boxes, and two size-14 boxes.\nThe total waste is (5-3) + (5-5) + (10-8) + (10-10) + (14-11) + (14-12) = 9.\n```\n\n**Constraints:**\n\n*   `n == packages.length`\n*   `m == boxes.length`\n*   `1 <= n <= 10^(5)`\n*   `1 <= m <= 10^(5)`\n*   `1 <= packages[i] <= 10^(5)`\n*   `1 <= boxes[j].length <= 10^(5)`\n*   `1 <= boxes[j][k] <= 10^(5)`\n*   `sum(boxes[j].length) <= 10^(5)`\n*   The elements in `boxes[j]` are **distinct**.",
+  "constraints": [
+    "n == packages.length",
+    "m == boxes.length",
+    "1 <= n <= 105",
+    "1 <= m <= 105",
+    "1 <= packages[i] <= 105",
+    "1 <= boxes[j].length <= 105",
+    "1 <= boxes[j][k] <= 105",
+    "sum(boxes[j].length) <= 105",
+    "The elements in boxes[j] are distinct."
+  ],
+  "examples": [
+    {
+      "input": "packages = [2,3,5], boxes = [[4,8],[2,8]]",
+      "output": "6",
+      "explanation": ": It is optimal to choose the first supplier, using two size-4 boxes and one size-8 box.\nThe total waste is (4-2) + (4-3) + (8-5) = 6."
+    },
+    {
+      "input": "packages = [2,3,5], boxes = [[1,4],[2,3],[3,4]]",
+      "output": "-1",
+      "explanation": "There is no box that the package of size 5 can fit in."
+    },
+    {
+      "input": "packages = [3,5,8,10,11,12], boxes = [[12],[11,9],[10,5,14]]",
+      "output": "9",
+      "explanation": "It is optimal to choose the third supplier, using two size-5 boxes, two size-10 boxes, and two size-14 boxes.\nThe total waste is (5-3) + (5-5) + (10-8) + (10-10) + (14-11) + (14-12) = 9."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minWastedSpace(vector<int>& packages, vector<vector<int>>& boxes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minWastedSpace(int[] packages, int[][] boxes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minWastedSpace(self, packages: list[int], boxes: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minWastedSpace(self, packages, boxes):\n        \"\"\"\n        :type packages: List[int]\n        :type boxes: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} packages\n * @param {number[][]} boxes\n * @return {number}\n */\nvar minWastedSpace = function(packages, boxes) {\n    \n};",
+    "typescript": "function minWastedSpace(packages: number[], boxes: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinWastedSpace(int[] packages, int[][] boxes) {\n        \n    }\n}",
+    "c": "int minWastedSpace(int* packages, int packagesSize, int** boxes, int boxesSize, int* boxesColSize) {\n    \n}",
+    "golang": "func minWastedSpace(packages []int, boxes [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minWastedSpace(packages: IntArray, boxes: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minWastedSpace(_ packages: [Int], _ boxes: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_wasted_space(packages: Vec<i32>, boxes: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} packages\n# @param {Integer[][]} boxes\n# @return {Integer}\ndef min_wasted_space(packages, boxes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $packages\n     * @param Integer[][] $boxes\n     * @return Integer\n     */\n    function minWastedSpace($packages, $boxes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minWastedSpace(List<int> packages, List<List<int>> boxes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minWastedSpace(packages: Array[Int], boxes: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_wasted_space(packages :: [integer], boxes :: [[integer]]) :: integer\n  def min_wasted_space(packages, boxes) do\n    \n  end\nend",
+    "erlang": "-spec min_wasted_space(Packages :: [integer()], Boxes :: [[integer()]]) -> integer().\nmin_wasted_space(Packages, Boxes) ->\n  .",
+    "racket": "(define/contract (min-wasted-space packages boxes)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,3,5]\n[[4,8],[2,8]]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,3,5]\n[[1,4],[2,3],[3,4]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,5,8,10,11,12]\n[[12],[11,9],[10,5,14]]",
+      "expectedOutput": "9"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,3,5]\n[[4,8],[2,8]]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,3,5]\n[[1,4],[2,3],[3,4]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,5,8,10,11,12]\n[[12],[11,9],[10,5,14]]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[2]\n[[4,8],[2,8]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,5]\n[[4,8],[2,8]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,5]\n[[4,8],[2,8]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,3]\n[[4,8],[2,8]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,3,2]\n[[4,8],[2,8]]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,2,2]\n[[4,8],[2,8]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,3,5,2,3,5]\n[[4,8],[2,8]]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[4,6,10]\n[[4,8],[2,8]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,4,6]\n[[4,8],[2,8]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,4]\n[[4,8],[2,8]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-2,-3,-5]\n[[4,8],[2,8]]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[0,0,0]\n[[4,8],[2,8]]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,1]\n[[4,8],[2,8]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0]\n[[4,8],[2,8]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]\n[[4,8],[2,8]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n[[4,8],[2,8]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0]\n[[4,8],[2,8]]",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Given a fixed size box, is there a way to quickly query which packages (i.e., count and sizes) should end up in that box size?",
+    "Do we have to order the boxes a certain way to allow us to answer the query quickly?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-space-wasted-from-packaging/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.013Z",
+    "sourceUpdatedAt": null
+  }
+}

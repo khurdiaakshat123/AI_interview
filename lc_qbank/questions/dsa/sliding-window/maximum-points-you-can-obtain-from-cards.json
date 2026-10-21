@@ -1,0 +1,168 @@
+{
+  "id": "1423",
+  "slug": "maximum-points-you-can-obtain-from-cards",
+  "title": "Maximum Points You Can Obtain from Cards",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "statement": "There are several cards **arranged in a row**, and each card has an associated number of points. The points are given in the integer array `cardPoints`.\n\nIn one step, you can take one card from the beginning or from the end of the row. You have to take exactly `k` cards.\n\nYour score is the sum of the points of the cards you have taken.\n\nGiven the integer array `cardPoints` and the integer `k`, return the _maximum score_ you can obtain.\n\n**Example 1:**\n\n```\nInput: cardPoints = [1,2,3,4,5,6,1], k = 3\nOutput: 12\nExplanation: After the first step, your score will always be 1. However, choosing the rightmost card first will maximize your total score. The optimal strategy is to take the three cards on the right, giving a final score of 1 + 6 + 5 = 12.\n```\n\n**Example 2:**\n\n```\nInput: cardPoints = [2,2,2], k = 2\nOutput: 4\nExplanation: Regardless of which two cards you take, your score will always be 4.\n```\n\n**Example 3:**\n\n```\nInput: cardPoints = [9,7,7,9,7,7,9], k = 7\nOutput: 55\nExplanation: You have to take all the cards. Your score is the sum of points of all cards.\n```\n\n**Constraints:**\n\n*   `1 <= cardPoints.length <= 10^(5)`\n*   `1 <= cardPoints[i] <= 10^(4)`\n*   `1 <= k <= cardPoints.length`",
+  "constraints": [
+    "1 <= cardPoints.length <= 105",
+    "1 <= cardPoints[i] <= 104",
+    "1 <= k <= cardPoints.length"
+  ],
+  "examples": [
+    {
+      "input": "cardPoints = [1,2,3,4,5,6,1], k = 3",
+      "output": "12",
+      "explanation": "After the first step, your score will always be 1. However, choosing the rightmost card first will maximize your total score. The optimal strategy is to take the three cards on the right, giving a final score of 1 + 6 + 5 = 12."
+    },
+    {
+      "input": "cardPoints = [2,2,2], k = 2",
+      "output": "4",
+      "explanation": "Regardless of which two cards you take, your score will always be 4."
+    },
+    {
+      "input": "cardPoints = [9,7,7,9,7,7,9], k = 7",
+      "output": "55",
+      "explanation": "You have to take all the cards. Your score is the sum of points of all cards."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxScore(vector<int>& cardPoints, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxScore(int[] cardPoints, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxScore(self, cardPoints: list[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxScore(self, cardPoints, k):\n        \"\"\"\n        :type cardPoints: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} cardPoints\n * @param {number} k\n * @return {number}\n */\nvar maxScore = function(cardPoints, k) {\n    \n};",
+    "typescript": "function maxScore(cardPoints: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxScore(int[] cardPoints, int k) {\n        \n    }\n}",
+    "c": "int maxScore(int* cardPoints, int cardPointsSize, int k) {\n    \n}",
+    "golang": "func maxScore(cardPoints []int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxScore(cardPoints: IntArray, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxScore(_ cardPoints: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_score(card_points: Vec<i32>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} card_points\n# @param {Integer} k\n# @return {Integer}\ndef max_score(card_points, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $cardPoints\n     * @param Integer $k\n     * @return Integer\n     */\n    function maxScore($cardPoints, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxScore(List<int> cardPoints, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxScore(cardPoints: Array[Int], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_score(card_points :: [integer], k :: integer) :: integer\n  def max_score(card_points, k) do\n    \n  end\nend",
+    "erlang": "-spec max_score(CardPoints :: [integer()], K :: integer()) -> integer().\nmax_score(CardPoints, K) ->\n  .",
+    "racket": "(define/contract (max-score cardPoints k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4,5,6,1]\n3",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,2,2]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[9,7,7,9,7,7,9]\n7",
+      "expectedOutput": "55"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4,5,6,1]\n3",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,2,2]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[9,7,7,9,7,7,9]\n7",
+      "expectedOutput": "55"
+    },
+    {
+      "input": "[1,2,3]\n3",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[4,5,6,1]\n3",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[1,6,5,4,3,2,1]\n3",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1,1,2,3,4,5,6]\n3",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[6,5,4,3,2,1,1]\n3",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[1,1,1,1,1]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,3,4,5,6,1,1,2,3,4,5,6,1]\n3",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,4,6,8,10,12,2]\n3",
+      "expectedOutput": "24"
+    },
+    {
+      "input": "[2,3,4,5,6,7,2]\n3",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[0,1,2,3,4,5,0]\n3",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[-1,-2,-3,-4,-5,-6,-1]\n3",
+      "expectedOutput": "-4"
+    },
+    {
+      "input": "[0,0,0,0]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,2,1]\n3",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,1]\n3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,1,0]\n3",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3,4,5]\n3",
+      "expectedOutput": "12"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let the sum of all points be total_pts. You need to remove a sub-array from cardPoints with length n - k.",
+    "Keep a window of size n - k over the array. The answer is max(answer, total_pts - sumOfCurrentWindow)"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.363Z",
+    "sourceUpdatedAt": null
+  }
+}

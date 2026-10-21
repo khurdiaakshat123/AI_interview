@@ -1,0 +1,162 @@
+{
+  "id": "3213",
+  "slug": "construct-string-with-minimum-cost",
+  "title": "Construct String with Minimum Cost",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming",
+    "Suffix Array"
+  ],
+  "statement": "You are given a string `target`, an array of strings `words`, and an integer array `costs`, both arrays of the same length.\n\nImagine an empty string `s`.\n\nYou can perform the following operation any number of times (including **zero**):\n\n*   Choose an index `i` in the range `[0, words.length - 1]`.\n*   Append `words[i]` to `s`.\n*   The cost of operation is `costs[i]`.\n\nReturn the **minimum** cost to make `s` equal to `target`. If it's not possible, return `-1`.\n\n**Example 1:**\n\n**Input:** target = \"abcdef\", words = \\[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"\\], costs = \\[100,1,1,10,5\\]\n\n**Output:** 7\n\n**Explanation:**\n\nThe minimum cost can be achieved by performing the following operations:\n\n*   Select index 1 and append `\"abc\"` to `s` at a cost of 1, resulting in `s = \"abc\"`.\n*   Select index 2 and append `\"d\"` to `s` at a cost of 1, resulting in `s = \"abcd\"`.\n*   Select index 4 and append `\"ef\"` to `s` at a cost of 5, resulting in `s = \"abcdef\"`.\n\n**Example 2:**\n\n**Input:** target = \"aaaa\", words = \\[\"z\",\"zz\",\"zzz\"\\], costs = \\[1,10,100\\]\n\n**Output:** \\-1\n\n**Explanation:**\n\nIt is impossible to make `s` equal to `target`, so we return -1.\n\n**Constraints:**\n\n*   `1 <= target.length <= 5 * 10^(4)`\n*   `1 <= words.length == costs.length <= 5 * 10^(4)`\n*   `1 <= words[i].length <= target.length`\n*   The total sum of `words[i].length` is less than or equal to `5 * 10^(4)`.\n*   `target` and `words[i]` consist only of lowercase English letters.\n*   `1 <= costs[i] <= 10^(4)`",
+  "constraints": [
+    "1 <= target.length <= 5 * 104",
+    "1 <= words.length == costs.length <= 5 * 104",
+    "1 <= words[i].length <= target.length",
+    "The total sum of words[i].length is less than or equal to 5 * 104.",
+    "target and words[i] consist only of lowercase English letters.",
+    "1 <= costs[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "target = \"abcdef\", words = [\"abdef\",\"abc\",\"d\",\"def\",\"ef\"], costs = [100,1,1,10,5]",
+      "output": "7",
+      "explanation": null
+    },
+    {
+      "input": "target = \"aaaa\", words = [\"z\",\"zz\",\"zzz\"], costs = [1,10,100]",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumCost(string target, vector<string>& words, vector<int>& costs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumCost(String target, String[] words, int[] costs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumCost(self, target: str, words: List[str], costs: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumCost(self, target, words, costs):\n        \"\"\"\n        :type target: str\n        :type words: List[str]\n        :type costs: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} target\n * @param {string[]} words\n * @param {number[]} costs\n * @return {number}\n */\nvar minimumCost = function(target, words, costs) {\n    \n};",
+    "typescript": "function minimumCost(target: string, words: string[], costs: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumCost(string target, string[] words, int[] costs) {\n        \n    }\n}",
+    "c": "int minimumCost(char* target, char** words, int wordsSize, int* costs, int costsSize) {\n    \n}",
+    "golang": "func minimumCost(target string, words []string, costs []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumCost(target: String, words: Array<String>, costs: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumCost(_ target: String, _ words: [String], _ costs: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_cost(target: String, words: Vec<String>, costs: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} target\n# @param {String[]} words\n# @param {Integer[]} costs\n# @return {Integer}\ndef minimum_cost(target, words, costs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $target\n     * @param String[] $words\n     * @param Integer[] $costs\n     * @return Integer\n     */\n    function minimumCost($target, $words, $costs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumCost(String target, List<String> words, List<int> costs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumCost(target: String, words: Array[String], costs: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_cost(target :: String.t, words :: [String.t], costs :: [integer]) :: integer\n  def minimum_cost(target, words, costs) do\n    \n  end\nend",
+    "erlang": "-spec minimum_cost(Target :: unicode:unicode_binary(), Words :: [unicode:unicode_binary()], Costs :: [integer()]) -> integer().\nminimum_cost(Target, Words, Costs) ->\n  .",
+    "racket": "(define/contract (minimum-cost target words costs)\n  (-> string? (listof string?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcdef\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"aaaa\"\n[\"z\",\"zz\",\"zzz\"]\n[1,10,100]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcdef\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"aaaa\"\n[\"z\",\"zz\",\"zzz\"]\n[1,10,100]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abc\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"def\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"a\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ab\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"fedcba\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abcdefabcdef\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "\"aaaaaa\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abcdeffedcba\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ABCDEF\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"b\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aa\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ba\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aba\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abba\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aaaaa\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abcde\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"edcba\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aab\"\n[\"abdef\",\"abc\",\"d\",\"def\",\"ef\"]\n[100,1,1,10,5]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use Dynamic Programming along with Aho-Corasick or Hashing."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/construct-string-with-minimum-cost/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.744Z",
+    "sourceUpdatedAt": null
+  }
+}

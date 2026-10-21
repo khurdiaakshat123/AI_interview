@@ -1,0 +1,120 @@
+{
+  "id": "3970",
+  "slug": "shortest-path-with-at-most-k-consecutive-identical-characters",
+  "title": "Shortest Path With At Most K Consecutive Identical Characters",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "statement": "You are given an integer `n` representing the number of nodes in a **directed weighted** graph, numbered from 0 to `n - 1`. This is represented by a 2D integer array `edges`, where `edges[i] = [u_(i), v_(i), w_(i)]` represents a directed edge from node `u_(i)` to node `v_(i)` with weight `w_(i)`.\n\nYou are also given a string `labels` of length `n`, where `labels[i]` is the character assigned to node `i`, and an integer `k`.\n\nReturn the **minimum** **total** edge weight of a path from node 0 to node `n - 1` such that the concatenation of the labels of the nodes along the path contains **at most** `k` **consecutive** **identical** characters. If no valid path exists, return -1.\n\n**Example 1:**\n\n**Input:** n = 3, edges = \\[\\[0,1,1\\],\\[1,2,1\\],\\[0,2,3\\]\\], labels = \"aab\", k = 1\n\n**Output:** 3\n\n**Explanation:**\n\nThe optimal valid path from node 0 to node 2 is as follows:\n\n*   Use `edges[2] = [0, 2, 3]` to reach node 2 with a weight `w_(i) = 3`.\n\nThe corresponding concatenation of labels is `\"ab\"`, which satisfies at most `k = 1` consecutive identical characters. Thus, the answer is 3.\n\n**Example 2:**\n\n**Input:** n = 3, edges = \\[\\[0,1,1\\],\\[1,2,1\\],\\[0,2,3\\]\\], labels = \"aab\", k = 2\n\n**Output:** 2\n\n**Explanation:**\n\nThe optimal valid path from node 0 to node 2 is as follows:\n\n*   Use `edges[0] = [0, 1, 1]` to reach node 1 with weight `w_(i) = 1`.\n*   Use `edges[1] = [1, 2, 1]` to reach node 2 with weight `w_(i) = 1`.\n\nThe corresponding concatenation of labels is `\"aab\"`, which satisfies at most `k = 2` consecutive identical characters. Thus, the answer is 2.\n\n**Example 3:**\n\n**Input:** n = 3, edges = \\[\\[0,1,1\\],\\[1,2,1\\]\\], labels = \"aaa\", k = 2\n\n**Output:** \\-1\n\n**Explanation:**\n\nThere is no valid path from node 0 to node 2 that satisfies at most `k = 2` consecutive identical characters. Thus, the answer is -1.\n\n**Constraints:**\n\n*   `1 <= n == labels.length <= 5 * 10^(4)`\n*   `0 <= edges.length <= 5 * 10^(4)`\n*   `edges[i] == [u_(i), v_(i), w_(i)]`\n*   `0 <= u_(i), v_(i) <= n - 1`\n*   `u_(i) != v_(i)`\n*   `1 <= w_(i) <= 10^(4)`\n*   `labels` consists of lowercase English letters\n*   `1 <= k <= 50`",
+  "constraints": [
+    "1 <= n == labels.length <= 5 * 104",
+    "0 <= edges.length <= 5 * 104",
+    "edges[i] == [ui, vi, wi]",
+    "0 <= ui, vi <= n - 1",
+    "ui != vi",
+    "1 <= wi <= 104",
+    "labels consists of lowercase English letters",
+    "1 <= k <= 50"
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,3]], labels = \"aab\", k = 1",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,3]], labels = \"aab\", k = 2",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, edges = [[0,1,1],[1,2,1]], labels = \"aaa\", k = 2",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int shortestPath(int n, vector<vector<int>>& edges, string labels, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int shortestPath(int n, int[][] edges, String labels, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shortestPath(self, n: int, edges: List[List[int]], labels: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def shortestPath(self, n, edges, labels, k):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type labels: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {string} labels\n * @param {number} k\n * @return {number}\n */\nvar shortestPath = function(n, edges, labels, k) {\n    \n};",
+    "typescript": "function shortestPath(n: number, edges: number[][], labels: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ShortestPath(int n, int[][] edges, string labels, int k) {\n        \n    }\n}",
+    "c": "int shortestPath(int n, int** edges, int edgesSize, int* edgesColSize, char* labels, int k) {\n    \n}",
+    "golang": "func shortestPath(n int, edges [][]int, labels string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun shortestPath(n: Int, edges: Array<IntArray>, labels: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shortestPath(_ n: Int, _ edges: [[Int]], _ labels: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shortest_path(n: i32, edges: Vec<Vec<i32>>, labels: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {String} labels\n# @param {Integer} k\n# @return {Integer}\ndef shortest_path(n, edges, labels, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param String $labels\n     * @param Integer $k\n     * @return Integer\n     */\n    function shortestPath($n, $edges, $labels, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int shortestPath(int n, List<List<int>> edges, String labels, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shortestPath(n: Int, edges: Array[Array[Int]], labels: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shortest_path(n :: integer, edges :: [[integer]], labels :: String.t, k :: integer) :: integer\n  def shortest_path(n, edges, labels, k) do\n    \n  end\nend",
+    "erlang": "-spec shortest_path(N :: integer(), Edges :: [[integer()]], Labels :: unicode:unicode_binary(), K :: integer()) -> integer().\nshortest_path(N, Edges, Labels, K) ->\n  .",
+    "racket": "(define/contract (shortest-path n edges labels k)\n  (-> exact-integer? (listof (listof exact-integer?)) string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1,1],[1,2,1],[0,2,3]]\n\"aab\"\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "3\n[[0,1,1],[1,2,1],[0,2,3]]\n\"aab\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n[[0,1,1],[1,2,1]]\n\"aaa\"\n2",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1,1],[1,2,1],[0,2,3]]\n\"aab\"\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "3\n[[0,1,1],[1,2,1],[0,2,3]]\n\"aab\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n[[0,1,1],[1,2,1]]\n\"aaa\"\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,3]], labels = \"aab\", k = 1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,3]], labels = \"aab\", k = 2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "n = 3, edges = [[0,1,1],[1,2,1]], labels = \"aaa\", k = 2",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The validity of a path depends not only on the current node, but also on how many consecutive times the current node’s label has appeared at the end of the path.",
+    "Use Dijkstra on states <code>(node, count)</code>, where <code>count</code> is the current consecutive run length of <code>labels[node]</code>.",
+    "When moving from node <code>u</code> to node <code>v</code>, the next count becomes <code>count + 1</code> if <code>labels[u] == labels[v]</code>, otherwise it becomes 1. Ignore transitions where the next count exceeds <code>k</code>.",
+    "The answer is the minimum distance among all states ending at node <code>n - 1</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/shortest-path-with-at-most-k-consecutive-identical-characters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.523Z",
+    "sourceUpdatedAt": null
+  }
+}

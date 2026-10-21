@@ -1,0 +1,159 @@
+{
+  "id": "1605",
+  "slug": "find-valid-matrix-given-row-and-column-sums",
+  "title": "Find Valid Matrix Given Row and Column Sums",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Matrix",
+    "Flow Network"
+  ],
+  "statement": "You are given two arrays `rowSum` and `colSum` of non-negative integers where `rowSum[i]` is the sum of the elements in the `i^(th)` row and `colSum[j]` is the sum of the elements of the `j^(th)` column of a 2D matrix. In other words, you do not know the elements of the matrix, but you do know the sums of each row and column.\n\nFind any matrix of **non-negative** integers of size `rowSum.length x colSum.length` that satisfies the `rowSum` and `colSum` requirements.\n\nReturn _a 2D array representing **any** matrix that fulfills the requirements_. It's guaranteed that **at least one** matrix that fulfills the requirements exists.\n\n**Example 1:**\n\n```\nInput: rowSum = [3,8], colSum = [4,7]\nOutput: [[3,0],\n         [1,7]]\nExplanation: \n0th row: 3 + 0 = 3 == rowSum[0]\n1st row: 1 + 7 = 8 == rowSum[1]\n0th column: 3 + 1 = 4 == colSum[0]\n1st column: 0 + 7 = 7 == colSum[1]\nThe row and column sums match, and all matrix elements are non-negative.\nAnother possible matrix is: [[1,2],\n                             [3,5]]\n```\n\n**Example 2:**\n\n```\nInput: rowSum = [5,7,10], colSum = [8,6,8]\nOutput: [[0,5,0],\n         [6,1,0],\n         [2,0,8]]\n```\n\n**Constraints:**\n\n*   `1 <= rowSum.length, colSum.length <= 500`\n*   `0 <= rowSum[i], colSum[i] <= 10^(8)`\n*   `sum(rowSum) == sum(colSum)`",
+  "constraints": [
+    "1 <= rowSum.length, colSum.length <= 500",
+    "0 <= rowSum[i], colSum[i] <= 108",
+    "sum(rowSum) == sum(colSum)"
+  ],
+  "examples": [
+    {
+      "input": "rowSum = [3,8], colSum = [4,7]",
+      "output": "[[3,0],\n         [1,7]]",
+      "explanation": "0th row: 3 + 0 = 3 == rowSum[0]\n1st row: 1 + 7 = 8 == rowSum[1]\n0th column: 3 + 1 = 4 == colSum[0]\n1st column: 0 + 7 = 7 == colSum[1]\nThe row and column sums match, and all matrix elements are non-negative.\nAnother possible matrix is: [[1,2],\n                             [3,5]]"
+    },
+    {
+      "input": "rowSum = [5,7,10], colSum = [8,6,8]",
+      "output": "[[0,5,0],\n         [6,1,0],\n         [2,0,8]]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> restoreMatrix(vector<int>& rowSum, vector<int>& colSum) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] restoreMatrix(int[] rowSum, int[] colSum) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def restoreMatrix(self, rowSum: list[int], colSum: list[int]) -> list[list[int]]:\n        ",
+    "python": "class Solution(object):\n    def restoreMatrix(self, rowSum, colSum):\n        \"\"\"\n        :type rowSum: List[int]\n        :type colSum: List[int]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} rowSum\n * @param {number[]} colSum\n * @return {number[][]}\n */\nvar restoreMatrix = function(rowSum, colSum) {\n    \n};",
+    "typescript": "function restoreMatrix(rowSum: number[], colSum: number[]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] RestoreMatrix(int[] rowSum, int[] colSum) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** restoreMatrix(int* rowSum, int rowSumSize, int* colSum, int colSumSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func restoreMatrix(rowSum []int, colSum []int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun restoreMatrix(rowSum: IntArray, colSum: IntArray): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func restoreMatrix(_ rowSum: [Int], _ colSum: [Int]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn restore_matrix(row_sum: Vec<i32>, col_sum: Vec<i32>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} row_sum\n# @param {Integer[]} col_sum\n# @return {Integer[][]}\ndef restore_matrix(row_sum, col_sum)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $rowSum\n     * @param Integer[] $colSum\n     * @return Integer[][]\n     */\n    function restoreMatrix($rowSum, $colSum) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> restoreMatrix(List<int> rowSum, List<int> colSum) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def restoreMatrix(rowSum: Array[Int], colSum: Array[Int]): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec restore_matrix(row_sum :: [integer], col_sum :: [integer]) :: [[integer]]\n  def restore_matrix(row_sum, col_sum) do\n    \n  end\nend",
+    "erlang": "-spec restore_matrix(RowSum :: [integer()], ColSum :: [integer()]) -> [[integer()]].\nrestore_matrix(RowSum, ColSum) ->\n  .",
+    "racket": "(define/contract (restore-matrix rowSum colSum)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof (listof exact-integer?)))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,8]\n[4,7]",
+      "expectedOutput": "[[3,0],\n         [1,7]]"
+    },
+    {
+      "input": "[5,7,10]\n[8,6,8]",
+      "expectedOutput": "[[0,5,0],\n         [6,1,0],\n         [2,0,8]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,8]\n[4,7]",
+      "expectedOutput": "[[3,0],[1,7]]"
+    },
+    {
+      "input": "[5,7,10]\n[8,6,8]",
+      "expectedOutput": "[[5,0,0],[3,4,0],[0,2,8]]"
+    },
+    {
+      "input": "[3]\n[4,7]",
+      "expectedOutput": "[[3,0]]"
+    },
+    {
+      "input": "[8]\n[4,7]",
+      "expectedOutput": "[[4,4]]"
+    },
+    {
+      "input": "[8,3]\n[4,7]",
+      "expectedOutput": "[[4,4],[0,3]]"
+    },
+    {
+      "input": "[3,3]\n[4,7]",
+      "expectedOutput": "[[3,0],[1,2]]"
+    },
+    {
+      "input": "[3,8,3,8]\n[4,7]",
+      "expectedOutput": "[[3,0],[1,7],[0,0],[0,0]]"
+    },
+    {
+      "input": "[6,16]\n[4,7]",
+      "expectedOutput": "[[4,2],[0,5]]"
+    },
+    {
+      "input": "[4,9]\n[4,7]",
+      "expectedOutput": "[[4,0],[0,7]]"
+    },
+    {
+      "input": "[2,7]\n[4,7]",
+      "expectedOutput": "[[2,0],[2,5]]"
+    },
+    {
+      "input": "[-3,-8]\n[4,7]",
+      "expectedOutput": "[[-3,0],[-8,0]]"
+    },
+    {
+      "input": "[0,0]\n[4,7]",
+      "expectedOutput": "[[0,0],[0,0]]"
+    },
+    {
+      "input": "[1,1]\n[4,7]",
+      "expectedOutput": "[[1,0],[1,0]]"
+    },
+    {
+      "input": "[0]\n[4,7]",
+      "expectedOutput": "[[0,0]]"
+    },
+    {
+      "input": "[1]\n[4,7]",
+      "expectedOutput": "[[1,0]]"
+    },
+    {
+      "input": "[-1]\n[4,7]",
+      "expectedOutput": "[[-1,0]]"
+    },
+    {
+      "input": "[1,2]\n[4,7]",
+      "expectedOutput": "[[1,0],[2,0]]"
+    },
+    {
+      "input": "[2,1]\n[4,7]",
+      "expectedOutput": "[[2,0],[1,0]]"
+    },
+    {
+      "input": "[-1,1]\n[4,7]",
+      "expectedOutput": "[[-1,0],[1,0]]"
+    },
+    {
+      "input": "[1,2,3]\n[4,7]",
+      "expectedOutput": "[[1,0],[2,0],[1,2]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find the smallest rowSum or colSum, and let it be x. Place that number in the grid, and subtract x from rowSum and colSum. Continue until all the sums are satisfied."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-valid-matrix-given-row-and-column-sums/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.762Z",
+    "sourceUpdatedAt": null
+  }
+}

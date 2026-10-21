@@ -1,0 +1,158 @@
+{
+  "id": "1081",
+  "slug": "smallest-subsequence-of-distinct-characters",
+  "title": "Smallest Subsequence of Distinct Characters",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "statement": "Given a string `s`, return _the_ _lexicographically smallest_ _subsequence_ _of_ `s` _that contains all the distinct characters of_ `s` _exactly once_.\n\n**Example 1:**\n\n```\nInput: s = \"bcabc\"\nOutput: \"abc\"\n```\n\n**Example 2:**\n\n```\nInput: s = \"cbacdcbc\"\nOutput: \"acdb\"\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 1000`\n*   `s` consists of lowercase English letters.\n\n**Note:** This question is the same as 316: [https://leetcode.com/problems/remove-duplicate-letters/](https://leetcode.com/problems/remove-duplicate-letters/)",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"bcabc\"",
+      "output": "\"abc\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"cbacdcbc\"",
+      "output": "\"acdb\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string smallestSubsequence(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String smallestSubsequence(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestSubsequence(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def smallestSubsequence(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar smallestSubsequence = function(s) {\n    \n};",
+    "typescript": "function smallestSubsequence(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string SmallestSubsequence(string s) {\n        \n    }\n}",
+    "c": "char* smallestSubsequence(char* s) {\n    \n}",
+    "golang": "func smallestSubsequence(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestSubsequence(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestSubsequence(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_subsequence(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef smallest_subsequence(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function smallestSubsequence($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String smallestSubsequence(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestSubsequence(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_subsequence(s :: String.t) :: String.t\n  def smallest_subsequence(s) do\n    \n  end\nend",
+    "erlang": "-spec smallest_subsequence(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nsmallest_subsequence(S) ->\n  .",
+    "racket": "(define/contract (smallest-subsequence s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"bcabc\"",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "\"cbacdcbc\"",
+      "expectedOutput": "\"acdb\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"bcabc\"",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "\"cbacdcbc\"",
+      "expectedOutput": "\"acdb\""
+    },
+    {
+      "input": "\"bc\"",
+      "expectedOutput": "\"bc\""
+    },
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"cbacb\"",
+      "expectedOutput": "\"acb\""
+    },
+    {
+      "input": "\"bcabcbcabc\"",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "\"bbbbb\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"bcabccbacb\"",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "\"BCABC\"",
+      "expectedOutput": "\"ABC\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"ab\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Greedily try to add one missing character. How to check if adding some character will not cause problems ? Use bit-masks to check whether you will be able to complete the sub-sequence if you add the character at some index i."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.843Z",
+    "sourceUpdatedAt": null
+  }
+}

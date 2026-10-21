@@ -1,0 +1,158 @@
+{
+  "id": "455",
+  "slug": "assign-cookies",
+  "title": "Assign Cookies",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting",
+    "Quicksort"
+  ],
+  "statement": "Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie.\n\nEach child `i` has a greed factor `g[i]`, which is the minimum size of a cookie that the child will be content with; and each cookie `j` has a size `s[j]`. If `s[j] >= g[i]`, we can assign the cookie `j` to the child `i`, and the child `i` will be content. Your goal is to maximize the number of your content children and output the maximum number.\n\n**Example 1:**\n\n```\nInput: g = [1,2,3], s = [1,1]\nOutput: 1\nExplanation: You have 3 children and 2 cookies. The greed factors of 3 children are 1, 2, 3. \nAnd even though you have 2 cookies, since their size is both 1, you could only make the child whose greed factor is 1 content.\nYou need to output 1.\n```\n\n**Example 2:**\n\n```\nInput: g = [1,2], s = [1,2,3]\nOutput: 2\nExplanation: You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2. \nYou have 3 cookies and their sizes are big enough to gratify all of the children, \nYou need to output 2.\n```\n\n**Constraints:**\n\n*   `1 <= g.length <= 3 * 10^(4)`\n*   `0 <= s.length <= 3 * 10^(4)`\n*   `1 <= g[i], s[j] <= 2^(31) - 1`\n\n**Note:** This question is the same as [2410: Maximum Matching of Players With Trainers.](https://leetcode.com/problems/maximum-matching-of-players-with-trainers/description/)",
+  "constraints": [
+    "1 <= g.length <= 3 * 104",
+    "0 <= s.length <= 3 * 104",
+    "1 <= g[i], s[j] <= 231 - 1"
+  ],
+  "examples": [
+    {
+      "input": "g = [1,2,3], s = [1,1]",
+      "output": "1",
+      "explanation": "You have 3 children and 2 cookies. The greed factors of 3 children are 1, 2, 3. \nAnd even though you have 2 cookies, since their size is both 1, you could only make the child whose greed factor is 1 content.\nYou need to output 1."
+    },
+    {
+      "input": "g = [1,2], s = [1,2,3]",
+      "output": "2",
+      "explanation": "You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2. \nYou have 3 cookies and their sizes are big enough to gratify all of the children, \nYou need to output 2."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findContentChildren(vector<int>& g, vector<int>& s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findContentChildren(int[] g, int[] s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findContentChildren(self, g: list[int], s: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findContentChildren(self, g, s):\n        \"\"\"\n        :type g: List[int]\n        :type s: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} g\n * @param {number[]} s\n * @return {number}\n */\nvar findContentChildren = function(g, s) {\n    \n};",
+    "typescript": "function findContentChildren(g: number[], s: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindContentChildren(int[] g, int[] s) {\n        \n    }\n}",
+    "c": "int findContentChildren(int* g, int gSize, int* s, int sSize) {\n    \n}",
+    "golang": "func findContentChildren(g []int, s []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findContentChildren(g: IntArray, s: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findContentChildren(_ g: [Int], _ s: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_content_children(g: Vec<i32>, s: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} g\n# @param {Integer[]} s\n# @return {Integer}\ndef find_content_children(g, s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $g\n     * @param Integer[] $s\n     * @return Integer\n     */\n    function findContentChildren($g, $s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findContentChildren(List<int> g, List<int> s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findContentChildren(g: Array[Int], s: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_content_children(g :: [integer], s :: [integer]) :: integer\n  def find_content_children(g, s) do\n    \n  end\nend",
+    "erlang": "-spec find_content_children(G :: [integer()], S :: [integer()]) -> integer().\nfind_content_children(G, S) ->\n  .",
+    "racket": "(define/contract (find-content-children g s)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3]\n[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]\n[1,2,3]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3]\n[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]\n[1,2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]\n[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3]\n[1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,3]\n[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]\n[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,1]\n[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1]\n[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,1,2,3]\n[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4,6]\n[1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,3,4]\n[1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1,2]\n[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,-2,-3]\n[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0]\n[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]\n[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]\n[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1]\n[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1]\n[1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1,1]\n[1,1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/assign-cookies/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.332Z",
+    "sourceUpdatedAt": null
+  }
+}

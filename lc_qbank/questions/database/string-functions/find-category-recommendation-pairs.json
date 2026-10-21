@@ -1,0 +1,83 @@
+{
+  "id": "3554",
+  "slug": "find-category-recommendation-pairs",
+  "title": "Find Category Recommendation Pairs",
+  "category": "database",
+  "subcategory": "string-functions",
+  "difficulty": "Hard",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `ProductPurchases`\n\n```\n+-------------+------+\n| Column Name | Type | \n+-------------+------+\n| user_id     | int  |\n| product_id  | int  |\n| quantity    | int  |\n+-------------+------+\n(user_id, product_id) is the unique identifier for this table. \nEach row represents a purchase of a product by a user in a specific quantity.\n```\n\nTable: `ProductInfo`\n\n```\n+-------------+---------+\n| Column Name | Type    | \n+-------------+---------+\n| product_id  | int     |\n| category    | varchar |\n| price       | decimal |\n+-------------+---------+\nproduct_id is the unique identifier for this table.\nEach row assigns a category and price to a product.\n```\n\nAmazon wants to understand shopping patterns across product categories. Write a solution to:\n\n1.  Find all **category pairs** (where `category1` < `category2`)\n2.  For **each category pair**, determine the number of **unique** **customers** who purchased products from **both** categories\n\nA category pair is considered **reportable** if at least `3` different customers have purchased products from both categories.\n\nReturn _the result table of reportable category pairs ordered by **customer\\_count** in **descending** order, and in case of a tie, by **category1** in **ascending** order lexicographically, and then by **category2** in **ascending** order._\n\nThe result format is in the following example.\n\n**Example:**\n\n**Input:**\n\nProductPurchases table:\n\n```\n+---------+------------+----------+\n| user_id | product_id | quantity |\n+---------+------------+----------+\n| 1       | 101        | 2        |\n| 1       | 102        | 1        |\n| 1       | 201        | 3        |\n| 1       | 301        | 1        |\n| 2       | 101        | 1        |\n| 2       | 102        | 2        |\n| 2       | 103        | 1        |\n| 2       | 201        | 5        |\n| 3       | 101        | 2        |\n| 3       | 103        | 1        |\n| 3       | 301        | 4        |\n| 3       | 401        | 2        |\n| 4       | 101        | 1        |\n| 4       | 201        | 3        |\n| 4       | 301        | 1        |\n| 4       | 401        | 2        |\n| 5       | 102        | 2        |\n| 5       | 103        | 1        |\n| 5       | 201        | 2        |\n| 5       | 202        | 3        |\n+---------+------------+----------+\n```\n\nProductInfo table:\n\n```\n+------------+-------------+-------+\n| product_id | category    | price |\n+------------+-------------+-------+\n| 101        | Electronics | 100   |\n| 102        | Books       | 20    |\n| 103        | Books       | 35    |\n| 201        | Clothing    | 45    |\n| 202        | Clothing    | 60    |\n| 301        | Sports      | 75    |\n| 401        | Kitchen     | 50    |\n+------------+-------------+-------+\n```\n\n**Output:**\n\n```\n+-------------+-------------+----------------+\n| category1   | category2   | customer_count |\n+-------------+-------------+----------------+\n| Books       | Clothing    | 3              |\n| Books       | Electronics | 3              |\n| Clothing    | Electronics | 3              |\n| Electronics | Sports      | 3              |\n+-------------+-------------+----------------+\n```\n\n**Explanation:**\n\n*   **Books-Clothing**:\n    *   User 1 purchased products from Books (102) and Clothing (201)\n    *   User 2 purchased products from Books (102, 103) and Clothing (201)\n    *   User 5 purchased products from Books (102, 103) and Clothing (201, 202)\n    *   Total: 3 customers purchased from both categories\n*   **Books-Electronics**:\n    *   User 1 purchased products from Books (102) and Electronics (101)\n    *   User 2 purchased products from Books (102, 103) and Electronics (101)\n    *   User 3 purchased products from Books (103) and Electronics (101)\n    *   Total: 3 customers purchased from both categories\n*   **Clothing-Electronics**:\n    *   User 1 purchased products from Clothing (201) and Electronics (101)\n    *   User 2 purchased products from Clothing (201) and Electronics (101)\n    *   User 4 purchased products from Clothing (201) and Electronics (101)\n    *   Total: 3 customers purchased from both categories\n*   **Electronics-Sports**:\n    *   User 1 purchased products from Electronics (101) and Sports (301)\n    *   User 3 purchased products from Electronics (101) and Sports (301)\n    *   User 4 purchased products from Electronics (101) and Sports (301)\n    *   Total: 3 customers purchased from both categories\n*   Other category pairs like Clothing-Sports (only 2 customers: Users 1 and 4) and Books-Kitchen (only 1 customer: User 3) have fewer than 3 shared customers and are not included in the result.\n\nThe result is ordered by customer\\_count in descending order. Since all pairs have the same customer\\_count of 3, they are ordered by category1 (then category2) in ascending order.",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "ProductPurchases table:\n\n\n+---------+------------+----------+\n| user_id | product_id | quantity |\n+---------+------------+----------+\n| 1       | 101        | 2        |\n| 1       | 102        | 1        |\n| 1       | 201        | 3        |\n| 1       | 301        | 1        |\n| 2       | 101        | 1        |\n| 2       | 102        | 2        |\n| 2       | 103        | 1        |\n| 2       | 201        | 5        |\n| 3       | 101        | 2        |\n| 3       | 103        | 1        |\n| 3       | 301        | 4        |\n| 3       | 401        | 2        |\n| 4       | 101        | 1        |\n| 4       | 201        | 3        |\n| 4       | 301        | 1        |\n| 4       | 401        | 2        |\n| 5       | 102        | 2        |\n| 5       | 103        | 1        |\n| 5       | 201        | 2        |\n| 5       | 202        | 3        |\n+---------+------------+----------+\n\n\nProductInfo table:\n\n\n+------------+-------------+-------+\n| product_id | category    | price |\n+------------+-------------+-------+\n| 101        | Electronics | 100   |\n| 102        | Books       | 20    |\n| 103        | Books       | 35    |\n| 201        | Clothing    | 45    |\n| 202        | Clothing    | 60    |\n| 301        | Sports      | 75    |\n| 401        | Kitchen     | 50    |\n+------------+-------------+-------+",
+      "output": "+-------------+-------------+----------------+\n| category1   | category2   | customer_count |\n+-------------+-------------+----------------+\n| Books       | Clothing    | 3              |\n| Books       | Electronics | 3              |\n| Clothing    | Electronics | 3              |\n| Electronics | Sports      | 3              |\n+-------------+-------------+----------------+",
+      "explanation": "Books-Clothing:\n\n\t\n\t\tUser 1 purchased products from Books (102) and Clothing (201)\n\t\tUser 2 purchased products from Books (102, 103) and Clothing (201)\n\t\tUser 5 purchased products from Books (102, 103) and Clothing (201, 202)\n\t\tTotal: 3 customers purchased from both categories\n\t\n\t\n\tBooks-Electronics:\n\t\n\t\tUser 1 purchased products from Books (102) and Electronics (101)\n\t\tUser 2 purchased products from Books (102, 103) and Electronics (101)\n\t\tUser 3 purchased products from Books (103) and Electronics (101)\n\t\tTotal: 3 customers purchased from both categories\n\t\n\t\n\tClothing-Electronics:\n\t\n\t\tUser 1 purchased products from Clothing (201) and Electronics (101)\n\t\tUser 2 purchased products from Clothing (201) and Electronics (101)\n\t\tUser 4 purchased products from Clothing (201) and Electronics (101)\n\t\tTotal: 3 customers purchased from both categories\n\t\n\t\n\tElectronics-Sports:\n\t\n\t\tUser 1 purchased products from Electronics (101) and Sports (301)\n\t\tUser 3 purchased products from Electronics (101) and Sports (301)\n\t\tUser 4 purchased products from Electronics (101) and Sports (301)\n\t\tTotal: 3 customers purchased from both categories\n\t\n\t\n\tOther category pairs like Clothing-Sports (only 2 customers: Users 1 and 4) and Books-Kitchen (only 1 customer: User 3) have fewer than 3 shared customers and are not included in the result."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_category_recommendation_pairs(product_purchases: pd.DataFrame, product_info: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"ProductPurchases\":[\"user_id\",\"product_id\",\"quantity\"],\"ProductInfo\":[\"product_id\",\"category\",\"price\"]},\"rows\":{\"ProductPurchases\":[[1,101,2],[1,102,1],[1,201,3],[1,301,1],[2,101,1],[2,102,2],[2,103,1],[2,201,5],[3,101,2],[3,103,1],[3,301,4],[3,401,2],[4,101,1],[4,201,3],[4,301,1],[4,401,2],[5,102,2],[5,103,1],[5,201,2],[5,202,3]],\"ProductInfo\":[[101,\"Electronics\",100],[102,\"Books\",20],[103,\"Books\",35],[201,\"Clothing\",45],[202,\"Clothing\",60],[301,\"Sports\",75],[401,\"Kitchen\",50]]}}",
+      "expectedOutput": "+-------------+-------------+----------------+\n| category1   | category2   | customer_count |\n+-------------+-------------+----------------+\n| Books       | Clothing    | 3              |\n| Books       | Electronics | 3              |\n| Clothing    | Electronics | 3              |\n| Electronics | Sports      | 3              |\n+-------------+-------------+----------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"ProductPurchases\":[\"user_id\",\"product_id\",\"quantity\"],\"ProductInfo\":[\"product_id\",\"category\",\"price\"]},\"rows\":{\"ProductPurchases\":[[1,101,2],[1,102,1],[1,201,3],[1,301,1],[2,101,1],[2,102,2],[2,103,1],[2,201,5],[3,101,2],[3,103,1],[3,301,4],[3,401,2],[4,101,1],[4,201,3],[4,301,1],[4,401,2],[5,102,2],[5,103,1],[5,201,2],[5,202,3]],\"ProductInfo\":[[101,\"Electronics\",100],[102,\"Books\",20],[103,\"Books\",35],[201,\"Clothing\",45],[202,\"Clothing\",60],[301,\"Sports\",75],[401,\"Kitchen\",50]]}}",
+      "expectedOutput": "+-------------+-------------+----------------+\n| category1   | category2   | customer_count |\n+-------------+-------------+----------------+\n| Books       | Clothing    | 3              |\n| Books       | Electronics | 3              |\n| Clothing    | Electronics | 3              |\n| Electronics | Sports      | 3              |\n+-------------+-------------+----------------+"
+    },
+    {
+      "input": "ProductPurchases table:\n\n\n+---------+------------+----------+\n| user_id | product_id | quantity |\n+---------+------------+----------+\n| 1       | 101        | 2        |\n| 1       | 102        | 1        |\n| 1       | 201        | 3        |\n| 1       | 301        | 1        |\n| 2       | 101        | 1        |\n| 2       | 102        | 2        |\n| 2       | 103        | 1        |\n| 2       | 201        | 5        |\n| 3       | 101        | 2        |\n| 3       | 103        | 1        |\n| 3       | 301        | 4        |\n| 3       | 401        | 2        |\n| 4       | 101        | 1        |\n| 4       | 201        | 3        |\n| 4       | 301        | 1        |\n| 4       | 401        | 2        |\n| 5       | 102        | 2        |\n| 5       | 103        | 1        |\n| 5       | 201        | 2        |\n| 5       | 202        | 3        |\n+---------+------------+----------+\n\n\nProductInfo table:\n\n\n+------------+-------------+-------+\n| product_id | category    | price |\n+------------+-------------+-------+\n| 101        | Electronics | 100   |\n| 102        | Books       | 20    |\n| 103        | Books       | 35    |\n| 201        | Clothing    | 45    |\n| 202        | Clothing    | 60    |\n| 301        | Sports      | 75    |\n| 401        | Kitchen     | 50    |\n+------------+-------------+-------+",
+      "expectedOutput": "+-------------+-------------+----------------+\n| category1   | category2   | customer_count |\n+-------------+-------------+----------------+\n| Books       | Clothing    | 3              |\n| Books       | Electronics | 3              |\n| Clothing    | Electronics | 3              |\n| Electronics | Sports      | 3              |\n+-------------+-------------+----------------+"
+    }
+  ],
+  "sqlSchema": "CREATE TABLE if not exists ProductPurchases (\n    user_id INT,\n    product_id INT,\n    quantity INT\n)\n\nCREATE TABLE  if not exists ProductInfo (\n    product_id INT,\n    category VARCHAR(100),\n    price DECIMAL(10, 2)\n)\n\nTruncate table ProductPurchases\n\nTruncate table ProductInfo",
+  "sqlSetup": [
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('1', '101', '2')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('1', '102', '1')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('1', '201', '3')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('1', '301', '1')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('2', '101', '1')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('2', '102', '2')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('2', '103', '1')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('2', '201', '5')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('3', '101', '2')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('3', '103', '1')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('3', '301', '4')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('3', '401', '2')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('4', '101', '1')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('4', '201', '3')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('4', '301', '1')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('4', '401', '2')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('5', '102', '2')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('5', '103', '1')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('5', '201', '2')",
+    "insert into ProductPurchases (user_id, product_id, quantity) values ('5', '202', '3')",
+    "insert into ProductInfo (product_id, category, price) values ('101', 'Electronics', '100')",
+    "insert into ProductInfo (product_id, category, price) values ('102', 'Books', '20')",
+    "insert into ProductInfo (product_id, category, price) values ('103', 'Books', '35')",
+    "insert into ProductInfo (product_id, category, price) values ('201', 'Clothing', '45')",
+    "insert into ProductInfo (product_id, category, price) values ('202', 'Clothing', '60')",
+    "insert into ProductInfo (product_id, category, price) values ('301', 'Sports', '75')",
+    "insert into ProductInfo (product_id, category, price) values ('401', 'Kitchen', '50')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-category-recommendation-pairs/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.568Z",
+    "sourceUpdatedAt": null
+  }
+}

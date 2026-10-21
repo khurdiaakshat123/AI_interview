@@ -1,0 +1,157 @@
+{
+  "id": "557",
+  "slug": "reverse-words-in-a-string-iii",
+  "title": "Reverse Words in a String III",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "Given a string `s`, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.\n\n**Example 1:**\n\n```\nInput: s = \"Let's take LeetCode contest\"\nOutput: \"s'teL ekat edoCteeL tsetnoc\"\n```\n\n**Example 2:**\n\n```\nInput: s = \"Mr Ding\"\nOutput: \"rM gniD\"\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 5 * 10^(4)`\n*   `s` contains printable **ASCII** characters.\n*   `s` does not contain any leading or trailing spaces.\n*   There is **at least one** word in `s`.\n*   All the words in `s` are separated by a single space.",
+  "constraints": [
+    "1 <= s.length <= 5 * 104",
+    "s contains printable ASCII characters.",
+    "s does not contain any leading or trailing spaces.",
+    "There is at least one word in s.",
+    "All the words in s are separated by a single space."
+  ],
+  "examples": [
+    {
+      "input": "s = \"Let's take LeetCode contest\"",
+      "output": "\"s'teL ekat edoCteeL tsetnoc\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"Mr Ding\"",
+      "output": "\"rM gniD\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string reverseWords(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String reverseWords(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reverseWords(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def reverseWords(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar reverseWords = function(s) {\n    \n};",
+    "typescript": "function reverseWords(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ReverseWords(string s) {\n        \n    }\n}",
+    "c": "char* reverseWords(char* s) {\n    \n}",
+    "golang": "func reverseWords(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun reverseWords(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reverseWords(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reverse_words(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef reverse_words(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function reverseWords($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String reverseWords(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reverseWords(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reverse_words(s :: String.t) :: String.t\n  def reverse_words(s) do\n    \n  end\nend",
+    "erlang": "-spec reverse_words(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nreverse_words(S) ->\n  .",
+    "racket": "(define/contract (reverse-words s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"Let's take LeetCode contest\"",
+      "expectedOutput": "\"s'teL ekat edoCteeL tsetnoc\""
+    },
+    {
+      "input": "\"Mr Ding\"",
+      "expectedOutput": "\"rM gniD\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"Let's take LeetCode contest\"",
+      "expectedOutput": "\"s'teL ekat edoCteeL tsetnoc\""
+    },
+    {
+      "input": "\"Mr Ding\"",
+      "expectedOutput": "\"rM gniD\""
+    },
+    {
+      "input": "\"Let's take Le\"",
+      "expectedOutput": "\"s'teL ekat eL\""
+    },
+    {
+      "input": "\"etCode contest\"",
+      "expectedOutput": "\"edoCte tsetnoc\""
+    },
+    {
+      "input": "\"L\"",
+      "expectedOutput": "\"L\""
+    },
+    {
+      "input": "\"Le\"",
+      "expectedOutput": "\"eL\""
+    },
+    {
+      "input": "\"tsetnoc edoCteeL ekat s'teL\"",
+      "expectedOutput": "\"contest LeetCode take Let's\""
+    },
+    {
+      "input": "\"LLLLLL\"",
+      "expectedOutput": "\"LLLLLL\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"baa\""
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "\"Aa\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/reverse-words-in-a-string-iii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.907Z",
+    "sourceUpdatedAt": null
+  }
+}

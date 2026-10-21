@@ -1,0 +1,63 @@
+{
+  "id": "180",
+  "slug": "consecutive-numbers",
+  "title": "Consecutive Numbers",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Medium",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Logs`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| id          | int     |\n| num         | varchar |\n+-------------+---------+\nIn SQL, id is the primary key for this table.\nid is an autoincrement column starting from 1.\n```\n\nFind all numbers that appear at least three times consecutively.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nLogs table:\n+----+-----+\n| id | num |\n+----+-----+\n| 1  | 1   |\n| 2  | 1   |\n| 3  | 1   |\n| 4  | 2   |\n| 5  | 1   |\n| 6  | 2   |\n| 7  | 2   |\n+----+-----+\nOutput: \n+-----------------+\n| ConsecutiveNums |\n+-----------------+\n| 1               |\n+-----------------+\nExplanation: 1 is the only number that appears consecutively for at least three times.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Logs table:\n+----+-----+\n| id | num |\n+----+-----+\n| 1  | 1   |\n| 2  | 1   |\n| 3  | 1   |\n| 4  | 2   |\n| 5  | 1   |\n| 6  | 2   |\n| 7  | 2   |\n+----+-----+",
+      "output": "+-----------------+\n| ConsecutiveNums |\n+-----------------+\n| 1               |\n+-----------------+",
+      "explanation": "1 is the only number that appears consecutively for at least three times."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef consecutive_numbers(logs: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Logs\":[\"id\",\"num\"]},\"rows\":{\"Logs\":[[1,1],[2,1],[3,1],[4,2],[5,1],[6,2],[7,2]]}}",
+      "expectedOutput": "+-----------------+\n| ConsecutiveNums |\n+-----------------+\n| 1               |\n+-----------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Logs\":[\"id\",\"num\"]},\"rows\":{\"Logs\":[[1,1],[2,1],[3,1],[4,2],[5,1],[6,2],[7,2]]}}",
+      "expectedOutput": "+-----------------+\n| ConsecutiveNums |\n+-----------------+\n| 1               |\n+-----------------+"
+    },
+    {
+      "input": "Logs table:\n+----+-----+\n| id | num |\n+----+-----+\n| 1  | 1   |\n| 2  | 1   |\n| 3  | 1   |\n| 4  | 2   |\n| 5  | 1   |\n| 6  | 2   |\n| 7  | 2   |\n+----+-----+",
+      "expectedOutput": "+-----------------+\n| ConsecutiveNums |\n+-----------------+\n| 1               |\n+-----------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Logs (id int, num int)\n\nTruncate table Logs",
+  "sqlSetup": [
+    "insert into Logs (id, num) values ('1', '1')",
+    "insert into Logs (id, num) values ('2', '1')",
+    "insert into Logs (id, num) values ('3', '1')",
+    "insert into Logs (id, num) values ('4', '2')",
+    "insert into Logs (id, num) values ('5', '1')",
+    "insert into Logs (id, num) values ('6', '2')",
+    "insert into Logs (id, num) values ('7', '2')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/consecutive-numbers/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.676Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "id": "1879",
+  "slug": "minimum-xor-sum-of-two-arrays",
+  "title": "Minimum XOR Sum of Two Arrays",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask",
+    "Hungarian Algorithm",
+    "Bipartite Graph",
+    "Successive Shortest Path Algorithm"
+  ],
+  "statement": "You are given two integer arrays `nums1` and `nums2` of length `n`.\n\nThe **XOR sum** of the two integer arrays is `(nums1[0] XOR nums2[0]) + (nums1[1] XOR nums2[1]) + ... + (nums1[n - 1] XOR nums2[n - 1])` (**0-indexed**).\n\n*   For example, the **XOR sum** of `[1,2,3]` and `[3,2,1]` is equal to `(1 XOR 3) + (2 XOR 2) + (3 XOR 1) = 2 + 0 + 2 = 4`.\n\nRearrange the elements of `nums2` such that the resulting **XOR sum** is **minimized**.\n\nReturn _the **XOR sum** after the rearrangement_.\n\n**Example 1:**\n\n```\nnums2\n```\n\n**Example 2:**\n\n```\nnums2\n```\n\n**Constraints:**\n\n*   `n == nums1.length`\n*   `n == nums2.length`\n*   `1 <= n <= 14`\n*   `0 <= nums1[i], nums2[i] <= 10^(7)`",
+  "constraints": [
+    "n == nums1.length",
+    "n == nums2.length",
+    "1 <= n <= 14",
+    "0 <= nums1[i], nums2[i] <= 107"
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [1,2], nums2 = [2,3]",
+      "output": "2",
+      "explanation": "Rearrange nums2 so that it becomes [3,2].\nThe XOR sum is (1 XOR 3) + (2 XOR 2) = 2 + 0 = 2."
+    },
+    {
+      "input": "nums1 = [1,0,3], nums2 = [5,3,4]",
+      "output": "8",
+      "explanation": "Rearrange nums2 so that it becomes [5,4,3]. \nThe XOR sum is (1 XOR 5) + (0 XOR 4) + (3 XOR 3) = 4 + 4 + 0 = 8."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumXORSum(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumXORSum(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumXORSum(self, nums1: list[int], nums2: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumXORSum(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar minimumXORSum = function(nums1, nums2) {\n    \n};",
+    "typescript": "function minimumXORSum(nums1: number[], nums2: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumXORSum(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "int minimumXORSum(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    \n}",
+    "golang": "func minimumXORSum(nums1 []int, nums2 []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumXORSum(nums1: IntArray, nums2: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumXORSum(_ nums1: [Int], _ nums2: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_xor_sum(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer}\ndef minimum_xor_sum(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer\n     */\n    function minimumXORSum($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumXORSum(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumXORSum(nums1: Array[Int], nums2: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_xor_sum(nums1 :: [integer], nums2 :: [integer]) :: integer\n  def minimum_xor_sum(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec minimum_xor_sum(Nums1 :: [integer()], Nums2 :: [integer()]) -> integer().\nminimum_xor_sum(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (minimum-xor-sum nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2]\n[2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,0,3]\n[5,3,4]",
+      "expectedOutput": "8"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2]\n[2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,0,3]\n[5,3,4]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1]\n[2,3]",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "[2]\n[2,3]",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "[2,1]\n[2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1]\n[2,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,4]\n[2,3]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[2,3]\n[2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1]\n[2,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-1,-2]\n[2,3]",
+      "expectedOutput": "-8"
+    },
+    {
+      "input": "[0,0]\n[2,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0]\n[2,3]",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "[-1]\n[2,3]",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "[-1,1]\n[2,3]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[100,-100]\n[2,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2]\n[3,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2]\n[2,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2]\n[2,3,2,3]",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "[1,2]\n[4,6]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,2]\n[3,4]",
+      "expectedOutput": "6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Since n <= 14, we can consider every subset of nums2.",
+    "We can represent every subset of nums2 using bitmasks."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.367Z",
+    "sourceUpdatedAt": null
+  }
+}

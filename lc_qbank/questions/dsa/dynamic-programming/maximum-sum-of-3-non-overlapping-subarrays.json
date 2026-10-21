@@ -1,0 +1,157 @@
+{
+  "id": "689",
+  "slug": "maximum-sum-of-3-non-overlapping-subarrays",
+  "title": "Maximum Sum of 3 Non-Overlapping Subarrays",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "statement": "Given an integer array `nums` and an integer `k`, find three non-overlapping subarrays of length `k` with maximum sum and return them.\n\nReturn the result as a list of indices representing the starting position of each interval (**0-indexed**). If there are multiple answers, return the lexicographically smallest one.\n\n**Example 1:**\n\n```\nInput: nums = [1,2,1,2,6,7,5,1], k = 2\nOutput: [0,3,5]\nExplanation: Subarrays [1, 2], [2, 6], [7, 5] correspond to the starting indices [0, 3, 5].\nWe could have also taken [2, 1], but an answer of [1, 3, 5] would be lexicographically larger.\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,2,1,2,1,2,1,2,1], k = 2\nOutput: [0,2,4]\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 2 * 10^(4)`\n*   `1 <= nums[i] < 2^(16)`\n*   `1 <= k <= floor(nums.length / 3)`",
+  "constraints": [
+    "1 <= nums.length <= 2 * 104",
+    "1 <= nums[i] < 216",
+    "1 <= k <= floor(nums.length / 3)"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,1,2,6,7,5,1], k = 2",
+      "output": "[0,3,5]",
+      "explanation": "Subarrays [1, 2], [2, 6], [7, 5] correspond to the starting indices [0, 3, 5].\nWe could have also taken [2, 1], but an answer of [1, 3, 5] would be lexicographically larger."
+    },
+    {
+      "input": "nums = [1,2,1,2,1,2,1,2,1], k = 2",
+      "output": "[0,2,4]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> maxSumOfThreeSubarrays(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] maxSumOfThreeSubarrays(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSumOfThreeSubarrays(self, nums: list[int], k: int) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def maxSumOfThreeSubarrays(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number[]}\n */\nvar maxSumOfThreeSubarrays = function(nums, k) {\n    \n};",
+    "typescript": "function maxSumOfThreeSubarrays(nums: number[], k: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MaxSumOfThreeSubarrays(int[] nums, int k) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* maxSumOfThreeSubarrays(int* nums, int numsSize, int k, int* returnSize) {\n    \n}",
+    "golang": "func maxSumOfThreeSubarrays(nums []int, k int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSumOfThreeSubarrays(nums: IntArray, k: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSumOfThreeSubarrays(_ nums: [Int], _ k: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_sum_of_three_subarrays(nums: Vec<i32>, k: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer[]}\ndef max_sum_of_three_subarrays(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer[]\n     */\n    function maxSumOfThreeSubarrays($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> maxSumOfThreeSubarrays(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSumOfThreeSubarrays(nums: Array[Int], k: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_sum_of_three_subarrays(nums :: [integer], k :: integer) :: [integer]\n  def max_sum_of_three_subarrays(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec max_sum_of_three_subarrays(Nums :: [integer()], K :: integer()) -> [integer()].\nmax_sum_of_three_subarrays(Nums, K) ->\n  .",
+    "racket": "(define/contract (max-sum-of-three-subarrays nums k)\n  (-> (listof exact-integer?) exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,1,2,6,7,5,1]\n2",
+      "expectedOutput": "[0,3,5]"
+    },
+    {
+      "input": "[1,2,1,2,1,2,1,2,1]\n2",
+      "expectedOutput": "[0,2,4]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,1,2,6,7,5,1]\n2",
+      "expectedOutput": "[0,3,5]"
+    },
+    {
+      "input": "[1,2,1,2,1,2,1,2,1]\n2",
+      "expectedOutput": "[0,2,4]"
+    },
+    {
+      "input": "[1,2,1,2]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[6,7,5,1]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,1]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,2]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,5,7,6,2,1,2,1]\n2",
+      "expectedOutput": "[1,3,5]"
+    },
+    {
+      "input": "[1,1,1,2,2,5,6,7]\n2",
+      "expectedOutput": "[2,4,6]"
+    },
+    {
+      "input": "[7,6,5,2,2,1,1,1]\n2",
+      "expectedOutput": "[0,2,4]"
+    },
+    {
+      "input": "[1,1,1,1,1]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,2,1,2,6,7,5,1,1,2,1,2,6,7,5,1]\n2",
+      "expectedOutput": "[3,5,12]"
+    },
+    {
+      "input": "[2,4,2,4,12,14,10,2]\n2",
+      "expectedOutput": "[0,3,5]"
+    },
+    {
+      "input": "[2,3,2,3,7,8,6,2]\n2",
+      "expectedOutput": "[0,3,5]"
+    },
+    {
+      "input": "[0,1,0,1,5,6,4,0]\n2",
+      "expectedOutput": "[0,3,5]"
+    },
+    {
+      "input": "[-1,-2,-1,-2,-6,-7,-5,-1]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[0,0,0,0]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,1,1,1]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[0]\n2",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[-1]\n2",
+      "expectedOutput": "[]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-sum-of-3-non-overlapping-subarrays/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.717Z",
+    "sourceUpdatedAt": null
+  }
+}

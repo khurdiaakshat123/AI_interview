@@ -1,0 +1,95 @@
+{
+  "id": "756",
+  "slug": "pyramid-transition-matrix",
+  "title": "Pyramid Transition Matrix",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "statement": "You are stacking blocks to form a pyramid. Each block has a color, which is represented by a single letter. Each row of blocks contains **one less block** than the row beneath it and is centered on top.\n\nTo make the pyramid aesthetically pleasing, there are only specific **triangular patterns** that are allowed. A triangular pattern consists of a **single block** stacked on top of **two blocks**. The patterns are given as a list of three-letter strings `allowed`, where the first two characters of a pattern represent the left and right bottom blocks respectively, and the third character is the top block.\n\n*   For example, `\"ABC\"` represents a triangular pattern with a `'C'` block stacked on top of an `'A'` (left) and `'B'` (right) block. Note that this is different from `\"BAC\"` where `'B'` is on the left bottom and `'A'` is on the right bottom.\n\nYou start with a bottom row of blocks `bottom`, given as a single string, that you **must** use as the base of the pyramid.\n\nGiven `bottom` and `allowed`, return `true` _if you can build the pyramid all the way to the top such that **every triangular pattern** in the pyramid is in_ `allowed`_, or_ `false` _otherwise_.\n\n**Example 1:**\n\n![](./assets/pyramid-transition-matrix-1.jpg)\n```\nInput: bottom = \"BCD\", allowed = [\"BCC\",\"CDE\",\"CEA\",\"FFF\"]\nOutput: true\nExplanation: The allowed triangular patterns are shown on the right.\nStarting from the bottom (level 3), we can build \"CE\" on level 2 and then build \"A\" on level 1.\nThere are three triangular patterns in the pyramid, which are \"BCC\", \"CDE\", and \"CEA\". All are allowed.\n```\n\n**Example 2:**\n\n![](./assets/pyramid-transition-matrix-2.jpg)\n```\nInput: bottom = \"AAAA\", allowed = [\"AAB\",\"AAC\",\"BCD\",\"BBE\",\"DEF\"]\nOutput: false\nExplanation: The allowed triangular patterns are shown on the right.\nStarting from the bottom (level 4), there are multiple ways to build level 3, but trying all the possibilites, you will get always stuck before building level 1.\n```\n\n**Constraints:**\n\n*   `2 <= bottom.length <= 6`\n*   `0 <= allowed.length <= 216`\n*   `allowed[i].length == 3`\n*   The letters in all input strings are from the set `{'A', 'B', 'C', 'D', 'E', 'F'}`.\n*   All the values of `allowed` are **unique**.",
+  "constraints": [
+    "2 <= bottom.length <= 6",
+    "0 <= allowed.length <= 216",
+    "allowed[i].length == 3",
+    "The letters in all input strings are from the set {'A', 'B', 'C', 'D', 'E', 'F'}.",
+    "All the values of allowed are unique."
+  ],
+  "examples": [
+    {
+      "input": "bottom = \"BCD\", allowed = [\"BCC\",\"CDE\",\"CEA\",\"FFF\"]",
+      "output": "true",
+      "explanation": "The allowed triangular patterns are shown on the right.\nStarting from the bottom (level 3), we can build \"CE\" on level 2 and then build \"A\" on level 1.\nThere are three triangular patterns in the pyramid, which are \"BCC\", \"CDE\", and \"CEA\". All are allowed."
+    },
+    {
+      "input": "bottom = \"AAAA\", allowed = [\"AAB\",\"AAC\",\"BCD\",\"BBE\",\"DEF\"]",
+      "output": "false",
+      "explanation": "The allowed triangular patterns are shown on the right.\nStarting from the bottom (level 4), there are multiple ways to build level 3, but trying all the possibilites, you will get always stuck before building level 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool pyramidTransition(string bottom, vector<string>& allowed) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean pyramidTransition(String bottom, List<String> allowed) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def pyramidTransition(self, bottom: str, allowed: list[str]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def pyramidTransition(self, bottom, allowed):\n        \"\"\"\n        :type bottom: str\n        :type allowed: List[str]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} bottom\n * @param {string[]} allowed\n * @return {boolean}\n */\nvar pyramidTransition = function(bottom, allowed) {\n    \n};",
+    "typescript": "function pyramidTransition(bottom: string, allowed: string[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool PyramidTransition(string bottom, IList<string> allowed) {\n        \n    }\n}",
+    "c": "bool pyramidTransition(char* bottom, char** allowed, int allowedSize) {\n    \n}",
+    "golang": "func pyramidTransition(bottom string, allowed []string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun pyramidTransition(bottom: String, allowed: List<String>): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func pyramidTransition(_ bottom: String, _ allowed: [String]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn pyramid_transition(bottom: String, allowed: Vec<String>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} bottom\n# @param {String[]} allowed\n# @return {Boolean}\ndef pyramid_transition(bottom, allowed)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $bottom\n     * @param String[] $allowed\n     * @return Boolean\n     */\n    function pyramidTransition($bottom, $allowed) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool pyramidTransition(String bottom, List<String> allowed) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def pyramidTransition(bottom: String, allowed: List[String]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec pyramid_transition(bottom :: String.t, allowed :: [String.t]) :: boolean\n  def pyramid_transition(bottom, allowed) do\n    \n  end\nend",
+    "erlang": "-spec pyramid_transition(Bottom :: unicode:unicode_binary(), Allowed :: [unicode:unicode_binary()]) -> boolean().\npyramid_transition(Bottom, Allowed) ->\n  .",
+    "racket": "(define/contract (pyramid-transition bottom allowed)\n  (-> string? (listof string?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"BCD\"\n[\"BCC\",\"CDE\",\"CEA\",\"FFF\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"AAAA\"\n[\"AAB\",\"AAC\",\"BCD\",\"BBE\",\"DEF\"]",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"BCD\"\n[\"BCC\",\"CDE\",\"CEA\",\"FFF\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"AAAA\"\n[\"AAB\",\"AAC\",\"BCD\",\"BBE\",\"DEF\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "bottom = \"BCD\", allowed = [\"BCC\",\"CDE\",\"CEA\",\"FFF\"]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "bottom = \"AAAA\", allowed = [\"AAB\",\"AAC\",\"BCD\",\"BBE\",\"DEF\"]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/pyramid-transition-matrix/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.059Z",
+    "sourceUpdatedAt": null
+  }
+}

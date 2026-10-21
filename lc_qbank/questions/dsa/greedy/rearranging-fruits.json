@@ -1,0 +1,163 @@
+{
+  "id": "2561",
+  "slug": "rearranging-fruits",
+  "title": "Rearranging Fruits",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Sort"
+  ],
+  "statement": "You have two fruit baskets containing `n` fruits each. You are given two **0-indexed** integer arrays `basket1` and `basket2` representing the cost of fruit in each basket. You want to make both baskets **equal**. To do so, you can use the following operation as many times as you want:\n\n*   Choose two indices `i` and `j`, and swap the `i^(th)` fruit of `basket1` with the `j^(th)` fruit of `basket2`.\n*   The cost of the swap is `min(basket1[i], basket2[j])`.\n\nTwo baskets are considered equal if sorting them according to the fruit cost makes them exactly the same baskets.\n\nReturn _the minimum cost to make both the baskets equal or_ `-1` _if impossible._\n\n**Example 1:**\n\n```\nInput: basket1 = [4,2,2,2], basket2 = [1,4,1,2]\nOutput: 1\nExplanation: Swap index 1 of basket1 with index 0 of basket2, which has cost 1. Now basket1 = [4,1,2,2] and basket2 = [2,4,1,2]. Rearranging both the arrays makes them equal.\n```\n\n**Example 2:**\n\n```\nInput: basket1 = [2,3,4,1], basket2 = [3,2,5,1]\nOutput: -1\nExplanation: It can be shown that it is impossible to make both the baskets equal.\n```\n\n**Constraints:**\n\n*   `basket1.length == basket2.length`\n*   `1 <= basket1.length <= 10^(5)`\n*   `1 <= basket1[i], basket2[i] <= 10^(9)`",
+  "constraints": [
+    "basket1.length == basket2.length",
+    "1 <= basket1.length <= 105",
+    "1 <= basket1[i], basket2[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "basket1 = [4,2,2,2], basket2 = [1,4,1,2]",
+      "output": "1",
+      "explanation": "Swap index 1 of basket1 with index 0 of basket2, which has cost 1. Now basket1 = [4,1,2,2] and basket2 = [2,4,1,2]. Rearranging both the arrays makes them equal."
+    },
+    {
+      "input": "basket1 = [2,3,4,1], basket2 = [3,2,5,1]",
+      "output": "-1",
+      "explanation": "It can be shown that it is impossible to make both the baskets equal."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minCost(vector<int>& basket1, vector<int>& basket2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minCost(int[] basket1, int[] basket2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCost(self, basket1: List[int], basket2: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minCost(self, basket1, basket2):\n        \"\"\"\n        :type basket1: List[int]\n        :type basket2: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} basket1\n * @param {number[]} basket2\n * @return {number}\n */\nvar minCost = function(basket1, basket2) {\n    \n};",
+    "typescript": "function minCost(basket1: number[], basket2: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinCost(int[] basket1, int[] basket2) {\n        \n    }\n}",
+    "c": "long long minCost(int* basket1, int basket1Size, int* basket2, int basket2Size) {\n    \n}",
+    "golang": "func minCost(basket1 []int, basket2 []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCost(basket1: IntArray, basket2: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCost(_ basket1: [Int], _ basket2: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_cost(basket1: Vec<i32>, basket2: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} basket1\n# @param {Integer[]} basket2\n# @return {Integer}\ndef min_cost(basket1, basket2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $basket1\n     * @param Integer[] $basket2\n     * @return Integer\n     */\n    function minCost($basket1, $basket2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minCost(List<int> basket1, List<int> basket2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCost(basket1: Array[Int], basket2: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_cost(basket1 :: [integer], basket2 :: [integer]) :: integer\n  def min_cost(basket1, basket2) do\n    \n  end\nend",
+    "erlang": "-spec min_cost(Basket1 :: [integer()], Basket2 :: [integer()]) -> integer().\nmin_cost(Basket1, Basket2) ->\n  .",
+    "racket": "(define/contract (min-cost basket1 basket2)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[4,2,2,2]\n[1,4,1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3,4,1]\n[3,2,5,1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[4,2,2,2]\n[1,4,1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,3,4,1]\n[3,2,5,1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,2]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,2]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,2,2,4]\n[1,4,1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,4,4,4]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,2,2,2,4,2,2,2]\n[1,4,1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[8,4,4,4]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[5,3,3,3]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,1,1,1]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-4,-2,-2,-2]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0,0,0]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,1,1]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1]\n[1,4,1,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,1]\n[1,4,1,2]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Create two frequency maps for both arrays, and find the minimum element among all elements of both arrays.",
+    "Check if the sum of frequencies of an element in both arrays is odd, if so return -1",
+    "Store the elements that need to be swapped in a vector, and sort it.",
+    "Can we reduce swapping cost with the help of minimum element?",
+    "Calculate the minimum cost of swapping."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/rearranging-fruits/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.299Z",
+    "sourceUpdatedAt": null
+  }
+}

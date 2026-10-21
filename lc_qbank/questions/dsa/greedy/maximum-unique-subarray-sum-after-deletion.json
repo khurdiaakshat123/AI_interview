@@ -1,0 +1,167 @@
+{
+  "id": "3487",
+  "slug": "maximum-unique-subarray-sum-after-deletion",
+  "title": "Maximum Unique Subarray Sum After Deletion",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nYou are allowed to delete any number of elements from `nums` without making it **empty**. After performing the deletions, select a subarray of `nums` such that:\n\n1.  All elements in the subarray are **unique**.\n2.  The sum of the elements in the subarray is **maximized**.\n\nReturn the **maximum sum** of such a subarray.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,3,4,5\\]\n\n**Output:** 15\n\n**Explanation:**\n\nSelect the entire array without deleting any element to obtain the maximum sum.\n\n**Example 2:**\n\n**Input:** nums = \\[1,1,0,1,1\\]\n\n**Output:** 1\n\n**Explanation:**\n\nDelete the element `nums[0] == 1`, `nums[1] == 1`, `nums[2] == 0`, and `nums[3] == 1`. Select the entire array `[1]` to obtain the maximum sum.\n\n**Example 3:**\n\n**Input:** nums = \\[1,2,-1,-2,1,0,-1\\]\n\n**Output:** 3\n\n**Explanation:**\n\nDelete the elements `nums[2] == -1` and `nums[3] == -2`, and select the subarray `[2, 1]` from `[1, 2, 1, 0, -1]` to obtain the maximum sum.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 100`\n*   `-100 <= nums[i] <= 100`",
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "-100 <= nums[i] <= 100"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3,4,5]",
+      "output": "15",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,1,0,1,1]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,2,-1,-2,1,0,-1]",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxSum(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxSum(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSum(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxSum = function(nums) {\n    \n};",
+    "typescript": "function maxSum(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxSum(int[] nums) {\n        \n    }\n}",
+    "c": "int maxSum(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxSum(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSum(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSum(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_sum(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_sum(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxSum($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSum(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSum(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_sum(nums :: [integer]) :: integer\n  def max_sum(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_sum(Nums :: [integer()]) -> integer().\nmax_sum(Nums) ->\n  .",
+    "racket": "(define/contract (max-sum nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4,5]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[1,1,0,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,-1,-2,1,0,-1]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4,5]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[1,1,0,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,-1,-2,1,0,-1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,4,5]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,5]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[5,4,3,2,1]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3,4,5,1,2,3,4,5]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[2,4,6,8,10]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "[2,3,4,5,6]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[0,1,2,3,4]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[-1,-2,-3,-4,-5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If the maximum element in the array is less than zero, the answer is the maximum element.",
+    "Otherwise, the answer is the sum of all unique values that are greater than or equal to zero."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-unique-subarray-sum-after-deletion/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.873Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "id": "1946",
+  "slug": "largest-number-after-mutating-substring",
+  "title": "Largest Number After Mutating Substring",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Greedy"
+  ],
+  "statement": "You are given a string `num`, which represents a large integer. You are also given a **0-indexed** integer array `change` of length `10` that maps each digit `0-9` to another digit. More formally, digit `d` maps to digit `change[d]`.\n\nYou may **choose** to **mutate a single substring** of `num`. To mutate a substring, replace each digit `num[i]` with the digit it maps to in `change` (i.e. replace `num[i]` with `change[num[i]]`).\n\nReturn _a string representing the **largest** possible integer after **mutating** (or choosing not to) a **single substring** of_ `num`.\n\nA **substring** is a contiguous sequence of characters within the string.\n\n**Example 1:**\n\n```\nInput: num = \"132\", change = [9,8,5,0,3,6,4,2,6,8]\nOutput: \"832\"\nExplanation: Replace the substring \"1\":\n- 1 maps to change[1] = 8.\nThus, \"132\" becomes \"832\".\n\"832\" is the largest number that can be created, so return it.\n```\n\n**Example 2:**\n\n```\nInput: num = \"021\", change = [9,4,3,5,7,2,1,9,0,6]\nOutput: \"934\"\nExplanation: Replace the substring \"021\":\n- 0 maps to change[0] = 9.\n- 2 maps to change[2] = 3.\n- 1 maps to change[1] = 4.\nThus, \"021\" becomes \"934\".\n\"934\" is the largest number that can be created, so return it.\n```\n\n**Example 3:**\n\n```\nInput: num = \"5\", change = [1,4,7,5,3,2,5,6,9,4]\nOutput: \"5\"\nExplanation: \"5\" is already the largest number that can be created, so return it.\n```\n\n**Constraints:**\n\n*   `1 <= num.length <= 10^(5)`\n*   `num` consists of only digits `0-9`.\n*   `change.length == 10`\n*   `0 <= change[d] <= 9`",
+  "constraints": [
+    "1 <= num.length <= 105",
+    "num consists of only digits 0-9.",
+    "change.length == 10",
+    "0 <= change[d] <= 9"
+  ],
+  "examples": [
+    {
+      "input": "num = \"132\", change = [9,8,5,0,3,6,4,2,6,8]",
+      "output": "\"832\"",
+      "explanation": "Replace the substring \"1\":\n- 1 maps to change[1] = 8.\nThus, \"132\" becomes \"832\".\n\"832\" is the largest number that can be created, so return it."
+    },
+    {
+      "input": "num = \"021\", change = [9,4,3,5,7,2,1,9,0,6]",
+      "output": "\"934\"",
+      "explanation": "Replace the substring \"021\":\n- 0 maps to change[0] = 9.\n- 2 maps to change[2] = 3.\n- 1 maps to change[1] = 4.\nThus, \"021\" becomes \"934\".\n\"934\" is the largest number that can be created, so return it."
+    },
+    {
+      "input": "num = \"5\", change = [1,4,7,5,3,2,5,6,9,4]",
+      "output": "\"5\"",
+      "explanation": "\"5\" is already the largest number that can be created, so return it."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string maximumNumber(string num, vector<int>& change) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String maximumNumber(String num, int[] change) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumNumber(self, num: str, change: list[int]) -> str:\n        ",
+    "python": "class Solution(object):\n    def maximumNumber(self, num, change):\n        \"\"\"\n        :type num: str\n        :type change: List[int]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num\n * @param {number[]} change\n * @return {string}\n */\nvar maximumNumber = function(num, change) {\n    \n};",
+    "typescript": "function maximumNumber(num: string, change: number[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MaximumNumber(string num, int[] change) {\n        \n    }\n}",
+    "c": "char* maximumNumber(char* num, int* change, int changeSize) {\n    \n}",
+    "golang": "func maximumNumber(num string, change []int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumNumber(num: String, change: IntArray): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumNumber(_ num: String, _ change: [Int]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_number(num: String, change: Vec<i32>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} num\n# @param {Integer[]} change\n# @return {String}\ndef maximum_number(num, change)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num\n     * @param Integer[] $change\n     * @return String\n     */\n    function maximumNumber($num, $change) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String maximumNumber(String num, List<int> change) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumNumber(num: String, change: Array[Int]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_number(num :: String.t, change :: [integer]) :: String.t\n  def maximum_number(num, change) do\n    \n  end\nend",
+    "erlang": "-spec maximum_number(Num :: unicode:unicode_binary(), Change :: [integer()]) -> unicode:unicode_binary().\nmaximum_number(Num, Change) ->\n  .",
+    "racket": "(define/contract (maximum-number num change)\n  (-> string? (listof exact-integer?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"132\"\n[9,8,5,0,3,6,4,2,6,8]",
+      "expectedOutput": "\"832\""
+    },
+    {
+      "input": "\"021\"\n[9,4,3,5,7,2,1,9,0,6]",
+      "expectedOutput": "\"934\""
+    },
+    {
+      "input": "\"5\"\n[1,4,7,5,3,2,5,6,9,4]",
+      "expectedOutput": "\"5\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"132\"\n[9,8,5,0,3,6,4,2,6,8]",
+      "expectedOutput": "\"832\""
+    },
+    {
+      "input": "\"021\"\n[9,4,3,5,7,2,1,9,0,6]",
+      "expectedOutput": "\"934\""
+    },
+    {
+      "input": "\"5\"\n[1,4,7,5,3,2,5,6,9,4]",
+      "expectedOutput": "\"5\""
+    },
+    {
+      "input": "\"1\"\n[9,8,5,0,3,6,4,2,6,8]",
+      "expectedOutput": "\"8\""
+    },
+    {
+      "input": "\"32\"\n[9,8,5,0,3,6,4,2,6,8]",
+      "expectedOutput": "\"35\""
+    },
+    {
+      "input": "\"13\"\n[9,8,5,0,3,6,4,2,6,8]",
+      "expectedOutput": "\"83\""
+    },
+    {
+      "input": "\"231\"\n[9,8,5,0,3,6,4,2,6,8]",
+      "expectedOutput": "\"531\""
+    },
+    {
+      "input": "\"132132\"\n[9,8,5,0,3,6,4,2,6,8]",
+      "expectedOutput": "\"832132\""
+    },
+    {
+      "input": "\"111\"\n[9,8,5,0,3,6,4,2,6,8]",
+      "expectedOutput": "\"888\""
+    },
+    {
+      "input": "\"132231\"\n[9,8,5,0,3,6,4,2,6,8]",
+      "expectedOutput": "\"832231\""
+    },
+    {
+      "input": "\"0\"\n[9,8,5,0,3,6,4,2,6,8]",
+      "expectedOutput": "\"9\""
+    },
+    {
+      "input": "\"121\"\n[9,8,5,0,3,6,4,2,6,8]",
+      "expectedOutput": "\"858\""
+    },
+    {
+      "input": "\"132\"\n[9,8,5,0,3]",
+      "expectedOutput": "\"832\""
+    },
+    {
+      "input": "\"132\"\n[6,4,2,6,8]",
+      "expectedOutput": "\"462\""
+    },
+    {
+      "input": "\"132\"\n[8,6,2,4,6,3,0,5,8,9]",
+      "expectedOutput": "\"642\""
+    },
+    {
+      "input": "\"132\"\n[0,2,3,4,5,6,6,8,8,9]",
+      "expectedOutput": "\"243\""
+    },
+    {
+      "input": "\"132\"\n[9,8,8,6,6,5,4,3,2,0]",
+      "expectedOutput": "\"868\""
+    },
+    {
+      "input": "\"132\"\n[9,9,9,9,9]",
+      "expectedOutput": "\"999\""
+    },
+    {
+      "input": "\"132\"\n[18,16,10,0,6,12,8,4,12,16]",
+      "expectedOutput": "\"1632\""
+    },
+    {
+      "input": "\"132\"\n[10,9,6,1,4,7,5,3,7,9]",
+      "expectedOutput": "\"932\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Should you change a digit if the new digit is smaller than the original?",
+    "If changing the first digit and the last digit both make the number bigger, but you can only change one of them; which one should you change?",
+    "Changing numbers closer to the front is always better"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/largest-number-after-mutating-substring/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.957Z",
+    "sourceUpdatedAt": null
+  }
+}

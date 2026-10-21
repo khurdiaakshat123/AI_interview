@@ -1,0 +1,113 @@
+{
+  "id": "3592",
+  "slug": "inverse-coin-change",
+  "title": "Inverse Coin Change",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given a **1-indexed** integer array `numWays`, where `numWays[i]` represents the number of ways to select a total amount `i` using an **infinite** supply of some _fixed_ coin denominations. Each denomination is a **positive** integer with value **at most** `numWays.length`.\n\nHowever, the exact coin denominations have been _lost_. Your task is to recover the set of denominations that could have resulted in the given `numWays` array.\n\nReturn a **sorted** array containing **unique** integers which represents this set of denominations.\n\nIf no such set exists, return an **empty** array.\n\n**Example 1:**\n\n**Input:** numWays = \\[0,1,0,2,0,3,0,4,0,5\\]\n\n**Output:** \\[2,4,6\\]\n\n**Explanation:**\n\nAmount\n\nNumber of ways\n\nExplanation\n\n1\n\n0\n\nThere is no way to select coins with total value 1.\n\n2\n\n1\n\nThe only way is `[2]`.\n\n3\n\n0\n\nThere is no way to select coins with total value 3.\n\n4\n\n2\n\nThe ways are `[2, 2]` and `[4]`.\n\n5\n\n0\n\nThere is no way to select coins with total value 5.\n\n6\n\n3\n\nThe ways are `[2, 2, 2]`, `[2, 4]`, and `[6]`.\n\n7\n\n0\n\nThere is no way to select coins with total value 7.\n\n8\n\n4\n\nThe ways are `[2, 2, 2, 2]`, `[2, 2, 4]`, `[2, 6]`, and `[4, 4]`.\n\n9\n\n0\n\nThere is no way to select coins with total value 9.\n\n10\n\n5\n\nThe ways are `[2, 2, 2, 2, 2]`, `[2, 2, 2, 4]`, `[2, 4, 4]`, `[2, 2, 6]`, and `[4, 6]`.\n\n**Example 2:**\n\n**Input:** numWays = \\[1,2,2,3,4\\]\n\n**Output:** \\[1,2,5\\]\n\n**Explanation:**\n\nAmount\n\nNumber of ways\n\nExplanation\n\n1\n\n1\n\nThe only way is `[1]`.\n\n2\n\n2\n\nThe ways are `[1, 1]` and `[2]`.\n\n3\n\n2\n\nThe ways are `[1, 1, 1]` and `[1, 2]`.\n\n4\n\n3\n\nThe ways are `[1, 1, 1, 1]`, `[1, 1, 2]`, and `[2, 2]`.\n\n5\n\n4\n\nThe ways are `[1, 1, 1, 1, 1]`, `[1, 1, 1, 2]`, `[1, 2, 2]`, and `[5]`.\n\n**Example 3:**\n\n**Input:** numWays = \\[1,2,3,4,15\\]\n\n**Output:** \\[\\]\n\n**Explanation:**\n\nNo set of denomination satisfies this array.\n\n**Constraints:**\n\n*   `1 <= numWays.length <= 100`\n*   `0 <= numWays[i] <= 2 * 10^(8)`",
+  "constraints": [
+    "1 <= numWays.length <= 100",
+    "0 <= numWays[i] <= 2 * 108"
+  ],
+  "examples": [
+    {
+      "input": "numWays = [0,1,0,2,0,3,0,4,0,5]",
+      "output": "[2,4,6]",
+      "explanation": "Amount\n\t\t\tNumber of ways\n\t\t\tExplanation\n\t\t\n\t\t\n\t\t\t1\n\t\t\t0\n\t\t\tThere is no way to select coins with total value 1.\n\t\t\n\t\t\n\t\t\t2\n\t\t\t1\n\t\t\tThe only way is [2].\n\t\t\n\t\t\n\t\t\t3\n\t\t\t0\n\t\t\tThere is no way to select coins with total value 3.\n\t\t\n\t\t\n\t\t\t4\n\t\t\t2\n\t\t\tThe ways are [2, 2] and [4].\n\t\t\n\t\t\n\t\t\t5\n\t\t\t0\n\t\t\tThere is no way to select coins with total value 5.\n\t\t\n\t\t\n\t\t\t6\n\t\t\t3\n\t\t\tThe ways are [2, 2, 2], [2, 4], and [6].\n\t\t\n\t\t\n\t\t\t7\n\t\t\t0\n\t\t\tThere is no way to select coins with total value 7.\n\t\t\n\t\t\n\t\t\t8\n\t\t\t4\n\t\t\tThe ways are [2, 2, 2, 2], [2, 2, 4], [2, 6], and [4, 4].\n\t\t\n\t\t\n\t\t\t9\n\t\t\t0\n\t\t\tThere is no way to select coins with total value 9.\n\t\t\n\t\t\n\t\t\t10\n\t\t\t5\n\t\t\tThe ways are [2, 2, 2, 2, 2], [2, 2, 2, 4], [2, 4, 4], [2, 2, 6], and [4, 6]."
+    },
+    {
+      "input": "numWays = [1,2,2,3,4]",
+      "output": "[1,2,5]",
+      "explanation": "Amount\n\t\t\tNumber of ways\n\t\t\tExplanation\n\t\t\n\t\t\n\t\t\t1\n\t\t\t1\n\t\t\tThe only way is [1].\n\t\t\n\t\t\n\t\t\t2\n\t\t\t2\n\t\t\tThe ways are [1, 1] and [2].\n\t\t\n\t\t\n\t\t\t3\n\t\t\t2\n\t\t\tThe ways are [1, 1, 1] and [1, 2].\n\t\t\n\t\t\n\t\t\t4\n\t\t\t3\n\t\t\tThe ways are [1, 1, 1, 1], [1, 1, 2], and [2, 2].\n\t\t\n\t\t\n\t\t\t5\n\t\t\t4\n\t\t\tThe ways are [1, 1, 1, 1, 1], [1, 1, 1, 2], [1, 2, 2], and [5]."
+    },
+    {
+      "input": "numWays = [1,2,3,4,15]",
+      "output": "[]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findCoins(vector<int>& numWays) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> findCoins(int[] numWays) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findCoins(self, numWays: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def findCoins(self, numWays):\n        \"\"\"\n        :type numWays: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} numWays\n * @return {number[]}\n */\nvar findCoins = function(numWays) {\n    \n};",
+    "typescript": "function findCoins(numWays: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> FindCoins(int[] numWays) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findCoins(int* numWays, int numWaysSize, int* returnSize) {\n    \n}",
+    "golang": "func findCoins(numWays []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findCoins(numWays: IntArray): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findCoins(_ numWays: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_coins(num_ways: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} num_ways\n# @return {Integer[]}\ndef find_coins(num_ways)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $numWays\n     * @return Integer[]\n     */\n    function findCoins($numWays) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findCoins(List<int> numWays) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findCoins(numWays: Array[Int]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_coins(num_ways :: [integer]) :: [integer]\n  def find_coins(num_ways) do\n    \n  end\nend",
+    "erlang": "-spec find_coins(NumWays :: [integer()]) -> [integer()].\nfind_coins(NumWays) ->\n  .",
+    "racket": "(define/contract (find-coins numWays)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[0,1,0,2,0,3,0,4,0,5]",
+      "expectedOutput": "[2,4,6]"
+    },
+    {
+      "input": "[1,2,2,3,4]",
+      "expectedOutput": "[1,2,5]"
+    },
+    {
+      "input": "[1,2,3,4,15]",
+      "expectedOutput": "[]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[0,1,0,2,0,3,0,4,0,5]",
+      "expectedOutput": "[2,4,6]"
+    },
+    {
+      "input": "[1,2,2,3,4]",
+      "expectedOutput": "[1,2,5]"
+    },
+    {
+      "input": "[1,2,3,4,15]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "numWays = [0,1,0,2,0,3,0,4,0,5]",
+      "expectedOutput": "[2,4,6]"
+    },
+    {
+      "input": "numWays = [1,2,2,3,4]",
+      "expectedOutput": "[1,2,5]"
+    },
+    {
+      "input": "numWays = [1,2,3,4,15]",
+      "expectedOutput": "[]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Observe that for the smallest denomination <code>c</code>, you must have <code>numWays[c] == 1</code>.",
+    "Find the smallest <code>c > 0</code> with <code>numWays[c] == 1</code> and append <code>c</code> to your <code>ans</code> list.",
+    "\"Remove\" that coin’s contribution by doing, for each <code>s</code> from <code>c</code> up to <code>n</code>: numWays[s] -= numWays[s - c]",
+    "Repeat: pick the next smallest <code>c</code> with <code>numWays[c] == 1</code>, remove it, and so on.",
+    "At the end, if <code>numWays</code> is all zeros, your <code>ans</code> is valid; otherwise, return an empty array."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/inverse-coin-change/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.613Z",
+    "sourceUpdatedAt": null
+  }
+}

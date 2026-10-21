@@ -1,0 +1,128 @@
+{
+  "id": "1808",
+  "slug": "maximize-number-of-nice-divisors",
+  "title": "Maximize Number of Nice Divisors",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Hard",
+  "tags": [
+    "Math",
+    "Recursion",
+    "Number Theory"
+  ],
+  "statement": "You are given a positive integer `primeFactors`. You are asked to construct a positive integer `n` that satisfies the following conditions:\n\n*   The number of prime factors of `n` (not necessarily distinct) is **at most** `primeFactors`.\n*   The number of nice divisors of `n` is maximized. Note that a divisor of `n` is **nice** if it is divisible by every prime factor of `n`. For example, if `n = 12`, then its prime factors are `[2,2,3]`, then `6` and `12` are nice divisors, while `3` and `4` are not.\n\nReturn _the number of nice divisors of_ `n`. Since that number can be too large, return it **modulo** `10^(9) + 7`.\n\nNote that a prime number is a natural number greater than `1` that is not a product of two smaller natural numbers. The prime factors of a number `n` is a list of prime numbers such that their product equals `n`.\n\n**Example 1:**\n\n```\nInput: primeFactors = 5\nOutput: 6\nExplanation: 200 is a valid value of n.\nIt has 5 prime factors: [2,2,2,5,5], and it has 6 nice divisors: [10,20,40,50,100,200].\nThere is not other value of n that has at most 5 prime factors and more nice divisors.\n```\n\n**Example 2:**\n\n```\nInput: primeFactors = 8\nOutput: 18\n```\n\n**Constraints:**\n\n*   `1 <= primeFactors <= 10^(9)`",
+  "constraints": [
+    "1 <= primeFactors <= 109"
+  ],
+  "examples": [
+    {
+      "input": "primeFactors = 5",
+      "output": "6",
+      "explanation": "200 is a valid value of n.\r\nIt has 5 prime factors: [2,2,2,5,5], and it has 6 nice divisors: [10,20,40,50,100,200].\r\nThere is not other value of n that has at most 5 prime factors and more nice divisors."
+    },
+    {
+      "input": "primeFactors = 8",
+      "output": "18",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxNiceDivisors(int primeFactors) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxNiceDivisors(int primeFactors) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxNiceDivisors(self, primeFactors: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxNiceDivisors(self, primeFactors):\n        \"\"\"\n        :type primeFactors: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} primeFactors\n * @return {number}\n */\nvar maxNiceDivisors = function(primeFactors) {\n    \n};",
+    "typescript": "function maxNiceDivisors(primeFactors: number): number {\n\n};",
+    "csharp": "public class Solution {\n    public int MaxNiceDivisors(int primeFactors) {\n        \n    }\n}",
+    "c": "\n\nint maxNiceDivisors(int primeFactors){\n\n}",
+    "golang": "func maxNiceDivisors(primeFactors int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxNiceDivisors(primeFactors: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxNiceDivisors(_ primeFactors: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_nice_divisors(prime_factors: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} prime_factors\n# @return {Integer}\ndef max_nice_divisors(prime_factors)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $primeFactors\n     * @return Integer\n     */\n    function maxNiceDivisors($primeFactors) {\n        \n    }\n}",
+    "scala": "object Solution {\n    def maxNiceDivisors(primeFactors: Int): Int = {\n        \n    }\n}",
+    "racket": "(define/contract (max-nice-divisors primeFactors)\n  (-> exact-integer? exact-integer?)\n\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "5",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "8",
+      "expectedOutput": "18"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "5",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "8",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "6",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "7",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "9",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "-1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "-2",
+      "expectedOutput": "-2"
+    },
+    {
+      "input": "10",
+      "expectedOutput": "36"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The number of nice divisors is equal to the product of the count of each prime factor. Then the problem is reduced to: given n, find a sequence of numbers whose sum equals n and whose product is maximized.",
+    "This sequence can have no numbers that are larger than 4. Proof: if it contains a number x that is larger than 4, then you can replace x with floor(x/2) and ceil(x/2), and floor(x/2) * ceil(x/2) > x. You can also replace 4s with two 2s. Hence, there will always be optimal solutions with only 2s and 3s.",
+    "If there are three 2s, you can replace them with two 3s to get a better product. Hence, you'll never have more than two 2s.",
+    "Keep adding 3s as long as n ≥ 5."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-number-of-nice-divisors/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.305Z",
+    "sourceUpdatedAt": null
+  }
+}

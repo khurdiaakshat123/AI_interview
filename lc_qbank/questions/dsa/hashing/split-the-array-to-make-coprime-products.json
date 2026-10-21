@@ -1,0 +1,161 @@
+{
+  "id": "2584",
+  "slug": "split-the-array-to-make-coprime-products",
+  "title": "Split the Array to Make Coprime Products",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Number Theory",
+    "Prime Factorization"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums` of length `n`.\n\nA **split** at an index `i` where `0 <= i <= n - 2` is called **valid** if the product of the first `i + 1` elements and the product of the remaining elements are coprime.\n\n*   For example, if `nums = [2, 3, 3]`, then a split at the index `i = 0` is valid because `2` and `9` are coprime, while a split at the index `i = 1` is not valid because `6` and `3` are not coprime. A split at the index `i = 2` is not valid because `i == n - 1`.\n\nReturn _the smallest index_ `i` _at which the array can be split validly or_ `-1` _if there is no such split_.\n\nTwo values `val1` and `val2` are coprime if `gcd(val1, val2) == 1` where `gcd(val1, val2)` is the greatest common divisor of `val1` and `val2`.\n\n**Example 1:**\n\n![](./assets/split-the-array-to-make-coprime-products-1.png)\n```\nInput: nums = [4,7,8,15,3,5]\nOutput: 2\nExplanation: The table above shows the values of the product of the first i + 1 elements, the remaining elements, and their gcd at each index i.\nThe only valid split is at index 2.\n```\n\n**Example 2:**\n\n![](./assets/split-the-array-to-make-coprime-products-2.png)\n```\nInput: nums = [4,7,15,8,3,5]\nOutput: -1\nExplanation: The table above shows the values of the product of the first i + 1 elements, the remaining elements, and their gcd at each index i.\nThere is no valid split.\n```\n\n**Constraints:**\n\n*   `n == nums.length`\n*   `1 <= n <= 10^(4)`\n*   `1 <= nums[i] <= 10^(6)`",
+  "constraints": [
+    "n == nums.length",
+    "1 <= n <= 104",
+    "1 <= nums[i] <= 106"
+  ],
+  "examples": [
+    {
+      "input": "nums = [4,7,8,15,3,5]",
+      "output": "2",
+      "explanation": "The table above shows the values of the product of the first i + 1 elements, the remaining elements, and their gcd at each index i.\nThe only valid split is at index 2."
+    },
+    {
+      "input": "nums = [4,7,15,8,3,5]",
+      "output": "-1",
+      "explanation": "The table above shows the values of the product of the first i + 1 elements, the remaining elements, and their gcd at each index i.\nThere is no valid split."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findValidSplit(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findValidSplit(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findValidSplit(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findValidSplit(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar findValidSplit = function(nums) {\n    \n};",
+    "typescript": "function findValidSplit(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindValidSplit(int[] nums) {\n        \n    }\n}",
+    "c": "int findValidSplit(int* nums, int numsSize) {\n    \n}",
+    "golang": "func findValidSplit(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findValidSplit(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findValidSplit(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_valid_split(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef find_valid_split(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function findValidSplit($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findValidSplit(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findValidSplit(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_valid_split(nums :: [integer]) :: integer\n  def find_valid_split(nums) do\n    \n  end\nend",
+    "erlang": "-spec find_valid_split(Nums :: [integer()]) -> integer().\nfind_valid_split(Nums) ->\n  .",
+    "racket": "(define/contract (find-valid-split nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[4,7,8,15,3,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,7,15,8,3,5]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[4,7,8,15,3,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,7,15,8,3,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,7,8]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[15,3,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[4,7]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,3,15,8,7,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,4,5,7,8,15]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[15,8,7,5,4,3]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,4,4,4,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,7,8,15,3,5,4,7,8,15,3,5]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[8,14,16,30,6,10]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[5,8,9,16,4,6]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,6,7,14,2,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-4,-7,-8,-15,-3,-5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Two numbers with GCD equal to 1 have no common prime divisor.",
+    "Find the prime factorization of the left and right sides and check if they share a prime divisor."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/split-the-array-to-make-coprime-products/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.162Z",
+    "sourceUpdatedAt": null
+  }
+}

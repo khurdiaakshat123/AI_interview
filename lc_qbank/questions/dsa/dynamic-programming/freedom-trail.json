@@ -1,0 +1,157 @@
+{
+  "id": "514",
+  "slug": "freedom-trail",
+  "title": "Freedom Trail",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Depth-First Search",
+    "Breadth-First Search"
+  ],
+  "statement": "In the video game Fallout 4, the quest **\"Road to Freedom\"** requires players to reach a metal dial called the **\"Freedom Trail Ring\"** and use the dial to spell a specific keyword to open the door.\n\nGiven a string `ring` that represents the code engraved on the outer ring and another string `key` that represents the keyword that needs to be spelled, return _the minimum number of steps to spell all the characters in the keyword_.\n\nInitially, the first character of the ring is aligned at the `\"12:00\"` direction. You should spell all the characters in `key` one by one by rotating `ring` clockwise or anticlockwise to make each character of the string key aligned at the `\"12:00\"` direction and then by pressing the center button.\n\nAt the stage of rotating the ring to spell the key character `key[i]`:\n\n1.  You can rotate the ring clockwise or anticlockwise by one place, which counts as **one step**. The final purpose of the rotation is to align one of `ring`'s characters at the `\"12:00\"` direction, where this character must equal `key[i]`.\n2.  If the character `key[i]` has been aligned at the `\"12:00\"` direction, press the center button to spell, which also counts as **one step**. After the pressing, you could begin to spell the next character in the key (next stage). Otherwise, you have finished all the spelling.\n\n**Example 1:**\n\n![](./assets/freedom-trail-1.jpg)\n```\nInput: ring = \"godding\", key = \"gd\"\nOutput: 4\nExplanation:\nFor the first key character 'g', since it is already in place, we just need 1 step to spell this character. \nFor the second key character 'd', we need to rotate the ring \"godding\" anticlockwise by two steps to make it become \"ddinggo\".\nAlso, we need 1 more step for spelling.\nSo the final output is 4.\n```\n\n**Example 2:**\n\n```\nInput: ring = \"godding\", key = \"godding\"\nOutput: 13\n```\n\n**Constraints:**\n\n*   `1 <= ring.length, key.length <= 100`\n*   `ring` and `key` consist of only lower case English letters.\n*   It is guaranteed that `key` could always be spelled by rotating `ring`.",
+  "constraints": [
+    "1 <= ring.length, key.length <= 100",
+    "ring and key consist of only lower case English letters.",
+    "It is guaranteed that key could always be spelled by rotating ring."
+  ],
+  "examples": [
+    {
+      "input": "ring = \"godding\", key = \"gd\"",
+      "output": "4",
+      "explanation": "For the first key character 'g', since it is already in place, we just need 1 step to spell this character. \nFor the second key character 'd', we need to rotate the ring \"godding\" anticlockwise by two steps to make it become \"ddinggo\".\nAlso, we need 1 more step for spelling.\nSo the final output is 4."
+    },
+    {
+      "input": "ring = \"godding\", key = \"godding\"",
+      "output": "13",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findRotateSteps(string ring, string key) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findRotateSteps(String ring, String key) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findRotateSteps(self, ring: str, key: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def findRotateSteps(self, ring, key):\n        \"\"\"\n        :type ring: str\n        :type key: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} ring\n * @param {string} key\n * @return {number}\n */\nvar findRotateSteps = function(ring, key) {\n    \n};",
+    "typescript": "function findRotateSteps(ring: string, key: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindRotateSteps(string ring, string key) {\n        \n    }\n}",
+    "c": "int findRotateSteps(char* ring, char* key) {\n    \n}",
+    "golang": "func findRotateSteps(ring string, key string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findRotateSteps(ring: String, key: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findRotateSteps(_ ring: String, _ key: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_rotate_steps(ring: String, key: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} ring\n# @param {String} key\n# @return {Integer}\ndef find_rotate_steps(ring, key)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $ring\n     * @param String $key\n     * @return Integer\n     */\n    function findRotateSteps($ring, $key) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findRotateSteps(String ring, String key) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findRotateSteps(ring: String, key: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_rotate_steps(ring :: String.t, key :: String.t) :: integer\n  def find_rotate_steps(ring, key) do\n    \n  end\nend",
+    "erlang": "-spec find_rotate_steps(Ring :: unicode:unicode_binary(), Key :: unicode:unicode_binary()) -> integer().\nfind_rotate_steps(Ring, Key) ->\n  .",
+    "racket": "(define/contract (find-rotate-steps ring key)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"godding\"\n\"gd\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"godding\"\n\"godding\"",
+      "expectedOutput": "13"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"godding\"\n\"gd\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"godding\"\n\"godding\"",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "\"god\"\n\"gd\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"ding\"\n\"gd\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"gniddog\"\n\"gd\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"goddinggodding\"\n\"gd\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"goddinggniddog\"\n\"gd\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcde\"\n\"gd\"",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"edcba\"\n\"gd\"",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"leetcode\"\n\"gd\"",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"world\"\n\"gd\"",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"godding\"\n\"g\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"godding\"\n\"d\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"godding\"\n\"dg\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"godding\"\n\"gdgd\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"godding\"\n\"gg\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"godding\"\n\"gddg\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"godding\"\n\"hello\"",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"godding\"\n\"world\"",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"god\"\n\"godding\"",
+      "expectedOutput": "inf"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/freedom-trail/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.036Z",
+    "sourceUpdatedAt": null
+  }
+}

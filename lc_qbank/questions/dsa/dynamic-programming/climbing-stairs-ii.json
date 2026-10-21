@@ -1,0 +1,168 @@
+{
+  "id": "3693",
+  "slug": "climbing-stairs-ii",
+  "title": "Climbing Stairs II",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "You are climbing a staircase with `n + 1` steps, numbered from 0 to `n`.\n\nYou are also given a **1-indexed** integer array `costs` of length `n`, where `costs[i]` is the cost of step `i`.\n\nFrom step `i`, you can jump **only** to step `i + 1`, `i + 2`, or `i + 3`. The cost of jumping from step `i` to step `j` is defined as: `costs[j] + (j - i)^(2)`\n\nYou start from step 0 with `cost = 0`.\n\nReturn the **minimum** total cost to reach step `n`.\n\n**Example 1:**\n\n**Input:** n = 4, costs = \\[1,2,3,4\\]\n\n**Output:** 13\n\n**Explanation:**\n\nOne optimal path is `0 → 1 → 2 → 4`\n\nJump\n\nCost Calculation\n\nCost\n\n0 → 1\n\n`costs[1] + (1 - 0)^(2) = 1 + 1`\n\n2\n\n1 → 2\n\n`costs[2] + (2 - 1)^(2) = 2 + 1`\n\n3\n\n2 → 4\n\n`costs[4] + (4 - 2)^(2) = 4 + 4`\n\n8\n\nThus, the minimum total cost is `2 + 3 + 8 = 13`\n\n**Example 2:**\n\n**Input:** n = 4, costs = \\[5,1,6,2\\]\n\n**Output:** 11\n\n**Explanation:**\n\nOne optimal path is `0 → 2 → 4`\n\nJump\n\nCost Calculation\n\nCost\n\n0 → 2\n\n`costs[2] + (2 - 0)^(2) = 1 + 4`\n\n5\n\n2 → 4\n\n`costs[4] + (4 - 2)^(2) = 2 + 4`\n\n6\n\nThus, the minimum total cost is `5 + 6 = 11`\n\n**Example 3:**\n\n**Input:** n = 3, costs = \\[9,8,3\\]\n\n**Output:** 12\n\n**Explanation:**\n\nThe optimal path is `0 → 3` with total cost = `costs[3] + (3 - 0)^(2) = 3 + 9 = 12`\n\n**Constraints:**\n\n*   `1 <= n == costs.length <= 10^(5)​​​​​​​`\n*   `1 <= costs[i] <= 10^(4)`",
+  "constraints": [
+    "1 <= n == costs.length <= 105​​​​​​​",
+    "1 <= costs[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "n = 4, costs = [1,2,3,4]",
+      "output": "13",
+      "explanation": null
+    },
+    {
+      "input": "n = 4, costs = [5,1,6,2]",
+      "output": "11",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, costs = [9,8,3]",
+      "output": "12",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int climbStairs(int n, vector<int>& costs) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int climbStairs(int n, int[] costs) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def climbStairs(self, n: int, costs: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def climbStairs(self, n, costs):\n        \"\"\"\n        :type n: int\n        :type costs: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[]} costs\n * @return {number}\n */\nvar climbStairs = function(n, costs) {\n    \n};",
+    "typescript": "function climbStairs(n: number, costs: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int ClimbStairs(int n, int[] costs) {\n        \n    }\n}",
+    "c": "int climbStairs(int n, int* costs, int costsSize) {\n    \n}",
+    "golang": "func climbStairs(n int, costs []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun climbStairs(n: Int, costs: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func climbStairs(_ n: Int, _ costs: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn climb_stairs(n: i32, costs: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[]} costs\n# @return {Integer}\ndef climb_stairs(n, costs)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[] $costs\n     * @return Integer\n     */\n    function climbStairs($n, $costs) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int climbStairs(int n, List<int> costs) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def climbStairs(n: Int, costs: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec climb_stairs(n :: integer, costs :: [integer]) :: integer\n  def climb_stairs(n, costs) do\n    \n  end\nend",
+    "erlang": "-spec climb_stairs(N :: integer(), Costs :: [integer()]) -> integer().\nclimb_stairs(N, Costs) ->\n  .",
+    "racket": "(define/contract (climb-stairs n costs)\n  (-> exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "4\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "4\n[5,1,6,2]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "3\n[9,8,3]",
+      "expectedOutput": "12"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "4\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "4\n[5,1,6,2]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "3\n[9,8,3]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "0\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "1\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "2\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "3\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "5\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "6\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "7\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "8\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "9\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "-1\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "-2\n[1,2,3,4]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "4\n[1,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "4\n[3,4]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "4\n[1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "4\n[1,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "4\n[4,3,2,1]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "4\n[1,1,1,1]",
+      "expectedOutput": "8"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming where <code>dp[j]</code> represents the minimum cost to reach step <code>j</code>.",
+    "From step <code>i</code>, you can jump to <code>i+1</code>, <code>i+2</code>, or <code>i+3</code>. Transition depends only on the previous three states.",
+    "<code>dp[j] = min(dp[i] + costs[j] + (j - i)<sup>2</sup>)</code> for all <code>i</code> in {<code>j-1</code>, <code>j-2</code>, <code>j-3</code>}.",
+    "Initialize <code>dp[0] = 0</code> and compute up to <code>dp[n]</code>; the answer is <code>dp[n]</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/climbing-stairs-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.411Z",
+    "sourceUpdatedAt": null
+  }
+}

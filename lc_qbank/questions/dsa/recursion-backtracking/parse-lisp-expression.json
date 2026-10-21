@@ -1,0 +1,134 @@
+{
+  "id": "736",
+  "slug": "parse-lisp-expression",
+  "title": "Parse Lisp Expression",
+  "category": "dsa",
+  "subcategory": "recursion-backtracking",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Stack",
+    "Recursion"
+  ],
+  "statement": "You are given a string expression representing a Lisp-like expression to return the integer value of.\n\nThe syntax for these expressions is given as follows.\n\n*   An expression is either an integer, let expression, add expression, mult expression, or an assigned variable. Expressions always evaluate to a single integer.\n*   (An integer could be positive or negative.)\n*   A let expression takes the form `\"(let v_(1) e_(1) v_(2) e_(2) ... v_(n) e_(n) expr)\"`, where let is always the string `\"let\"`, then there are one or more pairs of alternating variables and expressions, meaning that the first variable `v_(1)` is assigned the value of the expression `e_(1)`, the second variable `v_(2)` is assigned the value of the expression `e_(2)`, and so on sequentially; and then the value of this let expression is the value of the expression `expr`.\n*   An add expression takes the form `\"(add e_(1) e_(2))\"` where add is always the string `\"add\"`, there are always two expressions `e_(1)`, `e_(2)` and the result is the addition of the evaluation of `e_(1)` and the evaluation of `e_(2)`.\n*   A mult expression takes the form `\"(mult e_(1) e_(2))\"` where mult is always the string `\"mult\"`, there are always two expressions `e_(1)`, `e_(2)` and the result is the multiplication of the evaluation of e1 and the evaluation of e2.\n*   For this question, we will use a smaller subset of variable names. A variable starts with a lowercase letter, then zero or more lowercase letters or digits. Additionally, for your convenience, the names `\"add\"`, `\"let\"`, and `\"mult\"` are protected and will never be used as variable names.\n*   Finally, there is the concept of scope. When an expression of a variable name is evaluated, within the context of that evaluation, the innermost scope (in terms of parentheses) is checked first for the value of that variable, and then outer scopes are checked sequentially. It is guaranteed that every expression is legal. Please see the examples for more details on the scope.\n\n**Example 1:**\n\n```\nInput: expression = \"(let x 2 (mult x (let x 3 y 4 (add x y))))\"\nOutput: 14\nExplanation: In the expression (add x y), when checking for the value of the variable x,\nwe check from the innermost scope to the outermost in the context of the variable we are trying to evaluate.\nSince x = 3 is found first, the value of x is 3.\n```\n\n**Example 2:**\n\n```\nInput: expression = \"(let x 3 x 2 x)\"\nOutput: 2\nExplanation: Assignment in let statements is processed sequentially.\n```\n\n**Example 3:**\n\n```\nInput: expression = \"(let x 1 y 2 x (add x y) (add x y))\"\nOutput: 5\nExplanation: The first (add x y) evaluates as 3, and is assigned to x.\nThe second (add x y) evaluates as 3+2 = 5.\n```\n\n**Constraints:**\n\n*   `1 <= expression.length <= 2000`\n*   There are no leading or trailing spaces in `expression`.\n*   All tokens are separated by a single space in `expression`.\n*   The answer and all intermediate calculations of that answer are guaranteed to fit in a **32-bit** integer.\n*   The expression is guaranteed to be legal and evaluate to an integer.",
+  "constraints": [
+    "1 <= expression.length <= 2000",
+    "There are no leading or trailing spaces in expression.",
+    "All tokens are separated by a single space in expression.",
+    "The answer and all intermediate calculations of that answer are guaranteed to fit in a 32-bit integer.",
+    "The expression is guaranteed to be legal and evaluate to an integer."
+  ],
+  "examples": [
+    {
+      "input": "expression = \"(let x 2 (mult x (let x 3 y 4 (add x y))))\"",
+      "output": "14",
+      "explanation": "In the expression (add x y), when checking for the value of the variable x,\nwe check from the innermost scope to the outermost in the context of the variable we are trying to evaluate.\nSince x = 3 is found first, the value of x is 3."
+    },
+    {
+      "input": "expression = \"(let x 3 x 2 x)\"",
+      "output": "2",
+      "explanation": "Assignment in let statements is processed sequentially."
+    },
+    {
+      "input": "expression = \"(let x 1 y 2 x (add x y) (add x y))\"",
+      "output": "5",
+      "explanation": "The first (add x y) evaluates as 3, and is assigned to x.\nThe second (add x y) evaluates as 3+2 = 5."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int evaluate(string expression) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int evaluate(String expression) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def evaluate(self, expression: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def evaluate(self, expression):\n        \"\"\"\n        :type expression: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @return {number}\n */\nvar evaluate = function(expression) {\n    \n};",
+    "typescript": "function evaluate(expression: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int Evaluate(string expression) {\n        \n    }\n}",
+    "c": "int evaluate(char* expression) {\n    \n}",
+    "golang": "func evaluate(expression string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun evaluate(expression: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func evaluate(_ expression: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn evaluate(expression: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @return {Integer}\ndef evaluate(expression)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @return Integer\n     */\n    function evaluate($expression) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int evaluate(String expression) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def evaluate(expression: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec evaluate(expression :: String.t) :: integer\n  def evaluate(expression) do\n    \n  end\nend",
+    "erlang": "-spec evaluate(Expression :: unicode:unicode_binary()) -> integer().\nevaluate(Expression) ->\n  .",
+    "racket": "(define/contract (evaluate expression)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"(let x 2 (mult x (let x 3 y 4 (add x y))))\"",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "\"(let x 3 x 2 x)\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"(let x 1 y 2 x (add x y) (add x y))\"",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"(let x 2 (mult x (let x 3 y 4 (add x y))))\"",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "\"(let x 3 x 2 x)\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"(let x 1 y 2 x (add x y) (add x y))\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\" x 3 y 4 (add x y))))\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"))))y x dda( 4 y 3 x tel( x tlum( 2 x tel(\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "121"
+    },
+    {
+      "input": "\"{[]}\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"3 x 2 x)\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\")x 2 x 3 x tel(\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"))y x dda( )y x dda( x 2 y 1 x tel(\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "* If the expression starts with a digit or '-', it's an integer: return it.\r\n\r\n* If the expression starts with a letter, it's a variable.  Recall it by checking the current scope in reverse order.\r\n\r\n* Otherwise, group the tokens (variables or expressions) within this expression by counting the \"balance\" `bal` of the occurrences of `'('` minus the number of occurrences of `')'`.  When the balance is zero, we have ended a token.  For example, `(add 1 (add 2 3))` should have tokens `'1'` and `'(add 2 3)'`.\r\n\r\n* For add and mult expressions, evaluate each token and return the addition or multiplication of them.\r\n\r\n* For let expressions, evaluate each expression sequentially and assign it to the variable in the current scope, then return the evaluation of the final expression."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/parse-lisp-expression/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.512Z",
+    "sourceUpdatedAt": null
+  }
+}

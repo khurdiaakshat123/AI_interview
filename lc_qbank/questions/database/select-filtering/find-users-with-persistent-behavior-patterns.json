@@ -1,0 +1,71 @@
+{
+  "id": "3832",
+  "slug": "find-users-with-persistent-behavior-patterns",
+  "title": "Find Users with Persistent Behavior Patterns",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Hard",
+  "tags": [],
+  "statement": "Table: `activity`\n\n```\n+--------------+---------+\n| Column Name  | Type    |\n+--------------+---------+\n| user_id      | int     |\n| action_date  | date    |\n| action       | varchar |\n+--------------+---------+\n(user_id, action_date, action) is the primary key (unique value) for this table.\nEach row represents a user performing a specific action on a given date.\n```\n\nWrite a solution to identify **behaviorally stable users** based on the following definition:\n\n*   A user is considered **behaviorally stable** if there exists a sequence of **at least** `5` **consecutive days** such that:\n    *   The user performed **exactly one action per day** during that period.\n    *   The **action is the same** on all those consecutive days.\n*   If a user has multiple qualifying sequences, only consider the sequence with the **maximum length**.\n\nReturn _the result table ordered by_ `streak_length` _in **descending** order_, _then by_ `user_id` _in **ascending** order_.\n\nThe result format is in the following example.\n\n**Example:**\n\n**Input:**\n\nactivity table:\n\n```\n+---------+-------------+--------+\n| user_id | action_date | action |\n+---------+-------------+--------+\n| 1       | 2024-01-01  | login  |\n| 1       | 2024-01-02  | login  |\n| 1       | 2024-01-03  | login  |\n| 1       | 2024-01-04  | login  |\n| 1       | 2024-01-05  | login  |\n| 1       | 2024-01-06  | logout |\n| 2       | 2024-01-01  | click  |\n| 2       | 2024-01-02  | click  |\n| 2       | 2024-01-03  | click  |\n| 2       | 2024-01-04  | click  |\n| 3       | 2024-01-01  | view   |\n| 3       | 2024-01-02  | view   |\n| 3       | 2024-01-03  | view   |\n| 3       | 2024-01-04  | view   |\n| 3       | 2024-01-05  | view   |\n| 3       | 2024-01-06  | view   |\n| 3       | 2024-01-07  | view   |\n+---------+-------------+--------+\n```\n\n**Output:**\n\n```\n+---------+--------+---------------+------------+------------+\n| user_id | action | streak_length | start_date | end_date   |\n+---------+--------+---------------+------------+------------+\n| 3       | view   | 7             | 2024-01-01 | 2024-01-07 |\n| 1       | login  | 5             | 2024-01-01 | 2024-01-05 |\n+---------+--------+---------------+------------+------------+\n```\n\n**Explanation:**\n\n*   **User 1**:\n    *   Performed `login` from 2024-01-01 to 2024-01-05 on consecutive days\n    *   Each day has exactly one action, and the action is the same\n    *   Streak length = 5 (meets minimum requirement)\n    *   The action changes on 2024-01-06, ending the streak\n*   **User 2**:\n    *   Performed `click` for only 4 consecutive days\n    *   Does not meet the minimum streak length of 5\n    *   Excluded from the result\n*   **User 3**:\n    *   Performed `view` for 7 consecutive days\n    *   This is the longest valid sequence for this user\n    *   Included in the result\n\nThe Results table is ordered by streak\\_length in descending order, then by user\\_id in ascending order",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "activity table:\n\n\n+---------+-------------+--------+\n| user_id | action_date | action |\n+---------+-------------+--------+\n| 1       | 2024-01-01  | login  |\n| 1       | 2024-01-02  | login  |\n| 1       | 2024-01-03  | login  |\n| 1       | 2024-01-04  | login  |\n| 1       | 2024-01-05  | login  |\n| 1       | 2024-01-06  | logout |\n| 2       | 2024-01-01  | click  |\n| 2       | 2024-01-02  | click  |\n| 2       | 2024-01-03  | click  |\n| 2       | 2024-01-04  | click  |\n| 3       | 2024-01-01  | view   |\n| 3       | 2024-01-02  | view   |\n| 3       | 2024-01-03  | view   |\n| 3       | 2024-01-04  | view   |\n| 3       | 2024-01-05  | view   |\n| 3       | 2024-01-06  | view   |\n| 3       | 2024-01-07  | view   |\n+---------+-------------+--------+",
+      "output": "+---------+--------+---------------+------------+------------+\n| user_id | action | streak_length | start_date | end_date   |\n+---------+--------+---------------+------------+------------+\n| 3       | view   | 7             | 2024-01-01 | 2024-01-07 |\n| 1       | login  | 5             | 2024-01-01 | 2024-01-05 |\n+---------+--------+---------------+------------+------------+",
+      "explanation": "User 1:\n\n\t\n\t\tPerformed login from 2024-01-01 to 2024-01-05 on consecutive days\n\t\tEach day has exactly one action, and the action is the same\n\t\tStreak length = 5 (meets minimum requirement)\n\t\tThe action changes on 2024-01-06, ending the streak\n\t\n\t\n\tUser 2:\n\t\n\t\tPerformed click for only 4 consecutive days\n\t\tDoes not meet the minimum streak length of 5\n\t\tExcluded from the result\n\t\n\t\n\tUser 3:\n\t\n\t\tPerformed view for 7 consecutive days\n\t\tThis is the longest valid sequence for this user\n\t\tIncluded in the result"
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_behaviorally_stable_users(activity: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"activity\":[\"user_id\",\"action_date\",\"action\"]},\"rows\":{\"activity\":[[1,\"2024-01-01\",\"login\"],[1,\"2024-01-02\",\"login\"],[1,\"2024-01-03\",\"login\"],[1,\"2024-01-04\",\"login\"],[1,\"2024-01-05\",\"login\"],[1,\"2024-01-06\",\"logout\"],[2,\"2024-01-01\",\"click\"],[2,\"2024-01-02\",\"click\"],[2,\"2024-01-03\",\"click\"],[2,\"2024-01-04\",\"click\"],[3,\"2024-01-01\",\"view\"],[3,\"2024-01-02\",\"view\"],[3,\"2024-01-03\",\"view\"],[3,\"2024-01-04\",\"view\"],[3,\"2024-01-05\",\"view\"],[3,\"2024-01-06\",\"view\"],[3,\"2024-01-07\",\"view\"]]}}",
+      "expectedOutput": "+---------+--------+---------------+------------+------------+\n| user_id | action | streak_length | start_date | end_date   |\n+---------+--------+---------------+------------+------------+\n| 3       | view   | 7             | 2024-01-01 | 2024-01-07 |\n| 1       | login  | 5             | 2024-01-01 | 2024-01-05 |\n+---------+--------+---------------+------------+------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"activity\":[\"user_id\",\"action_date\",\"action\"]},\"rows\":{\"activity\":[[1,\"2024-01-01\",\"login\"],[1,\"2024-01-02\",\"login\"],[1,\"2024-01-03\",\"login\"],[1,\"2024-01-04\",\"login\"],[1,\"2024-01-05\",\"login\"],[1,\"2024-01-06\",\"logout\"],[2,\"2024-01-01\",\"click\"],[2,\"2024-01-02\",\"click\"],[2,\"2024-01-03\",\"click\"],[2,\"2024-01-04\",\"click\"],[3,\"2024-01-01\",\"view\"],[3,\"2024-01-02\",\"view\"],[3,\"2024-01-03\",\"view\"],[3,\"2024-01-04\",\"view\"],[3,\"2024-01-05\",\"view\"],[3,\"2024-01-06\",\"view\"],[3,\"2024-01-07\",\"view\"]]}}",
+      "expectedOutput": "+---------+--------+---------------+------------+------------+\n| user_id | action | streak_length | start_date | end_date   |\n+---------+--------+---------------+------------+------------+\n| 3       | view   | 7             | 2024-01-01 | 2024-01-07 |\n| 1       | login  | 5             | 2024-01-01 | 2024-01-05 |\n+---------+--------+---------------+------------+------------+"
+    },
+    {
+      "input": "activity table:\n\n\n+---------+-------------+--------+\n| user_id | action_date | action |\n+---------+-------------+--------+\n| 1       | 2024-01-01  | login  |\n| 1       | 2024-01-02  | login  |\n| 1       | 2024-01-03  | login  |\n| 1       | 2024-01-04  | login  |\n| 1       | 2024-01-05  | login  |\n| 1       | 2024-01-06  | logout |\n| 2       | 2024-01-01  | click  |\n| 2       | 2024-01-02  | click  |\n| 2       | 2024-01-03  | click  |\n| 2       | 2024-01-04  | click  |\n| 3       | 2024-01-01  | view   |\n| 3       | 2024-01-02  | view   |\n| 3       | 2024-01-03  | view   |\n| 3       | 2024-01-04  | view   |\n| 3       | 2024-01-05  | view   |\n| 3       | 2024-01-06  | view   |\n| 3       | 2024-01-07  | view   |\n+---------+-------------+--------+",
+      "expectedOutput": "+---------+--------+---------------+------------+------------+\n| user_id | action | streak_length | start_date | end_date   |\n+---------+--------+---------------+------------+------------+\n| 3       | view   | 7             | 2024-01-01 | 2024-01-07 |\n| 1       | login  | 5             | 2024-01-01 | 2024-01-05 |\n+---------+--------+---------------+------------+------------+"
+    }
+  ],
+  "sqlSchema": "CREATE TABLE if not exists activity (\n    user_id INT,\n    action_date DATE,\n    action VARCHAR(255)\n)\n\nTruncate table activity",
+  "sqlSetup": [
+    "insert into activity (user_id, action_date, action) values ('1', '2024-01-01', 'login')",
+    "insert into activity (user_id, action_date, action) values ('1', '2024-01-02', 'login')",
+    "insert into activity (user_id, action_date, action) values ('1', '2024-01-03', 'login')",
+    "insert into activity (user_id, action_date, action) values ('1', '2024-01-04', 'login')",
+    "insert into activity (user_id, action_date, action) values ('1', '2024-01-05', 'login')",
+    "insert into activity (user_id, action_date, action) values ('1', '2024-01-06', 'logout')",
+    "insert into activity (user_id, action_date, action) values ('2', '2024-01-01', 'click')",
+    "insert into activity (user_id, action_date, action) values ('2', '2024-01-02', 'click')",
+    "insert into activity (user_id, action_date, action) values ('2', '2024-01-03', 'click')",
+    "insert into activity (user_id, action_date, action) values ('2', '2024-01-04', 'click')",
+    "insert into activity (user_id, action_date, action) values ('3', '2024-01-01', 'view')",
+    "insert into activity (user_id, action_date, action) values ('3', '2024-01-02', 'view')",
+    "insert into activity (user_id, action_date, action) values ('3', '2024-01-03', 'view')",
+    "insert into activity (user_id, action_date, action) values ('3', '2024-01-04', 'view')",
+    "insert into activity (user_id, action_date, action) values ('3', '2024-01-05', 'view')",
+    "insert into activity (user_id, action_date, action) values ('3', '2024-01-06', 'view')",
+    "insert into activity (user_id, action_date, action) values ('3', '2024-01-07', 'view')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-users-with-persistent-behavior-patterns/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.744Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "id": "3794",
+  "slug": "reverse-string-prefix",
+  "title": "Reverse String Prefix",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "You are given a string `s` and an integer `k`.\n\nReverse the first `k` characters of `s` and return the resulting string.\n\n**Example 1:**\n\n**Input:** s = \"abcd\", k = 2\n\n**Output:** \"bacd\"\n\n**Explanation:**​​​​​​​\n\nThe first `k = 2` characters `\"ab\"` are reversed to `\"ba\"`. The final resulting string is `\"bacd\"`.\n\n**Example 2:**\n\n**Input:** s = \"xyz\", k = 3\n\n**Output:** \"zyx\"\n\n**Explanation:**\n\nThe first `k = 3` characters `\"xyz\"` are reversed to `\"zyx\"`. The final resulting string is `\"zyx\"`.\n\n**Example 3:**\n\n**Input:** s = \"hey\", k = 1\n\n**Output:** \"hey\"\n\n**Explanation:**\n\nThe first `k = 1` character `\"h\"` remains unchanged on reversal. The final resulting string is `\"hey\"`.\n\n**Constraints:**\n\n*   `1 <= s.length <= 100`\n*   `s` consists of lowercase English letters.\n*   `1 <= k <= s.length`",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s consists of lowercase English letters.",
+    "1 <= k <= s.length"
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcd\", k = 2",
+      "output": "\"bacd\"",
+      "explanation": "​​​​​​​"
+    },
+    {
+      "input": "s = \"xyz\", k = 3",
+      "output": "\"zyx\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"hey\", k = 1",
+      "output": "\"hey\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string reversePrefix(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String reversePrefix(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reversePrefix(self, s: str, k: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def reversePrefix(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {string}\n */\nvar reversePrefix = function(s, k) {\n    \n};",
+    "typescript": "function reversePrefix(s: string, k: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ReversePrefix(string s, int k) {\n        \n    }\n}",
+    "c": "char* reversePrefix(char* s, int k) {\n    \n}",
+    "golang": "func reversePrefix(s string, k int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun reversePrefix(s: String, k: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reversePrefix(_ s: String, _ k: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reverse_prefix(s: String, k: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {String}\ndef reverse_prefix(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return String\n     */\n    function reversePrefix($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String reversePrefix(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reversePrefix(s: String, k: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reverse_prefix(s :: String.t, k :: integer) :: String.t\n  def reverse_prefix(s, k) do\n    \n  end\nend",
+    "erlang": "-spec reverse_prefix(S :: unicode:unicode_binary(), K :: integer()) -> unicode:unicode_binary().\nreverse_prefix(S, K) ->\n  .",
+    "racket": "(define/contract (reverse-prefix s k)\n  (-> string? exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcd\"\n2",
+      "expectedOutput": "\"bacd\""
+    },
+    {
+      "input": "\"xyz\"\n3",
+      "expectedOutput": "\"zyx\""
+    },
+    {
+      "input": "\"hey\"\n1",
+      "expectedOutput": "\"hey\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcd\"\n2",
+      "expectedOutput": "\"bacd\""
+    },
+    {
+      "input": "\"xyz\"\n3",
+      "expectedOutput": "\"zyx\""
+    },
+    {
+      "input": "\"hey\"\n1",
+      "expectedOutput": "\"hey\""
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"cd\"\n2",
+      "expectedOutput": "\"dc\""
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"dcba\"\n2",
+      "expectedOutput": "\"cdba\""
+    },
+    {
+      "input": "\"abcdabcd\"\n2",
+      "expectedOutput": "\"bacdabcd\""
+    },
+    {
+      "input": "\"aaaa\"\n2",
+      "expectedOutput": "\"aaaa\""
+    },
+    {
+      "input": "\"abcddcba\"\n2",
+      "expectedOutput": "\"bacddcba\""
+    },
+    {
+      "input": "\"ABCD\"\n2",
+      "expectedOutput": "\"BACD\""
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "\"baa\""
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "\"baba\""
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "\"bacde\""
+    },
+    {
+      "input": "\"edcba\"\n2",
+      "expectedOutput": "\"decba\""
+    },
+    {
+      "input": "\"aab\"\n2",
+      "expectedOutput": "\"aab\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Simulate as described"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/reverse-string-prefix/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.885Z",
+    "sourceUpdatedAt": null
+  }
+}

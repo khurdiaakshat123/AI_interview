@@ -1,0 +1,169 @@
+{
+  "id": "3881",
+  "slug": "direction-assignments-with-exactly-k-visible-people",
+  "title": "Direction Assignments with Exactly K Visible People",
+  "category": "dsa",
+  "subcategory": "mathematics",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "Combinatorics"
+  ],
+  "statement": "You are given three integers `n`, `pos`, and `k`.\n\nThere are `n` people standing in a line indexed from 0 to `n - 1`. Each person **independently** chooses a direction:\n\n*   `'L'`: **visible** only to people on their **right**\n*   `'R'`: **visible** only to people on their **left**\n\nA person at index `pos` sees others as follows:\n\n*   A person `i < pos` is visible if and only if they choose `'L'`.\n*   A person `i > pos` is visible if and only if they choose `'R'`.\n\nReturn the number of possible direction assignments such that the person at index `pos` sees **exactly** `k` people.\n\nSince the answer may be large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** n = 3, pos = 1, k = 0\n\n**Output:** 2\n\n**Explanation:**​​​​​​​\n\n*   Index 0 is to the left of `pos = 1`, and index 2 is to the right of `pos = 1`.\n*   To see `k = 0` people, index 0 must choose `'R'` and index 2 must choose `'L'`, keeping both invisible.\n*   The person at index 1 can choose `'L'` or `'R'` since it does not affect the count. Thus, the answer is 2.\n\n**Example 2:**\n\n**Input:** n = 3, pos = 2, k = 1\n\n**Output:** 4\n\n**Explanation:**\n\n*   Index 0 and index 1 are left of `pos = 2`, and there is no index to the right.\n*   To see `k = 1` person, exactly one of index 0 or index 1 must choose `'L'`, and the other must choose `'R'`.\n*   There are 2 ways to choose which index is visible from the left.\n*   The person at index 2 can choose `'L'` or `'R'` since it does not affect the count. Thus, the answer is `2 + 2 = 4`.\n\n**Example 3:**\n\n**Input:** n = 1, pos = 0, k = 0\n\n**Output:** 2\n\n**Explanation:**\n\n*   There are no indices to the left or right of `pos = 0`.\n*   To see `k = 0` people, no additional condition is required.\n*   The person at index 0 can choose `'L'` or `'R'`. Thus, the answer is 2.\n\n**Constraints:**\n\n*   `1 <= n <= 10^(5)`\n*   `0 <= pos, k <= n - 1`",
+  "constraints": [
+    "1 <= n <= 105",
+    "0 <= pos, k <= n - 1"
+  ],
+  "examples": [
+    {
+      "input": "n = 3, pos = 1, k = 0",
+      "output": "2",
+      "explanation": "​​​​​​​\n\n\n\tIndex 0 is to the left of pos = 1, and index 2 is to the right of pos = 1.\n\tTo see k = 0 people, index 0 must choose 'R' and index 2 must choose 'L', keeping both invisible.\n\tThe person at index 1 can choose 'L' or 'R' since it does not affect the count. Thus, the answer is 2."
+    },
+    {
+      "input": "n = 3, pos = 2, k = 1",
+      "output": "4",
+      "explanation": "Index 0 and index 1 are left of pos = 2, and there is no index to the right.\n\tTo see k = 1 person, exactly one of index 0 or index 1 must choose 'L', and the other must choose 'R'.\n\tThere are 2 ways to choose which index is visible from the left.\n\tThe person at index 2 can choose 'L' or 'R' since it does not affect the count. Thus, the answer is 2 + 2 = 4."
+    },
+    {
+      "input": "n = 1, pos = 0, k = 0",
+      "output": "2",
+      "explanation": "There are no indices to the left or right of pos = 0.\n\tTo see k = 0 people, no additional condition is required.\n\tThe person at index 0 can choose 'L' or 'R'. Thus, the answer is 2."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countVisiblePeople(int n, int pos, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countVisiblePeople(int n, int pos, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countVisiblePeople(self, n: int, pos: int, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countVisiblePeople(self, n, pos, k):\n        \"\"\"\n        :type n: int\n        :type pos: int\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} pos\n * @param {number} k\n * @return {number}\n */\nvar countVisiblePeople = function(n, pos, k) {\n    \n};",
+    "typescript": "function countVisiblePeople(n: number, pos: number, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountVisiblePeople(int n, int pos, int k) {\n        \n    }\n}",
+    "c": "int countVisiblePeople(int n, int pos, int k) {\n    \n}",
+    "golang": "func countVisiblePeople(n int, pos int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countVisiblePeople(n: Int, pos: Int, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countVisiblePeople(_ n: Int, _ pos: Int, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_visible_people(n: i32, pos: i32, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} pos\n# @param {Integer} k\n# @return {Integer}\ndef count_visible_people(n, pos, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $pos\n     * @param Integer $k\n     * @return Integer\n     */\n    function countVisiblePeople($n, $pos, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countVisiblePeople(int n, int pos, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countVisiblePeople(n: Int, pos: Int, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_visible_people(n :: integer, pos :: integer, k :: integer) :: integer\n  def count_visible_people(n, pos, k) do\n    \n  end\nend",
+    "erlang": "-spec count_visible_people(N :: integer(), Pos :: integer(), K :: integer()) -> integer().\ncount_visible_people(N, Pos, K) ->\n  .",
+    "racket": "(define/contract (count-visible-people n pos k)\n  (-> exact-integer? exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n1\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n2\n1",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "1\n0\n0",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n1\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n2\n1",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "1\n0\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "0\n1\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "1\n1\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "2\n1\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "4\n1\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "5\n1\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "6\n1\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "7\n1\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "8\n1\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "-1\n1\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "-2\n1\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n0\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n2\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3\n3\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n4\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n5\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n6\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n-1\n0",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use combinatorics",
+    "Count the visible people on the left and right independently. Let <code>a = pos</code> and <code>b = n - pos - 1</code>.",
+    "To see exactly <code>k</code> people, choose <code>i</code> visible people from the left side and <code>k - i</code> from the right side.",
+    "Each chosen left person must pick <code>L</code>, each chosen right person must pick <code>R</code>, and every other person can pick either direction.",
+    "Sum over all valid <code>i</code>, multiplying the two binomial choices and the free choices for the remaining people."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/direction-assignments-with-exactly-k-visible-people/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.685Z",
+    "sourceUpdatedAt": null
+  }
+}

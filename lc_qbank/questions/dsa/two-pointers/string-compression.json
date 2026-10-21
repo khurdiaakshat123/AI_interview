@@ -1,0 +1,162 @@
+{
+  "id": "443",
+  "slug": "string-compression",
+  "title": "String Compression",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "Given an array of characters `chars`, compress it using the following algorithm:\n\nBegin with an empty string `s`. For each group of **consecutive repeating characters** in `chars`:\n\n*   If the group's length is `1`, append the character to `s`.\n*   Otherwise, append the character followed by the group's length.\n\nThe compressed string `s` **should not be returned separately**, but instead, be stored **in the input character array `chars`**. Note that group lengths that are `10` or longer will be split into multiple characters in `chars`.\n\nAfter you are done **modifying the input array,** return _the new length of the array_.\n\nYou must write an algorithm that uses only constant extra space.\n\n**Note:** The characters in the array beyond the returned length do not matter and should be ignored.\n\n**Example 1:**\n\n```\n\"aa\"\n```\n\n**Example 2:**\n\n```\n\"a\"\n```\n\n**Example 3:**\n\n```\n\"a\"\n```\n\n**Constraints:**\n\n*   `1 <= chars.length <= 2000`\n*   `chars[i]` is a lowercase English letter, uppercase English letter, digit, or symbol.",
+  "constraints": [
+    "1 <= chars.length <= 2000",
+    "chars[i] is a lowercase English letter, uppercase English letter, digit, or symbol."
+  ],
+  "examples": [
+    {
+      "input": "chars = [\"a\",\"a\",\"b\",\"b\",\"c\",\"c\",\"c\"]",
+      "output": "6",
+      "explanation": "The groups are \"aa\", \"bb\", and \"ccc\". This compresses to \"a2b2c3\".\nAfter modifying the input array in-place, the first 6 characters of chars should be [\"a\",\"2\",\"b\",\"2\",\"c\",\"3\"]."
+    },
+    {
+      "input": "chars = [\"a\"]",
+      "output": "1",
+      "explanation": "The only group is \"a\", which remains uncompressed since it is a single character.\nAfter modifying the input array in-place, the first character of chars should be [\"a\"]."
+    },
+    {
+      "input": "chars = [\"a\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\"]",
+      "output": "4",
+      "explanation": "The groups are \"a\" and \"bbbbbbbbbbbb\". This compresses to \"ab12\".\nAfter modifying the input array in-place, the first 4 characters of chars should be [\"a\",\"b\",\"1\",\"2\"]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int compress(vector<char>& chars) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int compress(char[] chars) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def compress(self, chars: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def compress(self, chars):\n        \"\"\"\n        :type chars: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {character[]} chars\n * @return {number}\n */\nvar compress = function(chars) {\n    \n};",
+    "typescript": "function compress(chars: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int Compress(char[] chars) {\n        \n    }\n}",
+    "c": "int compress(char* chars, int charsSize) {\n    \n}",
+    "golang": "func compress(chars []byte) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun compress(chars: CharArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func compress(_ chars: inout [Character]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn compress(chars: &mut Vec<char>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Character[]} chars\n# @return {Integer}\ndef compress(chars)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $chars\n     * @return Integer\n     */\n    function compress(&$chars) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int compress(List<String> chars) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def compress(chars: Array[Char]): Int = {\n        \n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "[\"a\",\"a\",\"b\",\"b\",\"c\",\"c\",\"c\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\"]",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"a\",\"a\",\"b\",\"b\",\"c\",\"c\",\"c\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"a\",\"a\",\"b\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"b\",\"c\",\"c\",\"c\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"a\",\"c\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"c\",\"c\",\"c\",\"b\",\"b\",\"a\",\"a\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"a\",\"a\",\"a\",\"a\",\"a\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a\",\"a\",\"b\",\"b\",\"c\",\"c\",\"c\",\"a\",\"a\",\"b\",\"b\",\"c\",\"c\",\"c\"]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"flow\",\"flower\",\"flight\"]",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "How do you know if you are at the end of a consecutive group of characters?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/string-compression/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.318Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "id": "3797",
+  "slug": "count-routes-to-climb-a-rectangular-grid",
+  "title": "Count Routes to Climb a Rectangular Grid",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a string array `grid` of size `n`, where each string `grid[i]` has length `m`. The character `grid[i][j]` is one of the following symbols:\n\n*   `'.'`: The cell is available.\n*   `'#'`: The cell is blocked.\n\nYou want to count the number of different routes to climb `grid`. Each route must start from _any cell_ in the bottom row (row `n - 1`) and end in the top row (row 0).\n\nHowever, there are some constraints on the route.\n\n*   You can only move from one available cell to **another** available cell.\n*   The **Euclidean distance** of each move is **at most** `d`, where `d` is an integer parameter given to you. The Euclidean distance between two cells `(r1, c1)`, `(r2, c2)` is `sqrt((r1 - r2)^(2) + (c1 - c2)^(2))`.\n*   Each move either stays on the same row or moves to the row directly above (from row `r` to `r - 1`).\n*   You cannot stay on the same row for two consecutive turns. If you stay on the same row in a move (and this move is not the last move), your next move must go to the row above.\n\nReturn an integer denoting the number of such routes. Since the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** grid = \\[\"..\",\"#.\"\\], d = 1\n\n**Output:** 2\n\n**Explanation:**\n\nWe label the cells we visit in the routes sequentially, starting from 1. The two routes are:\n\n```\n.2\n#1\n```\n```\n32\n#1\n```\n\nWe can move from the cell (1, 1) to the cell (0, 1) because the Euclidean distance is `sqrt((1 - 0)^(2) + (1 - 1)^(2)) = sqrt(1) <= d`.\n\nHowever, we cannot move from the cell (1, 1) to the cell (0, 0) because the Euclidean distance is `sqrt((1 - 0)^(2) + (1 - 0)^(2)) = sqrt(2) > d`.\n\n**Example 2:**\n\n**Input:** grid = \\[\"..\",\"#.\"\\], d = 2\n\n**Output:** 4\n\n**Explanation:**\n\nTwo of the routes are given in example 1. The other two routes are:\n\n```\n2.\n#1\n```\n```\n23\n#1\n```\n\nNote that we can move from (1, 1) to (0, 0) because the Euclidean distance is `sqrt(2) <= d`.\n\n**Example 3:**\n\n**Input:** grid = \\[\"#\"\\], d = 750\n\n**Output:** 0\n\n**Explanation:**\n\nWe cannot choose any cell as the starting cell. Therefore, there are no routes.\n\n**Example 4:**\n\n**Input:** grid = \\[\"..\"\\], d = 1\n\n**Output:** 4\n\n**Explanation:**\n\nThe possible routes are:\n\n```\n.1\n```\n```\n1.\n```\n```\n12\n```\n```\n21\n```\n\n**Constraints:**\n\n*   `1 <= n == grid.length <= 750`\n*   `1 <= m == grid[i].length <= 750`\n*   `grid[i][j]` is `'.'` or `'#'`.\n*   `1 <= d <= 750`",
+  "constraints": [
+    "You can only move from one available cell to another available cell.",
+    "The Euclidean distance of each move is at most d, where d is an integer parameter given to you. The Euclidean distance between two cells (r1, c1), (r2, c2) is sqrt((r1 - r2)2 + (c1 - c2)2).",
+    "Each move either stays on the same row or moves to the row directly above (from row r to r - 1).",
+    "You cannot stay on the same row for two consecutive turns. If you stay on the same row in a move (and this move is not the last move), your next move must go to the row above."
+  ],
+  "examples": [
+    {
+      "input": "grid = [\"..\",\"#.\"], d = 1",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "grid = [\"..\",\"#.\"], d = 2",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "grid = [\"#\"], d = 750",
+      "output": "0",
+      "explanation": null
+    },
+    {
+      "input": "grid = [\"..\"], d = 1",
+      "output": "4",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numberOfRoutes(vector<string>& grid, int d) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numberOfRoutes(String[] grid, int d) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfRoutes(self, grid: List[str], d: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfRoutes(self, grid, d):\n        \"\"\"\n        :type grid: List[str]\n        :type d: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} grid\n * @param {number} d\n * @return {number}\n */\nvar numberOfRoutes = function(grid, d) {\n    \n};",
+    "typescript": "function numberOfRoutes(grid: string[], d: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumberOfRoutes(string[] grid, int d) {\n        \n    }\n}",
+    "c": "int numberOfRoutes(char** grid, int gridSize, int d) {\n    \n}",
+    "golang": "func numberOfRoutes(grid []string, d int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfRoutes(grid: Array<String>, d: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfRoutes(_ grid: [String], _ d: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_routes(grid: Vec<String>, d: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} grid\n# @param {Integer} d\n# @return {Integer}\ndef number_of_routes(grid, d)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $grid\n     * @param Integer $d\n     * @return Integer\n     */\n    function numberOfRoutes($grid, $d) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfRoutes(List<String> grid, int d) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfRoutes(grid: Array[String], d: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_routes(grid :: [String.t], d :: integer) :: integer\n  def number_of_routes(grid, d) do\n    \n  end\nend",
+    "erlang": "-spec number_of_routes(Grid :: [unicode:unicode_binary()], D :: integer()) -> integer().\nnumber_of_routes(Grid, D) ->\n  .",
+    "racket": "(define/contract (number-of-routes grid d)\n  (-> (listof string?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"..\",\"#.\"]\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"..\",\"#.\"]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"#\"]\n750",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"..\"]\n1",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"..\",\"#.\"]\n1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"..\",\"#.\"]\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"#\"]\n750",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"..\"]\n1",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "grid = [\"..\",\"#.\"], d = 1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "grid = [\"..\",\"#.\"], d = 2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "grid = [\"#\"], d = 750",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "grid = [\"..\"], d = 1",
+      "expectedOutput": "4"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming.",
+    "Let <code>dp[r][c][0]</code> be the number of ways to reach <code>(r, c)</code> where the last move came from row <code>r + 1</code> (moved up), and let <code>dp[r][c][1]</code> be the number of ways where the last move stayed on row <code>r</code>.",
+    "Make computations faster using prefix sums over columns to aggregate contributions from cells within Euclidean distance <code>d</code>.",
+    "Combine <code>dp[r][c][0]</code> and <code>dp[r][c][1]</code> for all columns <code>c</code> in row <code>r</code> to produce the <code>dp</code> values used for row <code>r - 1</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-routes-to-climb-a-rectangular-grid/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.539Z",
+    "sourceUpdatedAt": null
+  }
+}

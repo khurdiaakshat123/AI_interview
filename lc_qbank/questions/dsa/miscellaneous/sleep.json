@@ -1,0 +1,73 @@
+{
+  "id": "2621",
+  "slug": "sleep",
+  "title": "Sleep",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "Given a positive integer `millis`, write an asynchronous function that sleeps for `millis` milliseconds. It can resolve any value.\n\n**Note** that _minor_ deviation from `millis` in the actual sleep duration is acceptable.\n\n**Example 1:**\n\n```\nInput: millis = 100\nOutput: 100\nExplanation: It should return a promise that resolves after 100ms.\nlet t = Date.now();\nsleep(100).then(() => {\n  console.log(Date.now() - t); // 100\n});\n```\n\n**Example 2:**\n\n```\nInput: millis = 200\nOutput: 200\nExplanation: It should return a promise that resolves after 200ms.\n```\n\n**Constraints:**\n\n*   `1 <= millis <= 1000`",
+  "constraints": [
+    "1 <= millis <= 1000"
+  ],
+  "examples": [
+    {
+      "input": "millis = 100",
+      "output": "100",
+      "explanation": "It should return a promise that resolves after 100ms.\nlet t = Date.now();\nsleep(100).then(() => {\n  console.log(Date.now() - t); // 100\n});"
+    },
+    {
+      "input": "millis = 200",
+      "output": "200",
+      "explanation": "It should return a promise that resolves after 200ms."
+    }
+  ],
+  "starterCode": {
+    "javascript": "/**\n * @param {number} millis\n * @return {Promise}\n */\nasync function sleep(millis) {\n    \n}\n\n/** \n * let t = Date.now()\n * sleep(100).then(() => console.log(Date.now() - t)) // 100\n */",
+    "typescript": "async function sleep(millis: number): Promise<void> {\n    \n}\n\n\n/** \n * let t = Date.now()\n * sleep(100).then(() => console.log(Date.now() - t)) // 100\n */"
+  },
+  "publicTests": [
+    {
+      "input": "100",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "200",
+      "expectedOutput": "200"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "100",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "200",
+      "expectedOutput": "200"
+    },
+    {
+      "input": "millis = 100",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "millis = 200",
+      "expectedOutput": "200"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "In Javascript, you can execute code after some delay with the setTimeout(fn, sleepTime) function.",
+    "An async function is defined as function which returns a Promise.",
+    "To create a Promise, you can code new Promise((resolve, reject) => {}). When you want the function to return a value, code resolve(value) inside the callback."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sleep/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.668Z",
+    "sourceUpdatedAt": null
+  }
+}

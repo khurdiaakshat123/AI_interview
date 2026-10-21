@@ -1,0 +1,62 @@
+{
+  "id": "1978",
+  "slug": "employees-whose-manager-left-the-company",
+  "title": "Employees Whose Manager Left the Company",
+  "category": "database",
+  "subcategory": "null-handling",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Employees`\n\n```\n+-------------+----------+\n| Column Name | Type     |\n+-------------+----------+\n| employee_id | int      |\n| name        | varchar  |\n| manager_id  | int      |\n| salary      | int      |\n+-------------+----------+\nIn SQL, employee_id is the primary key for this table.\nThis table contains information about the employees, their salary, and the ID of their manager. Some employees do not have a manager (manager_id is null).\n```\n\nFind the IDs of the employees whose salary is strictly less than `$30000` and whose manager left the company. When a manager leaves the company, their information is deleted from the `Employees` table, but the reports still have their `manager_id` set to the manager that left.\n\nReturn the result table ordered by `employee_id`.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput:  \nEmployees table:\n+-------------+-----------+------------+--------+\n| employee_id | name      | manager_id | salary |\n+-------------+-----------+------------+--------+\n| 3           | Mila      | 9          | 60301  |\n| 12          | Antonella | null       | 31000  |\n| 13          | Emery     | null       | 67084  |\n| 1           | Kalel     | 11         | 21241  |\n| 9           | Mikaela   | null       | 50937  |\n| 11          | Joziah    | 6          | 28485  |\n+-------------+-----------+------------+--------+\nOutput: \n+-------------+\n| employee_id |\n+-------------+\n| 11          |\n+-------------+\n\nExplanation: \nThe employees with a salary less than $30000 are 1 (Kalel) and 11 (Joziah).\nKalel's manager is employee 11, who is still in the company (Joziah).\nJoziah's manager is employee 6, who left the company because there is no row for employee 6 as it was deleted.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Employees table:\n+-------------+-----------+------------+--------+\n| employee_id | name      | manager_id | salary |\n+-------------+-----------+------------+--------+\n| 3           | Mila      | 9          | 60301  |\n| 12          | Antonella | null       | 31000  |\n| 13          | Emery     | null       | 67084  |\n| 1           | Kalel     | 11         | 21241  |\n| 9           | Mikaela   | null       | 50937  |\n| 11          | Joziah    | 6          | 28485  |\n+-------------+-----------+------------+--------+",
+      "output": "+-------------+\n| employee_id |\n+-------------+\n| 11          |\n+-------------+",
+      "explanation": "The employees with a salary less than $30000 are 1 (Kalel) and 11 (Joziah).\nKalel's manager is employee 11, who is still in the company (Joziah).\nJoziah's manager is employee 6, who left the company because there is no row for employee 6 as it was deleted."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_employees(employees: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"Employees\": [\"employee_id\", \"name\", \"manager_id\", \"salary\"]}, \"rows\": {\"Employees\": [[3, \"Mila\", 9, 60301], [12, \"Antonella\", null, 31000], [13, \"Emery\", null, 67084], [1, \"Kalel\", 11, 21241], [9, \"Mikaela\", null, 50937], [11, \"Joziah\", 6, 28485]]}}",
+      "expectedOutput": "+-------------+\n| employee_id |\n+-------------+\n| 11          |\n+-------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"Employees\": [\"employee_id\", \"name\", \"manager_id\", \"salary\"]}, \"rows\": {\"Employees\": [[3, \"Mila\", 9, 60301], [12, \"Antonella\", null, 31000], [13, \"Emery\", null, 67084], [1, \"Kalel\", 11, 21241], [9, \"Mikaela\", null, 50937], [11, \"Joziah\", 6, 28485]]}}",
+      "expectedOutput": "+-------------+\n| employee_id |\n+-------------+\n| 11          |\n+-------------+"
+    },
+    {
+      "input": "Employees table:\n+-------------+-----------+------------+--------+\n| employee_id | name      | manager_id | salary |\n+-------------+-----------+------------+--------+\n| 3           | Mila      | 9          | 60301  |\n| 12          | Antonella | null       | 31000  |\n| 13          | Emery     | null       | 67084  |\n| 1           | Kalel     | 11         | 21241  |\n| 9           | Mikaela   | null       | 50937  |\n| 11          | Joziah    | 6          | 28485  |\n+-------------+-----------+------------+--------+",
+      "expectedOutput": "+-------------+\n| employee_id |\n+-------------+\n| 11          |\n+-------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Employees (employee_id int, name varchar(20), manager_id int, salary int)\n\nTruncate table Employees",
+  "sqlSetup": [
+    "insert into Employees (employee_id, name, manager_id, salary) values ('3', 'Mila', '9', '60301')",
+    "insert into Employees (employee_id, name, manager_id, salary) values ('12', 'Antonella', NULL, '31000')",
+    "insert into Employees (employee_id, name, manager_id, salary) values ('13', 'Emery', NULL, '67084')",
+    "insert into Employees (employee_id, name, manager_id, salary) values ('1', 'Kalel', '11', '21241')",
+    "insert into Employees (employee_id, name, manager_id, salary) values ('9', 'Mikaela', NULL, '50937')",
+    "insert into Employees (employee_id, name, manager_id, salary) values ('11', 'Joziah', '6', '28485')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/employees-whose-manager-left-the-company/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.999Z",
+    "sourceUpdatedAt": null
+  }
+}

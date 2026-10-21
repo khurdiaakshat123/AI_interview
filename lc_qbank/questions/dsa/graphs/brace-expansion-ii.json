@@ -1,0 +1,161 @@
+{
+  "id": "1096",
+  "slug": "brace-expansion-ii",
+  "title": "Brace Expansion II",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking",
+    "Stack",
+    "Breadth-First Search",
+    "Sorting"
+  ],
+  "statement": "Under the grammar given below, strings can represent a set of lowercase words. Let `R(expr)` denote the set of words the expression represents.\n\nThe grammar can best be understood through simple examples:\n\n*   Single letters represent a singleton set containing that word.\n    *   `R(\"a\") = {\"a\"}`\n    *   `R(\"w\") = {\"w\"}`\n*   When we take a comma-delimited list of two or more expressions, we take the union of possibilities.\n    *   `R(\"{a,b,c}\") = {\"a\",\"b\",\"c\"}`\n    *   `R(\"{{a,b},{b,c}}\") = {\"a\",\"b\",\"c\"}` (notice the final set only contains each word at most once)\n*   When we concatenate two expressions, we take the set of possible concatenations between two words where the first word comes from the first expression and the second word comes from the second expression.\n    *   `R(\"{a,b}{c,d}\") = {\"ac\",\"ad\",\"bc\",\"bd\"}`\n    *   `R(\"a{b,c}{d,e}f{g,h}\") = {\"abdfg\", \"abdfh\", \"abefg\", \"abefh\", \"acdfg\", \"acdfh\", \"acefg\", \"acefh\"}`\n\nFormally, the three rules for our grammar:\n\n*   For every lowercase letter `x`, we have `R(x) = {x}`.\n*   For expressions `e_(1), e_(2), ... , e_(k)` with `k >= 2`, we have `R({e_(1), e_(2), ...}) = R(e_(1)) ∪ R(e_(2)) ∪ ...`\n*   For expressions `e_(1)` and `e_(2)`, we have `R(e_(1) + e_(2)) = {a + b for (a, b) in R(e_(1)) × R(e_(2))}`, where `+` denotes concatenation, and `×` denotes the cartesian product.\n\nGiven an expression representing a set of words under the given grammar, return _the sorted list of words that the expression represents_.\n\n**Example 1:**\n\n```\nInput: expression = \"{a,b}{c,{d,e}}\"\nOutput: [\"ac\",\"ad\",\"ae\",\"bc\",\"bd\",\"be\"]\n```\n\n**Example 2:**\n\n```\nInput: expression = \"{{a,z},a{b,c},{ab,z}}\"\nOutput: [\"a\",\"ab\",\"ac\",\"z\"]\nExplanation: Each distinct word is written only once in the final answer.\n```\n\n**Constraints:**\n\n*   `1 <= expression.length <= 60`\n*   `expression[i]` consists of `'{'`, `'}'`, `','`or lowercase English letters.\n*   The given `expression` represents a set of words based on the grammar given in the description.",
+  "constraints": [
+    "1 <= expression.length <= 60",
+    "expression[i] consists of '{', '}', ','or lowercase English letters.",
+    "The given expression represents a set of words based on the grammar given in the description."
+  ],
+  "examples": [
+    {
+      "input": "expression = \"{a,b}{c,{d,e}}\"",
+      "output": "[\"ac\",\"ad\",\"ae\",\"bc\",\"bd\",\"be\"]",
+      "explanation": null
+    },
+    {
+      "input": "expression = \"{{a,z},a{b,c},{ab,z}}\"",
+      "output": "[\"a\",\"ab\",\"ac\",\"z\"]",
+      "explanation": "Each distinct word is written only once in the final answer."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> braceExpansionII(string expression) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> braceExpansionII(String expression) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def braceExpansionII(self, expression: str) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def braceExpansionII(self, expression):\n        \"\"\"\n        :type expression: str\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} expression\n * @return {string[]}\n */\nvar braceExpansionII = function(expression) {\n    \n};",
+    "typescript": "function braceExpansionII(expression: string): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> BraceExpansionII(string expression) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** braceExpansionII(char* expression, int* returnSize) {\n    \n}",
+    "golang": "func braceExpansionII(expression string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun braceExpansionII(expression: String): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func braceExpansionII(_ expression: String) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn brace_expansion_ii(expression: String) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} expression\n# @return {String[]}\ndef brace_expansion_ii(expression)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $expression\n     * @return String[]\n     */\n    function braceExpansionII($expression) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> braceExpansionII(String expression) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def braceExpansionII(expression: String): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec brace_expansion_ii(expression :: String.t) :: [String.t]\n  def brace_expansion_ii(expression) do\n    \n  end\nend",
+    "erlang": "-spec brace_expansion_ii(Expression :: unicode:unicode_binary()) -> [unicode:unicode_binary()].\nbrace_expansion_ii(Expression) ->\n  .",
+    "racket": "(define/contract (brace-expansion-ii expression)\n  (-> string? (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"{a,b}{c,{d,e}}\"",
+      "expectedOutput": "[\"ac\",\"ad\",\"ae\",\"bc\",\"bd\",\"be\"]"
+    },
+    {
+      "input": "\"{{a,z},a{b,c},{ab,z}}\"",
+      "expectedOutput": "[\"a\",\"ab\",\"ac\",\"z\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"{a,b}{c,{d,e}}\"",
+      "expectedOutput": "[\"ac\",\"ad\",\"ae\",\"bc\",\"bd\",\"be\"]"
+    },
+    {
+      "input": "\"{{a,z},a{b,c},{ab,z}}\"",
+      "expectedOutput": "[\"a\",\"ab\",\"ac\",\"z\"]"
+    },
+    {
+      "input": "\"{a,b}{c\"",
+      "expectedOutput": "[\"a{c\",\"b{c\"]"
+    },
+    {
+      "input": "\",{d,e}}\"",
+      "expectedOutput": "[\",d\",\",dd\",\",e\",\",ee\"]"
+    },
+    {
+      "input": "\"{\"",
+      "expectedOutput": "[\"{\"]"
+    },
+    {
+      "input": "\"{a\"",
+      "expectedOutput": "[\"{a\"]"
+    },
+    {
+      "input": "\"{{{{{{\"",
+      "expectedOutput": "[\"{{{{{{\"]"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "[\"a\"]"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "[\"b\"]"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "[\"aa\"]"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "[\"ab\"]"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "[\"ba\"]"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "[\"aba\"]"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "[\"abba\"]"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "[\"aaaaa\"]"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "[\"abcde\"]"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "[\"edcba\"]"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "[\"aab\"]"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "[\"aA\"]"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "[\"0\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "You can write helper methods to parse the next \"chunk\" of the expression.  If you see eg. \"a\", the answer is just the set {a}.  If you see \"{\", you parse until you complete the \"}\" (the number of { and } seen are equal) and that becomes a chunk that you find where the appropriate commas are, and parse each individual expression between the commas."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/brace-expansion-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.699Z",
+    "sourceUpdatedAt": null
+  }
+}

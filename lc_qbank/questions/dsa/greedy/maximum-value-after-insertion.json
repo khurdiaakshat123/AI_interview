@@ -1,0 +1,161 @@
+{
+  "id": "1881",
+  "slug": "maximum-value-after-insertion",
+  "title": "Maximum Value after Insertion",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "statement": "You are given a very large integer `n`, represented as a string,​​​​​​ and an integer digit `x`. The digits in `n` and the digit `x` are in the **inclusive** range `[1, 9]`, and `n` may represent a **negative** number.\n\nYou want to **maximize** `n`**'s numerical value** by inserting `x` anywhere in the decimal representation of `n`​​​​​​. You **cannot** insert `x` to the left of the negative sign.\n\n*   For example, if `n = 73` and `x = 6`, it would be best to insert it between `7` and `3`, making `n = 763`.\n*   If `n = -55` and `x = 2`, it would be best to insert it before the first `5`, making `n = -255`.\n\nReturn _a string representing the **maximum** value of_ `n`_​​​​​​ after the insertion_.\n\n**Example 1:**\n\n```\nInput: n = \"99\", x = 9\nOutput: \"999\"\nExplanation: The result is the same regardless of where you insert 9.\n```\n\n**Example 2:**\n\n```\nInput: n = \"-13\", x = 2\nOutput: \"-123\"\nExplanation: You can make n one of {-213, -123, -132}, and the largest of those three is -123.\n```\n\n**Constraints:**\n\n*   `1 <= n.length <= 10^(5)`\n*   `1 <= x <= 9`\n*   The digits in `n`​​​ are in the range `[1, 9]`.\n*   `n` is a valid representation of an integer.\n*   In the case of a negative `n`,​​​​​​ it will begin with `'-'`.",
+  "constraints": [
+    "1 <= n.length <= 105",
+    "1 <= x <= 9",
+    "The digits in n​​​ are in the range [1, 9].",
+    "n is a valid representation of an integer.",
+    "In the case of a negative n,​​​​​​ it will begin with '-'."
+  ],
+  "examples": [
+    {
+      "input": "n = \"99\", x = 9",
+      "output": "\"999\"",
+      "explanation": "The result is the same regardless of where you insert 9."
+    },
+    {
+      "input": "n = \"-13\", x = 2",
+      "output": "\"-123\"",
+      "explanation": "You can make n one of {-213, -123, -132}, and the largest of those three is -123."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string maxValue(string n, int x) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String maxValue(String n, int x) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxValue(self, n: str, x: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def maxValue(self, n, x):\n        \"\"\"\n        :type n: str\n        :type x: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} n\n * @param {number} x\n * @return {string}\n */\nvar maxValue = function(n, x) {\n    \n};",
+    "typescript": "function maxValue(n: string, x: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MaxValue(string n, int x) {\n        \n    }\n}",
+    "c": "char* maxValue(char* n, int x) {\n    \n}",
+    "golang": "func maxValue(n string, x int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxValue(n: String, x: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxValue(_ n: String, _ x: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_value(n: String, x: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} n\n# @param {Integer} x\n# @return {String}\ndef max_value(n, x)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $n\n     * @param Integer $x\n     * @return String\n     */\n    function maxValue($n, $x) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String maxValue(String n, int x) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxValue(n: String, x: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_value(n :: String.t, x :: integer) :: String.t\n  def max_value(n, x) do\n    \n  end\nend",
+    "erlang": "-spec max_value(N :: unicode:unicode_binary(), X :: integer()) -> unicode:unicode_binary().\nmax_value(N, X) ->\n  .",
+    "racket": "(define/contract (max-value n x)\n  (-> string? exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"99\"\n9",
+      "expectedOutput": "\"999\""
+    },
+    {
+      "input": "\"-13\"\n2",
+      "expectedOutput": "\"-123\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"99\"\n9",
+      "expectedOutput": "\"999\""
+    },
+    {
+      "input": "\"-13\"\n2",
+      "expectedOutput": "\"-123\""
+    },
+    {
+      "input": "\"9\"\n9",
+      "expectedOutput": "\"99\""
+    },
+    {
+      "input": "\"9999\"\n9",
+      "expectedOutput": "\"99999\""
+    },
+    {
+      "input": "\"0\"\n9",
+      "expectedOutput": "\"90\""
+    },
+    {
+      "input": "\"121\"\n9",
+      "expectedOutput": "\"9121\""
+    },
+    {
+      "input": "\"99\"\n0",
+      "expectedOutput": "\"990\""
+    },
+    {
+      "input": "\"99\"\n1",
+      "expectedOutput": "\"991\""
+    },
+    {
+      "input": "\"99\"\n2",
+      "expectedOutput": "\"992\""
+    },
+    {
+      "input": "\"99\"\n3",
+      "expectedOutput": "\"993\""
+    },
+    {
+      "input": "\"99\"\n4",
+      "expectedOutput": "\"994\""
+    },
+    {
+      "input": "\"99\"\n5",
+      "expectedOutput": "\"995\""
+    },
+    {
+      "input": "\"99\"\n6",
+      "expectedOutput": "\"996\""
+    },
+    {
+      "input": "\"99\"\n7",
+      "expectedOutput": "\"997\""
+    },
+    {
+      "input": "\"99\"\n8",
+      "expectedOutput": "\"998\""
+    },
+    {
+      "input": "\"99\"\n10",
+      "expectedOutput": "\"1099\""
+    },
+    {
+      "input": "\"99\"\n-1",
+      "expectedOutput": "\"99-1\""
+    },
+    {
+      "input": "\"99\"\n-2",
+      "expectedOutput": "\"99-2\""
+    },
+    {
+      "input": "\"-\"\n2",
+      "expectedOutput": "\"-2\""
+    },
+    {
+      "input": "\"13\"\n2",
+      "expectedOutput": "\"213\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Note that if the number is negative it's the same as positive but you look for the minimum instead.",
+    "In the case of maximum, if s[i] < x it's optimal that x is put before s[i].",
+    "In the case of minimum, if s[i] > x it's optimal that x is put before s[i]."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-value-after-insertion/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.905Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "id": "2451",
+  "slug": "odd-string-difference",
+  "title": "Odd String Difference",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "statement": "You are given an array of equal-length strings `words`. Assume that the length of each string is `n`.\n\nEach string `words[i]` can be converted into a **difference integer array** `difference[i]` of length `n - 1` where `difference[i][j] = words[i][j+1] - words[i][j]` where `0 <= j <= n - 2`. Note that the difference between two letters is the difference between their **positions** in the alphabet i.e. the position of `'a'` is `0`, `'b'` is `1`, and `'z'` is `25`.\n\n*   For example, for the string `\"acb\"`, the difference integer array is `[2 - 0, 1 - 2] = [2, -1]`.\n\nAll the strings in words have the same difference integer array, **except one**. You should find that string.\n\nReturn _the string in_ `words` _that has different **difference integer array**._\n\n**Example 1:**\n\n```\nInput: words = [\"adc\",\"wzy\",\"abc\"]\nOutput: \"abc\"\nExplanation: \n- The difference integer array of \"adc\" is [3 - 0, 2 - 3] = [3, -1].\n- The difference integer array of \"wzy\" is [25 - 22, 24 - 25]= [3, -1].\n- The difference integer array of \"abc\" is [1 - 0, 2 - 1] = [1, 1]. \nThe odd array out is [1, 1], so we return the corresponding string, \"abc\".\n```\n\n**Example 2:**\n\n```\nInput: words = [\"aaa\",\"bob\",\"ccc\",\"ddd\"]\nOutput: \"bob\"\nExplanation: All the integer arrays are [0, 0] except for \"bob\", which corresponds to [13, -13].\n```\n\n**Constraints:**\n\n*   `3 <= words.length <= 100`\n*   `n == words[i].length`\n*   `2 <= n <= 20`\n*   `words[i]` consists of lowercase English letters.",
+  "constraints": [
+    "3 <= words.length <= 100",
+    "n == words[i].length",
+    "2 <= n <= 20",
+    "words[i] consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"adc\",\"wzy\",\"abc\"]",
+      "output": "\"abc\"",
+      "explanation": "- The difference integer array of \"adc\" is [3 - 0, 2 - 3] = [3, -1].\n- The difference integer array of \"wzy\" is [25 - 22, 24 - 25]= [3, -1].\n- The difference integer array of \"abc\" is [1 - 0, 2 - 1] = [1, 1]. \nThe odd array out is [1, 1], so we return the corresponding string, \"abc\"."
+    },
+    {
+      "input": "words = [\"aaa\",\"bob\",\"ccc\",\"ddd\"]",
+      "output": "\"bob\"",
+      "explanation": "All the integer arrays are [0, 0] except for \"bob\", which corresponds to [13, -13]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string oddString(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String oddString(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def oddString(self, words: list[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def oddString(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {string}\n */\nvar oddString = function(words) {\n    \n};",
+    "typescript": "function oddString(words: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string OddString(string[] words) {\n        \n    }\n}",
+    "c": "char* oddString(char** words, int wordsSize) {\n    \n}",
+    "golang": "func oddString(words []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun oddString(words: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func oddString(_ words: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn odd_string(words: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {String}\ndef odd_string(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return String\n     */\n    function oddString($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String oddString(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def oddString(words: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec odd_string(words :: [String.t]) :: String.t\n  def odd_string(words) do\n    \n  end\nend",
+    "erlang": "-spec odd_string(Words :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nodd_string(Words) ->\n  .",
+    "racket": "(define/contract (odd-string words)\n  (-> (listof string?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"adc\",\"wzy\",\"abc\"]",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "[\"aaa\",\"bob\",\"ccc\",\"ddd\"]",
+      "expectedOutput": "\"bob\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"adc\",\"wzy\",\"abc\"]",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "[\"aaa\",\"bob\",\"ccc\",\"ddd\"]",
+      "expectedOutput": "\"bob\""
+    },
+    {
+      "input": "[\"adc\"]",
+      "expectedOutput": "\"adc\""
+    },
+    {
+      "input": "[\"wzy\",\"abc\"]",
+      "expectedOutput": "\"wzy\""
+    },
+    {
+      "input": "[\"adc\",\"abc\"]",
+      "expectedOutput": "\"adc\""
+    },
+    {
+      "input": "[\"abc\",\"wzy\",\"adc\"]",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "[\"abc\",\"adc\",\"wzy\"]",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "[\"wzy\",\"adc\",\"abc\"]",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "\"eat\""
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "\"cat\""
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "\"one\""
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "\"hello\""
+    },
+    {
+      "input": "[\"flow\",\"flower\",\"flight\"]",
+      "expectedOutput": "\"flow\""
+    },
+    {
+      "input": "[\"word\",\"world\",\"row\"]",
+      "expectedOutput": "\"word\""
+    },
+    {
+      "input": "[\"listen\",\"silent\"]",
+      "expectedOutput": "\"listen\""
+    },
+    {
+      "input": "[\"anagram\",\"nagaram\"]",
+      "expectedOutput": "\"anagram\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find the difference integer array for each string.",
+    "Compare them to find the odd one out."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/odd-string-difference/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.367Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "id": "3137",
+  "slug": "minimum-number-of-operations-to-make-word-k-periodic",
+  "title": "Minimum Number of Operations to Make Word K-Periodic",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "statement": "You are given a string `word` of size `n`, and an integer `k` such that `k` divides `n`.\n\nIn one operation, you can pick any two indices `i` and `j`, that are divisible by `k`, then replace the substring of length `k` starting at `i` with the substring of length `k` starting at `j`. That is, replace the substring `word[i..i + k - 1]` with the substring `word[j..j + k - 1]`.\n\nReturn _the **minimum** number of operations required to make_ `word` _**k-periodic**_.\n\nWe say that `word` is **k-periodic** if there is some string `s` of length `k` such that `word` can be obtained by concatenating `s` an arbitrary number of times. For example, if `word == “ababab”`, then `word` is 2-periodic for `s = \"ab\"`.\n\n**Example 1:**\n\n**Input:** word = \"leetcodeleet\", k = 4\n\n**Output:** 1\n\n**Explanation:**\n\nWe can obtain a 4-periodic string by picking i = 4 and j = 0. After this operation, word becomes equal to \"leetleetleet\".\n\n**Example 2:**\n\n**Input:** word = \"leetcoleet\", k = 2\n\n**Output:** 3\n\n**Explanation:**\n\nWe can obtain a 2-periodic string by applying the operations in the table below.\n\ni\n\nj\n\nword\n\n0\n\n2\n\netetcoleet\n\n4\n\n0\n\netetetleet\n\n6\n\n0\n\netetetetet\n\n**Constraints:**\n\n*   `1 <= n == word.length <= 10^(5)`\n*   `1 <= k <= word.length`\n*   `k` divides `word.length`.\n*   `word` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= n == word.length <= 105",
+    "1 <= k <= word.length",
+    "k divides word.length.",
+    "word consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "word = \"leetcodeleet\", k = 4",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "word = \"leetcoleet\", k = 2",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumOperationsToMakeKPeriodic(string word, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumOperationsToMakeKPeriodic(String word, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumOperationsToMakeKPeriodic(self, word: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumOperationsToMakeKPeriodic(self, word, k):\n        \"\"\"\n        :type word: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word\n * @param {number} k\n * @return {number}\n */\nvar minimumOperationsToMakeKPeriodic = function(word, k) {\n    \n};",
+    "typescript": "function minimumOperationsToMakeKPeriodic(word: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumOperationsToMakeKPeriodic(string word, int k) {\n        \n    }\n}",
+    "c": "int minimumOperationsToMakeKPeriodic(char* word, int k) {\n    \n}",
+    "golang": "func minimumOperationsToMakeKPeriodic(word string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumOperationsToMakeKPeriodic(word: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumOperationsToMakeKPeriodic(_ word: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_operations_to_make_k_periodic(word: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} word\n# @param {Integer} k\n# @return {Integer}\ndef minimum_operations_to_make_k_periodic(word, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word\n     * @param Integer $k\n     * @return Integer\n     */\n    function minimumOperationsToMakeKPeriodic($word, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumOperationsToMakeKPeriodic(String word, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumOperationsToMakeKPeriodic(word: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_operations_to_make_k_periodic(word :: String.t, k :: integer) :: integer\n  def minimum_operations_to_make_k_periodic(word, k) do\n    \n  end\nend",
+    "erlang": "-spec minimum_operations_to_make_k_periodic(Word :: unicode:unicode_binary(), K :: integer()) -> integer().\nminimum_operations_to_make_k_periodic(Word, K) ->\n  .",
+    "racket": "(define/contract (minimum-operations-to-make-k-periodic word k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"leetcodeleet\"\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"leetcoleet\"\n2",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"leetcodeleet\"\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"leetcoleet\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"leetco\"\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"deleet\"\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"l\"\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"le\"\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"teeledocteel\"\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"llllll\"\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"LEETCODELEET\"\n4",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"a\"\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"b\"\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aa\"\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ab\"\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"ba\"\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aba\"\n4",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"abba\"\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"\n4",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"\n4",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Calculate the frequency of each substring of length <code>k</code> that starts at an index that is divisible by <code>k</code>.",
+    "The period of the final string will be the substring with the highest frequency."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-operations-to-make-word-k-periodic/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.364Z",
+    "sourceUpdatedAt": null
+  }
+}

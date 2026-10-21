@@ -1,0 +1,166 @@
+{
+  "id": "3015",
+  "slug": "count-the-number-of-houses-at-a-certain-distance-i",
+  "title": "Count the Number of Houses at a Certain Distance I",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Medium",
+  "tags": [
+    "Breadth-First Search",
+    "Graph Theory",
+    "Prefix Sum"
+  ],
+  "statement": "You are given three **positive** integers `n`, `x`, and `y`.\n\nIn a city, there exist houses numbered `1` to `n` connected by `n` streets. There is a street connecting the house numbered `i` with the house numbered `i + 1` for all `1 <= i <= n - 1` . An additional street connects the house numbered `x` with the house numbered `y`.\n\nFor each `k`, such that `1 <= k <= n`, you need to find the number of **pairs of houses** `(house_(1), house_(2))` such that the **minimum** number of streets that need to be traveled to reach `house_(2)` from `house_(1)` is `k`.\n\nReturn _a **1-indexed** array_ `result` _of length_ `n` _where_ `result[k]` _represents the **total** number of pairs of houses such that the **minimum** streets required to reach one house from the other is_ `k`.\n\n**Note** that `x` and `y` can be **equal**.\n\n**Example 1:**\n\n![](./assets/count-the-number-of-houses-at-a-certain-distance-i-1.png)\n```\nInput: n = 3, x = 1, y = 3\nOutput: [6,0,0]\nExplanation: Let's look at each pair of houses:\n- For the pair (1, 2), we can go from house 1 to house 2 directly.\n- For the pair (2, 1), we can go from house 2 to house 1 directly.\n- For the pair (1, 3), we can go from house 1 to house 3 directly.\n- For the pair (3, 1), we can go from house 3 to house 1 directly.\n- For the pair (2, 3), we can go from house 2 to house 3 directly.\n- For the pair (3, 2), we can go from house 3 to house 2 directly.\n```\n\n**Example 2:**\n\n![](./assets/count-the-number-of-houses-at-a-certain-distance-i-2.png)\n```\nInput: n = 5, x = 2, y = 4\nOutput: [10,8,2,0,0]\nExplanation: For each distance k the pairs are:\n- For k == 1, the pairs are (1, 2), (2, 1), (2, 3), (3, 2), (2, 4), (4, 2), (3, 4), (4, 3), (4, 5), and (5, 4).\n- For k == 2, the pairs are (1, 3), (3, 1), (1, 4), (4, 1), (2, 5), (5, 2), (3, 5), and (5, 3).\n- For k == 3, the pairs are (1, 5), and (5, 1).\n- For k == 4 and k == 5, there are no pairs.\n```\n\n**Example 3:**\n\n![](./assets/count-the-number-of-houses-at-a-certain-distance-i-3.png)\n```\nInput: n = 4, x = 1, y = 1\nOutput: [6,4,2,0]\nExplanation: For each distance k the pairs are:\n- For k == 1, the pairs are (1, 2), (2, 1), (2, 3), (3, 2), (3, 4), and (4, 3).\n- For k == 2, the pairs are (1, 3), (3, 1), (2, 4), and (4, 2).\n- For k == 3, the pairs are (1, 4), and (4, 1).\n- For k == 4, there are no pairs.\n```\n\n**Constraints:**\n\n*   `2 <= n <= 100`\n*   `1 <= x, y <= n`",
+  "constraints": [
+    "2 <= n <= 100",
+    "1 <= x, y <= n"
+  ],
+  "examples": [
+    {
+      "input": "n = 3, x = 1, y = 3",
+      "output": "[6,0,0]",
+      "explanation": "Let's look at each pair of houses:\n- For the pair (1, 2), we can go from house 1 to house 2 directly.\n- For the pair (2, 1), we can go from house 2 to house 1 directly.\n- For the pair (1, 3), we can go from house 1 to house 3 directly.\n- For the pair (3, 1), we can go from house 3 to house 1 directly.\n- For the pair (2, 3), we can go from house 2 to house 3 directly.\n- For the pair (3, 2), we can go from house 3 to house 2 directly."
+    },
+    {
+      "input": "n = 5, x = 2, y = 4",
+      "output": "[10,8,2,0,0]",
+      "explanation": "For each distance k the pairs are:\n- For k == 1, the pairs are (1, 2), (2, 1), (2, 3), (3, 2), (2, 4), (4, 2), (3, 4), (4, 3), (4, 5), and (5, 4).\n- For k == 2, the pairs are (1, 3), (3, 1), (1, 4), (4, 1), (2, 5), (5, 2), (3, 5), and (5, 3).\n- For k == 3, the pairs are (1, 5), and (5, 1).\n- For k == 4 and k == 5, there are no pairs."
+    },
+    {
+      "input": "n = 4, x = 1, y = 1",
+      "output": "[6,4,2,0]",
+      "explanation": "For each distance k the pairs are:\n- For k == 1, the pairs are (1, 2), (2, 1), (2, 3), (3, 2), (3, 4), and (4, 3).\n- For k == 2, the pairs are (1, 3), (3, 1), (2, 4), and (4, 2).\n- For k == 3, the pairs are (1, 4), and (4, 1).\n- For k == 4, there are no pairs."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> countOfPairs(int n, int x, int y) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] countOfPairs(int n, int x, int y) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countOfPairs(self, n: int, x: int, y: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def countOfPairs(self, n, x, y):\n        \"\"\"\n        :type n: int\n        :type x: int\n        :type y: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} x\n * @param {number} y\n * @return {number[]}\n */\nvar countOfPairs = function(n, x, y) {\n    \n};",
+    "typescript": "function countOfPairs(n: number, x: number, y: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] CountOfPairs(int n, int x, int y) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* countOfPairs(int n, int x, int y, int* returnSize) {\n    \n}",
+    "golang": "func countOfPairs(n int, x int, y int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countOfPairs(n: Int, x: Int, y: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countOfPairs(_ n: Int, _ x: Int, _ y: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_of_pairs(n: i32, x: i32, y: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} x\n# @param {Integer} y\n# @return {Integer[]}\ndef count_of_pairs(n, x, y)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $x\n     * @param Integer $y\n     * @return Integer[]\n     */\n    function countOfPairs($n, $x, $y) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> countOfPairs(int n, int x, int y) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countOfPairs(n: Int, x: Int, y: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_of_pairs(n :: integer, x :: integer, y :: integer) :: [integer]\n  def count_of_pairs(n, x, y) do\n    \n  end\nend",
+    "erlang": "-spec count_of_pairs(N :: integer(), X :: integer(), Y :: integer()) -> [integer()].\ncount_of_pairs(N, X, Y) ->\n  .",
+    "racket": "(define/contract (count-of-pairs n x y)\n  (-> exact-integer? exact-integer? exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n1\n3",
+      "expectedOutput": "[6,0,0]"
+    },
+    {
+      "input": "5\n2\n4",
+      "expectedOutput": "[10,8,2,0,0]"
+    },
+    {
+      "input": "4\n1\n1",
+      "expectedOutput": "[6,4,2,0]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n1\n3",
+      "expectedOutput": "[6,0,0]"
+    },
+    {
+      "input": "5\n2\n4",
+      "expectedOutput": "[10,8,2,0,0]"
+    },
+    {
+      "input": "4\n1\n1",
+      "expectedOutput": "[6,4,2,0]"
+    },
+    {
+      "input": "0\n1\n3",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "1\n1\n3",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "2\n1\n3",
+      "expectedOutput": "[2,0]"
+    },
+    {
+      "input": "4\n1\n3",
+      "expectedOutput": "[8,4,0,0]"
+    },
+    {
+      "input": "5\n1\n3",
+      "expectedOutput": "[10,6,4,0,0]"
+    },
+    {
+      "input": "6\n1\n3",
+      "expectedOutput": "[12,8,6,4,0,0]"
+    },
+    {
+      "input": "7\n1\n3",
+      "expectedOutput": "[14,10,8,6,4,0,0]"
+    },
+    {
+      "input": "8\n1\n3",
+      "expectedOutput": "[16,12,10,8,6,4,0,0]"
+    },
+    {
+      "input": "-1\n1\n3",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "-2\n1\n3",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "3\n0\n3",
+      "expectedOutput": "[4,2,0]"
+    },
+    {
+      "input": "3\n2\n3",
+      "expectedOutput": "[4,2,0]"
+    },
+    {
+      "input": "3\n3\n3",
+      "expectedOutput": "[4,2,0]"
+    },
+    {
+      "input": "3\n4\n3",
+      "expectedOutput": "[4,2,0]"
+    },
+    {
+      "input": "3\n5\n3",
+      "expectedOutput": "[4,2,0]"
+    },
+    {
+      "input": "3\n6\n3",
+      "expectedOutput": "[4,2,0]"
+    },
+    {
+      "input": "3\n-1\n3",
+      "expectedOutput": "[4,2,0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Start from each house, run a BFS to get all the distances from this house to all the other houses."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.790Z",
+    "sourceUpdatedAt": null
+  }
+}

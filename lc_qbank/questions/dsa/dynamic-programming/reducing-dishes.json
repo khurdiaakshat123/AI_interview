@@ -1,0 +1,169 @@
+{
+  "id": "1402",
+  "slug": "reducing-dishes",
+  "title": "Reducing Dishes",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "A chef has collected data on the `satisfaction` level of his `n` dishes. Chef can cook any dish in 1 unit of time.\n\n**Like-time coefficient** of a dish is defined as the time taken to cook that dish including previous dishes multiplied by its satisfaction level i.e. `time[i] * satisfaction[i]`.\n\nReturn the maximum sum of **like-time coefficient** that the chef can obtain after preparing some amount of dishes.\n\nDishes can be prepared in **any** order and the chef can discard some dishes to get this maximum value.\n\n**Example 1:**\n\n```\nInput: satisfaction = [-1,-8,0,5,-9]\nOutput: 14\nExplanation: After Removing the second and last dish, the maximum total like-time coefficient will be equal to (-1*1 + 0*2 + 5*3 = 14).\nEach dish is prepared in one unit of time.\n```\n\n**Example 2:**\n\n```\nInput: satisfaction = [4,3,2]\nOutput: 20\nExplanation: Dishes can be prepared in any order, (2*1 + 3*2 + 4*3 = 20)\n```\n\n**Example 3:**\n\n```\nInput: satisfaction = [-1,-4,-5]\nOutput: 0\nExplanation: People do not like the dishes. No dish is prepared.\n```\n\n**Constraints:**\n\n*   `n == satisfaction.length`\n*   `1 <= n <= 500`\n*   `-1000 <= satisfaction[i] <= 1000`",
+  "constraints": [
+    "n == satisfaction.length",
+    "1 <= n <= 500",
+    "-1000 <= satisfaction[i] <= 1000"
+  ],
+  "examples": [
+    {
+      "input": "satisfaction = [-1,-8,0,5,-9]",
+      "output": "14",
+      "explanation": "After Removing the second and last dish, the maximum total like-time coefficient will be equal to (-1*1 + 0*2 + 5*3 = 14).\nEach dish is prepared in one unit of time."
+    },
+    {
+      "input": "satisfaction = [4,3,2]",
+      "output": "20",
+      "explanation": "Dishes can be prepared in any order, (2*1 + 3*2 + 4*3 = 20)"
+    },
+    {
+      "input": "satisfaction = [-1,-4,-5]",
+      "output": "0",
+      "explanation": "People do not like the dishes. No dish is prepared."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxSatisfaction(vector<int>& satisfaction) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxSatisfaction(int[] satisfaction) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSatisfaction(self, satisfaction: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSatisfaction(self, satisfaction):\n        \"\"\"\n        :type satisfaction: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} satisfaction\n * @return {number}\n */\nvar maxSatisfaction = function(satisfaction) {\n    \n};",
+    "typescript": "function maxSatisfaction(satisfaction: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxSatisfaction(int[] satisfaction) {\n        \n    }\n}",
+    "c": "int maxSatisfaction(int* satisfaction, int satisfactionSize) {\n    \n}",
+    "golang": "func maxSatisfaction(satisfaction []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSatisfaction(satisfaction: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSatisfaction(_ satisfaction: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_satisfaction(satisfaction: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} satisfaction\n# @return {Integer}\ndef max_satisfaction(satisfaction)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $satisfaction\n     * @return Integer\n     */\n    function maxSatisfaction($satisfaction) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSatisfaction(List<int> satisfaction) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSatisfaction(satisfaction: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_satisfaction(satisfaction :: [integer]) :: integer\n  def max_satisfaction(satisfaction) do\n    \n  end\nend",
+    "erlang": "-spec max_satisfaction(Satisfaction :: [integer()]) -> integer().\nmax_satisfaction(Satisfaction) ->\n  .",
+    "racket": "(define/contract (max-satisfaction satisfaction)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[-1,-8,0,5,-7]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[4,3,2]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[-1,-4,-5]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[-1,-8,0,5,-7]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[4,3,2]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[-1,-4,-5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-8]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,5,-7]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-7]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-7,5,0,-8,-1]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[-8,-7,-1,0,5]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[5,0,-1,-7,-8]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[-1,-1,-1,-1,-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-8,0,5,-7,-1,-8,0,5,-7]",
+      "expectedOutput": "53"
+    },
+    {
+      "input": "[-2,-16,0,10,-14]",
+      "expectedOutput": "28"
+    },
+    {
+      "input": "[0,-7,1,6,-6]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[-2,-9,-1,4,-8]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,8,0,-5,7]",
+      "expectedOutput": "66"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming to find the optimal solution by saving the previous best like-time coefficient and its corresponding element sum.",
+    "If adding the current element to the previous best like-time coefficient and its corresponding element sum would increase the best like-time coefficient, then go ahead and add it. Otherwise, keep the previous best like-time coefficient."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/reducing-dishes/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.368Z",
+    "sourceUpdatedAt": null
+  }
+}

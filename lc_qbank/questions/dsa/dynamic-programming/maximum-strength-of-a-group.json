@@ -1,0 +1,163 @@
+{
+  "id": "2708",
+  "slug": "maximum-strength-of-a-group",
+  "title": "Maximum Strength of a Group",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Greedy",
+    "Bit Manipulation",
+    "Sorting",
+    "Enumeration"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums` representing the score of students in an exam. The teacher would like to form one **non-empty** group of students with maximal **strength**, where the strength of a group of students of indices `i_(0)`, `i_(1)`, `i_(2)`, ... , `i_(k)` is defined as `nums[i_(0)] * nums[i_(1)] * nums[i_(2)] * ... * nums[i_(k)​]`.\n\nReturn _the maximum strength of a group the teacher can create_.\n\n**Example 1:**\n\n```\nInput: nums = [3,-1,-5,2,5,-9]\nOutput: 1350\nExplanation: One way to form a group of maximal strength is to group the students at indices [0,2,3,4,5]. Their strength is 3 * (-5) * 2 * 5 * (-9) = 1350, which we can show is optimal.\n```\n\n**Example 2:**\n\n```\nInput: nums = [-4,-5,-4]\nOutput: 20\nExplanation: Group the students at indices [0, 1] . Then, we’ll have a resulting strength of 20. We cannot achieve greater strength.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 13`\n*   `-9 <= nums[i] <= 9`",
+  "constraints": [
+    "1 <= nums.length <= 13",
+    "-9 <= nums[i] <= 9"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,-1,-5,2,5,-9]",
+      "output": "1350",
+      "explanation": "One way to form a group of maximal strength is to group the students at indices [0,2,3,4,5]. Their strength is 3 * (-5) * 2 * 5 * (-9) = 1350, which we can show is optimal."
+    },
+    {
+      "input": "nums = [-4,-5,-4]",
+      "output": "20",
+      "explanation": "Group the students at indices [0, 1] . Then, we’ll have a resulting strength of 20. We cannot achieve greater strength."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxStrength(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxStrength(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxStrength(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxStrength(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxStrength = function(nums) {\n    \n};",
+    "typescript": "function maxStrength(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxStrength(int[] nums) {\n        \n    }\n}",
+    "c": "long long maxStrength(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxStrength(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxStrength(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxStrength(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_strength(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_strength(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxStrength($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxStrength(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxStrength(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_strength(nums :: [integer]) :: integer\n  def max_strength(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_strength(Nums :: [integer()]) -> integer().\nmax_strength(Nums) ->\n  .",
+    "racket": "(define/contract (max-strength nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,-1,-5,2,5,-9]",
+      "expectedOutput": "1350"
+    },
+    {
+      "input": "[-4,-5,-4]",
+      "expectedOutput": "20"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,-1,-5,2,5,-9]",
+      "expectedOutput": "1350"
+    },
+    {
+      "input": "[-4,-5,-4]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[3,-1,-5]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[2,5,-9]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,-9]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,-1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-9,5,2,-5,-1,3]",
+      "expectedOutput": "1350"
+    },
+    {
+      "input": "[-9,-5,-1,2,3,5]",
+      "expectedOutput": "1350"
+    },
+    {
+      "input": "[5,3,2,-1,-5,-9]",
+      "expectedOutput": "1350"
+    },
+    {
+      "input": "[3,3,3,3,3]",
+      "expectedOutput": "243"
+    },
+    {
+      "input": "[6,-2,-10,4,10,-18]",
+      "expectedOutput": "43200"
+    },
+    {
+      "input": "[4,0,-4,3,6,-8]",
+      "expectedOutput": "2304"
+    },
+    {
+      "input": "[2,-2,-6,1,4,-10]",
+      "expectedOutput": "480"
+    },
+    {
+      "input": "[-3,1,5,-2,-5,9]",
+      "expectedOutput": "675"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try to generate all pairs of subsets and check which group provides maximal strength.",
+    "It can also be solved in O(NlogN) by sorting the array and using all positive integers.",
+    "Use negative integers only in pairs such that their product becomes positive."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-strength-of-a-group/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.628Z",
+    "sourceUpdatedAt": null
+  }
+}

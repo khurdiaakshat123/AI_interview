@@ -1,0 +1,116 @@
+{
+  "id": "3670",
+  "slug": "maximum-product-of-two-integers-with-no-common-bits",
+  "title": "Maximum Product of Two Integers With No Common Bits",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nYour task is to find two **distinct** indices `i` and `j` such that the product `nums[i] * nums[j]` is **maximized,** and the binary representations of `nums[i]` and `nums[j]` do not share any common set bits.\n\nReturn the **maximum** possible product of such a pair. If no such pair exists, return 0.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,3,4,5,6,7\\]\n\n**Output:** 12\n\n**Explanation:**\n\nThe best pair is 3 (011) and 4 (100). They share no set bits and `3 * 4 = 12`.\n\n**Example 2:**\n\n**Input:** nums = \\[5,6,4\\]\n\n**Output:** 0\n\n**Explanation:**\n\nEvery pair of numbers has at least one common set bit. Hence, the answer is 0.\n\n**Example 3:**\n\n**Input:** nums = \\[64,8,32\\]\n\n**Output:** 2048\n\n**Explanation:**\n\nNo pair of numbers share a common bit, so the answer is the product of the two maximum elements, 64 and 32 (`64 * 32 = 2048`).\n\n**Constraints:**\n\n*   `2 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(6)`",
+  "constraints": [
+    "2 <= nums.length <= 105",
+    "1 <= nums[i] <= 106"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3,4,5,6,7]",
+      "output": "12",
+      "explanation": null
+    },
+    {
+      "input": "nums = [5,6,4]",
+      "output": "0",
+      "explanation": null
+    },
+    {
+      "input": "nums = [64,8,32]",
+      "output": "2048",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxProduct(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxProduct(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxProduct(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxProduct = function(nums) {\n    \n};",
+    "typescript": "function maxProduct(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxProduct(int[] nums) {\n        \n    }\n}",
+    "c": "long long maxProduct(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxProduct(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxProduct(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxProduct(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_product(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_product(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxProduct($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxProduct(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxProduct(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_product(nums :: [integer]) :: integer\n  def max_product(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_product(Nums :: [integer()]) -> integer().\nmax_product(Nums) ->\n  .",
+    "racket": "(define/contract (max-product nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4,5,6,7]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[5,6,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[64,8,32]",
+      "expectedOutput": "2048"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4,5,6,7]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[5,6,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[64,8,32]",
+      "expectedOutput": "2048"
+    },
+    {
+      "input": "nums = [1,2,3,4,5,6,7]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "nums = [5,6,4]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "nums = [64,8,32]",
+      "expectedOutput": "2048"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Think of each number as a mask: treat <code>nums[i]</code> as a bitmask.",
+    "Create an array <code>dp</code> of size <code>1 << B</code>, where <code>B</code> is your bit‑width.",
+    "Initialize <code>dp[mask]</code> to the maximum <code>nums[i]</code> exactly equal to that <code>mask</code>, or 0 if none.",
+    "For each <code>m</code>, propagate to all its super‑masks <code>M</code>: <code>dp[m] = max(dp[m], dp[M])</code>",
+    "For a number <code>x</code> with mask <code>mx</code>, compute its \"complement mask\" as <code>cm = ~mx & ((1 << B)-1)</code>.",
+    "The best disjoint partner is then <code>dp[cm]</code>.",
+    "Loop over all <code>x</code> in <code>nums</code>, look up <code>dp[cm]</code>, and track the maximum <code>x * partner</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-product-of-two-integers-with-no-common-bits/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.450Z",
+    "sourceUpdatedAt": null
+  }
+}

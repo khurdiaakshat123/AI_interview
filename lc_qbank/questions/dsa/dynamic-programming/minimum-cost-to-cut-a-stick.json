@@ -1,0 +1,160 @@
+{
+  "id": "1547",
+  "slug": "minimum-cost-to-cut-a-stick",
+  "title": "Minimum Cost to Cut a Stick",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "statement": "Given a wooden stick of length `n` units. The stick is labelled from `0` to `n`. For example, a stick of length **6** is labelled as follows:\n\n![](./assets/minimum-cost-to-cut-a-stick-1.jpg)\n\nGiven an integer array `cuts` where `cuts[i]` denotes a position you should perform a cut at.\n\nYou should perform the cuts in order, you can change the order of the cuts as you wish.\n\nThe cost of one cut is the length of the stick to be cut, the total cost is the sum of costs of all cuts. When you cut a stick, it will be split into two smaller sticks (i.e. the sum of their lengths is the length of the stick before the cut). Please refer to the first example for a better explanation.\n\nReturn _the minimum total cost_ of the cuts.\n\n**Example 1:**\n\n![](./assets/minimum-cost-to-cut-a-stick-2.jpg)\n```\nInput: n = 7, cuts = [1,3,4,5]\nOutput: 16\nExplanation: Using cuts order = [1, 3, 4, 5] as in the input leads to the following scenario:\n\nThe first cut is done to a rod of length 7 so the cost is 7. The second cut is done to a rod of length 6 (i.e. the second part of the first cut), the third is done to a rod of length 4 and the last cut is to a rod of length 3. The total cost is 7 + 6 + 4 + 3 = 20.\nRearranging the cuts to be [3, 5, 1, 4] for example will lead to a scenario with total cost = 16 (as shown in the example photo 7 + 4 + 3 + 2 = 16).\n```\n\n**Example 2:**\n\n```\nInput: n = 9, cuts = [5,6,1,4,2]\nOutput: 22\nExplanation: If you try the given cuts ordering the cost will be 25.\nThere are much ordering with total cost <= 25, for example, the order [4, 6, 5, 2, 1] has total cost = 22 which is the minimum possible.\n```\n\n**Constraints:**\n\n*   `2 <= n <= 10^(6)`\n*   `1 <= cuts.length <= min(n - 1, 100)`\n*   `1 <= cuts[i] <= n - 1`\n*   All the integers in `cuts` array are **distinct**.",
+  "constraints": [
+    "2 <= n <= 106",
+    "1 <= cuts.length <= min(n - 1, 100)",
+    "1 <= cuts[i] <= n - 1",
+    "All the integers in cuts array are distinct."
+  ],
+  "examples": [
+    {
+      "input": "n = 7, cuts = [1,3,4,5]",
+      "output": "16",
+      "explanation": "Using cuts order = [1, 3, 4, 5] as in the input leads to the following scenario:\n\nThe first cut is done to a rod of length 7 so the cost is 7. The second cut is done to a rod of length 6 (i.e. the second part of the first cut), the third is done to a rod of length 4 and the last cut is to a rod of length 3. The total cost is 7 + 6 + 4 + 3 = 20.\nRearranging the cuts to be [3, 5, 1, 4] for example will lead to a scenario with total cost = 16 (as shown in the example photo 7 + 4 + 3 + 2 = 16)."
+    },
+    {
+      "input": "n = 9, cuts = [5,6,1,4,2]",
+      "output": "22",
+      "explanation": "If you try the given cuts ordering the cost will be 25.\nThere are much ordering with total cost <= 25, for example, the order [4, 6, 5, 2, 1] has total cost = 22 which is the minimum possible."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minCost(int n, vector<int>& cuts) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minCost(int n, int[] cuts) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCost(self, n: int, cuts: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minCost(self, n, cuts):\n        \"\"\"\n        :type n: int\n        :type cuts: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[]} cuts\n * @return {number}\n */\nvar minCost = function(n, cuts) {\n    \n};",
+    "typescript": "function minCost(n: number, cuts: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinCost(int n, int[] cuts) {\n        \n    }\n}",
+    "c": "int minCost(int n, int* cuts, int cutsSize) {\n    \n}",
+    "golang": "func minCost(n int, cuts []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCost(n: Int, cuts: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCost(_ n: Int, _ cuts: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_cost(n: i32, cuts: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[]} cuts\n# @return {Integer}\ndef min_cost(n, cuts)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[] $cuts\n     * @return Integer\n     */\n    function minCost($n, $cuts) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minCost(int n, List<int> cuts) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCost(n: Int, cuts: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_cost(n :: integer, cuts :: [integer]) :: integer\n  def min_cost(n, cuts) do\n    \n  end\nend",
+    "erlang": "-spec min_cost(N :: integer(), Cuts :: [integer()]) -> integer().\nmin_cost(N, Cuts) ->\n  .",
+    "racket": "(define/contract (min-cost n cuts)\n  (-> exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "7\n[1,3,4,5]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "9\n[5,6,1,4,2]",
+      "expectedOutput": "22"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "7\n[1,3,4,5]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "9\n[5,6,1,4,2]",
+      "expectedOutput": "22"
+    },
+    {
+      "input": "0\n[1,3,4,5]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "1\n[1,3,4,5]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "2\n[1,3,4,5]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "3\n[1,3,4,5]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "4\n[1,3,4,5]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "5\n[1,3,4,5]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "6\n[1,3,4,5]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "8\n[1,3,4,5]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "9\n[1,3,4,5]",
+      "expectedOutput": "19"
+    },
+    {
+      "input": "10\n[1,3,4,5]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "-1\n[1,3,4,5]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "-2\n[1,3,4,5]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "7\n[1,3]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "7\n[4,5]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "7\n[1]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "7\n[1,5]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "7\n[5,4,3,1]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "7\n[1,1,1,1]",
+      "expectedOutput": "8"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Build a dp array where dp[i][j] is the minimum cost to achieve all the cuts between i and j.",
+    "When you try to get the minimum cost between i and j, try all possible cuts k between them, dp[i][j] = min(dp[i][k] + dp[k][j]) + (j - i) for all possible cuts k between them."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-to-cut-a-stick/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.621Z",
+    "sourceUpdatedAt": null
+  }
+}

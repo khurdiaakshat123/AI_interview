@@ -1,0 +1,160 @@
+{
+  "id": "2953",
+  "slug": "count-complete-substrings",
+  "title": "Count Complete Substrings",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "You are given a string `word` and an integer `k`.\n\nA substring `s` of `word` is **complete** if:\n\n*   Each character in `s` occurs **exactly** `k` times.\n*   The difference between two adjacent characters is **at most** `2`. That is, for any two adjacent characters `c1` and `c2` in `s`, the absolute difference in their positions in the alphabet is **at most** `2`.\n\nReturn _the number of **complete** substrings of_ `word`.\n\nA **substring** is a **non-empty** contiguous sequence of characters in a string.\n\n**Example 1:**\n\n```\nInput: word = \"igigee\", k = 2\nOutput: 3\nExplanation: The complete substrings where each character appears exactly twice and the difference between adjacent characters is at most 2 are: igigee, igigee, igigee.\n```\n\n**Example 2:**\n\n```\nInput: word = \"aaabbbccc\", k = 3\nOutput: 6\nExplanation: The complete substrings where each character appears exactly three times and the difference between adjacent characters is at most 2 are: aaabbbccc, aaabbbccc, aaabbbccc, aaabbbccc, aaabbbccc, aaabbbccc.\n```\n\n**Constraints:**\n\n*   `1 <= word.length <= 10^(5)`\n*   `word` consists only of lowercase English letters.\n*   `1 <= k <= word.length`",
+  "constraints": [
+    "1 <= word.length <= 105",
+    "word consists only of lowercase English letters.",
+    "1 <= k <= word.length"
+  ],
+  "examples": [
+    {
+      "input": "word = \"igigee\", k = 2",
+      "output": "3",
+      "explanation": "The complete substrings where each character appears exactly twice and the difference between adjacent characters is at most 2 are: igigee, igigee, igigee."
+    },
+    {
+      "input": "word = \"aaabbbccc\", k = 3",
+      "output": "6",
+      "explanation": "The complete substrings where each character appears exactly three times and the difference between adjacent characters is at most 2 are: aaabbbccc, aaabbbccc, aaabbbccc, aaabbbccc, aaabbbccc, aaabbbccc."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countCompleteSubstrings(string word, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countCompleteSubstrings(String word, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countCompleteSubstrings(self, word: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countCompleteSubstrings(self, word, k):\n        \"\"\"\n        :type word: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word\n * @param {number} k\n * @return {number}\n */\nvar countCompleteSubstrings = function(word, k) {\n    \n};",
+    "typescript": "function countCompleteSubstrings(word: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountCompleteSubstrings(string word, int k) {\n        \n    }\n}",
+    "c": "int countCompleteSubstrings(char* word, int k) {\n    \n}",
+    "golang": "func countCompleteSubstrings(word string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countCompleteSubstrings(word: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countCompleteSubstrings(_ word: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_complete_substrings(word: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} word\n# @param {Integer} k\n# @return {Integer}\ndef count_complete_substrings(word, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word\n     * @param Integer $k\n     * @return Integer\n     */\n    function countCompleteSubstrings($word, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countCompleteSubstrings(String word, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countCompleteSubstrings(word: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_complete_substrings(word :: String.t, k :: integer) :: integer\n  def count_complete_substrings(word, k) do\n    \n  end\nend",
+    "erlang": "-spec count_complete_substrings(Word :: unicode:unicode_binary(), K :: integer()) -> integer().\ncount_complete_substrings(Word, K) ->\n  .",
+    "racket": "(define/contract (count-complete-substrings word k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"igigee\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaabbbccc\"\n3",
+      "expectedOutput": "6"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"igigee\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaabbbccc\"\n3",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"igi\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"gee\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"i\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ig\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"eegigi\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"igigeeigigee\"\n2",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"iiiiii\"\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"igigeeeegigi\"\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"IGIGEE\"\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "There are at most 26 different lengths of the complete substrings: <code>k *1, k * 2, … k * 26</code>.****",
+    "For each length, we can use sliding window to count the frequency of each letter in the window.",
+    "We still need to check for all characters in the window that <code>abs(word[i] - word[i - 1]) <= 2</code>. We do this by maintaining the values of <code>abs(word[i] - word[i - 1])</code> in the sliding window dynamically in an ordered multiset or priority queue, so that we know the maximum value at each iteration."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-complete-substrings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.030Z",
+    "sourceUpdatedAt": null
+  }
+}

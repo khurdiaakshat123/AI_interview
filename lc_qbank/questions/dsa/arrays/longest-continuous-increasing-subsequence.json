@@ -1,0 +1,153 @@
+{
+  "id": "674",
+  "slug": "longest-continuous-increasing-subsequence",
+  "title": "Longest Continuous Increasing Subsequence",
+  "category": "dsa",
+  "subcategory": "arrays",
+  "difficulty": "Easy",
+  "tags": [
+    "Array"
+  ],
+  "statement": "Given an unsorted array of integers `nums`, return _the length of the longest **continuous increasing subsequence** (i.e. subarray)_. The subsequence must be **strictly** increasing.\n\nA **continuous increasing subsequence** is defined by two indices `l` and `r` (`l < r`) such that it is `[nums[l], nums[l + 1], ..., nums[r - 1], nums[r]]` and for each `l <= i < r`, `nums[i] < nums[i + 1]`.\n\n**Example 1:**\n\n```\nInput: nums = [1,3,5,4,7]\nOutput: 3\nExplanation: The longest continuous increasing subsequence is [1,3,5] with length 3.\nEven though [1,3,5,7] is an increasing subsequence, it is not continuous as elements 5 and 7 are separated by element\n4.\n```\n\n**Example 2:**\n\n```\nInput: nums = [2,2,2,2,2]\nOutput: 1\nExplanation: The longest continuous increasing subsequence is [2] with length 1. Note that it must be strictly\nincreasing.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(4)`\n*   `-10^(9) <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 104",
+    "-109 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,3,5,4,7]",
+      "output": "3",
+      "explanation": "The longest continuous increasing subsequence is [1,3,5] with length 3.\nEven though [1,3,5,7] is an increasing subsequence, it is not continuous as elements 5 and 7 are separated by element\n4."
+    },
+    {
+      "input": "nums = [2,2,2,2,2]",
+      "output": "1",
+      "explanation": "The longest continuous increasing subsequence is [2] with length 1. Note that it must be strictly\nincreasing."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findLengthOfLCIS(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findLengthOfLCIS(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findLengthOfLCIS(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findLengthOfLCIS(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar findLengthOfLCIS = function(nums) {\n    \n};",
+    "typescript": "function findLengthOfLCIS(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindLengthOfLCIS(int[] nums) {\n        \n    }\n}",
+    "c": "int findLengthOfLCIS(int* nums, int numsSize) {\n    \n}",
+    "golang": "func findLengthOfLCIS(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findLengthOfLCIS(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findLengthOfLCIS(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_length_of_lcis(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef find_length_of_lcis(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function findLengthOfLCIS($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findLengthOfLCIS(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findLengthOfLCIS(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_length_of_lcis(nums :: [integer]) :: integer\n  def find_length_of_lcis(nums) do\n    \n  end\nend",
+    "erlang": "-spec find_length_of_lcis(Nums :: [integer()]) -> integer().\nfind_length_of_lcis(Nums) ->\n  .",
+    "racket": "(define/contract (find-length-of-lcis nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,3,5,4,7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,3,5,4,7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,4,7]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,7]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[7,4,5,3,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,3,4,5,7]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[7,5,4,3,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3,5,4,7,1,3,5,4,7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,6,10,8,14]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,4,6,5,8]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,2,4,3,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,-3,-5,-4,-7]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-continuous-increasing-subsequence/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.462Z",
+    "sourceUpdatedAt": null
+  }
+}

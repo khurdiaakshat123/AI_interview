@@ -1,0 +1,160 @@
+{
+  "id": "2598",
+  "slug": "smallest-missing-non-negative-integer-after-operations",
+  "title": "Smallest Missing Non-negative Integer After Operations",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Greedy"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums` and an integer `value`.\n\nIn one operation, you can add or subtract `value` from any element of `nums`.\n\n*   For example, if `nums = [1,2,3]` and `value = 2`, you can choose to subtract `value` from `nums[0]` to make `nums = [-1,2,3]`.\n\nThe MEX (minimum excluded) of an array is the smallest missing **non-negative** integer in it.\n\n*   For example, the MEX of `[-1,2,3]` is `0` while the MEX of `[1,0,3]` is `2`.\n\nReturn _the maximum MEX of_ `nums` _after applying the mentioned operation **any number of times**_.\n\n**Example 1:**\n\n```\nInput: nums = [1,-10,7,13,6,8], value = 5\nOutput: 4\nExplanation: One can achieve this result by applying the following operations:\n- Add value to nums[1] twice to make nums = [1,0,7,13,6,8]\n- Subtract value from nums[2] once to make nums = [1,0,2,13,6,8]\n- Subtract value from nums[3] twice to make nums = [1,0,2,3,6,8]\nThe MEX of nums is 4. It can be shown that 4 is the maximum MEX we can achieve.\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,-10,7,13,6,8], value = 7\nOutput: 2\nExplanation: One can achieve this result by applying the following operation:\n- subtract value from nums[2] once to make nums = [1,-10,0,13,6,8]\nThe MEX of nums is 2. It can be shown that 2 is the maximum MEX we can achieve.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length, value <= 10^(5)`\n*   `-10^(9) <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length, value <= 105",
+    "-109 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,-10,7,13,6,8], value = 5",
+      "output": "4",
+      "explanation": "One can achieve this result by applying the following operations:\n- Add value to nums[1] twice to make nums = [1,0,7,13,6,8]\n- Subtract value from nums[2] once to make nums = [1,0,2,13,6,8]\n- Subtract value from nums[3] twice to make nums = [1,0,2,3,6,8]\nThe MEX of nums is 4. It can be shown that 4 is the maximum MEX we can achieve."
+    },
+    {
+      "input": "nums = [1,-10,7,13,6,8], value = 7",
+      "output": "2",
+      "explanation": "One can achieve this result by applying the following operation:\n- subtract value from nums[2] once to make nums = [1,-10,0,13,6,8]\nThe MEX of nums is 2. It can be shown that 2 is the maximum MEX we can achieve."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findSmallestInteger(vector<int>& nums, int value) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findSmallestInteger(int[] nums, int value) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findSmallestInteger(self, nums: list[int], value: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def findSmallestInteger(self, nums, value):\n        \"\"\"\n        :type nums: List[int]\n        :type value: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} value\n * @return {number}\n */\nvar findSmallestInteger = function(nums, value) {\n    \n};",
+    "typescript": "function findSmallestInteger(nums: number[], value: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindSmallestInteger(int[] nums, int value) {\n        \n    }\n}",
+    "c": "int findSmallestInteger(int* nums, int numsSize, int value) {\n    \n}",
+    "golang": "func findSmallestInteger(nums []int, value int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findSmallestInteger(nums: IntArray, value: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findSmallestInteger(_ nums: [Int], _ value: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_smallest_integer(nums: Vec<i32>, value: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} value\n# @return {Integer}\ndef find_smallest_integer(nums, value)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $value\n     * @return Integer\n     */\n    function findSmallestInteger($nums, $value) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findSmallestInteger(List<int> nums, int value) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findSmallestInteger(nums: Array[Int], value: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_smallest_integer(nums :: [integer], value :: integer) :: integer\n  def find_smallest_integer(nums, value) do\n    \n  end\nend",
+    "erlang": "-spec find_smallest_integer(Nums :: [integer()], Value :: integer()) -> integer().\nfind_smallest_integer(Nums, Value) ->\n  .",
+    "racket": "(define/contract (find-smallest-integer nums value)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,-10,7,13,6,8]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,-10,7,13,6,8]\n7",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,-10,7,13,6,8]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,-10,7,13,6,8]\n7",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,-10,7]\n5",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[13,6,8]\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,8]\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,-10]\n5",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[8,6,13,7,-10,1]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-10,1,6,7,8,13]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[13,8,7,6,1,-10]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1,1]\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,-10,7,13,6,8,1,-10,7,13,6,8]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,-20,14,26,12,16]\n5",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,-9,8,14,7,9]\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,-11,6,12,5,7]\n5",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,10,-7,-13,-6,-8]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,0,0]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]\n5",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n5",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Think about using modular arithmetic.",
+    "if x = nums[i] (mod value), then we can make nums[i] equal to x  after some number of operations",
+    "How does finding the frequency of (nums[i] mod value) help?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/smallest-missing-non-negative-integer-after-operations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.769Z",
+    "sourceUpdatedAt": null
+  }
+}

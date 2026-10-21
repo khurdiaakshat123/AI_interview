@@ -1,0 +1,163 @@
+{
+  "id": "3919",
+  "slug": "minimum-cost-to-move-between-indices",
+  "title": "Minimum Cost to Move Between Indices",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `nums` where `nums` is **strictly increasing**.\n\nFor each index `x`, let `closest(x)` be the **adjacent** index `y` such that `abs(nums[x] - nums[y])` is **minimized**. If both **adjacent** indices exist and give the same difference, choose the **smaller** index.\n\nFrom any index `x`, you can move in two ways:\n\n*   To any index `y` with cost `abs(nums[x] - nums[y])`, or\n*   To `closest(x)` with cost 1.\n\nYou are also given a 2D integer array `queries`, where each `queries[i] = [l_(i), r_(i)]`.\n\nFor each query, calculate the **minimum total cost** to move from index `l_(i)` to index `r_(i)`.\n\nReturn an integer array `ans`, where `ans[i]` is the answer for the `i^(th)` query.\n\nThe **absolute difference** between two values `x` and `y` is defined as `abs(x - y)`.\n\n**Example 1:**\n\n**Input:** nums = \\[-5,-2,3\\], queries = \\[\\[0,2\\],\\[2,0\\],\\[1,2\\]\\]\n\n**Output:** \\[6,2,5\\]\n\n**Explanation:**​​​​​​​​​​​​​​​​​​​​\n\n*   The closest indices are `[1, 0, 1]` respectively.\n*   For `[0, 2]`, the path `0 → 1 → 2` uses a closest move from index 0 to 1 with cost 1 and a move from index 1 to 2 with cost `|-2 - 3| = 5`, giving total `1 + 5 = 6`.\n*   For `[2, 0]`, the path `2 → 1 → 0` uses two closest moves from index 2 to 1 and from index 1 to 0, each with cost 1, giving total 2.\n*   For `[1, 2]`, the direct move from index 1 to index 2 has cost `|-2 - 3| = 5`, which is optimal.\n\nThus, `ans = [6, 2, 5]`.\n\n**Example 2:**\n\n**Input:** nums = \\[0,2,3,9\\], queries = \\[\\[3,0\\],\\[1,2\\],\\[2,0\\]\\]\n\n**Output:** \\[4,1,3\\]\n\n**Explanation:**\n\n*   The closest indices are `[1, 2, 1, 2]` respectively.\n*   For `[3, 0]`, the path `3 → 2 → 1 → 0` uses closest moves from index 3 to 2 and from 2 to 1, each with cost 1, and a move from 1 to 0 with cost `|2 - 0| = 2`, giving total `1 + 1 + 2 = 4`.\n*   For `[1, 2]`, the closest move from index 1 to 2 has cost 1.\n*   For `[2, 0]`, the path `2 → 1 → 0` uses a closest move from index 2 to 1 with cost 1 and a move from 1 to 0 with cost `|2 - 0| = 2`, giving total `1 + 2 = 3`.\n\nThus, `ans = [4, 1, 3]`.\n\n**Constraints:**\n\n*   `2 <= nums.length <= 10^(5)`\n*   `-10^(9) <= nums[i] <= 10^(9)`\n*   `nums` is strictly increasing\n*   `1 <= queries.length <= 10^(5)`\n*   `queries[i] = [l_(i), r_(i)]`​​​​​​​\n*   `0 <= l_(i), r_(i) < nums.length`",
+  "constraints": [
+    "2 <= nums.length <= 105",
+    "-109 <= nums[i] <= 109",
+    "nums is strictly increasing",
+    "1 <= queries.length <= 105",
+    "queries[i] = [li, ri]​​​​​​​",
+    "0 <= li, ri < nums.length"
+  ],
+  "examples": [
+    {
+      "input": "nums = [-5,-2,3], queries = [[0,2],[2,0],[1,2]]",
+      "output": "[6,2,5]",
+      "explanation": "​​​​​​​​​​​​​​​​​​​​\n\n\n\tThe closest indices are [1, 0, 1] respectively.\n\tFor [0, 2], the path 0 → 1 → 2 uses a closest move from index 0 to 1 with cost 1 and a move from index 1 to 2 with cost |-2 - 3| = 5, giving total 1 + 5 = 6.\n\tFor [2, 0], the path 2 → 1 → 0 uses two closest moves from index 2 to 1 and from index 1 to 0, each with cost 1, giving total 2.\n\tFor [1, 2], the direct move from index 1 to index 2 has cost |-2 - 3| = 5, which is optimal."
+    },
+    {
+      "input": "nums = [0,2,3,9], queries = [[3,0],[1,2],[2,0]]",
+      "output": "[4,1,3]",
+      "explanation": "The closest indices are [1, 2, 1, 2] respectively.\n\tFor [3, 0], the path 3 → 2 → 1 → 0 uses closest moves from index 3 to 2 and from 2 to 1, each with cost 1, and a move from 1 to 0 with cost |2 - 0| = 2, giving total 1 + 1 + 2 = 4.\n\tFor [1, 2], the closest move from index 1 to 2 has cost 1.\n\tFor [2, 0], the path 2 → 1 → 0 uses a closest move from index 2 to 1 with cost 1 and a move from 1 to 0 with cost |2 - 0| = 2, giving total 1 + 2 = 3."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> minCost(vector<int>& nums, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] minCost(int[] nums, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCost(self, nums: list[int], queries: list[list[int]]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def minCost(self, nums, queries):\n        \"\"\"\n        :type nums: List[int]\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar minCost = function(nums, queries) {\n    \n};",
+    "typescript": "function minCost(nums: number[], queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MinCost(int[] nums, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* minCost(int* nums, int numsSize, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func minCost(nums []int, queries [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCost(nums: IntArray, queries: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCost(_ nums: [Int], _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_cost(nums: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef min_cost(nums, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function minCost($nums, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> minCost(List<int> nums, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCost(nums: Array[Int], queries: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_cost(nums :: [integer], queries :: [[integer]]) :: [integer]\n  def min_cost(nums, queries) do\n    \n  end\nend",
+    "erlang": "-spec min_cost(Nums :: [integer()], Queries :: [[integer()]]) -> [integer()].\nmin_cost(Nums, Queries) ->\n  .",
+    "racket": "(define/contract (min-cost nums queries)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[-5,-2,3]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[6,2,5]"
+    },
+    {
+      "input": "[0,2,3,9]\n[[3,0],[1,2],[2,0]]",
+      "expectedOutput": "[4,1,3]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[-5,-2,3]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[6,2,5]"
+    },
+    {
+      "input": "[0,2,3,9]\n[[3,0],[1,2],[2,0]]",
+      "expectedOutput": "[4,1,3]"
+    },
+    {
+      "input": "[3,-2,-5]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[-2,2,-3]"
+    },
+    {
+      "input": "[-5,-5,-5]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[1,2,0]"
+    },
+    {
+      "input": "[-5,-2,3,-5,-2,3]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[6,6,5]"
+    },
+    {
+      "input": "[-10,-4,6]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[11,2,10]"
+    },
+    {
+      "input": "[-4,-1,4]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[6,2,5]"
+    },
+    {
+      "input": "[-6,-3,2]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[6,2,5]"
+    },
+    {
+      "input": "[5,2,-3]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[2,-2,1]"
+    },
+    {
+      "input": "[0,0,0]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[1,2,0]"
+    },
+    {
+      "input": "[1,1,1]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[1,2,0]"
+    },
+    {
+      "input": "[1,2,3]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[2,2,1]"
+    },
+    {
+      "input": "[3,2,1]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[0,2,-1]"
+    },
+    {
+      "input": "[0,1,0]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[2,2,1]"
+    },
+    {
+      "input": "[1,2,3,4,5]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[2,2,1]"
+    },
+    {
+      "input": "[5,4,3,2,1]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[0,2,-1]"
+    },
+    {
+      "input": "[-5,-4,-3,-2,-1]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[2,2,1]"
+    },
+    {
+      "input": "[1,3,2,5,4]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[2,3,1]"
+    },
+    {
+      "input": "[-10,0,10]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[11,2,10]"
+    },
+    {
+      "input": "[1,1,2,2,3,3]\n[[0,2],[2,0],[1,2]]",
+      "expectedOutput": "[2,2,1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Following <code>closest(x)</code> forms directed chains. If the chain moves toward the target index, you can consider walking along it with cost 1 per step.",
+    "Precompute prefix sums of these costs in both directions.",
+    "For each query, compare the cost of walking along closest edges vs making a direct jump."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-to-move-between-indices/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.688Z",
+    "sourceUpdatedAt": null
+  }
+}

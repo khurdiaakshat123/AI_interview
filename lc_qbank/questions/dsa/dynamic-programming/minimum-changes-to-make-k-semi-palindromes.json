@@ -1,0 +1,161 @@
+{
+  "id": "2911",
+  "slug": "minimum-changes-to-make-k-semi-palindromes",
+  "title": "Minimum Changes to Make K Semi-palindromes",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "Given a string `s` and an integer `k`, partition `s` into `k` **substrings** such that the letter changes needed to make each substring a **semi-palindrome** are minimized.\n\nReturn the _**minimum** number of letter changes_ required_._\n\nA **semi-palindrome** is a special type of string that can be divided into **palindromes** based on a repeating pattern. To check if a string is a semi-palindrome:​\n\n1.  Choose a positive divisor `d` of the string's length. `d` can range from `1` up to, but not including, the string's length. For a string of length `1`, it does not have a valid divisor as per this definition, since the only divisor is its length, which is not allowed.\n2.  For a given divisor `d`, divide the string into groups where each group contains characters from the string that follow a repeating pattern of length `d`. Specifically, the first group consists of characters at positions `1`, `1 + d`, `1 + 2d`, and so on; the second group includes characters at positions `2`, `2 + d`, `2 + 2d`, etc.\n3.  The string is considered a semi-palindrome if each of these groups forms a palindrome.\n\nConsider the string `\"abcabc\"`:\n\n*   The length of `\"abcabc\"` is `6`. Valid divisors are `1`, `2`, and `3`.\n*   For `d = 1`: The entire string `\"abcabc\"` forms one group. Not a palindrome.\n*   For `d = 2`:\n    *   Group 1 (positions `1, 3, 5`): `\"acb\"`\n    *   Group 2 (positions `2, 4, 6`): `\"bac\"`\n    *   Neither group forms a palindrome.\n*   For `d = 3`:\n    *   Group 1 (positions `1, 4`): `\"aa\"`\n    *   Group 2 (positions `2, 5`): `\"bb\"`\n    *   Group 3 (positions `3, 6`): `\"cc\"`\n    *   All groups form palindromes. Therefore, `\"abcabc\"` is a semi-palindrome.\n\n**Example 1:**\n\n**Input:** s = \"abcac\", k = 2\n\n**Output:** 1\n\n**Explanation:** Divide `s` into `\"ab\"` and `\"cac\"`. `\"cac\"` is already semi-palindrome. Change `\"ab\"` to `\"aa\"`, it becomes semi-palindrome with `d = 1`.\n\n**Example 2:**\n\n**Input:** s = \"abcdef\", k = 2\n\n**Output:** 2\n\n**Explanation:** Divide `s` into substrings `\"abc\"` and `\"def\"`. Each needs one change to become semi-palindrome.\n\n**Example 3:**\n\n**Input:** s = \"aabbaa\", k = 3\n\n**Output:** 0\n\n**Explanation:** Divide `s` into substrings `\"aa\"`, `\"bb\"` and `\"aa\"`. All are already semi-palindromes.\n\n**Constraints:**\n\n*   `2 <= s.length <= 200`\n*   `1 <= k <= s.length / 2`\n*   `s` contains only lowercase English letters.",
+  "constraints": [
+    "2 <= s.length <= 200",
+    "1 <= k <= s.length / 2",
+    "s contains only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcac\", k = 2",
+      "output": "1",
+      "explanation": "Divide s into \"ab\" and \"cac\". \"cac\" is already semi-palindrome. Change \"ab\" to \"aa\", it becomes semi-palindrome with d = 1."
+    },
+    {
+      "input": "s = \"abcdef\", k = 2",
+      "output": "2",
+      "explanation": "Divide s into substrings \"abc\" and \"def\". Each needs one change to become semi-palindrome."
+    },
+    {
+      "input": "s = \"aabbaa\", k = 3",
+      "output": "0",
+      "explanation": "Divide s into substrings \"aa\", \"bb\" and \"aa\". All are already semi-palindromes."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumChanges(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumChanges(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumChanges(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumChanges(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar minimumChanges = function(s, k) {\n    \n};",
+    "typescript": "function minimumChanges(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumChanges(string s, int k) {\n        \n    }\n}",
+    "c": "int minimumChanges(char* s, int k) {\n    \n}",
+    "golang": "func minimumChanges(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumChanges(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumChanges(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_changes(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef minimum_changes(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function minimumChanges($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumChanges(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumChanges(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_changes(s :: String.t, k :: integer) :: integer\n  def minimum_changes(s, k) do\n    \n  end\nend",
+    "erlang": "-spec minimum_changes(S :: unicode:unicode_binary(), K :: integer()) -> integer().\nminimum_changes(S, K) ->\n  .",
+    "racket": "(define/contract (minimum-changes s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcac\"\n2",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcac\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"cac\"\n2",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"cacba\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcacabcac\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcaccacba\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ABCAC\"\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"edcba\"\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aab\"\n2",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"aA\"\n2",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"0\"\n2",
+      "expectedOutput": "inf"
+    },
+    {
+      "input": "\"121\"\n2",
+      "expectedOutput": "inf"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Define <code>dp[i][j]</code> as the minimum count of letter changes needed to split the suffix of string <code>s</code> starting from <code>s[i]</code> into <code>j</code> valid parts.",
+    "We have <code>dp[i][j] = min(dp[x + 1][j - 1] + v[i][x])</code>. Here <code>v[i][x]</code> is the minimum number of letter changes to change substring <code>s[i..x]</code> into semi-palindrome.",
+    "<code>v[i][j]</code> can be calculated separately by <b>brute-force</b>. We can create a table of <code>v[i][j]</code> independently to improve the complexity. Also note that semi-palindrome’s length is at least <code>2</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-changes-to-make-k-semi-palindromes/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.494Z",
+    "sourceUpdatedAt": null
+  }
+}

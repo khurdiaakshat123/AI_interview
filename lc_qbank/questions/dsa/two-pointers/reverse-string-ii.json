@@ -1,0 +1,155 @@
+{
+  "id": "541",
+  "slug": "reverse-string-ii",
+  "title": "Reverse String II",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "Given a string `s` and an integer `k`, reverse the first `k` characters for every `2k` characters counting from the start of the string.\n\nIf there are fewer than `k` characters left, reverse all of them. If there are less than `2k` but greater than or equal to `k` characters, then reverse the first `k` characters and leave the other as original.\n\n**Example 1:**\n\n```\nInput: s = \"abcdefg\", k = 2\nOutput: \"bacdfeg\"\n```\n\n**Example 2:**\n\n```\nInput: s = \"abcd\", k = 2\nOutput: \"bacd\"\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(4)`\n*   `s` consists of only lowercase English letters.\n*   `1 <= k <= 10^(4)`",
+  "constraints": [
+    "1 <= s.length <= 104",
+    "s consists of only lowercase English letters.",
+    "1 <= k <= 104"
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcdefg\", k = 2",
+      "output": "\"bacdfeg\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"abcd\", k = 2",
+      "output": "\"bacd\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string reverseStr(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String reverseStr(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def reverseStr(self, s: str, k: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def reverseStr(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {string}\n */\nvar reverseStr = function(s, k) {\n    \n};",
+    "typescript": "function reverseStr(s: string, k: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ReverseStr(string s, int k) {\n        \n    }\n}",
+    "c": "char* reverseStr(char* s, int k) {\n    \n}",
+    "golang": "func reverseStr(s string, k int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun reverseStr(s: String, k: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func reverseStr(_ s: String, _ k: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn reverse_str(s: String, k: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {String}\ndef reverse_str(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return String\n     */\n    function reverseStr($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String reverseStr(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def reverseStr(s: String, k: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec reverse_str(s :: String.t, k :: integer) :: String.t\n  def reverse_str(s, k) do\n    \n  end\nend",
+    "erlang": "-spec reverse_str(S :: unicode:unicode_binary(), K :: integer()) -> unicode:unicode_binary().\nreverse_str(S, K) ->\n  .",
+    "racket": "(define/contract (reverse-str s k)\n  (-> string? exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcdefg\"\n2",
+      "expectedOutput": "\"bacdfeg\""
+    },
+    {
+      "input": "\"abcd\"\n2",
+      "expectedOutput": "\"bacd\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcdefg\"\n2",
+      "expectedOutput": "\"bacdfeg\""
+    },
+    {
+      "input": "\"abcd\"\n2",
+      "expectedOutput": "\"bacd\""
+    },
+    {
+      "input": "\"abc\"\n2",
+      "expectedOutput": "\"bac\""
+    },
+    {
+      "input": "\"defg\"\n2",
+      "expectedOutput": "\"edfg\""
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"gfedcba\"\n2",
+      "expectedOutput": "\"fgedbca\""
+    },
+    {
+      "input": "\"abcdefgabcdefg\"\n2",
+      "expectedOutput": "\"bacdfegacbdegf\""
+    },
+    {
+      "input": "\"aaaaaa\"\n2",
+      "expectedOutput": "\"aaaaaa\""
+    },
+    {
+      "input": "\"abcdefggfedcba\"\n2",
+      "expectedOutput": "\"bacdfeggefdcab\""
+    },
+    {
+      "input": "\"ABCDEFG\"\n2",
+      "expectedOutput": "\"BACDFEG\""
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "\"baa\""
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "\"baba\""
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "\"bacde\""
+    },
+    {
+      "input": "\"edcba\"\n2",
+      "expectedOutput": "\"decba\""
+    },
+    {
+      "input": "\"aab\"\n2",
+      "expectedOutput": "\"aab\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/reverse-string-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.871Z",
+    "sourceUpdatedAt": null
+  }
+}

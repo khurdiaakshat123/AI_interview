@@ -1,0 +1,74 @@
+{
+  "id": "2648",
+  "slug": "generate-fibonacci-sequence",
+  "title": "Generate Fibonacci Sequence",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "Write a generator function that returns a generator object which yields the **fibonacci sequence**.\n\nThe **fibonacci sequence** is defined by the relation `X_(n) = X_(n-1) + X_(n-2)`.\n\nThe first few numbers of the series are `0, 1, 1, 2, 3, 5, 8, 13`.\n\n**Example 1:**\n\n```\nInput: callCount = 5\nOutput: [0,1,1,2,3]\nExplanation:\nconst gen = fibGenerator();\ngen.next().value; // 0\ngen.next().value; // 1\ngen.next().value; // 1\ngen.next().value; // 2\ngen.next().value; // 3\n```\n\n**Example 2:**\n\n```\nInput: callCount = 0\nOutput: []\nExplanation: gen.next() is never called so nothing is outputted\n```\n\n**Constraints:**\n\n*   `0 <= callCount <= 50`",
+  "constraints": [
+    "0 <= callCount <= 50"
+  ],
+  "examples": [
+    {
+      "input": "callCount = 5",
+      "output": "[0,1,1,2,3]",
+      "explanation": "const gen = fibGenerator();\ngen.next().value; // 0\ngen.next().value; // 1\ngen.next().value; // 1\ngen.next().value; // 2\ngen.next().value; // 3"
+    },
+    {
+      "input": "callCount = 0",
+      "output": "[]",
+      "explanation": "gen.next() is never called so nothing is outputted"
+    }
+  ],
+  "starterCode": {
+    "javascript": "/**\n * @return {Generator<number>}\n */\nvar fibGenerator = function*() {\n    \n};\n\n/**\n * const gen = fibGenerator();\n * gen.next().value; // 0\n * gen.next().value; // 1\n */",
+    "typescript": "function* fibGenerator(): Generator<number, any, number> {\n    \n};\n\n/**\n * const gen = fibGenerator();\n * gen.next().value; // 0\n * gen.next().value; // 1\n */"
+  },
+  "publicTests": [
+    {
+      "input": "5",
+      "expectedOutput": "[0,1,1,2,3]"
+    },
+    {
+      "input": "0",
+      "expectedOutput": "[]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "5",
+      "expectedOutput": "[0,1,1,2,3]"
+    },
+    {
+      "input": "0",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "callCount = 5",
+      "expectedOutput": "[0,1,1,2,3]"
+    },
+    {
+      "input": "callCount = 0",
+      "expectedOutput": "[]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Javascript has the concept of generators. They are critical to this problem.",
+    "First yield 0 and 1.",
+    "Create an infinite \"while(true)\" loop.",
+    "In that loop, continuously yield the next value which is the sum of the previous two."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/generate-fibonacci-sequence/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.146Z",
+    "sourceUpdatedAt": null
+  }
+}

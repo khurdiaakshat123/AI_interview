@@ -1,0 +1,165 @@
+{
+  "id": "3884",
+  "slug": "first-matching-character-from-both-ends",
+  "title": "First Matching Character From Both Ends",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "You are given a string `s` of length `n` consisting of lowercase English letters.\n\nReturn the smallest index `i` such that `s[i] == s[n - i - 1]`.\n\nIf no such index exists, return -1.\n\n**Example 1:**\n\n**Input:** s = \"abcacbd\"\n\n**Output:** 1\n\n**Explanation:**\n\nAt index `i = 1`, `s[1]` and `s[5]` are both `'b'`.\n\nNo smaller index satisfies the condition, so the answer is 1.\n\n**Example 2:**\n\n**Input:** s = \"abc\"\n\n**Output:** 1\n\n**Explanation:**\n\n​​​​​​​At index `i = 1`, the two compared positions coincide, so both characters are `'b'`.\n\nNo smaller index satisfies the condition, so the answer is 1.\n\n**Example 3:**\n\n**Input:** s = \"abcdab\"\n\n**Output:** \\-1\n\n**Explanation:**\n\n​​​​​​​For every index `i`, the characters at positions `i` and `n - i - 1` are different.\n\nTherefore, no valid index exists, so the answer is -1.\n\n**Constraints:**\n\n*   `1 <= n == s.length <= 100`\n*   `s` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= n == s.length <= 100",
+    "s consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcacbd\"",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "s = \"abc\"",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "s = \"abcdab\"",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int firstMatchingIndex(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int firstMatchingIndex(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def firstMatchingIndex(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def firstMatchingIndex(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar firstMatchingIndex = function(s) {\n    \n};",
+    "typescript": "function firstMatchingIndex(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FirstMatchingIndex(string s) {\n        \n    }\n}",
+    "c": "int firstMatchingIndex(char* s) {\n    \n}",
+    "golang": "func firstMatchingIndex(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun firstMatchingIndex(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func firstMatchingIndex(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn first_matching_index(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef first_matching_index(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function firstMatchingIndex($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int firstMatchingIndex(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def firstMatchingIndex(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec first_matching_index(s :: String.t) :: integer\n  def first_matching_index(s) do\n    \n  end\nend",
+    "erlang": "-spec first_matching_index(S :: unicode:unicode_binary()) -> integer().\nfirst_matching_index(S) ->\n  .",
+    "racket": "(define/contract (first-matching-index s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcacbd\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcdab\"",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcacbd\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcdab\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"acbd\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"dbcacba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcacbdabcacbd\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcacbddbcacba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ABCACBD\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use two pointers"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/first-matching-character-from-both-ends/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.915Z",
+    "sourceUpdatedAt": null
+  }
+}

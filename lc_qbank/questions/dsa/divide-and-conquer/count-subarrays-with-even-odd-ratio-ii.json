@@ -1,0 +1,173 @@
+{
+  "id": "4013",
+  "slug": "count-subarrays-with-even-odd-ratio-ii",
+  "title": "Count Subarrays With Even Odd Ratio II",
+  "category": "dsa",
+  "subcategory": "divide-and-conquer",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Merge Sort",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `nums` and two integers `a` and `b`.\n\nFor a subarray, let:\n\n*   `x` be the number of even elements.\n*   `y` be the number of odd elements.\n\nThe ratio of even to odd elements in a subarray is defined as `x / y`, where ratios are compared by their exact rational values.\n\nA subarray is considered **valid** if:\n\n*   `y > 0`, and\n*   `x / y <= a / b`.\n\nReturn the number of valid subarrays in `nums`.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,1,2\\], a = 3, b = 2\n\n**Output:** 7\n\n**Explanation:**\n\nThe following are the valid subarrays:\n\nSubarray\n\nValues\n\nEven Count\n\nOdd Count\n\nRatio\n\n`nums[0..0]`\n\n`[1]`\n\n0\n\n1\n\n`0 / 1`\n\n`nums[0..1]`\n\n`[1, 2]`\n\n1\n\n1\n\n`1 / 1`\n\n`nums[0..2]`\n\n`[1, 2, 1]`\n\n1\n\n2\n\n`1 / 2`\n\n`nums[0..3]`\n\n`[1, 2, 1, 2]`\n\n2\n\n2\n\n`2 / 2`\n\n`nums[1..2]`\n\n`[2, 1]`\n\n1\n\n1\n\n`1 / 1`\n\n`nums[2..2]`\n\n`[1]`\n\n0\n\n1\n\n`0 / 1`\n\n`nums[2..3]`\n\n`[1, 2]`\n\n1\n\n1\n\n`1 / 1`\n\nThus, the number of valid subarrays is 7.\n\n**Example 2:**\n\n**Input:** nums = \\[2,2,1\\], a = 2, b = 1\n\n**Output:** 3\n\n**Explanation:**\n\nThe following are the valid subarrays:\n\nSubarray\n\nValues\n\nEven Count\n\nOdd Count\n\nRatio\n\n`nums[0..2]`\n\n`[2, 2, 1]`\n\n2\n\n1\n\n`2 / 1`\n\n`nums[1..2]`\n\n`[2, 1]`\n\n1\n\n1\n\n`1 / 1`\n\n`nums[2..2]`\n\n`[1]`\n\n0\n\n1\n\n`0 / 1`\n\nThus, the number of valid subarrays is 3.\n\n**Example 3:**\n\n**Input:** nums = \\[2,2,2\\], a = 1, b = 1\n\n**Output:** 0\n\n**Explanation:**\n\nEvery subarray contains 0 odd numbers, so no subarray is valid.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`\n*   `1 <= a, b <= 10^(9)​​​​​​​`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 109",
+    "1 <= a, b <= 109​​​​​​​"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,1,2], a = 3, b = 2",
+      "output": "7",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2,2,1], a = 2, b = 1",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2,2,2], a = 1, b = 1",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long countRatioSubarrays(vector<int>& nums, int a, int b) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long countRatioSubarrays(int[] nums, int a, int b) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countRatioSubarrays(self, nums: list[int], a: int, b: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countRatioSubarrays(self, nums, a, b):\n        \"\"\"\n        :type nums: List[int]\n        :type a: int\n        :type b: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} a\n * @param {number} b\n * @return {number}\n */\nvar countRatioSubarrays = function(nums, a, b) {\n    \n};",
+    "typescript": "function countRatioSubarrays(nums: number[], a: number, b: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long CountRatioSubarrays(int[] nums, int a, int b) {\n        \n    }\n}",
+    "c": "long long countRatioSubarrays(int* nums, int numsSize, int a, int b) {\n    \n}",
+    "golang": "func countRatioSubarrays(nums []int, a int, b int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun countRatioSubarrays(nums: IntArray, a: Int, b: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countRatioSubarrays(_ nums: [Int], _ a: Int, _ b: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_ratio_subarrays(nums: Vec<i32>, a: i32, b: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} a\n# @param {Integer} b\n# @return {Integer}\ndef count_ratio_subarrays(nums, a, b)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $a\n     * @param Integer $b\n     * @return Integer\n     */\n    function countRatioSubarrays($nums, $a, $b) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countRatioSubarrays(List<int> nums, int a, int b) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countRatioSubarrays(nums: Array[Int], a: Int, b: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_ratio_subarrays(nums :: [integer], a :: integer, b :: integer) :: integer\n  def count_ratio_subarrays(nums, a, b) do\n    \n  end\nend",
+    "erlang": "-spec count_ratio_subarrays(Nums :: [integer()], A :: integer(), B :: integer()) -> integer().\ncount_ratio_subarrays(Nums, A, B) ->\n  .",
+    "racket": "(define/contract (count-ratio-subarrays nums a b)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,1,2]\n3\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[2,2,1]\n2\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,2,2]\n1\n1",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,1,2]\n3\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[2,2,1]\n2\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,2,2]\n1\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]\n3\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]\n3\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1,2,1]\n3\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1,2,2]\n3\n2",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,2,1,1]\n3\n2",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,1,1]\n3\n2",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[1,2,1,2,1,2,1,2]\n3\n2",
+      "expectedOutput": "29"
+    },
+    {
+      "input": "[2,4,2,4]\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,3,2,3]\n3\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0,1,0,1]\n3\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[-1,-2,-1,-2]\n3\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0,0,0,0]\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n3\n2",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]\n3\n2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1]\n3\n2",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Replace every even element with <code>b</code> and every odd element with <code>-a</code>. A subarray is valid exactly when its transformed sum is at most <code>0</code>.</p>",
+    "<p>The condition <code>y &gt; 0</code> is then automatic, because a non-empty subarray containing only even elements has a positive transformed sum.</p>",
+    "<p>Let <code>pref[i]</code> be the prefix sum of the transformed array. A subarray <code>[l, r]</code> is valid when <code>pref[r + 1] &lt;= pref[l]</code>.</p>",
+    "<p>Scan the prefix sums from left to right and count how many previous prefix sums are greater than or equal to the current one using coordinate compression and a Fenwick tree.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-subarrays-with-even-odd-ratio-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.636Z",
+    "sourceUpdatedAt": null
+  }
+}

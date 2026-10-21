@@ -1,0 +1,161 @@
+{
+  "id": "1346",
+  "slug": "check-if-n-and-its-double-exist",
+  "title": "Check If N and Its Double Exist",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting"
+  ],
+  "statement": "Given an array `arr` of integers, check if there exist two indices `i` and `j` such that :\n\n*   `i != j`\n*   `0 <= i, j < arr.length`\n*   `arr[i] == 2 * arr[j]`\n\n**Example 1:**\n\n```\nInput: arr = [10,2,5,3]\nOutput: true\nExplanation: For i = 0 and j = 2, arr[i] == 10 == 2 * 5 == 2 * arr[j]\n```\n\n**Example 2:**\n\n```\nInput: arr = [3,1,7,11]\nOutput: false\nExplanation: There is no i and j that satisfy the conditions.\n```\n\n**Constraints:**\n\n*   `2 <= arr.length <= 500`\n*   `-10^(3) <= arr[i] <= 10^(3)`",
+  "constraints": [
+    "2 <= arr.length <= 500",
+    "-103 <= arr[i] <= 103"
+  ],
+  "examples": [
+    {
+      "input": "arr = [10,2,5,3]",
+      "output": "true",
+      "explanation": "For i = 0 and j = 2, arr[i] == 10 == 2 * 5 == 2 * arr[j]"
+    },
+    {
+      "input": "arr = [3,1,7,11]",
+      "output": "false",
+      "explanation": "There is no i and j that satisfy the conditions."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool checkIfExist(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean checkIfExist(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def checkIfExist(self, arr: list[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def checkIfExist(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {boolean}\n */\nvar checkIfExist = function(arr) {\n    \n};",
+    "typescript": "function checkIfExist(arr: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CheckIfExist(int[] arr) {\n        \n    }\n}",
+    "c": "bool checkIfExist(int* arr, int arrSize) {\n    \n}",
+    "golang": "func checkIfExist(arr []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun checkIfExist(arr: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func checkIfExist(_ arr: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn check_if_exist(arr: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Boolean}\ndef check_if_exist(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Boolean\n     */\n    function checkIfExist($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool checkIfExist(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def checkIfExist(arr: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec check_if_exist(arr :: [integer]) :: boolean\n  def check_if_exist(arr) do\n    \n  end\nend",
+    "erlang": "-spec check_if_exist(Arr :: [integer()]) -> boolean().\ncheck_if_exist(Arr) ->\n  .",
+    "racket": "(define/contract (check-if-exist arr)\n  (-> (listof exact-integer?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[10,2,5,3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[3,1,7,11]",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[10,2,5,3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[3,1,7,11]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[10,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[5,3]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[10]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[10,3]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[3,5,2,10]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2,3,5,10]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[10,5,3,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[10,10,10,10]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[10,2,5,3,10,2,5,3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[20,4,10,6]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[11,3,6,4]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[9,1,4,2]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[-10,-2,-5,-3]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Loop from i = 0 to arr.length, maintaining in a hashTable the array elements from [0, i - 1].",
+    "On each step of the loop check if we have seen the element <code>2 * arr[i]</code> so far.",
+    "Also check if we have seen <code>arr[i] / 2</code> in case <code>arr[i] % 2 == 0</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/check-if-n-and-its-double-exist/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.188Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "id": "1169",
+  "slug": "invalid-transactions",
+  "title": "Invalid Transactions",
+  "category": "dsa",
+  "subcategory": "sorting",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "statement": "A transaction is possibly invalid if:\n\n*   the amount exceeds `$1000`, or;\n*   if it occurs within (and including) `60` minutes of another transaction with the **same name** in a **different city**.\n\nYou are given an array of strings `transaction` where `transactions[i]` consists of comma-separated values representing the name, time (in minutes), amount, and city of the transaction.\n\nReturn a list of `transactions` that are possibly invalid. You may return the answer in **any order**.\n\n**Example 1:**\n\n```\nInput: transactions = [\"alice,20,800,mtv\",\"alice,50,100,beijing\"]\nOutput: [\"alice,20,800,mtv\",\"alice,50,100,beijing\"]\nExplanation: The first transaction is invalid because the second transaction occurs within a difference of 60 minutes, have the same name and is in a different city. Similarly the second one is invalid too.\n```\n\n**Example 2:**\n\n```\nInput: transactions = [\"alice,20,800,mtv\",\"alice,50,1200,mtv\"]\nOutput: [\"alice,50,1200,mtv\"]\n```\n\n**Example 3:**\n\n```\nInput: transactions = [\"alice,20,800,mtv\",\"bob,50,1200,mtv\"]\nOutput: [\"bob,50,1200,mtv\"]\n```\n\n**Constraints:**\n\n*   `transactions.length <= 1000`\n*   Each `transactions[i]` takes the form `\"{name},{time},{amount},{city}\"`\n*   Each `{name}` and `{city}` consist of lowercase English letters, and have lengths between `1` and `10`.\n*   Each `{time}` consist of digits, and represent an integer between `0` and `1000`.\n*   Each `{amount}` consist of digits, and represent an integer between `0` and `2000`.",
+  "constraints": [
+    "transactions.length <= 1000",
+    "Each transactions[i] takes the form \"{name},{time},{amount},{city}\"",
+    "Each {name} and {city} consist of lowercase English letters, and have lengths between 1 and 10.",
+    "Each {time} consist of digits, and represent an integer between 0 and 1000.",
+    "Each {amount} consist of digits, and represent an integer between 0 and 2000."
+  ],
+  "examples": [
+    {
+      "input": "transactions = [\"alice,20,800,mtv\",\"alice,50,100,beijing\"]",
+      "output": "[\"alice,20,800,mtv\",\"alice,50,100,beijing\"]",
+      "explanation": "The first transaction is invalid because the second transaction occurs within a difference of 60 minutes, have the same name and is in a different city. Similarly the second one is invalid too."
+    },
+    {
+      "input": "transactions = [\"alice,20,800,mtv\",\"alice,50,1200,mtv\"]",
+      "output": "[\"alice,50,1200,mtv\"]",
+      "explanation": null
+    },
+    {
+      "input": "transactions = [\"alice,20,800,mtv\",\"bob,50,1200,mtv\"]",
+      "output": "[\"bob,50,1200,mtv\"]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> invalidTransactions(vector<string>& transactions) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<String> invalidTransactions(String[] transactions) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def invalidTransactions(self, transactions: List[str]) -> List[str]:\n        ",
+    "python": "class Solution(object):\n    def invalidTransactions(self, transactions):\n        \"\"\"\n        :type transactions: List[str]\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} transactions\n * @return {string[]}\n */\nvar invalidTransactions = function(transactions) {\n    \n};",
+    "typescript": "function invalidTransactions(transactions: string[]): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<string> InvalidTransactions(string[] transactions) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** invalidTransactions(char** transactions, int transactionsSize, int* returnSize) {\n    \n}",
+    "golang": "func invalidTransactions(transactions []string) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun invalidTransactions(transactions: Array<String>): List<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func invalidTransactions(_ transactions: [String]) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn invalid_transactions(transactions: Vec<String>) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} transactions\n# @return {String[]}\ndef invalid_transactions(transactions)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $transactions\n     * @return String[]\n     */\n    function invalidTransactions($transactions) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> invalidTransactions(List<String> transactions) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def invalidTransactions(transactions: Array[String]): List[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec invalid_transactions(transactions :: [String.t]) :: [String.t]\n  def invalid_transactions(transactions) do\n    \n  end\nend",
+    "erlang": "-spec invalid_transactions(Transactions :: [unicode:unicode_binary()]) -> [unicode:unicode_binary()].\ninvalid_transactions(Transactions) ->\n  .",
+    "racket": "(define/contract (invalid-transactions transactions)\n  (-> (listof string?) (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"alice,20,800,mtv\",\"alice,50,100,beijing\"]",
+      "expectedOutput": "[\"alice,20,800,mtv\",\"alice,50,100,beijing\"]"
+    },
+    {
+      "input": "[\"alice,20,800,mtv\",\"alice,50,1200,mtv\"]",
+      "expectedOutput": "[\"alice,50,1200,mtv\"]"
+    },
+    {
+      "input": "[\"alice,20,800,mtv\",\"bob,50,1200,mtv\"]",
+      "expectedOutput": "[\"bob,50,1200,mtv\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"alice,20,800,mtv\",\"alice,50,100,beijing\"]",
+      "expectedOutput": "[\"alice,20,800,mtv\",\"alice,50,100,beijing\"]"
+    },
+    {
+      "input": "[\"alice,20,800,mtv\",\"alice,50,1200,mtv\"]",
+      "expectedOutput": "[\"alice,50,1200,mtv\"]"
+    },
+    {
+      "input": "[\"alice,20,800,mtv\",\"bob,50,1200,mtv\"]",
+      "expectedOutput": "[\"bob,50,1200,mtv\"]"
+    },
+    {
+      "input": "[\"alice,20,800,mtv\"]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[\"alice,50,100,beijing\"]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[\"alice,50,100,beijing\",\"alice,20,800,mtv\"]",
+      "expectedOutput": "[\"alice,50,100,beijing\",\"alice,20,800,mtv\"]"
+    },
+    {
+      "input": "[\"alice,20,800,mtv\",\"alice,20,800,mtv\"]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[\"alice,20,800,mtv\",\"alice,50,100,beijing\",\"alice,20,800,mtv\",\"alice,50,100,beijing\"]",
+      "expectedOutput": "[\"alice,20,800,mtv\",\"alice,50,100,beijing\",\"alice,20,800,mtv\",\"alice,50,100,beijing\"]"
+    },
+    {
+      "input": "[\"alice,50,1200,mtv\"]",
+      "expectedOutput": "[\"alice,50,1200,mtv\"]"
+    },
+    {
+      "input": "[\"alice,50,1200,mtv\",\"alice,20,800,mtv\"]",
+      "expectedOutput": "[\"alice,50,1200,mtv\"]"
+    },
+    {
+      "input": "[\"alice,20,800,mtv\",\"alice,50,1200,mtv\",\"alice,20,800,mtv\",\"alice,50,1200,mtv\"]",
+      "expectedOutput": "[\"alice,50,1200,mtv\",\"alice,50,1200,mtv\"]"
+    },
+    {
+      "input": "[\"bob,50,1200,mtv\"]",
+      "expectedOutput": "[\"bob,50,1200,mtv\"]"
+    },
+    {
+      "input": "[\"bob,50,1200,mtv\",\"alice,20,800,mtv\"]",
+      "expectedOutput": "[\"bob,50,1200,mtv\"]"
+    },
+    {
+      "input": "[\"alice,20,800,mtv\",\"bob,50,1200,mtv\",\"alice,20,800,mtv\",\"bob,50,1200,mtv\"]",
+      "expectedOutput": "[\"bob,50,1200,mtv\",\"bob,50,1200,mtv\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Split each string into four arrays.",
+    "For each transaction check if it's invalid, you can do this with just a loop with help of the four arrays generated on step 1.",
+    "At the end you perform O(N ^ 2) operations."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/invalid-transactions/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.604Z",
+    "sourceUpdatedAt": null
+  }
+}

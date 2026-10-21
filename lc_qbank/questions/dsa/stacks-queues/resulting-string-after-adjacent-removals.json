@@ -1,0 +1,166 @@
+{
+  "id": "3561",
+  "slug": "resulting-string-after-adjacent-removals",
+  "title": "Resulting String After Adjacent Removals",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "statement": "You are given a string `s` consisting of lowercase English letters.\n\nYou **must** repeatedly perform the following operation while the string `s` has **at least** two **consecutive** characters:\n\n*   Remove the **leftmost** pair of **adjacent** characters in the string that are **consecutive** in the alphabet, in either order (e.g., `'a'` and `'b'`, or `'b'` and `'a'`).\n*   Shift the remaining characters to the left to fill the gap.\n\nReturn the resulting string after no more operations can be performed.\n\n**Note:** Consider the alphabet as circular, thus `'a'` and `'z'` are consecutive.\n\n**Example 1:**\n\n**Input:** s = \"abc\"\n\n**Output:** \"c\"\n\n**Explanation:**\n\n*   Remove `\"ab\"` from the string, leaving `\"c\"` as the remaining string.\n*   No further operations are possible. Thus, the resulting string after all possible removals is `\"c\"`.\n\n**Example 2:**\n\n**Input:** s = \"adcb\"\n\n**Output:** \"\"\n\n**Explanation:**\n\n*   Remove `\"dc\"` from the string, leaving `\"ab\"` as the remaining string.\n*   Remove `\"ab\"` from the string, leaving `\"\"` as the remaining string.\n*   No further operations are possible. Thus, the resulting string after all possible removals is `\"\"`.\n\n**Example 3:**\n\n**Input:** s = \"zadb\"\n\n**Output:** \"db\"\n\n**Explanation:**\n\n*   Remove `\"za\"` from the string, leaving `\"db\"` as the remaining string.\n*   No further operations are possible. Thus, the resulting string after all possible removals is `\"db\"`.\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abc\"",
+      "output": "\"c\"",
+      "explanation": "Remove \"ab\" from the string, leaving \"c\" as the remaining string.\n\tNo further operations are possible. Thus, the resulting string after all possible removals is \"c\"."
+    },
+    {
+      "input": "s = \"adcb\"",
+      "output": "\"\"",
+      "explanation": "Remove \"dc\" from the string, leaving \"ab\" as the remaining string.\n\tRemove \"ab\" from the string, leaving \"\" as the remaining string.\n\tNo further operations are possible. Thus, the resulting string after all possible removals is \"\"."
+    },
+    {
+      "input": "s = \"zadb\"",
+      "output": "\"db\"",
+      "explanation": "Remove \"za\" from the string, leaving \"db\" as the remaining string.\n\tNo further operations are possible. Thus, the resulting string after all possible removals is \"db\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string resultingString(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String resultingString(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def resultingString(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def resultingString(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar resultingString = function(s) {\n    \n};",
+    "typescript": "function resultingString(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ResultingString(string s) {\n        \n    }\n}",
+    "c": "char* resultingString(char* s) {\n    \n}",
+    "golang": "func resultingString(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun resultingString(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func resultingString(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn resulting_string(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef resulting_string(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function resultingString($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String resultingString(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def resultingString(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec resulting_string(s :: String.t) :: String.t\n  def resulting_string(s) do\n    \n  end\nend",
+    "erlang": "-spec resulting_string(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nresulting_string(S) ->\n  .",
+    "racket": "(define/contract (resulting-string s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "\"c\""
+    },
+    {
+      "input": "\"adcb\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"zadb\"",
+      "expectedOutput": "\"db\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "\"c\""
+    },
+    {
+      "input": "\"adcb\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"zadb\"",
+      "expectedOutput": "\"db\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"bc\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"cba\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"abcabc\"",
+      "expectedOutput": "\"cc\""
+    },
+    {
+      "input": "\"aaa\"",
+      "expectedOutput": "\"aaa\""
+    },
+    {
+      "input": "\"abccba\"",
+      "expectedOutput": "\"ca\""
+    },
+    {
+      "input": "\"ABC\"",
+      "expectedOutput": "\"C\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"e\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"a\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Traverse the string from left to right and use a stack to perform the removals."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/resulting-string-after-adjacent-removals/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.804Z",
+    "sourceUpdatedAt": null
+  }
+}

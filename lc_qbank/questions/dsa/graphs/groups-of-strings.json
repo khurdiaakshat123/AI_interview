@@ -1,0 +1,163 @@
+{
+  "id": "2157",
+  "slug": "groups-of-strings",
+  "title": "Groups of Strings",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Union-Find"
+  ],
+  "statement": "You are given a **0-indexed** array of strings `words`. Each string consists of **lowercase English letters** only. No letter occurs more than once in any string of `words`.\n\nTwo strings `s1` and `s2` are said to be **connected** if the set of letters of `s2` can be obtained from the set of letters of `s1` by any **one** of the following operations:\n\n*   Adding exactly one letter to the set of the letters of `s1`.\n*   Deleting exactly one letter from the set of the letters of `s1`.\n*   Replacing exactly one letter from the set of the letters of `s1` with any letter, **including** itself.\n\nThe array `words` can be divided into one or more non-intersecting **groups**. A string belongs to a group if any **one** of the following is true:\n\n*   It is connected to **at least one** other string of the group.\n*   It is the **only** string present in the group.\n\nNote that the strings in `words` should be grouped in such a manner that a string belonging to a group cannot be connected to a string present in any other group. It can be proved that such an arrangement is always unique.\n\nReturn _an array_ `ans` _of size_ `2` _where:_\n\n*   `ans[0]` _is the **maximum number** of groups_ `words` _can be divided into, and_\n*   `ans[1]` _is the **size of the largest** group_.\n\n**Example 1:**\n\n```\nInput: words = [\"a\",\"b\",\"ab\",\"cde\"]\nOutput: [2,3]\nExplanation:\n- words[0] can be used to obtain words[1] (by replacing 'a' with 'b'), and words[2] (by adding 'b'). So words[0] is connected to words[1] and words[2].\n- words[1] can be used to obtain words[0] (by replacing 'b' with 'a'), and words[2] (by adding 'a'). So words[1] is connected to words[0] and words[2].\n- words[2] can be used to obtain words[0] (by deleting 'b'), and words[1] (by deleting 'a'). So words[2] is connected to words[0] and words[1].\n- words[3] is not connected to any string in words.\nThus, words can be divided into 2 groups [\"a\",\"b\",\"ab\"] and [\"cde\"]. The size of the largest group is 3.\n```\n\n**Example 2:**\n\n```\nInput: words = [\"a\",\"ab\",\"abc\"]\nOutput: [1,3]\nExplanation:\n- words[0] is connected to words[1].\n- words[1] is connected to words[0] and words[2].\n- words[2] is connected to words[1].\nSince all strings are connected to each other, they should be grouped together.\nThus, the size of the largest group is 3.\n```\n\n**Constraints:**\n\n*   `1 <= words.length <= 2 * 10^(4)`\n*   `1 <= words[i].length <= 26`\n*   `words[i]` consists of lowercase English letters only.\n*   No letter occurs more than once in `words[i]`.",
+  "constraints": [
+    "1 <= words.length <= 2 * 104",
+    "1 <= words[i].length <= 26",
+    "words[i] consists of lowercase English letters only.",
+    "No letter occurs more than once in words[i]."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"a\",\"b\",\"ab\",\"cde\"]",
+      "output": "[2,3]",
+      "explanation": "- words[0] can be used to obtain words[1] (by replacing 'a' with 'b'), and words[2] (by adding 'b'). So words[0] is connected to words[1] and words[2].\n- words[1] can be used to obtain words[0] (by replacing 'b' with 'a'), and words[2] (by adding 'a'). So words[1] is connected to words[0] and words[2].\n- words[2] can be used to obtain words[0] (by deleting 'b'), and words[1] (by deleting 'a'). So words[2] is connected to words[0] and words[1].\n- words[3] is not connected to any string in words.\nThus, words can be divided into 2 groups [\"a\",\"b\",\"ab\"] and [\"cde\"]. The size of the largest group is 3."
+    },
+    {
+      "input": "words = [\"a\",\"ab\",\"abc\"]",
+      "output": "[1,3]",
+      "explanation": "- words[0] is connected to words[1].\n- words[1] is connected to words[0] and words[2].\n- words[2] is connected to words[1].\nSince all strings are connected to each other, they should be grouped together.\nThus, the size of the largest group is 3."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> groupStrings(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] groupStrings(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def groupStrings(self, words: list[str]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def groupStrings(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {number[]}\n */\nvar groupStrings = function(words) {\n    \n};",
+    "typescript": "function groupStrings(words: string[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] GroupStrings(string[] words) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* groupStrings(char** words, int wordsSize, int* returnSize) {\n    \n}",
+    "golang": "func groupStrings(words []string) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun groupStrings(words: Array<String>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func groupStrings(_ words: [String]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn group_strings(words: Vec<String>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {Integer[]}\ndef group_strings(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return Integer[]\n     */\n    function groupStrings($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> groupStrings(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def groupStrings(words: Array[String]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec group_strings(words :: [String.t]) :: [integer]\n  def group_strings(words) do\n    \n  end\nend",
+    "erlang": "-spec group_strings(Words :: [unicode:unicode_binary()]) -> [integer()].\ngroup_strings(Words) ->\n  .",
+    "racket": "(define/contract (group-strings words)\n  (-> (listof string?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"a\",\"b\",\"ab\",\"cde\"]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[\"a\",\"ab\",\"abc\"]",
+      "expectedOutput": "[1,3]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"a\",\"b\",\"ab\",\"cde\"]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[\"a\",\"ab\",\"abc\"]",
+      "expectedOutput": "[1,3]"
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "[1,2]"
+    },
+    {
+      "input": "[\"ab\",\"cde\"]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "[\"a\",\"cde\"]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[\"cde\",\"ab\",\"b\",\"a\"]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[\"a\",\"ab\",\"b\",\"cde\"]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[\"cde\",\"b\",\"ab\",\"a\"]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[\"a\",\"a\",\"a\",\"a\"]",
+      "expectedOutput": "[1,4]"
+    },
+    {
+      "input": "[\"a\",\"b\",\"ab\",\"cde\",\"a\",\"b\",\"ab\",\"cde\"]",
+      "expectedOutput": "[2,6]"
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "[1,2]"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "[1,2]"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "[1,3]"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "[1,6]"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "[3,1]"
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\",\"d\"]",
+      "expectedOutput": "[1,4]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can we build a graph from words, where there exists an edge between nodes i and j if words[i] and words[j] are connected?",
+    "The problem now boils down to finding the total number of components and the size of the largest component in the graph.",
+    "How can we use bit masking to reduce the search space while adding edges to node i?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/groups-of-strings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.292Z",
+    "sourceUpdatedAt": null
+  }
+}

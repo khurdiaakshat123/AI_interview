@@ -90,7 +90,7 @@ class SandboxRunner:
             return "rust"
         if l in ["cs", "csharp", "c#"]:
             return "csharp"
-        if l in ["sql", "postgresql", "psql"]:
+        if l in ["sql", "postgresql", "psql", "mysql", "mssql", "oraclesql", "sqlite"]:
             return "sql"
         return "python"
 
@@ -356,11 +356,21 @@ def __run():
         if entrypoint:
             try:
                 val = inp
-                if isinstance(inp, str) and (inp.strip().startswith('[') or inp.strip().startswith('{{')):
-                    try:
-                        val = json.loads(inp)
-                    except Exception:
-                        val = inp
+                if isinstance(inp, str):
+                    lines = [l.strip() for l in inp.strip().splitlines() if l.strip()]
+                    if len(lines) > 1 and param_count and len(lines) == param_count:
+                        parsed_args = []
+                        for l in lines:
+                            try:
+                                parsed_args.append(json.loads(l))
+                            except Exception:
+                                parsed_args.append(l)
+                        val = parsed_args
+                    elif inp.strip().startswith('[') or inp.strip().startswith('{{'):
+                        try:
+                            val = json.loads(inp)
+                        except Exception:
+                            val = inp
                 
                 # Dynamic argument dispatch based on function signature
                 if param_count == 1:
@@ -392,7 +402,9 @@ def __run():
                         ret = entrypoint(val)
 
                 actual = str(ret).strip()
-                passed = is_custom or (actual.strip().lower() == exp.strip().lower())
+                norm_actual = actual.replace(" ", "").lower()
+                norm_exp = exp.replace(" ", "").lower()
+                passed = is_custom or (norm_actual == norm_exp) or (actual.strip().lower() == exp.strip().lower())
             except Exception as e:
                 actual = f"Runtime Error: {{str(e)}}"
                 passed = False

@@ -1,0 +1,167 @@
+{
+  "id": "1977",
+  "slug": "number-of-ways-to-separate-numbers",
+  "title": "Number of Ways to Separate Numbers",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "statement": "You wrote down many **positive** integers in a string called `num`. However, you realized that you forgot to add commas to seperate the different numbers. You remember that the list of integers was **non-decreasing** and that **no** integer had leading zeros.\n\nReturn _the **number of possible lists of integers** that you could have written down to get the string_ `num`. Since the answer may be large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n```\nInput: num = \"327\"\nOutput: 2\nExplanation: You could have written down the numbers:\n3, 27\n327\n```\n\n**Example 2:**\n\n```\nInput: num = \"094\"\nOutput: 0\nExplanation: No numbers can have leading zeros and all numbers must be positive.\n```\n\n**Example 3:**\n\n```\nInput: num = \"0\"\nOutput: 0\nExplanation: No numbers can have leading zeros and all numbers must be positive.\n```\n\n**Constraints:**\n\n*   `1 <= num.length <= 3500`\n*   `num` consists of digits `'0'` through `'9'`.",
+  "constraints": [
+    "1 <= num.length <= 3500",
+    "num consists of digits '0' through '9'."
+  ],
+  "examples": [
+    {
+      "input": "num = \"327\"",
+      "output": "2",
+      "explanation": "You could have written down the numbers:\n3, 27\n327"
+    },
+    {
+      "input": "num = \"094\"",
+      "output": "0",
+      "explanation": "No numbers can have leading zeros and all numbers must be positive."
+    },
+    {
+      "input": "num = \"0\"",
+      "output": "0",
+      "explanation": "No numbers can have leading zeros and all numbers must be positive."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numberOfCombinations(string num) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numberOfCombinations(String num) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfCombinations(self, num: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfCombinations(self, num):\n        \"\"\"\n        :type num: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num\n * @return {number}\n */\nvar numberOfCombinations = function(num) {\n    \n};",
+    "typescript": "function numberOfCombinations(num: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumberOfCombinations(string num) {\n        \n    }\n}",
+    "c": "int numberOfCombinations(char* num) {\n    \n}",
+    "golang": "func numberOfCombinations(num string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfCombinations(num: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfCombinations(_ num: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_combinations(num: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} num\n# @return {Integer}\ndef number_of_combinations(num)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num\n     * @return Integer\n     */\n    function numberOfCombinations($num) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfCombinations(String num) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfCombinations(num: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_combinations(num :: String.t) :: integer\n  def number_of_combinations(num) do\n    \n  end\nend",
+    "erlang": "-spec number_of_combinations(Num :: unicode:unicode_binary()) -> integer().\nnumber_of_combinations(Num) ->\n  .",
+    "racket": "(define/contract (number-of-combinations num)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"327\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"094\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"327\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"094\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"3\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"27\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"32\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"723\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"327327\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"333\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"327723\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If we know the current number has d digits, how many digits can the previous number have?",
+    "Is there a quick way of calculating the number of possibilities for the previous number if we know that it must have less than or equal to d digits? Try to do some pre-processing."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-ways-to-separate-numbers/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.294Z",
+    "sourceUpdatedAt": null
+  }
+}

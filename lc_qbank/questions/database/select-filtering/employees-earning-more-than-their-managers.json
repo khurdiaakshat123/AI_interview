@@ -1,0 +1,60 @@
+{
+  "id": "181",
+  "slug": "employees-earning-more-than-their-managers",
+  "title": "Employees Earning More Than Their Managers",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Employee`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| id          | int     |\n| name        | varchar |\n| salary      | int     |\n| managerId   | int     |\n+-------------+---------+\nid is the primary key (column with unique values) for this table.\nEach row of this table indicates the ID of an employee, their name, salary, and the ID of their manager.\n```\n\nWrite a solution to find the employees who earn more than their managers.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployee table:\n+----+-------+--------+-----------+\n| id | name  | salary | managerId |\n+----+-------+--------+-----------+\n| 1  | Joe   | 70000  | 3         |\n| 2  | Henry | 80000  | 4         |\n| 3  | Sam   | 60000  | Null      |\n| 4  | Max   | 90000  | Null      |\n+----+-------+--------+-----------+\nOutput: \n+----------+\n| Employee |\n+----------+\n| Joe      |\n+----------+\nExplanation: Joe is the only employee who earns more than his manager.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Employee table:\n+----+-------+--------+-----------+\n| id | name  | salary | managerId |\n+----+-------+--------+-----------+\n| 1  | Joe   | 70000  | 3         |\n| 2  | Henry | 80000  | 4         |\n| 3  | Sam   | 60000  | Null      |\n| 4  | Max   | 90000  | Null      |\n+----+-------+--------+-----------+",
+      "output": "+----------+\n| Employee |\n+----------+\n| Joe      |\n+----------+",
+      "explanation": "Joe is the only employee who earns more than his manager."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_employees(employee: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"Employee\": [\"id\", \"name\", \"salary\", \"managerId\"]}, \"rows\": {\"Employee\": [[1, \"Joe\", 70000, 3], [2, \"Henry\", 80000, 4], [3, \"Sam\", 60000, null], [4, \"Max\", 90000, null]]}}",
+      "expectedOutput": "+----------+\n| Employee |\n+----------+\n| Joe      |\n+----------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"Employee\": [\"id\", \"name\", \"salary\", \"managerId\"]}, \"rows\": {\"Employee\": [[1, \"Joe\", 70000, 3], [2, \"Henry\", 80000, 4], [3, \"Sam\", 60000, null], [4, \"Max\", 90000, null]]}}",
+      "expectedOutput": "+----------+\n| Employee |\n+----------+\n| Joe      |\n+----------+"
+    },
+    {
+      "input": "Employee table:\n+----+-------+--------+-----------+\n| id | name  | salary | managerId |\n+----+-------+--------+-----------+\n| 1  | Joe   | 70000  | 3         |\n| 2  | Henry | 80000  | 4         |\n| 3  | Sam   | 60000  | Null      |\n| 4  | Max   | 90000  | Null      |\n+----+-------+--------+-----------+",
+      "expectedOutput": "+----------+\n| Employee |\n+----------+\n| Joe      |\n+----------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Employee (id int, name varchar(255), salary int, managerId int)\n\nTruncate table Employee",
+  "sqlSetup": [
+    "insert into Employee (id, name, salary, managerId) values ('1', 'Joe', '70000', '3')",
+    "insert into Employee (id, name, salary, managerId) values ('2', 'Henry', '80000', '4')",
+    "insert into Employee (id, name, salary, managerId) values ('3', 'Sam', '60000', NULL)",
+    "insert into Employee (id, name, salary, managerId) values ('4', 'Max', '90000', NULL)"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/employees-earning-more-than-their-managers/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.995Z",
+    "sourceUpdatedAt": null
+  }
+}

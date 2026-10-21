@@ -1,0 +1,92 @@
+{
+  "id": "1237",
+  "slug": "find-positive-integer-solution-for-a-given-equation",
+  "title": "Find Positive Integer Solution for a Given Equation",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "Two Pointers",
+    "Binary Search",
+    "Interactive"
+  ],
+  "statement": "Given a callable function `f(x, y)` **with a hidden formula** and a value `z`, reverse engineer the formula and return _all positive integer pairs_ `x` _and_ `y` _where_ `f(x,y) == z`. You may return the pairs in any order.\n\nWhile the exact formula is hidden, the function is monotonically increasing, i.e.:\n\n*   `f(x, y) < f(x + 1, y)`\n*   `f(x, y) < f(x, y + 1)`\n\nThe function interface is defined like this:\n\n```\ninterface CustomFunction {\npublic:\n  // Returns some positive integer f(x, y) for two positive integers x and y based on a formula.\n  int f(int x, int y);\n};\n```\n\nWe will judge your solution as follows:\n\n*   The judge has a list of `9` hidden implementations of `CustomFunction`, along with a way to generate an **answer key** of all valid pairs for a specific `z`.\n*   The judge will receive two inputs: a `function_id` (to determine which implementation to test your code with), and the target `z`.\n*   The judge will call your `findSolution` and compare your results with the **answer key**.\n*   If your results match the **answer key**, your solution will be `Accepted`.\n\n**Example 1:**\n\n```\nInput: function_id = 1, z = 5\nOutput: [[1,4],[2,3],[3,2],[4,1]]\nExplanation: The hidden formula for function_id = 1 is f(x, y) = x + y.\nThe following positive integer values of x and y make f(x, y) equal to 5:\nx=1, y=4 -> f(1, 4) = 1 + 4 = 5.\nx=2, y=3 -> f(2, 3) = 2 + 3 = 5.\nx=3, y=2 -> f(3, 2) = 3 + 2 = 5.\nx=4, y=1 -> f(4, 1) = 4 + 1 = 5.\n```\n\n**Example 2:**\n\n```\nInput: function_id = 2, z = 5\nOutput: [[1,5],[5,1]]\nExplanation: The hidden formula for function_id = 2 is f(x, y) = x * y.\nThe following positive integer values of x and y make f(x, y) equal to 5:\nx=1, y=5 -> f(1, 5) = 1 * 5 = 5.\nx=5, y=1 -> f(5, 1) = 5 * 1 = 5.\n```\n\n**Constraints:**\n\n*   `1 <= function_id <= 9`\n*   `1 <= z <= 100`\n*   It is guaranteed that the solutions of `f(x, y) == z` will be in the range `1 <= x, y <= 1000`.\n*   It is also guaranteed that `f(x, y)` will fit in 32 bit signed integer if `1 <= x, y <= 1000`.",
+  "constraints": [
+    "1 <= function_id <= 9",
+    "1 <= z <= 100",
+    "It is guaranteed that the solutions of f(x, y) == z will be in the range 1 <= x, y <= 1000.",
+    "It is also guaranteed that f(x, y) will fit in 32 bit signed integer if 1 <= x, y <= 1000."
+  ],
+  "examples": [
+    {
+      "input": "function_id = 1, z = 5",
+      "output": "[[1,4],[2,3],[3,2],[4,1]]",
+      "explanation": "The hidden formula for function_id = 1 is f(x, y) = x + y.\nThe following positive integer values of x and y make f(x, y) equal to 5:\nx=1, y=4 -> f(1, 4) = 1 + 4 = 5.\nx=2, y=3 -> f(2, 3) = 2 + 3 = 5.\nx=3, y=2 -> f(3, 2) = 3 + 2 = 5.\nx=4, y=1 -> f(4, 1) = 4 + 1 = 5."
+    },
+    {
+      "input": "function_id = 2, z = 5",
+      "output": "[[1,5],[5,1]]",
+      "explanation": "The hidden formula for function_id = 2 is f(x, y) = x * y.\nThe following positive integer values of x and y make f(x, y) equal to 5:\nx=1, y=5 -> f(1, 5) = 1 * 5 = 5.\nx=5, y=1 -> f(5, 1) = 5 * 1 = 5."
+    }
+  ],
+  "starterCode": {
+    "cpp": "/*\n * // This is the custom function interface.\n * // You should not implement it, or speculate about its implementation\n * class CustomFunction {\n * public:\n *     // Returns f(x, y) for any given positive integers x and y.\n *     // Note that f(x, y) is increasing with respect to both x and y.\n *     // i.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n *     int f(int x, int y);\n * };\n */\n\nclass Solution {\npublic:\n    vector<vector<int>> findSolution(CustomFunction& customfunction, int z) {\n        \n    }\n};",
+    "java": "/*\n * // This is the custom function interface.\n * // You should not implement it, or speculate about its implementation\n * class CustomFunction {\n *     // Returns f(x, y) for any given positive integers x and y.\n *     // Note that f(x, y) is increasing with respect to both x and y.\n *     // i.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n *     public int f(int x, int y);\n * };\n */\n\nclass Solution {\n    public List<List<Integer>> findSolution(CustomFunction customfunction, int z) {\n        \n    }\n}",
+    "python3": "\"\"\"\n   This is the custom function interface.\n   You should not implement it, or speculate about its implementation\n   class CustomFunction:\n       # Returns f(x, y) for any given positive integers x and y.\n       # Note that f(x, y) is increasing with respect to both x and y.\n       # i.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n       def f(self, x, y):\n  \n\"\"\"\n\nclass Solution:\n    def findSolution(self, customfunction: 'CustomFunction', z: int) -> List[List[int]]:\n        ",
+    "python": "\"\"\"\n   This is the custom function interface.\n   You should not implement it, or speculate about its implementation\n   class CustomFunction:\n       # Returns f(x, y) for any given positive integers x and y.\n       # Note that f(x, y) is increasing with respect to both x and y.\n       # i.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n       def f(self, x, y):\n\"\"\"\n\nclass Solution(object):\n    def findSolution(self, customfunction, z):\n        \"\"\"\n        :type num: int\n        :type z: int\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * // This is the CustomFunction's API interface.\n * // You should not implement it, or speculate about its implementation\n * function CustomFunction() {\n *     @param {integer, integer} x, y\n *     @return {integer}\n *     this.f = function(x, y) {\n *         ...\n *     };\n * };\n */\n\n/**\n * @param {CustomFunction} customfunction\n * @param {integer} z\n * @return {integer[][]}\n */\nvar findSolution = function(customfunction, z) {\n    \n};",
+    "typescript": "/**\n * // This is the CustomFunction's API interface.\n * // You should not implement it, or speculate about its implementation\n * class CustomFunction {\n *      f(x: number, y: number): number {}\n * }\n */\n\nfunction findSolution(customfunction: CustomFunction, z: number): number[][] {\n\t\n};",
+    "csharp": "/*\n * // This is the custom function interface.\n * // You should not implement it, or speculate about its implementation\n * public class CustomFunction {\n *     // Returns f(x, y) for any given positive integers x and y.\n *     // Note that f(x, y) is increasing with respect to both x and y.\n *     // i.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n *     public int f(int x, int y);\n * };\n */\n\npublic class Solution {\n    public IList<IList<int>> FindSolution(CustomFunction customfunction, int z) {\n        \n    }\n}",
+    "c": "/*\n * // This is the definition for customFunction API.\n * // You should not implement it, or speculate about its implementation\n *\n * // Returns f(x, y) for any given positive integers x and y.\n * // Note that f(x, y) is increasing with respect to both x and y.\n * // i.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n */\n\n/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** findSolution(int (*customFunction)(int, int), int z, int* returnSize, int** returnColumnSizes) {\n\t\n}",
+    "golang": "/** \n * This is the declaration of customFunction API.\n * @param  x    int\n * @param  x    int\n * @return \t    Returns f(x, y) for any given positive integers x and y.\n *\t\t\t    Note that f(x, y) is increasing with respect to both x and y.\n *              i.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n */\n\nfunc findSolution(customFunction func(int, int) int, z int) [][]int {\n    \n}",
+    "kotlin": "/*\n * // This is the custom function interface.\n * // You should not implement it, or speculate about its implementation\n * class CustomFunction {\n *     // Returns f(x, y) for any given positive integers x and y.\n *     // Note that f(x, y) is increasing with respect to both x and y.\n *     // i.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n *     fun f(x:Int, y:Int):Int {}\n * };\n */\n\nclass Solution {\n\tfun findSolution(customfunction:CustomFunction, z:Int):List<List<Int>> {\n        \n    }\n}",
+    "swift": "/*\n * // This is the custom function interface.\n * // You should not implement it, or speculate about its implementation\n * class CustomFunction {\n *     // Returns f(x, y) for any given positive integers x and y.\n *     // Note that f(x, y) is increasing with respect to both x and y.\n *     // i.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n *     func f(_ x: Int, _ y: Int) -> Int {}\n * }\n */\n\nclass Solution {\n    func findSolution(_ customfunction: CustomFunction, _ z: Int) -> [[Int]] {\n        \n    }\n}",
+    "rust": "/*\n * // This is the custom function interface.\n * // You should not implement it, or speculate about its implementation\n * struct CustomFunction;\n * impl CustomFunction {\n *    pub fn f(x:i32,y:i32)->i32{}\n * }\n */\n\nimpl Solution {\n    pub fn find_solution(customfunction: &CustomFunction, z: i32) -> Vec<Vec<i32>> {\n\t\n    }\n}",
+    "ruby": "# \tThis is the custom function interface.\n#\tYou should not implement it, or speculate about its implementation\n#\tclass CustomFunction:\n#\t\tdef f(self, x, y):\n# \t\t\tReturns f(x, y) for any given positive integers x and y.\n# \t\t\tNote that f(x, y) is increasing with respect to both x and y.\n# \t\t\ti.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n# \t\tend\n# \tend\n# \n\n# @param {CustomFunction} customfunction\n# @param {Integer} z\n# @return {List[List[Integer]]}\ndef findSolution(customfunction, z)\n    \nend",
+    "php": "/*\n * // This is the custom function interface.\n * // You should not implement it, or speculate about its implementation\n * class CustomFunction {\n *     // Returns f(x, y) for any given positive integers x and y.\n *     // Note that f(x, y) is increasing with respect to both x and y.\n *     // i.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n *     public function f($x, $y){}\n * };\n */\n\nclass Solution {\n    /**\n     * @param  CustomFunction  $customfunction\n     * @param  Integer  $z\n     * @return Integer[][]\n     */\n    function findSolution($customfunction, $n) {\n        \n    }\n}",
+    "scala": "/*\n * // This is the custom function interface.\n * // You should not implement it, or speculate about its implementation\n * class CustomFunction {\n *     // Returns f(x, y) for any given positive integers x and y.\n *     // Note that f(x, y) is increasing with respect to both x and y.\n *     // i.e. f(x, y) < f(x + 1, y), f(x, y) < f(x, y + 1)\n *     def f(x: Int, y: Int): Int = {}\n * };\n */\n\nobject Solution {\n    def findSolution(customfunction: CustomFunction, z: Int): List[List[Int]] = {\n        \n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "1\n5",
+      "expectedOutput": "[[1,4],[2,3],[3,2],[4,1]]"
+    },
+    {
+      "input": "2\n5",
+      "expectedOutput": "[[1,5],[5,1]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "1\n5",
+      "expectedOutput": "[[1,4],[2,3],[3,2],[4,1]]"
+    },
+    {
+      "input": "2\n5",
+      "expectedOutput": "[[1,5],[5,1]]"
+    },
+    {
+      "input": "function_id = 1, z = 5",
+      "expectedOutput": "[[1,4],[2,3],[3,2],[4,1]]"
+    },
+    {
+      "input": "function_id = 2, z = 5",
+      "expectedOutput": "[[1,5],[5,1]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Loop over 1 ≤ x,y ≤ 1000 and check if f(x,y) == z."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-positive-integer-solution-for-a-given-equation/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.064Z",
+    "sourceUpdatedAt": null
+  }
+}

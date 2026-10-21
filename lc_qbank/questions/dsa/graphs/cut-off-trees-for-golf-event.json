@@ -1,0 +1,100 @@
+{
+  "id": "675",
+  "slug": "cut-off-trees-for-golf-event",
+  "title": "Cut Off Trees for Golf Event",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Heap (Priority Queue)",
+    "Matrix"
+  ],
+  "statement": "You are asked to cut off all the trees in a forest for a golf event. The forest is represented as an `m x n` matrix. In this matrix:\n\n*   `0` means the cell cannot be walked through.\n*   `1` represents an empty cell that can be walked through.\n*   A number greater than `1` represents a tree in a cell that can be walked through, and this number is the tree's height.\n\nIn one step, you can walk in any of the four directions: north, east, south, and west. If you are standing in a cell with a tree, you can choose whether to cut it off.\n\nYou must cut off the trees in order from shortest to tallest. When you cut off a tree, the value at its cell becomes `1` (an empty cell).\n\nStarting from the point `(0, 0)`, return _the minimum steps you need to walk to cut off all the trees_. If you cannot cut off all the trees, return `-1`.\n\n**Note:** The input is generated such that no two trees have the same height, and there is at least one tree needs to be cut off.\n\n**Example 1:**\n\n![](./assets/cut-off-trees-for-golf-event-1.jpg)\n```\nInput: forest = [[1,2,3],[0,0,4],[7,6,5]]\nOutput: 6\nExplanation: Following the path above allows you to cut off the trees from shortest to tallest in 6 steps.\n```\n\n**Example 2:**\n\n![](./assets/cut-off-trees-for-golf-event-2.jpg)\n```\nInput: forest = [[1,2,3],[0,0,0],[7,6,5]]\nOutput: -1\nExplanation: The trees in the bottom row cannot be accessed as the middle row is blocked.\n```\n\n**Example 3:**\n\n```\nInput: forest = [[2,3,4],[0,0,5],[8,7,6]]\nOutput: 6\nExplanation: You can follow the same path as Example 1 to cut off all the trees.\nNote that you can cut off the first tree at (0, 0) before making any steps.\n```\n\n**Constraints:**\n\n*   `m == forest.length`\n*   `n == forest[i].length`\n*   `1 <= m, n <= 50`\n*   `0 <= forest[i][j] <= 10^(9)`\n*   Heights of all trees are **distinct**.",
+  "constraints": [
+    "m == forest.length",
+    "n == forest[i].length",
+    "1 <= m, n <= 50",
+    "0 <= forest[i][j] <= 109",
+    "Heights of all trees are distinct."
+  ],
+  "examples": [
+    {
+      "input": "forest = [[1,2,3],[0,0,4],[7,6,5]]",
+      "output": "6",
+      "explanation": "Following the path above allows you to cut off the trees from shortest to tallest in 6 steps."
+    },
+    {
+      "input": "forest = [[1,2,3],[0,0,0],[7,6,5]]",
+      "output": "-1",
+      "explanation": "The trees in the bottom row cannot be accessed as the middle row is blocked."
+    },
+    {
+      "input": "forest = [[2,3,4],[0,0,5],[8,7,6]]",
+      "output": "6",
+      "explanation": "You can follow the same path as"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int cutOffTree(vector<vector<int>>& forest) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int cutOffTree(List<List<Integer>> forest) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def cutOffTree(self, forest: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def cutOffTree(self, forest):\n        \"\"\"\n        :type forest: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} forest\n * @return {number}\n */\nvar cutOffTree = function(forest) {\n    \n};",
+    "typescript": "function cutOffTree(forest: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CutOffTree(IList<IList<int>> forest) {\n        \n    }\n}",
+    "c": "int cutOffTree(int** forest, int forestSize, int* forestColSize) {\n    \n}",
+    "golang": "func cutOffTree(forest [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun cutOffTree(forest: List<List<Int>>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func cutOffTree(_ forest: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn cut_off_tree(forest: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} forest\n# @return {Integer}\ndef cut_off_tree(forest)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $forest\n     * @return Integer\n     */\n    function cutOffTree($forest) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int cutOffTree(List<List<int>> forest) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def cutOffTree(forest: List[List[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec cut_off_tree(forest :: [[integer]]) :: integer\n  def cut_off_tree(forest) do\n    \n  end\nend",
+    "erlang": "-spec cut_off_tree(Forest :: [[integer()]]) -> integer().\ncut_off_tree(Forest) ->\n  .",
+    "racket": "(define/contract (cut-off-tree forest)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,2,3],[0,0,4],[7,6,5]]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[[1,2,3],[0,0,0],[7,6,5]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[2,3,4],[0,0,5],[8,7,6]]",
+      "expectedOutput": "6"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,2,3],[0,0,4],[7,6,5]]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[[1,2,3],[0,0,0],[7,6,5]]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[[2,3,4],[0,0,5],[8,7,6]]",
+      "expectedOutput": "6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/cut-off-trees-for-golf-event/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.126Z",
+    "sourceUpdatedAt": null
+  }
+}

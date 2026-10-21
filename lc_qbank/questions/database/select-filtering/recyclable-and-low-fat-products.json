@@ -1,0 +1,61 @@
+{
+  "id": "1757",
+  "slug": "recyclable-and-low-fat-products",
+  "title": "Recyclable and Low Fat Products",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Products`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| product_id  | int     |\n| low_fats    | enum    |\n| recyclable  | enum    |\n+-------------+---------+\nproduct_id is the primary key (column with unique values) for this table.\nlow_fats is an ENUM (category) of type ('Y', 'N') where 'Y' means this product is low fat and 'N' means it is not.\nrecyclable is an ENUM (category) of types ('Y', 'N') where 'Y' means this product is recyclable and 'N' means it is not.\n```\n\nWrite a solution to find the ids of products that are both low fat and recyclable.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nProducts table:\n+-------------+----------+------------+\n| product_id  | low_fats | recyclable |\n+-------------+----------+------------+\n| 0           | Y        | N          |\n| 1           | Y        | Y          |\n| 2           | N        | Y          |\n| 3           | Y        | Y          |\n| 4           | N        | N          |\n+-------------+----------+------------+\nOutput: \n+-------------+\n| product_id  |\n+-------------+\n| 1           |\n| 3           |\n+-------------+\nExplanation: Only products 1 and 3 are both low fat and recyclable.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Products table:\n+-------------+----------+------------+\n| product_id  | low_fats | recyclable |\n+-------------+----------+------------+\n| 0           | Y        | N          |\n| 1           | Y        | Y          |\n| 2           | N        | Y          |\n| 3           | Y        | Y          |\n| 4           | N        | N          |\n+-------------+----------+------------+",
+      "output": "+-------------+\n| product_id  |\n+-------------+\n| 1           |\n| 3           |\n+-------------+",
+      "explanation": "Only products 1 and 3 are both low fat and recyclable."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_products(products: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Products\":[\"product_id\",\"low_fats\",\"recyclable\"]},\"rows\":{\"Products\":[[\"0\",\"Y\",\"N\"],[\"1\",\"Y\",\"Y\"],[\"2\",\"N\",\"Y\"],[\"3\",\"Y\",\"Y\"],[\"4\",\"N\",\"N\"]]}}",
+      "expectedOutput": "+-------------+\n| product_id  |\n+-------------+\n| 1           |\n| 3           |\n+-------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Products\":[\"product_id\",\"low_fats\",\"recyclable\"]},\"rows\":{\"Products\":[[\"0\",\"Y\",\"N\"],[\"1\",\"Y\",\"Y\"],[\"2\",\"N\",\"Y\"],[\"3\",\"Y\",\"Y\"],[\"4\",\"N\",\"N\"]]}}",
+      "expectedOutput": "+-------------+\n| product_id  |\n+-------------+\n| 1           |\n| 3           |\n+-------------+"
+    },
+    {
+      "input": "Products table:\n+-------------+----------+------------+\n| product_id  | low_fats | recyclable |\n+-------------+----------+------------+\n| 0           | Y        | N          |\n| 1           | Y        | Y          |\n| 2           | N        | Y          |\n| 3           | Y        | Y          |\n| 4           | N        | N          |\n+-------------+----------+------------+",
+      "expectedOutput": "+-------------+\n| product_id  |\n+-------------+\n| 1           |\n| 3           |\n+-------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Products (product_id int, low_fats ENUM('Y', 'N'), recyclable ENUM('Y','N'))\n\nTruncate table Products",
+  "sqlSetup": [
+    "insert into Products (product_id, low_fats, recyclable) values ('0', 'Y', 'N')",
+    "insert into Products (product_id, low_fats, recyclable) values ('1', 'Y', 'Y')",
+    "insert into Products (product_id, low_fats, recyclable) values ('2', 'N', 'Y')",
+    "insert into Products (product_id, low_fats, recyclable) values ('3', 'Y', 'Y')",
+    "insert into Products (product_id, low_fats, recyclable) values ('4', 'N', 'N')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/recyclable-and-low-fat-products/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.350Z",
+    "sourceUpdatedAt": null
+  }
+}

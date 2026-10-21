@@ -1,0 +1,114 @@
+{
+  "id": "3948",
+  "slug": "lexicographically-maximum-mex-array",
+  "title": "Lexicographically Maximum MEX Array",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Queue"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nYou want to construct an array `result` by repeatedly performing the following operation until `nums` becomes empty:\n\n*   Choose an integer `k` such that `1 <= k <= len(nums)`.\n*   Compute the **MEX** of the first `k` elements of `nums`.\n*   Append this **MEX** to `result`.\n*   Remove the first `k` elements from `nums`.\n\nReturn the **lexicographically maximum** array `result` that can be obtained after performing the operations.\n\nThe **MEX** of an array is the **smallest non-negative** integer not present in the array.\n\nAn array `a` is **lexicographically greater** than an array `b` if in the first position where `a` and `b` differ, array `a` has an element that is greater than the corresponding element in `b`. If the first `min(a.length, b.length)` elements do not differ, then the longer array is the **lexicographically greater** one.\n\n**Example 1:**\n\n**Input:** nums = \\[0,1,0\\]\n\n**Output:** \\[2,1\\]\n\n**Explanation:**\n\n*   Take the first `k = 2` elements `[0, 1]` which has MEX = 2. Current `result = [2]`.\n*   Remaining array `[0]` has MEX = 1. Thus, the final `result = [2, 1]`.\n\n**Example 2:**\n\n**Input:** nums = \\[1,0,2\\]\n\n**Output:** \\[3\\]\n\n**Explanation:**\n\n*   Take the first `k = 3` elements `[1, 0, 2]` which has MEX = 3.\n*   `nums` is now empty. Thus, the final `result = [3]`.\n\n**Example 3:**\n\n**Input:** nums = \\[3,1\\]\n\n**Output:** \\[0,0\\]\n\n**Explanation:**​​​​​​​\n\n*   Take `k = 1`, first element `[3]` has MEX = 0. Current `result = [0]`.\n*   Remaining array `[1]` has MEX = 0. Thus, the final `result = [0, 0]`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `0 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "0 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [0,1,0]",
+      "output": "[2,1]",
+      "explanation": "Take the first k = 2 elements [0, 1] which has MEX = 2. Current result = [2].\n\tRemaining array [0] has MEX = 1. Thus, the final result = [2, 1]."
+    },
+    {
+      "input": "nums = [1,0,2]",
+      "output": "[3]",
+      "explanation": "Take the first k = 3 elements [1, 0, 2] which has MEX = 3.\n\tnums is now empty. Thus, the final result = [3]."
+    },
+    {
+      "input": "nums = [3,1]",
+      "output": "[0,0]",
+      "explanation": "​​​​​​​\n\n\n\tTake k = 1, first element [3] has MEX = 0. Current result = [0].\n\tRemaining array [1] has MEX = 0. Thus, the final result = [0, 0]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> maximumMEX(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] maximumMEX(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumMEX(self, nums: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def maximumMEX(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar maximumMEX = function(nums) {\n    \n};",
+    "typescript": "function maximumMEX(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MaximumMEX(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* maximumMEX(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func maximumMEX(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumMEX(nums: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumMEX(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_mex(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef maximum_mex(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function maximumMEX($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> maximumMEX(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumMEX(nums: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_mex(nums :: [integer]) :: [integer]\n  def maximum_mex(nums) do\n    \n  end\nend",
+    "erlang": "-spec maximum_mex(Nums :: [integer()]) -> [integer()].\nmaximum_mex(Nums) ->\n  .",
+    "racket": "(define/contract (maximum-mex nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[0,1,0]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[1,0,2]",
+      "expectedOutput": "[3]"
+    },
+    {
+      "input": "[3,1]",
+      "expectedOutput": "[0,0]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[0,1,0]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[1,0,2]",
+      "expectedOutput": "[3]"
+    },
+    {
+      "input": "[3,1]",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "nums = [0,1,0]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "nums = [1,0,2]",
+      "expectedOutput": "[3]"
+    },
+    {
+      "input": "nums = [3,1]",
+      "expectedOutput": "[0,0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "At any step, the best next value is the MEX of the entire remaining suffix. You cannot make the first result element larger than that.",
+    "If the current suffix MEX is <code>x</code>, you should take the shortest prefix that contains all values <code>0, 1, ..., x - 1</code>. This appends <code>x</code> while leaving as many elements as possible for later.",
+    "If the current suffix MEX is 0, then no remaining element is 0, so taking one element at a time is optimal and appends many 0s.",
+    "Maintain remaining frequencies to know the current suffix MEX, and use a sliding process to find the shortest prefix containing all numbers below it."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/lexicographically-maximum-mex-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.194Z",
+    "sourceUpdatedAt": null
+  }
+}

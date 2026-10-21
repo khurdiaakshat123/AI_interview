@@ -1,0 +1,59 @@
+{
+  "id": "182",
+  "slug": "duplicate-emails",
+  "title": "Duplicate Emails",
+  "category": "database",
+  "subcategory": "null-handling",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Person`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| id          | int     |\n| email       | varchar |\n+-------------+---------+\nid is the primary key (column with unique values) for this table.\nEach row of this table contains an email. The emails will not contain uppercase letters.\n```\n\nWrite a solution to report all the duplicate emails. Note that it's guaranteed that the email field is not NULL.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nPerson table:\n+----+---------+\n| id | email   |\n+----+---------+\n| 1  | a@b.com |\n| 2  | c@d.com |\n| 3  | a@b.com |\n+----+---------+\nOutput: \n+---------+\n| Email   |\n+---------+\n| a@b.com |\n+---------+\nExplanation: a@b.com is repeated two times.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Person table:\n+----+---------+\n| id | email   |\n+----+---------+\n| 1  | a@b.com |\n| 2  | c@d.com |\n| 3  | a@b.com |\n+----+---------+",
+      "output": "+---------+\n| Email   |\n+---------+\n| a@b.com |\n+---------+",
+      "explanation": "a@b.com is repeated two times."
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef duplicate_emails(person: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\": {\"Person\": [\"id\", \"email\"]}, \"rows\": {\"Person\": [[1, \"a@b.com\"], [2, \"c@d.com\"], [3, \"a@b.com\"]]}}",
+      "expectedOutput": "+---------+\n| Email   |\n+---------+\n| a@b.com |\n+---------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\": {\"Person\": [\"id\", \"email\"]}, \"rows\": {\"Person\": [[1, \"a@b.com\"], [2, \"c@d.com\"], [3, \"a@b.com\"]]}}",
+      "expectedOutput": "+---------+\n| Email   |\n+---------+\n| a@b.com |\n+---------+"
+    },
+    {
+      "input": "Person table:\n+----+---------+\n| id | email   |\n+----+---------+\n| 1  | a@b.com |\n| 2  | c@d.com |\n| 3  | a@b.com |\n+----+---------+",
+      "expectedOutput": "+---------+\n| Email   |\n+---------+\n| a@b.com |\n+---------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Person (id int, email varchar(255))\n\nTruncate table Person",
+  "sqlSetup": [
+    "insert into Person (id, email) values ('1', 'a@b.com')",
+    "insert into Person (id, email) values ('2', 'c@d.com')",
+    "insert into Person (id, email) values ('3', 'a@b.com')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/duplicate-emails/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.898Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "id": "2027",
+  "slug": "minimum-moves-to-convert-string",
+  "title": "Minimum Moves to Convert String",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Easy",
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "statement": "You are given a string `s` consisting of `n` characters which are either `'X'` or `'O'`.\n\nA **move** is defined as selecting **three** **consecutive characters** of `s` and converting them to `'O'`. Note that if a move is applied to the character `'O'`, it will stay the **same**.\n\nReturn _the **minimum** number of moves required so that all the characters of_ `s` _are converted to_ `'O'`.\n\n**Example 1:**\n\n```\nInput: s = \"XXX\"\nOutput: 1\nExplanation: XXX -> OOO\nWe select all the 3 characters and convert them in one move.\n```\n\n**Example 2:**\n\n```\n'O'\n```\n\n**Example 3:**\n\n```\n'X's\n```\n\n**Constraints:**\n\n*   `3 <= s.length <= 1000`\n*   `s[i]` is either `'X'` or `'O'`.",
+  "constraints": [
+    "3 <= s.length <= 1000",
+    "s[i] is either 'X' or 'O'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"XXX\"",
+      "output": "1",
+      "explanation": "XXX -> OOO\nWe select all the 3 characters and convert them in one move."
+    },
+    {
+      "input": "s = \"XXOX\"",
+      "output": "2",
+      "explanation": "XXOX -> OOOX -> OOOO\nWe select the first 3 characters in the first move, and convert them to 'O'.\nThen we select the last 3 characters and convert them so that the final string contains all 'O's."
+    },
+    {
+      "input": "s = \"OOOO\"",
+      "output": "0",
+      "explanation": "There are no 'X's in s to convert."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumMoves(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumMoves(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumMoves(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumMoves(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minimumMoves = function(s) {\n    \n};",
+    "typescript": "function minimumMoves(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumMoves(string s) {\n        \n    }\n}",
+    "c": "int minimumMoves(char* s) {\n    \n}",
+    "golang": "func minimumMoves(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumMoves(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumMoves(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_moves(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef minimum_moves(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minimumMoves($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumMoves(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumMoves(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_moves(s :: String.t) :: integer\n  def minimum_moves(s) do\n    \n  end\nend",
+    "erlang": "-spec minimum_moves(S :: unicode:unicode_binary()) -> integer().\nminimum_moves(S) ->\n  .",
+    "racket": "(define/contract (minimum-moves s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"XXX\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"XXOX\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"OOOO\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"XXX\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"XXOX\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"OOOO\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"X\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"XX\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"XXXXXX\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"xxx\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find the smallest substring you need to consider at a time.",
+    "Try delaying a move as long as possible."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-moves-to-convert-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.119Z",
+    "sourceUpdatedAt": null
+  }
+}

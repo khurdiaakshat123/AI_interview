@@ -1,0 +1,166 @@
+{
+  "id": "1839",
+  "slug": "longest-substring-of-all-vowels-in-order",
+  "title": "Longest Substring Of All Vowels in Order",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "A string is considered **beautiful** if it satisfies the following conditions:\n\n*   Each of the 5 English vowels (`'a'`, `'e'`, `'i'`, `'o'`, `'u'`) must appear **at least once** in it.\n*   The letters must be sorted in **alphabetical order** (i.e. all `'a'`s before `'e'`s, all `'e'`s before `'i'`s, etc.).\n\nFor example, strings `\"aeiou\"` and `\"aaaaaaeiiiioou\"` are considered **beautiful**, but `\"uaeio\"`, `\"aeoiu\"`, and `\"aaaeeeooo\"` are **not beautiful**.\n\nGiven a string `word` consisting of English vowels, return _the **length of the longest beautiful substring** of_ `word`_. If no such substring exists, return_ `0`.\n\nA **substring** is a contiguous sequence of characters in a string.\n\n**Example 1:**\n\n```\nInput: word = \"aeiaaioaaaaeiiiiouuuooaauuaeiu\"\nOutput: 13\nExplanation: The longest beautiful substring in word is \"aaaaeiiiiouuu\" of length 13.\n```\n\n**Example 2:**\n\n```\nInput: word = \"aeeeiiiioooauuuaeiou\"\nOutput: 5\nExplanation: The longest beautiful substring in word is \"aeiou\" of length 5.\n```\n\n**Example 3:**\n\n```\nInput: word = \"a\"\nOutput: 0\nExplanation: There is no beautiful substring, so return 0.\n```\n\n**Constraints:**\n\n*   `1 <= word.length <= 5 * 10^(5)`\n*   `word` consists of characters `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.",
+  "constraints": [
+    "1 <= word.length <= 5 * 105",
+    "word consists of characters 'a', 'e', 'i', 'o', and 'u'."
+  ],
+  "examples": [
+    {
+      "input": "word = \"aeiaaioaaaaeiiiiouuuooaauuaeiu\"",
+      "output": "13",
+      "explanation": "The longest beautiful substring in word is \"aaaaeiiiiouuu\" of length 13."
+    },
+    {
+      "input": "word = \"aeeeiiiioooauuuaeiou\"",
+      "output": "5",
+      "explanation": "The longest beautiful substring in word is \"aeiou\" of length 5."
+    },
+    {
+      "input": "word = \"a\"",
+      "output": "0",
+      "explanation": "There is no beautiful substring, so return 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestBeautifulSubstring(string word) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestBeautifulSubstring(String word) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestBeautifulSubstring(self, word: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestBeautifulSubstring(self, word):\n        \"\"\"\n        :type word: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word\n * @return {number}\n */\nvar longestBeautifulSubstring = function(word) {\n    \n};",
+    "typescript": "function longestBeautifulSubstring(word: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestBeautifulSubstring(string word) {\n        \n    }\n}",
+    "c": "int longestBeautifulSubstring(char* word) {\n    \n}",
+    "golang": "func longestBeautifulSubstring(word string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestBeautifulSubstring(word: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestBeautifulSubstring(_ word: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_beautiful_substring(word: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} word\n# @return {Integer}\ndef longest_beautiful_substring(word)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word\n     * @return Integer\n     */\n    function longestBeautifulSubstring($word) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestBeautifulSubstring(String word) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestBeautifulSubstring(word: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_beautiful_substring(word :: String.t) :: integer\n  def longest_beautiful_substring(word) do\n    \n  end\nend",
+    "erlang": "-spec longest_beautiful_substring(Word :: unicode:unicode_binary()) -> integer().\nlongest_beautiful_substring(Word) ->\n  .",
+    "racket": "(define/contract (longest-beautiful-substring word)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aeiaaioaaaaeiiiiouuuooaauuaeiu\"",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "\"aeeeiiiioooauuuaeiou\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aeiaaioaaaaeiiiiouuuooaauuaeiu\"",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "\"aeeeiiiioooauuuaeiou\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aeiaaioaaaaeiii\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"iouuuooaauuaeiu\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ae\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"uieauuaaoouuuoiiiieaaaaoiaaiea\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"AEIAAIOAAAAEIIIIOUUUOOAAUUAEIU\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Start from each 'a' and find the longest beautiful substring starting at that index.",
+    "Based on the current character decide if you should include the next character in the beautiful substring."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-substring-of-all-vowels-in-order/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.703Z",
+    "sourceUpdatedAt": null
+  }
+}

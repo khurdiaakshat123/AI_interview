@@ -1,0 +1,109 @@
+{
+  "id": "4072",
+  "slug": "maximum-alternating-subarray-sum-with-one-deletion",
+  "title": "Maximum Alternating Subarray Sum With One Deletion",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Medium",
+  "tags": [],
+  "statement": "You are given an integer array `nums`.\n\nYou may delete **at most one** element from `nums`, then choose a **subarray** of the resulting array.\n\nReturn the **maximum** possible **alternating sum** of the chosen subarray.\n\nThe **alternating sum** of an array is the sum of its elements at even indices minus the sum of its elements at odd indices. The chosen subarray is **reindexed starting from 0** before calculating its alternating sum.\n\n**Example 1:**\n\n**Input:** nums = \\[5,-5,1\\]\n\n**Output:** 11\n\n**Explanation:**\n\nChoose not to delete an element and select the entire array. Its alternating sum is `5 - (-5) + 1 = 11`, which is the maximum possible.\n\n**Example 2:**\n\n**Input:** nums = \\[10,-5,-100\\]\n\n**Output:** 110\n\n**Explanation:**\n\nDelete `nums[1] = -5` to obtain `[10,-100]`, then select the entire resulting array. Its alternating sum is `10 - (-100) = 110`, which is the maximum possible.\n\n**Example 3:**\n\n**Input:** nums = \\[4,7\\]\n\n**Output:** 7\n\n**Explanation:**\n\nChoose not to delete an element and select the subarray `[7]`. Its alternating sum is 7, which is the maximum possible.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `-10^(5) <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-105 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [5,-5,1]",
+      "output": "11",
+      "explanation": null
+    },
+    {
+      "input": "nums = [10,-5,-100]",
+      "output": "110",
+      "explanation": null
+    },
+    {
+      "input": "nums = [4,7]",
+      "output": "7",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxAlternatingSum(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxAlternatingSum(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxAlternatingSum(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxAlternatingSum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxAlternatingSum = function(nums) {\n    \n};",
+    "typescript": "function maxAlternatingSum(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxAlternatingSum(int[] nums) {\n        \n    }\n}",
+    "c": "long long maxAlternatingSum(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxAlternatingSum(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxAlternatingSum(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxAlternatingSum(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_alternating_sum(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_alternating_sum(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxAlternatingSum($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxAlternatingSum(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxAlternatingSum(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_alternating_sum(nums :: [integer]) :: integer\n  def max_alternating_sum(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_alternating_sum(Nums :: [integer()]) -> integer().\nmax_alternating_sum(Nums) ->\n  .",
+    "racket": "(define/contract (max-alternating-sum nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[5,-5,1]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[10,-5,-100]",
+      "expectedOutput": "110"
+    },
+    {
+      "input": "[4,7]",
+      "expectedOutput": "7"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[5,-5,1]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[10,-5,-100]",
+      "expectedOutput": "110"
+    },
+    {
+      "input": "[4,7]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "nums = [5,-5,1]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "nums = [10,-5,-100]",
+      "expectedOutput": "110"
+    },
+    {
+      "input": "nums = [4,7]",
+      "expectedOutput": "7"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<strong>1a (Dynamic Programming)</strong>: Track the maximum alternating sum of a non-empty candidate using two properties: the parity of its retained length and whether a deletion has been used.",
+    "<strong>1b (Dynamic Programming)</strong>: Keeping the current element toggles the parity and adds or subtracts its value accordingly. Deleting it preserves the parity and uses the deletion. You can also start a new candidate with the current element.",
+    "<strong>2a (Prefix and Suffix Dynamic Programming)</strong>: If the deleted element lies inside the chosen subarray, the remaining elements form a left segment followed by a right segment. The right segment begins with a minus sign when the left segment has odd length, and a plus sign otherwise.",
+    "<strong>2b (Prefix and Suffix Dynamic Programming)</strong>: Precompute the best alternating sums of segments ending at each index for each length parity, and of segments starting at each index for each starting sign. Combine these across each possible deletion, and also consider the best subarray without deletion."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-alternating-subarray-sum-with-one-deletion/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.467Z",
+    "sourceUpdatedAt": null
+  }
+}

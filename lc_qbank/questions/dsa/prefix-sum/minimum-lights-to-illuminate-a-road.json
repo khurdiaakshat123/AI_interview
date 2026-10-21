@@ -1,0 +1,158 @@
+{
+  "id": "3964",
+  "slug": "minimum-lights-to-illuminate-a-road",
+  "title": "Minimum Lights to Illuminate a Road",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `lights` of length `n`, representing positions 0 through `n - 1` on a road.\n\nFor each position `i`:\n\n*   If `lights[i] = v`, where `v > 0`, there is a working bulb at position `i` that **illuminates** every position from `max(0, i - v)` to `min(n - 1, i + v)`, inclusive.\n*   If `lights[i] = 0`, there is no working bulb at position `i`.\n\nA position is **visible** if it is illuminated by **at least** one working bulb.\n\nYou may install **additional** bulbs at **any** positions. Each additional bulb installed at position `j` **illuminates** positions from `max(0, j - 1)` to `min(n - 1, j + 1)`, inclusive.\n\nReturn the minimum number of additional bulbs required to make **every** position on the road visible.\n\n**Example 1:**\n\n**Input:** lights = \\[0,0,0,0\\]\n\n**Output:** 2\n\n**Explanation:**\n\nOne optimal placement is:\n\n*   Install an additional bulb at position 1, illuminating positions `[0, 1, 2]`.\n*   Install an additional bulb at position 3, illuminating positions `[2, 3]`.\n\nTherefore, the minimum number of additional bulbs required is 2.\n\n**Example 2:**\n\n**Input:** lights = \\[0,0,0,2,0\\]\n\n**Output:** 1\n\n**Explanation:**\n\n*   Since `lights[3] = 2`, the working bulb at position 3 illuminates positions `[1, 2, 3, 4]`.\n*   Installing an additional bulb at position 1 illuminates positions `[0, 1, 2]`, making every position visible.\n*   Therefore, the minimum number of additional bulbs required is 1.\n\n**Constraints:**\n\n*   `1 <= n == lights.length <= 10^(5)`\n*   `0 <= lights[i] <= n`",
+  "constraints": [
+    "1 <= n == lights.length <= 105",
+    "0 <= lights[i] <= n"
+  ],
+  "examples": [
+    {
+      "input": "lights = [0,0,0,0]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "lights = [0,0,0,2,0]",
+      "output": "1",
+      "explanation": "Since lights[3] = 2, the working bulb at position 3 illuminates positions [1, 2, 3, 4].\n\tInstalling an additional bulb at position 1 illuminates positions [0, 1, 2], making every position visible.\n\tTherefore, the minimum number of additional bulbs required is 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minLights(vector<int>& lights) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minLights(int[] lights) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minLights(self, lights: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minLights(self, lights):\n        \"\"\"\n        :type lights: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} lights\n * @return {number}\n */\nvar minLights = function(lights) {\n    \n};",
+    "typescript": "function minLights(lights: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinLights(int[] lights) {\n        \n    }\n}",
+    "c": "int minLights(int* lights, int lightsSize) {\n    \n}",
+    "golang": "func minLights(lights []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minLights(lights: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minLights(_ lights: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_lights(lights: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} lights\n# @return {Integer}\ndef min_lights(lights)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $lights\n     * @return Integer\n     */\n    function minLights($lights) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minLights(List<int> lights) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minLights(lights: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_lights(lights :: [integer]) :: integer\n  def min_lights(lights) do\n    \n  end\nend",
+    "erlang": "-spec min_lights(Lights :: [integer()]) -> integer().\nmin_lights(Lights) ->\n  .",
+    "racket": "(define/contract (min-lights lights)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0,2,0]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0,2,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,0,0,0,0,0,0]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-1,-1,-1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,4,5]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,4,3,2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-5,-4,-3,-2,-1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "First mark all positions already visible from the existing working bulbs.",
+    "Then scan the road from left to right. Whenever you find the first invisible position <code>i</code>, install a new bulb as far right as possible while still covering <code>i</code>.",
+    "Since each additional bulb covers distance 1, the best position is usually <code>i + 1</code>, unless it goes out of bounds. After placing it, skip all positions it covers."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-lights-to-illuminate-a-road/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.077Z",
+    "sourceUpdatedAt": null
+  }
+}

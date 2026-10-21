@@ -1,0 +1,165 @@
+{
+  "id": "3378",
+  "slug": "count-connected-components-in-lcm-graph",
+  "title": "Count Connected Components in LCM Graph",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Union-Find",
+    "Number Theory",
+    "Least Common Multiple",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "statement": "You are given an array of integers `nums` of size `n` and a **positive** integer `threshold`.\n\nThere is a graph consisting of `n` nodes with the `i^(th)` node having a value of `nums[i]`. Two nodes `i` and `j` in the graph are connected via an **undirected** edge if `lcm(nums[i], nums[j]) <= threshold`.\n\nReturn the number of **connected components** in this graph.\n\nA **connected component** is a subgraph of a graph in which there exists a path between any two vertices, and no vertex of the subgraph shares an edge with a vertex outside of the subgraph.\n\nThe term `lcm(a, b)` denotes the **least common multiple** of `a` and `b`.\n\n**Example 1:**\n\n**Input:** nums = \\[2,4,8,3,9\\], threshold = 5\n\n**Output:** 4\n\n**Explanation:** \n\n![](./assets/count-connected-components-in-lcm-graph-1.png)\n\nThe four connected components are `(2, 4)`, `(3)`, `(8)`, `(9)`.\n\n**Example 2:**\n\n**Input:** nums = \\[2,4,8,3,9,12\\], threshold = 10\n\n**Output:** 2\n\n**Explanation:** \n\n![](./assets/count-connected-components-in-lcm-graph-2.png)\n\nThe two connected components are `(2, 3, 4, 8, 9)`, and `(12)`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`\n*   All elements of `nums` are unique.\n*   `1 <= threshold <= 2 * 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 109",
+    "All elements of nums are unique.",
+    "1 <= threshold <= 2 * 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,4,8,3,9], threshold = 5",
+      "output": "4",
+      "explanation": " "
+    },
+    {
+      "input": "nums = [2,4,8,3,9,12], threshold = 10",
+      "output": "2",
+      "explanation": " "
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countComponents(vector<int>& nums, int threshold) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countComponents(int[] nums, int threshold) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countComponents(self, nums: List[int], threshold: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countComponents(self, nums, threshold):\n        \"\"\"\n        :type nums: List[int]\n        :type threshold: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} threshold\n * @return {number}\n */\nvar countComponents = function(nums, threshold) {\n    \n};",
+    "typescript": "function countComponents(nums: number[], threshold: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountComponents(int[] nums, int threshold) {\n        \n    }\n}",
+    "c": "int countComponents(int* nums, int numsSize, int threshold) {\n    \n}",
+    "golang": "func countComponents(nums []int, threshold int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countComponents(nums: IntArray, threshold: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countComponents(_ nums: [Int], _ threshold: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_components(nums: Vec<i32>, threshold: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} threshold\n# @return {Integer}\ndef count_components(nums, threshold)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $threshold\n     * @return Integer\n     */\n    function countComponents($nums, $threshold) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countComponents(List<int> nums, int threshold) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countComponents(nums: Array[Int], threshold: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_components(nums :: [integer], threshold :: integer) :: integer\n  def count_components(nums, threshold) do\n    \n  end\nend",
+    "erlang": "-spec count_components(Nums :: [integer()], Threshold :: integer()) -> integer().\ncount_components(Nums, Threshold) ->\n  .",
+    "racket": "(define/contract (count-components nums threshold)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,4,8,3,9]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,4,8,3,9,12]\n10",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,4,8,3,9]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,4,8,3,9,12]\n10",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[8,3,9]\n5",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,9]\n5",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[9,3,8,4,2]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,3,4,8,9]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[9,8,4,3,2]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,2,2,2,2]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4,8,3,9,2,4,8,3,9]\n5",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,8,16,6,18]\n5",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[3,5,9,4,10]\n5",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,3,7,2,8]\n5",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1,1]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1]\n5",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3]\n5",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use DSU",
+    "Connect a number to all its multiples less than threshold"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-connected-components-in-lcm-graph/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.041Z",
+    "sourceUpdatedAt": null
+  }
+}

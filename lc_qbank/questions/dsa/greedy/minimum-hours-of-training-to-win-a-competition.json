@@ -1,0 +1,158 @@
+{
+  "id": "2383",
+  "slug": "minimum-hours-of-training-to-win-a-competition",
+  "title": "Minimum Hours of Training to Win a Competition",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "statement": "You are entering a competition, and are given two **positive** integers `initialEnergy` and `initialExperience` denoting your initial energy and initial experience respectively.\n\nYou are also given two **0-indexed** integer arrays `energy` and `experience`, both of length `n`.\n\nYou will face `n` opponents **in order**. The energy and experience of the `i^(th)` opponent is denoted by `energy[i]` and `experience[i]` respectively. When you face an opponent, you need to have both **strictly** greater experience and energy to defeat them and move to the next opponent if available.\n\nDefeating the `i^(th)` opponent **increases** your experience by `experience[i]`, but **decreases** your energy by `energy[i]`.\n\nBefore starting the competition, you can train for some number of hours. After each hour of training, you can **either** choose to increase your initial experience by one, or increase your initial energy by one.\n\nReturn _the **minimum** number of training hours required to defeat all_ `n` _opponents_.\n\n**Example 1:**\n\n```\nInput: initialEnergy = 5, initialExperience = 3, energy = [1,4,3,2], experience = [2,6,3,1]\nOutput: 8\nExplanation: You can increase your energy to 11 after 6 hours of training, and your experience to 5 after 2 hours of training.\nYou face the opponents in the following order:\n- You have more energy and experience than the 0th opponent so you win.\n  Your energy becomes 11 - 1 = 10, and your experience becomes 5 + 2 = 7.\n- You have more energy and experience than the 1st opponent so you win.\n  Your energy becomes 10 - 4 = 6, and your experience becomes 7 + 6 = 13.\n- You have more energy and experience than the 2nd opponent so you win.\n  Your energy becomes 6 - 3 = 3, and your experience becomes 13 + 3 = 16.\n- You have more energy and experience than the 3rd opponent so you win.\n  Your energy becomes 3 - 2 = 1, and your experience becomes 16 + 1 = 17.\nYou did a total of 6 + 2 = 8 hours of training before the competition, so we return 8.\nIt can be proven that no smaller answer exists.\n```\n\n**Example 2:**\n\n```\nInput: initialEnergy = 2, initialExperience = 4, energy = [1], experience = [3]\nOutput: 0\nExplanation: You do not need any additional energy or experience to win the competition, so we return 0.\n```\n\n**Constraints:**\n\n*   `n == energy.length == experience.length`\n*   `1 <= n <= 100`\n*   `1 <= initialEnergy, initialExperience, energy[i], experience[i] <= 100`",
+  "constraints": [
+    "n == energy.length == experience.length",
+    "1 <= n <= 100",
+    "1 <= initialEnergy, initialExperience, energy[i], experience[i] <= 100"
+  ],
+  "examples": [
+    {
+      "input": "initialEnergy = 5, initialExperience = 3, energy = [1,4,3,2], experience = [2,6,3,1]",
+      "output": "8",
+      "explanation": "You can increase your energy to 11 after 6 hours of training, and your experience to 5 after 2 hours of training.\nYou face the opponents in the following order:\n- You have more energy and experience than the 0th opponent so you win.\n  Your energy becomes 11 - 1 = 10, and your experience becomes 5 + 2 = 7.\n- You have more energy and experience than the 1st opponent so you win.\n  Your energy becomes 10 - 4 = 6, and your experience becomes 7 + 6 = 13.\n- You have more energy and experience than the 2nd opponent so you win.\n  Your energy becomes 6 - 3 = 3, and your experience becomes 13 + 3 = 16.\n- You have more energy and experience than the 3rd opponent so you win.\n  Your energy becomes 3 - 2 = 1, and your experience becomes 16 + 1 = 17.\nYou did a total of 6 + 2 = 8 hours of training before the competition, so we return 8.\nIt can be proven that no smaller answer exists."
+    },
+    {
+      "input": "initialEnergy = 2, initialExperience = 4, energy = [1], experience = [3]",
+      "output": "0",
+      "explanation": "You do not need any additional energy or experience to win the competition, so we return 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minNumberOfHours(int initialEnergy, int initialExperience, vector<int>& energy, vector<int>& experience) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minNumberOfHours(int initialEnergy, int initialExperience, int[] energy, int[] experience) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minNumberOfHours(self, initialEnergy: int, initialExperience: int, energy: list[int], experience: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minNumberOfHours(self, initialEnergy, initialExperience, energy, experience):\n        \"\"\"\n        :type initialEnergy: int\n        :type initialExperience: int\n        :type energy: List[int]\n        :type experience: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} initialEnergy\n * @param {number} initialExperience\n * @param {number[]} energy\n * @param {number[]} experience\n * @return {number}\n */\nvar minNumberOfHours = function(initialEnergy, initialExperience, energy, experience) {\n    \n};",
+    "typescript": "function minNumberOfHours(initialEnergy: number, initialExperience: number, energy: number[], experience: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinNumberOfHours(int initialEnergy, int initialExperience, int[] energy, int[] experience) {\n        \n    }\n}",
+    "c": "int minNumberOfHours(int initialEnergy, int initialExperience, int* energy, int energySize, int* experience, int experienceSize) {\n    \n}",
+    "golang": "func minNumberOfHours(initialEnergy int, initialExperience int, energy []int, experience []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minNumberOfHours(initialEnergy: Int, initialExperience: Int, energy: IntArray, experience: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minNumberOfHours(_ initialEnergy: Int, _ initialExperience: Int, _ energy: [Int], _ experience: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_number_of_hours(initial_energy: i32, initial_experience: i32, energy: Vec<i32>, experience: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} initial_energy\n# @param {Integer} initial_experience\n# @param {Integer[]} energy\n# @param {Integer[]} experience\n# @return {Integer}\ndef min_number_of_hours(initial_energy, initial_experience, energy, experience)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $initialEnergy\n     * @param Integer $initialExperience\n     * @param Integer[] $energy\n     * @param Integer[] $experience\n     * @return Integer\n     */\n    function minNumberOfHours($initialEnergy, $initialExperience, $energy, $experience) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minNumberOfHours(int initialEnergy, int initialExperience, List<int> energy, List<int> experience) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minNumberOfHours(initialEnergy: Int, initialExperience: Int, energy: Array[Int], experience: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_number_of_hours(initial_energy :: integer, initial_experience :: integer, energy :: [integer], experience :: [integer]) :: integer\n  def min_number_of_hours(initial_energy, initial_experience, energy, experience) do\n    \n  end\nend",
+    "erlang": "-spec min_number_of_hours(InitialEnergy :: integer(), InitialExperience :: integer(), Energy :: [integer()], Experience :: [integer()]) -> integer().\nmin_number_of_hours(InitialEnergy, InitialExperience, Energy, Experience) ->\n  .",
+    "racket": "(define/contract (min-number-of-hours initialEnergy initialExperience energy experience)\n  (-> exact-integer? exact-integer? (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "5\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "2\n4\n[1]\n[3]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "5\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "2\n4\n[1]\n[3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "0\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "1\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "2\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "3\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "4\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "6\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "7\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "8\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "9\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "-1\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "-2\n3\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "5\n0\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "5\n1\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "5\n2\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "5\n4\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "5\n5\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "5\n6\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "5\n7\n[1,4,3,2]\n[2,6,3,1]",
+      "expectedOutput": "6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find the minimum number of training hours needed for the energy and experience separately, and sum the results.",
+    "Try to increase the energy and experience until you find how much is enough to win the competition."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-hours-of-training-to-win-a-competition/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.958Z",
+    "sourceUpdatedAt": null
+  }
+}

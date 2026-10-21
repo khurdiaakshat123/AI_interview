@@ -1,0 +1,159 @@
+{
+  "id": "2719",
+  "slug": "count-of-integers",
+  "title": "Count of Integers",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Math",
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given two numeric strings `num1` and `num2` and two integers `max_sum` and `min_sum`. We denote an integer `x` to be _good_ if:\n\n*   `num1 <= x <= num2`\n*   `min_sum <= digit_sum(x) <= max_sum`.\n\nReturn _the number of good integers_. Since the answer may be large, return it modulo `10^(9) + 7`.\n\nNote that `digit_sum(x)` denotes the sum of the digits of `x`.\n\n**Example 1:**\n\n```\nmin_sum\n```\n\n**Example 2:**\n\n```\nmin_sum\n```\n\n**Constraints:**\n\n*   `1 <= num1 <= num2 <= 10^(22)`\n*   `1 <= min_sum <= max_sum <= 400`",
+  "constraints": [
+    "1 <= num1 <= num2 <= 1022",
+    "1 <= min_sum <= max_sum <= 400"
+  ],
+  "examples": [
+    {
+      "input": "num1 = \"1\", num2 = \"12\", min_sum = 1, max_sum = 8",
+      "output": "11",
+      "explanation": "There are 11 integers whose sum of digits lies between 1 and 8 are 1,2,3,4,5,6,7,8,10,11, and 12. Thus, we return 11."
+    },
+    {
+      "input": "num1 = \"1\", num2 = \"5\", min_sum = 1, max_sum = 5",
+      "output": "5",
+      "explanation": "The 5 integers whose sum of digits lies between 1 and 5 are 1,2,3,4, and 5. Thus, we return 5."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int count(string num1, string num2, int min_sum, int max_sum) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int count(String num1, String num2, int min_sum, int max_sum) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def count(self, num1: str, num2: str, min_sum: int, max_sum: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def count(self, num1, num2, min_sum, max_sum):\n        \"\"\"\n        :type num1: str\n        :type num2: str\n        :type min_sum: int\n        :type max_sum: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num1\n * @param {string} num2\n * @param {number} min_sum\n * @param {number} max_sum\n * @return {number}\n */\nvar count = function(num1, num2, min_sum, max_sum) {\n    \n};",
+    "typescript": "function count(num1: string, num2: string, min_sum: number, max_sum: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int Count(string num1, string num2, int min_sum, int max_sum) {\n        \n    }\n}",
+    "c": "int count(char* num1, char* num2, int min_sum, int max_sum) {\n    \n}",
+    "golang": "func count(num1 string, num2 string, min_sum int, max_sum int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun count(num1: String, num2: String, min_sum: Int, max_sum: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func count(_ num1: String, _ num2: String, _ min_sum: Int, _ max_sum: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count(num1: String, num2: String, min_sum: i32, max_sum: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} num1\n# @param {String} num2\n# @param {Integer} min_sum\n# @param {Integer} max_sum\n# @return {Integer}\ndef count(num1, num2, min_sum, max_sum)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num1\n     * @param String $num2\n     * @param Integer $min_sum\n     * @param Integer $max_sum\n     * @return Integer\n     */\n    function count($num1, $num2, $min_sum, $max_sum) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int count(String num1, String num2, int min_sum, int max_sum) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def count(num1: String, num2: String, min_sum: Int, max_sum: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count(num1 :: String.t, num2 :: String.t, min_sum :: integer, max_sum :: integer) :: integer\n  def count(num1, num2, min_sum, max_sum) do\n    \n  end\nend",
+    "erlang": "-spec count(Num1 :: unicode:unicode_binary(), Num2 :: unicode:unicode_binary(), Min_sum :: integer(), Max_sum :: integer()) -> integer().\ncount(Num1, Num2, Min_sum, Max_sum) ->\n  .",
+    "racket": "(define/contract (count num1 num2 min_sum max_sum)\n  (-> string? string? exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"1\"\n\"12\"\n1\n8",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "\"1\"\n\"5\"\n1\n5",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"1\"\n\"12\"\n1\n8",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "\"1\"\n\"5\"\n1\n5",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"11\"\n\"12\"\n1\n8",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"121\"\n\"12\"\n1\n8",
+      "expectedOutput": "999999958"
+    },
+    {
+      "input": "\"1\"\n\"1\"\n1\n8",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1\"\n\"2\"\n1\n8",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"1\"\n\"21\"\n1\n8",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "\"1\"\n\"1212\"\n1\n8",
+      "expectedOutput": "237"
+    },
+    {
+      "input": "\"1\"\n\"11\"\n1\n8",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"1\"\n\"1221\"\n1\n8",
+      "expectedOutput": "241"
+    },
+    {
+      "input": "\"1\"\n\"0\"\n1\n8",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"1\"\n\"121\"\n1\n8",
+      "expectedOutput": "61"
+    },
+    {
+      "input": "\"1\"\n\"12\"\n0\n8",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "\"1\"\n\"12\"\n2\n8",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "\"1\"\n\"12\"\n3\n8",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "\"1\"\n\"12\"\n4\n8",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"1\"\n\"12\"\n5\n8",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"1\"\n\"12\"\n6\n8",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"1\"\n\"12\"\n-1\n8",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "\"1\"\n\"12\"\n-2\n8",
+      "expectedOutput": "11"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let f(n, l, r) denotes the number of integers from 1 to n with the sum of digits between l and r.",
+    "The answer is f(num2, min_sum, max_sum) - f(num1-1, min_sum, max_sum).",
+    "You can calculate f(n, l, r) using digit dp."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-of-integers/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.393Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "id": "2705",
+  "slug": "compact-object",
+  "title": "Compact Object",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Medium",
+  "tags": [],
+  "statement": "Given an object or array `obj`, return a **compact object**.\n\nA **compact object** is the same as the original object, except with keys containing **falsy** values removed. This operation applies to the object and any nested objects. Arrays are considered objects where the indices are keys. A value is considered **falsy** when `Boolean(value)` returns `false`.\n\nYou may assume the `obj` is the output of `JSON.parse`. In other words, it is valid JSON.\n\n**Example 1:**\n\n```\nInput: obj = [null, 0, false, 1]\nOutput: [1]\nExplanation: All falsy values have been removed from the array.\n```\n\n**Example 2:**\n\n```\nInput: obj = {\"a\": null, \"b\": [false, 1]}\nOutput: {\"b\": [1]}\nExplanation: obj[\"a\"] and obj[\"b\"][0] had falsy values and were removed.\n```\n\n**Example 3:**\n\n```\nInput: obj = [null, 0, 5, [0], [false, 16]]\nOutput: [5, [], [16]]\nExplanation: obj[0], obj[1], obj[3][0], and obj[4][0] were falsy and removed.\n```\n\n**Constraints:**\n\n*   `obj` is a valid JSON object\n*   `2 <= JSON.stringify(obj).length <= 10^(6)`",
+  "constraints": [
+    "obj is a valid JSON object",
+    "2 <= JSON.stringify(obj).length <= 106"
+  ],
+  "examples": [
+    {
+      "input": "obj = [null, 0, false, 1]",
+      "output": "[1]",
+      "explanation": "All falsy values have been removed from the array."
+    },
+    {
+      "input": "obj = {\"a\": null, \"b\": [false, 1]}",
+      "output": "{\"b\": [1]}",
+      "explanation": "obj[\"a\"] and obj[\"b\"][0] had falsy values and were removed."
+    },
+    {
+      "input": "obj = [null, 0, 5, [0], [false, 16]]",
+      "output": "[5, [], [16]]",
+      "explanation": "obj[0], obj[1], obj[3][0], and obj[4][0] were falsy and removed."
+    }
+  ],
+  "starterCode": {
+    "javascript": "/**\n * @param {Object|Array} obj\n * @return {Object|Array}\n */\nvar compactObject = function(obj) {\n    \n};",
+    "typescript": "type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };\ntype Obj = Record<string, JSONValue> | Array<JSONValue>;\n\nfunction compactObject(obj: Obj): Obj {\n    \n};"
+  },
+  "publicTests": [
+    {
+      "input": "[null, 0, false, 1]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "{\"a\": null, \"b\": [false, 1]}",
+      "expectedOutput": "{\"b\": [1]}"
+    },
+    {
+      "input": "[null, 0, 5, [0], [false, 16]]",
+      "expectedOutput": "[5, [], [16]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[null, 0, false, 1]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "{\"a\": null, \"b\": [false, 1]}",
+      "expectedOutput": "{\"b\": [1]}"
+    },
+    {
+      "input": "[null, 0, 5, [0], [false, 16]]",
+      "expectedOutput": "[5, [], [16]]"
+    },
+    {
+      "input": "obj = [null, 0, false, 1]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "obj = {\"a\": null, \"b\": [false, 1]}",
+      "expectedOutput": "{\"b\": [1]}"
+    },
+    {
+      "input": "obj = [null, 0, 5, [0], [false, 16]]",
+      "expectedOutput": "[5, [], [16]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/compact-object/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.554Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "id": "3906",
+  "slug": "count-good-integers-on-a-grid-path",
+  "title": "Count Good Integers on a Grid Path",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "statement": "You are given two integers `l` and `r`, and a string `directions` consisting of **exactly** three `'D'` characters and three `'R'` characters.\n\nFor each integer `x` in the range `[l, r]` (inclusive), perform the following steps:\n\n1.  If `x` has fewer than 16 digits, pad it on the left with **leading zeros** to obtain a 16-digit string.\n2.  Place the 16 digits into a `4 × 4` grid in **row-major** order (the first 4 digits form the first row from left to right, the next 4 digits form the second row, and so on).\n3.  Starting at the **top-left** cell (`row = 0`, `column = 0`), apply the 6 characters of `directions` in order:\n    *   `'D'` increments the row by 1.\n    *   `'R'` increments the column by 1.\n4.  Record the sequence of digits visited along the path (including the starting cell), producing a sequence of length 7.\n\nThe integer `x` is considered **good** if the recorded sequence is **non-decreasing**.\n\nReturn an integer representing the number of good integers in the range `[l, r]`.\n\n**Example 1:**\n\n**Input:** l = 8, r = 10, directions = \"DDDRRR\"\n\n**Output:** 2\n\n**Explanation:**\n\nThe grid for `x = 8`:\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n8\n\n*   Path: `(0,0) → (1,0) → (2,0) → (3,0) → (3,1) → (3,2) → (3,3)`\n*   The sequence of digits visited is `[0, 0, 0, 0, 0, 0, 8]`.\n*   As the sequence of digits visited is non-decreasing, 8 is a good integer.\n\nThe grid for `x = 9`:\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n9\n\n*   The sequence of digits visited is `[0, 0, 0, 0, 0, 0, 9]`.\n*   As the sequence of digits visited is non-decreasing, 9 is a good integer.\n\nThe grid for `x = 10`:\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n1\n\n0\n\n*   The sequence of digits visited is `[0, 0, 0, 0, 0, 1, 0]`.\n*   As the sequence of digits visited is not non-decreasing, 10 is not a good integer.\n*   Hence, only 8 and 9 are good, giving a total of 2 good integers in the range.\n\n**Example 2:**\n\n**Input:** l = 123456789, r = 123456790, directions = \"DDRRDR\"\n\n**Output:** 1\n\n**Explanation:**\n\nThe grid for `x = 123456789`:\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n*   Path: `(0,0) → (1,0) → (2,0) → (2,1) → (2,2) → (3,2) → (3,3)`\n*   The sequence of digits visited is `[0, 0, 2, 3, 4, 8, 9]`.\n*   As the sequence of digits visited is non-decreasing, 123456789 is a good integer.\n\nThe grid for `x = 123456790`:\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n9\n\n0\n\n*   The sequence of digits visited is `[0, 0, 2, 3, 4, 9, 0]`.\n*   As the sequence of digits visited is not non-decreasing, 123456790 is not a good integer.\n*   Hence, only 123456789 is good, giving a total of 1 good integer in the range.\n\n**Example 3:**\n\n**Input:** l = 1288561398769758, r = 1288561398769758, directions = \"RRRDDD\"\n\n**Output:** 0\n\n**Explanation:**\n\nThe grid for `x = 1288561398769758`:\n\n1\n\n2\n\n8\n\n8\n\n5\n\n6\n\n1\n\n3\n\n9\n\n8\n\n7\n\n6\n\n9\n\n7\n\n5\n\n8\n\n*   Path: `(0,0) → (0,1) → (0,2) → (0,3) → (1,3) → (2,3) → (3,3)`\n*   The sequence of digits visited is `[1, 2, 8, 8, 3, 6, 8]`.\n*   ​​​​​​​As the sequence of digits visited is not non-decreasing, 1288561398769758 is not a good integer.\n*   No numbers are good, giving a total of 0 good integers in the range.\n\n**Constraints:**\n\n*   `1 <= l <= r <= 9 × 10^(15)`\n*   `directions.length == 6`\n*   `directions` consists of **exactly** three `'D'` characters and three `'R'` characters.",
+  "constraints": [
+    "1 <= l <= r <= 9 × 1015",
+    "directions.length == 6",
+    "directions consists of exactly three 'D' characters and three 'R' characters."
+  ],
+  "examples": [
+    {
+      "input": "l = 8, r = 10, directions = \"DDDRRR\"",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "l = 123456789, r = 123456790, directions = \"DDRRDR\"",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "l = 1288561398769758, r = 1288561398769758, directions = \"RRRDDD\"",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long countGoodIntegersOnPath(long long l, long long r, string directions) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long countGoodIntegersOnPath(long l, long r, String directions) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countGoodIntegersOnPath(self, l: int, r: int, directions: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def countGoodIntegersOnPath(self, l, r, directions):\n        \"\"\"\n        :type l: int\n        :type r: int\n        :type directions: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} l\n * @param {number} r\n * @param {string} directions\n * @return {number}\n */\nvar countGoodIntegersOnPath = function(l, r, directions) {\n    \n};",
+    "typescript": "function countGoodIntegersOnPath(l: number, r: number, directions: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long CountGoodIntegersOnPath(long l, long r, string directions) {\n        \n    }\n}",
+    "c": "long long countGoodIntegersOnPath(long long l, long long r, char* directions) {\n    \n}",
+    "golang": "func countGoodIntegersOnPath(l int64, r int64, directions string) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun countGoodIntegersOnPath(l: Long, r: Long, directions: String): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countGoodIntegersOnPath(_ l: Int, _ r: Int, _ directions: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_good_integers_on_path(l: i64, r: i64, directions: String) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} l\n# @param {Integer} r\n# @param {String} directions\n# @return {Integer}\ndef count_good_integers_on_path(l, r, directions)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $l\n     * @param Integer $r\n     * @param String $directions\n     * @return Integer\n     */\n    function countGoodIntegersOnPath($l, $r, $directions) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countGoodIntegersOnPath(int l, int r, String directions) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countGoodIntegersOnPath(l: Long, r: Long, directions: String): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_good_integers_on_path(l :: integer, r :: integer, directions :: String.t) :: integer\n  def count_good_integers_on_path(l, r, directions) do\n    \n  end\nend",
+    "erlang": "-spec count_good_integers_on_path(L :: integer(), R :: integer(), Directions :: unicode:unicode_binary()) -> integer().\ncount_good_integers_on_path(L, R, Directions) ->\n  .",
+    "racket": "(define/contract (count-good-integers-on-path l r directions)\n  (-> exact-integer? exact-integer? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "8\n10\n\"DDDRRR\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "123456789\n123456790\n\"DDRRDR\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "1288561398769758\n1288561398769758\n\"RRRDDD\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "8\n10\n\"DDDRRR\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "123456789\n123456790\n\"DDRRDR\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "1288561398769758\n1288561398769758\n\"RRRDDD\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "0\n10\n\"DDDRRR\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "1\n10\n\"DDDRRR\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "2\n10\n\"DDDRRR\"",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "3\n10\n\"DDDRRR\"",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "4\n10\n\"DDDRRR\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "5\n10\n\"DDDRRR\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "6\n10\n\"DDDRRR\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "7\n10\n\"DDDRRR\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "9\n10\n\"DDDRRR\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "10\n10\n\"DDDRRR\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "-1\n10\n\"DDDRRR\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "-2\n10\n\"DDDRRR\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "8\n0\n\"DDDRRR\"",
+      "expectedOutput": "-7"
+    },
+    {
+      "input": "8\n1\n\"DDDRRR\"",
+      "expectedOutput": "-6"
+    },
+    {
+      "input": "8\n2\n\"DDDRRR\"",
+      "expectedOutput": "-5"
+    },
+    {
+      "input": "8\n3\n\"DDDRRR\"",
+      "expectedOutput": "-4"
+    },
+    {
+      "input": "8\n4\n\"DDDRRR\"",
+      "expectedOutput": "-3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Simulate the path to get the 7 increasing indices; since moves are only down/right, the visited positions are in left-to-right digit order, so you only need to check those 7 digits are non-decreasing.",
+    "Use digit dynamic programming with states <code>pos</code> (0..15), <code>tight</code> (0/1), <code>cnt</code> (how many path digits placed 0..7), and <code>prev</code> (previous path digit 0..9); when <code>pos</code> is a path index, require the chosen digit >= <code>prev</code> and advance <code>cnt</code>.",
+    "Compute <code>f(N)</code> = count of good numbers <= <code>N</code> and return <code>f(r) - f(l-1)</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-good-integers-on-a-grid-path/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.153Z",
+    "sourceUpdatedAt": null
+  }
+}

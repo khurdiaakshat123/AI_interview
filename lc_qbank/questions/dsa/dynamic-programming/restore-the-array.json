@@ -1,0 +1,167 @@
+{
+  "id": "1416",
+  "slug": "restore-the-array",
+  "title": "Restore The Array",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "A program was supposed to print an array of integers. The program forgot to print whitespaces and the array is printed as a string of digits `s` and all we know is that all integers in the array were in the range `[1, k]` and there are no leading zeros in the array.\n\nGiven the string `s` and the integer `k`, return _the number of the possible arrays that can be printed as_ `s` _using the mentioned program_. Since the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n```\nInput: s = \"1000\", k = 10000\nOutput: 1\nExplanation: The only possible array is [1000]\n```\n\n**Example 2:**\n\n```\nInput: s = \"1000\", k = 10\nOutput: 0\nExplanation: There cannot be an array that was printed this way and has all integer >= 1 and <= 10.\n```\n\n**Example 3:**\n\n```\nInput: s = \"1317\", k = 2000\nOutput: 8\nExplanation: Possible arrays are [1317],[131,7],[13,17],[1,317],[13,1,7],[1,31,7],[1,3,17],[1,3,1,7]\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists of only digits and does not contain leading zeros.\n*   `1 <= k <= 10^(9)`",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists of only digits and does not contain leading zeros.",
+    "1 <= k <= 109"
+  ],
+  "examples": [
+    {
+      "input": "s = \"1000\", k = 10000",
+      "output": "1",
+      "explanation": "The only possible array is [1000]"
+    },
+    {
+      "input": "s = \"1000\", k = 10",
+      "output": "0",
+      "explanation": "There cannot be an array that was printed this way and has all integer >= 1 and <= 10."
+    },
+    {
+      "input": "s = \"1317\", k = 2000",
+      "output": "8",
+      "explanation": "Possible arrays are [1317],[131,7],[13,17],[1,317],[13,1,7],[1,31,7],[1,3,17],[1,3,1,7]"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numberOfArrays(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numberOfArrays(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfArrays(self, s: str, k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def numberOfArrays(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar numberOfArrays = function(s, k) {\n    \n};",
+    "typescript": "function numberOfArrays(s: string, k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumberOfArrays(string s, int k) {\n        \n    }\n}",
+    "c": "int numberOfArrays(char* s, int k) {\n    \n}",
+    "golang": "func numberOfArrays(s string, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfArrays(s: String, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfArrays(_ s: String, _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_arrays(s: String, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Integer}\ndef number_of_arrays(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Integer\n     */\n    function numberOfArrays($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numberOfArrays(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfArrays(s: String, k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_arrays(s :: String.t, k :: integer) :: integer\n  def number_of_arrays(s, k) do\n    \n  end\nend",
+    "erlang": "-spec number_of_arrays(S :: unicode:unicode_binary(), K :: integer()) -> integer().\nnumber_of_arrays(S, K) ->\n  .",
+    "racket": "(define/contract (number-of-arrays s k)\n  (-> string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"1000\"\n10000",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1000\"\n10",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"1317\"\n2000",
+      "expectedOutput": "8"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"1000\"\n10000",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1000\"\n10",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"1317\"\n2000",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"10\"\n10000",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"00\"\n10000",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"1\"\n10000",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"0001\"\n10000",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"10001000\"\n10000",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1111\"\n10000",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "\"10000001\"\n10000",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"0\"\n10000",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"121\"\n10000",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"1000\"\n9999",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1000\"\n10001",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1000\"\n9998",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1000\"\n10002",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1000\"\n9997",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1000\"\n10003",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1000\"\n5000",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"1000\"\n-10000",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming. Build an array dp where dp[i] is the number of ways you can divide the string starting from index i to the end.",
+    "Keep in mind that the answer is modulo 10^9 + 7 and take the mod for each operation."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/restore-the-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.799Z",
+    "sourceUpdatedAt": null
+  }
+}

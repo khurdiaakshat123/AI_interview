@@ -1,0 +1,156 @@
+{
+  "id": "553",
+  "slug": "optimal-division",
+  "title": "Optimal Division",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given an integer array `nums`. The adjacent integers in `nums` will perform the float division.\n\n*   For example, for `nums = [2,3,4]`, we will evaluate the expression `\"2/3/4\"`.\n\nHowever, you can add any number of parenthesis at any position to change the priority of operations. You want to add these parentheses such the value of the expression after the evaluation is maximum.\n\nReturn _the corresponding expression that has the maximum value in string format_.\n\n**Note:** your expression should not contain redundant parenthesis.\n\n**Example 1:**\n\n```\nInput: nums = [1000,100,10,2]\nOutput: \"1000/(100/10/2)\"\nExplanation: 1000/(100/10/2) = 1000/((100/10)/2) = 200\nHowever, the bold parenthesis in \"1000/((100/10)/2)\" are redundant since they do not influence the operation priority.\nSo you should return \"1000/(100/10/2)\".\nOther cases:\n1000/(100/10)/2 = 50\n1000/(100/(10/2)) = 50\n1000/100/10/2 = 0.5\n1000/100/(10/2) = 2\n```\n\n**Example 2:**\n\n```\nInput: nums = [2,3,4]\nOutput: \"2/(3/4)\"\nExplanation: (2/(3/4)) = 8/3 = 2.667\nIt can be shown that after trying all possibilities, we cannot get an expression with evaluation greater than 2.667\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10`\n*   `2 <= nums[i] <= 1000`\n*   There is only one optimal division for the given input.",
+  "constraints": [
+    "1 <= nums.length <= 10",
+    "2 <= nums[i] <= 1000",
+    "There is only one optimal division for the given input."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1000,100,10,2]",
+      "output": "\"1000/(100/10/2)\"",
+      "explanation": "1000/(100/10/2) = 1000/((100/10)/2) = 200\nHowever, the bold parenthesis in \"1000/((100/10)/2)\" are redundant since they do not influence the operation priority.\nSo you should return \"1000/(100/10/2)\".\nOther cases:\n1000/(100/10)/2 = 50\n1000/(100/(10/2)) = 50\n1000/100/10/2 = 0.5\n1000/100/(10/2) = 2"
+    },
+    {
+      "input": "nums = [2,3,4]",
+      "output": "\"2/(3/4)\"",
+      "explanation": "(2/(3/4)) = 8/3 = 2.667\nIt can be shown that after trying all possibilities, we cannot get an expression with evaluation greater than 2.667"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string optimalDivision(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String optimalDivision(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def optimalDivision(self, nums: List[int]) -> str:\n        ",
+    "python": "class Solution(object):\n    def optimalDivision(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {string}\n */\nvar optimalDivision = function(nums) {\n    \n};",
+    "typescript": "function optimalDivision(nums: number[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string OptimalDivision(int[] nums) {\n        \n    }\n}",
+    "c": "char* optimalDivision(int* nums, int numsSize) {\n    \n}",
+    "golang": "func optimalDivision(nums []int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun optimalDivision(nums: IntArray): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func optimalDivision(_ nums: [Int]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn optimal_division(nums: Vec<i32>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {String}\ndef optimal_division(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return String\n     */\n    function optimalDivision($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String optimalDivision(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def optimalDivision(nums: Array[Int]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec optimal_division(nums :: [integer]) :: String.t\n  def optimal_division(nums) do\n    \n  end\nend",
+    "erlang": "-spec optimal_division(Nums :: [integer()]) -> unicode:unicode_binary().\noptimal_division(Nums) ->\n  .",
+    "racket": "(define/contract (optimal-division nums)\n  (-> (listof exact-integer?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1000,100,10,2]",
+      "expectedOutput": "\"1000/(100/10/2)\""
+    },
+    {
+      "input": "[2,3,4]",
+      "expectedOutput": "\"2/(3/4)\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1000,100,10,2]",
+      "expectedOutput": "\"1000/(100/10/2)\""
+    },
+    {
+      "input": "[2,3,4]",
+      "expectedOutput": "\"2/(3/4)\""
+    },
+    {
+      "input": "[1000,100]",
+      "expectedOutput": "\"1000/100\""
+    },
+    {
+      "input": "[10,2]",
+      "expectedOutput": "\"10/2\""
+    },
+    {
+      "input": "[1000]",
+      "expectedOutput": "\"1000\""
+    },
+    {
+      "input": "[1000,2]",
+      "expectedOutput": "\"1000/2\""
+    },
+    {
+      "input": "[2,10,100,1000]",
+      "expectedOutput": "\"2/(10/100/1000)\""
+    },
+    {
+      "input": "[1000,1000,1000,1000]",
+      "expectedOutput": "\"1000/(1000/1000/1000)\""
+    },
+    {
+      "input": "[1000,100,10,2,1000,100,10,2]",
+      "expectedOutput": "\"1000/(100/10/2/1000/100/10/2)\""
+    },
+    {
+      "input": "[2000,200,20,4]",
+      "expectedOutput": "\"2000/(200/20/4)\""
+    },
+    {
+      "input": "[1001,101,11,3]",
+      "expectedOutput": "\"1001/(101/11/3)\""
+    },
+    {
+      "input": "[999,99,9,1]",
+      "expectedOutput": "\"999/(99/9/1)\""
+    },
+    {
+      "input": "[-1000,-100,-10,-2]",
+      "expectedOutput": "\"-1000/(-100/-10/-2)\""
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "\"0/(0/0/0)\""
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "\"1/(1/1/1)\""
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "\"0\""
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "\"1\""
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "\"-1\""
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "\"0/0\""
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "\"1/2\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/optimal-division/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.402Z",
+    "sourceUpdatedAt": null
+  }
+}

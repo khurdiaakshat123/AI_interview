@@ -1,0 +1,118 @@
+{
+  "id": "3986",
+  "slug": "number-of-elapsed-seconds-between-two-times",
+  "title": "Number of Elapsed Seconds Between Two Times",
+  "category": "dsa",
+  "subcategory": "mathematics",
+  "difficulty": "Easy",
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "statement": "You are given two valid times `startTime` and `endTime`, each represented as a string in the format `\"HH:MM:SS\"`.\n\nReturn the number of seconds that have elapsed from `startTime` to `endTime`.\n\n**Example 1:**\n\n**Input:** startTime = \"01:00:00\", endTime = \"01:00:25\"\n\n**Output:** 25\n\n**Explanation:**\n\n`endTime` is 25 seconds ahead of `startTime`.\n\n**Example 2:**\n\n**Input:** startTime = \"12:34:56\", endTime = \"13:00:00\"\n\n**Output:** 1504\n\n**Explanation:**\n\n`endTime` is 25 minutes and 4 seconds ahead of `startTime`, which equals 1504 seconds.\n\n**Constraints:**\n\n*   `startTime.length == 8`\n*   `endTime.length == 8`\n*   `startTime` and `endTime` are valid times in the format `\"HH:MM:SS\"`\n*   `00 <= HH <= 23`\n*   `00 <= MM <= 59`\n*   `00 <= SS <= 59`\n*   `endTime` is not earlier than `startTime`",
+  "constraints": [
+    "startTime.length == 8",
+    "endTime.length == 8",
+    "startTime and endTime are valid times in the format \"HH:MM:SS\"",
+    "00 <= HH <= 23",
+    "00 <= MM <= 59",
+    "00 <= SS <= 59",
+    "endTime is not earlier than startTime"
+  ],
+  "examples": [
+    {
+      "input": "startTime = \"01:00:00\", endTime = \"01:00:25\"",
+      "output": "25",
+      "explanation": "endTime is 25 seconds ahead of startTime."
+    },
+    {
+      "input": "startTime = \"12:34:56\", endTime = \"13:00:00\"",
+      "output": "1504",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int secondsBetweenTimes(string startTime, string endTime) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int secondsBetweenTimes(String startTime, String endTime) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def secondsBetweenTimes(self, startTime: str, endTime: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def secondsBetweenTimes(self, startTime, endTime):\n        \"\"\"\n        :type startTime: str\n        :type endTime: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} startTime\n * @param {string} endTime\n * @return {number}\n */\nvar secondsBetweenTimes = function(startTime, endTime) {\n    \n};",
+    "typescript": "function secondsBetweenTimes(startTime: string, endTime: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SecondsBetweenTimes(string startTime, string endTime) {\n        \n    }\n}",
+    "c": "int secondsBetweenTimes(char* startTime, char* endTime) {\n    \n}",
+    "golang": "func secondsBetweenTimes(startTime string, endTime string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun secondsBetweenTimes(startTime: String, endTime: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func secondsBetweenTimes(_ startTime: String, _ endTime: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn seconds_between_times(start_time: String, end_time: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} start_time\n# @param {String} end_time\n# @return {Integer}\ndef seconds_between_times(start_time, end_time)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $startTime\n     * @param String $endTime\n     * @return Integer\n     */\n    function secondsBetweenTimes($startTime, $endTime) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int secondsBetweenTimes(String startTime, String endTime) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def secondsBetweenTimes(startTime: String, endTime: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec seconds_between_times(start_time :: String.t, end_time :: String.t) :: integer\n  def seconds_between_times(start_time, end_time) do\n    \n  end\nend",
+    "erlang": "-spec seconds_between_times(StartTime :: unicode:unicode_binary(), EndTime :: unicode:unicode_binary()) -> integer().\nseconds_between_times(StartTime, EndTime) ->\n  .",
+    "racket": "(define/contract (seconds-between-times startTime endTime)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"01:00:00\"\n\"01:00:25\"",
+      "expectedOutput": "25"
+    },
+    {
+      "input": "\"12:34:56\"\n\"13:00:00\"",
+      "expectedOutput": "1504"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"01:00:00\"\n\"01:00:25\"",
+      "expectedOutput": "25"
+    },
+    {
+      "input": "\"12:34:56\"\n\"13:00:00\"",
+      "expectedOutput": "1504"
+    },
+    {
+      "input": "\"00:00:10\"\n\"01:00:25\"",
+      "expectedOutput": "3615"
+    },
+    {
+      "input": "\"01:00:00\"\n\"52:00:10\"",
+      "expectedOutput": "183610"
+    },
+    {
+      "input": "\"65:43:21\"\n\"13:00:00\"",
+      "expectedOutput": "-189801"
+    },
+    {
+      "input": "\"12:34:56\"\n\"00:00:31\"",
+      "expectedOutput": "-45265"
+    },
+    {
+      "input": "\"00:00:10\"\n\"52:00:10\"",
+      "expectedOutput": "187200"
+    },
+    {
+      "input": "\"01:00:00\"\n\"13:00:00\"",
+      "expectedOutput": "43200"
+    },
+    {
+      "input": "\"12:34:56\"\n\"01:00:25\"",
+      "expectedOutput": "-41671"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Convert each time into the total number of seconds since <code>00:00:00</code>.</p>",
+    "<p>The answer is the difference between the two converted values.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-elapsed-seconds-between-two-times/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.847Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "id": "3867",
+  "slug": "sum-of-gcd-of-formed-pairs",
+  "title": "Sum of GCD of Formed Pairs",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "Two Pointers",
+    "Sorting",
+    "Simulation",
+    "Number Theory"
+  ],
+  "statement": "You are given an integer array `nums` of length `n`.\n\nConstruct an array `prefixGcd` where for each index `i`:\n\n*   Let `mx_(i) = max(nums[0], nums[1], ..., nums[i])`.\n*   `prefixGcd[i] = gcd(nums[i], mx_(i))`.\n\nAfter constructing `prefixGcd`:\n\n*   Sort `prefixGcd` in **non-decreasing** order.\n*   Form pairs by taking the **smallest unpaired** element and the **largest unpaired** element.\n*   Repeat this process until no more pairs can be formed.\n*   For each formed pair, **compute** the `gcd` of the two elements.\n*   If `n` is odd, the **middle** element in the `prefixGcd` array remains **unpaired** and should be ignored.\n\nReturn an integer denoting the **sum of the GCD** values of all formed pairs.\n\nThe term `gcd(a, b)` denotes the **greatest common divisor** of `a` and `b`.\n\n**Example 1:**\n\n**Input:** nums = \\[2,6,4\\]\n\n**Output:** 2\n\n**Explanation:**\n\nConstruct `prefixGcd`:\n\n`i`\n\n`nums[i]`\n\n`mx_(i)`\n\n`prefixGcd[i]`\n\n0\n\n2\n\n2\n\n2\n\n1\n\n6\n\n6\n\n6\n\n2\n\n4\n\n6\n\n2\n\n`prefixGcd = [2, 6, 2]`. After sorting, it forms `[2, 2, 6]`.\n\nPair the smallest and largest elements: `gcd(2, 6) = 2`. The remaining middle element 2 is ignored. Thus, the sum is 2.\n\n**Example 2:**\n\n**Input:** nums = \\[3,6,2,8\\]\n\n**Output:** 5\n\n**Explanation:**\n\nConstruct `prefixGcd`:\n\n`i`\n\n`nums[i]`\n\n`mx_(i)`\n\n`prefixGcd[i]`\n\n0\n\n3\n\n3\n\n3\n\n1\n\n6\n\n6\n\n6\n\n2\n\n2\n\n6\n\n2\n\n3\n\n8\n\n8\n\n8\n\n`prefixGcd = [3, 6, 2, 8]`. After sorting, it forms `[2, 3, 6, 8]`.\n\nForm pairs: `gcd(2, 8) = 2` and `gcd(3, 6) = 3`. Thus, the sum is `2 + 3 = 5`.\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(​​​​​​​9)`",
+  "constraints": [
+    "1 <= n == nums.length <= 105",
+    "1 <= nums[i] <= 10​​​​​​​9"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,6,4]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "nums = [3,6,2,8]",
+      "output": "5",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long gcdSum(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long gcdSum(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def gcdSum(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def gcdSum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar gcdSum = function(nums) {\n    \n};",
+    "typescript": "function gcdSum(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long GcdSum(int[] nums) {\n        \n    }\n}",
+    "c": "long long gcdSum(int* nums, int numsSize) {\n    \n}",
+    "golang": "func gcdSum(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun gcdSum(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func gcdSum(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn gcd_sum(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef gcd_sum(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function gcdSum($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int gcdSum(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def gcdSum(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec gcd_sum(nums :: [integer]) :: integer\n  def gcd_sum(nums) do\n    \n  end\nend",
+    "erlang": "-spec gcd_sum(Nums :: [integer()]) -> integer().\ngcd_sum(Nums) ->\n  .",
+    "racket": "(define/contract (gcd-sum nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,6,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,6,2,8]",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,6,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,6,2,8]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[6,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,6]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,6,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,4,6]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[6,4,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,2,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,6,4,2,6,4]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[4,12,8]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,7,5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,5,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-2,-6,-4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Maintain a running prefix maximum <code>mx<sub>i</sub></code> while iterating nums to compute <code>prefixGcd[i] = gcd(nums[i], mx<sub>i</sub>)</code>.",
+    "Sort <code>prefixGcd</code> in non-decreasing order.",
+    "Form pairs by combining smallest unpaired and largest unpaired elements.",
+    "Compute gcd for each pair and sum them; ignore middle element if <code>n</code> is odd."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sum-of-gcd-of-formed-pairs/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.597Z",
+    "sourceUpdatedAt": null
+  }
+}

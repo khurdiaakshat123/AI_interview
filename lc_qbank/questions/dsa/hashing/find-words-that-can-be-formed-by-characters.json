@@ -1,0 +1,162 @@
+{
+  "id": "1160",
+  "slug": "find-words-that-can-be-formed-by-characters",
+  "title": "Find Words That Can Be Formed by Characters",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "statement": "You are given an array of strings `words` and a string `chars`.\n\nA string is **good** if it can be formed by characters from `chars` (each character can only be used once for **each** word in `words`).\n\nReturn _the sum of lengths of all good strings in words_.\n\n**Example 1:**\n\n```\nInput: words = [\"cat\",\"bt\",\"hat\",\"tree\"], chars = \"atach\"\nOutput: 6\nExplanation: The strings that can be formed are \"cat\" and \"hat\" so the answer is 3 + 3 = 6.\n```\n\n**Example 2:**\n\n```\nInput: words = [\"hello\",\"world\",\"leetcode\"], chars = \"welldonehoneyr\"\nOutput: 10\nExplanation: The strings that can be formed are \"hello\" and \"world\" so the answer is 5 + 5 = 10.\n```\n\n**Constraints:**\n\n*   `1 <= words.length <= 1000`\n*   `1 <= words[i].length, chars.length <= 100`\n*   `words[i]` and `chars` consist of lowercase English letters.",
+  "constraints": [
+    "1 <= words.length <= 1000",
+    "1 <= words[i].length, chars.length <= 100",
+    "words[i] and chars consist of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"cat\",\"bt\",\"hat\",\"tree\"], chars = \"atach\"",
+      "output": "6",
+      "explanation": "The strings that can be formed are \"cat\" and \"hat\" so the answer is 3 + 3 = 6."
+    },
+    {
+      "input": "words = [\"hello\",\"world\",\"leetcode\"], chars = \"welldonehoneyr\"",
+      "output": "10",
+      "explanation": "The strings that can be formed are \"hello\" and \"world\" so the answer is 5 + 5 = 10."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countCharacters(vector<string>& words, string chars) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countCharacters(String[] words, String chars) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countCharacters(self, words: list[str], chars: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def countCharacters(self, words, chars):\n        \"\"\"\n        :type words: List[str]\n        :type chars: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @param {string} chars\n * @return {number}\n */\nvar countCharacters = function(words, chars) {\n    \n};",
+    "typescript": "function countCharacters(words: string[], chars: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountCharacters(string[] words, string chars) {\n        \n    }\n}",
+    "c": "int countCharacters(char** words, int wordsSize, char* chars) {\n    \n}",
+    "golang": "func countCharacters(words []string, chars string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countCharacters(words: Array<String>, chars: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countCharacters(_ words: [String], _ chars: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_characters(words: Vec<String>, chars: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @param {String} chars\n# @return {Integer}\ndef count_characters(words, chars)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @param String $chars\n     * @return Integer\n     */\n    function countCharacters($words, $chars) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countCharacters(List<String> words, String chars) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countCharacters(words: Array[String], chars: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_characters(words :: [String.t], chars :: String.t) :: integer\n  def count_characters(words, chars) do\n    \n  end\nend",
+    "erlang": "-spec count_characters(Words :: [unicode:unicode_binary()], Chars :: unicode:unicode_binary()) -> integer().\ncount_characters(Words, Chars) ->\n  .",
+    "racket": "(define/contract (count-characters words chars)\n  (-> (listof string?) string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"cat\",\"bt\",\"hat\",\"tree\"]\n\"atach\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"hello\",\"world\",\"leetcode\"]\n\"welldonehoneyr\"",
+      "expectedOutput": "10"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"cat\",\"bt\",\"hat\",\"tree\"]\n\"atach\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"hello\",\"world\",\"leetcode\"]\n\"welldonehoneyr\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[\"cat\",\"bt\"]\n\"atach\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"hat\",\"tree\"]\n\"atach\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"cat\"]\n\"atach\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"cat\",\"tree\"]\n\"atach\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"tree\",\"hat\",\"bt\",\"cat\"]\n\"atach\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"bt\",\"cat\",\"hat\",\"tree\"]\n\"atach\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"tree\",\"hat\",\"cat\",\"bt\"]\n\"atach\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"cat\",\"cat\",\"cat\",\"cat\"]\n\"atach\"",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[\"cat\",\"bt\",\"hat\",\"tree\",\"cat\",\"bt\",\"hat\",\"tree\"]\n\"atach\"",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[\"a\"]\n\"atach\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"\"]\n\"atach\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"b\"]\n\"atach\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a\",\"a\"]\n\"atach\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]\n\"atach\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]\n\"atach\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n\"atach\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]\n\"atach\"",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]\n\"atach\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Solve the problem for each string in <code>words</code> independently.",
+    "Now try to think in frequency of letters.",
+    "Count how many times each character occurs in string <code>chars</code>.",
+    "To form a string using characters from <code>chars</code>, the frequency of each character in <code>chars</code> must be greater than or equal the frequency of that character in the string to be formed."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.801Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "id": "1328",
+  "slug": "break-a-palindrome",
+  "title": "Break a Palindrome",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "statement": "Given a palindromic string of lowercase English letters `palindrome`, replace **exactly one** character with any lowercase English letter so that the resulting string is **not** a palindrome and that it is the **lexicographically smallest** one possible.\n\nReturn _the resulting string. If there is no way to replace a character to make it not a palindrome, return an **empty string**._\n\nA string `a` is lexicographically smaller than a string `b` (of the same length) if in the first position where `a` and `b` differ, `a` has a character strictly smaller than the corresponding character in `b`. For example, `\"abcc\"` is lexicographically smaller than `\"abcd\"` because the first position they differ is at the fourth character, and `'c'` is smaller than `'d'`.\n\n**Example 1:**\n\n```\nInput: palindrome = \"abccba\"\nOutput: \"aaccba\"\nExplanation: There are many ways to make \"abccba\" not a palindrome, such as \"zbccba\", \"aaccba\", and \"abacba\".\nOf all the ways, \"aaccba\" is the lexicographically smallest.\n```\n\n**Example 2:**\n\n```\nInput: palindrome = \"a\"\nOutput: \"\"\nExplanation: There is no way to replace a single character to make \"a\" not a palindrome, so return an empty string.\n```\n\n**Constraints:**\n\n*   `1 <= palindrome.length <= 1000`\n*   `palindrome` consists of only lowercase English letters.",
+  "constraints": [
+    "1 <= palindrome.length <= 1000",
+    "palindrome consists of only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "palindrome = \"abccba\"",
+      "output": "\"aaccba\"",
+      "explanation": "There are many ways to make \"abccba\" not a palindrome, such as \"zbccba\", \"aaccba\", and \"abacba\".\nOf all the ways, \"aaccba\" is the lexicographically smallest."
+    },
+    {
+      "input": "palindrome = \"a\"",
+      "output": "\"\"",
+      "explanation": "There is no way to replace a single character to make \"a\" not a palindrome, so return an empty string."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string breakPalindrome(string palindrome) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String breakPalindrome(String palindrome) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def breakPalindrome(self, palindrome: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def breakPalindrome(self, palindrome):\n        \"\"\"\n        :type palindrome: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} palindrome\n * @return {string}\n */\nvar breakPalindrome = function(palindrome) {\n    \n};",
+    "typescript": "function breakPalindrome(palindrome: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string BreakPalindrome(string palindrome) {\n        \n    }\n}",
+    "c": "char* breakPalindrome(char* palindrome) {\n    \n}",
+    "golang": "func breakPalindrome(palindrome string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun breakPalindrome(palindrome: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func breakPalindrome(_ palindrome: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn break_palindrome(palindrome: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} palindrome\n# @return {String}\ndef break_palindrome(palindrome)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $palindrome\n     * @return String\n     */\n    function breakPalindrome($palindrome) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String breakPalindrome(String palindrome) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def breakPalindrome(palindrome: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec break_palindrome(palindrome :: String.t) :: String.t\n  def break_palindrome(palindrome) do\n    \n  end\nend",
+    "erlang": "-spec break_palindrome(Palindrome :: unicode:unicode_binary()) -> unicode:unicode_binary().\nbreak_palindrome(Palindrome) ->\n  .",
+    "racket": "(define/contract (break-palindrome palindrome)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abccba\"",
+      "expectedOutput": "\"aaccba\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abccba\"",
+      "expectedOutput": "\"aaccba\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"abc\"",
+      "expectedOutput": "\"abb\""
+    },
+    {
+      "input": "\"cba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"abccbaabccba\"",
+      "expectedOutput": "\"aaccbaabccba\""
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "\"aaaaab\""
+    },
+    {
+      "input": "\"ABCCBA\"",
+      "expectedOutput": "\"aBCCBA\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"abb\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"aaba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaab\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"aacde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"adcba\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"aab\""
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "\"a21\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "How to detect if there is impossible to perform the replacement? Only when the length = 1.",
+    "Change the first non 'a' character to 'a'.",
+    "What if the string has only 'a'?",
+    "Change the last character to 'b'."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/break-a-palindrome/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.704Z",
+    "sourceUpdatedAt": null
+  }
+}

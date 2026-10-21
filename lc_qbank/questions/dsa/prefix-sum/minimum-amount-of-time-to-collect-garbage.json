@@ -1,0 +1,161 @@
+{
+  "id": "2391",
+  "slug": "minimum-amount-of-time-to-collect-garbage",
+  "title": "Minimum Amount of Time to Collect Garbage",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a **0-indexed** array of strings `garbage` where `garbage[i]` represents the assortment of garbage at the `i^(th)` house. `garbage[i]` consists only of the characters `'M'`, `'P'` and `'G'` representing one unit of metal, paper and glass garbage respectively. Picking up **one** unit of any type of garbage takes `1` minute.\n\nYou are also given a **0-indexed** integer array `travel` where `travel[i]` is the number of minutes needed to go from house `i` to house `i + 1`.\n\nThere are three garbage trucks in the city, each responsible for picking up one type of garbage. Each garbage truck starts at house `0` and must visit each house **in order**; however, they do **not** need to visit every house.\n\nOnly **one** garbage truck may be used at any given moment. While one truck is driving or picking up garbage, the other two trucks **cannot** do anything.\n\nReturn _the **minimum** number of minutes needed to pick up all the garbage._\n\n**Example 1:**\n\n```\nInput: garbage = [\"G\",\"P\",\"GP\",\"GG\"], travel = [2,4,3]\nOutput: 21\nExplanation:\nThe paper garbage truck:\n1. Travels from house 0 to house 1\n2. Collects the paper garbage at house 1\n3. Travels from house 1 to house 2\n4. Collects the paper garbage at house 2\nAltogether, it takes 8 minutes to pick up all the paper garbage.\nThe glass garbage truck:\n1. Collects the glass garbage at house 0\n2. Travels from house 0 to house 1\n3. Travels from house 1 to house 2\n4. Collects the glass garbage at house 2\n5. Travels from house 2 to house 3\n6. Collects the glass garbage at house 3\nAltogether, it takes 13 minutes to pick up all the glass garbage.\nSince there is no metal garbage, we do not need to consider the metal garbage truck.\nTherefore, it takes a total of 8 + 13 = 21 minutes to collect all the garbage.\n```\n\n**Example 2:**\n\n```\nInput: garbage = [\"MMM\",\"PGM\",\"GP\"], travel = [3,10]\nOutput: 37\nExplanation:\nThe metal garbage truck takes 7 minutes to pick up all the metal garbage.\nThe paper garbage truck takes 15 minutes to pick up all the paper garbage.\nThe glass garbage truck takes 15 minutes to pick up all the glass garbage.\nIt takes a total of 7 + 15 + 15 = 37 minutes to collect all the garbage.\n```\n\n**Constraints:**\n\n*   `2 <= garbage.length <= 10^(5)`\n*   `garbage[i]` consists of only the letters `'M'`, `'P'`, and `'G'`.\n*   `1 <= garbage[i].length <= 10`\n*   `travel.length == garbage.length - 1`\n*   `1 <= travel[i] <= 100`",
+  "constraints": [
+    "2 <= garbage.length <= 105",
+    "garbage[i] consists of only the letters 'M', 'P', and 'G'.",
+    "1 <= garbage[i].length <= 10",
+    "travel.length == garbage.length - 1",
+    "1 <= travel[i] <= 100"
+  ],
+  "examples": [
+    {
+      "input": "garbage = [\"G\",\"P\",\"GP\",\"GG\"], travel = [2,4,3]",
+      "output": "21",
+      "explanation": "The paper garbage truck:\n1. Travels from house 0 to house 1\n2. Collects the paper garbage at house 1\n3. Travels from house 1 to house 2\n4. Collects the paper garbage at house 2\nAltogether, it takes 8 minutes to pick up all the paper garbage.\nThe glass garbage truck:\n1. Collects the glass garbage at house 0\n2. Travels from house 0 to house 1\n3. Travels from house 1 to house 2\n4. Collects the glass garbage at house 2\n5. Travels from house 2 to house 3\n6. Collects the glass garbage at house 3\nAltogether, it takes 13 minutes to pick up all the glass garbage.\nSince there is no metal garbage, we do not need to consider the metal garbage truck.\nTherefore, it takes a total of 8 + 13 = 21 minutes to collect all the garbage."
+    },
+    {
+      "input": "garbage = [\"MMM\",\"PGM\",\"GP\"], travel = [3,10]",
+      "output": "37",
+      "explanation": "The metal garbage truck takes 7 minutes to pick up all the metal garbage.\nThe paper garbage truck takes 15 minutes to pick up all the paper garbage.\nThe glass garbage truck takes 15 minutes to pick up all the glass garbage.\nIt takes a total of 7 + 15 + 15 = 37 minutes to collect all the garbage."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int garbageCollection(vector<string>& garbage, vector<int>& travel) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int garbageCollection(String[] garbage, int[] travel) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def garbageCollection(self, garbage: list[str], travel: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def garbageCollection(self, garbage, travel):\n        \"\"\"\n        :type garbage: List[str]\n        :type travel: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} garbage\n * @param {number[]} travel\n * @return {number}\n */\nvar garbageCollection = function(garbage, travel) {\n    \n};",
+    "typescript": "function garbageCollection(garbage: string[], travel: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int GarbageCollection(string[] garbage, int[] travel) {\n        \n    }\n}",
+    "c": "int garbageCollection(char** garbage, int garbageSize, int* travel, int travelSize) {\n    \n}",
+    "golang": "func garbageCollection(garbage []string, travel []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun garbageCollection(garbage: Array<String>, travel: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func garbageCollection(_ garbage: [String], _ travel: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn garbage_collection(garbage: Vec<String>, travel: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} garbage\n# @param {Integer[]} travel\n# @return {Integer}\ndef garbage_collection(garbage, travel)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $garbage\n     * @param Integer[] $travel\n     * @return Integer\n     */\n    function garbageCollection($garbage, $travel) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int garbageCollection(List<String> garbage, List<int> travel) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def garbageCollection(garbage: Array[String], travel: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec garbage_collection(garbage :: [String.t], travel :: [integer]) :: integer\n  def garbage_collection(garbage, travel) do\n    \n  end\nend",
+    "erlang": "-spec garbage_collection(Garbage :: [unicode:unicode_binary()], Travel :: [integer()]) -> integer().\ngarbage_collection(Garbage, Travel) ->\n  .",
+    "racket": "(define/contract (garbage-collection garbage travel)\n  (-> (listof string?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"G\",\"P\",\"GP\",\"GG\"]\n[2,4,3]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[\"MMM\",\"PGM\",\"GP\"]\n[3,10]",
+      "expectedOutput": "37"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"G\",\"P\",\"GP\",\"GG\"]\n[2,4,3]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[\"MMM\",\"PGM\",\"GP\"]\n[3,10]",
+      "expectedOutput": "37"
+    },
+    {
+      "input": "[\"G\",\"P\"]\n[2,4,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"GP\",\"GG\"]\n[2,4,3]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[\"G\"]\n[2,4,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"G\",\"GG\"]\n[2,4,3]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[\"GG\",\"GP\",\"P\",\"G\"]\n[2,4,3]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[\"G\",\"GG\",\"GP\",\"P\"]\n[2,4,3]",
+      "expectedOutput": "21"
+    },
+    {
+      "input": "[\"P\",\"GP\",\"GG\",\"G\"]\n[2,4,3]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "[\"G\",\"G\",\"G\",\"G\"]\n[2,4,3]",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "[\"G\",\"P\",\"GP\",\"GG\",\"G\",\"P\",\"GP\",\"GG\"]\n[2,4,3]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[\"a\"]\n[2,4,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"\"]\n[2,4,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[\"a\",\"b\"]\n[2,4,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"a\",\"a\"]\n[2,4,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]\n[2,4,3]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]\n[2,4,3]",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n[2,4,3]",
+      "expectedOutput": "27"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]\n[2,4,3]",
+      "expectedOutput": "42"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]\n[2,4,3]",
+      "expectedOutput": "39"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Where can we save time? By not visiting all the houses.",
+    "For each type of garbage, find the house with the highest index that has at least 1 unit of this type of garbage."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-amount-of-time-to-collect-garbage/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.414Z",
+    "sourceUpdatedAt": null
+  }
+}

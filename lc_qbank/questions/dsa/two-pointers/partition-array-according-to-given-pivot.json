@@ -1,0 +1,159 @@
+{
+  "id": "2161",
+  "slug": "partition-array-according-to-given-pivot",
+  "title": "Partition Array According to Given Pivot",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Simulation"
+  ],
+  "statement": "You are given a **0-indexed** integer array `nums` and an integer `pivot`. Rearrange `nums` such that the following conditions are satisfied:\n\n*   Every element less than `pivot` appears **before** every element greater than `pivot`.\n*   Every element equal to `pivot` appears **in between** the elements less than and greater than `pivot`.\n*   The **relative order** of the elements less than `pivot` and the elements greater than `pivot` is maintained.\n    *   More formally, consider every `p_(i)`, `p_(j)` where `p_(i)` is the new position of the `i^(th)` element and `p_(j)` is the new position of the `j^(th)` element. If `i < j` and **both** elements are smaller (_or larger_) than `pivot`, then `p_(i) < p_(j)`.\n\nReturn `nums` _after the rearrangement._\n\n**Example 1:**\n\n```\nInput: nums = [9,12,5,10,14,3,10], pivot = 10\nOutput: [9,5,3,10,10,12,14]\nExplanation: \nThe elements 9, 5, and 3 are less than the pivot so they are on the left side of the array.\nThe elements 12 and 14 are greater than the pivot so they are on the right side of the array.\nThe relative ordering of the elements less than and greater than pivot is also maintained. [9, 5, 3] and [12, 14] are the respective orderings.\n```\n\n**Example 2:**\n\n```\nInput: nums = [-3,4,3,2], pivot = 2\nOutput: [-3,2,4,3]\nExplanation: \nThe element -3 is less than the pivot so it is on the left side of the array.\nThe elements 4 and 3 are greater than the pivot so they are on the right side of the array.\nThe relative ordering of the elements less than and greater than pivot is also maintained. [-3] and [4, 3] are the respective orderings.\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `-10^(6) <= nums[i] <= 10^(6)`\n*   `pivot` equals to an element of `nums`.",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "-106 <= nums[i] <= 106",
+    "pivot equals to an element of nums."
+  ],
+  "examples": [
+    {
+      "input": "nums = [9,12,5,10,14,3,10], pivot = 10",
+      "output": "[9,5,3,10,10,12,14]",
+      "explanation": "The elements 9, 5, and 3 are less than the pivot so they are on the left side of the array.\nThe elements 12 and 14 are greater than the pivot so they are on the right side of the array.\nThe relative ordering of the elements less than and greater than pivot is also maintained. [9, 5, 3] and [12, 14] are the respective orderings."
+    },
+    {
+      "input": "nums = [-3,4,3,2], pivot = 2",
+      "output": "[-3,2,4,3]",
+      "explanation": "The element -3 is less than the pivot so it is on the left side of the array.\nThe elements 4 and 3 are greater than the pivot so they are on the right side of the array.\nThe relative ordering of the elements less than and greater than pivot is also maintained. [-3] and [4, 3] are the respective orderings."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> pivotArray(vector<int>& nums, int pivot) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] pivotArray(int[] nums, int pivot) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def pivotArray(self, nums: list[int], pivot: int) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def pivotArray(self, nums, pivot):\n        \"\"\"\n        :type nums: List[int]\n        :type pivot: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} pivot\n * @return {number[]}\n */\nvar pivotArray = function(nums, pivot) {\n    \n};",
+    "typescript": "function pivotArray(nums: number[], pivot: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] PivotArray(int[] nums, int pivot) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* pivotArray(int* nums, int numsSize, int pivot, int* returnSize) {\n    \n}",
+    "golang": "func pivotArray(nums []int, pivot int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun pivotArray(nums: IntArray, pivot: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func pivotArray(_ nums: [Int], _ pivot: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn pivot_array(nums: Vec<i32>, pivot: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} pivot\n# @return {Integer[]}\ndef pivot_array(nums, pivot)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $pivot\n     * @return Integer[]\n     */\n    function pivotArray($nums, $pivot) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> pivotArray(List<int> nums, int pivot) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def pivotArray(nums: Array[Int], pivot: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec pivot_array(nums :: [integer], pivot :: integer) :: [integer]\n  def pivot_array(nums, pivot) do\n    \n  end\nend",
+    "erlang": "-spec pivot_array(Nums :: [integer()], Pivot :: integer()) -> [integer()].\npivot_array(Nums, Pivot) ->\n  .",
+    "racket": "(define/contract (pivot-array nums pivot)\n  (-> (listof exact-integer?) exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[9,12,5,10,14,3,10]\n10",
+      "expectedOutput": "[9,5,3,10,10,12,14]"
+    },
+    {
+      "input": "[-3,4,3,2]\n2",
+      "expectedOutput": "[-3,2,4,3]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[9,12,5,10,14,3,10]\n10",
+      "expectedOutput": "[9,5,3,10,10,12,14]"
+    },
+    {
+      "input": "[-3,4,3,2]\n2",
+      "expectedOutput": "[-3,2,4,3]"
+    },
+    {
+      "input": "[9,12,5]\n10",
+      "expectedOutput": "[9,5,12]"
+    },
+    {
+      "input": "[10,14,3,10]\n10",
+      "expectedOutput": "[3,10,10,14]"
+    },
+    {
+      "input": "[9]\n10",
+      "expectedOutput": "[9]"
+    },
+    {
+      "input": "[9,10]\n10",
+      "expectedOutput": "[9,10]"
+    },
+    {
+      "input": "[9,12]\n10",
+      "expectedOutput": "[9,12]"
+    },
+    {
+      "input": "[10,3,14,10,5,12,9]\n10",
+      "expectedOutput": "[3,5,9,10,10,14,12]"
+    },
+    {
+      "input": "[3,5,9,10,10,12,14]\n10",
+      "expectedOutput": "[3,5,9,10,10,12,14]"
+    },
+    {
+      "input": "[14,12,10,10,9,5,3]\n10",
+      "expectedOutput": "[9,5,3,10,10,14,12]"
+    },
+    {
+      "input": "[9,9,9,9,9]\n10",
+      "expectedOutput": "[9,9,9,9,9]"
+    },
+    {
+      "input": "[9,12,5,10,14,3,10,9,12,5,10,14,3,10]\n10",
+      "expectedOutput": "[9,5,3,9,5,3,10,10,10,10,12,14,12,14]"
+    },
+    {
+      "input": "[18,24,10,20,28,6,20]\n10",
+      "expectedOutput": "[6,10,18,24,20,28,20]"
+    },
+    {
+      "input": "[10,13,6,11,15,4,11]\n10",
+      "expectedOutput": "[6,4,10,13,11,15,11]"
+    },
+    {
+      "input": "[8,11,4,9,13,2,9]\n10",
+      "expectedOutput": "[8,4,9,2,9,11,13]"
+    },
+    {
+      "input": "[-9,-12,-5,-10,-14,-3,-10]\n10",
+      "expectedOutput": "[-9,-12,-5,-10,-14,-3,-10]"
+    },
+    {
+      "input": "[0,0,0,0]\n10",
+      "expectedOutput": "[0,0,0,0]"
+    },
+    {
+      "input": "[1,1,1,1]\n10",
+      "expectedOutput": "[1,1,1,1]"
+    },
+    {
+      "input": "[0]\n10",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[1]\n10",
+      "expectedOutput": "[1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Could you put the elements smaller than the pivot and greater than the pivot in a separate list as in the sequence that they occur?",
+    "With the separate lists generated, could you then generate the result?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/partition-array-according-to-given-pivot/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.521Z",
+    "sourceUpdatedAt": null
+  }
+}

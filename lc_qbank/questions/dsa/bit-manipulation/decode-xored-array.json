@@ -1,0 +1,159 @@
+{
+  "id": "1720",
+  "slug": "decode-xored-array",
+  "title": "Decode XORed Array",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Bit Manipulation"
+  ],
+  "statement": "There is a **hidden** integer array `arr` that consists of `n` non-negative integers.\n\nIt was encoded into another integer array `encoded` of length `n - 1`, such that `encoded[i] = arr[i] XOR arr[i + 1]`. For example, if `arr = [1,0,2,1]`, then `encoded = [1,2,3]`.\n\nYou are given the `encoded` array. You are also given an integer `first`, that is the first element of `arr`, i.e. `arr[0]`.\n\nReturn _the original array_ `arr`. It can be proved that the answer exists and is unique.\n\n**Example 1:**\n\n```\nInput: encoded = [1,2,3], first = 1\nOutput: [1,0,2,1]\nExplanation: If arr = [1,0,2,1], then first = 1 and encoded = [1 XOR 0, 0 XOR 2, 2 XOR 1] = [1,2,3]\n```\n\n**Example 2:**\n\n```\nInput: encoded = [6,2,7,3], first = 4\nOutput: [4,2,0,7,4]\n```\n\n**Constraints:**\n\n*   `2 <= n <= 10^(4)`\n*   `encoded.length == n - 1`\n*   `0 <= encoded[i] <= 10^(5)`\n*   `0 <= first <= 10^(5)`",
+  "constraints": [
+    "2 <= n <= 104",
+    "encoded.length == n - 1",
+    "0 <= encoded[i] <= 105",
+    "0 <= first <= 105"
+  ],
+  "examples": [
+    {
+      "input": "encoded = [1,2,3], first = 1",
+      "output": "[1,0,2,1]",
+      "explanation": "If arr = [1,0,2,1], then first = 1 and encoded = [1 XOR 0, 0 XOR 2, 2 XOR 1] = [1,2,3]"
+    },
+    {
+      "input": "encoded = [6,2,7,3], first = 4",
+      "output": "[4,2,0,7,4]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> decode(vector<int>& encoded, int first) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] decode(int[] encoded, int first) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def decode(self, encoded: list[int], first: int) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def decode(self, encoded, first):\n        \"\"\"\n        :type encoded: List[int]\n        :type first: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} encoded\n * @param {number} first\n * @return {number[]}\n */\nvar decode = function(encoded, first) {\n    \n};",
+    "typescript": "function decode(encoded: number[], first: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] Decode(int[] encoded, int first) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* decode(int* encoded, int encodedSize, int first, int* returnSize) {\n    \n}",
+    "golang": "func decode(encoded []int, first int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun decode(encoded: IntArray, first: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func decode(_ encoded: [Int], _ first: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn decode(encoded: Vec<i32>, first: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} encoded\n# @param {Integer} first\n# @return {Integer[]}\ndef decode(encoded, first)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $encoded\n     * @param Integer $first\n     * @return Integer[]\n     */\n    function decode($encoded, $first) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> decode(List<int> encoded, int first) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def decode(encoded: Array[Int], first: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec decode(encoded :: [integer], first :: integer) :: [integer]\n  def decode(encoded, first) do\n    \n  end\nend",
+    "erlang": "-spec decode(Encoded :: [integer()], First :: integer()) -> [integer()].\ndecode(Encoded, First) ->\n  .",
+    "racket": "(define/contract (decode encoded first)\n  (-> (listof exact-integer?) exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3]\n1",
+      "expectedOutput": "[1,0,2,1]"
+    },
+    {
+      "input": "[6,2,7,3]\n4",
+      "expectedOutput": "[4,2,0,7,4]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3]\n1",
+      "expectedOutput": "[1,0,2,1]"
+    },
+    {
+      "input": "[6,2,7,3]\n4",
+      "expectedOutput": "[4,2,0,7,4]"
+    },
+    {
+      "input": "[1]\n1",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "[2,3]\n1",
+      "expectedOutput": "[1,3,0]"
+    },
+    {
+      "input": "[1,3]\n1",
+      "expectedOutput": "[1,0,3]"
+    },
+    {
+      "input": "[1,2]\n1",
+      "expectedOutput": "[1,0,2]"
+    },
+    {
+      "input": "[3,2,1]\n1",
+      "expectedOutput": "[1,2,0,1]"
+    },
+    {
+      "input": "[1,1,1]\n1",
+      "expectedOutput": "[1,0,1,0]"
+    },
+    {
+      "input": "[1,2,3,1,2,3]\n1",
+      "expectedOutput": "[1,0,2,1,0,2,1]"
+    },
+    {
+      "input": "[2,4,6]\n1",
+      "expectedOutput": "[1,3,7,1]"
+    },
+    {
+      "input": "[2,3,4]\n1",
+      "expectedOutput": "[1,3,0,4]"
+    },
+    {
+      "input": "[0,1,2]\n1",
+      "expectedOutput": "[1,1,0,2]"
+    },
+    {
+      "input": "[-1,-2,-3]\n1",
+      "expectedOutput": "[1,-2,0,-3]"
+    },
+    {
+      "input": "[0,0,0]\n1",
+      "expectedOutput": "[1,1,1,1]"
+    },
+    {
+      "input": "[0]\n1",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "[-1]\n1",
+      "expectedOutput": "[1,-2]"
+    },
+    {
+      "input": "[0,0]\n1",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "[2,1]\n1",
+      "expectedOutput": "[1,3,2]"
+    },
+    {
+      "input": "[1,1]\n1",
+      "expectedOutput": "[1,0,1]"
+    },
+    {
+      "input": "[-1,1]\n1",
+      "expectedOutput": "[1,-2,-1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Since that encoded[i] = arr[i] XOR arr[i+1], then arr[i+1] = encoded[i] XOR arr[i].",
+    "Iterate on i from beginning to end, and set arr[i+1] = encoded[i] XOR arr[i]."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/decode-xored-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.210Z",
+    "sourceUpdatedAt": null
+  }
+}

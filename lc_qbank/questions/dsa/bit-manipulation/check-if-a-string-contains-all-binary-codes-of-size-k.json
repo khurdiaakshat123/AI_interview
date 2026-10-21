@@ -1,0 +1,171 @@
+{
+  "id": "1461",
+  "slug": "check-if-a-string-contains-all-binary-codes-of-size-k",
+  "title": "Check If a String Contains All Binary Codes of Size K",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Rolling Hash",
+    "Hash Function",
+    "Directed Acyclic Graph"
+  ],
+  "statement": "Given a binary string `s` and an integer `k`, return `true` _if every binary code of length_ `k` _is a substring of_ `s`. Otherwise, return `false`.\n\n**Example 1:**\n\n```\nInput: s = \"00110110\", k = 2\nOutput: true\nExplanation: The binary codes of length 2 are \"00\", \"01\", \"10\" and \"11\". They can be all found as substrings at indices 0, 1, 3 and 2 respectively.\n```\n\n**Example 2:**\n\n```\nInput: s = \"0110\", k = 1\nOutput: true\nExplanation: The binary codes of length 1 are \"0\" and \"1\", it is clear that both exist as a substring.\n```\n\n**Example 3:**\n\n```\nInput: s = \"0110\", k = 2\nOutput: false\nExplanation: The binary code \"00\" is of length 2 and does not exist in the array.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 5 * 10^(5)`\n*   `s[i]` is either `'0'` or `'1'`.\n*   `1 <= k <= 20`",
+  "constraints": [
+    "1 <= s.length <= 5 * 105",
+    "s[i] is either '0' or '1'.",
+    "1 <= k <= 20"
+  ],
+  "examples": [
+    {
+      "input": "s = \"00110110\", k = 2",
+      "output": "true",
+      "explanation": "The binary codes of length 2 are \"00\", \"01\", \"10\" and \"11\". They can be all found as substrings at indices 0, 1, 3 and 2 respectively."
+    },
+    {
+      "input": "s = \"0110\", k = 1",
+      "output": "true",
+      "explanation": "The binary codes of length 1 are \"0\" and \"1\", it is clear that both exist as a substring."
+    },
+    {
+      "input": "s = \"0110\", k = 2",
+      "output": "false",
+      "explanation": "The binary code \"00\" is of length 2 and does not exist in the array."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool hasAllCodes(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean hasAllCodes(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def hasAllCodes(self, s: str, k: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def hasAllCodes(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {boolean}\n */\nvar hasAllCodes = function(s, k) {\n    \n};",
+    "typescript": "function hasAllCodes(s: string, k: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool HasAllCodes(string s, int k) {\n        \n    }\n}",
+    "c": "bool hasAllCodes(char* s, int k) {\n    \n}",
+    "golang": "func hasAllCodes(s string, k int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun hasAllCodes(s: String, k: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func hasAllCodes(_ s: String, _ k: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn has_all_codes(s: String, k: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {Boolean}\ndef has_all_codes(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return Boolean\n     */\n    function hasAllCodes($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool hasAllCodes(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def hasAllCodes(s: String, k: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec has_all_codes(s :: String.t, k :: integer) :: boolean\n  def has_all_codes(s, k) do\n    \n  end\nend",
+    "erlang": "-spec has_all_codes(S :: unicode:unicode_binary(), K :: integer()) -> boolean().\nhas_all_codes(S, K) ->\n  .",
+    "racket": "(define/contract (has-all-codes s k)\n  (-> string? exact-integer? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"00110110\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"0110\"\n1",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"0110\"\n2",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"00110110\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"0110\"\n1",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"0110\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"0011\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"0\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"00\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"01101100\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"0011011000110110\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"000000\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"0011011001101100\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aa\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ab\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abba\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n2",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"edcba\"\n2",
+      "expectedOutput": "true"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We need only to check all sub-strings of length k.",
+    "The number of distinct sub-strings should be exactly 2^k."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.056Z",
+    "sourceUpdatedAt": null
+  }
+}

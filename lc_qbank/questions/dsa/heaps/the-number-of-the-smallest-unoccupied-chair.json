@@ -1,0 +1,98 @@
+{
+  "id": "1942",
+  "slug": "the-number-of-the-smallest-unoccupied-chair",
+  "title": "The Number of the Smallest Unoccupied Chair",
+  "category": "dsa",
+  "subcategory": "heaps",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "There is a party where `n` friends numbered from `0` to `n - 1` are attending. There is an **infinite** number of chairs in this party that are numbered from `0` to `infinity`. When a friend arrives at the party, they sit on the unoccupied chair with the **smallest number**.\n\n*   For example, if chairs `0`, `1`, and `5` are occupied when a friend comes, they will sit on chair number `2`.\n\nWhen a friend leaves the party, their chair becomes unoccupied at the moment they leave. If another friend arrives at that same moment, they can sit in that chair.\n\nYou are given a **0-indexed** 2D integer array `times` where `times[i] = [arrival_(i), leaving_(i)]`, indicating the arrival and leaving times of the `i^(th)` friend respectively, and an integer `targetFriend`. All arrival times are **distinct**.\n\nReturn _the **chair number** that the friend numbered_ `targetFriend` _will sit on_.\n\n**Example 1:**\n\n```\nInput: times = [[1,4],[2,3],[4,6]], targetFriend = 1\nOutput: 1\nExplanation: \n- Friend 0 arrives at time 1 and sits on chair 0.\n- Friend 1 arrives at time 2 and sits on chair 1.\n- Friend 1 leaves at time 3 and chair 1 becomes empty.\n- Friend 0 leaves at time 4 and chair 0 becomes empty.\n- Friend 2 arrives at time 4 and sits on chair 0.\nSince friend 1 sat on chair 1, we return 1.\n```\n\n**Example 2:**\n\n```\nInput: times = [[3,10],[1,5],[2,6]], targetFriend = 0\nOutput: 2\nExplanation: \n- Friend 1 arrives at time 1 and sits on chair 0.\n- Friend 2 arrives at time 2 and sits on chair 1.\n- Friend 0 arrives at time 3 and sits on chair 2.\n- Friend 1 leaves at time 5 and chair 0 becomes empty.\n- Friend 2 leaves at time 6 and chair 1 becomes empty.\n- Friend 0 leaves at time 10 and chair 2 becomes empty.\nSince friend 0 sat on chair 2, we return 2.\n```\n\n**Constraints:**\n\n*   `n == times.length`\n*   `2 <= n <= 10^(4)`\n*   `times[i].length == 2`\n*   `1 <= arrival_(i) < leaving_(i) <= 10^(5)`\n*   `0 <= targetFriend <= n - 1`\n*   Each `arrival_(i)` time is **distinct**.",
+  "constraints": [
+    "n == times.length",
+    "2 <= n <= 104",
+    "times[i].length == 2",
+    "1 <= arrivali < leavingi <= 105",
+    "0 <= targetFriend <= n - 1",
+    "Each arrivali time is distinct."
+  ],
+  "examples": [
+    {
+      "input": "times = [[1,4],[2,3],[4,6]], targetFriend = 1",
+      "output": "1",
+      "explanation": "- Friend 0 arrives at time 1 and sits on chair 0.\n- Friend 1 arrives at time 2 and sits on chair 1.\n- Friend 1 leaves at time 3 and chair 1 becomes empty.\n- Friend 0 leaves at time 4 and chair 0 becomes empty.\n- Friend 2 arrives at time 4 and sits on chair 0.\nSince friend 1 sat on chair 1, we return 1."
+    },
+    {
+      "input": "times = [[3,10],[1,5],[2,6]], targetFriend = 0",
+      "output": "2",
+      "explanation": "- Friend 1 arrives at time 1 and sits on chair 0.\n- Friend 2 arrives at time 2 and sits on chair 1.\n- Friend 0 arrives at time 3 and sits on chair 2.\n- Friend 1 leaves at time 5 and chair 0 becomes empty.\n- Friend 2 leaves at time 6 and chair 1 becomes empty.\n- Friend 0 leaves at time 10 and chair 2 becomes empty.\nSince friend 0 sat on chair 2, we return 2."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int smallestChair(vector<vector<int>>& times, int targetFriend) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int smallestChair(int[][] times, int targetFriend) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestChair(self, times: list[list[int]], targetFriend: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def smallestChair(self, times, targetFriend):\n        \"\"\"\n        :type times: List[List[int]]\n        :type targetFriend: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} times\n * @param {number} targetFriend\n * @return {number}\n */\nvar smallestChair = function(times, targetFriend) {\n    \n};",
+    "typescript": "function smallestChair(times: number[][], targetFriend: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SmallestChair(int[][] times, int targetFriend) {\n        \n    }\n}",
+    "c": "int smallestChair(int** times, int timesSize, int* timesColSize, int targetFriend) {\n    \n}",
+    "golang": "func smallestChair(times [][]int, targetFriend int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestChair(times: Array<IntArray>, targetFriend: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestChair(_ times: [[Int]], _ targetFriend: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_chair(times: Vec<Vec<i32>>, target_friend: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} times\n# @param {Integer} target_friend\n# @return {Integer}\ndef smallest_chair(times, target_friend)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $times\n     * @param Integer $targetFriend\n     * @return Integer\n     */\n    function smallestChair($times, $targetFriend) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int smallestChair(List<List<int>> times, int targetFriend) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestChair(times: Array[Array[Int]], targetFriend: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_chair(times :: [[integer]], target_friend :: integer) :: integer\n  def smallest_chair(times, target_friend) do\n    \n  end\nend",
+    "erlang": "-spec smallest_chair(Times :: [[integer()]], TargetFriend :: integer()) -> integer().\nsmallest_chair(Times, TargetFriend) ->\n  .",
+    "racket": "(define/contract (smallest-chair times targetFriend)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,4],[2,3],[4,6]]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[3,10],[1,5],[2,6]]\n0",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,4],[2,3],[4,6]]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[[3,10],[1,5],[2,6]]\n0",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "times = [[1,4],[2,3],[4,6]], targetFriend = 1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "times = [[3,10],[1,5],[2,6]], targetFriend = 0",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Sort times by arrival time.",
+    "for each arrival_i find the smallest unoccupied chair and mark it as occupied until leaving_i."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/the-number-of-the-smallest-unoccupied-chair/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.947Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "id": "1734",
+  "slug": "decode-xored-permutation",
+  "title": "Decode XORed Permutation",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Bit Manipulation"
+  ],
+  "statement": "There is an integer array `perm` that is a permutation of the first `n` positive integers, where `n` is always **odd**.\n\nIt was encoded into another integer array `encoded` of length `n - 1`, such that `encoded[i] = perm[i] XOR perm[i + 1]`. For example, if `perm = [1,3,2]`, then `encoded = [2,1]`.\n\nGiven the `encoded` array, return _the original array_ `perm`. It is guaranteed that the answer exists and is unique.\n\n**Example 1:**\n\n```\nInput: encoded = [3,1]\nOutput: [1,2,3]\nExplanation: If perm = [1,2,3], then encoded = [1 XOR 2,2 XOR 3] = [3,1]\n```\n\n**Example 2:**\n\n```\nInput: encoded = [6,5,4,6]\nOutput: [2,4,1,5,3]\n```\n\n**Constraints:**\n\n*   `3 <= n < 10^(5)`\n*   `n` is odd.\n*   `encoded.length == n - 1`",
+  "constraints": [
+    "3 <= n < 105",
+    "n is odd.",
+    "encoded.length == n - 1"
+  ],
+  "examples": [
+    {
+      "input": "encoded = [3,1]",
+      "output": "[1,2,3]",
+      "explanation": "If perm = [1,2,3], then encoded = [1 XOR 2,2 XOR 3] = [3,1]"
+    },
+    {
+      "input": "encoded = [6,5,4,6]",
+      "output": "[2,4,1,5,3]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> decode(vector<int>& encoded) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] decode(int[] encoded) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def decode(self, encoded: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def decode(self, encoded):\n        \"\"\"\n        :type encoded: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} encoded\n * @return {number[]}\n */\nvar decode = function(encoded) {\n    \n};",
+    "typescript": "function decode(encoded: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] Decode(int[] encoded) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* decode(int* encoded, int encodedSize, int* returnSize) {\n    \n}",
+    "golang": "func decode(encoded []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun decode(encoded: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func decode(_ encoded: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn decode(encoded: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} encoded\n# @return {Integer[]}\ndef decode(encoded)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $encoded\n     * @return Integer[]\n     */\n    function decode($encoded) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> decode(List<int> encoded) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def decode(encoded: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec decode(encoded :: [integer]) :: [integer]\n  def decode(encoded) do\n    \n  end\nend",
+    "erlang": "-spec decode(Encoded :: [integer()]) -> [integer()].\ndecode(Encoded) ->\n  .",
+    "racket": "(define/contract (decode encoded)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,1]",
+      "expectedOutput": "[1,2,3]"
+    },
+    {
+      "input": "[6,5,4,6]",
+      "expectedOutput": "[2,4,1,5,3]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,1]",
+      "expectedOutput": "[1,2,3]"
+    },
+    {
+      "input": "[6,5,4,6]",
+      "expectedOutput": "[2,4,1,5,3]"
+    },
+    {
+      "input": "[3]",
+      "expectedOutput": "[3,0]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[3,2]"
+    },
+    {
+      "input": "[1,3]",
+      "expectedOutput": "[3,2,1]"
+    },
+    {
+      "input": "[3,3]",
+      "expectedOutput": "[3,0,3]"
+    },
+    {
+      "input": "[3,1,3,1]",
+      "expectedOutput": "[1,2,3,0,1]"
+    },
+    {
+      "input": "[6,2]",
+      "expectedOutput": "[2,4,6]"
+    },
+    {
+      "input": "[4,2]",
+      "expectedOutput": "[2,6,4]"
+    },
+    {
+      "input": "[2,0]",
+      "expectedOutput": "[0,2,2]"
+    },
+    {
+      "input": "[-3,-1]",
+      "expectedOutput": "[-1,2,-3]"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "[1,0,1]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[3,3]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[3,-4]"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "[2,3,1]"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "[1,3,2]"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "[1,-2,-1]"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "[6,7,5,6]"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "[6,5,7,6]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Compute the XOR of the numbers between 1 and n, and think about how it can be used. Let it be x.",
+    "Think why n is odd.",
+    "perm[0] = x XOR encoded[1] XOR encoded[3] XOR encoded[5] ...",
+    "perm[i] = perm[i-1] XOR encoded[i-1]"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/decode-xored-permutation/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.214Z",
+    "sourceUpdatedAt": null
+  }
+}

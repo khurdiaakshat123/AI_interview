@@ -1,0 +1,170 @@
+{
+  "id": "3809",
+  "slug": "best-reachable-tower",
+  "title": "Best Reachable Tower",
+  "category": "dsa",
+  "subcategory": "arrays",
+  "difficulty": "Medium",
+  "tags": [
+    "Array"
+  ],
+  "statement": "You are given a 2D integer array `towers`, where `towers[i] = [x_(i), y_(i), q_(i)]` represents the coordinates `(x_(i), y_(i))` and quality factor `q_(i)` of the `i^(th)` tower.\n\nYou are also given an integer array `center = [cx, cy​​​​​​​]` representing your location, and an integer `radius`.\n\nA tower is **reachable** if its **Manhattan distance** from `center` is **less than or equal** to `radius`.\n\nAmong all reachable towers:\n\n*   Return the coordinates of the tower with the **maximum** quality factor.\n*   If there is a tie, return the tower with the **lexicographically smallest** coordinate. If no tower is reachable, return `[-1, -1]`.\n\nThe **Manhattan Distance** between two cells `(x_(i), y_(i))` and `(x_(j), y_(j))` is `|x_(i) - x_(j)| + |y_(i) - y_(j)|`.\n\nA coordinate `[x_(i), y_(i)]` is **lexicographically smaller** than `[x_(j), y_(j)]` if `x_(i) < x_(j)`, or `x_(i) == x_(j)` and `y_(i) < y_(j)`.\n\n`|x|` denotes the **absolute** **value** of `x`.\n\n**Example 1:**\n\n**Input:** towers = \\[\\[1,2,5\\], \\[2,1,7\\], \\[3,1,9\\]\\], center = \\[1,1\\], radius = 2\n\n**Output:** \\[3,1\\]\n\n**Explanation:**\n\n*   Tower `[1, 2, 5]`: Manhattan distance = `|1 - 1| + |2 - 1| = 1`, reachable.\n*   Tower `[2, 1, 7]`: Manhattan distance = `|2 - 1| + |1 - 1| = 1`, reachable.\n*   Tower `[3, 1, 9]`: Manhattan distance = `|3 - 1| + |1 - 1| = 2`, reachable.\n\nAll towers are reachable. The maximum quality factor is 9, which corresponds to tower `[3, 1]`.\n\n**Example 2:**\n\n**Input:** towers = \\[\\[1,3,4\\], \\[2,2,4\\], \\[4,4,7\\]\\], center = \\[0,0\\], radius = 5\n\n**Output:** \\[1,3\\]\n\n**Explanation:**\n\n*   Tower `[1, 3, 4]`: Manhattan distance = `|1 - 0| + |3 - 0| = 4`, reachable.\n*   Tower `[2, 2, 4]`: Manhattan distance = `|2 - 0| + |2 - 0| = 4`, reachable.\n*   Tower `[4, 4, 7]`: Manhattan distance = `|4 - 0| + |4 - 0| = 8`, not reachable.\n\nAmong the reachable towers, the maximum quality factor is 4. Both `[1, 3]` and `[2, 2]` have the same quality, so the lexicographically smaller coordinate is `[1, 3]`.\n\n**Example 3:**\n\n**Input:** towers = \\[\\[5,6,8\\], \\[0,3,5\\]\\], center = \\[1,2\\], radius = 1\n\n**Output:** \\[-1,-1\\]\n\n**Explanation:**\n\n*   Tower `[5, 6, 8]`: Manhattan distance = `|5 - 1| + |6 - 2| = 8`, not reachable.\n*   Tower `[0, 3, 5]`: Manhattan distance = `|0 - 1| + |3 - 2| = 2`, not reachable.\n\nNo tower is reachable within the given radius, so `[-1, -1]` is returned.\n\n**Constraints:**\n\n*   `1 <= towers.length <= 10^(5)`\n*   `towers[i] = [x_(i), y_(i), q_(i)]`\n*   `center = [cx, cy]`\n*   `0 <= x_(i), y_(i), q_(i), cx, cy <= 10^(5)`​​​​​​​\n*   `0 <= radius <= 10^(5)`",
+  "constraints": [
+    "1 <= towers.length <= 105",
+    "towers[i] = [xi, yi, qi]",
+    "center = [cx, cy]",
+    "0 <= xi, yi, qi, cx, cy <= 105​​​​​​​",
+    "0 <= radius <= 105"
+  ],
+  "examples": [
+    {
+      "input": "towers = [[1,2,5], [2,1,7], [3,1,9]], center = [1,1], radius = 2",
+      "output": "[3,1]",
+      "explanation": "Tower [1, 2, 5]: Manhattan distance = |1 - 1| + |2 - 1| = 1, reachable.\n\tTower [2, 1, 7]: Manhattan distance = |2 - 1| + |1 - 1| = 1, reachable.\n\tTower [3, 1, 9]: Manhattan distance = |3 - 1| + |1 - 1| = 2, reachable."
+    },
+    {
+      "input": "towers = [[1,3,4], [2,2,4], [4,4,7]], center = [0,0], radius = 5",
+      "output": "[1,3]",
+      "explanation": "Tower [1, 3, 4]: Manhattan distance = |1 - 0| + |3 - 0| = 4, reachable.\n\tTower [2, 2, 4]: Manhattan distance = |2 - 0| + |2 - 0| = 4, reachable.\n\tTower [4, 4, 7]: Manhattan distance = |4 - 0| + |4 - 0| = 8, not reachable."
+    },
+    {
+      "input": "towers = [[5,6,8], [0,3,5]], center = [1,2], radius = 1",
+      "output": "[-1,-1]",
+      "explanation": "Tower [5, 6, 8]: Manhattan distance = |5 - 1| + |6 - 2| = 8, not reachable.\n\tTower [0, 3, 5]: Manhattan distance = |0 - 1| + |3 - 2| = 2, not reachable."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> bestTower(vector<vector<int>>& towers, vector<int>& center, int radius) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] bestTower(int[][] towers, int[] center, int radius) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def bestTower(self, towers: List[List[int]], center: List[int], radius: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def bestTower(self, towers, center, radius):\n        \"\"\"\n        :type towers: List[List[int]]\n        :type center: List[int]\n        :type radius: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} towers\n * @param {number[]} center\n * @param {number} radius\n * @return {number[]}\n */\nvar bestTower = function(towers, center, radius) {\n    \n};",
+    "typescript": "function bestTower(towers: number[][], center: number[], radius: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] BestTower(int[][] towers, int[] center, int radius) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* bestTower(int** towers, int towersSize, int* towersColSize, int* center, int centerSize, int radius, int* returnSize) {\n    \n}",
+    "golang": "func bestTower(towers [][]int, center []int, radius int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun bestTower(towers: Array<IntArray>, center: IntArray, radius: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func bestTower(_ towers: [[Int]], _ center: [Int], _ radius: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn best_tower(towers: Vec<Vec<i32>>, center: Vec<i32>, radius: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} towers\n# @param {Integer[]} center\n# @param {Integer} radius\n# @return {Integer[]}\ndef best_tower(towers, center, radius)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $towers\n     * @param Integer[] $center\n     * @param Integer $radius\n     * @return Integer[]\n     */\n    function bestTower($towers, $center, $radius) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> bestTower(List<List<int>> towers, List<int> center, int radius) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def bestTower(towers: Array[Array[Int]], center: Array[Int], radius: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec best_tower(towers :: [[integer]], center :: [integer], radius :: integer) :: [integer]\n  def best_tower(towers, center, radius) do\n    \n  end\nend",
+    "erlang": "-spec best_tower(Towers :: [[integer()]], Center :: [integer()], Radius :: integer()) -> [integer()].\nbest_tower(Towers, Center, Radius) ->\n  .",
+    "racket": "(define/contract (best-tower towers center radius)\n  (-> (listof (listof exact-integer?)) (listof exact-integer?) exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,1]\n2",
+      "expectedOutput": "[3,1]"
+    },
+    {
+      "input": "[[1,3,4],[2,2,4],[4,4,7]]\n[0,0]\n5",
+      "expectedOutput": "[1,3]"
+    },
+    {
+      "input": "[[5,6,8],[0,3,5]]\n[1,2]\n1",
+      "expectedOutput": "[-1,-1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,1]\n2",
+      "expectedOutput": "[3,1]"
+    },
+    {
+      "input": "[[1,3,4],[2,2,4],[4,4,7]]\n[0,0]\n5",
+      "expectedOutput": "[1,3]"
+    },
+    {
+      "input": "[[5,6,8],[0,3,5]]\n[1,2]\n1",
+      "expectedOutput": "[-1,-1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[2,2]\n2",
+      "expectedOutput": "[3,1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[0,0]\n2",
+      "expectedOutput": "[-1,-1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[-1,-1]\n2",
+      "expectedOutput": "[-1,-1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,2]\n2",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[2,1]\n2",
+      "expectedOutput": "[3,1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[-1,1]\n2",
+      "expectedOutput": "[-1,-1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[100,-100]\n2",
+      "expectedOutput": "[-1,-1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,1]\n0",
+      "expectedOutput": "[-1,-1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,1]\n1",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,1]\n3",
+      "expectedOutput": "[3,1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,1]\n4",
+      "expectedOutput": "[3,1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,1]\n5",
+      "expectedOutput": "[3,1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,1]\n6",
+      "expectedOutput": "[3,1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,1]\n7",
+      "expectedOutput": "[3,1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,1]\n-1",
+      "expectedOutput": "[-1,-1]"
+    },
+    {
+      "input": "[[1,2,5],[2,1,7],[3,1,9]]\n[1,1]\n-2",
+      "expectedOutput": "[-1,-1]"
+    },
+    {
+      "input": "[[1,3,4],[2,2,4],[4,4,7]]\n[1,1]\n5",
+      "expectedOutput": "[1,3]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate through all towers and compute the Manhattan distance <code>abs(xi - cx) + abs(yi - cy)</code>.",
+    "Consider only towers with distance less than or equal to <code>radius</code>.",
+    "Track the reachable tower with the highest <code>qi</code>; break ties using lexicographical order on <code>[xi, yi]</code>.",
+    "If no tower is reachable, return <code>[-1, -1]</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/best-reachable-tower/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.494Z",
+    "sourceUpdatedAt": null
+  }
+}

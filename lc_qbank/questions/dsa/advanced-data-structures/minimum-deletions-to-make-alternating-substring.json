@@ -1,0 +1,173 @@
+{
+  "id": "3777",
+  "slug": "minimum-deletions-to-make-alternating-substring",
+  "title": "Minimum Deletions to Make Alternating Substring",
+  "category": "dsa",
+  "subcategory": "advanced-data-structures",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Segment Tree"
+  ],
+  "statement": "You are given a string `s` of length `n` consisting only of the characters `'A'` and `'B'`.\n\nYou are also given a 2D integer array `queries` of length `q`, where each `queries[i]` is one of the following:\n\n*   `[1, j]`: **Flip** the character at index `j` of `s` i.e. `'A'` changes to `'B'` (and vice versa). This operation mutates `s` and affects subsequent queries.\n*   `[2, l, r]`: **Compute** the **minimum** number of character deletions required to make the **substring** `s[l..r]` **alternating**. This operation does not modify `s`; the length of `s` remains `n`.\n\nA **substring** is **alternating** if no two **adjacent** characters are **equal**. A substring of length 1 is always alternating.\n\nReturn an integer array `answer`, where `answer[i]` is the result of the `i^(th)` query of type `[2, l, r]`.\n\n**Example 1:**\n\n**Input:** s = \"ABA\", queries = \\[\\[2,1,2\\],\\[1,1\\],\\[2,0,2\\]\\]\n\n**Output:** \\[0,2\\]\n\n**Explanation:**\n\n`**i**`\n\n`**queries[i]**`\n\n`**j**`\n\n`**l**`\n\n`**r**`\n\n**`s` before query**\n\n`**s[l..r]**`\n\n**Result**\n\n**Answer**\n\n0\n\n\\[2, 1, 2\\]\n\n\\-\n\n1\n\n2\n\n`\"ABA\"`\n\n`\"BA\"`\n\nAlready alternating\n\n0\n\n1\n\n\\[1, 1\\]\n\n1\n\n\\-\n\n\\-\n\n`\"ABA\"`\n\n\\-\n\nFlip `s[1]` from `'B'` to `'A'`\n\n\\-\n\n2\n\n\\[2, 0, 2\\]\n\n\\-\n\n0\n\n2\n\n`\"AAA\"`\n\n`\"AAA\"`\n\nDelete any two `'A'`s to get `\"A\"`\n\n2\n\nThus, the answer is `[0, 2]`.\n\n**Example 2:**\n\n**Input:** s = \"ABB\", queries = \\[\\[2,0,2\\],\\[1,2\\],\\[2,0,2\\]\\]\n\n**Output:** \\[1,0\\]\n\n**Explanation:**\n\n`**i**`\n\n`**queries[i]**`\n\n`**j**`\n\n`**l**`\n\n`**r**`\n\n**`s` before query**\n\n`**s[l..r]**`\n\n**Result**\n\n**Answer**\n\n0\n\n\\[2, 0, 2\\]\n\n\\-\n\n0\n\n2\n\n`\"ABB\"`\n\n`\"ABB\"`\n\nDelete one `'B'` to get `\"AB\"`\n\n1\n\n1\n\n\\[1, 2\\]\n\n2\n\n\\-\n\n\\-\n\n`\"ABB\"`\n\n\\-\n\nFlip `s[2]` from `'B'` to `'A'`\n\n\\-\n\n2\n\n\\[2, 0, 2\\]\n\n\\-\n\n0\n\n2\n\n`\"ABA\"`\n\n`\"ABA\"`\n\nAlready alternating\n\n0\n\nThus, the answer is `[1, 0]`.\n\n**Example 3:**\n\n**Input:** s = \"BABA\", queries = \\[\\[2,0,3\\],\\[1,1\\],\\[2,1,3\\]\\]\n\n**Output:** \\[0,1\\]\n\n**Explanation:**\n\n`**i**`\n\n`**queries[i]**`\n\n`**j**`\n\n`**l**`\n\n`**r**`\n\n**`s` before query**\n\n`**s[l..r]**`\n\n**Result**\n\n**Answer**\n\n0\n\n\\[2, 0, 3\\]\n\n\\-\n\n0\n\n3\n\n`\"BABA\"`\n\n`\"BABA\"`\n\nAlready alternating\n\n0\n\n1\n\n\\[1, 1\\]\n\n1\n\n\\-\n\n\\-\n\n`\"BABA\"`\n\n\\-\n\nFlip `s[1]` from `'A'` to `'B'`\n\n\\-\n\n2\n\n\\[2, 1, 3\\]\n\n\\-\n\n1\n\n3\n\n`\"BBBA\"`\n\n`\"BBA\"`\n\nDelete one `'B'` to get `\"BA\"`\n\n1\n\nThus, the answer is `[0, 1]`.\n\n**Constraints:**\n\n*   `1 <= n == s.length <= 10^(5)`\n*   `s[i]` is either `'A'` or `'B'`.\n*   `1 <= q == queries.length <= 10^(5)`\n*   `queries[i].length == 2` or `3`\n    *   `queries[i] == [1, j]` or,\n    *   `queries[i] == [2, l, r]`\n    *   `0 <= j <= n - 1`\n    *   `0 <= l <= r <= n - 1`",
+  "constraints": [
+    "1 <= n == s.length <= 105",
+    "s[i] is either 'A' or 'B'.",
+    "1 <= q == queries.length <= 105",
+    "queries[i].length == 2 or 3\n\t\n\t\tqueries[i] == [1, j] or,",
+    "queries[i] == [2, l, r]",
+    "0 <= j <= n - 1",
+    "0 <= l <= r <= n - 1"
+  ],
+  "examples": [
+    {
+      "input": "s = \"ABA\", queries = [[2,1,2],[1,1],[2,0,2]]",
+      "output": "[0,2]",
+      "explanation": "i\n\t\t\tqueries[i]\n\t\t\tj\n\t\t\tl\n\t\t\tr\n\t\t\ts before query\n\t\t\ts[l..r]\n\t\t\tResult\n\t\t\tAnswer\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t[2, 1, 2]\n\t\t\t-\n\t\t\t1\n\t\t\t2\n\t\t\t\"ABA\"\n\t\t\t\"BA\"\n\t\t\tAlready alternating\n\t\t\t0\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[1, 1]\n\t\t\t1\n\t\t\t-\n\t\t\t-\n\t\t\t\"ABA\"\n\t\t\t-\n\t\t\tFlip s[1] from 'B' to 'A'\n\t\t\t-\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[2, 0, 2]\n\t\t\t-\n\t\t\t0\n\t\t\t2\n\t\t\t\"AAA\"\n\t\t\t\"AAA\"\n\t\t\tDelete any two 'A's to get \"A\"\n\t\t\t2"
+    },
+    {
+      "input": "s = \"ABB\", queries = [[2,0,2],[1,2],[2,0,2]]",
+      "output": "[1,0]",
+      "explanation": "i\n\t\t\tqueries[i]\n\t\t\tj\n\t\t\tl\n\t\t\tr\n\t\t\ts before query\n\t\t\ts[l..r]\n\t\t\tResult\n\t\t\tAnswer\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t[2, 0, 2]\n\t\t\t-\n\t\t\t0\n\t\t\t2\n\t\t\t\"ABB\"\n\t\t\t\"ABB\"\n\t\t\tDelete one 'B' to get \"AB\"\n\t\t\t1\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[1, 2]\n\t\t\t2\n\t\t\t-\n\t\t\t-\n\t\t\t\"ABB\"\n\t\t\t-\n\t\t\tFlip s[2] from 'B' to 'A'\n\t\t\t-\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[2, 0, 2]\n\t\t\t-\n\t\t\t0\n\t\t\t2\n\t\t\t\"ABA\"\n\t\t\t\"ABA\"\n\t\t\tAlready alternating\n\t\t\t0"
+    },
+    {
+      "input": "s = \"BABA\", queries = [[2,0,3],[1,1],[2,1,3]]",
+      "output": "[0,1]",
+      "explanation": "i\n\t\t\tqueries[i]\n\t\t\tj\n\t\t\tl\n\t\t\tr\n\t\t\ts before query\n\t\t\ts[l..r]\n\t\t\tResult\n\t\t\tAnswer\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t[2, 0, 3]\n\t\t\t-\n\t\t\t0\n\t\t\t3\n\t\t\t\"BABA\"\n\t\t\t\"BABA\"\n\t\t\tAlready alternating\n\t\t\t0\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[1, 1]\n\t\t\t1\n\t\t\t-\n\t\t\t-\n\t\t\t\"BABA\"\n\t\t\t-\n\t\t\tFlip s[1] from 'A' to 'B'\n\t\t\t-\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[2, 1, 3]\n\t\t\t-\n\t\t\t1\n\t\t\t3\n\t\t\t\"BBBA\"\n\t\t\t\"BBA\"\n\t\t\tDelete one 'B' to get \"BA\"\n\t\t\t1"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> minDeletions(string s, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] minDeletions(String s, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minDeletions(self, s: str, queries: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def minDeletions(self, s, queries):\n        \"\"\"\n        :type s: str\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar minDeletions = function(s, queries) {\n    \n};",
+    "typescript": "function minDeletions(s: string, queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MinDeletions(string s, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* minDeletions(char* s, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func minDeletions(s string, queries [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minDeletions(s: String, queries: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minDeletions(_ s: String, _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_deletions(s: String, queries: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef min_deletions(s, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function minDeletions($s, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> minDeletions(String s, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minDeletions(s: String, queries: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_deletions(s :: String.t, queries :: [[integer]]) :: [integer]\n  def min_deletions(s, queries) do\n    \n  end\nend",
+    "erlang": "-spec min_deletions(S :: unicode:unicode_binary(), Queries :: [[integer()]]) -> [integer()].\nmin_deletions(S, Queries) ->\n  .",
+    "racket": "(define/contract (min-deletions s queries)\n  (-> string? (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"ABA\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"ABB\"\n[[2,0,2],[1,2],[2,0,2]]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "\"BABA\"\n[[2,0,3],[1,1],[2,1,3]]",
+      "expectedOutput": "[0,1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"ABA\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"ABB\"\n[[2,0,2],[1,2],[2,0,2]]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "\"BABA\"\n[[2,0,3],[1,1],[2,1,3]]",
+      "expectedOutput": "[0,1]"
+    },
+    {
+      "input": "\"ABAABA\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"AAA\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "\"aba\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"abba\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "\"aaaaa\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "\"abcde\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"edcba\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"aab\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,1]"
+    },
+    {
+      "input": "\"121\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"racecar\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"hello\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"leetcode\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "\"world\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"()[]{}\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"([)]\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"{[]}\"\n[[2,1,2],[1,1],[2,0,2]]",
+      "expectedOutput": "[0,2]"
+    },
+    {
+      "input": "\"BBA\"\n[[2,0,2],[1,2],[2,0,2]]",
+      "expectedOutput": "[1,2]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use a Fenwick tree (BIT) over an auxiliary array <code>eq</code>.",
+    "Define <code>eq[i] = 1</code> if <code>i >= 1</code> and <code>s[i] == s[i - 1]</code>, otherwise <code>eq[i] = 0</code>.",
+    "For a type-2 query <code>[2, l, r]</code> the answer is <code>sum(eq[l+1..r])</code> (count of equal adjacent pairs in the substring).",
+    "For a flip <code>[1, j]</code>, recompute and update <code>eq[j]</code> and <code>eq[j + 1]</code>; each flip changes at most two <code>eq</code> values."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-deletions-to-make-alternating-substring/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.770Z",
+    "sourceUpdatedAt": null
+  }
+}

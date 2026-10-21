@@ -1,0 +1,161 @@
+{
+  "id": "2076",
+  "slug": "process-restricted-friend-requests",
+  "title": "Process Restricted Friend Requests",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "statement": "You are given an integer `n` indicating the number of people in a network. Each person is labeled from `0` to `n - 1`.\n\nYou are also given a **0-indexed** 2D integer array `restrictions`, where `restrictions[i] = [x_(i), y_(i)]` means that person `x_(i)` and person `y_(i)` **cannot** become **friends**, either **directly** or **indirectly** through other people.\n\nInitially, no one is friends with each other. You are given a list of friend requests as a **0-indexed** 2D integer array `requests`, where `requests[j] = [u_(j), v_(j)]` is a friend request between person `u_(j)` and person `v_(j)`.\n\nA friend request is **successful** if `u_(j)` and `v_(j)` can be **friends**. Each friend request is processed in the given order (i.e., `requests[j]` occurs before `requests[j + 1]`), and upon a successful request, `u_(j)` and `v_(j)` **become direct friends** for all future friend requests.\n\nReturn _a **boolean array**_ `result`, _where each_ `result[j]` _is_ `true` _if the_ `j^(th)` _friend request is **successful** or_ `false` _if it is not_.\n\n**Note:** If `u_(j)` and `v_(j)` are already direct friends, the request is still **successful**.\n\n**Example 1:**\n\n```\nInput: n = 3, restrictions = [[0,1]], requests = [[0,2],[2,1]]\nOutput: [true,false]\nExplanation:\nRequest 0: Person 0 and person 2 can be friends, so they become direct friends. \nRequest 1: Person 2 and person 1 cannot be friends since person 0 and person 1 would be indirect friends (1--2--0).\n```\n\n**Example 2:**\n\n```\nInput: n = 3, restrictions = [[0,1]], requests = [[1,2],[0,2]]\nOutput: [true,false]\nExplanation:\nRequest 0: Person 1 and person 2 can be friends, so they become direct friends.\nRequest 1: Person 0 and person 2 cannot be friends since person 0 and person 1 would be indirect friends (0--2--1).\n```\n\n**Example 3:**\n\n```\nInput: n = 5, restrictions = [[0,1],[1,2],[2,3]], requests = [[0,4],[1,2],[3,1],[3,4]]\nOutput: [true,false,true,false]\nExplanation:\nRequest 0: Person 0 and person 4 can be friends, so they become direct friends.\nRequest 1: Person 1 and person 2 cannot be friends since they are directly restricted.\nRequest 2: Person 3 and person 1 can be friends, so they become direct friends.\nRequest 3: Person 3 and person 4 cannot be friends since person 0 and person 1 would be indirect friends (0--4--3--1).\n```\n\n**Constraints:**\n\n*   `2 <= n <= 1000`\n*   `0 <= restrictions.length <= 1000`\n*   `restrictions[i].length == 2`\n*   `0 <= x_(i), y_(i) <= n - 1`\n*   `x_(i) != y_(i)`\n*   `1 <= requests.length <= 1000`\n*   `requests[j].length == 2`\n*   `0 <= u_(j), v_(j) <= n - 1`\n*   `u_(j) != v_(j)`",
+  "constraints": [
+    "2 <= n <= 1000",
+    "0 <= restrictions.length <= 1000",
+    "restrictions[i].length == 2",
+    "0 <= xi, yi <= n - 1",
+    "xi != yi",
+    "1 <= requests.length <= 1000",
+    "requests[j].length == 2",
+    "0 <= uj, vj <= n - 1",
+    "uj != vj"
+  ],
+  "examples": [
+    {
+      "input": "n = 3, restrictions = [[0,1]], requests = [[0,2],[2,1]]",
+      "output": "[true,false]",
+      "explanation": "Request 0: Person 0 and person 2 can be friends, so they become direct friends. \nRequest 1: Person 2 and person 1 cannot be friends since person 0 and person 1 would be indirect friends (1--2--0)."
+    },
+    {
+      "input": "n = 3, restrictions = [[0,1]], requests = [[1,2],[0,2]]",
+      "output": "[true,false]",
+      "explanation": "Request 0: Person 1 and person 2 can be friends, so they become direct friends.\nRequest 1: Person 0 and person 2 cannot be friends since person 0 and person 1 would be indirect friends (0--2--1)."
+    },
+    {
+      "input": "n = 5, restrictions = [[0,1],[1,2],[2,3]], requests = [[0,4],[1,2],[3,1],[3,4]]",
+      "output": "[true,false,true,false]",
+      "explanation": "Request 0: Person 0 and person 4 can be friends, so they become direct friends.\nRequest 1: Person 1 and person 2 cannot be friends since they are directly restricted.\nRequest 2: Person 3 and person 1 can be friends, so they become direct friends.\nRequest 3: Person 3 and person 4 cannot be friends since person 0 and person 1 would be indirect friends (0--4--3--1)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<bool> friendRequests(int n, vector<vector<int>>& restrictions, vector<vector<int>>& requests) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean[] friendRequests(int n, int[][] restrictions, int[][] requests) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def friendRequests(self, n: int, restrictions: list[list[int]], requests: list[list[int]]) -> list[bool]:\n        ",
+    "python": "class Solution(object):\n    def friendRequests(self, n, restrictions, requests):\n        \"\"\"\n        :type n: int\n        :type restrictions: List[List[int]]\n        :type requests: List[List[int]]\n        :rtype: List[bool]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} restrictions\n * @param {number[][]} requests\n * @return {boolean[]}\n */\nvar friendRequests = function(n, restrictions, requests) {\n    \n};",
+    "typescript": "function friendRequests(n: number, restrictions: number[][], requests: number[][]): boolean[] {\n    \n};",
+    "csharp": "public class Solution {\n    public bool[] FriendRequests(int n, int[][] restrictions, int[][] requests) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nbool* friendRequests(int n, int** restrictions, int restrictionsSize, int* restrictionsColSize, int** requests, int requestsSize, int* requestsColSize, int* returnSize) {\n    \n}",
+    "golang": "func friendRequests(n int, restrictions [][]int, requests [][]int) []bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun friendRequests(n: Int, restrictions: Array<IntArray>, requests: Array<IntArray>): BooleanArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func friendRequests(_ n: Int, _ restrictions: [[Int]], _ requests: [[Int]]) -> [Bool] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn friend_requests(n: i32, restrictions: Vec<Vec<i32>>, requests: Vec<Vec<i32>>) -> Vec<bool> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} restrictions\n# @param {Integer[][]} requests\n# @return {Boolean[]}\ndef friend_requests(n, restrictions, requests)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $restrictions\n     * @param Integer[][] $requests\n     * @return Boolean[]\n     */\n    function friendRequests($n, $restrictions, $requests) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<bool> friendRequests(int n, List<List<int>> restrictions, List<List<int>> requests) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def friendRequests(n: Int, restrictions: Array[Array[Int]], requests: Array[Array[Int]]): Array[Boolean] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec friend_requests(n :: integer, restrictions :: [[integer]], requests :: [[integer]]) :: [boolean]\n  def friend_requests(n, restrictions, requests) do\n    \n  end\nend",
+    "erlang": "-spec friend_requests(N :: integer(), Restrictions :: [[integer()]], Requests :: [[integer()]]) -> [boolean()].\nfriend_requests(N, Restrictions, Requests) ->\n  .",
+    "racket": "(define/contract (friend-requests n restrictions requests)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof (listof exact-integer?)) (listof boolean?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n[[0,1]]\n[[0,2],[2,1]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "3\n[[0,1]]\n[[1,2],[0,2]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "5\n[[0,1],[1,2],[2,3]]\n[[0,4],[1,2],[3,1],[3,4]]",
+      "expectedOutput": "[true,false,true,false]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n[[0,1]]\n[[0,2],[2,1]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "3\n[[0,1]]\n[[1,2],[0,2]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "5\n[[0,1],[1,2],[2,3]]\n[[0,4],[1,2],[3,1],[3,4]]",
+      "expectedOutput": "[true,false,true,false]"
+    },
+    {
+      "input": "4\n[[0,1]]\n[[0,2],[2,1]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "5\n[[0,1]]\n[[0,2],[2,1]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "6\n[[0,1]]\n[[0,2],[2,1]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "7\n[[0,1]]\n[[0,2],[2,1]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "8\n[[0,1]]\n[[0,2],[2,1]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "4\n[[0,1]]\n[[1,2],[0,2]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "5\n[[0,1]]\n[[1,2],[0,2]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "6\n[[0,1]]\n[[1,2],[0,2]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "7\n[[0,1]]\n[[1,2],[0,2]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "8\n[[0,1]]\n[[1,2],[0,2]]",
+      "expectedOutput": "[true,false]"
+    },
+    {
+      "input": "6\n[[0,1],[1,2],[2,3]]\n[[0,4],[1,2],[3,1],[3,4]]",
+      "expectedOutput": "[true,false,true,false]"
+    },
+    {
+      "input": "7\n[[0,1],[1,2],[2,3]]\n[[0,4],[1,2],[3,1],[3,4]]",
+      "expectedOutput": "[true,false,true,false]"
+    },
+    {
+      "input": "8\n[[0,1],[1,2],[2,3]]\n[[0,4],[1,2],[3,1],[3,4]]",
+      "expectedOutput": "[true,false,true,false]"
+    },
+    {
+      "input": "9\n[[0,1],[1,2],[2,3]]\n[[0,4],[1,2],[3,1],[3,4]]",
+      "expectedOutput": "[true,false,true,false]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For each request, we could loop through all restrictions. Can you think of doing a check-in close to O(1)?",
+    "Could you use Union Find?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/process-restricted-friend-requests/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:26.970Z",
+    "sourceUpdatedAt": null
+  }
+}

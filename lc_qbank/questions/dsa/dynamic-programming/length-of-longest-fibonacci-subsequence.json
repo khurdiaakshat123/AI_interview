@@ -1,0 +1,158 @@
+{
+  "id": "873",
+  "slug": "length-of-longest-fibonacci-subsequence",
+  "title": "Length of Longest Fibonacci Subsequence",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming"
+  ],
+  "statement": "A sequence `x_(1), x_(2), ..., x_(n)` is _Fibonacci-like_ if:\n\n*   `n >= 3`\n*   `x_(i) + x_(i+1) == x_(i+2)` for all `i + 2 <= n`\n\nGiven a **strictly increasing** array `arr` of positive integers forming a sequence, return _the **length** of the longest Fibonacci-like subsequence of_ `arr`. If one does not exist, return `0`.\n\nA **subsequence** is derived from another sequence `arr` by deleting any number of elements (including none) from `arr`, without changing the order of the remaining elements. For example, `[3, 5, 8]` is a subsequence of `[3, 4, 5, 6, 7, 8]`.\n\n**Example 1:**\n\n```\nInput: arr = [1,2,3,4,5,6,7,8]\nOutput: 5\nExplanation: The longest subsequence that is fibonacci-like: [1,2,3,5,8].\n```\n\n**Example 2:**\n\n```\nInput: arr = [1,3,7,11,12,14,18]\nOutput: 3\nExplanation: The longest subsequence that is fibonacci-like: [1,11,12], [3,11,14] or [7,11,18].\n```\n\n**Constraints:**\n\n*   `3 <= arr.length <= 1000`\n*   `1 <= arr[i] < arr[i + 1] <= 10^(9)`",
+  "constraints": [
+    "3 <= arr.length <= 1000",
+    "1 <= arr[i] < arr[i + 1] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "arr = [1,2,3,4,5,6,7,8]",
+      "output": "5",
+      "explanation": "The longest subsequence that is fibonacci-like: [1,2,3,5,8]."
+    },
+    {
+      "input": "arr = [1,3,7,11,12,14,18]",
+      "output": "3",
+      "explanation": ": The longest subsequence that is fibonacci-like: [1,11,12], [3,11,14] or [7,11,18]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int lenLongestFibSubseq(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int lenLongestFibSubseq(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lenLongestFibSubseq(self, arr: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def lenLongestFibSubseq(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number}\n */\nvar lenLongestFibSubseq = function(arr) {\n    \n};",
+    "typescript": "function lenLongestFibSubseq(arr: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LenLongestFibSubseq(int[] arr) {\n        \n    }\n}",
+    "c": "int lenLongestFibSubseq(int* arr, int arrSize) {\n    \n}",
+    "golang": "func lenLongestFibSubseq(arr []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun lenLongestFibSubseq(arr: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lenLongestFibSubseq(_ arr: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn len_longest_fib_subseq(arr: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer}\ndef len_longest_fib_subseq(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer\n     */\n    function lenLongestFibSubseq($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int lenLongestFibSubseq(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lenLongestFibSubseq(arr: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec len_longest_fib_subseq(arr :: [integer]) :: integer\n  def len_longest_fib_subseq(arr) do\n    \n  end\nend",
+    "erlang": "-spec len_longest_fib_subseq(Arr :: [integer()]) -> integer().\nlen_longest_fib_subseq(Arr) ->\n  .",
+    "racket": "(define/contract (len-longest-fib-subseq arr)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4,5,6,7,8]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,3,7,11,12,14,18]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4,5,6,7,8]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,3,7,11,12,14,18]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,3,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,6,7,8]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,8]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[8,7,6,5,4,3,2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,4,6,8,10,12,14,16]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,3,4,5,6,7,8,9]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,1,2,3,4,5,6,7]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-1,-2,-3,-4,-5,-6,-7,-8]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Can we use dynamic programming here?",
+    "Consider a sequence ending at index <code>i</code. The previous two elements must sum to <code>arr[i]</code>, which can be done in linear time per element."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.128Z",
+    "sourceUpdatedAt": null
+  }
+}

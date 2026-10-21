@@ -1,0 +1,157 @@
+{
+  "id": "2918",
+  "slug": "minimum-equal-sum-of-two-arrays-after-replacing-zeros",
+  "title": "Minimum Equal Sum of Two Arrays After Replacing Zeros",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "statement": "You are given two arrays `nums1` and `nums2` consisting of positive integers.\n\nYou have to replace **all** the `0`'s in both arrays with **strictly** positive integers such that the sum of elements of both arrays becomes **equal**.\n\nReturn _the **minimum** equal sum you can obtain, or_ `-1` _if it is impossible_.\n\n**Example 1:**\n\n```\nInput: nums1 = [3,2,0,1,0], nums2 = [6,5,0]\nOutput: 12\nExplanation: We can replace 0's in the following way:\n- Replace the two 0's in nums1 with the values 2 and 4. The resulting array is nums1 = [3,2,2,1,4].\n- Replace the 0 in nums2 with the value 1. The resulting array is nums2 = [6,5,1].\nBoth arrays have an equal sum of 12. It can be shown that it is the minimum sum we can obtain.\n```\n\n**Example 2:**\n\n```\nInput: nums1 = [2,0,2,0], nums2 = [1,4]\nOutput: -1\nExplanation: It is impossible to make the sum of both arrays equal.\n```\n\n**Constraints:**\n\n*   `1 <= nums1.length, nums2.length <= 10^(5)`\n*   `0 <= nums1[i], nums2[i] <= 10^(6)`",
+  "constraints": [
+    "1 <= nums1.length, nums2.length <= 105",
+    "0 <= nums1[i], nums2[i] <= 106"
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [3,2,0,1,0], nums2 = [6,5,0]",
+      "output": "12",
+      "explanation": "We can replace 0's in the following way:\n- Replace the two 0's in nums1 with the values 2 and 4. The resulting array is nums1 = [3,2,2,1,4].\n- Replace the 0 in nums2 with the value 1. The resulting array is nums2 = [6,5,1].\nBoth arrays have an equal sum of 12. It can be shown that it is the minimum sum we can obtain."
+    },
+    {
+      "input": "nums1 = [2,0,2,0], nums2 = [1,4]",
+      "output": "-1",
+      "explanation": "It is impossible to make the sum of both arrays equal."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minSum(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minSum(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minSum(self, nums1: List[int], nums2: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minSum(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar minSum = function(nums1, nums2) {\n    \n};",
+    "typescript": "function minSum(nums1: number[], nums2: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinSum(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "long long minSum(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    \n}",
+    "golang": "func minSum(nums1 []int, nums2 []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minSum(nums1: IntArray, nums2: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minSum(_ nums1: [Int], _ nums2: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_sum(nums1: Vec<i32>, nums2: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer}\ndef min_sum(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer\n     */\n    function minSum($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minSum(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minSum(nums1: Array[Int], nums2: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_sum(nums1 :: [integer], nums2 :: [integer]) :: integer\n  def min_sum(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec min_sum(Nums1 :: [integer()], Nums2 :: [integer()]) -> integer().\nmin_sum(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (min-sum nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,2,0,1,0]\n[6,5,0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,0,2,0]\n[1,4]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,2,0,1,0]\n[6,5,0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,0,2,0]\n[1,4]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,2]\n[6,5,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,1,0]\n[6,5,0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[3]\n[6,5,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,0]\n[6,5,0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[0,1,0,2,3]\n[6,5,0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[0,0,1,2,3]\n[6,5,0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[3,2,1,0,0]\n[6,5,0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[3,3,3,3,3]\n[6,5,0]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[3,2,0,1,0,3,2,0,1,0]\n[6,5,0]",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[6,4,0,2,0]\n[6,5,0]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[4,3,1,2,1]\n[6,5,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,1,-1,0,-1]\n[6,5,0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[-3,-2,0,-1,0]\n[6,5,0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[0,0,0,0]\n[6,5,0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1,1,1,1]\n[6,5,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0]\n[6,5,0]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1]\n[6,5,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1]\n[6,5,0]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider we replace all the 0’s with 1’s on both arrays, the answer will be <code>-1</code> if there was no <code>0</code> in the array with the smaller sum of elements.",
+    "Otherwise, how can you update the value of exactly one of these <code>1</code>’s to make the sum of the two arrays equal?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-equal-sum-of-two-arrays-after-replacing-zeros/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.906Z",
+    "sourceUpdatedAt": null
+  }
+}

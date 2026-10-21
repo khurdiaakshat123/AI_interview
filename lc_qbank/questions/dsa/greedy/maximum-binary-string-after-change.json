@@ -1,0 +1,156 @@
+{
+  "id": "1702",
+  "slug": "maximum-binary-string-after-change",
+  "title": "Maximum Binary String After Change",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "statement": "You are given a binary string `binary` consisting of only `0`'s or `1`'s. You can apply each of the following operations any number of times:\n\n*   Operation 1: If the number contains the substring `\"00\"`, you can replace it with `\"10\"`.\n    *   For example, `\"00010\" -> \"10010`\"\n*   Operation 2: If the number contains the substring `\"10\"`, you can replace it with `\"01\"`.\n    *   For example, `\"00010\" -> \"00001\"`\n\n_Return the **maximum binary string** you can obtain after any number of operations. Binary string `x` is greater than binary string `y` if `x`'s decimal representation is greater than `y`'s decimal representation._\n\n**Example 1:**\n\n```\nInput: binary = \"000110\"\nOutput: \"111011\"\nExplanation: A valid transformation sequence can be:\n\"000110\" -> \"000101\" \n\"000101\" -> \"100101\" \n\"100101\" -> \"110101\" \n\"110101\" -> \"110011\" \n\"110011\" -> \"111011\"\n```\n\n**Example 2:**\n\n```\nInput: binary = \"01\"\nOutput: \"01\"\nExplanation: \"01\" cannot be transformed any further.\n```\n\n**Constraints:**\n\n*   `1 <= binary.length <= 10^(5)`\n*   `binary` consist of `'0'` and `'1'`.",
+  "constraints": [
+    "1 <= binary.length <= 105",
+    "binary consist of '0' and '1'."
+  ],
+  "examples": [
+    {
+      "input": "binary = \"000110\"",
+      "output": "\"111011\"",
+      "explanation": "A valid transformation sequence can be:\n\"000110\" -> \"000101\" \n\"000101\" -> \"100101\" \n\"100101\" -> \"110101\" \n\"110101\" -> \"110011\" \n\"110011\" -> \"111011\""
+    },
+    {
+      "input": "binary = \"01\"",
+      "output": "\"01\"",
+      "explanation": " \"01\" cannot be transformed any further."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string maximumBinaryString(string binary) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String maximumBinaryString(String binary) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumBinaryString(self, binary: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def maximumBinaryString(self, binary):\n        \"\"\"\n        :type binary: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} binary\n * @return {string}\n */\nvar maximumBinaryString = function(binary) {\n    \n};",
+    "typescript": "function maximumBinaryString(binary: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string MaximumBinaryString(string binary) {\n        \n    }\n}",
+    "c": "char* maximumBinaryString(char* binary) {\n    \n}",
+    "golang": "func maximumBinaryString(binary string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumBinaryString(binary: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumBinaryString(_ binary: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_binary_string(binary: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} binary\n# @return {String}\ndef maximum_binary_string(binary)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $binary\n     * @return String\n     */\n    function maximumBinaryString($binary) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String maximumBinaryString(String binary) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumBinaryString(binary: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_binary_string(binary :: String.t) :: String.t\n  def maximum_binary_string(binary) do\n    \n  end\nend",
+    "erlang": "-spec maximum_binary_string(Binary :: unicode:unicode_binary()) -> unicode:unicode_binary().\nmaximum_binary_string(Binary) ->\n  .",
+    "racket": "(define/contract (maximum-binary-string binary)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"000110\"",
+      "expectedOutput": "\"111011\""
+    },
+    {
+      "input": "\"01\"",
+      "expectedOutput": "\"01\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"000110\"",
+      "expectedOutput": "\"111011\""
+    },
+    {
+      "input": "\"01\"",
+      "expectedOutput": "\"01\""
+    },
+    {
+      "input": "\"000\"",
+      "expectedOutput": "\"110\""
+    },
+    {
+      "input": "\"110\"",
+      "expectedOutput": "\"110\""
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "\"0\""
+    },
+    {
+      "input": "\"00\"",
+      "expectedOutput": "\"10\""
+    },
+    {
+      "input": "\"011000\"",
+      "expectedOutput": "\"111011\""
+    },
+    {
+      "input": "\"000110000110\"",
+      "expectedOutput": "\"111111101111\""
+    },
+    {
+      "input": "\"000000\"",
+      "expectedOutput": "\"111110\""
+    },
+    {
+      "input": "\"000110011000\"",
+      "expectedOutput": "\"111111101111\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"edcba\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Note that with the operations, you can always make the string only contain at most 1 zero."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-binary-string-after-change/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.580Z",
+    "sourceUpdatedAt": null
+  }
+}

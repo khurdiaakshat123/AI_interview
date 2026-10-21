@@ -1,0 +1,173 @@
+{
+  "id": "1366",
+  "slug": "rank-teams-by-votes",
+  "title": "Rank Teams by Votes",
+  "category": "dsa",
+  "subcategory": "sorting",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting",
+    "Counting"
+  ],
+  "statement": "In a special ranking system, each voter gives a rank from highest to lowest to all teams participating in the competition.\n\nThe ordering of teams is decided by who received the most position-one votes. If two or more teams tie in the first position, we consider the second position to resolve the conflict, if they tie again, we continue this process until the ties are resolved. If two or more teams are still tied after considering all positions, we rank them alphabetically based on their team letter.\n\nYou are given an array of strings `votes` which is the votes of all voters in the ranking systems. Sort all teams according to the ranking system described above.\n\nReturn _a string of all teams **sorted** by the ranking system_.\n\n**Example 1:**\n\n```\nInput: votes = [\"ABC\",\"ACB\",\"ABC\",\"ACB\",\"ACB\"]\nOutput: \"ACB\"\nExplanation: \nTeam A was ranked first place by 5 voters. No other team was voted as first place, so team A is the first team.\nTeam B was ranked second by 2 voters and ranked third by 3 voters.\nTeam C was ranked second by 3 voters and ranked third by 2 voters.\nAs most of the voters ranked C second, team C is the second team, and team B is the third.\n```\n\n**Example 2:**\n\n```\nInput: votes = [\"WXYZ\",\"XYZW\"]\nOutput: \"XWYZ\"\nExplanation:\nX is the winner due to the tie-breaking rule. X has the same votes as W for the first position, but X has one vote in the second position, while W does not have any votes in the second position.\n```\n\n**Example 3:**\n\n```\nInput: votes = [\"ZMNAGUEDSJYLBOPHRQICWFXTVK\"]\nOutput: \"ZMNAGUEDSJYLBOPHRQICWFXTVK\"\nExplanation: Only one voter, so their votes are used for the ranking.\n```\n\n**Constraints:**\n\n*   `1 <= votes.length <= 1000`\n*   `1 <= votes[i].length <= 26`\n*   `votes[i].length == votes[j].length` for `0 <= i, j < votes.length`.\n*   `votes[i][j]` is an English **uppercase** letter.\n*   All characters of `votes[i]` are unique.\n*   All the characters that occur in `votes[0]` **also occur** in `votes[j]` where `1 <= j < votes.length`.",
+  "constraints": [
+    "1 <= votes.length <= 1000",
+    "1 <= votes[i].length <= 26",
+    "votes[i].length == votes[j].length for 0 <= i, j < votes.length.",
+    "votes[i][j] is an English uppercase letter.",
+    "All characters of votes[i] are unique.",
+    "All the characters that occur in votes[0] also occur in votes[j] where 1 <= j < votes.length."
+  ],
+  "examples": [
+    {
+      "input": "votes = [\"ABC\",\"ACB\",\"ABC\",\"ACB\",\"ACB\"]",
+      "output": "\"ACB\"",
+      "explanation": "Team A was ranked first place by 5 voters. No other team was voted as first place, so team A is the first team.\nTeam B was ranked second by 2 voters and ranked third by 3 voters.\nTeam C was ranked second by 3 voters and ranked third by 2 voters.\nAs most of the voters ranked C second, team C is the second team, and team B is the third."
+    },
+    {
+      "input": "votes = [\"WXYZ\",\"XYZW\"]",
+      "output": "\"XWYZ\"",
+      "explanation": "X is the winner due to the tie-breaking rule. X has the same votes as W for the first position, but X has one vote in the second position, while W does not have any votes in the second position."
+    },
+    {
+      "input": "votes = [\"ZMNAGUEDSJYLBOPHRQICWFXTVK\"]",
+      "output": "\"ZMNAGUEDSJYLBOPHRQICWFXTVK\"",
+      "explanation": "Only one voter, so their votes are used for the ranking."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string rankTeams(vector<string>& votes) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String rankTeams(String[] votes) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def rankTeams(self, votes: list[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def rankTeams(self, votes):\n        \"\"\"\n        :type votes: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} votes\n * @return {string}\n */\nvar rankTeams = function(votes) {\n    \n};",
+    "typescript": "function rankTeams(votes: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string RankTeams(string[] votes) {\n        \n    }\n}",
+    "c": "char* rankTeams(char** votes, int votesSize) {\n    \n}",
+    "golang": "func rankTeams(votes []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun rankTeams(votes: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func rankTeams(_ votes: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn rank_teams(votes: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} votes\n# @return {String}\ndef rank_teams(votes)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $votes\n     * @return String\n     */\n    function rankTeams($votes) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String rankTeams(List<String> votes) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def rankTeams(votes: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec rank_teams(votes :: [String.t]) :: String.t\n  def rank_teams(votes) do\n    \n  end\nend",
+    "erlang": "-spec rank_teams(Votes :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nrank_teams(Votes) ->\n  .",
+    "racket": "(define/contract (rank-teams votes)\n  (-> (listof string?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"ABC\",\"ACB\",\"ABC\",\"ACB\",\"ACB\"]",
+      "expectedOutput": "\"ACB\""
+    },
+    {
+      "input": "[\"WXYZ\",\"XYZW\"]",
+      "expectedOutput": "\"XWYZ\""
+    },
+    {
+      "input": "[\"ZMNAGUEDSJYLBOPHRQICWFXTVK\"]",
+      "expectedOutput": "\"ZMNAGUEDSJYLBOPHRQICWFXTVK\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"ABC\",\"ACB\",\"ABC\",\"ACB\",\"ACB\"]",
+      "expectedOutput": "\"ACB\""
+    },
+    {
+      "input": "[\"WXYZ\",\"XYZW\"]",
+      "expectedOutput": "\"XWYZ\""
+    },
+    {
+      "input": "[\"ZMNAGUEDSJYLBOPHRQICWFXTVK\"]",
+      "expectedOutput": "\"ZMNAGUEDSJYLBOPHRQICWFXTVK\""
+    },
+    {
+      "input": "[\"ABC\",\"ACB\"]",
+      "expectedOutput": "\"ABC\""
+    },
+    {
+      "input": "[\"ABC\",\"ACB\",\"ACB\"]",
+      "expectedOutput": "\"ACB\""
+    },
+    {
+      "input": "[\"ABC\"]",
+      "expectedOutput": "\"ABC\""
+    },
+    {
+      "input": "[\"ACB\",\"ACB\",\"ABC\",\"ACB\",\"ABC\"]",
+      "expectedOutput": "\"ACB\""
+    },
+    {
+      "input": "[\"ABC\",\"ABC\",\"ACB\",\"ACB\",\"ACB\"]",
+      "expectedOutput": "\"ACB\""
+    },
+    {
+      "input": "[\"ACB\",\"ACB\",\"ACB\",\"ABC\",\"ABC\"]",
+      "expectedOutput": "\"ACB\""
+    },
+    {
+      "input": "[\"ABC\",\"ABC\",\"ABC\",\"ABC\",\"ABC\"]",
+      "expectedOutput": "\"ABC\""
+    },
+    {
+      "input": "[\"ABC\",\"ACB\",\"ABC\",\"ACB\",\"ACB\",\"ABC\",\"ACB\",\"ABC\",\"ACB\",\"ACB\"]",
+      "expectedOutput": "\"ACB\""
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "\"abc\""
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "\"taenb\""
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "\"actdgo\""
+    },
+    {
+      "input": "[\"hello\",\"world\"]",
+      "expectedOutput": "\"hwoelrd\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Build array rank where rank[i][j] is the number of votes for team i to be the j-th rank.",
+    "Sort the teams by rank array. if rank array is the same for two or more teams, sort them by the ID in ascending order."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/rank-teams-by-votes/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.206Z",
+    "sourceUpdatedAt": null
+  }
+}

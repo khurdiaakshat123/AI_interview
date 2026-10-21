@@ -1,0 +1,159 @@
+{
+  "id": "1893",
+  "slug": "check-if-all-the-integers-in-a-range-are-covered",
+  "title": "Check if All the Integers in a Range Are Covered",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a 2D integer array `ranges` and two integers `left` and `right`. Each `ranges[i] = [start_(i), end_(i)]` represents an **inclusive** interval between `start_(i)` and `end_(i)`.\n\nReturn `true` _if each integer in the inclusive range_ `[left, right]` _is covered by **at least one** interval in_ `ranges`. Return `false` _otherwise_.\n\nAn integer `x` is covered by an interval `ranges[i] = [start_(i), end_(i)]` if `start_(i) <= x <= end_(i)`.\n\n**Example 1:**\n\n```\nInput: ranges = [[1,2],[3,4],[5,6]], left = 2, right = 5\nOutput: true\nExplanation: Every integer between 2 and 5 is covered:\n- 2 is covered by the first range.\n- 3 and 4 are covered by the second range.\n- 5 is covered by the third range.\n```\n\n**Example 2:**\n\n```\nInput: ranges = [[1,10],[10,20]], left = 21, right = 21\nOutput: false\nExplanation: 21 is not covered by any range.\n```\n\n**Constraints:**\n\n*   `1 <= ranges.length <= 50`\n*   `1 <= start_(i) <= end_(i) <= 50`\n*   `1 <= left <= right <= 50`",
+  "constraints": [
+    "1 <= ranges.length <= 50",
+    "1 <= starti <= endi <= 50",
+    "1 <= left <= right <= 50"
+  ],
+  "examples": [
+    {
+      "input": "ranges = [[1,2],[3,4],[5,6]], left = 2, right = 5",
+      "output": "true",
+      "explanation": "Every integer between 2 and 5 is covered:\n- 2 is covered by the first range.\n- 3 and 4 are covered by the second range.\n- 5 is covered by the third range."
+    },
+    {
+      "input": "ranges = [[1,10],[10,20]], left = 21, right = 21",
+      "output": "false",
+      "explanation": "21 is not covered by any range."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool isCovered(vector<vector<int>>& ranges, int left, int right) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean isCovered(int[][] ranges, int left, int right) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def isCovered(self, ranges: list[list[int]], left: int, right: int) -> bool:\n        ",
+    "python": "class Solution(object):\n    def isCovered(self, ranges, left, right):\n        \"\"\"\n        :type ranges: List[List[int]]\n        :type left: int\n        :type right: int\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} ranges\n * @param {number} left\n * @param {number} right\n * @return {boolean}\n */\nvar isCovered = function(ranges, left, right) {\n    \n};",
+    "typescript": "function isCovered(ranges: number[][], left: number, right: number): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool IsCovered(int[][] ranges, int left, int right) {\n        \n    }\n}",
+    "c": "bool isCovered(int** ranges, int rangesSize, int* rangesColSize, int left, int right) {\n    \n}",
+    "golang": "func isCovered(ranges [][]int, left int, right int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun isCovered(ranges: Array<IntArray>, left: Int, right: Int): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func isCovered(_ ranges: [[Int]], _ left: Int, _ right: Int) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn is_covered(ranges: Vec<Vec<i32>>, left: i32, right: i32) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} ranges\n# @param {Integer} left\n# @param {Integer} right\n# @return {Boolean}\ndef is_covered(ranges, left, right)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $ranges\n     * @param Integer $left\n     * @param Integer $right\n     * @return Boolean\n     */\n    function isCovered($ranges, $left, $right) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool isCovered(List<List<int>> ranges, int left, int right) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def isCovered(ranges: Array[Array[Int]], left: Int, right: Int): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec is_covered(ranges :: [[integer]], left :: integer, right :: integer) :: boolean\n  def is_covered(ranges, left, right) do\n    \n  end\nend",
+    "erlang": "-spec is_covered(Ranges :: [[integer()]], Left :: integer(), Right :: integer()) -> boolean().\nis_covered(Ranges, Left, Right) ->\n  .",
+    "racket": "(define/contract (is-covered ranges left right)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n2\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,10],[10,20]]\n21\n21",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n2\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,10],[10,20]]\n21\n21",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n0\n5",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n1\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n3\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n4\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n5\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n6\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n7\n5",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n-1\n5",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n-2\n5",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n2\n0",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n2\n1",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n2\n2",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n2\n3",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n2\n4",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n2\n6",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n2\n7",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n2\n8",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6]]\n2\n9",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Iterate over every integer point in the range [left, right].",
+    "For each of these points check if it is included in one of the ranges."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.084Z",
+    "sourceUpdatedAt": null
+  }
+}

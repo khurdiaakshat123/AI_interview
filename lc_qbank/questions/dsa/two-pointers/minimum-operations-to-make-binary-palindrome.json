@@ -1,0 +1,159 @@
+{
+  "id": "3766",
+  "slug": "minimum-operations-to-make-binary-palindrome",
+  "title": "Minimum Operations to Make Binary Palindrome",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nFor each element `nums[i]`, you may perform the following operations **any** number of times (including zero):\n\n*   Increase `nums[i]` by 1, or\n*   Decrease `nums[i]` by 1.\n\nA number is called a **binary palindrome** if its binary representation without leading zeros reads the same forward and backward.\n\nYour task is to return an integer array `ans`, where `ans[i]` represents the **minimum** number of operations required to convert `nums[i]` into a **binary palindrome**.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,4\\]\n\n**Output:** \\[0,1,1\\]\n\n**Explanation:**\n\nOne optimal set of operations:\n\n`nums[i]`\n\nBinary(`nums[i]`)\n\nNearest  \nPalindrome\n\nBinary  \n(Palindrome)\n\nOperations Required\n\n`ans[i]`\n\n1\n\n1\n\n1\n\n1\n\nAlready palindrome\n\n0\n\n2\n\n10\n\n3\n\n11\n\nIncrease by 1\n\n1\n\n4\n\n100\n\n3\n\n11\n\nDecrease by 1\n\n1\n\nThus, `ans = [0, 1, 1]`.\n\n**Example 2:**\n\n**Input:** nums = \\[6,7,12\\]\n\n**Output:** \\[1,0,3\\]\n\n**Explanation:**\n\nOne optimal set of operations:\n\n`nums[i]`\n\nBinary(`nums[i]`)\n\nNearest  \nPalindrome\n\nBinary  \n(Palindrome)\n\nOperations Required\n\n`ans[i]`\n\n6\n\n110\n\n5\n\n101\n\nDecrease by 1\n\n1\n\n7\n\n111\n\n7\n\n111\n\nAlready palindrome\n\n0\n\n12\n\n1100\n\n15\n\n1111\n\nIncrease by 3\n\n3\n\nThus, `ans = [1, 0, 3]`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 5000`\n*   `^(​​​​​​​)1 <= nums[i] <= 5000`",
+  "constraints": [
+    "1 <= nums.length <= 5000",
+    "​​​​​​​1 <= nums[i] <= 5000"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,4]",
+      "output": "[0,1,1]",
+      "explanation": null
+    },
+    {
+      "input": "nums = [6,7,12]",
+      "output": "[1,0,3]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> minOperations(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] minOperations(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, nums: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar minOperations = function(nums) {\n    \n};",
+    "typescript": "function minOperations(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MinOperations(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* minOperations(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func minOperations(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(nums: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef min_operations(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function minOperations($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> minOperations(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(nums: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(nums :: [integer]) :: [integer]\n  def min_operations(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(Nums :: [integer()]) -> [integer()].\nmin_operations(Nums) ->\n  .",
+    "racket": "(define/contract (min-operations nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,4]",
+      "expectedOutput": "[0,1,1]"
+    },
+    {
+      "input": "[6,7,12]",
+      "expectedOutput": "[1,0,3]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,4]",
+      "expectedOutput": "[0,1,1]"
+    },
+    {
+      "input": "[6,7,12]",
+      "expectedOutput": "[1,0,3]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "[1,4]",
+      "expectedOutput": "[0,1]"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "[0,1]"
+    },
+    {
+      "input": "[4,2,1]",
+      "expectedOutput": "[1,1,0]"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[1,2,4,1,2,4]",
+      "expectedOutput": "[0,1,1,0,1,1]"
+    },
+    {
+      "input": "[2,4,8]",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "[2,3,5]",
+      "expectedOutput": "[1,0,0]"
+    },
+    {
+      "input": "[0,1,3]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[-1,-2,-4]",
+      "expectedOutput": "[1,2,4]"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "[0,0,0]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "[0,0]"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "[1,0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Preprocess the binary palindromes",
+    "For each <code>nums[i]</code> find the closest binary palindrome from the preprocessed values"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-operations-to-make-binary-palindrome/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.719Z",
+    "sourceUpdatedAt": null
+  }
+}

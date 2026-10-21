@@ -1,0 +1,159 @@
+{
+  "id": "2390",
+  "slug": "removing-stars-from-a-string",
+  "title": "Removing Stars From a String",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "statement": "You are given a string `s`, which contains stars `*`.\n\nIn one operation, you can:\n\n*   Choose a star in `s`.\n*   Remove the closest **non-star** character to its **left**, as well as remove the star itself.\n\nReturn _the string after **all** stars have been removed_.\n\n**Note:**\n\n*   The input will be generated such that the operation is always possible.\n*   It can be shown that the resulting string will always be unique.\n\n**Example 1:**\n\n```\nInput: s = \"leet**cod*e\"\nOutput: \"lecoe\"\nExplanation: Performing the removals from left to right:\n- The closest character to the 1st star is 't' in \"leet**cod*e\". s becomes \"lee*cod*e\".\n- The closest character to the 2nd star is 'e' in \"lee*cod*e\". s becomes \"lecod*e\".\n- The closest character to the 3rd star is 'd' in \"lecod*e\". s becomes \"lecoe\".\nThere are no more stars, so we return \"lecoe\".\n```\n\n**Example 2:**\n\n```\nInput: s = \"erase*****\"\nOutput: \"\"\nExplanation: The entire string is removed, so we return an empty string.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists of lowercase English letters and stars `*`.\n*   The operation above can be performed on `s`.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists of lowercase English letters and stars *.",
+    "The operation above can be performed on s."
+  ],
+  "examples": [
+    {
+      "input": "s = \"leet**cod*e\"",
+      "output": "\"lecoe\"",
+      "explanation": "Performing the removals from left to right:\n- The closest character to the 1st star is 't' in \"leet**cod*e\". s becomes \"lee*cod*e\".\n- The closest character to the 2nd star is 'e' in \"lee*cod*e\". s becomes \"lecod*e\".\n- The closest character to the 3rd star is 'd' in \"lecod*e\". s becomes \"lecoe\".\nThere are no more stars, so we return \"lecoe\"."
+    },
+    {
+      "input": "s = \"erase*****\"",
+      "output": "\"\"",
+      "explanation": "The entire string is removed, so we return an empty string."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string removeStars(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String removeStars(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def removeStars(self, s: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def removeStars(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar removeStars = function(s) {\n    \n};",
+    "typescript": "function removeStars(s: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string RemoveStars(string s) {\n        \n    }\n}",
+    "c": "char* removeStars(char* s) {\n    \n}",
+    "golang": "func removeStars(s string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun removeStars(s: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func removeStars(_ s: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn remove_stars(s: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {String}\ndef remove_stars(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return String\n     */\n    function removeStars($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String removeStars(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def removeStars(s: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec remove_stars(s :: String.t) :: String.t\n  def remove_stars(s) do\n    \n  end\nend",
+    "erlang": "-spec remove_stars(S :: unicode:unicode_binary()) -> unicode:unicode_binary().\nremove_stars(S) ->\n  .",
+    "racket": "(define/contract (remove-stars s)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"leet**cod*e\"",
+      "expectedOutput": "\"lecoe\""
+    },
+    {
+      "input": "\"erase*****\"",
+      "expectedOutput": "\"\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"leet**cod*e\"",
+      "expectedOutput": "\"lecoe\""
+    },
+    {
+      "input": "\"erase*****\"",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"leet*\"",
+      "expectedOutput": "\"lee\""
+    },
+    {
+      "input": "\"l\"",
+      "expectedOutput": "\"l\""
+    },
+    {
+      "input": "\"le\"",
+      "expectedOutput": "\"le\""
+    },
+    {
+      "input": "\"e*doc**teel\"",
+      "expectedOutput": "\"dteel\""
+    },
+    {
+      "input": "\"llllll\"",
+      "expectedOutput": "\"llllll\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"aab\""
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "\"aA\""
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "\"0\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "What data structure could we use to efficiently perform these removals?",
+    "Use a stack to store the characters. Pop one character off the stack at each star. Otherwise, we push the character onto the stack."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/removing-stars-from-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.631Z",
+    "sourceUpdatedAt": null
+  }
+}

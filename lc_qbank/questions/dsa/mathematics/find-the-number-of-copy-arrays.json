@@ -1,0 +1,115 @@
+{
+  "id": "3468",
+  "slug": "find-the-number-of-copy-arrays",
+  "title": "Find the Number of Copy Arrays",
+  "category": "dsa",
+  "subcategory": "mathematics",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "statement": "You are given an array `original` of length `n` and a 2D array `bounds` of length `n x 2`, where `bounds[i] = [u_(i), v_(i)]`.\n\nYou need to find the number of **possible** arrays `copy` of length `n` such that:\n\n1.  `(copy[i] - copy[i - 1]) == (original[i] - original[i - 1])` for `1 <= i <= n - 1`.\n2.  `u_(i) <= copy[i] <= v_(i)` for `0 <= i <= n - 1`.\n\nReturn the number of such arrays.\n\n**Example 1:**\n\n**Input:** original = \\[1,2,3,4\\], bounds = \\[\\[1,2\\],\\[2,3\\],\\[3,4\\],\\[4,5\\]\\]\n\n**Output:** 2\n\n**Explanation:**\n\nThe possible arrays are:\n\n*   `[1, 2, 3, 4]`\n*   `[2, 3, 4, 5]`\n\n**Example 2:**\n\n**Input:** original = \\[1,2,3,4\\], bounds = \\[\\[1,10\\],\\[2,9\\],\\[3,8\\],\\[4,7\\]\\]\n\n**Output:** 4\n\n**Explanation:**\n\nThe possible arrays are:\n\n*   `[1, 2, 3, 4]`\n*   `[2, 3, 4, 5]`\n*   `[3, 4, 5, 6]`\n*   `[4, 5, 6, 7]`\n\n**Example 3:**\n\n**Input:** original = \\[1,2,1,2\\], bounds = \\[\\[1,1\\],\\[2,3\\],\\[3,3\\],\\[2,3\\]\\]\n\n**Output:** 0\n\n**Explanation:**\n\nNo array is possible.\n\n**Constraints:**\n\n*   `2 <= n == original.length <= 10^(5)`\n*   `1 <= original[i] <= 10^(9)`\n*   `bounds.length == n`\n*   `bounds[i].length == 2`\n*   `1 <= bounds[i][0] <= bounds[i][1] <= 10^(9)`",
+  "constraints": [
+    "2 <= n == original.length <= 105",
+    "1 <= original[i] <= 109",
+    "bounds.length == n",
+    "bounds[i].length == 2",
+    "1 <= bounds[i][0] <= bounds[i][1] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "original = [1,2,3,4], bounds = [[1,2],[2,3],[3,4],[4,5]]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "original = [1,2,3,4], bounds = [[1,10],[2,9],[3,8],[4,7]]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "original = [1,2,1,2], bounds = [[1,1],[2,3],[3,3],[2,3]]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countArrays(vector<int>& original, vector<vector<int>>& bounds) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countArrays(int[] original, int[][] bounds) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countArrays(self, original: List[int], bounds: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countArrays(self, original, bounds):\n        \"\"\"\n        :type original: List[int]\n        :type bounds: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} original\n * @param {number[][]} bounds\n * @return {number}\n */\nvar countArrays = function(original, bounds) {\n    \n};",
+    "typescript": "function countArrays(original: number[], bounds: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountArrays(int[] original, int[][] bounds) {\n        \n    }\n}",
+    "c": "int countArrays(int* original, int originalSize, int** bounds, int boundsSize, int* boundsColSize) {\n    \n}",
+    "golang": "func countArrays(original []int, bounds [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countArrays(original: IntArray, bounds: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countArrays(_ original: [Int], _ bounds: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_arrays(original: Vec<i32>, bounds: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} original\n# @param {Integer[][]} bounds\n# @return {Integer}\ndef count_arrays(original, bounds)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $original\n     * @param Integer[][] $bounds\n     * @return Integer\n     */\n    function countArrays($original, $bounds) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countArrays(List<int> original, List<List<int>> bounds) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countArrays(original: Array[Int], bounds: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_arrays(original :: [integer], bounds :: [[integer]]) :: integer\n  def count_arrays(original, bounds) do\n    \n  end\nend",
+    "erlang": "-spec count_arrays(Original :: [integer()], Bounds :: [[integer()]]) -> integer().\ncount_arrays(Original, Bounds) ->\n  .",
+    "racket": "(define/contract (count-arrays original bounds)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,3,4]\n[[1,2],[2,3],[3,4],[4,5]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,4]\n[[1,10],[2,9],[3,8],[4,7]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,1,2]\n[[1,1],[2,3],[3,3],[2,3]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,3,4]\n[[1,2],[2,3],[3,4],[4,5]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,4]\n[[1,10],[2,9],[3,8],[4,7]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,1,2]\n[[1,1],[2,3],[3,3],[2,3]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "original = [1,2,3,4], bounds = [[1,2],[2,3],[3,4],[4,5]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "original = [1,2,3,4], bounds = [[1,10],[2,9],[3,8],[4,7]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "original = [1,2,1,2], bounds = [[1,1],[2,3],[3,3],[2,3]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<code>copy[0]</code> uniquely determines all other values.",
+    "Possible values for <code>copy[0]</code> are in <code>[u[0], v[0]]</code>.",
+    "From left to right, compute valid ranges for each index by intersecting bounds with the previous range.",
+    "The answer is the size of the valid range for the last index."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-number-of-copy-arrays/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.517Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "id": "2731",
+  "slug": "movement-of-robots",
+  "title": "Movement of Robots",
+  "category": "dsa",
+  "subcategory": "prefix-sum",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Brainteaser",
+    "Sorting",
+    "Prefix Sum"
+  ],
+  "statement": "Some robots are standing on an infinite number line with their initial coordinates given by a **0-indexed** integer array `nums` and will start moving once given the command to move. The robots will move a unit distance each second.\n\nYou are given a string `s` denoting the direction in which robots will move on command. `'L'` means the robot will move towards the left side or negative side of the number line, whereas `'R'` means the robot will move towards the right side or positive side of the number line.\n\nIf two robots collide, they will start moving in opposite directions.\n\nReturn _the sum of distances between all the pairs of robots_ `d` _seconds after the command._ Since the sum can be very large, return it modulo `10^(9) + 7`.\n\n**Note:**\n\n*   For two robots at the index `i` and `j`, pair `(i,j)` and pair `(j,i)` are considered the same pair.\n*   When robots collide, they **instantly change** their directions without wasting any time.\n*   Collision happens when two robots share the same place in a moment.\n    *   For example, if a robot is positioned in 0 going to the right and another is positioned in 2 going to the left, the next second they'll be both in 1 and they will change direction and the next second the first one will be in 0, heading left, and another will be in 2, heading right.\n    *   For example, if a robot is positioned in 0 going to the right and another is positioned in 1 going to the left, the next second the first one will be in 0, heading left, and another will be in 1, heading right.\n\n**Example 1:**\n\n```\nInput: nums = [-2,0,2], s = \"RLL\", d = 3\nOutput: 8\nExplanation: \nAfter 1 second, the positions are [-1,-1,1]. Now, the robot at index 0 will move left, and the robot at index 1 will move right.\nAfter 2 seconds, the positions are [-2,0,0]. Now, the robot at index 1 will move left, and the robot at index 2 will move right.\nAfter 3 seconds, the positions are [-3,-1,1].\nThe distance between the robot at index 0 and 1 is abs(-3 - (-1)) = 2.\nThe distance between the robot at index 0 and 2 is abs(-3 - 1) = 4.\nThe distance between the robot at index 1 and 2 is abs(-1 - 1) = 2.\nThe sum of the pairs of all distances = 2 + 4 + 2 = 8.\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,0], s = \"RL\", d = 2\nOutput: 5\nExplanation: \nAfter 1 second, the positions are [2,-1].\nAfter 2 seconds, the positions are [3,-2].\nThe distance between the two robots is abs(-2 - 3) = 5.\n```\n\n**Constraints:**\n\n*   `2 <= nums.length <= 10^(5)`\n*   `-2 * 10^(9) <= nums[i] <= 2 * 10^(9)`\n*   `0 <= d <= 10^(9)`\n*   `nums.length == s.length` \n*   `s` consists of 'L' and 'R' only\n*   `nums[i]` will be unique.",
+  "constraints": [
+    "2 <= nums.length <= 105",
+    "-2 * 109 <= nums[i] <= 2 * 109",
+    "0 <= d <= 109",
+    "nums.length == s.length ",
+    "s consists of 'L' and 'R' only",
+    "nums[i] will be unique."
+  ],
+  "examples": [
+    {
+      "input": "nums = [-2,0,2], s = \"RLL\", d = 3",
+      "output": "8",
+      "explanation": "After 1 second, the positions are [-1,-1,1]. Now, the robot at index 0 will move left, and the robot at index 1 will move right.\nAfter 2 seconds, the positions are [-2,0,0]. Now, the robot at index 1 will move left, and the robot at index 2 will move right.\nAfter 3 seconds, the positions are [-3,-1,1].\nThe distance between the robot at index 0 and 1 is abs(-3 - (-1)) = 2.\nThe distance between the robot at index 0 and 2 is abs(-3 - 1) = 4.\nThe distance between the robot at index 1 and 2 is abs(-1 - 1) = 2.\nThe sum of the pairs of all distances = 2 + 4 + 2 = 8."
+    },
+    {
+      "input": "nums = [1,0], s = \"RL\", d = 2",
+      "output": "5",
+      "explanation": "After 1 second, the positions are [2,-1].\nAfter 2 seconds, the positions are [3,-2].\nThe distance between the two robots is abs(-2 - 3) = 5."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int sumDistance(vector<int>& nums, string s, int d) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int sumDistance(int[] nums, String s, int d) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sumDistance(self, nums: List[int], s: str, d: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def sumDistance(self, nums, s, d):\n        \"\"\"\n        :type nums: List[int]\n        :type s: str\n        :type d: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {string} s\n * @param {number} d\n * @return {number}\n */\nvar sumDistance = function(nums, s, d) {\n    \n};",
+    "typescript": "function sumDistance(nums: number[], s: string, d: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int SumDistance(int[] nums, string s, int d) {\n        \n    }\n}",
+    "c": "int sumDistance(int* nums, int numsSize, char* s, int d) {\n    \n}",
+    "golang": "func sumDistance(nums []int, s string, d int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun sumDistance(nums: IntArray, s: String, d: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sumDistance(_ nums: [Int], _ s: String, _ d: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sum_distance(nums: Vec<i32>, s: String, d: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {String} s\n# @param {Integer} d\n# @return {Integer}\ndef sum_distance(nums, s, d)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param String $s\n     * @param Integer $d\n     * @return Integer\n     */\n    function sumDistance($nums, $s, $d) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int sumDistance(List<int> nums, String s, int d) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sumDistance(nums: Array[Int], s: String, d: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sum_distance(nums :: [integer], s :: String.t, d :: integer) :: integer\n  def sum_distance(nums, s, d) do\n    \n  end\nend",
+    "erlang": "-spec sum_distance(Nums :: [integer()], S :: unicode:unicode_binary(), D :: integer()) -> integer().\nsum_distance(Nums, S, D) ->\n  .",
+    "racket": "(define/contract (sum-distance nums s d)\n  (-> (listof exact-integer?) string? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[-2,0,2]\n\"RLL\"\n3",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,0]\n\"RL\"\n2",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[-2,0,2]\n\"RLL\"\n3",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,0]\n\"RL\"\n2",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,0,-2]\n\"RLL\"\n3",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[-2,-2,-2]\n\"RLL\"\n3",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[-2,0,2,-2,0,2]\n\"RLL\"\n3",
+      "expectedOutput": "35"
+    },
+    {
+      "input": "[-4,0,4]\n\"RLL\"\n3",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[-1,1,3]\n\"RLL\"\n3",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[-3,-1,1]\n\"RLL\"\n3",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[0,0,0]\n\"RLL\"\n3",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1,1,1]\n\"RLL\"\n3",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1,2,3]\n\"RLL\"\n3",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[3,2,1]\n\"RLL\"\n3",
+      "expectedOutput": "16"
+    },
+    {
+      "input": "[0,1,0]\n\"RLL\"\n3",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[1,2,3,4,5]\n\"RLL\"\n3",
+      "expectedOutput": "32"
+    },
+    {
+      "input": "[5,4,3,2,1]\n\"RLL\"\n3",
+      "expectedOutput": "34"
+    },
+    {
+      "input": "[-5,-4,-3,-2,-1]\n\"RLL\"\n3",
+      "expectedOutput": "32"
+    },
+    {
+      "input": "[1,3,2,5,4]\n\"RLL\"\n3",
+      "expectedOutput": "32"
+    },
+    {
+      "input": "[-10,0,10]\n\"RLL\"\n3",
+      "expectedOutput": "28"
+    },
+    {
+      "input": "[1,1,2,2,3,3]\n\"RLL\"\n3",
+      "expectedOutput": "43"
+    },
+    {
+      "input": "[10,20,30,40,50]\n\"RLL\"\n3",
+      "expectedOutput": "194"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Observe that if you ignore collisions, the resultant positions of robots after d seconds would be the same.",
+    "After d seconds, sort the ending positions and use prefix sum to calculate the distance sum."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/movement-of-robots/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.512Z",
+    "sourceUpdatedAt": null
+  }
+}

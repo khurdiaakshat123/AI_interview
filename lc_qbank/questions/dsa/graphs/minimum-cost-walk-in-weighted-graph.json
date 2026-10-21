@@ -1,0 +1,131 @@
+{
+  "id": "3108",
+  "slug": "minimum-cost-walk-in-weighted-graph",
+  "title": "Minimum Cost Walk in Weighted Graph",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "statement": "There is an undirected weighted graph with `n` vertices labeled from `0` to `n - 1`.\n\nYou are given the integer `n` and an array `edges`, where `edges[i] = [u_(i), v_(i), w_(i)]` indicates that there is an edge between vertices `u_(i)` and `v_(i)` with a weight of `w_(i)`.\n\nA walk on a graph is a sequence of vertices and edges. The walk starts and ends with a vertex, and each edge connects the vertex that comes before it and the vertex that comes after it. It's important to note that a walk may visit the same edge or vertex more than once.\n\nThe **cost** of a walk starting at node `u` and ending at node `v` is defined as the bitwise `AND` of the weights of the edges traversed during the walk. In other words, if the sequence of edge weights encountered during the walk is `w_(0), w_(1), w_(2), ..., w_(k)`, then the cost is calculated as `w_(0) & w_(1) & w_(2) & ... & w_(k)`, where `&` denotes the bitwise `AND` operator.\n\nYou are also given a 2D array `query`, where `query[i] = [s_(i), t_(i)]`. For each query, you need to find the minimum cost of the walk starting at vertex `s_(i)` and ending at vertex `t_(i)`. If there exists no such walk, the answer is `-1`.\n\nReturn _the array_ `answer`_, where_ `answer[i]` _denotes the **minimum** cost of a walk for query_ `i`.\n\n**Example 1:**\n\n**Input:** n = 5, edges = \\[\\[0,1,7\\],\\[1,3,7\\],\\[1,2,1\\]\\], query = \\[\\[0,3\\],\\[3,4\\]\\]\n\n**Output:** \\[1,-1\\]\n\n**Explanation:**\n\n![](./assets/minimum-cost-walk-in-weighted-graph-1.png)\n\nTo achieve the cost of 1 in the first query, we need to move on the following edges: `0->1` (weight 7), `1->2` (weight 1), `2->1` (weight 1), `1->3` (weight 7).\n\nIn the second query, there is no walk between nodes 3 and 4, so the answer is -1.\n\n**Example 2:**\n\n**Input:** n = 3, edges = \\[\\[0,2,7\\],\\[0,1,15\\],\\[1,2,6\\],\\[1,2,1\\]\\], query = \\[\\[1,2\\]\\]\n\n**Output:** \\[0\\]\n\n**Explanation:**\n\n![](./assets/minimum-cost-walk-in-weighted-graph-2.png)\n\nTo achieve the cost of 0 in the first query, we need to move on the following edges: `1->2` (weight 1), `2->1` (weight 6), `1->2` (weight 1).\n\n**Constraints:**\n\n*   `2 <= n <= 10^(5)`\n*   `0 <= edges.length <= 10^(5)`\n*   `edges[i].length == 3`\n*   `0 <= u_(i), v_(i) <= n - 1`\n*   `u_(i) != v_(i)`\n*   `0 <= w_(i) <= 10^(5)`\n*   `1 <= query.length <= 10^(5)`\n*   `query[i].length == 2`\n*   `0 <= s_(i), t_(i) <= n - 1`\n*   `s_(i) != t_(i)`",
+  "constraints": [
+    "2 <= n <= 105",
+    "0 <= edges.length <= 105",
+    "edges[i].length == 3",
+    "0 <= ui, vi <= n - 1",
+    "ui != vi",
+    "0 <= wi <= 105",
+    "1 <= query.length <= 105",
+    "query[i].length == 2",
+    "0 <= si, ti <= n - 1",
+    "si != ti"
+  ],
+  "examples": [
+    {
+      "input": "n = 5, edges = [[0,1,7],[1,3,7],[1,2,1]], query = [[0,3],[3,4]]",
+      "output": "[1,-1]",
+      "explanation": null
+    },
+    {
+      "input": "n = 3, edges = [[0,2,7],[0,1,15],[1,2,6],[1,2,1]], query = [[1,2]]",
+      "output": "[0]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> minimumCost(int n, vector<vector<int>>& edges, vector<vector<int>>& query) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] minimumCost(int n, int[][] edges, int[][] query) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumCost(self, n: int, edges: List[List[int]], query: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def minimumCost(self, n, edges, query):\n        \"\"\"\n        :type n: int\n        :type edges: List[List[int]]\n        :type query: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @param {number[][]} query\n * @return {number[]}\n */\nvar minimumCost = function(n, edges, query) {\n    \n};",
+    "typescript": "function minimumCost(n: number, edges: number[][], query: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MinimumCost(int n, int[][] edges, int[][] query) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* minimumCost(int n, int** edges, int edgesSize, int* edgesColSize, int** query, int querySize, int* queryColSize, int* returnSize) {\n    \n}",
+    "golang": "func minimumCost(n int, edges [][]int, query [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumCost(n: Int, edges: Array<IntArray>, query: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumCost(_ n: Int, _ edges: [[Int]], _ query: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_cost(n: i32, edges: Vec<Vec<i32>>, query: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[][]} edges\n# @param {Integer[][]} query\n# @return {Integer[]}\ndef minimum_cost(n, edges, query)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[][] $edges\n     * @param Integer[][] $query\n     * @return Integer[]\n     */\n    function minimumCost($n, $edges, $query) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> minimumCost(int n, List<List<int>> edges, List<List<int>> query) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumCost(n: Int, edges: Array[Array[Int]], query: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_cost(n :: integer, edges :: [[integer]], query :: [[integer]]) :: [integer]\n  def minimum_cost(n, edges, query) do\n    \n  end\nend",
+    "erlang": "-spec minimum_cost(N :: integer(), Edges :: [[integer()]], Query :: [[integer()]]) -> [integer()].\nminimum_cost(N, Edges, Query) ->\n  .",
+    "racket": "(define/contract (minimum-cost n edges query)\n  (-> exact-integer? (listof (listof exact-integer?)) (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "5\n[[0,1,7],[1,3,7],[1,2,1]]\n[[0,3],[3,4]]",
+      "expectedOutput": "[1,-1]"
+    },
+    {
+      "input": "3\n[[0,2,7],[0,1,15],[1,2,6],[1,2,1]]\n[[1,2]]",
+      "expectedOutput": "[0]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "5\n[[0,1,7],[1,3,7],[1,2,1]]\n[[0,3],[3,4]]",
+      "expectedOutput": "[1,-1]"
+    },
+    {
+      "input": "3\n[[0,2,7],[0,1,15],[1,2,6],[1,2,1]]\n[[1,2]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "6\n[[0,1,7],[1,3,7],[1,2,1]]\n[[0,3],[3,4]]",
+      "expectedOutput": "[1,-1]"
+    },
+    {
+      "input": "7\n[[0,1,7],[1,3,7],[1,2,1]]\n[[0,3],[3,4]]",
+      "expectedOutput": "[1,-1]"
+    },
+    {
+      "input": "8\n[[0,1,7],[1,3,7],[1,2,1]]\n[[0,3],[3,4]]",
+      "expectedOutput": "[1,-1]"
+    },
+    {
+      "input": "9\n[[0,1,7],[1,3,7],[1,2,1]]\n[[0,3],[3,4]]",
+      "expectedOutput": "[1,-1]"
+    },
+    {
+      "input": "4\n[[0,2,7],[0,1,15],[1,2,6],[1,2,1]]\n[[1,2]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "5\n[[0,2,7],[0,1,15],[1,2,6],[1,2,1]]\n[[1,2]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "6\n[[0,2,7],[0,1,15],[1,2,6],[1,2,1]]\n[[1,2]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "7\n[[0,2,7],[0,1,15],[1,2,6],[1,2,1]]\n[[1,2]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "8\n[[0,2,7],[0,1,15],[1,2,6],[1,2,1]]\n[[1,2]]",
+      "expectedOutput": "[0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The intended solution uses Disjoint Set Union.",
+    "Notice that, if <code>u</code> and <code>v</code> are not connected then the answer is <code>-1</code>, otherwise we can use all the edges from the connected component where both belong to."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.733Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "id": "2899",
+  "slug": "last-visited-integers",
+  "title": "Last Visited Integers",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "statement": "Given an integer array `nums` where `nums[i]` is either a positive integer or `-1`. We need to find for each `-1` the respective positive integer, which we call the last visited integer.\n\nTo achieve this goal, let's define two empty arrays: `seen` and `ans`.\n\nStart iterating from the beginning of the array `nums`.\n\n*   If a positive integer is encountered, prepend it to the **front** of `seen`.\n*   If `-1` is encountered, let `k` be the number of **consecutive** `-1`s seen so far (including the current `-1`),\n    *   If `k` is less than or equal to the length of `seen`, append the `k`\\-th element of `seen` to `ans`.\n    *   If `k` is strictly greater than the length of `seen`, append `-1` to `ans`.\n\nReturn the array `ans`.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,-1,-1,-1\\]\n\n**Output:** \\[2,1,-1\\]\n\n**Explanation:**\n\nStart with `seen = []` and `ans = []`.\n\n1.  Process `nums[0]`: The first element in nums is `1`. We prepend it to the front of `seen`. Now, `seen == [1]`.\n2.  Process `nums[1]`: The next element is `2`. We prepend it to the front of `seen`. Now, `seen == [2, 1]`.\n3.  Process `nums[2]`: The next element is `-1`. This is the first occurrence of `-1`, so `k == 1`. We look for the first element in seen. We append `2` to `ans`. Now, `ans == [2]`.\n4.  Process `nums[3]`: Another `-1`. This is the second consecutive `-1`, so `k == 2`. The second element in `seen` is `1`, so we append `1` to `ans`. Now, `ans == [2, 1]`.\n5.  Process `nums[4]`: Another `-1`, the third in a row, making `k = 3`. However, `seen` only has two elements (`[2, 1]`). Since `k` is greater than the number of elements in `seen`, we append `-1` to `ans`. Finally, `ans == [2, 1, -1]`.\n\n**Example 2:**\n\n**Input:** nums = \\[1,-1,2,-1,-1\\]\n\n**Output:** \\[1,2,1\\]\n\n**Explanation:**\n\nStart with `seen = []` and `ans = []`.\n\n1.  Process `nums[0]`: The first element in nums is `1`. We prepend it to the front of `seen`. Now, `seen == [1]`.\n2.  Process `nums[1]`: The next element is `-1`. This is the first occurrence of `-1`, so `k == 1`. We look for the first element in `seen`, which is `1`. Append `1` to `ans`. Now, `ans == [1]`.\n3.  Process `nums[2]`: The next element is `2`. Prepend this to the front of `seen`. Now, `seen == [2, 1]`.\n4.  Process `nums[3]`: The next element is `-1`. This `-1` is not consecutive to the first `-1` since `2` was in between. Thus, `k` resets to `1`. The first element in `seen` is `2`, so append `2` to `ans`. Now, `ans == [1, 2]`.\n5.  Process `nums[4]`: Another `-1`. This is consecutive to the previous `-1`, so `k == 2`. The second element in `seen` is `1`, append `1` to `ans`. Finally, `ans == [1, 2, 1]`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 100`\n*   `nums[i] == -1` or `1 <= nums[i] <= 100`",
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "nums[i] == -1 or 1 <= nums[i] <= 100"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,-1,-1,-1]",
+      "output": "[2,1,-1]",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,-1,2,-1,-1]",
+      "output": "[1,2,1]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> lastVisitedIntegers(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> lastVisitedIntegers(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lastVisitedIntegers(self, nums: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def lastVisitedIntegers(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar lastVisitedIntegers = function(nums) {\n    \n};",
+    "typescript": "function lastVisitedIntegers(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> LastVisitedIntegers(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* lastVisitedIntegers(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func lastVisitedIntegers(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun lastVisitedIntegers(nums: IntArray): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lastVisitedIntegers(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn last_visited_integers(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef last_visited_integers(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function lastVisitedIntegers($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> lastVisitedIntegers(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lastVisitedIntegers(nums: Array[Int]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec last_visited_integers(nums :: [integer]) :: [integer]\n  def last_visited_integers(nums) do\n    \n  end\nend",
+    "erlang": "-spec last_visited_integers(Nums :: [integer()]) -> [integer()].\nlast_visited_integers(Nums) ->\n  .",
+    "racket": "(define/contract (last-visited-integers nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,-1,-1,-1]",
+      "expectedOutput": "[2,1,-1]"
+    },
+    {
+      "input": "[1,-1,2,-1,-1]",
+      "expectedOutput": "[1,2,1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,-1,-1,-1]",
+      "expectedOutput": "[2,1,-1]"
+    },
+    {
+      "input": "[1,-1,2,-1,-1]",
+      "expectedOutput": "[1,2,1]"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[-1,-1,-1]",
+      "expectedOutput": "[-1,-1,-1]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,-1]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "[-1,-1,-1,2,1]",
+      "expectedOutput": "[-1,-1,-1]"
+    },
+    {
+      "input": "[-1,-1,-1,1,2]",
+      "expectedOutput": "[-1,-1,-1]"
+    },
+    {
+      "input": "[2,1,-1,-1,-1]",
+      "expectedOutput": "[1,2,-1]"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,2,-1,-1,-1,1,2,-1,-1,-1]",
+      "expectedOutput": "[2,1,-1,2,1,2]"
+    },
+    {
+      "input": "[2,4,-2,-2,-2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[2,3,0,0,0]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[0,1,-2,-2,-2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[-1,-2,1,1,1]",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[-1]"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "[]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "It is sufficient to implement what the description is stating."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/last-visited-integers/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.088Z",
+    "sourceUpdatedAt": null
+  }
+}

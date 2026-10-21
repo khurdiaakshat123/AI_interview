@@ -1,0 +1,183 @@
+{
+  "id": "3501",
+  "slug": "maximize-active-section-with-trade-ii",
+  "title": "Maximize Active Section with Trade II",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "String",
+    "Binary Search",
+    "Segment Tree"
+  ],
+  "statement": "You are given a binary string `s` of length `n`, where:\n\n*   `'1'` represents an **active** section.\n*   `'0'` represents an **inactive** section.\n\nYou can perform **at most one trade** to maximize the number of active sections in `s`. In a trade, you:\n\n*   Convert a contiguous block of `'1'`s that is surrounded by `'0'`s to all `'0'`s.\n*   Afterward, convert a contiguous block of `'0'`s that is surrounded by `'1'`s to all `'1'`s.\n\nAdditionally, you are given a **2D array** `queries`, where `queries[i] = [l_(i), r_(i)]` represents a substring `s[l_(i)...r_(i)]`.\n\nFor each query, determine the **maximum** possible number of active sections in `s` after making the optimal trade on the substring `s[l_(i)...r_(i)]`.\n\nReturn an array `answer`, where `answer[i]` is the result for `queries[i]`.\n\n**Note**\n\n*   For each query, treat `s[l_(i)...r_(i)]` as if it is **augmented** with a `'1'` at both ends, forming `t = '1' + s[l_(i)...r_(i)] + '1'`. The augmented `'1'`s **do not** contribute to the final count.\n*   The queries are independent of each other.\n\n**Example 1:**\n\n**Input:** s = \"01\", queries = \\[\\[0,1\\]\\]\n\n**Output:** \\[1\\]\n\n**Explanation:**\n\nBecause there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 1.\n\n**Example 2:**\n\n**Input:** s = \"0100\", queries = \\[\\[0,3\\],\\[0,2\\],\\[1,3\\],\\[2,3\\]\\]\n\n**Output:** \\[4,3,1,1\\]\n\n**Explanation:**\n\n*   Query `[0, 3]` → Substring `\"0100\"` → Augmented to `\"101001\"`  \n    Choose `\"0100\"`, convert `\"0100\"` → `\"0000\"` → `\"1111\"`.  \n    The final string without augmentation is `\"1111\"`. The maximum number of active sections is 4.\n    \n*   Query `[0, 2]` → Substring `\"010\"` → Augmented to `\"10101\"`  \n    Choose `\"010\"`, convert `\"010\"` → `\"000\"` → `\"111\"`.  \n    The final string without augmentation is `\"1110\"`. The maximum number of active sections is 3.\n    \n*   Query `[1, 3]` → Substring `\"100\"` → Augmented to `\"11001\"`  \n    Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 1.\n    \n*   Query `[2, 3]` → Substring `\"00\"` → Augmented to `\"1001\"`  \n    Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 1.\n    \n\n**Example 3:**\n\n**Input:** s = \"1000100\", queries = \\[\\[1,5\\],\\[0,6\\],\\[0,4\\]\\]\n\n**Output:** \\[6,7,2\\]\n\n**Explanation:**\n\n*   Query `[1, 5]` → Substring `\"00010\"` → Augmented to `\"1000101\"`  \n    Choose `\"00010\"`, convert `\"00010\"` → `\"00000\"` → `\"11111\"`.  \n    The final string without augmentation is `\"1111110\"`. The maximum number of active sections is 6.\n    \n*   Query `[0, 6]` → Substring `\"1000100\"` → Augmented to `\"110001001\"`  \n    Choose `\"000100\"`, convert `\"000100\"` → `\"000000\"` → `\"111111\"`.  \n    The final string without augmentation is `\"1111111\"`. The maximum number of active sections is 7.\n    \n*   Query `[0, 4]` → Substring `\"10001\"` → Augmented to `\"1100011\"`  \n    Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 2.\n    \n\n**Example 4:**\n\n**Input:** s = \"01010\", queries = \\[\\[0,3\\],\\[1,4\\],\\[1,3\\]\\]\n\n**Output:** \\[4,4,2\\]\n\n**Explanation:**\n\n*   Query `[0, 3]` → Substring `\"0101\"` → Augmented to `\"101011\"`  \n    Choose `\"010\"`, convert `\"010\"` → `\"000\"` → `\"111\"`.  \n    The final string without augmentation is `\"11110\"`. The maximum number of active sections is 4.\n    \n*   Query `[1, 4]` → Substring `\"1010\"` → Augmented to `\"110101\"`  \n    Choose `\"010\"`, convert `\"010\"` → `\"000\"` → `\"111\"`.  \n    The final string without augmentation is `\"01111\"`. The maximum number of active sections is 4.\n    \n*   Query `[1, 3]` → Substring `\"101\"` → Augmented to `\"11011\"`  \n    Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 2.\n    \n\n**Constraints:**\n\n*   `1 <= n == s.length <= 10^(5)`\n*   `1 <= queries.length <= 10^(5)`\n*   `s[i]` is either `'0'` or `'1'`.\n*   `queries[i] = [l_(i), r_(i)]`\n*   `0 <= l_(i) <= r_(i) < n`",
+  "constraints": [
+    "1 <= n == s.length <= 105",
+    "1 <= queries.length <= 105",
+    "s[i] is either '0' or '1'.",
+    "queries[i] = [li, ri]",
+    "0 <= li <= ri < n"
+  ],
+  "examples": [
+    {
+      "input": "s = \"01\", queries = [[0,1]]",
+      "output": "[1]",
+      "explanation": null
+    },
+    {
+      "input": "s = \"0100\", queries = [[0,3],[0,2],[1,3],[2,3]]",
+      "output": "[4,3,1,1]",
+      "explanation": null
+    },
+    {
+      "input": "s = \"1000100\", queries = [[1,5],[0,6],[0,4]]",
+      "output": "[6,7,2]",
+      "explanation": "Query [1, 5] → Substring \"00010\" → Augmented to \"1000101\"\n\tChoose \"00010\", convert \"00010\" → \"00000\" → \"11111\".\n\tThe final string without augmentation is \"1111110\". The maximum number of active sections is 6.\n\t\n\t\n\tQuery [0, 6] → Substring \"1000100\" → Augmented to \"110001001\"\n\tChoose \"000100\", convert \"000100\" → \"000000\" → \"111111\".\n\tThe final string without augmentation is \"1111111\". The maximum number of active sections is 7.\n\t\n\t\n\tQuery [0, 4] → Substring \"10001\" → Augmented to \"1100011\"\n\tBecause there is no block of '1's surrounded by '0's, no valid trade is possible. The maximum number of active sections is 2."
+    },
+    {
+      "input": "s = \"01010\", queries = [[0,3],[1,4],[1,3]]",
+      "output": "[4,4,2]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> maxActiveSectionsAfterTrade(string s, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<Integer> maxActiveSectionsAfterTrade(String s, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxActiveSectionsAfterTrade(self, s: str, queries: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def maxActiveSectionsAfterTrade(self, s, queries):\n        \"\"\"\n        :type s: str\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar maxActiveSectionsAfterTrade = function(s, queries) {\n    \n};",
+    "typescript": "function maxActiveSectionsAfterTrade(s: string, queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<int> MaxActiveSectionsAfterTrade(string s, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* maxActiveSectionsAfterTrade(char* s, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func maxActiveSectionsAfterTrade(s string, queries [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxActiveSectionsAfterTrade(s: String, queries: Array<IntArray>): List<Int> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxActiveSectionsAfterTrade(_ s: String, _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_active_sections_after_trade(s: String, queries: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef max_active_sections_after_trade(s, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function maxActiveSectionsAfterTrade($s, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> maxActiveSectionsAfterTrade(String s, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxActiveSectionsAfterTrade(s: String, queries: Array[Array[Int]]): List[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_active_sections_after_trade(s :: String.t, queries :: [[integer]]) :: [integer]\n  def max_active_sections_after_trade(s, queries) do\n    \n  end\nend",
+    "erlang": "-spec max_active_sections_after_trade(S :: unicode:unicode_binary(), Queries :: [[integer()]]) -> [integer()].\nmax_active_sections_after_trade(S, Queries) ->\n  .",
+    "racket": "(define/contract (max-active-sections-after-trade s queries)\n  (-> string? (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"01\"\n[[0,1]]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "\"0100\"\n[[0,3],[0,2],[1,3],[2,3]]",
+      "expectedOutput": "[4,3,1,1]"
+    },
+    {
+      "input": "\"1000100\"\n[[1,5],[0,6],[0,4]]",
+      "expectedOutput": "[6,7,2]"
+    },
+    {
+      "input": "\"01010\"\n[[0,3],[1,4],[1,3]]",
+      "expectedOutput": "[4,4,2]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"01\"\n[[0,1]]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "\"0100\"\n[[0,3],[0,2],[1,3],[2,3]]",
+      "expectedOutput": "[4,3,1,1]"
+    },
+    {
+      "input": "\"1000100\"\n[[1,5],[0,6],[0,4]]",
+      "expectedOutput": "[6,7,2]"
+    },
+    {
+      "input": "\"01010\"\n[[0,3],[1,4],[1,3]]",
+      "expectedOutput": "[4,4,2]"
+    },
+    {
+      "input": "\"1\"\n[[0,1]]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "\"10\"\n[[0,1]]",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "\"0101\"\n[[0,1]]",
+      "expectedOutput": "[2]"
+    },
+    {
+      "input": "\"00\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"0110\"\n[[0,1]]",
+      "expectedOutput": "[2]"
+    },
+    {
+      "input": "\"a\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"b\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"aa\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"ab\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"ba\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"aba\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"abba\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"aaaaa\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"abcde\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"edcba\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "\"aab\"\n[[0,1]]",
+      "expectedOutput": "[0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Split consecutive zeros and ones into segments and give each segment an ID.",
+    "The answer should be the maximum of <code>ans[i] = len[i - 1] + len[i + 1]</code>, where <code>i</code> is a one-segment.",
+    "For a zero-segment, define <code>ans[i] = 0</code>.",
+    "Note that all three segments (<code>i - 1</code>, <code>i</code>, and <code>i + 1</code>) should be fully covered by the substring.",
+    "Use a segment tree to perform range maximum queries on the answer. The query to the segment tree is not straightforward since we need to ensure the zero-segments are fully covered. Handle the first and last segments separately."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-active-section-with-trade-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.214Z",
+    "sourceUpdatedAt": null
+  }
+}

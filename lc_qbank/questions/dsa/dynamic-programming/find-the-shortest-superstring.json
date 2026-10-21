@@ -1,0 +1,160 @@
+{
+  "id": "943",
+  "slug": "find-the-shortest-superstring",
+  "title": "Find the Shortest Superstring",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask",
+    "Hamiltonian Path"
+  ],
+  "statement": "Given an array of strings `words`, return _the smallest string that contains each string in_ `words` _as a substring_. If there are multiple valid strings of the smallest length, return **any of them**.\n\nYou may assume that no string in `words` is a substring of another string in `words`.\n\n**Example 1:**\n\n```\nInput: words = [\"alex\",\"loves\",\"leetcode\"]\nOutput: \"alexlovesleetcode\"\nExplanation: All permutations of \"alex\",\"loves\",\"leetcode\" would also be accepted.\n```\n\n**Example 2:**\n\n```\nInput: words = [\"catg\",\"ctaagt\",\"gcta\",\"ttca\",\"atgcatc\"]\nOutput: \"gctaagttcatgcatc\"\n```\n\n**Constraints:**\n\n*   `1 <= words.length <= 12`\n*   `1 <= words[i].length <= 20`\n*   `words[i]` consists of lowercase English letters.\n*   All the strings of `words` are **unique**.",
+  "constraints": [
+    "1 <= words.length <= 12",
+    "1 <= words[i].length <= 20",
+    "words[i] consists of lowercase English letters.",
+    "All the strings of words are unique."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"alex\",\"loves\",\"leetcode\"]",
+      "output": "\"alexlovesleetcode\"",
+      "explanation": "All permutations of \"alex\",\"loves\",\"leetcode\" would also be accepted."
+    },
+    {
+      "input": "words = [\"catg\",\"ctaagt\",\"gcta\",\"ttca\",\"atgcatc\"]",
+      "output": "\"gctaagttcatgcatc\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string shortestSuperstring(vector<string>& words) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String shortestSuperstring(String[] words) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def shortestSuperstring(self, words: list[str]) -> str:\n        ",
+    "python": "class Solution(object):\n    def shortestSuperstring(self, words):\n        \"\"\"\n        :type words: List[str]\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @return {string}\n */\nvar shortestSuperstring = function(words) {\n    \n};",
+    "typescript": "function shortestSuperstring(words: string[]): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ShortestSuperstring(string[] words) {\n        \n    }\n}",
+    "c": "char* shortestSuperstring(char** words, int wordsSize) {\n    \n}",
+    "golang": "func shortestSuperstring(words []string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun shortestSuperstring(words: Array<String>): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func shortestSuperstring(_ words: [String]) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn shortest_superstring(words: Vec<String>) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @return {String}\ndef shortest_superstring(words)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @return String\n     */\n    function shortestSuperstring($words) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String shortestSuperstring(List<String> words) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def shortestSuperstring(words: Array[String]): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec shortest_superstring(words :: [String.t]) :: String.t\n  def shortest_superstring(words) do\n    \n  end\nend",
+    "erlang": "-spec shortest_superstring(Words :: [unicode:unicode_binary()]) -> unicode:unicode_binary().\nshortest_superstring(Words) ->\n  .",
+    "racket": "(define/contract (shortest-superstring words)\n  (-> (listof string?) string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"alex\",\"loves\",\"leetcode\"]",
+      "expectedOutput": "\"alexlovesleetcode\""
+    },
+    {
+      "input": "[\"catg\",\"ctaagt\",\"gcta\",\"ttca\",\"atgcatc\"]",
+      "expectedOutput": "\"gctaagttcatgcatc\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"alex\",\"loves\",\"leetcode\"]",
+      "expectedOutput": "\"alexlovesleetcode\""
+    },
+    {
+      "input": "[\"catg\",\"ctaagt\",\"gcta\",\"ttca\",\"atgcatc\"]",
+      "expectedOutput": "\"gctaagttcatgcatc\""
+    },
+    {
+      "input": "[\"alex\"]",
+      "expectedOutput": "\"alex\""
+    },
+    {
+      "input": "[\"loves\",\"leetcode\"]",
+      "expectedOutput": "\"lovesleetcode\""
+    },
+    {
+      "input": "[\"alex\",\"leetcode\"]",
+      "expectedOutput": "\"alexleetcode\""
+    },
+    {
+      "input": "[\"alex\",\"loves\"]",
+      "expectedOutput": "\"alexloves\""
+    },
+    {
+      "input": "[\"leetcode\",\"loves\",\"alex\"]",
+      "expectedOutput": "\"leetcodelovesalex\""
+    },
+    {
+      "input": "[\"alex\",\"leetcode\",\"loves\"]",
+      "expectedOutput": "\"alexleetcodeloves\""
+    },
+    {
+      "input": "[\"loves\",\"leetcode\",\"alex\"]",
+      "expectedOutput": "\"lovesleetcodealex\""
+    },
+    {
+      "input": "[\"alex\",\"alex\",\"alex\"]",
+      "expectedOutput": "\"alex\""
+    },
+    {
+      "input": "[\"alex\",\"loves\",\"leetcode\",\"alex\",\"loves\",\"leetcode\"]",
+      "expectedOutput": "\"leetcodelovesalex\""
+    },
+    {
+      "input": "[\"a\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"\"]",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "[\"a\",\"b\"]",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "[\"a\",\"a\"]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"ab\",\"ba\"]",
+      "expectedOutput": "\"bab\""
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]",
+      "expectedOutput": "\"bcabc\""
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+      "expectedOutput": "\"batanateat\""
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]",
+      "expectedOutput": "\"catactgodog\""
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]",
+      "expectedOutput": "\"twonethree\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-shortest-superstring/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.631Z",
+    "sourceUpdatedAt": null
+  }
+}

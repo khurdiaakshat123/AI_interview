@@ -1,0 +1,162 @@
+{
+  "id": "1562",
+  "slug": "find-latest-group-of-size-m",
+  "title": "Find Latest Group of Size M",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Simulation"
+  ],
+  "statement": "Given an array `arr` that represents a permutation of numbers from `1` to `n`.\n\nYou have a binary string of size `n` that initially has all its bits set to zero. At each step `i` (assuming both the binary string and `arr` are 1-indexed) from `1` to `n`, the bit at position `arr[i]` is set to `1`.\n\nYou are also given an integer `m`. Find the latest step at which there exists a group of ones of length `m`. A group of ones is a contiguous substring of `1`'s such that it cannot be extended in either direction.\n\nReturn _the latest step at which there exists a group of ones of length **exactly**_ `m`. _If no such group exists, return_ `-1`.\n\n**Example 1:**\n\n```\nInput: arr = [3,5,1,2,4], m = 1\nOutput: 4\nExplanation: \nStep 1: \"00100\", groups: [\"1\"]\nStep 2: \"00101\", groups: [\"1\", \"1\"]\nStep 3: \"10101\", groups: [\"1\", \"1\", \"1\"]\nStep 4: \"11101\", groups: [\"111\", \"1\"]\nStep 5: \"11111\", groups: [\"11111\"]\nThe latest step at which there exists a group of size 1 is step 4.\n```\n\n**Example 2:**\n\n```\nInput: arr = [3,1,5,4,2], m = 2\nOutput: -1\nExplanation: \nStep 1: \"00100\", groups: [\"1\"]\nStep 2: \"10100\", groups: [\"1\", \"1\"]\nStep 3: \"10101\", groups: [\"1\", \"1\", \"1\"]\nStep 4: \"10111\", groups: [\"1\", \"111\"]\nStep 5: \"11111\", groups: [\"11111\"]\nNo group of size 2 exists during any step.\n```\n\n**Constraints:**\n\n*   `n == arr.length`\n*   `1 <= m <= n <= 10^(5)`\n*   `1 <= arr[i] <= n`\n*   All integers in `arr` are **distinct**.",
+  "constraints": [
+    "n == arr.length",
+    "1 <= m <= n <= 105",
+    "1 <= arr[i] <= n",
+    "All integers in arr are distinct."
+  ],
+  "examples": [
+    {
+      "input": "arr = [3,5,1,2,4], m = 1",
+      "output": "4",
+      "explanation": "Step 1: \"00100\", groups: [\"1\"]\nStep 2: \"00101\", groups: [\"1\", \"1\"]\nStep 3: \"10101\", groups: [\"1\", \"1\", \"1\"]\nStep 4: \"11101\", groups: [\"111\", \"1\"]\nStep 5: \"11111\", groups: [\"11111\"]\nThe latest step at which there exists a group of size 1 is step 4."
+    },
+    {
+      "input": "arr = [3,1,5,4,2], m = 2",
+      "output": "-1",
+      "explanation": "Step 1: \"00100\", groups: [\"1\"]\nStep 2: \"10100\", groups: [\"1\", \"1\"]\nStep 3: \"10101\", groups: [\"1\", \"1\", \"1\"]\nStep 4: \"10111\", groups: [\"1\", \"111\"]\nStep 5: \"11111\", groups: [\"11111\"]\nNo group of size 2 exists during any step."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findLatestStep(vector<int>& arr, int m) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findLatestStep(int[] arr, int m) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findLatestStep(self, arr: list[int], m: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def findLatestStep(self, arr, m):\n        \"\"\"\n        :type arr: List[int]\n        :type m: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @param {number} m\n * @return {number}\n */\nvar findLatestStep = function(arr, m) {\n    \n};",
+    "typescript": "function findLatestStep(arr: number[], m: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindLatestStep(int[] arr, int m) {\n        \n    }\n}",
+    "c": "int findLatestStep(int* arr, int arrSize, int m) {\n    \n}",
+    "golang": "func findLatestStep(arr []int, m int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findLatestStep(arr: IntArray, m: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findLatestStep(_ arr: [Int], _ m: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_latest_step(arr: Vec<i32>, m: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @param {Integer} m\n# @return {Integer}\ndef find_latest_step(arr, m)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @param Integer $m\n     * @return Integer\n     */\n    function findLatestStep($arr, $m) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findLatestStep(List<int> arr, int m) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findLatestStep(arr: Array[Int], m: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_latest_step(arr :: [integer], m :: integer) :: integer\n  def find_latest_step(arr, m) do\n    \n  end\nend",
+    "erlang": "-spec find_latest_step(Arr :: [integer()], M :: integer()) -> integer().\nfind_latest_step(Arr, M) ->\n  .",
+    "racket": "(define/contract (find-latest-step arr m)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,5,1,2,4]\n1",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,1,5,4,2]\n2",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,5,1,2,4]\n1",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3,1,5,4,2]\n2",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[4,2,1,5,3]\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,3,4,5]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[5,4,3,2,1]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,3,3,3,3]\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,5,1,2,4,3,5,1,2,4]\n1",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,4,0,1,3]\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0,0]\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,1,1]\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1]\n1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2,3]\n1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,1]\n1",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Since the problem asks for the latest step, can you start the searching from the end of arr?",
+    "Use a map to store the current “1” groups.",
+    "At each step (going backwards) you need to split one group and update the map."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-latest-group-of-size-m/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.801Z",
+    "sourceUpdatedAt": null
+  }
+}

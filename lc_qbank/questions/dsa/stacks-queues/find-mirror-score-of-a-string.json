@@ -1,0 +1,159 @@
+{
+  "id": "3412",
+  "slug": "find-mirror-score-of-a-string",
+  "title": "Find Mirror Score of a String",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "statement": "You are given a string `s`.\n\nWe define the **mirror** of a letter in the English alphabet as its corresponding letter when the alphabet is reversed. For example, the mirror of `'a'` is `'z'`, and the mirror of `'y'` is `'b'`.\n\nInitially, all characters in the string `s` are **unmarked**.\n\nYou start with a score of 0, and you perform the following process on the string `s`:\n\n*   Iterate through the string from left to right.\n*   At each index `i`, find the closest **unmarked** index `j` such that `j < i` and `s[j]` is the mirror of `s[i]`. Then, **mark** both indices `i` and `j`, and add the value `i - j` to the total score.\n*   If no such index `j` exists for the index `i`, move on to the next index without making any changes.\n\nReturn the total score at the end of the process.\n\n**Example 1:**\n\n**Input:** s = \"aczzx\"\n\n**Output:** 5\n\n**Explanation:**\n\n*   `i = 0`. There is no index `j` that satisfies the conditions, so we skip.\n*   `i = 1`. There is no index `j` that satisfies the conditions, so we skip.\n*   `i = 2`. The closest index `j` that satisfies the conditions is `j = 0`, so we mark both indices 0 and 2, and then add `2 - 0 = 2` to the score.\n*   `i = 3`. There is no index `j` that satisfies the conditions, so we skip.\n*   `i = 4`. The closest index `j` that satisfies the conditions is `j = 1`, so we mark both indices 1 and 4, and then add `4 - 1 = 3` to the score.\n\n**Example 2:**\n\n**Input:** s = \"abcdef\"\n\n**Output:** 0\n\n**Explanation:**\n\nFor each index `i`, there is no index `j` that satisfies the conditions.\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` consists only of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s consists only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aczzx\"",
+      "output": "5",
+      "explanation": "i = 0. There is no index j that satisfies the conditions, so we skip.\n\ti = 1. There is no index j that satisfies the conditions, so we skip.\n\ti = 2. The closest index j that satisfies the conditions is j = 0, so we mark both indices 0 and 2, and then add 2 - 0 = 2 to the score.\n\ti = 3. There is no index j that satisfies the conditions, so we skip.\n\ti = 4. The closest index j that satisfies the conditions is j = 1, so we mark both indices 1 and 4, and then add 4 - 1 = 3 to the score."
+    },
+    {
+      "input": "s = \"abcdef\"",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long calculateScore(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long calculateScore(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def calculateScore(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def calculateScore(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar calculateScore = function(s) {\n    \n};",
+    "typescript": "function calculateScore(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long CalculateScore(string s) {\n        \n    }\n}",
+    "c": "long long calculateScore(char* s) {\n    \n}",
+    "golang": "func calculateScore(s string) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun calculateScore(s: String): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func calculateScore(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn calculate_score(s: String) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef calculate_score(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function calculateScore($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int calculateScore(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def calculateScore(s: String): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec calculate_score(s :: String.t) :: integer\n  def calculate_score(s) do\n    \n  end\nend",
+    "erlang": "-spec calculate_score(S :: unicode:unicode_binary()) -> integer().\ncalculate_score(S) ->\n  .",
+    "racket": "(define/contract (calculate-score s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aczzx\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcdef\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aczzx\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcdef\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ac\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"zzx\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"xzzca\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"aczzxaczzx\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aczzxxzzca\"",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "\"ACZZX\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Create a stack for every character.",
+    "For each index, check if the stack for mirror of the letter at that index is empty."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-mirror-score-of-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:17.952Z",
+    "sourceUpdatedAt": null
+  }
+}

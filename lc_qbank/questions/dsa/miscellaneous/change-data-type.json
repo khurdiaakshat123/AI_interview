@@ -1,0 +1,51 @@
+{
+  "id": "2886",
+  "slug": "change-data-type",
+  "title": "Change Data Type",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "```\nstudents\n```\n\nWrite a solution to correct the errors:\n\nThe `grade` column is stored as floats, convert it to integers.\n\nThe result format is in the following example.\n\n```\nExample 1:\nInput:\nDataFrame students:\n+------------+------+-----+-------+\n| student_id | name | age | grade |\n+------------+------+-----+-------+\n| 1          | Ava  | 6   | 73.0  |\n| 2          | Kate | 15  | 87.0  |\n+------------+------+-----+-------+\nOutput:\n+------------+------+-----+-------+\n| student_id | name | age | grade |\n+------------+------+-----+-------+\n| 1          | Ava  | 6   | 73    |\n| 2          | Kate | 15  | 87    |\n+------------+------+-----+-------+\nExplanation: \nThe data types of the column grade is converted to int.\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "DataFrame students:\n+------------+------+-----+-------+\n| student_id | name | age | grade |\n+------------+------+-----+-------+\n| 1          | Ava  | 6   | 73.0  |\n| 2          | Kate | 15  | 87.0  |\n+------------+------+-----+-------+",
+      "output": "+------------+------+-----+-------+\n| student_id | name | age | grade |\n+------------+------+-----+-------+\n| 1          | Ava  | 6   | 73    |\n| 2          | Kate | 15  | 87    |\n+------------+------+-----+-------+",
+      "explanation": "The data types of the column grade is converted to int."
+    }
+  ],
+  "starterCode": {
+    "pythondata": "import pandas as pd\n\ndef changeDatatype(students: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\",\"grade\"]},\"rows\":{\"students\":[[1,\"Ava\",6,73.0],[2,\"Kate\",15,87.0]]}}",
+      "expectedOutput": "+------------+------+-----+-------+\n| student_id | name | age | grade |\n+------------+------+-----+-------+\n| 1          | Ava  | 6   | 73    |\n| 2          | Kate | 15  | 87    |\n+------------+------+-----+-------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\",\"grade\"]},\"rows\":{\"students\":[[1,\"Ava\",6,73.0],[2,\"Kate\",15,87.0]]}}",
+      "expectedOutput": "+------------+------+-----+-------+\n| student_id | name | age | grade |\n+------------+------+-----+-------+\n| 1          | Ava  | 6   | 73    |\n| 2          | Kate | 15  | 87    |\n+------------+------+-----+-------+"
+    },
+    {
+      "input": "DataFrame students:\n+------------+------+-----+-------+\n| student_id | name | age | grade |\n+------------+------+-----+-------+\n| 1          | Ava  | 6   | 73.0  |\n| 2          | Kate | 15  | 87.0  |\n+------------+------+-----+-------+",
+      "expectedOutput": "+------------+------+-----+-------+\n| student_id | name | age | grade |\n+------------+------+-----+-------+\n| 1          | Ava  | 6   | 73    |\n| 2          | Kate | 15  | 87    |\n+------------+------+-----+-------+"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Consider using a build-in function in pandas library with a dictionary to convert the datatype of columns as specified."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/change-data-type/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.989Z",
+    "sourceUpdatedAt": null
+  }
+}

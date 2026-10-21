@@ -1,0 +1,96 @@
+{
+  "id": "2272",
+  "slug": "substring-with-largest-variance",
+  "title": "Substring With Largest Variance",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Enumeration"
+  ],
+  "statement": "The **variance** of a string is defined as the largest difference between the number of occurrences of **any** `2` characters present in the string. Note the two characters may or may not be the same.\n\nGiven a string `s` consisting of lowercase English letters only, return _the **largest variance** possible among all **substrings** of_ `s`.\n\nA **substring** is a contiguous sequence of characters within a string.\n\n**Example 1:**\n\n```\nInput: s = \"aababbb\"\nOutput: 3\nExplanation:\nAll possible variances along with their respective substrings are listed below:\n- Variance 0 for substrings \"a\", \"aa\", \"ab\", \"abab\", \"aababb\", \"ba\", \"b\", \"bb\", and \"bbb\".\n- Variance 1 for substrings \"aab\", \"aba\", \"abb\", \"aabab\", \"ababb\", \"aababbb\", and \"bab\".\n- Variance 2 for substrings \"aaba\", \"ababbb\", \"abbb\", and \"babb\".\n- Variance 3 for substring \"babbb\".\nSince the largest possible variance is 3, we return it.\n```\n\n**Example 2:**\n\n```\nInput: s = \"abcde\"\nOutput: 0\nExplanation:\nNo letter occurs more than once in s, so the variance of every substring is 0.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(4)`\n*   `s` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 104",
+    "s consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aababbb\"",
+      "output": "3",
+      "explanation": "All possible variances along with their respective substrings are listed below:\n- Variance 0 for substrings \"a\", \"aa\", \"ab\", \"abab\", \"aababb\", \"ba\", \"b\", \"bb\", and \"bbb\".\n- Variance 1 for substrings \"aab\", \"aba\", \"abb\", \"aabab\", \"ababb\", \"aababbb\", and \"bab\".\n- Variance 2 for substrings \"aaba\", \"ababbb\", \"abbb\", and \"babb\".\n- Variance 3 for substring \"babbb\".\nSince the largest possible variance is 3, we return it."
+    },
+    {
+      "input": "s = \"abcde\"",
+      "output": "0",
+      "explanation": "No letter occurs more than once in s, so the variance of every substring is 0."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int largestVariance(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int largestVariance(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def largestVariance(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def largestVariance(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar largestVariance = function(s) {\n    \n};",
+    "typescript": "function largestVariance(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LargestVariance(string s) {\n        \n    }\n}",
+    "c": "int largestVariance(char* s) {\n    \n}",
+    "golang": "func largestVariance(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun largestVariance(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func largestVariance(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn largest_variance(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef largest_variance(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function largestVariance($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int largestVariance(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def largestVariance(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec largest_variance(s :: String.t) :: integer\n  def largest_variance(s) do\n    \n  end\nend",
+    "erlang": "-spec largest_variance(S :: unicode:unicode_binary()) -> integer().\nlargest_variance(S) ->\n  .",
+    "racket": "(define/contract (largest-variance s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aababbb\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aababbb\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "s = \"aababbb\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "s = \"abcde\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Think about how to solve the problem if the string had only two distinct characters.",
+    "If we replace all occurrences of the first character by +1 and those of the second character by -1, can we efficiently calculate the largest possible variance of a string with only two distinct characters?",
+    "Now, try finding the optimal answer by taking all possible pairs of characters into consideration."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/substring-with-largest-variance/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.454Z",
+    "sourceUpdatedAt": null
+  }
+}

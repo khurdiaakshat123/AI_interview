@@ -1,0 +1,162 @@
+{
+  "id": "4067",
+  "slug": "longest-subarray-with-restricted-pair-sums",
+  "title": "Longest Subarray With Restricted Pair Sums",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nA **subarray** `nums[l..r]` is valid if there are no three **distinct** indices `i`, `j`, and `k` such that `l <= i, j, k <= r` and:\n\n*   `nums[i] + nums[j] == nums[k]`\n\nReturn the **maximum** length of a valid subarray of `nums`.\n\n**Example 1:**\n\n**Input:** nums = \\[2,3,5,3,2,1\\]\n\n**Output:** 3\n\n**Explanation:**\n\nConsider the subarray `[3, 5, 3]`. The pairs of elements at distinct indices have the following sums:\n\n*   `3 + 5 = 8`\n*   `3 + 3 = 6`, using the two different occurrences of 3\n*   `5 + 3 = 8`\n\nNone of these sums is an element at the remaining index, so the subarray is valid.\n\nEvery subarray of length 4 contains 2, 3, and 5 at distinct indices, where `2 + 3 = 5`. Therefore, no longer valid subarray exists, and the answer is 3.\n\n**Example 2:**\n\n**Input:** nums = \\[3,4,5,6\\]\n\n**Output:** 4\n\n**Explanation:**\n\nThe sums obtained from every pair of elements at distinct indices are 7, 8, 9, 9, 10, and 11. None of these values appears at the remaining index, so the entire array is valid.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 1000`\n*   `1 <= nums[i] <= 500`",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "1 <= nums[i] <= 500"
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,3,5,3,2,1]",
+      "output": "3",
+      "explanation": null
+    },
+    {
+      "input": "nums = [3,4,5,6]",
+      "output": "4",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxSubarray(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxSubarray(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSubarray(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSubarray(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxSubarray = function(nums) {\n    \n};",
+    "typescript": "function maxSubarray(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxSubarray(int[] nums) {\n        \n    }\n}",
+    "c": "int maxSubarray(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxSubarray(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSubarray(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSubarray(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_subarray(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_subarray(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxSubarray($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSubarray(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSubarray(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_subarray(nums :: [integer]) :: integer\n  def max_subarray(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_subarray(Nums :: [integer()]) -> integer().\nmax_subarray(Nums) ->\n  .",
+    "racket": "(define/contract (max-subarray nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,3,5,3,2,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,4,5,6]",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,3,5,3,2,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,4,5,6]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,3,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,3]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,5,3,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,2,2,3,3,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[5,3,3,2,2,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,3,5,3,2,1,2,3,5,3,2,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[4,6,10,6,4,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[3,4,6,4,3,2]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,2,4,2,1,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<strong>1a (Sliding Window)</strong>: Removing elements from a valid subarray cannot make it invalid. Use a sliding window and shrink it whenever a forbidden triple appears.",
+    "<strong>1b (Sliding Window)</strong>: Maintain value frequencies and counts of sums formed by pairs of distinct indices. When adding a value <code>x</code>, a new forbidden triple either has two existing values summing to <code>x</code>, or has existing values <code>y</code> and <code>x + y</code>.",
+    "<strong>1c (Sliding Window)</strong>: Maintain the number of forbidden triples as elements enter and leave the window. Because values are at most 500, each update can examine all possible values.",
+    "<strong>2a (Pair Preprocessing)</strong>: When the new rightmost value is <code>x</code>, it forms a forbidden triple with an earlier pair exactly when that pair's sum or absolute difference equals <code>x</code>.",
+    "<strong>2b (Pair Preprocessing)</strong>: For each sum and absolute difference, store the largest smaller index among earlier pairs producing it. A matching pair forces the left boundary to move beyond that smaller index.",
+    "<strong>2c (Pair Preprocessing)</strong>: Query these tables before inserting pairs involving the current index. Updating the tables by pairing the current element with every earlier element takes <code>O(n<sup>2</sup>)</code> total time."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-subarray-with-restricted-pair-sums/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.678Z",
+    "sourceUpdatedAt": null
+  }
+}

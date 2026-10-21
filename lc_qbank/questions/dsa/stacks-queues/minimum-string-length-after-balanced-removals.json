@@ -1,0 +1,168 @@
+{
+  "id": "3746",
+  "slug": "minimum-string-length-after-balanced-removals",
+  "title": "Minimum String Length After Balanced Removals",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Stack",
+    "Counting"
+  ],
+  "statement": "You are given a string `s` consisting only of the characters `'a'` and `'b'`.\n\nYou are allowed to repeatedly remove **any substring** where the number of `'a'` characters is equal to the number of `'b'` characters. After each removal, the remaining parts of the string are concatenated together without gaps.\n\nReturn an integer denoting the **minimum possible length** of the string after performing any number of such operations.\n\n**Example 1:**\n\n**Input:** s = `\"aabbab\"`\n\n**Output:** 0\n\n**Explanation:**\n\nThe substring `\"aabbab\"` has three `'a'` and three `'b'`. Since their counts are equal, we can remove the entire string directly. The minimum length is 0.\n\n**Example 2:**\n\n**Input:** s = `\"aaaa\"`\n\n**Output:** 4\n\n**Explanation:**\n\nEvery substring of `\"aaaa\"` contains only `'a'` characters. No substring can be removed as a result, so the minimum length remains 4.\n\n**Example 3:**\n\n**Input:** s = `\"aaabb\"`\n\n**Output:** 1\n\n**Explanation:**\n\nFirst, remove the substring `\"ab\"`, leaving `\"aab\"`. Next, remove the new substring `\"ab\"`, leaving `\"a\"`. No further removals are possible, so the minimum length is 1.\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s[i]` is either `'a'` or `'b'`.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s[i] is either 'a' or 'b'."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aabbab\"",
+      "output": "0",
+      "explanation": null
+    },
+    {
+      "input": "s = \"aaaa\"",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "s = \"aaabb\"",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minLengthAfterRemovals(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minLengthAfterRemovals(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minLengthAfterRemovals(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minLengthAfterRemovals(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minLengthAfterRemovals = function(s) {\n    \n};",
+    "typescript": "function minLengthAfterRemovals(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinLengthAfterRemovals(string s) {\n        \n    }\n}",
+    "c": "int minLengthAfterRemovals(char* s) {\n    \n}",
+    "golang": "func minLengthAfterRemovals(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minLengthAfterRemovals(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minLengthAfterRemovals(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_length_after_removals(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef min_length_after_removals(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minLengthAfterRemovals($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minLengthAfterRemovals(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minLengthAfterRemovals(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_length_after_removals(s :: String.t) :: integer\n  def min_length_after_removals(s) do\n    \n  end\nend",
+    "erlang": "-spec min_length_after_removals(S :: unicode:unicode_binary()) -> integer().\nmin_length_after_removals(S) ->\n  .",
+    "racket": "(define/contract (min-length-after-removals s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aabbab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaa\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaabb\"",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aabbab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaa\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaabb\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"bab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"babbaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aabbabaabbab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"aabbabbabbaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"AABBAB\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Remove the longest possible balanced substring initially",
+    "Let the count of a's be <code>count_a</code> and the count of b's be <code>count_b</code>. Can we derive the final length from these?",
+    "The answer is <code>abs(count_a - count_b)</code>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-string-length-after-balanced-removals/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.033Z",
+    "sourceUpdatedAt": null
+  }
+}

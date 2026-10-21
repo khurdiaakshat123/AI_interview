@@ -1,0 +1,166 @@
+{
+  "id": "3",
+  "slug": "longest-substring-without-repeating-characters",
+  "title": "Longest Substring Without Repeating Characters",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "statement": "Given a string `s`, find the length of the **longest** **substring** without duplicate characters.\n\n**Example 1:**\n\n```\n\"bca\"\n```\n\n**Example 2:**\n\n```\nInput: s = \"bbbbb\"\nOutput: 1\nExplanation: The answer is \"b\", with the length of 1.\n```\n\n**Example 3:**\n\n```\nInput: s = \"pwwkew\"\nOutput: 3\nExplanation: The answer is \"wke\", with the length of 3.\nNotice that the answer must be a substring, \"pwke\" is a subsequence and not a substring.\n```\n\n**Constraints:**\n\n*   `0 <= s.length <= 10^(5)`\n*   `s` consists of English letters, digits, symbols and spaces.",
+  "constraints": [
+    "0 <= s.length <= 105",
+    "s consists of English letters, digits, symbols and spaces."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcabcbb\"",
+      "output": "3",
+      "explanation": "The answer is \"abc\", with the length of 3. Note that \"bca\" and \"cab\" are also correct answers."
+    },
+    {
+      "input": "s = \"bbbbb\"",
+      "output": "1",
+      "explanation": "The answer is \"b\", with the length of 1."
+    },
+    {
+      "input": "s = \"pwwkew\"",
+      "output": "3",
+      "explanation": "The answer is \"wke\", with the length of 3.\nNotice that the answer must be a substring, \"pwke\" is a subsequence and not a substring."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int lengthOfLongestSubstring(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int lengthOfLongestSubstring(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def lengthOfLongestSubstring(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar lengthOfLongestSubstring = function(s) {\n    \n};",
+    "typescript": "function lengthOfLongestSubstring(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LengthOfLongestSubstring(string s) {\n        \n    }\n}",
+    "c": "int lengthOfLongestSubstring(char* s) {\n    \n}",
+    "golang": "func lengthOfLongestSubstring(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun lengthOfLongestSubstring(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func lengthOfLongestSubstring(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn length_of_longest_substring(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef length_of_longest_substring(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function lengthOfLongestSubstring($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int lengthOfLongestSubstring(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def lengthOfLongestSubstring(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec length_of_longest_substring(s :: String.t) :: integer\n  def length_of_longest_substring(s) do\n    \n  end\nend",
+    "erlang": "-spec length_of_longest_substring(S :: unicode:unicode_binary()) -> integer().\nlength_of_longest_substring(S) ->\n  .",
+    "racket": "(define/contract (length-of-longest-substring s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcabcbb\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"bbbbb\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"pwwkew\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcabcbb\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"bbbbb\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"pwwkew\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abca\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"bcbb\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"bbcbacba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcabcbbabcabcbb\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaaaaa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcabcbbbbcbacba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"ABCABCBB\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "5"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "There are less than 100 unique characters. We can check all substrings with length at most 100 for example. This is a good enough approximation."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.718Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "id": "2768",
+  "slug": "number-of-black-blocks",
+  "title": "Number of Black Blocks",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Enumeration"
+  ],
+  "statement": "You are given two integers `m` and `n` representing the dimensions of a **0-indexed** `m x n` grid.\n\nYou are also given a **0-indexed** 2D integer matrix `coordinates`, where `coordinates[i] = [x, y]` indicates that the cell with coordinates `[x, y]` is colored **black**. All cells in the grid that do not appear in `coordinates` are **white**.\n\nA block is defined as a `2 x 2` submatrix of the grid. More formally, a block with cell `[x, y]` as its top-left corner where `0 <= x < m - 1` and `0 <= y < n - 1` contains the coordinates `[x, y]`, `[x + 1, y]`, `[x, y + 1]`, and `[x + 1, y + 1]`.\n\nReturn _a **0-indexed** integer array_ `arr` _of size_ `5` _such that_ `arr[i]` _is the number of blocks that contains exactly_ `i` _**black** cells_.\n\n**Example 1:**\n\n```\nInput: m = 3, n = 3, coordinates = [[0,0]]\nOutput: [3,1,0,0,0]\nExplanation: The grid looks like this:\n\nThere is only 1 block with one black cell, and it is the block starting with cell [0,0].\nThe other 3 blocks start with cells [0,1], [1,0] and [1,1]. They all have zero black cells. \nThus, we return [3,1,0,0,0].\n```\n\n**Example 2:**\n\n```\nInput: m = 3, n = 3, coordinates = [[0,0],[1,1],[0,2]]\nOutput: [0,2,2,0,0]\nExplanation: The grid looks like this:\n\nThere are 2 blocks with two black cells (the ones starting with cell coordinates [0,0] and [0,1]).\nThe other 2 blocks have starting cell coordinates of [1,0] and [1,1]. They both have 1 black cell.\nTherefore, we return [0,2,2,0,0].\n```\n\n**Constraints:**\n\n*   `2 <= m <= 10^(5)`\n*   `2 <= n <= 10^(5)`\n*   `0 <= coordinates.length <= 10^(4)`\n*   `coordinates[i].length == 2`\n*   `0 <= coordinates[i][0] < m`\n*   `0 <= coordinates[i][1] < n`\n*   It is guaranteed that `coordinates` contains pairwise distinct coordinates.",
+  "constraints": [
+    "2 <= m <= 105",
+    "2 <= n <= 105",
+    "0 <= coordinates.length <= 104",
+    "coordinates[i].length == 2",
+    "0 <= coordinates[i][0] < m",
+    "0 <= coordinates[i][1] < n",
+    "It is guaranteed that coordinates contains pairwise distinct coordinates."
+  ],
+  "examples": [
+    {
+      "input": "m = 3, n = 3, coordinates = [[0,0]]",
+      "output": "[3,1,0,0,0]",
+      "explanation": "The grid looks like this:\n\nThere is only 1 block with one black cell, and it is the block starting with cell [0,0].\nThe other 3 blocks start with cells [0,1], [1,0] and [1,1]. They all have zero black cells. \nThus, we return [3,1,0,0,0]."
+    },
+    {
+      "input": "m = 3, n = 3, coordinates = [[0,0],[1,1],[0,2]]",
+      "output": "[0,2,2,0,0]",
+      "explanation": "The grid looks like this:\n\nThere are 2 blocks with two black cells (the ones starting with cell coordinates [0,0] and [0,1]).\nThe other 2 blocks have starting cell coordinates of [1,0] and [1,1]. They both have 1 black cell.\nTherefore, we return [0,2,2,0,0]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<long long> countBlackBlocks(int m, int n, vector<vector<int>>& coordinates) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long[] countBlackBlocks(int m, int n, int[][] coordinates) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countBlackBlocks(self, m: int, n: int, coordinates: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def countBlackBlocks(self, m, n, coordinates):\n        \"\"\"\n        :type m: int\n        :type n: int\n        :type coordinates: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} m\n * @param {number} n\n * @param {number[][]} coordinates\n * @return {number[]}\n */\nvar countBlackBlocks = function(m, n, coordinates) {\n    \n};",
+    "typescript": "function countBlackBlocks(m: number, n: number, coordinates: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public long[] CountBlackBlocks(int m, int n, int[][] coordinates) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nlong long* countBlackBlocks(int m, int n, int** coordinates, int coordinatesSize, int* coordinatesColSize, int* returnSize) {\n    \n}",
+    "golang": "func countBlackBlocks(m int, n int, coordinates [][]int) []int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun countBlackBlocks(m: Int, n: Int, coordinates: Array<IntArray>): LongArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countBlackBlocks(_ m: Int, _ n: Int, _ coordinates: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_black_blocks(m: i32, n: i32, coordinates: Vec<Vec<i32>>) -> Vec<i64> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} m\n# @param {Integer} n\n# @param {Integer[][]} coordinates\n# @return {Integer[]}\ndef count_black_blocks(m, n, coordinates)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $m\n     * @param Integer $n\n     * @param Integer[][] $coordinates\n     * @return Integer[]\n     */\n    function countBlackBlocks($m, $n, $coordinates) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> countBlackBlocks(int m, int n, List<List<int>> coordinates) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countBlackBlocks(m: Int, n: Int, coordinates: Array[Array[Int]]): Array[Long] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_black_blocks(m :: integer, n :: integer, coordinates :: [[integer]]) :: [integer]\n  def count_black_blocks(m, n, coordinates) do\n    \n  end\nend",
+    "erlang": "-spec count_black_blocks(M :: integer(), N :: integer(), Coordinates :: [[integer()]]) -> [integer()].\ncount_black_blocks(M, N, Coordinates) ->\n  .",
+    "racket": "(define/contract (count-black-blocks m n coordinates)\n  (-> exact-integer? exact-integer? (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "3\n3\n[[0,0]]",
+      "expectedOutput": "[3,1,0,0,0]"
+    },
+    {
+      "input": "3\n3\n[[0,0],[1,1],[0,2]]",
+      "expectedOutput": "[0,2,2,0,0]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "3\n3\n[[0,0]]",
+      "expectedOutput": "[3,1,0,0,0]"
+    },
+    {
+      "input": "3\n3\n[[0,0],[1,1],[0,2]]",
+      "expectedOutput": "[0,2,2,0,0]"
+    },
+    {
+      "input": "0\n3\n[[0,0]]",
+      "expectedOutput": "[-2,0,0,0,0]"
+    },
+    {
+      "input": "1\n3\n[[0,0]]",
+      "expectedOutput": "[0,0,0,0,0]"
+    },
+    {
+      "input": "2\n3\n[[0,0]]",
+      "expectedOutput": "[1,1,0,0,0]"
+    },
+    {
+      "input": "4\n3\n[[0,0]]",
+      "expectedOutput": "[5,1,0,0,0]"
+    },
+    {
+      "input": "5\n3\n[[0,0]]",
+      "expectedOutput": "[7,1,0,0,0]"
+    },
+    {
+      "input": "6\n3\n[[0,0]]",
+      "expectedOutput": "[9,1,0,0,0]"
+    },
+    {
+      "input": "7\n3\n[[0,0]]",
+      "expectedOutput": "[11,1,0,0,0]"
+    },
+    {
+      "input": "8\n3\n[[0,0]]",
+      "expectedOutput": "[13,1,0,0,0]"
+    },
+    {
+      "input": "-1\n3\n[[0,0]]",
+      "expectedOutput": "[-4,0,0,0,0]"
+    },
+    {
+      "input": "-2\n3\n[[0,0]]",
+      "expectedOutput": "[-6,0,0,0,0]"
+    },
+    {
+      "input": "3\n0\n[[0,0]]",
+      "expectedOutput": "[-2,0,0,0,0]"
+    },
+    {
+      "input": "3\n1\n[[0,0]]",
+      "expectedOutput": "[0,0,0,0,0]"
+    },
+    {
+      "input": "3\n2\n[[0,0]]",
+      "expectedOutput": "[1,1,0,0,0]"
+    },
+    {
+      "input": "3\n4\n[[0,0]]",
+      "expectedOutput": "[5,1,0,0,0]"
+    },
+    {
+      "input": "3\n5\n[[0,0]]",
+      "expectedOutput": "[7,1,0,0,0]"
+    },
+    {
+      "input": "3\n6\n[[0,0]]",
+      "expectedOutput": "[9,1,0,0,0]"
+    },
+    {
+      "input": "3\n7\n[[0,0]]",
+      "expectedOutput": "[11,1,0,0,0]"
+    },
+    {
+      "input": "3\n8\n[[0,0]]",
+      "expectedOutput": "[13,1,0,0,0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The number of blocks is too much but the number of black cells is less than that.",
+    "It means the number of blocks with at least one black cell is O(|coordinates|). let’s just hold them.",
+    "Iterate through the coordinates and update the block counts accordingly. For each coordinate, determine which block(s) it belongs to and increment the count of black cells for those block(s).",
+    "After processing all the coordinates, count the number of blocks with different numbers of black cells. You can use another data structure to keep track of the counts of blocks with 0 black cells, 1 black cell, and so on."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-black-blocks/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.781Z",
+    "sourceUpdatedAt": null
+  }
+}

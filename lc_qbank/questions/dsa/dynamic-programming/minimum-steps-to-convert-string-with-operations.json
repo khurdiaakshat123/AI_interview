@@ -1,0 +1,168 @@
+{
+  "id": "3579",
+  "slug": "minimum-steps-to-convert-string-with-operations",
+  "title": "Minimum Steps to Convert String with Operations",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given two strings, `word1` and `word2`, of equal length. You need to transform `word1` into `word2`.\n\nFor this, divide `word1` into one or more **contiguous substrings**. For each substring `substr` you can perform the following operations:\n\n1.  **Replace:** Replace the character at any one index of `substr` with another lowercase English letter.\n    \n2.  **Swap:** Swap any two characters in `substr`.\n    \n3.  **Reverse Substring:** Reverse `substr`.\n    \n\nEach of these counts as **one** operation and each character of each substring can be used in each type of operation at most once (i.e. no single index may be involved in more than one replace, one swap, or one reverse).\n\nReturn the **minimum number of operations** required to transform `word1` into `word2`.\n\n**Example 1:**\n\n**Input:** word1 = \"abcdf\", word2 = \"dacbe\"\n\n**Output:** 4\n\n**Explanation:**\n\nDivide `word1` into `\"ab\"`, `\"c\"`, and `\"df\"`. The operations are:\n\n*   For the substring `\"ab\"`,\n    *   Perform operation of type 3 on `\"ab\" -> \"ba\"`.\n    *   Perform operation of type 1 on `\"ba\" -> \"da\"`.\n*   For the substring `\"c\"` do no operations.\n*   For the substring `\"df\"`,\n    *   Perform operation of type 1 on `\"df\" -> \"bf\"`.\n    *   Perform operation of type 1 on `\"bf\" -> \"be\"`.\n\n**Example 2:**\n\n**Input:** word1 = \"abceded\", word2 = \"baecfef\"\n\n**Output:** 4\n\n**Explanation:**\n\nDivide `word1` into `\"ab\"`, `\"ce\"`, and `\"ded\"`. The operations are:\n\n*   For the substring `\"ab\"`,\n    *   Perform operation of type 2 on `\"ab\" -> \"ba\"`.\n*   For the substring `\"ce\"`,\n    *   Perform operation of type 2 on `\"ce\" -> \"ec\"`.\n*   For the substring `\"ded\"`,\n    *   Perform operation of type 1 on `\"ded\" -> \"fed\"`.\n    *   Perform operation of type 1 on `\"fed\" -> \"fef\"`.\n\n**Example 3:**\n\n**Input:** word1 = \"abcdef\", word2 = \"fedabc\"\n\n**Output:** 2\n\n**Explanation:**\n\nDivide `word1` into `\"abcdef\"`. The operations are:\n\n*   For the substring `\"abcdef\"`,\n    *   Perform operation of type 3 on `\"abcdef\" -> \"fedcba\"`.\n    *   Perform operation of type 2 on `\"fedcba\" -> \"fedabc\"`.\n\n**Constraints:**\n\n*   `1 <= word1.length == word2.length <= 100`\n*   `word1` and `word2` consist only of lowercase English letters.",
+  "constraints": [
+    "1 <= word1.length == word2.length <= 100",
+    "word1 and word2 consist only of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "word1 = \"abcdf\", word2 = \"dacbe\"",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "word1 = \"abceded\", word2 = \"baecfef\"",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "word1 = \"abcdef\", word2 = \"fedabc\"",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minOperations(string word1, string word2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minOperations(String word1, String word2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, word1: str, word2: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, word1, word2):\n        \"\"\"\n        :type word1: str\n        :type word2: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word1\n * @param {string} word2\n * @return {number}\n */\nvar minOperations = function(word1, word2) {\n    \n};",
+    "typescript": "function minOperations(word1: string, word2: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinOperations(string word1, string word2) {\n        \n    }\n}",
+    "c": "int minOperations(char* word1, char* word2) {\n    \n}",
+    "golang": "func minOperations(word1 string, word2 string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(word1: String, word2: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ word1: String, _ word2: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(word1: String, word2: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} word1\n# @param {String} word2\n# @return {Integer}\ndef min_operations(word1, word2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word1\n     * @param String $word2\n     * @return Integer\n     */\n    function minOperations($word1, $word2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(String word1, String word2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(word1: String, word2: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(word1 :: String.t, word2 :: String.t) :: integer\n  def min_operations(word1, word2) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(Word1 :: unicode:unicode_binary(), Word2 :: unicode:unicode_binary()) -> integer().\nmin_operations(Word1, Word2) ->\n  .",
+    "racket": "(define/contract (min-operations word1 word2)\n  (-> string? string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abcdf\"\n\"dacbe\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abceded\"\n\"baecfef\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcdef\"\n\"fedabc\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abcdf\"\n\"dacbe\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abceded\"\n\"baecfef\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcdef\"\n\"fedabc\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"\n\"dacbe\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"cdf\"\n\"dacbe\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"a\"\n\"dacbe\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"fdcba\"\n\"dacbe\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aaaaa\"\n\"dacbe\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"ABCDF\"\n\"dacbe\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"b\"\n\"dacbe\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"\n\"dacbe\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"\n\"dacbe\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"\n\"dacbe\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abba\"\n\"dacbe\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abcde\"\n\"dacbe\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"edcba\"\n\"dacbe\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"aab\"\n\"dacbe\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"aA\"\n\"dacbe\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"0\"\n\"dacbe\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"121\"\n\"dacbe\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming",
+    "Do DP on disjoint substrings of <code>word1</code>. For the DP, we try both the substring and its reversed version (just add one extra operation)",
+    "First we swap pairs like (<code>word1[i]</code>, <code>word2[i]</code>) and (<code>word1[j]</code>, <code>word2[j]</code>) where <code>word1[i] == word2[j]</code> and <code>word2[i] == word1[j]</code>",
+    "For the remaining characters, we use replace operations"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-steps-to-convert-string-with-operations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.027Z",
+    "sourceUpdatedAt": null
+  }
+}

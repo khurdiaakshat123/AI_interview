@@ -1,0 +1,84 @@
+{
+  "id": "661",
+  "slug": "image-smoother",
+  "title": "Image Smoother",
+  "category": "dsa",
+  "subcategory": "arrays",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "statement": "An **image smoother** is a filter of the size `3 x 3` that can be applied to each cell of an image by rounding down the average of the cell and the eight surrounding cells (i.e., the average of the nine cells in the blue smoother). If one or more of the surrounding cells of a cell is not present, we do not consider it in the average (i.e., the average of the four cells in the red smoother).\n\n![](./assets/image-smoother-1.jpg)\n\nGiven an `m x n` integer matrix `img` representing the grayscale of an image, return _the image after applying the smoother on each cell of it_.\n\n**Example 1:**\n\n![](./assets/image-smoother-2.jpg)\n```\nInput: img = [[1,1,1],[1,0,1],[1,1,1]]\nOutput: [[0,0,0],[0,0,0],[0,0,0]]\nExplanation:\nFor the points (0,0), (0,2), (2,0), (2,2): floor(3/4) = floor(0.75) = 0\nFor the points (0,1), (1,0), (1,2), (2,1): floor(5/6) = floor(0.83333333) = 0\nFor the point (1,1): floor(8/9) = floor(0.88888889) = 0\n```\n\n**Example 2:**\n\n![](./assets/image-smoother-3.jpg)\n```\nInput: img = [[100,200,100],[200,50,200],[100,200,100]]\nOutput: [[137,141,137],[141,138,141],[137,141,137]]\nExplanation:\nFor the points (0,0), (0,2), (2,0), (2,2): floor((100+200+200+50)/4) = floor(137.5) = 137\nFor the points (0,1), (1,0), (1,2), (2,1): floor((200+200+50+200+100+100)/6) = floor(141.666667) = 141\nFor the point (1,1): floor((50+200+200+200+200+100+100+100+100)/9) = floor(138.888889) = 138\n```\n\n**Constraints:**\n\n*   `m == img.length`\n*   `n == img[i].length`\n*   `1 <= m, n <= 200`\n*   `0 <= img[i][j] <= 255`",
+  "constraints": [
+    "m == img.length",
+    "n == img[i].length",
+    "1 <= m, n <= 200",
+    "0 <= img[i][j] <= 255"
+  ],
+  "examples": [
+    {
+      "input": "img = [[1,1,1],[1,0,1],[1,1,1]]",
+      "output": "[[0,0,0],[0,0,0],[0,0,0]]",
+      "explanation": "For the points (0,0), (0,2), (2,0), (2,2): floor(3/4) = floor(0.75) = 0\nFor the points (0,1), (1,0), (1,2), (2,1): floor(5/6) = floor(0.83333333) = 0\nFor the point (1,1): floor(8/9) = floor(0.88888889) = 0"
+    },
+    {
+      "input": "img = [[100,200,100],[200,50,200],[100,200,100]]",
+      "output": "[[137,141,137],[141,138,141],[137,141,137]]",
+      "explanation": "For the points (0,0), (0,2), (2,0), (2,2): floor((100+200+200+50)/4) = floor(137.5) = 137\nFor the points (0,1), (1,0), (1,2), (2,1): floor((200+200+50+200+100+100)/6) = floor(141.666667) = 141\nFor the point (1,1): floor((50+200+200+200+200+100+100+100+100)/9) = floor(138.888889) = 138"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> imageSmoother(vector<vector<int>>& img) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[][] imageSmoother(int[][] img) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def imageSmoother(self, img: list[list[int]]) -> list[list[int]]:\n        ",
+    "python": "class Solution(object):\n    def imageSmoother(self, img):\n        \"\"\"\n        :type img: List[List[int]]\n        :rtype: List[List[int]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} img\n * @return {number[][]}\n */\nvar imageSmoother = function(img) {\n    \n};",
+    "typescript": "function imageSmoother(img: number[][]): number[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[][] ImageSmoother(int[][] img) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** imageSmoother(int** img, int imgSize, int* imgColSize, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func imageSmoother(img [][]int) [][]int {\n    \n}",
+    "kotlin": "class Solution {\n    fun imageSmoother(img: Array<IntArray>): Array<IntArray> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func imageSmoother(_ img: [[Int]]) -> [[Int]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn image_smoother(img: Vec<Vec<i32>>) -> Vec<Vec<i32>> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} img\n# @return {Integer[][]}\ndef image_smoother(img)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $img\n     * @return Integer[][]\n     */\n    function imageSmoother($img) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<int>> imageSmoother(List<List<int>> img) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def imageSmoother(img: Array[Array[Int]]): Array[Array[Int]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec image_smoother(img :: [[integer]]) :: [[integer]]\n  def image_smoother(img) do\n    \n  end\nend",
+    "erlang": "-spec image_smoother(Img :: [[integer()]]) -> [[integer()]].\nimage_smoother(Img) ->\n  .",
+    "racket": "(define/contract (image-smoother img)\n  (-> (listof (listof exact-integer?)) (listof (listof exact-integer?)))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,1,1],[1,0,1],[1,1,1]]",
+      "expectedOutput": "[[0,0,0],[0,0,0],[0,0,0]]"
+    },
+    {
+      "input": "[[100,200,100],[200,50,200],[100,200,100]]",
+      "expectedOutput": "[[137,141,137],[141,138,141],[137,141,137]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,1,1],[1,0,1],[1,1,1]]",
+      "expectedOutput": "[[0,0,0],[0,0,0],[0,0,0]]"
+    },
+    {
+      "input": "[[100,200,100],[200,50,200],[100,200,100]]",
+      "expectedOutput": "[[137,141,137],[141,138,141],[137,141,137]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/image-smoother/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.435Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "id": "3665",
+  "slug": "twisted-mirror-path-count",
+  "title": "Twisted Mirror Path Count",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "statement": "Given an `m x n` binary grid `grid` where:\n\n*   `grid[i][j] == 0` represents an empty cell, and\n*   `grid[i][j] == 1` represents a mirror.\n\nA robot starts at the top-left corner of the grid `(0, 0)` and wants to reach the bottom-right corner `(m - 1, n - 1)`. It can move only **right** or **down**. If the robot attempts to move into a mirror cell, it is **reflected** before entering that cell:\n\n*   If it tries to move **right** into a mirror, it is turned **down** and moved into the cell directly below the mirror.\n*   If it tries to move **down** into a mirror, it is turned **right** and moved into the cell directly to the right of the mirror.\n\nIf this reflection would cause the robot to move outside the `grid` boundaries, the path is considered invalid and should not be counted.\n\nReturn the number of unique valid paths from `(0, 0)` to `(m - 1, n - 1)`.\n\nSince the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Note**: If a reflection moves the robot into a mirror cell, the robot is immediately reflected again based on the direction it used to enter that mirror: if it entered while moving right, it will be turned down; if it entered while moving down, it will be turned right. This process will continue until either the last cell is reached, the robot moves out of bounds or the robot moves to a non-mirror cell.\n\n**Example 1:**\n\n**Input:** grid = \\[\\[0,1,0\\],\\[0,0,1\\],\\[1,0,0\\]\\]\n\n**Output:** 5\n\n**Explanation:**\n\nNumber\n\nFull Path\n\n1\n\n(0, 0) → (0, 1) \\[M\\] → (1, 1) → (1, 2) \\[M\\] → (2, 2)\n\n2\n\n(0, 0) → (0, 1) \\[M\\] → (1, 1) → (2, 1) → (2, 2)\n\n3\n\n(0, 0) → (1, 0) → (1, 1) → (1, 2) \\[M\\] → (2, 2)\n\n4\n\n(0, 0) → (1, 0) → (1, 1) → (2, 1) → (2, 2)\n\n5\n\n(0, 0) → (1, 0) → (2, 0) \\[M\\] → (2, 1) → (2, 2)\n\n*   `[M]` indicates the robot attempted to enter a mirror cell and instead reflected.\n    \n\n**Example 2:**\n\n**Input:** grid = \\[\\[0,0\\],\\[0,0\\]\\]\n\n**Output:** 2\n\n**Explanation:**\n\nNumber\n\nFull Path\n\n1\n\n(0, 0) → (0, 1) → (1, 1)\n\n2\n\n(0, 0) → (1, 0) → (1, 1)\n\n**Example 3:**\n\n**Input:** grid = \\[\\[0,1,1\\],\\[1,1,0\\]\\]\n\n**Output:** 1\n\n**Explanation:**\n\nNumber\n\nFull Path\n\n1\n\n(0, 0) → (0, 1) \\[M\\] → (1, 1) \\[M\\] → (1, 2)\n\n`(0, 0) → (1, 0) [M] → (1, 1) [M] → (2, 1)` goes out of bounds, so it is invalid.\n\n**Constraints:**\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `2 <= m, n <= 500`\n*   `grid[i][j]` is either `0` or `1`.\n*   `grid[0][0] == grid[m - 1][n - 1] == 0`",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "grid = [[0,1,0],[0,0,1],[1,0,0]]",
+      "output": "5",
+      "explanation": "Number\n\t\t\tFull Path\n\t\t\n\t\n\t\n\t\t\n\t\t\t1\n\t\t\t(0, 0) → (0, 1) [M] → (1, 1) → (1, 2) [M] → (2, 2)\n\t\t\n\t\t\n\t\t\t2\n\t\t\t(0, 0) → (0, 1) [M] → (1, 1) → (2, 1) → (2, 2)\n\t\t\n\t\t\n\t\t\t3\n\t\t\t(0, 0) → (1, 0) → (1, 1) → (1, 2) [M] → (2, 2)\n\t\t\n\t\t\n\t\t\t4\n\t\t\t(0, 0) → (1, 0) → (1, 1) → (2, 1) → (2, 2)\n\t\t\n\t\t\n\t\t\t5\n\t\t\t(0, 0) → (1, 0) → (2, 0) [M] → (2, 1) → (2, 2)\n\t\t\n\t\n\n\n\n\t\n\t[M] indicates the robot attempted to enter a mirror cell and instead reflected."
+    },
+    {
+      "input": "grid = [[0,0],[0,0]]",
+      "output": "2",
+      "explanation": "Number\n\t\t\tFull Path\n\t\t\n\t\n\t\n\t\t\n\t\t\t1\n\t\t\t(0, 0) → (0, 1) → (1, 1)\n\t\t\n\t\t\n\t\t\t2\n\t\t\t(0, 0) → (1, 0) → (1, 1)"
+    },
+    {
+      "input": "grid = [[0,1,1],[1,1,0]]",
+      "output": "1",
+      "explanation": "Number\n\t\t\tFull Path\n\t\t\n\t\n\t\n\t\t\n\t\t\t1\n\t\t\t(0, 0) → (0, 1) [M] → (1, 1) [M] → (1, 2)\n\t\t\n\t\n\n(0, 0) → (1, 0) [M] → (1, 1) [M] → (2, 1) goes out of bounds, so it is invalid."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int uniquePaths(vector<vector<int>>& grid) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int uniquePaths(int[][] grid) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def uniquePaths(self, grid: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def uniquePaths(self, grid):\n        \"\"\"\n        :type grid: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nvar uniquePaths = function(grid) {\n    \n};",
+    "typescript": "function uniquePaths(grid: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int UniquePaths(int[][] grid) {\n        \n    }\n}",
+    "c": "int uniquePaths(int** grid, int gridSize, int* gridColSize) {\n    \n}",
+    "golang": "func uniquePaths(grid [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun uniquePaths(grid: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func uniquePaths(_ grid: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn unique_paths(grid: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} grid\n# @return {Integer}\ndef unique_paths(grid)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $grid\n     * @return Integer\n     */\n    function uniquePaths($grid) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int uniquePaths(List<List<int>> grid) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def uniquePaths(grid: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec unique_paths(grid :: [[integer]]) :: integer\n  def unique_paths(grid) do\n    \n  end\nend",
+    "erlang": "-spec unique_paths(Grid :: [[integer()]]) -> integer().\nunique_paths(Grid) ->\n  .",
+    "racket": "(define/contract (unique-paths grid)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1,0],[0,0,1],[1,0,0]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[0,0],[0,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,1,1],[1,1,0]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1,0],[0,0,1],[1,0,0]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[[0,0],[0,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[0,1,1],[1,1,0]]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "grid = [[0,1,0],[0,0,1],[1,0,0]]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "grid = [[0,0],[0,0]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "grid = [[0,1,1],[1,1,0]]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Precompute, for each cell and each move (right/down), where you actually land if there’s a mirror next—store these \"jump\" targets in a <code>go[i][j][0/1]</code> table.",
+    "Let <code>dp[i][j]</code> = number of ways to reach (i,j); set <code>dp[0][0] = 1</code>, then scan cells in row‑major order and for each <code>dp[i][j] > 0</code> add <code>dp[i][j]</code> into <code>dp[x][y]</code> for both precomputed moves.",
+    "Always take additions modulo <code>10<sup>9</sup>+7</code>, and skip any jump target that falls outside the grid."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/twisted-mirror-path-count/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.278Z",
+    "sourceUpdatedAt": null
+  }
+}

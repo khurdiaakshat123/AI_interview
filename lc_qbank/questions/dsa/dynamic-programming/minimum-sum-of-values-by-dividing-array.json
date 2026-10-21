@@ -1,0 +1,175 @@
+{
+  "id": "3117",
+  "slug": "minimum-sum-of-values-by-dividing-array",
+  "title": "Minimum Sum of Values by Dividing Array",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Segment Tree",
+    "Queue"
+  ],
+  "statement": "You are given two arrays `nums` and `andValues` of length `n` and `m` respectively.\n\nThe **value** of an array is equal to the **last** element of that array.\n\nYou have to divide `nums` into `m` **disjoint contiguous** subarrays such that for the `i^(th)` subarray `[l_(i), r_(i)]`, the bitwise `AND` of the subarray elements is equal to `andValues[i]`, in other words, `nums[l_(i)] & nums[l_(i) + 1] & ... & nums[r_(i)] == andValues[i]` for all `1 <= i <= m`, where `&` represents the bitwise `AND` operator.\n\nReturn _the **minimum** possible sum of the **values** of the_ `m` _subarrays_ `nums` _is divided into_. _If it is not possible to divide_ `nums` _into_ `m` _subarrays satisfying these conditions, return_ `-1`.\n\n**Example 1:**\n\n**Input:** nums = \\[1,4,3,3,2\\], andValues = \\[0,3,3,2\\]\n\n**Output:** 12\n\n**Explanation:**\n\nThe only possible way to divide `nums` is:\n\n1.  `[1,4]` as `1 & 4 == 0`.\n2.  `[3]` as the bitwise `AND` of a single element subarray is that element itself.\n3.  `[3]` as the bitwise `AND` of a single element subarray is that element itself.\n4.  `[2]` as the bitwise `AND` of a single element subarray is that element itself.\n\nThe sum of the values for these subarrays is `4 + 3 + 3 + 2 = 12`.\n\n**Example 2:**\n\n**Input:** nums = \\[2,3,5,7,7,7,5\\], andValues = \\[0,7,5\\]\n\n**Output:** 17\n\n**Explanation:**\n\nThere are three ways to divide `nums`:\n\n1.  `[[2,3,5],[7,7,7],[5]]` with the sum of the values `5 + 7 + 5 == 17`.\n2.  `[[2,3,5,7],[7,7],[5]]` with the sum of the values `7 + 7 + 5 == 19`.\n3.  `[[2,3,5,7,7],[7],[5]]` with the sum of the values `7 + 7 + 5 == 19`.\n\nThe minimum possible sum of the values is `17`.\n\n**Example 3:**\n\n**Input:** nums = \\[1,2,3,4\\], andValues = \\[2\\]\n\n**Output:** \\-1\n\n**Explanation:**\n\nThe bitwise `AND` of the entire array `nums` is `0`. As there is no possible way to divide `nums` into a single subarray to have the bitwise `AND` of elements `2`, return `-1`.\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 10^(4)`\n*   `1 <= m == andValues.length <= min(n, 10)`\n*   `1 <= nums[i] < 10^(5)`\n*   `0 <= andValues[j] < 10^(5)`",
+  "constraints": [
+    "1 <= n == nums.length <= 104",
+    "1 <= m == andValues.length <= min(n, 10)",
+    "1 <= nums[i] < 105",
+    "0 <= andValues[j] < 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,4,3,3,2], andValues = [0,3,3,2]",
+      "output": "12",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2,3,5,7,7,7,5], andValues = [0,7,5]",
+      "output": "17",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,2,3,4], andValues = [2]",
+      "output": "-1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minimumValueSum(vector<int>& nums, vector<int>& andValues) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minimumValueSum(int[] nums, int[] andValues) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumValueSum(self, nums: List[int], andValues: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumValueSum(self, nums, andValues):\n        \"\"\"\n        :type nums: List[int]\n        :type andValues: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[]} andValues\n * @return {number}\n */\nvar minimumValueSum = function(nums, andValues) {\n    \n};",
+    "typescript": "function minimumValueSum(nums: number[], andValues: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinimumValueSum(int[] nums, int[] andValues) {\n        \n    }\n}",
+    "c": "int minimumValueSum(int* nums, int numsSize, int* andValues, int andValuesSize) {\n    \n}",
+    "golang": "func minimumValueSum(nums []int, andValues []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumValueSum(nums: IntArray, andValues: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumValueSum(_ nums: [Int], _ andValues: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_value_sum(nums: Vec<i32>, and_values: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[]} and_values\n# @return {Integer}\ndef minimum_value_sum(nums, and_values)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[] $andValues\n     * @return Integer\n     */\n    function minimumValueSum($nums, $andValues) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumValueSum(List<int> nums, List<int> andValues) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumValueSum(nums: Array[Int], andValues: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_value_sum(nums :: [integer], and_values :: [integer]) :: integer\n  def minimum_value_sum(nums, and_values) do\n    \n  end\nend",
+    "erlang": "-spec minimum_value_sum(Nums :: [integer()], AndValues :: [integer()]) -> integer().\nminimum_value_sum(Nums, AndValues) ->\n  .",
+    "racket": "(define/contract (minimum-value-sum nums andValues)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,4,3,3,2]\n[0,3,3,2]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,3,5,7,7,7,5]\n[0,7,5]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "[1,2,3,4]\n[2]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,4,3,3,2]\n[0,3,3,2]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,3,5,7,7,7,5]\n[0,7,5]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "[1,2,3,4]\n[2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,4]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[3,3,2]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,3,3,4,1]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2,3,3,4]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[4,3,3,2,1]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,1,1,1]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,4,3,3,2,1,4,3,3,2]\n[0,3,3,2]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[2,8,6,6,4]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[2,5,4,4,3]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,3,2,2,1]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1,-4,-3,-3,-2]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0,0,0]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,1,1]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[-1]\n[0,3,3,2]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Let <code>dp[i][j]</code> be the optimal answer to split  <code>nums[0..(i - 1)]</code> into the first <code>j</code> andValues.",
+    "<code>dp[i][j] = min(dp[(i - z)][j - 1]) + nums[i - 1]</code> over all <code>x <= z <= y</code> and <code>dp[0][0] = 0</code>, where <code>x</code> and <code>y</code> are the longest and shortest subarrays ending with <code>nums[i - 1]</code> and the bitwise-and of all the values in it is <code>andValues[j - 1]</code>.",
+    "The answer is <code>dp[n][m]</code>.",
+    "To calculate <code>x</code> and <code>y</code>, we can use binary search (or sliding window). Note that the more values we have, the smaller the <code>AND</code> value is.",
+    "To calculate the result, we need to support RMQ (range minimum query). Segment tree is one way to do it in <code>O(log(n))</code>. But we can use Monotonic Queue since the ranges are indeed “sliding to right” which can be reduced to the classical minimum value in sliding window problem, for a <code>O(n)</code> solution."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-sum-of-values-by-dividing-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.084Z",
+    "sourceUpdatedAt": null
+  }
+}

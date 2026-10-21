@@ -1,0 +1,170 @@
+{
+  "id": "1818",
+  "slug": "minimum-absolute-sum-difference",
+  "title": "Minimum Absolute Sum Difference",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting",
+    "Ordered Set"
+  ],
+  "statement": "You are given two positive integer arrays `nums1` and `nums2`, both of length `n`.\n\nThe **absolute sum difference** of arrays `nums1` and `nums2` is defined as the **sum** of `|nums1[i] - nums2[i]|` for each `0 <= i < n` (**0-indexed**).\n\nYou can replace **at most one** element of `nums1` with **any** other element in `nums1` to **minimize** the absolute sum difference.\n\nReturn the _minimum absolute sum difference **after** replacing at most one element in the array `nums1`._ Since the answer may be large, return it **modulo** `10^(9) + 7`.\n\n`|x|` is defined as:\n\n*   `x` if `x >= 0`, or\n*   `-x` if `x < 0`.\n\n**Example 1:**\n\n```\n|1-2| + (|1-3| or |5-3|) + |5-5| =\n```\n\n**Example 2:**\n\n```\nInput: nums1 = [2,4,6,8,10], nums2 = [2,4,6,8,10]\nOutput: 0\nExplanation: nums1 is equal to nums2 so no replacement is needed. This will result in an \nabsolute sum difference of 0.\n```\n\n**Example 3:**\n\n```\n|10-9| + |10-3| + |4-5| + |4-1| + |2-7| + |7-4| = 20\n```\n\n**Constraints:**\n\n*   `n == nums1.length`\n*   `n == nums2.length`\n*   `1 <= n <= 10^(5)`\n*   `1 <= nums1[i], nums2[i] <= 10^(5)`",
+  "constraints": [
+    "n == nums1.length",
+    "n == nums2.length",
+    "1 <= n <= 105",
+    "1 <= nums1[i], nums2[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [1,7,5], nums2 = [2,3,5]",
+      "output": "3",
+      "explanation": "There are two possible optimal solutions:\n- Replace the second element with the first: [1,7,5] => [1,1,5], or\n- Replace the second element with the third: [1,7,5] => [1,5,5].\nBoth will yield an absolute sum difference of |1-2| + (|1-3| or |5-3|) + |5-5| = 3."
+    },
+    {
+      "input": "nums1 = [2,4,6,8,10], nums2 = [2,4,6,8,10]",
+      "output": "0",
+      "explanation": "nums1 is equal to nums2 so no replacement is needed. This will result in an \nabsolute sum difference of 0."
+    },
+    {
+      "input": "nums1 = [1,10,4,4,2,7], nums2 = [9,3,5,1,7,4]",
+      "output": "20",
+      "explanation": "Replace the first element with the second: [1,10,4,4,2,7] => [10,10,4,4,2,7].\nThis yields an absolute sum difference of |10-9| + |10-3| + |4-5| + |4-1| + |2-7| + |7-4| = 20"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minAbsoluteSumDiff(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minAbsoluteSumDiff(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minAbsoluteSumDiff(self, nums1: list[int], nums2: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minAbsoluteSumDiff(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar minAbsoluteSumDiff = function(nums1, nums2) {\n    \n};",
+    "typescript": "function minAbsoluteSumDiff(nums1: number[], nums2: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinAbsoluteSumDiff(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "int minAbsoluteSumDiff(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    \n}",
+    "golang": "func minAbsoluteSumDiff(nums1 []int, nums2 []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minAbsoluteSumDiff(nums1: IntArray, nums2: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minAbsoluteSumDiff(_ nums1: [Int], _ nums2: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_absolute_sum_diff(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer}\ndef min_absolute_sum_diff(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer\n     */\n    function minAbsoluteSumDiff($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minAbsoluteSumDiff(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minAbsoluteSumDiff(nums1: Array[Int], nums2: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_absolute_sum_diff(nums1 :: [integer], nums2 :: [integer]) :: integer\n  def min_absolute_sum_diff(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec min_absolute_sum_diff(Nums1 :: [integer()], Nums2 :: [integer()]) -> integer().\nmin_absolute_sum_diff(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (min-absolute-sum-diff nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,7,5]\n[2,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,4,6,8,10]\n[2,4,6,8,10]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,10,4,4,2,7]\n[9,3,5,1,7,4]",
+      "expectedOutput": "20"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,7,5]\n[2,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,4,6,8,10]\n[2,4,6,8,10]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,10,4,4,2,7]\n[9,3,5,1,7,4]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[1]\n[2,3,5]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[7,5]\n[2,3,5]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,5]\n[2,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,7]\n[2,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,7,1]\n[2,3,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,5,7]\n[2,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[7,5,1]\n[2,3,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,1,1]\n[2,3,5]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1,7,5,1,7,5]\n[2,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,14,10]\n[2,3,5]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,8,6]\n[2,3,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,6,4]\n[2,3,5]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[-1,-7,-5]\n[2,3,5]",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "[0,0,0]\n[2,3,5]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[0]\n[2,3,5]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[-1]\n[2,3,5]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0]\n[2,3,5]",
+      "expectedOutput": "5"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Go through each element and test the optimal replacements.",
+    "There are only 2 possible replacements for each element (higher and lower) that are optimal."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-absolute-sum-difference/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.366Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "id": "3943",
+  "slug": "number-of-pairs-after-increment",
+  "title": "Number of Pairs After Increment",
+  "category": "dsa",
+  "subcategory": "divide-and-conquer",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Divide and Conquer",
+    "Counting"
+  ],
+  "statement": "You are given two integer arrays `nums1` and `nums2`, and a 2D integer array `queries`.\n\nEach `queries[i]` is one of the following types:\n\n*   `[1, x, y, val]` – **Add** `val` to every element in `nums2[x..y]`.\n*   `[2, tot]` – **Compute** the number of pairs `(j, k)` such that `nums1[j] + nums2[k] == tot`.\n\nReturn an integer array `answer`, where `answer[j]` is the number of pairs for the `j^(th)` query of type 2.\n\n**Example 1:**\n\n**Input:** nums1 = \\[1,2\\], nums2 = \\[3,4\\], queries = \\[\\[2,5\\],\\[1,0,0,2\\],\\[2,5\\]\\]\n\n**Output:** \\[2,1\\]\n\n**Explanation:**\n\n*   `queries[0] = [2, 5]`: Valid pairs are `nums1[0] + nums2[1] = 1 + 4 = 5` and `nums1[1] + nums2[0] = 2 + 3 = 5`.\n*   `queries[1] = [1, 0, 0, 2]`: Add 2 to `nums2[0]`, resulting in `nums2 = [5, 4]`.\n*   `queries[2] = [2, 5]`: Valid pair is `nums1[0] + nums2[1] = 1 + 4 = 5`.\n*   Thus, the `answer = [2, 1]`.\n\n**Example 2:**\n\n**Input:** nums1 = \\[1,1\\], nums2 = \\[2,2,3\\], queries = \\[\\[2,4\\],\\[1,0,1,1\\],\\[2,4\\]\\]\n\n**Output:** \\[2,6\\]\n\n**Explanation:**\n\n*   `queries[0] = [2, 4]`: Valid pairs are `nums1[0] + nums2[2] = 1 + 3` and `nums1[1] + nums2[2] = 1 + 3`.\n*   `queries[1] = [1, 0, 1, 1]`: Add 1 to `nums2[0]` and `nums2[1]`, resulting in `nums2 = [3, 3, 3]`.\n*   `queries[2] = [2, 4]`: Every element of `nums1 = [1, 1]` pairs with every element of `nums2 = [3, 3, 3]` as `1 + 3 = 4`. That gives `2 × 3 = 6` pairs in total.\n*   Thus, the `answer = [2, 6]`.\n\n**Example 3:**\n\n**Input:** nums1 = \\[2,5,8,4\\], nums2 = \\[1,3,8\\], queries = \\[\\[2,9\\],\\[1,1,2,1\\],\\[2,10\\]\\]\n\n**Output:** \\[1,0\\]\n\n**Explanation:**\n\n*   `queries[0] = [2, 9]`: Only valid pair is `nums1[2] + nums2[0] = 8 + 1 = 9`.\n*   `queries[1] = [1, 1, 2, 1]`: Add 1 to `nums2[1]` and `nums2[2]`, resulting in​​​​​​​ `nums2 = [1, 4, 9]`.\n*   `queries[2] = [2, 10]`: No pair sums to `10`.\n*   Thus, the `answer = [1, 0]`.\n\n**Constraints:**\n\n*   `1 <= nums1.length <= 5`\n*   `1 <= nums2.length <= 5 * 10^(4)`\n*   `1 <= nums1[i], nums2[i] <= 10^(5)`\n*   `1 <= queries.length <= 5 * 10^(4)`\n*   `queries[i].length == 2 or 4`\n    *   `queries[i] == [1, x, y, val], or`\n    *   `queries[i] == [2, tot]`\n    *   `0 <= x <= y < nums2.length`\n    *   `1 <= val <= 10^(5)`\n    *   `1 <= tot <= 10^(9)​​​​​​​`",
+  "constraints": [
+    "1 <= nums1.length <= 5",
+    "1 <= nums2.length <= 5 * 104",
+    "1 <= nums1[i], nums2[i] <= 105",
+    "1 <= queries.length <= 5 * 104",
+    "queries[i].length == 2 or 4\n\t\n\t\tqueries[i] == [1, x, y, val], or",
+    "queries[i] == [2, tot]",
+    "0 <= x <= y < nums2.length",
+    "1 <= val <= 105",
+    "1 <= tot <= 109​​​​​​​"
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [1,2], nums2 = [3,4], queries = [[2,5],[1,0,0,2],[2,5]]",
+      "output": "[2,1]",
+      "explanation": "queries[0] = [2, 5]: Valid pairs are nums1[0] + nums2[1] = 1 + 4 = 5 and nums1[1] + nums2[0] = 2 + 3 = 5.\n\tqueries[1] = [1, 0, 0, 2]: Add 2 to nums2[0], resulting in nums2 = [5, 4].\n\tqueries[2] = [2, 5]: Valid pair is nums1[0] + nums2[1] = 1 + 4 = 5.\n\tThus, the answer = [2, 1]."
+    },
+    {
+      "input": "nums1 = [1,1], nums2 = [2,2,3], queries = [[2,4],[1,0,1,1],[2,4]]",
+      "output": "[2,6]",
+      "explanation": "queries[0] = [2, 4]: Valid pairs are nums1[0] + nums2[2] = 1 + 3 and nums1[1] + nums2[2] = 1 + 3.\n\tqueries[1] = [1, 0, 1, 1]: Add 1 to nums2[0] and nums2[1], resulting in nums2 = [3, 3, 3].\n\tqueries[2] = [2, 4]: Every element of nums1 = [1, 1] pairs with every element of nums2 = [3, 3, 3] as 1 + 3 = 4. That gives 2 × 3 = 6 pairs in total.\n\tThus, the answer = [2, 6]."
+    },
+    {
+      "input": "nums1 = [2,5,8,4], nums2 = [1,3,8], queries = [[2,9],[1,1,2,1],[2,10]]",
+      "output": "[1,0]",
+      "explanation": "queries[0] = [2, 9]: Only valid pair is nums1[2] + nums2[0] = 8 + 1 = 9.\n\tqueries[1] = [1, 1, 2, 1]: Add 1 to nums2[1] and nums2[2], resulting in​​​​​​​ nums2 = [1, 4, 9].\n\tqueries[2] = [2, 10]: No pair sums to 10.\n\tThus, the answer = [1, 0]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> numberOfPairs(vector<int>& nums1, vector<int>& nums2, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] numberOfPairs(int[] nums1, int[] nums2, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numberOfPairs(self, nums1: list[int], nums2: list[int], queries: list[list[int]]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def numberOfPairs(self, nums1, nums2, queries):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar numberOfPairs = function(nums1, nums2, queries) {\n    \n};",
+    "typescript": "function numberOfPairs(nums1: number[], nums2: number[], queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] NumberOfPairs(int[] nums1, int[] nums2, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* numberOfPairs(int* nums1, int nums1Size, int* nums2, int nums2Size, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func numberOfPairs(nums1 []int, nums2 []int, queries [][]int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numberOfPairs(nums1: IntArray, nums2: IntArray, queries: Array<IntArray>): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numberOfPairs(_ nums1: [Int], _ nums2: [Int], _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn number_of_pairs(nums1: Vec<i32>, nums2: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef number_of_pairs(nums1, nums2, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function numberOfPairs($nums1, $nums2, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> numberOfPairs(List<int> nums1, List<int> nums2, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numberOfPairs(nums1: Array[Int], nums2: Array[Int], queries: Array[Array[Int]]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec number_of_pairs(nums1 :: [integer], nums2 :: [integer], queries :: [[integer]]) :: [integer]\n  def number_of_pairs(nums1, nums2, queries) do\n    \n  end\nend",
+    "erlang": "-spec number_of_pairs(Nums1 :: [integer()], Nums2 :: [integer()], Queries :: [[integer()]]) -> [integer()].\nnumber_of_pairs(Nums1, Nums2, Queries) ->\n  .",
+    "racket": "(define/contract (number-of-pairs nums1 nums2 queries)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2]\n[3,4]\n[[2,5],[1,0,0,2],[2,5]]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[1,1]\n[2,2,3]\n[[2,4],[1,0,1,1],[2,4]]",
+      "expectedOutput": "[2,6]"
+    },
+    {
+      "input": "[2,5,8,4]\n[1,3,8]\n[[2,9],[1,1,2,1],[2,10]]",
+      "expectedOutput": "[1,0]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2]\n[3,4]\n[[2,5],[1,0,0,2],[2,5]]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "[1,1]\n[2,2,3]\n[[2,4],[1,0,1,1],[2,4]]",
+      "expectedOutput": "[2,6]"
+    },
+    {
+      "input": "[2,5,8,4]\n[1,3,8]\n[[2,9],[1,1,2,1],[2,10]]",
+      "expectedOutput": "[1,0]"
+    },
+    {
+      "input": "nums1 = [1,2], nums2 = [3,4], queries = [[2,5],[1,0,0,2],[2,5]]",
+      "expectedOutput": "[2,1]"
+    },
+    {
+      "input": "nums1 = [1,1], nums2 = [2,2,3], queries = [[2,4],[1,0,1,1],[2,4]]",
+      "expectedOutput": "[2,6]"
+    },
+    {
+      "input": "nums1 = [2,5,8,4], nums2 = [1,3,8], queries = [[2,9],[1,1,2,1],[2,10]]",
+      "expectedOutput": "[1,0]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Think of <code>nums1</code> as fixed. Precompute its frequency map once.\r\nFor <code>nums2</code>, range additions make direct frequency maintenance hard, so split <code>nums2</code> into sqrt-sized blocks.",
+    "For each block, keep:\r\na lazy add value for the whole block,\r\na frequency map of the block values before applying lazy.",
+    "For an update <code>[x, y, val]</code>, fully covered blocks only increase their lazy value. Partially covered blocks are pushed/rebuilt manually.",
+    "For a query <code>tot</code>, for every distinct value <code>a</code> in <code>nums1</code>, count how many values equal <code>tot - a</code> in <code>nums2</code> by checking each block’s frequency map after adjusting for lazy."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-pairs-after-increment/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.990Z",
+    "sourceUpdatedAt": null
+  }
+}

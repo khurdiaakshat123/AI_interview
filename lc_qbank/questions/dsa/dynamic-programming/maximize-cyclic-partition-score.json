@@ -1,0 +1,113 @@
+{
+  "id": "3743",
+  "slug": "maximize-cyclic-partition-score",
+  "title": "Maximize Cyclic Partition Score",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "statement": "You are given a **cyclic** array `nums` and an integer `k`.\n\n**Partition** `nums` into **at most** `k` subarrays. As `nums` is cyclic, these subarrays may wrap around from the end of the array back to the beginning.\n\nThe **range** of a subarray is the difference between its **maximum** and **minimum** values. The **score** of a partition is the sum of subarray **ranges**.\n\nReturn the **maximum** possible **score** among all cyclic partitions.\n\n**Example 1:**\n\n**Input:** nums = \\[1,2,3,3\\], k = 2\n\n**Output:** 3\n\n**Explanation:**\n\n*   Partition `nums` into `[2, 3]` and `[3, 1]` (wrapped around).\n*   The range of `[2, 3]` is `max(2, 3) - min(2, 3) = 3 - 2 = 1`.\n*   The range of `[3, 1]` is `max(3, 1) - min(3, 1) = 3 - 1 = 2`.\n*   The score is `1 + 2 = 3`.\n\n**Example 2:**\n\n**Input:** nums = \\[1,2,3,3\\], k = 1\n\n**Output:** 2\n\n**Explanation:**\n\n*   Partition `nums` into `[1, 2, 3, 3]`.\n*   The range of `[1, 2, 3, 3]` is `max(1, 2, 3, 3) - min(1, 2, 3, 3) = 3 - 1 = 2`.\n*   The score is 2.\n\n**Example 3:**\n\n**Input:** nums = \\[1,2,3,3\\], k = 4\n\n**Output:** 3\n\n**Explanation:**\n\nIdentical to Example 1, we partition `nums` into `[2, 3]` and `[3, 1]`. Note that `nums` may be partitioned into fewer than `k` subarrays.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 1000`\n*   `1 <= nums[i] <= 10^(9)`\n*   `1 <= k <= nums.length`",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "1 <= nums[i] <= 109",
+    "1 <= k <= nums.length"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3,3], k = 2",
+      "output": "3",
+      "explanation": "Partition nums into [2, 3] and [3, 1] (wrapped around).\n\tThe range of [2, 3] is max(2, 3) - min(2, 3) = 3 - 2 = 1.\n\tThe range of [3, 1] is max(3, 1) - min(3, 1) = 3 - 1 = 2.\n\tThe score is 1 + 2 = 3."
+    },
+    {
+      "input": "nums = [1,2,3,3], k = 1",
+      "output": "2",
+      "explanation": "Partition nums into [1, 2, 3, 3].\n\tThe range of [1, 2, 3, 3] is max(1, 2, 3, 3) - min(1, 2, 3, 3) = 3 - 1 = 2.\n\tThe score is 2."
+    },
+    {
+      "input": "nums = [1,2,3,3], k = 4",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maximumScore(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maximumScore(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maximumScore(self, nums: List[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maximumScore(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar maximumScore = function(nums, k) {\n    \n};",
+    "typescript": "function maximumScore(nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaximumScore(int[] nums, int k) {\n        \n    }\n}",
+    "c": "long long maximumScore(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func maximumScore(nums []int, k int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maximumScore(nums: IntArray, k: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maximumScore(_ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn maximum_score(nums: Vec<i32>, k: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef maximum_score(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function maximumScore($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maximumScore(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maximumScore(nums: Array[Int], k: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec maximum_score(nums :: [integer], k :: integer) :: integer\n  def maximum_score(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec maximum_score(Nums :: [integer()], K :: integer()) -> integer().\nmaximum_score(Nums, K) ->\n  .",
+    "racket": "(define/contract (maximum-score nums k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,3,4]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1000000000,1000000000]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]\n1",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,3,4]\n2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1000000000,1000000000]\n3",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1]\n1",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "nums = [1,2,3,3], k = 2",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "nums = [1,2,3,3], k = 1",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "nums = [1,2,3,3], k = 4",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming on the number of extreme picks: allow up to <code>2 * k</code> picks (each partition can supply a + and a -), so the problem becomes choosing which elements are + or -.",
+    "Model a partition by its max (+<code>nums[i]</code>) and min (-<code>nums[i]</code>) contributions; selecting an element as a max adds +<code>nums[i]</code>, and selecting it as a min adds -<code>nums[i]</code>.",
+    "Use a DP state <code>(picks, balance)</code> where <code>picks</code> is the total number of + and - chosen so far (<= <code>2 * k</code>), and <code>balance</code> represents the difference between the counts of + and - currently; at each <code>i</code>, you conceptually take +, take -, or skip.",
+    "Handle cyclicity by limiting <code>balance</code> to the range <code>[0, 2]</code>. You can show that such a balance is always achievable."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-cyclic-partition-score/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.253Z",
+    "sourceUpdatedAt": null
+  }
+}

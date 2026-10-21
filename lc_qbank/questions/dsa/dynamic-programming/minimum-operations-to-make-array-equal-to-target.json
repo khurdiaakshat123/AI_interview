@@ -1,0 +1,160 @@
+{
+  "id": "3229",
+  "slug": "minimum-operations-to-make-array-equal-to-target",
+  "title": "Minimum Operations to Make Array Equal to Target",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "statement": "You are given two positive integer arrays `nums` and `target`, of the same length.\n\nIn a single operation, you can select any subarray of `nums` and increment each element within that subarray by 1 or decrement each element within that subarray by 1.\n\nReturn the **minimum** number of operations required to make `nums` equal to the array `target`.\n\n**Example 1:**\n\n**Input:** nums = \\[3,5,1,2\\], target = \\[4,6,2,4\\]\n\n**Output:** 2\n\n**Explanation:**\n\nWe will perform the following operations to make `nums` equal to `target`:  \n\\- Increment `nums[0..3]` by 1, `nums = [4,6,2,3]`.  \n\\- Increment `nums[3..3]` by 1, `nums = [4,6,2,4]`.\n\n**Example 2:**\n\n**Input:** nums = \\[1,3,2\\], target = \\[2,1,4\\]\n\n**Output:** 5\n\n**Explanation:**\n\nWe will perform the following operations to make `nums` equal to `target`:  \n\\- Increment `nums[0..0]` by 1, `nums = [2,3,2]`.  \n\\- Decrement `nums[1..1]` by 1, `nums = [2,2,2]`.  \n\\- Decrement `nums[1..1]` by 1, `nums = [2,1,2]`.  \n\\- Increment `nums[2..2]` by 1, `nums = [2,1,3]`.  \n\\- Increment `nums[2..2]` by 1, `nums = [2,1,4]`.\n\n**Constraints:**\n\n*   `1 <= nums.length == target.length <= 10^(5)`\n*   `1 <= nums[i], target[i] <= 10^(8)`",
+  "constraints": [
+    "1 <= nums.length == target.length <= 105",
+    "1 <= nums[i], target[i] <= 108"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,5,1,2], target = [4,6,2,4]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "nums = [1,3,2], target = [2,1,4]",
+      "output": "5",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minimumOperations(vector<int>& nums, vector<int>& target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minimumOperations(int[] nums, int[] target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minimumOperations(self, nums: List[int], target: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minimumOperations(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[]} target\n * @return {number}\n */\nvar minimumOperations = function(nums, target) {\n    \n};",
+    "typescript": "function minimumOperations(nums: number[], target: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinimumOperations(int[] nums, int[] target) {\n        \n    }\n}",
+    "c": "long long minimumOperations(int* nums, int numsSize, int* target, int targetSize) {\n    \n}",
+    "golang": "func minimumOperations(nums []int, target []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minimumOperations(nums: IntArray, target: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minimumOperations(_ nums: [Int], _ target: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn minimum_operations(nums: Vec<i32>, target: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[]} target\n# @return {Integer}\ndef minimum_operations(nums, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[] $target\n     * @return Integer\n     */\n    function minimumOperations($nums, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minimumOperations(List<int> nums, List<int> target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minimumOperations(nums: Array[Int], target: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec minimum_operations(nums :: [integer], target :: [integer]) :: integer\n  def minimum_operations(nums, target) do\n    \n  end\nend",
+    "erlang": "-spec minimum_operations(Nums :: [integer()], Target :: [integer()]) -> integer().\nminimum_operations(Nums, Target) ->\n  .",
+    "racket": "(define/contract (minimum-operations nums target)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,5,1,2]\n[4,6,2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,3,2]\n[2,1,4]",
+      "expectedOutput": "5"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,5,1,2]\n[4,6,2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,3,2]\n[2,1,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[3,5]\n[4,6,2,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]\n[4,6,2,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[3]\n[4,6,2,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2]\n[4,6,2,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[2,1,5,3]\n[4,6,2,4]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[1,2,3,5]\n[4,6,2,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[5,3,2,1]\n[4,6,2,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[3,3,3,3]\n[4,6,2,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[6,10,2,4]\n[4,6,2,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[4,6,2,3]\n[4,6,2,4]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[2,4,0,1]\n[4,6,2,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-3,-5,-1,-2]\n[4,6,2,4]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[0,0,0,0]\n[4,6,2,4]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,1,1,1]\n[4,6,2,4]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0]\n[4,6,2,4]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1]\n[4,6,2,4]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1]\n[4,6,2,4]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0]\n[4,6,2,4]",
+      "expectedOutput": "6"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Change <code>nums'[i] = nums[i] - target[i]</code>, so our goal is to make <code>nums'</code> into all 0s.",
+    "Divide and conquer."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-operations-to-make-array-equal-to-target/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.674Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "id": "3539",
+  "slug": "find-sum-of-array-product-of-magical-sequences",
+  "title": "Find Sum of Array Product of Magical Sequences",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Combinatorics",
+    "Bitmask"
+  ],
+  "statement": "You are given two integers, `m` and `k`, and an integer array `nums`.\n\nA sequence of integers `seq` is called **magical** if:\n\n*   `seq` has a size of `m`.\n*   `0 <= seq[i] < nums.length`\n*   The **binary representation** of `2^(seq[0]) + 2^(seq[1]) + ... + 2^(seq[m - 1])` has `k` **set bits**.\n\nThe **array product** of this sequence is defined as `prod(seq) = (nums[seq[0]] * nums[seq[1]] * ... * nums[seq[m - 1]])`.\n\nReturn the **sum** of the **array products** for all valid **magical** sequences.\n\nSince the answer may be large, return it **modulo** `10^(9) + 7`.\n\nA **set bit** refers to a bit in the binary representation of a number that has a value of 1.\n\n**Example 1:**\n\n**Input:** m = 5, k = 5, nums = \\[1,10,100,10000,1000000\\]\n\n**Output:** 991600007\n\n**Explanation:**\n\nAll permutations of `[0, 1, 2, 3, 4]` are magical sequences, each with an array product of 10^(13).\n\n**Example 2:**\n\n**Input:** m = 2, k = 2, nums = \\[5,4,3,2,1\\]\n\n**Output:** 170\n\n**Explanation:**\n\nThe magical sequences are `[0, 1]`, `[0, 2]`, `[0, 3]`, `[0, 4]`, `[1, 0]`, `[1, 2]`, `[1, 3]`, `[1, 4]`, `[2, 0]`, `[2, 1]`, `[2, 3]`, `[2, 4]`, `[3, 0]`, `[3, 1]`, `[3, 2]`, `[3, 4]`, `[4, 0]`, `[4, 1]`, `[4, 2]`, and `[4, 3]`.\n\n**Example 3:**\n\n**Input:** m = 1, k = 1, nums = \\[28\\]\n\n**Output:** 28\n\n**Explanation:**\n\nThe only magical sequence is `[0]`.\n\n**Constraints:**\n\n*   `1 <= k <= m <= 30`\n*   `1 <= nums.length <= 50`\n*   `1 <= nums[i] <= 10^(8)`",
+  "constraints": [
+    "1 <= k <= m <= 30",
+    "1 <= nums.length <= 50",
+    "1 <= nums[i] <= 108"
+  ],
+  "examples": [
+    {
+      "input": "m = 5, k = 5, nums = [1,10,100,10000,1000000]",
+      "output": "991600007",
+      "explanation": null
+    },
+    {
+      "input": "m = 2, k = 2, nums = [5,4,3,2,1]",
+      "output": "170",
+      "explanation": null
+    },
+    {
+      "input": "m = 1, k = 1, nums = [28]",
+      "output": "28",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int magicalSum(int m, int k, vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int magicalSum(int m, int k, int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def magicalSum(self, m: int, k: int, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def magicalSum(self, m, k, nums):\n        \"\"\"\n        :type m: int\n        :type k: int\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} m\n * @param {number} k\n * @param {number[]} nums\n * @return {number}\n */\nvar magicalSum = function(m, k, nums) {\n    \n};",
+    "typescript": "function magicalSum(m: number, k: number, nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MagicalSum(int m, int k, int[] nums) {\n        \n    }\n}",
+    "c": "int magicalSum(int m, int k, int* nums, int numsSize) {\n    \n}",
+    "golang": "func magicalSum(m int, k int, nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun magicalSum(m: Int, k: Int, nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func magicalSum(_ m: Int, _ k: Int, _ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn magical_sum(m: i32, k: i32, nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} m\n# @param {Integer} k\n# @param {Integer[]} nums\n# @return {Integer}\ndef magical_sum(m, k, nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $m\n     * @param Integer $k\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function magicalSum($m, $k, $nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int magicalSum(int m, int k, List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def magicalSum(m: Int, k: Int, nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec magical_sum(m :: integer, k :: integer, nums :: [integer]) :: integer\n  def magical_sum(m, k, nums) do\n    \n  end\nend",
+    "erlang": "-spec magical_sum(M :: integer(), K :: integer(), Nums :: [integer()]) -> integer().\nmagical_sum(M, K, Nums) ->\n  .",
+    "racket": "(define/contract (magical-sum m k nums)\n  (-> exact-integer? exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "5\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "991600007"
+    },
+    {
+      "input": "2\n2\n[5,4,3,2,1]",
+      "expectedOutput": "170"
+    },
+    {
+      "input": "1\n1\n[28]",
+      "expectedOutput": "28"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "5\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "991600007"
+    },
+    {
+      "input": "2\n2\n[5,4,3,2,1]",
+      "expectedOutput": "170"
+    },
+    {
+      "input": "1\n1\n[28]",
+      "expectedOutput": "28"
+    },
+    {
+      "input": "0\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "1\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "2\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "4\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "6\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "416415952"
+    },
+    {
+      "input": "7\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "318256949"
+    },
+    {
+      "input": "8\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "617964988"
+    },
+    {
+      "input": "9\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "289311705"
+    },
+    {
+      "input": "-1\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "-2\n5\n[1,10,100,10000,1000000]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "5\n0\n[1,10,100,10000,1000000]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "5\n1\n[1,10,100,10000,1000000]",
+      "expectedOutput": "354510150"
+    },
+    {
+      "input": "5\n2\n[1,10,100,10000,1000000]",
+      "expectedOutput": "775415009"
+    },
+    {
+      "input": "5\n3\n[1,10,100,10000,1000000]",
+      "expectedOutput": "936729386"
+    },
+    {
+      "input": "5\n4\n[1,10,100,10000,1000000]",
+      "expectedOutput": "929654880"
+    },
+    {
+      "input": "5\n6\n[1,10,100,10000,1000000]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use Dynamic Programming",
+    "Let <code>dp[i][j][mask]</code> be the state after choosing <code>i</code> numbers (indices)",
+    "The partial sum <code>S = 2^(seq[0]) + 2^(seq[1]) + ... + 2^(seq[i - 1])</code> has produced exactly <code>j</code> set bits once you’ve fully propagated any carries",
+    "The <code>mask</code> represents the \"window\" of lower-order bits from <code>S</code> that have not yet been fully processed (i.e. bits that might later create new set bits when additional terms are added)",
+    "Use combinatorics",
+    "How many ways are there to permute a sequence of entities where some are repetitive?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-sum-of-array-product-of-magical-sequences/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.167Z",
+    "sourceUpdatedAt": null
+  }
+}

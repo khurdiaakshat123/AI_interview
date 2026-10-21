@@ -1,0 +1,168 @@
+{
+  "id": "1371",
+  "slug": "find-the-longest-substring-containing-vowels-in-even-counts",
+  "title": "Find the Longest Substring Containing Vowels in Even Counts",
+  "category": "dsa",
+  "subcategory": "bit-manipulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Prefix Sum"
+  ],
+  "statement": "Given the string `s`, return the size of the longest substring containing each vowel an even number of times. That is, 'a', 'e', 'i', 'o', and 'u' must appear an even number of times.\n\n**Example 1:**\n\n```\nInput: s = \"eleetminicoworoep\"\nOutput: 13\nExplanation: The longest substring is \"leetminicowor\" which contains two each of the vowels: e, i and o and zero of the vowels: a and u.\n```\n\n**Example 2:**\n\n```\nInput: s = \"leetcodeisgreat\"\nOutput: 5\nExplanation: The longest substring is \"leetc\" which contains two e's.\n```\n\n**Example 3:**\n\n```\nInput: s = \"bcbcbc\"\nOutput: 6\nExplanation: In this case, the given string \"bcbcbc\" is the longest because all vowels: a, e, i, o and u appear zero times.\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 5 x 10^5`\n*   `s` contains only lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 5 x 10^5",
+    "s contains only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"eleetminicoworoep\"",
+      "output": "13",
+      "explanation": "The longest substring is \"leetminicowor\" which contains two each of the vowels: e, i and o and zero of the vowels: a and u."
+    },
+    {
+      "input": "s = \"leetcodeisgreat\"",
+      "output": "5",
+      "explanation": "The longest substring is \"leetc\" which contains two e's."
+    },
+    {
+      "input": "s = \"bcbcbc\"",
+      "output": "6",
+      "explanation": "In this case, the given string \"bcbcbc\" is the longest because all vowels: a, e, i, o and u appear zero times."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findTheLongestSubstring(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findTheLongestSubstring(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findTheLongestSubstring(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def findTheLongestSubstring(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar findTheLongestSubstring = function(s) {\n    \n};",
+    "typescript": "function findTheLongestSubstring(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindTheLongestSubstring(string s) {\n        \n    }\n}",
+    "c": "int findTheLongestSubstring(char* s) {\n    \n}",
+    "golang": "func findTheLongestSubstring(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findTheLongestSubstring(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findTheLongestSubstring(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_the_longest_substring(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef find_the_longest_substring(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function findTheLongestSubstring($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findTheLongestSubstring(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findTheLongestSubstring(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_the_longest_substring(s :: String.t) :: integer\n  def find_the_longest_substring(s) do\n    \n  end\nend",
+    "erlang": "-spec find_the_longest_substring(S :: unicode:unicode_binary()) -> integer().\nfind_the_longest_substring(S) ->\n  .",
+    "racket": "(define/contract (find-the-longest-substring s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"eleetminicoworoep\"",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "\"leetcodeisgreat\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"bcbcbc\"",
+      "expectedOutput": "6"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"eleetminicoworoep\"",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "\"leetcodeisgreat\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"bcbcbc\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"eleetmin\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"icoworoep\"",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "\"e\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"el\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"peorowocinimteele\"",
+      "expectedOutput": "13"
+    },
+    {
+      "input": "\"eeeeee\"",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "\"ELEETMINICOWOROEP\"",
+      "expectedOutput": "17"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Represent the counts (odd or even) of vowels with a bitmask.",
+    "Precompute the prefix xor for the bitmask of vowels and then get the longest valid substring."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.379Z",
+    "sourceUpdatedAt": null
+  }
+}

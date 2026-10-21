@@ -1,0 +1,157 @@
+{
+  "id": "1410",
+  "slug": "html-entity-parser",
+  "title": "HTML Entity Parser",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "statement": "**HTML entity parser** is the parser that takes HTML code as input and replace all the entities of the special characters by the characters itself.\n\nThe special characters and their entities for HTML are:\n\n*   **Quotation Mark:** the entity is `&quot;` and symbol character is `\"`.\n*   **Single Quote Mark:** the entity is `&apos;` and symbol character is `'`.\n*   **Ampersand:** the entity is `&amp;` and symbol character is `&`.\n*   **Greater Than Sign:** the entity is `&gt;` and symbol character is `>`.\n*   **Less Than Sign:** the entity is `&lt;` and symbol character is `<`.\n*   **Slash:** the entity is `&frasl;` and symbol character is `/`.\n\nGiven the input `text` string to the HTML parser, you have to implement the entity parser.\n\nReturn _the text after replacing the entities by the special characters_.\n\n**Example 1:**\n\n```\nInput: text = \"&amp; is an HTML entity but &ambassador; is not.\"\nOutput: \"& is an HTML entity but &ambassador; is not.\"\nExplanation: The parser will replace the &amp; entity by &\n```\n\n**Example 2:**\n\n```\nInput: text = \"and I quote: &quot;...&quot;\"\nOutput: \"and I quote: \\\"...\\\"\"\n```\n\n**Constraints:**\n\n*   `1 <= text.length <= 10^(5)`\n*   The string may contain any possible characters out of all the 256 ASCII characters.",
+  "constraints": [
+    "1 <= text.length <= 105",
+    "The string may contain any possible characters out of all the 256 ASCII characters."
+  ],
+  "examples": [
+    {
+      "input": "text = \"&amp; is an HTML entity but &ambassador; is not.\"",
+      "output": "\"& is an HTML entity but &ambassador; is not.\"",
+      "explanation": "The parser will replace the &amp; entity by &"
+    },
+    {
+      "input": "text = \"and I quote: &quot;...&quot;\"",
+      "output": "\"and I quote: \\\"...\\\"\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string entityParser(string text) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String entityParser(String text) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def entityParser(self, text: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def entityParser(self, text):\n        \"\"\"\n        :type text: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} text\n * @return {string}\n */\nvar entityParser = function(text) {\n    \n};",
+    "typescript": "function entityParser(text: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string EntityParser(string text) {\n        \n    }\n}",
+    "c": "char* entityParser(char* text) {\n    \n}",
+    "golang": "func entityParser(text string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun entityParser(text: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func entityParser(_ text: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn entity_parser(text: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} text\n# @return {String}\ndef entity_parser(text)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $text\n     * @return String\n     */\n    function entityParser($text) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String entityParser(String text) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def entityParser(text: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec entity_parser(text :: String.t) :: String.t\n  def entity_parser(text) do\n    \n  end\nend",
+    "erlang": "-spec entity_parser(Text :: unicode:unicode_binary()) -> unicode:unicode_binary().\nentity_parser(Text) ->\n  .",
+    "racket": "(define/contract (entity-parser text)\n  (-> string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"& is an HTML entity but &ambassador; is not.\"",
+      "expectedOutput": "\"& is an HTML entity but &ambassador; is not.\""
+    },
+    {
+      "input": "\"and I quote: \"...\"\"",
+      "expectedOutput": "\"and I quote: \\\"...\\\"\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"&amp; is an HTML entity but &ambassador; is not.\"",
+      "expectedOutput": "\"& is an HTML entity but &ambassador; is not.\""
+    },
+    {
+      "input": "\"and I quote: &quot;...&quot;\"",
+      "expectedOutput": "\"and I quote: \\\"...\\\"\""
+    },
+    {
+      "input": "\"& is an HTML entity but &ambassador; is not.\"",
+      "expectedOutput": "\"& is an HTML entity but &ambassador; is not.\""
+    },
+    {
+      "input": "\"&amp; is an HTML entity \"",
+      "expectedOutput": "\"& is an HTML entity \""
+    },
+    {
+      "input": "\"but &ambassador; is not.\"",
+      "expectedOutput": "\"but &ambassador; is not.\""
+    },
+    {
+      "input": "\"&\"",
+      "expectedOutput": "\"&\""
+    },
+    {
+      "input": "\"&a\"",
+      "expectedOutput": "\"&a\""
+    },
+    {
+      "input": "\".ton si ;rodassabma& tub ytitne LMTH na si ;pma&\"",
+      "expectedOutput": "\".ton si ;rodassabma& tub ytitne LMTH na si ;pma&\""
+    },
+    {
+      "input": "\"&&&&&&\"",
+      "expectedOutput": "\"&&&&&&\""
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "\"aab\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Search the string for all the occurrences of the character '&'.",
+    "For every '&' check if it matches an HTML entity by checking the ';' character and if entity found replace it in the answer."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/html-entity-parser/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.409Z",
+    "sourceUpdatedAt": null
+  }
+}

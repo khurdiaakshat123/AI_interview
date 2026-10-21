@@ -1,0 +1,135 @@
+{
+  "id": "3575",
+  "slug": "maximum-good-subtree-score",
+  "title": "Maximum Good Subtree Score",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Tree",
+    "Depth-First Search",
+    "Bitmask"
+  ],
+  "statement": "You are given an undirected tree rooted at node 0 with `n` nodes numbered from 0 to `n - 1`. Each node `i` has an integer value `vals[i]`, and its parent is given by `par[i]`.\n\nA **subset** of nodes within the **subtree** of a node is called **good** if every digit from 0 to 9 appears **at most** once in the decimal representation of the values of the selected nodes.\n\nThe **score** of a good subset is the sum of the values of its nodes.\n\nDefine an array `maxScore` of length `n`, where `maxScore[u]` represents the **maximum** possible sum of values of a good subset of nodes that belong to the subtree rooted at node `u`, including `u` itself and all its descendants.\n\nReturn the sum of all values in `maxScore`.\n\nSince the answer may be large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** vals = \\[2,3\\], par = \\[-1,0\\]\n\n**Output:** 8\n\n**Explanation:**\n\n![](./assets/maximum-good-subtree-score-1.png)\n\n*   The subtree rooted at node 0 includes nodes `{0, 1}`. The subset `{2, 3}` is good as the digits 2 and 3 appear only once. The score of this subset is `2 + 3 = 5`.\n*   The subtree rooted at node 1 includes only node `{1}`. The subset `{3}` is good. The score of this subset is 3.\n*   The `maxScore` array is `[5, 3]`, and the sum of all values in `maxScore` is `5 + 3 = 8`. Thus, the answer is 8.\n\n**Example 2:**\n\n**Input:** vals = \\[1,5,2\\], par = \\[-1,0,0\\]\n\n**Output:** 15\n\n**Explanation:**\n\n**![](./assets/maximum-good-subtree-score-2.png)**\n\n*   The subtree rooted at node 0 includes nodes `{0, 1, 2}`. The subset `{1, 5, 2}` is good as the digits 1, 5 and 2 appear only once. The score of this subset is `1 + 5 + 2 = 8`.\n*   The subtree rooted at node 1 includes only node `{1}`. The subset `{5}` is good. The score of this subset is 5.\n*   The subtree rooted at node 2 includes only node `{2}`. The subset `{2}` is good. The score of this subset is 2.\n*   The `maxScore` array is `[8, 5, 2]`, and the sum of all values in `maxScore` is `8 + 5 + 2 = 15`. Thus, the answer is 15.\n\n**Example 3:**\n\n**Input:** vals = \\[34,1,2\\], par = \\[-1,0,1\\]\n\n**Output:** 42\n\n**Explanation:**\n\n![](./assets/maximum-good-subtree-score-3.png)\n\n*   The subtree rooted at node 0 includes nodes `{0, 1, 2}`. The subset `{34, 1, 2}` is good as the digits 3, 4, 1 and 2 appear only once. The score of this subset is `34 + 1 + 2 = 37`.\n*   The subtree rooted at node 1 includes node `{1, 2}`. The subset `{1, 2}` is good as the digits 1 and 2 appear only once. The score of this subset is `1 + 2 = 3`.\n*   The subtree rooted at node 2 includes only node `{2}`. The subset `{2}` is good. The score of this subset is 2.\n*   The `maxScore` array is `[37, 3, 2]`, and the sum of all values in `maxScore` is `37 + 3 + 2 = 42`. Thus, the answer is 42.\n\n**Example 4:**\n\n**Input:** vals = \\[3,22,5\\], par = \\[-1,0,1\\]\n\n**Output:** 18\n\n**Explanation:**\n\n*   The subtree rooted at node 0 includes nodes `{0, 1, 2}`. The subset `{3, 22, 5}` is not good, as digit 2 appears twice. Therefore, the subset `{3, 5}` is valid. The score of this subset is `3 + 5 = 8`.\n*   The subtree rooted at node 1 includes nodes `{1, 2}`. The subset `{22, 5}` is not good, as digit 2 appears twice. Therefore, the subset `{5}` is valid. The score of this subset is 5.\n*   The subtree rooted at node 2 includes `{2}`. The subset `{5}` is good. The score of this subset is 5.\n*   The `maxScore` array is `[8, 5, 5]`, and the sum of all values in `maxScore` is `8 + 5 + 5 = 18`. Thus, the answer is 18.\n\n**Constraints:**\n\n*   `1 <= n == vals.length <= 500`\n*   `1 <= vals[i] <= 10^(9)`\n*   `par.length == n`\n*   `par[0] == -1`\n*   `0 <= par[i] < n` for `i` in `[1, n - 1]`\n*   The input is generated such that the parent array `par` represents a valid tree.",
+  "constraints": [
+    "1 <= n == vals.length <= 500",
+    "1 <= vals[i] <= 109",
+    "par.length == n",
+    "par[0] == -1",
+    "0 <= par[i] < n for i in [1, n - 1]",
+    "The input is generated such that the parent array par represents a valid tree."
+  ],
+  "examples": [
+    {
+      "input": "vals = [2,3], par = [-1,0]",
+      "output": "8",
+      "explanation": null
+    },
+    {
+      "input": "vals = [1,5,2], par = [-1,0,0]",
+      "output": "15",
+      "explanation": null
+    },
+    {
+      "input": "vals = [34,1,2], par = [-1,0,1]",
+      "output": "42",
+      "explanation": null
+    },
+    {
+      "input": "vals = [3,22,5], par = [-1,0,1]",
+      "output": "18",
+      "explanation": "The subtree rooted at node 0 includes nodes {0, 1, 2}. The subset {3, 22, 5} is not good, as digit 2 appears twice. Therefore, the subset {3, 5} is valid. The score of this subset is 3 + 5 = 8.\n\tThe subtree rooted at node 1 includes nodes {1, 2}. The subset {22, 5} is not good, as digit 2 appears twice. Therefore, the subset {5} is valid. The score of this subset is 5.\n\tThe subtree rooted at node 2 includes {2}. The subset {5} is good. The score of this subset is 5.\n\tThe maxScore array is [8, 5, 5], and the sum of all values in maxScore is 8 + 5 + 5 = 18. Thus, the answer is 18."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int goodSubtreeSum(vector<int>& vals, vector<int>& par) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int goodSubtreeSum(int[] vals, int[] par) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def goodSubtreeSum(self, vals: List[int], par: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def goodSubtreeSum(self, vals, par):\n        \"\"\"\n        :type vals: List[int]\n        :type par: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} vals\n * @param {number[]} par\n * @return {number}\n */\nvar goodSubtreeSum = function(vals, par) {\n    \n};",
+    "typescript": "function goodSubtreeSum(vals: number[], par: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int GoodSubtreeSum(int[] vals, int[] par) {\n        \n    }\n}",
+    "c": "int goodSubtreeSum(int* vals, int valsSize, int* par, int parSize) {\n    \n}",
+    "golang": "func goodSubtreeSum(vals []int, par []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun goodSubtreeSum(vals: IntArray, par: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func goodSubtreeSum(_ vals: [Int], _ par: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn good_subtree_sum(vals: Vec<i32>, par: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} vals\n# @param {Integer[]} par\n# @return {Integer}\ndef good_subtree_sum(vals, par)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $vals\n     * @param Integer[] $par\n     * @return Integer\n     */\n    function goodSubtreeSum($vals, $par) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int goodSubtreeSum(List<int> vals, List<int> par) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def goodSubtreeSum(vals: Array[Int], par: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec good_subtree_sum(vals :: [integer], par :: [integer]) :: integer\n  def good_subtree_sum(vals, par) do\n    \n  end\nend",
+    "erlang": "-spec good_subtree_sum(Vals :: [integer()], Par :: [integer()]) -> integer().\ngood_subtree_sum(Vals, Par) ->\n  .",
+    "racket": "(define/contract (good-subtree-sum vals par)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,3]\n[-1,0]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,5,2]\n[-1,0,0]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[34,1,2]\n[-1,0,1]",
+      "expectedOutput": "42"
+    },
+    {
+      "input": "[3,22,5]\n[-1,0,1]",
+      "expectedOutput": "18"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,3]\n[-1,0]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[1,5,2]\n[-1,0,0]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "[34,1,2]\n[-1,0,1]",
+      "expectedOutput": "42"
+    },
+    {
+      "input": "[3,22,5]\n[-1,0,1]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "vals = [2,3], par = [-1,0]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "vals = [1,5,2], par = [-1,0,0]",
+      "expectedOutput": "15"
+    },
+    {
+      "input": "vals = [34,1,2], par = [-1,0,1]",
+      "expectedOutput": "42"
+    },
+    {
+      "input": "vals = [3,22,5], par = [-1,0,1]",
+      "expectedOutput": "18"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use tree dynamic programming.",
+    "Use bits (integer) to represent which digits are used."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-good-subtree-score/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.892Z",
+    "sourceUpdatedAt": null
+  }
+}

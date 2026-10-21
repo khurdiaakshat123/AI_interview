@@ -1,0 +1,157 @@
+{
+  "id": "1900",
+  "slug": "the-earliest-and-latest-rounds-where-players-compete",
+  "title": "The Earliest and Latest Rounds Where Players Compete",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Dynamic Programming",
+    "Memoization"
+  ],
+  "statement": "There is a tournament where `n` players are participating. The players are standing in a single row and are numbered from `1` to `n` based on their **initial** standing position (player `1` is the first player in the row, player `2` is the second player in the row, etc.).\n\nThe tournament consists of multiple rounds (starting from round number `1`). In each round, the `i^(th)` player from the front of the row competes against the `i^(th)` player from the end of the row, and the winner advances to the next round. When the number of players is odd for the current round, the player in the middle automatically advances to the next round.\n\n*   For example, if the row consists of players `1, 2, 4, 6, 7`\n    *   Player `1` competes against player `7`.\n    *   Player `2` competes against player `6`.\n    *   Player `4` automatically advances to the next round.\n\nAfter each round is over, the winners are lined back up in the row based on the **original ordering** assigned to them initially (ascending order).\n\nThe players numbered `firstPlayer` and `secondPlayer` are the best in the tournament. They can win against any other player before they compete against each other. If any two other players compete against each other, either of them might win, and thus you may **choose** the outcome of this round.\n\nGiven the integers `n`, `firstPlayer`, and `secondPlayer`, return _an integer array containing two values, the **earliest** possible round number and the **latest** possible round number in which these two players will compete against each other, respectively_.\n\n**Example 1:**\n\n```\nInput: n = 11, firstPlayer = 2, secondPlayer = 4\nOutput: [3,4]\nExplanation:\nOne possible scenario which leads to the earliest round number:\nFirst round: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11\nSecond round: 2, 3, 4, 5, 6, 11\nThird round: 2, 3, 4\nOne possible scenario which leads to the latest round number:\nFirst round: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11\nSecond round: 1, 2, 3, 4, 5, 6\nThird round: 1, 2, 4\nFourth round: 2, 4\n```\n\n**Example 2:**\n\n```\nInput: n = 5, firstPlayer = 1, secondPlayer = 5\nOutput: [1,1]\nExplanation: The players numbered 1 and 5 compete in the first round.\nThere is no way to make them compete in any other round.\n```\n\n**Constraints:**\n\n*   `2 <= n <= 28`\n*   `1 <= firstPlayer < secondPlayer <= n`",
+  "constraints": [
+    "2 <= n <= 28",
+    "1 <= firstPlayer < secondPlayer <= n"
+  ],
+  "examples": [
+    {
+      "input": "n = 11, firstPlayer = 2, secondPlayer = 4",
+      "output": "[3,4]",
+      "explanation": "One possible scenario which leads to the earliest round number:\nFirst round: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11\nSecond round: 2, 3, 4, 5, 6, 11\nThird round: 2, 3, 4\nOne possible scenario which leads to the latest round number:\nFirst round: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11\nSecond round: 1, 2, 3, 4, 5, 6\nThird round: 1, 2, 4\nFourth round: 2, 4"
+    },
+    {
+      "input": "n = 5, firstPlayer = 1, secondPlayer = 5",
+      "output": "[1,1]",
+      "explanation": "The players numbered 1 and 5 compete in the first round.\nThere is no way to make them compete in any other round."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> earliestAndLatest(int n, int firstPlayer, int secondPlayer) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] earliestAndLatest(int n, int firstPlayer, int secondPlayer) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def earliestAndLatest(self, n: int, firstPlayer: int, secondPlayer: int) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def earliestAndLatest(self, n, firstPlayer, secondPlayer):\n        \"\"\"\n        :type n: int\n        :type firstPlayer: int\n        :type secondPlayer: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} firstPlayer\n * @param {number} secondPlayer\n * @return {number[]}\n */\nvar earliestAndLatest = function(n, firstPlayer, secondPlayer) {\n    \n};",
+    "typescript": "function earliestAndLatest(n: number, firstPlayer: number, secondPlayer: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] EarliestAndLatest(int n, int firstPlayer, int secondPlayer) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* earliestAndLatest(int n, int firstPlayer, int secondPlayer, int* returnSize) {\n    \n}",
+    "golang": "func earliestAndLatest(n int, firstPlayer int, secondPlayer int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun earliestAndLatest(n: Int, firstPlayer: Int, secondPlayer: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func earliestAndLatest(_ n: Int, _ firstPlayer: Int, _ secondPlayer: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn earliest_and_latest(n: i32, first_player: i32, second_player: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} first_player\n# @param {Integer} second_player\n# @return {Integer[]}\ndef earliest_and_latest(n, first_player, second_player)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $firstPlayer\n     * @param Integer $secondPlayer\n     * @return Integer[]\n     */\n    function earliestAndLatest($n, $firstPlayer, $secondPlayer) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> earliestAndLatest(int n, int firstPlayer, int secondPlayer) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def earliestAndLatest(n: Int, firstPlayer: Int, secondPlayer: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec earliest_and_latest(n :: integer, first_player :: integer, second_player :: integer) :: [integer]\n  def earliest_and_latest(n, first_player, second_player) do\n    \n  end\nend",
+    "erlang": "-spec earliest_and_latest(N :: integer(), FirstPlayer :: integer(), SecondPlayer :: integer()) -> [integer()].\nearliest_and_latest(N, FirstPlayer, SecondPlayer) ->\n  .",
+    "racket": "(define/contract (earliest-and-latest n firstPlayer secondPlayer)\n  (-> exact-integer? exact-integer? exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "11\n2\n4",
+      "expectedOutput": "[3,4]"
+    },
+    {
+      "input": "5\n1\n5",
+      "expectedOutput": "[1,1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "11\n2\n4",
+      "expectedOutput": "[3,4]"
+    },
+    {
+      "input": "5\n1\n5",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "10\n2\n4",
+      "expectedOutput": "[2,4]"
+    },
+    {
+      "input": "12\n2\n4",
+      "expectedOutput": "[3,4]"
+    },
+    {
+      "input": "9\n2\n4",
+      "expectedOutput": "[2,4]"
+    },
+    {
+      "input": "13\n2\n4",
+      "expectedOutput": "[3,4]"
+    },
+    {
+      "input": "8\n2\n4",
+      "expectedOutput": "[2,3]"
+    },
+    {
+      "input": "14\n2\n4",
+      "expectedOutput": "[3,4]"
+    },
+    {
+      "input": "5\n2\n4",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "4\n2\n4",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "11\n1\n4",
+      "expectedOutput": "[3,4]"
+    },
+    {
+      "input": "11\n3\n4",
+      "expectedOutput": "[2,4]"
+    },
+    {
+      "input": "11\n4\n4",
+      "expectedOutput": "[3,5]"
+    },
+    {
+      "input": "11\n5\n4",
+      "expectedOutput": "[2,4]"
+    },
+    {
+      "input": "11\n6\n4",
+      "expectedOutput": "[2,4]"
+    },
+    {
+      "input": "11\n7\n4",
+      "expectedOutput": "[3,4]"
+    },
+    {
+      "input": "11\n2\n1",
+      "expectedOutput": "[4,4]"
+    },
+    {
+      "input": "11\n2\n2",
+      "expectedOutput": "[3,5]"
+    },
+    {
+      "input": "11\n2\n3",
+      "expectedOutput": "[4,4]"
+    },
+    {
+      "input": "11\n2\n5",
+      "expectedOutput": "[2,4]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Brute force using bitmasks and simulate the rounds.",
+    "Calculate each state one time and save its solution."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/the-earliest-and-latest-rounds-where-players-compete/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.880Z",
+    "sourceUpdatedAt": null
+  }
+}

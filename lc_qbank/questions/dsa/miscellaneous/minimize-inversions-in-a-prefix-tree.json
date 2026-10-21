@@ -1,0 +1,96 @@
+{
+  "id": "4077",
+  "slug": "minimize-inversions-in-a-prefix-tree",
+  "title": "Minimize Inversions in a Prefix Tree",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Hard",
+  "tags": [],
+  "statement": "You are given an array `words` of `n` **unique** strings containing only lowercase English letters from `'a'` to `'j'`. You are also given an integer array `target` containing each index from 0 to `n - 1` exactly once.\n\nBuild a **prefix tree** from `words`:\n\n*   The root represents the empty string `\"\"`.\n*   Each other node represents a different non-empty prefix of a word. The parent of a node is the prefix obtained by removing its last character.\n*   The node representing the complete word `words[i]` is marked with index `i`. A marked node may also have children.\n\nYou may choose the order of the children of **each node independently**. You cannot change which node is a child's parent.\n\nTraverse the tree starting at the root. When visiting a node, first record its index if it is marked. Then visit its children in the chosen order, completing the traversal of each child before moving to the next. This is a **pre-order traversal**.\n\nThe recorded indices form an array `traversal` of length `n`. Let `pos[i]` be the position of index `i` in `target`.\n\nAn **inversion** is a pair of positions `(a, b)` such that `0 <= a < b < n` and `pos[traversal[a]] > pos[traversal[b]]`.\n\nReturn the **minimum possible number of inversions** over all choices of child orderings.\n\n**Example 1:**\n\n![](./assets/minimize-inversions-in-a-prefix-tree-1.png)​​​​​​​​​​​​​​​​​​​​​\n\n**Input:** words = \\[\"bad\",\"bag\",\"fig\",\"fed\"\\], target = \\[3,1,0,2\\]\n\n**Output:** 2\n\n**Explanation:**\n\nVisit the root's `\"f\"` child before its `\"b\"` child. Within the `\"f\"` branch, visit `\"fed\"` before `\"fig\"`. Within the `\"b\"` branch, visit `\"bag\"` before `\"bad\"`.\n\nThis produces `traversal = [3,2,1,0]`:\n\nTraversal position\n\nWord index\n\nWord\n\nPosition in target\n\n0\n\n3\n\n`\"fed\"`\n\n0\n\n1\n\n2\n\n`\"fig\"`\n\n3\n\n2\n\n1\n\n`\"bag\"`\n\n1\n\n3\n\n0\n\n`\"bad\"`\n\n2\n\nThe positions in `target` are `[0,3,1,2]`. The inversions are the pairs of **traversal positions** `(1,2)` and `(1,3)`, since `3 > 1` and `3 > 2`.\n\nNo child ordering produces fewer than 2 inversions.\n\n**Example 2:**\n\n**Input:** words = \\[\"ab\",\"ac\",\"ba\",\"bc\"\\], target = \\[0,3,1,2\\]\n\n**Output:** 1\n\n**Explanation:**\n\nVisit the root's `\"a\"` child before its `\"b\"` child. Within these branches, visit `\"ab\"` before `\"ac\"`, and `\"bc\"` before `\"ba\"`.\n\nThis produces `traversal = [0,1,3,2]`:\n\nTraversal position\n\nWord index\n\nWord\n\nPosition in target\n\n0\n\n0\n\n`\"ab\"`\n\n0\n\n1\n\n1\n\n`\"ac\"`\n\n2\n\n2\n\n3\n\n`\"bc\"`\n\n1\n\n3\n\n2\n\n`\"ba\"`\n\n3\n\nThe positions in `target` are `[0,2,1,3]`. The only inversion is the pair of **traversal positions** `(1,2)`, since `2 > 1`.\n\nNo child ordering produces zero inversions.\n\n**Constraints:**\n\n*   `1 <= n == words.length <= 10^(4)`\n*   `1 <= words[i].length <= 20`\n*   `words[i]` contains only lowercase English letters from `'a'` to `'j'`​​​​​​​\n*   All `words[i]` are **unique**\n*   `0 <= target[i] <= n - 1`\n*   `target` is a permutation of integers from 0 to `n - 1`",
+  "constraints": [
+    "1 <= n == words.length <= 104",
+    "1 <= words[i].length <= 20",
+    "words[i] contains only lowercase English letters from 'a' to 'j'​​​​​​​",
+    "All words[i] are unique",
+    "0 <= target[i] <= n - 1",
+    "target is a permutation of integers from 0 to n - 1"
+  ],
+  "examples": [
+    {
+      "input": "words = [\"bad\",\"bag\",\"fig\",\"fed\"], target = [3,1,0,2]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "words = [\"ab\",\"ac\",\"ba\",\"bc\"], target = [0,3,1,2]",
+      "output": "1",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minInversions(vector<string>& words, vector<int>& target) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minInversions(String[] words, int[] target) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minInversions(self, words: list[str], target: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minInversions(self, words, target):\n        \"\"\"\n        :type words: List[str]\n        :type target: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} words\n * @param {number[]} target\n * @return {number}\n */\nvar minInversions = function(words, target) {\n    \n};",
+    "typescript": "function minInversions(words: string[], target: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinInversions(string[] words, int[] target) {\n        \n    }\n}",
+    "c": "int minInversions(char** words, int wordsSize, int* target, int targetSize) {\n    \n}",
+    "golang": "func minInversions(words []string, target []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minInversions(words: Array<String>, target: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minInversions(_ words: [String], _ target: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_inversions(words: Vec<String>, target: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} words\n# @param {Integer[]} target\n# @return {Integer}\ndef min_inversions(words, target)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $words\n     * @param Integer[] $target\n     * @return Integer\n     */\n    function minInversions($words, $target) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minInversions(List<String> words, List<int> target) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minInversions(words: Array[String], target: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_inversions(words :: [String.t], target :: [integer]) :: integer\n  def min_inversions(words, target) do\n    \n  end\nend",
+    "erlang": "-spec min_inversions(Words :: [unicode:unicode_binary()], Target :: [integer()]) -> integer().\nmin_inversions(Words, Target) ->\n  .",
+    "racket": "(define/contract (min-inversions words target)\n  (-> (listof string?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"bad\",\"bag\",\"fig\",\"fed\"]\n[3,1,0,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"ab\",\"ac\",\"ba\",\"bc\"]\n[0,3,1,2]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"bad\",\"bag\",\"fig\",\"fed\"]\n[3,1,0,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"ab\",\"ac\",\"ba\",\"bc\"]\n[0,3,1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "words = [\"bad\",\"bag\",\"fig\",\"fed\"], target = [3,1,0,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "words = [\"ab\",\"ac\",\"ba\",\"bc\"], target = [0,3,1,2]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Each child's subtree appears as one contiguous block in the traversal. Its internal ordering does not affect inversions between different child blocks.",
+    "For each node, define <code>cost[a][b]</code> as the number of inversions contributed when child <code>a</code>'s block appears before child <code>b</code>'s block.",
+    "Compute these costs by processing words in <code>target</code> order. Along each word's path, maintain counts of previously processed words in each child subtree.",
+    "Each node has at most ten children, so use subset DP to find their best ordering. Appending child <code>b</code> adds <code>sum(cost[a][b])</code> over children already placed. Also count the fixed inversions between a marked node and its descendants, then sum the contributions across all nodes."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimize-inversions-in-a-prefix-tree/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.219Z",
+    "sourceUpdatedAt": null
+  }
+}

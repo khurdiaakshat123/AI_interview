@@ -1,0 +1,153 @@
+{
+  "id": "929",
+  "slug": "unique-email-addresses",
+  "title": "Unique Email Addresses",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "statement": "Every **valid email** consists of a **local name** and a **domain name**, separated by the `'@'` sign. Besides lowercase letters, the email may contain one or more `'.'` or `'+'`.\n\n*   For example, in `\"alice@leetcode.com\"`, `\"alice\"` is the **local name**, and `\"leetcode.com\"` is the **domain name**.\n\nIf you add periods `'.'` between some characters in the **local name** part of an email address, mail sent there will be forwarded to the same address without dots in the local name. Note that this rule **does not apply** to **domain names**.\n\n*   For example, `\"alice.z@leetcode.com\"` and `\"alicez@leetcode.com\"` forward to the same email address.\n\nIf you add a plus `'+'` in the **local name**, everything after the first plus sign **will be ignored**. This allows certain emails to be filtered. Note that this rule **does not apply** to **domain names**.\n\n*   For example, `\"m.y+name@email.com\"` will be forwarded to `\"my@email.com\"`.\n\nIt is possible to use both of these rules at the same time.\n\nGiven an array of strings `emails` where we send one email to each `emails[i]`, return _the number of different addresses that actually receive mails_.\n\n**Example 1:**\n\n```\nInput: emails = [\"test.email+alex@leetcode.com\",\"test.e.mail+bob.cathy@leetcode.com\",\"testemail+david@lee.tcode.com\"]\nOutput: 2\nExplanation: \"testemail@leetcode.com\" and \"testemail@lee.tcode.com\" actually receive mails.\n```\n\n**Example 2:**\n\n```\nInput: emails = [\"a@leetcode.com\",\"b@leetcode.com\",\"c@leetcode.com\"]\nOutput: 3\n```\n\n**Constraints:**\n\n*   `1 <= emails.length <= 100`\n*   `1 <= emails[i].length <= 100`\n*   `emails[i]` consist of lowercase English letters, `'+'`, `'.'` and `'@'`.\n*   Each `emails[i]` contains exactly one `'@'` character.\n*   All local and domain names are non-empty.\n*   Local names do not start with a `'+'` character.\n*   Domain names end with the `\".com\"` suffix.\n*   Domain names must contain at least one character before `\".com\"` suffix.",
+  "constraints": [
+    "1 <= emails.length <= 100",
+    "1 <= emails[i].length <= 100",
+    "emails[i] consist of lowercase English letters, '+', '.' and '@'.",
+    "Each emails[i] contains exactly one '@' character.",
+    "All local and domain names are non-empty.",
+    "Local names do not start with a '+' character.",
+    "Domain names end with the \".com\" suffix.",
+    "Domain names must contain at least one character before \".com\" suffix."
+  ],
+  "examples": [
+    {
+      "input": "emails = [\"test.email+alex@leetcode.com\",\"test.e.mail+bob.cathy@leetcode.com\",\"testemail+david@lee.tcode.com\"]",
+      "output": "2",
+      "explanation": "\"testemail@leetcode.com\" and \"testemail@lee.tcode.com\" actually receive mails."
+    },
+    {
+      "input": "emails = [\"a@leetcode.com\",\"b@leetcode.com\",\"c@leetcode.com\"]",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int numUniqueEmails(vector<string>& emails) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int numUniqueEmails(String[] emails) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def numUniqueEmails(self, emails: list[str]) -> int:\n        ",
+    "python": "class Solution(object):\n    def numUniqueEmails(self, emails):\n        \"\"\"\n        :type emails: List[str]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} emails\n * @return {number}\n */\nvar numUniqueEmails = function(emails) {\n    \n};",
+    "typescript": "function numUniqueEmails(emails: string[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int NumUniqueEmails(string[] emails) {\n        \n    }\n}",
+    "c": "int numUniqueEmails(char** emails, int emailsSize) {\n    \n}",
+    "golang": "func numUniqueEmails(emails []string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun numUniqueEmails(emails: Array<String>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func numUniqueEmails(_ emails: [String]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn num_unique_emails(emails: Vec<String>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String[]} emails\n# @return {Integer}\ndef num_unique_emails(emails)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $emails\n     * @return Integer\n     */\n    function numUniqueEmails($emails) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int numUniqueEmails(List<String> emails) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def numUniqueEmails(emails: Array[String]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec num_unique_emails(emails :: [String.t]) :: integer\n  def num_unique_emails(emails) do\n    \n  end\nend",
+    "erlang": "-spec num_unique_emails(Emails :: [unicode:unicode_binary()]) -> integer().\nnum_unique_emails(Emails) ->\n  .",
+    "racket": "(define/contract (num-unique-emails emails)\n  (-> (listof string?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"test.email+alex@leetcode.com\",\"test.e.mail+bob.cathy@leetcode.com\",\"testemail+david@lee.tcode.com\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a@leetcode.com\",\"b@leetcode.com\",\"c@leetcode.com\"]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"test.email+alex@leetcode.com\",\"test.e.mail+bob.cathy@leetcode.com\",\"testemail+david@lee.tcode.com\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a@leetcode.com\",\"b@leetcode.com\",\"c@leetcode.com\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"test.email+alex@leetcode.com\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"test.e.mail+bob.cathy@leetcode.com\",\"testemail+david@lee.tcode.com\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"test.email+alex@leetcode.com\",\"testemail+david@lee.tcode.com\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"test.email+alex@leetcode.com\",\"test.e.mail+bob.cathy@leetcode.com\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"testemail+david@lee.tcode.com\",\"test.e.mail+bob.cathy@leetcode.com\",\"test.email+alex@leetcode.com\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"test.e.mail+bob.cathy@leetcode.com\",\"test.email+alex@leetcode.com\",\"testemail+david@lee.tcode.com\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"testemail+david@lee.tcode.com\",\"test.email+alex@leetcode.com\",\"test.e.mail+bob.cathy@leetcode.com\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"test.email+alex@leetcode.com\",\"test.email+alex@leetcode.com\",\"test.email+alex@leetcode.com\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"test.email+alex@leetcode.com\",\"test.e.mail+bob.cathy@leetcode.com\",\"testemail+david@lee.tcode.com\",\"test.email+alex@leetcode.com\",\"test.e.mail+bob.cathy@leetcode.com\",\"testemail+david@lee.tcode.com\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a@leetcode.com\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"b@leetcode.com\",\"c@leetcode.com\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a@leetcode.com\",\"c@leetcode.com\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"a@leetcode.com\",\"b@leetcode.com\"]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[\"c@leetcode.com\",\"b@leetcode.com\",\"a@leetcode.com\"]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[\"a@leetcode.com\",\"a@leetcode.com\",\"a@leetcode.com\"]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[\"a@leetcode.com\",\"b@leetcode.com\",\"c@leetcode.com\",\"a@leetcode.com\",\"b@leetcode.com\",\"c@leetcode.com\"]",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/unique-email-addresses/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.372Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "id": "3191",
+  "slug": "minimum-operations-to-make-binary-array-elements-equal-to-one-i",
+  "title": "Minimum Operations to Make Binary Array Elements Equal to One I",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Queue",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "statement": "You are given a binary array `nums`.\n\nYou can do the following operation on the array **any** number of times (possibly zero):\n\n*   Choose **any** 3 **consecutive** elements from the array and **flip** **all** of them.\n\n**Flipping** an element means changing its value from 0 to 1, and from 1 to 0.\n\nReturn the **minimum** number of operations required to make all elements in `nums` equal to 1. If it is impossible, return -1.\n\n**Example 1:**\n\n**Input:** nums = \\[0,1,1,1,0,0\\]\n\n**Output:** 3\n\n**Explanation:**  \nWe can do the following operations:\n\n*   Choose the elements at indices 0, 1 and 2. The resulting array is `nums = [**1**,**0**,**0**,1,0,0]`.\n*   Choose the elements at indices 1, 2 and 3. The resulting array is `nums = [1,**1**,**1**,**0**,0,0]`.\n*   Choose the elements at indices 3, 4 and 5. The resulting array is `nums = [1,1,1,**1**,**1**,**1**]`.\n\n**Example 2:**\n\n**Input:** nums = \\[0,1,1,1\\]\n\n**Output:** \\-1\n\n**Explanation:**  \nIt is impossible to make all elements equal to 1.\n\n**Constraints:**\n\n*   `3 <= nums.length <= 10^(5)`\n*   `0 <= nums[i] <= 1`",
+  "constraints": [
+    "3 <= nums.length <= 105",
+    "0 <= nums[i] <= 1"
+  ],
+  "examples": [
+    {
+      "input": "nums = [0,1,1,1,0,0]",
+      "output": "3",
+      "explanation": "We can do the following operations:\n\n\n\tChoose the elements at indices 0, 1 and 2. The resulting array is nums = [1,0,0,1,0,0].\n\tChoose the elements at indices 1, 2 and 3. The resulting array is nums = [1,1,1,0,0,0].\n\tChoose the elements at indices 3, 4 and 5. The resulting array is nums = [1,1,1,1,1,1]."
+    },
+    {
+      "input": "nums = [0,1,1,1]",
+      "output": "-1",
+      "explanation": "It is impossible to make all elements equal to 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minOperations(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minOperations = function(nums) {\n    \n};",
+    "typescript": "function minOperations(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinOperations(int[] nums) {\n        \n    }\n}",
+    "c": "int minOperations(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minOperations(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef min_operations(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minOperations($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(nums :: [integer]) :: integer\n  def min_operations(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(Nums :: [integer()]) -> integer().\nmin_operations(Nums) ->\n  .",
+    "racket": "(define/contract (min-operations nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[0,1,1,1,0,0]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,1,1,1]",
+      "expectedOutput": "-1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[0,1,1,1,0,0]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,1,1,1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,1,1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,0,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,1]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0,1,1,1,0]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,0,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0,0,0,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,1,1,1,0,0,0,1,1,1,0,0]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[0,2,2,2,0,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,2,2,2,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,0,0,0,-1,-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,-1,-1,-1,0,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If <code>nums[0]</code> is 0, then the only way to change it to 1 is by doing an operation on the first 3 elements of the array.",
+    "After Changing <code>nums[0]</code> to 1, use the same logic on the remaining array."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.705Z",
+    "sourceUpdatedAt": null
+  }
+}

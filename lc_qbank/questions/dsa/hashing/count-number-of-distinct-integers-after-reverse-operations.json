@@ -1,0 +1,159 @@
+{
+  "id": "2442",
+  "slug": "count-number-of-distinct-integers-after-reverse-operations",
+  "title": "Count Number of Distinct Integers After Reverse Operations",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Counting"
+  ],
+  "statement": "You are given an array `nums` consisting of **positive** integers.\n\nYou have to take each integer in the array, **reverse its digits**, and add it to the end of the array. You should apply this operation to the original integers in `nums`.\n\nReturn _the number of **distinct** integers in the final array_.\n\n**Example 1:**\n\n```\nInput: nums = [1,13,10,12,31]\nOutput: 6\nExplanation: After including the reverse of each number, the resulting array is [1,13,10,12,31,1,31,1,21,13].\nThe reversed integers that were added to the end of the array are underlined. Note that for the integer 10, after reversing it, it becomes 01 which is just 1.\nThe number of distinct integers in this array is 6 (The numbers 1, 10, 12, 13, 21, and 31).\n```\n\n**Example 2:**\n\n```\nInput: nums = [2,2,2]\nOutput: 1\nExplanation: After including the reverse of each number, the resulting array is [2,2,2,2,2,2].\nThe number of distinct integers in this array is 1 (The number 2).\n```\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(6)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 106"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,13,10,12,31]",
+      "output": "6",
+      "explanation": "After including the reverse of each number, the resulting array is [1,13,10,12,31,1,31,1,21,13].\nThe reversed integers that were added to the end of the array are underlined. Note that for the integer 10, after reversing it, it becomes 01 which is just 1.\nThe number of distinct integers in this array is 6 (The numbers 1, 10, 12, 13, 21, and 31)."
+    },
+    {
+      "input": "nums = [2,2,2]",
+      "output": "1",
+      "explanation": "After including the reverse of each number, the resulting array is [2,2,2,2,2,2].\nThe number of distinct integers in this array is 1 (The number 2)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countDistinctIntegers(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countDistinctIntegers(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countDistinctIntegers(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countDistinctIntegers(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar countDistinctIntegers = function(nums) {\n    \n};",
+    "typescript": "function countDistinctIntegers(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountDistinctIntegers(int[] nums) {\n        \n    }\n}",
+    "c": "int countDistinctIntegers(int* nums, int numsSize) {\n    \n}",
+    "golang": "func countDistinctIntegers(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countDistinctIntegers(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countDistinctIntegers(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_distinct_integers(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef count_distinct_integers(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function countDistinctIntegers($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countDistinctIntegers(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countDistinctIntegers(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_distinct_integers(nums :: [integer]) :: integer\n  def count_distinct_integers(nums) do\n    \n  end\nend",
+    "erlang": "-spec count_distinct_integers(Nums :: [integer()]) -> integer().\ncount_distinct_integers(Nums) ->\n  .",
+    "racket": "(define/contract (count-distinct-integers nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,13,10,12,31]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,2,2]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,13,10,12,31]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,2,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,13]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[10,12,31]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,31]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[31,12,10,13,1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,10,12,13,31]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[31,13,12,10,1]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[1,1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,13,10,12,31,1,13,10,12,31]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,26,20,24,62]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,14,11,13,32]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[0,12,9,11,30]",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "What data structure allows us to insert numbers and find the number of distinct numbers in it?",
+    "Try using a set, insert all the numbers and their reverse into it, and return its size."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-number-of-distinct-integers-after-reverse-operations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.315Z",
+    "sourceUpdatedAt": null
+  }
+}

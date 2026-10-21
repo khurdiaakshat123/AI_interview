@@ -1,0 +1,162 @@
+{
+  "id": "1130",
+  "slug": "minimum-cost-tree-from-leaf-values",
+  "title": "Minimum Cost Tree From Leaf Values",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack",
+    "Cartesian Tree"
+  ],
+  "statement": "Given an array `arr` of positive integers, consider all binary trees such that:\n\n*   Each node has either `0` or `2` children;\n*   The values of `arr` correspond to the values of each **leaf** in an in-order traversal of the tree.\n*   The value of each non-leaf node is equal to the product of the largest leaf value in its left and right subtree, respectively.\n\nAmong all possible binary trees considered, return _the smallest possible sum of the values of each non-leaf node_. It is guaranteed this sum fits into a **32-bit** integer.\n\nA node is a **leaf** if and only if it has zero children.\n\n**Example 1:**\n\n![](./assets/minimum-cost-tree-from-leaf-values-1.jpg)\n```\nInput: arr = [6,2,4]\nOutput: 32\nExplanation: There are two possible trees shown.\nThe first has a non-leaf node sum 36, and the second has non-leaf node sum 32.\n```\n\n**Example 2:**\n\n![](./assets/minimum-cost-tree-from-leaf-values-2.jpg)\n```\nInput: arr = [4,11]\nOutput: 44\n```\n\n**Constraints:**\n\n*   `2 <= arr.length <= 40`\n*   `1 <= arr[i] <= 15`\n*   It is guaranteed that the answer fits into a **32-bit** signed integer (i.e., it is less than 2^(31)).",
+  "constraints": [
+    "2 <= arr.length <= 40",
+    "1 <= arr[i] <= 15",
+    "It is guaranteed that the answer fits into a 32-bit signed integer (i.e., it is less than 231)."
+  ],
+  "examples": [
+    {
+      "input": "arr = [6,2,4]",
+      "output": "32",
+      "explanation": "There are two possible trees shown.\nThe first has a non-leaf node sum 36, and the second has non-leaf node sum 32."
+    },
+    {
+      "input": "arr = [4,11]",
+      "output": "44",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int mctFromLeafValues(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int mctFromLeafValues(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def mctFromLeafValues(self, arr: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def mctFromLeafValues(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {number}\n */\nvar mctFromLeafValues = function(arr) {\n    \n};",
+    "typescript": "function mctFromLeafValues(arr: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MctFromLeafValues(int[] arr) {\n        \n    }\n}",
+    "c": "int mctFromLeafValues(int* arr, int arrSize) {\n    \n}",
+    "golang": "func mctFromLeafValues(arr []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun mctFromLeafValues(arr: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func mctFromLeafValues(_ arr: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn mct_from_leaf_values(arr: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Integer}\ndef mct_from_leaf_values(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Integer\n     */\n    function mctFromLeafValues($arr) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int mctFromLeafValues(List<int> arr) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def mctFromLeafValues(arr: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec mct_from_leaf_values(arr :: [integer]) :: integer\n  def mct_from_leaf_values(arr) do\n    \n  end\nend",
+    "erlang": "-spec mct_from_leaf_values(Arr :: [integer()]) -> integer().\nmct_from_leaf_values(Arr) ->\n  .",
+    "racket": "(define/contract (mct-from-leaf-values arr)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[6,2,4]",
+      "expectedOutput": "32"
+    },
+    {
+      "input": "[4,11]",
+      "expectedOutput": "44"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[6,2,4]",
+      "expectedOutput": "32"
+    },
+    {
+      "input": "[4,11]",
+      "expectedOutput": "44"
+    },
+    {
+      "input": "[6]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "8"
+    },
+    {
+      "input": "[6,4]",
+      "expectedOutput": "24"
+    },
+    {
+      "input": "[6,2]",
+      "expectedOutput": "12"
+    },
+    {
+      "input": "[4,2,6]",
+      "expectedOutput": "32"
+    },
+    {
+      "input": "[2,4,6]",
+      "expectedOutput": "32"
+    },
+    {
+      "input": "[6,4,2]",
+      "expectedOutput": "32"
+    },
+    {
+      "input": "[6,6,6]",
+      "expectedOutput": "72"
+    },
+    {
+      "input": "[6,2,4,6,2,4]",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "[12,4,8]",
+      "expectedOutput": "128"
+    },
+    {
+      "input": "[7,3,5]",
+      "expectedOutput": "50"
+    },
+    {
+      "input": "[5,1,3]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[-6,-2,-4]",
+      "expectedOutput": "20"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Do a DP, where dp(i, j) is the answer for the subarray arr[i]..arr[j].",
+    "For each possible way to partition the subarray i <= k < j, the answer is max(arr[i]..arr[k]) * max(arr[k+1]..arr[j]) + dp(i, k) + dp(k+1, j)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.727Z",
+    "sourceUpdatedAt": null
+  }
+}

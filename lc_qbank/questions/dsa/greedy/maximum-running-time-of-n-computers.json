@@ -1,0 +1,159 @@
+{
+  "id": "2141",
+  "slug": "maximum-running-time-of-n-computers",
+  "title": "Maximum Running Time of N Computers",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You have `n` computers. You are given the integer `n` and a **0-indexed** integer array `batteries` where the `i^(th)` battery can **run** a computer for `batteries[i]` minutes. You are interested in running **all** `n` computers **simultaneously** using the given batteries.\n\nInitially, you can insert **at most one battery** into each computer. After that and at any integer time moment, you can remove a battery from a computer and insert another battery **any number of times**. The inserted battery can be a totally new battery or a battery from another computer. You may assume that the removing and inserting processes take no time.\n\nNote that the batteries cannot be recharged.\n\nReturn _the **maximum** number of minutes you can run all the_ `n` _computers simultaneously._\n\n**Example 1:**\n\n![](./assets/maximum-running-time-of-n-computers-1.png)\n```\nInput: n = 2, batteries = [3,3,3]\nOutput: 4\nExplanation: \nInitially, insert battery 0 into the first computer and battery 1 into the second computer.\nAfter two minutes, remove battery 1 from the second computer and insert battery 2 instead. Note that battery 1 can still run for one minute.\nAt the end of the third minute, battery 0 is drained, and you need to remove it from the first computer and insert battery 1 instead.\nBy the end of the fourth minute, battery 1 is also drained, and the first computer is no longer running.\nWe can run the two computers simultaneously for at most 4 minutes, so we return 4.\n```\n\n**Example 2:**\n\n![](./assets/maximum-running-time-of-n-computers-2.png)\n```\nInput: n = 2, batteries = [1,1,1,1]\nOutput: 2\nExplanation: \nInitially, insert battery 0 into the first computer and battery 2 into the second computer. \nAfter one minute, battery 0 and battery 2 are drained so you need to remove them and insert battery 1 into the first computer and battery 3 into the second computer. \nAfter another minute, battery 1 and battery 3 are also drained so the first and second computers are no longer running.\nWe can run the two computers simultaneously for at most 2 minutes, so we return 2.\n```\n\n**Constraints:**\n\n*   `1 <= n <= batteries.length <= 10^(5)`\n*   `1 <= batteries[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= n <= batteries.length <= 105",
+    "1 <= batteries[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "n = 2, batteries = [3,3,3]",
+      "output": "4",
+      "explanation": "Initially, insert battery 0 into the first computer and battery 1 into the second computer.\nAfter two minutes, remove battery 1 from the second computer and insert battery 2 instead. Note that battery 1 can still run for one minute.\nAt the end of the third minute, battery 0 is drained, and you need to remove it from the first computer and insert battery 1 instead.\nBy the end of the fourth minute, battery 1 is also drained, and the first computer is no longer running.\nWe can run the two computers simultaneously for at most 4 minutes, so we return 4."
+    },
+    {
+      "input": "n = 2, batteries = [1,1,1,1]",
+      "output": "2",
+      "explanation": "Initially, insert battery 0 into the first computer and battery 2 into the second computer. \nAfter one minute, battery 0 and battery 2 are drained so you need to remove them and insert battery 1 into the first computer and battery 3 into the second computer. \nAfter another minute, battery 1 and battery 3 are also drained so the first and second computers are no longer running.\nWe can run the two computers simultaneously for at most 2 minutes, so we return 2."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxRunTime(int n, vector<int>& batteries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxRunTime(int n, int[] batteries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxRunTime(self, n: int, batteries: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxRunTime(self, n, batteries):\n        \"\"\"\n        :type n: int\n        :type batteries: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number[]} batteries\n * @return {number}\n */\nvar maxRunTime = function(n, batteries) {\n    \n};",
+    "typescript": "function maxRunTime(n: number, batteries: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxRunTime(int n, int[] batteries) {\n        \n    }\n}",
+    "c": "long long maxRunTime(int n, int* batteries, int batteriesSize) {\n    \n}",
+    "golang": "func maxRunTime(n int, batteries []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxRunTime(n: Int, batteries: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxRunTime(_ n: Int, _ batteries: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_run_time(n: i32, batteries: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer[]} batteries\n# @return {Integer}\ndef max_run_time(n, batteries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer[] $batteries\n     * @return Integer\n     */\n    function maxRunTime($n, $batteries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxRunTime(int n, List<int> batteries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxRunTime(n: Int, batteries: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_run_time(n :: integer, batteries :: [integer]) :: integer\n  def max_run_time(n, batteries) do\n    \n  end\nend",
+    "erlang": "-spec max_run_time(N :: integer(), Batteries :: [integer()]) -> integer().\nmax_run_time(N, Batteries) ->\n  .",
+    "racket": "(define/contract (max-run-time n batteries)\n  (-> exact-integer? (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "2\n[3,3,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "2\n[1,1,1,1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "2\n[3,3,3]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "2\n[1,1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "0\n[3,3,3]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "1\n[3,3,3]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "3\n[3,3,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4\n[3,3,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "5\n[3,3,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "6\n[3,3,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "7\n[3,3,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "-1\n[3,3,3]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "-2\n[3,3,3]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "2\n[3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "2\n[3,3]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "2\n[3,3,3,3,3,3]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "2\n[6,6,6]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "2\n[4,4,4]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "2\n[2,2,2]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "2\n[-3,-3,-3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "2\n[0,0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "2\n[1,1,1]",
+      "expectedOutput": "1"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For a given running time, can you determine if it is possible to run all n computers simultaneously?",
+    "Try to use Binary Search to find the maximal running time"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-running-time-of-n-computers/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.520Z",
+    "sourceUpdatedAt": null
+  }
+}

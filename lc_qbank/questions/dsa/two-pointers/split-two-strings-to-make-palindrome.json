@@ -1,0 +1,167 @@
+{
+  "id": "1616",
+  "slug": "split-two-strings-to-make-palindrome",
+  "title": "Split Two Strings to Make Palindrome",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Medium",
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "statement": "You are given two strings `a` and `b` of the same length. Choose an index and split both strings **at the same index**, splitting `a` into two strings: `a_(prefix)` and `a_(suffix)` where `a = a_(prefix) + a_(suffix)`, and splitting `b` into two strings: `b_(prefix)` and `b_(suffix)` where `b = b_(prefix) + b_(suffix)`. Check if `a_(prefix) + b_(suffix)` or `b_(prefix) + a_(suffix)` forms a palindrome.\n\nWhen you split a string `s` into `s_(prefix)` and `s_(suffix)`, either `s_(suffix)` or `s_(prefix)` is allowed to be empty. For example, if `s = \"abc\"`, then `\"\" + \"abc\"`, `\"a\" + \"bc\"`, `\"ab\" + \"c\"` , and `\"abc\" + \"\"` are valid splits.\n\nReturn `true` _if it is possible to form_ _a palindrome string, otherwise return_ `false`.\n\n**Notice** that `x + y` denotes the concatenation of strings `x` and `y`.\n\n**Example 1:**\n\n```\nInput: a = \"x\", b = \"y\"\nOutput: true\nExplaination: If either a or b are palindromes the answer is true since you can split in the following way:\naprefix = \"\", asuffix = \"x\"\nbprefix = \"\", bsuffix = \"y\"\nThen, aprefix + bsuffix = \"\" + \"y\" = \"y\", which is a palindrome.\n```\n\n**Example 2:**\n\n```\nInput: a = \"xbdef\", b = \"xecab\"\nOutput: false\n```\n\n**Example 3:**\n\n```\nInput: a = \"ulacfd\", b = \"jizalu\"\nOutput: true\nExplaination: Split them at index 3:\naprefix = \"ula\", asuffix = \"cfd\"\nbprefix = \"jiz\", bsuffix = \"alu\"\nThen, aprefix + bsuffix = \"ula\" + \"alu\" = \"ulaalu\", which is a palindrome.\n```\n\n**Constraints:**\n\n*   `1 <= a.length, b.length <= 10^(5)`\n*   `a.length == b.length`\n*   `a` and `b` consist of lowercase English letters",
+  "constraints": [
+    "1 <= a.length, b.length <= 105",
+    "a.length == b.length",
+    "a and b consist of lowercase English letters"
+  ],
+  "examples": [
+    {
+      "input": "a = \"x\", b = \"y\"",
+      "output": "true\nExplaination: If either a or b are palindromes the answer is true since you can split in the following way:\naprefix = \"\", asuffix = \"x\"\nbprefix = \"\", bsuffix = \"y\"\nThen, aprefix + bsuffix = \"\" + \"y\" = \"y\", which is a palindrome.",
+      "explanation": null
+    },
+    {
+      "input": "a = \"xbdef\", b = \"xecab\"",
+      "output": "false",
+      "explanation": null
+    },
+    {
+      "input": "a = \"ulacfd\", b = \"jizalu\"",
+      "output": "true\nExplaination: Split them at index 3:\naprefix = \"ula\", asuffix = \"cfd\"\nbprefix = \"jiz\", bsuffix = \"alu\"\nThen, aprefix + bsuffix = \"ula\" + \"alu\" = \"ulaalu\", which is a palindrome.",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool checkPalindromeFormation(string a, string b) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean checkPalindromeFormation(String a, String b) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def checkPalindromeFormation(self, a: str, b: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def checkPalindromeFormation(self, a, b):\n        \"\"\"\n        :type a: str\n        :type b: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} a\n * @param {string} b\n * @return {boolean}\n */\nvar checkPalindromeFormation = function(a, b) {\n    \n};",
+    "typescript": "function checkPalindromeFormation(a: string, b: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CheckPalindromeFormation(string a, string b) {\n        \n    }\n}",
+    "c": "bool checkPalindromeFormation(char* a, char* b) {\n    \n}",
+    "golang": "func checkPalindromeFormation(a string, b string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun checkPalindromeFormation(a: String, b: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func checkPalindromeFormation(_ a: String, _ b: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn check_palindrome_formation(a: String, b: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} a\n# @param {String} b\n# @return {Boolean}\ndef check_palindrome_formation(a, b)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $a\n     * @param String $b\n     * @return Boolean\n     */\n    function checkPalindromeFormation($a, $b) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool checkPalindromeFormation(String a, String b) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def checkPalindromeFormation(a: String, b: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec check_palindrome_formation(a :: String.t, b :: String.t) :: boolean\n  def check_palindrome_formation(a, b) do\n    \n  end\nend",
+    "erlang": "-spec check_palindrome_formation(A :: unicode:unicode_binary(), B :: unicode:unicode_binary()) -> boolean().\ncheck_palindrome_formation(A, B) ->\n  .",
+    "racket": "(define/contract (check-palindrome-formation a b)\n  (-> string? string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"x\"\n\"y\"",
+      "expectedOutput": "true\nExplaination: If either a or b are palindromes the answer is true since you can split in the following way:\naprefix = \"\", asuffix = \"x\"\nbprefix = \"\", bsuffix = \"y\"\nThen, aprefix + bsuffix = \"\" + \"y\" = \"y\", which is a palindrome."
+    },
+    {
+      "input": "\"xbdef\"\n\"xecab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ulacfd\"\n\"jizalu\"",
+      "expectedOutput": "true\nExplaination: Split them at index 3:\naprefix = \"ula\", asuffix = \"cfd\"\nbprefix = \"jiz\", bsuffix = \"alu\"\nThen, aprefix + bsuffix = \"ula\" + \"alu\" = \"ulaalu\", which is a palindrome."
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"x\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"xbdef\"\n\"xecab\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ulacfd\"\n\"jizalu\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"xx\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"X\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"b\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aa\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ab\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ba\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aba\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abba\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaaaa\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcde\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"edcba\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aab\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aA\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"0\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"121\"\n\"y\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"racecar\"\n\"y\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Try finding the largest prefix from a that matches a suffix in b",
+    "Try string matching"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/split-two-strings-to-make-palindrome/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.171Z",
+    "sourceUpdatedAt": null
+  }
+}

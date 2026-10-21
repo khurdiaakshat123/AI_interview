@@ -1,0 +1,169 @@
+{
+  "id": "3703",
+  "slug": "remove-k-balanced-substrings",
+  "title": "Remove K-Balanced Substrings",
+  "category": "dsa",
+  "subcategory": "stacks-queues",
+  "difficulty": "Medium",
+  "tags": [
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "statement": "You are given a string `s` consisting of `'('` and `')'`, and an integer `k`.\n\nA **string** is **k-balanced** if it is **exactly** `k` **consecutive** `'('` followed by `k` **consecutive** `')'`, i.e., `'(' * k + ')' * k`.\n\nFor example, if `k = 3`, k-balanced is `\"((()))\"`.\n\nYou must **repeatedly** remove all **non-overlapping k-balanced substrings** from `s`, and then join the remaining parts. Continue this process until no k-balanced **substring** exists.\n\nReturn the final string after all possible removals.\n\n​​​​​​​**Example 1:**\n\n**Input:** s = \"(())\", k = 1\n\n**Output:** \"\"\n\n**Explanation:**\n\nk-balanced substring is `\"()\"`\n\nStep\n\nCurrent `s`\n\n`k-balanced`\n\nResult `s`\n\n1\n\n`(())`\n\n`(**()**)`\n\n`()`\n\n2\n\n`()`\n\n**`()`**\n\nEmpty\n\nThus, the final string is `\"\"`.\n\n**Example 2:**\n\n**Input:** s = \"(()(\", k = 1\n\n**Output:** \"((\"\n\n**Explanation:**\n\nk-balanced substring is `\"()\"`\n\nStep\n\nCurrent `s`\n\n`k-balanced`\n\nResult `s`\n\n1\n\n`(()(`\n\n`(**()**(`\n\n`((`\n\n2\n\n`((`\n\n\\-\n\n`((`\n\nThus, the final string is `\"((\"`.\n\n**Example 3:**\n\n**Input:** s = \"((()))()()()\", k = 3\n\n**Output:** \"()()()\"\n\n**Explanation:**\n\nk-balanced substring is `\"((()))\"`\n\nStep\n\nCurrent `s`\n\n`k-balanced`\n\nResult `s`\n\n1\n\n`((()))()()()`\n\n`**((()))**()()()`\n\n`()()()`\n\n2\n\n`()()()`\n\n\\-\n\n`()()()`\n\nThus, the final string is `\"()()()\"`.\n\n**Constraints:**\n\n*   `2 <= s.length <= 10^(5)`\n*   `s` consists only of `'('` and `')'`.\n*   `1 <= k <= s.length / 2`",
+  "constraints": [
+    "2 <= s.length <= 105",
+    "s consists only of '(' and ')'.",
+    "1 <= k <= s.length / 2"
+  ],
+  "examples": [
+    {
+      "input": "s = \"(())\", k = 1",
+      "output": "\"\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"(()(\", k = 1",
+      "output": "\"((\"",
+      "explanation": null
+    },
+    {
+      "input": "s = \"((()))()()()\", k = 3",
+      "output": "\"()()()\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string removeSubstring(string s, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String removeSubstring(String s, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def removeSubstring(self, s: str, k: int) -> str:\n        ",
+    "python": "class Solution(object):\n    def removeSubstring(self, s, k):\n        \"\"\"\n        :type s: str\n        :type k: int\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {string}\n */\nvar removeSubstring = function(s, k) {\n    \n};",
+    "typescript": "function removeSubstring(s: string, k: number): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string RemoveSubstring(string s, int k) {\n        \n    }\n}",
+    "c": "char* removeSubstring(char* s, int k) {\n    \n}",
+    "golang": "func removeSubstring(s string, k int) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun removeSubstring(s: String, k: Int): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func removeSubstring(_ s: String, _ k: Int) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn remove_substring(s: String, k: i32) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer} k\n# @return {String}\ndef remove_substring(s, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer $k\n     * @return String\n     */\n    function removeSubstring($s, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String removeSubstring(String s, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def removeSubstring(s: String, k: Int): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec remove_substring(s :: String.t, k :: integer) :: String.t\n  def remove_substring(s, k) do\n    \n  end\nend",
+    "erlang": "-spec remove_substring(S :: unicode:unicode_binary(), K :: integer()) -> unicode:unicode_binary().\nremove_substring(S, K) ->\n  .",
+    "racket": "(define/contract (remove-substring s k)\n  (-> string? exact-integer? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"(())\"\n1",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"(()(\"\n1",
+      "expectedOutput": "\"((\""
+    },
+    {
+      "input": "\"((()))()()()\"\n3",
+      "expectedOutput": "\"()()()\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"(())\"\n1",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"(()(\"\n1",
+      "expectedOutput": "\"((\""
+    },
+    {
+      "input": "\"((()))()()()\"\n3",
+      "expectedOutput": "\"()()()\""
+    },
+    {
+      "input": "\"((\"\n1",
+      "expectedOutput": "\"((\""
+    },
+    {
+      "input": "\"))\"\n1",
+      "expectedOutput": "\"))\""
+    },
+    {
+      "input": "\"(\"\n1",
+      "expectedOutput": "\"(\""
+    },
+    {
+      "input": "\"))((\"\n1",
+      "expectedOutput": "\"))((\""
+    },
+    {
+      "input": "\"(())(())\"\n1",
+      "expectedOutput": "\"\""
+    },
+    {
+      "input": "\"((((\"\n1",
+      "expectedOutput": "\"((((\""
+    },
+    {
+      "input": "\"(())))((\"\n1",
+      "expectedOutput": "\"))((\""
+    },
+    {
+      "input": "\"a\"\n1",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"b\"\n1",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"aa\"\n1",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "\"ab\"\n1",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "\"ba\"\n1",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "\"aba\"\n1",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "\"abba\"\n1",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "\"aaaaa\"\n1",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "\"abcde\"\n1",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "\"edcba\"\n1",
+      "expectedOutput": "\"edcba\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use a stack",
+    "Try run-length encoding; operations only happen at boundaries of '(' and ')' runs",
+    "When adjacent runs are '(' then ')', you can cancel in blocks of k"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/remove-k-balanced-substrings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.539Z",
+    "sourceUpdatedAt": null
+  }
+}

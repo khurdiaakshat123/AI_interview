@@ -1,0 +1,169 @@
+{
+  "id": "1647",
+  "slug": "minimum-deletions-to-make-character-frequencies-unique",
+  "title": "Minimum Deletions to Make Character Frequencies Unique",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "A string `s` is called **good** if there are no two different characters in `s` that have the same **frequency**.\n\nGiven a string `s`, return _the **minimum** number of characters you need to delete to make_ `s` _**good**._\n\nThe **frequency** of a character in a string is the number of times it appears in the string. For example, in the string `\"aab\"`, the **frequency** of `'a'` is `2`, while the **frequency** of `'b'` is `1`.\n\n**Example 1:**\n\n```\ns\n```\n\n**Example 2:**\n\n```\nInput: s = \"aaabbbcc\"\nOutput: 2\nExplanation: You can delete two 'b's resulting in the good string \"aaabcc\".\nAnother way it to delete one 'b' and one 'c' resulting in the good string \"aaabbc\".\n```\n\n**Example 3:**\n\n```\nInput: s = \"ceabaacb\"\nOutput: 2\nExplanation: You can delete both 'c's resulting in the good string \"eabaab\".\nNote that we only care about characters that are still in the string at the end (i.e. frequency of 0 is ignored).\n```\n\n**Constraints:**\n\n*   `1 <= s.length <= 10^(5)`\n*   `s` contains only lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 105",
+    "s contains only lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aab\"",
+      "output": "0",
+      "explanation": "s is already good."
+    },
+    {
+      "input": "s = \"aaabbbcc\"",
+      "output": "2",
+      "explanation": "You can delete two 'b's resulting in the good string \"aaabcc\".\nAnother way it to delete one 'b' and one 'c' resulting in the good string \"aaabbc\"."
+    },
+    {
+      "input": "s = \"ceabaacb\"",
+      "output": "2",
+      "explanation": "You can delete both 'c's resulting in the good string \"eabaab\".\nNote that we only care about characters that are still in the string at the end (i.e. frequency of 0 is ignored)."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minDeletions(string s) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minDeletions(String s) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minDeletions(self, s: str) -> int:\n        ",
+    "python": "class Solution(object):\n    def minDeletions(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minDeletions = function(s) {\n    \n};",
+    "typescript": "function minDeletions(s: string): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinDeletions(string s) {\n        \n    }\n}",
+    "c": "int minDeletions(char* s) {\n    \n}",
+    "golang": "func minDeletions(s string) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minDeletions(s: String): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minDeletions(_ s: String) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_deletions(s: String) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @return {Integer}\ndef min_deletions(s)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @return Integer\n     */\n    function minDeletions($s) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minDeletions(String s) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minDeletions(s: String): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_deletions(s :: String.t) :: integer\n  def min_deletions(s) do\n    \n  end\nend",
+    "erlang": "-spec min_deletions(S :: unicode:unicode_binary()) -> integer().\nmin_deletions(S) ->\n  .",
+    "racket": "(define/contract (min-deletions s)\n  (-> string? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaabbbcc\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ceabaacb\"",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"aab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaabbbcc\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"ceabaacb\"",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "\"a\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ab\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"baa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aabaab\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"aabbaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"AAB\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"b\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"ba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aba\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abba\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "\"abcde\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"edcba\"",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "\"aA\"",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "As we can only delete characters, if we have multiple characters having the same frequency, we must decrease all the frequencies of them, except one.",
+    "Sort the alphabet characters by their frequencies non-increasingly.",
+    "Iterate on the alphabet characters, keep decreasing the frequency of the current character until it reaches a value that has not appeared before."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.785Z",
+    "sourceUpdatedAt": null
+  }
+}

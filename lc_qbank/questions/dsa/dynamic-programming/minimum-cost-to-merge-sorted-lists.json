@@ -1,0 +1,120 @@
+{
+  "id": "3801",
+  "slug": "minimum-cost-to-merge-sorted-lists",
+  "title": "Minimum Cost to Merge Sorted Lists",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Dynamic Programming",
+    "Bit Manipulation"
+  ],
+  "statement": "You are given a 2D integer array `lists`, where each `lists[i]` is a non-empty array of integers **sorted** in **non-decreasing** order.\n\nYou may **repeatedly** choose two lists `a = lists[i]` and `b = lists[j]`, where `i != j`, and merge them. The **cost** to merge `a` and `b` is:\n\n`len(a) + len(b) + abs(median(a) - median(b))`, where `len` and `median` denote the list length and median, respectively.\n\nAfter merging `a` and `b`, remove both `a` and `b` from `lists` and insert the new merged **sorted list** in **any** position. Repeat merges until only **one** list remains.\n\nReturn an integer denoting the **minimum total cost** required to merge all lists into one single sorted list.\n\nThe **median** of an array is the middle element after sorting it in non-decreasing order. If the array has an even number of elements, the median is the left middle element.\n\n**Example 1:**\n\n**Input:** lists = \\[\\[1,3,5\\],\\[2,4\\],\\[6,7,8\\]\\]\n\n**Output:** 18\n\n**Explanation:**\n\nMerge `a = [1, 3, 5]` and `b = [2, 4]`:\n\n*   `len(a) = 3` and `len(b) = 2`\n*   `median(a) = 3` and `median(b) = 2`\n*   `cost = len(a) + len(b) + abs(median(a) - median(b)) = 3 + 2 + abs(3 - 2) = 6`\n\nSo `lists` becomes `[[1, 2, 3, 4, 5], [6, 7, 8]]`.\n\nMerge `a = [1, 2, 3, 4, 5]` and `b = [6, 7, 8]`:\n\n*   `len(a) = 5` and `len(b) = 3`\n*   `median(a) = 3` and `median(b) = 7`\n*   `cost = len(a) + len(b) + abs(median(a) - median(b)) = 5 + 3 + abs(3 - 7) = 12`\n\nSo `lists` becomes `[[1, 2, 3, 4, 5, 6, 7, 8]]`, and total cost is `6 + 12 = 18`.\n\n**Example 2:**\n\n**Input:** lists = \\[\\[1,1,5\\],\\[1,4,7,8\\]\\]\n\n**Output:** 10\n\n**Explanation:**\n\nMerge `a = [1, 1, 5]` and `b = [1, 4, 7, 8]`:\n\n*   `len(a) = 3` and `len(b) = 4`\n*   `median(a) = 1` and `median(b) = 4`\n*   `cost = len(a) + len(b) + abs(median(a) - median(b)) = 3 + 4 + abs(1 - 4) = 10`\n\nSo `lists` becomes `[[1, 1, 1, 4, 5, 7, 8]]`, and total cost is 10.\n\n**Example 3:**\n\n**Input:** lists = \\[\\[1\\],\\[3\\]\\]\n\n**Output:** 4\n\n**Explanation:**\n\nMerge `a = [1]` and `b = [3]`:\n\n*   `len(a) = 1` and `len(b) = 1`\n*   `median(a) = 1` and `median(b) = 3`\n*   `cost = len(a) + len(b) + abs(median(a) - median(b)) = 1 + 1 + abs(1 - 3) = 4`\n\nSo `lists` becomes `[[1, 3]]`, and total cost is 4.\n\n**Example 4:**\n\n**Input:** lists = \\[\\[1\\],\\[1\\]\\]\n\n**Output:** 2\n\n**Explanation:**\n\nThe total cost is `len(a) + len(b) + abs(median(a) - median(b)) = 1 + 1 + abs(1 - 1) = 2`.\n\n**Constraints:**\n\n*   `2 <= lists.length <= 12`\n*   `1 <= lists[i].length <= 500`\n*   `-10^(9) <= lists[i][j] <= 10^(9)`\n*   `lists[i]` is sorted in non-decreasing order.\n*   The **sum** of `lists[i].length` will not exceed 2000.",
+  "constraints": [
+    "2 <= lists.length <= 12",
+    "1 <= lists[i].length <= 500",
+    "-109 <= lists[i][j] <= 109",
+    "lists[i] is sorted in non-decreasing order.",
+    "The sum of lists[i].length will not exceed 2000."
+  ],
+  "examples": [
+    {
+      "input": "lists = [[1,3,5],[2,4],[6,7,8]]",
+      "output": "18",
+      "explanation": null
+    },
+    {
+      "input": "lists = [[1,1,5],[1,4,7,8]]",
+      "output": "10",
+      "explanation": null
+    },
+    {
+      "input": "lists = [[1],[3]]",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "lists = [[1],[1]]",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minMergeCost(vector<vector<int>>& lists) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minMergeCost(int[][] lists) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minMergeCost(self, lists: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minMergeCost(self, lists):\n        \"\"\"\n        :type lists: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} lists\n * @return {number}\n */\nvar minMergeCost = function(lists) {\n    \n};",
+    "typescript": "function minMergeCost(lists: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinMergeCost(int[][] lists) {\n        \n    }\n}",
+    "c": "long long minMergeCost(int** lists, int listsSize, int* listsColSize) {\n    \n}",
+    "golang": "func minMergeCost(lists [][]int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minMergeCost(lists: Array<IntArray>): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minMergeCost(_ lists: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_merge_cost(lists: Vec<Vec<i32>>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} lists\n# @return {Integer}\ndef min_merge_cost(lists)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $lists\n     * @return Integer\n     */\n    function minMergeCost($lists) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minMergeCost(List<List<int>> lists) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minMergeCost(lists: Array[Array[Int]]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_merge_cost(lists :: [[integer]]) :: integer\n  def min_merge_cost(lists) do\n    \n  end\nend",
+    "erlang": "-spec min_merge_cost(Lists :: [[integer()]]) -> integer().\nmin_merge_cost(Lists) ->\n  .",
+    "racket": "(define/contract (min-merge-cost lists)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,3,5],[2,4],[6,7,8]]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[[1,1,5],[1,4,7,8]]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[[1],[3]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[1],[1]]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,3,5],[2,4],[6,7,8]]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[[1,1,5],[1,4,7,8]]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[[1],[3]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[1],[1]]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming and bitmasks",
+    "Precompute the medians for every mask",
+    "Let <code>dp[mask]</code> represent the minimum cost to merge all lists in <code>mask</code>",
+    "<code>dp[mask] = min(dp[s] + dp[mask ^ s] + cost(s, mask ^ s))</code>, where <code>s</code> and <code>mask ^ s</code> are nonempty disjoint submasks whose union is <code>mask</code>",
+    "Use the precomputed medians to compute costs efficiently"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-to-merge-sorted-lists/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.678Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "id": "1921",
+  "slug": "eliminate-maximum-number-of-monsters",
+  "title": "Eliminate Maximum Number of Monsters",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You are playing a video game where you are defending your city from a group of `n` monsters. You are given a **0-indexed** integer array `dist` of size `n`, where `dist[i]` is the **initial distance** in kilometers of the `i^(th)` monster from the city.\n\nThe monsters walk toward the city at a **constant** speed. The speed of each monster is given to you in an integer array `speed` of size `n`, where `speed[i]` is the speed of the `i^(th)` monster in kilometers per minute.\n\nYou have a weapon that, once fully charged, can eliminate a **single** monster. However, the weapon takes **one minute** to charge. The weapon is fully charged at the very start.\n\nYou lose when any monster reaches your city. If a monster reaches the city at the exact moment the weapon is fully charged, it counts as a **loss**, and the game ends before you can use your weapon.\n\nReturn _the **maximum** number of monsters that you can eliminate before you lose, or_ `n` _if you can eliminate all the monsters before they reach the city._\n\n**Example 1:**\n\n```\nInput: dist = [1,3,4], speed = [1,1,1]\nOutput: 3\nExplanation:\nIn the beginning, the distances of the monsters are [1,3,4]. You eliminate the first monster.\nAfter a minute, the distances of the monsters are [X,2,3]. You eliminate the second monster.\nAfter a minute, the distances of the monsters are [X,X,2]. You eliminate the third monster.\nAll 3 monsters can be eliminated.\n```\n\n**Example 2:**\n\n```\nInput: dist = [1,1,2,3], speed = [1,1,1,1]\nOutput: 1\nExplanation:\nIn the beginning, the distances of the monsters are [1,1,2,3]. You eliminate the first monster.\nAfter a minute, the distances of the monsters are [X,0,1,2], so you lose.\nYou can only eliminate 1 monster.\n```\n\n**Example 3:**\n\n```\nInput: dist = [3,2,4], speed = [5,3,2]\nOutput: 1\nExplanation:\nIn the beginning, the distances of the monsters are [3,2,4]. You eliminate the first monster.\nAfter a minute, the distances of the monsters are [X,0,2], so you lose.\nYou can only eliminate 1 monster.\n```\n\n**Constraints:**\n\n*   `n == dist.length == speed.length`\n*   `1 <= n <= 10^(5)`\n*   `1 <= dist[i], speed[i] <= 10^(5)`",
+  "constraints": [
+    "n == dist.length == speed.length",
+    "1 <= n <= 105",
+    "1 <= dist[i], speed[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "dist = [1,3,4], speed = [1,1,1]",
+      "output": "3",
+      "explanation": "In the beginning, the distances of the monsters are [1,3,4]. You eliminate the first monster.\nAfter a minute, the distances of the monsters are [X,2,3]. You eliminate the second monster.\nAfter a minute, the distances of the monsters are [X,X,2]. You eliminate the third monster.\nAll 3 monsters can be eliminated."
+    },
+    {
+      "input": "dist = [1,1,2,3], speed = [1,1,1,1]",
+      "output": "1",
+      "explanation": "In the beginning, the distances of the monsters are [1,1,2,3]. You eliminate the first monster.\nAfter a minute, the distances of the monsters are [X,0,1,2], so you lose.\nYou can only eliminate 1 monster."
+    },
+    {
+      "input": "dist = [3,2,4], speed = [5,3,2]",
+      "output": "1",
+      "explanation": "In the beginning, the distances of the monsters are [3,2,4]. You eliminate the first monster.\nAfter a minute, the distances of the monsters are [X,0,2], so you lose.\nYou can only eliminate 1 monster."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int eliminateMaximum(vector<int>& dist, vector<int>& speed) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int eliminateMaximum(int[] dist, int[] speed) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def eliminateMaximum(self, dist: list[int], speed: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def eliminateMaximum(self, dist, speed):\n        \"\"\"\n        :type dist: List[int]\n        :type speed: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} dist\n * @param {number[]} speed\n * @return {number}\n */\nvar eliminateMaximum = function(dist, speed) {\n    \n};",
+    "typescript": "function eliminateMaximum(dist: number[], speed: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int EliminateMaximum(int[] dist, int[] speed) {\n        \n    }\n}",
+    "c": "int eliminateMaximum(int* dist, int distSize, int* speed, int speedSize) {\n    \n}",
+    "golang": "func eliminateMaximum(dist []int, speed []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun eliminateMaximum(dist: IntArray, speed: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func eliminateMaximum(_ dist: [Int], _ speed: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn eliminate_maximum(dist: Vec<i32>, speed: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} dist\n# @param {Integer[]} speed\n# @return {Integer}\ndef eliminate_maximum(dist, speed)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $dist\n     * @param Integer[] $speed\n     * @return Integer\n     */\n    function eliminateMaximum($dist, $speed) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int eliminateMaximum(List<int> dist, List<int> speed) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def eliminateMaximum(dist: Array[Int], speed: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec eliminate_maximum(dist :: [integer], speed :: [integer]) :: integer\n  def eliminate_maximum(dist, speed) do\n    \n  end\nend",
+    "erlang": "-spec eliminate_maximum(Dist :: [integer()], Speed :: [integer()]) -> integer().\neliminate_maximum(Dist, Speed) ->\n  .",
+    "racket": "(define/contract (eliminate-maximum dist speed)\n  (-> (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,3,4]\n[1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,2,3]\n[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,4]\n[5,3,2]",
+      "expectedOutput": "1"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,3,4]\n[1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,2,3]\n[1,1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,2,4]\n[5,3,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]\n[1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,4]\n[1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,4]\n[1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,3]\n[1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[4,3,1]\n[1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,1,1]\n[1,1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,3,4,1,3,4]\n[1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,6,8]\n[1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[2,4,5]\n[1,1,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,2,3]\n[1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,-3,-4]\n[1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0,0]\n[1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]\n[1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]\n[1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,0]\n[1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]\n[1,1,1]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,1]\n[1,1,1]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find the amount of time it takes each monster to arrive.",
+    "Find the order in which the monsters will arrive."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/eliminate-maximum-number-of-monsters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:16.977Z",
+    "sourceUpdatedAt": null
+  }
+}

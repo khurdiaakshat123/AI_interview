@@ -1,0 +1,77 @@
+{
+  "id": "1731",
+  "slug": "the-number-of-employees-which-report-to-each-employee",
+  "title": "The Number of Employees Which Report to Each Employee",
+  "category": "database",
+  "subcategory": "null-handling",
+  "difficulty": "Easy",
+  "tags": [
+    "Database"
+  ],
+  "statement": "Table: `Employees`\n\n```\n+-------------+----------+\n| Column Name | Type     |\n+-------------+----------+\n| employee_id | int      |\n| name        | varchar  |\n| reports_to  | int      |\n| age         | int      |\n+-------------+----------+\nemployee_id is the column with unique values for this table.\nThis table contains information about the employees and the id of the manager they report to. Some employees do not report to anyone (reports_to is null).\n```\n\nFor this problem, we will consider a **manager** an employee who has at least 1 other employee reporting to them.\n\nWrite a solution to report the ids and the names of all **managers**, the number of employees who report **directly** to them, and the average age of the reports rounded to the nearest integer.\n\nReturn the result table ordered by `employee_id`.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployees table:\n+-------------+---------+------------+-----+\n| employee_id | name    | reports_to | age |\n+-------------+---------+------------+-----+\n| 9           | Hercy   | null       | 43  |\n| 6           | Alice   | 9          | 41  |\n| 4           | Bob     | 9          | 36  |\n| 2           | Winston | null       | 37  |\n+-------------+---------+------------+-----+\nOutput: \n+-------------+-------+---------------+-------------+\n| employee_id | name  | reports_count | average_age |\n+-------------+-------+---------------+-------------+\n| 9           | Hercy | 2             | 39          |\n+-------------+-------+---------------+-------------+\nExplanation: Hercy has 2 people report directly to him, Alice and Bob. Their average age is (41+36)/2 = 38.5, which is 39 after rounding it to the nearest integer.\n```\n\n**Example 2:**\n\n```\nInput: \nEmployees table:\n+-------------+---------+------------+-----+ \n| employee_id | name    | reports_to | age |\n|-------------|---------|------------|-----|\n| 1           | Michael | null       | 45  |\n| 2           | Alice   | 1          | 38  |\n| 3           | Bob     | 1          | 42  |\n| 4           | Charlie | 2          | 34  |\n| 5           | David   | 2          | 40  |\n| 6           | Eve     | 3          | 37  |\n| 7           | Frank   | null       | 50  |\n| 8           | Grace   | null       | 48  |\n+-------------+---------+------------+-----+ \nOutput: \n+-------------+---------+---------------+-------------+\n| employee_id | name    | reports_count | average_age |\n| ----------- | ------- | ------------- | ----------- |\n| 1           | Michael | 2             | 40          |\n| 2           | Alice   | 2             | 37          |\n| 3           | Bob     | 1             | 37          |\n+-------------+---------+---------------+-------------+\n```",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "Employees table:\n+-------------+---------+------------+-----+\n| employee_id | name    | reports_to | age |\n+-------------+---------+------------+-----+\n| 9           | Hercy   | null       | 43  |\n| 6           | Alice   | 9          | 41  |\n| 4           | Bob     | 9          | 36  |\n| 2           | Winston | null       | 37  |\n+-------------+---------+------------+-----+",
+      "output": "+-------------+-------+---------------+-------------+\n| employee_id | name  | reports_count | average_age |\n+-------------+-------+---------------+-------------+\n| 9           | Hercy | 2             | 39          |\n+-------------+-------+---------------+-------------+",
+      "explanation": "Hercy has 2 people report directly to him, Alice and Bob. Their average age is (41+36)/2 = 38.5, which is 39 after rounding it to the nearest integer."
+    },
+    {
+      "input": "Employees table:\n+-------------+---------+------------+-----+ \n| employee_id | name    | reports_to | age |\n|-------------|---------|------------|-----|\n| 1           | Michael | null       | 45  |\n| 2           | Alice   | 1          | 38  |\n| 3           | Bob     | 1          | 42  |\n| 4           | Charlie | 2          | 34  |\n| 5           | David   | 2          | 40  |\n| 6           | Eve     | 3          | 37  |\n| 7           | Frank   | null       | 50  |\n| 8           | Grace   | null       | 48  |\n+-------------+---------+------------+-----+",
+      "output": "+-------------+---------+---------------+-------------+\n| employee_id | name    | reports_count | average_age |\n| ----------- | ------- | ------------- | ----------- |\n| 1           | Michael | 2             | 40          |\n| 2           | Alice   | 2             | 37          |\n| 3           | Bob     | 1             | 37          |\n+-------------+---------+---------------+-------------+",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef count_employees(employees: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"Employees\":[\"employee_id\",\"name\",\"reports_to\",\"age\"]},\"rows\":{\"Employees\":[[9,\"Hercy\",null,43],[6,\"Alice\",9,41],[4,\"Bob\",9,36],[2,\"Winston\",null,37]]}}",
+      "expectedOutput": "+-------------+-------+---------------+-------------+\n| employee_id | name  | reports_count | average_age |\n+-------------+-------+---------------+-------------+\n| 9           | Hercy | 2             | 39          |\n+-------------+-------+---------------+-------------+"
+    },
+    {
+      "input": "{\"headers\":{\"Employees\":[\"employee_id\",\"name\",\"reports_to\",\"age\"]},\"rows\":{\"Employees\":[[1,\"Michael\",null,45],[2,\"Alice\",1,38],[3,\"Bob\",1,42],[4,\"Charlie\",2,34],[5,\"David\",2,40],[6,\"Eve\",3,37],[7,\"Frank\",null,50],[8,\"Grace\",null,48]]}}",
+      "expectedOutput": "+-------------+---------+---------------+-------------+\n| employee_id | name    | reports_count | average_age |\n| ----------- | ------- | ------------- | ----------- |\n| 1           | Michael | 2             | 40          |\n| 2           | Alice   | 2             | 37          |\n| 3           | Bob     | 1             | 37          |\n+-------------+---------+---------------+-------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"Employees\":[\"employee_id\",\"name\",\"reports_to\",\"age\"]},\"rows\":{\"Employees\":[[9,\"Hercy\",null,43],[6,\"Alice\",9,41],[4,\"Bob\",9,36],[2,\"Winston\",null,37]]}}",
+      "expectedOutput": "+-------------+-------+---------------+-------------+\n| employee_id | name  | reports_count | average_age |\n+-------------+-------+---------------+-------------+\n| 9           | Hercy | 2             | 39          |\n+-------------+-------+---------------+-------------+"
+    },
+    {
+      "input": "{\"headers\":{\"Employees\":[\"employee_id\",\"name\",\"reports_to\",\"age\"]},\"rows\":{\"Employees\":[[1,\"Michael\",null,45],[2,\"Alice\",1,38],[3,\"Bob\",1,42],[4,\"Charlie\",2,34],[5,\"David\",2,40],[6,\"Eve\",3,37],[7,\"Frank\",null,50],[8,\"Grace\",null,48]]}}",
+      "expectedOutput": "+-------------+---------+---------------+-------------+\n| employee_id | name    | reports_count | average_age |\n| ----------- | ------- | ------------- | ----------- |\n| 1           | Michael | 2             | 40          |\n| 2           | Alice   | 2             | 37          |\n| 3           | Bob     | 1             | 37          |\n+-------------+---------+---------------+-------------+"
+    },
+    {
+      "input": "Employees table:\n+-------------+---------+------------+-----+\n| employee_id | name    | reports_to | age |\n+-------------+---------+------------+-----+\n| 9           | Hercy   | null       | 43  |\n| 6           | Alice   | 9          | 41  |\n| 4           | Bob     | 9          | 36  |\n| 2           | Winston | null       | 37  |\n+-------------+---------+------------+-----+",
+      "expectedOutput": "+-------------+-------+---------------+-------------+\n| employee_id | name  | reports_count | average_age |\n+-------------+-------+---------------+-------------+\n| 9           | Hercy | 2             | 39          |\n+-------------+-------+---------------+-------------+"
+    },
+    {
+      "input": "Employees table:\n+-------------+---------+------------+-----+ \n| employee_id | name    | reports_to | age |\n|-------------|---------|------------|-----|\n| 1           | Michael | null       | 45  |\n| 2           | Alice   | 1          | 38  |\n| 3           | Bob     | 1          | 42  |\n| 4           | Charlie | 2          | 34  |\n| 5           | David   | 2          | 40  |\n| 6           | Eve     | 3          | 37  |\n| 7           | Frank   | null       | 50  |\n| 8           | Grace   | null       | 48  |\n+-------------+---------+------------+-----+",
+      "expectedOutput": "+-------------+---------+---------------+-------------+\n| employee_id | name    | reports_count | average_age |\n| ----------- | ------- | ------------- | ----------- |\n| 1           | Michael | 2             | 40          |\n| 2           | Alice   | 2             | 37          |\n| 3           | Bob     | 1             | 37          |\n+-------------+---------+---------------+-------------+"
+    }
+  ],
+  "sqlSchema": "Create table If Not Exists Employees(employee_id int, name varchar(20), reports_to int, age int)\n\nTruncate table Employees",
+  "sqlSetup": [
+    "insert into Employees (employee_id, name, reports_to, age) values ('9', 'Hercy', NULL, '43')",
+    "insert into Employees (employee_id, name, reports_to, age) values ('6', 'Alice', '9', '41')",
+    "insert into Employees (employee_id, name, reports_to, age) values ('4', 'Bob', '9', '36')",
+    "insert into Employees (employee_id, name, reports_to, age) values ('2', 'Winston', NULL, '37')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/the-number-of-employees-which-report-to-each-employee/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.928Z",
+    "sourceUpdatedAt": null
+  }
+}

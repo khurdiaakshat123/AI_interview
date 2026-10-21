@@ -1,0 +1,156 @@
+{
+  "id": "2218",
+  "slug": "maximum-value-of-k-coins-from-piles",
+  "title": "Maximum Value of K Coins From Piles",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "statement": "There are `n` **piles** of coins on a table. Each pile consists of a **positive number** of coins of assorted denominations.\n\nIn one move, you can choose any coin on **top** of any pile, remove it, and add it to your wallet.\n\nGiven a list `piles`, where `piles[i]` is a list of integers denoting the composition of the `i^(th)` pile from **top to bottom**, and a positive integer `k`, return _the **maximum total value** of coins you can have in your wallet if you choose **exactly**_ `k` _coins optimally_.\n\n**Example 1:**\n\n![](./assets/maximum-value-of-k-coins-from-piles-1.png)\n```\nInput: piles = [[1,100,3],[7,8,9]], k = 2\nOutput: 101\nExplanation:\nThe above diagram shows the different ways we can choose k coins.\nThe maximum total we can obtain is 101.\n```\n\n**Example 2:**\n\n```\nInput: piles = [[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]], k = 7\nOutput: 706\nExplanation:\nThe maximum total can be obtained if we choose all coins from the last pile.\n```\n\n**Constraints:**\n\n*   `n == piles.length`\n*   `1 <= n <= 1000`\n*   `1 <= piles[i][j] <= 10^(5)`\n*   `1 <= k <= sum(piles[i].length) <= 2000`",
+  "constraints": [
+    "n == piles.length",
+    "1 <= n <= 1000",
+    "1 <= piles[i][j] <= 105",
+    "1 <= k <= sum(piles[i].length) <= 2000"
+  ],
+  "examples": [
+    {
+      "input": "piles = [[1,100,3],[7,8,9]], k = 2",
+      "output": "101",
+      "explanation": "The above diagram shows the different ways we can choose k coins.\nThe maximum total we can obtain is 101."
+    },
+    {
+      "input": "piles = [[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]], k = 7",
+      "output": "706",
+      "explanation": "The maximum total can be obtained if we choose all coins from the last pile."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxValueOfCoins(vector<vector<int>>& piles, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxValueOfCoins(List<List<Integer>> piles, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxValueOfCoins(self, piles: list[list[int]], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxValueOfCoins(self, piles, k):\n        \"\"\"\n        :type piles: List[List[int]]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} piles\n * @param {number} k\n * @return {number}\n */\nvar maxValueOfCoins = function(piles, k) {\n    \n};",
+    "typescript": "function maxValueOfCoins(piles: number[][], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxValueOfCoins(IList<IList<int>> piles, int k) {\n        \n    }\n}",
+    "c": "int maxValueOfCoins(int** piles, int pilesSize, int* pilesColSize, int k) {\n    \n}",
+    "golang": "func maxValueOfCoins(piles [][]int, k int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxValueOfCoins(piles: List<List<Int>>, k: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxValueOfCoins(_ piles: [[Int]], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_value_of_coins(piles: Vec<Vec<i32>>, k: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} piles\n# @param {Integer} k\n# @return {Integer}\ndef max_value_of_coins(piles, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $piles\n     * @param Integer $k\n     * @return Integer\n     */\n    function maxValueOfCoins($piles, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxValueOfCoins(List<List<int>> piles, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxValueOfCoins(piles: List[List[Int]], k: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_value_of_coins(piles :: [[integer]], k :: integer) :: integer\n  def max_value_of_coins(piles, k) do\n    \n  end\nend",
+    "erlang": "-spec max_value_of_coins(Piles :: [[integer()]], K :: integer()) -> integer().\nmax_value_of_coins(Piles, K) ->\n  .",
+    "racket": "(define/contract (max-value-of-coins piles k)\n  (-> (listof (listof exact-integer?)) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,100,3],[7,8,9]]\n2",
+      "expectedOutput": "101"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n7",
+      "expectedOutput": "706"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,100,3],[7,8,9]]\n2",
+      "expectedOutput": "101"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n7",
+      "expectedOutput": "706"
+    },
+    {
+      "input": "[[1,100,3],[7,8,9]]\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[1,100,3],[7,8,9]]\n1",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[[1,100,3],[7,8,9]]\n3",
+      "expectedOutput": "108"
+    },
+    {
+      "input": "[[1,100,3],[7,8,9]]\n4",
+      "expectedOutput": "116"
+    },
+    {
+      "input": "[[1,100,3],[7,8,9]]\n5",
+      "expectedOutput": "125"
+    },
+    {
+      "input": "[[1,100,3],[7,8,9]]\n6",
+      "expectedOutput": "128"
+    },
+    {
+      "input": "[[1,100,3],[7,8,9]]\n7",
+      "expectedOutput": "128"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n1",
+      "expectedOutput": "100"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n2",
+      "expectedOutput": "200"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n3",
+      "expectedOutput": "300"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n4",
+      "expectedOutput": "400"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n5",
+      "expectedOutput": "500"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n6",
+      "expectedOutput": "600"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n8",
+      "expectedOutput": "806"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n9",
+      "expectedOutput": "906"
+    },
+    {
+      "input": "[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]]\n10",
+      "expectedOutput": "1006"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For each pile i, what will be the total value of coins we can collect if we choose the first j coins?",
+    "How can we use dynamic programming to combine the results from different piles to find the most optimal answer?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.986Z",
+    "sourceUpdatedAt": null
+  }
+}

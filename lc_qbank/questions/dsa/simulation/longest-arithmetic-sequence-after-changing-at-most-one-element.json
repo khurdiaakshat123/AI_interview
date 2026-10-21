@@ -1,0 +1,159 @@
+{
+  "id": "3872",
+  "slug": "longest-arithmetic-sequence-after-changing-at-most-one-element",
+  "title": "Longest Arithmetic Sequence After Changing At Most One Element",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Enumeration"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nA subarray is **arithmetic** if the difference between consecutive elements in the subarray is constant.\n\nYou can replace **at most one** element in `nums` with any **integer**. Then, you select an arithmetic subarray from `nums`.\n\nReturn an integer denoting the **maximum** length of the arithmetic subarray you can select.\n\n**Example 1:**\n\n**Input:** nums = \\[9,7,5,10,1\\]\n\n**Output:** 5\n\n**Explanation:**\n\n*   Replace `nums[3] = 10` with 3. The array becomes `[9, 7, 5, 3, 1]`.\n*   Select the subarray `[**9, 7, 5, 3, 1**]`, which is arithmetic because consecutive elements have a common difference of -2.\n\n**Example 2:**\n\n**Input:** nums = \\[1,2,6,7\\]\n\n**Output:** 3\n\n**Explanation:**\n\n*   Replace `nums[0] = 1` with -2. The array becomes `[-2, 2, 6, 7]`.\n*   Select the subarray `[**-2, 2, 6**, 7]`, which is arithmetic because consecutive elements have a common difference of 4.\n\n**Constraints:**\n\n*   `4 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(5)`",
+  "constraints": [
+    "4 <= nums.length <= 105",
+    "1 <= nums[i] <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [9,7,5,10,1]",
+      "output": "5",
+      "explanation": "Replace nums[3] = 10 with 3. The array becomes [9, 7, 5, 3, 1].\n\tSelect the subarray [9, 7, 5, 3, 1], which is arithmetic because consecutive elements have a common difference of -2."
+    },
+    {
+      "input": "nums = [1,2,6,7]",
+      "output": "3",
+      "explanation": "Replace nums[0] = 1 with -2. The array becomes [-2, 2, 6, 7].\n\tSelect the subarray [-2, 2, 6, 7], which is arithmetic because consecutive elements have a common difference of 4."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int longestArithmetic(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int longestArithmetic(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def longestArithmetic(self, nums: List[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def longestArithmetic(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar longestArithmetic = function(nums) {\n    \n};",
+    "typescript": "function longestArithmetic(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int LongestArithmetic(int[] nums) {\n        \n    }\n}",
+    "c": "int longestArithmetic(int* nums, int numsSize) {\n    \n}",
+    "golang": "func longestArithmetic(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun longestArithmetic(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func longestArithmetic(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn longest_arithmetic(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef longest_arithmetic(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function longestArithmetic($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int longestArithmetic(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def longestArithmetic(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec longest_arithmetic(nums :: [integer]) :: integer\n  def longest_arithmetic(nums) do\n    \n  end\nend",
+    "erlang": "-spec longest_arithmetic(Nums :: [integer()]) -> integer().\nlongest_arithmetic(Nums) ->\n  .",
+    "racket": "(define/contract (longest-arithmetic nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[9,7,5,10,1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2,6,7]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[9,7,5,10,1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,2,6,7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[9,7]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[5,10,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[9]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[9,1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,10,5,7,9]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[1,5,7,9,10]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[10,9,7,5,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[9,9,9,9,9]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[9,7,5,10,1,9,7,5,10,1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[18,14,10,20,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[10,8,6,11,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[8,6,4,9,0]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[-9,-7,-5,-10,-1]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Precompute <code>L[i]</code> = length of longest arithmetic subarray ending at <code>i</code> using fixed differences.",
+    "Precompute <code>R[i]</code> = length of longest arithmetic subarray starting at <code>i</code>.",
+    "For each index <code>i</code> as the replaced element, check if neighbors allow a common difference <code>d = (nums[i+1] - nums[i-1]) / 2</code> and combine <code>L[i-1]</code> and <code>R[i+1]</code>.",
+    "Also consider extending only left or only right, and take the maximum over all positions."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-arithmetic-sequence-after-changing-at-most-one-element/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:20.367Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "id": "2554",
+  "slug": "maximum-number-of-integers-to-choose-from-a-range-i",
+  "title": "Maximum Number of Integers to Choose From a Range I",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You are given an integer array `banned` and two integers `n` and `maxSum`. You are choosing some number of integers following the below rules:\n\n*   The chosen integers have to be in the range `[1, n]`.\n*   Each integer can be chosen **at most once**.\n*   The chosen integers should not be in the array `banned`.\n*   The sum of the chosen integers should not exceed `maxSum`.\n\nReturn _the **maximum** number of integers you can choose following the mentioned rules_.\n\n**Example 1:**\n\n```\nInput: banned = [1,6,5], n = 5, maxSum = 6\nOutput: 2\nExplanation: You can choose the integers 2 and 4.\n2 and 4 are from the range [1, 5], both did not appear in banned, and their sum is 6, which did not exceed maxSum.\n```\n\n**Example 2:**\n\n```\nInput: banned = [1,2,3,4,5,6,7], n = 8, maxSum = 1\nOutput: 0\nExplanation: You cannot choose any integer while following the mentioned conditions.\n```\n\n**Example 3:**\n\n```\nInput: banned = [11], n = 7, maxSum = 50\nOutput: 7\nExplanation: You can choose the integers 1, 2, 3, 4, 5, 6, and 7.\nThey are from the range [1, 7], all did not appear in banned, and their sum is 28, which did not exceed maxSum.\n```\n\n**Constraints:**\n\n*   `1 <= banned.length <= 10^(4)`\n*   `1 <= banned[i], n <= 10^(4)`\n*   `1 <= maxSum <= 10^(9)`",
+  "constraints": [
+    "1 <= banned.length <= 104",
+    "1 <= banned[i], n <= 104",
+    "1 <= maxSum <= 109"
+  ],
+  "examples": [
+    {
+      "input": "banned = [1,6,5], n = 5, maxSum = 6",
+      "output": "2",
+      "explanation": "You can choose the integers 2 and 4.\n2 and 4 are from the range [1, 5], both did not appear in banned, and their sum is 6, which did not exceed maxSum."
+    },
+    {
+      "input": "banned = [1,2,3,4,5,6,7], n = 8, maxSum = 1",
+      "output": "0",
+      "explanation": "You cannot choose any integer while following the mentioned conditions."
+    },
+    {
+      "input": "banned = [11], n = 7, maxSum = 50",
+      "output": "7",
+      "explanation": "You can choose the integers 1, 2, 3, 4, 5, 6, and 7.\nThey are from the range [1, 7], all did not appear in banned, and their sum is 28, which did not exceed maxSum."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxCount(vector<int>& banned, int n, int maxSum) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxCount(int[] banned, int n, int maxSum) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxCount(self, banned: list[int], n: int, maxSum: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxCount(self, banned, n, maxSum):\n        \"\"\"\n        :type banned: List[int]\n        :type n: int\n        :type maxSum: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} banned\n * @param {number} n\n * @param {number} maxSum\n * @return {number}\n */\nvar maxCount = function(banned, n, maxSum) {\n    \n};",
+    "typescript": "function maxCount(banned: number[], n: number, maxSum: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxCount(int[] banned, int n, int maxSum) {\n        \n    }\n}",
+    "c": "int maxCount(int* banned, int bannedSize, int n, int maxSum) {\n    \n}",
+    "golang": "func maxCount(banned []int, n int, maxSum int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxCount(banned: IntArray, n: Int, maxSum: Int): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxCount(_ banned: [Int], _ n: Int, _ maxSum: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_count(banned: Vec<i32>, n: i32, max_sum: i32) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} banned\n# @param {Integer} n\n# @param {Integer} max_sum\n# @return {Integer}\ndef max_count(banned, n, max_sum)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $banned\n     * @param Integer $n\n     * @param Integer $maxSum\n     * @return Integer\n     */\n    function maxCount($banned, $n, $maxSum) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxCount(List<int> banned, int n, int maxSum) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxCount(banned: Array[Int], n: Int, maxSum: Int): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_count(banned :: [integer], n :: integer, max_sum :: integer) :: integer\n  def max_count(banned, n, max_sum) do\n    \n  end\nend",
+    "erlang": "-spec max_count(Banned :: [integer()], N :: integer(), MaxSum :: integer()) -> integer().\nmax_count(Banned, N, MaxSum) ->\n  .",
+    "racket": "(define/contract (max-count banned n maxSum)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,6,5]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,4,5,6,7]\n8\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[11]\n7\n50",
+      "expectedOutput": "7"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,6,5]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,2,3,4,5,6,7]\n8\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[11]\n7\n50",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[1]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[6,5]\n5\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[1,5]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,6]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[5,6,1]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,5,6]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[6,5,1]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,1,1]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[1,6,5,1,6,5]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,12,10]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,7,6]\n5\n6",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[0,5,4]\n5\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1,-6,-5]\n5\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0,0]\n5\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0]\n5\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-1]\n5\n6",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[0,0]\n5\n6",
+      "expectedOutput": "3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Keep the banned numbers that are less than or equal to n in a set.",
+    "Loop over the numbers from 1 to n and if the number is not banned, use it.",
+    "Keep adding numbers while they are not banned, and their sum is less than or equal to k."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-number-of-integers-to-choose-from-a-range-i/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.060Z",
+    "sourceUpdatedAt": null
+  }
+}

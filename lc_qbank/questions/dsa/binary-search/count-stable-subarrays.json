@@ -1,0 +1,162 @@
+{
+  "id": "3748",
+  "slug": "count-stable-subarrays",
+  "title": "Count Stable Subarrays",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Prefix Sum"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nA **subarray** of `nums` is called **stable** if it contains **no inversions**, i.e., there is no pair of indices `i < j` such that `nums[i] > nums[j]`.\n\nYou are also given a **2D integer array** `queries` of length `q`, where each `queries[i] = [l_(i), r_(i)]` represents a query. For each query `[l_(i), r_(i)]`, compute the number of **stable subarrays** that lie entirely within the segment `nums[l_(i)..r_(i)]`.\n\nReturn an integer array `ans` of length `q`, where `ans[i]` is the answer to the `i^(th)` query.​​​​​​​​​​​​​​\n\n**Note**:\n\n*   A single element subarray is considered stable.\n\n**Example 1:**\n\n**Input:** nums = \\[3,1,2\\], queries = \\[\\[0,1\\],\\[1,2\\],\\[0,2\\]\\]\n\n**Output:** \\[2,3,4\\]\n\n**Explanation:**​​​​​\n\n*   For `queries[0] = [0, 1]`, the subarray is `[nums[0], nums[1]] = [3, 1]`.\n    *   The stable subarrays are `[3]` and `[1]`. The total number of stable subarrays is 2.\n*   For `queries[1] = [1, 2]`, the subarray is `[nums[1], nums[2]] = [1, 2]`.\n    *   The stable subarrays are `[1]`, `[2]`, and `[1, 2]`. The total number of stable subarrays is 3.\n*   For `queries[2] = [0, 2]`, the subarray is `[nums[0], nums[1], nums[2]] = [3, 1, 2]`.\n    *   The stable subarrays are `[3]`, `[1]`, `[2]`, and `[1, 2]`. The total number of stable subarrays is 4.\n\nThus, `ans = [2, 3, 4]`.\n\n**Example 2:**\n\n**Input:** nums = \\[2,2\\], queries = \\[\\[0,1\\],\\[0,0\\]\\]\n\n**Output:** \\[3,1\\]\n\n**Explanation:**\n\n*   For `queries[0] = [0, 1]`, the subarray is `[nums[0], nums[1]] = [2, 2]`.\n    *   The stable subarrays are `[2]`, `[2]`, and `[2, 2]`. The total number of stable subarrays is 3.\n*   For `queries[1] = [0, 0]`, the subarray is `[nums[0]] = [2]`.\n    *   The stable subarray is `[2]`. The total number of stable subarrays is 1.\n\nThus, `ans = [3, 1]`.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(5)`\n*   `1 <= queries.length <= 10^(5)`\n*   `queries[i] = [l_(i), r_(i)]`\n*   `0 <= l_(i) <= r_(i) <= nums.length - 1`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 105",
+    "1 <= queries.length <= 105",
+    "queries[i] = [li, ri]",
+    "0 <= li <= ri <= nums.length - 1"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,1,2], queries = [[0,1],[1,2],[0,2]]",
+      "output": "[2,3,4]",
+      "explanation": "​​​​​\n\n\n\tFor queries[0] = [0, 1], the subarray is [nums[0], nums[1]] = [3, 1].\n\n\t\n\t\tThe stable subarrays are [3] and [1]. The total number of stable subarrays is 2.\n\t\n\t\n\tFor queries[1] = [1, 2], the subarray is [nums[1], nums[2]] = [1, 2].\n\t\n\t\tThe stable subarrays are [1], [2], and [1, 2]. The total number of stable subarrays is 3.\n\t\n\t\n\tFor queries[2] = [0, 2], the subarray is [nums[0], nums[1], nums[2]] = [3, 1, 2].\n\t\n\t\tThe stable subarrays are [3], [1], [2], and [1, 2]. The total number of stable subarrays is 4."
+    },
+    {
+      "input": "nums = [2,2], queries = [[0,1],[0,0]]",
+      "output": "[3,1]",
+      "explanation": "For queries[0] = [0, 1], the subarray is [nums[0], nums[1]] = [2, 2].\n\n\t\n\t\tThe stable subarrays are [2], [2], and [2, 2]. The total number of stable subarrays is 3.\n\t\n\t\n\tFor queries[1] = [0, 0], the subarray is [nums[0]] = [2].\n\t\n\t\tThe stable subarray is [2]. The total number of stable subarrays is 1."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<long long> countStableSubarrays(vector<int>& nums, vector<vector<int>>& queries) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long[] countStableSubarrays(int[] nums, int[][] queries) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countStableSubarrays(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def countStableSubarrays(self, nums, queries):\n        \"\"\"\n        :type nums: List[int]\n        :type queries: List[List[int]]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number[][]} queries\n * @return {number[]}\n */\nvar countStableSubarrays = function(nums, queries) {\n    \n};",
+    "typescript": "function countStableSubarrays(nums: number[], queries: number[][]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public long[] CountStableSubarrays(int[] nums, int[][] queries) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nlong long* countStableSubarrays(int* nums, int numsSize, int** queries, int queriesSize, int* queriesColSize, int* returnSize) {\n    \n}",
+    "golang": "func countStableSubarrays(nums []int, queries [][]int) []int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun countStableSubarrays(nums: IntArray, queries: Array<IntArray>): LongArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countStableSubarrays(_ nums: [Int], _ queries: [[Int]]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_stable_subarrays(nums: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<i64> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer[][]} queries\n# @return {Integer[]}\ndef count_stable_subarrays(nums, queries)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer[][] $queries\n     * @return Integer[]\n     */\n    function countStableSubarrays($nums, $queries) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> countStableSubarrays(List<int> nums, List<List<int>> queries) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countStableSubarrays(nums: Array[Int], queries: Array[Array[Int]]): Array[Long] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_stable_subarrays(nums :: [integer], queries :: [[integer]]) :: [integer]\n  def count_stable_subarrays(nums, queries) do\n    \n  end\nend",
+    "erlang": "-spec count_stable_subarrays(Nums :: [integer()], Queries :: [[integer()]]) -> [integer()].\ncount_stable_subarrays(Nums, Queries) ->\n  .",
+    "racket": "(define/contract (count-stable-subarrays nums queries)\n  (-> (listof exact-integer?) (listof (listof exact-integer?)) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,1,2]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[2,3,4]"
+    },
+    {
+      "input": "[2,2]\n[[0,1],[0,0]]",
+      "expectedOutput": "[3,1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,1,2]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[2,3,4]"
+    },
+    {
+      "input": "[2,2]\n[[0,1],[0,0]]",
+      "expectedOutput": "[3,1]"
+    },
+    {
+      "input": "[3]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[3,3,6]"
+    },
+    {
+      "input": "[1,2]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[3,3,6]"
+    },
+    {
+      "input": "[3,2]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[2,3,4]"
+    },
+    {
+      "input": "[3,1]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[2,3,4]"
+    },
+    {
+      "input": "[2,1,3]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[2,3,4]"
+    },
+    {
+      "input": "[1,2,3]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[3,3,6]"
+    },
+    {
+      "input": "[3,2,1]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[2,2,3]"
+    },
+    {
+      "input": "[3,3,3]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[3,3,6]"
+    },
+    {
+      "input": "[3,1,2,3,1,2]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[2,3,4]"
+    },
+    {
+      "input": "[6,2,4]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[2,3,4]"
+    },
+    {
+      "input": "[4,2,3]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[2,3,4]"
+    },
+    {
+      "input": "[2,0,1]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[2,3,4]"
+    },
+    {
+      "input": "[-3,-1,-2]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[3,2,4]"
+    },
+    {
+      "input": "[0,0,0]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[3,3,6]"
+    },
+    {
+      "input": "[1,1,1]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[3,3,6]"
+    },
+    {
+      "input": "[0]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[3,3,6]"
+    },
+    {
+      "input": "[1]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[3,3,6]"
+    },
+    {
+      "input": "[-1]\n[[0,1],[1,2],[0,2]]",
+      "expectedOutput": "[3,3,6]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Identify maximal non-decreasing segments. Each segment of length <code>L</code> contributes <code>L * (L + 1) / 2</code> stable subarrays.",
+    "Build a prefix array of total stable subarrays ending at each index.",
+    "For query <code>[l, r]</code>, compute the prefix sum in the range and adjust for the left segment crossing <code>l</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-stable-subarrays/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.596Z",
+    "sourceUpdatedAt": null
+  }
+}

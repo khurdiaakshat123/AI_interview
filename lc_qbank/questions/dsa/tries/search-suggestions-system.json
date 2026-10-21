@@ -1,0 +1,167 @@
+{
+  "id": "1268",
+  "slug": "search-suggestions-system",
+  "title": "Search Suggestions System",
+  "category": "dsa",
+  "subcategory": "tries",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "String",
+    "Binary Search",
+    "Trie",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "statement": "You are given an array of strings `products` and a string `searchWord`.\n\nDesign a system that suggests at most three product names from `products` after each character of `searchWord` is typed. Suggested products should have common prefix with `searchWord`. If there are more than three products with a common prefix return the three lexicographically minimums products.\n\nReturn _a list of lists of the suggested products after each character of_ `searchWord` _is typed_.\n\n**Example 1:**\n\n```\nInput: products = [\"mobile\",\"mouse\",\"moneypot\",\"monitor\",\"mousepad\"], searchWord = \"mouse\"\nOutput: [[\"mobile\",\"moneypot\",\"monitor\"],[\"mobile\",\"moneypot\",\"monitor\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"]]\nExplanation: products sorted lexicographically = [\"mobile\",\"moneypot\",\"monitor\",\"mouse\",\"mousepad\"].\nAfter typing m and mo all products match and we show user [\"mobile\",\"moneypot\",\"monitor\"].\nAfter typing mou, mous and mouse the system suggests [\"mouse\",\"mousepad\"].\n```\n\n**Example 2:**\n\n```\nInput: products = [\"havana\"], searchWord = \"havana\"\nOutput: [[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"]]\nExplanation: The only word \"havana\" will be always suggested while typing the search word.\n```\n\n**Constraints:**\n\n*   `1 <= products.length <= 1000`\n*   `1 <= products[i].length <= 3000`\n*   `1 <= sum(products[i].length) <= 2 * 10^(4)`\n*   All the strings of `products` are **unique**.\n*   `products[i]` consists of lowercase English letters.\n*   `1 <= searchWord.length <= 1000`\n*   `searchWord` consists of lowercase English letters.",
+  "constraints": [
+    "1 <= products.length <= 1000",
+    "1 <= products[i].length <= 3000",
+    "1 <= sum(products[i].length) <= 2 * 104",
+    "All the strings of products are unique.",
+    "products[i] consists of lowercase English letters.",
+    "1 <= searchWord.length <= 1000",
+    "searchWord consists of lowercase English letters."
+  ],
+  "examples": [
+    {
+      "input": "products = [\"mobile\",\"mouse\",\"moneypot\",\"monitor\",\"mousepad\"], searchWord = \"mouse\"",
+      "output": "[[\"mobile\",\"moneypot\",\"monitor\"],[\"mobile\",\"moneypot\",\"monitor\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"]]",
+      "explanation": "products sorted lexicographically = [\"mobile\",\"moneypot\",\"monitor\",\"mouse\",\"mousepad\"].\nAfter typing m and mo all products match and we show user [\"mobile\",\"moneypot\",\"monitor\"].\nAfter typing mou, mous and mouse the system suggests [\"mouse\",\"mousepad\"]."
+    },
+    {
+      "input": "products = [\"havana\"], searchWord = \"havana\"",
+      "output": "[[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"]]",
+      "explanation": "The only word \"havana\" will be always suggested while typing the search word."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<vector<string>> suggestedProducts(vector<string>& products, string searchWord) {\n        \n    }\n};",
+    "java": "class Solution {\n    public List<List<String>> suggestedProducts(String[] products, String searchWord) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def suggestedProducts(self, products: list[str], searchWord: str) -> list[list[str]]:\n        ",
+    "python": "class Solution(object):\n    def suggestedProducts(self, products, searchWord):\n        \"\"\"\n        :type products: List[str]\n        :type searchWord: str\n        :rtype: List[List[str]]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} products\n * @param {string} searchWord\n * @return {string[][]}\n */\nvar suggestedProducts = function(products, searchWord) {\n    \n};",
+    "typescript": "function suggestedProducts(products: string[], searchWord: string): string[][] {\n    \n};",
+    "csharp": "public class Solution {\n    public IList<IList<string>> SuggestedProducts(string[] products, string searchWord) {\n        \n    }\n}",
+    "c": "/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nchar*** suggestedProducts(char** products, int productsSize, char* searchWord, int* returnSize, int** returnColumnSizes) {\n    \n}",
+    "golang": "func suggestedProducts(products []string, searchWord string) [][]string {\n    \n}",
+    "kotlin": "class Solution {\n    fun suggestedProducts(products: Array<String>, searchWord: String): List<List<String>> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func suggestedProducts(_ products: [String], _ searchWord: String) -> [[String]] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn suggested_products(products: Vec<String>, search_word: String) -> Vec<Vec<String>> {\n        \n    }\n}",
+    "ruby": "# @param {String[]} products\n# @param {String} search_word\n# @return {String[][]}\ndef suggested_products(products, search_word)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $products\n     * @param String $searchWord\n     * @return String[][]\n     */\n    function suggestedProducts($products, $searchWord) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<List<String>> suggestedProducts(List<String> products, String searchWord) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def suggestedProducts(products: Array[String], searchWord: String): List[List[String]] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec suggested_products(products :: [String.t], search_word :: String.t) :: [[String.t]]\n  def suggested_products(products, search_word) do\n    \n  end\nend",
+    "erlang": "-spec suggested_products(Products :: [unicode:unicode_binary()], SearchWord :: unicode:unicode_binary()) -> [[unicode:unicode_binary()]].\nsuggested_products(Products, SearchWord) ->\n  .",
+    "racket": "(define/contract (suggested-products products searchWord)\n  (-> (listof string?) string? (listof (listof string?)))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"mobile\",\"mouse\",\"moneypot\",\"monitor\",\"mousepad\"]\n\"mouse\"",
+      "expectedOutput": "[[\"mobile\",\"moneypot\",\"monitor\"],[\"mobile\",\"moneypot\",\"monitor\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"]]"
+    },
+    {
+      "input": "[\"havana\"]\n\"havana\"",
+      "expectedOutput": "[[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"]]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"mobile\",\"mouse\",\"moneypot\",\"monitor\",\"mousepad\"]\n\"mouse\"",
+      "expectedOutput": "[[\"mobile\",\"moneypot\",\"monitor\"],[\"mobile\",\"moneypot\",\"monitor\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"]]"
+    },
+    {
+      "input": "[\"havana\"]\n\"havana\"",
+      "expectedOutput": "[[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"]]"
+    },
+    {
+      "input": "[\"mobile\",\"mouse\"]\n\"mouse\"",
+      "expectedOutput": "[[\"mobile\",\"mouse\"],[\"mobile\",\"mouse\"],[\"mouse\"],[\"mouse\"],[\"mouse\"]]"
+    },
+    {
+      "input": "[\"moneypot\",\"monitor\",\"mousepad\"]\n\"mouse\"",
+      "expectedOutput": "[[\"moneypot\",\"monitor\",\"mousepad\"],[\"moneypot\",\"monitor\",\"mousepad\"],[\"mousepad\"],[\"mousepad\"],[\"mousepad\"]]"
+    },
+    {
+      "input": "[\"mobile\"]\n\"mouse\"",
+      "expectedOutput": "[[\"mobile\"],[\"mobile\"],[],[],[]]"
+    },
+    {
+      "input": "[\"mobile\",\"mousepad\"]\n\"mouse\"",
+      "expectedOutput": "[[\"mobile\",\"mousepad\"],[\"mobile\",\"mousepad\"],[\"mousepad\"],[\"mousepad\"],[\"mousepad\"]]"
+    },
+    {
+      "input": "[\"mousepad\",\"monitor\",\"moneypot\",\"mouse\",\"mobile\"]\n\"mouse\"",
+      "expectedOutput": "[[\"mobile\",\"moneypot\",\"monitor\"],[\"mobile\",\"moneypot\",\"monitor\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"]]"
+    },
+    {
+      "input": "[\"mobile\",\"moneypot\",\"monitor\",\"mouse\",\"mousepad\"]\n\"mouse\"",
+      "expectedOutput": "[[\"mobile\",\"moneypot\",\"monitor\"],[\"mobile\",\"moneypot\",\"monitor\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"]]"
+    },
+    {
+      "input": "[\"mousepad\",\"mouse\",\"monitor\",\"moneypot\",\"mobile\"]\n\"mouse\"",
+      "expectedOutput": "[[\"mobile\",\"moneypot\",\"monitor\"],[\"mobile\",\"moneypot\",\"monitor\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"]]"
+    },
+    {
+      "input": "[\"mobile\",\"mobile\",\"mobile\",\"mobile\",\"mobile\"]\n\"mouse\"",
+      "expectedOutput": "[[\"mobile\",\"mobile\",\"mobile\"],[\"mobile\",\"mobile\",\"mobile\"],[],[],[]]"
+    },
+    {
+      "input": "[\"mobile\",\"mouse\",\"moneypot\",\"monitor\",\"mousepad\",\"mobile\",\"mouse\",\"moneypot\",\"monitor\",\"mousepad\"]\n\"mouse\"",
+      "expectedOutput": "[[\"mobile\",\"mobile\",\"moneypot\"],[\"mobile\",\"mobile\",\"moneypot\"],[\"mouse\",\"mouse\",\"mousepad\"],[\"mouse\",\"mouse\",\"mousepad\"],[\"mouse\",\"mouse\",\"mousepad\"]]"
+    },
+    {
+      "input": "[\"a\"]\n\"mouse\"",
+      "expectedOutput": "[[],[],[],[],[]]"
+    },
+    {
+      "input": "[\"\"]\n\"mouse\"",
+      "expectedOutput": "[[],[],[],[],[]]"
+    },
+    {
+      "input": "[\"a\",\"b\"]\n\"mouse\"",
+      "expectedOutput": "[[],[],[],[],[]]"
+    },
+    {
+      "input": "[\"a\",\"a\"]\n\"mouse\"",
+      "expectedOutput": "[[],[],[],[],[]]"
+    },
+    {
+      "input": "[\"ab\",\"ba\"]\n\"mouse\"",
+      "expectedOutput": "[[],[],[],[],[]]"
+    },
+    {
+      "input": "[\"abc\",\"bca\",\"cab\"]\n\"mouse\"",
+      "expectedOutput": "[[],[],[],[],[]]"
+    },
+    {
+      "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n\"mouse\"",
+      "expectedOutput": "[[],[],[],[],[]]"
+    },
+    {
+      "input": "[\"cat\",\"dog\",\"tac\",\"god\",\"act\"]\n\"mouse\"",
+      "expectedOutput": "[[],[],[],[],[]]"
+    },
+    {
+      "input": "[\"one\",\"two\",\"three\"]\n\"mouse\"",
+      "expectedOutput": "[[],[],[],[],[]]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Brute force is a good choice because length of the string is ≤ 1000.",
+    "Binary search the answer.",
+    "Use Trie data structure to store the best three matching. Traverse the Trie."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/search-suggestions-system/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:28.167Z",
+    "sourceUpdatedAt": null
+  }
+}

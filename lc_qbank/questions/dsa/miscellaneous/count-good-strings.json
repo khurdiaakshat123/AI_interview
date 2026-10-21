@@ -1,0 +1,108 @@
+{
+  "id": "4073",
+  "slug": "count-good-strings",
+  "title": "Count Good Strings",
+  "category": "dsa",
+  "subcategory": "miscellaneous",
+  "difficulty": "Hard",
+  "tags": [],
+  "statement": "You are given an integer `n`.\n\nA string is considered **good** if it consists only of the characters `'a'` and `'b'`, and one of the following holds:\n\n*   It contains exactly one **distinct** character, and its length is **odd**.\n*   It can be written as `s = s1 + s2`, where `s1` and `s2` are **non-empty good** strings, and the last character of `s1` is different from the first character of `s2`.\n\nReturn the number of **good** strings of length `n`, modulo `10^(9) + 7`.\n\nHere, `+` denotes string concatenation.\n\n**Example 1:**\n\n**Input:** n = 4\n\n**Output:** 6\n\n**Explanation:**\n\n*   The good strings are `\"aaab\"`, `\"abbb\"`, `\"baaa\"`, `\"bbba\"`, `\"abab\"`, and `\"baba\"`.\n*   For example, `\"aaab\" = \"aaa\" + \"b\"`. Both parts are good because each contains one distinct character and has odd length, and their characters at the boundary are different.\n*   Also, `\"ab\" = \"a\" + \"b\"` is good, so `\"abab\" = \"ab\" + \"ab\"` is good because the boundary characters are different.\n*   Thus, the answer is 6.\n\n**Example 2:**\n\n**Input:** n = 3\n\n**Output:** 4\n\n**Explanation:**\n\nThe good strings are `\"aaa\"`, `\"bbb\"`, `\"aba\"`, and `\"bab\"`. Thus, the answer is 4.\n\n**Example 3:**\n\n**Input:** n = 2\n\n**Output:** 2\n\n**Explanation:**\n\nThe good strings are `\"ab\"` and `\"ba\"`. Thus, the answer is 2.\n\n**Constraints:**\n\n*   `1 <= n <= 10^(15)`",
+  "constraints": [
+    "1 <= n <= 1015"
+  ],
+  "examples": [
+    {
+      "input": "n = 4",
+      "output": "6",
+      "explanation": "The good strings are \"aaab\", \"abbb\", \"baaa\", \"bbba\", \"abab\", and \"baba\".\n\tFor example, \"aaab\" = \"aaa\" + \"b\". Both parts are good because each contains one distinct character and has odd length, and their characters at the boundary are different.\n\tAlso, \"ab\" = \"a\" + \"b\" is good, so \"abab\" = \"ab\" + \"ab\" is good because the boundary characters are different.\n\tThus, the answer is 6."
+    },
+    {
+      "input": "n = 3",
+      "output": "4",
+      "explanation": null
+    },
+    {
+      "input": "n = 2",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countGoodStrings(long long n) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countGoodStrings(long n) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countGoodStrings(self, n: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def countGoodStrings(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @return {number}\n */\nvar countGoodStrings = function(n) {\n    \n};",
+    "typescript": "function countGoodStrings(n: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountGoodStrings(long n) {\n        \n    }\n}",
+    "c": "int countGoodStrings(long long n) {\n    \n}",
+    "golang": "func countGoodStrings(n int64) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countGoodStrings(n: Long): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countGoodStrings(_ n: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_good_strings(n: i64) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @return {Integer}\ndef count_good_strings(n)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @return Integer\n     */\n    function countGoodStrings($n) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countGoodStrings(int n) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countGoodStrings(n: Long): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_good_strings(n :: integer) :: integer\n  def count_good_strings(n) do\n    \n  end\nend",
+    "erlang": "-spec count_good_strings(N :: integer()) -> integer().\ncount_good_strings(N) ->\n  .",
+    "racket": "(define/contract (count-good-strings n)\n  (-> exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "4",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "4",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "n = 4",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "n = 3",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "n = 2",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<strong>1a (Fast Doubling)</strong>: A string is good exactly when every maximal run of identical characters has odd length.",
+    "<strong>1b (Fast Doubling)</strong>: Counting ordered sequences of odd run lengths gives the Fibonacci numbers. Account for the two choices of the first character, then compute the required Fibonacci number using fast doubling.",
+    "<strong>2a (Matrix Exponentiation)</strong>: Let <code>f[n]</code> count ordered sequences of positive odd integers summing to <code>n</code>. Show that <code>f[1] = f[2] = 1</code> and <code>f[n] = f[n - 1] + f[n - 2]</code> for <code>n &gt;= 3</code>.",
+    "<strong>2b (Matrix Exponentiation)</strong>: Represent this recurrence with a two-state transition matrix and use binary exponentiation. Multiply the result by the number of choices for the first character."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-good-strings/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.172Z",
+    "sourceUpdatedAt": null
+  }
+}

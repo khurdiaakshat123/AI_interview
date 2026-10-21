@@ -1,0 +1,156 @@
+{
+  "id": "3502",
+  "slug": "minimum-cost-to-reach-every-position",
+  "title": "Minimum Cost to Reach Every Position",
+  "category": "dsa",
+  "subcategory": "arrays",
+  "difficulty": "Easy",
+  "tags": [
+    "Array"
+  ],
+  "statement": "You are given an integer array `cost` of size `n`. You are currently at position `n` (at the end of the line) in a line of `n + 1` people (numbered from 0 to `n`).\n\nYou wish to move forward in the line, but each person in front of you charges a specific amount to **swap** places. The cost to swap with person `i` is given by `cost[i]`.\n\nYou are allowed to swap places with people as follows:\n\n*   If they are in front of you, you **must** pay them `cost[i]` to swap with them.\n*   If they are behind you, they can swap with you for free.\n\nReturn an array `answer` of size `n`, where `answer[i]` is the **minimum** total cost to reach each position `i` in the line.\n\n**Example 1:**\n\n**Input:** cost = \\[5,3,4,1,3,2\\]\n\n**Output:** \\[5,3,3,1,1,1\\]\n\n**Explanation:**\n\nWe can get to each position in the following way:\n\n*   `i = 0`. We can swap with person 0 for a cost of 5.\n*   `i = 1`. We can swap with person 1 for a cost of 3.\n*   `i = 2`. We can swap with person 1 for a cost of 3, then swap with person 2 for free.\n*   `i = 3`. We can swap with person 3 for a cost of 1.\n*   `i = 4`. We can swap with person 3 for a cost of 1, then swap with person 4 for free.\n*   `i = 5`. We can swap with person 3 for a cost of 1, then swap with person 5 for free.\n\n**Example 2:**\n\n**Input:** cost = \\[1,2,4,6,7\\]\n\n**Output:** \\[1,1,1,1,1\\]\n\n**Explanation:**\n\nWe can swap with person 0 for a cost of 1, then we will be able to reach any position `i` for free.\n\n**Constraints:**\n\n*   `1 <= n == cost.length <= 100`\n*   `1 <= cost[i] <= 100`",
+  "constraints": [
+    "1 <= n == cost.length <= 100",
+    "1 <= cost[i] <= 100"
+  ],
+  "examples": [
+    {
+      "input": "cost = [5,3,4,1,3,2]",
+      "output": "[5,3,3,1,1,1]",
+      "explanation": null
+    },
+    {
+      "input": "cost = [1,2,4,6,7]",
+      "output": "[1,1,1,1,1]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> minCosts(vector<int>& cost) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] minCosts(int[] cost) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minCosts(self, cost: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def minCosts(self, cost):\n        \"\"\"\n        :type cost: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} cost\n * @return {number[]}\n */\nvar minCosts = function(cost) {\n    \n};",
+    "typescript": "function minCosts(cost: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] MinCosts(int[] cost) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* minCosts(int* cost, int costSize, int* returnSize) {\n    \n}",
+    "golang": "func minCosts(cost []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minCosts(cost: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minCosts(_ cost: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_costs(cost: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} cost\n# @return {Integer[]}\ndef min_costs(cost)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $cost\n     * @return Integer[]\n     */\n    function minCosts($cost) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> minCosts(List<int> cost) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minCosts(cost: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_costs(cost :: [integer]) :: [integer]\n  def min_costs(cost) do\n    \n  end\nend",
+    "erlang": "-spec min_costs(Cost :: [integer()]) -> [integer()].\nmin_costs(Cost) ->\n  .",
+    "racket": "(define/contract (min-costs cost)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[5,3,4,1,3,2]",
+      "expectedOutput": "[5,3,3,1,1,1]"
+    },
+    {
+      "input": "[1,2,4,6,7]",
+      "expectedOutput": "[1,1,1,1,1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[5,3,4,1,3,2]",
+      "expectedOutput": "[5,3,3,1,1,1]"
+    },
+    {
+      "input": "[1,2,4,6,7]",
+      "expectedOutput": "[1,1,1,1,1]"
+    },
+    {
+      "input": "[5,3,4]",
+      "expectedOutput": "[5,3,3]"
+    },
+    {
+      "input": "[1,3,2]",
+      "expectedOutput": "[1,1,1]"
+    },
+    {
+      "input": "[5]",
+      "expectedOutput": "[5]"
+    },
+    {
+      "input": "[5,2]",
+      "expectedOutput": "[5,2]"
+    },
+    {
+      "input": "[5,3]",
+      "expectedOutput": "[5,3]"
+    },
+    {
+      "input": "[2,3,1,4,3,5]",
+      "expectedOutput": "[2,2,1,1,1,1]"
+    },
+    {
+      "input": "[1,2,3,3,4,5]",
+      "expectedOutput": "[1,1,1,1,1,1]"
+    },
+    {
+      "input": "[5,4,3,3,2,1]",
+      "expectedOutput": "[5,4,3,3,2,1]"
+    },
+    {
+      "input": "[5,5,5,5,5]",
+      "expectedOutput": "[5,5,5,5,5]"
+    },
+    {
+      "input": "[5,3,4,1,3,2,5,3,4,1,3,2]",
+      "expectedOutput": "[5,3,3,1,1,1,1,1,1,1,1,1]"
+    },
+    {
+      "input": "[10,6,8,2,6,4]",
+      "expectedOutput": "[10,6,6,2,2,2]"
+    },
+    {
+      "input": "[6,4,5,2,4,3]",
+      "expectedOutput": "[6,4,4,2,2,2]"
+    },
+    {
+      "input": "[4,2,3,0,2,1]",
+      "expectedOutput": "[4,2,2,0,0,0]"
+    },
+    {
+      "input": "[-5,-3,-4,-1,-3,-2]",
+      "expectedOutput": "[-5,-5,-5,-5,-5,-5]"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "[0,0,0,0]"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "[1,1,1,1]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Note that once you swap to a position with a lower cost, you can reach any later position for free.",
+    "Use a min prefix array."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-cost-to-reach-every-position/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.711Z",
+    "sourceUpdatedAt": null
+  }
+}

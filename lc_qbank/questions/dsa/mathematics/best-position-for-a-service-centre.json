@@ -1,0 +1,96 @@
+{
+  "id": "1515",
+  "slug": "best-position-for-a-service-centre",
+  "title": "Best Position for a Service Centre",
+  "category": "dsa",
+  "subcategory": "mathematics",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry",
+    "Randomized"
+  ],
+  "statement": "A delivery company wants to build a new service center in a new city. The company knows the positions of all the customers in this city on a 2D-Map and wants to build the new center in a position such that **the sum of the euclidean distances to all customers is minimum**.\n\nGiven an array `positions` where `positions[i] = [x_(i), y_(i)]` is the position of the `ith` customer on the map, return _the minimum sum of the euclidean distances_ to all customers.\n\nIn other words, you need to choose the position of the service center `[x_(centre), y_(centre)]` such that the following formula is minimized:\n\n![](./assets/best-position-for-a-service-centre-1.jpg)\n\nAnswers within `10^(-5)` of the actual value will be accepted.\n\n**Example 1:**\n\n![](./assets/best-position-for-a-service-centre-2.jpg)\n```\nInput: positions = [[0,1],[1,0],[1,2],[2,1]]\nOutput: 4.00000\nExplanation: As shown, you can see that choosing [xcentre, ycentre] = [1, 1] will make the distance to each customer = 1, the sum of all distances is 4 which is the minimum possible we can achieve.\n```\n\n**Example 2:**\n\n![](./assets/best-position-for-a-service-centre-3.jpg)\n```\nInput: positions = [[1,1],[3,3]]\nOutput: 2.82843\nExplanation: The minimum possible sum of distances = sqrt(2) + sqrt(2) = 2.82843\n```\n\n**Constraints:**\n\n*   `1 <= positions.length <= 50`\n*   `positions[i].length == 2`\n*   `0 <= x_(i), y_(i) <= 100`",
+  "constraints": [
+    "1 <= positions.length <= 50",
+    "positions[i].length == 2",
+    "0 <= xi, yi <= 100"
+  ],
+  "examples": [
+    {
+      "input": "positions = [[0,1],[1,0],[1,2],[2,1]]",
+      "output": "4.00000",
+      "explanation": "As shown, you can see that choosing [xcentre, ycentre] = [1, 1] will make the distance to each customer = 1, the sum of all distances is 4 which is the minimum possible we can achieve."
+    },
+    {
+      "input": "positions = [[1,1],[3,3]]",
+      "output": "2.82843",
+      "explanation": "The minimum possible sum of distances = sqrt(2) + sqrt(2) = 2.82843"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    double getMinDistSum(vector<vector<int>>& positions) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double getMinDistSum(int[][] positions) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def getMinDistSum(self, positions: list[list[int]]) -> float:\n        ",
+    "python": "class Solution(object):\n    def getMinDistSum(self, positions):\n        \"\"\"\n        :type positions: List[List[int]]\n        :rtype: float\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} positions\n * @return {number}\n */\nvar getMinDistSum = function(positions) {\n    \n};",
+    "typescript": "function getMinDistSum(positions: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public double GetMinDistSum(int[][] positions) {\n        \n    }\n}",
+    "c": "double getMinDistSum(int** positions, int positionsSize, int* positionsColSize) {\n    \n}",
+    "golang": "func getMinDistSum(positions [][]int) float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun getMinDistSum(positions: Array<IntArray>): Double {\n        \n    }\n}",
+    "swift": "class Solution {\n    func getMinDistSum(_ positions: [[Int]]) -> Double {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn get_min_dist_sum(positions: Vec<Vec<i32>>) -> f64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} positions\n# @return {Float}\ndef get_min_dist_sum(positions)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $positions\n     * @return Float\n     */\n    function getMinDistSum($positions) {\n        \n    }\n}",
+    "dart": "class Solution {\n  double getMinDistSum(List<List<int>> positions) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def getMinDistSum(positions: Array[Array[Int]]): Double = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec get_min_dist_sum(positions :: [[integer]]) :: float\n  def get_min_dist_sum(positions) do\n    \n  end\nend",
+    "erlang": "-spec get_min_dist_sum(Positions :: [[integer()]]) -> float().\nget_min_dist_sum(Positions) ->\n  .",
+    "racket": "(define/contract (get-min-dist-sum positions)\n  (-> (listof (listof exact-integer?)) flonum?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[0,1],[1,0],[1,2],[2,1]]",
+      "expectedOutput": "4.00000"
+    },
+    {
+      "input": "[[1,1],[3,3]]",
+      "expectedOutput": "2.82843"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[0,1],[1,0],[1,2],[2,1]]",
+      "expectedOutput": "4.00000"
+    },
+    {
+      "input": "[[1,1],[3,3]]",
+      "expectedOutput": "2.82843"
+    },
+    {
+      "input": "positions = [[0,1],[1,0],[1,2],[2,1]]",
+      "expectedOutput": "4.00000"
+    },
+    {
+      "input": "positions = [[1,1],[3,3]]",
+      "expectedOutput": "2.82843"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The problem can be reworded as, giving a set of points on a 2d-plane, return the geometric median.",
+    "Loop over each triplet of points (positions[i], positions[j], positions[k]) where i < j < k, get the centre of the circle which goes throw the 3 points, check if all other points lie in this circle."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/best-position-for-a-service-centre/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:13.487Z",
+    "sourceUpdatedAt": null
+  }
+}

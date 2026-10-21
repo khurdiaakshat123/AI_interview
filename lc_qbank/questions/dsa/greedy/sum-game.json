@@ -1,0 +1,169 @@
+{
+  "id": "1927",
+  "slug": "sum-game",
+  "title": "Sum Game",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "String",
+    "Greedy",
+    "Game Theory"
+  ],
+  "statement": "Alice and Bob take turns playing a game, with **Alice** **starting first**.\n\nYou are given a string `num` of **even length** consisting of digits and `'?'` characters. On each turn, a player will do the following if there is still at least one `'?'` in `num`:\n\n1.  Choose an index `i` where `num[i] == '?'`.\n2.  Replace `num[i]` with any digit between `'0'` and `'9'`.\n\nThe game ends when there are no more `'?'` characters in `num`.\n\nFor Bob to win, the sum of the digits in the first half of `num` must be **equal** to the sum of the digits in the second half. For Alice to win, the sums must **not be equal**.\n\n*   For example, if the game ended with `num = \"243801\"`, then Bob wins because `2+4+3 = 8+0+1`. If the game ended with `num = \"243803\"`, then Alice wins because `2+4+3 != 8+0+3`.\n\nAssuming Alice and Bob play **optimally**, return `true` _if Alice will win and_ `false` _if Bob will win_.\n\n**Example 1:**\n\n```\nInput: num = \"5023\"\nOutput: false\nExplanation: There are no moves to be made.\nThe sum of the first half is equal to the sum of the second half: 5 + 0 = 2 + 3.\n```\n\n**Example 2:**\n\n```\nInput: num = \"25??\"\nOutput: true\nExplanation: Alice can replace one of the '?'s with '9' and it will be impossible for Bob to make the sums equal.\n```\n\n**Example 3:**\n\n```\nInput: num = \"?3295???\"\nOutput: false\nExplanation: It can be proven that Bob will always win. One possible outcome is:\n- Alice replaces the first '?' with '9'. num = \"93295???\".\n- Bob replaces one of the '?' in the right half with '9'. num = \"932959??\".\n- Alice replaces one of the '?' in the right half with '2'. num = \"9329592?\".\n- Bob replaces the last '?' in the right half with '7'. num = \"93295927\".\nBob wins because 9 + 3 + 2 + 9 = 5 + 9 + 2 + 7.\n```\n\n**Constraints:**\n\n*   `2 <= num.length <= 10^(5)`\n*   `num.length` is **even**.\n*   `num` consists of only digits and `'?'`.",
+  "constraints": [
+    "2 <= num.length <= 105",
+    "num.length is even.",
+    "num consists of only digits and '?'."
+  ],
+  "examples": [
+    {
+      "input": "num = \"5023\"",
+      "output": "false",
+      "explanation": "There are no moves to be made.\nThe sum of the first half is equal to the sum of the second half: 5 + 0 = 2 + 3."
+    },
+    {
+      "input": "num = \"25??\"",
+      "output": "true",
+      "explanation": "Alice can replace one of the '?'s with '9' and it will be impossible for Bob to make the sums equal."
+    },
+    {
+      "input": "num = \"?3295???\"",
+      "output": "false",
+      "explanation": "It can be proven that Bob will always win. One possible outcome is:\n- Alice replaces the first '?' with '9'. num = \"93295???\".\n- Bob replaces one of the '?' in the right half with '9'. num = \"932959??\".\n- Alice replaces one of the '?' in the right half with '2'. num = \"9329592?\".\n- Bob replaces the last '?' in the right half with '7'. num = \"93295927\".\nBob wins because 9 + 3 + 2 + 9 = 5 + 9 + 2 + 7."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool sumGame(string num) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean sumGame(String num) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def sumGame(self, num: str) -> bool:\n        ",
+    "python": "class Solution(object):\n    def sumGame(self, num):\n        \"\"\"\n        :type num: str\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} num\n * @return {boolean}\n */\nvar sumGame = function(num) {\n    \n};",
+    "typescript": "function sumGame(num: string): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool SumGame(string num) {\n        \n    }\n}",
+    "c": "bool sumGame(char* num) {\n    \n}",
+    "golang": "func sumGame(num string) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun sumGame(num: String): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func sumGame(_ num: String) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn sum_game(num: String) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} num\n# @return {Boolean}\ndef sum_game(num)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $num\n     * @return Boolean\n     */\n    function sumGame($num) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool sumGame(String num) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def sumGame(num: String): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec sum_game(num :: String.t) :: boolean\n  def sum_game(num) do\n    \n  end\nend",
+    "erlang": "-spec sum_game(Num :: unicode:unicode_binary()) -> boolean().\nsum_game(Num) ->\n  .",
+    "racket": "(define/contract (sum-game num)\n  (-> string? boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"5023\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"25??\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"?3295???\"",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"5023\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"25??\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"?3295???\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"50\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"23\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"5\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"3205\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"50235023\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"5555\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"50233205\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"0\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"121\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"25\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"??\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"2\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"??52\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"25??25??\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"2222\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"25????52\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"?329\"",
+      "expectedOutput": "true"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Bob can always make the total sum of both sides equal in mod 9.",
+    "Why does the difference between the number of question marks on the left and right side matter?"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/sum-game/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.509Z",
+    "sourceUpdatedAt": null
+  }
+}

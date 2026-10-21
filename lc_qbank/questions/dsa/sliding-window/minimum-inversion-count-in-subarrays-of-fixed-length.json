@@ -1,0 +1,113 @@
+{
+  "id": "3768",
+  "slug": "minimum-inversion-count-in-subarrays-of-fixed-length",
+  "title": "Minimum Inversion Count in Subarrays of Fixed Length",
+  "category": "dsa",
+  "subcategory": "sliding-window",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Segment Tree",
+    "Sliding Window"
+  ],
+  "statement": "You are given an integer array `nums` of length `n` and an integer `k`.\n\nAn **inversion** is a pair of indices `(i, j)` from `nums` such that `i < j` and `nums[i] > nums[j]`.\n\nThe **inversion count** of a **subarray** is the number of inversions within it.\n\nReturn the **minimum** inversion count among all **subarrays** of `nums` with length `k`.\n\n**Example 1:**\n\n**Input:** nums = \\[3,1,2,5,4\\], k = 3\n\n**Output:** 0\n\n**Explanation:**\n\nWe consider all subarrays of length `k = 3` (indices below are relative to each subarray):\n\n*   `[3, 1, 2]` has 2 inversions: `(0, 1)` and `(0, 2)`.\n*   `[1, 2, 5]` has 0 inversions.\n*   `[2, 5, 4]` has 1 inversion: `(1, 2)`.\n\nThe minimum inversion count among all subarrays of length `3` is 0, achieved by subarray `[1, 2, 5]`.\n\n**Example 2:**\n\n**Input:** nums = \\[5,3,2,1\\], k = 4\n\n**Output:** 6\n\n**Explanation:**\n\nThere is only one subarray of length `k = 4`: `[5, 3, 2, 1]`.  \nWithin this subarray, the inversions are: `(0, 1)`, `(0, 2)`, `(0, 3)`, `(1, 2)`, `(1, 3)`, and `(2, 3)`.  \nTotal inversions is 6, so the minimum inversion count is 6.\n\n**Example 3:**\n\n**Input:** nums = \\[2,1\\], k = 1\n\n**Output:** 0\n\n**Explanation:**\n\nAll subarrays of length `k = 1` contain only one element, so no inversions are possible.  \nThe minimum inversion count is therefore 0.\n\n**Constraints:**\n\n*   `1 <= n == nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`\n*   `1 <= k <= n`",
+  "constraints": [
+    "1 <= n == nums.length <= 105",
+    "1 <= nums[i] <= 109",
+    "1 <= k <= n"
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,1,2,5,4], k = 3",
+      "output": "0",
+      "explanation": null
+    },
+    {
+      "input": "nums = [5,3,2,1], k = 4",
+      "output": "6",
+      "explanation": null
+    },
+    {
+      "input": "nums = [2,1], k = 1",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minInversionCount(vector<int>& nums, int k) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minInversionCount(int[] nums, int k) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minInversionCount(self, nums: List[int], k: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def minInversionCount(self, nums, k):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar minInversionCount = function(nums, k) {\n    \n};",
+    "typescript": "function minInversionCount(nums: number[], k: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinInversionCount(int[] nums, int k) {\n        \n    }\n}",
+    "c": "long long minInversionCount(int* nums, int numsSize, int k) {\n    \n}",
+    "golang": "func minInversionCount(nums []int, k int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minInversionCount(nums: IntArray, k: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minInversionCount(_ nums: [Int], _ k: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_inversion_count(nums: Vec<i32>, k: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @return {Integer}\ndef min_inversion_count(nums, k)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @return Integer\n     */\n    function minInversionCount($nums, $k) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minInversionCount(List<int> nums, int k) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minInversionCount(nums: Array[Int], k: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_inversion_count(nums :: [integer], k :: integer) :: integer\n  def min_inversion_count(nums, k) do\n    \n  end\nend",
+    "erlang": "-spec min_inversion_count(Nums :: [integer()], K :: integer()) -> integer().\nmin_inversion_count(Nums, K) ->\n  .",
+    "racket": "(define/contract (min-inversion-count nums k)\n  (-> (listof exact-integer?) exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[3,1,2,5,4]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,3,2,1]\n4",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,1]\n1",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[3,1,2,5,4]\n3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[5,3,2,1]\n4",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[2,1]\n1",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "nums = [3,1,2,5,4], k = 3",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "nums = [5,3,2,1], k = 4",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "nums = [2,1], k = 1",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Compress all numbers to integers in the range <code>1</code> to <code>n</code>.",
+    "Use a Fenwick tree (BIT) to maintain counts of the numbers.",
+    "When adding an element at the back, query how many elements are larger than it; when deleting an element from the front, query how many elements are smaller and update the tree accordingly."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-inversion-count-in-subarrays-of-fixed-length/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.033Z",
+    "sourceUpdatedAt": null
+  }
+}

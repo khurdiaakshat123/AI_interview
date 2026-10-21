@@ -1,0 +1,173 @@
+{
+  "id": "2122",
+  "slug": "recover-the-original-array",
+  "title": "Recover the Original Array",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Sorting",
+    "Enumeration"
+  ],
+  "statement": "Alice had a **0-indexed** array `arr` consisting of `n` **positive** integers. She chose an arbitrary **positive integer** `k` and created two new **0-indexed** integer arrays `lower` and `higher` in the following manner:\n\n1.  `lower[i] = arr[i] - k`, for every index `i` where `0 <= i < n`\n2.  `higher[i] = arr[i] + k`, for every index `i` where `0 <= i < n`\n\nUnfortunately, Alice lost all three arrays. However, she remembers the integers that were present in the arrays `lower` and `higher`, but not the array each integer belonged to. Help Alice and recover the original array.\n\nGiven an array `nums` consisting of `2n` integers, where **exactly** `n` of the integers were present in `lower` and the remaining in `higher`, return _the **original** array_ `arr`. In case the answer is not unique, return _**any** valid array_.\n\n**Note:** The test cases are generated such that there exists **at least one** valid array `arr`.\n\n**Example 1:**\n\n```\nInput: nums = [2,10,6,4,8,12]\nOutput: [3,7,11]\nExplanation:\nIf arr = [3,7,11] and k = 1, we get lower = [2,6,10] and higher = [4,8,12].\nCombining lower and higher gives us [2,6,10,4,8,12], which is a permutation of nums.\nAnother valid possibility is that arr = [5,7,9] and k = 3. In that case, lower = [2,4,6] and higher = [8,10,12].\n```\n\n**Example 2:**\n\n```\nInput: nums = [1,1,3,3]\nOutput: [2,2]\nExplanation:\nIf arr = [2,2] and k = 1, we get lower = [1,1] and higher = [3,3].\nCombining lower and higher gives us [1,1,3,3], which is equal to nums.\nNote that arr cannot be [1,3] because in that case, the only possible way to obtain [1,1,3,3] is with k = 0.\nThis is invalid since k must be positive.\n```\n\n**Example 3:**\n\n```\nInput: nums = [5,435]\nOutput: [220]\nExplanation:\nThe only possible combination is arr = [220] and k = 215. Using them, we get lower = [5] and higher = [435].\n```\n\n**Constraints:**\n\n*   `2 * n == nums.length`\n*   `1 <= n <= 1000`\n*   `1 <= nums[i] <= 10^(9)`\n*   The test cases are generated such that there exists **at least one** valid array `arr`.",
+  "constraints": [
+    "2 * n == nums.length",
+    "1 <= n <= 1000",
+    "1 <= nums[i] <= 109",
+    "The test cases are generated such that there exists at least one valid array arr."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,10,6,4,8,12]",
+      "output": "[3,7,11]",
+      "explanation": "If arr = [3,7,11] and k = 1, we get lower = [2,6,10] and higher = [4,8,12].\nCombining lower and higher gives us [2,6,10,4,8,12], which is a permutation of nums.\nAnother valid possibility is that arr = [5,7,9] and k = 3. In that case, lower = [2,4,6] and higher = [8,10,12]."
+    },
+    {
+      "input": "nums = [1,1,3,3]",
+      "output": "[2,2]",
+      "explanation": "If arr = [2,2] and k = 1, we get lower = [1,1] and higher = [3,3].\nCombining lower and higher gives us [1,1,3,3], which is equal to nums.\nNote that arr cannot be [1,3] because in that case, the only possible way to obtain [1,1,3,3] is with k = 0.\nThis is invalid since k must be positive."
+    },
+    {
+      "input": "nums = [5,435]",
+      "output": "[220]",
+      "explanation": "The only possible combination is arr = [220] and k = 215. Using them, we get lower = [5] and higher = [435]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> recoverArray(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] recoverArray(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def recoverArray(self, nums: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def recoverArray(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar recoverArray = function(nums) {\n    \n};",
+    "typescript": "function recoverArray(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] RecoverArray(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* recoverArray(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func recoverArray(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun recoverArray(nums: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func recoverArray(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn recover_array(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef recover_array(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function recoverArray($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> recoverArray(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def recoverArray(nums: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec recover_array(nums :: [integer]) :: [integer]\n  def recover_array(nums) do\n    \n  end\nend",
+    "erlang": "-spec recover_array(Nums :: [integer()]) -> [integer()].\nrecover_array(Nums) ->\n  .",
+    "racket": "(define/contract (recover-array nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[2,10,6,4,8,12]",
+      "expectedOutput": "[3,7,11]"
+    },
+    {
+      "input": "[1,1,3,3]",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "[5,435]",
+      "expectedOutput": "[220]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,10,6,4,8,12]",
+      "expectedOutput": "[3,7,11]"
+    },
+    {
+      "input": "[1,1,3,3]",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "[5,435]",
+      "expectedOutput": "[220]"
+    },
+    {
+      "input": "[2,10,6]",
+      "expectedOutput": "[4]"
+    },
+    {
+      "input": "[4,8,12]",
+      "expectedOutput": "[6]"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[2,12]",
+      "expectedOutput": "[7]"
+    },
+    {
+      "input": "[2,10]",
+      "expectedOutput": "[6]"
+    },
+    {
+      "input": "[12,8,4,6,10,2]",
+      "expectedOutput": "[3,7,11]"
+    },
+    {
+      "input": "[2,4,6,8,10,12]",
+      "expectedOutput": "[3,7,11]"
+    },
+    {
+      "input": "[12,10,8,6,4,2]",
+      "expectedOutput": "[3,7,11]"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[2,10,6,4,8,12,2,10,6,4,8,12]",
+      "expectedOutput": "[3,3,7,7,11,11]"
+    },
+    {
+      "input": "[4,20,12,8,16,24]",
+      "expectedOutput": "[6,14,22]"
+    },
+    {
+      "input": "[3,11,7,5,9,13]",
+      "expectedOutput": "[4,8,12]"
+    },
+    {
+      "input": "[1,9,5,3,7,11]",
+      "expectedOutput": "[2,6,10]"
+    },
+    {
+      "input": "[-2,-10,-6,-4,-8,-12]",
+      "expectedOutput": "[-11,-7,-3]"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "If we fix the value of k, how can we check if an original array exists for the fixed k?",
+    "The smallest value of nums is obtained by subtracting k from the smallest value of the original array. How can we use this to reduce the search space for finding a valid k?",
+    "You can compute every possible k by using the smallest value of nums (as lower[i]) against every other value in nums (as the corresponding higher[i]).",
+    "For every computed k, greedily pair up the values in nums. This can be done sorting nums, then using a map to store previous values and searching that map for a corresponding lower[i] for the current nums[j] (as higher[i])."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/recover-the-original-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.333Z",
+    "sourceUpdatedAt": null
+  }
+}

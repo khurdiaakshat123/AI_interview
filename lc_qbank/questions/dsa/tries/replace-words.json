@@ -1,0 +1,163 @@
+{
+  "id": "648",
+  "slug": "replace-words",
+  "title": "Replace Words",
+  "category": "dsa",
+  "subcategory": "tries",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie"
+  ],
+  "statement": "In English, we have a concept called **root**, which can be followed by some other word to form another longer word - let's call this word **derivative**. For example, when the **root** `\"help\"` is followed by the word `\"ful\"`, we can form a derivative `\"helpful\"`.\n\nGiven a `dictionary` consisting of many **roots** and a `sentence` consisting of words separated by spaces, replace all the derivatives in the sentence with the **root** forming it. If a derivative can be replaced by more than one **root**, replace it with the **root** that has **the shortest length**.\n\nReturn _the `sentence`_ after the replacement.\n\n**Example 1:**\n\n```\nInput: dictionary = [\"cat\",\"bat\",\"rat\"], sentence = \"the cattle was rattled by the battery\"\nOutput: \"the cat was rat by the bat\"\n```\n\n**Example 2:**\n\n```\nInput: dictionary = [\"a\",\"b\",\"c\"], sentence = \"aadsfasf absbs bbab cadsfafs\"\nOutput: \"a a b c\"\n```\n\n**Constraints:**\n\n*   `1 <= dictionary.length <= 1000`\n*   `1 <= dictionary[i].length <= 100`\n*   `dictionary[i]` consists of only lower-case letters.\n*   `1 <= sentence.length <= 10^(6)`\n*   `sentence` consists of only lower-case letters and spaces.\n*   The number of words in `sentence` is in the range `[1, 1000]`\n*   The length of each word in `sentence` is in the range `[1, 1000]`\n*   Every two consecutive words in `sentence` will be separated by exactly one space.\n*   `sentence` does not have leading or trailing spaces.",
+  "constraints": [
+    "1 <= dictionary.length <= 1000",
+    "1 <= dictionary[i].length <= 100",
+    "dictionary[i] consists of only lower-case letters.",
+    "1 <= sentence.length <= 106",
+    "sentence consists of only lower-case letters and spaces.",
+    "The number of words in sentence is in the range [1, 1000]",
+    "The length of each word in sentence is in the range [1, 1000]",
+    "Every two consecutive words in sentence will be separated by exactly one space.",
+    "sentence does not have leading or trailing spaces."
+  ],
+  "examples": [
+    {
+      "input": "dictionary = [\"cat\",\"bat\",\"rat\"], sentence = \"the cattle was rattled by the battery\"",
+      "output": "\"the cat was rat by the bat\"",
+      "explanation": null
+    },
+    {
+      "input": "dictionary = [\"a\",\"b\",\"c\"], sentence = \"aadsfasf absbs bbab cadsfafs\"",
+      "output": "\"a a b c\"",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    string replaceWords(vector<string>& dictionary, string sentence) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String replaceWords(List<String> dictionary, String sentence) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def replaceWords(self, dictionary: list[str], sentence: str) -> str:\n        ",
+    "python": "class Solution(object):\n    def replaceWords(self, dictionary, sentence):\n        \"\"\"\n        :type dictionary: List[str]\n        :type sentence: str\n        :rtype: str\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string[]} dictionary\n * @param {string} sentence\n * @return {string}\n */\nvar replaceWords = function(dictionary, sentence) {\n    \n};",
+    "typescript": "function replaceWords(dictionary: string[], sentence: string): string {\n    \n};",
+    "csharp": "public class Solution {\n    public string ReplaceWords(IList<string> dictionary, string sentence) {\n        \n    }\n}",
+    "c": "char* replaceWords(char** dictionary, int dictionarySize, char* sentence) {\n    \n}",
+    "golang": "func replaceWords(dictionary []string, sentence string) string {\n    \n}",
+    "kotlin": "class Solution {\n    fun replaceWords(dictionary: List<String>, sentence: String): String {\n        \n    }\n}",
+    "swift": "class Solution {\n    func replaceWords(_ dictionary: [String], _ sentence: String) -> String {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn replace_words(dictionary: Vec<String>, sentence: String) -> String {\n        \n    }\n}",
+    "ruby": "# @param {String[]} dictionary\n# @param {String} sentence\n# @return {String}\ndef replace_words(dictionary, sentence)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String[] $dictionary\n     * @param String $sentence\n     * @return String\n     */\n    function replaceWords($dictionary, $sentence) {\n        \n    }\n}",
+    "dart": "class Solution {\n  String replaceWords(List<String> dictionary, String sentence) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def replaceWords(dictionary: List[String], sentence: String): String = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec replace_words(dictionary :: [String.t], sentence :: String.t) :: String.t\n  def replace_words(dictionary, sentence) do\n    \n  end\nend",
+    "erlang": "-spec replace_words(Dictionary :: [unicode:unicode_binary()], Sentence :: unicode:unicode_binary()) -> unicode:unicode_binary().\nreplace_words(Dictionary, Sentence) ->\n  .",
+    "racket": "(define/contract (replace-words dictionary sentence)\n  (-> (listof string?) string? string?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"the cattle was rattled by the battery\"",
+      "expectedOutput": "\"the cat was rat by the bat\""
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\"]\n\"aadsfasf absbs bbab cadsfafs\"",
+      "expectedOutput": "\"a a b c\""
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"the cattle was rattled by the battery\"",
+      "expectedOutput": "\"the cat was rat by the bat\""
+    },
+    {
+      "input": "[\"a\",\"b\",\"c\"]\n\"aadsfasf absbs bbab cadsfafs\"",
+      "expectedOutput": "\"a a b c\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"the cattle was rat\"",
+      "expectedOutput": "\"the cat was rat\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"tled by the battery\"",
+      "expectedOutput": "\"tled by the bat\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"t\"",
+      "expectedOutput": "\"t\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"th\"",
+      "expectedOutput": "\"th\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"yrettab eht yb delttar saw elttac eht\"",
+      "expectedOutput": "\"yrettab eht yb delttar saw elttac eht\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"tttttt\"",
+      "expectedOutput": "\"tttttt\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"a\"",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"b\"",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"aa\"",
+      "expectedOutput": "\"aa\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"ab\"",
+      "expectedOutput": "\"ab\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"ba\"",
+      "expectedOutput": "\"ba\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"aba\"",
+      "expectedOutput": "\"aba\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"abba\"",
+      "expectedOutput": "\"abba\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"aaaaa\"",
+      "expectedOutput": "\"aaaaa\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"abcde\"",
+      "expectedOutput": "\"abcde\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"edcba\"",
+      "expectedOutput": "\"edcba\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"aab\"",
+      "expectedOutput": "\"aab\""
+    },
+    {
+      "input": "[\"cat\",\"bat\",\"rat\"]\n\"aA\"",
+      "expectedOutput": "\"aA\""
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/replace-words/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:27.733Z",
+    "sourceUpdatedAt": null
+  }
+}

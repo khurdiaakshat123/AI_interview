@@ -1,0 +1,101 @@
+{
+  "id": "3725",
+  "slug": "count-ways-to-choose-coprime-integers-from-rows",
+  "title": "Count Ways to Choose Coprime Integers from Rows",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Matrix",
+    "Combinatorics",
+    "Number Theory"
+  ],
+  "statement": "You are given a `m x n` matrix `mat` of positive integers.\n\nReturn an integer denoting the number of ways to choose **exactly one** integer from each row of `mat` such that the **greatest common divisor** of all chosen integers is 1.\n\nSince the answer may be very large, return it **modulo** `10^(9) + 7`.\n\n**Example 1:**\n\n**Input:** mat = \\[\\[1,2\\],\\[3,4\\]\\]\n\n**Output:** 3\n\n**Explanation:**\n\nChosen integer in the first row\n\nChosen integer in the second row\n\nGreatest common divisor of chosen integers\n\n1\n\n3\n\n1\n\n1\n\n4\n\n1\n\n2\n\n3\n\n1\n\n2\n\n4\n\n2\n\n3 of these combinations have a greatest common divisor of 1. Therefore, the answer is 3.\n\n**Example 2:**\n\n**Input:** mat = \\[\\[2,2\\],\\[2,2\\]\\]\n\n**Output:** 0\n\n**Explanation:**\n\nEvery combination has a greatest common divisor of 2. Therefore, the answer is 0.\n\n**Constraints:**\n\n*   `1 <= m == mat.length <= 150`\n*   `1 <= n == mat[i].length <= 150`\n*   `1 <= mat[i][j] <= 150`",
+  "constraints": [
+    "1 <= m == mat.length <= 150",
+    "1 <= n == mat[i].length <= 150",
+    "1 <= mat[i][j] <= 150"
+  ],
+  "examples": [
+    {
+      "input": "mat = [[1,2],[3,4]]",
+      "output": "3",
+      "explanation": "Chosen integer in the first row\n\t\t\tChosen integer in the second row\n\t\t\tGreatest common divisor of chosen integers\n\t\t\n\t\t\n\t\t\t1\n\t\t\t3\n\t\t\t1\n\t\t\n\t\t\n\t\t\t1\n\t\t\t4\n\t\t\t1\n\t\t\n\t\t\n\t\t\t2\n\t\t\t3\n\t\t\t1\n\t\t\n\t\t\n\t\t\t2\n\t\t\t4\n\t\t\t2"
+    },
+    {
+      "input": "mat = [[2,2],[2,2]]",
+      "output": "0",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int countCoprime(vector<vector<int>>& mat) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int countCoprime(int[][] mat) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def countCoprime(self, mat: List[List[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def countCoprime(self, mat):\n        \"\"\"\n        :type mat: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} mat\n * @return {number}\n */\nvar countCoprime = function(mat) {\n    \n};",
+    "typescript": "function countCoprime(mat: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int CountCoprime(int[][] mat) {\n        \n    }\n}",
+    "c": "int countCoprime(int** mat, int matSize, int* matColSize) {\n    \n}",
+    "golang": "func countCoprime(mat [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun countCoprime(mat: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func countCoprime(_ mat: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn count_coprime(mat: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} mat\n# @return {Integer}\ndef count_coprime(mat)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $mat\n     * @return Integer\n     */\n    function countCoprime($mat) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int countCoprime(List<List<int>> mat) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def countCoprime(mat: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec count_coprime(mat :: [[integer]]) :: integer\n  def count_coprime(mat) do\n    \n  end\nend",
+    "erlang": "-spec count_coprime(Mat :: [[integer()]]) -> integer().\ncount_coprime(Mat) ->\n  .",
+    "racket": "(define/contract (count-coprime mat)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[1,2],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[2,2],[2,2]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[1,2],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[[2,2],[2,2]]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "mat = [[1,2],[3,4]]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "mat = [[2,2],[2,2]]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming.",
+    "Use <code>dp[row][g]</code>, where <code>row</code> is the current row and <code>g</code> is the current gcd value.",
+    "Initialize the first row: for each value <code>v</code> in row 0 do <code>dp[0][v] += 1</code>.",
+    "For a row <code>i</code>, use the values from the previous row <code>i - 1</code> to build the values: for each previous gcd <code>g</code> and each value <code>v</code> in row <code>i</code>.",
+    "The final answer is <code>dp[n-1][1]</code> (number of ways with gcd 1)."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/count-ways-to-choose-coprime-integers-from-rows/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:15.958Z",
+    "sourceUpdatedAt": null
+  }
+}

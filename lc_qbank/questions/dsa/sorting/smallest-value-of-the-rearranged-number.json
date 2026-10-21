@@ -1,0 +1,156 @@
+{
+  "id": "2165",
+  "slug": "smallest-value-of-the-rearranged-number",
+  "title": "Smallest Value of the Rearranged Number",
+  "category": "dsa",
+  "subcategory": "sorting",
+  "difficulty": "Medium",
+  "tags": [
+    "Math",
+    "Sorting"
+  ],
+  "statement": "You are given an integer `num.` **Rearrange** the digits of `num` such that its value is **minimized** and it does not contain **any** leading zeros.\n\nReturn _the rearranged number with minimal value_.\n\nNote that the sign of the number does not change after rearranging the digits.\n\n**Example 1:**\n\n```\nInput: num = 310\nOutput: 103\nExplanation: The possible arrangements for the digits of 310 are 013, 031, 103, 130, 301, 310. \nThe arrangement with the smallest value that does not contain any leading zeros is 103.\n```\n\n**Example 2:**\n\n```\nInput: num = -7605\nOutput: -7650\nExplanation: Some possible arrangements for the digits of -7605 are -7650, -6705, -5076, -0567.\nThe arrangement with the smallest value that does not contain any leading zeros is -7650.\n```\n\n**Constraints:**\n\n*   `-10^(15) <= num <= 10^(15)`",
+  "constraints": [
+    "-1015 <= num <= 1015"
+  ],
+  "examples": [
+    {
+      "input": "num = 310",
+      "output": "103",
+      "explanation": "The possible arrangements for the digits of 310 are 013, 031, 103, 130, 301, 310. \nThe arrangement with the smallest value that does not contain any leading zeros is 103."
+    },
+    {
+      "input": "num = -7605",
+      "output": "-7650",
+      "explanation": "Some possible arrangements for the digits of -7605 are -7650, -6705, -5076, -0567.\nThe arrangement with the smallest value that does not contain any leading zeros is -7650."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long smallestNumber(long long num) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long smallestNumber(long num) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def smallestNumber(self, num: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def smallestNumber(self, num):\n        \"\"\"\n        :type num: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} num\n * @return {number}\n */\nvar smallestNumber = function(num) {\n    \n};",
+    "typescript": "function smallestNumber(num: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long SmallestNumber(long num) {\n        \n    }\n}",
+    "c": "long long smallestNumber(long long num) {\n    \n}",
+    "golang": "func smallestNumber(num int64) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun smallestNumber(num: Long): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func smallestNumber(_ num: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn smallest_number(num: i64) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} num\n# @return {Integer}\ndef smallest_number(num)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $num\n     * @return Integer\n     */\n    function smallestNumber($num) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int smallestNumber(int num) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def smallestNumber(num: Long): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec smallest_number(num :: integer) :: integer\n  def smallest_number(num) do\n    \n  end\nend",
+    "erlang": "-spec smallest_number(Num :: integer()) -> integer().\nsmallest_number(Num) ->\n  .",
+    "racket": "(define/contract (smallest-number num)\n  (-> exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "310",
+      "expectedOutput": "103"
+    },
+    {
+      "input": "-7605",
+      "expectedOutput": "-7650"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "310",
+      "expectedOutput": "103"
+    },
+    {
+      "input": "-7605",
+      "expectedOutput": "-7650"
+    },
+    {
+      "input": "309",
+      "expectedOutput": "309"
+    },
+    {
+      "input": "311",
+      "expectedOutput": "113"
+    },
+    {
+      "input": "308",
+      "expectedOutput": "308"
+    },
+    {
+      "input": "312",
+      "expectedOutput": "123"
+    },
+    {
+      "input": "307",
+      "expectedOutput": "307"
+    },
+    {
+      "input": "313",
+      "expectedOutput": "133"
+    },
+    {
+      "input": "620",
+      "expectedOutput": "206"
+    },
+    {
+      "input": "155",
+      "expectedOutput": "155"
+    },
+    {
+      "input": "-310",
+      "expectedOutput": "-310"
+    },
+    {
+      "input": "0",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "1",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "2",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "3",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "4",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "5",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "-1",
+      "expectedOutput": "-1"
+    },
+    {
+      "input": "-2",
+      "expectedOutput": "-2"
+    },
+    {
+      "input": "-3",
+      "expectedOutput": "-3"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "For positive numbers, the leading digit should be the smallest nonzero digit. Then the remaining digits follow in ascending order.",
+    "For negative numbers, the digits should be arranged in descending order."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/smallest-value-of-the-rearranged-number/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:29.877Z",
+    "sourceUpdatedAt": null
+  }
+}

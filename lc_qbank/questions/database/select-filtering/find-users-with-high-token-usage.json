@@ -1,0 +1,63 @@
+{
+  "id": "3793",
+  "slug": "find-users-with-high-token-usage",
+  "title": "Find Users with High Token Usage",
+  "category": "database",
+  "subcategory": "select-filtering",
+  "difficulty": "Easy",
+  "tags": [],
+  "statement": "Table: `prompts`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| user_id     | int     |\n| prompt      | varchar |\n| tokens      | int     |\n+-------------+---------+\n(user_id, prompt) is the primary key (unique value) for this table.\nEach row represents a prompt submitted by a user to an AI system along with the number of tokens consumed.\n```\n\nWrite a solution to analyze **AI prompt usage patterns** based on the following requirements:\n\n*   For each user, calculate the **total number of prompts** they have submitted.\n*   For each user, calculate the **average tokens used per prompt** (Rounded to `2` decimal places).\n*   Only include users who have submitted **at least** `3` **prompts**.\n*   Only include users who have submitted **at least one prompt** with `tokens` **greater than** their own average token usage.\n\nReturn _the result table ordered by **average tokens** in **descending** order, and then by `user_id` in **ascending** order._\n\nThe result format is in the following example.\n\n**Example:**\n\n**Input:**\n\nprompts table:\n\n```\n+---------+--------------------------+--------+\n| user_id | prompt                   | tokens |\n+---------+--------------------------+--------+\n| 1       | Write a blog outline     | 120    |\n| 1       | Generate SQL query       | 80     |\n| 1       | Summarize an article     | 200    |\n| 2       | Create resume bullet     | 60     |\n| 2       | Improve LinkedIn bio     | 70     |\n| 3       | Explain neural networks  | 300    |\n| 3       | Generate interview Q&A   | 250    |\n| 3       | Write cover letter       | 180    |\n| 3       | Optimize Python code     | 220    |\n+---------+--------------------------+--------+\n```\n\n**Output:**\n\n```\n+---------+---------------+------------+\n| user_id | prompt_count  | avg_tokens |\n+---------+---------------+------------+\n| 3       | 4             | 237.5      |\n| 1       | 3             | 133.33     |\n+---------+---------------+------------+\n```\n\n**Explanation:**\n\n*   **User 1**:\n    *   Total prompts = 3\n    *   Average tokens = (120 + 80 + 200) / 3 = 133.33\n    *   Has a prompt with 200 tokens, which is greater than the average\n    *   Included in the result\n*   **User 2**:\n    *   Total prompts = 2 (less than the required minimum)\n    *   Excluded from the result\n*   **User 3**:\n    *   Total prompts = 4\n    *   Average tokens = (300 + 250 + 180 + 220) / 4 = 237.5\n    *   Has prompts with 300 and 250 tokens, both greater than the average\n    *   Included in the result\n\nThe Results table is ordered by avg\\_tokens in descending order, then by user\\_id in ascending order",
+  "constraints": [],
+  "examples": [
+    {
+      "input": "prompts table:\n\n\n+---------+--------------------------+--------+\n| user_id | prompt                   | tokens |\n+---------+--------------------------+--------+\n| 1       | Write a blog outline     | 120    |\n| 1       | Generate SQL query       | 80     |\n| 1       | Summarize an article     | 200    |\n| 2       | Create resume bullet     | 60     |\n| 2       | Improve LinkedIn bio     | 70     |\n| 3       | Explain neural networks  | 300    |\n| 3       | Generate interview Q&A   | 250    |\n| 3       | Write cover letter       | 180    |\n| 3       | Optimize Python code     | 220    |\n+---------+--------------------------+--------+",
+      "output": "+---------+---------------+------------+\n| user_id | prompt_count  | avg_tokens |\n+---------+---------------+------------+\n| 3       | 4             | 237.5      |\n| 1       | 3             | 133.33     |\n+---------+---------------+------------+",
+      "explanation": "User 1:\n\n\t\n\t\tTotal prompts = 3\n\t\tAverage tokens = (120 + 80 + 200) / 3 = 133.33\n\t\tHas a prompt with 200 tokens, which is greater than the average\n\t\tIncluded in the result\n\t\n\t\n\tUser 2:\n\t\n\t\tTotal prompts = 2 (less than the required minimum)\n\t\tExcluded from the result\n\t\n\t\n\tUser 3:\n\t\n\t\tTotal prompts = 4\n\t\tAverage tokens = (300 + 250 + 180 + 220) / 4 = 237.5\n\t\tHas prompts with 300 and 250 tokens, both greater than the average\n\t\tIncluded in the result"
+    }
+  ],
+  "starterCode": {
+    "mysql": "# Write your MySQL query statement below\n",
+    "mssql": "/* Write your T-SQL query statement below */\n",
+    "postgresql": "-- Write your PostgreSQL query statement below\n",
+    "oraclesql": "/* Write your PL/SQL query statement below */\n",
+    "pythondata": "import pandas as pd\n\ndef find_users_with_high_tokens(prompts: pd.DataFrame) -> pd.DataFrame:\n    "
+  },
+  "publicTests": [
+    {
+      "input": "{\"headers\":{\"prompts\":[\"user_id\",\"prompt\",\"tokens\"]},\"rows\":{\"prompts\":[[1,\"Write a blog outline\",120],[1,\"Generate SQL query\",80],[1,\"Summarize an article\",200],[2,\"Create resume bullet\",60],[2,\"Improve LinkedIn bio\",70],[3,\"Explain neural networks\",300],[3,\"Generate interview Q&A\",250],[3,\"Write cover letter\",180],[3,\"Optimize Python code\",220]]}}",
+      "expectedOutput": "+---------+---------------+------------+\n| user_id | prompt_count  | avg_tokens |\n+---------+---------------+------------+\n| 3       | 4             | 237.5      |\n| 1       | 3             | 133.33     |\n+---------+---------------+------------+"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "{\"headers\":{\"prompts\":[\"user_id\",\"prompt\",\"tokens\"]},\"rows\":{\"prompts\":[[1,\"Write a blog outline\",120],[1,\"Generate SQL query\",80],[1,\"Summarize an article\",200],[2,\"Create resume bullet\",60],[2,\"Improve LinkedIn bio\",70],[3,\"Explain neural networks\",300],[3,\"Generate interview Q&A\",250],[3,\"Write cover letter\",180],[3,\"Optimize Python code\",220]]}}",
+      "expectedOutput": "+---------+---------------+------------+\n| user_id | prompt_count  | avg_tokens |\n+---------+---------------+------------+\n| 3       | 4             | 237.5      |\n| 1       | 3             | 133.33     |\n+---------+---------------+------------+"
+    },
+    {
+      "input": "prompts table:\n\n\n+---------+--------------------------+--------+\n| user_id | prompt                   | tokens |\n+---------+--------------------------+--------+\n| 1       | Write a blog outline     | 120    |\n| 1       | Generate SQL query       | 80     |\n| 1       | Summarize an article     | 200    |\n| 2       | Create resume bullet     | 60     |\n| 2       | Improve LinkedIn bio     | 70     |\n| 3       | Explain neural networks  | 300    |\n| 3       | Generate interview Q&A   | 250    |\n| 3       | Write cover letter       | 180    |\n| 3       | Optimize Python code     | 220    |\n+---------+--------------------------+--------+",
+      "expectedOutput": "+---------+---------------+------------+\n| user_id | prompt_count  | avg_tokens |\n+---------+---------------+------------+\n| 3       | 4             | 237.5      |\n| 1       | 3             | 133.33     |\n+---------+---------------+------------+"
+    }
+  ],
+  "sqlSchema": "CREATE TABLE if not exists prompts (\n    user_id INT,\n    prompt VARCHAR(255),\n    tokens INT\n)\n\nTruncate table prompts",
+  "sqlSetup": [
+    "insert into prompts (user_id, prompt, tokens) values ('1', 'Write a blog outline', '120')",
+    "insert into prompts (user_id, prompt, tokens) values ('1', 'Generate SQL query', '80')",
+    "insert into prompts (user_id, prompt, tokens) values ('1', 'Summarize an article', '200')",
+    "insert into prompts (user_id, prompt, tokens) values ('2', 'Create resume bullet', '60')",
+    "insert into prompts (user_id, prompt, tokens) values ('2', 'Improve LinkedIn bio', '70')",
+    "insert into prompts (user_id, prompt, tokens) values ('3', 'Explain neural networks', '300')",
+    "insert into prompts (user_id, prompt, tokens) values ('3', 'Generate interview Q&A', '250')",
+    "insert into prompts (user_id, prompt, tokens) values ('3', 'Write cover letter', '180')",
+    "insert into prompts (user_id, prompt, tokens) values ('3', 'Optimize Python code', '220')"
+  ],
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-users-with-high-token-usage/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.739Z",
+    "sourceUpdatedAt": null
+  }
+}

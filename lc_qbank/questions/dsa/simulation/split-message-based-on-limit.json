@@ -1,0 +1,159 @@
+{
+  "id": "2468",
+  "slug": "split-message-based-on-limit",
+  "title": "Split Message Based on Limit",
+  "category": "dsa",
+  "subcategory": "simulation",
+  "difficulty": "Hard",
+  "tags": [
+    "String",
+    "Enumeration"
+  ],
+  "statement": "You are given a string, `message`, and a positive integer, `limit`.\n\nYou must **split** `message` into one or more **parts** based on `limit`. Each resulting part should have the suffix `\"<a/b>\"`, where `\"b\"` is to be **replaced** with the total number of parts and `\"a\"` is to be **replaced** with the index of the part, starting from `1` and going up to `b`. Additionally, the length of each resulting part (including its suffix) should be **equal** to `limit`, except for the last part whose length can be **at most** `limit`.\n\nThe resulting parts should be formed such that when their suffixes are removed and they are all concatenated **in order**, they should be equal to `message`. Also, the result should contain as few parts as possible.\n\nReturn _the parts_ `message` _would be split into as an array of strings_. If it is impossible to split `message` as required, return _an empty array_.\n\n**Example 1:**\n\n```\nInput: message = \"this is really a very awesome message\", limit = 9\nOutput: [\"thi<1/14>\",\"s i<2/14>\",\"s r<3/14>\",\"eal<4/14>\",\"ly <5/14>\",\"a v<6/14>\",\"ery<7/14>\",\" aw<8/14>\",\"eso<9/14>\",\"me<10/14>\",\" m<11/14>\",\"es<12/14>\",\"sa<13/14>\",\"ge<14/14>\"]\nExplanation:\nThe first 9 parts take 3 characters each from the beginning of message.\nThe next 5 parts take 2 characters each to finish splitting message. \nIn this example, each part, including the last, has length 9. \nIt can be shown it is not possible to split message into less than 14 parts.\n```\n\n**Example 2:**\n\n```\nInput: message = \"short message\", limit = 15\nOutput: [\"short mess<1/2>\",\"age<2/2>\"]\nExplanation:\nUnder the given constraints, the string can be split into two parts: \n- The first part comprises of the first 10 characters, and has a length 15.\n- The next part comprises of the last 3 characters, and has a length 8.\n```\n\n**Constraints:**\n\n*   `1 <= message.length <= 10^(4)`\n*   `message` consists only of lowercase English letters and `' '`.\n*   `1 <= limit <= 10^(4)`",
+  "constraints": [
+    "1 <= message.length <= 104",
+    "message consists only of lowercase English letters and ' '.",
+    "1 <= limit <= 104"
+  ],
+  "examples": [
+    {
+      "input": "message = \"this is really a very awesome message\", limit = 9",
+      "output": "[\"thi<1/14>\",\"s i<2/14>\",\"s r<3/14>\",\"eal<4/14>\",\"ly <5/14>\",\"a v<6/14>\",\"ery<7/14>\",\" aw<8/14>\",\"eso<9/14>\",\"me<10/14>\",\" m<11/14>\",\"es<12/14>\",\"sa<13/14>\",\"ge<14/14>\"]",
+      "explanation": "The first 9 parts take 3 characters each from the beginning of message.\nThe next 5 parts take 2 characters each to finish splitting message. \nIn this example, each part, including the last, has length 9. \nIt can be shown it is not possible to split message into less than 14 parts."
+    },
+    {
+      "input": "message = \"short message\", limit = 15",
+      "output": "[\"short mess<1/2>\",\"age<2/2>\"]",
+      "explanation": "Under the given constraints, the string can be split into two parts: \n- The first part comprises of the first 10 characters, and has a length 15.\n- The next part comprises of the last 3 characters, and has a length 8."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<string> splitMessage(string message, int limit) {\n        \n    }\n};",
+    "java": "class Solution {\n    public String[] splitMessage(String message, int limit) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def splitMessage(self, message: str, limit: int) -> list[str]:\n        ",
+    "python": "class Solution(object):\n    def splitMessage(self, message, limit):\n        \"\"\"\n        :type message: str\n        :type limit: int\n        :rtype: List[str]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} message\n * @param {number} limit\n * @return {string[]}\n */\nvar splitMessage = function(message, limit) {\n    \n};",
+    "typescript": "function splitMessage(message: string, limit: number): string[] {\n    \n};",
+    "csharp": "public class Solution {\n    public string[] SplitMessage(string message, int limit) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nchar** splitMessage(char* message, int limit, int* returnSize) {\n    \n}",
+    "golang": "func splitMessage(message string, limit int) []string {\n    \n}",
+    "kotlin": "class Solution {\n    fun splitMessage(message: String, limit: Int): Array<String> {\n        \n    }\n}",
+    "swift": "class Solution {\n    func splitMessage(_ message: String, _ limit: Int) -> [String] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn split_message(message: String, limit: i32) -> Vec<String> {\n        \n    }\n}",
+    "ruby": "# @param {String} message\n# @param {Integer} limit\n# @return {String[]}\ndef split_message(message, limit)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $message\n     * @param Integer $limit\n     * @return String[]\n     */\n    function splitMessage($message, $limit) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<String> splitMessage(String message, int limit) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def splitMessage(message: String, limit: Int): Array[String] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec split_message(message :: String.t, limit :: integer) :: [String.t]\n  def split_message(message, limit) do\n    \n  end\nend",
+    "erlang": "-spec split_message(Message :: unicode:unicode_binary(), Limit :: integer()) -> [unicode:unicode_binary()].\nsplit_message(Message, Limit) ->\n  .",
+    "racket": "(define/contract (split-message message limit)\n  (-> string? exact-integer? (listof string?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"this is really a very awesome message\"\n9",
+      "expectedOutput": "[\"thi<1/14>\",\"s i<2/14>\",\"s r<3/14>\",\"eal<4/14>\",\"ly <5/14>\",\"a v<6/14>\",\"ery<7/14>\",\" aw<8/14>\",\"eso<9/14>\",\"me<10/14>\",\" m<11/14>\",\"es<12/14>\",\"sa<13/14>\",\"ge<14/14>\"]"
+    },
+    {
+      "input": "\"short message\"\n15",
+      "expectedOutput": "[\"short mess<1/2>\",\"age<2/2>\"]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"this is really a very awesome message\"\n9",
+      "expectedOutput": "[\"thi<1/14>\",\"s i<2/14>\",\"s r<3/14>\",\"eal<4/14>\",\"ly <5/14>\",\"a v<6/14>\",\"ery<7/14>\",\" aw<8/14>\",\"eso<9/14>\",\"me<10/14>\",\" m<11/14>\",\"es<12/14>\",\"sa<13/14>\",\"ge<14/14>\"]"
+    },
+    {
+      "input": "\"short message\"\n15",
+      "expectedOutput": "[\"short mess<1/2>\",\"age<2/2>\"]"
+    },
+    {
+      "input": "\"this is really a v\"\n9",
+      "expectedOutput": "[\"this<1/5>\",\" is <2/5>\",\"real<3/5>\",\"ly a<4/5>\",\" v<5/5>\"]"
+    },
+    {
+      "input": "\"ery awesome message\"\n9",
+      "expectedOutput": "[\"ery <1/5>\",\"awes<2/5>\",\"ome <3/5>\",\"mess<4/5>\",\"age<5/5>\"]"
+    },
+    {
+      "input": "\"t\"\n9",
+      "expectedOutput": "[\"t<1/1>\"]"
+    },
+    {
+      "input": "\"th\"\n9",
+      "expectedOutput": "[\"th<1/1>\"]"
+    },
+    {
+      "input": "\"egassem emosewa yrev a yllaer si siht\"\n9",
+      "expectedOutput": "[\"ega<1/14>\",\"sse<2/14>\",\"m e<3/14>\",\"mos<4/14>\",\"ewa<5/14>\",\" yr<6/14>\",\"ev <7/14>\",\"a y<8/14>\",\"lla<9/14>\",\"er<10/14>\",\" s<11/14>\",\"i <12/14>\",\"si<13/14>\",\"ht<14/14>\"]"
+    },
+    {
+      "input": "\"tttttt\"\n9",
+      "expectedOutput": "[\"tttt<1/2>\",\"tt<2/2>\"]"
+    },
+    {
+      "input": "\"a\"\n9",
+      "expectedOutput": "[\"a<1/1>\"]"
+    },
+    {
+      "input": "\"b\"\n9",
+      "expectedOutput": "[\"b<1/1>\"]"
+    },
+    {
+      "input": "\"aa\"\n9",
+      "expectedOutput": "[\"aa<1/1>\"]"
+    },
+    {
+      "input": "\"ab\"\n9",
+      "expectedOutput": "[\"ab<1/1>\"]"
+    },
+    {
+      "input": "\"ba\"\n9",
+      "expectedOutput": "[\"ba<1/1>\"]"
+    },
+    {
+      "input": "\"aba\"\n9",
+      "expectedOutput": "[\"aba<1/1>\"]"
+    },
+    {
+      "input": "\"abba\"\n9",
+      "expectedOutput": "[\"abba<1/1>\"]"
+    },
+    {
+      "input": "\"aaaaa\"\n9",
+      "expectedOutput": "[\"aaaa<1/2>\",\"a<2/2>\"]"
+    },
+    {
+      "input": "\"abcde\"\n9",
+      "expectedOutput": "[\"abcd<1/2>\",\"e<2/2>\"]"
+    },
+    {
+      "input": "\"edcba\"\n9",
+      "expectedOutput": "[\"edcb<1/2>\",\"a<2/2>\"]"
+    },
+    {
+      "input": "\"aab\"\n9",
+      "expectedOutput": "[\"aab<1/1>\"]"
+    },
+    {
+      "input": "\"aA\"\n9",
+      "expectedOutput": "[\"aA<1/1>\"]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Could you solve the problem if you knew how many digits the total number of parts has?",
+    "Try all possible lengths of the total number of parts, and see if the string can be split such that the total number of parts has that length.",
+    "Binary search can be used for each part length to find the precise number of parts needed."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/split-message-based-on-limit/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:30.152Z",
+    "sourceUpdatedAt": null
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "id": "3149",
+  "slug": "find-the-minimum-cost-array-permutation",
+  "title": "Find the Minimum Cost Array Permutation",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "statement": "You are given an array `nums` which is a permutation of `[0, 1, 2, ..., n - 1]`. The **score** of any permutation of `[0, 1, 2, ..., n - 1]` named `perm` is defined as:\n\n`score(perm) = |perm[0] - nums[perm[1]]| + |perm[1] - nums[perm[2]]| + ... + |perm[n - 1] - nums[perm[0]]|`\n\nReturn the permutation `perm` which has the **minimum** possible score. If _multiple_ permutations exist with this score, return the one that is lexicographically smallest among them.\n\n**Example 1:**\n\n**Input:** nums = \\[1,0,2\\]\n\n**Output:** \\[0,1,2\\]\n\n**Explanation:**\n\n**![](./assets/find-the-minimum-cost-array-permutation-1.gif)**\n\nThe lexicographically smallest permutation with minimum cost is `[0,1,2]`. The cost of this permutation is `|0 - 0| + |1 - 2| + |2 - 1| = 2`.\n\n**Example 2:**\n\n**Input:** nums = \\[0,2,1\\]\n\n**Output:** \\[0,2,1\\]\n\n**Explanation:**\n\n**![](./assets/find-the-minimum-cost-array-permutation-2.gif)**\n\nThe lexicographically smallest permutation with minimum cost is `[0,2,1]`. The cost of this permutation is `|0 - 1| + |2 - 2| + |1 - 0| = 2`.\n\n**Constraints:**\n\n*   `2 <= n == nums.length <= 14`\n*   `nums` is a permutation of `[0, 1, 2, ..., n - 1]`.",
+  "constraints": [
+    "2 <= n == nums.length <= 14",
+    "nums is a permutation of [0, 1, 2, ..., n - 1]."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,0,2]",
+      "output": "[0,1,2]",
+      "explanation": null
+    },
+    {
+      "input": "nums = [0,2,1]",
+      "output": "[0,2,1]",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> findPermutation(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] findPermutation(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findPermutation(self, nums: List[int]) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def findPermutation(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar findPermutation = function(nums) {\n    \n};",
+    "typescript": "function findPermutation(nums: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] FindPermutation(int[] nums) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* findPermutation(int* nums, int numsSize, int* returnSize) {\n    \n}",
+    "golang": "func findPermutation(nums []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findPermutation(nums: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findPermutation(_ nums: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_permutation(nums: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer[]}\ndef find_permutation(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer[]\n     */\n    function findPermutation($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> findPermutation(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findPermutation(nums: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_permutation(nums :: [integer]) :: [integer]\n  def find_permutation(nums) do\n    \n  end\nend",
+    "erlang": "-spec find_permutation(Nums :: [integer()]) -> [integer()].\nfind_permutation(Nums) ->\n  .",
+    "racket": "(define/contract (find-permutation nums)\n  (-> (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,0,2]",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "[0,2,1]",
+      "expectedOutput": "[0,2,1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,0,2]",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "[0,2,1]",
+      "expectedOutput": "[0,2,1]"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[0,2]",
+      "expectedOutput": "[0,1]"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "[0,1]"
+    },
+    {
+      "input": "[1,0]",
+      "expectedOutput": "[0,1]"
+    },
+    {
+      "input": "[2,0,1]",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "[0,1,2]",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "[2,1,0]",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "[1,0,2,1,0,2]",
+      "expectedOutput": "[0,1,3,2,4,5]"
+    },
+    {
+      "input": "[2,0,4]",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "[2,1,3]",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "[0,-1,1]",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "[-1,0,-2]",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "[0,0,0]",
+      "expectedOutput": "[0,1,2]"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "[0]"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "[0,1]"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "[0,1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "The score function is cyclic, so we can always set <code>perm[0] = 0</code> for the smallest lexical order.",
+    "It’s similar to the Traveling Salesman Problem. Use Dynamic Programming.",
+    "Use a bitmask to track which elements have been assigned to <code>perm</code>."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-minimum-cost-array-permutation/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.488Z",
+    "sourceUpdatedAt": null
+  }
+}

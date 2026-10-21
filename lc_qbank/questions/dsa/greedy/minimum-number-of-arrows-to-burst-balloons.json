@@ -1,0 +1,97 @@
+{
+  "id": "452",
+  "slug": "minimum-number-of-arrows-to-burst-balloons",
+  "title": "Minimum Number of Arrows to Burst Balloons",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "There are some spherical balloons taped onto a flat wall that represents the XY-plane. The balloons are represented as a 2D integer array `points` where `points[i] = [x_(start), x_(end)]` denotes a balloon whose **horizontal diameter** stretches between `x_(start)` and `x_(end)`. You do not know the exact y-coordinates of the balloons.\n\nArrows can be shot up **directly vertically** (in the positive y-direction) from different points along the x-axis. A balloon with `x_(start)` and `x_(end)` is **burst** by an arrow shot at `x` if `x_(start) <= x <= x_(end)`. There is **no limit** to the number of arrows that can be shot. A shot arrow keeps traveling up infinitely, bursting any balloons in its path.\n\nGiven the array `points`, return _the **minimum** number of arrows that must be shot to burst all balloons_.\n\n**Example 1:**\n\n```\nInput: points = [[10,16],[2,8],[1,6],[7,12]]\nOutput: 2\nExplanation: The balloons can be burst by 2 arrows:\n- Shoot an arrow at x = 6, bursting the balloons [2,8] and [1,6].\n- Shoot an arrow at x = 11, bursting the balloons [10,16] and [7,12].\n```\n\n**Example 2:**\n\n```\nInput: points = [[1,2],[3,4],[5,6],[7,8]]\nOutput: 4\nExplanation: One arrow needs to be shot for each balloon for a total of 4 arrows.\n```\n\n**Example 3:**\n\n```\nInput: points = [[1,2],[2,3],[3,4],[4,5]]\nOutput: 2\nExplanation: The balloons can be burst by 2 arrows:\n- Shoot an arrow at x = 2, bursting the balloons [1,2] and [2,3].\n- Shoot an arrow at x = 4, bursting the balloons [3,4] and [4,5].\n```\n\n**Constraints:**\n\n*   `1 <= points.length <= 10^(5)`\n*   `points[i].length == 2`\n*   `-2^(31) <= x_(start) < x_(end) <= 2^(31) - 1`",
+  "constraints": [
+    "1 <= points.length <= 105",
+    "points[i].length == 2",
+    "-231 <= xstart < xend <= 231 - 1"
+  ],
+  "examples": [
+    {
+      "input": "points = [[10,16],[2,8],[1,6],[7,12]]",
+      "output": "2",
+      "explanation": "The balloons can be burst by 2 arrows:\n- Shoot an arrow at x = 6, bursting the balloons [2,8] and [1,6].\n- Shoot an arrow at x = 11, bursting the balloons [10,16] and [7,12]."
+    },
+    {
+      "input": "points = [[1,2],[3,4],[5,6],[7,8]]",
+      "output": "4",
+      "explanation": "One arrow needs to be shot for each balloon for a total of 4 arrows."
+    },
+    {
+      "input": "points = [[1,2],[2,3],[3,4],[4,5]]",
+      "output": "2",
+      "explanation": "The balloons can be burst by 2 arrows:\n- Shoot an arrow at x = 2, bursting the balloons [1,2] and [2,3].\n- Shoot an arrow at x = 4, bursting the balloons [3,4] and [4,5]."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int findMinArrowShots(vector<vector<int>>& points) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int findMinArrowShots(int[][] points) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def findMinArrowShots(self, points: list[list[int]]) -> int:\n        ",
+    "python": "class Solution(object):\n    def findMinArrowShots(self, points):\n        \"\"\"\n        :type points: List[List[int]]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[][]} points\n * @return {number}\n */\nvar findMinArrowShots = function(points) {\n    \n};",
+    "typescript": "function findMinArrowShots(points: number[][]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int FindMinArrowShots(int[][] points) {\n        \n    }\n}",
+    "c": "int findMinArrowShots(int** points, int pointsSize, int* pointsColSize) {\n    \n}",
+    "golang": "func findMinArrowShots(points [][]int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun findMinArrowShots(points: Array<IntArray>): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func findMinArrowShots(_ points: [[Int]]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn find_min_arrow_shots(points: Vec<Vec<i32>>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[][]} points\n# @return {Integer}\ndef find_min_arrow_shots(points)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[][] $points\n     * @return Integer\n     */\n    function findMinArrowShots($points) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int findMinArrowShots(List<List<int>> points) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def findMinArrowShots(points: Array[Array[Int]]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec find_min_arrow_shots(points :: [[integer]]) :: integer\n  def find_min_arrow_shots(points) do\n    \n  end\nend",
+    "erlang": "-spec find_min_arrow_shots(Points :: [[integer()]]) -> integer().\nfind_min_arrow_shots(Points) ->\n  .",
+    "racket": "(define/contract (find-min-arrow-shots points)\n  (-> (listof (listof exact-integer?)) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[[10,16],[2,8],[1,6],[7,12]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6],[7,8]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[1,2],[2,3],[3,4],[4,5]]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[[10,16],[2,8],[1,6],[7,12]]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[[1,2],[3,4],[5,6],[7,8]]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[[1,2],[2,3],[3,4],[4,5]]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.187Z",
+    "sourceUpdatedAt": null
+  }
+}

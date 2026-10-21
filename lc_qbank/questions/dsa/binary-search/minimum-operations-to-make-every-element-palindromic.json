@@ -1,0 +1,167 @@
+{
+  "id": "4053",
+  "slug": "minimum-operations-to-make-every-element-palindromic",
+  "title": "Minimum Operations to Make Every Element Palindromic",
+  "category": "dsa",
+  "subcategory": "binary-search",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "statement": "You are given an integer array `nums`.\n\nIn one **operation**, you may choose an index `i` and either increment or decrement `nums[i]` by 2.\n\nReturn the **minimum** number of operations required to make every element in `nums` a **positive** palindrome. Different elements may be changed into different palindromic integers.\n\n**Example 1:**\n\n**Input:** nums = \\[10,12,14,16\\]\n\n**Output:** 9\n\n**Explanation:**\n\nOne optimal sequence of operations is:\n\n*   Decrement `nums[0]` by 2 once to change it from 10 to 8.\n*   Decrement `nums[1]` by 2 twice to change it from 12 to 8.\n*   Decrement `nums[2]` by 2 three times to change it from 14 to 8.\n*   Increment `nums[3]` by 2 three times to change it from 16 to 22.\n\nAfter `1 + 2 + 3 + 3 = 9` operations, `nums = [8, 8, 8, 22]`, and every element is a positive palindromic integer.\n\nIt can be shown that fewer than 9 operations cannot achieve this.\n\n**Example 2:**\n\n**Input:** nums = \\[9,10,11,10\\]\n\n**Output:** 2\n\n**Explanation:**\n\nDecrement `nums[1]` and `nums[3]` by 2 once each.\n\nAfter 2 operations, `nums = [9, 8, 11, 8]`, and every element is a positive palindromic integer.\n\nAt least one operation is needed for each of these two elements, so the minimum number of operations is 2.\n\n**Example 3:**\n\n**Input:** nums = \\[125\\]\n\n**Output:** 2\n\n**Explanation:**\n\nDecrement `nums[0]` by 2 twice to change it from 125 to 121, which is a positive palindromic integer.\n\nA single operation would change it to 123 or 127, neither of which is palindromic. Thus, the minimum number of operations is 2.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(9)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "nums = [10,12,14,16]",
+      "output": "9",
+      "explanation": null
+    },
+    {
+      "input": "nums = [9,10,11,10]",
+      "output": "2",
+      "explanation": null
+    },
+    {
+      "input": "nums = [125]",
+      "output": "2",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long minOperations(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long minOperations(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minOperations(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minOperations(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar minOperations = function(nums) {\n    \n};",
+    "typescript": "function minOperations(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MinOperations(int[] nums) {\n        \n    }\n}",
+    "c": "long long minOperations(int* nums, int numsSize) {\n    \n}",
+    "golang": "func minOperations(nums []int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minOperations(nums: IntArray): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minOperations(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_operations(nums: Vec<i32>) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef min_operations(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function minOperations($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minOperations(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minOperations(nums: Array[Int]): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_operations(nums :: [integer]) :: integer\n  def min_operations(nums) do\n    \n  end\nend",
+    "erlang": "-spec min_operations(Nums :: [integer()]) -> integer().\nmin_operations(Nums) ->\n  .",
+    "racket": "(define/contract (min-operations nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[10,12,14,16]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[9,10,11,10]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[125]",
+      "expectedOutput": "2"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[10,12,14,16]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[9,10,11,10]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[125]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[10,12]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[14,16]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[10]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[10,16]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[16,14,12,10]",
+      "expectedOutput": "9"
+    },
+    {
+      "input": "[10,10,10,10]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[10,12,14,16,10,12,14,16]",
+      "expectedOutput": "18"
+    },
+    {
+      "input": "[20,24,28,32]",
+      "expectedOutput": "10"
+    },
+    {
+      "input": "[11,13,15,17]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "[9,11,13,15]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "[-10,-12,-14,-16]",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "[0,0,0,0]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[1,1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "2"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Each operation preserves parity. Handle each element independently by finding its nearest positive palindrome of the same parity.</p>",
+    "<p>Precompute all positive palindromes up to 2,000,000,002 by mirroring their first halves, and separate them into sorted lists by parity. Perform this precomputation <strong>only once</strong>, using global or static initialization, and reuse the lists across all test cases.</p>",
+    "<p>Binary search the appropriate list for the closest candidates on either side of each element. Changing <code>x</code> into <code>p</code> costs <code>|x - p| / 2</code> operations.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-operations-to-make-every-element-palindromic/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:24.745Z",
+    "sourceUpdatedAt": null
+  }
+}

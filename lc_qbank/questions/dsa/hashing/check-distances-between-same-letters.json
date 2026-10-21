@@ -1,0 +1,161 @@
+{
+  "id": "2399",
+  "slug": "check-distances-between-same-letters",
+  "title": "Check Distances Between Same Letters",
+  "category": "dsa",
+  "subcategory": "hashing",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "statement": "You are given a **0-indexed** string `s` consisting of only lowercase English letters, where each letter in `s` appears **exactly** **twice**. You are also given a **0-indexed** integer array `distance` of length `26`.\n\nEach letter in the alphabet is numbered from `0` to `25` (i.e. `'a' -> 0`, `'b' -> 1`, `'c' -> 2`, ... , `'z' -> 25`).\n\nIn a **well-spaced** string, the number of letters between the two occurrences of the `i^(th)` letter is `distance[i]`. If the `i^(th)` letter does not appear in `s`, then `distance[i]` can be **ignored**.\n\nReturn `true` _if_ `s` _is a **well-spaced** string, otherwise return_ `false`.\n\n**Example 1:**\n\n```\nInput: s = \"abaccb\", distance = [1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]\nOutput: true\nExplanation:\n- 'a' appears at indices 0 and 2 so it satisfies distance[0] = 1.\n- 'b' appears at indices 1 and 5 so it satisfies distance[1] = 3.\n- 'c' appears at indices 3 and 4 so it satisfies distance[2] = 0.\nNote that distance[3] = 5, but since 'd' does not appear in s, it can be ignored.\nReturn true because s is a well-spaced string.\n```\n\n**Example 2:**\n\n```\nInput: s = \"aa\", distance = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]\nOutput: false\nExplanation:\n- 'a' appears at indices 0 and 1 so there are zero letters between them.\nBecause distance[0] = 1, s is not a well-spaced string.\n```\n\n**Constraints:**\n\n*   `2 <= s.length <= 52`\n*   `s` consists only of lowercase English letters.\n*   Each letter appears in `s` exactly twice.\n*   `distance.length == 26`\n*   `0 <= distance[i] <= 50`",
+  "constraints": [
+    "2 <= s.length <= 52",
+    "s consists only of lowercase English letters.",
+    "Each letter appears in s exactly twice.",
+    "distance.length == 26",
+    "0 <= distance[i] <= 50"
+  ],
+  "examples": [
+    {
+      "input": "s = \"abaccb\", distance = [1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "output": "true",
+      "explanation": "- 'a' appears at indices 0 and 2 so it satisfies distance[0] = 1.\n- 'b' appears at indices 1 and 5 so it satisfies distance[1] = 3.\n- 'c' appears at indices 3 and 4 so it satisfies distance[2] = 0.\nNote that distance[3] = 5, but since 'd' does not appear in s, it can be ignored.\nReturn true because s is a well-spaced string."
+    },
+    {
+      "input": "s = \"aa\", distance = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "output": "false",
+      "explanation": "- 'a' appears at indices 0 and 1 so there are zero letters between them.\nBecause distance[0] = 1, s is not a well-spaced string."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool checkDistances(string s, vector<int>& distance) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean checkDistances(String s, int[] distance) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def checkDistances(self, s: str, distance: list[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def checkDistances(self, s, distance):\n        \"\"\"\n        :type s: str\n        :type distance: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} s\n * @param {number[]} distance\n * @return {boolean}\n */\nvar checkDistances = function(s, distance) {\n    \n};",
+    "typescript": "function checkDistances(s: string, distance: number[]): boolean {\n    \n};",
+    "csharp": "public class Solution {\n    public bool CheckDistances(string s, int[] distance) {\n        \n    }\n}",
+    "c": "bool checkDistances(char* s, int* distance, int distanceSize) {\n    \n}",
+    "golang": "func checkDistances(s string, distance []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun checkDistances(s: String, distance: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func checkDistances(_ s: String, _ distance: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn check_distances(s: String, distance: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {String} s\n# @param {Integer[]} distance\n# @return {Boolean}\ndef check_distances(s, distance)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $s\n     * @param Integer[] $distance\n     * @return Boolean\n     */\n    function checkDistances($s, $distance) {\n        \n    }\n}",
+    "dart": "class Solution {\n  bool checkDistances(String s, List<int> distance) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def checkDistances(s: String, distance: Array[Int]): Boolean = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec check_distances(s :: String.t, distance :: [integer]) :: boolean\n  def check_distances(s, distance) do\n    \n  end\nend",
+    "erlang": "-spec check_distances(S :: unicode:unicode_binary(), Distance :: [integer()]) -> boolean().\ncheck_distances(S, Distance) ->\n  .",
+    "racket": "(define/contract (check-distances s distance)\n  (-> string? (listof exact-integer?) boolean?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"abaccb\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aa\"\n[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "false"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"abaccb\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aa\"\n[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aba\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ccb\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"a\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ab\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"bccaba\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abaccbabaccb\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaaa\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abaccbbccaba\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"b\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aa\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ba\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abba\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aaaaa\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abcde\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"edcba\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aab\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aA\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"0\"\n[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+      "expectedOutput": "true"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Create an integer array of size 26 to keep track of the first occurrence of each letter.",
+    "The number of letters between indices i and j is j - i - 1."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/check-distances-between-same-letters/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:14.031Z",
+    "sourceUpdatedAt": null
+  }
+}

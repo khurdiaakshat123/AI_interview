@@ -1,0 +1,160 @@
+{
+  "id": "941",
+  "slug": "valid-mountain-array",
+  "title": "Valid Mountain Array",
+  "category": "dsa",
+  "subcategory": "arrays",
+  "difficulty": "Easy",
+  "tags": [
+    "Array"
+  ],
+  "statement": "Given an array of integers `arr`, return _`true` if and only if it is a valid mountain array_.\n\nRecall that arr is a mountain array if and only if:\n\n*   `arr.length >= 3`\n*   There exists some `i` with `0 < i < arr.length - 1` such that:\n    *   `arr[0] < arr[1] < ... < arr[i - 1] < arr[i]`\n    *   `arr[i] > arr[i + 1] > ... > arr[arr.length - 1]`\n\n![](./assets/valid-mountain-array-1.png)\n\n**Example 1:**\n\n```\nInput: arr = [2,1]\nOutput: false\n```\n\n**Example 2:**\n\n```\nInput: arr = [3,5,5]\nOutput: false\n```\n\n**Example 3:**\n\n```\nInput: arr = [0,3,2,1]\nOutput: true\n```\n\n**Constraints:**\n\n*   `1 <= arr.length <= 10^(4)`\n*   `0 <= arr[i] <= 10^(4)`",
+  "constraints": [
+    "1 <= arr.length <= 104",
+    "0 <= arr[i] <= 104"
+  ],
+  "examples": [
+    {
+      "input": "arr = [2,1]",
+      "output": "false",
+      "explanation": null
+    },
+    {
+      "input": "arr = [3,5,5]",
+      "output": "false",
+      "explanation": null
+    },
+    {
+      "input": "arr = [0,3,2,1]",
+      "output": "true",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    bool validMountainArray(vector<int>& arr) {\n        \n    }\n};",
+    "java": "class Solution {\n    public boolean validMountainArray(int[] arr) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def validMountainArray(self, arr: list[int]) -> bool:\n        ",
+    "python": "class Solution(object):\n    def validMountainArray(self, arr):\n        \"\"\"\n        :type arr: List[int]\n        :rtype: bool\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} arr\n * @return {boolean}\n */\nvar validMountainArray = function(arr) {\n    \n};",
+    "typescript": "function validMountainArray(arr: number[]): boolean {\n\n};",
+    "csharp": "public class Solution {\n    public bool ValidMountainArray(int[] arr) {\n        \n    }\n}",
+    "c": "\n\nbool validMountainArray(int* arr, int arrSize){\n\n}",
+    "golang": "func validMountainArray(arr []int) bool {\n    \n}",
+    "kotlin": "class Solution {\n    fun validMountainArray(arr: IntArray): Boolean {\n        \n    }\n}",
+    "swift": "class Solution {\n    func validMountainArray(_ arr: [Int]) -> Bool {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn valid_mountain_array(arr: Vec<i32>) -> bool {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} arr\n# @return {Boolean}\ndef valid_mountain_array(arr)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $arr\n     * @return Boolean\n     */\n    function validMountainArray($arr) {\n        \n    }\n}",
+    "scala": "object Solution {\n    def validMountainArray(arr: Array[Int]): Boolean = {\n        \n    }\n}"
+  },
+  "publicTests": [
+    {
+      "input": "[2,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[3,5,5]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,3,2,1]",
+      "expectedOutput": "true"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[2,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[3,5,5]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,3,2,1]",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[2,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[2,1,2,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[4,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[3,2]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-2,-1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "false"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "It's very easy to keep track of a monotonically increasing or decreasing ordering of elements. You just need to be able to determine the start of the valley in the mountain and from that point onwards, it should be a valley i.e. no mini-hills after that. Use this information in regards to the values in the array and you will be able to come up with a straightforward solution."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/valid-mountain-array/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:31.480Z",
+    "sourceUpdatedAt": null
+  }
+}

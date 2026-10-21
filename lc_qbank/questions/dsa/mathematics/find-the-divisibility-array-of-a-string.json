@@ -1,0 +1,160 @@
+{
+  "id": "2575",
+  "slug": "find-the-divisibility-array-of-a-string",
+  "title": "Find the Divisibility Array of a String",
+  "category": "dsa",
+  "subcategory": "mathematics",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Math",
+    "String"
+  ],
+  "statement": "You are given a **0-indexed** string `word` of length `n` consisting of digits, and a positive integer `m`.\n\nThe **divisibility array** `div` of `word` is an integer array of length `n` such that:\n\n*   `div[i] = 1` if the **numeric value** of `word[0,...,i]` is divisible by `m`, or\n*   `div[i] = 0` otherwise.\n\nReturn _the divisibility array of_ `word`.\n\n**Example 1:**\n\n```\nInput: word = \"998244353\", m = 3\nOutput: [1,1,0,0,0,1,1,0,0]\nExplanation: There are only 4 prefixes that are divisible by 3: \"9\", \"99\", \"998244\", and \"9982443\".\n```\n\n**Example 2:**\n\n```\nInput: word = \"1010\", m = 10\nOutput: [0,1,0,1]\nExplanation: There are only 2 prefixes that are divisible by 10: \"10\", and \"1010\".\n```\n\n**Constraints:**\n\n*   `1 <= n <= 10^(5)`\n*   `word.length == n`\n*   `word` consists of digits from `0` to `9`\n*   `1 <= m <= 10^(9)`",
+  "constraints": [
+    "1 <= n <= 105",
+    "word.length == n",
+    "word consists of digits from 0 to 9",
+    "1 <= m <= 109"
+  ],
+  "examples": [
+    {
+      "input": "word = \"998244353\", m = 3",
+      "output": "[1,1,0,0,0,1,1,0,0]",
+      "explanation": "There are only 4 prefixes that are divisible by 3: \"9\", \"99\", \"998244\", and \"9982443\"."
+    },
+    {
+      "input": "word = \"1010\", m = 10",
+      "output": "[0,1,0,1]",
+      "explanation": "There are only 2 prefixes that are divisible by 10: \"10\", and \"1010\"."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> divisibilityArray(string word, int m) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] divisibilityArray(String word, int m) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def divisibilityArray(self, word: str, m: int) -> List[int]:\n        ",
+    "python": "class Solution(object):\n    def divisibilityArray(self, word, m):\n        \"\"\"\n        :type word: str\n        :type m: int\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {string} word\n * @param {number} m\n * @return {number[]}\n */\nvar divisibilityArray = function(word, m) {\n    \n};",
+    "typescript": "function divisibilityArray(word: string, m: number): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] DivisibilityArray(string word, int m) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* divisibilityArray(char* word, int m, int* returnSize) {\n    \n}",
+    "golang": "func divisibilityArray(word string, m int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun divisibilityArray(word: String, m: Int): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func divisibilityArray(_ word: String, _ m: Int) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn divisibility_array(word: String, m: i32) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {String} word\n# @param {Integer} m\n# @return {Integer[]}\ndef divisibility_array(word, m)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param String $word\n     * @param Integer $m\n     * @return Integer[]\n     */\n    function divisibilityArray($word, $m) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> divisibilityArray(String word, int m) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def divisibilityArray(word: String, m: Int): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec divisibility_array(word :: String.t, m :: integer) :: [integer]\n  def divisibility_array(word, m) do\n    \n  end\nend",
+    "erlang": "-spec divisibility_array(Word :: unicode:unicode_binary(), M :: integer()) -> [integer()].\ndivisibility_array(Word, M) ->\n  .",
+    "racket": "(define/contract (divisibility-array word m)\n  (-> string? exact-integer? (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "\"998244353\"\n3",
+      "expectedOutput": "[1,1,0,0,0,1,1,0,0]"
+    },
+    {
+      "input": "\"1010\"\n10",
+      "expectedOutput": "[0,1,0,1]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "\"998244353\"\n3",
+      "expectedOutput": "[1,1,0,0,0,1,1,0,0]"
+    },
+    {
+      "input": "\"1010\"\n10",
+      "expectedOutput": "[0,1,0,1]"
+    },
+    {
+      "input": "\"9982\"\n3",
+      "expectedOutput": "[1,1,0,0]"
+    },
+    {
+      "input": "\"44353\"\n3",
+      "expectedOutput": "[0,0,0,0,0]"
+    },
+    {
+      "input": "\"9\"\n3",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "\"99\"\n3",
+      "expectedOutput": "[1,1]"
+    },
+    {
+      "input": "\"353442899\"\n3",
+      "expectedOutput": "[1,0,0,1,0,1,0,0,0]"
+    },
+    {
+      "input": "\"998244353998244353\"\n3",
+      "expectedOutput": "[1,1,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,0]"
+    },
+    {
+      "input": "\"999999\"\n3",
+      "expectedOutput": "[1,1,1,1,1,1]"
+    },
+    {
+      "input": "\"998244353353442899\"\n3",
+      "expectedOutput": "[1,1,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0]"
+    },
+    {
+      "input": "\"0\"\n3",
+      "expectedOutput": "[1]"
+    },
+    {
+      "input": "\"121\"\n3",
+      "expectedOutput": "[0,1,0]"
+    },
+    {
+      "input": "\"998244353\"\n1",
+      "expectedOutput": "[1,1,1,1,1,1,1,1,1]"
+    },
+    {
+      "input": "\"998244353\"\n2",
+      "expectedOutput": "[0,0,1,1,1,1,0,0,0]"
+    },
+    {
+      "input": "\"998244353\"\n4",
+      "expectedOutput": "[0,0,0,0,1,1,0,0,0]"
+    },
+    {
+      "input": "\"998244353\"\n5",
+      "expectedOutput": "[0,0,0,0,0,0,0,1,0]"
+    },
+    {
+      "input": "\"998244353\"\n6",
+      "expectedOutput": "[0,0,0,0,0,1,0,0,0]"
+    },
+    {
+      "input": "\"998244353\"\n7",
+      "expectedOutput": "[0,0,0,1,0,0,0,0,0]"
+    },
+    {
+      "input": "\"998244353\"\n8",
+      "expectedOutput": "[0,0,0,0,1,0,0,0,0]"
+    },
+    {
+      "input": "\"998244353\"\n-1",
+      "expectedOutput": "[1,1,1,1,1,1,1,1,1]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "We can check if the numeric value of the prefix of the given string is divisible by m by computing the remainder of the numeric value of the prefix when divided by m.",
+    "The remainder of the numeric value of a prefix ending at index i can be computed from the remainder of the prefix ending at index i-1."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-divisibility-array-of-a-string/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:18.243Z",
+    "sourceUpdatedAt": null
+  }
+}

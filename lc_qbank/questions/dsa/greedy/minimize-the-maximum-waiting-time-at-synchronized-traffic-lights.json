@@ -1,0 +1,170 @@
+{
+  "id": "4025",
+  "slug": "minimize-the-maximum-waiting-time-at-synchronized-traffic-lights",
+  "title": "Minimize the Maximum Waiting Time at Synchronized Traffic Lights",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "statement": "You are given an integer `period` and an integer array `lights`, where `lights[i]` is the duration, in seconds, of the green phase of the `i^(th)` traffic light.\n\nAt time 0, every traffic light starts at the beginning of its green phase. Their cycles are synchronized: every traffic light starts a new cycle at the same time, and every cycle lasts **exactly** `period` seconds. Therefore, the red phase of the `i^(th)` traffic light lasts for `period - lights[i]` seconds.\n\nYou are also given an integer array `arrivalTime`, where `arrivalTime[j]` is the arrival time, in seconds, of the `j^(th)` car.\n\nEach car must be assigned to **exactly** one traffic light. Multiple cars may be assigned to the same traffic light. Any number of cars may cross the same traffic light simultaneously while it is green. Cars do not block or delay one another.\n\nFor a car `j` assigned to the `i^(th)` traffic light, let `r = arrivalTime[j] % period`. If `r < lights[i]`, its waiting time is 0. Otherwise, its waiting time is `period - r`.\n\nThe **penalty** of an assignment is the **maximum** waiting time among all cars.\n\nReturn an integer denoting the **minimum possible penalty**.\n\n**Example 1:**\n\n**Input:** period = 8, lights = \\[2,3\\], arrivalTime = \\[2,5,8,11\\]\n\n**Output:** 5\n\n**Explanation:**\n\nOne optimal solution is:\n\n*   Assign `arrivalTime[0]` to the traffic light with `lights[1] = 3`. Here, `r = 2 % 8 = 2`. Since `2 < 3`, the waiting time is 0.\n*   Assign `arrivalTime[1]` to the traffic light with `lights[0] = 2`. Here, `r = 5 % 8 = 5`. Since `5 >= 2`, the waiting time is `8 - 5 = 3`.\n*   Assign `arrivalTime[2]` to the traffic light with `lights[0] = 2`. Here, `r = 8 % 8 = 0`. Since `0 < 2`, the waiting time is 0.\n*   Assign `arrivalTime[3]` to the traffic light with `lights[0] = 2`. Here, `r = 11 % 8 = 3`. Since `3 >= 2`, the waiting time is `8 - 3 = 5`.\n\nThe penalty of this assignment is 5, which is the minimum possible. Other optimal assignments may exist.\n\n**Example 2:**\n\n**Input:** period = 10, lights = \\[3,6,8\\], arrivalTime = \\[4,9,15\\]\n\n**Output:** 1\n\n**Explanation:**\n\nOne optimal solution is:\n\n*   Assign `arrivalTime[0]` to the traffic light with `lights[2] = 8`. Here, `r = 4 % 10 = 4`. Since `4 < 8`, the waiting time is 0.\n*   Assign `arrivalTime[1]` to the traffic light with `lights[2] = 8`. Here, `r = 9 % 10 = 9`. Since `9 >= 8`, the waiting time is `10 - 9 = 1`.\n*   Assign `arrivalTime[2]` to the traffic light with `lights[2] = 8`. Here, `r = 15 % 10 = 5`. Since `5 < 8`, the waiting time is 0.\n\nThe penalty of this assignment is 1, which is the minimum possible.\n\n**Example 3:**\n\n**Input:** period = 5, lights = \\[2\\], arrivalTime = \\[2,3,4,5,6\\]\n\n**Output:** 3\n\n**Explanation:**\n\nOne optimal solution is:\n\n*   Assign `arrivalTime[0]` to the traffic light with `lights[0] = 2`. Here, `r = 2 % 5 = 2`. Since `2 >= 2`, the waiting time is `5 - 2 = 3`.\n*   Assign `arrivalTime[1]` to the traffic light with `lights[0] = 2`. Here, `r = 3 % 5 = 3`. Since `3 >= 2`, the waiting time is `5 - 3 = 2`.\n*   Assign `arrivalTime[2]` to the traffic light with `lights[0] = 2`. Here, `r = 4 % 5 = 4`. Since `4 >= 2`, the waiting time is `5 - 4 = 1`.\n*   Assign `arrivalTime[3]` to the traffic light with `lights[0] = 2`. Here, `r = 5 % 5 = 0`. Since `0 < 2`, the waiting time is 0.\n*   Assign `arrivalTime[4]` to the traffic light with `lights[0] = 2`. Here, `r = 6 % 5 = 1`. Since `1 < 2`, the waiting time is 0.\n\nThe penalty of this assignment is 3, which is the minimum possible.\n\n**Constraints:**\n\n*   `2 <= period <= 10^(9)`\n*   `1 <= lights.length <= 10^(4)`\n*   `1 <= lights[i] <= period - 1`\n*   `1 <= arrivalTime.length <= 10^(5)`\n*   `1 <= arrivalTime[i] <= 10^(9)`",
+  "constraints": [
+    "2 <= period <= 109",
+    "1 <= lights.length <= 104",
+    "1 <= lights[i] <= period - 1",
+    "1 <= arrivalTime.length <= 105",
+    "1 <= arrivalTime[i] <= 109"
+  ],
+  "examples": [
+    {
+      "input": "period = 8, lights = [2,3], arrivalTime = [2,5,8,11]",
+      "output": "5",
+      "explanation": null
+    },
+    {
+      "input": "period = 10, lights = [3,6,8], arrivalTime = [4,9,15]",
+      "output": "1",
+      "explanation": null
+    },
+    {
+      "input": "period = 5, lights = [2], arrivalTime = [2,3,4,5,6]",
+      "output": "3",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int minPenalty(int period, vector<int>& lights, vector<int>& arrivalTime) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int minPenalty(int period, int[] lights, int[] arrivalTime) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minPenalty(self, period: int, lights: list[int], arrivalTime: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def minPenalty(self, period, lights, arrivalTime):\n        \"\"\"\n        :type period: int\n        :type lights: List[int]\n        :type arrivalTime: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} period\n * @param {number[]} lights\n * @param {number[]} arrivalTime\n * @return {number}\n */\nvar minPenalty = function(period, lights, arrivalTime) {\n    \n};",
+    "typescript": "function minPenalty(period: number, lights: number[], arrivalTime: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MinPenalty(int period, int[] lights, int[] arrivalTime) {\n        \n    }\n}",
+    "c": "int minPenalty(int period, int* lights, int lightsSize, int* arrivalTime, int arrivalTimeSize) {\n    \n}",
+    "golang": "func minPenalty(period int, lights []int, arrivalTime []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun minPenalty(period: Int, lights: IntArray, arrivalTime: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minPenalty(_ period: Int, _ lights: [Int], _ arrivalTime: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_penalty(period: i32, lights: Vec<i32>, arrival_time: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} period\n# @param {Integer[]} lights\n# @param {Integer[]} arrival_time\n# @return {Integer}\ndef min_penalty(period, lights, arrival_time)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $period\n     * @param Integer[] $lights\n     * @param Integer[] $arrivalTime\n     * @return Integer\n     */\n    function minPenalty($period, $lights, $arrivalTime) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int minPenalty(int period, List<int> lights, List<int> arrivalTime) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minPenalty(period: Int, lights: Array[Int], arrivalTime: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_penalty(period :: integer, lights :: [integer], arrival_time :: [integer]) :: integer\n  def min_penalty(period, lights, arrival_time) do\n    \n  end\nend",
+    "erlang": "-spec min_penalty(Period :: integer(), Lights :: [integer()], ArrivalTime :: [integer()]) -> integer().\nmin_penalty(Period, Lights, ArrivalTime) ->\n  .",
+    "racket": "(define/contract (min-penalty period lights arrivalTime)\n  (-> exact-integer? (listof exact-integer?) (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "8\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "10\n[3,6,8]\n[4,9,15]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[2]\n[2,3,4,5,6]",
+      "expectedOutput": "3"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "8\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "10\n[3,6,8]\n[4,9,15]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[2]\n[2,3,4,5,6]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "1\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "2\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "3\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "4\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "5\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "6\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "7\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "3"
+    },
+    {
+      "input": "9\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "10\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "-1\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "-2\n[2,3]\n[2,5,8,11]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "8\n[2]\n[2,5,8,11]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "8\n[3]\n[2,5,8,11]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "8\n[3,2]\n[2,5,8,11]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "8\n[2,2]\n[2,5,8,11]",
+      "expectedOutput": "6"
+    },
+    {
+      "input": "8\n[2,3,2,3]\n[2,5,8,11]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "8\n[4,6]\n[2,5,8,11]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "<p>Since traffic lights have no capacity restriction, each car can choose its traffic light independently.</p>",
+    "<p>Let <code>maxGreen</code> be the maximum value in <code>lights</code>. A car with <code>r = arrivalTime[j] % period</code> can have waiting time 0 if and only if <code>r &lt; maxGreen</code>.</p>",
+    "<p>Otherwise, every traffic light is red when the car arrives, and its waiting time is <code>period - r</code>. Take the maximum waiting time over all cars.</p>"
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimize-the-maximum-waiting-time-at-synchronized-traffic-lights/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:23.302Z",
+    "sourceUpdatedAt": null
+  }
+}

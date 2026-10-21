@@ -1,0 +1,171 @@
+{
+  "id": "3974",
+  "slug": "maximum-total-sum-of-k-selected-elements",
+  "title": "Maximum Total Sum of K Selected Elements",
+  "category": "dsa",
+  "subcategory": "greedy",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "statement": "You are given an integer array `nums` and two integers `k` and `mul`.\n\nSelect **exactly** `k` elements from `nums`. Process these elements one by one in any order you choose.\n\nFor each selected element, **independently** choose one of the following:\n\n*   **Add** the element's value to the total sum, or\n*   **Multiply** the element by the **current** value of `mul` and **add** the result to the total sum.\n\nAfter processing each selected element, `mul` **decreases** by 1, regardless of which option was chosen. The current value of `mul` may become 0 or negative.\n\nReturn an integer denoting the **maximum** possible total sum.\n\n**Example 1:**\n\n**Input:** nums = \\[6,1,2,9\\], k = 3, mul = 2\n\n**Output:** 26\n\n**Explanation:**\n\nOne optimal way:\n\n*   One optimal selection is `nums[3] = 9`, `nums[0] = 6`, and `nums[2] = 2`.\n*   Process `nums[3] = 9` first: choose multiplication, so it contributes `9 * 2 = 18`. Now, `mul` becomes 1.\n*   Process `nums[0] = 6` next: choose multiplication, so it contributes `6 * 1 = 6`. Now, `mul` becomes 0.\n*   Process `nums[2] = 2` last: choose addition, so it contributes 2.\n*   The total sum is `18 + 6 + 2 = 26`.\n\n**Example 2:**\n\n**Input:** nums = \\[3,7,5,2\\], k = 2, mul = 4\n\n**Output:** 43\n\n**Explanation:**\n\nOne optimal way:\n\n*   One optimal selection is `nums[1] = 7` and `nums[2] = 5`.\n*   Process `nums[1] = 7` first: choose multiplication, so it contributes `7 * 4 = 28`. Now, `mul` becomes 3.\n*   Process `nums[2] = 5` next: choose multiplication, so it contributes `5 * 3 = 15`.\n*   The total sum is `28 + 15 = 43`.\n\n**Example 3:**\n\n**Input:** nums = \\[4,4\\], k = 1, mul = 1\n\n**Output:** 4\n\n**Explanation:**\n\nOne optimal way:\n\n*   One optimal selection is `nums[0] = 4`.\n*   Process `nums[0] = 4`: choose multiplication, so it contributes `4 * 1 = 4`.\n*   The total sum is 4.\n\n**Constraints:**\n\n*   `1 <= nums.length <= 10^(5)`\n*   `1 <= nums[i] <= 10^(5)`\n*   `1 <= k <= nums.length`\n*   `1 <= mul <= 10^(5)`",
+  "constraints": [
+    "1 <= nums.length <= 105",
+    "1 <= nums[i] <= 105",
+    "1 <= k <= nums.length",
+    "1 <= mul <= 105"
+  ],
+  "examples": [
+    {
+      "input": "nums = [6,1,2,9], k = 3, mul = 2",
+      "output": "26",
+      "explanation": null
+    },
+    {
+      "input": "nums = [3,7,5,2], k = 2, mul = 4",
+      "output": "43",
+      "explanation": null
+    },
+    {
+      "input": "nums = [4,4], k = 1, mul = 1",
+      "output": "4",
+      "explanation": null
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    long long maxSum(vector<int>& nums, int k, int mul) {\n        \n    }\n};",
+    "java": "class Solution {\n    public long maxSum(int[] nums, int k, int mul) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxSum(self, nums: list[int], k: int, mul: int) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxSum(self, nums, k, mul):\n        \"\"\"\n        :type nums: List[int]\n        :type k: int\n        :type mul: int\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @param {number} mul\n * @return {number}\n */\nvar maxSum = function(nums, k, mul) {\n    \n};",
+    "typescript": "function maxSum(nums: number[], k: number, mul: number): number {\n    \n};",
+    "csharp": "public class Solution {\n    public long MaxSum(int[] nums, int k, int mul) {\n        \n    }\n}",
+    "c": "long long maxSum(int* nums, int numsSize, int k, int mul) {\n    \n}",
+    "golang": "func maxSum(nums []int, k int, mul int) int64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxSum(nums: IntArray, k: Int, mul: Int): Long {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxSum(_ nums: [Int], _ k: Int, _ mul: Int) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_sum(nums: Vec<i32>, k: i32, mul: i32) -> i64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @param {Integer} k\n# @param {Integer} mul\n# @return {Integer}\ndef max_sum(nums, k, mul)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @param Integer $k\n     * @param Integer $mul\n     * @return Integer\n     */\n    function maxSum($nums, $k, $mul) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxSum(List<int> nums, int k, int mul) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxSum(nums: Array[Int], k: Int, mul: Int): Long = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_sum(nums :: [integer], k :: integer, mul :: integer) :: integer\n  def max_sum(nums, k, mul) do\n    \n  end\nend",
+    "erlang": "-spec max_sum(Nums :: [integer()], K :: integer(), Mul :: integer()) -> integer().\nmax_sum(Nums, K, Mul) ->\n  .",
+    "racket": "(define/contract (max-sum nums k mul)\n  (-> (listof exact-integer?) exact-integer? exact-integer? exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[6,1,2,9]\n3\n2",
+      "expectedOutput": "26"
+    },
+    {
+      "input": "[3,7,5,2]\n2\n4",
+      "expectedOutput": "43"
+    },
+    {
+      "input": "[4,4]\n1\n1",
+      "expectedOutput": "4"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[6,1,2,9]\n3\n2",
+      "expectedOutput": "26"
+    },
+    {
+      "input": "[3,7,5,2]\n2\n4",
+      "expectedOutput": "43"
+    },
+    {
+      "input": "[4,4]\n1\n1",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[6,1]\n3\n2",
+      "expectedOutput": "19"
+    },
+    {
+      "input": "[2,9]\n3\n2",
+      "expectedOutput": "29"
+    },
+    {
+      "input": "[6,9]\n3\n2",
+      "expectedOutput": "33"
+    },
+    {
+      "input": "[9,2,1,6]\n3\n2",
+      "expectedOutput": "26"
+    },
+    {
+      "input": "[1,2,6,9]\n3\n2",
+      "expectedOutput": "26"
+    },
+    {
+      "input": "[9,6,2,1]\n3\n2",
+      "expectedOutput": "26"
+    },
+    {
+      "input": "[6,6,6,6]\n3\n2",
+      "expectedOutput": "24"
+    },
+    {
+      "input": "[6,1,2,9,6,1,2,9]\n3\n2",
+      "expectedOutput": "33"
+    },
+    {
+      "input": "[12,2,4,18]\n3\n2",
+      "expectedOutput": "52"
+    },
+    {
+      "input": "[7,2,3,10]\n3\n2",
+      "expectedOutput": "30"
+    },
+    {
+      "input": "[5,0,1,8]\n3\n2",
+      "expectedOutput": "22"
+    },
+    {
+      "input": "[-6,-1,-2,-9]\n3\n2",
+      "expectedOutput": "-10"
+    },
+    {
+      "input": "[0,0,0,0]\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1,1]\n3\n2",
+      "expectedOutput": "4"
+    },
+    {
+      "input": "[0,0]\n3\n2",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,2]\n3\n2",
+      "expectedOutput": "7"
+    },
+    {
+      "input": "[2,1]\n3\n2",
+      "expectedOutput": "7"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Suppose the selected elements are fixed. Which elements should be multiplied, and in what order should they be processed?",
+    "Since every <code>nums[i]</code> is positive, multiplying by a current value greater than 1 is always at least as good as adding normally.",
+    "Only the first <code>min(k, mul - 1)</code> processed elements should be multiplied. All remaining selected elements should be added normally.",
+    "Choose the largest <code>k</code> elements of <code>nums</code>, and pair the largest selected elements with the largest multipliers."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-total-sum-of-k-selected-elements/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:22.841Z",
+    "sourceUpdatedAt": null
+  }
+}

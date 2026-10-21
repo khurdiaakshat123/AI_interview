@@ -1,0 +1,172 @@
+{
+  "id": "1799",
+  "slug": "maximize-score-after-n-operations",
+  "title": "Maximize Score After N Operations",
+  "category": "dsa",
+  "subcategory": "dynamic-programming",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Number Theory",
+    "Bitmask"
+  ],
+  "statement": "You are given `nums`, an array of positive integers of size `2 * n`. You must perform `n` operations on this array.\n\nIn the `i^(th)` operation **(1-indexed)**, you will:\n\n*   Choose two elements, `x` and `y`.\n*   Receive a score of `i * gcd(x, y)`.\n*   Remove `x` and `y` from `nums`.\n\nReturn _the maximum score you can receive after performing_ `n` _operations._\n\nThe function `gcd(x, y)` is the greatest common divisor of `x` and `y`.\n\n**Example 1:**\n\n```\nInput: nums = [1,2]\nOutput: 1\nExplanation: The optimal choice of operations is:\n(1 * gcd(1, 2)) = 1\n```\n\n**Example 2:**\n\n```\nInput: nums = [3,4,6,8]\nOutput: 11\nExplanation: The optimal choice of operations is:\n(1 * gcd(3, 6)) + (2 * gcd(4, 8)) = 3 + 8 = 11\n```\n\n**Example 3:**\n\n```\nInput: nums = [1,2,3,4,5,6]\nOutput: 14\nExplanation: The optimal choice of operations is:\n(1 * gcd(1, 5)) + (2 * gcd(2, 4)) + (3 * gcd(3, 6)) = 1 + 4 + 9 = 14\n```\n\n**Constraints:**\n\n*   `1 <= n <= 7`\n*   `nums.length == 2 * n`\n*   `1 <= nums[i] <= 10^(6)`",
+  "constraints": [
+    "1 <= n <= 7",
+    "nums.length == 2 * n",
+    "1 <= nums[i] <= 106"
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2]",
+      "output": "1",
+      "explanation": " The optimal choice of operations is:\n(1 * gcd(1, 2)) = 1"
+    },
+    {
+      "input": "nums = [3,4,6,8]",
+      "output": "11",
+      "explanation": " The optimal choice of operations is:\n(1 * gcd(3, 6)) + (2 * gcd(4, 8)) = 3 + 8 = 11"
+    },
+    {
+      "input": "nums = [1,2,3,4,5,6]",
+      "output": "14",
+      "explanation": " The optimal choice of operations is:\n(1 * gcd(1, 5)) + (2 * gcd(2, 4)) + (3 * gcd(3, 6)) = 1 + 4 + 9 = 14"
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    int maxScore(vector<int>& nums) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int maxScore(int[] nums) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def maxScore(self, nums: list[int]) -> int:\n        ",
+    "python": "class Solution(object):\n    def maxScore(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxScore = function(nums) {\n    \n};",
+    "typescript": "function maxScore(nums: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public int MaxScore(int[] nums) {\n        \n    }\n}",
+    "c": "int maxScore(int* nums, int numsSize) {\n    \n}",
+    "golang": "func maxScore(nums []int) int {\n    \n}",
+    "kotlin": "class Solution {\n    fun maxScore(nums: IntArray): Int {\n        \n    }\n}",
+    "swift": "class Solution {\n    func maxScore(_ nums: [Int]) -> Int {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn max_score(nums: Vec<i32>) -> i32 {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums\n# @return {Integer}\ndef max_score(nums)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return Integer\n     */\n    function maxScore($nums) {\n        \n    }\n}",
+    "dart": "class Solution {\n  int maxScore(List<int> nums) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def maxScore(nums: Array[Int]): Int = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec max_score(nums :: [integer]) :: integer\n  def max_score(nums) do\n    \n  end\nend",
+    "erlang": "-spec max_score(Nums :: [integer()]) -> integer().\nmax_score(Nums) ->\n  .",
+    "racket": "(define/contract (max-score nums)\n  (-> (listof exact-integer?) exact-integer?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,4,6,8]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[1,2,3,4,5,6]",
+      "expectedOutput": "14"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[3,4,6,8]",
+      "expectedOutput": "11"
+    },
+    {
+      "input": "[1,2,3,4,5,6]",
+      "expectedOutput": "14"
+    },
+    {
+      "input": "[1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[2,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,1,2]",
+      "expectedOutput": "5"
+    },
+    {
+      "input": "[2,4]",
+      "expectedOutput": "2"
+    },
+    {
+      "input": "[2,3]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[-1,-2]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[0,0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[-1,1]",
+      "expectedOutput": "1"
+    },
+    {
+      "input": "[1,2,3]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[3,2,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[1,1,1]",
+      "expectedOutput": "0"
+    },
+    {
+      "input": "[0,1,0]",
+      "expectedOutput": "0"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Find every way to split the array until n groups of 2. Brute force recursion is acceptable.",
+    "Calculate the gcd of every pair and greedily multiply the largest gcds."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/maximize-score-after-n-operations/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:21.332Z",
+    "sourceUpdatedAt": null
+  }
+}

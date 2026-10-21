@@ -1,0 +1,157 @@
+{
+  "id": "350",
+  "slug": "intersection-of-two-arrays-ii",
+  "title": "Intersection of Two Arrays II",
+  "category": "dsa",
+  "subcategory": "two-pointers",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting"
+  ],
+  "statement": "Given two integer arrays `nums1` and `nums2`, return _an array of their intersection_. Each element in the result must appear as many times as it shows in both arrays and you may return the result in **any order**.\n\n**Example 1:**\n\n```\nInput: nums1 = [1,2,2,1], nums2 = [2,2]\nOutput: [2,2]\n```\n\n**Example 2:**\n\n```\nInput: nums1 = [4,9,5], nums2 = [9,4,9,8,4]\nOutput: [4,9]\nExplanation: [9,4] is also accepted.\n```\n\n**Constraints:**\n\n*   `1 <= nums1.length, nums2.length <= 1000`\n*   `0 <= nums1[i], nums2[i] <= 1000`\n\n**Follow up:**\n\n*   What if the given array is already sorted? How would you optimize your algorithm?\n*   What if `nums1`'s size is small compared to `nums2`'s size? Which algorithm is better?\n*   What if elements of `nums2` are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?",
+  "constraints": [
+    "1 <= nums1.length, nums2.length <= 1000",
+    "0 <= nums1[i], nums2[i] <= 1000"
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [1,2,2,1], nums2 = [2,2]",
+      "output": "[2,2]",
+      "explanation": null
+    },
+    {
+      "input": "nums1 = [4,9,5], nums2 = [9,4,9,8,4]",
+      "output": "[4,9]",
+      "explanation": "[9,4] is also accepted."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};",
+    "java": "class Solution {\n    public int[] intersect(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def intersect(self, nums1: list[int], nums2: list[int]) -> list[int]:\n        ",
+    "python": "class Solution(object):\n    def intersect(self, nums1, nums2):\n        \"\"\"\n        :type nums1: List[int]\n        :type nums2: List[int]\n        :rtype: List[int]\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number[]}\n */\nvar intersect = function(nums1, nums2) {\n    \n};",
+    "typescript": "function intersect(nums1: number[], nums2: number[]): number[] {\n    \n};",
+    "csharp": "public class Solution {\n    public int[] Intersect(int[] nums1, int[] nums2) {\n        \n    }\n}",
+    "c": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {\n    \n}",
+    "golang": "func intersect(nums1 []int, nums2 []int) []int {\n    \n}",
+    "kotlin": "class Solution {\n    fun intersect(nums1: IntArray, nums2: IntArray): IntArray {\n        \n    }\n}",
+    "swift": "class Solution {\n    func intersect(_ nums1: [Int], _ nums2: [Int]) -> [Int] {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn intersect(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {\n        \n    }\n}",
+    "ruby": "# @param {Integer[]} nums1\n# @param {Integer[]} nums2\n# @return {Integer[]}\ndef intersect(nums1, nums2)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer[] $nums1\n     * @param Integer[] $nums2\n     * @return Integer[]\n     */\n    function intersect($nums1, $nums2) {\n        \n    }\n}",
+    "dart": "class Solution {\n  List<int> intersect(List<int> nums1, List<int> nums2) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def intersect(nums1: Array[Int], nums2: Array[Int]): Array[Int] = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec intersect(nums1 :: [integer], nums2 :: [integer]) :: [integer]\n  def intersect(nums1, nums2) do\n    \n  end\nend",
+    "erlang": "-spec intersect(Nums1 :: [integer()], Nums2 :: [integer()]) -> [integer()].\nintersect(Nums1, Nums2) ->\n  .",
+    "racket": "(define/contract (intersect nums1 nums2)\n  (-> (listof exact-integer?) (listof exact-integer?) (listof exact-integer?))\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "[1,2,2,1]\n[2,2]",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "[4,9,5]\n[9,4,9,8,4]",
+      "expectedOutput": "[4,9]"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "[1,2,2,1]\n[2,2]",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "[4,9,5]\n[9,4,9,8,4]",
+      "expectedOutput": "[9,4]"
+    },
+    {
+      "input": "[1,2]\n[2,2]",
+      "expectedOutput": "[2]"
+    },
+    {
+      "input": "[2,1]\n[2,2]",
+      "expectedOutput": "[2]"
+    },
+    {
+      "input": "[1]\n[2,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,1]\n[2,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,1,2,2]\n[2,2]",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "[2,2,1,1]\n[2,2]",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "[1,1,1,1]\n[2,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,2,2,1,1,2,2,1]\n[2,2]",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "[2,4,4,2]\n[2,2]",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "[2,3,3,2]\n[2,2]",
+      "expectedOutput": "[2,2]"
+    },
+    {
+      "input": "[0,1,1,0]\n[2,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[-1,-2,-2,-1]\n[2,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[0,0,0,0]\n[2,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[0]\n[2,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[-1]\n[2,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[0,0]\n[2,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[-1,1]\n[2,2]",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "[1,2,3]\n[2,2]",
+      "expectedOutput": "[2]"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/intersection-of-two-arrays-ii/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:19.573Z",
+    "sourceUpdatedAt": null
+  }
+}

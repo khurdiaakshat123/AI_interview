@@ -1,0 +1,121 @@
+{
+  "id": "3594",
+  "slug": "minimum-time-to-transport-all-individuals",
+  "title": "Minimum Time to Transport All Individuals",
+  "category": "dsa",
+  "subcategory": "graphs",
+  "difficulty": "Hard",
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path",
+    "Bitmask"
+  ],
+  "statement": "You are given `n` individuals at a base camp who need to cross a river to reach a destination using a single boat. The boat can carry at most `k` people at a time. The trip is affected by environmental conditions that vary **cyclically** over `m` stages.\n\nEach stage `j` has a speed multiplier `mul[j]`:\n\n*   If `mul[j] > 1`, the trip slows down.\n*   If `mul[j] < 1`, the trip speeds up.\n\nEach individual `i` has a rowing strength represented by `time[i]`, the time (in minutes) it takes them to cross alone in neutral conditions.\n\n**Rules:**\n\n*   A group `g` departing at stage `j` takes time equal to the **maximum** `time[i]` among its members, multiplied by `mul[j]` minutes to reach the destination.\n*   After the group crosses the river in time `d`, the stage advances by `floor(d) % m` steps.\n*   If individuals are left behind, one person must return with the boat. Let `r` be the index of the returning person, the return takes `time[r] × mul[current_stage]`, defined as `return_time`, and the stage advances by `floor(return_time) % m`.\n\nReturn the **minimum** total time required to transport all individuals. If it is not possible to transport all individuals to the destination, return `-1`.\n\n**Example 1:**\n\n**Input:** n = 1, k = 1, m = 2, time = \\[5\\], mul = \\[1.0,1.3\\]\n\n**Output:** 5.00000\n\n**Explanation:**\n\n*   Individual 0 departs from stage 0, so crossing time = `5 × 1.00 = 5.00` minutes.\n*   All team members are now at the destination. Thus, the total time taken is `5.00` minutes.\n\n**Example 2:**\n\n**Input:** n = 3, k = 2, m = 3, time = \\[2,5,8\\], mul = \\[1.0,1.5,0.75\\]\n\n**Output:** 14.50000\n\n**Explanation:**\n\nThe optimal strategy is:\n\n*   Send individuals 0 and 2 from the base camp to the destination from stage 0. The crossing time is `max(2, 8) × mul[0] = 8 × 1.00 = 8.00` minutes. The stage advances by `floor(8.00) % 3 = 2`, so the next stage is `(0 + 2) % 3 = 2`.\n*   Individual 0 returns alone from the destination to the base camp from stage 2. The return time is `2 × mul[2] = 2 × 0.75 = 1.50` minutes. The stage advances by `floor(1.50) % 3 = 1`, so the next stage is `(2 + 1) % 3 = 0`.\n*   Send individuals 0 and 1 from the base camp to the destination from stage 0. The crossing time is `max(2, 5) × mul[0] = 5 × 1.00 = 5.00` minutes. The stage advances by `floor(5.00) % 3 = 2`, so the final stage is `(0 + 2) % 3 = 2`.\n*   All team members are now at the destination. The total time taken is `8.00 + 1.50 + 5.00 = 14.50` minutes.\n\n**Example 3:**\n\n**Input:** n = 2, k = 1, m = 2, time = \\[10,10\\], mul = \\[2.0,2.0\\]\n\n**Output:** \\-1.00000\n\n**Explanation:**\n\n*   Since the boat can only carry one person at a time, it is impossible to transport both individuals as one must always return. Thus, the answer is `-1.00`.\n\n**Constraints:**\n\n*   `1 <= n == time.length <= 12`\n*   `1 <= k <= 5`\n*   `1 <= m <= 5`\n*   `1 <= time[i] <= 100`\n*   `m == mul.length`\n*   `0.5 <= mul[i] <= 2.0`",
+  "constraints": [
+    "1 <= n == time.length <= 12",
+    "1 <= k <= 5",
+    "1 <= m <= 5",
+    "1 <= time[i] <= 100",
+    "m == mul.length",
+    "0.5 <= mul[i] <= 2.0"
+  ],
+  "examples": [
+    {
+      "input": "n = 1, k = 1, m = 2, time = [5], mul = [1.0,1.3]",
+      "output": "5.00000",
+      "explanation": "Individual 0 departs from stage 0, so crossing time = 5 × 1.00 = 5.00 minutes.\n\tAll team members are now at the destination. Thus, the total time taken is 5.00 minutes."
+    },
+    {
+      "input": "n = 3, k = 2, m = 3, time = [2,5,8], mul = [1.0,1.5,0.75]",
+      "output": "14.50000",
+      "explanation": null
+    },
+    {
+      "input": "n = 2, k = 1, m = 2, time = [10,10], mul = [2.0,2.0]",
+      "output": "-1.00000",
+      "explanation": "Since the boat can only carry one person at a time, it is impossible to transport both individuals as one must always return. Thus, the answer is -1.00."
+    }
+  ],
+  "starterCode": {
+    "cpp": "class Solution {\npublic:\n    double minTime(int n, int k, int m, vector<int>& time, vector<double>& mul) {\n        \n    }\n};",
+    "java": "class Solution {\n    public double minTime(int n, int k, int m, int[] time, double[] mul) {\n        \n    }\n}",
+    "python3": "class Solution:\n    def minTime(self, n: int, k: int, m: int, time: List[int], mul: List[float]) -> float:\n        ",
+    "python": "class Solution(object):\n    def minTime(self, n, k, m, time, mul):\n        \"\"\"\n        :type n: int\n        :type k: int\n        :type m: int\n        :type time: List[int]\n        :type mul: List[float]\n        :rtype: float\n        \"\"\"\n        ",
+    "javascript": "/**\n * @param {number} n\n * @param {number} k\n * @param {number} m\n * @param {number[]} time\n * @param {number[]} mul\n * @return {number}\n */\nvar minTime = function(n, k, m, time, mul) {\n    \n};",
+    "typescript": "function minTime(n: number, k: number, m: number, time: number[], mul: number[]): number {\n    \n};",
+    "csharp": "public class Solution {\n    public double MinTime(int n, int k, int m, int[] time, double[] mul) {\n        \n    }\n}",
+    "c": "double minTime(int n, int k, int m, int* time, int timeSize, double* mul, int mulSize) {\n    \n}",
+    "golang": "func minTime(n int, k int, m int, time []int, mul []float64) float64 {\n    \n}",
+    "kotlin": "class Solution {\n    fun minTime(n: Int, k: Int, m: Int, time: IntArray, mul: DoubleArray): Double {\n        \n    }\n}",
+    "swift": "class Solution {\n    func minTime(_ n: Int, _ k: Int, _ m: Int, _ time: [Int], _ mul: [Double]) -> Double {\n        \n    }\n}",
+    "rust": "impl Solution {\n    pub fn min_time(n: i32, k: i32, m: i32, time: Vec<i32>, mul: Vec<f64>) -> f64 {\n        \n    }\n}",
+    "ruby": "# @param {Integer} n\n# @param {Integer} k\n# @param {Integer} m\n# @param {Integer[]} time\n# @param {Float[]} mul\n# @return {Float}\ndef min_time(n, k, m, time, mul)\n    \nend",
+    "php": "class Solution {\n\n    /**\n     * @param Integer $n\n     * @param Integer $k\n     * @param Integer $m\n     * @param Integer[] $time\n     * @param Float[] $mul\n     * @return Float\n     */\n    function minTime($n, $k, $m, $time, $mul) {\n        \n    }\n}",
+    "dart": "class Solution {\n  double minTime(int n, int k, int m, List<int> time, List<double> mul) {\n    \n  }\n}",
+    "scala": "object Solution {\n    def minTime(n: Int, k: Int, m: Int, time: Array[Int], mul: Array[Double]): Double = {\n        \n    }\n}",
+    "elixir": "defmodule Solution do\n  @spec min_time(n :: integer, k :: integer, m :: integer, time :: [integer], mul :: [float]) :: float\n  def min_time(n, k, m, time, mul) do\n    \n  end\nend",
+    "erlang": "-spec min_time(N :: integer(), K :: integer(), M :: integer(), Time :: [integer()], Mul :: [float()]) -> float().\nmin_time(N, K, M, Time, Mul) ->\n  .",
+    "racket": "(define/contract (min-time n k m time mul)\n  (-> exact-integer? exact-integer? exact-integer? (listof exact-integer?) (listof flonum?) flonum?)\n  )"
+  },
+  "publicTests": [
+    {
+      "input": "1\n1\n2\n[5]\n[1.0,1.3]",
+      "expectedOutput": "5.00000"
+    },
+    {
+      "input": "3\n2\n3\n[2,5,8]\n[1.0,1.5,0.75]",
+      "expectedOutput": "14.50000"
+    },
+    {
+      "input": "2\n1\n2\n[10,10]\n[2.0,2.0]",
+      "expectedOutput": "-1.00000"
+    }
+  ],
+  "testCases": [
+    {
+      "input": "1\n1\n2\n[5]\n[1.0,1.3]",
+      "expectedOutput": "5.00000"
+    },
+    {
+      "input": "3\n2\n3\n[2,5,8]\n[1.0,1.5,0.75]",
+      "expectedOutput": "14.50000"
+    },
+    {
+      "input": "2\n1\n2\n[10,10]\n[2.0,2.0]",
+      "expectedOutput": "-1.00000"
+    },
+    {
+      "input": "n = 1, k = 1, m = 2, time = [5], mul = [1.0,1.3]",
+      "expectedOutput": "5.00000"
+    },
+    {
+      "input": "n = 3, k = 2, m = 3, time = [2,5,8], mul = [1.0,1.5,0.75]",
+      "expectedOutput": "14.50000"
+    },
+    {
+      "input": "n = 2, k = 1, m = 2, time = [10,10], mul = [2.0,2.0]",
+      "expectedOutput": "-1.00000"
+    }
+  ],
+  "sqlSchema": null,
+  "sqlSetup": null,
+  "expectedOutput": null,
+  "solution": null,
+  "hints": [
+    "Use dynamic programming.",
+    "The states are <code>mask</code> of people left and <code>current_stage</code>.",
+    "The states form a cycle.",
+    "Consider the transitions as edges and the entire DP problem as a graph; all edge weights are positive.",
+    "We can use Dijkstra's algorithm."
+  ],
+  "source": {
+    "name": "LeetCode",
+    "url": "https://leetcode.com/problems/minimum-time-to-transport-all-individuals/",
+    "licenseOrPermissionReference": "Authorized collection",
+    "collectedAt": "2026-10-19T18:40:25.242Z",
+    "sourceUpdatedAt": null
+  }
+}
