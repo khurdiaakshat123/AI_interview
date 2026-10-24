@@ -104,7 +104,9 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   // Solver State
   const [questionDetail, setQuestionDetail] = useState<LCQuestionDetail | null>(null);
   const [loadingDetail, setLoadingDetail] = useState<boolean>(false);
-  const [solverTab, setSolverTab] = useState<'description' | 'editorial' | 'hints' | 'submissions'>('description');
+  const [solverTab, setSolverTab] = useState<'description' | 'editorial' | 'hints' | 'submissions' | 'result'>('description');
+  const [lastSubmittedCode, setLastSubmittedCode] = useState<string>('');
+  const [lastSubmittedLang, setLastSubmittedLang] = useState<string>('python3');
   const [selectedLang, setSelectedLang] = useState<string>('python3');
   const [code, setCode] = useState<string>('');
   const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -196,6 +198,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
       setLoadingDetail(true);
       setRunResult(null);
       setSubmitResult(null);
+      setSolverTab('description');
+      setLastSubmittedCode('');
       setRevealedHints({});
       setActiveCaseTab(0);
       setBottomConsoleTab('testcase');
@@ -287,6 +291,9 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
     try {
       const res = await api.submitLCCode(questionDetail.id, code, selectedLang);
       setSubmitResult(res);
+      setLastSubmittedCode(code);
+      setLastSubmittedLang(selectedLang);
+      setSolverTab('result');
       setRunResult(null);
 
       if (res.is_correct) {
@@ -878,19 +885,48 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
         {/* ================================================================= */}
         <div className="lg:col-span-5 border-r border-border flex flex-col bg-bg overflow-hidden h-[calc(100vh-50px)]">
           {/* Top Left Navigation Tabs */}
-          <div className="flex items-center border-b border-border bg-surface px-2">
+          <div className="flex items-center border-b border-border bg-surface px-2 overflow-x-auto">
             <button
               type="button"
               onClick={() => setSolverTab('description')}
-              className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 ${
                 solverTab === 'description'
-                  ? 'border-accent text-accent'
+                  ? 'border-accent text-accent font-bold'
                   : 'border-transparent text-text-muted hover:text-text'
               }`}
             >
               <FileText className="w-3.5 h-3.5" />
               <span>Description</span>
             </button>
+
+            {/* LeetCode-style Dynamic Submission Result Tab */}
+            {submitResult && (
+              <button
+                type="button"
+                onClick={() => setSolverTab('result')}
+                className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 ${
+                  solverTab === 'result'
+                    ? submitResult.is_correct
+                      ? 'border-emerald-500 text-emerald-500 font-bold'
+                      : 'border-rose-500 text-rose-500 font-bold'
+                    : 'border-transparent text-text-muted hover:text-text'
+                }`}
+              >
+                <CheckCircle2 className={`w-3.5 h-3.5 ${submitResult.is_correct ? 'text-emerald-500' : 'text-rose-500'}`} />
+                <span>{submitResult.status}</span>
+                <span
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSubmitResult(null);
+                    if (solverTab === 'result') setSolverTab('description');
+                  }}
+                  className="ml-1 text-text-muted hover:text-text cursor-pointer hover:bg-border/60 rounded px-1 transition-colors text-[13px] leading-none"
+                  title="Close result tab"
+                >
+                  ×
+                </span>
+              </button>
+            )}
 
             <button
               type="button"
@@ -1012,8 +1048,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                 {/* Question Statement Markdown with Diagrams */}
                 <LCMarkdownViewer content={questionDetail.statement} />
 
-                {/* Examples */}
-                {questionDetail.examples && questionDetail.examples.length > 0 && (
+                {/* Fallback Examples: Only render if statement does NOT already contain examples */}
+                {(!questionDetail.statement || !/example/i.test(questionDetail.statement)) && questionDetail.examples && questionDetail.examples.length > 0 && (
                   <div className="space-y-4 pt-2">
                     <h3 className="text-sm font-semibold text-text uppercase tracking-wider font-mono">
                       Examples
@@ -1041,8 +1077,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                   </div>
                 )}
 
-                {/* Constraints */}
-                {questionDetail.constraints && questionDetail.constraints.length > 0 && (
+                {/* Fallback Constraints: Only render if statement does NOT already contain constraints */}
+                {(!questionDetail.statement || !/constraint/i.test(questionDetail.statement)) && questionDetail.constraints && questionDetail.constraints.length > 0 && (
                   <div className="space-y-2 pt-2">
                     <h3 className="text-sm font-semibold text-text uppercase tracking-wider font-mono">
                       Constraints
@@ -1058,6 +1094,117 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                     </ul>
                   </div>
                 )}
+              </div>
+            )}
+
+            {/* TAB: SUBMISSION RESULT (LEETCODE STYLE ON LEFT SIDE) */}
+            {solverTab === 'result' && submitResult && (
+              <div className="space-y-5 animate-fadeIn">
+                {/* Back to All Submissions link button */}
+                <div className="flex items-center justify-between pb-2 border-b border-border/50">
+                  <button
+                    type="button"
+                    onClick={() => setSolverTab('submissions')}
+                    className="inline-flex items-center gap-1.5 text-xs text-text-muted hover:text-text transition-colors cursor-pointer group"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
+                    <span>All Submissions</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSolverTab('description')}
+                    className="text-xs text-text-muted hover:text-text transition-colors cursor-pointer"
+                  >
+                    Back to Problem →
+                  </button>
+                </div>
+
+                {/* Header: Status and Test Cases Passed */}
+                <div className="flex items-baseline gap-3 pt-1">
+                  <span className={`text-2xl font-bold tracking-tight ${
+                    submitResult.is_correct ? 'text-emerald-500' : 'text-rose-500'
+                  }`}>
+                    {submitResult.status}
+                  </span>
+                  <span className="text-sm font-normal text-text-muted">
+                    {submitResult.passed_test_cases} / {submitResult.total_test_cases} testcases passed
+                  </span>
+                </div>
+
+                {/* Submitter User & Timestamp */}
+                <div className="flex items-center gap-2 text-xs text-text-muted">
+                  <div className="w-5 h-5 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-[10px]">
+                    {(() => {
+                      const stored = JSON.parse(localStorage.getItem('intervyn_user') || '{}');
+                      return (stored.name || stored.email || 'U')[0].toUpperCase();
+                    })()}
+                  </div>
+                  <span className="font-medium text-text">
+                    {(() => {
+                      const stored = JSON.parse(localStorage.getItem('intervyn_user') || '{}');
+                      return stored.name || stored.email?.split('@')[0] || 'Candidate';
+                    })()}
+                  </span>
+                  <span>submitted at {new Date(submitResult.submitted_at || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}, {new Date(submitResult.submitted_at || Date.now()).toLocaleDateString()}</span>
+                </div>
+
+                {/* Error message block (if failed) */}
+                {!submitResult.is_correct && (submitResult.error || submitResult.error_message) && (
+                  <div className="p-3.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-500 font-mono text-xs whitespace-pre-wrap">
+                    {submitResult.error || submitResult.error_message}
+                  </div>
+                )}
+
+                {/* Runtime & Memory Cards on Left Side (LeetCode style, NO graph of beats x% user type things) */}
+                <div className="grid grid-cols-2 gap-3.5 pt-1">
+                  <div className="p-4 rounded-xl bg-surface border border-border shadow-sm space-y-1">
+                    <div className="flex items-center gap-1.5 text-xs text-text-muted">
+                      <Clock className="w-3.5 h-3.5" />
+                      <span className="font-medium">Runtime</span>
+                    </div>
+                    <div className="text-2xl font-bold font-mono text-text">
+                      {submitResult.runtime_ms != null ? `${submitResult.runtime_ms} ms` : 'N/A'}
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-surface border border-border shadow-sm space-y-1">
+                    <div className="flex items-center gap-1.5 text-xs text-text-muted">
+                      <Database className="w-3.5 h-3.5" />
+                      <span className="font-medium">Memory</span>
+                    </div>
+                    <div className="text-2xl font-bold font-mono text-text">
+                      {submitResult.memory_mb != null && submitResult.memory_mb > 0
+                        ? `${submitResult.memory_mb} MB`
+                        : 'N/A'}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Submitted Code block */}
+                <div className="space-y-2 pt-2">
+                  <div className="flex items-center justify-between text-xs text-text-muted font-mono">
+                    <span className="font-semibold text-text">
+                      Code <span className="font-normal text-text-muted">| {availableLangs.find(l => l.id === lastSubmittedLang)?.label || lastSubmittedLang}</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigator.clipboard.writeText(lastSubmittedCode);
+                        setCopiedCode(true);
+                        setTimeout(() => setCopiedCode(false), 2000);
+                      }}
+                      className="px-2 py-1 rounded bg-surface border border-border hover:bg-border/30 transition-colors cursor-pointer flex items-center gap-1 text-[11px]"
+                    >
+                      {copiedCode ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
+                      <span>{copiedCode ? 'Copied' : 'Copy'}</span>
+                    </button>
+                  </div>
+                  <div className="rounded-xl border border-border bg-[#18181b] overflow-hidden">
+                    <pre className="p-4 font-mono text-xs overflow-x-auto text-[#e4e4e7] leading-relaxed">
+                      <code>{lastSubmittedCode}</code>
+                    </pre>
+                  </div>
+                </div>
               </div>
             )}
 
@@ -1156,7 +1303,23 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                   questionDetail.prevSubmissions.map((sub, idx) => (
                     <div 
                       key={sub.id || idx}
-                      onClick={() => setViewingSubmissionCode(sub)}
+                      onClick={() => {
+                        setSubmitResult({
+                          submission_id: sub.id,
+                          status: sub.status,
+                          is_correct: sub.status === 'Accepted',
+                          runtime_ms: sub.runtime_ms,
+                          memory_mb: sub.memory_mb,
+                          passed_test_cases: sub.test_cases_passed,
+                          total_test_cases: sub.total_test_cases,
+                          error: sub.error_message,
+                          error_message: sub.error_message,
+                          submitted_at: sub.submitted_at
+                        });
+                        setLastSubmittedCode(sub.code);
+                        setLastSubmittedLang(sub.language);
+                        setSolverTab('result');
+                      }}
                       className="p-3 rounded-lg bg-surface border border-border hover:border-accent/50 transition-all cursor-pointer flex items-center justify-between gap-3 text-xs"
                     >
                       <div className="space-y-1">
