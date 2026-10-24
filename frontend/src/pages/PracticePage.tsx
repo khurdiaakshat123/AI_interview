@@ -315,10 +315,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
         submission_id: 'err',
         status: 'Compilation / Server Error',
         is_correct: false,
-        runtime_ms: 0,
-        memory_mb: 0,
-        beats_runtime: 0,
-        beats_memory: 0,
+        runtime_ms: null,
+        memory_mb: null,
         passed_test_cases: 0,
         total_test_cases: 0,
         submitted_at: new Date().toISOString()
@@ -1173,7 +1171,9 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                           <span className="font-mono text-text-muted">{sub.language}</span>
                         </div>
                         <div className="text-[11px] text-text-muted font-mono">
-                          Runtime: {sub.runtime_ms} ms · Memory: {sub.memory_mb} MB
+                          {sub.runtime_ms != null && sub.runtime_ms > 0 && <span>Runtime: {sub.runtime_ms} ms</span>}
+                          {sub.runtime_ms != null && sub.runtime_ms > 0 && sub.memory_mb != null && sub.memory_mb > 0 && <span> · </span>}
+                          {sub.memory_mb != null && sub.memory_mb > 0 && <span>Memory: {sub.memory_mb} MB</span>}
                         </div>
                       </div>
 
@@ -1372,20 +1372,25 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                         </div>
                       </div>
 
-                      {/* Performance beats cards */}
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="p-3 rounded bg-surface border border-border">
-                          <span className="text-text-muted block text-[11px]">Runtime</span>
-                          <div className="text-base font-bold text-text">{submitResult.runtime_ms} ms</div>
-                          <div className="text-[11px] text-emerald-500">Beats {submitResult.beats_runtime}% of users</div>
-                        </div>
+                      {/* Actual Performance metrics - only displayed if real measured data exists */}
+                      {((submitResult.runtime_ms != null && submitResult.runtime_ms > 0) || 
+                        (submitResult.memory_mb != null && submitResult.memory_mb > 0)) && (
+                        <div className="grid grid-cols-2 gap-3">
+                          {submitResult.runtime_ms != null && submitResult.runtime_ms > 0 && (
+                            <div className="p-3 rounded bg-surface border border-border">
+                              <span className="text-text-muted block text-[11px] uppercase font-semibold">Runtime</span>
+                              <div className="text-base font-bold text-text">{submitResult.runtime_ms} ms</div>
+                            </div>
+                          )}
 
-                        <div className="p-3 rounded bg-surface border border-border">
-                          <span className="text-text-muted block text-[11px]">Memory</span>
-                          <div className="text-base font-bold text-text">{submitResult.memory_mb} MB</div>
-                          <div className="text-[11px] text-emerald-500">Beats {submitResult.beats_memory}% of users</div>
+                          {submitResult.memory_mb != null && submitResult.memory_mb > 0 && (
+                            <div className="p-3 rounded bg-surface border border-border">
+                              <span className="text-text-muted block text-[11px] uppercase font-semibold">Memory</span>
+                              <div className="text-base font-bold text-text">{submitResult.memory_mb} MB</div>
+                            </div>
+                          )}
                         </div>
-                      </div>
+                      )}
 
                       {!submitResult.is_correct && (submitResult.error || submitResult.error_message) && (
                         <div className="p-3 rounded bg-rose-500/10 border border-rose-500/30 text-rose-500 font-mono text-xs whitespace-pre-wrap">
@@ -1403,7 +1408,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                           {runResult.status}
                         </span>
                         <span className="text-text-muted text-[11px]">
-                          {runResult.runtime_ms ? `${runResult.runtime_ms} ms` : ''}
+                          {runResult.runtime_ms != null && runResult.runtime_ms > 0 ? `${runResult.runtime_ms} ms` : ''}
                         </span>
                       </div>
 

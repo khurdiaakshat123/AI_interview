@@ -524,8 +524,8 @@ class LCQuestionService:
         else:
             status_label = "Wrong Answer"
 
-        runtime_ms = eval_result.get("runtime_ms", 12.0)
-        memory_mb = eval_result.get("memory_mb", 14.5)
+        runtime_ms = eval_result.get("runtime_ms")
+        memory_mb = eval_result.get("memory_mb")
         tc_results = eval_result.get("test_case_results", [])
         passed = sum(1 for t in tc_results if t.get("passed")) if tc_results else (len(test_cases) if is_correct else 0)
         total_tc = len(tc_results) if tc_results else len(test_cases)
@@ -541,8 +541,8 @@ class LCQuestionService:
             language=language,
             code=code,
             status=status_label,
-            runtime_ms=runtime_ms,
-            memory_mb=memory_mb,
+            runtime_ms=runtime_ms or 0.0,
+            memory_mb=memory_mb or 0.0,
             test_cases_passed=passed,
             total_test_cases=total_tc,
             error_message=err_msg,
@@ -574,18 +574,12 @@ class LCQuestionService:
 
         db.commit()
 
-        # Simulated beat percentage
-        beats_runtime = round(min(99.4, max(45.0, 100.0 - (runtime_ms * 1.5))), 1) if is_correct else 0.0
-        beats_memory = round(min(98.8, max(40.0, 95.0 - (memory_mb * 0.8))), 1) if is_correct else 0.0
-
         return {
             "submission_id": sub.id,
             "status": status_label,
             "is_correct": is_correct,
             "runtime_ms": runtime_ms,
             "memory_mb": memory_mb,
-            "beats_runtime": beats_runtime,
-            "beats_memory": beats_memory,
             "passed_test_cases": passed,
             "total_test_cases": total_tc,
             "test_case_results": eval_result.get("test_case_results", []),

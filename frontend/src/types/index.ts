@@ -423,12 +423,14 @@ export interface LCSubmitResult {
   submission_id: string;
   status: string;
   is_correct: boolean;
-  runtime_ms: number;
-  memory_mb: number;
-  beats_runtime: number;
-  beats_memory: number;
+  runtime_ms?: number | null;
+  memory_mb?: number | null;
+  beats_runtime?: number;
+  beats_memory?: number;
   passed_test_cases: number;
   total_test_cases: number;
   test_case_results?: any[];
+  error?: string;
+  error_message?: string;
   submitted_at: string;
 }
