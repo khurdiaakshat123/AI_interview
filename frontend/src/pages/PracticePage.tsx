@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { 
   Code2, Database, Search, Star, Filter, RotateCcw, 
   ChevronLeft, ChevronRight, Play, CloudUpload, CheckCircle2, 
@@ -79,8 +80,11 @@ const DB_LANGUAGES = [
 ];
 
 export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, onNavigate }) => {
+  const { problemSlug } = useParams<{ problemSlug?: string }>();
+  const navigate = useNavigate();
+
   // Mode: Explorer (list) vs Solver (workspace)
-  const [activeQuestionId, setActiveQuestionId] = useState<string | null>(initialQuestionId || null);
+  const [activeQuestionId, setActiveQuestionId] = useState<string | null>(problemSlug || initialQuestionId || null);
 
   // Explorer State
   const [category, setCategory] = useState<'all' | 'dsa' | 'database'>('all');
@@ -222,6 +226,18 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
     }
   }, []);
 
+  // Sync route param with active question
+  useEffect(() => {
+    if (problemSlug) {
+      setActiveQuestionId(problemSlug);
+    } else if (initialQuestionId) {
+      setActiveQuestionId(initialQuestionId);
+    } else {
+      setActiveQuestionId(null);
+      setQuestionDetail(null);
+    }
+  }, [problemSlug, initialQuestionId]);
+
   useEffect(() => {
     if (activeQuestionId) {
       loadQuestionDetail(activeQuestionId);
@@ -356,22 +372,25 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
     if (currentIndex !== -1) {
       const nextIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
       if (nextIndex >= 0 && nextIndex < questions.length) {
-        setActiveQuestionId(questions[nextIndex].id);
+        const nextQ = questions[nextIndex];
+        navigate(`/practice/${nextQ.slug || nextQ.id}`);
         return;
       }
     }
 
     // Fallback by sequential numerical ID
     const targetNum = direction === 'next' ? currentNum + 1 : Math.max(1, currentNum - 1);
-    setActiveQuestionId(String(targetNum));
+    navigate(`/practice/${targetNum}`);
   };
 
   const handlePickRandom = async () => {
     if (questions.length > 0) {
       const randomIndex = Math.floor(Math.random() * questions.length);
-      setActiveQuestionId(questions[randomIndex].id);
+      const targetQ = questions[randomIndex];
+      navigate(`/practice/${targetQ.slug || targetQ.id}`);
     } else {
-      setActiveQuestionId(String(Math.floor(Math.random() * 3269) + 1));
+      const randomNum = Math.floor(Math.random() * 3269) + 1;
+      navigate(`/practice/${randomNum}`);
     }
   };
 
@@ -614,7 +633,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                       return (
                         <tr 
                           key={q.id}
-                          onClick={() => setActiveQuestionId(q.id)}
+                          onClick={() => navigate(`/practice/${q.slug || q.id}`)}
                           className="hover:bg-surface-hover/70 transition-colors cursor-pointer group"
                         >
                           {/* Status Icon */}
@@ -777,12 +796,12 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   return (
     <div className="min-h-screen bg-bg text-text flex flex-col">
       {/* Top LeetCode Navigation Bar */}
-      <header className="sticky top-0 z-40 bg-surface border-b border-border px-4 py-2 flex items-center justify-between gap-4">
+      <header className="sticky top-16 z-40 bg-surface border-b border-border px-4 py-2 flex items-center justify-between gap-4">
         {/* Left: Back to Problem List & Question Navigator */}
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => setActiveQuestionId(null)}
+            onClick={() => navigate('/practice')}
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium text-text-muted hover:text-text hover:bg-surface-hover border border-border transition-colors cursor-pointer"
             title="Back to All Problems"
           >

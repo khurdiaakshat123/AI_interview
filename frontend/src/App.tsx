@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { AuthModal } from './components/AuthModal';
 import { CandidateSetupModal } from './components/CandidateSetupModal';
@@ -16,8 +17,36 @@ import { InterviewReportPage } from './pages/InterviewReportPage';
 import { AdminReviewPage } from './pages/AdminReviewPage';
 import { CandidateProfile } from './types';
 
+const TAB_TO_PATH: Record<string, string> = {
+  'landing': '/',
+  'dashboard': '/dashboard',
+  'jd-intake': '/role-profiler',
+  'role-profiler': '/role-profiler',
+  'practice': '/practice',
+  'practice-runner': '/practice-runner',
+  'mock-oa': '/mock-oa',
+  'oa-report': '/oa-report',
+  'interview': '/interview',
+  'live-interview': '/live-interview',
+  'interview-report': '/interview-report',
+  'admin-review': '/admin-review',
+};
+
+const getActiveTab = (pathname: string): string => {
+  if (pathname.startsWith('/practice')) return 'practice';
+  if (pathname.startsWith('/dashboard')) return 'dashboard';
+  if (pathname.startsWith('/role-profiler') || pathname.startsWith('/jd-intake')) return 'jd-intake';
+  if (pathname.startsWith('/mock-oa')) return 'mock-oa';
+  if (pathname.startsWith('/interview-report')) return 'interview-report';
+  if (pathname.startsWith('/interview') || pathname.startsWith('/live-interview')) return 'interview';
+  if (pathname.startsWith('/admin')) return 'admin-review';
+  return 'landing';
+};
+
 export const App: React.FC = () => {
-  const [currentTab, setCurrentTab] = useState<string>('landing');
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [navState, setNavState] = useState<any>({});
   const [showCandidateSetup, setShowCandidateSetup] = useState<boolean>(false);
   const [showAuthModal, setShowAuthModal] = useState<boolean>(false);
@@ -55,10 +84,10 @@ export const App: React.FC = () => {
 
   // Strict gating: Non-authenticated users can only view the landing page
   useEffect(() => {
-    if (!currentUser && currentTab !== 'landing') {
-      setCurrentTab('landing');
+    if (!currentUser && location.pathname !== '/') {
+      navigate('/', { replace: true });
     }
-  }, [currentUser, currentTab]);
+  }, [currentUser, location.pathname, navigate]);
 
   const handleSaveProfile = (updatedProfile: Partial<CandidateProfile>) => {
     setCandidate(prev => {
@@ -94,7 +123,7 @@ export const App: React.FC = () => {
     localStorage.removeItem('intervyn_token');
     localStorage.removeItem('intervyn_user');
     setCurrentUser(null);
-    setCurrentTab('landing');
+    navigate('/');
   };
 
   const handleAuthChange = (user: any) => {
@@ -114,12 +143,14 @@ export const App: React.FC = () => {
   };
 
   const handleNavigate = (tab: string, state?: any) => {
-    if (tab !== 'landing' && !currentUser) {
+    if (tab !== 'landing' && tab !== '/' && !currentUser) {
       setShowAuthModal(true);
       return;
     }
     if (state) setNavState(state);
-    setCurrentTab(tab);
+
+    const targetPath = TAB_TO_PATH[tab] || (tab.startsWith('/') ? tab : `/${tab}`);
+    navigate(targetPath, { state });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -140,13 +171,14 @@ export const App: React.FC = () => {
       role: data.role
     };
     handleSaveProfile(updated);
-    setNavState({
+    const statePayload = {
       turn: data.turn,
       company: data.company,
       role: data.role,
       candidateName: chosenName
-    });
-    setCurrentTab('live-interview');
+    };
+    setNavState(statePayload);
+    navigate('/live-interview', { state: statePayload });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -154,7 +186,7 @@ export const App: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-bg text-text font-sans antialiased selection:bg-accent/25 selection:text-text">
       {/* Top Navigation */}
       <Navbar 
-        currentTab={currentTab} 
+        currentTab={getActiveTab(location.pathname)} 
         setCurrentTab={handleNavigate} 
         candidate={candidate}
         onOpenCandidateSetup={() => {
@@ -187,92 +219,160 @@ export const App: React.FC = () => {
         onSuccess={handleAuthSuccess}
       />
 
-      {/* Dynamic Page Views */}
+      {/* Dynamic Routed Page Views */}
       <main className="flex-1">
-        {currentTab === 'landing' && (
-          <LandingPage 
-            onNavigate={handleNavigate} 
-            currentUser={currentUser}
-            onOpenAuth={() => setShowAuthModal(true)}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LandingPage 
+                onNavigate={handleNavigate} 
+                currentUser={currentUser}
+                onOpenAuth={() => setShowAuthModal(true)}
+              />
+            }
           />
-        )}
 
-        {currentTab === 'dashboard' && (
-          <DashboardPage 
-            onNavigate={handleNavigate} 
-            candidate={candidate}
-            onOpenCandidateSetup={() => setShowCandidateSetup(true)}
+          <Route
+            path="/dashboard"
+            element={
+              <DashboardPage 
+                onNavigate={handleNavigate} 
+                candidate={candidate}
+                onOpenCandidateSetup={() => setShowCandidateSetup(true)}
+              />
+            }
           />
-        )}
 
-        {currentTab === 'jd-intake' && (
-          <JDIntakePage
-            initialCompany={navState.company}
-            initialRole={navState.role}
-            onNavigate={handleNavigate}
+          <Route
+            path="/role-profiler"
+            element={
+              <JDIntakePage
+                initialCompany={navState.company || location.state?.company}
+                initialRole={navState.role || location.state?.role}
+                onNavigate={handleNavigate}
+              />
+            }
           />
-        )}
 
-        {currentTab === 'practice' && (
-          <PracticePage
-            initialQuestionId={navState.questionId}
-            onNavigate={handleNavigate}
+          <Route
+            path="/jd-intake"
+            element={<Navigate to="/role-profiler" replace />}
           />
-        )}
 
-        {currentTab === 'practice-runner' && navState.session && (
-          <PracticeRunnerPage
-            session={navState.session}
-            onBack={() => handleNavigate('practice')}
+          <Route
+            path="/practice"
+            element={
+              <PracticePage
+                initialQuestionId={navState.questionId || location.state?.questionId}
+                onNavigate={handleNavigate}
+              />
+            }
           />
-        )}
 
-        {currentTab === 'mock-oa' && (
-          <MockOARunnerPage
-            initialCompany={navState.company}
-            initialRole={navState.role}
-            onNavigate={handleNavigate}
+          <Route
+            path="/practice/:problemSlug"
+            element={
+              <PracticePage
+                onNavigate={handleNavigate}
+              />
+            }
           />
-        )}
 
-        {currentTab === 'oa-report' && navState.report && (
-          <OAReportPage
-            report={navState.report}
-            onNavigate={handleNavigate}
+          <Route
+            path="/practice-runner"
+            element={
+              (navState.session || location.state?.session) ? (
+                <PracticeRunnerPage
+                  session={navState.session || location.state?.session}
+                  onBack={() => handleNavigate('practice')}
+                />
+              ) : (
+                <Navigate to="/practice" replace />
+              )
+            }
           />
-        )}
 
-        {currentTab === 'interview' && (
-          <InterviewIntakePage
-            initialCompany={navState.company || candidate.company}
-            initialRole={navState.role || candidate.role}
-            candidateProfile={candidate}
-            onSaveProfile={handleSaveProfile}
-            onNavigate={handleNavigate}
+          <Route
+            path="/mock-oa"
+            element={
+              <MockOARunnerPage
+                initialCompany={navState.company || location.state?.company}
+                initialRole={navState.role || location.state?.role}
+                onNavigate={handleNavigate}
+              />
+            }
           />
-        )}
 
-        {currentTab === 'live-interview' && navState.turn && (
-          <LiveInterviewPage
-            key={navState.turn.session_id}
-            initialTurn={navState.turn}
-            company={navState.company}
-            role={navState.role}
-            candidateName={navState.candidateName}
-            onNavigate={handleNavigate}
+          <Route
+            path="/oa-report"
+            element={
+              (navState.report || location.state?.report) ? (
+                <OAReportPage
+                  report={navState.report || location.state?.report}
+                  onNavigate={handleNavigate}
+                />
+              ) : (
+                <Navigate to="/dashboard" replace />
+              )
+            }
           />
-        )}
 
-        {currentTab === 'interview-report' && navState.report && (
-          <InterviewReportPage
-            report={navState.report}
-            onNavigate={handleNavigate}
+          <Route
+            path="/interview"
+            element={
+              <InterviewIntakePage
+                initialCompany={navState.company || location.state?.company || candidate.company}
+                initialRole={navState.role || location.state?.role || candidate.role}
+                candidateProfile={candidate}
+                onSaveProfile={handleSaveProfile}
+                onNavigate={handleNavigate}
+              />
+            }
           />
-        )}
 
-        {currentTab === 'admin-review' && (
-          <AdminReviewPage />
-        )}
+          <Route
+            path="/live-interview"
+            element={
+              (navState.turn || location.state?.turn) ? (
+                <LiveInterviewPage
+                  key={(navState.turn || location.state?.turn)?.session_id}
+                  initialTurn={navState.turn || location.state?.turn}
+                  company={navState.company || location.state?.company}
+                  role={navState.role || location.state?.role}
+                  candidateName={navState.candidateName || location.state?.candidateName}
+                  onNavigate={handleNavigate}
+                />
+              ) : (
+                <Navigate to="/interview" replace />
+              )
+            }
+          />
+
+          <Route
+            path="/interview-report"
+            element={
+              (navState.report || location.state?.report) ? (
+                <InterviewReportPage
+                  report={navState.report || location.state?.report}
+                  onNavigate={handleNavigate}
+                />
+              ) : (
+                <Navigate to="/dashboard" replace />
+              )
+            }
+          />
+
+          <Route
+            path="/admin-review"
+            element={<AdminReviewPage />}
+          />
+
+          <Route
+            path="*"
+            element={<Navigate to="/" replace />}
+          />
+        </Routes>
       </main>
 
       {/* Footer */}
