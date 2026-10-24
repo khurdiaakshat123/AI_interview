@@ -512,14 +512,27 @@ class LCQuestionService:
         )
 
         is_correct = eval_result.get("is_correct", False)
-        status_label = "Accepted" if is_correct else "Wrong Answer"
-        if eval_result.get("status") in ["Runtime Error", "Compile Error", "Time Limit Exceeded"]:
-            status_label = eval_result.get("status")
+        raw_status = eval_result.get("status", "")
+        if raw_status in ["COMPILATION_ERROR", "Compile Error"]:
+            status_label = "Compile Error"
+        elif raw_status in ["RUNTIME_ERROR", "Runtime Error"]:
+            status_label = "Runtime Error"
+        elif raw_status in ["TLE", "Time Limit Exceeded"]:
+            status_label = "Time Limit Exceeded"
+        elif is_correct:
+            status_label = "Accepted"
+        else:
+            status_label = "Wrong Answer"
 
         runtime_ms = eval_result.get("runtime_ms", 12.0)
         memory_mb = eval_result.get("memory_mb", 14.5)
-        passed = eval_result.get("passed_test_cases", 0)
-        total_tc = eval_result.get("total_test_cases", len(test_cases))
+        tc_results = eval_result.get("test_case_results", [])
+        passed = sum(1 for t in tc_results if t.get("passed")) if tc_results else (len(test_cases) if is_correct else 0)
+        total_tc = len(tc_results) if tc_results else len(test_cases)
+
+        err_msg = eval_result.get("error")
+        if not err_msg and not is_correct and eval_result.get("compiler_output"):
+            err_msg = eval_result.get("compiler_output")
 
         # Create submission record
         sub = LCSubmission(
@@ -532,7 +545,7 @@ class LCQuestionService:
             memory_mb=memory_mb,
             test_cases_passed=passed,
             total_test_cases=total_tc,
-            error_message=eval_result.get("error"),
+            error_message=err_msg,
             submitted_at=utc_now()
         )
         db.add(sub)
@@ -576,5 +589,7 @@ class LCQuestionService:
             "passed_test_cases": passed,
             "total_test_cases": total_tc,
             "test_case_results": eval_result.get("test_case_results", []),
+            "error": err_msg,
+            "error_message": err_msg,
             "submitted_at": sub.submitted_at.isoformat()
         }

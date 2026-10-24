@@ -1386,6 +1386,12 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                           <div className="text-[11px] text-emerald-500">Beats {submitResult.beats_memory}% of users</div>
                         </div>
                       </div>
+
+                      {!submitResult.is_correct && (submitResult.error || submitResult.error_message) && (
+                        <div className="p-3 rounded bg-rose-500/10 border border-rose-500/30 text-rose-500 font-mono text-xs whitespace-pre-wrap">
+                          {submitResult.error || submitResult.error_message}
+                        </div>
+                      )}
                     </div>
                   ) : runResult ? (
                     /* RUN RESULT VIEW */
@@ -1401,9 +1407,9 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                         </span>
                       </div>
 
-                      {runResult.error && (
-                        <div className="p-3 rounded bg-rose-500/10 border border-rose-500/30 text-rose-500 whitespace-pre-wrap">
-                          {runResult.error}
+                      {(runResult.error || (!runResult.is_correct && runResult.compiler_output)) && (
+                        <div className="p-3 rounded bg-rose-500/10 border border-rose-500/30 text-rose-500 font-mono text-xs whitespace-pre-wrap">
+                          {runResult.error || runResult.compiler_output}
                         </div>
                       )}
 
