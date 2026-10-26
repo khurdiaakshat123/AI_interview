@@ -535,18 +535,18 @@ export const PracticeDebugPage: React.FC = () => {
         {/* =================================================================== */}
         {/* LEFT PANE: Handwritten Code with Real-Time Line Highlight          */}
         {/* =================================================================== */}
-        <div className="lg:col-span-7 border-r border-border flex flex-col bg-[#18181b] overflow-hidden h-[calc(100vh-140px)]">
-          <div className="px-4 py-2 border-b border-[#27272a] bg-[#141416] flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
+        <div className="lg:col-span-7 border-r border-border flex flex-col bg-bg dark:bg-[#121214] overflow-hidden h-[calc(100vh-140px)]">
+          <div className="px-4 py-2 border-b border-border bg-surface dark:bg-[#16161a] flex items-center justify-between text-xs text-text-muted font-mono">
             <div className="flex items-center gap-2">
               <Code2 className="w-3.5 h-3.5 text-accent" />
-              <span className="text-white font-medium">Source Execution View</span>
+              <span className="text-text font-medium">Source Execution View</span>
             </div>
-            <span className="text-[11px] text-[#71717a]">
+            <span className="text-[11px] text-text-muted">
               Active line executes sequentially
             </span>
           </div>
 
-          <div className="flex-1 overflow-y-auto font-mono text-xs text-[#e4e4e7] p-2 select-text">
+          <div className="flex-1 overflow-y-auto font-mono text-xs text-text p-2 select-text bg-[#FAF9F6] dark:bg-[#121214]">
             {codeLines.map((lineText, idx) => {
               const lineNum = idx + 1;
               const isActive = currentStep?.line === lineNum;
@@ -558,15 +558,15 @@ export const PracticeDebugPage: React.FC = () => {
                   ref={el => (codeLinesRef.current[idx] = el)}
                   className={`flex items-start transition-colors rounded px-2 py-0.5 ${
                     isException
-                      ? 'bg-rose-500/25 border-l-4 border-rose-500 text-rose-200 font-bold'
+                      ? 'bg-rose-500/15 border-l-4 border-rose-500 text-rose-600 dark:text-rose-200 font-bold'
                       : isActive
-                      ? 'bg-accent/20 border-l-4 border-accent text-white font-bold shadow-xs'
-                      : 'hover:bg-white/5 border-l-4 border-transparent'
+                      ? 'bg-accent/15 border-l-4 border-accent text-text font-bold shadow-xs'
+                      : 'hover:bg-black/[0.04] dark:hover:bg-white/5 border-l-4 border-transparent'
                   }`}
                 >
                   {/* Line Number & Pointer */}
-                  <div className="w-12 shrink-0 flex items-center justify-between text-[#71717a] select-none pr-3">
-                    <span>{lineNum}</span>
+                  <div className="w-12 shrink-0 flex items-center justify-between text-text-muted select-none pr-3">
+                    <span className={isActive ? 'text-accent font-bold' : ''}>{lineNum}</span>
                     {isActive && (
                       <span className="text-accent animate-pulse font-bold text-xs">➔</span>
                     )}
@@ -583,7 +583,7 @@ export const PracticeDebugPage: React.FC = () => {
                       {currentStep.changed_vars.map(vName => (
                         <span
                           key={vName}
-                          className="px-1.5 py-0.5 rounded bg-accent/25 text-accent border border-accent/40 text-[10px] font-mono shadow-xs animate-fadeIn"
+                          className="px-1.5 py-0.5 rounded bg-accent/15 text-accent border border-accent/30 text-[10px] font-mono shadow-xs animate-fadeIn font-semibold"
                         >
                           {vName} = {JSON.stringify(currentStep.variables[vName])}
                         </span>
@@ -597,7 +597,7 @@ export const PracticeDebugPage: React.FC = () => {
 
           {/* Exception Banner if runtime error */}
           {currentStep?.exception && (
-            <div className="p-3 bg-rose-500/15 border-t border-rose-500/30 text-rose-400 font-mono text-xs flex items-center gap-2">
+            <div className="p-3 bg-rose-500/10 border-t border-rose-500/20 text-rose-600 dark:text-rose-400 font-mono text-xs flex items-center gap-2">
               <AlertCircle className="w-4 h-4 text-rose-500 shrink-0" />
               <span>{currentStep.exception}</span>
             </div>
