@@ -31,7 +31,7 @@ export const PracticeDebugPage: React.FC = () => {
     return localStorage.getItem(`intervyn_lc_code_${problemSlug}`) || '';
   });
   const [selectedLang, setSelectedLang] = useState<string>(
-    statePayload?.language || 'python3'
+    statePayload?.language || 'cpp'
   );
 
   // Testcase setup
@@ -59,7 +59,7 @@ export const PracticeDebugPage: React.FC = () => {
         .then(q => {
           setQuestionDetail(q);
           if (!code) {
-            const starter = q.starterCode?.[selectedLang] || q.starterCode?.['python3'] || '';
+            const starter = q.starterCode?.[selectedLang] || q.starterCode?.['cpp'] || q.starterCode?.['python3'] || '';
             setCode(starter);
           }
         })
@@ -91,8 +91,11 @@ export const PracticeDebugPage: React.FC = () => {
   }, [isCustomCase, customInput, testCases, activeCaseTab]);
 
   // Execute trace request
-  const handleStartTrace = async () => {
+  const handleStartTrace = async (overrideInput?: string) => {
     if (!problemSlug || !code) return;
+    const inputToUse = overrideInput !== undefined ? overrideInput : activeInputData;
+    if (!inputToUse) return;
+
     setIsTracing(true);
     setIsPlaying(false);
     clearInterval(playTimerRef.current);
@@ -102,7 +105,7 @@ export const PracticeDebugPage: React.FC = () => {
         problemSlug,
         code,
         selectedLang,
-        activeInputData
+        inputToUse
       );
       setTraceResult(res);
       setCurrentStepIndex(0);
@@ -119,12 +122,31 @@ export const PracticeDebugPage: React.FC = () => {
     }
   };
 
-  // Auto-run trace on initial load once input & code are ready
-  useEffect(() => {
-    if (code && activeInputData && !traceResult && !isTracing && questionDetail) {
-      handleStartTrace();
+  // Case selection handlers (triggers immediate re-trace for selected testcase)
+  const handleSelectCase = (idx: number) => {
+    setIsCustomCase(false);
+    setActiveCaseTab(idx);
+    const targetInput = testCases[idx] || '';
+    if (targetInput) {
+      handleStartTrace(targetInput);
     }
-  }, [code, activeInputData, questionDetail]);
+  };
+
+  const handleSelectCustomCase = () => {
+    setIsCustomCase(true);
+    if (customInput) {
+      handleStartTrace(customInput);
+    }
+  };
+
+  // Auto-run trace on initial load once input & code are ready
+  const initialTracedRef = useRef<boolean>(false);
+  useEffect(() => {
+    if (code && activeInputData && questionDetail && !initialTracedRef.current && !isTracing) {
+      initialTracedRef.current = true;
+      handleStartTrace(activeInputData);
+    }
+  }, [code, activeInputData, questionDetail, isTracing]);
 
   // Step navigation controls
   const steps = traceResult?.steps || [];
@@ -316,39 +338,46 @@ export const PracticeDebugPage: React.FC = () => {
       {/* ===================================================================== */}
       <div className="bg-surface/80 backdrop-blur-xs border-b border-border px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
         {/* Left: Testcase Selectors */}
-        <div className="flex items-center gap-1.5 overflow-x-auto">
-          <span className="text-xs text-text-muted font-medium mr-1 flex items-center gap-1">
+        <div className="flex items-center gap-2 overflow-x-auto max-w-full">
+          <span className="text-xs text-text-muted font-medium mr-1 flex items-center gap-1 shrink-0">
             <Terminal className="w-3.5 h-3.5" />
             <span>Input:</span>
           </span>
-          {testCases.map((tc, idx) => (
+          <div className="flex items-center gap-1.5 shrink-0">
+            {testCases.map((tc, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => handleSelectCase(idx)}
+                className={`px-2.5 py-1 rounded text-xs font-mono transition-all cursor-pointer ${
+                  !isCustomCase && activeCaseTab === idx
+                    ? 'bg-accent text-accent-contrast font-bold shadow-xs'
+                    : 'bg-bg text-text-muted hover:text-text border border-border'
+                }`}
+              >
+                Case {idx + 1}
+              </button>
+            ))}
             <button
-              key={idx}
               type="button"
-              onClick={() => {
-                setIsCustomCase(false);
-                setActiveCaseTab(idx);
-              }}
+              onClick={handleSelectCustomCase}
               className={`px-2.5 py-1 rounded text-xs font-mono transition-all cursor-pointer ${
-                !isCustomCase && activeCaseTab === idx
+                isCustomCase
                   ? 'bg-accent text-accent-contrast font-bold shadow-xs'
                   : 'bg-bg text-text-muted hover:text-text border border-border'
               }`}
             >
-              Case {idx + 1}
+              Custom Input
             </button>
-          ))}
-          <button
-            type="button"
-            onClick={() => setIsCustomCase(true)}
-            className={`px-2.5 py-1 rounded text-xs font-mono transition-all cursor-pointer ${
-              isCustomCase
-                ? 'bg-accent text-accent-contrast font-bold shadow-xs'
-                : 'bg-bg text-text-muted hover:text-text border border-border'
-            }`}
-          >
-            Custom Input
-          </button>
+          </div>
+
+          {/* Active input preview pill */}
+          {!isCustomCase && activeInputData && (
+            <div className="hidden md:flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-bg border border-border text-[11px] font-mono text-text-muted max-w-xs truncate" title={activeInputData}>
+              <span className="text-accent font-semibold">Active:</span>
+              <span className="truncate">{activeInputData}</span>
+            </div>
+          )}
         </div>
 
         {/* Center / Right: Stepping Controls */}
@@ -415,7 +444,7 @@ export const PracticeDebugPage: React.FC = () => {
           <button
             type="button"
             disabled={isTracing}
-            onClick={handleStartTrace}
+            onClick={() => handleStartTrace()}
             className="flex items-center gap-1 px-2.5 py-1 rounded bg-surface hover:bg-surface-hover border border-border text-xs text-text-muted hover:text-text transition-colors cursor-pointer disabled:opacity-50"
             title="Re-run debug trace"
           >
@@ -445,14 +474,19 @@ export const PracticeDebugPage: React.FC = () => {
             type="text"
             value={customInput}
             onChange={(e) => setCustomInput(e.target.value)}
-            placeholder="e.g. [1, 3, 5, 4, 7] or 2, 4"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleStartTrace(customInput);
+              }
+            }}
+            placeholder="e.g. nums = [2, 7, 11, 15], target = 9 or [1, 3, 5, 4, 7]"
             className="flex-1 px-3 py-1 rounded bg-surface border border-border text-xs font-mono text-text focus:outline-none focus:border-accent"
           />
           <button
             type="button"
-            onClick={handleStartTrace}
-            disabled={isTracing}
-            className="px-3 py-1 rounded bg-accent text-accent-contrast text-xs font-medium cursor-pointer shadow-xs"
+            onClick={() => handleStartTrace(customInput)}
+            disabled={isTracing || !customInput.trim()}
+            className="px-3 py-1 rounded bg-accent text-accent-contrast text-xs font-medium cursor-pointer shadow-xs disabled:opacity-50"
           >
             Trace Input
           </button>

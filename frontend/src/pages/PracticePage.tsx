@@ -63,10 +63,10 @@ const DB_TOPICS = [
 ];
 
 const DSA_LANGUAGES = [
-  { id: 'python3', label: 'Python 3', monacoLang: 'python' },
-  { id: 'python', label: 'Python', monacoLang: 'python' },
   { id: 'cpp', label: 'C++', monacoLang: 'cpp' },
   { id: 'java', label: 'Java', monacoLang: 'java' },
+  { id: 'python3', label: 'Python 3', monacoLang: 'python' },
+  { id: 'python', label: 'Python', monacoLang: 'python' },
   { id: 'javascript', label: 'JavaScript', monacoLang: 'javascript' },
   { id: 'typescript', label: 'TypeScript', monacoLang: 'typescript' },
 ];
@@ -110,8 +110,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   const [loadingDetail, setLoadingDetail] = useState<boolean>(false);
   const [solverTab, setSolverTab] = useState<'description' | 'editorial' | 'hints' | 'submissions' | 'result'>('description');
   const [lastSubmittedCode, setLastSubmittedCode] = useState<string>('');
-  const [lastSubmittedLang, setLastSubmittedLang] = useState<string>('python3');
-  const [selectedLang, setSelectedLang] = useState<string>('python3');
+  const [lastSubmittedLang, setLastSubmittedLang] = useState<string>('cpp');
+  const [selectedLang, setSelectedLang] = useState<string>('cpp');
   const [code, setCode] = useState<string>('');
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -211,13 +211,13 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
       const data = await api.getLCQuestion(idOrSlug);
       setQuestionDetail(data);
 
-      // Default language based on category
-      const defaultLang = data.category === 'database' ? 'mysql' : 'python3';
+      // Default language based on category (defaults to C++ for DSA)
+      const defaultLang = data.category === 'database' ? 'mysql' : 'cpp';
       setSelectedLang(defaultLang);
 
       // Starter code
       const initialCode = data.starterCode?.[defaultLang] || 
-        (data.category === 'database' ? '# Write your MySQL query statement below\n' : '# Write your solution below\n');
+        (data.category === 'database' ? '# Write your MySQL query statement below\n' : (data.starterCode?.['python3'] || '# Write your solution below\n'));
       setCode(initialCode);
     } catch (e) {
       console.error('Failed to load question details:', e);
@@ -1452,7 +1452,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
           <div className="flex-1 min-h-[300px] border-b border-border relative">
             <Editor
               height="100%"
-              language={availableLangs.find(l => l.id === selectedLang)?.monacoLang || 'python'}
+              language={availableLangs.find(l => l.id === selectedLang)?.monacoLang || 'cpp'}
               theme={editorTheme}
               value={code}
               onChange={(val) => setCode(val || '')}

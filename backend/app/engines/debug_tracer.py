@@ -225,6 +225,9 @@ class LineMatchedTranspiler:
         s = re.sub(r"(\w+)\.size\(\)", r"len(\1)", s)
         s = re.sub(r"(\w+)\.length\b", r"len(\1)", s)
         s = re.sub(r"(\w+)\.length\(\)", r"len(\1)", s)
+        s = re.sub(r"(\w+)\.find\(([^)]+)\)\s*!=\s*\1\.end\(\)?", r"(\2 in \1)", s)
+        s = re.sub(r"(\w+)\.find\(([^)]+)\)\s*==\s*\1\.end\(\)?", r"(\2 not in \1)", s)
+        s = re.sub(r"(\w+)\.count\(([^)]+)\)", r"(\2 in \1)", s)
         s = re.sub(r"(\w+)\.charAt\(([^)]+)\)", r"\1[\2]", s)
         s = re.sub(r"Math\.max\(", "max(", s)
         s = re.sub(r"Math\.min\(", "min(", s)
@@ -338,11 +341,11 @@ class DebugTracer:
     def trace(
         cls,
         code: str,
-        language: str = "python3",
+        language: str = "cpp",
         input_data: Optional[str] = None,
         max_steps: int = MAX_STEPS_DEFAULT
     ) -> Dict[str, Any]:
-        lang = (language or "python3").lower().strip()
+        lang = (language or "cpp").lower().strip()
         clean_code = str(code or "").strip()
 
         if not clean_code:
@@ -481,10 +484,18 @@ class CppList(list):
     def push(self, x): self.append(x)
     def top(self): return self[-1] if self else None
 
+class _DictSentinel:
+    def __call__(self): return self
+    def __eq__(self, other): return isinstance(other, _DictSentinel)
+    def __ne__(self, other): return not isinstance(other, _DictSentinel)
+
+_SENTINEL = _DictSentinel()
+
 class UniversalDict(dict):
-    def find(self, k): return k if k in self else None
+    def find(self, k): return k if k in self else _SENTINEL
+    def end(self): return _SENTINEL
     @property
-    def end(self): return None
+    def end_prop(self): return _SENTINEL
     def count(self, k): return 1 if k in self else 0
     def containsKey(self, k): return k in self
     def has(self, k): return k in self

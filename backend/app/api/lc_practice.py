@@ -11,7 +11,7 @@ router = APIRouter(prefix="/api/practice/lc", tags=["LeetCode Practice Bank"])
 
 class CodeExecutionPayload(BaseModel):
     code: str
-    language: str = "python3"
+    language: str = "cpp"
     custom_input: Optional[str] = None
 
 @router.get("/questions")
