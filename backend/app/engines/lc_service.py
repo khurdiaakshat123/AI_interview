@@ -477,6 +477,32 @@ class LCQuestionService:
         return res
 
     @classmethod
+    def debug_code(cls, question_id: str, code: str, language: str, custom_input: Optional[str] = None) -> Dict[str, Any]:
+        cls.initialize()
+        q_ref = cls._by_id.get(str(question_id)) or cls._by_slug.get(str(question_id).lower())
+        
+        target_input = custom_input
+        if not target_input and q_ref:
+            file_path = os.path.join(BASE_DIR, q_ref["path"])
+            if os.path.exists(file_path):
+                try:
+                    with open(file_path, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                    tests = data.get("publicTests") or data.get("testCases") or data.get("examples") or []
+                    if tests:
+                        target_input = tests[0].get("input", "")
+                except Exception:
+                    pass
+
+        from backend.app.engines.debug_tracer import DebugTracer
+        return DebugTracer.trace(
+            code=code,
+            language=language,
+            input_data=target_input or "",
+            max_steps=350
+        )
+
+    @classmethod
     def submit_code(cls, db: Session, user_id: str, question_id: str, code: str, language: str) -> Dict[str, Any]:
         cls.initialize()
         q_ref = cls._by_id.get(str(question_id)) or cls._by_slug.get(str(question_id).lower())

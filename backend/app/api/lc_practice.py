@@ -76,6 +76,18 @@ def run_code(
         language=payload.language
     )
 
+@router.post("/questions/{id_or_slug}/debug")
+def debug_code(
+    id_or_slug: str,
+    payload: CodeExecutionPayload
+):
+    return LCQuestionService.debug_code(
+        question_id=id_or_slug,
+        code=payload.code,
+        language=payload.language,
+        custom_input=payload.custom_input
+    )
+
 @router.post("/questions/{id_or_slug}/submit")
 def submit_code(
     id_or_slug: str,

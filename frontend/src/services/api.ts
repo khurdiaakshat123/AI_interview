@@ -2,7 +2,8 @@ import {
   RoleTopicProfile, PracticeSession, CheckAnswerResponse,
   MockOAVariant, MockOAReport, StructuredResume,
   InterviewTurn, InterviewFinalReport, ReviewQueueItem,
-  LCQuestionSummary, LCQuestionDetail, LCSubmission, LCAnalytics, LCRunResult, LCSubmitResult
+  LCQuestionSummary, LCQuestionDetail, LCSubmission, LCAnalytics, LCRunResult, LCSubmitResult,
+  DebugTraceResult
 } from '../types';
 
 const envBaseUrl = (import.meta as any).env?.VITE_API_BASE_URL;
@@ -436,6 +437,13 @@ export const api = {
     return request<LCSubmitResult>(`/practice/lc/questions/${idOrSlug}/submit`, {
       method: 'POST',
       body: JSON.stringify({ code, language })
+    });
+  },
+
+  async debugLCCode(idOrSlug: string, code: string, language: string = 'python3', customInput?: string): Promise<DebugTraceResult> {
+    return request<DebugTraceResult>(`/practice/lc/questions/${idOrSlug}/debug`, {
+      method: 'POST',
+      body: JSON.stringify({ code, language, custom_input: customInput })
     });
   },
 

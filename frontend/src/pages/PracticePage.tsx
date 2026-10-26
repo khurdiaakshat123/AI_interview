@@ -5,7 +5,7 @@ import {
   ChevronLeft, ChevronRight, Play, CloudUpload, CheckCircle2, 
   AlertCircle, Clock, BookOpen, Lightbulb, FileText, 
   Layers, ExternalLink, ArrowLeft, Maximize2, Minimize2, 
-  Sparkles, Check, Copy, HelpCircle, X, ChevronDown, ListFilter, Shuffle
+  Sparkles, Check, Copy, HelpCircle, X, ChevronDown, ListFilter, Shuffle, Bug
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { api } from '../services/api';
@@ -347,6 +347,22 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleOpenDebugger = () => {
+    if (!questionDetail) return;
+    try {
+      localStorage.setItem(`intervyn_lc_code_${questionDetail.slug || questionDetail.id}`, code);
+    } catch {}
+
+    const slug = questionDetail.slug || questionDetail.id;
+    navigate(`/practice/${slug}/debug`, {
+      state: {
+        code,
+        language: selectedLang,
+        questionDetail
+      }
+    });
   };
 
   // Reset Code
@@ -861,6 +877,17 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
               <Play className="w-3.5 h-3.5 fill-emerald-500 text-emerald-500" />
             )}
             <span>Run</span>
+          </button>
+
+          {/* Debug Code Button */}
+          <button
+            type="button"
+            onClick={handleOpenDebugger}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-accent/40 bg-accent/10 hover:bg-accent/20 text-accent text-xs font-medium transition-colors shadow-xs cursor-pointer"
+            title="Step-by-step visual debugger with live variable tracking"
+          >
+            <Bug className="w-3.5 h-3.5" />
+            <span>Debug</span>
           </button>
 
           {/* Submit Code Button */}

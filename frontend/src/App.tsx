@@ -8,6 +8,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import { JDIntakePage } from './pages/JDIntakePage';
 import { PracticeConfigPage } from './pages/PracticeConfigPage';
 import { PracticePage } from './pages/PracticePage';
+import { PracticeDebugPage } from './pages/PracticeDebugPage';
 import { PracticeRunnerPage } from './pages/PracticeRunnerPage';
 import { MockOARunnerPage } from './pages/MockOARunnerPage';
 import { OAReportPage } from './pages/OAReportPage';
@@ -277,6 +278,11 @@ export const App: React.FC = () => {
                 onNavigate={handleNavigate}
               />
             }
+          />
+
+          <Route
+            path="/practice/:problemSlug/debug"
+            element={<PracticeDebugPage />}
           />
 
           <Route

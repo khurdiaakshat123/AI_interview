@@ -434,3 +434,26 @@ export interface LCSubmitResult {
   error_message?: string;
   submitted_at: string;
 }
+
+export interface DebugStep {
+  step_index: number;
+  line: number;
+  event: 'call' | 'line' | 'return' | 'exception';
+  function_name: string;
+  variables: Record<string, any>;
+  changed_vars: string[];
+  call_stack: string[];
+  stdout?: string;
+  exception?: string;
+  return_value?: any;
+}
+
+export interface DebugTraceResult {
+  status: 'SUCCESS' | 'ERROR' | 'RUNTIME_ERROR' | 'TIMEOUT';
+  steps: DebugStep[];
+  total_steps: number;
+  max_steps_reached: boolean;
+  return_value?: any;
+  stdout?: string;
+  error?: string | null;
+}
