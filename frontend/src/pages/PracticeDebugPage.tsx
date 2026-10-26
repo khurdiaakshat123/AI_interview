@@ -701,7 +701,45 @@ export const PracticeDebugPage: React.FC = () => {
             )}
           </div>
 
-          {/* SECTION 3: COMPLEX OBJECTS (LinkedLists / HashMaps) */}
+          {/* SECTION 3: HASHMAPS & DICTIONARIES */}
+          {categorizedVars.maps.length > 0 && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-xs text-text-muted font-mono">
+                <div className="flex items-center gap-1.5 font-semibold text-text">
+                  <Database className="w-3.5 h-3.5 text-accent" />
+                  <span>Hash Maps & Lookups</span>
+                </div>
+                <span className="text-[11px] text-text-muted">Key ➔ Value mappings</span>
+              </div>
+              {categorizedVars.maps.map(m => (
+                <div
+                  key={m.key}
+                  className={`p-3.5 rounded-xl bg-bg border transition-all ${
+                    m.isChanged ? 'border-accent shadow-xs ring-1 ring-accent/30' : 'border-border'
+                  }`}
+                >
+                  <div className="flex items-center justify-between text-xs font-mono mb-2">
+                    <span className="font-bold text-accent">{m.key}</span>
+                    <span className="text-[11px] text-text-muted">entries: {Object.keys(m.value).length}</span>
+                  </div>
+                  {Object.keys(m.value).length === 0 ? (
+                    <div className="text-[11px] text-text-muted font-mono italic">Empty mapping (empty)</div>
+                  ) : (
+                    <div className="flex flex-wrap gap-2">
+                      {Object.entries(m.value).map(([k, val]) => (
+                        <div key={k} className="flex items-center gap-1 px-2 py-1 rounded bg-surface border border-border text-xs font-mono">
+                          <span className="text-text-muted">{k}:</span>
+                          <span className="font-bold text-text">{JSON.stringify(val)}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* SECTION 4: COMPLEX OBJECTS (LinkedLists / Trees) */}
           {categorizedVars.objects.length > 0 && (
             <div className="space-y-2">
               <div className="flex items-center gap-1.5 text-xs font-semibold text-text font-mono">
@@ -726,7 +764,7 @@ export const PracticeDebugPage: React.FC = () => {
             </div>
           )}
 
-          {/* SECTION 4: CALL STACK & ACTIVE FUNCTION */}
+          {/* SECTION 5: CALL STACK & ACTIVE FUNCTION */}
           <div className="space-y-2">
             <div className="flex items-center gap-1.5 text-xs font-semibold text-text font-mono">
               <Layers className="w-3.5 h-3.5 text-accent" />
