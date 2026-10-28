@@ -187,7 +187,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="shrink-0">
               <rect x="0.5" y="0.5" width="27" height="27" rx="7" stroke="var(--border)" fill="var(--surface)"/>
-              <circle cx="8.2" cy="8.2" r="2.1" fill="var(--success)"/>
+              <circle cx="8.2" cy="8.2" r="2.1" fill="#8B5CF6"/>
               <rect x="6.8" y="12.8" width="2.8" height="8.7" rx="1.2" fill="var(--text)"/>
               <path d="M13.6 12.8 L17.3 21.5 L21.0 12.8" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
