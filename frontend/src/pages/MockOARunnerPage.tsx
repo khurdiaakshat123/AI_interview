@@ -13,6 +13,7 @@ import { useProctoring } from '../hooks/useProctoring';
 import { ProctoringBadge, ProctoringToast } from '../components/ProctoringBadge';
 import { api } from '../services/api';
 import { generateBoilerplate, SUPPORTED_LANGUAGES } from '../utils/boilerplate_generator';
+import { Logo } from '../components/Logo';
 
 interface MockOARunnerPageProps {
   initialCompany?: string;
@@ -409,6 +410,7 @@ export const MockOARunnerPage: React.FC<MockOARunnerPageProps> = ({
         <div className="flex items-center gap-3 overflow-hidden">
           {/* Logo mark */}
           <div className="flex items-center gap-2 shrink-0">
+            <Logo size={22} />
             <span className="font-serif text-lg tracking-tight text-text">
               intervyn<span className="text-accent">.</span>
             </span>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
+import { Logo } from './components/Logo';
 import { AuthModal } from './components/AuthModal';
 import { CandidateSetupModal } from './components/CandidateSetupModal';
 import { LandingPage } from './pages/LandingPage';
@@ -385,6 +386,7 @@ export const App: React.FC = () => {
       <footer className="bg-bg border-t border-border py-8 text-xs text-text-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
+            <Logo size={20} />
             <span className="font-serif text-base text-text">intervyn</span>
             <span className="text-border">•</span>
             <span className="text-text-muted">Technical Hiring & Assessment Studio</span>
