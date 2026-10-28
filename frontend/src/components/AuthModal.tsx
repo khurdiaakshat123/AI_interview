@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { X, Sparkles, Mail, Lock, User as UserIcon, Loader2, AlertCircle } from "lucide-react";
 import { api } from "../services/api";
-import { Logo } from "./Logo";
 
 declare global {
   interface Window {
@@ -120,9 +119,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
         </button>
 
         <div className="text-center space-y-1.5">
-          <div className="flex justify-center mb-2">
-            <Logo size={36} />
-          </div>
           <h2 className="font-serif text-2xl text-text font-normal tracking-tight">
             Welcome to intervyn<span className="text-accent">.</span>
           </h2>
