@@ -41,7 +41,10 @@ def _sanitize_db_url(url: str) -> str:
         url = f"{url}{separator}sslmode=require"
     return url
 
-DATABASE_URL = _sanitize_db_url(os.getenv("DATABASE_URL", "sqlite:///./intervyn.db"))
+_root_dir = Path(__file__).resolve().parent.parent.parent
+_default_db_path = _root_dir / "intervyn.db"
+_default_sqlite_url = f"sqlite:///{_default_db_path.as_posix()}"
+DATABASE_URL = _sanitize_db_url(os.getenv("DATABASE_URL", _default_sqlite_url))
 
 connect_args = {}
 engine_kwargs = {

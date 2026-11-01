@@ -4,7 +4,7 @@ from typing import Optional, Dict, Any, List
 from pydantic import BaseModel
 from backend.app.database import get_db
 from backend.app.models.models import User
-from backend.app.api.deps import get_current_user
+from backend.app.api.deps import get_current_user, get_current_user_optional
 from backend.app.engines.lc_service import LCQuestionService
 
 router = APIRouter(prefix="/api/practice/lc", tags=["LeetCode Practice Bank"])
@@ -27,7 +27,7 @@ def list_questions(
     sort_by: str = Query("id", description="Sort by: id | title | difficulty"),
     order: str = Query("asc", description="Sort order: asc | desc"),
     db: Session = Depends(get_db),
-    current_user: Optional[User] = Depends(get_current_user)
+    current_user: Optional[User] = Depends(get_current_user_optional)
 ):
     user_id = current_user.id if current_user else None
     return LCQuestionService.list_questions(
@@ -49,7 +49,7 @@ def list_questions(
 def get_question(
     id_or_slug: str,
     db: Session = Depends(get_db),
-    current_user: Optional[User] = Depends(get_current_user)
+    current_user: Optional[User] = Depends(get_current_user_optional)
 ):
     user_id = current_user.id if current_user else None
     q = LCQuestionService.get_question(id_or_slug=id_or_slug, db=db, user_id=user_id)
@@ -60,7 +60,7 @@ def get_question(
 @router.get("/analytics")
 def get_analytics(
     db: Session = Depends(get_db),
-    current_user: Optional[User] = Depends(get_current_user)
+    current_user: Optional[User] = Depends(get_current_user_optional)
 ):
     user_id = current_user.id if current_user else None
     return LCQuestionService.get_analytics(db=db, user_id=user_id)

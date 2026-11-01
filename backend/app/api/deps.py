@@ -21,12 +21,13 @@ def get_current_user(
         raw_token = authorization.replace("Bearer ", "").strip()
         if raw_token:
             if raw_token.startswith("guest_"):
-                guest_user = db.query(User).filter(User.id == raw_token).first()
+                safe_guest_id = raw_token[:36]
+                guest_user = db.query(User).filter(User.id == safe_guest_id).first()
                 if not guest_user:
                     guest_user = User(
-                        id=raw_token,
+                        id=safe_guest_id,
                         name="Guest Candidate",
-                        email=f"{raw_token}@guest.intervyn.ai",
+                        email=f"{safe_guest_id}@guest.intervyn.ai",
                         password_hash="guest_auth",
                         created_at=utc_now()
                     )
@@ -51,7 +52,7 @@ def get_current_user(
                     return user
 
     # Fallback to isolated anonymous guest if completely unauthenticated
-    anon_id = f"guest_anon_{generate_uuid()}"
+    anon_id = generate_uuid()
     guest = User(
         id=anon_id,
         name="Guest Candidate",

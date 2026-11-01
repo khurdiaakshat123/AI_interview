@@ -102,6 +102,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   const [totalQuestions, setTotalQuestions] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loadingList, setLoadingList] = useState<boolean>(true);
+  const [listError, setListError] = useState<string | null>(null);
   const [analytics, setAnalytics] = useState<LCAnalytics | null>(null);
   const [loadingAnalytics, setLoadingAnalytics] = useState<boolean>(true);
 
@@ -157,6 +158,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   const loadQuestions = useCallback(async () => {
     try {
       setLoadingList(true);
+      setListError(null);
       const res = await api.getLCQuestions({
         category: category !== 'all' ? category : undefined,
         subcategory: selectedSubcategory !== 'all' ? selectedSubcategory : undefined,
@@ -169,11 +171,12 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
         sort_by: 'id',
         order: 'asc'
       });
-      setQuestions(res.questions);
-      setTotalQuestions(res.total);
-      setTotalPages(res.totalPages);
-    } catch (e) {
+      setQuestions(res.questions || []);
+      setTotalQuestions(res.total || 0);
+      setTotalPages(res.totalPages || 1);
+    } catch (e: any) {
       console.error('Failed to load LC questions:', e);
+      setListError(e?.message || 'Failed to connect to question bank server');
     } finally {
       setLoadingList(false);
     }
@@ -626,6 +629,26 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                         <div className="inline-flex items-center gap-2">
                           <span className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin"></span>
                           <span>Loading questions from problem repository...</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ) : listError ? (
+                    <tr>
+                      <td colSpan={9} className="py-16 text-center text-text-muted">
+                        <div className="max-w-md mx-auto space-y-3">
+                          <AlertCircle className="w-8 h-8 text-rose-500 mx-auto opacity-80" />
+                          <div className="text-sm font-medium text-text">Unable to load questions</div>
+                          <p className="text-xs text-text-muted">
+                            {listError}
+                          </p>
+                          <button
+                            type="button"
+                            onClick={() => { loadQuestions(); loadAnalytics(); }}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface border border-border text-xs text-text hover:bg-surface-hover cursor-pointer"
+                          >
+                            <RotateCcw className="w-3.5 h-3.5" />
+                            <span>Retry Connection</span>
+                          </button>
                         </div>
                       </td>
                     </tr>

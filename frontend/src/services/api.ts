@@ -7,18 +7,26 @@ import {
 } from '../types';
 
 const envBaseUrl = (import.meta as any).env?.VITE_API_BASE_URL;
+const isLocalhost = typeof window !== 'undefined' && 
+  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '0.0.0.0');
+
 const BASE_URL = envBaseUrl
   ? `${String(envBaseUrl).replace(/\/$/, '')}/api`
-  : (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  : (isLocalhost
       ? 'http://127.0.0.1:8000/api'
-      : '/api');
+      : 'https://ai-interview-4bio.onrender.com/api');
 
 async function handleResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {
     const errorText = await res.text();
     throw new Error(errorText || `Request failed with status ${res.status}`);
   }
-  return res.json();
+  const text = await res.text();
+  try {
+    return JSON.parse(text) as T;
+  } catch {
+    throw new Error(`Server returned non-JSON response (${res.status}). Verify API proxy or backend server status.`);
+  }
 }
 
 export function getAuthToken(): string {
