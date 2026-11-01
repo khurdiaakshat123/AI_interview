@@ -756,10 +756,8 @@ if __name__ == "__main__":
         vars_str = "\n".join(var_decls)
         args_str = ", ".join(arg_names)
 
-        safe_inp = inp_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', ' ')
-        safe_exp = exp.replace('\\', '\\\\').replace('"', '\\"').replace('\n', ' ')
-        disp_inp = "(Hidden)" if is_hidden else safe_inp
-        disp_exp = "(Hidden)" if is_hidden else safe_exp
+        disp_inp = "(Hidden)" if is_hidden else inp_str
+        disp_exp = "(Hidden)" if is_hidden else exp
         is_custom_str = "true" if is_custom else "false"
         is_hidden_str = "true" if is_hidden else "false"
         is_void = ret_type.strip().lower() == "void"
@@ -769,13 +767,17 @@ if __name__ == "__main__":
         else:
             call_code = f"auto res = sol.{method}({args_str});\n            actual = format_output(res);"
 
+        disp_inp_lit = json.dumps(disp_inp)
+        disp_exp_lit = json.dumps(disp_exp)
+        cmp_exp_lit = json.dumps(exp)
+
         return f"""    {{
         string actual = "";
         bool passed = false;
         try {{
 {vars_str}
             {call_code}
-            string exp_str = "{safe_exp}";
+            string exp_str = {cmp_exp_lit};
             string act_cmp = actual;
             string exp_cmp = exp_str;
             transform(act_cmp.begin(), act_cmp.end(), act_cmp.begin(), ::tolower);
@@ -788,11 +790,13 @@ if __name__ == "__main__":
             passed = false;
         }}
         string disp_actual = {is_hidden_str} ? (passed ? "(Hidden passed)" : "(Hidden failed)") : actual;
+        string disp_inp_val = {disp_inp_lit};
+        string disp_exp_val = {disp_exp_lit};
         if ({idx} > 0) std::cout << ",";
         std::cout << "{{\\"test_case_index\\": {idx + 1}"
-                  << ", \\"input_data\\": \\"{disp_inp}\\""
-                  << ", \\"expected_output\\": \\"{disp_exp}\\""
-                  << ", \\"actual_output\\": \\"" << disp_actual << "\\""
+                  << ", \\"input_data\\": \\"" << escape_json(disp_inp_val) << "\\""
+                  << ", \\"expected_output\\": \\"" << escape_json(disp_exp_val) << "\\""
+                  << ", \\"actual_output\\": \\"" << escape_json(disp_actual) << "\\""
                   << ", \\"passed\\": " << (passed ? "true" : "false")
                   << ", \\"runtime_ms\\": 1.2}}";
     }}"""
@@ -953,6 +957,21 @@ inline ListNode* parse_listnode(const string& s) {
     return head;
 }
 
+inline string escape_json(const string& s) {
+    ostringstream oss;
+    for (char c : s) {
+        if (c == 34) oss << char(92) << char(34);
+        else if (c == 92) oss << char(92) << char(92);
+        else if (c == 8) oss << char(92) << 'b';
+        else if (c == 12) oss << char(92) << 'f';
+        else if (c == 10) oss << char(92) << 'n';
+        else if (c == 13) oss << char(92) << 'r';
+        else if (c == 9) oss << char(92) << 't';
+        else oss << c;
+    }
+    return oss.str();
+}
+
 inline string format_output(int x) { return to_string(x); }
 inline string format_output(long long x) { return to_string(x); }
 inline string format_output(double x) { return to_string(x); }
@@ -960,6 +979,28 @@ inline string format_output(bool b) { return b ? "true" : "false"; }
 inline string format_output(const string& s) { return s; }
 inline string format_output(const char* s) { return string(s); }
 inline string format_output(char c) { return string(1, c); }
+
+inline string format_output(const vector<string>& vec) {
+    ostringstream oss;
+    oss << "[";
+    for (size_t i = 0; i < vec.size(); i++) {
+        if (i > 0) oss << ",";
+        oss << char(34) << vec[i] << char(34);
+    }
+    oss << "]";
+    return oss.str();
+}
+
+inline string format_output(const vector<char>& vec) {
+    ostringstream oss;
+    oss << "[";
+    for (size_t i = 0; i < vec.size(); i++) {
+        if (i > 0) oss << ",";
+        oss << char(34) << vec[i] << char(34);
+    }
+    oss << "]";
+    return oss.str();
+}
 
 template<typename T>
 inline string format_output(const vector<T>& vec) {
@@ -1225,12 +1266,14 @@ int main() {{
         vars_str = "\n".join(var_decls)
         args_str = ", ".join(arg_names)
 
-        safe_inp = inp_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', ' ')
-        safe_exp = exp.replace('\\', '\\\\').replace('"', '\\"').replace('\n', ' ')
-        disp_inp = "(Hidden)" if is_hidden else safe_inp
-        disp_exp = "(Hidden)" if is_hidden else safe_exp
+        disp_inp = "(Hidden)" if is_hidden else inp_str
+        disp_exp = "(Hidden)" if is_hidden else exp
         is_custom_str = "true" if is_custom else "false"
         is_hidden_str = "true" if is_hidden else "false"
+
+        disp_inp_lit = json.dumps(disp_inp)
+        disp_exp_lit = json.dumps(disp_exp)
+        cmp_exp_lit = json.dumps(exp)
 
         return f"""        if ({idx} > 0) System.out.print(",");
         {{
@@ -1240,7 +1283,7 @@ int main() {{
 {vars_str}
                 Object res = sol.{method}({args_str});
                 actual = formatOutput(res);
-                String expStr = "{safe_exp}";
+                String expStr = {cmp_exp_lit};
                 String actCmp = actual.replaceAll("\\\\s+", "").toLowerCase();
                 String expCmp = expStr.replaceAll("\\\\s+", "").toLowerCase();
                 passed = {is_custom_str} || actCmp.equals(expCmp);
@@ -1249,10 +1292,12 @@ int main() {{
                 passed = false;
             }}
             String dispActual = {is_hidden_str} ? (passed ? "(Hidden passed)" : "(Hidden failed)") : actual;
+            String inpDisp = {disp_inp_lit};
+            String expDisp = {disp_exp_lit};
             System.out.print("{{\\"test_case_index\\": {idx + 1}"
-                + ", \\"input_data\\": \\"{disp_inp}\\""
-                + ", \\"expected_output\\": \\"{disp_exp}\\""
-                + ", \\"actual_output\\": \\"" + dispActual + "\\""
+                + ", \\"input_data\\": \\"" + escapeJson(inpDisp) + "\\""
+                + ", \\"expected_output\\": \\"" + escapeJson(expDisp) + "\\""
+                + ", \\"actual_output\\": \\"" + escapeJson(dispActual) + "\\""
                 + ", \\"passed\\": " + passed
                 + ", \\"runtime_ms\\": 1.2}}");
         }}"""
@@ -1413,6 +1458,22 @@ public class Main {{
             return sb.toString();
         }}
         return String.valueOf(obj);
+    }}
+
+    static String escapeJson(String s) {{
+        if (s == null) return "";
+        StringBuilder sb = new StringBuilder();
+        for (char c : s.toCharArray()) {{
+            if (c == 34) sb.append((char)92).append((char)34);
+            else if (c == 92) sb.append((char)92).append((char)92);
+            else if (c == 8) sb.append((char)92).append('b');
+            else if (c == 12) sb.append((char)92).append('f');
+            else if (c == 10) sb.append((char)92).append('n');
+            else if (c == 13) sb.append((char)92).append('r');
+            else if (c == 9) sb.append((char)92).append('t');
+            else sb.append(c);
+        }}
+        return sb.toString();
     }}
 
     public static void main(String[] args) {{
