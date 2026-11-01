@@ -723,6 +723,8 @@ if __name__ == "__main__":
                 var_decls.append(f'        auto {arg_var} = parse_vector_string("{safe_val}");')
             elif "listnode" in t_lower:
                 var_decls.append(f'        auto {arg_var} = parse_listnode("{safe_val}");')
+            elif "treenode" in t_lower:
+                var_decls.append(f'        auto {arg_var} = parse_treenode("{safe_val}");')
             elif "bool" in t_lower:
                 var_decls.append(f'        auto {arg_var} = parse_bool("{safe_val}");')
             elif "long" in t_lower:
@@ -745,14 +747,19 @@ if __name__ == "__main__":
         disp_exp = "(Hidden)" if is_hidden else safe_exp
         is_custom_str = "true" if is_custom else "false"
         is_hidden_str = "true" if is_hidden else "false"
+        is_void = ret_type.strip().lower() == "void"
+        call_code = (
+            f"sol.{method}({args_str});\n            actual = format_output({arg_names[0] if arg_names else '\"\"'});"
+            if is_void else
+            f"auto res = sol.{method}({args_str});\n            actual = format_output(res);"
+        )
 
         return f"""    {{
         string actual = "";
         bool passed = false;
         try {{
 {vars_str}
-            auto res = sol.{method}({args_str});
-            actual = format_output(res);
+            {call_code}
             string exp_str = "{safe_exp}";
             string act_cmp = actual;
             string exp_cmp = exp_str;
@@ -972,6 +979,76 @@ inline string format_output(ListNode* head) {
         oss << head->val;
         first = false;
         head = head->next;
+    }
+    oss << "]";
+    return oss.str();
+}
+
+inline TreeNode* parse_treenode(const string& s) {
+    string clean = s;
+    size_t start = clean.find('[');
+    size_t end = clean.rfind(']');
+    if (start != string::npos && end != string::npos && end > start) {
+        clean = clean.substr(start + 1, end - start - 1);
+    }
+    if (clean.empty()) return nullptr;
+    stringstream ss(clean);
+    string token;
+    vector<string> tokens;
+    while (getline(ss, token, ',')) {
+        size_t b = token.find_first_not_of(" \\t\\r\\n");
+        size_t e = token.find_last_not_of(" \\t\\r\\n");
+        if (b != string::npos && e != string::npos) tokens.push_back(token.substr(b, e - b + 1));
+        else tokens.push_back("");
+    }
+    if (tokens.empty() || tokens[0] == "null" || tokens[0].empty()) return nullptr;
+    TreeNode* root = new TreeNode(stoi(tokens[0]));
+    queue<TreeNode*> q;
+    q.push(root);
+    size_t idx = 1;
+    while (!q.empty() && idx < tokens.size()) {
+        TreeNode* curr = q.front();
+        q.pop();
+        if (idx < tokens.size()) {
+            if (tokens[idx] != "null" && !tokens[idx].empty()) {
+                curr->left = new TreeNode(stoi(tokens[idx]));
+                q.push(curr->left);
+            }
+            idx++;
+        }
+        if (idx < tokens.size()) {
+            if (tokens[idx] != "null" && !tokens[idx].empty()) {
+                curr->right = new TreeNode(stoi(tokens[idx]));
+                q.push(curr->right);
+            }
+            idx++;
+        }
+    }
+    return root;
+}
+
+inline string format_output(TreeNode* root) {
+    if (!root) return "[]";
+    ostringstream oss;
+    oss << "[";
+    queue<TreeNode*> q;
+    q.push(root);
+    vector<string> nodes;
+    while (!q.empty()) {
+        TreeNode* curr = q.front();
+        q.pop();
+        if (curr) {
+            nodes.push_back(to_string(curr->val));
+            q.push(curr->left);
+            q.push(curr->right);
+        } else {
+            nodes.push_back("null");
+        }
+    }
+    while (!nodes.empty() && nodes.back() == "null") nodes.pop_back();
+    for (size_t i = 0; i < nodes.size(); i++) {
+        if (i > 0) oss << ",";
+        oss << nodes[i];
     }
     oss << "]";
     return oss.str();
