@@ -1,18 +1,30 @@
+# Multi-Language Compilation & Execution Environment for Intervyn
 FROM python:3.11-slim
+
+# Install native C++ compiler (g++), GCC, OpenJDK (Java), Node.js, and build utilities
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    g++ \
+    gcc \
+    openjdk-17-jdk-headless \
+    nodejs \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
-
-COPY backend/requirements.txt /app/requirements.txt
+# Install Python requirements
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY backend /app/backend
+# Copy complete project repository
+COPY . .
 
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
-ENV PORT=8000
-EXPOSE 8000
+ENV PORT=10000
 
-CMD ["sh", "-c", "python -m uvicorn backend.app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+EXPOSE 10000
+
+# Start FastAPI with Uvicorn
+CMD ["sh", "-c", "uvicorn backend.app.main:app --host 0.0.0.0 --port ${PORT:-10000}"]

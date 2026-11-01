@@ -613,15 +613,25 @@ if __name__ == "__main__":
 
         gpp = shutil.which("g++") or shutil.which("clang++")
         if not gpp:
-            return cls._evaluate_universal_fallback(code, "cpp", test_cases, approach)
+            return cls._evaluate_universal_fallback(code, "cpp", test_cases, approach, reason="C++ compiler binary (g++) not found on server")
 
         sig = cls._detect_cpp_signature(code)
         if not sig:
-            return cls._evaluate_universal_fallback(code, "cpp", test_cases, approach)
+            return {
+                "status": "COMPILATION_ERROR",
+                "is_correct": False,
+                "score_fraction": 0.0,
+                "feedback": "Could not detect solution method in class Solution.",
+                "compiler_output": "Compilation Error: Method signature could not be detected. Ensure code contains 'class Solution { public: ... };'.",
+                "error": "Method signature could not be detected.",
+                "runtime_ms": None,
+                "memory_mb": None,
+                "test_case_results": []
+            }
 
         ret_type, method_name, params = sig
 
-        with tempfile.TemporaryDirectory() as tmpdir:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmpdir:
             src_file = os.path.join(tmpdir, "solution.cpp")
             exe_file = os.path.join(tmpdir, "solution.exe" if sys.platform == "win32" else "solution")
 
@@ -633,17 +643,14 @@ if __name__ == "__main__":
             comp_proc = subprocess.run(compile_cmd, capture_output=True, text=True)
 
             if comp_proc.returncode != 0:
-                clean_err = comp_proc.stderr.replace(tmpdir, "").replace("\\", "/")
-                if "int main()" in clean_err or "parse_" in clean_err or "format_output" in clean_err:
-                    return cls._evaluate_universal_fallback(code, "cpp", test_cases, approach)
-
+                clean_err = comp_proc.stderr.replace(tmpdir, "").replace("\\", "/").strip()
                 return {
                     "status": "COMPILATION_ERROR",
                     "is_correct": False,
                     "score_fraction": 0.0,
                     "feedback": "C++ Compilation Error: Review your syntax and types.",
-                    "compiler_output": clean_err.strip(),
-                    "error": clean_err.strip(),
+                    "compiler_output": clean_err,
+                    "error": clean_err,
                     "runtime_ms": None,
                     "memory_mb": None,
                     "test_case_results": []
@@ -840,9 +847,9 @@ inline bool parse_bool(const string& s) {
 inline string parse_string(const string& s) {
     string res = s;
     size_t start = res.find_first_not_of(" \\t\\r\\n");
-    if (start != string::npos && (res[start] == '"' || res[start] == '\'')) start++;
+    if (start != string::npos && (res[start] == '"' || res[start] == 39)) start++;
     size_t end = res.find_last_not_of(" \\t\\r\\n");
-    if (end != string::npos && (res[end] == '"' || res[end] == '\'')) end--;
+    if (end != string::npos && (res[end] == '"' || res[end] == 39)) end--;
     if (start <= end && start != string::npos) return res.substr(start, end - start + 1);
     return "";
 }
@@ -900,7 +907,7 @@ inline vector<vector<char>> parse_vector_vector_char(const string& s) {
                 string sub = s.substr(i, j - i + 1);
                 vector<char> row;
                 for (char c : sub) {
-                    if (c != '[' && c != ']' && c != ',' && c != ' ' && c != '\'' && c != '"')
+                    if (c != '[' && c != ']' && c != ',' && c != ' ' && c != 39 && c != '"')
                         row.push_back(c);
                 }
                 res.push_back(row);
@@ -1002,7 +1009,7 @@ int main() {{
         if not gcc:
             return cls._evaluate_universal_fallback(code, "c", test_cases, approach)
 
-        with tempfile.TemporaryDirectory() as tmpdir:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmpdir:
             src = os.path.join(tmpdir, "solution.c")
             exe = os.path.join(tmpdir, "solution.exe" if sys.platform == "win32" else "solution")
 
@@ -1177,7 +1184,7 @@ int main() {{
 
         ret_type, method, params = sig
 
-        with tempfile.TemporaryDirectory() as tmpdir:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmpdir:
             sol_file = os.path.join(tmpdir, "Solution.java")
             main_file = os.path.join(tmpdir, "Main.java")
 
@@ -1332,14 +1339,11 @@ public class Main {{
             comp = subprocess.run([javac, sol_file, main_file], capture_output=True, text=True)
             if comp.returncode != 0:
                 clean_err = comp.stderr.replace(tmpdir, "").strip()
-                if "Main.java" in clean_err:
-                    return cls._evaluate_universal_fallback(code, "java", test_cases, approach)
-
                 return {
                     "status": "COMPILATION_ERROR",
                     "is_correct": False,
                     "score_fraction": 0.0,
-                    "feedback": "Java Compilation Error.",
+                    "feedback": "Java Compilation Error: Review your syntax and types.",
                     "compiler_output": clean_err,
                     "error": clean_err,
                     "runtime_ms": None,
@@ -1543,13 +1547,12 @@ console.log('---SANDBOX_RESULTS_END---');
                 timeout=timeout
             )
             if retcode != 0:
-                if is_typescript or "SyntaxError" in stderr:
-                    return cls._evaluate_universal_fallback(code, "typescript" if is_typescript else "javascript", test_cases, approach)
+                is_syntax = "SyntaxError" in stderr
                 return {
-                    "status": "RUNTIME_ERROR",
+                    "status": "COMPILATION_ERROR" if is_syntax else "RUNTIME_ERROR",
                     "is_correct": False,
                     "score_fraction": 0.0,
-                    "feedback": f"Runtime error in JavaScript solution.",
+                    "feedback": f"{'Syntax error' if is_syntax else 'Runtime error'} in solution.",
                     "compiler_output": stderr.strip(),
                     "error": stderr.strip(),
                     "runtime_ms": proc_rt,
@@ -1571,48 +1574,34 @@ console.log('---SANDBOX_RESULTS_END---');
         code: str,
         language: str,
         test_cases: List[Dict[str, Any]],
-        approach: str
+        approach: str,
+        reason: str = "Compiler/Runtime toolchain not available on server"
     ) -> Dict[str, Any]:
         """
-        Guaranteed execution fallback for languages without native local compiler or in restricted containers.
-        Validates basic syntax, structure, and algorithm completeness without generating fake numbers.
+        Safe, honest error handler when native toolchain is missing.
+        Never fakes test results or outputs false ACCEPTED verdicts.
         """
-        start_t = time.perf_counter()
-        has_substance = len(code) > 25 and any(
-            token in code for token in [
-                "return", "print", "cout", "System.out", "console.log",
-                "SELECT", "func", "def ", "class ", "fn "
-            ]
-        )
-        elapsed_ms = round((time.perf_counter() - start_t) * 1000, 2)
-
-        results = []
-        for idx, tc in enumerate(test_cases):
-            exp = str(tc.get("expected_output", "")).strip()
-            is_hidden = bool(tc.get("is_hidden", False))
-            results.append({
-                "test_case_index": idx + 1,
-                "input_data": "(Hidden)" if is_hidden else str(tc.get("input", "")),
-                "expected_output": "(Hidden)" if is_hidden else exp,
-                "actual_output": ("(Hidden passed)" if has_substance else "(Hidden failed)") if is_hidden else (exp if has_substance else "Incomplete solution"),
-                "passed": has_substance,
-                "runtime_ms": max(0.1, elapsed_ms)
-            })
-
-        passed_count = sum(1 for r in results if r["passed"])
-        total = len(test_cases)
-        all_passed = (passed_count == total and total > 0)
-        score_frac = round(passed_count / total, 2) if total > 0 else 1.0
-
+        error_msg = f"Toolchain Not Found: {language.upper()} compiler binary not found on execution host. {reason}"
         return {
-            "status": "ACCEPTED" if all_passed else "WRONG_ANSWER",
-            "is_correct": all_passed,
-            "score_fraction": score_frac,
-            "feedback": f"Passed {passed_count}/{total} test cases." if total > 0 else "Execution completed.",
-            "test_case_results": results,
-            "runtime_ms": max(0.1, elapsed_ms),
+            "status": "COMPILATION_ERROR",
+            "is_correct": False,
+            "score_fraction": 0.0,
+            "feedback": f"Execution halted: {reason}.",
+            "compiler_output": error_msg,
+            "error": error_msg,
+            "runtime_ms": None,
             "memory_mb": None,
-            "compiler_output": f"Compiled and verified successfully ({language.upper()})."
+            "test_case_results": [
+                {
+                    "test_case_index": idx + 1,
+                    "input_data": str(tc.get("input", "")),
+                    "expected_output": str(tc.get("expected_output", "")),
+                    "actual_output": f"Toolchain Error: {reason}",
+                    "passed": False,
+                    "runtime_ms": 0.0
+                }
+                for idx, tc in enumerate(test_cases)
+            ]
         }
 
     # -------------------------------------------------------------------------
