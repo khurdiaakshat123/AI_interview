@@ -87,13 +87,28 @@ class SandboxRunner:
         """
         start_t = time.perf_counter()
         peak_rss = 0
+
+        # Memory safeguard for Linux container (Render 512MB RAM cap)
+        preexec = None
+        if sys.platform != "win32":
+            def _set_child_limits():
+                try:
+                    import resource
+                    # Cap child process address space to 256MB to protect host container
+                    limit_bytes = 256 * 1024 * 1024
+                    resource.setrlimit(resource.RLIMIT_AS, (limit_bytes, limit_bytes))
+                except Exception:
+                    pass
+            preexec = _set_child_limits
+
         proc = subprocess.Popen(
             cmd,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
             cwd=cwd,
-            env=env
+            env=env,
+            preexec_fn=preexec
         )
 
         try:
@@ -128,7 +143,7 @@ class SandboxRunner:
                             pass
                 except Exception:
                     pass
-            time.sleep(0.001)
+            time.sleep(0.01)
 
         stdout, stderr = proc.communicate()
         runtime_ms = round((time.perf_counter() - start_t) * 1000, 2)
@@ -1430,7 +1445,7 @@ public class Main {{
 
             try:
                 retcode, stdout, stderr, proc_rt, proc_mem = cls._execute_process_with_telemetry(
-                    [java, "-cp", tmpdir, "Main"],
+                    [java, "-Xmx128m", "-cp", tmpdir, "Main"],
                     timeout=timeout
                 )
                 if retcode != 0:
