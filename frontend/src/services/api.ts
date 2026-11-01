@@ -31,12 +31,25 @@ async function handleResponse<T>(res: Response): Promise<T> {
 
 export function getAuthToken(): string {
   if (typeof window === 'undefined') return '';
-  const token = localStorage.getItem('intervyn_token');
+
+  // Clean up any stale or oversized (> 255 chars) token
+  let token = localStorage.getItem('intervyn_token');
+  if (token && (token.startsWith('guest_anon_') || token.length > 255)) {
+    try {
+      localStorage.removeItem('intervyn_token');
+    } catch {}
+    token = null;
+  }
   if (token) return token;
+
   let guestId = localStorage.getItem('intervyn_guest_id');
-  if (!guestId) {
-    guestId = 'guest_' + Math.random().toString(36).substring(2, 12) + Date.now().toString(36);
-    localStorage.setItem('intervyn_guest_id', guestId);
+  // Auto-heal: Purge any legacy, corrupted, or oversized (> 36 chars) guest ID
+  if (!guestId || guestId.length > 36 || guestId.startsWith('guest_anon_')) {
+    // Generate clean 24-character guest ID: 'g_' + 10 chars + timestamp
+    guestId = 'g_' + Math.random().toString(36).substring(2, 12) + Date.now().toString(36);
+    try {
+      localStorage.setItem('intervyn_guest_id', guestId);
+    } catch {}
   }
   return guestId;
 }
