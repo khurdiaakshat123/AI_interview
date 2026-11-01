@@ -748,11 +748,11 @@ if __name__ == "__main__":
         is_custom_str = "true" if is_custom else "false"
         is_hidden_str = "true" if is_hidden else "false"
         is_void = ret_type.strip().lower() == "void"
-        call_code = (
-            f"sol.{method}({args_str});\n            actual = format_output({arg_names[0] if arg_names else '\"\"'});"
-            if is_void else
-            f"auto res = sol.{method}({args_str});\n            actual = format_output(res);"
-        )
+        target_arg = arg_names[0] if arg_names else '""'
+        if is_void:
+            call_code = f"sol.{method}({args_str});\n            actual = format_output({target_arg});"
+        else:
+            call_code = f"auto res = sol.{method}({args_str});\n            actual = format_output(res);"
 
         return f"""    {{
         string actual = "";
