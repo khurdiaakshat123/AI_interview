@@ -10,6 +10,10 @@ export default defineConfig({
       '/api': {
         target: 'http://127.0.0.1:8000',
         changeOrigin: true,
+      },
+      '/lc_assets': {
+        target: 'https://ai-interview-4bio.onrender.com',
+        changeOrigin: true,
       }
     }
   }

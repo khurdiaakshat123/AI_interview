@@ -6,15 +6,25 @@ import {
   DebugTraceResult
 } from '../types';
 
-const envBaseUrl = (import.meta as any).env?.VITE_API_BASE_URL;
+const LIVE_RENDER_API = 'https://ai-interview-4bio.onrender.com/api';
+
+const rawEnvBase = (import.meta as any).env?.VITE_API_BASE_URL;
+const isValidEnvBase = typeof rawEnvBase === 'string' &&
+  rawEnvBase.trim() !== '' &&
+  !rawEnvBase.includes('[SENSITIVE]') &&
+  !rawEnvBase.includes('undefined') &&
+  (rawEnvBase.startsWith('http://') || rawEnvBase.startsWith('https://') || rawEnvBase.startsWith('/'));
+
 const isLocalhost = typeof window !== 'undefined' && 
   (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '0.0.0.0');
 
-const BASE_URL = envBaseUrl
-  ? `${String(envBaseUrl).replace(/\/$/, '')}/api`
+const BASE_URL = isValidEnvBase
+  ? (rawEnvBase.trim().replace(/\/$/, '').endsWith('/api')
+      ? rawEnvBase.trim().replace(/\/$/, '')
+      : `${rawEnvBase.trim().replace(/\/$/, '')}/api`)
   : (isLocalhost
       ? 'http://127.0.0.1:8000/api'
-      : 'https://ai-interview-4bio.onrender.com/api');
+      : '/api');
 
 async function handleResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {
@@ -70,12 +80,32 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   if (!headers.has('Content-Type') && !(options.body instanceof FormData)) {
     headers.set('Content-Type', 'application/json');
   }
-  const url = endpoint.startsWith('http') ? endpoint : `${BASE_URL}${endpoint}`;
-  const res = await fetch(url, {
-    ...options,
-    headers
-  });
-  return handleResponse<T>(res);
+  const primaryUrl = endpoint.startsWith('http') ? endpoint : `${BASE_URL}${endpoint}`;
+  try {
+    const res = await fetch(primaryUrl, {
+      ...options,
+      headers
+    });
+    return await handleResponse<T>(res);
+  } catch (primaryErr: any) {
+    // If primary failed (network error, connection refused, or non-JSON/HTML 200 response),
+    // and it wasn't already calling the direct live Render backend:
+    const isDirectRender = primaryUrl.startsWith(LIVE_RENDER_API);
+    if (!isDirectRender && !endpoint.startsWith('http')) {
+      const fallbackUrl = `${LIVE_RENDER_API}${endpoint}`;
+      try {
+        console.warn(`Primary API call to ${primaryUrl} failed (${primaryErr?.message}). Retrying with live Render backend: ${fallbackUrl}`);
+        const fallbackRes = await fetch(fallbackUrl, {
+          ...options,
+          headers
+        });
+        return await handleResponse<T>(fallbackRes);
+      } catch (fallbackErr: any) {
+        throw new Error(primaryErr?.message || (fallbackErr as any)?.message || 'Failed to connect to backend server');
+      }
+    }
+    throw primaryErr;
+  }
 }
 
 export const api = {

@@ -29,12 +29,19 @@ def get_current_user(
                         return user
 
                 # 2. Look up existing user by prefix
-                for prefix in ("google_token_", "token_"):
+                for prefix in ("google_token_", "mock_token_", "token_"):
                     if raw_token.startswith(prefix):
                         target_id = raw_token.replace(prefix, "").strip()[:36]
                         user = db.query(User).filter(User.id == target_id).first()
                         if user:
                             return user
+
+                # Fallback: if raw_token has format <prefix>_<uuid>
+                if "_" in raw_token and not (raw_token.startswith("guest_") or raw_token.startswith("g_")):
+                    target_id = raw_token.split("_")[-1][:36]
+                    user = db.query(User).filter(User.id == target_id).first()
+                    if user:
+                        return user
 
                 # 3. Look up existing user by email or google_id
                 if len(raw_token) <= 255:
@@ -117,13 +124,20 @@ def get_current_user_optional(
             if user:
                 return user
 
-        # Check google_token_ / token_ prefixes
-        for prefix in ("google_token_", "token_"):
+        # Check google_token_ / mock_token_ / token_ prefixes
+        for prefix in ("google_token_", "mock_token_", "token_"):
             if raw_token.startswith(prefix):
                 target_id = raw_token.replace(prefix, "").strip()[:36]
                 user = db.query(User).filter(User.id == target_id).first()
                 if user:
                     return user
+
+        # Fallback: if raw_token has format <prefix>_<uuid>
+        if "_" in raw_token and not (raw_token.startswith("guest_") or raw_token.startswith("g_")):
+            target_id = raw_token.split("_")[-1][:36]
+            user = db.query(User).filter(User.id == target_id).first()
+            if user:
+                return user
 
         # Check guest_ / g_ prefixes
         if raw_token.startswith("guest_") or raw_token.startswith("g_"):
