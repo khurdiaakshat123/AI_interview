@@ -1,18 +1,23 @@
 # Multi-Language Compilation & Execution Environment for Intervyn
-FROM python:3.11-slim
+FROM python:3.11-slim-bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Fix Debian-slim missing man directories and install compilers (g++, gcc, openjdk-17, nodejs)
+# Install native C/C++ compiler (build-essential, g++, gcc), Node.js, and Java
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man2 /usr/share/man/man7 && \
     apt-get update && \
-    apt-get install -y --no-install-recommends \
+    (apt-get install -y --no-install-recommends \
         build-essential \
         g++ \
         gcc \
-        openjdk-17-jdk-headless \
         nodejs \
-    && rm -rf /var/lib/apt/lists/*
+        default-jdk-headless || \
+     apt-get install -y --no-install-recommends \
+        build-essential \
+        g++ \
+        gcc \
+        nodejs) && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
