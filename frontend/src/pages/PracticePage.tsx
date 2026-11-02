@@ -124,6 +124,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   const [viewingSubmissionCode, setViewingSubmissionCode] = useState<LCSubmission | null>(null);
   const [showSqlSchemaModal, setShowSqlSchemaModal] = useState<boolean>(false);
   const [copiedCode, setCopiedCode] = useState<boolean>(false);
+  const [copiedOutputIdx, setCopiedOutputIdx] = useState<number | null>(null);
   const [editorTheme, setEditorTheme] = useState<string>('vs-dark');
 
   const editorRef = useRef<any>(null);
@@ -1644,7 +1645,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                         </span>
                       </div>
 
-                      {(runResult.error || (!runResult.is_correct && runResult.compiler_output)) && (
+                      {(runResult.error || (runResult.status === 'COMPILATION_ERROR' && runResult.compiler_output)) && (
                         <div className="p-3 rounded bg-rose-500/10 border border-rose-500/30 text-rose-500 font-mono text-xs whitespace-pre-wrap">
                           {runResult.error || runResult.compiler_output}
                         </div>
@@ -1671,30 +1672,62 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                             ))}
                           </div>
 
-                          {runResult.test_case_results[activeCaseTab] && (
-                            <div className="space-y-2 bg-surface p-3 rounded-lg border border-border">
-                              <div>
-                                <span className="text-text-muted block text-[11px] uppercase">Input</span>
-                                <div className="text-text">{runResult.test_case_results[activeCaseTab].input_data}</div>
-                              </div>
-                              <div>
-                                <span className="text-text-muted block text-[11px] uppercase">Output</span>
-                                <div className={runResult.test_case_results[activeCaseTab].passed ? "text-emerald-500" : "text-rose-500"}>
-                                  {runResult.test_case_results[activeCaseTab].actual_output || '(None)'}
-                                </div>
-                              </div>
-                              <div>
-                                <span className="text-text-muted block text-[11px] uppercase">Expected</span>
-                                <div className="text-text">{runResult.test_case_results[activeCaseTab].expected_output}</div>
-                              </div>
-                              {runResult.test_case_results[activeCaseTab].stdout && (
+                          {runResult.test_case_results[activeCaseTab] && (() => {
+                            const tc = runResult.test_case_results[activeCaseTab];
+                            return (
+                              <div className="space-y-3.5 pt-1">
+                                {tc.input_data && (
+                                  <div>
+                                    <div className="text-xs font-medium text-text-muted mb-1.5">Input</div>
+                                    <div className="rounded-lg bg-[rgba(255,255,255,0.05)] dark:bg-[rgba(255,255,255,0.04)] border border-border/40 p-3 font-mono text-sm text-text whitespace-pre-wrap break-all select-text">
+                                      {tc.input_data}
+                                    </div>
+                                  </div>
+                                )}
+
+                                {tc.stdout ? (
+                                  <div>
+                                    <div className="text-xs font-medium text-text-muted mb-1.5">Stdout</div>
+                                    <div className="rounded-lg bg-[rgba(255,255,255,0.05)] dark:bg-[rgba(255,255,255,0.04)] border border-border/40 p-3 font-mono text-sm text-text whitespace-pre-wrap break-all select-text">
+                                      {tc.stdout}
+                                    </div>
+                                  </div>
+                                ) : null}
+
                                 <div>
-                                  <span className="text-text-muted block text-[11px] uppercase">Stdout</span>
-                                  <div className="text-text-muted">{runResult.test_case_results[activeCaseTab].stdout}</div>
+                                  <div className="text-xs font-medium text-text-muted mb-1.5">Output</div>
+                                  <div className="relative group rounded-lg bg-[rgba(255,255,255,0.05)] dark:bg-[rgba(255,255,255,0.04)] border border-border/40 p-3 font-mono text-sm flex items-center justify-between">
+                                    <span className={`whitespace-pre-wrap break-all select-text ${tc.passed ? "text-emerald-400 font-medium" : "text-rose-400 font-medium"}`}>
+                                      {tc.actual_output || '(None)'}
+                                    </span>
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        navigator.clipboard.writeText(tc.actual_output || '');
+                                        setCopiedOutputIdx(activeCaseTab);
+                                        setTimeout(() => setCopiedOutputIdx(null), 1500);
+                                      }}
+                                      className="text-text-muted hover:text-text transition-colors p-1 rounded hover:bg-surface/60 cursor-pointer"
+                                      title="Copy Output"
+                                    >
+                                      {copiedOutputIdx === activeCaseTab ? (
+                                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                                      ) : (
+                                        <Copy className="w-3.5 h-3.5" />
+                                      )}
+                                    </button>
+                                  </div>
                                 </div>
-                              )}
-                            </div>
-                          )}
+
+                                <div>
+                                  <div className="text-xs font-medium text-text-muted mb-1.5">Expected</div>
+                                  <div className="rounded-lg bg-[rgba(255,255,255,0.05)] dark:bg-[rgba(255,255,255,0.04)] border border-border/40 p-3 font-mono text-sm text-emerald-400 whitespace-pre-wrap break-all select-text font-medium">
+                                    {tc.expected_output}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })()}
                         </div>
                       )}
                     </div>

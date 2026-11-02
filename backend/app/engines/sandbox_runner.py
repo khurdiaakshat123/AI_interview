@@ -503,32 +503,43 @@ def __run():
                 elif isinstance(val, list) and param_count == 1 and param_names and param_names[0] in ("head", "node"):
                     val = _to_list_node(val)
 
-                # Dynamic argument dispatch based on function signature
-                if param_count == 1:
-                    if isinstance(val, list) and len(val) == 1 and isinstance(val[0], (list, dict)):
-                        try:
-                            ret = entrypoint(val[0])
-                        except Exception:
+                # Dynamic argument dispatch based on function signature with stdout capture
+                import io, sys
+                user_io = io.StringIO()
+                old_stdout = sys.stdout
+                old_stderr = sys.stderr
+                sys.stdout = user_io
+                sys.stderr = user_io
+                try:
+                    if param_count == 1:
+                        if isinstance(val, list) and len(val) == 1 and isinstance(val[0], (list, dict)):
+                            try:
+                                ret = entrypoint(val[0])
+                            except Exception:
+                                ret = entrypoint(val)
+                        else:
                             ret = entrypoint(val)
-                    else:
-                        ret = entrypoint(val)
-                elif param_count is not None and param_count > 1:
-                    if isinstance(val, (list, tuple)) and len(val) == param_count:
-                        ret = entrypoint(*val)
-                    elif isinstance(val, dict):
-                        ret = entrypoint(**val)
-                    else:
-                        ret = entrypoint(val)
-                else:
-                    if isinstance(val, dict):
-                        ret = entrypoint(**val)
-                    elif isinstance(val, (list, tuple)):
-                        try:
+                    elif param_count is not None and param_count > 1:
+                        if isinstance(val, (list, tuple)) and len(val) == param_count:
                             ret = entrypoint(*val)
-                        except TypeError:
+                        elif isinstance(val, dict):
+                            ret = entrypoint(**val)
+                        else:
                             ret = entrypoint(val)
                     else:
-                        ret = entrypoint(val)
+                        if isinstance(val, dict):
+                            ret = entrypoint(**val)
+                        elif isinstance(val, (list, tuple)):
+                            try:
+                                ret = entrypoint(*val)
+                            except TypeError:
+                                ret = entrypoint(val)
+                        else:
+                            ret = entrypoint(val)
+                finally:
+                    sys.stdout = old_stdout
+                    sys.stderr = old_stderr
+                user_stdout = user_io.getvalue()
 
                 if isinstance(ret, ListNode):
                     ret = _from_list_node(ret)
@@ -546,9 +557,11 @@ def __run():
             except Exception as e:
                 actual = f"Runtime Error: {{str(e)}}"
                 passed = False
+                user_stdout = ""
         else:
             actual = "No solution method detected"
             passed = False
+            user_stdout = ""
 
         elapsed = round((time.perf_counter() - start_t) * 1000, 2)
         results.append({{
@@ -556,6 +569,7 @@ def __run():
             "input_data": "(Hidden test case)" if is_hidden else str(inp),
             "expected_output": "(Hidden)" if is_hidden else exp,
             "actual_output": ("(Hidden passed)" if passed else "(Hidden failed)") if is_hidden else actual,
+            "stdout": user_stdout,
             "passed": passed,
             "runtime_ms": max(0.1, elapsed)
         }})
@@ -773,10 +787,15 @@ if __name__ == "__main__":
 
         return f"""    {{
         string actual = "";
+        string user_stdout = "";
         bool passed = false;
         try {{
 {vars_str}
-            {call_code}
+            {{
+                CoutRedirect _redir;
+                {call_code}
+                user_stdout = _redir.str();
+            }}
             string exp_str = {cmp_exp_lit};
             string act_cmp = actual;
             string exp_cmp = exp_str;
@@ -797,6 +816,7 @@ if __name__ == "__main__":
                   << ", \\"input_data\\": \\"" << escape_json(disp_inp_val) << "\\""
                   << ", \\"expected_output\\": \\"" << escape_json(disp_exp_val) << "\\""
                   << ", \\"actual_output\\": \\"" << escape_json(disp_actual) << "\\""
+                  << ", \\"stdout\\": \\"" << escape_json(user_stdout) << "\\""
                   << ", \\"passed\\": " << (passed ? "true" : "false")
                   << ", \\"runtime_ms\\": 1.2}}";
     }}"""
@@ -845,6 +865,18 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 #endif
+
+struct CoutRedirect {
+    stringstream ss;
+    streambuf *old_c;
+    streambuf *old_e;
+    CoutRedirect() : old_c(cout.rdbuf(ss.rdbuf())), old_e(cerr.rdbuf(ss.rdbuf())) {}
+    ~CoutRedirect() {
+        cout.rdbuf(old_c);
+        cerr.rdbuf(old_e);
+    }
+    string str() { return ss.str(); }
+};
 
 inline int parse_int(const string& s) {
     string clean;
@@ -1278,11 +1310,24 @@ int main() {{
         return f"""        if ({idx} > 0) System.out.print(",");
         {{
             String actual = "";
+            String userStdout = "";
             boolean passed = false;
             try {{
 {vars_str}
-                Object res = sol.{method}({args_str});
-                actual = formatOutput(res);
+                ByteArrayOutputStream userOut = new ByteArrayOutputStream();
+                PrintStream userPs = new PrintStream(userOut);
+                PrintStream oldOut = System.out;
+                PrintStream oldErr = System.err;
+                System.setOut(userPs);
+                System.setErr(userPs);
+                try {{
+                    Object res = sol.{method}({args_str});
+                    actual = formatOutput(res);
+                }} finally {{
+                    System.setOut(oldOut);
+                    System.setErr(oldErr);
+                }}
+                userStdout = userOut.toString();
                 String expStr = {cmp_exp_lit};
                 String actCmp = actual.replaceAll("\\\\s+", "").toLowerCase();
                 String expCmp = expStr.replaceAll("\\\\s+", "").toLowerCase();
@@ -1298,6 +1343,7 @@ int main() {{
                 + ", \\"input_data\\": \\"" + escapeJson(inpDisp) + "\\""
                 + ", \\"expected_output\\": \\"" + escapeJson(expDisp) + "\\""
                 + ", \\"actual_output\\": \\"" + escapeJson(dispActual) + "\\""
+                + ", \\"stdout\\": \\"" + escapeJson(userStdout) + "\\""
                 + ", \\"passed\\": " + passed
                 + ", \\"runtime_ms\\": 1.2}}");
         }}"""
@@ -1332,6 +1378,7 @@ int main() {{
 
             main_src = f"""
 import java.util.*;
+import java.io.*;
 
 class ListNode {{
     int val;
@@ -1625,7 +1672,13 @@ for (let i = 0; i < testCases.length; i++) {{
     let actual = '';
     let passed = false;
 
+    let userStdout = '';
     if (fn) {{
+        const _userLogs = [];
+        const _origLog = console.log;
+        const _origErr = console.error;
+        console.log = (...args) => _userLogs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '));
+        console.error = (...args) => _userLogs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '));
         try {{
             let rawInput = tc.input;
             let parsedArgs = [];
@@ -1655,6 +1708,7 @@ for (let i = 0; i < testCases.length; i++) {{
             }} else {{
                 ret = fn(rawInput);
             }}
+            userStdout = _userLogs.join('\\n');
 
             if (ret === undefined) actual = 'undefined';
             else if (ret === null) actual = 'null';
@@ -1670,6 +1724,9 @@ for (let i = 0; i < testCases.length; i++) {{
         }} catch (e) {{
             actual = 'Runtime Error: ' + e.message;
             passed = false;
+        }} finally {{
+            console.log = _origLog;
+            console.error = _origErr;
         }}
     }} else {{
         actual = 'No solution method detected';
@@ -1681,6 +1738,7 @@ for (let i = 0; i < testCases.length; i++) {{
         input_data: tc.is_hidden ? '(Hidden)' : String(tc.input),
         expected_output: tc.is_hidden ? '(Hidden)' : exp,
         actual_output: tc.is_hidden ? (passed ? '(Hidden passed)' : '(Hidden failed)') : actual,
+        stdout: userStdout,
         passed,
         runtime_ms: 1.5
     }});
