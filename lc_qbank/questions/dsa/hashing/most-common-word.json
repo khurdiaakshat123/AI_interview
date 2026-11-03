@@ -64,20 +64,84 @@
   ],
   "testCases": [
     {
-      "input": "\"Bob hit a ball, the hit BALL flew far after it was hit.\"\n[\"hit\"]",
-      "expectedOutput": "\"ball\""
-    },
-    {
       "input": "\"a.\"\n[]",
       "expectedOutput": "\"a\""
     },
     {
-      "input": "paragraph = \"Bob hit a ball, the hit BALL flew far after it was hit.\", banned = [\"hit\"]",
+      "input": "\"A a\"\n[]",
+      "expectedOutput": "\"a\""
+    },
+    {
+      "input": "\"a,b,b\"\n[]",
+      "expectedOutput": "\"b\""
+    },
+    {
+      "input": "\"hit cat\"\n[\"hit\"]",
+      "expectedOutput": "\"cat\""
+    },
+    {
+      "input": "\"can't\"\n[\"can\"]",
+      "expectedOutput": "\"t\""
+    },
+    {
+      "input": "\"x!Y;y\"\n[]",
+      "expectedOutput": "\"y\""
+    },
+    {
+      "input": "\"white hit\"\n[\"hit\"]",
+      "expectedOutput": "\"white\""
+    },
+    {
+      "input": "\"Bob hit a ball, the hit BALL flew far after it was hit.\"\n[\"hit\"]",
       "expectedOutput": "\"ball\""
     },
     {
-      "input": "paragraph = \"a.\", banned = []",
-      "expectedOutput": "\"a\""
+      "input": "\"Red,blue;RED!green.\"\n[]",
+      "expectedOutput": "\"red\""
+    },
+    {
+      "input": "\"one'one?TWO!two;two.\"\n[]",
+      "expectedOutput": "\"two\""
+    },
+    {
+      "input": "\"TOP top top small Small,rare\"\n[\"top\"]",
+      "expectedOutput": "\"small\""
+    },
+    {
+      "input": "\"Alpha?beta!alpha. BETA,alpha\"\n[]",
+      "expectedOutput": "\"alpha\""
+    },
+    {
+      "input": "\"bad!bad?GOOD;good,ok\"\n[\"bad\",\"bad\"]",
+      "expectedOutput": "\"good\""
+    },
+    {
+      "input": "\"Solo???solo!noise;NOISE,sOlO\"\n[]",
+      "expectedOutput": "\"solo\""
+    },
+    {
+      "input": "\"BAn.ban?AlPha.omEGa;aLphA.Ban, AlPHA;OmEGA'BAn Ban;BeTa'bEtA'BAn, BAn,OmEga!OMeGa!!omeGa;OmeGa\"\n[\"ban\"]",
+      "expectedOutput": "\"omega\""
+    },
+    {
+      "input": "\"ROSE!WEed rOSE!WEED;vIOleT!!WEED!BLUe.VIOlET, violEt!!bLUE, WEed.vIOLEt,VIoleT?WeeD wEeD'BLuE,wEED;roSe'WeEd,rose, rOSe!!ROsE'RoSe\"\n[\"weed\"]",
+      "expectedOutput": "\"rose\""
+    },
+    {
+      "input": "\"OAK?MAPLe.OAk;cEDar.MAPlE.oaK;CedaR?CeDAR?mAple?CedAr?CEdar!!MApLE!!mAPlE mapLe.CeDaR;mapLE!!Cedar?cedAr\"\n[]",
+      "expectedOutput": "\"cedar\""
+    },
+    {
+      "input": "\"MOoN?noise'STaR!SuN;Bad BAD, bAd'SUn!bAD?sUn!!BAD!sUN,mooN, bAD.sTaR nOIse!NOISE,MOon mOoN SuN\"\n[\"bad\",\"noise\"]",
+      "expectedOutput": "\"sun\""
+    },
+    {
+      "input": "\"ZAA OAk;ZBd'zdK.WateR'zBF?zaA iRiS?zCb'Fern.ZAU;IrIs'zDs;zAA'ZdN.zbr?ZCC,ferN ZaA!MOss.mOss!ZCD.Iris!zba!oAK bE;ZAK?Zaa?Zbw;zDa zcu;a!ZAA,WAter'Zaa,ZaO,zbS!zcm,FErn,zbt,ZAA zBL!BE Zaw?ZAA'IRiS'iRIs'mOSS'ZDB;Zaa'zAa,zAa'ZAa!ZAA.iRIs,ZBK OAk!zaa;iRIs,IRIs!zcw.zaa;mosS.ZBU;zbo;bE?ZAa'zar,ZDC.ZAH PLant!a,A'mOss'IriS;iriS'ZAq zaF;ZcH'iRis ZdH;ZDU'ZBe!zAG?Be;ZdQ!IRIs.IRis.FErN,ZbJ ZAN iRiS!A.fERn?ZbI ZdJ?zcN;ZcY waTER!ZAP a,ZBq.MoSS;ZaA;ZaV!zaD zAa.zBp?zCf;Zaa?be ZAC IRIS'Zaa;zcg?waTEr?Zaj;Plant?ZDD,ZAE;ZCr,wAteR.ZAA'ZcS?A?oAk?mOSS zAA IriS.waTeR.irIs,Be'IRIS zdm ZdT;Zct?zBZ!BE'ZCk'IrIS;irIs!ZAA PLANta'iRIs.ZDO'aBCDEfGHij;Iris.PLant!ZCe'ZaA'zdf?IRis Zcj?zaa!IriS?iriS?Zbc.ZbX Zaa!Zaa;zaa oAK?zAA?ZCq;planT!IRIS'zaa'zcv.ZCX!ZCL!zai?ZBM ZAM!Oak?zbH,zCi.zaA;PLaNt,iriS;Zal;irIs;ZdR,zab!ZAA'WateR;ZBG!A?ZaX.zaS.ZDL.MoSs'Zaa?ZBV!ZDP?ZAa'oAk'BE,zdE!IrIs?ZdI.fErN,PLaNT?Iris!ZAa!zAt!ZAA'a;PlanT zAa OAK;IRIs!ZCA.Zco;zcz ZCp!zAA!zAA;zDg.feRN;IRis!ZBY'IRIs;zaY Iris,ZAz.fern;iRIS?iriS'iRIs;Zaa;WAtEr!ZBN?zbB\"\n[\"abcdefghij\",\"zaa\",\"zab\",\"zac\",\"zad\",\"zae\",\"zaf\",\"zag\",\"zah\",\"zai\",\"zaj\",\"zak\",\"zal\",\"zam\",\"zan\",\"zao\",\"zap\",\"zaq\",\"zar\",\"zas\",\"zat\",\"zau\",\"zav\",\"zaw\",\"zax\",\"zay\",\"zaz\",\"zba\",\"zbb\",\"zbc\",\"zbd\",\"zbe\",\"zbf\",\"zbg\",\"zbh\",\"zbi\",\"zbj\",\"zbk\",\"zbl\",\"zbm\",\"zbn\",\"zbo\",\"zbp\",\"zbq\",\"zbr\",\"zbs\",\"zbt\",\"zbu\",\"zbv\",\"zbw\",\"zbx\",\"zby\",\"zbz\",\"zca\",\"zcb\",\"zcc\",\"zcd\",\"zce\",\"zcf\",\"zcg\",\"zch\",\"zci\",\"zcj\",\"zck\",\"zcl\",\"zcm\",\"zcn\",\"zco\",\"zcp\",\"zcq\",\"zcr\",\"zcs\",\"zct\",\"zcu\",\"zcv\",\"zcw\",\"zcx\",\"zcy\",\"zcz\",\"zda\",\"zdb\",\"zdc\",\"zdd\",\"zde\",\"zdf\",\"zdg\",\"zdh\",\"zdi\",\"zdj\",\"zdk\",\"zdl\",\"zdm\",\"zdn\",\"zdo\",\"zdp\",\"zdq\",\"zdr\",\"zds\",\"zdt\",\"zdu\"]",
+      "expectedOutput": "\"iris\""
+    },
+    {
+      "input": "\"FErN?zar;zCu ZaA'zdH?irIS!IRis;zAu;zDo zdm!MoSS.zaW Zcj ZAG.zAa,pLanT?zCt PLaNT;ZCL;Zbv IRis?watER'Be?iRis,bE A'zAa.BE.zBA.MOSs'zcW Iris;ZbP!Zaa;zbE zBN be;zaA.zAb'ZAV?Zaa?BE'ZDd,zdP.ZAS.ZAa;ferN!ZAD,iriS'ZcB;zAm;IRIS moss Zda;ZAj,irIs?ZDN,ZAa;Zbd.iRiS'ZCi.zDR.Zaa'ZbX ZAq'zCz!zDi!wATer,ZcM,iris,Zce!zaa.ZAa?zbk!zan.zBU,zaA,a;ZCG;A,OAK;A.ZAA ZDE?ZCP;ZDc;plaNt oAK MosS!OaK?ZbO FERn!zAa'fern'zbc!IrIS'IRis,waTER.zAa,ZBR.OAK'ZaA.IrIS'zAt'zae.iRIS,ZBg'IRis ZAZ zaA!A;MOsS'ZaA?ZCs,WaTEr;pLANt;iriS'zaA.irIS?Oak ZBl?bE;Zcx?zAa!ZAA.zbm!AbCdEFGhiJ!zcy?plAnT,ZCV iRIs;zCO?Iris,WAteR.FERN,ZBQ.IrIs?WaTER;zAA'Be;FerN;iRIS.IrIS;ZAA ZcK?iRIs zAA'zAY!ZDq.zAA!zBZ'ZAA.zaa;moSs!ZCC'ZAc.Zbh,zby,ZAO'iris'BE.plaNt;zaP,iRiS;MoSS,Zai!zAa zAA'zaA,ZDG oak?zAA iriS?oaK;IRIS IRiS'ZCq.zbj;PlanT?Zbt;IRIS!a,ZAX zaa;ZAf.Zdf,ZAa?OAK?zaA'zDK?MOsS?waTER!ZcN;ZBW.ZAh.Zaa!zAl zCF?zbi;Be?Zdb ZCD?iriS?IriS feRn zcr irIs?ZAA,zCA.Zaa?IrIs?IrIS!WATer ZBF'iRiS ZbS?zAa.zaA'Iris;iris'A.zak;ZDl;ZDJ?zaA ZaA.zCH.zbb\"\n[\"abcdefghij\",\"zaa\",\"zab\",\"zac\",\"zad\",\"zae\",\"zaf\",\"zag\",\"zah\",\"zai\",\"zaj\",\"zak\",\"zal\",\"zam\",\"zan\",\"zao\",\"zap\",\"zaq\",\"zar\",\"zas\",\"zat\",\"zau\",\"zav\",\"zaw\",\"zax\",\"zay\",\"zaz\",\"zba\",\"zbb\",\"zbc\",\"zbd\",\"zbe\",\"zbf\",\"zbg\",\"zbh\",\"zbi\",\"zbj\",\"zbk\",\"zbl\",\"zbm\",\"zbn\",\"zbo\",\"zbp\",\"zbq\",\"zbr\",\"zbs\",\"zbt\",\"zbu\",\"zbv\",\"zbw\",\"zbx\",\"zby\",\"zbz\",\"zca\",\"zcb\",\"zcc\",\"zcd\",\"zce\",\"zcf\",\"zcg\",\"zch\",\"zci\",\"zcj\",\"zck\",\"zcl\",\"zcm\",\"zcn\",\"zco\",\"zcp\",\"zcq\",\"zcr\",\"zcs\",\"zct\",\"zcu\",\"zcv\",\"zcw\",\"zcx\",\"zcy\",\"zcz\",\"zda\",\"zdb\",\"zdc\",\"zdd\",\"zde\",\"zdf\",\"zdg\",\"zdh\",\"zdi\",\"zdj\",\"zdk\",\"zdl\",\"zdm\",\"zdn\",\"zdo\",\"zdp\",\"zdq\",\"zdr\"]",
+      "expectedOutput": "\"iris\""
     }
   ],
   "sqlSchema": null,

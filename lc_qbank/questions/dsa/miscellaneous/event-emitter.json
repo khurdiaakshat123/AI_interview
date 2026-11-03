@@ -63,36 +63,84 @@
   ],
   "testCases": [
     {
-      "input": "[\"EventEmitter\", \"emit\", \"subscribe\", \"subscribe\", \"emit\"]\n[[], [\"firstEvent\"], [\"firstEvent\", \"function cb1() { return 5; }\"],  [\"firstEvent\", \"function cb1() { return 6; }\"], [\"firstEvent\"]]",
-      "expectedOutput": "[[],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[5,6]]]"
+      "input": "[\"EventEmitter\",\"subscribe\",\"subscribe\",\"subscribe\",\"subscribe\",\"subscribe\",\"subscribe\",\"unsubscribe\",\"emit\"]\n[[],[\"event0\",\"() => 32\"],[\"event1\",\"() => -89\"],[\"event2\",\"() => 94\"],[\"event3\",\"() => -1\"],[\"event0\",\"() => 41\"],[\"event1\",\"() => 32\"],[0],[\"event3\"]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"unsubscribed\",0],[\"emitted\",[-1]]]"
     },
     {
-      "input": "[\"EventEmitter\", \"subscribe\", \"emit\", \"emit\"]\n[[], [\"firstEvent\", \"function cb1(...args) { return args.join(','); }\"], [\"firstEvent\", [1,2,3]], [\"firstEvent\", [3,4,6]]]",
-      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[\"1,2,3\"]],[\"emitted\",[\"3,4,6\"]]]"
+      "input": "[\"EventEmitter\",\"subscribe\",\"emit\",\"subscribe\",\"subscribe\",\"subscribe\",\"subscribe\",\"unsubscribe\"]\n[[],[\"event1\",\"() => 68\"],[\"event2\"],[\"event3\",\"() => -11\"],[\"event0\",\"() => 64\"],[\"event1\",\"() => -66\"],[\"event2\",\"() => -65\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"unsubscribed\",0]]"
     },
     {
-      "input": "[\"EventEmitter\", \"subscribe\", \"emit\", \"unsubscribe\", \"emit\"]\n[[], [\"firstEvent\", \"(...args) => args.join(',')\"], [\"firstEvent\", [1,2,3]], [0], [\"firstEvent\", [4,5,6]]]",
-      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[\"1,2,3\"]],[\"unsubscribed\",0],[\"emitted\",[]]]"
+      "input": "[\"EventEmitter\",\"subscribe\",\"subscribe\",\"emit\",\"subscribe\",\"subscribe\",\"subscribe\",\"unsubscribe\"]\n[[],[\"event2\",\"() => 66\"],[\"event3\",\"() => -29\"],[\"event0\"],[\"event1\",\"() => 67\"],[\"event2\",\"() => -42\"],[\"event3\",\"() => 43\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"unsubscribed\",0]]"
     },
     {
-      "input": "[\"EventEmitter\", \"subscribe\", \"subscribe\", \"unsubscribe\", \"emit\"]\n[[], [\"firstEvent\", \"x => x + 1\"], [\"firstEvent\", \"x => x + 2\"], [0], [\"firstEvent\", [5]]]",
-      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"unsubscribed\",0],[\"emitted\",[7]]]"
+      "input": "[\"EventEmitter\",\"subscribe\",\"emit\",\"emit\",\"subscribe\",\"subscribe\",\"subscribe\",\"unsubscribe\",\"emit\"]\n[[],[\"event3\",\"() => -47\"],[\"event0\"],[\"event1\"],[\"event2\",\"() => -38\"],[\"event3\",\"() => -17\"],[\"event0\",\"() => -34\"],[0],[\"event2\"]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[]],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"unsubscribed\",0],[\"emitted\",[-38]]]"
     },
     {
-      "input": "actions = [\"EventEmitter\", \"emit\", \"subscribe\", \"subscribe\", \"emit\"], \nvalues = [[], [\"firstEvent\"], [\"firstEvent\", \"function cb1() { return 5; }\"],  [\"firstEvent\", \"function cb1() { return 6; }\"], [\"firstEvent\"]]",
-      "expectedOutput": "[[],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[5,6]]]"
+      "input": "[\"EventEmitter\",\"subscribe\",\"subscribe\",\"subscribe\",\"emit\",\"subscribe\",\"subscribe\",\"unsubscribe\"]\n[[],[\"event0\",\"() => -70\"],[\"event1\",\"() => 28\"],[\"event2\",\"() => 47\"],[\"event3\"],[\"event0\",\"() => -10\"],[\"event1\",\"() => 50\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"unsubscribed\",0]]"
     },
     {
-      "input": "actions = [\"EventEmitter\", \"subscribe\", \"emit\", \"emit\"], \nvalues = [[], [\"firstEvent\", \"function cb1(...args) { return args.join(','); }\"], [\"firstEvent\", [1,2,3]], [\"firstEvent\", [3,4,6]]]",
-      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[\"1,2,3\"]],[\"emitted\",[\"3,4,6\"]]]"
+      "input": "[\"EventEmitter\",\"subscribe\",\"emit\",\"subscribe\",\"emit\",\"subscribe\",\"subscribe\",\"unsubscribe\"]\n[[],[\"event1\",\"() => 83\"],[\"event2\"],[\"event3\",\"() => 24\"],[\"event0\"],[\"event1\",\"() => -41\"],[\"event2\",\"() => -43\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[]],[\"subscribed\"],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"unsubscribed\",0]]"
     },
     {
-      "input": "actions = [\"EventEmitter\", \"subscribe\", \"emit\", \"unsubscribe\", \"emit\"], \nvalues = [[], [\"firstEvent\", \"(...args) => args.join(',')\"], [\"firstEvent\", [1,2,3]], [0], [\"firstEvent\", [4,5,6]]]",
-      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[\"1,2,3\"]],[\"unsubscribed\",0],[\"emitted\",[]]]"
+      "input": "[\"EventEmitter\",\"subscribe\",\"subscribe\",\"emit\",\"emit\",\"subscribe\",\"subscribe\",\"unsubscribe\",\"emit\"]\n[[],[\"event2\",\"() => 63\"],[\"event3\",\"() => 73\"],[\"event0\"],[\"event1\"],[\"event2\",\"() => -6\"],[\"event3\",\"() => 76\"],[0],[\"event1\"]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[]],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"unsubscribed\",0],[\"emitted\",[]]]"
     },
     {
-      "input": "actions = [\"EventEmitter\", \"subscribe\", \"subscribe\", \"unsubscribe\", \"emit\"], \nvalues = [[], [\"firstEvent\", \"x => x + 1\"], [\"firstEvent\", \"x => x + 2\"], [0], [\"firstEvent\", [5]]]",
-      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"unsubscribed\",0],[\"emitted\",[7]]]"
+      "input": "[\"EventEmitter\",\"subscribe\",\"emit\",\"emit\",\"emit\",\"subscribe\",\"subscribe\",\"unsubscribe\"]\n[[],[\"event3\",\"() => -3\"],[\"event0\"],[\"event1\"],[\"event2\"],[\"event3\",\"() => -41\"],[\"event0\",\"() => -90\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[]],[\"emitted\",[]],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"unsubscribed\",0]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"subscribe\",\"subscribe\",\"subscribe\",\"emit\",\"subscribe\",\"unsubscribe\"]\n[[],[\"event0\",\"() => -5\"],[\"event1\",\"() => -76\"],[\"event2\",\"() => 81\"],[\"event3\",\"() => -3\"],[\"event0\"],[\"event1\",\"() => -98\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[-5]],[\"subscribed\"],[\"unsubscribed\",0]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"emit\",\"subscribe\",\"subscribe\",\"emit\",\"subscribe\",\"unsubscribe\",\"emit\"]\n[[],[\"event1\",\"() => -2\"],[\"event2\"],[\"event3\",\"() => 19\"],[\"event0\",\"() => -92\"],[\"event1\"],[\"event2\",\"() => -28\"],[0],[\"event0\"]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[-2]],[\"subscribed\"],[\"unsubscribed\",0],[\"emitted\",[-92]]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"subscribe\",\"emit\",\"subscribe\",\"emit\",\"subscribe\",\"unsubscribe\"]\n[[],[\"event2\",\"() => 82\"],[\"event3\",\"() => 76\"],[\"event0\"],[\"event1\",\"() => 72\"],[\"event2\"],[\"event3\",\"() => 36\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[]],[\"subscribed\"],[\"emitted\",[82]],[\"subscribed\"],[\"unsubscribed\",0]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"emit\",\"emit\",\"subscribe\",\"emit\",\"subscribe\",\"unsubscribe\"]\n[[],[\"event3\",\"() => -51\"],[\"event0\"],[\"event1\"],[\"event2\",\"() => -15\"],[\"event3\"],[\"event0\",\"() => 93\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[]],[\"emitted\",[]],[\"subscribed\"],[\"emitted\",[-51]],[\"subscribed\"],[\"unsubscribed\",0]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"subscribe\",\"subscribe\",\"emit\",\"emit\",\"subscribe\",\"unsubscribe\",\"emit\"]\n[[],[\"event0\",\"() => -63\"],[\"event1\",\"() => 72\"],[\"event2\",\"() => -29\"],[\"event3\"],[\"event0\"],[\"event1\",\"() => 83\"],[0],[\"event3\"]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[]],[\"emitted\",[-63]],[\"subscribed\"],[\"unsubscribed\",0],[\"emitted\",[]]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"emit\",\"subscribe\",\"emit\",\"emit\",\"subscribe\",\"unsubscribe\"]\n[[],[\"event1\",\"() => 0\"],[\"event2\"],[\"event3\",\"() => -4\"],[\"event0\"],[\"event1\"],[\"event2\",\"() => 97\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[]],[\"subscribed\"],[\"emitted\",[]],[\"emitted\",[0]],[\"subscribed\"],[\"unsubscribed\",0]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"subscribe\",\"emit\",\"emit\",\"emit\",\"subscribe\",\"unsubscribe\"]\n[[],[\"event2\",\"() => -34\"],[\"event3\",\"() => -46\"],[\"event0\"],[\"event1\"],[\"event2\"],[\"event3\",\"() => 99\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[]],[\"emitted\",[]],[\"emitted\",[-34]],[\"subscribed\"],[\"unsubscribed\",0]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"emit\",\"emit\",\"emit\",\"emit\",\"subscribe\",\"unsubscribe\",\"emit\"]\n[[],[\"event3\",\"() => -82\"],[\"event0\"],[\"event1\"],[\"event2\"],[\"event3\"],[\"event0\",\"() => 93\"],[0],[\"event2\"]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[]],[\"emitted\",[]],[\"emitted\",[]],[\"emitted\",[-82]],[\"subscribed\"],[\"unsubscribed\",0],[\"emitted\",[]]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"subscribe\",\"subscribe\",\"subscribe\",\"subscribe\",\"emit\",\"unsubscribe\"]\n[[],[\"event0\",\"() => -78\"],[\"event1\",\"() => 14\"],[\"event2\",\"() => 51\"],[\"event3\",\"() => 62\"],[\"event0\",\"() => 88\"],[\"event1\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[14]],[\"unsubscribed\",0]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"emit\",\"subscribe\",\"subscribe\",\"subscribe\",\"emit\",\"unsubscribe\"]\n[[],[\"event1\",\"() => -78\"],[\"event2\"],[\"event3\",\"() => -19\"],[\"event0\",\"() => -61\"],[\"event1\",\"() => 67\"],[\"event2\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[]],[\"unsubscribed\",0]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"subscribe\",\"emit\",\"subscribe\",\"subscribe\",\"emit\",\"unsubscribe\",\"emit\"]\n[[],[\"event2\",\"() => -44\"],[\"event3\",\"() => 18\"],[\"event0\"],[\"event1\",\"() => -32\"],[\"event2\",\"() => -6\"],[\"event3\"],[0],[\"event1\"]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[18]],[\"unsubscribed\",0],[\"emitted\",[-32]]]"
+    },
+    {
+      "input": "[\"EventEmitter\",\"subscribe\",\"emit\",\"emit\",\"subscribe\",\"subscribe\",\"emit\",\"unsubscribe\"]\n[[],[\"event3\",\"() => 10\"],[\"event0\"],[\"event1\"],[\"event2\",\"() => 52\"],[\"event3\",\"() => -88\"],[\"event0\"],[0]]",
+      "expectedOutput": "[[],[\"subscribed\"],[\"emitted\",[]],[\"emitted\",[]],[\"subscribed\"],[\"subscribed\"],[\"emitted\",[]],[\"unsubscribed\",0]]"
     }
   ],
   "sqlSchema": null,

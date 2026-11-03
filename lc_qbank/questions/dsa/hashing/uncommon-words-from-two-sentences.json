@@ -62,6 +62,34 @@
   ],
   "testCases": [
     {
+      "input": "\"a\"\n\"ba\"",
+      "expectedOutput": "[\"a\",\"ba\"]"
+    },
+    {
+      "input": "\"a\"\n\"a\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"a a\"\n\"b\"",
+      "expectedOutput": "[\"b\"]"
+    },
+    {
+      "input": "\"a b\"\n\"b c\"",
+      "expectedOutput": "[\"a\",\"c\"]"
+    },
+    {
+      "input": "\"x x\"\n\"x\"",
+      "expectedOutput": "[]"
+    },
+    {
+      "input": "\"aa a\"\n\"a\"",
+      "expectedOutput": "[\"aa\"]"
+    },
+    {
+      "input": "\"z y\"\n\"a z\"",
+      "expectedOutput": "[\"y\",\"a\"]"
+    },
+    {
       "input": "\"this apple is sweet\"\n\"this apple is sour\"",
       "expectedOutput": "[\"sweet\",\"sour\"]"
     },
@@ -70,76 +98,48 @@
       "expectedOutput": "[\"banana\"]"
     },
     {
-      "input": "\"this appl\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"appl\",\"apple\",\"is\",\"sour\"]"
+      "input": "\"mxa wha xlaqq\"\n\"mxa gfa iba rbbqq\"",
+      "expectedOutput": "[\"wha\",\"xlaqq\",\"gfa\",\"iba\",\"rbbqq\"]"
     },
     {
-      "input": "\"e is sweet\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"e\",\"sweet\",\"this\",\"apple\",\"sour\"]"
+      "input": "\"gga zkb dra oza gga ykb cdb hlb gkbqq\"\n\"oza cra ykb rqa whb cra ckbqq\"",
+      "expectedOutput": "[\"zkb\",\"dra\",\"cdb\",\"hlb\",\"gkbqq\",\"rqa\",\"whb\",\"ckbqq\"]"
     },
     {
-      "input": "\"t\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"t\",\"this\",\"apple\",\"is\",\"sour\"]"
+      "input": "\"pjb gsa fmb\"\n\"pjb yka pca ecb ndb\"",
+      "expectedOutput": "[\"gsa\",\"fmb\",\"yka\",\"pca\",\"ecb\",\"ndb\"]"
     },
     {
-      "input": "\"th\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"th\",\"this\",\"apple\",\"is\",\"sour\"]"
+      "input": "\"bgb zcb fea yya yya lpa\"\n\"hsa raa bgb zla fea nkb zla vya\"",
+      "expectedOutput": "[\"zcb\",\"lpa\",\"hsa\",\"raa\",\"nkb\",\"vya\"]"
     },
     {
-      "input": "\"teews si elppa siht\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"teews\",\"si\",\"elppa\",\"siht\",\"this\",\"apple\",\"is\",\"sour\"]"
+      "input": "\"nwa sdb qta hgb dkb\"\n\"sdb plb jkaqq\"",
+      "expectedOutput": "[\"nwa\",\"qta\",\"hgb\",\"dkb\",\"plb\",\"jkaqq\"]"
     },
     {
-      "input": "\"tttttt\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"tttttt\",\"this\",\"apple\",\"is\",\"sour\"]"
+      "input": "\"vcb wxa neb yfb mfb zla wib rwa pha idb waa nza dlb aab vjb lpa bxa veaqq\"\n\"sca hoa pha wra wxa gab rwa iha ygb mfb gdb xfa yfb tia sebqq\"",
+      "expectedOutput": "[\"vcb\",\"neb\",\"zla\",\"wib\",\"idb\",\"waa\",\"nza\",\"dlb\",\"aab\",\"vjb\",\"lpa\",\"bxa\",\"veaqq\",\"sca\",\"hoa\",\"wra\",\"gab\",\"iha\",\"ygb\",\"gdb\",\"xfa\",\"tia\",\"sebqq\"]"
     },
     {
-      "input": "\"a\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"a\",\"this\",\"apple\",\"is\",\"sour\"]"
+      "input": "\"sca nab pua lta mha doa wha awa swa fea sla sla cgb xma wka mga zha iea bra nja\"\n\"pva dja dda jga uza nma nla sca hba lta uza iea ofb nab mha ulb jfb\"",
+      "expectedOutput": "[\"pua\",\"doa\",\"wha\",\"awa\",\"swa\",\"fea\",\"cgb\",\"xma\",\"wka\",\"mga\",\"zha\",\"bra\",\"nja\",\"pva\",\"dja\",\"dda\",\"jga\",\"nma\",\"nla\",\"hba\",\"ofb\",\"ulb\",\"jfb\"]"
     },
     {
-      "input": "\"b\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"b\",\"this\",\"apple\",\"is\",\"sour\"]"
+      "input": "\"fla zla kba ehb xwa kha voa lka mga nhb nja vna\"\n\"ewa zla zga bfa ata osa nhb lqa gza kba mga eeb gkaqq\"",
+      "expectedOutput": "[\"fla\",\"ehb\",\"xwa\",\"kha\",\"voa\",\"lka\",\"nja\",\"vna\",\"ewa\",\"zga\",\"bfa\",\"ata\",\"osa\",\"lqa\",\"gza\",\"eeb\",\"gkaqq\"]"
     },
     {
-      "input": "\"aa\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"aa\",\"this\",\"apple\",\"is\",\"sour\"]"
+      "input": "\"wva dfb jva mya mha tca mmb mha bna nfa goa kaa qja fbb uma\"\n\"xja rxa qja kaa mya wda rlb wxa jva cha bna bda kza ara tla kza veb qqa\"",
+      "expectedOutput": "[\"wva\",\"dfb\",\"tca\",\"mmb\",\"nfa\",\"goa\",\"fbb\",\"uma\",\"xja\",\"rxa\",\"wda\",\"rlb\",\"wxa\",\"cha\",\"bda\",\"ara\",\"tla\",\"veb\",\"qqa\"]"
     },
     {
-      "input": "\"ab\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"ab\",\"this\",\"apple\",\"is\",\"sour\"]"
+      "input": "\"gmb sda tdb bda uba jga caa qcb rpa xdb xwa tva sib bjb rva rma pcb zsa dcb sdb tca lga swa eva yya nia coa xgb zla qua skb gba rjb isa jdb uza sra wqa rxa yea xab ada xla uva waa aha gaa tma mya dmbq\"\n\"zab bva wza eva qcb zca lba jdb tjb sdb nbb nka nab sqa uza iya mfa bia amb xab zlb nhb xaa xwa xla wqa rxa ojb ada tva nia xhb wlb dza tca jga rfb vta zba ehb pua tlb kza bmb zsa zfa eta sua zxa wkbq\"",
+      "expectedOutput": "[\"gmb\",\"sda\",\"tdb\",\"bda\",\"uba\",\"caa\",\"rpa\",\"xdb\",\"sib\",\"bjb\",\"rva\",\"rma\",\"pcb\",\"dcb\",\"lga\",\"swa\",\"yya\",\"coa\",\"xgb\",\"zla\",\"qua\",\"skb\",\"gba\",\"rjb\",\"isa\",\"sra\",\"yea\",\"uva\",\"waa\",\"aha\",\"gaa\",\"tma\",\"mya\",\"dmbq\",\"zab\",\"bva\",\"wza\",\"zca\",\"lba\",\"tjb\",\"nbb\",\"nka\",\"nab\",\"sqa\",\"iya\",\"mfa\",\"bia\",\"amb\",\"zlb\",\"nhb\",\"xaa\",\"ojb\",\"xhb\",\"wlb\",\"dza\",\"rfb\",\"vta\",\"zba\",\"ehb\",\"pua\",\"tlb\",\"kza\",\"bmb\",\"zfa\",\"eta\",\"sua\",\"zxa\",\"wkbq\"]"
     },
     {
-      "input": "\"ba\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"ba\",\"this\",\"apple\",\"is\",\"sour\"]"
-    },
-    {
-      "input": "\"aba\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"aba\",\"this\",\"apple\",\"is\",\"sour\"]"
-    },
-    {
-      "input": "\"abba\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"abba\",\"this\",\"apple\",\"is\",\"sour\"]"
-    },
-    {
-      "input": "\"aaaaa\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"aaaaa\",\"this\",\"apple\",\"is\",\"sour\"]"
-    },
-    {
-      "input": "\"abcde\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"abcde\",\"this\",\"apple\",\"is\",\"sour\"]"
-    },
-    {
-      "input": "\"edcba\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"edcba\",\"this\",\"apple\",\"is\",\"sour\"]"
-    },
-    {
-      "input": "\"aab\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"aab\",\"this\",\"apple\",\"is\",\"sour\"]"
-    },
-    {
-      "input": "\"aA\"\n\"this apple is sour\"",
-      "expectedOutput": "[\"aA\",\"this\",\"apple\",\"is\",\"sour\"]"
+      "input": "\"uba sja pia upa pna gjb wya lhb cra xfb cib dca vna dkb ybb sjb yea yna zgb tsa xab tra hza wcb nha rlb jqa rba ooa ana tdb alb ipa sab wca fwa zfb sta toa wxa kna lka hdb iya iab pna xkb heb mmbqq\"\n\"xgb iya nqa wca sja bwa taa uba nha qab lhb kma jba oea roa fdb cra nqa fca yha vgb tna bia sab ira lra hza rlb ooa iba yna sxa ola zhb beb tma ana dba zgb wya tba kab haa zpa dkb uca rea ataqq\"",
+      "expectedOutput": "[\"pia\",\"upa\",\"gjb\",\"xfb\",\"cib\",\"dca\",\"vna\",\"ybb\",\"sjb\",\"yea\",\"tsa\",\"xab\",\"tra\",\"wcb\",\"jqa\",\"rba\",\"tdb\",\"alb\",\"ipa\",\"fwa\",\"zfb\",\"sta\",\"toa\",\"wxa\",\"kna\",\"lka\",\"hdb\",\"iab\",\"xkb\",\"heb\",\"mmbqq\",\"xgb\",\"bwa\",\"taa\",\"qab\",\"kma\",\"jba\",\"oea\",\"roa\",\"fdb\",\"fca\",\"yha\",\"vgb\",\"tna\",\"bia\",\"ira\",\"lra\",\"iba\",\"sxa\",\"ola\",\"zhb\",\"beb\",\"tma\",\"dba\",\"tba\",\"kab\",\"haa\",\"zpa\",\"uca\",\"rea\",\"ataqq\"]"
     }
   ],
   "sqlSchema": null,

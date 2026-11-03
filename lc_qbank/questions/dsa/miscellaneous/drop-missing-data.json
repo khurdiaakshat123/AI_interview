@@ -26,12 +26,84 @@
   ],
   "testCases": [
     {
-      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[32,\"Piper\",5],[217,null,19],[779,\"Georgia\",20],[849,\"Willow\",14]]}}",
-      "expectedOutput": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 32         | Piper   | 5   |\n| 779        | Georgia | 20  | \n| 849        | Willow  | 14  | \n+------------+---------+-----+"
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[0,null,5]]}}",
+      "expectedOutput": "+------------+------+-----+\n| student_id | name | age |\n+------------+------+-----+\n+------------+------+-----+"
     },
     {
-      "input": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 32         | Piper   | 5   |\n| 217        | None    | 19  |\n| 779        | Georgia | 20  |\n| 849        | Willow  | 14  |\n+------------+---------+-----+",
-      "expectedOutput": "+------------+---------+-----+\n| student_id | name    | age |\n+------------+---------+-----+\n| 32         | Piper   | 5   |\n| 779        | Georgia | 20  | \n| 849        | Willow  | 14  | \n+------------+---------+-----+"
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[100,\"Student20\",16],[101,\"Student21\",21]]}}",
+      "expectedOutput": "+------------+-----------+-----+\n| student_id | name      | age |\n+------------+-----------+-----+\n| 100        | Student20 | 16  |\n| 101        | Student21 | 21  |\n+------------+-----------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[200,\"Student40\",20],[201,\"Student41\",24],[202,null,13]]}}",
+      "expectedOutput": "+------------+-----------+-----+\n| student_id | name      | age |\n+------------+-----------+-----+\n| 200        | Student40 | 20  |\n| 201        | Student41 | 24  |\n+------------+-----------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[300,\"Student60\",13],[301,null,25],[302,\"Student62\",15],[303,\"Student63\",24]]}}",
+      "expectedOutput": "+------------+-----------+-----+\n| student_id | name      | age |\n+------------+-----------+-----+\n| 300        | Student60 | 13  |\n| 302        | Student62 | 15  |\n| 303        | Student63 | 24  |\n+------------+-----------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[400,null,23],[401,\"Student81\",10],[402,\"Student82\",8],[403,\"Student83\",8],[404,null,6]]}}",
+      "expectedOutput": "+------------+-----------+-----+\n| student_id | name      | age |\n+------------+-----------+-----+\n| 401        | Student81 | 10  |\n| 402        | Student82 | 8   |\n| 403        | Student83 | 8   |\n+------------+-----------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[500,\"Student100\",21],[501,\"Student101\",22],[502,\"Student102\",22],[503,null,24],[504,\"Student104\",20],[505,\"Student105\",14]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 500        | Student100 | 21  |\n| 501        | Student101 | 22  |\n| 502        | Student102 | 22  |\n| 504        | Student104 | 20  |\n| 505        | Student105 | 14  |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[600,\"Student120\",25],[601,\"Student121\",7],[602,null,8],[603,\"Student123\",5],[604,\"Student124\",11],[605,\"Student125\",7],[606,null,25]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 600        | Student120 | 25  |\n| 601        | Student121 | 7   |\n| 603        | Student123 | 5   |\n| 604        | Student124 | 11  |\n| 605        | Student125 | 7   |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[700,\"Student140\",12],[701,null,9],[702,\"Student142\",21],[703,\"Student143\",15],[704,\"Student144\",14],[705,null,17],[706,\"Student146\",16],[707,\"Student147\",7]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 700        | Student140 | 12  |\n| 702        | Student142 | 21  |\n| 703        | Student143 | 15  |\n| 704        | Student144 | 14  |\n| 706        | Student146 | 16  |\n| 707        | Student147 | 7   |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[800,null,18],[801,\"Student161\",19],[802,\"Student162\",12],[803,\"Student163\",16],[804,null,14],[805,\"Student165\",22],[806,\"Student166\",23],[807,\"Student167\",11],[808,null,11]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 801        | Student161 | 19  |\n| 802        | Student162 | 12  |\n| 803        | Student163 | 16  |\n| 805        | Student165 | 22  |\n| 806        | Student166 | 23  |\n| 807        | Student167 | 11  |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[900,\"Student180\",24],[901,\"Student181\",19],[902,\"Student182\",21],[903,null,22],[904,\"Student184\",20],[905,\"Student185\",19],[906,\"Student186\",25],[907,null,19],[908,\"Student188\",25],[909,\"Student189\",23]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 900        | Student180 | 24  |\n| 901        | Student181 | 19  |\n| 902        | Student182 | 21  |\n| 904        | Student184 | 20  |\n| 905        | Student185 | 19  |\n| 906        | Student186 | 25  |\n| 908        | Student188 | 25  |\n| 909        | Student189 | 23  |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[1000,\"Student200\",19],[1001,\"Student201\",23],[1002,null,21],[1003,\"Student203\",15],[1004,\"Student204\",19],[1005,\"Student205\",9],[1006,null,20],[1007,\"Student207\",16],[1008,\"Student208\",20],[1009,\"Student209\",5],[1010,null,15]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 1000       | Student200 | 19  |\n| 1001       | Student201 | 23  |\n| 1003       | Student203 | 15  |\n| 1004       | Student204 | 19  |\n| 1005       | Student205 | 9   |\n| 1007       | Student207 | 16  |\n| 1008       | Student208 | 20  |\n| 1009       | Student209 | 5   |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[1100,\"Student220\",14],[1101,null,7],[1102,\"Student222\",16],[1103,\"Student223\",10],[1104,\"Student224\",15],[1105,null,25],[1106,\"Student226\",18],[1107,\"Student227\",8],[1108,\"Student228\",9],[1109,null,20],[1110,\"Student230\",5],[1111,\"Student231\",17]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 1100       | Student220 | 14  |\n| 1102       | Student222 | 16  |\n| 1103       | Student223 | 10  |\n| 1104       | Student224 | 15  |\n| 1106       | Student226 | 18  |\n| 1107       | Student227 | 8   |\n| 1108       | Student228 | 9   |\n| 1110       | Student230 | 5   |\n| 1111       | Student231 | 17  |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[1200,null,23],[1201,\"Student241\",18],[1202,\"Student242\",7],[1203,\"Student243\",23],[1204,null,23],[1205,\"Student245\",17],[1206,\"Student246\",5],[1207,\"Student247\",6],[1208,null,8],[1209,\"Student249\",23],[1210,\"Student250\",22],[1211,\"Student251\",14],[1212,null,21]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 1201       | Student241 | 18  |\n| 1202       | Student242 | 7   |\n| 1203       | Student243 | 23  |\n| 1205       | Student245 | 17  |\n| 1206       | Student246 | 5   |\n| 1207       | Student247 | 6   |\n| 1209       | Student249 | 23  |\n| 1210       | Student250 | 22  |\n| 1211       | Student251 | 14  |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[1300,\"Student260\",20],[1301,\"Student261\",12],[1302,\"Student262\",17],[1303,null,21],[1304,\"Student264\",6],[1305,\"Student265\",25],[1306,\"Student266\",12],[1307,null,9],[1308,\"Student268\",13],[1309,\"Student269\",24],[1310,\"Student270\",5],[1311,null,11],[1312,\"Student272\",11],[1313,\"Student273\",8]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 1300       | Student260 | 20  |\n| 1301       | Student261 | 12  |\n| 1302       | Student262 | 17  |\n| 1304       | Student264 | 6   |\n| 1305       | Student265 | 25  |\n| 1306       | Student266 | 12  |\n| 1308       | Student268 | 13  |\n| 1309       | Student269 | 24  |\n| 1310       | Student270 | 5   |\n| 1312       | Student272 | 11  |\n| 1313       | Student273 | 8   |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[1400,\"Student280\",6],[1401,\"Student281\",21],[1402,null,12],[1403,\"Student283\",11],[1404,\"Student284\",8],[1405,\"Student285\",25],[1406,null,8],[1407,\"Student287\",15],[1408,\"Student288\",22],[1409,\"Student289\",12],[1410,null,21],[1411,\"Student291\",12],[1412,\"Student292\",18],[1413,\"Student293\",18],[1414,null,6]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 1400       | Student280 | 6   |\n| 1401       | Student281 | 21  |\n| 1403       | Student283 | 11  |\n| 1404       | Student284 | 8   |\n| 1405       | Student285 | 25  |\n| 1407       | Student287 | 15  |\n| 1408       | Student288 | 22  |\n| 1409       | Student289 | 12  |\n| 1411       | Student291 | 12  |\n| 1412       | Student292 | 18  |\n| 1413       | Student293 | 18  |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[1500,\"Student300\",15],[1501,null,5],[1502,\"Student302\",17],[1503,\"Student303\",17],[1504,\"Student304\",13],[1505,null,8],[1506,\"Student306\",15],[1507,\"Student307\",16],[1508,\"Student308\",21],[1509,null,19],[1510,\"Student310\",6],[1511,\"Student311\",14],[1512,\"Student312\",12],[1513,null,22],[1514,\"Student314\",9],[1515,\"Student315\",18]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 1500       | Student300 | 15  |\n| 1502       | Student302 | 17  |\n| 1503       | Student303 | 17  |\n| 1504       | Student304 | 13  |\n| 1506       | Student306 | 15  |\n| 1507       | Student307 | 16  |\n| 1508       | Student308 | 21  |\n| 1510       | Student310 | 6   |\n| 1511       | Student311 | 14  |\n| 1512       | Student312 | 12  |\n| 1514       | Student314 | 9   |\n| 1515       | Student315 | 18  |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[1600,null,16],[1601,\"Student321\",14],[1602,\"Student322\",8],[1603,\"Student323\",7],[1604,null,16],[1605,\"Student325\",8],[1606,\"Student326\",20],[1607,\"Student327\",17],[1608,null,21],[1609,\"Student329\",13],[1610,\"Student330\",5],[1611,\"Student331\",8],[1612,null,13],[1613,\"Student333\",11],[1614,\"Student334\",17],[1615,\"Student335\",20],[1616,null,20]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 1601       | Student321 | 14  |\n| 1602       | Student322 | 8   |\n| 1603       | Student323 | 7   |\n| 1605       | Student325 | 8   |\n| 1606       | Student326 | 20  |\n| 1607       | Student327 | 17  |\n| 1609       | Student329 | 13  |\n| 1610       | Student330 | 5   |\n| 1611       | Student331 | 8   |\n| 1613       | Student333 | 11  |\n| 1614       | Student334 | 17  |\n| 1615       | Student335 | 20  |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[1700,\"Student340\",12],[1701,\"Student341\",21],[1702,\"Student342\",8],[1703,null,14],[1704,\"Student344\",21],[1705,\"Student345\",15],[1706,\"Student346\",12],[1707,null,7],[1708,\"Student348\",18],[1709,\"Student349\",12],[1710,\"Student350\",22],[1711,null,7],[1712,\"Student352\",21],[1713,\"Student353\",7],[1714,\"Student354\",9],[1715,null,18],[1716,\"Student356\",12],[1717,\"Student357\",16]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 1700       | Student340 | 12  |\n| 1701       | Student341 | 21  |\n| 1702       | Student342 | 8   |\n| 1704       | Student344 | 21  |\n| 1705       | Student345 | 15  |\n| 1706       | Student346 | 12  |\n| 1708       | Student348 | 18  |\n| 1709       | Student349 | 12  |\n| 1710       | Student350 | 22  |\n| 1712       | Student352 | 21  |\n| 1713       | Student353 | 7   |\n| 1714       | Student354 | 9   |\n| 1716       | Student356 | 12  |\n| 1717       | Student357 | 16  |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[1800,\"Student360\",10],[1801,\"Student361\",14],[1802,null,13],[1803,\"Student363\",6],[1804,\"Student364\",12],[1805,\"Student365\",22],[1806,null,13],[1807,\"Student367\",24],[1808,\"Student368\",9],[1809,\"Student369\",16],[1810,null,11],[1811,\"Student371\",25],[1812,\"Student372\",7],[1813,\"Student373\",19],[1814,null,20],[1815,\"Student375\",14],[1816,\"Student376\",22],[1817,\"Student377\",24],[1818,null,9]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 1800       | Student360 | 10  |\n| 1801       | Student361 | 14  |\n| 1803       | Student363 | 6   |\n| 1804       | Student364 | 12  |\n| 1805       | Student365 | 22  |\n| 1807       | Student367 | 24  |\n| 1808       | Student368 | 9   |\n| 1809       | Student369 | 16  |\n| 1811       | Student371 | 25  |\n| 1812       | Student372 | 7   |\n| 1813       | Student373 | 19  |\n| 1815       | Student375 | 14  |\n| 1816       | Student376 | 22  |\n| 1817       | Student377 | 24  |\n+------------+------------+-----+"
+    },
+    {
+      "input": "{\"headers\":{\"students\":[\"student_id\",\"name\",\"age\"]},\"rows\":{\"students\":[[1900,\"Student380\",7],[1901,null,24],[1902,\"Student382\",24],[1903,\"Student383\",9],[1904,\"Student384\",10],[1905,null,15],[1906,\"Student386\",17],[1907,\"Student387\",24],[1908,\"Student388\",6],[1909,null,21],[1910,\"Student390\",15],[1911,\"Student391\",13],[1912,\"Student392\",25],[1913,null,7],[1914,\"Student394\",17],[1915,\"Student395\",17],[1916,\"Student396\",17],[1917,null,10],[1918,\"Student398\",12],[1919,\"Student399\",13]]}}",
+      "expectedOutput": "+------------+------------+-----+\n| student_id | name       | age |\n+------------+------------+-----+\n| 1900       | Student380 | 7   |\n| 1902       | Student382 | 24  |\n| 1903       | Student383 | 9   |\n| 1904       | Student384 | 10  |\n| 1906       | Student386 | 17  |\n| 1907       | Student387 | 24  |\n| 1908       | Student388 | 6   |\n| 1910       | Student390 | 15  |\n| 1911       | Student391 | 13  |\n| 1912       | Student392 | 25  |\n| 1914       | Student394 | 17  |\n| 1915       | Student395 | 17  |\n| 1916       | Student396 | 17  |\n| 1918       | Student398 | 12  |\n| 1919       | Student399 | 13  |\n+------------+------------+-----+"
     }
   ],
   "sqlSchema": null,

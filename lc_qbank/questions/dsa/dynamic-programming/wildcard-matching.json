@@ -71,6 +71,22 @@
   ],
   "testCases": [
     {
+      "input": "\"\"\n\"\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"\"\n\"**\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"ab\"\n\"\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"abc\"\n\"a?c\"",
+      "expectedOutput": "true"
+    },
+    {
       "input": "\"aa\"\n\"a\"",
       "expectedOutput": "false"
     },
@@ -83,71 +99,55 @@
       "expectedOutput": "false"
     },
     {
-      "input": "\"a\"\n\"a\"",
+      "input": "\"ceedbdgfbfcddebecdcfadc\"\n\"?e?db??fbfc*deb*cdcfa*c\"",
       "expectedOutput": "true"
     },
     {
-      "input": "\"aaaa\"\n\"a\"",
+      "input": "\"cfgddafebfcfddfeedgddeegefdcfaa\"\n\"?fgd?a?ebfcfddf*ed?d???ge***faz\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"AA\"\n\"a\"",
+      "input": "\"cacegdedbgbbdcbda\"\n\"cacegdedbgbbdcbda\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcdefghijklmnop\"\n\"a*ef?*op\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"caaedbacfaegcccabdfbeceagabebgfefacgbdg\"\n\"??ae?*a??**g??ca?d**?c?**ab?*g?efacg*?z\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"b\"\n\"a\"",
+      "input": "\"cbcfgfgbfaebc\"\n\"cbcfgfgbfaebc?\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"ab\"\n\"a\"",
+      "input": "\"ccafddcabbagcbaceefgeaecccage\"\n\"?caf??c*b?ag?*?cee*g?a??ccage\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"cddfgabgbcgccadcgeceabaddbbdcgfcebceddcbccagegefebagddgecbfgeabfaadeaafbb\"\n\"?d*fgabgb?gc?*dc*eceabaddbb?*g?cebce????*?ag?g*feb?gd?g*?b*g?a?f?a?eaafbb\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"cffgbdafccgebaabbegccccefbdggbgfdcadbbbdgabafgdbbgdedaddccdcgbbaecgaedbbggeacecgbdcgbadfaceabgcecabfgaccgdafdeagaeaacefcfgddeag\"\n\"?ffgb?afcc???a?bbe??*c*efb*ggbgfdca?***dg*bafgdbb?deda?d?cdcgb??e*g?e*bb?geace?g*dcgba?fa*?*?gceca*f?accg*?*deag*e*ace?cf??d?az\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"ba\"\n\"a\"",
+      "input": "\"cgbgdggecdfabgdbdedbfcefgaedddaadegbgfgfcgbaagbefefdeeacbdaebcbccecdbfdbebbbcccdfeeaagabcffacddeebgeeabfffebacbca\"\n\"?*b*?g?ecd?a*gdbded*fc?f*a???*a?d???gfgf*gbaagbe*e*?eeac?*??bc?cc?*dbf*b*bbbc*??feeaagabcf?*c?deebge*ab*f?eb??b**\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"cadagdfdceecbfgaffagbdagbgfabebccfeaedfafecbbgabcbbbfbeabeegddbfgaggfbgbceecbgcbcfgcffdfdagbdaddgceecbabdgcfdbbfagfaegceeafebgdggbacdgbaeebcegfdfgbdb\"\n\"???*g???ce***f*a*fagb*ag??fab?bc?f**e?f?fecbbgabcbb*f*ea*?eg**?f?ag?fbgbc?ecbg?**f**?f?f*ag?da*d*ceecbab?gc*d*bf*gfa*gceeafebg?g*b?cd*?a***c*gfd*gb?z\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"aba\"\n\"a\"",
-      "expectedOutput": "false"
+      "input": "\"cbgabgebcfefafcabfefdecadfaefgcecadgcadcbddcdgfeggeggfbgafcbfebaeccdcdbbagbdbecffgbeeeabfdabeeecbebeabffbbgbggcbadedfgabdecfdgbacfdfcbcbfeffcgcbccebfdbfgegabdgcefeegegdeeeebcgedeaeffecedbfdbdfdfcgbgeabeccacfgedcagcegfeegcagcaeggaaafadbcdcfffafabdefaddcdccfdagggcbcgggcfacfegdcgefgafffdgecfcgdcdgccfddeggeeedaegggbcdebgbceccfgfcdgcaaceaafeecfbbfcabgbacceddfgddfefddbggdabeageefafegbcbffacafdddbddfddfgfgfebgfagagacgcaaffcfaegaadgeaegbbedafdbfacaeebeaadecbcddagcffaabaagdgcbdbagaedggabaedgcccaeacaddbbdbffeecffbeeeedaceegfafggdddecfebgecdcgbddcebgfcagcgbaebgdgdcfgbbaaedcbfeaaaaagacbadacaedebaddabgdgdecaabbeagbccdgbcdecfabddfgdagcdbeeeaebacaaecbegdabagfadfabgecddbecceebgbdcdabecegafbeagecbaadbagbgegfcadcfedeeefgbddcabbbcagdgffdfabddefefbaffefaaggdfabeadadfcdcbdcgfdgfdbedcbbafbgcaefdageccbdfgfcgceecefadfaeaceggecbfbcgcfefecgdbgcbbedgbcfggcdbgaaecedabbbgafafbceagffgfggagacabgbcaefadfgagaegaefababaagfeeefcffcfgeacdfafcaacfcbeegefgbfadddggbdcadaecacebffgbdgebfaffafabcdccebeaggcgfebfcfefddgcdfaabbaabfggdcbcbefafgbfdfdebecaadadgfaggeagbgfeefefbfdfeffgacggeacbeceagcgdafbafeaeedfcgagdedfgdebcfegcedbdbgceafebafbgcfffdggebbfeecebfdgfgegdffgeafddbddbagegebffcgbdbbcfdfadgfbfffgcffdffbbfffbgbgcebebeadaaedfddgecabfcggggfgddccdceeddecfafcdbbaaafgcegfdcaacggegcdddgbddegcdbabacbefagcceaadcgeadaegdfafggbgeageddeefccggfaegdeaaecdedgfbabfacaffaacdaaaaaaagdafbgcgbgabcfbabeaccfebadfeabbaaagecebcbbbcgcgacadedefbgdabedcecegcegaaaabageeeecdgedabcbdggedfgdcfcffbbccgdfaffcdcfgcgceefgdfadbfeeadefdbfgefgdfdcdbgfdegfcgfbdedfbffgdcbddfaeaddefceacadaecedbcfcfbeecedadedaggcbbafcbafgcgbggadbcbaacfacbbedeggagdfbcadegcbggcegebedabbefbdfbgffdabebaaebedabfcbdcbfaeeaeggffdebacfceefcbdabgfbeadfgccbgafbggbfgcgcggcfcadbecafdfcddcfeccccgbcebdggdaaecggagaefdaafgbbcaacgefcdfgcdbabfgfbcggbdfcfgdgagcbebdffdgbebadcdggedaagccabddcdffdfbafdddfbfaegdadfcgabddfebggeaabfdddadagadegcdddbebdaadfbacafgafdcabdcfcgabbaababdbbfaeefgeggcceeccaceabbdcbbebedgeddccffgaaadgabacfaacegdfbbefbgebgdebaddgccfffcfcgcgcdgbfecbgbedaaceeegfdgfcfb\"\n\"??g*bg**cf*f*fca?f*f??**d?a?fg*e?adg?adc*?*c*g?e??eggf*?*?cbf*?*ec*d**bbagb*be?ffg??eeab?*a?ee???**eab?f*b?b*gcb*?e??*abd*?f??*ac*d*cb?b??ffcg*bc*eb**b*g*gabdgce*?egeg??eeeb*ge*?**ff*c*db**bd*??cg?g?a?e*cacfge*ca*ceg*?egc*gc??gg?*af?d?cdc*ff**ab?*fa?*cdcc*da***?b**?**?a*?*gd??e*?a*f*?g*cfc?dcdgccf*deg*eeed?*g?gbcd*bgbc?ccfg**dg*aa??a*f*ecfbbfcabgba??edd***d?ef?d?ggd*?*?geefa*e*b**ff*?*fddd?*dfdd?*?gf*bgfag?gacgc*af***?egaadgea*??bed?*dbfa?ae?bea*de?b?dda?c?f*a*?agdg?bdb?ga?dgga??*dgccc**a?a*dbbd**f*e?ff?**eedace??*af*gdddec?ebge?*cg*dd?eb*f?*g?g?*ebg?g?cfgbbaae?c?fea?a?a?a*b***c***eb*ddab*?*d*c***bea*bc*?g?cdec*?bdd*gd?*cd*?e*?e*a*a???*eg*a?a?***fab*?c*d*???*eb*?*c??bece*??bea*e?*aadb?g?g**?cadcfed?e?*g?*d*abbbca*dgf?df*b*??fefb*ff***ag??fab?*d**fcdcbd?g*??**b*dc?*af?g?a??dage?*bdf?fc*ceece*ad*ae**eg?ec?*bcg*fefecgdbg?*?*dg?cf*gcdb**??ce?abb*ga?*f*???*f?gfg*ag?c?bg?c*?f?dfgagaega*f?*?b?agfee?fcff?fg?a*?*a*?aac*c*?e?efg*fa?ddg*?dcada*?**ebffgbdge?faffafa?cdcc*b*aggcgf??**f*fdd***fa?bb*?*fggd*?c*ef?*gb??*?e*eca?da*g?ag??agbg?eef?*b??fef?*acg*eac*ec?agc??*fba*eaeedfc?ag??dfgd*bcf?g?edbd?g?*af*ba?bg?fffdggeb?feeceb?**fgegdf*g***ddbdd??gegeb*fcg*d*bcfd?a*g?b*ff?*ff?ff?***fb*b?*ebebe*daae*??dg?**b?cg?g**gd?ccd?eed?ec??f?db??aafgce**?ca*??*e?c?*dgb?***c**abac?ef?g*ce?a??****?egdfafggbg????d?ee*cc*gf??gde*a?cde?*f*a**ac?ffaa?*aa?aa*a*d**b*c?*g*????*beac?*??a*f?*?b**a?*?eb?*bb?gc??*a??defb?dabedce?*g*e?***a*?gee**?d?eda?*bd*g?df?d?fc*??**cgd*a?fc?c*?*g*ee?g???dbfee?d*fd**?**g*f**d?*fdegf?gfb??d*??*g*cbdd?aeadd?f*??cada*ce*b?fcf*e*ce*?d??ag*cbbafc?a?gcgbg??*bcba*cfa??bed?*gagd**??de??**???***eda**?f?*?*gffdabe??a?b*d??f*b*c*f*eeaeggffd*b?cf*e*fc?d*bgf*ead*gc*?g?fbg*b*g*gcg??f?ad**???dfc??**?cc?cgb??bdg?d**ecg?*ga?f***f?b?ca?cgef*?*g??bab*???*g?b**c*g??agcbebd?fd*b?ba?cdg?eda*?***bd?cd?fd?b*f?ddfbfa???a?fcgabddfebggea**?d?dadag***?*ddd**bdaad*b?c?fga?*c?b**fcgab?a*babdbbfae?f*??g?*ee??*c***bdcbb*b?dge?d*c?**a*adg*bac*aa?e*df??efb??*g?e**ddgc??ffc*cgc*cdg?*e*b??*d?aceeeg?dg*???\"",
+      "expectedOutput": "true"
     },
     {
-      "input": "\"abba\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"aaaaa\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"abcde\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"edcba\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"aab\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"aA\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"0\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"121\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"racecar\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"hello\"\n\"a\"",
+      "input": "\"cdcbdddacgdbaefadfcdgffbeebacbegbbcfafcefbedegebeegegcffaggdafbcbefggfdcfbfeaccdcacgcdeegfbcfbfbdfgdgbebgdefceceaadggagfccafffabfdabbddcgfcaaggagfbfcfedcecdfafcbcaggcfbgbfedfeefgbefecadbgdfcdebebfccfabbgdddadegdbacdbdagafaaecfcdeaggeccbcedcaaeecgddegegbeebgddbbbdgbfafgdffdcccebeedbccgfcebcecdceddcedffcfbecccbefedcfedeffaddgcgcgegabffacecgeeagcddccfcagebbbeeggdbfebacadeegfcbadbagfaafgbgaabadedacbfbfcgefbabfedadcbbbadfbcaeedggcfcecbebebcbcebaafedbbegccaacdcdgbaebdbdbebbcddfafbcgebdddaagcgeaadddegcaegddbbacecbcegbefcdbbcbcadecgafaaadababfdbabfcafacdgceaaeacfbadagbgccbfdcecbefgbgdafbcffdacccaagddcacaaacgbdegggcedbfdefcdcgdcbfeafedfbaeedefagdaeccbecgecbeagbeeagabddbcdgdgebagfaeedafbfbgafdecacdddebfcagggabgdcdfdgdeebebbbaaggeafegfccgfadcebageeacfbfggadcaddbdccbafdegdgbcgcdcacgafbbecbeafafgbcbcabgcbfdfdbfbcfedbccdgeeedgddcaebadedccgfbfeggaaegedaeaffgdebfbafdbggbacccfcebfaccbaacdfffaacbgcceaefdfededfcdcbbcgfgfbcfbcfedcbggedbdfgafgfebdcbegfdeaaababfcfccdbafgebbgdecbbdaefdadgbfccggebgccfebfddfbdgcbgefcefgadcbggaefcafcecegecgggeagdefdbeeadeegbacfbddfbcbagfdgaggebgcfcdcfbbdbbcbfbfbegceaedffbegcedabebafbcgggbcebgbgeadeceefbefbegaececdfbcddgcddcfgbaabagcacabagcgfedgcbggdgbebcecgcdffaafgfeffgcfgdbfebcbfggdfaadfcebdbdbbabbbbbdgfaaebedcfcgggbdadcabfcfefaecgaafecdefcbbcdfeeagbbeebabdbfeefdacdaffffcfgbaeccggafgcgaadbfafcfcdegdgcfcdadcdafgddbfafbabbgcaegdbeafbbcgfcbbgaeeefadcacbdfbbecgefaebdefbbgfdbddccbdbgbbefecdgacfgcgbbdeabfbddcgfeccfebffcabdgbggabdefgfdbddffeaddgaagcdfbafeccbagdfedeffeffdcccbbbadbggafceedaegfbdgadafbbceacfedgefbgebbdeaaddceecabegbcfebefdfffegabfefdfbfcbgecedcdgadabfcaccgbfbaafbgadaecfafabcfgggdaggebbecaadfcdcggeeacadcdcgcdacdfcgcffdfcddagababgdebbecgdafabgdffabfebfbceafbceffeacgdadcceacafbbbeebgbagdadggadaafdfcdfcdaaggbcacagabddgcfgegfccbgadeaedfceggbdcacabbecebagbdafabcgdffdeegadcecbfdgadafbfbaefcbfgfbabaaggegcfgfgggecefdcadafgbccfdddfabededceggddgfccbdbcfccdfbfgaafggfbbagafcggfddebcagafdgfgegbadbdabgcffcegccagcaagbfdaaabeaacdfecfeeecabc\"\n\"?dc???d*cgdb*e*adfcdg?f?e*ba?b?*?bcfaf?ef*?*?g*be**e**f**g?*a??cb?f*gf?c*b**a???**cgcd?egfbcf*??d?gd?b*bg*efcec?*adgg*?*?caff?ab*d?bbddcg???agga*fbfcfed***?fafcbca*g?f*gbfedfeefg?*fecad*?dfcd***bfc*?a*bg*?d??egdb*c?bda****aec?c?e*ggeccb??d**ae?cg*?eg?*be?b?*db?*dgb*??g?f*d*??ebe**?*cgfce?cecd??*d*?dffcfbe?ccb*f?d*???eff?ddgcg?g??a*ff*?*c*eea*c?*ccf?agebbb?eg*?**eba?ad*egf*bad**?faafg?g??b?d?*??b???****b?bfe?ad*bbb*df?c?ee*?g*fcecbe**bcb*e*a??e?b?e*?ca?c*c*gb*e*db?be*b**dfa?b*ge?dd*aa?cg*a*?*de?c**gdd*bac?cbce?befcdbbcb??decg?*a*ad?b*b*d*abf?*fa*dgceaaeacfba?agbgc?bf*c?cbe*gbgd*f?c?f**?cca?gddcac*aacgb??gggced**def?dc?dcb*ea?ed**ae??e?*gd**ccbecg?*be*gb?eag*?*?bcdgdgeb??f*e**??bf*ga?*ecac?dd*bfcagg*abgdcdfdg?e?bebbba?g?e**?gf?*g**d??b*ge*a?fb?g****??*bd?*ba*d?gd*bcgc??*??a?bbec??a*a?*bcbc?b*cbfdfd?fb*?ed*cc*g?ee?**??ae?ad*d*c?f?fe*?**eg?daea*fg?*?f?*?dbggba*c*fce?fa?c?aacdf?f*a?b?c*eae*d?e?edf**?b**g?gf*cfb?f?dcbggedb?fgafgfebdc*egf?*a*a*abf**cc??*f*eb??decbbda*f?**g???cg*??*ccf*bfd?*?dg?bgefcefgadcb?ga*f?afceceg**g?geagde?d*eeade*g?????*df?cbagfdgag?**g?*cd?fb*d?bcbf*?begc*ae??f?e*ceda*?b*?b*g?g??eb*bgeadeceefb*fbeg?ecec?f*cdd??ddcf*b*aba?*ac*b?gcgf*?gc?ggdg?e**ecgcdff?a?gf?f**c*g?bf*?*bfgg*?aadfc*bd**bbabb*b*dg*?aebedcf?*?gbda**a**cfe*a??gaa?*cd?f*bbcdfeeagbbeeba?d?feefdacdaff?fc*gbaecc*?*f*cgaad?fa*cf?deg*gcfcda?*?afg?dbf*fba?b?ca*g?*ea???c*fc*bg*e*ef*dc*cbd??*ecgefaebdefb*gf?**dccb?b*???f?cdgac*gcgbbd*ab?bd?cg*ec*?eb*f?*bdg?ggabd**gfdbdd?feaddg?agcdfb?fecc?agd**deff??fdc?c*bba?b?gafce*da***b?gada*bb*?acfedg?*bge*bdea?*d*?e?a*?*?c*ebe*d??fegab?ef**bfcb*ece*?dg*dabfca?c*b?*a??*g?dae?f*fabc?ggg?a*?eb?**aadfcd*g?*?a?*d??cgc?*?*fc?*ffdfcd?*?ababgdebb??gd**a??dffabf**f**e*?*c*ffea?gda*c?e?ca?bbb*ebg*a*d*??g?d*afdfcdfcda?*gbca?a?abddgcfg*??ccbgad?a?*fceg*bd*aca*be**b?g*dafabcgdf?de*?*??e?bfd?adaf*fbaefcbfg*b**a*ggeg*f*fggg*c?fdcadafgb?c*d*df*b*dedc*g*???*c*?dbcfcc?fb?**a?ggfbbag**cggfd*ebcag?fdgfge?b*????bg*f*ceg?c?*?***b*da***e**cd*e??eeecabz\"",
       "expectedOutput": "false"
     }
   ],

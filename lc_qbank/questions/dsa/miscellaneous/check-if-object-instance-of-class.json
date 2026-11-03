@@ -58,10 +58,6 @@
       "expectedOutput": "true"
     },
     {
-      "input": "() => { class Animal {}; class Dog extends Animal {}; return checkIfInstanceOf(new Dog(), Animal); }",
-      "expectedOutput": "true"
-    },
-    {
       "input": "() => checkIfInstanceOf(Date, Date)",
       "expectedOutput": "false"
     },
@@ -70,19 +66,71 @@
       "expectedOutput": "true"
     },
     {
-      "input": "func = () => checkIfInstanceOf(new Date(), Date)",
+      "input": "() => checkIfInstanceOf(\"cat\", String)",
       "expectedOutput": "true"
     },
     {
-      "input": "func = () => { class Animal {}; class Dog extends Animal {}; return checkIfInstanceOf(new Dog(), Animal); }",
-      "expectedOutput": "true"
-    },
-    {
-      "input": "func = () => checkIfInstanceOf(Date, Date)",
+      "input": "() => checkIfInstanceOf(null, Object)",
       "expectedOutput": "false"
     },
     {
-      "input": "func = () => checkIfInstanceOf(5, Number)",
+      "input": "() => checkIfInstanceOf(undefined, Object)",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "() => checkIfInstanceOf([], Array)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf([], Object)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf({}, Object)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf(true, Boolean)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf(false, Number)",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "() => checkIfInstanceOf(new Map(), Map)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf(new Set(), Object)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf(() => 1, Function)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf(1, String)",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "() => checkIfInstanceOf(NaN, Number)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf(new Number(7), Number)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf(Object.create(null), Object)",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "() => checkIfInstanceOf(Symbol(\"x\"), Symbol)",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "() => checkIfInstanceOf(10n, BigInt)",
       "expectedOutput": "true"
     }
   ],

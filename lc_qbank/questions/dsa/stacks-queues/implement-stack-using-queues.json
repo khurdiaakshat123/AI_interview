@@ -52,12 +52,84 @@
   ],
   "testCases": [
     {
-      "input": "[\"MyStack\",\"push\",\"push\",\"top\",\"pop\",\"empty\"]\n[[],[1],[2],[],[],[]]",
-      "expectedOutput": "[null, null, null, 2, 2, false]"
+      "input": "[\"MyStack\",\"push\",\"top\",\"pop\",\"push\",\"pop\"]\n[[],[2],[],[],[9],[]]",
+      "expectedOutput": "[null,null,2,2,null,9]"
     },
     {
-      "input": "[\"MyStack\", \"push\", \"push\", \"top\", \"pop\", \"empty\"]\n[[], [1], [2], [], [], []]",
-      "expectedOutput": "[null, null, null, 2, 2, false]"
+      "input": "[\"MyStack\",\"push\",\"pop\",\"push\",\"empty\",\"pop\",\"push\"]\n[[],[2],[],[7],[],[],[1]]",
+      "expectedOutput": "[null,null,2,null,false,7,null]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"top\",\"pop\",\"push\",\"empty\",\"empty\",\"empty\"]\n[[],[3],[],[],[8],[],[],[]]",
+      "expectedOutput": "[null,null,3,3,null,false,false,false]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"empty\",\"pop\",\"push\",\"empty\",\"pop\",\"push\",\"empty\",\"push\"]\n[[],[8],[],[],[9],[],[],[4],[],[9]]",
+      "expectedOutput": "[null,null,false,8,null,false,9,null,false,null]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"empty\",\"push\",\"pop\",\"top\",\"top\",\"pop\",\"empty\",\"empty\",\"push\",\"top\"]\n[[],[7],[],[4],[],[],[],[],[],[],[2],[]]",
+      "expectedOutput": "[null,null,false,null,4,7,7,7,true,true,null,2]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"push\",\"pop\",\"pop\",\"push\",\"top\",\"push\",\"empty\",\"top\",\"empty\",\"empty\",\"push\",\"pop\",\"top\"]\n[[],[3],[9],[],[],[4],[],[6],[],[],[],[],[6],[],[]]",
+      "expectedOutput": "[null,null,null,9,3,null,4,null,false,6,false,false,null,6,6]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"push\",\"empty\",\"push\",\"empty\",\"pop\",\"push\",\"push\",\"push\",\"push\",\"top\",\"push\",\"push\",\"push\",\"empty\",\"empty\",\"pop\"]\n[[],[1],[2],[],[8],[],[],[5],[3],[7],[1],[],[8],[6],[5],[],[],[]]",
+      "expectedOutput": "[null,null,null,false,null,false,8,null,null,null,null,1,null,null,null,false,false,5]"
+    },
+    {
+      "input": "[\"MyStack\",\"empty\",\"empty\",\"push\",\"pop\",\"empty\",\"empty\",\"push\",\"push\",\"empty\",\"top\",\"empty\",\"empty\",\"top\",\"pop\",\"push\",\"push\",\"pop\",\"empty\",\"top\",\"push\"]\n[[],[],[],[8],[],[],[],[6],[6],[],[],[],[],[],[],[3],[2],[],[],[],[8]]",
+      "expectedOutput": "[null,true,true,null,8,true,true,null,null,false,6,false,false,6,6,null,null,2,false,3,null]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"top\",\"empty\",\"top\",\"empty\",\"pop\",\"empty\",\"push\",\"push\",\"pop\",\"top\",\"empty\",\"top\",\"push\",\"push\",\"pop\",\"pop\",\"top\",\"empty\",\"pop\",\"empty\",\"push\",\"top\"]\n[[],[2],[],[],[],[],[],[],[4],[9],[],[],[],[],[2],[5],[],[],[],[],[],[],[6],[]]",
+      "expectedOutput": "[null,null,2,false,2,false,2,true,null,null,9,4,false,4,null,null,5,2,4,false,4,true,null,6]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"top\",\"top\",\"top\",\"top\",\"empty\",\"push\",\"empty\",\"push\",\"pop\",\"top\",\"push\",\"empty\",\"pop\",\"pop\",\"empty\",\"top\",\"pop\",\"push\",\"push\",\"push\",\"top\",\"top\",\"empty\",\"push\",\"pop\",\"top\"]\n[[],[4],[],[],[],[],[],[5],[],[1],[],[],[6],[],[],[],[],[],[],[8],[5],[7],[],[],[],[9],[],[]]",
+      "expectedOutput": "[null,null,4,4,4,4,false,null,false,null,1,5,null,false,6,5,false,4,4,null,null,null,7,7,false,null,9,7]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"pop\",\"push\",\"pop\",\"push\",\"empty\",\"push\",\"pop\",\"push\",\"push\",\"pop\",\"push\",\"pop\",\"push\",\"top\",\"pop\",\"push\",\"empty\",\"empty\",\"pop\",\"pop\",\"top\",\"top\",\"top\",\"pop\",\"empty\",\"empty\",\"push\",\"empty\",\"empty\",\"top\"]\n[[],[8],[],[2],[],[8],[],[6],[],[7],[9],[],[8],[],[1],[],[],[2],[],[],[],[],[],[],[],[],[],[],[9],[],[],[]]",
+      "expectedOutput": "[null,null,8,null,2,null,false,null,6,null,null,9,null,8,null,1,1,null,false,false,2,7,8,8,8,8,true,true,null,false,false,9]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"empty\",\"pop\",\"push\",\"top\",\"push\",\"push\",\"pop\",\"pop\",\"empty\",\"empty\",\"pop\",\"push\",\"empty\",\"push\",\"empty\",\"push\",\"empty\",\"top\",\"top\",\"empty\",\"push\",\"empty\",\"pop\",\"pop\",\"empty\",\"top\",\"empty\",\"pop\",\"empty\",\"push\",\"top\",\"pop\",\"top\",\"push\",\"push\"]\n[[],[7],[],[],[7],[],[8],[7],[],[],[],[],[],[7],[],[9],[],[9],[],[],[],[],[3],[],[],[],[],[],[],[],[],[3],[],[],[],[8],[1]]",
+      "expectedOutput": "[null,null,false,7,null,7,null,null,7,8,false,false,7,null,false,null,false,null,false,9,9,false,null,false,3,9,false,9,false,9,false,null,3,3,7,null,null]"
+    },
+    {
+      "input": "[\"MyStack\",\"empty\",\"push\",\"push\",\"top\",\"top\",\"push\",\"pop\",\"empty\",\"top\",\"push\",\"pop\",\"push\",\"top\",\"pop\",\"push\",\"push\",\"push\",\"top\",\"pop\",\"empty\",\"empty\",\"push\",\"top\",\"push\",\"pop\",\"top\",\"push\",\"top\",\"top\",\"pop\",\"top\",\"pop\",\"top\",\"pop\",\"push\",\"empty\",\"pop\",\"top\",\"pop\",\"pop\",\"push\"]\n[[],[],[6],[9],[],[],[7],[],[],[],[1],[],[6],[],[],[1],[4],[1],[],[],[],[],[1],[],[4],[],[],[2],[],[],[],[],[],[],[],[2],[],[],[],[],[],[6]]",
+      "expectedOutput": "[null,true,null,null,9,9,null,7,false,9,null,1,null,6,6,null,null,null,1,1,false,false,null,1,null,4,1,null,2,2,2,1,1,4,4,null,false,2,1,1,9,null]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"top\",\"push\",\"push\",\"push\",\"push\",\"empty\",\"pop\",\"push\",\"push\",\"empty\",\"push\",\"top\",\"pop\",\"empty\",\"empty\",\"pop\",\"pop\",\"push\",\"empty\",\"top\",\"top\",\"top\",\"push\",\"push\",\"top\",\"push\",\"empty\",\"push\",\"top\",\"top\",\"push\",\"push\",\"pop\",\"pop\",\"pop\",\"pop\",\"top\",\"empty\",\"top\",\"pop\",\"push\",\"empty\",\"push\",\"top\",\"pop\"]\n[[],[3],[],[7],[8],[7],[6],[],[],[4],[6],[],[1],[],[],[],[],[],[],[6],[],[],[],[],[6],[7],[],[7],[],[3],[],[],[9],[2],[],[],[],[],[],[],[],[],[1],[],[9],[],[]]",
+      "expectedOutput": "[null,null,3,null,null,null,null,false,6,null,null,false,null,1,1,false,false,6,4,null,false,6,6,6,null,null,7,null,false,null,3,3,null,null,2,9,3,7,7,false,7,7,null,false,null,9,9]"
+    },
+    {
+      "input": "[\"MyStack\",\"empty\",\"push\",\"pop\",\"push\",\"pop\",\"push\",\"push\",\"push\",\"pop\",\"empty\",\"push\",\"top\",\"top\",\"pop\",\"top\",\"push\",\"push\",\"pop\",\"push\",\"empty\",\"push\",\"pop\",\"top\",\"pop\",\"pop\",\"empty\",\"top\",\"empty\",\"top\",\"top\",\"empty\",\"push\",\"empty\",\"empty\",\"push\",\"top\",\"push\",\"empty\",\"push\",\"push\",\"pop\",\"top\",\"empty\",\"pop\",\"empty\",\"push\",\"empty\",\"pop\",\"empty\",\"push\",\"empty\"]\n[[],[],[2],[],[1],[],[4],[2],[2],[],[],[3],[],[],[],[],[6],[1],[],[2],[],[2],[],[],[],[],[],[],[],[],[],[],[4],[],[],[5],[],[2],[],[1],[8],[],[],[],[],[],[4],[],[],[],[4],[]]",
+      "expectedOutput": "[null,true,null,2,null,1,null,null,null,2,false,null,3,3,3,2,null,null,1,null,false,null,2,2,2,6,false,2,false,2,2,false,null,false,false,null,5,null,false,null,null,8,1,false,1,false,null,false,4,false,null,false]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"pop\",\"push\",\"top\",\"pop\",\"push\",\"empty\",\"pop\",\"push\",\"top\",\"push\",\"push\",\"push\",\"top\",\"empty\",\"top\",\"pop\",\"empty\",\"empty\",\"top\",\"top\",\"pop\",\"empty\",\"empty\",\"top\",\"push\",\"top\",\"push\",\"pop\",\"empty\",\"push\",\"top\",\"top\",\"push\",\"empty\",\"push\",\"top\",\"empty\",\"push\",\"pop\",\"pop\",\"top\",\"pop\",\"empty\",\"empty\",\"empty\",\"top\",\"top\",\"top\",\"empty\",\"push\",\"pop\",\"top\",\"push\",\"pop\",\"pop\",\"top\"]\n[[],[4],[],[2],[],[],[9],[],[],[1],[],[9],[4],[8],[],[],[],[],[],[],[],[],[],[],[],[],[4],[],[8],[],[],[6],[],[],[5],[],[8],[],[],[9],[],[],[],[],[],[],[],[],[],[],[],[4],[],[],[8],[],[],[]]",
+      "expectedOutput": "[null,null,4,null,2,2,null,false,9,null,1,null,null,null,8,false,8,8,false,false,4,4,4,false,false,9,null,4,null,8,false,null,6,6,null,false,null,8,false,null,9,8,5,5,false,false,false,6,6,6,false,null,4,6,null,8,6,4]"
+    },
+    {
+      "input": "[\"MyStack\",\"empty\",\"push\",\"empty\",\"top\",\"empty\",\"top\",\"pop\",\"empty\",\"empty\",\"push\",\"empty\",\"push\",\"pop\",\"empty\",\"pop\",\"empty\",\"push\",\"top\",\"empty\",\"top\",\"pop\",\"push\",\"pop\",\"push\",\"pop\",\"push\",\"top\",\"push\",\"push\",\"empty\",\"push\",\"pop\",\"pop\",\"pop\",\"pop\",\"push\",\"empty\",\"empty\",\"push\",\"top\",\"top\",\"empty\",\"empty\",\"top\",\"push\",\"top\",\"top\",\"top\",\"pop\",\"top\",\"push\",\"top\",\"empty\",\"top\",\"push\",\"pop\",\"pop\",\"top\",\"pop\",\"push\",\"pop\",\"pop\",\"push\"]\n[[],[],[6],[],[],[],[],[],[],[],[7],[],[5],[],[],[],[],[9],[],[],[],[],[1],[],[7],[],[4],[],[4],[2],[],[8],[],[],[],[],[2],[],[],[3],[],[],[],[],[],[4],[],[],[],[],[],[1],[],[],[],[3],[],[],[],[],[7],[],[],[2]]",
+      "expectedOutput": "[null,true,null,false,6,false,6,6,true,true,null,false,null,5,false,7,true,null,9,false,9,9,null,1,null,7,null,4,null,null,false,null,8,2,4,4,null,false,false,null,3,3,false,false,3,null,4,4,4,4,3,null,1,false,1,null,3,1,3,3,null,7,2,null]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"pop\",\"push\",\"top\",\"pop\",\"empty\",\"push\",\"empty\",\"pop\",\"empty\",\"empty\",\"push\",\"pop\",\"push\",\"top\",\"push\",\"top\",\"empty\",\"pop\",\"empty\",\"empty\",\"pop\",\"push\",\"push\",\"push\",\"empty\",\"pop\",\"pop\",\"pop\",\"push\",\"push\",\"push\",\"empty\",\"empty\",\"pop\",\"pop\",\"pop\",\"push\",\"push\",\"empty\",\"pop\",\"pop\",\"empty\",\"push\",\"empty\",\"push\",\"top\",\"empty\",\"empty\",\"push\",\"push\",\"pop\",\"pop\",\"top\",\"top\",\"empty\",\"empty\",\"push\",\"push\",\"empty\",\"pop\",\"empty\",\"empty\",\"empty\",\"push\",\"empty\",\"empty\",\"push\",\"pop\",\"top\"]\n[[],[5],[],[4],[],[],[],[6],[],[],[],[],[4],[],[3],[],[3],[],[],[],[],[],[],[7],[4],[5],[],[],[],[],[3],[6],[8],[],[],[],[],[],[8],[7],[],[],[],[],[4],[],[3],[],[],[],[7],[7],[],[],[],[],[],[],[5],[5],[],[],[],[],[],[5],[],[],[5],[],[]]",
+      "expectedOutput": "[null,null,5,null,4,4,true,null,false,6,true,true,null,4,null,3,null,3,false,3,false,false,3,null,null,null,false,5,4,7,null,null,null,false,false,8,6,3,null,null,false,7,8,true,null,false,null,3,false,false,null,null,7,7,3,3,false,false,null,null,false,5,false,false,false,null,false,false,null,5,5]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"top\",\"pop\",\"empty\",\"push\",\"push\",\"top\",\"empty\",\"empty\",\"pop\",\"push\",\"empty\",\"empty\",\"top\",\"pop\",\"push\",\"empty\",\"push\",\"top\",\"top\",\"pop\",\"top\",\"push\",\"top\",\"empty\",\"pop\",\"empty\",\"push\",\"pop\",\"top\",\"pop\",\"top\",\"pop\",\"push\",\"push\",\"empty\",\"empty\",\"push\",\"pop\",\"push\",\"pop\",\"top\",\"empty\",\"push\",\"top\",\"empty\",\"top\",\"push\",\"push\",\"pop\"]\n[[],[3],[],[],[],[8],[7],[],[],[],[],[2],[],[],[],[],[6],[],[8],[],[],[],[],[9],[],[],[],[],[8],[],[],[],[],[],[6],[7],[],[],[3],[],[5],[],[],[],[6],[],[],[],[9],[1],[]]",
+      "expectedOutput": "[null,null,3,3,true,null,null,7,false,false,7,null,false,false,2,2,null,false,null,8,8,8,6,null,9,false,9,false,null,8,6,6,8,8,null,null,false,false,null,3,null,5,7,false,null,6,false,6,null,null,1]"
+    },
+    {
+      "input": "[\"MyStack\",\"push\",\"top\",\"empty\",\"top\",\"push\",\"push\",\"empty\",\"push\",\"top\",\"push\",\"pop\",\"pop\",\"pop\",\"empty\",\"empty\",\"pop\",\"empty\",\"pop\",\"push\",\"push\",\"top\",\"push\",\"push\",\"empty\",\"push\",\"empty\",\"top\",\"push\",\"top\",\"push\",\"push\",\"push\",\"empty\",\"top\",\"top\",\"top\",\"push\",\"top\",\"empty\",\"push\",\"top\",\"push\",\"top\",\"top\",\"empty\",\"push\",\"push\",\"pop\",\"top\",\"top\",\"push\",\"pop\",\"top\",\"push\",\"push\",\"top\",\"empty\",\"empty\",\"top\",\"top\",\"push\",\"top\",\"empty\",\"pop\",\"empty\",\"push\",\"top\",\"top\",\"push\",\"push\",\"push\",\"top\",\"empty\",\"push\",\"top\",\"empty\",\"pop\",\"top\",\"empty\",\"push\",\"top\",\"push\",\"push\",\"pop\",\"top\",\"top\",\"top\",\"empty\",\"top\",\"empty\",\"empty\",\"top\",\"empty\",\"top\",\"pop\",\"pop\",\"top\",\"top\",\"push\",\"top\"]\n[[],[6],[],[],[],[1],[9],[],[4],[],[8],[],[],[],[],[],[],[],[],[9],[9],[],[7],[5],[],[7],[],[],[9],[],[3],[6],[1],[],[],[],[],[8],[],[],[5],[],[9],[],[],[],[9],[1],[],[],[],[3],[],[],[2],[4],[],[],[],[],[],[2],[],[],[],[],[9],[],[],[6],[8],[9],[],[],[1],[],[],[],[],[],[7],[],[3],[3],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[2],[]]",
+      "expectedOutput": "[null,null,6,false,6,null,null,false,null,4,null,8,4,9,false,false,1,false,6,null,null,9,null,null,false,null,false,7,null,9,null,null,null,false,1,1,1,null,8,false,null,5,null,9,9,false,null,null,1,9,9,null,3,9,null,null,4,false,false,4,4,null,2,false,2,false,null,9,9,null,null,null,9,false,null,1,false,1,9,false,null,7,null,null,3,3,3,3,false,3,false,false,3,false,3,3,7,9,9,null,2]"
     }
   ],
   "sqlSchema": null,

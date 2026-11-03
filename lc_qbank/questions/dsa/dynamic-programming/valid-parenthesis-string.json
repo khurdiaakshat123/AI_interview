@@ -80,6 +80,18 @@
   ],
   "testCases": [
     {
+      "input": "\"*\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"(\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\")\"",
+      "expectedOutput": "false"
+    },
+    {
       "input": "\"()\"",
       "expectedOutput": "true"
     },
@@ -92,71 +104,59 @@
       "expectedOutput": "true"
     },
     {
-      "input": "\"(\"",
+      "input": "\"*(\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\")\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\")(\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"()()\"",
+      "input": "\"(*(()**((()))*\"",
       "expectedOutput": "true"
     },
     {
-      "input": "\"((\"",
+      "input": "\"()(**)(*((*)()()(\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"())(\"",
+      "input": "\"**)*(**()))(()()*(*\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\")*()(())(*)*\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"a\"",
+      "input": "\"()(()()()*(()(**\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"**()*(*())*)(\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"b\"",
+      "input": "\"**)()()((*))(*)**(\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"aa\"",
+      "input": "\"()()**((*)(((*()***(()))\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"()()(((((*(((**))()(()))*)))*)(\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"ab\"",
+      "input": "\"*()**((***)*)(*))))(*((((*(*)*))))***\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"(**)(*(())(*(((*()*)(*()))))(\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"ba\"",
-      "expectedOutput": "false"
+      "input": "\"(*(*((()))*((*))())()()((*)(*)()((***(())(())(()******(()((()))))))(*(**)*))(()**)()()*)**)(((()))))\"",
+      "expectedOutput": "true"
     },
     {
-      "input": "\"aba\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"abba\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"aaaaa\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"abcde\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"edcba\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"aab\"",
+      "input": "\"**((((((()(())))(()(*))((()*)((()))(((*)(()((*)*)*))))(()()*)((*()*)))()(*()**(())(*()()())())))(\"",
       "expectedOutput": "false"
     }
   ],

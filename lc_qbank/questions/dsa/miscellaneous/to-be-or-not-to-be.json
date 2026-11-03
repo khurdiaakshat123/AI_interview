@@ -46,27 +46,83 @@
   "testCases": [
     {
       "input": "() => expect(5).toBe(5)",
-      "expectedOutput": "{\"value\": true}"
+      "expectedOutput": "{\"value\":true}"
     },
     {
-      "input": "() => expect(5).toBe(null)",
-      "expectedOutput": "{\"error\": \"Not Equal\"}"
+      "input": "() => expect(null).notToBe({})",
+      "expectedOutput": "{\"value\":true}"
     },
     {
-      "input": "() => expect(5).notToBe(null)",
-      "expectedOutput": "{\"value\": true}"
+      "input": "() => expect(0).toBe(-1)",
+      "expectedOutput": "{\"error\":\"Not Equal\"}"
     },
     {
-      "input": "func = () => expect(5).toBe(5)",
-      "expectedOutput": "{\"value\": true}"
+      "input": "() => expect(false).notToBe(false)",
+      "expectedOutput": "{\"error\":\"Equal\"}"
     },
     {
-      "input": "func = () => expect(5).toBe(null)",
-      "expectedOutput": "{\"error\": \"Not Equal\"}"
+      "input": "() => expect(true).toBe(\"text\")",
+      "expectedOutput": "{\"error\":\"Not Equal\"}"
     },
     {
-      "input": "func = () => expect(5).notToBe(null)",
-      "expectedOutput": "{\"value\": true}"
+      "input": "() => expect(\"5\").notToBe(100)",
+      "expectedOutput": "{\"value\":true}"
+    },
+    {
+      "input": "() => expect(\"\").toBe(\"\")",
+      "expectedOutput": "{\"value\":true}"
+    },
+    {
+      "input": "() => expect([]).notToBe(\"zero\")",
+      "expectedOutput": "{\"value\":true}"
+    },
+    {
+      "input": "() => expect({}).toBe({\"x\":1})",
+      "expectedOutput": "{\"error\":\"Not Equal\"}"
+    },
+    {
+      "input": "() => expect(-1).notToBe(-1)",
+      "expectedOutput": "{\"error\":\"Equal\"}"
+    },
+    {
+      "input": "() => expect(3.14).toBe(null)",
+      "expectedOutput": "{\"error\":\"Not Equal\"}"
+    },
+    {
+      "input": "() => expect(\"text\").notToBe(false)",
+      "expectedOutput": "{\"value\":true}"
+    },
+    {
+      "input": "() => expect(100).toBe(100)",
+      "expectedOutput": "{\"value\":true}"
+    },
+    {
+      "input": "() => expect(0.0).notToBe(5)",
+      "expectedOutput": "{\"value\":true}"
+    },
+    {
+      "input": "() => expect(\"zero\").toBe(null)",
+      "expectedOutput": "{\"error\":\"Not Equal\"}"
+    },
+    {
+      "input": "() => expect({\"x\":1}).notToBe({\"x\":1})",
+      "expectedOutput": "{\"value\":true}"
+    },
+    {
+      "input": "() => expect([1,2]).toBe(false)",
+      "expectedOutput": "{\"error\":\"Not Equal\"}"
+    },
+    {
+      "input": "() => expect(null).notToBe(true)",
+      "expectedOutput": "{\"value\":true}"
+    },
+    {
+      "input": "() => expect(false).toBe(false)",
+      "expectedOutput": "{\"value\":true}"
+    },
+    {
+      "input": "() => expect(10).notToBe(\"\")",
+      "expectedOutput": "{\"value\":true}"
     }
   ],
   "sqlSchema": null,

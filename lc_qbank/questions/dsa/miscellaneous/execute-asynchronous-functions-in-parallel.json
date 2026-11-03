@@ -48,28 +48,84 @@
   ],
   "testCases": [
     {
-      "input": "[() => new Promise(resolve => setTimeout(() => resolve(5), 200))]",
-      "expectedOutput": "{\"t\": 200, \"resolved\": [5]}"
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => reject(72), 10))]",
+      "expectedOutput": "{\"t\":10,\"rejected\":72}"
     },
     {
-      "input": "[() => new Promise(resolve => setTimeout(() => resolve(1), 200)), () => new Promise((resolve, reject) => setTimeout(() => reject(\"Error\"), 100))]",
-      "expectedOutput": "{\"t\": 100, \"rejected\": \"Error\"}"
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(31), 27)),() => new Promise((resolve, reject) => setTimeout(() => resolve(61), 50))]",
+      "expectedOutput": "{\"t\":50,\"resolved\":[31,61]}"
     },
     {
-      "input": "[() => new Promise(resolve => setTimeout(() => resolve(4), 50)), () => new Promise(resolve => setTimeout(() => resolve(10), 150)), () => new Promise(resolve => setTimeout(() => resolve(16), 100))]",
-      "expectedOutput": "{\"t\": 150, \"resolved\": [4, 10, 16]}"
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(-38), 44)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-65), 67)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-23), 90))]",
+      "expectedOutput": "{\"t\":90,\"resolved\":[-38,-65,-23]}"
     },
     {
-      "input": "functions = [\n  () => new Promise(resolve => setTimeout(() => resolve(5), 200))\n]",
-      "expectedOutput": "{\"t\": 200, \"resolved\": [5]}"
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(97), 61)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-21), 84)),() => new Promise((resolve, reject) => setTimeout(() => resolve(59), 107)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-57), 10))]",
+      "expectedOutput": "{\"t\":107,\"resolved\":[97,-21,59,-57]}"
     },
     {
-      "input": "functions = [\n    () => new Promise(resolve => setTimeout(() => resolve(1), 200)), \n    () => new Promise((resolve, reject) => setTimeout(() => reject(\"Error\"), 100))\n]",
-      "expectedOutput": "{\"t\": 100, \"rejected\": \"Error\"}"
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(-40), 78)),() => new Promise((resolve, reject) => setTimeout(() => resolve(72), 101)),() => new Promise((resolve, reject) => setTimeout(() => resolve(28), 124)),() => new Promise((resolve, reject) => setTimeout(() => resolve(73), 27)),() => new Promise((resolve, reject) => setTimeout(() => resolve(18), 50))]",
+      "expectedOutput": "{\"t\":124,\"resolved\":[-40,72,28,73,18]}"
     },
     {
-      "input": "functions = [\n    () => new Promise(resolve => setTimeout(() => resolve(4), 50)), \n    () => new Promise(resolve => setTimeout(() => resolve(10), 150)), \n    () => new Promise(resolve => setTimeout(() => resolve(16), 100))\n]",
-      "expectedOutput": "{\"t\": 150, \"resolved\": [4, 10, 16]}"
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(-38), 95)),() => new Promise((resolve, reject) => setTimeout(() => reject(38), 118)),() => new Promise((resolve, reject) => setTimeout(() => resolve(38), 21)),() => new Promise((resolve, reject) => setTimeout(() => resolve(74), 44)),() => new Promise((resolve, reject) => setTimeout(() => resolve(11), 67)),() => new Promise((resolve, reject) => setTimeout(() => resolve(95), 90))]",
+      "expectedOutput": "{\"t\":118,\"rejected\":38}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(100), 112)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-93), 15)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-67), 38)),() => new Promise((resolve, reject) => setTimeout(() => resolve(24), 61)),() => new Promise((resolve, reject) => setTimeout(() => resolve(9), 84)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-29), 107)),() => new Promise((resolve, reject) => setTimeout(() => resolve(6), 10))]",
+      "expectedOutput": "{\"t\":112,\"resolved\":[100,-93,-67,24,9,-29,6]}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(-65), 129)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-40), 32)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-44), 55)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-42), 78)),() => new Promise((resolve, reject) => setTimeout(() => resolve(94), 101)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-40), 124)),() => new Promise((resolve, reject) => setTimeout(() => resolve(85), 27)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-92), 50))]",
+      "expectedOutput": "{\"t\":129,\"resolved\":[-65,-40,-44,-42,94,-40,85,-92]}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(38), 26))]",
+      "expectedOutput": "{\"t\":26,\"resolved\":[38]}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(92), 43)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-43), 66))]",
+      "expectedOutput": "{\"t\":66,\"resolved\":[92,-43]}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(71), 60)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-14), 83)),() => new Promise((resolve, reject) => setTimeout(() => reject(-97), 106))]",
+      "expectedOutput": "{\"t\":106,\"rejected\":-97}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(99), 77)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-48), 100)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-53), 123)),() => new Promise((resolve, reject) => setTimeout(() => resolve(33), 26))]",
+      "expectedOutput": "{\"t\":123,\"resolved\":[99,-48,-53,33]}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(35), 94)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-5), 117)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-16), 20)),() => new Promise((resolve, reject) => setTimeout(() => resolve(50), 43)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-52), 66))]",
+      "expectedOutput": "{\"t\":117,\"resolved\":[35,-5,-16,50,-52]}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(49), 111)),() => new Promise((resolve, reject) => setTimeout(() => resolve(39), 14)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-59), 37)),() => new Promise((resolve, reject) => setTimeout(() => resolve(28), 60)),() => new Promise((resolve, reject) => setTimeout(() => resolve(65), 83)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-2), 106))]",
+      "expectedOutput": "{\"t\":111,\"resolved\":[49,39,-59,28,65,-2]}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(24), 128)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-34), 31)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-15), 54)),() => new Promise((resolve, reject) => setTimeout(() => resolve(85), 77)),() => new Promise((resolve, reject) => setTimeout(() => resolve(45), 100)),() => new Promise((resolve, reject) => setTimeout(() => resolve(67), 123)),() => new Promise((resolve, reject) => setTimeout(() => resolve(93), 26))]",
+      "expectedOutput": "{\"t\":128,\"resolved\":[24,-34,-15,85,45,67,93]}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(33), 25)),() => new Promise((resolve, reject) => setTimeout(() => resolve(8), 48)),() => new Promise((resolve, reject) => setTimeout(() => resolve(0), 71)),() => new Promise((resolve, reject) => setTimeout(() => reject(-42), 94)),() => new Promise((resolve, reject) => setTimeout(() => resolve(82), 117)),() => new Promise((resolve, reject) => setTimeout(() => resolve(29), 20)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-95), 43)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-16), 66))]",
+      "expectedOutput": "{\"t\":94,\"rejected\":-42}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(66), 42))]",
+      "expectedOutput": "{\"t\":42,\"resolved\":[66]}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(84), 59)),() => new Promise((resolve, reject) => setTimeout(() => resolve(69), 82))]",
+      "expectedOutput": "{\"t\":82,\"resolved\":[84,69]}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(-35), 76)),() => new Promise((resolve, reject) => setTimeout(() => resolve(-7), 99)),() => new Promise((resolve, reject) => setTimeout(() => resolve(75), 122))]",
+      "expectedOutput": "{\"t\":122,\"resolved\":[-35,-7,75]}"
+    },
+    {
+      "input": "[() => new Promise((resolve, reject) => setTimeout(() => resolve(94), 93)),() => new Promise((resolve, reject) => setTimeout(() => resolve(11), 116)),() => new Promise((resolve, reject) => setTimeout(() => resolve(48), 19)),() => new Promise((resolve, reject) => setTimeout(() => resolve(10), 42))]",
+      "expectedOutput": "{\"t\":116,\"resolved\":[94,11,48,10]}"
     }
   ],
   "sqlSchema": null,

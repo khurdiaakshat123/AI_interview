@@ -64,19 +64,83 @@
   ],
   "testCases": [
     {
-      "input": "\"BCD\"\n[\"BCC\",\"CDE\",\"CEA\",\"FFF\"]",
-      "expectedOutput": "true"
-    },
-    {
-      "input": "\"AAAA\"\n[\"AAB\",\"AAC\",\"BCD\",\"BBE\",\"DEF\"]",
+      "input": "\"DC\"\n[\"BAB\"]",
       "expectedOutput": "false"
     },
     {
-      "input": "bottom = \"BCD\", allowed = [\"BCC\",\"CDE\",\"CEA\",\"FFF\"]",
+      "input": "\"DD\"\n[\"CCA\",\"AAB\",\"BBB\",\"AAA\",\"ACB\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"CBC\"\n[\"CAC\",\"BAA\",\"CDC\",\"BCC\",\"AAB\",\"DBC\",\"CCC\",\"ACD\",\"DDC\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"CCCA\"\n[\"EDC\",\"EBC\",\"AAC\",\"DEB\",\"DBB\",\"DCB\",\"ACE\",\"CEA\",\"EAC\",\"DCE\",\"AEC\",\"ECE\",\"ECC\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"AFDDA\"\n[\"BAA\",\"BAB\",\"AAA\",\"AAB\",\"ABB\",\"BBA\",\"ABA\",\"BBB\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"DFEDEC\"\n[\"CCA\",\"CBC\",\"ACB\",\"BAA\",\"CCC\",\"ABC\",\"BCB\",\"ABB\",\"CAA\",\"BBB\",\"BAB\",\"AAA\",\"CAB\",\"CAC\",\"ACA\",\"BAC\",\"BCC\",\"ABA\",\"BBC\",\"CBA\",\"CBB\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"FABDAC\"\n[\"ABD\",\"BAD\",\"DDB\",\"BDD\",\"BCD\",\"BCC\",\"CDB\",\"BCA\",\"DAB\",\"DAD\",\"DDA\",\"ADB\",\"ADC\",\"DDC\",\"ADA\",\"BBB\",\"BBC\",\"BAA\",\"ABB\",\"AAB\",\"CAC\",\"ADD\",\"ACD\",\"CCC\",\"DBC\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"FABBAB\"\n[\"ACB\",\"BAA\",\"EBD\",\"ADC\",\"BED\",\"CBB\",\"CCB\",\"CAD\",\"ADD\",\"AEE\",\"AAE\",\"CBE\",\"EAC\",\"AEC\",\"AAB\",\"BBA\",\"DAD\",\"EDC\",\"AEB\",\"ACC\",\"CAC\",\"ABA\",\"ADE\",\"EEA\",\"ACA\",\"ECD\",\"BCA\",\"EEC\",\"BBB\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"CEFBAD\"\n[\"BBA\",\"ABA\",\"ABB\",\"AAB\",\"BAB\",\"BBB\",\"BAA\",\"AAA\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"DCDECC\"\n[\"BAC\",\"BBA\",\"CCB\",\"CCC\",\"AAC\",\"BAB\",\"CCA\",\"ABA\",\"BCA\",\"CAC\",\"CAB\",\"ACC\",\"ACB\",\"CBB\",\"AAB\",\"ABB\",\"BCB\",\"CBC\",\"ABC\",\"AAA\",\"CAA\",\"BCC\",\"BAA\",\"BBB\",\"ACA\",\"CBA\",\"BBC\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"DBBBAB\"\n[\"ADC\",\"CBD\",\"CCB\",\"DBB\",\"ADB\",\"DCD\",\"DCC\",\"DAD\",\"CBC\",\"CCA\",\"BAB\",\"ACB\",\"CCD\",\"DAA\",\"ABC\",\"DDA\",\"CDB\",\"BCC\",\"DBA\",\"BBA\",\"CCC\",\"BDC\",\"DBC\",\"ABA\",\"AAC\",\"BBD\",\"CAB\",\"CAC\",\"CDA\",\"BDA\",\"BCD\",\"CDC\",\"BAD\",\"BDB\",\"BBB\",\"DDD\",\"ACC\",\"ABB\",\"ACA\",\"ACD\",\"DCB\"]",
       "expectedOutput": "true"
     },
     {
-      "input": "bottom = \"AAAA\", allowed = [\"AAB\",\"AAC\",\"BCD\",\"BBE\",\"DEF\"]",
+      "input": "\"ABDCDF\"\n[\"ABE\",\"BCA\",\"BAE\",\"CAC\",\"CEB\",\"BBD\",\"CCC\",\"EAC\",\"ECC\",\"BDB\",\"CEE\",\"DBC\",\"ADC\",\"EEB\",\"AEC\",\"DDA\",\"EDC\",\"DBE\",\"AEB\",\"EAE\",\"BEA\",\"ECA\",\"BBA\",\"DBD\",\"CBD\",\"EBC\",\"EDB\",\"DBB\",\"CBA\",\"DDD\",\"ACE\",\"BCB\",\"CEA\",\"CCB\",\"CDC\",\"ADE\",\"BCD\",\"DCE\",\"DEA\",\"DED\",\"BEC\",\"BBB\",\"ACB\",\"ACC\",\"BAD\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"BBEAFF\"\n[\"BAA\",\"ABB\",\"AAB\",\"BBA\",\"BBB\",\"BAB\",\"ABA\",\"AAA\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"FEEEBD\"\n[\"ACB\",\"AAB\",\"ACA\",\"BBA\",\"ABB\",\"CBC\",\"AAA\",\"BCC\",\"CAA\",\"AAC\",\"CCA\",\"CAC\",\"BBC\",\"CCC\",\"ACC\",\"CCB\",\"BCB\",\"BAC\",\"BAB\",\"CBA\",\"BBB\",\"BCA\",\"CAB\",\"ABC\",\"BAA\",\"CBB\",\"ABA\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"EACEBF\"\n[\"ACD\",\"BBA\",\"ADB\",\"DDC\",\"ABB\",\"DBA\",\"ADD\",\"DCD\",\"BDD\",\"DAA\",\"BDB\",\"CDA\",\"ADA\",\"DDB\",\"BAA\",\"CDD\",\"ACB\",\"CBB\",\"BAC\",\"BCB\",\"CCA\",\"DDD\",\"CAD\",\"CDC\",\"DBD\",\"ABA\",\"BBD\",\"DCC\",\"ADC\",\"BDA\",\"DBB\",\"AAA\",\"CBC\",\"CCC\",\"DAD\",\"CAB\",\"ACC\",\"BBB\",\"CBA\",\"AAD\",\"CBD\",\"BCC\",\"CDB\",\"DAB\",\"BAD\",\"BCA\",\"AAB\",\"BBC\",\"ABC\",\"DBC\",\"ABD\",\"BDC\",\"BAB\",\"CAA\",\"DCB\",\"DDA\",\"CCB\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"DBFCFC\"\n[\"EBA\",\"DEA\",\"BCC\",\"AED\",\"DCE\",\"DAB\",\"DDD\",\"DBC\",\"CAE\",\"CCE\",\"DAE\",\"DDE\",\"ACC\",\"DDC\",\"DAC\",\"ACD\",\"ECA\",\"BCD\",\"BDA\",\"EBE\",\"BAC\",\"CBC\",\"DAA\",\"ECE\",\"ADD\",\"AEC\",\"BDC\",\"CDD\",\"DCB\",\"CAB\",\"CBA\",\"BEB\",\"BCE\",\"ADA\",\"DCD\",\"BED\",\"CCC\",\"ECB\",\"BCB\",\"ACB\",\"CDE\",\"EAB\",\"CDA\",\"DBB\",\"EEE\",\"ECD\",\"EAE\",\"ECC\",\"ADB\",\"EDA\",\"DBA\",\"BBE\",\"AAC\",\"CDC\",\"ABD\",\"CEA\",\"BDE\",\"BAB\",\"ABA\",\"AEA\",\"ABC\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"ABDBAA\"\n[\"BBB\",\"BAA\",\"BBA\",\"AAA\",\"ABA\",\"BAB\",\"AAB\",\"ABB\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"AADFFF\"\n[\"CCB\",\"BCB\",\"AAB\",\"BBC\",\"AAC\",\"ACB\",\"ACC\",\"CAC\",\"BAA\",\"ACA\",\"BBA\",\"ABB\",\"BCA\",\"AAA\",\"ABC\",\"CCC\",\"CBA\",\"BAB\",\"BAC\",\"CBB\",\"BCC\",\"BBB\",\"CAA\",\"CAB\",\"CCA\",\"ABA\",\"CBC\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"BEEBDB\"\n[\"ACD\",\"BBB\",\"AAC\",\"BAC\",\"BAD\",\"DAA\",\"CBB\",\"CCC\",\"CDA\",\"BBC\",\"DDB\",\"DDA\",\"BDD\",\"DBD\",\"BAA\",\"ACA\",\"ABB\",\"DCA\",\"ADA\",\"CCA\",\"CBA\",\"ACC\",\"BDC\",\"BDA\",\"ADC\",\"DCC\",\"BBD\",\"DBA\",\"ABA\",\"ADD\",\"DAB\",\"CAA\",\"CBD\",\"ACB\",\"CCB\",\"CDC\",\"AAB\",\"ABC\",\"DBC\",\"AAA\",\"DCD\",\"DCB\",\"CDD\",\"AAD\",\"DBB\",\"BAB\",\"ADB\",\"BCB\",\"CAB\",\"CDB\",\"CAC\",\"CCD\",\"BCD\",\"DAD\",\"ABD\",\"DAC\",\"CBC\",\"BDB\",\"BBA\",\"BCC\",\"DDD\",\"CAD\",\"BCA\",\"DDC\"]",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"CDBCEF\"\n[\"EDC\",\"BDB\",\"CED\",\"BDE\",\"EDA\",\"EDB\",\"ABA\",\"BCA\",\"DCB\",\"ACA\",\"DCA\",\"DBC\",\"BED\",\"AEE\",\"CCD\",\"CEC\",\"AEA\",\"BAC\",\"BDC\",\"BBA\",\"BBC\",\"BCE\",\"EAB\",\"DAA\",\"ECC\",\"BBE\",\"BAB\",\"DDB\",\"AAD\",\"DAC\",\"AAB\",\"CAE\",\"DCC\",\"DBA\",\"AED\",\"DAD\",\"DEC\",\"EEC\",\"CCB\",\"BDD\",\"CBC\",\"ADD\",\"ACB\",\"BAA\",\"BEE\",\"DBE\",\"ABB\",\"BEA\",\"BAE\",\"CCC\",\"DDE\",\"CBE\",\"ABE\",\"EEE\",\"CDB\",\"DCD\",\"DDD\",\"BBD\",\"CEB\",\"EEB\",\"CBA\",\"EBD\",\"EDD\",\"EAD\",\"EBC\",\"DED\",\"CBB\",\"AAE\",\"ACD\",\"ACC\",\"CDE\",\"DEA\",\"CAC\",\"CEA\",\"ADE\",\"EBB\",\"ADB\"]",
       "expectedOutput": "false"
     }
   ],

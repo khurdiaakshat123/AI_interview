@@ -84,71 +84,71 @@
       "expectedOutput": "true"
     },
     {
-      "input": "\"a\"\n\"a\"",
+      "input": "\"ab\"\n\".\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"aab\"\n\"c*a*b\"",
       "expectedOutput": "true"
     },
     {
-      "input": "\"aaaa\"\n\"a\"",
+      "input": "\"ab\"\n\".*c\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"AA\"\n\"a\"",
+      "input": "\"b\"\n\"a*b\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaa\"\n\"a*a\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"aaa\"\n\"ab*a\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"b\"\n\"a\"",
+      "input": "\"abbbc\"\n\"ab*c\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abcd\"\n\"d*\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"ab\"\n\"a\"",
+      "input": "\"acbbc\"\n\"a.*c\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"bbbba\"\n\"b*\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"ba\"\n\"a\"",
+      "input": "\"abca\"\n\"a.*b\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"aba\"\n\"a\"",
+      "input": "\"mississippi\"\n\"mis*is*p*.\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"abba\"\n\"a\"",
+      "input": "\"mississippi\"\n\"mis*is*ip*.\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abacccccddee\"\n\"a.a.*d*e*\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"abababababa\"\n\"ab*ab*ab*a*b\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"aaaaa\"\n\"a\"",
-      "expectedOutput": "false"
+      "input": "\"aaabbbccddeeeffgghij\"\n\"a*b*c*d*e*f*g*h*i*j*\"",
+      "expectedOutput": "true"
     },
     {
-      "input": "\"abcde\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"edcba\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"aab\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"aA\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"0\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"121\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"racecar\"\n\"a\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"hello\"\n\"a\"",
+      "input": "\"aaaaaaaaaaaaaaaaaaaa\"\n\"a*a*a*a*a*a*a*a*a*bb\"",
       "expectedOutput": "false"
     }
   ],

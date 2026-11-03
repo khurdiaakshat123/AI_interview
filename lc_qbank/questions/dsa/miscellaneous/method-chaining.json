@@ -26,12 +26,84 @@
   ],
   "testCases": [
     {
-      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Tatiana\",\"Snake\",98,464],[\"Khaled\",\"Giraffe\",50,41],[\"Alex\",\"Leopard\",6,328],[\"Jonathan\",\"Monkey\",45,463],[\"Stefan\",\"Bear\",100,50],[\"Tommy\",\"Panda\",26,349]]}}",
-      "expectedOutput": "+----------+\n| name     |\n+----------+\n| Tatiana  |\n| Jonathan |\n| Tommy    |\n| Alex     |\n+----------+"
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal0\",\"Bear\",99,177]]}}",
+      "expectedOutput": "+---------+\n| name    |\n+---------+\n| Animal0 |\n+---------+"
     },
     {
-      "input": "DataFrame animals:\n+----------+---------+-----+--------+\n| name     | species | age | weight |\n+----------+---------+-----+--------+\n| Tatiana  | Snake   | 98  | 464    |\n| Khaled   | Giraffe | 50  | 41     |\n| Alex     | Leopard | 6   | 328    |\n| Jonathan | Monkey  | 45  | 463    |\n| Stefan   | Bear    | 100 | 50     |\n| Tommy    | Panda   | 26  | 349    |\n+----------+---------+-----+--------+",
-      "expectedOutput": "+----------+\n| name     |\n+----------+\n| Tatiana  |\n| Jonathan |\n| Tommy    |\n| Alex     |\n+----------+"
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal20\",\"Bear\",47,144],[\"Animal21\",\"Snake\",57,330]]}}",
+      "expectedOutput": "+----------+\n| name     |\n+----------+\n| Animal21 |\n| Animal20 |\n+----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal40\",\"Bear\",61,252],[\"Animal41\",\"Bear\",71,269],[\"Animal42\",\"Bird\",51,443]]}}",
+      "expectedOutput": "+----------+\n| name     |\n+----------+\n| Animal42 |\n| Animal41 |\n| Animal40 |\n+----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal60\",\"Dog\",13,209],[\"Animal61\",\"Snake\",44,338],[\"Animal62\",\"Bird\",66,34],[\"Animal63\",\"Dog\",48,138]]}}",
+      "expectedOutput": "+----------+\n| name     |\n+----------+\n| Animal61 |\n| Animal60 |\n| Animal63 |\n+----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal80\",\"Bird\",37,22],[\"Animal81\",\"Dog\",76,125],[\"Animal82\",\"Bird\",22,395],[\"Animal83\",\"Dog\",79,183],[\"Animal84\",\"Snake\",88,315]]}}",
+      "expectedOutput": "+----------+\n| name     |\n+----------+\n| Animal82 |\n| Animal84 |\n| Animal83 |\n| Animal81 |\n+----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal100\",\"Dog\",80,436],[\"Animal101\",\"Bear\",20,72],[\"Animal102\",\"Dog\",8,379],[\"Animal103\",\"Bird\",34,358],[\"Animal104\",\"Bear\",7,486],[\"Animal105\",\"Bear\",17,322]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal104 |\n| Animal100 |\n| Animal102 |\n| Animal103 |\n| Animal105 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal120\",\"Bird\",55,202],[\"Animal121\",\"Bird\",33,167],[\"Animal122\",\"Bird\",25,47],[\"Animal123\",\"Bird\",81,118],[\"Animal124\",\"Bird\",21,288],[\"Animal125\",\"Bear\",53,317],[\"Animal126\",\"Dog\",52,49]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal125 |\n| Animal124 |\n| Animal120 |\n| Animal121 |\n| Animal123 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal140\",\"Dog\",55,123],[\"Animal141\",\"Bird\",47,225],[\"Animal142\",\"Bird\",90,334],[\"Animal143\",\"Bear\",97,395],[\"Animal144\",\"Bear\",36,374],[\"Animal145\",\"Bear\",95,101],[\"Animal146\",\"Bear\",68,19],[\"Animal147\",\"Dog\",74,185]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal143 |\n| Animal144 |\n| Animal142 |\n| Animal141 |\n| Animal147 |\n| Animal140 |\n| Animal145 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal160\",\"Snake\",57,149],[\"Animal161\",\"Snake\",19,495],[\"Animal162\",\"Bear\",80,299],[\"Animal163\",\"Bear\",15,476],[\"Animal164\",\"Snake\",40,29],[\"Animal165\",\"Snake\",58,28],[\"Animal166\",\"Snake\",36,240],[\"Animal167\",\"Dog\",21,343],[\"Animal168\",\"Snake\",37,238]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal161 |\n| Animal163 |\n| Animal167 |\n| Animal162 |\n| Animal166 |\n| Animal168 |\n| Animal160 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal180\",\"Bear\",96,84],[\"Animal181\",\"Bear\",88,398],[\"Animal182\",\"Bear\",82,473],[\"Animal183\",\"Dog\",12,45],[\"Animal184\",\"Snake\",19,206],[\"Animal185\",\"Bird\",79,332],[\"Animal186\",\"Bear\",25,486],[\"Animal187\",\"Dog\",31,231],[\"Animal188\",\"Bird\",82,382],[\"Animal189\",\"Bird\",19,23]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal186 |\n| Animal182 |\n| Animal181 |\n| Animal188 |\n| Animal185 |\n| Animal187 |\n| Animal184 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal200\",\"Bird\",38,459],[\"Animal201\",\"Bird\",71,139],[\"Animal202\",\"Dog\",68,365],[\"Animal203\",\"Dog\",61,230],[\"Animal204\",\"Bear\",61,282],[\"Animal205\",\"Snake\",86,117],[\"Animal206\",\"Bird\",47,208],[\"Animal207\",\"Dog\",11,46],[\"Animal208\",\"Dog\",14,444],[\"Animal209\",\"Dog\",17,22],[\"Animal210\",\"Bear\",78,230]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal200 |\n| Animal208 |\n| Animal202 |\n| Animal204 |\n| Animal203 |\n| Animal210 |\n| Animal206 |\n| Animal201 |\n| Animal205 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal220\",\"Bird\",10,156],[\"Animal221\",\"Bear\",81,270],[\"Animal222\",\"Bird\",30,474],[\"Animal223\",\"Snake\",98,377],[\"Animal224\",\"Bird\",39,410],[\"Animal225\",\"Bird\",86,377],[\"Animal226\",\"Dog\",67,341],[\"Animal227\",\"Bird\",70,195],[\"Animal228\",\"Bird\",89,98],[\"Animal229\",\"Dog\",5,55],[\"Animal230\",\"Snake\",70,151],[\"Animal231\",\"Bird\",31,7]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal222 |\n| Animal224 |\n| Animal223 |\n| Animal225 |\n| Animal226 |\n| Animal221 |\n| Animal227 |\n| Animal220 |\n| Animal230 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal240\",\"Bear\",22,273],[\"Animal241\",\"Snake\",89,415],[\"Animal242\",\"Snake\",83,287],[\"Animal243\",\"Snake\",65,118],[\"Animal244\",\"Snake\",28,137],[\"Animal245\",\"Snake\",55,327],[\"Animal246\",\"Dog\",82,6],[\"Animal247\",\"Bird\",75,115],[\"Animal248\",\"Bird\",36,23],[\"Animal249\",\"Snake\",63,396],[\"Animal250\",\"Bird\",18,354],[\"Animal251\",\"Dog\",37,195],[\"Animal252\",\"Bird\",37,269]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal241 |\n| Animal249 |\n| Animal250 |\n| Animal245 |\n| Animal242 |\n| Animal240 |\n| Animal252 |\n| Animal251 |\n| Animal244 |\n| Animal243 |\n| Animal247 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal260\",\"Bird\",60,219],[\"Animal261\",\"Dog\",49,345],[\"Animal262\",\"Dog\",24,387],[\"Animal263\",\"Bear\",69,426],[\"Animal264\",\"Snake\",99,254],[\"Animal265\",\"Bird\",96,29],[\"Animal266\",\"Dog\",51,432],[\"Animal267\",\"Dog\",41,445],[\"Animal268\",\"Bear\",78,463],[\"Animal269\",\"Bear\",22,294],[\"Animal270\",\"Dog\",32,39],[\"Animal271\",\"Snake\",32,316],[\"Animal272\",\"Dog\",7,395],[\"Animal273\",\"Bear\",16,442]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal268 |\n| Animal267 |\n| Animal273 |\n| Animal266 |\n| Animal263 |\n| Animal272 |\n| Animal262 |\n| Animal261 |\n| Animal271 |\n| Animal269 |\n| Animal264 |\n| Animal260 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal280\",\"Bear\",96,106],[\"Animal281\",\"Snake\",32,437],[\"Animal282\",\"Bear\",78,259],[\"Animal283\",\"Bird\",30,158],[\"Animal284\",\"Bear\",76,27],[\"Animal285\",\"Dog\",50,106],[\"Animal286\",\"Bear\",100,187],[\"Animal287\",\"Dog\",58,375],[\"Animal288\",\"Bear\",32,311],[\"Animal289\",\"Snake\",3,303],[\"Animal290\",\"Bird\",38,444],[\"Animal291\",\"Bear\",55,136],[\"Animal292\",\"Bear\",93,102],[\"Animal293\",\"Bear\",51,377],[\"Animal294\",\"Dog\",67,380]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal290 |\n| Animal281 |\n| Animal294 |\n| Animal293 |\n| Animal287 |\n| Animal288 |\n| Animal289 |\n| Animal282 |\n| Animal286 |\n| Animal283 |\n| Animal291 |\n| Animal280 |\n| Animal285 |\n| Animal292 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal300\",\"Snake\",84,322],[\"Animal301\",\"Snake\",76,109],[\"Animal302\",\"Snake\",74,50],[\"Animal303\",\"Bear\",27,323],[\"Animal304\",\"Bear\",79,257],[\"Animal305\",\"Bird\",60,345],[\"Animal306\",\"Dog\",30,401],[\"Animal307\",\"Snake\",90,317],[\"Animal308\",\"Bird\",23,198],[\"Animal309\",\"Bird\",85,79],[\"Animal310\",\"Dog\",24,234],[\"Animal311\",\"Dog\",60,470],[\"Animal312\",\"Dog\",67,62],[\"Animal313\",\"Dog\",90,242],[\"Animal314\",\"Bear\",68,391],[\"Animal315\",\"Snake\",36,429]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal311 |\n| Animal315 |\n| Animal306 |\n| Animal314 |\n| Animal305 |\n| Animal303 |\n| Animal300 |\n| Animal307 |\n| Animal304 |\n| Animal313 |\n| Animal310 |\n| Animal308 |\n| Animal301 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal320\",\"Bird\",73,475],[\"Animal321\",\"Dog\",10,82],[\"Animal322\",\"Dog\",55,403],[\"Animal323\",\"Bear\",34,212],[\"Animal324\",\"Snake\",90,338],[\"Animal325\",\"Bird\",73,45],[\"Animal326\",\"Snake\",49,421],[\"Animal327\",\"Snake\",75,139],[\"Animal328\",\"Bear\",95,18],[\"Animal329\",\"Bird\",74,11],[\"Animal330\",\"Dog\",11,416],[\"Animal331\",\"Dog\",6,78],[\"Animal332\",\"Snake\",65,350],[\"Animal333\",\"Bird\",75,14],[\"Animal334\",\"Dog\",10,380],[\"Animal335\",\"Bear\",43,475],[\"Animal336\",\"Snake\",28,45]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal320 |\n| Animal335 |\n| Animal326 |\n| Animal330 |\n| Animal322 |\n| Animal334 |\n| Animal332 |\n| Animal324 |\n| Animal323 |\n| Animal327 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal340\",\"Bird\",88,422],[\"Animal341\",\"Bird\",88,101],[\"Animal342\",\"Bird\",49,318],[\"Animal343\",\"Dog\",78,330],[\"Animal344\",\"Bear\",7,267],[\"Animal345\",\"Dog\",31,374],[\"Animal346\",\"Bear\",4,18],[\"Animal347\",\"Bear\",37,351],[\"Animal348\",\"Snake\",73,232],[\"Animal349\",\"Bear\",5,226],[\"Animal350\",\"Bear\",56,404],[\"Animal351\",\"Bird\",11,381],[\"Animal352\",\"Dog\",89,173],[\"Animal353\",\"Dog\",89,151],[\"Animal354\",\"Dog\",81,35],[\"Animal355\",\"Dog\",21,172],[\"Animal356\",\"Bear\",26,491],[\"Animal357\",\"Snake\",39,304]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal356 |\n| Animal340 |\n| Animal350 |\n| Animal351 |\n| Animal345 |\n| Animal347 |\n| Animal343 |\n| Animal342 |\n| Animal357 |\n| Animal344 |\n| Animal348 |\n| Animal349 |\n| Animal352 |\n| Animal355 |\n| Animal353 |\n| Animal341 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal360\",\"Bird\",68,495],[\"Animal361\",\"Bird\",67,84],[\"Animal362\",\"Dog\",37,352],[\"Animal363\",\"Dog\",75,409],[\"Animal364\",\"Bird\",88,33],[\"Animal365\",\"Dog\",95,330],[\"Animal366\",\"Snake\",60,275],[\"Animal367\",\"Snake\",93,157],[\"Animal368\",\"Dog\",60,337],[\"Animal369\",\"Snake\",81,214],[\"Animal370\",\"Dog\",15,445],[\"Animal371\",\"Snake\",90,191],[\"Animal372\",\"Bird\",62,241],[\"Animal373\",\"Bird\",79,254],[\"Animal374\",\"Snake\",38,218],[\"Animal375\",\"Dog\",32,112],[\"Animal376\",\"Dog\",92,56],[\"Animal377\",\"Bird\",68,341],[\"Animal378\",\"Dog\",76,229]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal360 |\n| Animal370 |\n| Animal363 |\n| Animal362 |\n| Animal377 |\n| Animal368 |\n| Animal365 |\n| Animal366 |\n| Animal373 |\n| Animal372 |\n| Animal378 |\n| Animal374 |\n| Animal369 |\n| Animal371 |\n| Animal367 |\n| Animal375 |\n+-----------+"
+    },
+    {
+      "input": "{\"headers\":{\"animals\":[\"name\",\"species\",\"age\",\"weight\"]},\"rows\":{\"animals\":[[\"Animal380\",\"Bird\",32,468],[\"Animal381\",\"Snake\",33,331],[\"Animal382\",\"Dog\",24,266],[\"Animal383\",\"Bird\",32,318],[\"Animal384\",\"Dog\",62,79],[\"Animal385\",\"Snake\",63,330],[\"Animal386\",\"Snake\",84,433],[\"Animal387\",\"Snake\",86,357],[\"Animal388\",\"Dog\",18,65],[\"Animal389\",\"Dog\",4,466],[\"Animal390\",\"Bird\",89,70],[\"Animal391\",\"Bird\",52,316],[\"Animal392\",\"Bird\",11,20],[\"Animal393\",\"Bear\",70,304],[\"Animal394\",\"Bear\",3,194],[\"Animal395\",\"Bird\",93,386],[\"Animal396\",\"Bird\",12,3],[\"Animal397\",\"Bird\",25,331],[\"Animal398\",\"Dog\",3,210],[\"Animal399\",\"Bear\",12,470]]}}",
+      "expectedOutput": "+-----------+\n| name      |\n+-----------+\n| Animal399 |\n| Animal380 |\n| Animal389 |\n| Animal386 |\n| Animal395 |\n| Animal387 |\n| Animal381 |\n| Animal397 |\n| Animal385 |\n| Animal383 |\n| Animal391 |\n| Animal393 |\n| Animal382 |\n| Animal398 |\n| Animal394 |\n+-----------+"
     }
   ],
   "sqlSchema": null,

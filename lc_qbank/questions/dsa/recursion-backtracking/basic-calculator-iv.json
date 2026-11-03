@@ -78,28 +78,84 @@
   ],
   "testCases": [
     {
-      "input": "\"e + 8 - a + 5\"\n[\"e\"]\n[1]",
-      "expectedOutput": "[\"-1*a\",\"14\"]"
+      "input": "\"e - b\"\n[\"a\"]\n[0]",
+      "expectedOutput": "[\"-1*b\",\"1*e\"]"
     },
     {
-      "input": "\"e - 8 + temperature - pressure\"\n[\"e\", \"temperature\"]\n[1, 12]",
-      "expectedOutput": "[\"-1*pressure\",\"5\"]"
+      "input": "\"b - 1 * 1\"\n[\"b\"]\n[3]",
+      "expectedOutput": "[\"2\"]"
     },
     {
-      "input": "\"(e + 8) * (e - 8)\"\n[]\n[]",
-      "expectedOutput": "[\"1*e*e\",\"-64\"]"
+      "input": "\"c - c - 7 - f\"\n[\"a\",\"b\"]\n[5,-1]",
+      "expectedOutput": "[\"-1*f\",\"-7\"]"
     },
     {
-      "input": "expression = \"e + 8 - a + 5\", evalvars = [\"e\"], evalints = [1]",
-      "expectedOutput": "[\"-1*a\",\"14\"]"
+      "input": "\"0 * b * 6 - 8 + b\"\n[\"c\"]\n[-5]",
+      "expectedOutput": "[\"1*b\",\"-8\"]"
     },
     {
-      "input": "expression = \"e - 8 + temperature - pressure\", evalvars = [\"e\", \"temperature\"], evalints = [1, 12]",
-      "expectedOutput": "[\"-1*pressure\",\"5\"]"
+      "input": "\"f * d + f + b + f + 2\"\n[\"a\",\"c\"]\n[1,2]",
+      "expectedOutput": "[\"1*d*f\",\"1*b\",\"2*f\",\"2\"]"
     },
     {
-      "input": "expression = \"(e + 8) * (e - 8)\", evalvars = [], evalints = []",
-      "expectedOutput": "[\"1*e*e\",\"-64\"]"
+      "input": "\"2 - 6 + a * e + f * 1 - 9\"\n[\"b\",\"c\"]\n[-4,5]",
+      "expectedOutput": "[\"1*a*e\",\"1*f\",\"-13\"]"
+    },
+    {
+      "input": "\"c - 1\"\n[\"a\",\"b\",\"c\"]\n[2,-3,-2]",
+      "expectedOutput": "[\"-3\"]"
+    },
+    {
+      "input": "\"e * d - 6\"\n[\"d\"]\n[-1]",
+      "expectedOutput": "[\"-1*e\",\"-6\"]"
+    },
+    {
+      "input": "\"d - 1 - f * 4\"\n[\"a\",\"d\"]\n[-3,0]",
+      "expectedOutput": "[\"-4*f\",\"-1\"]"
+    },
+    {
+      "input": "\"2 * e + 0 - b + b\"\n[\"b\",\"d\"]\n[4,3]",
+      "expectedOutput": "[\"2*e\"]"
+    },
+    {
+      "input": "\"f + 5 + 2 - d * c + c\"\n[\"a\",\"b\",\"d\"]\n[-1,-5,-4]",
+      "expectedOutput": "[\"5*c\",\"1*f\",\"7\"]"
+    },
+    {
+      "input": "\"9 - b - b * 4 + d * c - b\"\n[\"c\",\"d\"]\n[-4,2]",
+      "expectedOutput": "[\"-6*b\",\"1\"]"
+    },
+    {
+      "input": "\"b * c\"\n[\"a\",\"c\",\"d\"]\n[2,5,-3]",
+      "expectedOutput": "[\"5*b\"]"
+    },
+    {
+      "input": "\"3 + f * d\"\n[\"b\",\"c\",\"d\"]\n[-3,1,0]",
+      "expectedOutput": "[\"3\"]"
+    },
+    {
+      "input": "\"5 + 0 + a - a\"\n[\"a\",\"b\",\"c\",\"d\"]\n[1,1,4,-3]",
+      "expectedOutput": "[\"5\"]"
+    },
+    {
+      "input": "\"c * c * 8 * f + 8\"\n[\"e\"]\n[-1]",
+      "expectedOutput": "[\"8*c*c*f\",\"8\"]"
+    },
+    {
+      "input": "\"d * a - 3 + b + c * e\"\n[\"a\",\"e\"]\n[3,-2]",
+      "expectedOutput": "[\"1*b\",\"-2*c\",\"3*d\",\"-3\"]"
+    },
+    {
+      "input": "\"5 - 2 * b - b + a - f * e\"\n[\"b\",\"e\"]\n[-3,-1]",
+      "expectedOutput": "[\"1*a\",\"1*f\",\"14\"]"
+    },
+    {
+      "input": "\"1 + f\"\n[\"a\",\"b\",\"e\"]\n[-2,-4,0]",
+      "expectedOutput": "[\"1*f\",\"1\"]"
+    },
+    {
+      "input": "\"b * b - f\"\n[\"c\",\"e\"]\n[-2,5]",
+      "expectedOutput": "[\"1*b*b\",\"-1*f\"]"
     }
   ],
   "sqlSchema": null,

@@ -49,28 +49,84 @@
   ],
   "testCases": [
     {
-      "input": "() => [[2,2],[2,2],[1,2]]\nfunction (a, b) { return a + b; }",
-      "expectedOutput": "[{\"val\":4,\"calls\":1},{\"val\":4,\"calls\":1},{\"val\":3,\"calls\":2}]"
+      "input": "() => { const o = {id:0}; return [[o,o],[o,o],[o,o]]; }\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{\"id\":0},\"calls\":1},{\"val\":{\"id\":0},\"calls\":1},{\"val\":{\"id\":0},\"calls\":1}]"
     },
     {
-      "input": "() => [[{},{}],[{},{}],[{},{}]]\nfunction (a, b) { return ({...a, ...b}); }",
-      "expectedOutput": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":2},{\"val\":{},\"calls\":3}]"
+      "input": "() => [[{id:1},{}],[{id:1},{}],[{id:1},{}]]\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{\"id\":1},\"calls\":1},{\"val\":{\"id\":1},\"calls\":2},{\"val\":{\"id\":1},\"calls\":3}]"
     },
     {
-      "input": "() => { const o = {}; return [[o,o],[o,o],[o,o]]; }\nfunction (a, b) { return ({...a, ...b}); }",
-      "expectedOutput": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1}]"
+      "input": "() => [[-11,-18],[18,-2],[-11,-18]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":-29,\"calls\":1},{\"val\":16,\"calls\":2},{\"val\":-29,\"calls\":2}]"
     },
     {
-      "input": "getInputs = () => [[2,2],[2,2],[1,2]]\nfn = function (a, b) { return a + b; }",
-      "expectedOutput": "[{\"val\":4,\"calls\":1},{\"val\":4,\"calls\":1},{\"val\":3,\"calls\":2}]"
+      "input": "() => [[4,13],[-10,-2],[-2,-16],[4,13]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":17,\"calls\":1},{\"val\":-12,\"calls\":2},{\"val\":-18,\"calls\":3},{\"val\":17,\"calls\":3}]"
     },
     {
-      "input": "getInputs = () => [[{},{}],[{},{}],[{},{}]] \nfn = function (a, b) { return ({...a, ...b}); }",
-      "expectedOutput": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":2},{\"val\":{},\"calls\":3}]"
+      "input": "() => [[-9,-12],[17,-5],[-7,18],[9,-19],[-9,-12]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":-21,\"calls\":1},{\"val\":12,\"calls\":2},{\"val\":11,\"calls\":3},{\"val\":-10,\"calls\":4},{\"val\":-21,\"calls\":4}]"
     },
     {
-      "input": "getInputs = () => { const o = {}; return [[o,o],[o,o],[o,o]]; }\nfn = function (a, b) { return ({...a, ...b}); }",
-      "expectedOutput": "[{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1},{\"val\":{},\"calls\":1}]"
+      "input": "() => { const o = {id:5}; return [[o,o],[o,o],[o,o]]; }\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{\"id\":5},\"calls\":1},{\"val\":{\"id\":5},\"calls\":1},{\"val\":{\"id\":5},\"calls\":1}]"
+    },
+    {
+      "input": "() => [[{id:6},{}],[{id:6},{}],[{id:6},{}]]\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{\"id\":6},\"calls\":1},{\"val\":{\"id\":6},\"calls\":2},{\"val\":{\"id\":6},\"calls\":3}]"
+    },
+    {
+      "input": "() => [[-13,-19],[-12,11],[-8,-12],[-15,-2],[-16,-2],[-2,16],[-2,-10],[-13,-19]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":-32,\"calls\":1},{\"val\":-1,\"calls\":2},{\"val\":-20,\"calls\":3},{\"val\":-17,\"calls\":4},{\"val\":-18,\"calls\":5},{\"val\":14,\"calls\":6},{\"val\":-12,\"calls\":7},{\"val\":-32,\"calls\":7}]"
+    },
+    {
+      "input": "() => [[-6,0],[3,-8],[3,-16],[1,8],[-12,-6],[-2,-16],[16,-4],[14,-14],[-6,0]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":-6,\"calls\":1},{\"val\":-5,\"calls\":2},{\"val\":-13,\"calls\":3},{\"val\":9,\"calls\":4},{\"val\":-18,\"calls\":5},{\"val\":-18,\"calls\":6},{\"val\":12,\"calls\":7},{\"val\":0,\"calls\":8},{\"val\":-6,\"calls\":8}]"
+    },
+    {
+      "input": "() => [[-18,4],[5,-11],[-2,-15],[11,4],[10,12],[3,3],[19,5],[-2,-10],[-1,-14],[-18,4]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":-14,\"calls\":1},{\"val\":-6,\"calls\":2},{\"val\":-17,\"calls\":3},{\"val\":15,\"calls\":4},{\"val\":22,\"calls\":5},{\"val\":6,\"calls\":6},{\"val\":24,\"calls\":7},{\"val\":-12,\"calls\":8},{\"val\":-15,\"calls\":9},{\"val\":-14,\"calls\":9}]"
+    },
+    {
+      "input": "() => { const o = {id:10}; return [[o,o],[o,o],[o,o]]; }\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{\"id\":10},\"calls\":1},{\"val\":{\"id\":10},\"calls\":1},{\"val\":{\"id\":10},\"calls\":1}]"
+    },
+    {
+      "input": "() => [[{id:11},{}],[{id:11},{}],[{id:11},{}]]\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{\"id\":11},\"calls\":1},{\"val\":{\"id\":11},\"calls\":2},{\"val\":{\"id\":11},\"calls\":3}]"
+    },
+    {
+      "input": "() => [[-5,-7],[17,3],[16,-14],[12,-13],[-7,-11],[-12,3],[2,-17],[-16,-13],[-18,-18],[12,11],[0,15],[10,-5],[-5,-7]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":-12,\"calls\":1},{\"val\":20,\"calls\":2},{\"val\":2,\"calls\":3},{\"val\":-1,\"calls\":4},{\"val\":-18,\"calls\":5},{\"val\":-9,\"calls\":6},{\"val\":-15,\"calls\":7},{\"val\":-29,\"calls\":8},{\"val\":-36,\"calls\":9},{\"val\":23,\"calls\":10},{\"val\":15,\"calls\":11},{\"val\":5,\"calls\":12},{\"val\":-12,\"calls\":12}]"
+    },
+    {
+      "input": "() => [[4,17],[8,-2],[-6,15],[18,-20],[5,11],[-10,-13],[-17,11],[-12,11],[-14,-3],[5,-19],[-1,-8],[7,0],[20,-2],[4,17]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":21,\"calls\":1},{\"val\":6,\"calls\":2},{\"val\":9,\"calls\":3},{\"val\":-2,\"calls\":4},{\"val\":16,\"calls\":5},{\"val\":-23,\"calls\":6},{\"val\":-6,\"calls\":7},{\"val\":-1,\"calls\":8},{\"val\":-17,\"calls\":9},{\"val\":-14,\"calls\":10},{\"val\":-9,\"calls\":11},{\"val\":7,\"calls\":12},{\"val\":18,\"calls\":13},{\"val\":21,\"calls\":13}]"
+    },
+    {
+      "input": "() => [[9,-1],[-20,4],[11,19],[13,1],[2,8],[13,-8],[9,-5],[-1,5],[-10,-6],[8,-4],[18,-2],[11,-18],[13,2],[0,-15],[9,-1]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":8,\"calls\":1},{\"val\":-16,\"calls\":2},{\"val\":30,\"calls\":3},{\"val\":14,\"calls\":4},{\"val\":10,\"calls\":5},{\"val\":5,\"calls\":6},{\"val\":4,\"calls\":7},{\"val\":4,\"calls\":8},{\"val\":-16,\"calls\":9},{\"val\":4,\"calls\":10},{\"val\":16,\"calls\":11},{\"val\":-7,\"calls\":12},{\"val\":15,\"calls\":13},{\"val\":-15,\"calls\":14},{\"val\":8,\"calls\":14}]"
+    },
+    {
+      "input": "() => { const o = {id:15}; return [[o,o],[o,o],[o,o]]; }\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{\"id\":15},\"calls\":1},{\"val\":{\"id\":15},\"calls\":1},{\"val\":{\"id\":15},\"calls\":1}]"
+    },
+    {
+      "input": "() => [[{id:16},{}],[{id:16},{}],[{id:16},{}]]\nfunction (a, b) { return ({...a, ...b}); }",
+      "expectedOutput": "[{\"val\":{\"id\":16},\"calls\":1},{\"val\":{\"id\":16},\"calls\":2},{\"val\":{\"id\":16},\"calls\":3}]"
+    },
+    {
+      "input": "() => [[-4,0],[-4,-4],[-4,0]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":-4,\"calls\":1},{\"val\":-8,\"calls\":2},{\"val\":-4,\"calls\":2}]"
+    },
+    {
+      "input": "() => [[11,8],[12,-16],[12,7],[11,8]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":19,\"calls\":1},{\"val\":-4,\"calls\":2},{\"val\":19,\"calls\":3},{\"val\":19,\"calls\":3}]"
+    },
+    {
+      "input": "() => [[12,-20],[-8,13],[-1,-20],[-3,1],[12,-20]]\nfunction (a, b) { return a + b; }",
+      "expectedOutput": "[{\"val\":-8,\"calls\":1},{\"val\":5,\"calls\":2},{\"val\":-21,\"calls\":3},{\"val\":-2,\"calls\":4},{\"val\":-8,\"calls\":4}]"
     }
   ],
   "sqlSchema": null,

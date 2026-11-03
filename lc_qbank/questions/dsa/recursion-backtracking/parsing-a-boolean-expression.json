@@ -69,79 +69,83 @@
   ],
   "testCases": [
     {
-      "input": "\"&(|(f))\"",
+      "input": "\"f\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"|(f,f,f,t)\"",
+      "input": "\"!(|(t,f))\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"!(!(|(!(f),|(t,f))))\"",
       "expectedOutput": "true"
     },
     {
-      "input": "\"!(&(f,t))\"",
+      "input": "\"!(!(!(!(|(|(t,f),|(t,f))))))\"",
       "expectedOutput": "true"
     },
     {
-      "input": "\"&(|\"",
+      "input": "\"!(!(!(!(&(|(|(|(t,f),|(f,t)),!(&(t,f))),&(|(|(t,f),|(t,t)),&(|(t,f),!(t))))))))\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"&\"",
+      "input": "\"!(!(!(!(!(t)))))\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"&(\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"&(|(f))&(|(f))\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"&&&&&&\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"leetcode\"",
+      "input": "\"!(!(!(!(!(!(&(t,t)))))))\"",
       "expectedOutput": "true"
     },
     {
-      "input": "\"|(f,f\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"|\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"|(\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"|(f,f,f,t)|(f,f,f,t)\"",
+      "input": "\"!(!(!(!(!(!(!(!(&(t,t)))))))))\"",
       "expectedOutput": "true"
     },
     {
-      "input": "\"||||||\"",
+      "input": "\"!(!(!(!(!(!(!(!(&(!(|(t,f)),!(!(t)))))))))))\"",
       "expectedOutput": "false"
     },
     {
-      "input": "\"!(&(\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"!\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"!(\"",
-      "expectedOutput": "false"
-    },
-    {
-      "input": "\"!(&(f,t))!(&(f,t))\"",
+      "input": "\"!(!(!(!(!(!(!(!(!(|(|(&(!(f),|(f,f)),!(|(t,t))),!(&(|(f,t),!(f)))))))))))))\"",
       "expectedOutput": "true"
     },
     {
-      "input": "\"!!!!!!\"",
+      "input": "\"!(!(!(!(!(!(!(!(!(!(t))))))))))\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"!(!(!(!(!(!(!(!(!(!(!(!(f))))))))))))\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"!(!(!(!(!(!(!(!(!(!(!(!(!(!(f))))))))))))))\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"!(!(!(!(!(!(!(!(!(!(!(!(!(|(|(|(t,t),&(f,f)),!(|(t,f))))))))))))))))\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"!(!(!(!(!(!(!(!(!(!(!(!(!(!(|(!(|(|(t,f),|(f,f))),&(|(!(t),&(f,f)),&(&(t,t),|(f,t))))))))))))))))))\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(t)))))))))))))))\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(&(t,t)))))))))))))))))\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(&(!(t),!(t)))))))))))))))))))\"",
+      "expectedOutput": "true"
+    },
+    {
+      "input": "\"!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(|(!(|(f,t)),&(|(t,t),!(t)))))))))))))))))))))\"",
+      "expectedOutput": "false"
+    },
+    {
+      "input": "\"!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(|(!(&(&(t,t),&(f,f))),|(&(!(t),|(f,f)),|(&(t,f),!(f)))))))))))))))))))))))\"",
       "expectedOutput": "false"
     }
   ],

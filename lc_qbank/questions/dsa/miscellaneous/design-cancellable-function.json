@@ -75,52 +75,84 @@
   ],
   "testCases": [
     {
-      "input": "function*() { return 42; }\n{\"cancelledAt\":100}",
-      "expectedOutput": "{\"resolved\": 42}"
+      "input": "function*() { return -103; }\n{\"cancelledAt\":25}",
+      "expectedOutput": "{\"resolved\":-103}"
     },
     {
-      "input": "function*() { const msg = yield new Promise(res => res(\"Hello\")); throw `Error: ${msg}`; }\n{\"cancelledAt\":null}",
-      "expectedOutput": "{\"rejected\": \"Error: Hello\"}"
+      "input": "function*() { const x = yield Promise.resolve(-944); return x + 7; }\n{\"cancelledAt\":101}",
+      "expectedOutput": "{\"resolved\":-937}"
     },
     {
-      "input": "function*() { yield new Promise(res => setTimeout(res, 200)); return \"Success\"; }\n{\"cancelledAt\":100}",
-      "expectedOutput": "{\"rejected\": \"Cancelled\"}"
+      "input": "function*() { yield new Promise(res => setTimeout(res, 112)); return 777; }\n{\"cancelledAt\":132}",
+      "expectedOutput": "{\"resolved\":777}"
     },
     {
-      "input": "function*() { let result = 0; yield new Promise(res => setTimeout(res, 100)); result += yield new Promise(res => res(1)); yield new Promise(res => setTimeout(res, 100)); result += yield new Promise(res => res(1)); return result; }\n{\"cancelledAt\":null}",
-      "expectedOutput": "{\"resolved\": 2}"
+      "input": "function*() { try { yield new Promise(res => setTimeout(res, 143)); return 289; } catch (e) { return 290; } }\n{\"cancelledAt\":71}",
+      "expectedOutput": "{\"resolved\":290}"
     },
     {
-      "input": "function*() { let result = 0; try { yield new Promise(res => setTimeout(res, 100)); result += yield new Promise(res => res(1)); yield new Promise(res => setTimeout(res, 100)); result += yield new Promise(res => res(1)); } catch(e) { return result; } return result; }\n{\"cancelledAt\":150}",
-      "expectedOutput": "{\"resolved\": 1}"
+      "input": "function*() { return 533; }\n{\"cancelledAt\":194}",
+      "expectedOutput": "{\"resolved\":533}"
     },
     {
-      "input": "function*() { try { yield new Promise((resolve, reject) => reject(\"Promise Rejected\")); } catch(e) { let a = yield new Promise(resolve => resolve(2)); let b = yield new Promise(resolve => resolve(2)); return a + b; }; }\n{\"cancelledAt\":null}",
-      "expectedOutput": "{\"resolved\": 4}"
+      "input": "function*() { const x = yield Promise.resolve(858); return x + 7; }\n{\"cancelledAt\":74}",
+      "expectedOutput": "{\"resolved\":865}"
     },
     {
-      "input": "generatorFunction = function*() { \n  return 42; \n}\ncancelledAt = 100",
-      "expectedOutput": "{\"resolved\": 42}"
+      "input": "function*() { yield new Promise(res => setTimeout(res, 85)); return 683; }\n{\"cancelledAt\":42}",
+      "expectedOutput": "{\"rejected\":\"Cancelled\"}"
     },
     {
-      "input": "generatorFunction = function*() { \n  const msg = yield new Promise(res => res(\"Hello\")); \n  throw `Error: ${msg}`; \n}\ncancelledAt = null",
-      "expectedOutput": "{\"rejected\": \"Error: Hello\"}"
+      "input": "function*() { try { yield new Promise(res => setTimeout(res, 116)); return -639; } catch (e) { return -638; } }\n{\"cancelledAt\":136}",
+      "expectedOutput": "{\"resolved\":-639}"
     },
     {
-      "input": "generatorFunction = function*() { \n  yield new Promise(res => setTimeout(res, 200)); \n  return \"Success\"; \n}\ncancelledAt = 100",
-      "expectedOutput": "{\"rejected\": \"Cancelled\"}"
+      "input": "function*() { return 100; }\n{\"cancelledAt\":167}",
+      "expectedOutput": "{\"resolved\":100}"
     },
     {
-      "input": "generatorFunction = function*() { \n  let result = 0; \n  yield new Promise(res => setTimeout(res, 100));\n  result += yield new Promise(res => res(1)); \n  yield new Promise(res => setTimeout(res, 100)); \n  result += yield new Promise(res => res(1)); \n  return result;\n}\ncancelledAt = null",
-      "expectedOutput": "{\"resolved\": 2}"
+      "input": "function*() { const x = yield Promise.resolve(-126); return x + 7; }\n{\"cancelledAt\":89}",
+      "expectedOutput": "{\"resolved\":-119}"
     },
     {
-      "input": "generatorFunction = function*() { \n  let result = 0; \n  try { \n    yield new Promise(res => setTimeout(res, 100)); \n    result += yield new Promise(res => res(1)); \n    yield new Promise(res => setTimeout(res, 100)); \n    result += yield new Promise(res => res(1)); \n  } catch(e) { \n    return result; \n  } \n  return result; \n}\ncancelledAt = 150",
-      "expectedOutput": "{\"resolved\": 1}"
+      "input": "function*() { yield new Promise(res => setTimeout(res, 58)); return 383; }\n{\"cancelledAt\":78}",
+      "expectedOutput": "{\"resolved\":383}"
     },
     {
-      "input": "generatorFunction = function*() { \n  try { \n    yield new Promise((resolve, reject) => reject(\"Promise Rejected\")); \n  } catch(e) { \n    let a = yield new Promise(resolve => resolve(2));\n    let b = yield new Promise(resolve => resolve(2)); \n    return a + b; \n  }; \n}\ncancelledAt = null",
-      "expectedOutput": "{\"resolved\": 4}"
+      "input": "function*() { try { yield new Promise(res => setTimeout(res, 89)); return 374; } catch (e) { return 375; } }\n{\"cancelledAt\":109}",
+      "expectedOutput": "{\"resolved\":374}"
+    },
+    {
+      "input": "function*() { return -688; }\n{\"cancelledAt\":60}",
+      "expectedOutput": "{\"resolved\":-688}"
+    },
+    {
+      "input": "function*() { const x = yield Promise.resolve(503); return x + 7; }\n{\"cancelledAt\":171}",
+      "expectedOutput": "{\"resolved\":510}"
+    },
+    {
+      "input": "function*() { yield new Promise(res => setTimeout(res, 182)); return 271; }\n{\"cancelledAt\":202}",
+      "expectedOutput": "{\"resolved\":271}"
+    },
+    {
+      "input": "function*() { try { yield new Promise(res => setTimeout(res, 62)); return 259; } catch (e) { return 260; } }\n{\"cancelledAt\":31}",
+      "expectedOutput": "{\"resolved\":260}"
+    },
+    {
+      "input": "function*() { return -12; }\n{\"cancelledAt\":113}",
+      "expectedOutput": "{\"resolved\":-12}"
+    },
+    {
+      "input": "function*() { const x = yield Promise.resolve(983); return x + 7; }\n{\"cancelledAt\":144}",
+      "expectedOutput": "{\"resolved\":990}"
+    },
+    {
+      "input": "function*() { yield new Promise(res => setTimeout(res, 155)); return 542; }\n{\"cancelledAt\":77}",
+      "expectedOutput": "{\"rejected\":\"Cancelled\"}"
+    },
+    {
+      "input": "function*() { try { yield new Promise(res => setTimeout(res, 186)); return -578; } catch (e) { return -577; } }\n{\"cancelledAt\":206}",
+      "expectedOutput": "{\"resolved\":-578}"
     }
   ],
   "sqlSchema": null,
