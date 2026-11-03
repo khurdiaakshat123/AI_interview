@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import tempfile
 import psutil
+import threading
 from typing import Dict, Any, List, Optional, Tuple
 
 class SandboxSecurityError(Exception):
@@ -122,14 +123,12 @@ class SandboxRunner:
         except Exception:
             ps_proc = None
 
-        timeout_expired = False
-        while proc.poll() is None:
-            now = time.perf_counter()
-            if (now - start_t) > timeout:
-                proc.kill()
-                timeout_expired = True
-                break
-            if ps_proc:
+        stop_monitoring = threading.Event()
+        def _monitor_memory():
+            nonlocal peak_rss
+            if not ps_proc:
+                return
+            while not stop_monitoring.is_set():
                 try:
                     rss = ps_proc.memory_info().rss
                     if rss > peak_rss:
@@ -142,10 +141,26 @@ class SandboxRunner:
                         except Exception:
                             pass
                 except Exception:
-                    pass
-            time.sleep(0.01)
+                    break
+                time.sleep(0.01)
 
-        stdout, stderr = proc.communicate()
+        monitor_thread = None
+        if ps_proc:
+            monitor_thread = threading.Thread(target=_monitor_memory, daemon=True)
+            monitor_thread.start()
+
+        timeout_expired = False
+        try:
+            stdout, stderr = proc.communicate(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+            stdout, stderr = proc.communicate()
+            timeout_expired = True
+        finally:
+            stop_monitoring.set()
+            if monitor_thread:
+                monitor_thread.join(timeout=0.1)
+
         runtime_ms = round((time.perf_counter() - start_t) * 1000, 2)
         memory_mb = round(peak_rss / (1024.0 * 1024.0), 2) if peak_rss > 0 else None
 
@@ -491,7 +506,7 @@ def __run():
                             except Exception:
                                 parsed_args.append(l)
                         val = parsed_args
-                    elif inp.strip().startswith('[') or inp.strip().startswith('{{'):
+                    else:
                         try:
                             val = json.loads(inp)
                         except Exception:
@@ -566,7 +581,7 @@ def __run():
         elapsed = round((time.perf_counter() - start_t) * 1000, 2)
         results.append({{
             "test_case_index": idx + 1,
-            "input_data": "(Hidden test case)" if is_hidden else str(inp),
+            "input_data": "(Hidden test case)" if is_hidden else (str(inp)[:500] + "... (truncated)" if len(str(inp)) > 500 else str(inp)),
             "expected_output": "(Hidden)" if is_hidden else exp,
             "actual_output": ("(Hidden passed)" if passed else "(Hidden failed)") if is_hidden else actual,
             "stdout": user_stdout,
@@ -1902,6 +1917,8 @@ console.log('---SANDBOX_RESULTS_END---');
                     "status": "ACCEPTED" if all_passed else "WRONG_ANSWER",
                     "is_correct": all_passed,
                     "score_fraction": score_fraction,
+                    "test_cases_passed": passed_count,
+                    "total_test_cases": total,
                     "feedback": f"Passed {passed_count}/{total} test cases." + (" All test cases passed!" if all_passed else " Check failing test cases below."),
                     "test_case_results": results,
                     "runtime_ms": actual_runtime,
