@@ -481,3 +481,135 @@ class MCQQuestionService:
             "broad_topics": list(topic_stats.values()),
             "difficulty_breakdown": diff_stats
         }
+
+    @classmethod
+    def submit_quiz(
+        cls,
+        answers: Dict[str, Optional[str]],
+        question_ids: List[str],
+        time_spent_seconds: int = 0,
+        db: Optional[Session] = None,
+        user_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Evaluates a completed quiz session, computes full scores,
+        persists progress, and returns detailed question-by-question review with explanations.
+        """
+        cls._ensure_loaded()
+        total_q = len(question_ids)
+        correct_count = 0
+        incorrect_count = 0
+        skipped_count = 0
+
+        detailed_results = []
+        topic_stats: Dict[str, Dict[str, int]] = {}
+        diff_stats: Dict[str, Dict[str, int]] = {
+            "Easy": {"total": 0, "correct": 0},
+            "Medium": {"total": 0, "correct": 0},
+            "Hard": {"total": 0, "correct": 0}
+        }
+
+        # Query existing user progress records if authenticated
+        existing_records = {}
+        if db and user_id:
+            rows = db.query(MCQUserProgress).filter(
+                MCQUserProgress.user_id == user_id,
+                MCQUserProgress.question_id.in_(question_ids)
+            ).all()
+            existing_records = {r.question_id: r for r in rows}
+
+        for qid in question_ids:
+            q = cls._questions_by_id.get(qid)
+            if not q:
+                continue
+
+            user_ans = answers.get(qid)
+            if user_ans:
+                user_ans = user_ans.strip().upper()
+                if user_ans not in ("A", "B", "C", "D"):
+                    user_ans = None
+
+            correct_ans = q["correct_answer"].strip().upper()
+            t_name = q.get("broad_topic_name", "General")
+            diff = q.get("difficulty", "Medium")
+
+            if t_name not in topic_stats:
+                topic_stats[t_name] = {"total": 0, "correct": 0}
+            topic_stats[t_name]["total"] += 1
+            if diff in diff_stats:
+                diff_stats[diff]["total"] += 1
+
+            if not user_ans:
+                status = "skipped"
+                is_correct = False
+                skipped_count += 1
+            elif user_ans == correct_ans:
+                status = "correct"
+                is_correct = True
+                correct_count += 1
+                topic_stats[t_name]["correct"] += 1
+                if diff in diff_stats:
+                    diff_stats[diff]["correct"] += 1
+            else:
+                status = "incorrect"
+                is_correct = False
+                incorrect_count += 1
+
+            # Update DB progress if authenticated and user attempted the question
+            if db and user_id and user_ans:
+                prog = existing_records.get(qid)
+                db_status = "solved" if is_correct else "attempted"
+                if not prog:
+                    prog = MCQUserProgress(
+                        user_id=user_id,
+                        question_id=qid,
+                        selected_option=user_ans,
+                        is_correct=is_correct,
+                        status=db_status,
+                        attempts_count=1,
+                        updated_at=utc_now()
+                    )
+                    db.add(prog)
+                else:
+                    prog.selected_option = user_ans
+                    prog.is_correct = is_correct
+                    if prog.status != "solved" or is_correct:
+                        prog.status = db_status
+                    prog.attempts_count = (prog.attempts_count or 0) + 1
+                    prog.updated_at = utc_now()
+
+            detailed_results.append({
+                "id": q["id"],
+                "broad_topic_id": q["broad_topic_id"],
+                "broad_topic_name": q["broad_topic_name"],
+                "subpart_id": q["subpart_id"],
+                "subpart_name": q["subpart_name"],
+                "difficulty": q["difficulty"],
+                "question": q["question"],
+                "has_code": q["has_code"],
+                "code_snippet": q["code_snippet"],
+                "options": q["options"],
+                "user_answer": user_ans,
+                "correct_answer": correct_ans,
+                "is_correct": is_correct,
+                "status": status,
+                "explanation": q.get("explanation", "")
+            })
+
+        if db and user_id:
+            db.commit()
+
+        score_pct = round((correct_count / total_q * 100), 1) if total_q > 0 else 0.0
+
+        return {
+            "total_questions": total_q,
+            "answered_count": correct_count + incorrect_count,
+            "correct_count": correct_count,
+            "incorrect_count": incorrect_count,
+            "skipped_count": skipped_count,
+            "score_pct": score_pct,
+            "time_spent_seconds": time_spent_seconds,
+            "topic_breakdown": topic_stats,
+            "difficulty_breakdown": diff_stats,
+            "detailed_results": detailed_results
+        }

@@ -548,3 +548,35 @@ export interface MCQQuiz {
   questions: MCQQuestionSummary[];
 }
 
+export interface MCQQuizResultQuestion {
+  id: string;
+  broad_topic_id: string;
+  broad_topic_name: string;
+  subpart_id: string;
+  subpart_name: string;
+  difficulty: 'Easy' | 'Medium' | 'Hard';
+  question: string;
+  has_code: boolean;
+  code_snippet: string | null;
+  options: Record<string, string>;
+  user_answer: string | null;
+  correct_answer: string;
+  is_correct: boolean;
+  status: 'correct' | 'incorrect' | 'skipped';
+  explanation: string;
+}
+
+export interface MCQQuizSubmitResult {
+  total_questions: number;
+  answered_count: number;
+  correct_count: number;
+  incorrect_count: number;
+  skipped_count: number;
+  score_pct: number;
+  time_spent_seconds: number;
+  topic_breakdown: Record<string, { total: number; correct: number }>;
+  difficulty_breakdown: Record<string, { total: number; correct: number }>;
+  detailed_results: MCQQuizResultQuestion[];
+}
+
+

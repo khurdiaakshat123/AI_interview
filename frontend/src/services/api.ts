@@ -4,7 +4,7 @@ import {
   InterviewTurn, InterviewFinalReport, ReviewQueueItem,
   LCQuestionSummary, LCQuestionDetail, LCSubmission, LCAnalytics, LCRunResult, LCSubmitResult,
   DebugTraceResult,
-  MCQBroadTopic, MCQQuestionSummary, MCQQuestionDetail, MCQSubmitResult, MCQAnalytics, MCQQuiz
+  MCQBroadTopic, MCQQuestionSummary, MCQQuestionDetail, MCQSubmitResult, MCQAnalytics, MCQQuiz, MCQQuizSubmitResult
 } from '../types';
 
 const LIVE_RENDER_API = 'https://ai-interview-4bio.onrender.com/api';
@@ -582,6 +582,17 @@ export const api = {
     mode?: string;
   }): Promise<MCQQuiz> {
     return request<MCQQuiz>('/practice/mcq/quiz/generate', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+  },
+
+  async submitMCQQuiz(payload: {
+    answers: Record<string, string | null>;
+    question_ids: string[];
+    time_spent_seconds: number;
+  }): Promise<MCQQuizSubmitResult> {
+    return request<MCQQuizSubmitResult>('/practice/mcq/quiz/submit', {
       method: 'POST',
       body: JSON.stringify(payload)
     });

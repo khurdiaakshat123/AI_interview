@@ -22,6 +22,11 @@ class GenerateQuizPayload(BaseModel):
     count: int = 10
     mode: str = "random"
 
+class SubmitQuizPayload(BaseModel):
+    answers: Dict[str, Optional[str]]
+    question_ids: List[str]
+    time_spent_seconds: int = 0
+
 @router.get("/topics")
 def get_mcq_topics(
     db: Session = Depends(get_db),
@@ -160,6 +165,25 @@ def generate_mcq_quiz(
         difficulties=payload.difficulties,
         count=payload.count,
         mode=payload.mode,
+        db=db,
+        user_id=user_id
+    )
+
+@router.post("/quiz/submit")
+def submit_mcq_quiz(
+    payload: SubmitQuizPayload,
+    db: Session = Depends(get_db),
+    current_user: Optional[User] = Depends(get_current_user_optional)
+):
+    """
+    Submits a completed quiz, evaluates all questions, saves progress,
+    and returns full scores and question-by-question explanations.
+    """
+    user_id = current_user.id if current_user else None
+    return MCQQuestionService.submit_quiz(
+        answers=payload.answers,
+        question_ids=payload.question_ids,
+        time_spent_seconds=payload.time_spent_seconds,
         db=db,
         user_id=user_id
     )
