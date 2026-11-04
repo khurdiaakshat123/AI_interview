@@ -19,6 +19,50 @@ class LineMatchedTranspiler:
     """
 
     @classmethod
+    def _extract_method(cls, line: str) -> Optional[Tuple[str, str]]:
+        clean = line.strip()
+        if clean.startswith(("if", "while", "for", "switch", "catch", "return", "else", "case", "default")):
+            return None
+        if clean.endswith(";") and "{" not in clean:
+            return None
+        if "(" not in clean or ")" not in clean:
+            return None
+        
+        first_paren = clean.find("(")
+        last_paren = clean.rfind(")")
+        if first_paren >= last_paren:
+            return None
+        
+        before_paren = clean[:first_paren].strip()
+        raw_params = clean[first_paren + 1:last_paren].strip()
+        after_paren = clean[last_paren + 1:].strip()
+        
+        if after_paren.endswith(";") and "{" not in after_paren:
+            return None
+        
+        # JS / TS function assignment: const solve = function(...)
+        m_js = re.search(r"(?:var|let|const)?\s*(\w+)\s*=\s*function\s*\(", clean)
+        if m_js:
+            return m_js.group(1), raw_params
+            
+        m_fn = re.search(r"function\s+(\w+)\s*\(", clean)
+        if m_fn:
+            return m_fn.group(1), raw_params
+        
+        tokens = before_paren.split()
+        if not tokens:
+            return None
+        
+        mname = tokens[-1].lstrip("*").lstrip("&")
+        if not mname.isidentifier():
+            return None
+        
+        if mname in ("if", "while", "for", "switch", "catch", "return", "class", "struct", "new", "delete", "void", "int", "bool", "auto"):
+            return None
+            
+        return mname, raw_params
+
+    @classmethod
     def transpile(cls, code: str, language: str) -> str:
         lang = (language or "").lower().strip()
         lines = code.splitlines()
@@ -56,9 +100,10 @@ class LineMatchedTranspiler:
                 out_lines.append(f"{indent_str}pass")
                 continue
 
-            # 6. Closing brace only: '}', '};'
-            if re.match(r"^\s*\}[\s;]*$", line):
-                indent_level = max(0, indent_level - 1)
+            # 6. Closing brace(s) only: '}', '};', '}}}', etc.
+            if re.match(r"^\s*([\}\s;]+)$", line) and "}" in line:
+                close_count = line.count("}")
+                indent_level = max(0, indent_level - close_count)
                 indent_str = "    " * indent_level
                 out_lines.append(f"{indent_str}pass")
                 continue
@@ -72,39 +117,24 @@ class LineMatchedTranspiler:
                 in_class = True
                 continue
 
-            # 8. Method declaration
-            # C++: bool checkPossibility(vector<int>& a) {
-            # Java: public boolean checkPossibility(int[] a) {
-            # JS: var checkPossibility = function(a) { or function checkPossibility(a) {
-            # TS: checkPossibility(a: number[]): boolean {
-            is_control = line.startswith(("if", "while", "for", "switch", "catch", "return"))
-            m_meth = None
-            if not is_control:
-                m_meth = (
-                    re.search(r"(?:public\s+|static\s+|const\s+)*(?:void|int|bool|boolean|string|String|long|double|float|vector<[^>]+>|int\[\]|String\[\]|List<[^>]+>|ListNode\*?|TreeNode\*?)\s+(\w+)\s*\(([^)]*)\)", line) or
-                    re.search(r"(?:var|let|const)?\s*(\w+)\s*=\s*function\s*\(([^)]*)\)", line) or
-                    re.search(r"function\s+(\w+)\s*\(([^)]*)\)", line) or
-                    re.search(r"^\s*(\w+)\s*\(([^)]*)\)\s*(?::\s*[^\{]+)?\s*\{?", line)
-                )
-
-            if m_meth and not is_control:
-                mname = m_meth.group(1)
-                if mname not in ("if", "while", "for", "switch", "catch", "return", "class"):
-                    raw_params = m_meth.group(2)
-                    params = []
-                    for p in raw_params.split(","):
-                        p = p.strip()
-                        if not p:
-                            continue
-                        p = p.split(":")[0].strip()
-                        pname = p.split()[-1].lstrip("&").lstrip("*").rstrip("[]").strip()
-                        if pname and pname.isidentifier():
-                            params.append(pname)
-                    
-                    param_list = ", ".join((["self"] if in_class else []) + params)
-                    out_lines.append(f"{indent_str}def {mname}({param_list}):")
-                    indent_level += 1
-                    continue
+            # 8. Method declaration (supports nested templates, auto, custom types, etc.)
+            m_meth_info = cls._extract_method(line)
+            if m_meth_info:
+                mname, raw_params = m_meth_info
+                params = []
+                for p in raw_params.split(","):
+                    p = p.strip()
+                    if not p:
+                        continue
+                    p = p.split(":")[0].strip()
+                    pname = p.split()[-1].lstrip("&").lstrip("*").rstrip("[]").strip()
+                    if pname and pname.isidentifier():
+                        params.append(pname)
+                
+                param_list = ", ".join((["self"] if in_class else []) + params)
+                out_lines.append(f"{indent_str}def {mname}({param_list}):")
+                indent_level += 1
+                continue
 
             # 9. For loops
             # A: C-style for (int i = 0; i < n; i++) {
@@ -133,18 +163,16 @@ class LineMatchedTranspiler:
                     py_range = f"range({start_val}, {end_val}, -1)"
 
                 out_lines.append(f"{indent_str}for {var_name} in {py_range}:")
-                if "{" in line:
-                    indent_level += 1
+                indent_level += 1
                 continue
 
-            # B: Range-based / For-of / For-in: for (int x : nums) or for (const x of nums)
-            m_for_in = re.search(r"for\s*\(\s*(?:(?:int|long|auto|const|let|var)\s+)?(\w+)\s*(?::|of|in)\s*([^)]+)\)", line)
+            # B: Range-based / For-of / For-in: for (int x : nums), for (auto i : ans), for (const auto& i : ans)
+            m_for_in = re.search(r"for\s*\(\s*(?:(?:const\s+)?(?:int|long|auto|var|let)[\*&]?\s+)?(\w+)\s*(?::|of|in)\s*([^)]+)\)", line)
             if m_for_in:
                 var_name, iterable = m_for_in.groups()
                 iterable = cls._convert_expr(iterable.strip().rstrip("{").strip())
                 out_lines.append(f"{indent_str}for {var_name} in {iterable}:")
-                if "{" in line:
-                    indent_level += 1
+                indent_level += 1
                 continue
 
             # 10. While loops: while (cond) {
@@ -152,8 +180,7 @@ class LineMatchedTranspiler:
             if m_while:
                 cond = cls._convert_expr(m_while.group(1).rstrip("{").strip())
                 out_lines.append(f"{indent_str}while {cond}:")
-                if "{" in line:
-                    indent_level += 1
+                indent_level += 1
                 continue
 
             # 11. Else if / Else
@@ -197,8 +224,7 @@ class LineMatchedTranspiler:
                         out_lines.append(f"{indent_str}if {cond}: {stmt}")
                     else:
                         out_lines.append(f"{indent_str}if {cond}:")
-                        if "{" in line:
-                            indent_level += 1
+                        indent_level += 1
                     continue
 
             # 13. General statements (assignments, returns, function calls)
@@ -238,6 +264,47 @@ class LineMatchedTranspiler:
     @classmethod
     def _convert_stmt(cls, line: str) -> str:
         stmt = line.rstrip(";").rstrip("{").strip()
+
+        # Handle C++ sort: sort(nums.begin(), nums.end()) -> nums.sort()
+        m_sort = re.match(r"sort\s*\(\s*(\w+)\.begin\(\)\s*,\s*\1\.end\(\)\s*\)", stmt)
+        if m_sort:
+            return f"{m_sort.group(1)}.sort()"
+
+        m_sort_rev = re.match(r"sort\s*\(\s*(\w+)\.rbegin\(\)\s*,\s*\1\.rend\(\)\s*\)", stmt)
+        if m_sort_rev:
+            return f"{m_sort_rev.group(1)}.sort(reverse=True)"
+
+        # Reverse: reverse(nums.begin(), nums.end()) -> nums.reverse()
+        m_rev = re.match(r"reverse\s*\(\s*(\w+)\.begin\(\)\s*,\s*\1\.end\(\)\s*\)", stmt)
+        if m_rev:
+            return f"{m_rev.group(1)}.reverse()"
+
+        # Containers with arbitrary nested templates:
+        # set<vector<int>> ans -> ans = UniversalSet()
+        m_set = re.match(r"^(?:(?:unordered_set|set|Set|HashSet)\s*<.*>)\s+(\w+)\s*$", stmt)
+        if m_set:
+            return f"{m_set.group(1)} = UniversalSet()"
+
+        # map<...> mp -> mp = UniversalDict()
+        m_map = re.match(r"^(?:(?:unordered_map|map|Map|HashMap)\s*<.*>)\s+(\w+)\s*$", stmt)
+        if m_map:
+            return f"{m_map.group(1)} = UniversalDict()"
+
+        # vector<vector<int>> final -> final = []
+        m_vec_decl = re.match(r"^(?:(?:vector|List|ArrayList)\s*<.*>)\s+(\w+)\s*$", stmt)
+        if m_vec_decl:
+            return f"{m_vec_decl.group(1)} = []"
+
+        # Sized vector: vector<int> curr(4) -> curr = [0] * (4)
+        m_vec_sized = re.match(r"^vector\s*<.*?>\s+(\w+)\s*\(([^)]+)\)$", stmt)
+        if m_vec_sized:
+            vname, size_arg = m_vec_sized.groups()
+            return f"{vname} = [0] * ({size_arg.strip()})"
+
+        # Uninitialized primitive declarations: int left; int right;
+        m_prim = re.match(r"^(?:int|long\s+long|long|double|float|bool|char)\s+([a-zA-Z_]\w*)\s*$", stmt)
+        if m_prim:
+            return f"{m_prim.group(1)} = 0"
 
         # Strip leading types
         stmt = re.sub(r"^(?:int|long\s+long|long|double|float|bool|boolean|char|string|String|auto|var|let|const)\s+", "", stmt)
@@ -505,12 +572,25 @@ class UniversalDict(dict):
         self[k] = v
         return self
 
+def _make_hashable(val):
+    if isinstance(val, (list, tuple)):
+        return tuple(_make_hashable(x) for x in val)
+    return val
+
+def _unmake_hashable(val):
+    if isinstance(val, tuple):
+        return CppList([_unmake_hashable(x) for x in val])
+    return val
+
 class UniversalSet(set):
-    def contains(self, k): return k in self
-    def has(self, k): return k in self
-    def count(self, k): return 1 if k in self else 0
+    def contains(self, k): return _make_hashable(k) in self
+    def has(self, k): return _make_hashable(k) in self
+    def count(self, k): return 1 if _make_hashable(k) in self else 0
     def insert(self, k): self.add(k)
-    def add(self, k): super().add(k)
+    def add(self, k): super().add(_make_hashable(k))
+    def __iter__(self):
+        for item in super().__iter__():
+            yield _unmake_hashable(item)
 
 class _Math:
     @staticmethod
