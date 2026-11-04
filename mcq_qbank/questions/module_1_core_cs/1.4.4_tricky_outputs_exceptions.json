@@ -1,0 +1,512 @@
+[
+  {
+    "id": "1.4.4-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Easy",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\nstatic int f(){int x=1; try{return x;} finally{x=9;}}\n public static void main(String[] args) { System.out.print(f()); }\n}\n\n",
+    "options": {
+      "A": "9",
+      "B": "Compilation error",
+      "C": "No output",
+      "D": "1"
+    },
+    "correct_answer": "D",
+    "explanation": "The return expression captures primitive value 1 before finally runs. Changing local x afterward does not change that already evaluated return value, and finally itself completes normally."
+  },
+  {
+    "id": "1.4.4-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Easy",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\nstatic int f(){try{return 1;} finally{return 2;}}\n public static void main(String[] args) { System.out.print(f()); }\n}\n\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "2",
+      "C": "No output",
+      "D": "1"
+    },
+    "correct_answer": "B",
+    "explanation": "The return in finally completes abruptly and replaces the earlier pending return. The caller receives 2, not the value from the try block."
+  },
+  {
+    "id": "1.4.4-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Easy",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { try {int z=0; System.out.print(1/z);} catch(ArithmeticException e){System.out.print(\"A \");} finally{System.out.print(\"F\");} }\n}\n\n",
+    "options": {
+      "A": "A F",
+      "B": "F A",
+      "C": "0 F",
+      "D": "Compilation error"
+    },
+    "correct_answer": "A",
+    "explanation": "Integer division by runtime zero throws ArithmeticException before a quotient is printed. The matching handler prints A, and finally then prints F."
+  },
+  {
+    "id": "1.4.4-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Easy",
+    "question": "C++17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "#include <iostream>\n\nint main() { try {throw 7;} catch(int){std::cout<<\"I\";} catch(...){std::cout<<\"X\";} }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "I",
+      "C": "7",
+      "D": "X"
+    },
+    "correct_answer": "B",
+    "explanation": "The thrown exception has type int and matches the first int handler. Once selected, a later catch-all handler is not also run."
+  },
+  {
+    "id": "1.4.4-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Easy",
+    "question": "C++17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual ~B()=default; }; struct D:B {};\nint main() { try {throw D{};} catch(const D&){std::cout<<\"D\";} catch(const B&){std::cout<<\"B\";} }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "B",
+      "C": "D",
+      "D": "DB"
+    },
+    "correct_answer": "C",
+    "explanation": "Handlers are tested in source order, and the first Derived reference handler matches. Catching a base would also be possible if reached, but it is not executed after an earlier match."
+  },
+  {
+    "id": "1.4.4-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Easy",
+    "question": "C++17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual char f() const{return 'B';} }; struct D:B { char f() const override{return 'D';} }; char byValue(B x){return x.f();}\nint main() { D d; std::cout<<byValue(d); }\n",
+    "options": {
+      "A": "B",
+      "B": "Undefined behavior",
+      "C": "Compilation error",
+      "D": "D"
+    },
+    "correct_answer": "A",
+    "explanation": "The by-value B parameter is a separate B object constructed from the base part of d. That slicing changes the actual parameter object type to B, so virtual dispatch inside the function calls B::f."
+  },
+  {
+    "id": "1.4.4-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Easy",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { B b=new D(); System.out.print(b.f()+\" \"+(b instanceof D)); }\n}\nclass B { String f(){return \"B\";} } class D extends B { @Override String f(){return \"D\";} }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "B false",
+      "C": "D true",
+      "D": "B true"
+    },
+    "correct_answer": "C",
+    "explanation": "Assigning a D reference to B does not slice the object in Java. The same D instance remains, so overriding prints D and the runtime instance test is true."
+  },
+  {
+    "id": "1.4.4-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Easy",
+    "question": "C++17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "#include <iostream>\nint x=1; struct A { static int x; int sum(){int x=3; return x+A::x+::x;} }; int A::x=2;\nint main() { std::cout<<A{}.sum(); }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "3",
+      "C": "9",
+      "D": "6"
+    },
+    "correct_answer": "D",
+    "explanation": "Unqualified x in sum is the local 3, A::x is the static member 2, and ::x is global 1. Explicit scope resolution distinguishes the three names, giving 6."
+  },
+  {
+    "id": "1.4.4-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Easy",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { try {throw new Problem();} catch(Problem e){System.out.print(e.getMessage());} }\n}\nclass Problem extends Exception { Problem(){super(\"bad\");} }\n",
+    "options": {
+      "A": "bad",
+      "B": "null",
+      "C": "Compilation error",
+      "D": "Problem"
+    },
+    "correct_answer": "A",
+    "explanation": "The custom checked exception passes bad to its superclass constructor, which makes it the exception message. The matching catch handles it, so there is no unhandled checked-exception error."
+  },
+  {
+    "id": "1.4.4-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { try {int z=0; System.out.print(1/z);} catch(Exception e){System.out.print(\"E\");} catch(ArithmeticException e){System.out.print(\"A\");} }\n}\n\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "EA",
+      "C": "E",
+      "D": "A"
+    },
+    "correct_answer": "A",
+    "explanation": "ArithmeticException is a subclass of Exception. A later handler for it is unreachable after a catch for Exception, and Java rejects that catch ordering rather than merely selecting E at runtime."
+  },
+  {
+    "id": "1.4.4-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { try {B b=new B(); D d=(D)b; System.out.print(\"D\");} catch(ClassCastException e){System.out.print(\"C \");} finally{System.out.print(\"F\");} }\n}\nclass B {} class D extends B {}\n",
+    "options": {
+      "A": "D F",
+      "B": "C F",
+      "C": "F C",
+      "D": "Compilation error"
+    },
+    "correct_answer": "B",
+    "explanation": "The cast is syntactically permitted, but the actual object is B rather than D. It throws ClassCastException before D is printed; the handler and finally then print C and F."
+  },
+  {
+    "id": "1.4.4-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\nstatic String f(Object x){return \"O\";} static String f(String x){return \"S\";}\n public static void main(String[] args) { System.out.print(f(null)); }\n}\n\n",
+    "options": {
+      "A": "O",
+      "B": "S",
+      "C": "NullPointerException",
+      "D": "Compilation error"
+    },
+    "correct_answer": "B",
+    "explanation": "Both reference overloads accept null, but String is more specific than Object, so overload resolution selects f(String). The method does not dereference the argument, so no null-pointer exception occurs."
+  },
+  {
+    "id": "1.4.4-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\nstatic String f(String x){return \"S\";} static String f(Integer x){return \"I\";}\n public static void main(String[] args) { System.out.print(f(null)); }\n}\n\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "I",
+      "C": "NullPointerException",
+      "D": "S"
+    },
+    "correct_answer": "A",
+    "explanation": "String and Integer are unrelated reference types, and both overloads accept null. Neither is more specific, making the invocation ambiguous at compile time."
+  },
+  {
+    "id": "1.4.4-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\nstatic int[] f(){int[] a={1}; try{return a;} finally{a[0]=9;}}\n public static void main(String[] args) { System.out.print(f()[0]); }\n}\n\n",
+    "options": {
+      "A": "1",
+      "B": "Compilation error",
+      "C": "9",
+      "D": "NullPointerException"
+    },
+    "correct_answer": "C",
+    "explanation": "The return captures an array reference, not a copy of its contents. finally changes the same array before control returns to the caller, so the returned array contains 9."
+  },
+  {
+    "id": "1.4.4-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "C++17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual char name() const{return 'B';} virtual ~B()=default; }; struct D:B { char name() const override{return 'D';} }; void value(){try{throw D{};}catch(B e){std::cout<<e.name()<<\" \";}} void reference(){try{throw D{};}catch(const B& e){std::cout<<e.name();}}\nint main() { value(); reference(); }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "B B",
+      "C": "D D",
+      "D": "B D"
+    },
+    "correct_answer": "D",
+    "explanation": "The by-value B catch parameter slices its copy to B. The const B& handler instead refers to the original D exception object, preserving virtual dispatch to D::name."
+  },
+  {
+    "id": "1.4.4-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "C++17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual ~B()=default; }; struct D:B {};\nint main() { try {throw D{};} catch(const B&){std::cout<<\"B\";} catch(const D&){std::cout<<\"D\";} }\n",
+    "options": {
+      "A": "B",
+      "B": "D",
+      "C": "Compilation error",
+      "D": "BD"
+    },
+    "correct_answer": "A",
+    "explanation": "C++ selects the first matching handler; the Base handler catches the Derived exception. Unlike Java's unreachable-subclass-catch rule, this C++ ordering can compile with a diagnostic warning, but the later D handler is not selected."
+  },
+  {
+    "id": "1.4.4-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "C++17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "#include <iostream>\n#include <exception>\nstruct Problem:std::exception { const char* what() const noexcept override{return \"E\";} };\nint main() { try{throw Problem{};}catch(const std::exception& e){std::cout<<e.what();} }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "Problem",
+      "C": "std::exception",
+      "D": "E"
+    },
+    "correct_answer": "D",
+    "explanation": "The custom what() has the const and noexcept qualifiers required by the override. Catching std::exception by reference preserves the derived exception, and its virtual what() returns E."
+  },
+  {
+    "id": "1.4.4-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\nstatic void f(){throw new Exception(\"x\");}\n public static void main(String[] args) { try{f();}catch(Exception e){System.out.print(\"C\");} }\n}\n\n",
+    "options": {
+      "A": "C",
+      "B": "x",
+      "C": "No output",
+      "D": "Compilation error"
+    },
+    "correct_answer": "D",
+    "explanation": "The checked exception is thrown inside f, whose declaration neither catches it nor declares throws Exception. A catch in its caller does not repair the unhandled checked exception in f's own body."
+  },
+  {
+    "id": "1.4.4-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { try {try {throw new IllegalArgumentException();} catch(IllegalArgumentException e){System.out.print(\"I \"); throw e;} finally{System.out.print(\"F \");}} catch(RuntimeException e){System.out.print(\"R\");} }\n}\n\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "I R F",
+      "C": "I F R",
+      "D": "F R"
+    },
+    "correct_answer": "C",
+    "explanation": "The inner handler prints I and rethrows. Its finally executes before propagation reaches the outer handler, printing F; the outer RuntimeException handler then prints R."
+  },
+  {
+    "id": "1.4.4-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\nstatic int x=1; static int f(){try{return x++;} finally{x+=10;}}\n public static void main(String[] args) { System.out.print(f()+\" \"+x); }\n}\n\n",
+    "options": {
+      "A": "2 12",
+      "B": "1 11",
+      "C": "12 12",
+      "D": "1 12"
+    },
+    "correct_answer": "D",
+    "explanation": "The postfix return expression evaluates to 1 and increments x to 2. finally adds 10, leaving x=12 without replacing the captured return value, so the caller prints 1 and 12."
+  },
+  {
+    "id": "1.4.4-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\nstatic int f(){try{return 7;} finally{throw new IllegalStateException(\"F\");}}\n public static void main(String[] args) { try{System.out.print(f());}catch(IllegalStateException e){System.out.print(e.getMessage());} }\n}\n\n",
+    "options": {
+      "A": "7",
+      "B": "F",
+      "C": "Compilation error",
+      "D": "7 F"
+    },
+    "correct_answer": "B",
+    "explanation": "The exception thrown by finally replaces the pending return. Argument evaluation for the caller's print therefore throws before it can print 7, and the outer catch prints the exception message F."
+  },
+  {
+    "id": "1.4.4-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "C++17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "#include <iostream>\nvoid f(int){std::cout<<\"I \";} void f(int*){std::cout<<\"P\";}\nint main() { f(0); f(nullptr); }\n",
+    "options": {
+      "A": "I I",
+      "B": "I P",
+      "C": "P P",
+      "D": "Compilation error"
+    },
+    "correct_answer": "B",
+    "explanation": "The integer literal 0 exactly matches the int overload, preferred over its null-pointer conversion. nullptr has the dedicated null-pointer type and selects the pointer overload."
+  },
+  {
+    "id": "1.4.4-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "C++17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "#include <iostream>\nstruct B { int x=1; }; struct D:B { int x=2; };\nint main() { D d; std::cout<<d.x<<\" \"<<d.B::x; }\n",
+    "options": {
+      "A": "2 2",
+      "B": "1 1",
+      "C": "2 1",
+      "D": "Compilation error"
+    },
+    "correct_answer": "C",
+    "explanation": "D declares a separate field hiding the inherited name. d.x denotes the derived field, while d.B::x explicitly selects the base subobject's independent field."
+  },
+  {
+    "id": "1.4.4-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Medium",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { B b=new D(); System.out.print(b.x+\" \"+((D)b).x); }\n}\nclass B { int x=1; } class D extends B { int x=2; }\n",
+    "options": {
+      "A": "1 2",
+      "B": "2 2",
+      "C": "1 1",
+      "D": "ClassCastException"
+    },
+    "correct_answer": "A",
+    "explanation": "Field access uses the declared type of the qualifying expression, unlike overridden instance methods. b.x names B.x; the cast makes the qualifier type D and selects D.x. The actual D object makes that cast valid."
+  },
+  {
+    "id": "1.4.4-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Hard",
+    "question": "C++17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual char name() const{return 'B';} virtual ~B()=default; }; struct D:B { char name() const override{return 'D';} }; void preserve(){try{throw D{};}catch(const B&){throw;}} void slice(){try{throw D{};}catch(const B& e){throw e;}}\nint main() { try{preserve();}catch(const B& e){std::cout<<e.name()<<\" \";} try{slice();}catch(const B& e){std::cout<<e.name();} }\n",
+    "options": {
+      "A": "B B",
+      "B": "D B",
+      "C": "D D",
+      "D": "Compilation error"
+    },
+    "correct_answer": "B",
+    "explanation": "A bare throw rethrows the currently handled D exception without creating a sliced replacement. throw e instead throws a new exception from a B-typed expression, copying only B. The outer reference catches consequently see D and B."
+  },
+  {
+    "id": "1.4.4-026",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Hard",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\nstatic int f(){try {try{return 1;} finally{System.out.print(\"A \");return 2;}} finally{System.out.print(\"B \");return 3;}}\n public static void main(String[] args) { System.out.print(f()); }\n}\n\n",
+    "options": {
+      "A": "B A 1",
+      "B": "A B 2",
+      "C": "Compilation error",
+      "D": "A B 3"
+    },
+    "correct_answer": "D",
+    "explanation": "The inner finally prints A and replaces return 1 with return 2. The enclosing finally still runs, prints B, and replaces that pending return with 3. Its abrupt completion is the final result."
+  },
+  {
+    "id": "1.4.4-027",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Hard",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\nstatic Box f(){Box b=new Box(1); Box alias=b; try{return b;} finally{b=new Box(2); alias.x=9; b.x=3;}}\n public static void main(String[] args) { System.out.print(f().x); }\n}\nclass Box { int x; Box(int v){x=v;} }\n",
+    "options": {
+      "A": "1",
+      "B": "3",
+      "C": "9",
+      "D": "2"
+    },
+    "correct_answer": "C",
+    "explanation": "The pending return retains the original Box reference. Rebinding local b points it to another Box, but alias still refers to the returned original object and changes its x to 9. Mutating the replacement b to 3 does not change which object is returned."
+  },
+  {
+    "id": "1.4.4-028",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Hard",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\nstatic int f() throws Exception {try(R r=new R()){return 7;}}\n public static void main(String[] args) { try{System.out.print(f());}catch(Exception e){System.out.print(e.getMessage());} }\n}\nclass R implements AutoCloseable { public void close() throws Exception {throw new Exception(\"C\");} }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "7",
+      "C": "C",
+      "D": "7 C"
+    },
+    "correct_answer": "C",
+    "explanation": "A resource is closed before the pending return completes. Since the body is returning normally and close throws, that close exception becomes the thrown outcome and cancels return 7. The caller catches it and prints C."
+  },
+  {
+    "id": "1.4.4-029",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Hard",
+    "question": "Java 17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { try(R a=new R(\"A\"); R b=new R(\"B\")){throw new Exception(\"P\");}catch(Exception e){System.out.print(e.getMessage()+\" \"+e.getSuppressed()[0].getMessage()+\" \"+e.getSuppressed()[1].getMessage());} }\n}\nclass R implements AutoCloseable { final String name; R(String n){name=n;} public void close() throws Exception {throw new Exception(name);} }\n",
+    "options": {
+      "A": "B A P",
+      "B": "P B A",
+      "C": "P A B",
+      "D": "A B P"
+    },
+    "correct_answer": "B",
+    "explanation": "The body exception P remains primary. Resources close in reverse declaration order, so B's close failure is added first as suppressed and A's second. The handler prints the primary message followed by the two suppressed messages in that order."
+  },
+  {
+    "id": "1.4.4-030",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.4",
+    "subpart_name": "Language-Specific OOP Outputs & Exception Handling",
+    "difficulty": "Hard",
+    "question": "C++17. What is the complete output, or does compilation fail? Assume allocations and output operations succeed; whitespace separates tokens.",
+    "code_snippet": "#include <iostream>\nstruct G { char id; G(char x):id(x){std::cout<<id<<\" \";} ~G(){std::cout<<\"~\"<<id<<\" \";} }; void f(){G a('A'); try{G b('B');throw 1;}catch(int){std::cout<<\"C \";throw;}}\nint main() { try{f();}catch(int){std::cout<<\"H\";} }\n",
+    "options": {
+      "A": "A B ~B ~A C H",
+      "B": "A B C ~B ~A H",
+      "C": "A B ~B C ~A H",
+      "D": "A B ~B C H ~A"
+    },
+    "correct_answer": "C",
+    "explanation": "The inner guard b is unwound before entering the inner catch, which prints C. Its rethrow then exits f and destroys outer guard a before main's handler prints H. Automatic cleanup occurs at each exited scope, not all at the final handler."
+  }
+]

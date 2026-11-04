@@ -1,0 +1,512 @@
+[
+  {
+    "id": "1.4.1-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Easy",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { Box a=new Box(); Box b=a; b.v=7; System.out.print(a.v); }\n}\nclass Box { int v=0; }\n",
+    "options": {
+      "A": "0",
+      "B": "14",
+      "C": "7",
+      "D": "Compilation error"
+    },
+    "correct_answer": "C",
+    "explanation": "a and b refer to the same Box instance. Updating its v through b changes the state observed through a; assigning a reference does not copy the object."
+  },
+  {
+    "id": "1.4.1-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "#include <iostream>\nstruct A { inline static int n=0; int x=0; };\nint main() { A a,b; A::n=3; a.x=2; b.x=5; std::cout<<a.n<<\" \"<<b.n<<\" \"<<a.x<<\" \"<<b.x; }\n",
+    "options": {
+      "A": "3 0 2 5",
+      "B": "0 0 2 5",
+      "C": "3 3 2 5",
+      "D": "3 3 5 5"
+    },
+    "correct_answer": "C",
+    "explanation": "n is one shared static member, while x belongs separately to each A object. Accessing n through either instance refers to the same class-level storage."
+  },
+  {
+    "id": "1.4.1-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "#include <iostream>\nclass A { int x=4; };\nint main() { A a; std::cout<<a.x; }\n",
+    "options": {
+      "A": "4",
+      "B": "Compilation error",
+      "C": "Undefined behavior",
+      "D": "0"
+    },
+    "correct_answer": "B",
+    "explanation": "Members of a class are private by default. main cannot directly access A::x, so this is an access-control compilation error, not a runtime value question."
+  },
+  {
+    "id": "1.4.1-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "#include <iostream>\nstruct A { int x=4; };\nint main() { A a; std::cout<<a.x; }\n",
+    "options": {
+      "A": "4",
+      "B": "0",
+      "C": "Undefined behavior",
+      "D": "Compilation error"
+    },
+    "correct_answer": "A",
+    "explanation": "A struct has public member access by default, so the initialized field x is accessible from main and has value 4."
+  },
+  {
+    "id": "1.4.1-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Easy",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { System.out.print(A.read()); }\n}\nclass A { int x=3; static int read(){return x;} }\n",
+    "options": {
+      "A": "0",
+      "B": "NullPointerException",
+      "C": "Compilation error",
+      "D": "3"
+    },
+    "correct_answer": "C",
+    "explanation": "A static method has no implicit instance on which to read the non-static field x. It needs an explicit A object rather than an unqualified instance-member access."
+  },
+  {
+    "id": "1.4.1-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Easy",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { A a=new A(); System.out.print(a!=null); }\n}\nabstract class A { }\n",
+    "options": {
+      "A": "InstantiationException",
+      "B": "true",
+      "C": "false",
+      "D": "Compilation error"
+    },
+    "correct_answer": "D",
+    "explanation": "An abstract class cannot be directly instantiated, even if it declares no abstract methods. A concrete subclass could be instantiated instead."
+  },
+  {
+    "id": "1.4.1-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Easy",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { I x=new C(); System.out.print(x.f()); }\n}\ninterface I { int f(); } class C implements I { public int f(){return 5;} }\n",
+    "options": {
+      "A": "0",
+      "B": "5",
+      "C": "Compilation error",
+      "D": "AbstractMethodError"
+    },
+    "correct_answer": "B",
+    "explanation": "C provides the public implementation required by I, so a reference typed as the interface can invoke f on the concrete object."
+  },
+  {
+    "id": "1.4.1-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Easy",
+    "question": "A Car must contain a replaceable Engine object and delegate start requests to it. A Car is not intended to be usable wherever an Engine is expected. Which relationship most directly expresses that design?",
+    "code_snippet": null,
+    "options": {
+      "A": "Inheritance: Car must extend Engine",
+      "B": "A static Engine instance shared by every possible Car is mandatory",
+      "C": "Composition: Car has an Engine reference and delegates to it",
+      "D": "Car and Engine must be the same class"
+    },
+    "correct_answer": "C",
+    "explanation": "Composition models the has-a relationship and permits replacement/delegation without exposing an is-a subtype relationship that the scenario does not intend."
+  },
+  {
+    "id": "1.4.1-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Easy",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { Account a=new Account(); a.add(5); a.add(-2); System.out.print(a.balance()); }\n}\nclass Account { private int balance; void add(int x){if(x>0)balance+=x;} int balance(){return balance;} }\n",
+    "options": {
+      "A": "5",
+      "B": "-2",
+      "C": "Compilation error",
+      "D": "3"
+    },
+    "correct_answer": "A",
+    "explanation": "The public-to-this-package operations control updates to private state. The negative addition is ignored by the method, leaving the encapsulated balance at 5."
+  },
+  {
+    "id": "1.4.1-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "#include <iostream>\nstruct B { protected: int x=5; }; struct D:B { int read(){return x;} };\nint main() { D d; std::cout<<d.x; }\n",
+    "options": {
+      "A": "Undefined behavior",
+      "B": "0",
+      "C": "5",
+      "D": "Compilation error"
+    },
+    "correct_answer": "D",
+    "explanation": "D may access inherited protected x in its own member functions, but an unrelated main function may not directly access that member through d."
+  },
+  {
+    "id": "1.4.1-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { System.out.print(new Box().x); }\n}\nclass Box { private int x=4; }\n",
+    "options": {
+      "A": "NullPointerException",
+      "B": "Compilation error",
+      "C": "0",
+      "D": "4"
+    },
+    "correct_answer": "B",
+    "explanation": "Main and Box are separate top-level classes. Sharing a source file or package does not grant access to Box's private field."
+  },
+  {
+    "id": "1.4.1-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { A a=new A(); A b=a; A c=new A(); System.out.print(A.n); }\n}\nclass A { static int n; A(){n++;} }\n",
+    "options": {
+      "A": "1",
+      "B": "3",
+      "C": "0",
+      "D": "2"
+    },
+    "correct_answer": "D",
+    "explanation": "Only two new A expressions create objects and run the increment. b=a copies a reference and does not create a third A; n is shared by the class."
+  },
+  {
+    "id": "1.4.1-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "#include <iostream>\nstruct B {}; class D:private B {};\nint main() { D d; B* p=&d; std::cout<<(p!=nullptr); }\n",
+    "options": {
+      "A": "1",
+      "B": "Undefined behavior",
+      "C": "0",
+      "D": "Compilation error"
+    },
+    "correct_answer": "D",
+    "explanation": "Private inheritance makes the external D-to-B base conversion inaccessible. main cannot use that implicit upcast merely because the base class itself is public as a type."
+  },
+  {
+    "id": "1.4.1-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "#include <iostream>\nstruct Engine { int power=10; }; struct Car { Engine e; void tune(){e.power+=5;} };\nint main() { Car a; Car b=a; a.tune(); std::cout<<a.e.power<<\" \"<<b.e.power; }\n",
+    "options": {
+      "A": "15 10",
+      "B": "Compilation error",
+      "C": "15 15",
+      "D": "10 15"
+    },
+    "correct_answer": "A",
+    "explanation": "The composed Engine is a value subobject. Copying Car copies that subobject, so tuning a's engine does not alter b's independent engine."
+  },
+  {
+    "id": "1.4.1-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { final Box b=new Box(); b.x=9; System.out.print(b.x); }\n}\nclass Box { int x=1; }\n",
+    "options": {
+      "A": "1",
+      "B": "Compilation error",
+      "C": "NullPointerException",
+      "D": "9"
+    },
+    "correct_answer": "D",
+    "explanation": "final prevents reassignment of reference b, not mutation of the referenced Box. Its non-final field can be changed to 9."
+  },
+  {
+    "id": "1.4.1-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { Limits.MAX=9; System.out.print(Limits.MAX); }\n}\ninterface Limits { int MAX=7; }\n",
+    "options": {
+      "A": "7",
+      "B": "Compilation error",
+      "C": "9",
+      "D": "16"
+    },
+    "correct_answer": "B",
+    "explanation": "An interface field is implicitly public static final. Reassigning MAX violates final-field rules even though it is referenced using the interface name."
+  },
+  {
+    "id": "1.4.1-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { System.out.print(new C().f()); }\n}\nabstract class A { int x; A(int v){x=v;} int twice(){return 2*x;} abstract int f(); } class C extends A { C(){super(3);} int f(){return twice()+1;} }\n",
+    "options": {
+      "A": "6",
+      "B": "3",
+      "C": "7",
+      "D": "Compilation error"
+    },
+    "correct_answer": "C",
+    "explanation": "An abstract class may have a constructor, instance state, and concrete methods. C initializes x through super(3) and supplies f, which returns twice()+1=7."
+  },
+  {
+    "id": "1.4.1-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { A a=null; System.out.print(a.f()); }\n}\nclass A { static int f(){return 8;} }\n",
+    "options": {
+      "A": "8",
+      "B": "Compilation error",
+      "C": "NullPointerException",
+      "D": "0"
+    },
+    "correct_answer": "A",
+    "explanation": "The static method is resolved using the expression's compile-time type A; it does not dereference an instance receiver. Using a null reference this way is legal though class-qualified static access is clearer."
+  },
+  {
+    "id": "1.4.1-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { B x=new D(); System.out.print(x.n+\" \"+D.n); }\n}\nclass B { static int n=1; } class D extends B { static int n=2; }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "1 2",
+      "C": "2 2",
+      "D": "1 1"
+    },
+    "correct_answer": "B",
+    "explanation": "Static fields are hidden rather than dynamically dispatched. x has declared type B, so x.n names B.n, while D.n explicitly names the separate field in D."
+  },
+  {
+    "id": "1.4.1-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "Java 17. Base is in package p with protected instance field x. Derived extends Base in a different package q. Inside an instance method of Derived, variables b and d have declared types Base and Derived respectively. Which listed access is forbidden by the cross-package protected-qualifier rule?",
+    "code_snippet": null,
+    "options": {
+      "A": "b.x",
+      "B": "this.x",
+      "C": "super.x",
+      "D": "d.x"
+    },
+    "correct_answer": "A",
+    "explanation": "Within the subclass in another package, a qualifying expression for this protected instance member must have the subclass type or a subtype. A generic Base reference does not meet that requirement; access through this, super, or a Derived reference is permitted here."
+  },
+  {
+    "id": "1.4.1-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "#include <iostream>\nclass Vault { int x=9; friend int read(const Vault&); }; int read(const Vault& v){return v.x;}\nint main() { Vault v; std::cout<<read(v); }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "Undefined behavior",
+      "C": "0",
+      "D": "9"
+    },
+    "correct_answer": "D",
+    "explanation": "The nonmember function read is explicitly declared a friend, giving it access to this class's private member. Friendship need not make x publicly accessible to all callers."
+  },
+  {
+    "id": "1.4.1-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { System.out.print(new C().f()); }\n}\ninterface I { default int f(){return 1;} } interface J { default int f(){return 2;} } class C implements I,J {}\n",
+    "options": {
+      "A": "3",
+      "B": "1",
+      "C": "Compilation error",
+      "D": "2"
+    },
+    "correct_answer": "C",
+    "explanation": "Two unrelated interfaces supply conflicting defaults with the same signature. C must explicitly resolve the conflict; declaration order does not select an implementation."
+  },
+  {
+    "id": "1.4.1-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { System.out.print(C.f()); }\n}\ninterface I { static int f(){return 4;} } class C implements I {}\n",
+    "options": {
+      "A": "4",
+      "B": "AbstractMethodError",
+      "C": "Compilation error",
+      "D": "0"
+    },
+    "correct_answer": "C",
+    "explanation": "A static interface method is not inherited as a static method of implementing classes. It must be referenced as I.f(), so C.f() is not found."
+  },
+  {
+    "id": "1.4.1-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Medium",
+    "question": "A Stack wrapper must expose only push, pop, and size. Its internal sequence implementation offers indexed insertion and removal that would violate the wrapper's intended API if inherited publicly. Which design enforces the restricted public surface most directly?",
+    "code_snippet": null,
+    "options": {
+      "A": "Make every sequence method static so index operations disappear",
+      "B": "Keep the sequence private as a composed member and expose only the wrapper operations",
+      "C": "Publicly inherit every sequence operation and rely on callers not to use the others",
+      "D": "Expose the internal sequence field publicly"
+    },
+    "correct_answer": "B",
+    "explanation": "Composition lets the wrapper choose which operations are visible. Merely asking callers to avoid inherited operations, exposing the underlying object, or changing static qualifiers does not enforce the intended restricted API."
+  },
+  {
+    "id": "1.4.1-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "#include <iostream>\nstruct B { protected: int x=3; }; struct D:B { int read(B& b){return b.x;} };\nint main() { D d; B b; std::cout<<d.read(b); }\n",
+    "options": {
+      "A": "0",
+      "B": "3",
+      "C": "Undefined behavior",
+      "D": "Compilation error"
+    },
+    "correct_answer": "D",
+    "explanation": "A derived member cannot access this protected base field through an arbitrary B object. The object-expression rule requires a D object or suitable derived type, not merely that the accessing function belongs to D."
+  },
+  {
+    "id": "1.4.1-026",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Hard",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\nstatic class Box { private int x=6; }\n public static void main(String[] args) { System.out.print(new Box().x); }\n}\n\n",
+    "options": {
+      "A": "0",
+      "B": "6",
+      "C": "Compilation error",
+      "D": "NullPointerException"
+    },
+    "correct_answer": "B",
+    "explanation": "The enclosing class can access a private member of its nested class. This differs from two unrelated top-level classes sharing a source file; Java private access includes the enclosing top-level nest."
+  },
+  {
+    "id": "1.4.1-027",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "#include <iostream>\n#include <type_traits>\nstruct B { int f(){return 3;} }; class D:private B { public: using B::f; };\nint main() { D d; std::cout<<d.f()<<\" \"<<std::is_convertible_v<D*,B*>; }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "0 0",
+      "C": "3 0",
+      "D": "3 1"
+    },
+    "correct_answer": "C",
+    "explanation": "The public using declaration exposes f, but does not change the private accessibility of the base relationship. External implicit conversion from D* to B* remains unavailable, so is_convertible is false."
+  },
+  {
+    "id": "1.4.1-028",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Hard",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { System.out.print(Config.K+\" \"); System.out.print(Config.N); }\n}\nclass Config { static {System.out.print(\"init \");} static final int K=7; static int N=9; }\n",
+    "options": {
+      "A": "7 init 9",
+      "B": "Compilation error",
+      "C": "init 7 9",
+      "D": "7 9"
+    },
+    "correct_answer": "A",
+    "explanation": "K is a compile-time constant, so reading it does not trigger Config initialization. Reading nonconstant static N does, printing init before N's initialized value 9."
+  },
+  {
+    "id": "1.4.1-029",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Hard",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\nstatic class Outer { int x=4; class Inner { int value(){return x;} } static class Nested { int v=9; } }\n public static void main(String[] args) { Outer o=new Outer(); Outer.Inner i=o.new Inner(); Outer.Nested n=new Outer.Nested(); System.out.print(i.value()+\" \"+n.v); }\n}\n\n",
+    "options": {
+      "A": "4 9",
+      "B": "4 4",
+      "C": "Compilation error",
+      "D": "0 9"
+    },
+    "correct_answer": "A",
+    "explanation": "The non-static Inner is attached to o and can read its x=4. The static nested class does not require an Outer instance and has its own initialized field v=9."
+  },
+  {
+    "id": "1.4.1-030",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.1",
+    "subpart_name": "Core Architecture & Class Mechanics",
+    "difficulty": "Hard",
+    "question": "Java 17. What is printed, or does compilation fail? Whitespace separates output tokens.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { System.out.print(new C().f()); }\n}\ninterface I { private int helper(){return 3;} default int f(){return helper()+1;} } class C implements I {}\n",
+    "options": {
+      "A": "4",
+      "B": "AbstractMethodError",
+      "C": "3",
+      "D": "Compilation error"
+    },
+    "correct_answer": "A",
+    "explanation": "Java 17 interfaces may have private helper methods. The default method can call its own private helper, and C inherits the public default f without needing to implement that private helper."
+  }
+]

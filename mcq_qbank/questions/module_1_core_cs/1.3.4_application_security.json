@@ -1,0 +1,427 @@
+[
+  {
+    "id": "1.3.4-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Easy",
+    "question": "A client opens an https URL with no explicit port using HTTPS over TCP, not HTTP/3. Which default destination TCP port should it use?",
+    "code_snippet": null,
+    "options": {
+      "A": "80",
+      "B": "443",
+      "C": "53",
+      "D": "25"
+    },
+    "correct_answer": "B",
+    "explanation": "The default HTTPS port is 443. Port 80 is the conventional default for unencrypted HTTP; selecting TCP explicitly avoids confusing this question with HTTPS carried over QUIC/UDP."
+  },
+  {
+    "id": "1.3.4-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Easy",
+    "question": "An ordinary DNS client sends a UDP query from an ephemeral local port to a resolver using the standard DNS service port. Which destination port identifies that service?",
+    "code_snippet": null,
+    "options": {
+      "A": "67",
+      "B": "68",
+      "C": "53",
+      "D": "443"
+    },
+    "correct_answer": "C",
+    "explanation": "The standard DNS service uses port 53. The client's local source port can be ephemeral and need not also be 53; DHCP and HTTPS use different conventional service ports."
+  },
+  {
+    "id": "1.3.4-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Easy",
+    "question": "A DHCPv4 client has no configured address and sends an initial DHCPDISCOVER without a relay. Which UDP source/destination port pair belongs to the client-to-server message?",
+    "code_snippet": null,
+    "options": {
+      "A": "Source 67, destination 68",
+      "B": "Source 53, destination 67",
+      "C": "Source 68, destination 53",
+      "D": "Source 68, destination 67"
+    },
+    "correct_answer": "D",
+    "explanation": "DHCPv4 clients use UDP port 68 and servers use UDP port 67. The initial client-to-server message therefore goes from 68 to 67; a server reply uses the opposite port direction."
+  },
+  {
+    "id": "1.3.4-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Easy",
+    "question": "A mail-transfer agent delivers mail directly to another domain's SMTP relay using the conventional server-to-server service, not authenticated user submission. Which destination TCP port is the standard default?",
+    "code_snippet": null,
+    "options": {
+      "A": "587",
+      "B": "110",
+      "C": "25",
+      "D": "143"
+    },
+    "correct_answer": "C",
+    "explanation": "Conventional SMTP relay uses TCP port 25. Port 587 is associated with message submission, while 110 and 143 are mailbox-access services rather than SMTP relay."
+  },
+  {
+    "id": "1.3.4-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Easy",
+    "question": "A traditional FTP client establishes its control channel using the conventional server service port. Which statement correctly describes that connection?",
+    "code_snippet": null,
+    "options": {
+      "A": "TCP port 21 necessarily carries every file byte on that same connection",
+      "B": "UDP port 21 carries the FTP control conversation",
+      "C": "TCP port 20 is the conventional FTP control-listener port",
+      "D": "TCP port 21 carries commands and replies; file data uses a separate data connection"
+    },
+    "correct_answer": "D",
+    "explanation": "FTP separates its TCP control connection, conventionally to port 21, from data connections. The data connection's initiation and endpoints depend on active versus passive mode."
+  },
+  {
+    "id": "1.3.4-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Easy",
+    "question": "Two endpoints have already obtained the same secret AES key and use it to encrypt and decrypt application records. Which cryptographic category describes this bulk-data mechanism?",
+    "code_snippet": null,
+    "options": {
+      "A": "A certificate chain that replaces all record encryption",
+      "B": "Symmetric encryption",
+      "C": "A digital signature that alone hides the plaintext",
+      "D": "Asymmetric encryption with one public key and one private key"
+    },
+    "correct_answer": "B",
+    "explanation": "Symmetric encryption uses shared secret key material for encryption/decryption. Public/private-key mechanisms and certificates serve different roles, such as authentication or key establishment, and a signature alone is not confidentiality."
+  },
+  {
+    "id": "1.3.4-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Easy",
+    "question": "A basic packet-filter firewall checks only source/destination IPs, transport protocol, and ports. It does not decrypt TLS or parse HTTP. Which proposed decision requires additional application-layer capability?",
+    "code_snippet": null,
+    "options": {
+      "A": "Deny packets from a specified source subnet",
+      "B": "Allow TCP packets to a specified destination port",
+      "C": "Allow HTTPS GET but deny HTTPS POST by inspecting the encrypted HTTP method",
+      "D": "Deny UDP packets to a specified destination IP"
+    },
+    "correct_answer": "C",
+    "explanation": "The HTTP method is application data and is encrypted inside HTTPS. A header-only filter cannot classify that method merely from the packet's IP addresses and transport ports; the other decisions use its stated fields."
+  },
+  {
+    "id": "1.3.4-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "An unconfigured DHCPv4 client receives multiple valid offers and selects one server. In the ordinary initial four-message exchange, which message follows its DHCPREQUEST before it may enter BOUND with the accepted lease?",
+    "code_snippet": null,
+    "options": {
+      "A": "Another DHCPOFFER that itself completes binding",
+      "B": "A DHCPACK from the selected server",
+      "C": "A DNS answer that replaces DHCPACK",
+      "D": "A TCP SYN+ACK because DHCP runs over TCP"
+    },
+    "correct_answer": "B",
+    "explanation": "The initial exchange is DISCOVER, OFFER, REQUEST, ACK. An offer proposes configuration, while DHCPACK confirms the accepted binding. The client does not treat an offer alone as the completed lease."
+  },
+  {
+    "id": "1.3.4-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "A DHCPv4 client attempting to validate a remembered address receives a valid DHCPNAK for that attempt. There is no alternate valid lease. What should it do?",
+    "code_snippet": null,
+    "options": {
+      "A": "Continue using the address until it receives two more NAKs",
+      "B": "Treat the NAK as a lease extension",
+      "C": "Stop using the rejected configuration and restart address acquisition",
+      "D": "Switch to TCP port 67 while retaining the same address"
+    },
+    "correct_answer": "C",
+    "explanation": "The NAK rejects the requested configuration. The client must abandon that attempted address configuration and return to acquisition rather than treating a negative acknowledgment as a lease or transport-mode change."
+  },
+  {
+    "id": "1.3.4-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "An ordinary DNS resolver receives a valid UDP response with TC=1 and chooses the standard TCP retry to obtain the complete answer. Which transport and destination port should that retry use?",
+    "code_snippet": null,
+    "options": {
+      "A": "TCP to port 67",
+      "B": "TCP to the DNS server's port 53",
+      "C": "UDP to port 443",
+      "D": "TCP to the original client's ephemeral source port"
+    },
+    "correct_answer": "B",
+    "explanation": "The truncation flag indicates the UDP reply is incomplete. Conventional DNS over TCP uses the same standard service number 53; it is not a change to DHCP or HTTPS, nor is the client's original ephemeral port the server listener."
+  },
+  {
+    "id": "1.3.4-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "A DNS cache stores a record at time 0 with TTL 120 seconds. There are no refreshes, TTL changes, or serve-stale rules. A cache lookup occurs at time 45 seconds. What remaining TTL may the cache report at that moment?",
+    "code_snippet": null,
+    "options": {
+      "A": "75 seconds",
+      "B": "165 seconds",
+      "C": "45 seconds",
+      "D": "120 seconds"
+    },
+    "correct_answer": "A",
+    "explanation": "TTL ages from the time the record is cached: 120-45=75 seconds remain. Reading a cached record does not reset its lifetime to the original TTL."
+  },
+  {
+    "id": "1.3.4-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "A traditional FTP server replies to PASV with the tuple below. The last two values encode the passive data port as p1*256+p2. The client can reach the advertised address, and no NAT rewrite is involved. Which data connection should the client initiate?",
+    "code_snippet": "227 Entering Passive Mode (192,0,2,10,195,80)",
+    "options": {
+      "A": "Server TCP port 20 to the client",
+      "B": "Client to 192.0.2.10 TCP port 50000",
+      "C": "Client to 192.0.2.10 TCP port 21 for the file bytes",
+      "D": "Client to 192.0.2.10 TCP port 19580"
+    },
+    "correct_answer": "B",
+    "explanation": "195*256+80=50,000. In passive mode the server listens at that data endpoint and the client initiates the separate data connection. Concatenating the decimal bytes or reusing control port 21 gives the wrong endpoint."
+  },
+  {
+    "id": "1.3.4-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "In traditional active FTP, the client has supplied a reachable data endpoint at its TCP port 50000. Use the conventional server data source port 20, with no NAT or proxy. Which endpoint initiates the data TCP connection?",
+    "code_snippet": null,
+    "options": {
+      "A": "The server sends file bytes on the existing TCP port 21 control channel",
+      "B": "The client connects to server TCP port 20 for active-mode data",
+      "C": "The server connects from TCP port 20 to client TCP port 50000",
+      "D": "The client waits for a UDP datagram from server port 21"
+    },
+    "correct_answer": "C",
+    "explanation": "In active mode the server initiates the separate data connection toward the client's advertised port. This differs from passive mode, where the client connects to a server-advertised listener."
+  },
+  {
+    "id": "1.3.4-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "A client connects to https://api.example.test. The server certificate has a trusted, valid chain and acceptable dates, but its only permitted DNS identity is billing.example.test. There are no wildcards or other identity matches. With normal service-identity validation, what is the outcome?",
+    "code_snippet": null,
+    "options": {
+      "A": "Accept solely because the destination TCP port is 443",
+      "B": "Accept solely because a trusted CA signed the certificate",
+      "C": "Replace the requested hostname with billing.example.test without user or application involvement",
+      "D": "Reject authentication because the certificate does not identify the requested service"
+    },
+    "correct_answer": "D",
+    "explanation": "Chain trust and service-identity matching are separate checks. A trusted certificate for a different name does not authenticate api.example.test; a conventional port number does not repair the mismatch."
+  },
+  {
+    "id": "1.3.4-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "A wants to send confidential data to B and separately sign the data as A. Use distinct, appropriate public-key encryption and signature key pairs, and assume B's encryption public key and A's signature verification public key are authenticated. Which key roles are correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "Encrypt using B's private key; sign using A's public key",
+      "B": "Encrypt and sign using only A's public key",
+      "C": "Encrypt using A's public key; sign using B's private key",
+      "D": "Encrypt for B using B's public encryption key; sign using A's private signing key"
+    },
+    "correct_answer": "D",
+    "explanation": "B's private decryption key is needed to recover data encrypted for B. A signs with A's private signing key, and a verifier uses A's public verification key. Signing is a distinct operation, not a substitute for recipient confidentiality."
+  },
+  {
+    "id": "1.3.4-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "A full certificate-authenticated TLS 1.3 handshake uses ephemeral ECDHE and no PSK or 0-RTT. After authentication and key derivation, which mechanism protects bulk application records?",
+    "code_snippet": null,
+    "options": {
+      "A": "Symmetric authenticated encryption using derived traffic keys",
+      "B": "Using only an unkeyed checksum after the handshake",
+      "C": "Encrypting every application byte directly with the certificate's signing private key",
+      "D": "Sending the application bytes unencrypted because the certificate is public"
+    },
+    "correct_answer": "A",
+    "explanation": "TLS derives symmetric traffic keys from the handshake secrets and transcript. Application records use authenticated encryption; certificate signatures authenticate the handshake rather than serving as per-byte bulk encryption."
+  },
+  {
+    "id": "1.3.4-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "A stateful firewall permits inbound TCP only when it belongs to a tracked, valid established connection. No entry exists for an arriving packet, but its ACK flag is set. Under exactly this policy, what should the firewall conclude?",
+    "code_snippet": null,
+    "options": {
+      "A": "Every ACK-marked packet must belong to an established connection",
+      "B": "The packet creates a valid state entry solely by setting ACK",
+      "C": "TCP source port 443 proves the packet was requested by an internal client",
+      "D": "The ACK flag alone is insufficient; the packet does not satisfy the tracked-connection rule"
+    },
+    "correct_answer": "D",
+    "explanation": "Connection state must match a recognized flow and its policy, not just a caller-controlled flag or port number. Merely observing ACK does not establish that a valid tracked conversation exists."
+  },
+  {
+    "id": "1.3.4-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "A reverse proxy terminates one TLS session from a client, reads the HTTP request, and sends it through a separate TLS session to the backend. Both network legs are encrypted and certificates are properly verified. Which statement describes the proxy's access to application data?",
+    "code_snippet": null,
+    "options": {
+      "A": "The proxy can see plaintext at its TLS endpoints even though both network legs use TLS",
+      "B": "The proxy cannot see plaintext because two TLS sessions create one opaque client-to-backend channel",
+      "C": "TLS prevents the proxy from modifying a request that it decrypts and re-encrypts",
+      "D": "Only the backend has the keys for the client-to-proxy session"
+    },
+    "correct_answer": "A",
+    "explanation": "The sessions terminate at the proxy, which decrypts on one leg and re-encrypts on the other. Encryption on both links does not make the proxy an end-to-end opaque relay; that would require a different architecture such as TLS pass-through."
+  },
+  {
+    "id": "1.3.4-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "A firewall uses first-match rules in the displayed order and a final default deny. What happens to a TCP packet from 10.0.5.7 to destination port 443? There is no separate most-specific-prefix override.",
+    "code_snippet": "1. ALLOW source 10.0.0.0/8, TCP destination port 443\n2. DENY source 10.0.5.0/24, TCP destination port 443\n3. DENY everything else",
+    "options": {
+      "A": "Allowed by rule 1",
+      "B": "Denied by the default because two rules match",
+      "C": "Denied by rule 2 because /24 always overrides /8",
+      "D": "Allowed only if the packet uses source port 443"
+    },
+    "correct_answer": "A",
+    "explanation": "The source matches the broad allow rule first, so evaluation stops there. Firewall first-match ordering is not IP longest-prefix routing. The later narrower deny is unreachable for this packet under the stated ordering."
+  },
+  {
+    "id": "1.3.4-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Medium",
+    "question": "A valid conditional HTTP GET includes If-None-Match with an entity tag matching the server's current selected representation. No higher-priority precondition or error applies, and the server evaluates the condition normally. Which response semantics apply?",
+    "code_snippet": null,
+    "options": {
+      "A": "304 Not Modified, with no response content",
+      "B": "304 Not Modified with a required full representation body",
+      "C": "200 OK with the entire representation because matching tags force a refresh",
+      "D": "412 Precondition Failed for this GET under the ordinary matching If-None-Match case"
+    },
+    "correct_answer": "A",
+    "explanation": "For GET, a matching If-None-Match condition causes 304 rather than retransmitting an unchanged representation. A 304 response has no content; its metadata can help the client update its cached response. The non-GET precondition-failure behavior is a different case."
+  },
+  {
+    "id": "1.3.4-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Hard",
+    "question": "An application considers sending a non-idempotent purchase action in TLS 1.3 0-RTT early data. The deployment supplies no application duplicate suppression, and the client cannot assume a globally consistent TLS replay cache. What property prevents treating early data as an exactly-once operation?",
+    "code_snippet": null,
+    "options": {
+      "A": "0-RTT data can be replayed across connections, so TLS alone does not guarantee exactly-once application effects",
+      "B": "The certificate changes every byte of the HTTP method into a unique transaction identifier",
+      "C": "TLS 1.3 0-RTT necessarily sends all plaintext without encryption",
+      "D": "A successful TLS handshake guarantees that an application command can never be repeated"
+    },
+    "correct_answer": "A",
+    "explanation": "Early-data confidentiality does not provide an inherent cross-connection non-replay guarantee. Non-idempotent effects therefore need an appropriate application or deployment strategy; a TLS handshake or certificate is not an exactly-once transaction protocol."
+  },
+  {
+    "id": "1.3.4-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Hard",
+    "question": "A recorded full TLS 1.3 session used ephemeral ECDHE, authenticated with a certificate signing key. After the session, both ephemeral private shares and traffic secrets are erased. Later only the server's long-term certificate signing private key is exposed. Assume sound cryptography and no other leaks. What does forward secrecy imply for the recorded application ciphertext?",
+    "code_snippet": null,
+    "options": {
+      "A": "Forward secrecy means the recorded ciphertext contains no authentication tags",
+      "B": "That signing key alone is insufficient to reconstruct the past ephemeral session traffic keys",
+      "C": "The signing key directly decrypts every recorded TLS application record",
+      "D": "Knowing the public certificate is enough to reconstruct every ECDHE private share"
+    },
+    "correct_answer": "B",
+    "explanation": "The long-term key authenticates the ephemeral exchange rather than determining its shared secret alone. With the ephemeral secrets erased and no other leak, later exposure of that signing key does not by itself reveal the earlier ECDHE traffic keys."
+  },
+  {
+    "id": "1.3.4-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Hard",
+    "question": "An SMTP receiving server accepts a message after DATA and durably queues it, then sends its final 250 success reply. The reply is lost before the sending server receives it, and the connection fails. No duplicate-suppression mechanism is assumed. What can happen if the sender retries the message?",
+    "code_snippet": null,
+    "options": {
+      "A": "TCP guarantees that two separate SMTP attempts can have only one delivery effect",
+      "B": "SMTP necessarily deduplicates every retry using the Message-ID header",
+      "C": "A duplicate may be accepted; the missing reply does not prove the first attempt was rejected",
+      "D": "The first message must have been rolled back because its 250 reply was lost"
+    },
+    "correct_answer": "C",
+    "explanation": "The receiving server may already have accepted responsibility even though the sender lacks the acknowledgment. Retrying can therefore duplicate the message. Transport reliability within a connection does not give the sender certainty about the application commit after a broken connection."
+  },
+  {
+    "id": "1.3.4-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Hard",
+    "question": "At time 0, a DNS cache stores www.example.test CNAME edge1.example.test with TTL 60, and edge1.example.test A 192.0.2.1 with TTL 300. At time 90, no records have been refreshed. Use this explicit resolution procedure: refresh an expired CNAME first, then resolve the target named by that new CNAME; the refresh reply contains only the CNAME. It now names edge2.example.test, whose A record is absent from cache. Which work is needed to resolve the original name?",
+    "code_snippet": null,
+    "options": {
+      "A": "Refresh the expired CNAME, then obtain an A record for edge2.example.test",
+      "B": "Keep the old CNAME until the old target's 300-second TTL expires",
+      "C": "Use 192.0.2.1 directly because its A-record TTL has not expired",
+      "D": "Refresh only edge1.example.test and ignore the changed alias target"
+    },
+    "correct_answer": "A",
+    "explanation": "The alias mapping expired at time 60 even though the old target A record remains cached. Its refresh changes the relevant target to edge2, so the still-valid edge1 address no longer resolves this alias. The prescribed procedure must obtain edge2's missing A record; the two records have independent lifetimes."
+  },
+  {
+    "id": "1.3.4-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.4",
+    "subpart_name": "Application Layer Protocols & Network Security",
+    "difficulty": "Hard",
+    "question": "A stateful client-side firewall allows outgoing TCP only to an FTP server's port 21 and permits replies to tracked connections. Its default is deny, and it has no FTP ALG. Login succeeds. PASV then negotiates server data port 50000, but a directory listing fails. For this one transfer, which additional new-connection allowance directly addresses the missing flow?",
+    "code_snippet": null,
+    "options": {
+      "A": "Allow outgoing UDP to server port 50000",
+      "B": "Allow only unsolicited server TCP port 20 connections into the client",
+      "C": "Allow only more TCP traffic on the already established port 21 connection",
+      "D": "Allow the client to initiate TCP to that server's negotiated port 50000"
+    },
+    "correct_answer": "D",
+    "explanation": "Passive FTP needs a separate client-initiated TCP data connection to the negotiated server port. The existing control flow does not authorize that new destination under the given rules. Active-mode server port 20 and UDP do not match this passive transfer; tracked replies to the newly allowed TCP flow can use the existing state rule."
+  }
+]

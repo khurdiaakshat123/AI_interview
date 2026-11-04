@@ -1,0 +1,512 @@
+[
+  {
+    "id": "1.4.3-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual int f(){return 1;} }; struct D:B { int f() override{return 2;} };\nint main() { D d; B* p=&d; std::cout<<p->f(); }\n",
+    "options": {
+      "A": "1",
+      "B": "Undefined behavior",
+      "C": "Compilation error",
+      "D": "2"
+    },
+    "correct_answer": "D",
+    "explanation": "The call is virtual and the actual object is D. The final overrider is D::f, even though p has static type B*. The stack object is not deleted through p."
+  },
+  {
+    "id": "1.4.3-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { int f(){return 1;} }; struct D:B { int f(){return 2;} };\nint main() { D d; B& b=d; std::cout<<b.f(); }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "1",
+      "C": "Undefined behavior",
+      "D": "2"
+    },
+    "correct_answer": "B",
+    "explanation": "B::f is not virtual, so the call is bound using the expression's static type B. D's same-named function does not make this base-reference call dynamic."
+  },
+  {
+    "id": "1.4.3-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Easy",
+    "question": "Java 17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { B b=new D(); System.out.print(b.f()); }\n}\nclass B { String f(){return \"B\";} } class D extends B { @Override String f(){return \"D\";} }\n",
+    "options": {
+      "A": "B",
+      "B": "Compilation error",
+      "C": "D",
+      "D": "BD"
+    },
+    "correct_answer": "C",
+    "explanation": "This instance method is overridden. Runtime receiver class D selects D.f despite the variable's declared type B."
+  },
+  {
+    "id": "1.4.3-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Easy",
+    "question": "Java 17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "public class Main {\nstatic String f(int x){return \"I\";} static String f(String x){return \"S\";}\n public static void main(String[] args) { System.out.print(f(3)); }\n}\n\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "S",
+      "C": "IS",
+      "D": "I"
+    },
+    "correct_answer": "D",
+    "explanation": "Overload resolution chooses the int parameter from the argument's compile-time type. No instance-method override or runtime receiver selection is involved."
+  },
+  {
+    "id": "1.4.3-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual int f()=0; };\nint main() { B b; std::cout<<1; }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "1",
+      "C": "0",
+      "D": "Undefined behavior"
+    },
+    "correct_answer": "A",
+    "explanation": "B has an unimplemented pure virtual function and is abstract. It cannot be instantiated directly; a concrete derived implementation is required."
+  },
+  {
+    "id": "1.4.3-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Easy",
+    "question": "Java 17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { new D(); }\n}\nclass B { void f(int x){} } class D extends B { @Override void f(long x){} }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "0",
+      "C": "AbstractMethodError",
+      "D": "No output"
+    },
+    "correct_answer": "A",
+    "explanation": "f(long) does not override f(int); it is a different overload. @Override requires an actual override and therefore exposes this signature mismatch at compilation."
+  },
+  {
+    "id": "1.4.3-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual int f() const {return 1;} }; struct D:B { int f() override {return 2;} };\nint main() { D d; std::cout<<d.f(); }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "2",
+      "C": "1",
+      "D": "Undefined behavior"
+    },
+    "correct_answer": "A",
+    "explanation": "The const qualification is part of the overriding member-function signature requirements. D::f() lacks const and does not override B::f() const, so the override specifier causes rejection."
+  },
+  {
+    "id": "1.4.3-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Easy",
+    "question": "Use an explicitly specified single-inheritance ABI model: every polymorphic object contains one vptr field, and every concrete class has one shared virtual table. Three live D objects all have the same concrete type, with no additional base-subobject vptrs. What is the pair (vptr fields across these objects, shared D tables)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(3,1)",
+      "B": "(1,3)",
+      "C": "(3,3)",
+      "D": "(6,1)"
+    },
+    "correct_answer": "A",
+    "explanation": "The model puts one pointer field in each of three objects while all three refer to the one shared D table. This is an ABI model supplied by the question, not a universal language-mandated object layout."
+  },
+  {
+    "id": "1.4.3-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Easy",
+    "question": "Java 17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "public class Main {\nstatic String f(Object x){return \"O\";} static String f(String x){return \"S\";}\n public static void main(String[] args) { Object x=\"hi\"; System.out.print(f(x)); }\n}\n\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "OS",
+      "C": "O",
+      "D": "S"
+    },
+    "correct_answer": "C",
+    "explanation": "The argument expression has static type Object, selecting f(Object). The fact that the referenced object is a String does not rerun overload resolution at runtime."
+  },
+  {
+    "id": "1.4.3-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual int f(int x=1){return x+10;} }; struct D:B { int f(int x=2) override{return x+20;} };\nint main() { D d; B* p=&d; std::cout<<p->f()<<\" \"<<d.f(); }\n",
+    "options": {
+      "A": "22 22",
+      "B": "Compilation error",
+      "C": "21 22",
+      "D": "11 22"
+    },
+    "correct_answer": "C",
+    "explanation": "Default arguments are chosen from the statically selected declaration, while the virtual body is dynamically dispatched. p->f() supplies B's default 1 to D's body, giving 21; d.f() uses D's default 2 and gives 22."
+  },
+  {
+    "id": "1.4.3-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { B b=new D(); b.f(\"x\"); ((D)b).f(\"x\"); }\n}\nclass B { void f(Object x){System.out.print(\"B \");} } class D extends B { @Override void f(Object x){System.out.print(\"D \");} void f(String x){System.out.print(\"S \");} }\n",
+    "options": {
+      "A": "B S",
+      "B": "S S",
+      "C": "D D",
+      "D": "D S"
+    },
+    "correct_answer": "D",
+    "explanation": "Through B, only f(Object) is available to overload resolution, then overriding chooses D's Object implementation. After casting the receiver to D, its String overload is visible and is the more specific choice."
+  },
+  {
+    "id": "1.4.3-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual int f(int){return 10;} int f(double){return 20;} }; struct D:B { using B::f; int f(int) override{return 30;} };\nint main() { D d; std::cout<<d.f(1.5); }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "20",
+      "C": "30",
+      "D": "10"
+    },
+    "correct_answer": "B",
+    "explanation": "using B::f retains the base overload set. The double argument exactly matches B::f(double), preferred over conversion to int; the chosen nonvirtual overload returns 20."
+  },
+  {
+    "id": "1.4.3-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual int f(int){return 10;} int f(double){return 20;} }; struct D:B { int f(int) override{return 30;} };\nint main() { D d; std::cout<<d.f(1.5); }\n",
+    "options": {
+      "A": "10",
+      "B": "20",
+      "C": "30",
+      "D": "Compilation error"
+    },
+    "correct_answer": "C",
+    "explanation": "Declaring D::f hides the base functions of that name during lookup through D. Without using B::f, only D::f(int) participates here, accepting the converted double and returning 30."
+  },
+  {
+    "id": "1.4.3-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual int f() final {return 1;} }; struct D:B { int f() override{return 2;} };\nint main() { D d; std::cout<<d.f(); }\n",
+    "options": {
+      "A": "2",
+      "B": "Undefined behavior",
+      "C": "Compilation error",
+      "D": "1"
+    },
+    "correct_answer": "C",
+    "explanation": "A final virtual member cannot be overridden in a derived class. override does not bypass final; it makes the prohibited override explicit."
+  },
+  {
+    "id": "1.4.3-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { B b=new D(); System.out.print(b.label()+\" \"+b.id()); }\n}\nclass B { static String label(){return \"B\";} String id(){return \"B\";} } class D extends B { static String label(){return \"D\";} @Override String id(){return \"D\";} }\n",
+    "options": {
+      "A": "B D",
+      "B": "Compilation error",
+      "C": "D D",
+      "D": "B B"
+    },
+    "correct_answer": "A",
+    "explanation": "Static label is hidden and selected using type B. Instance method id is overridden and dispatches on the actual D receiver. The two method categories follow different selection rules."
+  },
+  {
+    "id": "1.4.3-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual ~B(){std::cout<<\"B \";} }; struct D:B { ~D() override{std::cout<<\"D \";} };\nint main() { B* p=new D; delete p; }\n",
+    "options": {
+      "A": "Undefined behavior",
+      "B": "D B",
+      "C": "B D",
+      "D": "B"
+    },
+    "correct_answer": "B",
+    "explanation": "The virtual base destructor makes deletion through B* dispatch to the complete D destruction sequence. D's destructor body runs before the base destructor body."
+  },
+  {
+    "id": "1.4.3-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual void f(){} ~B(){} }; struct D:B { ~D(){} };\nint main() { B* p=new D; delete p; }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "Undefined behavior",
+      "C": "Only D is destroyed with guaranteed defined behavior",
+      "D": "Only B is destroyed with guaranteed defined behavior"
+    },
+    "correct_answer": "B",
+    "explanation": "This ordinary delete uses a base pointer for a derived object, but B's destructor is nonvirtual. Other virtual methods do not fix that requirement. The result is undefined behavior, not a guaranteed base-only destructor sequence."
+  },
+  {
+    "id": "1.4.3-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { int x=1; }; struct L:B {}; struct R:B {}; struct D:L,R {};\nint main() { D d; B* p=&d; std::cout<<p->x; }\n",
+    "options": {
+      "A": "1",
+      "B": "2",
+      "C": "Compilation error",
+      "D": "Undefined behavior"
+    },
+    "correct_answer": "C",
+    "explanation": "The nonvirtual diamond contains two distinct B subobjects. An unqualified D*-to-B* conversion is ambiguous because it does not specify the L or R path."
+  },
+  {
+    "id": "1.4.3-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { int x=1; }; struct L:virtual B {}; struct R:virtual B {}; struct D:L,R {};\nint main() { D d; L& l=d; R& r=d; l.x=7; std::cout<<r.x; }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "2",
+      "C": "1",
+      "D": "7"
+    },
+    "correct_answer": "D",
+    "explanation": "Virtual inheritance supplies one shared B subobject in D. Access through L and R reaches that same x, so the mutation through l is visible through r."
+  },
+  {
+    "id": "1.4.3-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { System.out.print(new C().f()); }\n}\ninterface I { default String f(){return \"I\";} } interface J extends I { @Override default String f(){return \"J\";} } class C implements I,J {}\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "I",
+      "C": "IJ",
+      "D": "J"
+    },
+    "correct_answer": "D",
+    "explanation": "J is the more specific interface and overrides I's default. Its default wins for C; unlike unrelated conflicting defaults, this hierarchy supplies a unique most-specific implementation."
+  },
+  {
+    "id": "1.4.3-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual ~B()=default; }; struct D:B {}; struct E:B {};\nint main() { D d; B* p=&d; std::cout<<(dynamic_cast<D*>(p)!=nullptr)<<\" \"<<(dynamic_cast<E*>(p)==nullptr); }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "1 1",
+      "C": "0 1",
+      "D": "1 0"
+    },
+    "correct_answer": "B",
+    "explanation": "The polymorphic base permits runtime checked casts. The actual D object succeeds when cast to D*, while a cast to unrelated sibling E* returns null rather than fabricating an E subobject."
+  },
+  {
+    "id": "1.4.3-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { B b=new D(); B made=b.make(); System.out.print(made instanceof D); }\n}\nclass B { B make(){return new B();} } class D extends B { @Override D make(){return new D();} }\n",
+    "options": {
+      "A": "ClassCastException",
+      "B": "false",
+      "C": "true",
+      "D": "Compilation error"
+    },
+    "correct_answer": "C",
+    "explanation": "D is a legal covariant return type for the override of B.make. Dynamic dispatch calls D.make and constructs D, even though the variable receiving it is typed B."
+  },
+  {
+    "id": "1.4.3-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual int f(){return 1;} }; struct D:B { int f() override{return 2;} };\nint main() { D d; B* p=&d; std::cout<<p->B::f()<<\" \"<<p->f(); }\n",
+    "options": {
+      "A": "1 2",
+      "B": "2 2",
+      "C": "1 1",
+      "D": "Compilation error"
+    },
+    "correct_answer": "A",
+    "explanation": "Explicit qualification B::f suppresses virtual dispatch for the first call. The ordinary second call uses the dynamic final overrider D::f."
+  },
+  {
+    "id": "1.4.3-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Medium",
+    "question": "Use a supplied virtual-table model, not a language-wide layout guarantee. B has virtual f in slot 0 and g in slot 1. D inherits B, overrides only g, and appends new virtual h at slot 2. No destructor or other slots exist in this model. Which implementations occupy D's slots 0,1,2?",
+    "code_snippet": null,
+    "options": {
+      "A": "B::f, D::g, D::h",
+      "B": "B::f, B::g, D::h",
+      "C": "D::f, B::g, D::h",
+      "D": "D::g, B::f, D::h"
+    },
+    "correct_answer": "A",
+    "explanation": "The inherited non-overridden f keeps its implementation and slot. The g slot is replaced by D's override, while the new virtual h receives the explicitly assigned appended slot."
+  },
+  {
+    "id": "1.4.3-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { B(){f();} virtual void f(){std::cout<<\"B \";} virtual ~B(){f();} }; struct D:B { D(){f();} void f() override{std::cout<<\"D \";} ~D() override{f();} };\nint main() { D d; }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "B D B D",
+      "C": "D D D D",
+      "D": "B D D B"
+    },
+    "correct_answer": "D",
+    "explanation": "During B construction and B destruction, virtual calls dispatch within the B construction/destruction stage, not to D. D's constructor and destructor bodies dispatch to D, yielding B,D,D,B. This differs from Java's constructor-time instance dispatch rules."
+  },
+  {
+    "id": "1.4.3-026",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual int f(){return 1;} }; struct D:B { private: int f() override{return 2;} };\nint main() { D d; B& b=d; std::cout<<b.f(); }\n",
+    "options": {
+      "A": "2",
+      "B": "Compilation error",
+      "C": "Undefined behavior",
+      "D": "1"
+    },
+    "correct_answer": "A",
+    "explanation": "Access is checked against the public B::f declaration used at the call site. Dynamic dispatch can then select D's private override; private access does not prevent it from being the final overrider."
+  },
+  {
+    "id": "1.4.3-027",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual int f(){return 0;} }; struct L:virtual B { int f() override{return 1;} }; struct R:virtual B { int f() override{return 2;} }; struct D:L,R {};\nint main() { D d; std::cout<<d.f(); }\n",
+    "options": {
+      "A": "1",
+      "B": "Compilation error",
+      "C": "2",
+      "D": "0"
+    },
+    "correct_answer": "B",
+    "explanation": "Virtual inheritance removes duplicate B subobjects, but both L and R still provide competing overrides of B::f. D needs its own unique final overrider to resolve this ambiguity."
+  },
+  {
+    "id": "1.4.3-028",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Hard",
+    "question": "Java 17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { Visitor v=new Special(); Animal a=new Dog(); v.visit(a); v.visit(new Dog()); }\n}\nclass Animal {} class Dog extends Animal {} class Visitor { void visit(Animal x){System.out.print(\"VA \");} void visit(Dog x){System.out.print(\"VD \");} } class Special extends Visitor { @Override void visit(Animal x){System.out.print(\"SA \");} }\n",
+    "options": {
+      "A": "VA VD",
+      "B": "SA SA",
+      "C": "VD VD",
+      "D": "SA VD"
+    },
+    "correct_answer": "D",
+    "explanation": "The Animal-typed argument selects visit(Animal), which is overridden by Special and prints SA. The Dog expression selects visit(Dog); Special does not override that signature, so the inherited Visitor implementation prints VD. Argument runtime types do not create automatic double dispatch."
+  },
+  {
+    "id": "1.4.3-029",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Hard",
+    "question": "Use this fictional ABI with decimal byte addresses. A D object begins at 1000; its L base is at offset 0 and R base at offset 16. The R-view virtual table has an f entry implemented by an adjustor thunk that subtracts 16 from the incoming R pointer before invoking D::f. A different entry invokes non-overridden R::g without adjustment. Calling both through the R pointer 1016, what is the pair (this address inside D::f, this address inside R::g)? No real-machine layout is implied.",
+    "code_snippet": null,
+    "options": {
+      "A": "(1000,1000)",
+      "B": "(1000,1016)",
+      "C": "(1016,1016)",
+      "D": "(1032,1016)"
+    },
+    "correct_answer": "B",
+    "explanation": "The f thunk converts the R-subobject pointer back to the most-derived D address: 1016-16=1000. R::g expects its own R subobject and receives 1016 unchanged. Multiple-inheritance dispatch can require this-adjustment rather than only selecting a function address."
+  },
+  {
+    "id": "1.4.3-030",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.3",
+    "subpart_name": "Runtime Polymorphism & Dynamic Dispatch",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed, or which listed compilation/language outcome applies? Assume allocations succeed.",
+    "code_snippet": "#include <iostream>\nstruct B { virtual int f() const{return 1;} virtual B* clone() const{return new B(*this);} virtual ~B()=default; }; struct D:B { int f() const override{return 2;} D* clone() const override{return new D(*this);} };\nint main() { D d; B* p=d.clone(); B value=*p; std::cout<<p->f()<<\" \"<<value.f(); delete p; }\n",
+    "options": {
+      "A": "Undefined behavior",
+      "B": "2 2",
+      "C": "1 1",
+      "D": "2 1"
+    },
+    "correct_answer": "D",
+    "explanation": "The covariant clone returns a new D, so virtual dispatch through p prints 2. Copying that object into a B value slices away the derived part, leaving an actual B whose f prints 1. Virtual destruction makes deleting the cloned object through B* safe."
+  }
+]

@@ -1,0 +1,512 @@
+[
+  {
+    "id": "1.2.2-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Easy",
+    "question": "A bank transfer transaction debits account A, but a failure occurs before it credits account B. Recovery removes the debit so that neither update remains. Which ACID property directly requires this all-or-nothing outcome?",
+    "code_snippet": null,
+    "options": {
+      "A": "Isolation between simultaneous readers",
+      "B": "Atomicity",
+      "C": "Consistency of a declared interest-rate formula",
+      "D": "Durability of acknowledged commits"
+    },
+    "correct_answer": "B",
+    "explanation": "Atomicity requires a transaction to take effect completely or not at all. Since the transfer did not commit, recovery must remove its partial debit rather than leave only half of the transfer."
+  },
+  {
+    "id": "1.2.2-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Easy",
+    "question": "A transaction commits and the database acknowledges success. A power failure follows before the changed data page is written to its final disk location. Recovery reconstructs the committed change from durable logging. Which ACID property is being fulfilled?",
+    "code_snippet": null,
+    "options": {
+      "A": "Atomicity of an uncommitted transaction",
+      "B": "Durability",
+      "C": "Isolation from concurrent transactions",
+      "D": "Consistency of every application business rule"
+    },
+    "correct_answer": "B",
+    "explanation": "Durability requires acknowledged committed effects to survive the failure model the system promises to tolerate. It does not require every data page to have reached its final location at commit if durable recovery information can reconstruct the change."
+  },
+  {
+    "id": "1.2.2-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Easy",
+    "question": "A transaction attempts to insert an order referencing a nonexistent customer. The database rejects it to preserve a declared foreign-key invariant. Which ACID property describes the requirement that committed transactions preserve declared integrity constraints?",
+    "code_snippet": null,
+    "options": {
+      "A": "Atomicity alone, regardless of integrity constraints",
+      "B": "Durability alone, regardless of integrity constraints",
+      "C": "Isolation alone, regardless of integrity constraints",
+      "D": "Consistency"
+    },
+    "correct_answer": "D",
+    "explanation": "Consistency requires committed transactions to take a valid database state to another valid state under its declared constraints. Enforcing the foreign key preserves that invariant; it does not validate arbitrary business rules that were never expressed or correctly implemented."
+  },
+  {
+    "id": "1.2.2-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Easy",
+    "question": "In the trace below, T2 reads the value written by T1 before T1 commits, and T1 later aborts. What anomaly has already occurred? r means read, w means write, and a means abort.",
+    "code_snippet": "w1(X=80); r2(X=80); a1",
+    "options": {
+      "A": "Phantom read involving a changed result-set membership",
+      "B": "Nonrepeatable read requiring two reads by T2",
+      "C": "A lost update requiring T2 to overwrite X",
+      "D": "Dirty read"
+    },
+    "correct_answer": "D",
+    "explanation": "T2 observed an uncommitted value that T1 subsequently rolls back. That is a dirty read. The trace contains neither a second read nor a predicate query or a T2 write needed for the other listed anomalies."
+  },
+  {
+    "id": "1.2.2-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Easy",
+    "question": "Two operations conflict for conflict-serializability analysis only when they belong to different transactions, access the same item, and at least one is a write. Which pair conflicts?",
+    "code_snippet": null,
+    "options": {
+      "A": "r1(X) and w2(X)",
+      "B": "r1(X) and r2(X)",
+      "C": "w1(X) and r2(Y)",
+      "D": "w1(X) and r1(X)"
+    },
+    "correct_answer": "A",
+    "explanation": "The read and write on X belong to different transactions and cannot generally be swapped without changing observed behavior. Two reads, operations on different items, or two operations of one transaction do not form an inter-transaction conflict pair."
+  },
+  {
+    "id": "1.2.2-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Easy",
+    "question": "Ignoring commits and assuming the shown data operations are complete, what serial transaction order is conflict-equivalent to the trace below?",
+    "code_snippet": "w1(X); r2(X)",
+    "options": {
+      "A": "T1, then T2",
+      "B": "T2, then T1",
+      "C": "Neither serial order is conflict-equivalent",
+      "D": "Both transaction orders are conflict-equivalent"
+    },
+    "correct_answer": "A",
+    "explanation": "The write by T1 precedes the conflicting read by T2, giving the precedence edge T1->T2. The graph is acyclic and permits only the serial order T1 then T2."
+  },
+  {
+    "id": "1.2.2-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Easy",
+    "question": "Under basic two-phase locking, a transaction may acquire or upgrade locks during its growing phase but may not acquire or upgrade any lock after releasing one. Which trace violates this rule? S and X denote successful shared and exclusive acquisitions; all locks shown are otherwise compatible with the environment.",
+    "code_snippet": null,
+    "options": {
+      "A": "S(A); unlock(A); S(B); unlock(B)",
+      "B": "S(A); upgrade A to X; unlock(A)",
+      "C": "X(A); X(B); unlock(B); unlock(A)",
+      "D": "S(A); S(B); unlock(A); unlock(B)"
+    },
+    "correct_answer": "A",
+    "explanation": "The violating trace starts its shrinking phase at unlock(A) and then acquires S(B). The other traces finish all acquisitions and upgrades before their first release."
+  },
+  {
+    "id": "1.2.2-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Easy",
+    "question": "An immediate-update database uses write-ahead logging. An uncommitted transaction has modified a page, and the buffer manager wants to write that page to disk under a steal policy. What must become durable first?",
+    "code_snippet": null,
+    "options": {
+      "A": "The log records describing the page updates through the page LSN",
+      "B": "Only the page itself; its update records can be forced later",
+      "C": "The transaction commit record, even though the transaction has not committed",
+      "D": "Every dirty page in the database"
+    },
+    "correct_answer": "A",
+    "explanation": "WAL requires recovery information for an update to be durable before the corresponding modified page reaches disk. A steal policy permits uncommitted data pages on disk, so the transaction need not already have a commit record."
+  },
+  {
+    "id": "1.2.2-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Easy",
+    "question": "A no-force database has durably logged a transaction commit, but one of that transaction's changed pages may still contain its old disk value when a crash occurs. What recovery capability addresses this situation?",
+    "code_snippet": null,
+    "options": {
+      "A": "Requiring every reader to reissue the committed transaction",
+      "B": "UNDO of the committed transaction as if it had aborted",
+      "C": "Discarding the commit record because the data page was not forced",
+      "D": "REDO of committed updates from durable recovery information"
+    },
+    "correct_answer": "D",
+    "explanation": "No-force allows a commit without flushing all changed pages. Durable logs must therefore support reapplying committed changes that did not reach their data pages. Undoing an acknowledged commit would violate durability."
+  },
+  {
+    "id": "1.2.2-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "For the complete data-operation schedule below, which serial order is conflict-equivalent? Analyze every conflict on the same item between different transactions.",
+    "code_snippet": "r1(X); w1(X); r2(X); w2(Y); r3(Y)",
+    "options": {
+      "A": "T1, T3, T2",
+      "B": "T1, T2, T3",
+      "C": "T2, T1, T3",
+      "D": "T3, T2, T1"
+    },
+    "correct_answer": "B",
+    "explanation": "The conflicts on X require T1->T2, and the conflict on Y requires T2->T3. These edges form the chain T1->T2->T3, which admits only that serial order."
+  },
+  {
+    "id": "1.2.2-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "Is the following complete data-operation schedule conflict-serializable?",
+    "code_snippet": "w1(X); r2(X); w2(Y); r1(Y)",
+    "options": {
+      "A": "Yes; its only serial order is T2,T1",
+      "B": "Yes; both serial orders are possible because X and Y are different items",
+      "C": "No; the graph contains T1->T2 and T2->T1",
+      "D": "Yes; its only serial order is T1,T2"
+    },
+    "correct_answer": "C",
+    "explanation": "The write/read conflict on X gives T1->T2. The write/read conflict on Y gives T2->T1. A cycle across different items is still a precedence-graph cycle, so no conflict-equivalent serial schedule exists."
+  },
+  {
+    "id": "1.2.2-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "How many serial transaction orders are conflict-equivalent to this complete schedule? Count each permutation of T1,T2,T3 separately.",
+    "code_snippet": "w1(A); w2(B); r3(A); r3(B)",
+    "options": {
+      "A": "2",
+      "B": "1",
+      "C": "6",
+      "D": "3"
+    },
+    "correct_answer": "A",
+    "explanation": "The graph has T1->T3 and T2->T3, with no edge between T1 and T2. T3 must be last, while T1 and T2 can occur in either order: T1,T2,T3 or T2,T1,T3."
+  },
+  {
+    "id": "1.2.2-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "Which graph property correctly determines conflict serializability for the complete schedule below?",
+    "code_snippet": "w1(A); r2(A); w2(B); r3(B); w3(C); r1(C)",
+    "options": {
+      "A": "It is serializable because no single item is accessed by all three transactions",
+      "B": "It is not conflict-serializable because T1->T2->T3->T1 is a cycle",
+      "C": "It is serializable because the graph has no two-vertex cycle",
+      "D": "It is serializable in order T1,T2,T3"
+    },
+    "correct_answer": "B",
+    "explanation": "The three items create edges T1->T2, T2->T3, and T3->T1. A cycle of length three suffices to rule out conflict serializability; a two-vertex cycle is not necessary."
+  },
+  {
+    "id": "1.2.2-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "Classify the schedule into the strongest applicable category among the mutually exclusive options. r2(X) reads from w1(X); c means commit and a means abort. A recoverable schedule never commits a reader before its source transaction commits.",
+    "code_snippet": "w1(X); r2(X); c2; a1",
+    "options": {
+      "A": "Recoverable but not cascadeless",
+      "B": "Strict",
+      "C": "Not recoverable",
+      "D": "Cascadeless but not strict"
+    },
+    "correct_answer": "C",
+    "explanation": "T2 commits after reading T1's uncommitted write, but T1 aborts without ever committing. This violates recoverability, so none of the stronger categories can apply."
+  },
+  {
+    "id": "1.2.2-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "Classify the schedule into the strongest applicable category. r2(X) reads from w1(X). Strict schedules forbid another transaction from reading or overwriting an uncommitted write; cascadeless schedules forbid only the uncommitted reads.",
+    "code_snippet": "w1(X); r2(X); c1; c2",
+    "options": {
+      "A": "Recoverable but not cascadeless",
+      "B": "Cascadeless but not strict",
+      "C": "Not recoverable",
+      "D": "Strict"
+    },
+    "correct_answer": "A",
+    "explanation": "T2 waits until T1 commits before committing itself, so the read-from dependency is recoverable. However, T2 reads before c1, making the schedule neither cascadeless nor strict."
+  },
+  {
+    "id": "1.2.2-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "Classify this write-only schedule into the strongest applicable category. Both writes are blind writes, there are no reads, and strict means no other transaction may read or overwrite an item written by an unfinished transaction.",
+    "code_snippet": "w1(X); w2(X); c1; c2",
+    "options": {
+      "A": "Strict",
+      "B": "Recoverable but not cascadeless",
+      "C": "Cascadeless but not strict",
+      "D": "Not recoverable"
+    },
+    "correct_answer": "C",
+    "explanation": "With no reads, the no-dirty-read requirement is satisfied vacuously, so the schedule is cascadeless and recoverable. But w2 overwrites T1's uncommitted write before c1, violating strictness."
+  },
+  {
+    "id": "1.2.2-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "Use these conventions: basic 2PL forbids lock acquisition after any release; strict 2PL additionally holds every X lock through commit/abort; rigorous 2PL holds both S and X locks through commit/abort. All acquisitions below succeed. Which protocol classification is correct?",
+    "code_snippet": "S1(A); X1(B); unlock1(A); c1; unlock1(B)",
+    "options": {
+      "A": "Allowed by both strict and rigorous 2PL",
+      "B": "Allowed by strict 2PL, but not by rigorous 2PL",
+      "C": "Allowed by rigorous 2PL but not strict 2PL",
+      "D": "Disallowed by both because strict 2PL also holds every S lock until commit"
+    },
+    "correct_answer": "B",
+    "explanation": "All acquisitions precede the first release, and the X lock on B survives through commit, satisfying strict 2PL as defined. Releasing S(A) before commit violates the stronger rigorous rule."
+  },
+  {
+    "id": "1.2.2-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "A lock manager allows concurrent S locks but grants X only when no other transaction holds any lock on that item. Upgrades retain the existing S lock while waiting. In the trace below, what happens if there is no timeout, abort, or deadlock recovery?",
+    "code_snippet": "S1(X) granted; S2(X) granted; T1 requests upgrade to X(X); T2 requests upgrade to X(X)",
+    "options": {
+      "A": "T1 upgrades immediately because it requested first despite T2's S lock",
+      "B": "Basic 2PL automatically aborts T2 and therefore prevents this deadlock",
+      "C": "Both upgrades wait indefinitely because each transaction retains an S lock blocking the other",
+      "D": "T2 upgrades immediately because upgrades ignore existing shared holders"
+    },
+    "correct_answer": "C",
+    "explanation": "Each upgrade requires the other shared holder to release its lock. Both retain those locks while waiting, creating a deadlock. Basic 2PL guarantees conflict serializability of completed schedules, not freedom from lock deadlocks."
+  },
+  {
+    "id": "1.2.2-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "All three transactions remain uncommitted. r2(X) reads T1's value, and r3(Y) reads T2's value. If the system prevents any transaction from committing based on an aborted source, which additional transactions must abort when T1 aborts?",
+    "code_snippet": "w1(X); r2(X); w2(Y); r3(Y); a1",
+    "options": {
+      "A": "T3 only",
+      "B": "T2 only",
+      "C": "Neither T2 nor T3",
+      "D": "T2 and T3"
+    },
+    "correct_answer": "D",
+    "explanation": "T2 used T1's aborted value, so it must roll back. T3 used T2's subsequently invalidated value, so the rollback cascades to T3. The dependency is transitive, not limited to direct readers of T1."
+  },
+  {
+    "id": "1.2.2-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "A simple immediate-update UNDO/REDO system starts from a durable checkpoint with A=100 and B=200. The durable log below is complete, and a crash follows. Recovery redoes committed updates and undoes uncommitted updates using before-images. There are no other transactions or writes. What final values must recovery establish?",
+    "code_snippet": "<T1, A, old=100, new=130>\n<T2, B, old=200, new=170>\n<COMMIT T1>\n<CRASH>",
+    "options": {
+      "A": "(A=130, B=170)",
+      "B": "(A=130, B=200)",
+      "C": "(A=100, B=200)",
+      "D": "(A=100, B=170)"
+    },
+    "correct_answer": "B",
+    "explanation": "T1 committed, so its A=130 must survive even if redo is needed. T2 did not commit, so B must return to its old value 200 even if the dirty value 170 reached disk."
+  },
+  {
+    "id": "1.2.2-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "A database permits both steal and no-force buffer management. It uses immediate updates and durable logs sufficient to recover from a crash. Which pair of capabilities is required in the general case?",
+    "code_snippet": null,
+    "options": {
+      "A": "Neither UNDO nor REDO, because forcing the log forces all data pages",
+      "B": "UNDO only, because no-force guarantees committed pages are on disk",
+      "C": "UNDO for uncommitted changes that reached disk, and REDO for committed changes that did not",
+      "D": "REDO only, because steal forbids uncommitted pages on disk"
+    },
+    "correct_answer": "C",
+    "explanation": "Steal allows uncommitted data to reach disk, requiring undo or an equivalent mechanism. No-force allows committed data to be missing from disk, requiring redo or an equivalent mechanism. Forcing log records is not the same as forcing data pages."
+  },
+  {
+    "id": "1.2.2-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "At checkpoint C, all active transactions have finished and every committed dirty page is forced to disk before the checkpoint completes. T1 committed before C. T2 starts after C, changes X, and commits. T3 starts after C, changes a different item Y, and is active at the crash. In a simple UNDO/REDO recovery with a complete durable post-C log, which transaction work is needed?",
+    "code_snippet": null,
+    "options": {
+      "A": "Skip every transaction because a checkpoint eliminates all later recovery",
+      "B": "REDO T1 and T2, and treat T3 as committed",
+      "C": "REDO T2 and UNDO T3; no T1 recovery work is needed",
+      "D": "UNDO T2 and T3 because both started after C"
+    },
+    "correct_answer": "C",
+    "explanation": "The quiescent, forced checkpoint makes T1's earlier committed state durable. T2's post-checkpoint committed update may need redo under no-force, while T3's uncommitted change may need undo under steal. The checkpoint does not cover later work."
+  },
+  {
+    "id": "1.2.2-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "A fuzzy checkpoint neither stops active transactions nor forces all dirty pages. T1 updated X before the checkpoint, remains active through it, and is still uncommitted at the crash. The checkpoint records T1 as active but does not itself contain X's before-image. Why can the system not simply discard every pre-checkpoint log record?",
+    "code_snippet": null,
+    "options": {
+      "A": "A checkpoint automatically commits T1, so its commit record must be discarded instead",
+      "B": "Every pre-checkpoint transaction must be replayed as uncommitted regardless of status",
+      "C": "The checkpoint necessarily contains an entire clean copy of X, making older records irrelevant",
+      "D": "T1 may need a pre-checkpoint update record and its before-image to undo its earlier change"
+    },
+    "correct_answer": "D",
+    "explanation": "An active transaction can span a fuzzy checkpoint. If its earlier uncommitted update reached disk, recovery still needs enough earlier log information to undo it. Recording an active transaction ID is not a replacement for the required before-image or equivalent undo information."
+  },
+  {
+    "id": "1.2.2-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Medium",
+    "question": "For the complete write-only schedule below, classify both conflict serializability and view serializability. View equivalence preserves reads-from relations, reads of initial values, and each item's final writer. There are no reads here.",
+    "code_snippet": "w1(X); w2(X); w1(X)",
+    "options": {
+      "A": "Neither conflict-serializable nor view-serializable",
+      "B": "Both conflict-serializable and view-serializable",
+      "C": "Conflict-serializable but not view-serializable",
+      "D": "View-serializable but not conflict-serializable"
+    },
+    "correct_answer": "D",
+    "explanation": "The writes create edges T1->T2 and T2->T1, so conflict serializability fails. With no reads, only the final writer matters; serial order T2,T1 ends with T1 writing X and is view-equivalent. Blind writes make this separation possible."
+  },
+  {
+    "id": "1.2.2-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Hard",
+    "question": "Classify the complete schedule below under both conflict and view serializability. The first read sees the initial value of X. In a candidate serial schedule, each transaction keeps its own internal operation order.",
+    "code_snippet": "r1(X); w2(X); w1(X)",
+    "options": {
+      "A": "Conflict-serializable but not view-serializable",
+      "B": "Both conflict-serializable and view-serializable",
+      "C": "View-serializable but not conflict-serializable",
+      "D": "Neither conflict-serializable nor view-serializable"
+    },
+    "correct_answer": "D",
+    "explanation": "The read/write conflict gives T1->T2, while the later write/write conflict gives T2->T1. For view equivalence, T1's initial-value read requires T1 before T2, but final writer T1 requires T2 before T1. Neither serial order satisfies both constraints."
+  },
+  {
+    "id": "1.2.2-026",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Hard",
+    "question": "Which serial order is view-equivalent to this complete schedule? r3(X) reads the value of the second w1(X). View equivalence must preserve that source transaction and the final writer of each item; each transaction retains its own operation order.",
+    "code_snippet": "w1(X); w2(X); w1(X); r3(X); w3(Y)",
+    "options": {
+      "A": "T2, T3, T1",
+      "B": "T3, T1, T2",
+      "C": "T2, T1, T3",
+      "D": "T1, T2, T3"
+    },
+    "correct_answer": "C",
+    "explanation": "X's final writer is T1, forcing T2 before T1 in a serial schedule. T3 must read X from T1, forcing T1 before T3. Thus T2,T1,T3 is the only listed view-equivalent order, although T1 and T2 form a conflict cycle in the original trace."
+  },
+  {
+    "id": "1.2.2-027",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Hard",
+    "question": "Every read requires an S or X lock held for that operation, and every write requires an X lock. Locks may be acquired early, but basic 2PL forbids any acquisition or upgrade after any release. Does a placement of lock/unlock operations exist that produces exactly the data-operation order below?",
+    "code_snippet": "r1(A); w2(A); w3(B); r1(B)",
+    "options": {
+      "A": "No, because the precedence graph contains a cycle",
+      "B": "No, although the schedule is conflict-serializable in order T3,T1,T2",
+      "C": "Yes; every conflict-serializable operation schedule can be generated by basic 2PL",
+      "D": "Yes; T1 may release A and subsequently acquire B under basic 2PL"
+    },
+    "correct_answer": "B",
+    "explanation": "Conflicts impose T3->T1->T2, so the schedule is conflict-serializable. But T1 must release its A lock before w2(A), starting its shrinking phase. It must acquire its B lock before that release to satisfy 2PL, then retain it until r1(B). Such a held B lock prevents the intervening w3(B). Therefore this exact schedule cannot arise under basic 2PL."
+  },
+  {
+    "id": "1.2.2-028",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Hard",
+    "question": "Initially A=10 and B=20. Strict 2PL holds X locks through termination. T1 locks A and writes A=11; T2 locks B and writes B=22. T1 then requests a read lock on B, while T2 requests a read lock on A, creating deadlock. Recovery aborts T2, restores B using its before-image, and only then releases T2's locks. T1 resumes, reads B, sets A to its current own value plus the B it reads, and commits. With no other transactions, what final values remain?",
+    "code_snippet": null,
+    "options": {
+      "A": "(A=33, B=22)",
+      "B": "(A=31, B=22)",
+      "C": "(A=30, B=20)",
+      "D": "(A=31, B=20)"
+    },
+    "correct_answer": "D",
+    "explanation": "T2's abort restores B from 22 to 20 before T1 can read it. T1 still sees its own A=11, so it writes 11 + 20 = 31 and commits. Strict locking prevents T1 from consuming the aborted B=22 value."
+  },
+  {
+    "id": "1.2.2-029",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Hard",
+    "question": "Use the explicit redo rule below: scan candidate update records in increasing LSN order, redo a record only if its LSN exceeds the target page's current pageLSN, and set pageLSN to that LSN after redo. All listed transactions committed, and no undo is needed. On disk, P has pageLSN 40 and Q has pageLSN 10. Which candidate LSNs are actually redone?",
+    "code_snippet": "LSN | Page | Redo value\n20  | P    | 5\n30  | Q    | 12\n40  | P    | 9\n50  | Q    | 15",
+    "options": {
+      "A": "20, 30, 40, and 50",
+      "B": "40 and 50 only",
+      "C": "30 and 50 only",
+      "D": "20 and 40 only"
+    },
+    "correct_answer": "C",
+    "explanation": "P already reflects LSN 40, so both P records at 20 and 40 are skipped. Q starts at 10, so LSN 30 is redone and advances it to 30; LSN 50 is then redone and advances it to 50. Comparing each record to the current target page's LSN makes redo repeatable."
+  },
+  {
+    "id": "1.2.2-030",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.2",
+    "subpart_name": "Transactions, Concurrency & Recovery",
+    "difficulty": "Hard",
+    "question": "A restartable UNDO/REDO model uses compensation log records (CLRs). T1 made the two X updates below but never committed; T2 committed Y=220. First recovery undid T1's LSN 20 and forced CLR 50, whose redo sets X=110 and whose nextToUndo is 10, then crashed before undoing LSN 10. No recovery data-page writes reached disk, so disk values again are X=120 and Y=200. On the second restart, first redo T2's committed update and every durable CLR, then resume T1 undo at the CLR's nextToUndo. After recovery finishes, what values remain?",
+    "code_snippet": "LSN 10: T1, X, old=100, new=110\nLSN 20: T1, X, old=110, new=120\nLSN 30: T2, Y, old=200, new=220\nLSN 40: COMMIT T2\nLSN 50: CLR for T1, redo X=110, nextToUndo=10",
+    "options": {
+      "A": "(X=100, Y=220)",
+      "B": "(X=100, Y=200)",
+      "C": "(X=110, Y=220)",
+      "D": "(X=120, Y=220)"
+    },
+    "correct_answer": "A",
+    "explanation": "Second-restart redo restores T2's Y=220 and reapplies CLR 50 to set X=110. The CLR identifies LSN 10 as the remaining undo work; its before-image restores X=100. The already compensated LSN 20 is not undone again, and the uncommitted T1 effects disappear despite the recovery crash."
+  }
+]

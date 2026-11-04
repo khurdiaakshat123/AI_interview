@@ -1,0 +1,682 @@
+[
+  {
+    "id": "5.3-001",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "What objective does ordinary least squares linear regression minimize over its coefficients?",
+    "code_snippet": null,
+    "options": {
+      "A": "The number of positive residuals",
+      "B": "The sum of squared residuals",
+      "C": "The sum of predicted probabilities",
+      "D": "The sum of absolute residuals"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: For observation i, residual r_i=y_i-x_i^T beta. Step 2: OLS chooses beta to minimize sum_i r_i^2. Absolute residuals define a different optimization problem."
+  },
+  {
+    "id": "5.3-002",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "In y=X beta+epsilon with full-column-rank fixed X, which error-mean assumption yields conditional unbiasedness of OLS?",
+    "code_snippet": null,
+    "options": {
+      "A": "E[epsilon|X]=0",
+      "B": "Every predictor must have population mean zero",
+      "C": "The response must be binary",
+      "D": "Every observed residual must be zero"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: beta_hat=beta+(X^T X)^(-1)X^T epsilon. Step 2: Taking the conditional expectation gives beta plus a term involving E[epsilon|X]. Step 3: If that conditional mean is zero, E[beta_hat|X]=beta."
+  },
+  {
+    "id": "5.3-003",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "What does homoscedasticity mean in a linear regression error model?",
+    "code_snippet": null,
+    "options": {
+      "A": "The fitted response is constant for all predictor values",
+      "B": "The predictor variables are mutually independent",
+      "C": "The conditional error variance is constant across observations",
+      "D": "All regression coefficients have the same value"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Write Var(epsilon_i|X)=sigma_i^2. Step 2: Homoscedasticity imposes sigma_i^2=sigma^2 for each i. It concerns error variance, not equality of coefficients or fitted values."
+  },
+  {
+    "id": "5.3-004",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "A predictor has auxiliary regression R_j^2=0.8 when regressed on all the other predictors with an intercept. What is VIF_j=1/(1-R_j^2)?",
+    "code_snippet": null,
+    "options": {
+      "A": "0.2",
+      "B": "4",
+      "C": "1.25",
+      "D": "5"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Unexplained proportion is 1-0.8=0.2. Step 2: VIF=1/0.2=5, describing variance inflation under the usual OLS comparison."
+  },
+  {
+    "id": "5.3-005",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "In binary logistic regression, what probability does the sigmoid give at linear score z=0?",
+    "code_snippet": null,
+    "options": {
+      "A": "-0.5",
+      "B": "1",
+      "C": "0.5",
+      "D": "0"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Sigmoid(z)=1/(1+exp(-z)). Step 2: At zero, exp(0)=1, so p=1/(1+1)=0.5."
+  },
+  {
+    "id": "5.3-006",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "Which quantity is modeled as a linear predictor in ordinary binary logistic regression?",
+    "code_snippet": null,
+    "options": {
+      "A": "ln(p+1)",
+      "B": "p^2",
+      "C": "The population variance of every input feature",
+      "D": "ln(p/(1-p))"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Odds are p/(1-p). Step 2: Their natural logarithm, the log-odds or logit, equals beta0+beta^T x. Solving for p gives the sigmoid."
+  },
+  {
+    "id": "5.3-007",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "For every finite real linear score z, what is the range of the mathematical sigmoid 1/(1+exp(-z))?",
+    "code_snippet": null,
+    "options": {
+      "A": "Exactly 0 or exactly 1 only",
+      "B": "Strictly between 0 and 1",
+      "C": "Between -1 and 1 including both endpoints",
+      "D": "Any real number"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: exp(-z)>0 for finite z. Step 2: The denominator is strictly greater than one, so the result is positive and strictly less than one. Numerical floating-point saturation is not the mathematical function's range."
+  },
+  {
+    "id": "5.3-008",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "What is the base-2 class entropy of a decision-tree node containing only one class?",
+    "code_snippet": null,
+    "options": {
+      "A": "0.5",
+      "B": "2",
+      "C": "0",
+      "D": "1"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: The class probabilities are 1 for the present class and 0 for the others. Step 2: Using 0 log2(0)=0 by continuity, entropy=-1 log2(1)=0."
+  },
+  {
+    "id": "5.3-009",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "A binary classification node has class probabilities 0.5 and 0.5. What is its Gini impurity 1-sum_k p_k^2?",
+    "code_snippet": null,
+    "options": {
+      "A": "0.25",
+      "B": "0",
+      "C": "0.5",
+      "D": "1"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Sum the squared probabilities: 0.5^2+0.5^2=0.5. Step 2: Gini=1-0.5=0.5."
+  },
+  {
+    "id": "5.3-010",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "Which description identifies bootstrap aggregating, or bagging?",
+    "code_snippet": null,
+    "options": {
+      "A": "Fit base learners to bootstrap resamples and aggregate their predictions",
+      "B": "Fit each learner sequentially to the preceding learner's loss gradient by definition",
+      "C": "Replace all predictions with the training-label mean regardless of learner output",
+      "D": "Fit one tree only to observations discarded by every resample"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: Draw training resamples with replacement. Step 2: Fit base learners to those resamples. Step 3: Aggregate, for example by averaging in regression; fitting need not be sequentially dependent as in boosting."
+  },
+  {
+    "id": "5.3-011",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "In a typical random forest, why sample a subset of candidate features at each split?",
+    "code_snippet": null,
+    "options": {
+      "A": "To make every bootstrap sample contain all observations exactly once",
+      "B": "To guarantee every tree uses exactly the same feature at every depth",
+      "C": "To convert all classification targets into continuous values",
+      "D": "To reduce correlation among trees compared with repeatedly choosing from all features"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Strong features can otherwise dominate many trees' splits. Step 2: Random feature subsets diversify those choices. Step 3: Reducing tree correlation can make averaging more effective at reducing variance; it is not a guarantee of independence."
+  },
+  {
+    "id": "5.3-012",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Easy",
+    "question": "For one tree trained on a bootstrap sample, what are that tree's out-of-bag observations?",
+    "code_snippet": null,
+    "options": {
+      "A": "The complete test set used to tune all tree parameters",
+      "B": "Only observations that the tree misclassifies",
+      "C": "Training observations not selected into that tree's bootstrap sample",
+      "D": "All observations selected twice or more into the sample"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: A bootstrap sample draws indices with replacement. Step 2: Original training observations whose indices are never drawn are out of bag for that particular tree. Their labels do not train that tree."
+  },
+  {
+    "id": "5.3-013",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "Fit y=b0+b1*x by OLS to (x,y)=(0,1),(1,3),(2,5). What are b0 and b1?",
+    "code_snippet": null,
+    "options": {
+      "A": "1, 2",
+      "B": "0, 3",
+      "C": "2, 1",
+      "D": "1, 3"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: x_bar=1 and y_bar=3. Step 2: b1=sum((x-x_bar)(y-y_bar))/sum((x-x_bar)^2)=4/2=2. Step 3: b0=y_bar-b1*x_bar=3-2=1; all residuals are zero."
+  },
+  {
+    "id": "5.3-014",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "For an unconstrained OLS fit with an intercept, evaluated on its fitting data in exact arithmetic, what is the sum of residuals?",
+    "code_snippet": null,
+    "options": {
+      "A": "The number of predictors",
+      "B": "The sum of the response values",
+      "C": "Always 1",
+      "D": "0"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Differentiate RSS=sum(y_i-b0-x_i^T b)^2 with respect to b0. Step 2: At an OLS optimum, -2 sum(r_i)=0. Step 3: Therefore the residual sum is zero, assuming an unconstrained intercept."
+  },
+  {
+    "id": "5.3-015",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A full-rank fixed-design linear model has E[epsilon|X]=0 and constant finite error variance, but its errors are not normal. Which statement about OLS is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "OLS cannot be calculated unless the observed response is normal",
+      "B": "Every finite-sample t-test is automatically exact without further assumptions",
+      "C": "OLS must be biased solely because errors are non-normal",
+      "D": "OLS remains conditionally unbiased; normal errors are not required for that property"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Conditional unbiasedness follows from E[beta_hat|X]=beta+(X^T X)^(-1)X^T E[epsilon|X]. Step 2: The final term is zero without a normality assumption. Exact finite-sample distributional inference is a separate issue."
+  },
+  {
+    "id": "5.3-016",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A model has exactly two nonconstant predictors and an intercept. Their sample correlation is 0.9. What is either predictor's VIF, rounded to four decimals?",
+    "code_snippet": null,
+    "options": {
+      "A": "10.0000",
+      "B": "5.2632",
+      "C": "1.1111",
+      "D": "1.9000"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: In the auxiliary regression on one other predictor with an intercept, R^2=r^2=0.81. Step 2: VIF=1/(1-0.81)=1/0.19=5.2632."
+  },
+  {
+    "id": "5.3-017",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "Under the standard homoscedastic OLS variance formula, a predictor's VIF is 9. Relative to an orthogonal-predictor comparison with the same error variance and predictor sum of squares, by what factor is its coefficient standard error inflated?",
+    "code_snippet": null,
+    "options": {
+      "A": "3",
+      "B": "1/9",
+      "C": "81",
+      "D": "9"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: VIF multiplies the coefficient variance, here by 9. Step 2: Standard error is the square root of variance, so its inflation factor is sqrt(9)=3."
+  },
+  {
+    "id": "5.3-018",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A logistic regression observation has linear score z=ln(3). What is its predicted positive-class probability?",
+    "code_snippet": null,
+    "options": {
+      "A": "3",
+      "B": "0.25",
+      "C": "0.5",
+      "D": "0.75"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Odds=exp(z)=3. Step 2: Solve p/(1-p)=3, giving p=3/4=0.75."
+  },
+  {
+    "id": "5.3-019",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A binary logistic model has coefficient ln(2) for x. Holding other inputs fixed, what is the effect of increasing x by one unit?",
+    "code_snippet": null,
+    "options": {
+      "A": "Multiply the modeled odds by 2",
+      "B": "Add exactly 0.5 to the modeled probability",
+      "C": "Multiply the modeled probability by 2 for every starting probability",
+      "D": "Leave the log-odds unchanged"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: A one-unit increase adds ln(2) to log-odds. Step 2: Exponentiating multiplies odds by exp(ln(2))=2. The corresponding probability change depends on the starting odds."
+  },
+  {
+    "id": "5.3-020",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A logistic model is logit(p)=ln(3)+x*ln(2). At x=2, what is p?",
+    "code_snippet": null,
+    "options": {
+      "A": "6/7",
+      "B": "1/13",
+      "C": "3/4",
+      "D": "12/13"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: The score is ln(3)+2ln(2)=ln(12). Step 2: Odds=12. Step 3: Convert odds to probability: p=12/(1+12)=12/13."
+  },
+  {
+    "id": "5.3-021",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A logistic classifier uses logit(p)=-ln(3)+x*ln(3) and predicts positive when p>=0.75. For real x, which boundary exactly describes a positive prediction?",
+    "code_snippet": null,
+    "options": {
+      "A": "x>=0.75",
+      "B": "x<=2",
+      "C": "x>=2",
+      "D": "x>=1"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: p>=0.75 is equivalent to logit(p)>=ln(3). Step 2: -ln(3)+x ln(3)>=ln(3). Step 3: Divide by positive ln(3) to obtain x>=2, including equality."
+  },
+  {
+    "id": "5.3-022",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A binary decision-tree node contains three positives and one negative. What is its base-2 entropy, rounded to four decimals?",
+    "code_snippet": null,
+    "options": {
+      "A": "1.0000",
+      "B": "0.8113",
+      "C": "0.3750",
+      "D": "0.1887"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Class proportions are 3/4 and 1/4. Step 2: H=-(3/4)log2(3/4)-(1/4)log2(1/4)=0.811278... Step 3: Round to 0.8113; 0.375 is the Gini impurity, not entropy."
+  },
+  {
+    "id": "5.3-023",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A parent has five positives and five negatives. A split makes a left child of four positives and two negatives and a right child of one positive and three negatives. What is the sample-weighted Gini impurity reduction?",
+    "code_snippet": null,
+    "options": {
+      "A": "1/2",
+      "B": "5/12",
+      "C": "1/12",
+      "D": "1/8"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Parent Gini=1-0.5^2-0.5^2=1/2. Step 2: Child Ginies are 1-(4/6)^2-(2/6)^2=4/9 and 1-(1/4)^2-(3/4)^2=3/8. Step 3: Weighted child impurity=(6/10)(4/9)+(4/10)(3/8)=5/12. Gain=1/2-5/12=1/12."
+  },
+  {
+    "id": "5.3-024",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A parent node has four positives and four negatives. Two equal-size children have class counts (3 positive,1 negative) and (1 positive,3 negative). What is base-2 information gain, rounded to four decimals?",
+    "code_snippet": null,
+    "options": {
+      "A": "0.3750",
+      "B": "0.1887",
+      "C": "0.8113",
+      "D": "1.0000"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Parent entropy is 1 bit. Step 2: Each child has entropy -0.75log2(0.75)-0.25log2(0.25)=0.811278... Step 3: Equal weights leave the same child average, so gain=1-0.811278...=0.1887."
+  },
+  {
+    "id": "5.3-025",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A parent has four positives and four negatives. Split A forms two pure children of size four; split B forms children with counts (3,1) and (1,3). Which split has larger sample-weighted Gini reduction, and what is that reduction?",
+    "code_snippet": null,
+    "options": {
+      "A": "Split B, 0.375",
+      "B": "Split A, 0.125",
+      "C": "Split B, 0.5",
+      "D": "Split A, 0.5"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Parent Gini is 0.5. Step 2: Split A has zero child impurity, so its gain is 0.5. Step 3: Split B has child impurity 1-(3/4)^2-(1/4)^2=0.375, so its gain is 0.125. A is larger."
+  },
+  {
+    "id": "5.3-026",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A regression-tree leaf predicts one constant c for targets 1,2,6 and minimizes sum_i(y_i-c)^2. What prediction minimizes that loss?",
+    "code_snippet": null,
+    "options": {
+      "A": "3",
+      "B": "6",
+      "C": "2",
+      "D": "14"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: Differentiate the loss: -2 sum_i(y_i-c)=0. Step 2: Solve 3c=1+2+6=9, giving c=3. The second derivative is 6>0, so this is the minimum."
+  },
+  {
+    "id": "5.3-027",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A bootstrap sample draws four times independently with replacement from four training observations. What is the probability a particular observation is out of bag?",
+    "code_snippet": null,
+    "options": {
+      "A": "81/256",
+      "B": "1/256",
+      "C": "1/4",
+      "D": "3/4"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: Each draw misses that observation with probability 3/4. Step 2: All four draws must miss it, giving (3/4)^4=81/256. This is an exact finite-sample probability, not the large-n approximation exp(-1)."
+  },
+  {
+    "id": "5.3-028",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "For training observation i, three trees predict positive-class probabilities 0.2,0.9,0.6. Tree 1 trained on a bootstrap containing i, while trees 2 and 3 did not. If OOB prediction is the mean of eligible probabilities, what is i's OOB probability?",
+    "code_snippet": null,
+    "options": {
+      "A": "0.2",
+      "B": "0.9",
+      "C": "17/30",
+      "D": "0.75"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Exclude tree 1 because i trained that tree. Step 2: Average the two out-of-bag predictions: (0.9+0.6)/2=0.75. Using all three would leak i into its own OOB prediction."
+  },
+  {
+    "id": "5.3-029",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "Gradient boosting uses per-observation loss (1/2)(y-F)^2. For targets [3,5] and current predictions [2,2], what are the negative gradients with respect to the predictions?",
+    "code_snippet": null,
+    "options": {
+      "A": "[-1, -3]",
+      "B": "[1, 3]",
+      "C": "[3, 5]",
+      "D": "[2, 2]"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: The prediction derivative is F-y. Step 2: Negate it to obtain y-F. Step 3: Compute [3-2,5-2]=[1,3]; these are the pseudo-residual targets for squared-error boosting."
+  },
+  {
+    "id": "5.3-030",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "A gradient-boosted model updates F_new=F_old+eta*h. At one observation F_old=2, tree output h=5, and eta=0.1. What is F_new?",
+    "code_snippet": null,
+    "options": {
+      "A": "7",
+      "B": "2.5",
+      "C": "5.2",
+      "D": "0.7"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Shrink the new tree contribution: eta*h=0.1(5)=0.5. Step 2: Add it to the existing model: F_new=2+0.5=2.5."
+  },
+  {
+    "id": "5.3-031",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "For loss (1/2)(y-F)^2, a boosting step fits a constant leaf to pseudo-residuals from targets [0,4] and current predictions [1,1]. With learning rate 1, what are the two updated predictions?",
+    "code_snippet": null,
+    "options": {
+      "A": "[1, 3]",
+      "B": "[2, 2]",
+      "C": "[-1, 3]",
+      "D": "[0, 4]"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Pseudo-residuals are [-1,3]. Step 2: A squared-loss constant leaf fits their mean (-1+3)/2=1. Step 3: Add this leaf output to each old prediction, yielding [2,2]; the leaf cannot fit the two residuals separately."
+  },
+  {
+    "id": "5.3-032",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Medium",
+    "question": "For one positive observation y=1, a classifier predicts p=0.8. What is binary negative log-likelihood loss using natural logarithms, rounded to four decimals?",
+    "code_snippet": null,
+    "options": {
+      "A": "0.8000",
+      "B": "1.6094",
+      "C": "0.2231",
+      "D": "0.2000"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Binary loss is -[y ln(p)+(1-y)ln(1-p)]. Step 2: With y=1, only -ln(0.8) remains. Step 3: -ln(0.8)=0.223143..., rounded to 0.2231."
+  },
+  {
+    "id": "5.3-033",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Hard",
+    "question": "Centered predictors X1 and X2 are independent with variance 1, and X3=X1+X2. A regression uses all three columns. Which multicollinearity diagnosis is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "The dependence disappears automatically after centering the columns",
+      "B": "The design is rank-deficient and VIF for X3 is unbounded, even though no predictor pair has absolute correlation 1",
+      "C": "The design is full rank because no predictor pair has absolute correlation 1",
+      "D": "VIF for X3 is 1 because X1 and X2 are independent"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: The exact relation X3-X1-X2=0 makes the three-column design rank-deficient. Step 2: Regressing X3 on X1,X2 gives R^2=1, so 1/(1-R^2) diverges. Step 3: Corr(X1,X3)=Corr(X2,X3)=1/sqrt(2), showing pairwise checks can miss a multivariate dependence."
+  },
+  {
+    "id": "5.3-034",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Hard",
+    "question": "Three centered, standardized predictors have correlation matrix [[1,0.6,0.6],[0.6,1,0],[0.6,0,1]]. What is the first predictor's VIF when an intercept is included?",
+    "code_snippet": null,
+    "options": {
+      "A": "25/7",
+      "B": "25/16",
+      "C": "1",
+      "D": "5/2"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: Predictors 2 and 3 are uncorrelated with one another, so the first predictor's auxiliary R^2 is 0.6^2+0.6^2=0.72. Step 2: VIF=1/(1-0.72)=1/0.28=25/7. Using just one pairwise correlation would understate the result."
+  },
+  {
+    "id": "5.3-035",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Hard",
+    "question": "An unpenalized regression without an intercept has two identical nonzero predictor columns x and x, with response y=3x exactly. Which description of its OLS minimizers is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "No fitted values can exist because the coefficient solution is nonunique",
+      "B": "Only beta1=3,beta2=0 is optimal",
+      "C": "Every coefficient pair is optimal regardless of its sum",
+      "D": "Every pair satisfying beta1+beta2=3 is optimal; coefficients are nonunique but fitted values are unique"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Predictions equal (beta1+beta2)x. Step 2: RSS=(3-beta1-beta2)^2 sum_i x_i^2, and the sum of squares is positive. Step 3: Minimum zero occurs for every pair with sum 3; all such pairs predict 3x."
+  },
+  {
+    "id": "5.3-036",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Hard",
+    "question": "For one observation with x=2,y=1, let z=w*x, p=sigmoid(z), and L=-[y ln(p)+(1-y)ln(1-p)]. At w=0, what are dL/dw and d^2L/dw^2?",
+    "code_snippet": null,
+    "options": {
+      "A": "-1, 1",
+      "B": "1, 1",
+      "C": "-1, 0.5",
+      "D": "-0.5, 0.25"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: At w=0, z=0 and p=0.5. Step 2: Gradient is (p-y)x=(0.5-1)(2)=-1. Step 3: Hessian is p(1-p)x^2=0.5(0.5)(4)=1."
+  },
+  {
+    "id": "5.3-037",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Hard",
+    "question": "An unregularized logistic regression has no intercept and data (x,y)=(-1,0),(1,1). Its coefficient is w. Which statement about the maximum-likelihood estimate is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "No finite minimizer exists; total negative log-likelihood decreases toward zero as w tends to positive infinity",
+      "B": "The unique finite optimum is w=1",
+      "C": "The unique finite optimum is w=0",
+      "D": "The loss decreases toward zero only as w tends to negative infinity"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: For both observations, the negative log-likelihood is ln(1+exp(-w)). Step 2: Total loss is 2ln(1+exp(-w)), with derivative -2/(1+exp(w))<0 for every finite w. Step 3: Loss approaches zero as w grows without bound, so complete separation prevents a finite unregularized optimum."
+  },
+  {
+    "id": "5.3-038",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Hard",
+    "question": "Ten regression-tree prediction errors at a fixed input each have variance 4, and each distinct pair has correlation 0.25. Their equally weighted average is used. What are its variance and the limiting variance as the number of such equally correlated trees tends to infinity?",
+    "code_snippet": null,
+    "options": {
+      "A": "0.4, 0",
+      "B": "1, 0",
+      "C": "1.3, 1",
+      "D": "4, 1"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Pair covariance is 0.25(4)=1. Step 2: Average variance is [10(4)+2(45)(1)]/100=1.3. Step 3: For T trees it is 4[0.25+0.75/T], which approaches 1, so correlation creates a nonzero averaging floor."
+  },
+  {
+    "id": "5.3-039",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Hard",
+    "question": "For one fixed XGBoost leaf, the second-order objective contribution, excluding constants, is Q(w)=G*w+(1/2)(H+lambda)*w^2. With G=-6,H=2,lambda=1 and no L1 penalty or leaf-count charge, what are the optimal leaf weight and objective reduction Q(0)-Q(w*)?",
+    "code_snippet": null,
+    "options": {
+      "A": "3, 9",
+      "B": "2, 6",
+      "C": "2, 12",
+      "D": "-2, 6"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Differentiate Q: Q'(w)=G+(H+lambda)w=-6+3w. Step 2: Set it to zero, giving w*=2; curvature 3>0 ensures a minimum. Step 3: Q(2)=-12+6=-6 and Q(0)=0, so the reduction is 6."
+  },
+  {
+    "id": "5.3-040",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.3",
+    "subpart_name": "Supervised Machine Learning Algorithms",
+    "difficulty": "Hard",
+    "question": "For an XGBoost candidate split, use Gain=(1/2)[G_L^2/(H_L+lambda)+G_R^2/(H_R+lambda)-(G_L+G_R)^2/(H_L+H_R+lambda)]-gamma. Given G_L=-4,H_L=2,G_R=2,H_R=2,lambda=0,gamma=1, what is Gain?",
+    "code_snippet": null,
+    "options": {
+      "A": "-3.5",
+      "B": "4.5",
+      "C": "3.5",
+      "D": "7"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Left and right terms are 16/2=8 and 4/2=2. Step 2: The parent term is (-4+2)^2/(2+2)=4/4=1. Step 3: Gain=(1/2)(8+2-1)-1=4.5-1=3.5. The positive result favors this split under the stated objective."
+  }
+]

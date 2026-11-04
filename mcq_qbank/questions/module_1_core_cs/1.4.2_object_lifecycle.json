@@ -1,0 +1,512 @@
+[
+  {
+    "id": "1.4.2-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct A { int x; A():x(2){} explicit A(int v):x(v){} };\nint main() { A a; A b(7); std::cout<<a.x<<\" \"<<b.x; }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "0 7",
+      "C": "2 2",
+      "D": "2 7"
+    },
+    "correct_answer": "D",
+    "explanation": "Default construction selects A(), while direct initialization with 7 selects the parameterized constructor. Each constructor initializes its own object's field."
+  },
+  {
+    "id": "1.4.2-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct A { explicit A(int x){} };\nint main() { A a; std::cout<<1; }\n",
+    "options": {
+      "A": "Undefined behavior",
+      "B": "1",
+      "C": "Compilation error",
+      "D": "0"
+    },
+    "correct_answer": "C",
+    "explanation": "Declaring A(int) prevents automatic generation of a parameterless default constructor. The declaration A a requires such a constructor, so the program is ill-formed."
+  },
+  {
+    "id": "1.4.2-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct A { int x; A(int v):x(v){std::cout<<\"P \";} A(const A& a):x(a.x){std::cout<<\"C \";} };\nint main() { A a(3); A b=a; std::cout<<b.x; }\n",
+    "options": {
+      "A": "P 3",
+      "B": "P P 3",
+      "C": "P C 3",
+      "D": "Compilation error"
+    },
+    "correct_answer": "C",
+    "explanation": "Constructing a prints P. Initializing b from existing lvalue a invokes the copy constructor, prints C, and copies x=3; this is not assignment to an already constructed b."
+  },
+  {
+    "id": "1.4.2-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Easy",
+    "question": "Java 17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { int[] a={1}; int[] b=a; b[0]=9; System.out.print(a[0]); }\n}\n\n",
+    "options": {
+      "A": "9",
+      "B": "1",
+      "C": "Compilation error",
+      "D": "0"
+    },
+    "correct_answer": "A",
+    "explanation": "Both variables reference the same array object. Reference assignment is not an array clone, so the mutation through b is visible through a."
+  },
+  {
+    "id": "1.4.2-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct T { char c; T(char x):c(x){std::cout<<c<<\" \";} ~T(){std::cout<<\"~\"<<c<<\" \";} };\nint main() { T a('A'); { T b('B'); } }\n",
+    "options": {
+      "A": "A B",
+      "B": "A ~A B ~B",
+      "C": "A B ~B ~A",
+      "D": "A B ~A ~B"
+    },
+    "correct_answer": "C",
+    "explanation": "b's inner scope ends first, destroying b before a. At the end of main, a is destroyed. Automatic object lifetimes follow their nested scopes."
+  },
+  {
+    "id": "1.4.2-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Easy",
+    "question": "Java 17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { Box x=new Box(); System.out.print(x.n+\" \"+x.b+\" \"+(x.ref==null)); }\n}\nclass Box { int n; boolean b; Object ref; }\n",
+    "options": {
+      "A": "0 false false",
+      "B": "0 true true",
+      "C": "Compilation error",
+      "D": "0 false true"
+    },
+    "correct_answer": "D",
+    "explanation": "Instance fields receive default values before constructor logic: integer zero, boolean false, and reference null. The final expression tests that the reference field is null."
+  },
+  {
+    "id": "1.4.2-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Easy",
+    "question": "Java 17 reachability model: one object O has two strong local root references a and b. No other references exist. Set a=null while b still refers to O. Is O eligible for garbage collection solely because of this assignment?",
+    "code_snippet": null,
+    "options": {
+      "A": "Yes; clearing any one reference immediately makes an object unreachable",
+      "B": "It must be collected immediately before the next statement",
+      "C": "No; O remains strongly reachable through b",
+      "D": "Yes; an object can have only one GC root"
+    },
+    "correct_answer": "C",
+    "explanation": "Reachability is determined from all strong roots, not one chosen variable. b still provides a root-to-object path. Neither eligibility nor a particular collection time follows from setting only a to null."
+  },
+  {
+    "id": "1.4.2-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nint* f(){int x=5; return &x;}\nint main() { int* p=f(); std::cout<<*p; }\n",
+    "options": {
+      "A": "Undefined behavior",
+      "B": "5",
+      "C": "0",
+      "D": "Compilation error"
+    },
+    "correct_answer": "A",
+    "explanation": "x has automatic storage duration and its lifetime ends when f returns. Dereferencing the returned dangling pointer does not have a predictable value. A compiler warning does not make this valid memory access."
+  },
+  {
+    "id": "1.4.2-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Easy",
+    "question": "C++17. A pointer p was obtained from new int[3] and still designates that allocated array. Which single deallocation expression correctly matches this allocation?",
+    "code_snippet": null,
+    "options": {
+      "A": "std::free(p)",
+      "B": "No deallocation is possible until program termination",
+      "C": "delete p",
+      "D": "delete[] p"
+    },
+    "correct_answer": "D",
+    "explanation": "An array allocated with new[] must be matched by delete[]. Scalar delete and free do not match this allocation mechanism; the owner can release the array before program termination."
+  },
+  {
+    "id": "1.4.2-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct B { B(){std::cout<<\"B \";} ~B(){std::cout<<\"~B \";} }; struct D:B { D(){std::cout<<\"D \";} ~D(){std::cout<<\"~D \";} };\nint main() { D d; }\n",
+    "options": {
+      "A": "B D ~D ~B",
+      "B": "B D ~B ~D",
+      "C": "D B ~B ~D",
+      "D": "B ~B D ~D"
+    },
+    "correct_answer": "A",
+    "explanation": "The base subobject is constructed before the derived constructor body. Destruction reverses that relationship: the derived destructor body runs before the base destructor."
+  },
+  {
+    "id": "1.4.2-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct M { M(int x){std::cout<<x<<\" \";} }; struct C { M first; M second; C():second(2),first(1){std::cout<<\"C \";} };\nint main() { C c; }\n",
+    "options": {
+      "A": "C 1 2",
+      "B": "1 2 C",
+      "C": "2 1 C",
+      "D": "Compilation error"
+    },
+    "correct_answer": "B",
+    "explanation": "Member initialization follows declaration order, not the textual order of the constructor initializer list. first is initialized before second, and the constructor body follows both."
+  },
+  {
+    "id": "1.4.2-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct B1 { B1(){std::cout<<\"1 \";} ~B1(){std::cout<<\"~1 \";} }; struct B2 { B2(){std::cout<<\"2 \";} ~B2(){std::cout<<\"~2 \";} }; struct D:B1,B2 { D():B2(),B1(){std::cout<<\"D \";} ~D(){std::cout<<\"~D \";} };\nint main() { D d; }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "2 1 D ~D ~1 ~2",
+      "C": "1 2 D ~D ~2 ~1",
+      "D": "1 2 D ~1 ~2 ~D"
+    },
+    "correct_answer": "C",
+    "explanation": "Direct bases are initialized in their base-specifier order B1,B2, despite the reversed initializer list. Destruction runs the derived body and then the bases in reverse order."
+  },
+  {
+    "id": "1.4.2-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct View { int* p; explicit View(int* x):p(x){} };\nint main() { int* p=new int(5); View a(p); View b=a; *b.p=9; std::cout<<*a.p; delete p; }\n",
+    "options": {
+      "A": "Undefined behavior",
+      "B": "9",
+      "C": "5",
+      "D": "Compilation error"
+    },
+    "correct_answer": "B",
+    "explanation": "The default memberwise copy copies the pointer, so both non-owning View objects address the same live int. It is deleted exactly once after the read; no View destructor performs another delete."
+  },
+  {
+    "id": "1.4.2-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct Owner { int* p; explicit Owner(int x):p(new int(x)){} Owner(const Owner& o):p(new int(*o.p)){} ~Owner(){delete p;} };\nint main() { Owner a(5); Owner b=a; *b.p=8; std::cout<<*a.p<<\" \"<<*b.p; }\n",
+    "options": {
+      "A": "Undefined behavior",
+      "B": "5 5",
+      "C": "8 8",
+      "D": "5 8"
+    },
+    "correct_answer": "D",
+    "explanation": "The copy constructor allocates a new int and copies the value. a and b therefore own different allocations, so b's mutation does not change a and each destructor releases its own allocation."
+  },
+  {
+    "id": "1.4.2-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct X { X(){} X(const X&){std::cout<<\"C \";} X& operator=(const X&){std::cout<<\"A \";return *this;} };\nint main() { X x; X y=x; X z; z=x; }\n",
+    "options": {
+      "A": "C A",
+      "B": "A A",
+      "C": "A C",
+      "D": "C C"
+    },
+    "correct_answer": "A",
+    "explanation": "X y=x initializes a new object and uses the copy constructor. z=x updates an existing object and uses the copy-assignment operator. They are separate lifecycle operations."
+  },
+  {
+    "id": "1.4.2-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct T { inline static int destroyed=0; ~T(){++destroyed;} }; void f(){T* p=new T; (void)p;}\nint main() { f(); std::cout<<T::destroyed; }\n",
+    "options": {
+      "A": "0",
+      "B": "Compilation error",
+      "C": "Undefined behavior",
+      "D": "1"
+    },
+    "correct_answer": "A",
+    "explanation": "Only the local pointer variable ends its lifetime when f returns. No delete destroys the dynamically allocated T, so destroyed stays zero and this allocation is leaked. Process memory reclamation is not a C++ destructor call."
+  },
+  {
+    "id": "1.4.2-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\n#include <memory>\nstruct T { int id; T(int x):id(x){std::cout<<id<<\" \";} ~T(){std::cout<<\"~\"<<id<<\" \";} };\nint main() { std::unique_ptr<T> p(new T(1)); p.reset(new T(2)); }\n",
+    "options": {
+      "A": "1 2 ~2 ~1",
+      "B": "1 2 ~1 ~2",
+      "C": "1 ~1 2 ~2",
+      "D": "Undefined behavior"
+    },
+    "correct_answer": "B",
+    "explanation": "The new T(2) argument is constructed before reset executes. reset then deletes the old T(1). The unique_ptr later destroys its current T(2) when the owner leaves scope."
+  },
+  {
+    "id": "1.4.2-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "Java 17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "public class Main {\nstatic void f(Box b){b.x=2; b=new Box(); b.x=3;}\n public static void main(String[] args) { Box a=new Box(); f(a); System.out.print(a.x); }\n}\nclass Box { int x=1; }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "3",
+      "C": "1",
+      "D": "2"
+    },
+    "correct_answer": "D",
+    "explanation": "The parameter receives a copy of a's reference. Mutating the shared object sets a.x=2, but rebinding b to a new object does not rebind caller variable a."
+  },
+  {
+    "id": "1.4.2-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "Java 17 reachability model: objects A and B reference each other. Their only strong root references are variables a and b, which are both set to null. There are no finalization, reference-queue, or native-root complications, and no collector runs during the assignments. How many of these two objects are now unreachable and eligible for collection?",
+    "code_snippet": null,
+    "options": {
+      "A": "1",
+      "B": "2",
+      "C": "They remain reachable solely because the cycle exists",
+      "D": "0"
+    },
+    "correct_answer": "B",
+    "explanation": "An isolated cycle does not keep itself reachable from a GC root. After both external roots disappear, neither object has a root path, so both are eligible; this does not promise when a collector will run."
+  },
+  {
+    "id": "1.4.2-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "Java 17 reachability model: root a points to O1 and root b points to O2. Both O1 and O2 point to O3; no other references exist. After a=null, which object alone becomes unreachable while b remains unchanged?",
+    "code_snippet": null,
+    "options": {
+      "A": "O1",
+      "B": "O3",
+      "C": "O2",
+      "D": "All three objects"
+    },
+    "correct_answer": "A",
+    "explanation": "O2 remains rooted through b and still reaches O3. Only O1 loses every root-to-object path. Sharing a child does not make that child unreachable when another rooted parent remains."
+  },
+  {
+    "id": "1.4.2-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct X { X(){} X(X&){std::cout<<\"N \";} X(const X&){std::cout<<\"C \";} };\nint main() { X a; const X ca; X b(a); X c(ca); }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "N N",
+      "C": "C C",
+      "D": "N C"
+    },
+    "correct_answer": "D",
+    "explanation": "For the non-const lvalue a, X(X&) is the better matching copy constructor. A const lvalue cannot bind to X&, so copying ca selects X(const X&)."
+  },
+  {
+    "id": "1.4.2-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct M { M(){std::cout<<\"M \";} ~M(){std::cout<<\"~M \";} }; struct C { M m; C(){std::cout<<\"C \";throw 1;} ~C(){std::cout<<\"~C \";} };\nint main() { try {C c;} catch(int){std::cout<<\"E \";} }\n",
+    "options": {
+      "A": "M C E",
+      "B": "Compilation error",
+      "C": "M C ~C ~M E",
+      "D": "M C ~M E"
+    },
+    "correct_answer": "D",
+    "explanation": "The completed member m is destroyed when C's constructor throws. C itself never completed construction, so its destructor body does not run. The int exception then reaches the handler."
+  },
+  {
+    "id": "1.4.2-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct T { inline static int next=0; int id; T():id(++next){std::cout<<id<<\" \";} ~T(){std::cout<<\"~\"<<id<<\" \";} };\nint main() { T* a=new T[3]; delete[] a; }\n",
+    "options": {
+      "A": "1 2 3",
+      "B": "1 2 3 ~3 ~2 ~1",
+      "C": "1 ~1 2 ~2 3 ~3",
+      "D": "1 2 3 ~1 ~2 ~3"
+    },
+    "correct_answer": "B",
+    "explanation": "Array elements are constructed in increasing index order and destroyed in reverse. The matching delete[] invokes all three destructors, rather than only one or none."
+  },
+  {
+    "id": "1.4.2-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct T { int n; T(int x):n(x){std::cout<<n<<\" \";} ~T(){std::cout<<\"~\"<<n<<\" \";} };\nint main() { const T& r=T(7); (void)r; std::cout<<\"M \"; }\n",
+    "options": {
+      "A": "Undefined behavior",
+      "B": "7 M ~7",
+      "C": "7 ~7 M",
+      "D": "M 7 ~7"
+    },
+    "correct_answer": "B",
+    "explanation": "Binding this temporary directly to a local const reference extends its lifetime to that reference's scope. The object therefore survives the M output and is destroyed at the end of main."
+  },
+  {
+    "id": "1.4.2-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct V { explicit V(int x){std::cout<<x<<\" \";} }; struct L:virtual V { L():V(1){std::cout<<\"L \";} }; struct R:virtual V { R():V(2){std::cout<<\"R \";} }; struct D:L,R { D():V(9),L(),R(){std::cout<<\"D \";} };\nint main() { D d; }\n",
+    "options": {
+      "A": "Compilation error",
+      "B": "9 L R D",
+      "C": "1 L 2 R D",
+      "D": "9 1 L 2 R D"
+    },
+    "correct_answer": "B",
+    "explanation": "The most-derived D initializes the shared virtual V base exactly once using V(9). The V initializers in L and R do not construct additional V subobjects while they are bases of this D."
+  },
+  {
+    "id": "1.4.2-026",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct M { M(int x){std::cout<<\"M\"<<x<<\" \";} ~M(){std::cout<<\"~M \";} }; struct X { M m; X():X(5){std::cout<<\"D \";} X(int x):m(x){std::cout<<\"X\"<<x<<\" \";} ~X(){std::cout<<\"~X \";} };\nint main() { X x; }\n",
+    "options": {
+      "A": "M5 X5 D ~M ~X",
+      "B": "M5 X5 M5 D ~X ~M",
+      "C": "D M5 X5 ~X ~M",
+      "D": "M5 X5 D ~X ~M"
+    },
+    "correct_answer": "D",
+    "explanation": "The delegating constructor first completes its target X(5), including m's initialization and the target body. The delegating body then prints D. Ordinary destruction runs X's destructor before member m's destructor; delegation does not create a second m."
+  },
+  {
+    "id": "1.4.2-027",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct X { X(){std::cout<<\"C \";} X(const X&)=delete; X(X&&)=delete; ~X(){std::cout<<\"D \";} }; X make(){return X();}\nint main() { X x=make(); std::cout<<\"M \"; }\n",
+    "options": {
+      "A": "C M D",
+      "B": "C C M D D",
+      "C": "Compilation error",
+      "D": "C D M"
+    },
+    "correct_answer": "A",
+    "explanation": "C++17 guaranteed prvalue copy elision constructs the result directly in its destination for this return X() form. No copy or move is required despite both being deleted. One object is constructed and later destroyed."
+  },
+  {
+    "id": "1.4.2-028",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Hard",
+    "question": "Java 17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "public class Main {\n\n public static void main(String[] args) { new D(); }\n}\nclass B { B(){f();} void f(){} } class D extends B { int x=7; void f(){System.out.print(x+\" \");} D(){System.out.print(x);} }\n",
+    "options": {
+      "A": "7 7",
+      "B": "0 7",
+      "C": "Compilation error",
+      "D": "0 0"
+    },
+    "correct_answer": "B",
+    "explanation": "During B's constructor, dynamic dispatch reaches D.f before D's field initializer has run, so x still has its default zero. After the superclass constructor completes, x is initialized to 7 before D's constructor body prints it."
+  },
+  {
+    "id": "1.4.2-029",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed or which listed language-level outcome applies? Assume allocations succeed; output is compared through program termination.",
+    "code_snippet": "#include <iostream>\nstruct Owner { int* p; Owner(int v):p(new int(v)){} Owner(const Owner& o):p(new int(*o.p)){} ~Owner(){delete p;} };\nint main() { Owner a(1),b(2); b=a; }\n",
+    "options": {
+      "A": "1 2",
+      "B": "Compilation error",
+      "C": "Undefined behavior",
+      "D": "Both owned integers are safely released exactly once"
+    },
+    "correct_answer": "C",
+    "explanation": "No copy-assignment operator was defined, so assignment memberwise-copies a's pointer over b's pointer. b's original allocation leaks, and a and b then both delete the same allocation. A deep-copy constructor alone does not repair ownership during assignment."
+  },
+  {
+    "id": "1.4.2-030",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.4.2",
+    "subpart_name": "Object Lifecycle & Memory Management",
+    "difficulty": "Hard",
+    "question": "Java 17 reachability model: four objects A,B,C,D exist, with strong roots r->A and s->D. Edges are A->B, B->C, C->B, and D->C. No other roots/references exist, and no collector runs during the steps. First set r=null, then s=null. What is the pair (newly unreachable objects after the first step, total unreachable original objects after both steps)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(3,4)",
+      "B": "(1,1)",
+      "C": "(1,4)",
+      "D": "(0,2)"
+    },
+    "correct_answer": "C",
+    "explanation": "After r is cleared, A alone is unreachable: s reaches D,C,B despite the B-C cycle. After s is also cleared, no root reaches any original object, so all four are unreachable. The counts concern reachability, not a promised collection schedule."
+  }
+]

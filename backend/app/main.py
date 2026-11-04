@@ -16,6 +16,7 @@ from backend.app.api import (
 from backend.app.api.settings import router as settings_router
 from backend.app.api.candidate import router as candidate_router
 from backend.app.api.lc_practice import router as lc_practice_router
+from backend.app.api.mcq_practice import router as mcq_practice_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -50,6 +51,7 @@ app.include_router(candidate_router)
 app.include_router(role_profiles_router)
 app.include_router(practice_router)
 app.include_router(lc_practice_router)
+app.include_router(mcq_practice_router)
 app.include_router(mock_oa_router)
 app.include_router(interview_router)
 app.include_router(admin_router)

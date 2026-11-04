@@ -1,0 +1,767 @@
+[
+  {
+    "id": "2.5-001",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "In a zero-based binary heap array, what is the left-child index of node index 4, assuming that child exists?",
+    "code_snippet": null,
+    "options": {
+      "A": "10",
+      "B": "9",
+      "C": "2",
+      "D": "8"
+    },
+    "correct_answer": "B",
+    "explanation": "The left child of i is 2i+1; for i=4 this is 9."
+  },
+  {
+    "id": "2.5-002",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "In a zero-based binary heap, what is the parent index of node index 10?",
+    "code_snippet": null,
+    "options": {
+      "A": "9",
+      "B": "5",
+      "C": "3",
+      "D": "4"
+    },
+    "correct_answer": "D",
+    "explanation": "For a nonroot node, parent is floor((i-1)/2)=floor(9/2)=4."
+  },
+  {
+    "id": "2.5-003",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "A binary heap instead uses one-based array indices. What are the child indices of node 3?",
+    "code_snippet": null,
+    "options": {
+      "A": "(7,8)",
+      "B": "(5,6)",
+      "C": "(1,2)",
+      "D": "(6,7)"
+    },
+    "correct_answer": "D",
+    "explanation": "Under one-based indexing the children are 2i and 2i+1. Mixing this with zero-based formulas shifts both incorrectly."
+  },
+  {
+    "id": "2.5-004",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "Which zero-based array satisfies the binary min-heap parent-child ordering?",
+    "code_snippet": null,
+    "options": {
+      "A": "[1,2,3,0,4]",
+      "B": "[1,3,2,7,4]",
+      "C": "[1,4,2,3,5]",
+      "D": "[2,1,3,7,4]"
+    },
+    "correct_answer": "B",
+    "explanation": "Every parent in the correct array is no greater than its children. The other arrays each contain a child smaller than its parent."
+  },
+  {
+    "id": "2.5-005",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "Which array satisfies the binary max-heap parent-child ordering?",
+    "code_snippet": null,
+    "options": {
+      "A": "[9,7,8,3,5]",
+      "B": "[9,8,7,10,5]",
+      "C": "[8,9,7,3,5]",
+      "D": "[9,6,8,7,5]"
+    },
+    "correct_answer": "A",
+    "explanation": "Each parent must be at least its children. A large root alone does not establish the required order deeper in the tree."
+  },
+  {
+    "id": "2.5-006",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "For a zero-based complete binary heap with 10 elements, what is the last nonleaf index?",
+    "code_snippet": null,
+    "options": {
+      "A": "9",
+      "B": "3",
+      "C": "5",
+      "D": "4"
+    },
+    "correct_answer": "D",
+    "explanation": "Nodes at indices floor(n/2) through n-1 are leaves. The last nonleaf is floor(10/2)-1=4."
+  },
+  {
+    "id": "2.5-007",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "import heapq\na=[2,5,4]\nheapq.heappush(a,1)\nprint(a)",
+    "options": {
+      "A": "[2, 1, 4, 5]",
+      "B": "[1, 2, 4, 5]",
+      "C": "[1, 5, 4, 2]",
+      "D": "[1, 2, 5, 4]"
+    },
+    "correct_answer": "B",
+    "explanation": "The inserted 1 rises from index 3 past 5 and 2. It becomes root while those displaced ancestors move down its path."
+  },
+  {
+    "id": "2.5-008",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "import heapq\na=[1,3,2,7,6,4]\nx=heapq.heappop(a)\nprint(x,a)",
+    "options": {
+      "A": "1 [3, 4, 2, 7, 6]",
+      "B": "1 [2, 3, 4, 7, 6]",
+      "C": "2 [1, 3, 4, 7, 6]",
+      "D": "1 [2, 3, 7, 6, 4]"
+    },
+    "correct_answer": "B",
+    "explanation": "Removing root 1 replaces it using the last element and repairs the min order. The smaller child 2 rises, leaving 4 in its former subtree."
+  },
+  {
+    "id": "2.5-009",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "A binary min-heap stores n arbitrary keys and has no auxiliary maximum index. What is the tight worst-case time to find its maximum key?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n)",
+      "B": "Theta(log n)",
+      "C": "Theta(n log n)",
+      "D": "Theta(1)"
+    },
+    "correct_answer": "A",
+    "explanation": "The maximum can be among linearly many leaves. Min order does not sort those leaves or identify a unique last-array position as maximum."
+  },
+  {
+    "id": "2.5-010",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "An ordinary hash table currently contains 12 live keys across 20 buckets. Using load factor alpha=n/m, what is alpha?",
+    "code_snippet": null,
+    "options": {
+      "A": "1.6667",
+      "B": "0.6",
+      "C": "12",
+      "D": "0.4"
+    },
+    "correct_answer": "B",
+    "explanation": "Load factor is live key count divided by bucket count: 12/20=0.6."
+  },
+  {
+    "id": "2.5-011",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "A hash function is h(k)=k mod 7 for nonnegative integer keys. What is the home slot of key 23?",
+    "code_snippet": null,
+    "options": {
+      "A": "4",
+      "B": "2",
+      "C": "3",
+      "D": "0"
+    },
+    "correct_answer": "B",
+    "explanation": "23=3*7+2, so its remainder and zero-based home slot are 2."
+  },
+  {
+    "id": "2.5-012",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "A size-7 open-addressed table uses h(k)=k mod 7 and linear probing with increment one. Slots 3 and 4 are occupied; slot 5 is empty. Inserting key 24 starts at its home slot. Where is it placed?",
+    "code_snippet": null,
+    "options": {
+      "A": "3",
+      "B": "5",
+      "C": "6",
+      "D": "4"
+    },
+    "correct_answer": "B",
+    "explanation": "24 hashes to 3, then probes 4, then reaches the first empty slot at 5."
+  },
+  {
+    "id": "2.5-013",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "A separate-chaining hash table has 10 buckets and 15 distinct keys. Which statement correctly interprets its load factor?",
+    "code_snippet": null,
+    "options": {
+      "A": "Exactly five keys must be discarded",
+      "B": "Alpha is 0.6667 because buckets divide keys",
+      "C": "Alpha is 1.5, which is allowed with chaining",
+      "D": "Alpha cannot exceed 1 under any collision scheme"
+    },
+    "correct_answer": "C",
+    "explanation": "Chains may hold multiple keys per bucket, so n/m can exceed one without exhausting a one-entry-per-slot limit."
+  },
+  {
+    "id": "2.5-014",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Easy",
+    "question": "For a binary min-heap with n>=2, what are the tight worst-case bounds for (peek minimum, insert a key)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(Theta(1),Theta(n log n))",
+      "B": "(Theta(n),Theta(n))",
+      "C": "(Theta(1),Theta(log n))",
+      "D": "(Theta(log n),Theta(1))"
+    },
+    "correct_answer": "C",
+    "explanation": "The minimum is at the root. Insertion may move along one root-to-leaf path whose length is logarithmic."
+  },
+  {
+    "id": "2.5-015",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "def down(a,i,size):\n    while 2*i+1<size:\n        c=2*i+1\n        if c+1<size and a[c+1]<a[c]:\n            c+=1\n        if a[i]<=a[c]:\n            break\n        a[i],a[c]=a[c],a[i]\n        i=c\na=[9,5,6,2,3]\nfor i in range(len(a)//2-1,-1,-1):\n    down(a,i,len(a))\nprint(a)",
+    "options": {
+      "A": "[2, 3, 6, 5, 9]",
+      "B": "[2, 3, 6, 9, 5]",
+      "C": "[9, 5, 6, 2, 3]",
+      "D": "[2, 5, 3, 9, 6]"
+    },
+    "correct_answer": "A",
+    "explanation": "Bottom-up sift-down starts with the last nonleaf. It first repairs subtree 5, then the root, yielding the stated valid heap rather than the repeated-insertion layout."
+  },
+  {
+    "id": "2.5-016",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "import heapq\na=[]\nfor x in [9,5,6,2,3]:\n    heapq.heappush(a,x)\nprint(a)",
+    "options": {
+      "A": "[2, 3, 6, 5, 9]",
+      "B": "[3, 2, 6, 9, 5]",
+      "C": "[2, 5, 3, 9, 6]",
+      "D": "[2, 3, 6, 9, 5]"
+    },
+    "correct_answer": "D",
+    "explanation": "Each new item sifts upward at its insertion time. A heap representation need not be unique; a valid bottom-up layout can differ from this deterministic sequence."
+  },
+  {
+    "id": "2.5-017",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "def down(a,i,size):\n    while 2*i+1<size:\n        c=2*i+1\n        if c+1<size and a[c+1]<a[c]:\n            c+=1\n        if a[i]<=a[c]:\n            break\n        a[i],a[c]=a[c],a[i]\n        i=c\na=[1,3,2,7,6,4,5]\na[1]=10\ndown(a,1,len(a))\nprint(a)",
+    "options": {
+      "A": "[1, 6, 2, 7, 10, 4, 5]",
+      "B": "[1, 7, 2, 10, 6, 4, 5]",
+      "C": "[2, 6, 1, 7, 10, 4, 5]",
+      "D": "[1, 10, 2, 7, 6, 4, 5]"
+    },
+    "correct_answer": "A",
+    "explanation": "Increasing a min-heap key can violate order with its children. The smaller child 6 rises into index 1; the replacement 10 stops at its new leaf position."
+  },
+  {
+    "id": "2.5-018",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "a=[1,4,3,8,5,12,7]\ni=5\na[i]=0\nwhile i>0 and a[(i-1)//2]>a[i]:\n    p=(i-1)//2\n    a[i],a[p]=a[p],a[i]\n    i=p\nprint(a)",
+    "options": {
+      "A": "[0, 1, 3, 8, 5, 4, 7]",
+      "B": "[0, 4, 3, 8, 5, 1, 7]",
+      "C": "[1, 4, 0, 8, 5, 3, 7]",
+      "D": "[0, 4, 1, 8, 5, 3, 7]"
+    },
+    "correct_answer": "D",
+    "explanation": "The decreased key rises through parent indices 2 and 0. Values 3 and 1 move down the same path while unrelated subtrees retain their positions."
+  },
+  {
+    "id": "2.5-019",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "import heapq\na=[7,2,9,1,5]\nheapq.heapify(a)\nfor _ in range(3):\n    x=heapq.heappop(a)\nprint(x)",
+    "options": {
+      "A": "9",
+      "B": "2",
+      "C": "7",
+      "D": "5"
+    },
+    "correct_answer": "D",
+    "explanation": "The three extracted minima are 1,2,5. Repeated minimum extraction returns sorted order, regardless of the original input order."
+  },
+  {
+    "id": "2.5-020",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "import heapq\nh=[]\nfor x in [5,1,9,3,7]:\n    if len(h)<3:\n        heapq.heappush(h,x)\n    elif x>h[0]:\n        heapq.heapreplace(h,x)\nprint(sorted(h))",
+    "options": {
+      "A": "[3, 7, 9]",
+      "B": "[1, 3, 5]",
+      "C": "[5, 7, 9]",
+      "D": "[1, 7, 9]"
+    },
+    "correct_answer": "C",
+    "explanation": "The root is the smallest retained candidate among the current three largest. Smaller arrivals are ignored; larger ones replace that boundary."
+  },
+  {
+    "id": "2.5-021",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "a=[9,7,8,3,5,2]\na[0],a[-1]=a[-1],a[0]\nsize=len(a)-1\ni=0\nwhile 2*i+1<size:\n    c=2*i+1\n    if c+1<size and a[c+1]>a[c]:\n        c+=1\n    if a[i]>=a[c]:\n        break\n    a[i],a[c]=a[c],a[i]\n    i=c\nprint(a)",
+    "options": {
+      "A": "[8, 7, 2, 3, 5, 9]",
+      "B": "[8, 7, 9, 3, 5, 2]",
+      "C": "[9, 7, 8, 3, 5, 2]",
+      "D": "[7, 5, 8, 3, 2, 9]"
+    },
+    "correct_answer": "A",
+    "explanation": "A max-heapsort extraction fixes 9 at the final position. Sift-down repairs only the remaining prefix, whose larger root child is 8."
+  },
+  {
+    "id": "2.5-022",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "For n arbitrary keys, compare worst-case construction using bottom-up binary heapify with construction by n repeated binary-heap insertions. Which tight pair is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "(Theta(n),Theta(n log n))",
+      "B": "(Theta(n),Theta(n))",
+      "C": "(Theta(n^2),Theta(n log n))",
+      "D": "(Theta(n log n),Theta(n))"
+    },
+    "correct_answer": "A",
+    "explanation": "Most heapify nodes are near leaves and require little work, giving a linear height-weighted sum. Repeated insertion has inputs where each key rises through logarithmically many levels."
+  },
+  {
+    "id": "2.5-023",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "A min-heap has 15 distinct keys. To find the maximum by checking only candidates that can hold it, how many leaf keys may need examination in the worst case?",
+    "code_snippet": null,
+    "options": {
+      "A": "8",
+      "B": "4",
+      "C": "7",
+      "D": "15"
+    },
+    "correct_answer": "A",
+    "explanation": "Every internal node has a strictly larger child somewhere below it, so a global maximum is a leaf. Zero-based indices 7..14 are the eight leaves, whose mutual order is unconstrained."
+  },
+  {
+    "id": "2.5-024",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "A complete binary heap has 100 elements. Height counts edges from root to deepest leaf. What is its height?",
+    "code_snippet": null,
+    "options": {
+      "A": "6",
+      "B": "5",
+      "C": "99",
+      "D": "7"
+    },
+    "correct_answer": "A",
+    "explanation": "Height is floor(log2 n). Since 64<=100<128, the deepest occupied level is 6."
+  },
+  {
+    "id": "2.5-025",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "m=7\nt=[None]*m\nfor k in [10,17,24,31]:\n    i=k%m\n    while t[i] is not None:\n        i=(i+1)%m\n    t[i]=k\ni=31%m\nprobes=1\nwhile t[i]!=31:\n    i=(i+1)%m\n    probes+=1\nprint(i,probes)",
+    "options": {
+      "A": "6 3",
+      "B": "6 4",
+      "C": "3 1",
+      "D": "0 5"
+    },
+    "correct_answer": "B",
+    "explanation": "All four keys share home slot 3 and occupy 3,4,5,6. Successful search for 31 inspects all four positions, including the matching one."
+  },
+  {
+    "id": "2.5-026",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "m=5\nt=[None]*m\nfor k in [4,9,14,3]:\n    i=k%m\n    while t[i] is not None:\n        i=(i+1)%m\n    t[i]=k\ni=19%m\nprobes=1\nwhile t[i] is not None:\n    i=(i+1)%m\n    probes+=1\nprint(probes)",
+    "options": {
+      "A": "4",
+      "B": "5",
+      "C": "3",
+      "D": "1"
+    },
+    "correct_answer": "A",
+    "explanation": "Search for absent 19 probes home 4, then 0,1, and empty 2. The stopping empty slot is counted, and probing wraps around the array boundary."
+  },
+  {
+    "id": "2.5-027",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "t=[0,\"D\",14,None,None,None,None]\ni=14%7\nprobes=1\nwhile t[i] is not None and t[i]!=14:\n    i=(i+1)%7\n    probes+=1\nprint(i,probes)",
+    "options": {
+      "A": "2 3",
+      "B": "1 2",
+      "C": "2 2",
+      "D": "0 1"
+    },
+    "correct_answer": "A",
+    "explanation": "D is a tombstone for a deleted colliding key. Search must continue past it to slot 2; treating it as never-used empty would incorrectly report absence."
+  },
+  {
+    "id": "2.5-028",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "t=[0,\"D\",14,None,None,None,None]\nk=14\nfirst_deleted=None\nfor step in range(7):\n    i=(k%7+step)%7\n    if t[i]==k:\n        break\n    if t[i]==\"D\" and first_deleted is None:\n        first_deleted=i\n    if t[i] is None:\n        t[first_deleted if first_deleted is not None else i]=k\n        break\nprint(t[1],t[2],sum(x not in (None,\"D\") for x in t))",
+    "options": {
+      "A": "14 14 3",
+      "B": "14 None 2",
+      "C": "D 14 3",
+      "D": "D 14 2"
+    },
+    "correct_answer": "D",
+    "explanation": "Insertion into a set remembers the tombstone but continues checking for an existing key. It finds 14 at slot 2 and creates no duplicate, leaving two live keys."
+  },
+  {
+    "id": "2.5-029",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "m=11\nt=[None]*m\nslots=[]\nfor k in [22,33,44,55]:\n    for i in range(m):\n        slot=(k%m+i*i)%m\n        if t[slot] is None:\n            t[slot]=k\n            slots.append(slot)\n            break\nprint(slots)",
+    "options": {
+      "A": "[0, 1, 4, 5]",
+      "B": "[0, 1, 2, 3]",
+      "C": "[0, 1, 4, 9]",
+      "D": "[0, 1, 3, 6]"
+    },
+    "correct_answer": "C",
+    "explanation": "All keys have home zero. Quadratic offsets i^2 give first distinct probe locations 0,1,4,9, each taken by the next key."
+  },
+  {
+    "id": "2.5-030",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Quadratic probing uses slot(i)=(8+i^2) mod 11, starting i=0. What are its first five probe positions?",
+    "code_snippet": null,
+    "options": {
+      "A": "8,9,10,0,1",
+      "B": "8,1,6,2,0",
+      "C": "8,9,1,6,10",
+      "D": "8,9,1,6,2"
+    },
+    "correct_answer": "D",
+    "explanation": "Offsets 0,1,4,9,16 added to 8 and reduced modulo 11 give 8,9,1,6,2. Probing need not visit positions in increasing array order."
+  },
+  {
+    "id": "2.5-031",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "m=11\nt=[None]*m\nplaced=[]\nfor k in [22,33,44]:\n    step=1+k%10\n    for j in range(m):\n        i=(k%m+j*step)%m\n        if t[i] is None:\n            t[i]=k\n            placed.append(i)\n            break\nprint(placed)",
+    "options": {
+      "A": "[0, 3, 6]",
+      "B": "[0, 1, 2]",
+      "C": "[0, 4, 5]",
+      "D": "[0, 4, 8]"
+    },
+    "correct_answer": "C",
+    "explanation": "The keys share home zero but have steps 3,4,5. After the first occupies zero, 33 uses its step to reach 4 and 44 reaches 5."
+  },
+  {
+    "id": "2.5-032",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "A size-13 table uses h1(k)=k mod 13 and h2(k)=1+(k mod 12). For key 26, slots 0,3,6 are occupied and slot 9 is empty. Which pair gives (insertion slot,number of probes including the empty slot)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(3,2)",
+      "B": "(9,4)",
+      "C": "(12,5)",
+      "D": "(9,3)"
+    },
+    "correct_answer": "B",
+    "explanation": "Home is zero and the step is three. The probe sequence begins 0,3,6,9, requiring four inspected positions."
+  },
+  {
+    "id": "2.5-033",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "buckets=[[] for _ in range(5)]\nfor k in [10,15,3,8]:\n    buckets[k%5].append(k)\nbuckets[0].remove(10)\nprint(buckets[0],buckets[3])",
+    "options": {
+      "A": "[15] [3, 8]",
+      "B": "[15] [8, 3]",
+      "C": "[] [3, 8, 15]",
+      "D": "[10, 15] [3, 8]"
+    },
+    "correct_answer": "A",
+    "explanation": "Separate chains preserve insertion order because append is specified. Removing 10 affects only bucket 0, not colliding keys in bucket 3."
+  },
+  {
+    "id": "2.5-034",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "An open-addressed set has capacity 8 and six live keys. It doubles capacity before a new distinct insertion whenever the resulting load would exceed 0.75. What is the pair (capacity after one more insertion, resulting live load factor)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(8,0.875)",
+      "B": "(16,0.375)",
+      "C": "(16,0.4375)",
+      "D": "(8,0.75)"
+    },
+    "correct_answer": "C",
+    "explanation": "Seven keys would give 7/8>0.75, triggering growth. After resizing and inserting, the new load is 7/16=0.4375."
+  },
+  {
+    "id": "2.5-035",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "keys=set()\nfor k in [1,11,1,21,11]:\n    keys.add(k)\nprint(len(keys)/10)",
+    "options": {
+      "A": "0.3",
+      "B": "0.1",
+      "C": "0.2",
+      "D": "0.5"
+    },
+    "correct_answer": "A",
+    "explanation": "This is a set, so repeated insertions of 1 and 11 add no new live keys. There are three distinct keys across the stated ten buckets."
+  },
+  {
+    "id": "2.5-036",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Medium",
+    "question": "A size-7 linear-probing table contains keys 6,13,20 at slots 6,0,1, respectively; all hash to 6. Delete key 6 using backward-shift repair, moving later keys backward whenever the hole lies on their probe path. What slots do 13 and 20 occupy afterward?",
+    "code_snippet": null,
+    "options": {
+      "A": "(0,1)",
+      "B": "(1,0)",
+      "C": "(6,0)",
+      "D": "(6,1)"
+    },
+    "correct_answer": "C",
+    "explanation": "13 moves from 0 into the hole at 6, then 20 moves from 1 into the new hole at 0. Slot 1 becomes empty, preserving successful search through the wrapped cluster."
+  },
+  {
+    "id": "2.5-037",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Hard",
+    "question": "A size-11 table uses quadratic probes (i^2 mod 11) for a home-zero key, i=0,1,... . If all reachable slots are occupied, what is the pair (number of reachable slots,can insertion fail while other slots remain empty)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(11,No)",
+      "B": "(6,No)",
+      "C": "(5,Yes)",
+      "D": "(6,Yes)"
+    },
+    "correct_answer": "D",
+    "explanation": "The residues are {0,1,3,4,5,9}, six positions. The sequence repeats without reaching the other five slots, so free space alone does not guarantee insertion with this probe rule."
+  },
+  {
+    "id": "2.5-038",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Hard",
+    "question": "Double hashing on a size-12 table uses home 5 and constant step 8, with slot(j)=(5+8j) mod 12. How many distinct slots are visited before the sequence repeats?",
+    "code_snippet": null,
+    "options": {
+      "A": "4",
+      "B": "3",
+      "C": "8",
+      "D": "12"
+    },
+    "correct_answer": "B",
+    "explanation": "The period is m/gcd(m,step)=12/gcd(12,8)=3. The positions are 5,1,9; a non-coprime step does not cover the whole table."
+  },
+  {
+    "id": "2.5-039",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Hard",
+    "question": "A size-13 double-hash table uses h2(k)=13-(k mod 13). For a key divisible by 13, what correction is needed to guarantee a full-table probe cycle?",
+    "code_snippet": null,
+    "options": {
+      "A": "No correction: prime table size makes every integer step cover all slots",
+      "B": "Use step 26 for these keys",
+      "C": "Require a nonzero step modulo 13; for example use h2(k)=1+(k mod 12)",
+      "D": "Use step zero to restart probing at the next slot"
+    },
+    "correct_answer": "C",
+    "explanation": "For those keys the old step is 13, which is zero modulo 13 and repeats the home slot. Steps 1..12 are nonzero and coprime to prime 13, so the proposed replacement covers every slot."
+  },
+  {
+    "id": "2.5-040",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Hard",
+    "question": "Bottom-up min-heap construction uses ordinary sift-down on 15 distinct elements, repairing indices from floor(n/2)-1 down to zero. Count a swap only when an element moves one level down. What is the maximum total swaps, attained for descending initial keys?",
+    "code_snippet": null,
+    "options": {
+      "A": "14",
+      "B": "11",
+      "C": "7",
+      "D": "34"
+    },
+    "correct_answer": "B",
+    "explanation": "The sum of node heights in this perfect tree is 1*3+2*2+4*1=11. A descending array makes every internal repair use its full path, attaining that bound."
+  },
+  {
+    "id": "2.5-041",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Hard",
+    "question": "Insert keys 15,14,...,1 successively into an empty min-heap, always sifting the new key to restore order. How many parent-child swaps occur in total?",
+    "code_snippet": null,
+    "options": {
+      "A": "15",
+      "B": "11",
+      "C": "49",
+      "D": "34"
+    },
+    "correct_answer": "D",
+    "explanation": "Every new key is the new minimum and rises from its insertion depth to the root. Sum floor(log2 i), i=1..15, equals 2*1+4*2+8*3=34."
+  },
+  {
+    "id": "2.5-042",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Hard",
+    "question": "Merge k>=2 nonempty sorted streams containing n items in total using a binary min-heap of current stream heads. Exclude input and output storage, assume adversarial distinct keys, and maintain one head per nonexhausted stream. What are tight worst-case time and auxiliary-space bounds?",
+    "code_snippet": null,
+    "options": {
+      "A": "Time Theta(n), space Theta(n)",
+      "B": "Time Theta(k log n), space Theta(n)",
+      "C": "Time Theta(n log k), space Theta(k)",
+      "D": "Time Theta(nk), space Theta(1)"
+    },
+    "correct_answer": "C",
+    "explanation": "Each output chooses the minimum head and replaces/removes one heap entry in logarithmic k time. The heap stores at most one current head per stream, and worst-case interleaving keeps many streams active."
+  },
+  {
+    "id": "2.5-043",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Hard",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "m=7\nt=[6,13,None,None,None,5,12]\nhole=5\nt[hole]=None\nscan=(hole+1)%m\nwhile t[scan] is not None:\n    k=t[scan]\n    home=k%m\n    if (hole-home)%m < (scan-home)%m:\n        t[hole]=k\n        t[scan]=None\n        hole=scan\n    scan=(scan+1)%m\nprint(t.index(12),t.index(6),t.index(13))",
+    "options": {
+      "A": "5 0 1",
+      "B": "6 0 1",
+      "C": "5 6 0",
+      "D": "6 5 0"
+    },
+    "correct_answer": "C",
+    "explanation": "Each candidate moves only if the hole is earlier on its own cyclic probe path. The wrapped repair moves 12 to 5, 6 to 6, then 13 to 0, leaving the final empty slot at 1."
+  },
+  {
+    "id": "2.5-044",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Hard",
+    "question": "An eight-slot linear-probing table contains one live key and seven tombstones, with no never-used empty slot. Search for a distinct absent key must stop after a full cycle if no match exists. What worst-case probe count is possible despite live load factor 1/8?",
+    "code_snippet": null,
+    "options": {
+      "A": "7",
+      "B": "1",
+      "C": "8",
+      "D": "2"
+    },
+    "correct_answer": "C",
+    "explanation": "Tombstones cannot terminate a search. With no never-used slot, all eight positions may be inspected before the full-cycle limit proves absence. Live load alone does not capture tombstone probe cost."
+  },
+  {
+    "id": "2.5-045",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.5",
+    "subpart_name": "Priority Queues (Heaps) & Hashing",
+    "difficulty": "Hard",
+    "question": "Python 3. What is printed? Heap arrays are zero-based; hash tables do not resize unless shown. None denotes a never-used empty slot.",
+    "code_snippet": "import heapq\nh=[]\nfor counter,(priority,label) in enumerate([(2,\"Z\"),(2,\"A\"),(1,\"M\")]):\n    heapq.heappush(h,(priority,counter,label))\nprint(\" \".join(heapq.heappop(h)[2] for _ in range(len(h))))",
+    "options": {
+      "A": "Z A M",
+      "B": "A Z M",
+      "C": "M A Z",
+      "D": "M Z A"
+    },
+    "correct_answer": "D",
+    "explanation": "Priority selects M first. A unique increasing insertion counter then makes equal-priority tasks FIFO, selecting Z before A independently of payload lexical order. A heap on priority alone does not promise stable ties."
+  }
+]

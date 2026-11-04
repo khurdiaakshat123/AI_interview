@@ -1,0 +1,597 @@
+[
+  {
+    "id": "2.1-001",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Easy",
+    "question": "For n approaching infinity, what is the tight asymptotic class of 3n^2+7n+2?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n log n)",
+      "B": "Theta(n^2)",
+      "C": "Theta(n)",
+      "D": "Theta(n^3)"
+    },
+    "correct_answer": "B",
+    "explanation": "The quadratic term dominates. Positive constant factors and lower-degree terms do not change the tight asymptotic class."
+  },
+  {
+    "id": "2.1-002",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Easy",
+    "question": "For eventually positive functions f and g, which condition is equivalent to f(n)=Theta(g(n))?",
+    "code_snippet": null,
+    "options": {
+      "A": "f=O(g) and f=Omega(g)",
+      "B": "f=O(g) but f is not Omega(g)",
+      "C": "f=Omega(g) but f is not O(g)",
+      "D": "f is neither O(g) nor Omega(g)"
+    },
+    "correct_answer": "A",
+    "explanation": "Theta is the intersection of constant-factor upper and lower bounds. The other options each explicitly omit at least one of those necessary bounds, so the four conditions are disjoint."
+  },
+  {
+    "id": "2.1-003",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Easy",
+    "question": "Two phases always execute sequentially: the first takes Theta(n log n) time and the second Theta(n^2). What is their combined tight time complexity?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n log n)",
+      "B": "Theta(n^2)",
+      "C": "Theta(n^3 log n)",
+      "D": "Theta(log n)"
+    },
+    "correct_answer": "B",
+    "explanation": "Sequential costs add. Since n^2 grows faster than n log n, their sum is Theta(n^2), rather than the product of the phase costs."
+  },
+  {
+    "id": "2.1-004",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Easy",
+    "question": "Python 3 (analysis). Assuming unit-cost integer operations, what is the tight running time as positive n grows?",
+    "code_snippet": "def work(n):\n    count = 0\n    for i in range(1, n + 1):\n        for _ in range(i):\n            count += 1\n    return count",
+    "options": {
+      "A": "Theta(n)",
+      "B": "Theta(n log n)",
+      "C": "Theta(n^2)",
+      "D": "Theta(n^3)"
+    },
+    "correct_answer": "C",
+    "explanation": "The inner body executes 1+2+...+n=n(n+1)/2 times. The loop overhead does not change the quadratic bound."
+  },
+  {
+    "id": "2.1-005",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Easy",
+    "question": "Python 3 (analysis). For n=2^k, k>=0, what is the tight number of iterations? Treat arithmetic as unit cost.",
+    "code_snippet": "def work(n):\n    i = n\n    while i > 0:\n        i //= 2",
+    "options": {
+      "A": "Theta(1)",
+      "B": "Theta(n)",
+      "C": "Theta(log n)",
+      "D": "Theta(sqrt(n))"
+    },
+    "correct_answer": "C",
+    "explanation": "The positive values are n,n/2,...,1, giving k+1 iterations. For asymptotically growing n, this is Theta(log n)."
+  },
+  {
+    "id": "2.1-006",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Easy",
+    "question": "For powers of two, T(1)=1 and T(n)=2T(n/2)+1. What is the tight solution?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(log n)",
+      "B": "Theta(n)",
+      "C": "Theta(n log n)",
+      "D": "Theta(n^2)"
+    },
+    "correct_answer": "B",
+    "explanation": "The recursion tree is a full binary tree with n leaves and 2n-1 total nodes. Each node costs constant time; this is also Master Theorem case 1."
+  },
+  {
+    "id": "2.1-007",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Easy",
+    "question": "For powers of two, T(1)=1 and T(n)=T(n/2)+1. What is the tight solution?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n)",
+      "B": "Theta(n log n)",
+      "C": "Theta(log log n)",
+      "D": "Theta(log n)"
+    },
+    "correct_answer": "D",
+    "explanation": "There is one recursive subproblem at each halving level. The depth is log2(n), with constant local work per level."
+  },
+  {
+    "id": "2.1-008",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Easy",
+    "question": "For powers of two, T(1)=1 and T(n)=2T(n/2)+n. What is the tight solution?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n)",
+      "B": "Theta(n log n)",
+      "C": "Theta(n^2)",
+      "D": "Theta(log n)"
+    },
+    "correct_answer": "B",
+    "explanation": "Every nonleaf level costs n, and there are log2(n) such levels. The leaves add Theta(n), yielding Theta(n log n)."
+  },
+  {
+    "id": "2.1-009",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Easy",
+    "question": "A recursive function calls itself on n-1 until zero and stores only a constant number of machine words per live call. There is no tail-call elimination. Excluding input/output storage, what is its peak recursion-stack space?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n)",
+      "B": "Theta(log n)",
+      "C": "Theta(n^2)",
+      "D": "Theta(1)"
+    },
+    "correct_answer": "A",
+    "explanation": "All n+1 call frames can be live before unwinding. Constant-size frames multiplied by linear depth give Theta(n) stack space."
+  },
+  {
+    "id": "2.1-010",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Easy",
+    "question": "Which list is in strictly increasing asymptotic growth order as n tends to infinity? All logarithms have fixed base greater than one.",
+    "code_snippet": null,
+    "options": {
+      "A": "sqrt(n), log n, n, n log n",
+      "B": "log n, sqrt(n), n, n log n",
+      "C": "n log n, n, sqrt(n), log n",
+      "D": "log n, n, sqrt(n), n log n"
+    },
+    "correct_answer": "B",
+    "explanation": "Any positive power of n eventually dominates log n; sqrt(n) grows slower than n, and n log n grows faster than n."
+  },
+  {
+    "id": "2.1-011",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Easy",
+    "question": "For positive integer n tending to infinity, which statement correctly distinguishes an upper bound from a tight bound?",
+    "code_snippet": null,
+    "options": {
+      "A": "n^2 is O(n)",
+      "B": "n is Theta(n^2) because n<=n^2",
+      "C": "n is Omega(n^2)",
+      "D": "n is O(n^2), but n is not Theta(n^2)"
+    },
+    "correct_answer": "D",
+    "explanation": "A valid upper bound need not be tight. n<=n^2 establishes O(n^2), but n/n^2 tends to zero, ruling out a quadratic lower bound."
+  },
+  {
+    "id": "2.1-012",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "For powers of two, T(1)=1 and T(n)=4T(n/2)+n. What is the tight solution?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n^2)",
+      "B": "Theta(n)",
+      "C": "Theta(n^2 log n)",
+      "D": "Theta(n log n)"
+    },
+    "correct_answer": "A",
+    "explanation": "n^(log2 4)=n^2 dominates the linear nonrecursive term by a polynomial factor. Master Theorem case 1 therefore gives Theta(n^2)."
+  },
+  {
+    "id": "2.1-013",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "For powers of two, T(1)=1 and T(n)=2T(n/2)+n^2. Which tight solution follows, including the case-3 regularity check?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n), because the leaves dominate",
+      "B": "Theta(n^3), because branch count multiplies every root cost",
+      "C": "Theta(n^2 log n), because every level costs n^2",
+      "D": "Theta(n^2), because 2(n/2)^2=n^2/2"
+    },
+    "correct_answer": "D",
+    "explanation": "The nonrecursive term is polynomially larger than n. The child local-work sum is one-half the parent term, satisfying regularity and forming a decreasing geometric series."
+  },
+  {
+    "id": "2.1-014",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "For powers of two, T(1)=1 and T(n)=2T(n/2)+n log2(n). Using the generalized equal-branch Master Theorem for nonnegative log powers, what is T(n)?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n log log n)",
+      "B": "Theta(n log n)",
+      "C": "Theta(n^2)",
+      "D": "Theta(n (log n)^2)"
+    },
+    "correct_answer": "D",
+    "explanation": "The critical polynomial is n and f=n log n. The equal-power case adds one logarithmic factor; a recursion-tree sum also gives n times 1+2+...+log2(n)."
+  },
+  {
+    "id": "2.1-015",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "For powers of three, T(1)=1 and T(n)=3T(n/3)+n. What is the tight solution?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n^2)",
+      "B": "Theta(n)",
+      "C": "Theta(log n)",
+      "D": "Theta(n log n)"
+    },
+    "correct_answer": "D",
+    "explanation": "The total local work is n at every branching level and there are log3(n) levels. The logarithm base changes only a constant factor."
+  },
+  {
+    "id": "2.1-016",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "For powers of three, T(1)=1 and T(n)=9T(n/3)+n^2. What is the tight solution?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n log n)",
+      "B": "Theta(n^2)",
+      "C": "Theta(n^2 log n)",
+      "D": "Theta(n^3)"
+    },
+    "correct_answer": "C",
+    "explanation": "The branching critical power is n^(log3 9)=n^2, matching f. Each level contributes Theta(n^2), adding a logarithmic factor."
+  },
+  {
+    "id": "2.1-017",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "For integer n>=1, T(0)=1 and T(n)=T(n-1)+n. Which tight solution and method are correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n log n) by setting b=1 in the standard Master Theorem",
+      "B": "Theta(2^n) because the depth is n",
+      "C": "Theta(n^2) by summing the decreasing linear costs",
+      "D": "Theta(n) because there is one recursive call"
+    },
+    "correct_answer": "C",
+    "explanation": "Expansion gives 1+sum(i, i=1..n), a quadratic sum. The standard divide-by-constant Master Theorem requires b>1 and does not directly apply to n-1."
+  },
+  {
+    "id": "2.1-018",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "A function has T(n)=T(n-1)+Theta(1), stops at zero, and uses constant-size frames without tail-call optimization. What are its tight time and peak stack bounds?",
+    "code_snippet": null,
+    "options": {
+      "A": "Time Theta(n^2), stack Theta(n)",
+      "B": "Time Theta(n), stack Theta(n)",
+      "C": "Time Theta(log n), stack Theta(log n)",
+      "D": "Time Theta(n), stack Theta(1)"
+    },
+    "correct_answer": "B",
+    "explanation": "There are linearly many calls, each with constant local work. All frames remain live at the deepest call, so both time and stack grow linearly."
+  },
+  {
+    "id": "2.1-019",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "Python 3 (analysis). What is the tight running time? All arithmetic and each body update cost one unit.",
+    "code_snippet": "def work(n):\n    count = 0\n    for i in range(1, n + 1):\n        for _ in range(i, n + 1, i):\n            count += 1\n    return count",
+    "options": {
+      "A": "Theta((log n)^2)",
+      "B": "Theta(n log n)",
+      "C": "Theta(n)",
+      "D": "Theta(n^2)"
+    },
+    "correct_answer": "B",
+    "explanation": "The inner loop runs floor(n/i) times. Summing over i gives the harmonic sum n H_n up to linear rounding error, hence Theta(n log n)."
+  },
+  {
+    "id": "2.1-020",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "Python 3 (analysis). For n a positive power of two, what is the tight running time under unit-cost operations?",
+    "code_snippet": "def work(n):\n    count = 0\n    i = 1\n    while i <= n:\n        for _ in range(i):\n            count += 1\n        i *= 2\n    return count",
+    "options": {
+      "A": "Theta(n^2)",
+      "B": "Theta(n log n)",
+      "C": "Theta((log n)^2)",
+      "D": "Theta(n)"
+    },
+    "correct_answer": "D",
+    "explanation": "The body counts 1+2+4+...+n=2n-1. Multiplying the maximum inner length by the number of outer iterations would overestimate this geometric sum."
+  },
+  {
+    "id": "2.1-021",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "Python 3 (analysis). For n>=2 tending to infinity, what is the tight number of loop iterations? Ignore the bit cost of integer multiplication.",
+    "code_snippet": "def work(n):\n    i = 2\n    while i <= n:\n        i *= i",
+    "options": {
+      "A": "Theta(n)",
+      "B": "Theta(sqrt(n))",
+      "C": "Theta(log log n)",
+      "D": "Theta(log n)"
+    },
+    "correct_answer": "C",
+    "explanation": "After j updates, i=2^(2^j). Crossing n therefore requires j proportional to log2(log2(n)), not log2(n)."
+  },
+  {
+    "id": "2.1-022",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "Let T(n)=T(n/2)+T(n/4)+n for powers of two, with positive constant base cases for n<=2. What is its tight solution?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n)",
+      "B": "Theta(n log n)",
+      "C": "Theta(log n)",
+      "D": "Theta(n^2)"
+    },
+    "correct_answer": "A",
+    "explanation": "The sum of subproblem sizes contracts by a factor 3/4 per level, bounding total nonrecursive work by a geometric series O(n). Root work alone supplies Omega(n)."
+  },
+  {
+    "id": "2.1-023",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "Python 3 (analysis). Calls execute sequentially; each frame uses Theta(1) auxiliary words and no tail-call elimination is performed. What is the peak recursion-stack space?",
+    "code_snippet": "def visit(n):\n    if n <= 1:\n        return\n    visit(n // 2)\n    visit(n // 2)",
+    "options": {
+      "A": "Theta(n log n)",
+      "B": "Theta(n)",
+      "C": "Theta(1)",
+      "D": "Theta(log n)"
+    },
+    "correct_answer": "D",
+    "explanation": "Peak stack is one active root-to-leaf path, not all recursion-tree nodes at once. The two branches execute sequentially, so depth is logarithmic."
+  },
+  {
+    "id": "2.1-024",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "A recursive algorithm allocates an n-word local buffer, retains it until return, and then recursively processes two n/2 subproblems sequentially. Each child follows the same rule. Excluding input/output and assuming powers of two, what is peak auxiliary space?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(log n)",
+      "B": "Theta(n^2)",
+      "C": "Theta(n log n)",
+      "D": "Theta(n)"
+    },
+    "correct_answer": "D",
+    "explanation": "On one active path, live buffers total n+n/2+n/4+...<2n. The second child reuses time after the first is finished; cumulative allocation across every call is not peak live space."
+  },
+  {
+    "id": "2.1-025",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "As n approaches infinity, how does (log2 n)^10 compare with n^0.01?",
+    "code_snippet": null,
+    "options": {
+      "A": "n^0.01=o((log2 n)^10)",
+      "B": "(log2 n)^10=o(n^0.01)",
+      "C": "They are Theta of each other",
+      "D": "Their ratio alternates forever between zero and infinity"
+    },
+    "correct_answer": "B",
+    "explanation": "Any fixed positive polynomial power eventually dominates any fixed power of a logarithm. Large constant exponents can delay that crossover but do not change the asymptotic relation."
+  },
+  {
+    "id": "2.1-026",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "For real n>1, simplify n^(1/log2 n) and identify its tight growth class.",
+    "code_snippet": null,
+    "options": {
+      "A": "It equals 2 and is Theta(1)",
+      "B": "It equals n and is Theta(n)",
+      "C": "It equals 1/n and is Theta(1/n)",
+      "D": "It equals log2 n and is Theta(log n)"
+    },
+    "correct_answer": "A",
+    "explanation": "Writing n=2^x gives (2^x)^(1/x)=2. The specified logarithm base fixes the constant; the expression does not grow with n."
+  },
+  {
+    "id": "2.1-027",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "A dynamic array starts at capacity one and doubles capacity whenever an append finds it full. A resize copies all existing elements, and an ordinary append costs one unit. Over n appends, what are the tight total and amortized-per-append costs?",
+    "code_snippet": null,
+    "options": {
+      "A": "Total Theta(log n), amortized Theta(1/n)",
+      "B": "Total Theta(n^2), amortized Theta(n)",
+      "C": "Total Theta(n), amortized Theta(1)",
+      "D": "Total Theta(n log n), amortized Theta(log n)"
+    },
+    "correct_answer": "C",
+    "explanation": "Copied counts form 1+2+4+... below 2n, and the n appends themselves cost n. Thus all operations together cost Theta(n), although an individual resizing append may cost Theta(n)."
+  },
+  {
+    "id": "2.1-028",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Medium",
+    "question": "For powers of two, T(1)=1 and T(n)=4T(n/2)+n^2 log2 n. What is the tight solution?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n^2 log n)",
+      "B": "Theta(n (log n)^2)",
+      "C": "Theta(n^2 (log n)^2)",
+      "D": "Theta(n^3)"
+    },
+    "correct_answer": "C",
+    "explanation": "The critical polynomial is n^2. Multiplying it by one logarithm in the nonrecursive work gives an additional logarithm in the generalized equal-power case."
+  },
+  {
+    "id": "2.1-029",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Hard",
+    "question": "For powers of two n>=4, T(n)=2T(n/2)+n/log2 n, with T(2)=1. What is the tight solution? Do not assume a Master-Theorem case that requires a nonnegative log exponent.",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n log n)",
+      "B": "Theta(n/log n)",
+      "C": "Theta(n log log n)",
+      "D": "Theta(n)"
+    },
+    "correct_answer": "C",
+    "explanation": "Set n=2^k and S(k)=T(2^k)/2^k. Then S(k)=S(k-1)+1/k, so S(k)=Theta(log k). Multiplying by n gives Theta(n log log n); the negative log power is a boundary case."
+  },
+  {
+    "id": "2.1-030",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Hard",
+    "question": "For inputs divisible as needed, consider T(n)=T(n/3)+T(2n/3)+n with positive constant base cases and ordinary rounding that does not change asymptotics. What is its tight complexity?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(log n)",
+      "B": "Theta(n log n)",
+      "C": "Theta(n^2)",
+      "D": "Theta(n)"
+    },
+    "correct_answer": "B",
+    "explanation": "The child sizes sum to the parent size. There are logarithmically many full-cost levels before the shallowest leaves, giving Omega(n log n); maximum logarithmic depth and per-level cost at most n give the matching upper bound."
+  },
+  {
+    "id": "2.1-031",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Hard",
+    "question": "A recurrence is T(n)=T(sqrt(n))+1 for n=2^(2^k), with T(2)=1. What is the tight solution as n grows?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(log log n)",
+      "B": "Theta(log n)",
+      "C": "Theta(1)",
+      "D": "Theta(sqrt(n))"
+    },
+    "correct_answer": "A",
+    "explanation": "One square-root step reduces k by one because sqrt(2^(2^k))=2^(2^(k-1)). There are k=log2(log2 n) nontrivial steps."
+  },
+  {
+    "id": "2.1-032",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Hard",
+    "question": "For n=2^k, define f(n)=n^2 when k is even and f(n)=4n^2 when k is odd. T(n)=2T(n/2)+f(n), with T(1)=1. Which assessment is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "The direct case-3 regularity test fails, but a recursion-tree bound still gives Theta(n^2)",
+      "B": "Case 3 directly applies because 2f(n/2)<=f(n)/2 for every n",
+      "C": "The recurrence has no asymptotic upper bound",
+      "D": "Failure of regularity proves T(n)=Theta(n^2 log n)"
+    },
+    "correct_answer": "A",
+    "explanation": "For even k, 2f(n/2)/f(n)=2, violating any eventual regularity factor below one. Nevertheless n^2<=f(n)<=4n^2, and level costs are bounded by a decreasing geometric series times n^2."
+  },
+  {
+    "id": "2.1-033",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Hard",
+    "question": "For powers of two n>=4, T(n)=2T(n/2)+n/(log2 n)^2, with T(2)=1. What is the tight solution?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n log n)",
+      "B": "Theta(n/(log n)^2)",
+      "C": "Theta(n)",
+      "D": "Theta(n log log n)"
+    },
+    "correct_answer": "C",
+    "explanation": "With S(k)=T(2^k)/2^k, the increments are 1/k^2. Their sum is bounded, while the positive leaf contribution remains constant in S. Thus T(n)=Theta(n), rather than the extra log-log factor from 1/k."
+  },
+  {
+    "id": "2.1-034",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Hard",
+    "question": "A pathological dynamic array increases capacity by exactly one whenever full, copying all existing elements. Starting empty with capacity one, perform n appends. What is the tight total cost and amortized cost per append?",
+    "code_snippet": null,
+    "options": {
+      "A": "Total Theta(n^2), amortized Theta(n)",
+      "B": "Total Theta(n^3), amortized Theta(n^2)",
+      "C": "Total Theta(n log n), amortized Theta(log n)",
+      "D": "Total Theta(n), amortized Theta(1)"
+    },
+    "correct_answer": "A",
+    "explanation": "Copies total 1+2+...+(n-1)=Theta(n^2). Adding n ordinary writes does not change that bound. Dividing by n gives linear amortized cost, unlike multiplicative capacity growth."
+  },
+  {
+    "id": "2.1-035",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.1",
+    "subpart_name": "Asymptotic Complexity & Recurrence Analysis",
+    "difficulty": "Hard",
+    "question": "For powers of two, T(n)=T(n/2)+T(n/4)+sqrt(n), with T(1)=T(2)=1. Let phi=(1+sqrt(5))/2. What is the tight solution?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n^(log2 phi))",
+      "B": "Theta(n)",
+      "C": "Theta(sqrt(n) log n)",
+      "D": "Theta(sqrt(n))"
+    },
+    "correct_answer": "A",
+    "explanation": "Writing n=2^k gives a Fibonacci-style homogeneous recurrence with growth phi^k. Its forcing term (sqrt(2))^k grows strictly slower than phi^k, so T(2^k)=Theta(phi^k), equivalent to the stated power of n."
+  }
+]

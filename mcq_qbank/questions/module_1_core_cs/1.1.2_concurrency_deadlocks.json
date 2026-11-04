@@ -1,0 +1,512 @@
+[
+  {
+    "id": "1.1.2-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Easy",
+    "question": "Two threads each increment a shared counter once using a separate atomic read and atomic write, without a lock. Memory is sequentially consistent. The counter initially equals 10, and the exact interleaving below occurs. What is its final value?",
+    "code_snippet": "T1: local1 = counter   // reads 10\nT2: local2 = counter   // reads 10\nT1: counter = local1 + 1\nT2: counter = local2 + 1",
+    "options": {
+      "A": "10",
+      "B": "11",
+      "C": "12",
+      "D": "13"
+    },
+    "correct_answer": "B",
+    "explanation": "Both local variables contain 10, so both writes store 11. One increment is lost because the read-modify-write sequence is not atomic, even though each individual read and write is atomic."
+  },
+  {
+    "id": "1.1.2-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Easy",
+    "question": "An execution log shows T1 entering a critical section, T2 entering the same critical section before T1 exits, and then both threads exiting. Which critical-section requirement does this observed execution directly violate?",
+    "code_snippet": null,
+    "options": {
+      "A": "Mutual exclusion: at most one thread may be inside that critical section",
+      "B": "Progress: a choice among interested threads must not be postponed indefinitely",
+      "C": "Bounded waiting: a waiting thread may be overtaken only a bounded number of times",
+      "D": "FIFO admission: threads must enter in the order in which they request entry"
+    },
+    "correct_answer": "A",
+    "explanation": "The overlapping entries directly demonstrate a failure of mutual exclusion. The log does not demonstrate indefinite postponement or unbounded overtaking. FIFO admission is a separate policy and is not required by every correct critical-section solution."
+  },
+  {
+    "id": "1.1.2-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Easy",
+    "question": "Two threads use strict alternation as shown. The shared atomic variable turn initially equals 0, and memory is sequentially consistent. T0 stays in its remainder section forever without requesting entry. T1 wants to enter and keeps taking execution steps. The critical section is empty, but T1 spins forever. Which requirement is directly violated because a thread that does not want entry prevents admission?",
+    "code_snippet": "Thread Ti, where j = 1 - i:\nwhile true:\n    while turn != i: pass\n    critical_section()\n    turn = j\n    remainder_section()",
+    "options": {
+      "A": "Mutual exclusion, because both threads enter simultaneously",
+      "B": "Atomicity of reads, because T1 must observe a torn turn value",
+      "C": "Lock ownership, because T1 releases T0's mutex",
+      "D": "Progress, because the empty critical section remains unavailable to the interested thread"
+    },
+    "correct_answer": "D",
+    "explanation": "Strict alternation makes T1 depend on T0 changing turn even though T0 does not want to enter. A thread in its remainder section must not prevent an interested thread from entering an otherwise empty critical section. This is a progress violation."
+  },
+  {
+    "id": "1.1.2-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Easy",
+    "question": "A lock provides mutual exclusion and allows some interested thread to enter whenever the critical section becomes free. However, for every integer N, there is a legal execution in which at least N other critical-section entries occur after thread T requests the lock and before T is admitted. Which additional standard critical-section guarantee is missing?",
+    "code_snippet": null,
+    "options": {
+      "A": "Mutual exclusion",
+      "B": "Progress in choosing some interested thread for an empty critical section",
+      "C": "Bounded waiting",
+      "D": "Ownership enforcement when a thread releases the lock"
+    },
+    "correct_answer": "C",
+    "explanation": "Bounded waiting requires a finite bound on how many times other threads may enter after T requests admission. The stated family of executions has no such bound, even if T eventually enters in each individual execution."
+  },
+  {
+    "id": "1.1.2-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Easy",
+    "question": "A design needs thread A to notify thread B that an event has occurred. A may notify before B starts waiting. The mutex API permits only the owning thread to unlock, while the counting-semaphore API has no ownership restriction. Which implementation supports this one-event handoff?",
+    "code_snippet": null,
+    "options": {
+      "A": "B locks a mutex, and A unlocks that mutex to notify B",
+      "B": "Initialize semaphore S to 0; A calls signal(S), and B calls wait(S)",
+      "C": "Initialize semaphore S to 1; A calls signal(S), and B calls wait(S)",
+      "D": "Initialize semaphore S to 0; A and B both call wait(S)"
+    },
+    "correct_answer": "B",
+    "explanation": "A signal on a zero-initialized counting semaphore either wakes B or leaves a permit for B's later wait. Initializing it to 1 lets B pass before the event. Cross-thread mutex unlocking violates the stated ownership rule, and two waits provide no notification."
+  },
+  {
+    "id": "1.1.2-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Easy",
+    "question": "A counting semaphore S starts with 3 available permits. Two threads each successfully execute wait(S) once, and neither has executed signal(S). No other operations occur. How many permits remain available?",
+    "code_snippet": null,
+    "options": {
+      "A": "0",
+      "B": "2",
+      "C": "3",
+      "D": "1"
+    },
+    "correct_answer": "D",
+    "explanation": "Each successful wait consumes one permit. The remaining available count is 3 - 2 = 1, so neither of the two waits blocks."
+  },
+  {
+    "id": "1.1.2-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Easy",
+    "question": "A bounded buffer has capacity 8 and already contains 3 items when its synchronization objects are initialized. No producer or consumer operation is in progress. The standard design uses counting semaphores empty and full for available slots and items, plus binary semaphore mutex for exclusive buffer access. What initial values should (empty, full, mutex) have?",
+    "code_snippet": null,
+    "options": {
+      "A": "(5, 3, 1)",
+      "B": "(8, 0, 1)",
+      "C": "(3, 5, 1)",
+      "D": "(5, 3, 0)"
+    },
+    "correct_answer": "A",
+    "explanation": "Five slots are free and three items are available, so empty = 8 - 3 = 5 and full = 3. The initially unlocked binary semaphore mutex has one permit."
+  },
+  {
+    "id": "1.1.2-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Easy",
+    "question": "A resource-allocation policy requires a process to release every resource it holds before waiting for any additional resource. Which Coffman condition does this policy directly eliminate?",
+    "code_snippet": null,
+    "options": {
+      "A": "Mutual exclusion",
+      "B": "Circular wait by imposing an explicit global resource order",
+      "C": "Hold and wait",
+      "D": "No preemption by forcibly taking resources from their owners"
+    },
+    "correct_answer": "C",
+    "explanation": "A process may no longer hold resources while waiting to acquire others. The policy does not make resources shareable, impose a global ordering, or forcibly preempt an owner's resources. Removing hold and wait prevents the four necessary deadlock conditions from holding together."
+  },
+  {
+    "id": "1.1.2-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Easy",
+    "question": "Non-recursive mutexes A and B each have one instance. T1 holds A and blocks acquiring B. T2 holds B and blocks acquiring A. Neither thread releases its held mutex before the requested acquisition succeeds; there are no timeouts, cancellations, or forced releases. What is the resulting state?",
+    "code_snippet": null,
+    "options": {
+      "A": "Only temporary contention; either blocked thread can independently finish",
+      "B": "Deadlock, with both threads waiting in a cycle",
+      "C": "A lost update, but both threads can keep executing their critical sections",
+      "D": "Livelock, with both threads repeatedly releasing and reacquiring their mutexes"
+    },
+    "correct_answer": "B",
+    "explanation": "Each thread waits for a mutex held by the other, and neither can reach its release operation. Mutual exclusion, hold and wait, no preemption, and circular wait all hold, producing deadlock."
+  },
+  {
+    "id": "1.1.2-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "A shared integer x initially equals 5. T1 increments it once and T2 decrements it once using the pseudocode below. Each read and write is atomic, but each read-modify-write pair is not. Memory is sequentially consistent, each thread preserves its own program order, and both threads finish. What is the complete set of possible final values of x?",
+    "code_snippet": "T1:                         T2:\n    a = read(x)                 b = read(x)\n    write(x, a + 1)             write(x, b - 1)",
+    "options": {
+      "A": "{4, 5, 6}",
+      "B": "{5}",
+      "C": "{4, 6}",
+      "D": "{5, 6}"
+    },
+    "correct_answer": "A",
+    "explanation": "If one thread completes before the other's read, the updates combine and x ends at 5. If both read 5 first, their writes store 6 and 4, so the last write determines a final value of 6 or 4. These cases exhaust all program-order-preserving interleavings."
+  },
+  {
+    "id": "1.1.2-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "Two threads each execute the loop below exactly 1,000 times and both finish. The shared integer x initially equals 0 and does not overflow. Both use the same initially unlocked mutex m. All accesses to x are inside the shown critical section, and lock/unlock provide normal mutual exclusion and visibility guarantees. What is x after both threads finish?",
+    "code_snippet": "repeat 1000 times:\n    lock(m)\n    local = x\n    x = local + 1\n    unlock(m)",
+    "options": {
+      "A": "Exactly 1,000",
+      "B": "An integer from 1,001 through 1,999",
+      "C": "Exactly 2,000",
+      "D": "An integer from 0 through 999"
+    },
+    "correct_answer": "C",
+    "explanation": "The mutex serializes each entire read-modify-write sequence, so none of the 2,000 increments is lost. Each thread completes 1,000 increments, giving x = 2,000 regardless of the order of critical-section entries."
+  },
+  {
+    "id": "1.1.2-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "Use this signed-counter semaphore model: atomic wait(S) decrements S and blocks the caller if the result is negative; atomic signal(S) increments S and, if the result is at most 0, wakes one FIFO waiter. A woken wait is already satisfied and does not decrement again. S starts at 1. Execute the operations below in order; a blocked caller takes no further steps until woken. What are the final signed counter and the set of threads still blocked on S?",
+    "code_snippet": "A: wait(S)\nB: wait(S)\nC: wait(S)\nA: signal(S)\nD: wait(S)\nB: signal(S)",
+    "options": {
+      "A": "S = 0; no threads blocked",
+      "B": "S = -1; only C blocked",
+      "C": "S = -2; C and D blocked",
+      "D": "S = -1; only D blocked"
+    },
+    "correct_answer": "D",
+    "explanation": "The counter follows 1 -> 0 -> -1 -> -2 -> -1 -> -2 -> -1. A's signal wakes B, leaving C queued. D then queues behind C. B's signal wakes C, leaving only D blocked. A resumed wait consumes no second permit."
+  },
+  {
+    "id": "1.1.2-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "Use a nonnegative counting-semaphore model: wait consumes an available permit or blocks if there is none. signal hands a permit directly to the oldest waiter, keeping the available count at 0, or increments the available count if no waiter exists. S starts at 0 and has no ownership restriction. The operations below execute in order, with no extra waits or signals by woken threads. What is the final available count, and which threads remain blocked?",
+    "code_snippet": "A: wait(S)\nB: wait(S)\nC: signal(S)\nD: signal(S)\nE: signal(S)",
+    "options": {
+      "A": "Count 3; no blocked threads",
+      "B": "Count 1; no blocked threads",
+      "C": "Count 0; only B blocked",
+      "D": "Count 1; only B blocked"
+    },
+    "correct_answer": "B",
+    "explanation": "A and B initially block. C's signal satisfies A's wait, and D's signal satisfies B's wait, without accumulating available permits. E's signal finds no waiters and leaves one available permit."
+  },
+  {
+    "id": "1.1.2-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "A bounded buffer is full. There is exactly one producer and one consumer, and no operation is initially in progress. The producer executes first and reaches its second wait in the code below. All waits are blocking, mutex is initially 1, empty is 0, and full equals the buffer capacity. There are no cancellations or other threads. What happens when the consumer then runs?",
+    "code_snippet": "Producer:                 Consumer:\n    wait(mutex)               wait(full)\n    wait(empty)               wait(mutex)\n    insert_item()             remove_item()\n    signal(mutex)             signal(mutex)\n    signal(full)              signal(empty)",
+    "options": {
+      "A": "The consumer removes an item, allowing the producer to continue",
+      "B": "The producer overwrites an existing item without waiting",
+      "C": "Both block: the producer needs an empty slot, while the consumer needs the producer's mutex",
+      "D": "The consumer blocks on full before it can attempt mutex"
+    },
+    "correct_answer": "C",
+    "explanation": "The producer acquires mutex and blocks on empty while still holding mutex. The consumer can pass wait(full), but then blocks on mutex and cannot remove an item or signal empty. The producer must wait for empty before acquiring mutex in the standard solution."
+  },
+  {
+    "id": "1.1.2-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "A capacity-5 buffer starts empty with (empty, full, mutex) = (5, 0, 1). A correct producer waits on empty and mutex, inserts one item, then signals mutex and full. A correct consumer waits on full and mutex, removes one item, then signals mutex and empty. Three complete productions occur, then one complete consumption, then two complete productions. There are no in-progress operations at the end. What is the final tuple (empty, full, mutex)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(2, 3, 1)",
+      "B": "(4, 1, 1)",
+      "C": "(0, 5, 1)",
+      "D": "(1, 4, 1)"
+    },
+    "correct_answer": "D",
+    "explanation": "The final occupancy is 0 + 3 - 1 + 2 = 4 items. Because every operation has completed, full = 4 and empty = 5 - 4 = 1. Each critical section releases mutex, restoring it to 1."
+  },
+  {
+    "id": "1.1.2-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "A shared atomic integer x starts at 0, and counting semaphore ready starts at 0. Memory and semaphore operations are sequentially consistent, and each thread preserves its program order. Both threads finish. What is the complete set of values that T2 can print?",
+    "code_snippet": "T1:                      T2:\n    signal(ready)             wait(ready)\n    x = 42                    print(x)",
+    "options": {
+      "A": "{0, 42}",
+      "B": "{42}",
+      "C": "{0}",
+      "D": "No value; T2 necessarily remains blocked"
+    },
+    "correct_answer": "A",
+    "explanation": "T2's wait cannot finish before T1 signals, but the signal precedes the write to x. T2 can therefore print before the write and see 0, or after it and see 42. Moving the write before signal would establish the required publication order."
+  },
+  {
+    "id": "1.1.2-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "The correct reader-preference protocol below uses initially available binary semaphores count_mutex and resource. Two readers R1 and R2 have completed entry and are reading, so reader_count is 2. R1 completes its entire exit, then writer W calls wait(resource) and blocks, then R2 completes its entire exit. A signal to a waiting thread directly transfers the permit; the available semaphore count stays 0. Immediately after R2's exit, W's wait has returned, but W has not released resource. What is (reader_count, available resource permits, available count_mutex permits)?",
+    "code_snippet": "Reader entry:\n    wait(count_mutex)\n    reader_count += 1\n    if reader_count == 1: wait(resource)\n    signal(count_mutex)\nReader exit:\n    wait(count_mutex)\n    reader_count -= 1\n    if reader_count == 0: signal(resource)\n    signal(count_mutex)\nWriter: wait(resource); write_data(); signal(resource)",
+    "options": {
+      "A": "(1, 0, 1)",
+      "B": "(0, 0, 1)",
+      "C": "(0, 1, 1)",
+      "D": "(0, 0, 0)"
+    },
+    "correct_answer": "B",
+    "explanation": "R1's exit reduces reader_count from 2 to 1 without releasing resource. R2 reduces it to 0 and signals resource, transferring the permit to W. W holds that permit, so its available count is 0. R2 releases count_mutex, leaving it at 1."
+  },
+  {
+    "id": "1.1.2-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "A reader-preference readers-writers implementation allows a new reader to join whenever another reader is active, even if a writer is waiting. Every reader eventually exits, but an unending sequence of overlapping readers keeps the active-reader count above zero. The waiting writer keeps getting scheduled but cannot acquire the protected resource. Which problem does this execution demonstrate?",
+    "code_snippet": null,
+    "options": {
+      "A": "A deadlock cycle that also prevents all readers from finishing",
+      "B": "A violation of mutual exclusion between the writer and an active reader",
+      "C": "A lost update to reader_count, even when that count is correctly locked",
+      "D": "Writer starvation despite continuing reader progress"
+    },
+    "correct_answer": "D",
+    "explanation": "Readers continue to enter and finish, but the reader count never reaches the value needed to release the resource to the writer. This is writer starvation; neither deadlock nor a reader_count race is needed for it to occur."
+  },
+  {
+    "id": "1.1.2-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "A correct writer-preference readers-writers policy prevents new readers from entering while any writer is waiting; existing readers may finish. R1 is reading when W1 requests exclusive access. R2 then requests read access before R1 exits. There are no other arrivals, and each admitted operation finishes. What is the admission order after R1 exits?",
+    "code_snippet": null,
+    "options": {
+      "A": "R2 enters and finishes before W1",
+      "B": "W1 and R2 enter concurrently",
+      "C": "W1 enters and finishes before R2",
+      "D": "Neither W1 nor R2 can ever enter"
+    },
+    "correct_answer": "C",
+    "explanation": "W1's pending request closes admission to new readers, so R2 must wait even while R1 is still reading. When R1 exits, W1 gains exclusive access. Once W1 finishes and no writer remains pending, R2 may enter."
+  },
+  {
+    "id": "1.1.2-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "T1 needs mutexes A then B, while T2 needs B then A. Instead of blocking on the second mutex, each performs try_lock, releases its first mutex on failure, and retries. A legal schedule repeats these steps forever: T1 locks A; T2 locks B; both try_lock calls fail before either first mutex is released; both release; both retry. Neither thread blocks inside try_lock, and neither reaches its useful critical section. What does this execution demonstrate?",
+    "code_snippet": null,
+    "options": {
+      "A": "Livelock: the threads keep acting but make no useful progress",
+      "B": "Deadlock: both threads remain blocked forever while holding their mutexes",
+      "C": "A mutual-exclusion violation: both threads hold A simultaneously",
+      "D": "Only T1 starves while T2 repeatedly completes its useful critical section"
+    },
+    "correct_answer": "A",
+    "explanation": "The release-and-retry policy avoids the shown blocking deadlock, but this schedule makes both threads repeatedly undo their partial acquisitions. They continue executing without entering their useful critical sections, which is livelock."
+  },
+  {
+    "id": "1.1.2-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "For the Banker’s Algorithm snapshot below, vectors list resource types (A, B). Need = Max - Allocation, and a process that can obtain its remaining Need may finish and release its entire allocation. Available is (1, 1). Which listed order is a safe sequence?",
+    "code_snippet": "Process | Allocation | Max\nP0      | (1, 0)     | (2, 1)\nP1      | (0, 1)     | (1, 2)\nP2      | (1, 1)     | (3, 1)",
+    "options": {
+      "A": "P2, P0, P1",
+      "B": "P1, P2, P0",
+      "C": "P1, P0, P2",
+      "D": "P2, P1, P0"
+    },
+    "correct_answer": "C",
+    "explanation": "Need vectors are P0 = (1,1), P1 = (1,1), P2 = (2,0). Starting Work = (1,1), P1 can finish, producing Work = (1,2). P0 then finishes, producing (2,2), which satisfies P2. P2 cannot start initially or immediately after P1."
+  },
+  {
+    "id": "1.1.2-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "In the Banker’s Algorithm snapshot below, Available = (1, 1), and resource vectors use (A, B). P2 requests (1, 0) additional units. Apply both the initial request checks and the tentative-allocation safety test. What should the banker do?",
+    "code_snippet": "Process | Allocation | Max\nP0      | (1, 0)     | (2, 1)\nP1      | (0, 1)     | (1, 2)\nP2      | (1, 1)     | (3, 1)\nRequest by P2: (1, 0)",
+    "options": {
+      "A": "Grant it, because the request fits both P2's Need and Available",
+      "B": "Reject it as exceeding P2's declared remaining Need",
+      "C": "Defer it because one requested resource is currently unavailable",
+      "D": "Defer it because the tentative allocation is unsafe"
+    },
+    "correct_answer": "D",
+    "explanation": "P2's original Need is (2,0), so the request passes both initial checks. A tentative grant leaves Available = (0,1), with Needs (1,1), (1,1), and (1,0). Every process still needs at least one A unit, so none can finish first in the safety test. The grant must be rolled back and deferred."
+  },
+  {
+    "id": "1.1.2-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "A Banker’s Algorithm safety test finds no safe sequence for a valid resource-allocation snapshot. The Max entries are upper bounds: actual future requests may be smaller, and a process may finish without using its full declared maximum. No current request or blocking information is supplied. Which conclusion is justified?",
+    "code_snippet": null,
+    "options": {
+      "A": "Every unfinished process is already blocked in a deadlock",
+      "B": "The snapshot is unsafe: completion cannot be guaranteed against the declared maximum demands, but current deadlock is not established",
+      "C": "Every possible future execution must deadlock, even if processes request less than their maxima",
+      "D": "The snapshot is safe as long as at least one process is currently executing instructions"
+    },
+    "correct_answer": "B",
+    "explanation": "Unsafe means no completion sequence can be guaranteed using the declared remaining maximum demands. It does not prove an existing deadlock, because actual outstanding requests are unknown and processes might finish with smaller demands. Executing instructions also does not by itself prove safety."
+  },
+  {
+    "id": "1.1.2-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Medium",
+    "question": "Resource type A has two interchangeable instances, and B has one. P1 holds one A and waits for B. P2 holds B and waits for one A. P3 holds the other A and needs no additional resources; it will finish and release A. A process releases all held resources when it finishes, and there are no future requests beyond those stated. Although the resource-allocation graph contains a cycle through P1 and P2, which conclusion is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "All three processes are deadlocked because any resource-allocation cycle is sufficient",
+      "B": "There is no deadlock: P3 can finish, then P2, then P1",
+      "C": "P1 and P2 remain deadlocked even after P3 releases its A instance",
+      "D": "P3 can finish, but P1 and P2 require an abort or an extra resource instance to finish"
+    },
+    "correct_answer": "B",
+    "explanation": "P3's release supplies the A instance P2 needs. P2 can then finish and release B, allowing P1 to finish. With multiple instances of a resource type, a cycle in the resource-allocation graph alone does not prove deadlock."
+  },
+  {
+    "id": "1.1.2-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Hard",
+    "question": "The Banker’s Algorithm snapshot below has Available = (3, 3, 2), with vectors ordered (A, B, C). P1 requests (1, 0, 2). If the request is tentatively granted, which listed sequence certifies that the resulting state is safe? Each process releases its allocation when it finishes.",
+    "code_snippet": "Process | Allocation | Max\nP0      | (0, 1, 0)  | (7, 5, 3)\nP1      | (2, 0, 0)  | (3, 2, 2)\nP2      | (3, 0, 2)  | (9, 0, 2)\nP3      | (2, 1, 1)  | (2, 2, 2)\nP4      | (0, 0, 2)  | (4, 3, 3)\nRequest by P1: (1, 0, 2)",
+    "options": {
+      "A": "P1, P3, P4, P0, P2",
+      "B": "P0, P1, P3, P4, P2",
+      "C": "P2, P1, P3, P4, P0",
+      "D": "P4, P3, P1, P0, P2"
+    },
+    "correct_answer": "A",
+    "explanation": "The request fits P1's Need (1,2,2) and Available. After granting it, Work = (2,3,0), P1's Allocation = (3,0,2), and its Need = (0,2,0). Finishing P1, P3, P4, P0, and P2 changes Work successively to (5,3,2), (7,4,3), (7,4,5), (7,5,5), and (10,5,7). Each next Need fits the current Work. None of P0, P2, or P4 can be first after the grant."
+  },
+  {
+    "id": "1.1.2-026",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Hard",
+    "question": "For the Banker’s Algorithm snapshot below, Available = (0, 1) in resource order (A, B). An administrator may add x new A instances to the available pool, where x is a nonnegative integer; no B instances, allocations, or Max claims change. What is the smallest x that makes the snapshot safe?",
+    "code_snippet": "Process | Allocation | Max\nP0      | (1, 0)     | (3, 1)\nP1      | (0, 1)     | (1, 2)\nP2      | (1, 1)     | (3, 1)\nP3      | (1, 0)     | (3, 1)",
+    "options": {
+      "A": "1",
+      "B": "2",
+      "C": "3",
+      "D": "4"
+    },
+    "correct_answer": "B",
+    "explanation": "Needs are (2,1), (1,1), (2,0), and (2,1). With x = 0 no process can finish first. With x = 1 only P1 can finish, but it releases no A, leaving Work = (1,2), which still cannot satisfy any remaining process. With x = 2, the sequence P1, P0, P2, P3 is safe. Thus the minimum is 2, not merely the 1 needed to enable an initial completion."
+  },
+  {
+    "id": "1.1.2-027",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Hard",
+    "question": "In the Banker’s Algorithm snapshot below, Available = (1, 1) and resource vectors use (A, B). Count distinct permutations of all four process identifiers that satisfy the safety test, with each process finishing and releasing its allocation before the next process in the permutation is considered. How many safe sequences exist?",
+    "code_snippet": "Process | Allocation | Max\nP0      | (1, 0)     | (2, 1)\nP1      | (0, 1)     | (1, 2)\nP2      | (1, 1)     | (3, 1)\nP3      | (1, 0)     | (4, 1)",
+    "options": {
+      "A": "2",
+      "B": "3",
+      "C": "6",
+      "D": "4"
+    },
+    "correct_answer": "D",
+    "explanation": "Needs are (1,1), (1,1), (2,0), and (3,1). The safe permutations are P0-P1-P2-P3, P0-P2-P1-P3, P0-P2-P3-P1, and P1-P0-P2-P3. Only P0 or P1 can start. After P1 starts, P0 must be next; after P0 starts, P2 must finish before P3 can become eligible. These constraints leave exactly four permutations."
+  },
+  {
+    "id": "1.1.2-028",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Hard",
+    "question": "Consider the flawed reader entry below. count_mutex protects reader_count, which starts at 0, and resource excludes a writer from readers. Writer W already holds resource and is writing. R1 increments reader_count to 1, records first = true, releases count_mutex, and blocks at wait(resource). Before W releases resource, R2 executes its entire entry. Memory is sequentially consistent. What happens?",
+    "code_snippet": "Reader entry (first is thread-local):\n    wait(count_mutex)\n    reader_count += 1\n    first = (reader_count == 1)\n    signal(count_mutex)\n    if first:\n        wait(resource)\n    read_shared_data()\n\nWriter: wait(resource); write_shared_data(); signal(resource)",
+    "options": {
+      "A": "R2 starts reading while W writes, violating reader-writer exclusion",
+      "B": "R2 blocks on resource because every reader executes wait(resource)",
+      "C": "R2 blocks on count_mutex because R1 holds it while waiting for resource",
+      "D": "R2 safely reads because a positive reader_count proves a reader already owns resource"
+    },
+    "correct_answer": "A",
+    "explanation": "R2 increments reader_count from 1 to 2, records first = false, and skips wait(resource). R1 has not acquired resource, so W is still writing when R2 reads. Protecting reader_count alone is insufficient: in the standard first-reader protocol, the first reader keeps count_mutex until it has acquired resource, preventing another reader from bypassing that pending acquisition."
+  },
+  {
+    "id": "1.1.2-029",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Hard",
+    "question": "A correct capacity-5 bounded buffer initially contains 2 items, with available semaphore counts empty = 3, full = 2, mutex = 1. Each producer executes wait(empty), wait(mutex), insert, signal(mutex), signal(full). Each consumer executes wait(full), wait(mutex), remove, signal(mutex), signal(empty). The exact successful operations below occur; all threads then pause with no other operations. P1 has not yet signaled full, C1 has not yet signaled empty, and P2 has not inserted. What is the tuple (available empty permits, available full permits, physical items in the buffer)?",
+    "code_snippet": "P1: wait(empty)\nP2: wait(empty)\nC1: wait(full)\nP1: wait(mutex); insert one item; signal(mutex)\nC1: wait(mutex); remove one item; signal(mutex)",
+    "options": {
+      "A": "(3, 2, 2)",
+      "B": "(2, 3, 3)",
+      "C": "(1, 1, 2)",
+      "D": "(1, 2, 2)"
+    },
+    "correct_answer": "C",
+    "explanation": "The two producer reservations reduce empty from 3 to 1. C1's reservation reduces full from 2 to 1. Inserting and then removing changes physical occupancy from 2 to 3 and back to 2. Neither pending signal has occurred. During in-progress operations, full need not equal physical occupancy, and empty + full need not equal capacity because permits can be reserved or awaiting publication."
+  },
+  {
+    "id": "1.1.2-030",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.2",
+    "subpart_name": "Concurrency, Synchronization & Deadlocks",
+    "difficulty": "Hard",
+    "question": "Four processes each hold one distinct single-instance resource R0 through R3, with Pi holding Ri. They are blocked waiting for the additional resource sets below; each process needs its entire requested set before it can finish. No new requests will be made, and finishing releases all held resources. Recovery may abort selected processes, canceling their requests and immediately releasing their holdings. Which listed abort set has minimum possible size and allows every surviving process to finish?",
+    "code_snippet": "Process | Additional resources requested\nP0      | {R1}\nP1      | {R0, R2}\nP2      | {R1, R3}\nP3      | {R2}",
+    "options": {
+      "A": "{P0, P1}",
+      "B": "{P2, P3}",
+      "C": "{P0, P3}",
+      "D": "{P0, P2}"
+    },
+    "correct_answer": "D",
+    "explanation": "The wait-for graph contains cycles P0-P1-P0, P1-P2-P1, and P2-P3-P2. The disjoint first and third cycles require at least two victims. Aborting P0 and P2 frees R0 and R2, allowing P1 to finish and leaving R2 available for P3 as well. The other listed pairs leave, respectively, the P2-P3, P0-P1, or P1-P2 cycle intact. Thus the selected two-process set is sufficient and minimum-sized."
+  }
+]

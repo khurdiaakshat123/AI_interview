@@ -1,0 +1,427 @@
+[
+  {
+    "id": "1.3.2-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Easy",
+    "question": "An IPv4 packet has Internet Header Length IHL=6 and Total Length=1,000 bytes. IHL is measured in 32-bit words, and Total Length includes the IP header. How many bytes follow the IPv4 header in this packet?",
+    "code_snippet": null,
+    "options": {
+      "A": "976 bytes",
+      "B": "980 bytes",
+      "C": "1000 bytes",
+      "D": "994 bytes"
+    },
+    "correct_answer": "A",
+    "explanation": "The IP header occupies 6 * 4 = 24 bytes. The remaining packet content is 1,000 - 24 = 976 bytes. Assuming the minimum 20-byte header would incorrectly ignore the larger IHL."
+  },
+  {
+    "id": "1.3.2-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Easy",
+    "question": "An ordinary IPv6 packet has Payload Length=1,200 bytes and no extension headers or jumbogram option. Its fixed IPv6 base header is 40 bytes. What is the complete IPv6 packet length, excluding link-layer framing?",
+    "code_snippet": null,
+    "options": {
+      "A": "1160 bytes",
+      "B": "1200 bytes",
+      "C": "1240 bytes",
+      "D": "1220 bytes"
+    },
+    "correct_answer": "C",
+    "explanation": "The IPv6 Payload Length excludes the fixed 40-byte base header. Total IPv6 packet length is therefore 40 + 1,200 = 1,240 bytes; link-layer headers are outside this calculation."
+  },
+  {
+    "id": "1.3.2-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Easy",
+    "question": "A network interface is configured with an IPv4 /26 prefix. Which dotted-decimal subnet mask corresponds to that prefix?",
+    "code_snippet": null,
+    "options": {
+      "A": "255.255.255.128",
+      "B": "255.255.255.224",
+      "C": "255.255.255.240",
+      "D": "255.255.255.192"
+    },
+    "correct_answer": "D",
+    "explanation": "A /26 mask has 24 one-bits in the first three octets and two one-bits in the last. The last octet is binary 11000000, or decimal 192."
+  },
+  {
+    "id": "1.3.2-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Easy",
+    "question": "A host uses IPv4 address 192.168.10.77/26. What is its subnet network address? Use ordinary CIDR masking.",
+    "code_snippet": null,
+    "options": {
+      "A": "192.168.10.76",
+      "B": "192.168.10.0",
+      "C": "192.168.10.64",
+      "D": "192.168.10.128"
+    },
+    "correct_answer": "C",
+    "explanation": "A /26 subnet spans 64 consecutive addresses. The address 77 falls in the interval 64 through 127, so the network address is 192.168.10.64."
+  },
+  {
+    "id": "1.3.2-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Easy",
+    "question": "An ordinary IPv4 broadcast subnet uses prefix /27. Reserve the all-zero host part as its network address and the all-one host part as its broadcast address; no special /31 or /32 rules apply. How many usable unicast host addresses remain?",
+    "code_snippet": null,
+    "options": {
+      "A": "31",
+      "B": "32",
+      "C": "62",
+      "D": "30"
+    },
+    "correct_answer": "D",
+    "explanation": "A /27 leaves five host bits, giving 2^5=32 total addresses. Reserving network and broadcast leaves 32-2=30 usable host addresses."
+  },
+  {
+    "id": "1.3.2-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Easy",
+    "question": "Host 10.0.1.10/24 sends to 10.0.2.20 using a selected route through gateway 10.0.1.1 on its Ethernet LAN. Its ARP cache is empty, and proxy ARP and tunnels are absent. Which IPv4 address should it resolve with ARP to build the outgoing Ethernet frame?",
+    "code_snippet": null,
+    "options": {
+      "A": "10.0.1.1",
+      "B": "10.0.2.0",
+      "C": "10.0.2.20",
+      "D": "10.0.1.10"
+    },
+    "correct_answer": "A",
+    "explanation": "ARP resolves the selected on-link next hop. Because the destination is on a different subnet and the route names gateway 10.0.1.1, that gateway's MAC address is needed. ARP does not directly resolve a remote host through intervening routers."
+  },
+  {
+    "id": "1.3.2-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Easy",
+    "question": "A router is asked to forward an ordinary IPv4 unicast packet whose TTL is 1. It decrements TTL by one. Assume the packet qualifies for an ICMP error, the source is reachable, and ICMP generation is enabled without rate limiting. What must the router do?",
+    "code_snippet": null,
+    "options": {
+      "A": "Discard the packet and send ICMP Time Exceeded to its source",
+      "B": "Forward the packet with TTL 0 and let the next router decide",
+      "C": "Discard the packet and send an ICMP Echo Reply",
+      "D": "Reset TTL to the original default and forward it"
+    },
+    "correct_answer": "A",
+    "explanation": "TTL becomes zero, so the packet must not be forwarded. Under the stated ICMP conditions, the router reports transit TTL expiration using Time Exceeded. Echo Reply responds to an Echo Request, not to TTL expiration."
+  },
+  {
+    "id": "1.3.2-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "For IPv4 address 198.51.100.173/27, which pair gives (subnet network address, subnet broadcast address)? Apply ordinary IPv4 broadcast-subnet rules.",
+    "code_snippet": null,
+    "options": {
+      "A": "(198.51.100.160,198.51.100.191)",
+      "B": "(198.51.100.172,198.51.100.175)",
+      "C": "(198.51.100.128,198.51.100.159)",
+      "D": "(198.51.100.160,198.51.100.190)"
+    },
+    "correct_answer": "A",
+    "explanation": "/27 blocks have 32 addresses. Address 173 lies in the block beginning at 160 and ending at 191. The last usable host is 190, but the requested broadcast address is 191."
+  },
+  {
+    "id": "1.3.2-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "An organization must divide one IPv4 /24 block into equal-size ordinary broadcast subnets. It needs at least six subnets, each supporting at least 25 usable hosts after reserving network and broadcast addresses. Which listed prefix meets both requirements?",
+    "code_snippet": null,
+    "options": {
+      "A": "/26",
+      "B": "/25",
+      "C": "/27",
+      "D": "/28"
+    },
+    "correct_answer": "C",
+    "explanation": "/27 borrows three bits from /24, producing eight subnets with 32-2=30 usable hosts each. /25 and /26 produce too few subnets, while /28 produces enough subnets but only 14 usable hosts per subnet."
+  },
+  {
+    "id": "1.3.2-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "Which single CIDR prefix covers exactly the four IPv4 blocks below, without including additional addresses outside their union?",
+    "code_snippet": "10.20.32.0/24\n10.20.33.0/24\n10.20.34.0/24\n10.20.35.0/24",
+    "options": {
+      "A": "10.20.32.0/23",
+      "B": "10.20.32.0/21",
+      "C": "10.20.32.0/22",
+      "D": "10.20.36.0/22"
+    },
+    "correct_answer": "C",
+    "explanation": "The four /24 blocks form an aligned 1,024-address range from 10.20.32.0 through 10.20.35.255. A /22 has exactly that size, and 32 is aligned to its four-/24 boundary. The /21 would include four extra /24 blocks."
+  },
+  {
+    "id": "1.3.2-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "A router uses longest-prefix matching on the active table below, with no policy-routing overrides or equal-prefix ties. Which next hop is selected for destination 10.4.11.9?",
+    "code_snippet": "Prefix          | Next hop\n0.0.0.0/0       | R0\n10.0.0.0/8      | R1\n10.4.0.0/16     | R2\n10.4.8.0/21     | R3\n10.4.10.0/24    | R4",
+    "options": {
+      "A": "R2",
+      "B": "R4",
+      "C": "R3",
+      "D": "R0"
+    },
+    "correct_answer": "C",
+    "explanation": "10.4.8.0/21 covers third-octet values 8 through 15, so it matches 10.4.11.9. The /24 for 10.4.10.0 does not match. Of the matching /0, /8, /16, and /21 entries, /21 is the longest, choosing R3."
+  },
+  {
+    "id": "1.3.2-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "A link-state router at A runs Dijkstra's algorithm on the complete undirected graph below. All listed costs are positive and additive; there are no other links. Which path is shortest from A to D, and what is its cost?",
+    "code_snippet": "Link | Cost\nA-B  | 4\nA-C  | 1\nC-B  | 2\nB-D  | 1\nC-D  | 7",
+    "options": {
+      "A": "A-B-C-D, cost 13",
+      "B": "A-B-D, cost 5",
+      "C": "A-C-B-D, cost 4",
+      "D": "A-C-D, cost 8"
+    },
+    "correct_answer": "C",
+    "explanation": "A reaches C for 1, improves B through C to 1+2=3, then reaches D through B for 3+1=4. The direct B route would give 5 to D, while going from C straight to D gives 8."
+  },
+  {
+    "id": "1.3.2-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "A distance-vector router A chooses the lowest additive cost to destination D. It has a direct A-D route of cost 9, an A-B link of cost 2, and an A-C link of cost 4. B advertises distance 5 to D; C advertises distance 1. All advertisements are currently valid. Which route should A select?",
+    "code_snippet": null,
+    "options": {
+      "A": "Via B, total cost 7",
+      "B": "Via C, total cost 5",
+      "C": "Direct to D, total cost 9",
+      "D": "Via B, total cost 5"
+    },
+    "correct_answer": "B",
+    "explanation": "The Bellman-Ford candidates are direct 9, via B at 2+5=7, and via C at 4+1=5. The neighbor's advertised metric is not itself the full route cost; the local link cost must be added."
+  },
+  {
+    "id": "1.3.2-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "Use a simple asynchronous distance-vector model with unit A-B cost, no split horizon or poisoned reverse, and no hold-down. Initially A reaches D directly for cost 1 and B reaches D via A for cost 2. The A-D link fails. A first uses B's stale advertisement 2 and chooses B; B then processes A's new metric; A then processes B's resulting metric. No other updates arrive. What are the final metrics (A to D, B to D)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(3,2)",
+      "B": "(infinity,infinity)",
+      "C": "(4,5)",
+      "D": "(5,4)"
+    },
+    "correct_answer": "D",
+    "explanation": "A first computes 1+2=3 via B. B then computes 1+3=4 via A. A finally computes 1+4=5 via B. These mutually dependent routes form a loop and illustrate count-to-infinity rather than discovery of a real replacement path."
+  },
+  {
+    "id": "1.3.2-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "An IPv4 datagram has Total Length 4,000 bytes and a 20-byte header with no options. DF=0. A router fragments it for an MTU of 1,500 bytes, maximizing each nonfinal fragment's payload while respecting eight-byte offset units. Every fragment has a 20-byte header. Which list gives (Total Length, Fragment Offset field, MF) for the resulting fragments in order? Offsets are numeric field values, not byte offsets.",
+    "code_snippet": null,
+    "options": {
+      "A": "[(1500,0,1),(1500,185,1),(1040,370,1)]",
+      "B": "[(1500,0,1),(1500,187,1),(1040,374,0)]",
+      "C": "[(1500,0,1),(1500,185,1),(1000,370,0)]",
+      "D": "[(1500,0,1),(1500,185,1),(1040,370,0)]"
+    },
+    "correct_answer": "D",
+    "explanation": "The original payload is 4,000-20=3,980 bytes. Each full fragment carries floor((1,500-20)/8)*8=1,480 bytes. Payload sizes are 1,480,1,480,1,020, giving total lengths 1,500,1,500,1,040 and field offsets 0,1,480/8=185,2,960/8=370. Only the last has MF=0."
+  },
+  {
+    "id": "1.3.2-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "A router must forward an ordinary 1,800-byte IPv4 packet onto a link with MTU 1,400. The packet has DF=1. There is no alternative route, and ICMP errors are allowed and deliverable. Which action follows the IPv4 DF rule?",
+    "code_snippet": null,
+    "options": {
+      "A": "Clear DF and fragment without notifying the sender",
+      "B": "Forward the oversized packet unchanged because DF overrides the link MTU",
+      "C": "Fragment it into smaller IPv4 packets despite DF=1",
+      "D": "Discard it and send an ICMP Destination Unreachable message indicating fragmentation is needed"
+    },
+    "correct_answer": "D",
+    "explanation": "DF forbids the router from fragmenting this datagram. Since the next link cannot carry it unchanged and there is no alternate route, the router drops it and reports that fragmentation is needed. DF does not authorize oversized link-layer transmission."
+  },
+  {
+    "id": "1.3.2-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "A router receives a 1,600-byte IPv6 packet that must traverse a next link with MTU 1,280 bytes. The packet is ordinary unicast, there is no alternate route, and ICMPv6 error generation is permitted. Which behavior is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "Drop it and send ICMPv6 Packet Too Big so the source can adapt its packet size",
+      "B": "Set a nonexistent IPv6 DF bit and forward the oversized packet",
+      "C": "Create IPv6 fragments at the router and forward them",
+      "D": "Strip the IPv6 base header to make the packet fit"
+    },
+    "correct_answer": "A",
+    "explanation": "IPv6 routers do not fragment forwarded packets. An oversized packet is dropped and reported using ICMPv6 Packet Too Big. Any necessary IPv6 fragmentation is performed by the source, not by a forwarding router."
+  },
+  {
+    "id": "1.3.2-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "A and B are on one Ethernet LAN, with IPv4 addresses 10.1.1.10 and 10.1.1.20. A's MAC is 02:00:00:00:00:0A. A has no ARP entry for B and sends an ordinary ARP request; B is the unique owner and replies normally. No proxy ARP, unsolicited updates, or special broadcast-reply behavior is used. What are the Ethernet destination MAC addresses of the request and reply?",
+    "code_snippet": null,
+    "options": {
+      "A": "Request 02:00:00:00:00:0A; reply FF:FF:FF:FF:FF:FF",
+      "B": "Both 02:00:00:00:00:0A",
+      "C": "Both FF:FF:FF:FF:FF:FF",
+      "D": "Request FF:FF:FF:FF:FF:FF; reply 02:00:00:00:00:0A"
+    },
+    "correct_answer": "D",
+    "explanation": "The request is broadcast because A does not yet know B's MAC. The request supplies A's sender MAC, allowing B to unicast its ordinary solicited reply back to A. The Ethernet destination is distinct from the ARP target-protocol-address field."
+  },
+  {
+    "id": "1.3.2-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "A stateful NAPT device owns public IPv4 address 203.0.113.5 and has the established TCP mappings below. An inbound packet from 198.51.100.20:443 to 203.0.113.5:41001 passes all admission checks. Which destination IP and port does translation produce? No other translation changes the source.",
+    "code_snippet": "Public TCP port | Private endpoint       | Remote endpoint\n41000           | 10.0.0.2:51000          | 198.51.100.20:443\n41001           | 10.0.0.3:51000          | 198.51.100.20:443",
+    "options": {
+      "A": "203.0.113.5:51000",
+      "B": "10.0.0.3:51000",
+      "C": "10.0.0.3:41001",
+      "D": "10.0.0.2:51000"
+    },
+    "correct_answer": "B",
+    "explanation": "The inbound public destination port 41001 selects the second mapping, restoring private destination 10.0.0.3:51000. The fact that both private sessions originally used port 51000 does not make the two public mappings ambiguous."
+  },
+  {
+    "id": "1.3.2-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Medium",
+    "question": "An organization partitions IPv6 prefix 2001:db8:1234::/48 into /64 prefixes by allowing all values of the 16 added subnet bits. No subnet prefixes are excluded by local policy. Which pair gives (number of /64 prefixes, last /64 prefix in numeric order)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(256,2001:db8:1234:ff00::/64)",
+      "B": "(65536,2001:db8:1234:ffff::/64)",
+      "C": "(65535,2001:db8:1234:ffff::/64)",
+      "D": "(65536,2001:db8:1235::/64)"
+    },
+    "correct_answer": "B",
+    "explanation": "Extending /48 to /64 creates 16 subnet bits, so there are 2^16=65,536 distinct prefixes. The varying fourth hextet runs from 0000 through ffff, making 2001:db8:1234:ffff::/64 the last. Prefix 2001:db8:1235:: lies outside the assigned /48."
+  },
+  {
+    "id": "1.3.2-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Hard",
+    "question": "Allocate ordinary IPv4 broadcast subnets from 192.0.2.0/24 for groups needing 100, 50, and 25 usable hosts. Allocate in descending host requirement, use the smallest CIDR block meeting each need after reserving network and broadcast, and always take the lowest remaining correctly aligned block. Which pair gives (subnet for the 25-host group, largest remaining unallocated CIDR block)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(192.0.2.192/26,no addresses remain)",
+      "B": "(192.0.2.192/27,192.0.2.224/27)",
+      "C": "(192.0.2.160/27,192.0.2.192/26)",
+      "D": "(192.0.2.192/28,192.0.2.208/28)"
+    },
+    "correct_answer": "B",
+    "explanation": "The first group receives 192.0.2.0/25, offering 126 hosts; the second gets 192.0.2.128/26, offering 62. The 25-host group needs /27 with 30 usable hosts, beginning at 192. The remaining range 224-255 is exactly 192.0.2.224/27. The block at 160 would overlap the second allocation."
+  },
+  {
+    "id": "1.3.2-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Hard",
+    "question": "A router receives an IPv4 fragment with Total Length=1,500 bytes, a 20-byte option-free header, Fragment Offset=185, and MF=1. DF=0. It must refragment this fragment for MTU 620, maximizing each new nonfinal payload on an eight-byte boundary. Every new fragment has a 20-byte header. Which list gives (Total Length, Fragment Offset field, MF) for its three output fragments? Offsets remain relative to the original datagram.",
+    "code_snippet": null,
+    "options": {
+      "A": "[(620,185,1),(620,260,1),(300,335,0)]",
+      "B": "[(620,185,1),(620,260,1),(300,335,1)]",
+      "C": "[(620,185,1),(620,260,1),(280,335,1)]",
+      "D": "[(620,0,1),(620,75,1),(300,150,0)]"
+    },
+    "correct_answer": "B",
+    "explanation": "The incoming payload is 1,480 bytes starting at original byte 185*8=1,480. New payloads are 600,600,280 bytes, so total lengths are 620,620,300. Global offsets are 185,185+600/8=260, and 185+1,200/8=335. Because the incoming fragment already had MF=1, even its final local piece must retain MF=1: more original-datagram data follows elsewhere."
+  },
+  {
+    "id": "1.3.2-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Hard",
+    "question": "A router applies longest-prefix matching to the active table below. A discard route is an intentional forwarding decision: matching it drops the packet rather than falling back to a less-specific route. There are no policy overrides or inactive entries. Which actions are selected for destinations 198.51.100.130, 198.51.100.200, and 198.51.100.70, in that order?",
+    "code_snippet": "Prefix             | Action\n0.0.0.0/0          | R0\n198.51.100.0/24    | R1\n198.51.100.128/25  | discard\n198.51.100.192/26  | R2",
+    "options": {
+      "A": "(R0,R2,R1)",
+      "B": "(R1,R2,R1)",
+      "C": "(discard,R2,R1)",
+      "D": "(discard,discard,R1)"
+    },
+    "correct_answer": "C",
+    "explanation": "130 lies in the /25 discard range but not the narrower /26, so it is dropped. 200 matches both /25 and /26; the longer /26 selects R2. 70 is outside the /25 and follows the /24 to R1. A matched discard route is not a route-lookup failure that retries the default."
+  },
+  {
+    "id": "1.3.2-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Hard",
+    "question": "Distance-vector routers A,B,C form a triangle with unit link costs. A formerly had a separate direct link to D, which now fails. The displayed pre-update snapshot is asynchronous and not fully converged: some newer advertisements have not arrived. Poisoned reverse advertises infinity only to a route's own next hop. Process exactly these updates: (1) A loses its direct D link and receives C's advertised metric 3; B advertises infinity to A. (2) B receives A's resulting metric; C advertises infinity to B. (3) C receives B's resulting metric; A advertises infinity to C. No other updates or safeguards act. Which final state results?",
+    "code_snippet": "Before the three updates:\nA: direct D, metric 1\nB: via A, metric 2\nC: via B, metric 3",
+    "options": {
+      "A": "A via C metric 4; B via A metric 5; C via B metric 6",
+      "B": "A via B metric 4; B via C metric 5; C via A metric 6",
+      "C": "A via C metric 2; B via A metric 3; C via B metric 4",
+      "D": "A,B,C all mark D unreachable because poisoned reverse prevents every loop"
+    },
+    "correct_answer": "A",
+    "explanation": "A adds its A-C cost to C's 3, obtaining 4 via C. Its finite advertisement to B permits B to choose 5 via A. B's finite advertisement to C then permits C to choose 6 via B. Each router poisons its own next hop, but the finite advertisements circulate around the other direction, producing the three-router loop A->C->B->A."
+  },
+  {
+    "id": "1.3.2-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.2",
+    "subpart_name": "Network Layer, IP Addressing & Routing",
+    "difficulty": "Hard",
+    "question": "A NAPT device supports translation of ICMP errors associated with established outbound UDP mappings. The mapping below is valid. It receives an admitted ICMP Destination Unreachable error from router 198.51.100.1, addressed to 203.0.113.9. The error quotes enough of the offending external IP/UDP packet to identify the mapping. No other translation applies, and required checksum updates succeed. Which outer destination and quoted source endpoint should be presented to the private host?",
+    "code_snippet": "Outbound mapping:\n10.0.0.2:50000 -> public 203.0.113.9:40000\nRemote UDP endpoint: 198.51.100.7:33434\nQuoted offending packet:\n203.0.113.9:40000 -> 198.51.100.7:33434",
+    "options": {
+      "A": "Outer destination 10.0.0.2; quoted source 203.0.113.9:40000",
+      "B": "Outer destination 10.0.0.2; quoted source 10.0.0.2:50000",
+      "C": "Outer destination 203.0.113.9; quoted source 10.0.0.2:50000",
+      "D": "The error must be dropped because an outer ICMP header has no UDP source port"
+    },
+    "correct_answer": "B",
+    "explanation": "The quoted external UDP tuple identifies the outbound NAPT mapping. The associated ICMP error is delivered to private destination 10.0.0.2, and the embedded source is restored to 10.0.0.2:50000 so the host recognizes its original packet. The remote quoted endpoint stays unchanged. Translating only the outer destination would leave an incorrect embedded endpoint for the private sender."
+  }
+]

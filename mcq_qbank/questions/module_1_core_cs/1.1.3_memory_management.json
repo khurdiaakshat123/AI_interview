@@ -1,0 +1,512 @@
+[
+  {
+    "id": "1.1.3-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Easy",
+    "question": "A byte-addressable system uses fixed-size pages of 4 KiB, where 1 KiB = 1,024 bytes. How many bits of a virtual address form the page offset?",
+    "code_snippet": null,
+    "options": {
+      "A": "10 bits",
+      "B": "12 bits",
+      "C": "14 bits",
+      "D": "16 bits"
+    },
+    "correct_answer": "B",
+    "explanation": "A 4 KiB page contains 4,096 = 2^12 individually addressable bytes, so the low 12 address bits select a byte within the page."
+  },
+  {
+    "id": "1.1.3-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Easy",
+    "question": "A byte-addressable virtual memory uses 4,096-byte pages, numbered from 0. For decimal virtual address 13,500, what is the pair (virtual page number, byte offset)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(2, 1212)",
+      "B": "(3, 1500)",
+      "C": "(3, 1212)",
+      "D": "(4, 1212)"
+    },
+    "correct_answer": "C",
+    "explanation": "13,500 = 3 * 4,096 + 1,212. The quotient gives virtual page 3, and the remainder gives byte offset 1,212."
+  },
+  {
+    "id": "1.1.3-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Easy",
+    "question": "A byte-addressable system uses 1,024-byte pages and equally sized physical frames, both numbered from 0. Virtual page 2 is resident in physical frame 7, and the access is permitted. What decimal physical address corresponds to decimal virtual address 2,148?",
+    "code_snippet": null,
+    "options": {
+      "A": "7,268",
+      "B": "7,168",
+      "C": "2,148",
+      "D": "9,316"
+    },
+    "correct_answer": "A",
+    "explanation": "The virtual address is 2 * 1,024 + 100, so its offset is 100. Paging preserves that offset: physical address = 7 * 1,024 + 100 = 7,268."
+  },
+  {
+    "id": "1.1.3-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Easy",
+    "question": "A process has one contiguous 10 KiB region that begins on a page boundary. All of it is allocated using whole 4 KiB pages, and its final page cannot be shared with another allocation. Ignoring page-table storage, how much internal fragmentation does this allocation have? Here 1 KiB = 1,024 bytes.",
+    "code_snippet": null,
+    "options": {
+      "A": "0 KiB",
+      "B": "1 KiB",
+      "C": "4 KiB",
+      "D": "2 KiB"
+    },
+    "correct_answer": "D",
+    "explanation": "The region needs ceil(10/4) = 3 pages, reserving 12 KiB. The unused 12 - 10 = 2 KiB within the last allocated page is internal fragmentation."
+  },
+  {
+    "id": "1.1.3-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Easy",
+    "question": "In a byte-addressable segmentation system, segment S has physical base 8,000 and length 1,200 bytes. Legal offsets satisfy 0 <= offset < length, and the requested access is permitted. What is the decimal physical address of (S, offset 1,199)?",
+    "code_snippet": null,
+    "options": {
+      "A": "9,200",
+      "B": "9,199",
+      "C": "1,199",
+      "D": "8,000"
+    },
+    "correct_answer": "B",
+    "explanation": "Offset 1,199 is less than the 1,200-byte length, so it is valid. Segmentation adds the offset to the base: 8,000 + 1,199 = 9,199."
+  },
+  {
+    "id": "1.1.3-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Easy",
+    "question": "A byte-addressable segment has physical base 8,000 and length 1,200 bytes, with legal offsets 0 through 1,199. There is no paging. What happens when a process attempts to read one byte at offset 1,200 in this segment?",
+    "code_snippet": null,
+    "options": {
+      "A": "The byte is read from physical address 9,200",
+      "B": "The offset wraps to 0, and the byte is read from physical address 8,000",
+      "C": "A segment-bounds exception occurs before the data read",
+      "D": "A missing-page exception loads another page and makes this offset valid"
+    },
+    "correct_answer": "C",
+    "explanation": "A segment length is a byte count, not an inclusive largest offset. Offset 1,200 equals the length and is out of bounds. The system has no paging, and loading a page would not repair an invalid segment offset."
+  },
+  {
+    "id": "1.1.3-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Easy",
+    "question": "A permitted read misses in the TLB. A hardware page-table walk finds a valid, present mapping for the virtual page, and the referenced data is already in physical memory. No other exception occurs. Which action is required to complete the access?",
+    "code_snippet": null,
+    "options": {
+      "A": "Use the resident mapping found by the walk and access the data without a page-in from storage",
+      "B": "Load the page from storage because every TLB miss is a page fault",
+      "C": "Terminate the process because every TLB miss indicates an invalid virtual address",
+      "D": "Choose a page-replacement victim before the resident mapping can be used"
+    },
+    "correct_answer": "A",
+    "explanation": "A TLB caches translations, so its miss only means the translation is not cached. A present, permitted page-table mapping can resolve the miss without storage I/O or page replacement."
+  },
+  {
+    "id": "1.1.3-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Easy",
+    "question": "A process accesses a valid, readable virtual page that is backed by storage but is not currently resident. This demand-paging system has an available free frame, and the page-in succeeds. Which sequence describes how the access completes?",
+    "code_snippet": null,
+    "options": {
+      "A": "Read the requested data directly from the non-present physical frame without a fault",
+      "B": "Report a permanent address error because a nonresident page can never be valid",
+      "C": "Change only the TLB entry and retry without loading the missing page",
+      "D": "Raise a page fault, load the page, update its mapping, and retry the access"
+    },
+    "correct_answer": "D",
+    "explanation": "Nonresidency triggers a page fault, but the virtual address and permission are valid. The OS can use the free frame, load the page, install a present mapping, and restart the faulting access. No victim is needed when a free frame is available."
+  },
+  {
+    "id": "1.1.3-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Easy",
+    "question": "After more processes are admitted, the system spends most of its time paging, CPU utilization falls, and the active processes' combined working sets exceed available frames. Which immediate policy change most directly addresses this thrashing condition?",
+    "code_snippet": null,
+    "options": {
+      "A": "Admit more processes whenever CPU utilization falls",
+      "B": "Suspend some active processes and reassign their frames to the remaining working sets",
+      "C": "Reduce every active process's frame allocation to make room for more processes",
+      "D": "Switch to shorter CPU time slices while leaving all frame allocations unchanged"
+    },
+    "correct_answer": "B",
+    "explanation": "Reducing the degree of multiprogramming releases frames so the remaining processes can keep their working sets resident. Adding processes or shrinking already inadequate resident sets increases memory pressure; changing CPU time slices does not resolve the frame shortage."
+  },
+  {
+    "id": "1.1.3-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A byte-addressable system has a 32-bit virtual address space and 4 KiB pages. A process uses a flat page table with one 8-byte entry for every virtual page, including unmapped pages. Ignoring other metadata, what is the page table's size? Here 1 KiB = 2^10 bytes and 1 MiB = 2^20 bytes.",
+    "code_snippet": null,
+    "options": {
+      "A": "1 MiB",
+      "B": "4 MiB",
+      "C": "8 MiB",
+      "D": "32 MiB"
+    },
+    "correct_answer": "C",
+    "explanation": "The 12-bit offset leaves 32 - 12 = 20 virtual-page-number bits. The flat table therefore has 2^20 entries, each 8 bytes, for 2^23 bytes = 8 MiB. The process's actual resident-page count does not shrink this stipulated flat table."
+  },
+  {
+    "id": "1.1.3-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A byte-addressable system uses 32-bit virtual addresses, 4 KiB pages, and a two-level page table. Every second-level table occupies one 4 KiB page, contains 4-byte entries, and is indexed using all of its entries. What is the virtual-address split (first-level index bits, second-level index bits, offset bits)? Here 1 KiB = 1,024 bytes.",
+    "code_snippet": null,
+    "options": {
+      "A": "(10, 10, 12)",
+      "B": "(12, 8, 12)",
+      "C": "(9, 11, 12)",
+      "D": "(10, 12, 10)"
+    },
+    "correct_answer": "A",
+    "explanation": "The page offset uses 12 bits. A second-level table has 4,096/4 = 1,024 = 2^10 entries, requiring a 10-bit second-level index. The remaining 32 - 12 - 10 = 10 bits form the first-level index."
+  },
+  {
+    "id": "1.1.3-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A 32-bit virtual address is split into 10 first-level index bits, 10 second-level index bits, and 12 offset bits. The root and each second-level table occupy 4 KiB. The root always exists; a second-level table exists only if it contains at least one mapped page. Exactly the four page-aligned virtual addresses below are mapped, with no other mappings or shared page-table pages. Excluding data frames, how much page-table memory is allocated? Here 1 KiB = 1,024 bytes.",
+    "code_snippet": "Mapped virtual page starts:\n0x00000000\n0x00001000\n0x00400000\n0x00C00000",
+    "options": {
+      "A": "8 KiB",
+      "B": "12 KiB",
+      "C": "20 KiB",
+      "D": "16 KiB"
+    },
+    "correct_answer": "D",
+    "explanation": "One second-level table covers 2^(10 + 12) = 4 MiB. The addresses have first-level indices 0, 0, 1, and 3, requiring three second-level tables. Including the root, four 4 KiB table pages occupy 16 KiB."
+  },
+  {
+    "id": "1.1.3-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A byte-addressable machine supports 40-bit physical addresses and 8 KiB pages. Each page-table entry must store the entire physical frame number plus six independent flag bits, with no other fields. Hardware permits entry sizes of 4, 8, 16, or 32 bytes. What is the smallest supported entry size that can represent every frame and all flags? Here 1 KiB = 1,024 bytes.",
+    "code_snippet": null,
+    "options": {
+      "A": "4 bytes",
+      "B": "8 bytes",
+      "C": "16 bytes",
+      "D": "32 bytes"
+    },
+    "correct_answer": "B",
+    "explanation": "An 8 KiB page uses 13 offset bits, so the physical frame number needs 40 - 13 = 27 bits. Adding six flags requires 33 bits. Four bytes hold only 32 bits; the smallest permitted size that fits is 8 bytes."
+  },
+  {
+    "id": "1.1.3-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A system has a single-level page table and serial TLB lookup. The TLB lookup takes 10 ns and hits on 80% of references. Each physical-memory access takes 100 ns. A hit needs one data-memory access after lookup; a miss needs one page-table-memory access and then one data-memory access, with no second TLB lookup. There are no caches, page faults, or other costs. What is the effective access time?",
+    "code_snippet": null,
+    "options": {
+      "A": "130 ns",
+      "B": "120 ns",
+      "C": "110 ns",
+      "D": "210 ns"
+    },
+    "correct_answer": "A",
+    "explanation": "A hit costs 10 + 100 = 110 ns, and a miss costs 10 + 100 + 100 = 210 ns. The weighted mean is 0.8 * 110 + 0.2 * 210 = 130 ns. TLB lookup time is charged on both paths."
+  },
+  {
+    "id": "1.1.3-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A byte-addressable system has a two-level page table and a serial TLB lookup costing 5 ns, with a 95% hit rate. Each physical-memory access costs 80 ns. A hit needs only the data access after lookup; a miss walks both page-table levels and then accesses the data, without another TLB lookup. There are no page-walk caches, data caches, page faults, or overlapping operations. What is the mean access time?",
+    "code_snippet": null,
+    "options": {
+      "A": "85 ns",
+      "B": "89 ns",
+      "C": "93 ns",
+      "D": "97 ns"
+    },
+    "correct_answer": "C",
+    "explanation": "The hit path costs 5 + 80 = 85 ns. The miss path costs 5 + 3 * 80 = 245 ns because it includes two page-table reads and one data read. Mean = 0.95 * 85 + 0.05 * 245 = 93 ns."
+  },
+  {
+    "id": "1.1.3-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A single-level paging system has serial TLB lookup time 10 ns and physical-memory access time 100 ns. A hit takes one data-memory access after lookup; a miss takes one page-table-memory access followed by one data-memory access, with no extra lookup. There are no page faults or caches. What is the minimum TLB hit rate needed for a mean access time of at most 120 ns?",
+    "code_snippet": null,
+    "options": {
+      "A": "80%",
+      "B": "85%",
+      "C": "95%",
+      "D": "90%"
+    },
+    "correct_answer": "D",
+    "explanation": "Let h be the hit rate. Mean time = 110h + 210(1 - h) = 210 - 100h ns. Requiring 210 - 100h <= 120 gives h >= 0.90, so the minimum is 90%."
+  },
+  {
+    "id": "1.1.3-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "For each logical memory reference, the probability of a page fault is 0.00001. A reference without a page fault takes 100 ns in total. A reference with a fault takes 8 ms in total, measured from the initial attempt through successful completion of the restarted access; this already includes all lookup and retry costs. What is the mean reference time, rounded to the nearest nanosecond? Use 1 ms = 1,000,000 ns.",
+    "code_snippet": null,
+    "options": {
+      "A": "100 ns",
+      "B": "180 ns",
+      "C": "80 ns",
+      "D": "8,000 ns"
+    },
+    "correct_answer": "B",
+    "explanation": "Mean = (1 - 0.00001) * 100 + 0.00001 * 8,000,000 = 179.999 ns, which rounds to 180 ns. The 8 ms fault path is already a total, so another normal-access charge must not be added to it."
+  },
+  {
+    "id": "1.1.3-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A logical memory reference faults with probability 0.0002; otherwise it takes 200 ns. Every fault evicts one page. Conditional on a fault, the victim is clean with probability 0.7 and dirty with probability 0.3. The total faulting-reference time, including all I/O and the successful retry, is 5 ms for a clean victim and 13 ms for a dirty victim. What is the mean reference time, rounded to two decimal places in microseconds? Use 1 ms = 1,000 microseconds and 1 microsecond = 1,000 ns.",
+    "code_snippet": null,
+    "options": {
+      "A": "1.68 microseconds",
+      "B": "1.00 microseconds",
+      "C": "2.60 microseconds",
+      "D": "7,400.00 microseconds"
+    },
+    "correct_answer": "A",
+    "explanation": "The conditional mean fault time is 0.7 * 5 + 0.3 * 13 = 7.4 ms = 7,400,000 ns. Overall mean = 0.9998 * 200 + 0.0002 * 7,400,000 = 1,679.96 ns = 1.67996 microseconds, rounding to 1.68."
+  },
+  {
+    "id": "1.1.3-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A byte-addressable segmented-paging system uses 2,048-byte pages and equally sized physical frames. Segment S is 6,000 bytes long; a one-byte reference is legal only if its segment-relative byte position is less than 6,000. The segment's page table is shown below, and all listed mappings are present and readable. What decimal physical address corresponds to (segment S, page 2, offset 100)? Page and frame numbers start at 0.",
+    "code_snippet": "Page within S | Physical frame\n0             | 4\n1             | 1\n2             | 9",
+    "options": {
+      "A": "4,196",
+      "B": "18,432",
+      "C": "18,532",
+      "D": "Bounds exception because S is not an exact multiple of the page size"
+    },
+    "correct_answer": "C",
+    "explanation": "The segment-relative position is 2 * 2,048 + 100 = 4,196, which is below 6,000. Page 2 maps to frame 9, so the physical address is 9 * 2,048 + 100 = 18,532. A partially used last page does not invalidate offsets inside the segment length."
+  },
+  {
+    "id": "1.1.3-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A process has three initially empty page frames and uses FIFO replacement. The page-reference string below contains only valid reads. Count every first load as a page fault; a hit does not change FIFO order. How many page faults occur?",
+    "code_snippet": "Reference string: 1, 2, 3, 1, 4, 2, 5",
+    "options": {
+      "A": "3",
+      "B": "4",
+      "C": "6",
+      "D": "5"
+    },
+    "correct_answer": "D",
+    "explanation": "The first references to 1, 2, and 3 fault. The next 1 hits without refreshing its FIFO position. Loading 4 evicts 1; the following 2 still hits. Loading 5 evicts 2. The fault/hit pattern is F, F, F, H, F, H, F, totaling 5 faults."
+  },
+  {
+    "id": "1.1.3-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A process has three initially empty page frames and uses exact LRU replacement. Every successful reference, including a hit, refreshes the page's recency. All references below are valid reads, and every first load counts as a page fault. How many page faults occur?",
+    "code_snippet": "Reference string: 1, 2, 3, 1, 4, 2, 5",
+    "options": {
+      "A": "5",
+      "B": "6",
+      "C": "4",
+      "D": "7"
+    },
+    "correct_answer": "B",
+    "explanation": "The first three references fault, and the next 1 hits. The LRU victims for the later misses on 4, 2, and 5 are 2, 3, and 1, respectively. The pattern is F, F, F, H, F, F, F, giving 6 faults."
+  },
+  {
+    "id": "1.1.3-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "A process has three initially empty frames and uses Optimal page replacement: on a fault with full frames, evict the resident page whose next use is farthest in the future; a page never used again is farthest. Break ties by the smaller page number. All references below are valid reads, and first loads count as faults. How many page faults occur?",
+    "code_snippet": "Reference string: 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2",
+    "options": {
+      "A": "7",
+      "B": "8",
+      "C": "9",
+      "D": "10"
+    },
+    "correct_answer": "A",
+    "explanation": "The first 7, 0, and 1 fault. On the reference to 2, neither 7 nor 1 is used again, so the tie rule evicts 1. Loading 3 later evicts 7. Loading 4 evicts 0, whose next use is later than those of 2 and 3. The later 0 faults and evicts 4. Faults occur at reference positions 1, 2, 3, 4, 6, 8, and 11: 7 faults total."
+  },
+  {
+    "id": "1.1.3-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "The current working sets below must all be resident simultaneously. Every listed private page occupies a distinct physical frame. S1 and S2 are shared read-only pages: all references to the same shared-page name use one common physical frame across processes. Ignore page-table frames and all other memory use. If nine data frames are available, how many additional frames are needed to hold these working sets?",
+    "code_snippet": "P: {private A, private B, private C, S1, S2}\nQ: {private D, private E, S1, S2}\nR: {private F, private G, private H, S2}",
+    "options": {
+      "A": "0",
+      "B": "2",
+      "C": "1",
+      "D": "4"
+    },
+    "correct_answer": "C",
+    "explanation": "There are eight distinct private pages and two distinct shared pages, requiring 10 physical frames. Nine frames leave a shortage of one. Adding the per-process set sizes would count shared pages more than once and incorrectly suggest 13 frames are needed."
+  },
+  {
+    "id": "1.1.3-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Medium",
+    "question": "In a single-CPU system with no concurrent accesses, the current process has a TLB entry mapping virtual page 5 to frame 12. The OS changes the page-table entry to map page 5 to resident frame 20, with unchanged readable permissions. The page-table update is complete and visible, but this system does not automatically invalidate cached TLB translations. Which action is necessary to ensure the process's next read of page 5 uses frame 20?",
+    "code_snippet": null,
+    "options": {
+      "A": "Make no further change; every TLB hit rechecks the frame number in the page table",
+      "B": "Clear only the referenced/accessed bit of the updated page-table entry",
+      "C": "Evict only the cached data for frame 12 while retaining its TLB translation",
+      "D": "Invalidate the matching TLB entry before the next read, forcing translation from the updated page table"
+    },
+    "correct_answer": "D",
+    "explanation": "The stale TLB entry can continue supplying frame 12 without a page-table walk. Invalidating that entry forces the next read to resolve the updated mapping to frame 20. Changing a page-table status bit or a data-cache line does not by itself remove the stipulated stale translation."
+  },
+  {
+    "id": "1.1.3-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Hard",
+    "question": "Run the reference string below twice under FIFO page replacement: once with three frames, then independently with four frames. All frames start empty in each run. Every first load counts as a page fault, and hits do not refresh FIFO order. Which pair gives (faults with three frames, faults with four frames)?",
+    "code_snippet": "Reference string: 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5",
+    "options": {
+      "A": "(10, 9)",
+      "B": "(9, 10)",
+      "C": "(9, 9)",
+      "D": "(10, 10)"
+    },
+    "correct_answer": "B",
+    "explanation": "With three frames the pattern is F,F,F,F,F,F,F,H,H,F,F,H: 9 faults. With four frames it is F,F,F,F,H,H,F,F,F,F,F,F: 10 faults. This is Belady's anomaly: adding a frame can increase FIFO faults because FIFO is not a stack algorithm."
+  },
+  {
+    "id": "1.1.3-026",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Hard",
+    "question": "A byte-addressable system has a four-level page table. Its 48-bit virtual address uses four 9-bit indices followed by a 12-bit offset. Every table at every level occupies one 4 KiB page and contains 512 entries. The root always exists; other tables are allocated only along paths to mapped 4 KiB pages. There are no huge pages or shared page-table pages. Exactly the ranges below are mapped. How much page-table memory is allocated, excluding data frames? Here 1 KiB = 2^10 bytes, 1 MiB = 2^20 bytes, and 1 GiB = 2^30 bytes.",
+    "code_snippet": "Mapped virtual byte ranges, end-exclusive:\n[0, 4 MiB)\n[1 GiB, 1 GiB + 4 KiB)\n[512 GiB, 512 GiB + 4 KiB)",
+    "options": {
+      "A": "40 KiB",
+      "B": "28 KiB",
+      "C": "36 KiB",
+      "D": "44 KiB"
+    },
+    "correct_answer": "A",
+    "explanation": "Each leaf table covers 2 MiB, so the ranges need 2 + 1 + 1 = 4 leaf tables. Their parent tables cover 1 GiB each, requiring 3 such tables for the distinct 1 GiB regions. The next level covers 512 GiB per table, requiring 2 tables: one for the first two ranges and one for the third. Including the root gives 4 + 3 + 2 + 1 = 10 table pages, or 40 KiB."
+  },
+  {
+    "id": "1.1.3-027",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Hard",
+    "question": "A two-level paging system has a serial TLB lookup costing 5 ns and a TLB hit rate of 90%. Each physical-memory access costs 100 ns. A hit costs one data access after lookup. A TLB miss that does not fault costs two page-table accesses and one data access after lookup, without another lookup. Conditional on a TLB miss, the probability of a page fault is 0.001. A faulting reference costs 2 ms in total from the initial lookup through the successful retry, with no extra costs to add. TLB hits never fault, and there are no caches or overlapping operations. What is the overall mean reference time, rounded to two decimal places in ns? Use 1 ms = 1,000,000 ns.",
+    "code_snippet": null,
+    "options": {
+      "A": "125.00 ns",
+      "B": "2,124.70 ns",
+      "C": "324.97 ns",
+      "D": "325.00 ns"
+    },
+    "correct_answer": "C",
+    "explanation": "The unconditional fault probability is 0.10 * 0.001 = 0.0001, while a nonfaulting miss has probability 0.10 * 0.999 = 0.0999. Hit time is 105 ns and nonfaulting-miss time is 305 ns. Mean = 0.9 * 105 + 0.0999 * 305 + 0.0001 * 2,000,000 = 324.9695 ns, rounding to 324.97. Charging another 305 ns on each already-inclusive fault path would incorrectly round to 325.00."
+  },
+  {
+    "id": "1.1.3-028",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Hard",
+    "question": "A process has two initially empty frames and uses exact LRU replacement, refreshing recency on every read or write. Loading any missing page costs 4 ms and initially makes it clean; a write then marks it dirty. Evicting a dirty page adds 6 ms of write-back before the load. Evicting a clean page costs nothing beyond the load. All I/O is serial, successful, and charged once per event. Ignore other costs and do not flush dirty pages remaining at the end. What total paging-I/O time does the trace require?",
+    "code_snippet": "W1, R2, W3, R2, R1, W2, R3\nWn = write page n; Rn = read page n",
+    "options": {
+      "A": "20 ms",
+      "B": "26 ms",
+      "C": "38 ms",
+      "D": "32 ms"
+    },
+    "correct_answer": "D",
+    "explanation": "Faults occur on W1, the first R2, W3, R1, and R3, giving five loads. W3 evicts dirty page 1, and R1 evicts dirty page 3. The final R3 evicts clean page 1. W2 is a hit and leaves page 2 dirty but resident, so no final write-back is charged. Total = 5 * 4 + 2 * 6 = 32 ms."
+  },
+  {
+    "id": "1.1.3-029",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Hard",
+    "question": "An abstract byte-addressable machine executes an 8-byte load starting at virtual address 8,190 with 4,096-byte pages. It processes page chunks in ascending address order: translate a chunk, read its data if translation succeeds, then proceed to the next chunk. Each chunk translation performs exactly one TLB lookup. A resident-page miss fills the TLB and continues without another lookup. A nonresident-page miss raises a page fault without filling the TLB or reading that chunk's data. On a fault, the handler loads the page but neither fills nor flushes the TLB; the entire instruction then restarts from its first chunk. The TLB initially is empty, holds at least two entries, and suffers no eviction. Virtual page 1 is resident; page 2 is valid but nonresident. All reads are permitted, and the handler succeeds. Through successful completion, what is the tuple (TLB misses, page faults, chunk data reads), including work discarded by the fault?",
+    "code_snippet": null,
+    "options": {
+      "A": "(2, 1, 2)",
+      "B": "(3, 1, 3)",
+      "C": "(3, 2, 3)",
+      "D": "(4, 1, 3)"
+    },
+    "correct_answer": "B",
+    "explanation": "Address 8,190 is page 1, offset 4,094, so the load spans pages 1 and 2. Initially page 1 misses, fills the TLB, and supplies the first chunk; page 2 misses and faults before its data is read. On restart, page 1 hits and its chunk is read again. Page 2 now is resident but still absent from the TLB, so it misses, fills, and supplies its chunk. Totals are 3 TLB misses, 1 page fault, and 3 chunk reads; there are 4 TLB lookups overall."
+  },
+  {
+    "id": "1.1.3-030",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.3",
+    "subpart_name": "Memory Management & Virtual Memory",
+    "difficulty": "Hard",
+    "question": "Run the same address trace independently with page sizes of 4 KiB and 16 KiB. Each run uses an initially empty, fully associative 64-entry TLB with exact LRU replacement; every page has one TLB entry, and all page-table mappings are resident and readable. A 512 KiB virtual region begins at an address aligned to 16 KiB. The trace reads one byte at offsets 0, 4 KiB, 8 KiB, and so on through 508 KiB, then immediately repeats this entire sequence once. There are no other accesses, invalidations, or page faults. Which pair gives (TLB misses with 4 KiB pages, TLB misses with 16 KiB pages)? Here 1 KiB = 1,024 bytes.",
+    "code_snippet": "for pass in [1, 2]:\n    for offset in [0, 4096, 8192, ..., 520192]:\n        read_byte(region_start + offset)",
+    "options": {
+      "A": "(128, 32)",
+      "B": "(256, 64)",
+      "C": "(256, 32)",
+      "D": "(128, 64)"
+    },
+    "correct_answer": "C",
+    "explanation": "With 4 KiB pages the trace cycles over 128 distinct pages, exceeding the 64-entry TLB. Every reference misses in both passes, for 256 misses. With 16 KiB pages, each group of four consecutive addresses shares a translation, and the whole region uses only 32 entries. The first pass incurs 32 compulsory misses; all remaining references, including the entire second pass, hit."
+  }
+]

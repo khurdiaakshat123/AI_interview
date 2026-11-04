@@ -1,0 +1,427 @@
+[
+  {
+    "id": "1.2.3-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Easy",
+    "question": "In this B+ tree model, all record entries are stored in leaves, while internal nodes contain separator keys and child pointers only. A lookup finds its search key among an internal node's separators. What must happen to retrieve the record?",
+    "code_snippet": null,
+    "options": {
+      "A": "Continue through the appropriate child until the matching leaf entry is reached",
+      "B": "Declare the record absent because internal keys cannot also occur at leaves",
+      "C": "Scan every leaf because matching a separator makes child selection impossible",
+      "D": "Return a complete record directly from that separator"
+    },
+    "correct_answer": "A",
+    "explanation": "An internal separator guides routing but is not itself the record entry in the stated B+ tree model. The lookup must reach the leaf. Equality is routed according to the tree's separator convention."
+  },
+  {
+    "id": "1.2.3-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Easy",
+    "question": "A B+ tree defines order m as the maximum number of child pointers in an internal node. Each internal node with c children has c-1 separator keys. If m=5, what is the maximum number of separators in such a node?",
+    "code_snippet": null,
+    "options": {
+      "A": "3",
+      "B": "6",
+      "C": "4",
+      "D": "5"
+    },
+    "correct_answer": "C",
+    "explanation": "A node with the maximum five children has five minus one = four separator keys. Definitions of order vary, so the question explicitly fixes the maximum-child convention."
+  },
+  {
+    "id": "1.2.3-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Easy",
+    "question": "A table stores one physical copy of its rows. A clustered index determines the physical row ordering in that copy, while non-clustered indexes store separate search structures. Two proposed clustering keys induce different row orders. How many of these independent physical clustering orders can that one row copy simultaneously have?",
+    "code_snippet": null,
+    "options": {
+      "A": "As many as there are non-clustered indexes",
+      "B": "One per indexed column, without another row copy",
+      "C": "Exactly two",
+      "D": "At most one"
+    },
+    "correct_answer": "D",
+    "explanation": "A single physical row sequence cannot simultaneously follow two different orders. Multiple non-clustered indexes may coexist because they are separate structures, but another independent physical clustering order would need another organization or copy."
+  },
+  {
+    "id": "1.2.3-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Easy",
+    "question": "A non-clustered index stores key K and included column V in its leaf entries. A query selects only K and V and filters only on K. Assume index entries supply all required visibility and permission information, and ignore other checks. Is fetching base-table data pages necessary for the returned column values?",
+    "code_snippet": null,
+    "options": {
+      "A": "Yes; every included column is stored only in the base table",
+      "B": "No; the index covers all requested columns",
+      "C": "No; because every non-clustered index physically reorders the base table",
+      "D": "Yes; a non-clustered index can never supply selected column values"
+    },
+    "correct_answer": "B",
+    "explanation": "Both selected values and the predicate key are present in the index, enabling an index-only retrieval under the stated assumptions. Coverage, not physical clustering, determines whether base-table values are needed here."
+  },
+  {
+    "id": "1.2.3-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Easy",
+    "question": "Each Employee belongs to exactly one Department, and a Department may have many Employees or none. DepartmentID and EmployeeID are their respective keys. Which mapping directly enforces the Employee-to-Department association while permitting many employees in one department?",
+    "code_snippet": null,
+    "options": {
+      "A": "Put one EmployeeID scalar foreign key in Department and no reference in Employee",
+      "B": "Store the department name only inside Employee without a foreign key",
+      "C": "Put a UNIQUE DepartmentID foreign key in Employee",
+      "D": "Put a NOT NULL DepartmentID foreign key in Employee, without a UNIQUE constraint on that foreign key"
+    },
+    "correct_answer": "D",
+    "explanation": "The foreign key belongs on the many side. NOT NULL enforces each employee's mandatory department, and omitting UNIQUE allows multiple employee rows to reference the same department. A scalar employee reference in Department cannot represent an arbitrary employee set."
+  },
+  {
+    "id": "1.2.3-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Easy",
+    "question": "Students may take many Courses, Courses may have many Students, and each student-course pair has one current Grade. Which relational mapping represents this many-to-many relationship without storing a list in a cell?",
+    "code_snippet": null,
+    "options": {
+      "A": "One CourseID column in Student, with no association table",
+      "B": "Enrollment(StudentID,CourseID,Grade), with StudentID alone as its primary key",
+      "C": "Enrollment(StudentID,CourseID,Grade), with primary key (StudentID,CourseID) and foreign keys to both entity tables",
+      "D": "One StudentID column in Course, with no association table"
+    },
+    "correct_answer": "C",
+    "explanation": "The bridge relation stores one row per association and keeps Grade on that association. The composite primary key prevents duplicate current enrollment pairs without limiting a student or course to only one partner."
+  },
+  {
+    "id": "1.2.3-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Easy",
+    "question": "Dependent is a weak entity owned by Employee. DependentName is unique only within one employee's dependents; the same name may occur for different employees. Which primary key correctly identifies a dependent?",
+    "code_snippet": null,
+    "options": {
+      "A": "DependentName alone",
+      "B": "EmployeeID alone",
+      "C": "(EmployeeID,DependentName)",
+      "D": "A constant identifying the Dependent entity type"
+    },
+    "correct_answer": "C",
+    "explanation": "The owner key plus the weak entity's partial key provides global identification. EmployeeID alone would permit only one dependent per owner, while DependentName alone would incorrectly prohibit repeated names across owners."
+  },
+  {
+    "id": "1.2.3-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Easy",
+    "question": "An Employee may belong to zero or one Department; a Department may have many Employees. A scalar DepartmentID column is placed in Employee. Which definition represents this optional many-to-one relationship?",
+    "code_snippet": null,
+    "options": {
+      "A": "A NOT NULL UNIQUE DepartmentID foreign key",
+      "B": "An unconstrained DepartmentID that may refer to a nonexistent Department",
+      "C": "A nullable UNIQUE DepartmentID foreign key",
+      "D": "A nullable DepartmentID foreign key with no UNIQUE constraint on DepartmentID"
+    },
+    "correct_answer": "D",
+    "explanation": "NULL represents no department, and a non-NULL foreign-key value must name an existing department. Not making the column UNIQUE allows many employees to share a department. NOT NULL would remove the optional case."
+  },
+  {
+    "id": "1.2.3-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "A B+ tree internal node occupies one 4,096-byte page with a 64-byte header. It stores m child pointers of 8 bytes each and m-1 keys of 8 bytes each, with no other storage costs. What is the pair (maximum child pointers, maximum separator keys)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(252,252)",
+      "B": "(251,250)",
+      "C": "(253,252)",
+      "D": "(252,251)"
+    },
+    "correct_answer": "D",
+    "explanation": "The size constraint is 64 + 8m + 8(m-1) <= 4,096, or 16m <= 4,040. Thus m <= 252.5, so the largest integer m is 252 and the separator count is 251."
+  },
+  {
+    "id": "1.2.3-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "A B+ tree leaf page is 4,096 bytes. It has a 64-byte header plus a separate 8-byte next-leaf pointer. Each entry occupies 8 bytes for its key and 8 bytes for its record identifier. Entries are not compressed and have no other overhead. How many entries fit in one leaf?",
+    "code_snippet": null,
+    "options": {
+      "A": "251",
+      "B": "250",
+      "C": "256",
+      "D": "252"
+    },
+    "correct_answer": "A",
+    "explanation": "Entry space is 4,096 - 64 - 8 = 4,024 bytes. Each entry needs 16 bytes, so floor(4,024/16) = 251 entries fit. The next-leaf pointer is additional to the header."
+  },
+  {
+    "id": "1.2.3-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "A B+ tree has height 3, defined as three edges from root to leaf. Every internal node, including the root, can have at most 100 children, and each leaf holds at most 80 record entries. All records occur only at leaves. What is the maximum record count?",
+    "code_snippet": null,
+    "options": {
+      "A": "100,000,000",
+      "B": "80,000,000",
+      "C": "8,000",
+      "D": "800,000"
+    },
+    "correct_answer": "B",
+    "explanation": "Three internal branching steps can produce 100^3 = 1,000,000 leaves. At 80 records per leaf, the maximum is 80 * 100^3 = 80,000,000 records. Counting only two branching steps would confuse edges with levels."
+  },
+  {
+    "id": "1.2.3-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "A B+ tree stores exactly 1,000,000 record entries. Each leaf can hold at most 100 entries, and each internal node, including the root, can have at most 100 children. Height is the number of root-to-leaf edges, with a root-only leaf having height 0. What is the minimum possible height, assuming full nodes are allowed?",
+    "code_snippet": null,
+    "options": {
+      "A": "4",
+      "B": "2",
+      "C": "3",
+      "D": "1"
+    },
+    "correct_answer": "B",
+    "explanation": "A height-h tree can hold at most 100 * 100^h entries. Height 1 holds only 10,000, while height 2 holds 1,000,000. Thus two edges, or three node levels, suffice and are necessary."
+  },
+  {
+    "id": "1.2.3-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "A B-tree has minimum degree t=3 and height 2 edges. A non-root node has t-1 through 2t-1 keys; an internal node has one more child than keys. The internal root has at least one key and at most 2t-1 keys, and all leaves are at depth 2. Counting keys in every node, what is the pair (minimum keys, maximum keys)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(18,216)",
+      "B": "(8,35)",
+      "C": "(17,215)",
+      "D": "(17,125)"
+    },
+    "correct_answer": "C",
+    "explanation": "The sparsest tree has one root key, two children with two keys each, and six leaves with two keys each: 1 + 4 + 12 = 17. The fullest tree has 1 + 6 + 36 nodes, each with five keys, for 43 * 5 = 215."
+  },
+  {
+    "id": "1.2.3-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "A clustered B+ tree stores each full record in its leaf and has height 3 edges. For one successful equality lookup, the root page is already cached, but every other page on the search path is uncached. There is no read-ahead and no separate heap fetch. How many disk-page reads are needed?",
+    "code_snippet": null,
+    "options": {
+      "A": "3",
+      "B": "2",
+      "C": "4",
+      "D": "5"
+    },
+    "correct_answer": "A",
+    "explanation": "The path contains four pages: root, two additional internal pages, and leaf. The cached root costs no disk read; the other three do. Since the full record is in the leaf, no extra data-page fetch is needed."
+  },
+  {
+    "id": "1.2.3-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "A range query returns exactly 1,000 fixed-size records. In a clustered layout they occupy ten consecutive data pages, with the range starting on a page boundary and 100 records per page. In an unclustered layout each matching record is on a different data page. Ignore index-page reads and assume no data pages are cached. What is the pair of required data-page reads (clustered, unclustered)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(1000,10)",
+      "B": "(10,1000)",
+      "C": "(10,10)",
+      "D": "(100,1000)"
+    },
+    "correct_answer": "B",
+    "explanation": "The clustered layout reads ten pages containing all 1,000 records. The unclustered layout must read 1,000 distinct data pages under the stated distribution. Index traversal costs are excluded, so they must not be added to either count."
+  },
+  {
+    "id": "1.2.3-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "A B+ tree leaf can hold four entries and currently contains the keys below. Insert 25. On a five-entry overflow, keep the smallest three entries in the left leaf and move the largest two to a new right leaf; copy the first key of the right leaf into the parent as separator. The parent has space. Which key is copied upward?",
+    "code_snippet": "Leaf before insertion: [10,20,30,40]",
+    "options": {
+      "A": "30",
+      "B": "40",
+      "C": "20",
+      "D": "25"
+    },
+    "correct_answer": "A",
+    "explanation": "The sorted entries become [10,20,25,30,40]. The leaves become [10,20,25] and [30,40], so 30 is copied to the parent and remains in the right leaf, as required by this B+ leaf-split rule."
+  },
+  {
+    "id": "1.2.3-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "A B-tree with minimum degree 3 splits the full node below before any further insertion. The median key is moved to the parent and removed from the split children. What is the pair (promoted key, total keys remaining across the two children)?",
+    "code_snippet": "Full node: [10,20,30,40,50]",
+    "options": {
+      "A": "(20,4)",
+      "B": "(30,5)",
+      "C": "(30,4)",
+      "D": "(40,4)"
+    },
+    "correct_answer": "C",
+    "explanation": "The median is 30. Moving it to the parent leaves [10,20] and [40,50], four child keys in total. Unlike the stipulated B+ leaf split in which a separator is copied, this B-tree split removes the promoted key from the children."
+  },
+  {
+    "id": "1.2.3-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "Each Passport belongs to exactly one Person, and each Person has zero or one Passport. PersonID and PassportID are entity keys. Which Passport definition enforces these cardinalities through keys and a foreign key?",
+    "code_snippet": null,
+    "options": {
+      "A": "Passport(PassportID PRIMARY KEY, PersonID NOT NULL UNIQUE REFERENCES Person)",
+      "B": "Passport(PassportID PRIMARY KEY, PersonID NULL REFERENCES Person)",
+      "C": "Passport(PassportID PRIMARY KEY, PersonID NOT NULL REFERENCES Person)",
+      "D": "Person must instead have a NOT NULL PassportID, requiring every person to have a passport"
+    },
+    "correct_answer": "A",
+    "explanation": "NOT NULL makes every passport reference a person; UNIQUE limits a person to at most one passport. A person can have no referencing Passport row, so participation remains optional on that side. A foreign key without UNIQUE would allow multiple passports per person."
+  },
+  {
+    "id": "1.2.3-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "A ternary Supply association has SupplierID, PartID, ProjectID, and Quantity. For any fixed supplier-part pair there is at most one current project, and there are no other identifying constraints. All three identifiers are non-NULL foreign keys to their entities. Which primary key captures the stated identifying constraint without allowing two projects for one supplier-part pair?",
+    "code_snippet": null,
+    "options": {
+      "A": "(SupplierID,PartID)",
+      "B": "(SupplierID,PartID,ProjectID)",
+      "C": "(PartID,ProjectID)",
+      "D": "SupplierID alone"
+    },
+    "correct_answer": "A",
+    "explanation": "The cardinality rule is (SupplierID,PartID)->ProjectID, and Quantity describes that current association. A primary key on the supplier-part pair enforces it. The three-identifier key would permit repeated supplier-part pairs with different projects, while the other smaller determinants are not implied."
+  },
+  {
+    "id": "1.2.3-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Medium",
+    "question": "Employee has primary key EmployeeID and a nullable scalar ManagerID foreign key referencing Employee(EmployeeID), with no other constraints. Which intended management-hierarchy property is NOT enforced by just this primary key and foreign key?",
+    "code_snippet": null,
+    "options": {
+      "A": "Each employee row has at most one scalar ManagerID",
+      "B": "Every non-NULL ManagerID identifies an existing employee",
+      "C": "The uniqueness of EmployeeID",
+      "D": "The absence of cycles in the manager chain"
+    },
+    "correct_answer": "D",
+    "explanation": "A self-referencing foreign key validates referenced identifiers but does not prevent cycles such as E1 managing E2 while E2 manages E1. Key uniqueness and the scalar column provide the other stated properties."
+  },
+  {
+    "id": "1.2.3-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Hard",
+    "question": "A B+ tree has height 3 root-to-leaf edges. The root has 2 through 6 children; every other internal node has 3 through 6 children. Every leaf stores 2 through 5 record entries, and internal separator keys are not additional records. All leaves have the same depth. What is the pair (minimum record count, maximum record count)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(54,1080)",
+      "B": "(18,1080)",
+      "C": "(36,216)",
+      "D": "(36,1080)"
+    },
+    "correct_answer": "D",
+    "explanation": "The minimum number of leaves is 2 * 3 * 3 = 18, giving 18 * 2 = 36 records. Maximum branching gives 6^3 = 216 leaves, each with five records, or 1,080. The root has a different minimum fanout from non-root internal nodes."
+  },
+  {
+    "id": "1.2.3-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Hard",
+    "question": "Insert key 12 into the B+ tree below. Leaves hold at most two entries; split a three-entry leaf into the smallest two on the left and largest one on the right, copying the right minimum to the parent. Internal nodes hold at most two separators; split a three-separator overflow by moving its middle separator upward. Reuse each overflowing node as its left result and allocate one right sibling; allocate a new root if the old root splits. No nodes are deallocated. What is the pair (final height in edges, number of newly allocated nodes)?",
+    "code_snippet": "Root: [30,60]\nInternal children:\n  [10,20] -> leaves [1,5], [10,15], [20,25]\n  [40,50] -> leaves [30,35], [40,45], [50,55]\n  [70,80] -> leaves [60,65], [70,75], [80,85]",
+    "options": {
+      "A": "(2,4)",
+      "B": "(3,4)",
+      "C": "(3,3)",
+      "D": "(2,3)"
+    },
+    "correct_answer": "B",
+    "explanation": "The leaf [10,15] becomes [10,12] and [15], adding one leaf and copying 15 upward. Its parent overflows to [10,15,20], splits around 15, and adds one internal sibling. The root then overflows to [15,30,60], splits around 30, and adds another internal sibling plus a new root. Four nodes are allocated, and height rises from two edges to three."
+  },
+  {
+    "id": "1.2.3-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Hard",
+    "question": "A B+ tree has an internal root [30] and leaf children [10,20] and [30,40]. Non-root leaves require at least two and at most three entries. Delete 10. If a leaf underflows, first borrow from a sibling only if that sibling has more than its minimum; otherwise merge the siblings and remove their parent separator. Replace an internal root that has only one child by that child. What is the resulting tree?",
+    "code_snippet": null,
+    "options": {
+      "A": "Root [30] with leaves [20] and [30,40], with height 1",
+      "B": "Root [30] with one child leaf [20,30,40], with height 1",
+      "C": "A single root leaf [20,30,40], with height 0",
+      "D": "Root [40] with leaves [20,30] and [40], with height 1"
+    },
+    "correct_answer": "C",
+    "explanation": "The left leaf shrinks to one entry. The right leaf has exactly its minimum two entries and cannot lend. Merging produces [20,30,40] and leaves the old root with one child and no separator; the root-collapse rule makes that merged leaf the root."
+  },
+  {
+    "id": "1.2.3-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Hard",
+    "question": "A covering B+ index is lexicographically ordered by (a,b,c) and contains exactly one entry for each combination a=5, b in 10 through 20 inclusive, and c in 0 through 99 inclusive, with no duplicates. For the query below, the specified plan performs one contiguous leaf-entry scan from (5,10,0) through (5,20,99), filters c=7 within that scan, and returns values from the index. There are no heap visibility checks or base-table fetches. What is the tuple (entries examined, rows returned, base-table data-page fetches)?",
+    "code_snippet": "SELECT a,b,c FROM T WHERE a=5 AND b BETWEEN 10 AND 20 AND c=7;",
+    "options": {
+      "A": "(1100,11,0)",
+      "B": "(1100,1100,0)",
+      "C": "(1100,11,11)",
+      "D": "(11,11,0)"
+    },
+    "correct_answer": "A",
+    "explanation": "The explicitly defined contiguous scan covers 11 distinct b values and 100 c values per b, examining 1,100 entries. Only one c value per b passes, yielding 11 rows. The covering index supplies all selected values, so the stated plan fetches no base-table data page. A different plan using multiple narrow probes is outside the specified scan."
+  },
+  {
+    "id": "1.2.3-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.3",
+    "subpart_name": "Storage, Indexing & ER Modeling",
+    "difficulty": "Hard",
+    "question": "Appointment(DoctorID,PatientID,Slot) represents a ternary association. In any one slot, a doctor sees at most one patient and a patient sees at most one doctor, but many independent appointments may share a slot. Every column is NOT NULL and is a foreign key to its entity. No other uniqueness rules apply. Which key definition enforces both constraints while allowing every association they permit?",
+    "code_snippet": null,
+    "options": {
+      "A": "PRIMARY KEY (DoctorID,PatientID) plus UNIQUE (Slot)",
+      "B": "PRIMARY KEY (DoctorID,Slot) plus UNIQUE (PatientID,Slot)",
+      "C": "PRIMARY KEY (DoctorID,PatientID,Slot) with no additional uniqueness",
+      "D": "PRIMARY KEY (Slot) with no additional uniqueness"
+    },
+    "correct_answer": "B",
+    "explanation": "The identifying dependencies are (DoctorID,Slot)->PatientID and (PatientID,Slot)->DoctorID. The primary key enforces the first, and the second UNIQUE constraint enforces the other. A three-column key alone permits double-booking, while uniqueness on Slot disallows simultaneous independent appointments."
+  }
+]

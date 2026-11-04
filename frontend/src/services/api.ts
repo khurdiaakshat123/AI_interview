@@ -3,7 +3,8 @@ import {
   MockOAVariant, MockOAReport, StructuredResume,
   InterviewTurn, InterviewFinalReport, ReviewQueueItem,
   LCQuestionSummary, LCQuestionDetail, LCSubmission, LCAnalytics, LCRunResult, LCSubmitResult,
-  DebugTraceResult
+  DebugTraceResult,
+  MCQBroadTopic, MCQQuestionSummary, MCQQuestionDetail, MCQSubmitResult, MCQAnalytics, MCQQuiz
 } from '../types';
 
 const LIVE_RENDER_API = 'https://ai-interview-4bio.onrender.com/api';
@@ -506,6 +507,99 @@ export const api = {
 
   async getLCSubmissions(idOrSlug: string): Promise<{ submissions: LCSubmission[] }> {
     return request<{ submissions: LCSubmission[] }>(`/practice/lc/questions/${idOrSlug}/submissions`);
+  },
+
+  // ==========================================
+  // MCQ Question Bank API
+  // ==========================================
+  async getMCQTopics(): Promise<MCQBroadTopic[]> {
+    return request<MCQBroadTopic[]>('/practice/mcq/topics');
+  },
+
+  async getMCQQuestions(params: {
+    topic?: string;
+    topics?: string;
+    difficulty?: string;
+    status?: string;
+    search?: string;
+    has_code?: boolean;
+    starred_only?: boolean;
+    page?: number;
+    limit?: number;
+    sort_by?: string;
+    order?: string;
+  } = {}): Promise<{
+    total: number;
+    page: number;
+    limit: number;
+    total_pages: number;
+    questions: MCQQuestionSummary[];
+  }> {
+    const qp = new URLSearchParams();
+    if (params.topic && params.topic !== 'all') qp.append('topic', params.topic);
+    if (params.topics) qp.append('topics', params.topics);
+    if (params.difficulty && params.difficulty !== 'all') qp.append('difficulty', params.difficulty);
+    if (params.status && params.status !== 'all') qp.append('status', params.status);
+    if (params.search) qp.append('search', params.search);
+    if (params.has_code !== undefined) qp.append('has_code', String(params.has_code));
+    if (params.starred_only) qp.append('starred_only', 'true');
+    if (params.page) qp.append('page', String(params.page));
+    if (params.limit) qp.append('limit', String(params.limit));
+    if (params.sort_by) qp.append('sort_by', params.sort_by);
+    if (params.order) qp.append('order', params.order);
+
+    return request(`/practice/mcq/questions?${qp.toString()}`);
+  },
+
+  async getMCQQuestion(questionId: string): Promise<MCQQuestionDetail> {
+    return request<MCQQuestionDetail>(`/practice/mcq/questions/${encodeURIComponent(questionId)}`);
+  },
+
+  async submitMCQAnswer(questionId: string, selectedOption: string): Promise<MCQSubmitResult> {
+    return request<MCQSubmitResult>(`/practice/mcq/questions/${encodeURIComponent(questionId)}/submit`, {
+      method: 'POST',
+      body: JSON.stringify({ selected_option: selectedOption })
+    });
+  },
+
+  async toggleMCQStar(questionId: string): Promise<{ question_id: string; is_starred: boolean }> {
+    return request<{ question_id: string; is_starred: boolean }>(`/practice/mcq/questions/${encodeURIComponent(questionId)}/star`, {
+      method: 'POST'
+    });
+  },
+
+  async saveMCQNotes(questionId: string, notes: string): Promise<{ question_id: string; notes: string }> {
+    return request<{ question_id: string; notes: string }>(`/practice/mcq/questions/${encodeURIComponent(questionId)}/notes`, {
+      method: 'POST',
+      body: JSON.stringify({ notes })
+    });
+  },
+
+  async generateMCQQuiz(payload: {
+    topics?: string[];
+    difficulties?: string[];
+    count?: number;
+    mode?: string;
+  }): Promise<MCQQuiz> {
+    return request<MCQQuiz>('/practice/mcq/quiz/generate', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+  },
+
+  async getMCQAnalytics(): Promise<MCQAnalytics> {
+    return request<MCQAnalytics>('/practice/mcq/analytics');
+  },
+
+  async getMCQValidation(): Promise<{
+    valid: boolean;
+    total_mapped_subparts: number;
+    total_discovered_subparts: number;
+    missing_in_mapping: string[];
+    extra_in_mapping: string[];
+    broad_topic_count: number;
+  }> {
+    return request('/practice/mcq/validation');
   }
 };
 

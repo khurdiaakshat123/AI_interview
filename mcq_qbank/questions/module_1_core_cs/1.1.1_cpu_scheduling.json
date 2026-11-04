@@ -1,0 +1,512 @@
+[
+  {
+    "id": "1.1.1-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Easy",
+    "question": "A running process requests a disk read whose result is required before it can execute its next instruction. The data is not available yet. In the standard Ready/Running/Blocked process-state model, which transition occurs immediately?",
+    "code_snippet": null,
+    "options": {
+      "A": "Running to Ready",
+      "B": "Running to Blocked",
+      "C": "Ready to Running",
+      "D": "Blocked to Ready"
+    },
+    "correct_answer": "B",
+    "explanation": "The process must wait for the disk operation, so it moves from Running to Blocked. Ready would mean it can execute as soon as a CPU is assigned."
+  },
+  {
+    "id": "1.1.1-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Easy",
+    "question": "Process P is blocked waiting for an I/O operation. The operation completes while another process continues running, and the scheduler does not immediately dispatch P. In the standard Ready/Running/Blocked model, which transition does P make?",
+    "code_snippet": null,
+    "options": {
+      "A": "Blocked to Running",
+      "B": "Running to Ready",
+      "C": "Ready to Blocked",
+      "D": "Blocked to Ready"
+    },
+    "correct_answer": "D",
+    "explanation": "I/O completion removes the reason for blocking. P becomes Ready and waits for dispatch; completion of its I/O does not itself give P the CPU."
+  },
+  {
+    "id": "1.1.1-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Easy",
+    "question": "A timer interrupt preempts process P midway through a calculation. Which information must the OS preserve as part of P's saved execution context, commonly associated with its Process Control Block (PCB), so that P can resume correctly?",
+    "code_snippet": null,
+    "options": {
+      "A": "P's program counter, stack pointer, and CPU register values",
+      "B": "Only P's process identifier and scheduling priority",
+      "C": "Only P's executable file name and total CPU time used",
+      "D": "Only P's open-file identifiers and parent process identifier"
+    },
+    "correct_answer": "A",
+    "explanation": "The program counter identifies the resume point, while registers and the stack pointer preserve the interrupted computation. Identifiers, priorities, accounting data, and file information alone cannot reconstruct that computation."
+  },
+  {
+    "id": "1.1.1-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Easy",
+    "question": "A process arrives at time 3 ms, first receives the CPU at time 5 ms, and completes at time 14 ms. What is its turnaround time?",
+    "code_snippet": null,
+    "options": {
+      "A": "2 ms",
+      "B": "9 ms",
+      "C": "11 ms",
+      "D": "14 ms"
+    },
+    "correct_answer": "C",
+    "explanation": "Turnaround time is completion time minus arrival time: 14 - 3 = 11 ms. The first-dispatch delay, 5 - 3 = 2 ms, is the response time."
+  },
+  {
+    "id": "1.1.1-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Easy",
+    "question": "Between arrival and completion, a process spends exactly 17 ms in the system: 6 ms executing on the CPU, 4 ms blocked for I/O, and the rest waiting in the ready queue. Scheduling overhead is zero. What is its total ready-queue waiting time?",
+    "code_snippet": null,
+    "options": {
+      "A": "11 ms",
+      "B": "7 ms",
+      "C": "13 ms",
+      "D": "6 ms"
+    },
+    "correct_answer": "B",
+    "explanation": "The elapsed time consists of CPU execution, I/O blocking, and ready-queue waiting. Waiting time = 17 - 6 - 4 = 7 ms; blocked time must not be counted as ready-queue waiting."
+  },
+  {
+    "id": "1.1.1-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Easy",
+    "question": "Three processes arrive at time 0 on one CPU and enter the FCFS queue in the order P1, P2, P3. They have single CPU bursts of 6, 2, and 4 ms, respectively, with no I/O or scheduling overhead. How long does P3 wait before it starts?",
+    "code_snippet": null,
+    "options": {
+      "A": "8 ms",
+      "B": "6 ms",
+      "C": "2 ms",
+      "D": "12 ms"
+    },
+    "correct_answer": "A",
+    "explanation": "FCFS runs P1 from 0 to 6 and P2 from 6 to 8. P3 starts at 8, so its waiting time is 8 - 0 = 8 ms."
+  },
+  {
+    "id": "1.1.1-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Easy",
+    "question": "P1, P2, and P3 are all ready at time 0, with single CPU bursts of 8, 3, and 5 ms, respectively. A single CPU uses non-preemptive Shortest Job First (SJF), knows the burst lengths exactly, and has zero scheduling overhead. What is the execution order?",
+    "code_snippet": null,
+    "options": {
+      "A": "P1, P2, P3",
+      "B": "P2, P1, P3",
+      "C": "P3, P2, P1",
+      "D": "P2, P3, P1"
+    },
+    "correct_answer": "D",
+    "explanation": "All processes are available when the CPU makes its first choice. SJF selects bursts in increasing order: 3 ms (P2), 5 ms (P3), then 8 ms (P1)."
+  },
+  {
+    "id": "1.1.1-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Easy",
+    "question": "A single CPU uses preemptive priority scheduling, with a smaller priority number indicating higher priority. P1, with priority 4, is running and still has CPU work remaining when P2, with priority 1, becomes ready. There are no other processes or scheduling overheads. What happens to P1 when P2 is dispatched?",
+    "code_snippet": null,
+    "options": {
+      "A": "P1 remains Running until its CPU burst ends",
+      "B": "P1 moves from Running to Blocked",
+      "C": "P1 moves from Running to Ready",
+      "D": "P1 moves from Running to Terminated"
+    },
+    "correct_answer": "C",
+    "explanation": "P2 has higher priority and preempts P1. P1 remains able to execute, so it returns to Ready; it has neither requested I/O nor finished its work."
+  },
+  {
+    "id": "1.1.1-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Easy",
+    "question": "In steady state, a CPU repeatedly performs 3 ms of useful process execution followed by 0.3 ms of context-switch work. There is no idle time or other overhead. Approximately what percentage of elapsed time is spent on context switching?",
+    "code_snippet": null,
+    "options": {
+      "A": "9.09%",
+      "B": "10.00%",
+      "C": "90.91%",
+      "D": "0.91%"
+    },
+    "correct_answer": "A",
+    "explanation": "Each repeated cycle takes 3 + 0.3 = 3.3 ms. The overhead fraction is 0.3 / 3.3, or approximately 9.09%; dividing by useful execution time alone gives the wrong denominator."
+  },
+  {
+    "id": "1.1.1-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "One CPU uses non-preemptive FCFS for the processes below. Each process has one CPU burst and no I/O; scheduling overhead is zero. What is the average waiting time, rounded to two decimal places? All times are in ms.",
+    "code_snippet": "Process | Arrival | CPU burst\nP1      | 0       | 5\nP2      | 1       | 3\nP3      | 2       | 1",
+    "options": {
+      "A": "2.67 ms",
+      "B": "4.00 ms",
+      "C": "3.33 ms",
+      "D": "6.33 ms"
+    },
+    "correct_answer": "C",
+    "explanation": "Gantt chart: P1 [0,5), P2 [5,8), P3 [8,9). Waiting times are 0, 5 - 1 = 4, and 8 - 2 = 6 ms. Their average is 10/3 = 3.33 ms."
+  },
+  {
+    "id": "1.1.1-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "One CPU uses non-preemptive SJF with exact knowledge of the single CPU bursts below. There is no I/O or scheduling overhead. What is P2's turnaround time? All times are in ms.",
+    "code_snippet": "Process | Arrival | CPU burst\nP1      | 0       | 7\nP2      | 1       | 4\nP3      | 2       | 1\nP4      | 3       | 2",
+    "options": {
+      "A": "4 ms",
+      "B": "9 ms",
+      "C": "14 ms",
+      "D": "13 ms"
+    },
+    "correct_answer": "D",
+    "explanation": "Only P1 is available at time 0, and it runs to completion. Gantt chart: P1 [0,7), P3 [7,8), P4 [8,10), P2 [10,14). P2's turnaround time is 14 - 1 = 13 ms."
+  },
+  {
+    "id": "1.1.1-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "One CPU uses Shortest Remaining Time First (SRTF) with exact burst lengths. Each process has one CPU burst and no I/O; scheduling overhead is zero. What is the average waiting time, rounded to two decimal places? All times are in ms.",
+    "code_snippet": "Process | Arrival | CPU burst\nP1      | 0       | 8\nP2      | 1       | 4\nP3      | 2       | 2",
+    "options": {
+      "A": "2.00 ms",
+      "B": "2.67 ms",
+      "C": "3.33 ms",
+      "D": "7.33 ms"
+    },
+    "correct_answer": "B",
+    "explanation": "Gantt chart: P1 [0,1), P2 [1,2), P3 [2,4), P2 [4,7), P1 [7,14). Waiting time equals completion - arrival - burst: P1 = 6, P2 = 2, P3 = 0 ms. Average = 8/3 = 2.67 ms."
+  },
+  {
+    "id": "1.1.1-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "P1, P2, and P3 arrive at time 0 and enter a Round Robin queue in that order. Their single CPU bursts are 5, 3, and 1 ms, respectively. The quantum is 2 ms, with no I/O or scheduling overhead. What is P2's total waiting time?",
+    "code_snippet": null,
+    "options": {
+      "A": "5 ms",
+      "B": "2 ms",
+      "C": "3 ms",
+      "D": "8 ms"
+    },
+    "correct_answer": "A",
+    "explanation": "Gantt chart: P1 [0,2), P2 [2,4), P3 [4,5), P1 [5,7), P2 [7,8), P1 [8,9). P2 completes at 8 ms and executes for 3 ms, giving waiting time 8 - 0 - 3 = 5 ms."
+  },
+  {
+    "id": "1.1.1-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "One CPU uses Round Robin with a 3 ms quantum. P1 arrives at time 0 with a 7 ms CPU burst; P2 arrives at time 3 with a 2 ms CPU burst. There is no I/O or overhead. At a quantum boundary, new arrivals are enqueued before the expired process is requeued, and the scheduler immediately selects the queue head. What are the first three CPU allocations, treating each quantum as a separate allocation?",
+    "code_snippet": null,
+    "options": {
+      "A": "P1 [0,3), P1 [3,6), P2 [6,8)",
+      "B": "P1 [0,3), P2 [3,6), P1 [6,9)",
+      "C": "P1 [0,3), P2 [3,5), P1 [5,9)",
+      "D": "P1 [0,3), P2 [3,5), P1 [5,8)"
+    },
+    "correct_answer": "D",
+    "explanation": "At time 3, P2 enters the queue before P1 is requeued, so P2 runs next and finishes at 5. P1 then receives a 3 ms quantum from 5 to 8; its final 1 ms is a subsequent allocation."
+  },
+  {
+    "id": "1.1.1-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "All processes below arrive at time 0 on one CPU using non-preemptive priority scheduling. Smaller priority numbers indicate higher priority. Each process has one CPU burst and no I/O; scheduling overhead is zero. What is the average turnaround time, rounded to two decimal places? Burst lengths are in ms.",
+    "code_snippet": "Process | CPU burst | Priority\nP1      | 4         | 3\nP2      | 3         | 1\nP3      | 2         | 2",
+    "options": {
+      "A": "2.67 ms",
+      "B": "3.00 ms",
+      "C": "5.67 ms",
+      "D": "6.33 ms"
+    },
+    "correct_answer": "C",
+    "explanation": "Gantt chart: P2 [0,3), P3 [3,5), P1 [5,9). Because all arrivals are 0, turnaround times equal completion times: 3, 5, and 9 ms. Average = 17/3 = 5.67 ms."
+  },
+  {
+    "id": "1.1.1-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "One CPU uses preemptive priority scheduling, with smaller numbers indicating higher priority. Each process has one CPU burst and no I/O; scheduling overhead is zero. What is P1's total waiting time? All times are in ms.",
+    "code_snippet": "Process | Arrival | CPU burst | Priority\nP1      | 0       | 6         | 3\nP2      | 2       | 3         | 1\nP3      | 3       | 2         | 2",
+    "options": {
+      "A": "2 ms",
+      "B": "5 ms",
+      "C": "3 ms",
+      "D": "11 ms"
+    },
+    "correct_answer": "B",
+    "explanation": "Gantt chart: P1 [0,2), P2 [2,5), P3 [5,7), P1 [7,11). P1 waits only during [2,7), totaling 5 ms; equivalently, 11 - 0 - 6 = 5 ms."
+  },
+  {
+    "id": "1.1.1-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "One CPU uses Round Robin with a 4 ms quantum and zero scheduling overhead. P1 arrives at time 0 with a single 9 ms CPU burst. P2 arrives at time 1 with a single 2 ms CPU burst and joins the ready queue. Neither process performs I/O. What are P2's response time and turnaround time, respectively?",
+    "code_snippet": null,
+    "options": {
+      "A": "3 ms and 5 ms",
+      "B": "4 ms and 6 ms",
+      "C": "3 ms and 2 ms",
+      "D": "5 ms and 5 ms"
+    },
+    "correct_answer": "A",
+    "explanation": "P1 runs [0,4), then P2 runs [4,6) and finishes. P2's response time is first start - arrival = 4 - 1 = 3 ms. Its turnaround time is completion - arrival = 6 - 1 = 5 ms."
+  },
+  {
+    "id": "1.1.1-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "P1 and P2 arrive at time 0 and enter a non-preemptive FCFS ready queue in that order. P1 executes CPU 3 ms, blocks for I/O 4 ms, then executes CPU 2 ms. P2 executes one CPU burst of 6 ms. I/O proceeds independently of the CPU, and scheduling overhead is zero. A process returning from I/O joins the ready-queue tail. What is P1's total ready-queue waiting time?",
+    "code_snippet": null,
+    "options": {
+      "A": "0 ms",
+      "B": "4 ms",
+      "C": "6 ms",
+      "D": "2 ms"
+    },
+    "correct_answer": "D",
+    "explanation": "P1 runs [0,3) and performs I/O [3,7). P2 runs [3,9). P1 becomes Ready at 7, waits until 9, and runs [9,11). Its only ready-queue wait is [7,9), or 2 ms. The 4 ms of I/O is blocked time."
+  },
+  {
+    "id": "1.1.1-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "An initially idle single CPU uses FCFS with zero scheduling overhead. P1 arrives at time 2 with a 3 ms CPU burst, and P2 arrives at time 8 with a 2 ms CPU burst. There are no other processes or I/O operations. Over the observation interval [0,10), what percentage of time does the CPU execute process instructions?",
+    "code_snippet": null,
+    "options": {
+      "A": "62.5%",
+      "B": "80%",
+      "C": "50%",
+      "D": "100%"
+    },
+    "correct_answer": "C",
+    "explanation": "The CPU executes P1 during [2,5) and P2 during [8,10), totaling 5 ms of useful work in a 10 ms interval. Utilization is 5/10 = 50%; the initial and intermediate idle intervals are included."
+  },
+  {
+    "id": "1.1.1-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "P1, P2, and P3 arrive at time 0 and enter an FCFS queue in that order, with single CPU bursts of 4, 2, and 3 ms. Switching between two different processes costs 1 ms, during which no process instructions execute. The initial dispatch and the transition after the last completion cost nothing. There is no I/O. From time 0 until all processes finish, approximately what fraction of elapsed time is useful process execution?",
+    "code_snippet": null,
+    "options": {
+      "A": "75.00%",
+      "B": "81.82%",
+      "C": "90.00%",
+      "D": "100.00%"
+    },
+    "correct_answer": "B",
+    "explanation": "Useful execution totals 4 + 2 + 3 = 9 ms. Two switches add 2 ms: P1 [0,4), switch [4,5), P2 [5,7), switch [7,8), P3 [8,11). The useful fraction is 9/11 = 81.82%."
+  },
+  {
+    "id": "1.1.1-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "A Round Robin system has enough continuously ready CPU-bound processes that every quantum uses its full q ms and is followed by a switch to a different process costing 1 ms. There is no idle time or other overhead. In steady state, what is the smallest integer q that keeps context-switch overhead at or below 5% of elapsed time?",
+    "code_snippet": null,
+    "options": {
+      "A": "18 ms",
+      "B": "19 ms",
+      "C": "20 ms",
+      "D": "21 ms"
+    },
+    "correct_answer": "B",
+    "explanation": "The overhead fraction is 1/(q + 1). Requiring 1/(q + 1) <= 0.05 gives q + 1 >= 20, or q >= 19 ms. Using q rather than q + 1 as the denominator would incorrectly require 20 ms."
+  },
+  {
+    "id": "1.1.1-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "An SJF scheduler estimates future CPU bursts by exponential averaging: new_estimate = alpha * most_recent_actual_burst + (1 - alpha) * old_estimate. Initially the estimate is 8 ms and alpha = 0.25. Two actual bursts of 12 ms and then 5 ms are observed, with an update after each. What is the estimate for the next burst?",
+    "code_snippet": null,
+    "options": {
+      "A": "7.25 ms",
+      "B": "8.50 ms",
+      "C": "9.00 ms",
+      "D": "8.00 ms"
+    },
+    "correct_answer": "D",
+    "explanation": "After the 12 ms burst, the estimate is 0.25 * 12 + 0.75 * 8 = 9 ms. After the 5 ms burst, it becomes 0.25 * 5 + 0.75 * 9 = 8 ms. Each update must use the previous estimate."
+  },
+  {
+    "id": "1.1.1-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "A single CPU uses non-preemptive priority scheduling with aging. A smaller number indicates higher priority. For a process continuously waiting in the ready queue, effective_priority = base_priority - floor(ready_wait_ms / 2). R occupies the CPU until time 6. The processes below join the ready queue at their arrival times and do not run before R finishes. With zero dispatch overhead, which process is selected at time 6, and what is its effective priority? All times are in ms.",
+    "code_snippet": "Process | Arrival | Base priority\nP1      | 0       | 8\nP2      | 2       | 7\nP3      | 4       | 5",
+    "options": {
+      "A": "P1 with effective priority 5",
+      "B": "P2 with effective priority 5",
+      "C": "P3 with effective priority 4",
+      "D": "P3 with effective priority 5"
+    },
+    "correct_answer": "C",
+    "explanation": "At time 6, P1 has waited 6 ms, P2 4 ms, and P3 2 ms. Their effective priorities are 8 - 3 = 5, 7 - 2 = 5, and 5 - 1 = 4. P3 has the smallest value, so it is selected."
+  },
+  {
+    "id": "1.1.1-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Medium",
+    "question": "P is the only process in a single-CPU system and requires one 9 ms CPU burst with no I/O. Round Robin uses a 2 ms quantum and zero overhead. Count a process-to-process context switch only when the CPU changes from one process to a different process; initial dispatch, timer-handler entry/exit, and final completion do not count. How many quantum expirations occur before P finishes, and how many process-to-process context switches occur?",
+    "code_snippet": null,
+    "options": {
+      "A": "4 expirations and 4 switches",
+      "B": "4 expirations and 0 switches",
+      "C": "5 expirations and 0 switches",
+      "D": "5 expirations and 4 switches"
+    },
+    "correct_answer": "B",
+    "explanation": "P exhausts quanta at times 2, 4, 6, and 8 ms, then finishes at 9 before the next expiration. It is selected again each time because no other process exists. Under the stated counting rule, there are 4 expirations and 0 process-to-process switches."
+  },
+  {
+    "id": "1.1.1-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Hard",
+    "question": "One CPU uses SRTF for the single-burst processes below, with no I/O. A preemption or completion followed by another process requires a 1 ms dispatch interval with no useful execution. Initial dispatch at time 0 is free. Dispatch intervals cannot be interrupted or restarted; all arrivals through the end of an interval are considered when choosing the shortest remaining process at that end, with no extra dispatch cost for changing the tentative choice. No dispatch is charged after the final completion. Waiting time includes all time after arrival when a process is unfinished but not executing. What is the average waiting time, rounded to two decimal places? All times are in ms.",
+    "code_snippet": "Process | Arrival | CPU burst\nP1      | 0       | 7\nP2      | 2       | 3\nP3      | 3       | 1",
+    "options": {
+      "A": "3.33 ms",
+      "B": "2.67 ms",
+      "C": "4.00 ms",
+      "D": "3.67 ms"
+    },
+    "correct_answer": "A",
+    "explanation": "P1 runs [0,2), leaving 5 ms. During dispatch [2,3), P3 arrives and is chosen at 3. The rest is P3 [3,4), dispatch [4,5), P2 [5,8), dispatch [8,9), P1 [9,14). Waiting times are 14 - 0 - 7 = 7, 8 - 2 - 3 = 3, and 4 - 3 - 1 = 0 ms. Average = 10/3 = 3.33 ms."
+  },
+  {
+    "id": "1.1.1-026",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Hard",
+    "question": "P1, P2, and P3 arrive at time 0 in that Round Robin queue order, with single CPU bursts of 5, 4, and 2 ms. The quantum is 2 ms. Every change from one process to a different process, including after a completion, costs 1 ms with no useful execution. Initial dispatch and the transition after the final completion are free. There is no I/O. What is the average turnaround time, rounded to two decimal places?",
+    "code_snippet": null,
+    "options": {
+      "A": "8.67 ms",
+      "B": "11.67 ms",
+      "C": "12.67 ms",
+      "D": "16.00 ms"
+    },
+    "correct_answer": "C",
+    "explanation": "Useful execution intervals are P1 [0,2), P2 [3,5), P3 [6,8), P1 [9,11), P2 [12,14), P1 [15,16), with 1 ms switches between them. Completion times are P1 = 16, P2 = 14, and P3 = 8. Since all arrive at 0, average turnaround = (16 + 14 + 8)/3 = 12.67 ms."
+  },
+  {
+    "id": "1.1.1-027",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Hard",
+    "question": "One CPU uses preemptive priority scheduling with smaller numbers indicating higher priority and zero scheduling overhead. I/O proceeds independently of the CPU. P1 and P2 are ready at time 0. P1 has priority 1 and performs CPU 2 ms, I/O 4 ms, then CPU 2 ms. P2 has priority 2 and needs CPU 7 ms with no I/O. P3 arrives at time 3 with priority 0 and needs CPU 2 ms with no I/O. Returning from I/O immediately makes a process eligible to preempt. What is P2's total ready-queue waiting time?",
+    "code_snippet": null,
+    "options": {
+      "A": "2 ms",
+      "B": "4 ms",
+      "C": "5 ms",
+      "D": "6 ms"
+    },
+    "correct_answer": "D",
+    "explanation": "P1 runs [0,2) and performs I/O [2,6). P2 runs [2,3), P3 [3,5), and P2 [5,6). P1 returns and preempts P2, running [6,8). P2 finishes in [8,13). P2 waits during [0,2), [3,5), and [6,8): 6 ms total, also 13 - 0 - 7."
+  },
+  {
+    "id": "1.1.1-028",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Hard",
+    "question": "One CPU uses SRTF for the single-burst processes below, with no I/O or scheduling overhead. An arrival preempts the running process only if its burst is strictly less than the running process's remaining time; on equality the running process continues. When selecting from the ready queue, ties use earlier original arrival time, then smaller process number. What is the average waiting time? All times are in ms.",
+    "code_snippet": "Process | Arrival | CPU burst\nP1      | 0       | 6\nP2      | 1       | 4\nP3      | 2       | 3\nP4      | 4       | 1",
+    "options": {
+      "A": "3.00 ms",
+      "B": "3.25 ms",
+      "C": "3.50 ms",
+      "D": "6.75 ms"
+    },
+    "correct_answer": "B",
+    "explanation": "P1 runs [0,1), then P2 [1,5). P3's burst equals P2's remaining 3 ms at time 2, and P4's burst equals P2's remaining 1 ms at time 4, so neither preempts. Then P4 runs [5,6), P3 [6,9), P1 [9,14). Waiting times are 8, 0, 4, and 1 ms. Average = 13/4 = 3.25 ms."
+  },
+  {
+    "id": "1.1.1-029",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Hard",
+    "question": "One CPU uses Round Robin with a 2 ms quantum and zero overhead. P1 and P2 arrive at time 0 in that queue order. P1 performs CPU 3 ms, I/O 3 ms, then CPU 1 ms. P2 needs one CPU burst of 5 ms. P3 arrives at time 3 and needs one CPU burst of 2 ms. I/O proceeds independently of the CPU. Arrivals and I/O completions join the ready-queue tail immediately and do not preempt the running quantum; at a quantum boundary, these events are enqueued before the expired process is requeued. A process blocks as soon as its current CPU burst finishes, even if that occurs before quantum expiration. What is P1's total ready-queue waiting time?",
+    "code_snippet": null,
+    "options": {
+      "A": "3 ms",
+      "B": "1 ms",
+      "C": "2 ms",
+      "D": "6 ms"
+    },
+    "correct_answer": "A",
+    "explanation": "Gantt chart: P1 [0,2), P2 [2,4), P1 [4,5), P3 [5,7), P2 [7,9), P1 [9,10), P2 [10,11). P1 performs I/O [5,8), so it joins the queue during P2's quantum and runs before P2's final 1 ms. P1 waits during [2,4) and [8,9), totaling 3 ms; equivalently, 10 - 0 - 4 CPU - 3 I/O = 3 ms."
+  },
+  {
+    "id": "1.1.1-030",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.1",
+    "subpart_name": "CPU Scheduling & Process Lifecycle",
+    "difficulty": "Hard",
+    "question": "The workload below is run separately on one CPU under FCFS, non-preemptive SJF, and SRTF. Each process has one CPU burst and no I/O; all three schedulers have exact burst knowledge and zero scheduling overhead. They never leave the CPU idle when a process is ready. Which tuple gives the average waiting times in the order (FCFS, SJF, SRTF)? All times are in ms.",
+    "code_snippet": "Process | Arrival | CPU burst\nP1      | 0       | 7\nP2      | 2       | 4\nP3      | 4       | 1",
+    "options": {
+      "A": "(4 ms, 2 ms, 3 ms)",
+      "B": "(3 ms, 3 ms, 2 ms)",
+      "C": "(4 ms, 3 ms, 1 ms)",
+      "D": "(4 ms, 3 ms, 2 ms)"
+    },
+    "correct_answer": "D",
+    "explanation": "FCFS runs P1 [0,7), P2 [7,11), P3 [11,12): waits 0, 5, 7, averaging 4 ms. SJF runs P1 [0,7), P3 [7,8), P2 [8,12): waits 0, 6, 3, averaging 3 ms. SRTF runs P1 [0,2), P2 [2,4), P3 [4,5), P2 [5,7), P1 [7,12): waits 5, 1, 0, averaging 2 ms."
+  }
+]

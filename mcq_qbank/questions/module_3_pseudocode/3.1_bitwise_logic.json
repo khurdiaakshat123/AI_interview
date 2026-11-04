@@ -1,0 +1,852 @@
+[
+  {
+    "id": "3.1-001",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does the AND operation print?",
+    "code_snippet": "Main {\n    Integer a = 12, b = 10;\n    Print(a & b);\n}",
+    "options": {
+      "A": "8",
+      "B": "2",
+      "C": "14",
+      "D": "6"
+    },
+    "correct_answer": "A",
+    "explanation": "1100 AND 1010 retains only the common 1000 bit, giving 8."
+  },
+  {
+    "id": "3.1-002",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does the OR operation print?",
+    "code_snippet": "Main {\n    Integer a = 9, b = 6;\n    Print(a | b);\n}",
+    "options": {
+      "A": "15",
+      "B": "14",
+      "C": "0",
+      "D": "3"
+    },
+    "correct_answer": "A",
+    "explanation": "1001 OR 0110 sets all four low bits: 1111 is 15."
+  },
+  {
+    "id": "3.1-003",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does the XOR operation print?",
+    "code_snippet": "Main {\n    Integer a = 13, b = 9;\n    Print(a ^ b);\n}",
+    "options": {
+      "A": "4",
+      "B": "9",
+      "C": "22",
+      "D": "12"
+    },
+    "correct_answer": "A",
+    "explanation": "1101 XOR 1001 is 0100. Equal bits cancel, leaving 4."
+  },
+  {
+    "id": "3.1-004",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after shifting left?",
+    "code_snippet": "Main {\n    Integer n = 7;\n    Print(n << 2);\n}",
+    "options": {
+      "A": "14",
+      "B": "9",
+      "C": "56",
+      "D": "28"
+    },
+    "correct_answer": "D",
+    "explanation": "Shifting 7 left by two multiplies it by four; no overflow occurs."
+  },
+  {
+    "id": "3.1-005",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after shifting right?",
+    "code_snippet": "Main {\n    Integer n = 40;\n    Print(n >> 3);\n}",
+    "options": {
+      "A": "10",
+      "B": "5",
+      "C": "320",
+      "D": "20"
+    },
+    "correct_answer": "B",
+    "explanation": "Positive 40 shifted right three places is floor(40/8), or 5."
+  },
+  {
+    "id": "3.1-006",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does the least-significant-bit mask print?",
+    "code_snippet": "Main {\n    Integer n = 19;\n    Print(n & 1);\n}",
+    "options": {
+      "A": "19",
+      "B": "18",
+      "C": "1",
+      "D": "0"
+    },
+    "correct_answer": "C",
+    "explanation": "19 is odd, so its least significant bit is 1."
+  },
+  {
+    "id": "3.1-007",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What value results from setting bit 2, with bits numbered from 0?",
+    "code_snippet": "Main {\n    Integer n = 18;\n    n = n | (1 << 2);\n    Print(n);\n}",
+    "options": {
+      "A": "22",
+      "B": "20",
+      "C": "16",
+      "D": "26"
+    },
+    "correct_answer": "A",
+    "explanation": "18 is 10010. OR with 00100 sets bit 2 and gives 10110, or 22."
+  },
+  {
+    "id": "3.1-008",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does this low-byte clearing mask print?",
+    "code_snippet": "Main {\n    Integer n = 31;\n    n = n & (255 ^ (1 << 3));\n    Print(n);\n}",
+    "options": {
+      "A": "15",
+      "B": "39",
+      "C": "27",
+      "D": "23"
+    },
+    "correct_answer": "D",
+    "explanation": "255 XOR 8 has every low-byte bit except bit 3 set. Clearing that bit in 31 subtracts 8."
+  },
+  {
+    "id": "3.1-009",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after toggling bit 1?",
+    "code_snippet": "Main {\n    Integer n = 10;\n    n = n ^ (1 << 1);\n    Print(n);\n}",
+    "options": {
+      "A": "2",
+      "B": "8",
+      "C": "12",
+      "D": "11"
+    },
+    "correct_answer": "B",
+    "explanation": "10 is 1010; toggling the already-set bit 1 clears it, leaving 1000."
+  },
+  {
+    "id": "3.1-010",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does the power-of-two bit expression print for 16?",
+    "code_snippet": "Main {\n    Integer n = 16;\n    Print(n & (n - 1));\n}",
+    "options": {
+      "A": "0",
+      "B": "15",
+      "C": "1",
+      "D": "16"
+    },
+    "correct_answer": "A",
+    "explanation": "16 has one set bit; 15 has all lower bits set. Their AND is zero."
+  },
+  {
+    "id": "3.1-011",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after removing the lowest set bit?",
+    "code_snippet": "Main {\n    Integer n = 22;\n    n = n & (n - 1);\n    Print(n);\n}",
+    "options": {
+      "A": "21",
+      "B": "16",
+      "C": "18",
+      "D": "20"
+    },
+    "correct_answer": "D",
+    "explanation": "22 is 10110. AND with 10101 clears its lowest set bit, producing 10100, or 20."
+  },
+  {
+    "id": "3.1-012",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed by the arithmetic shift of a negative value?",
+    "code_snippet": "Main {\n    Integer n = -8;\n    Print(n >> 2);\n}",
+    "options": {
+      "A": "2",
+      "B": "-2",
+      "C": "1073741822",
+      "D": "-4"
+    },
+    "correct_answer": "B",
+    "explanation": "Arithmetic right shift copies the sign bit. -8 divided by four is exactly -2."
+  },
+  {
+    "id": "3.1-013",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does masking the low three bits of a negative value print?",
+    "code_snippet": "Main {\n    Integer n = -5;\n    Print(n & 7);\n}",
+    "options": {
+      "A": "7",
+      "B": "5",
+      "C": "3",
+      "D": "-5"
+    },
+    "correct_answer": "C",
+    "explanation": "The low bits of two's-complement -5 end in 1011. Masking with 0111 leaves 0011."
+  },
+  {
+    "id": "3.1-014",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What signed value is printed when only bit 31 is set?",
+    "code_snippet": "Main {\n    Integer n = 1 << 31;\n    Print(n);\n}",
+    "options": {
+      "A": "-2147483648",
+      "B": "1073741824",
+      "C": "0",
+      "D": "2147483648"
+    },
+    "correct_answer": "A",
+    "explanation": "In a signed 32-bit value, bit 31 alone represents the minimum Integer, -2^31."
+  },
+  {
+    "id": "3.1-015",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed when the low four bits of -1 are toggled?",
+    "code_snippet": "Main {\n    Integer n = -1;\n    Print(n ^ 15);\n}",
+    "options": {
+      "A": "0",
+      "B": "15",
+      "C": "-15",
+      "D": "-16"
+    },
+    "correct_answer": "D",
+    "explanation": "All bits of -1 are set. XOR with 15 clears the four lowest bits, yielding -16."
+  },
+  {
+    "id": "3.1-016",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What three-bit field is extracted starting at bit 2?",
+    "code_snippet": "Main {\n    Integer n = 0xB6;\n    Print((n >> 2) & 7);\n}",
+    "options": {
+      "A": "6",
+      "B": "5",
+      "C": "7",
+      "D": "3"
+    },
+    "correct_answer": "B",
+    "explanation": "0xB6 is 10110110. Shifting two places gives 101101; masking its low three bits yields 101."
+  },
+  {
+    "id": "3.1-017",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after exchanging the two nibbles of a byte?",
+    "code_snippet": "Main {\n    Integer n = 0x3C;\n    Integer result = ((n & 15) << 4) | ((n >> 4) & 15);\n    Print(result);\n}",
+    "options": {
+      "A": "60",
+      "B": "204",
+      "C": "240",
+      "D": "195"
+    },
+    "correct_answer": "D",
+    "explanation": "The low nibble C moves left and the high nibble 3 moves right. 0xC3 equals 195."
+  },
+  {
+    "id": "3.1-018",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What ordered pair does this XOR swap print?",
+    "code_snippet": "Main {\n    Integer a = 21, b = 10;\n    a = a ^ b;\n    b = a ^ b;\n    a = a ^ b;\n    Print(a, b);\n}",
+    "options": {
+      "A": "0 10",
+      "B": "31 31",
+      "C": "10 21",
+      "D": "21 10"
+    },
+    "correct_answer": "C",
+    "explanation": "After the first update a=31; b becomes 31 XOR 10=21, and a becomes 31 XOR 21=10."
+  },
+  {
+    "id": "3.1-019",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does this set-bit counter print?",
+    "code_snippet": "Main {\n    Integer n = 180, count = 0;\n    while (n != 0) {\n        n = n & (n - 1);\n        count = count + 1;\n    }\n    Print(count);\n}",
+    "options": {
+      "A": "3",
+      "B": "5",
+      "C": "4",
+      "D": "8"
+    },
+    "correct_answer": "C",
+    "explanation": "180 is 10110100, containing four set bits. Each iteration removes exactly one set bit."
+  },
+  {
+    "id": "3.1-020",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What value does isolating the lowest set bit print?",
+    "code_snippet": "Main {\n    Integer n = 40;\n    Print(n & (-n));\n}",
+    "options": {
+      "A": "8",
+      "B": "0",
+      "C": "32",
+      "D": "16"
+    },
+    "correct_answer": "A",
+    "explanation": "40 is 101000. Its two's-complement negation shares only the lowest set bit, which has value 8."
+  },
+  {
+    "id": "3.1-021",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed when the guarded power-of-two check receives zero?",
+    "code_snippet": "Main {\n    Integer n = 0, result = 0;\n    if ((n > 0) and ((n & (n - 1)) == 0)) {\n        result = 1;\n    }\n    Print(result);\n}",
+    "options": {
+      "A": "1",
+      "B": "0",
+      "C": "2",
+      "D": "-1"
+    },
+    "correct_answer": "B",
+    "explanation": "The positivity guard is false. Although zero AND -1 is zero, zero is not a positive power of two."
+  },
+  {
+    "id": "3.1-022",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed by this check after updating n?",
+    "code_snippet": "Main {\n    Integer n = 48;\n    n = n + 16;\n    Integer result = 0;\n    if ((n > 0) and ((n & (n - 1)) == 0)) {\n        result = 1;\n    }\n    Print(n, result);\n}",
+    "options": {
+      "A": "64 1",
+      "B": "63 1",
+      "C": "48 0",
+      "D": "64 0"
+    },
+    "correct_answer": "A",
+    "explanation": "The update makes n=64. It is positive and has one set bit, so the check assigns result=1."
+  },
+  {
+    "id": "3.1-023",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What survives the toggle followed by the selection mask?",
+    "code_snippet": "Main {\n    Integer flags = 0x29;\n    flags = flags ^ 0x0C;\n    Print(flags & 0x17);\n}",
+    "options": {
+      "A": "1",
+      "B": "37",
+      "C": "5",
+      "D": "13"
+    },
+    "correct_answer": "C",
+    "explanation": "0x29 XOR 0x0C is 0x25. AND with 0x17 leaves 0x05."
+  },
+  {
+    "id": "3.1-024",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed by the parenthesized shift combination?",
+    "code_snippet": "Main {\n    Integer a = 5, b = 27;\n    Print((a << 3) | (b >> 2));\n}",
+    "options": {
+      "A": "42",
+      "B": "46",
+      "C": "320",
+      "D": "47"
+    },
+    "correct_answer": "B",
+    "explanation": "5<<3 is 40 (101000); 27>>2 is 6 (000110). Their OR is 46."
+  },
+  {
+    "id": "3.1-025",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does this XOR-based parity accumulation print?",
+    "code_snippet": "Main {\n    Integer n = 45, parity = 0;\n    while (n > 0) {\n        parity = parity ^ (n & 1);\n        n = n >> 1;\n    }\n    Print(parity);\n}",
+    "options": {
+      "A": "0",
+      "B": "6",
+      "C": "4",
+      "D": "1"
+    },
+    "correct_answer": "A",
+    "explanation": "45 is 101101, with four 1 bits. XOR of an even number of ones is zero."
+  },
+  {
+    "id": "3.1-026",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after XORing the inclusive range 1 through 7?",
+    "code_snippet": "Main {\n    Integer value = 0, i;\n    for (i = 1; i <= 7; i++) {\n        value = value ^ i;\n    }\n    Print(value);\n}",
+    "options": {
+      "A": "1",
+      "B": "8",
+      "C": "0",
+      "D": "7"
+    },
+    "correct_answer": "C",
+    "explanation": "The running XORs are 1,3,0,4,1,7,0, so the final value is zero."
+  },
+  {
+    "id": "3.1-027",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What value remains after cancelling paired values?",
+    "code_snippet": "Main {\n    Integer value = 4 ^ 9 ^ 4 ^ 12 ^ 9;\n    Print(value);\n}",
+    "options": {
+      "A": "0",
+      "B": "4",
+      "C": "12",
+      "D": "9"
+    },
+    "correct_answer": "C",
+    "explanation": "XOR is associative and x XOR x is zero. Both 4s and both 9s cancel, leaving 12."
+  },
+  {
+    "id": "3.1-028",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after reversing exactly four low bits?",
+    "code_snippet": "Main {\n    Integer n = 13, result = 0, i;\n    for (i = 0; i < 4; i++) {\n        result = (result << 1) | (n & 1);\n        n = n >> 1;\n    }\n    Print(result);\n}",
+    "options": {
+      "A": "7",
+      "B": "11",
+      "C": "13",
+      "D": "14"
+    },
+    "correct_answer": "B",
+    "explanation": "The four consumed bits are 1,0,1,1. Appending them in that order produces binary 1011, or 11."
+  },
+  {
+    "id": "3.1-029",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is the result of this eight-bit left rotation by three?",
+    "code_snippet": "Main {\n    Integer n = 0x96;\n    Integer result = ((n << 3) & 255) | (n >> 5);\n    Print(result);\n}",
+    "options": {
+      "A": "1200",
+      "B": "180",
+      "C": "210",
+      "D": "176"
+    },
+    "correct_answer": "B",
+    "explanation": "The shifted low byte is 176; the wrapped high bits contribute 4. OR combines them to 180."
+  },
+  {
+    "id": "3.1-030",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after sign-extending and then masking?",
+    "code_snippet": "Main {\n    Integer n = -18;\n    Integer result = (n >> 2) & 15;\n    Print(result);\n}",
+    "options": {
+      "A": "4",
+      "B": "12",
+      "C": "11",
+      "D": "-5"
+    },
+    "correct_answer": "C",
+    "explanation": "Arithmetic -18>>2 rounds toward negative infinity and gives -5. The low four bits of -5 are 1011."
+  },
+  {
+    "id": "3.1-031",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after replacing bits 2 through 4 with the value 3?",
+    "code_snippet": "Main {\n    Integer n = 0xD6;\n    Integer mask = 7 << 2;\n    n = (n & (255 ^ mask)) | (3 << 2);\n    Print(n);\n}",
+    "options": {
+      "A": "198",
+      "B": "206",
+      "C": "222",
+      "D": "12"
+    },
+    "correct_answer": "B",
+    "explanation": "Clearing mask 28 in 214 leaves 194. Inserting 3<<2 adds bits valued 12, producing 206."
+  },
+  {
+    "id": "3.1-032",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed by the first round of this parallel bit-counting formula?",
+    "code_snippet": "Main {\n    Integer n = 0xB7;\n    n = n - ((n >> 1) & 0x55);\n    Print(n);\n}",
+    "options": {
+      "A": "183",
+      "B": "91",
+      "C": "98",
+      "D": "102"
+    },
+    "correct_answer": "D",
+    "explanation": "183>>1 is 91; 91 AND 85 is 81. Subtraction gives 102, encoding pairwise bit counts."
+  },
+  {
+    "id": "3.1-033",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What are the final value and loop count after repeatedly clearing a bit?",
+    "code_snippet": "Main {\n    Integer n = 87, count = 0;\n    while (n != 0) {\n        n = n & (n - 1);\n        count = count + 1;\n    }\n    Print(n, count);\n}",
+    "options": {
+      "A": "0 4",
+      "B": "1 5",
+      "C": "0 5",
+      "D": "64 4"
+    },
+    "correct_answer": "C",
+    "explanation": "87 is 1010111 with five set bits. The sequence is 86,84,80,64,0, requiring five iterations."
+  },
+  {
+    "id": "3.1-034",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does this all-lower-bits-set test print?",
+    "code_snippet": "Main {\n    Integer n = 31, result = 0;\n    if ((n & (n + 1)) == 0) {\n        result = n + 1;\n    }\n    Print(result);\n}",
+    "options": {
+      "A": "30",
+      "B": "0",
+      "C": "31",
+      "D": "32"
+    },
+    "correct_answer": "D",
+    "explanation": "31 is 11111 and 32 is 100000. Their AND is zero, so result becomes 32."
+  },
+  {
+    "id": "3.1-035",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What pair is printed after a masked conditional toggle?",
+    "code_snippet": "Main {\n    Integer n = 44;\n    if ((n & 8) != 0) {\n        n = n ^ 3;\n    } else {\n        n = n | 3;\n    }\n    Print(n, n & 7);\n}",
+    "options": {
+      "A": "47 7",
+      "B": "43 3",
+      "C": "44 4",
+      "D": "45 5"
+    },
+    "correct_answer": "A",
+    "explanation": "Bit 3 of 44 is set. XOR with 3 changes its low bits from 100 to 111, giving 47 and low field 7."
+  },
+  {
+    "id": "3.1-036",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed by this shift-and-add multiplication?",
+    "code_snippet": "Main {\n    Integer n = 11;\n    Print((n << 3) - (n << 1));\n}",
+    "options": {
+      "A": "88",
+      "B": "55",
+      "C": "66",
+      "D": "44"
+    },
+    "correct_answer": "C",
+    "explanation": "The expression is 8n-2n=6n. With n=11 it produces 66."
+  },
+  {
+    "id": "3.1-037",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What pair demonstrates the difference between shifting and truncating division?",
+    "code_snippet": "Main {\n    Integer n = -7;\n    Print(n >> 1, n div 2);\n}",
+    "options": {
+      "A": "-4 -3",
+      "B": "-3 -3",
+      "C": "-4 -4",
+      "D": "4 3"
+    },
+    "correct_answer": "A",
+    "explanation": "Arithmetic right shift gives floor(-7/2)=-4. Integer div truncates toward zero and gives -3."
+  },
+  {
+    "id": "3.1-038",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after collecting the lowest set-bit values?",
+    "code_snippet": "Main {\n    Integer n = 52, total = 0;\n    while (n != 0) {\n        total = total + (n & (-n));\n        n = n & (n - 1);\n    }\n    Print(total);\n}",
+    "options": {
+      "A": "48",
+      "B": "52",
+      "C": "16",
+      "D": "3"
+    },
+    "correct_answer": "B",
+    "explanation": "The isolated set-bit values are 4,16,32. They sum to the original value, 52."
+  },
+  {
+    "id": "3.1-039",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does this rightward bit-propagation sequence print?",
+    "code_snippet": "Main {\n    Integer n = 18;\n    n = n | (n >> 1);\n    n = n | (n >> 2);\n    n = n | (n >> 4);\n    Print(n);\n}",
+    "options": {
+      "A": "32",
+      "B": "27",
+      "C": "30",
+      "D": "31"
+    },
+    "correct_answer": "D",
+    "explanation": "The successive values are 27,31,31. Propagation fills every bit below the original highest set bit."
+  },
+  {
+    "id": "3.1-040",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after exchanging adjacent bits within one byte?",
+    "code_snippet": "Main {\n    Integer n = 0x63;\n    Integer result = ((n & 0x55) << 1) | ((n & 0xAA) >> 1);\n    Print(result);\n}",
+    "options": {
+      "A": "156",
+      "B": "198",
+      "C": "99",
+      "D": "147"
+    },
+    "correct_answer": "D",
+    "explanation": "Odd-position contributions become 17 and even-position contributions become 130. Their OR is 147 (0x93)."
+  },
+  {
+    "id": "3.1-041",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after this wrapped shift and arithmetic shift back?",
+    "code_snippet": "Main {\n    Integer n = 0x60000001;\n    Integer x = n << 1;\n    Integer y = x >> 1;\n    Print(x, y, y ^ n);\n}",
+    "options": {
+      "A": "-1073741822 -536870911 -2147483648",
+      "B": "-1073741822 -536870911 0",
+      "C": "3221225474 1610612737 0",
+      "D": "-1073741822 1610612737 0"
+    },
+    "correct_answer": "A",
+    "explanation": "The left shift produces 0xC0000002, interpreted as negative. Arithmetic shifting back yields 0xE0000001; XOR with 0x60000001 leaves only bit 31."
+  },
+  {
+    "id": "3.1-042",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What pair is printed after exactly three masked register rounds?",
+    "code_snippet": "Main {\n    Integer x = 0xA7, i;\n    for (i = 0; i < 3; i++) {\n        Integer feedback = ((x >> 7) ^ (x >> 5)) & 1;\n        x = ((x << 1) & 255) | feedback;\n    }\n    Print(x, x & 15);\n}",
+    "options": {
+      "A": "58 10",
+      "B": "56 8",
+      "C": "79 15",
+      "D": "57 9"
+    },
+    "correct_answer": "D",
+    "explanation": "Feedback bits for the three rounds are 0,0,1. Register values become 78,156,57, whose low nibble is 9."
+  },
+  {
+    "id": "3.1-043",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What count and final value result when clearing bits from the minimum Integer?",
+    "code_snippet": "Main {\n    Integer n = -2147483648, count = 0;\n    while (n != 0) {\n        n = n & (n - 1);\n        count = count + 1;\n    }\n    Print(count, n);\n}",
+    "options": {
+      "A": "31 1",
+      "B": "0 -2147483648",
+      "C": "1 0",
+      "D": "32 0"
+    },
+    "correct_answer": "C",
+    "explanation": "n-1 wraps to 2147483647. AND with the sign-bit-only value gives zero, so exactly one set bit is counted."
+  },
+  {
+    "id": "3.1-044",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed by this bounded mixing loop?",
+    "code_snippet": "Main {\n    Integer x = 13, total = 0, i;\n    for (i = 0; i < 4; i++) {\n        x = ((x << 1) ^ (x >> 2)) & 31;\n        total = total + (x & 7);\n    }\n    Print(x, total);\n}",
+    "options": {
+      "A": "2 20",
+      "B": "13 18",
+      "C": "10 16",
+      "D": "25 11"
+    },
+    "correct_answer": "D",
+    "explanation": "The four register states are 25,20,13,25. Their low three-bit values are 1,4,5,1, so total becomes 11."
+  },
+  {
+    "id": "3.1-045",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed by this two-stage parallel population count?",
+    "code_snippet": "Main {\n    Integer x = 0xED;\n    x = x - ((x >> 1) & 0x55);\n    x = (x & 0x33) + ((x >> 2) & 0x33);\n    x = (x + (x >> 4)) & 15;\n    Print(x);\n}",
+    "options": {
+      "A": "5",
+      "B": "6",
+      "C": "237",
+      "D": "7"
+    },
+    "correct_answer": "B",
+    "explanation": "0xED is 11101101, containing six set bits. The pair, nibble, and final accumulation stages yield that count."
+  },
+  {
+    "id": "3.1-046",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after swapping two disjoint three-bit fields?",
+    "code_snippet": "Main {\n    Integer n = 0xCA;\n    Integer t = ((n >> 1) ^ (n >> 5)) & 7;\n    n = n ^ ((t << 1) | (t << 5));\n    Print(n);\n}",
+    "options": {
+      "A": "234",
+      "B": "172",
+      "C": "202",
+      "D": "106"
+    },
+    "correct_answer": "B",
+    "explanation": "Bits 1..3 initially encode 5 and bits 5..7 encode 6. XOR-difference swapping exchanges them while preserving bits 0 and 4, giving 172."
+  },
+  {
+    "id": "3.1-047",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What does this next-higher same-popcount construction print?",
+    "code_snippet": "Main {\n    Integer n = 22;\n    Integer c = n & (-n);\n    Integer r = n + c;\n    Integer result = r | (((r ^ n) >> 2) div c);\n    Print(result);\n}",
+    "options": {
+      "A": "28",
+      "B": "24",
+      "C": "25",
+      "D": "26"
+    },
+    "correct_answer": "C",
+    "explanation": "c=2 and r=24. r XOR n=14; shifting gives 3 and dividing by c truncates to 1. OR with 24 gives 25."
+  },
+  {
+    "id": "3.1-048",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after a carry-propagation addition using only bit operations?",
+    "code_snippet": "Main {\n    Integer a = 13, b = 11, rounds = 0;\n    while (b != 0) {\n        Integer carry = (a & b) << 1;\n        a = a ^ b;\n        b = carry;\n        rounds = rounds + 1;\n    }\n    Print(a, rounds);\n}",
+    "options": {
+      "A": "6 1",
+      "B": "26 4",
+      "C": "24 3",
+      "D": "24 4"
+    },
+    "correct_answer": "D",
+    "explanation": "The (a,b) pairs become (6,18),(20,4),(16,8),(24,0). Four rounds propagate all carries."
+  },
+  {
+    "id": "3.1-049",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after compressing selected bits into consecutive positions?",
+    "code_snippet": "Main {\n    Integer n = 0xD6, mask = 0xB4, result = 0, out = 0;\n    while (mask != 0) {\n        Integer bit = mask & (-mask);\n        if ((n & bit) != 0) {\n            result = result | (1 << out);\n        }\n        out = out + 1;\n        mask = mask & (mask - 1);\n    }\n    Print(result, out);\n}",
+    "options": {
+      "A": "11 4",
+      "B": "13 4",
+      "C": "11 3",
+      "D": "180 4"
+    },
+    "correct_answer": "A",
+    "explanation": "Mask positions 2,4,5,7 select input bits 1,1,0,1. Packed from low to high, these give binary 1011, or 11, across four positions."
+  },
+  {
+    "id": "3.1-050",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.1",
+    "subpart_name": "Bitwise Operations & Number Manipulation",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit two's-complement Integer values with wraparound, arithmetic >>, XOR ^, and left-to-right evaluation. What is printed after this signed boundary update and bit counting?",
+    "code_snippet": "Main {\n    Integer n = 2147483647;\n    n = n + 1;\n    Integer x = n ^ (n >> 31), count = 0;\n    while (x != 0) {\n        x = x & (x - 1);\n        count = count + 1;\n    }\n    Print(n, count);\n}",
+    "options": {
+      "A": "-2147483648 32",
+      "B": "-2147483648 31",
+      "C": "2147483648 1",
+      "D": "-2147483648 1"
+    },
+    "correct_answer": "B",
+    "explanation": "The addition wraps to the minimum Integer. Its arithmetic shift by 31 is -1, so XOR produces 2147483647, which contains 31 set bits."
+  }
+]

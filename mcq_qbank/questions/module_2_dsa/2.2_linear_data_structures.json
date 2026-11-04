@@ -1,0 +1,767 @@
+[
+  {
+    "id": "2.2-001",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "A zero-based one-dimensional array begins at byte address 1000 and has four-byte elements. What is the byte address of A[7]?",
+    "code_snippet": null,
+    "options": {
+      "A": "1024",
+      "B": "1028",
+      "C": "1032",
+      "D": "1007"
+    },
+    "correct_answer": "B",
+    "explanation": "Address=base+index*element_size=1000+7*4=1028."
+  },
+  {
+    "id": "2.2-002",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "A zero-based 3-by-5 matrix is stored row-major, beginning at byte address 2000 with four-byte elements. What is the byte address of A[2][3]?",
+    "code_snippet": null,
+    "options": {
+      "A": "2028",
+      "B": "2052",
+      "C": "2060",
+      "D": "2044"
+    },
+    "correct_answer": "B",
+    "explanation": "The linear offset is 2*5+3=13 elements, so the address is 2000+13*4=2052."
+  },
+  {
+    "id": "2.2-003",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "A zero-based 3-by-5 matrix is stored column-major, beginning at byte address 2000 with four-byte elements. What is the byte address of A[2][3]?",
+    "code_snippet": null,
+    "options": {
+      "A": "2032",
+      "B": "2020",
+      "C": "2052",
+      "D": "2044"
+    },
+    "correct_answer": "D",
+    "explanation": "Column-major offset is column*row_count+row=3*3+2=11 elements, giving 2044."
+  },
+  {
+    "id": "2.2-004",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed, or which listed language outcome applies? Do not assume a particular pointer size.",
+    "code_snippet": "#include <iostream>\nint main(){int a[]={10,20,30,40}; int* p=a+1; std::cout<<p[1]<<\" \"<<*(p-1);}",
+    "options": {
+      "A": "30 20",
+      "B": "30 10",
+      "C": "Compilation error",
+      "D": "20 10"
+    },
+    "correct_answer": "B",
+    "explanation": "p[1] is *(p+1), namely a[2]=30, while *(p-1) is a[0]=10."
+  },
+  {
+    "id": "2.2-005",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "C++17. What is printed, or which listed language outcome applies? Do not assume a particular pointer size.",
+    "code_snippet": "#include <iostream>\n#include <cstring>\nint main(){char s[]=\"abc\"; std::cout<<sizeof(s)<<\" \"<<std::strlen(s);}",
+    "options": {
+      "A": "4 3",
+      "B": "4 4",
+      "C": "3 3",
+      "D": "Compilation error"
+    },
+    "correct_answer": "A",
+    "explanation": "The array includes its null terminator, occupying four char bytes. strlen counts only the three preceding characters."
+  },
+  {
+    "id": "2.2-006",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def walk(nxt, head):\n    out = []\n    while head is not None:\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={1:2,2:3,3:None}\nhead=1\nnxt[0]=head\nhead=0\nprint(walk(nxt,head))",
+    "options": {
+      "A": "[0]",
+      "B": "[0, 1, 2, 3]",
+      "C": "[1, 2, 3, 0]",
+      "D": "[0, 2, 3]"
+    },
+    "correct_answer": "B",
+    "explanation": "The new node points to the old head before head changes. Every original node remains reachable after node 0."
+  },
+  {
+    "id": "2.2-007",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def walk(nxt, head):\n    out = []\n    while head is not None:\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={1:2,2:3,3:None}\nnxt[4]=None\nnxt[3]=4\nprint(walk(nxt,1))",
+    "options": {
+      "A": "[4, 1, 2, 3]",
+      "B": "[1, 2, 3]",
+      "C": "[1, 2, 4]",
+      "D": "[1, 2, 3, 4]"
+    },
+    "correct_answer": "D",
+    "explanation": "Connecting the old tail to a null-terminated new node appends it without changing the head."
+  },
+  {
+    "id": "2.2-008",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def walk(nxt, head):\n    out = []\n    while head is not None:\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={1:2,2:3,3:None}\nhead=1\nhead=nxt[head]\nprint(walk(nxt,head))",
+    "options": {
+      "A": "[]",
+      "B": "[2, 3]",
+      "C": "[3]",
+      "D": "[1, 2, 3]"
+    },
+    "correct_answer": "B",
+    "explanation": "Advancing the head removes node 1 from the reachable chain. Nodes 2 and 3 remain linked."
+  },
+  {
+    "id": "2.2-009",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "nxt={1:2,2:3,3:None}\nprv={1:None,2:1,3:2}\nnxt[1]=nxt[2]\nprv[3]=prv[2]\nprint(nxt[1],prv[3])",
+    "options": {
+      "A": "3 1",
+      "B": "2 2",
+      "C": "2 1",
+      "D": "3 2"
+    },
+    "correct_answer": "A",
+    "explanation": "Deleting the middle node of a doubly linked list requires updating both surviving neighbor pointers: 1.next=3 and 3.prev=1."
+  },
+  {
+    "id": "2.2-010",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "nxt={}\nhead=8\nnxt[8]=8\nprint(nxt[head]==head)",
+    "options": {
+      "A": "8",
+      "B": "False",
+      "C": "True",
+      "D": "None"
+    },
+    "correct_answer": "C",
+    "explanation": "The only node of a circular singly linked list points to itself; it is not null-terminated."
+  },
+  {
+    "id": "2.2-011",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "s=\"abcd\"\nprint(s[::-1])",
+    "options": {
+      "A": "badc",
+      "B": "abcd",
+      "C": "cdab",
+      "D": "dcba"
+    },
+    "correct_answer": "D",
+    "explanation": "A slice with step -1 traverses all characters in reverse order, including both endpoints."
+  },
+  {
+    "id": "2.2-012",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "An unsorted singly linked list has n nodes and no auxiliary index. A search compares the key with each visited node value and finds no match. How many node-value comparisons are required?",
+    "code_snippet": null,
+    "options": {
+      "A": "n-1",
+      "B": "n",
+      "C": "1",
+      "D": "n^2"
+    },
+    "correct_answer": "B",
+    "explanation": "Every node must be inspected once to establish absence. Null-pointer termination checks are not counted as node-value comparisons."
+  },
+  {
+    "id": "2.2-013",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Easy",
+    "question": "In Floyd cycle detection, fast advances two next links in a non-circular list that may end. Which short-circuit guard safely precedes that advance?",
+    "code_snippet": null,
+    "options": {
+      "A": "fast.next is not null AND fast is not null",
+      "B": "head is not null only",
+      "C": "fast is not null AND fast.next is not null",
+      "D": "fast is not null OR fast.next is not null"
+    },
+    "correct_answer": "C",
+    "explanation": "The first test protects evaluation of fast.next, and the second ensures that following fast.next.next is safe. The ordering and AND short-circuit behavior matter."
+  },
+  {
+    "id": "2.2-014",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "A row-major matrix has row indices 1..4 and column indices -2..2. A[1][-2] is at byte address 100 and each element is eight bytes. What is the address of A[3][1]?",
+    "code_snippet": null,
+    "options": {
+      "A": "204",
+      "B": "172",
+      "C": "220",
+      "D": "124"
+    },
+    "correct_answer": "A",
+    "explanation": "There are five columns. Offset=((3-1)*5+(1-(-2)))*8=104 bytes; adding base 100 gives 204."
+  },
+  {
+    "id": "2.2-015",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "A column-major matrix has row indices -1..2 and column indices 3..7. A[-1][3] is at byte address 500 and elements occupy two bytes. What is A[1][5]'s address?",
+    "code_snippet": null,
+    "options": {
+      "A": "524",
+      "B": "508",
+      "C": "520",
+      "D": "516"
+    },
+    "correct_answer": "C",
+    "explanation": "There are four rows. Element offset=(5-3)*4+(1-(-1))=10, giving 500+2*10=520."
+  },
+  {
+    "id": "2.2-016",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "A zero-based row-major 4-by-6 array has base byte address 1000 and four-byte elements. Which index pair occupies address 1052?",
+    "code_snippet": null,
+    "options": {
+      "A": "(2,2)",
+      "B": "(3,1)",
+      "C": "(2,1)",
+      "D": "(1,2)"
+    },
+    "correct_answer": "C",
+    "explanation": "The element offset is (1052-1000)/4=13. Dividing by six columns gives row 2 with remainder column 1."
+  },
+  {
+    "id": "2.2-017",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed language outcome applies? Do not assume a particular pointer size.",
+    "code_snippet": "#include <iostream>\nbool f(int a[5]){return sizeof(a)==sizeof(int*);}\nint main(){int a[5]={}; std::cout<<f(a)<<\" \"<<sizeof(a)/sizeof(a[0]);}",
+    "options": {
+      "A": "0 5",
+      "B": "1 5",
+      "C": "1 1",
+      "D": "Compilation error"
+    },
+    "correct_answer": "B",
+    "explanation": "The function parameter declaration adjusts to int*, so its sizeof is pointer sizeof. At the caller the original array type remains intact, giving an element count of five."
+  },
+  {
+    "id": "2.2-018",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed language outcome applies? Do not assume a particular pointer size.",
+    "code_snippet": "#include <iostream>\nint main(){int a[2][3]={{1,2,3},{4,5,6}}; int (*p)[3]=a; std::cout<<(*p)[2]<<\" \"<<p[1][1];}",
+    "options": {
+      "A": "Compilation error",
+      "B": "3 4",
+      "C": "3 5",
+      "D": "2 5"
+    },
+    "correct_answer": "C",
+    "explanation": "p points to a row of three ints. (*p)[2] is the first row's third element; p[1][1] is the second row's second element."
+  },
+  {
+    "id": "2.2-019",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed language outcome applies? Do not assume a particular pointer size.",
+    "code_snippet": "#include <iostream>\nint main(){int a[]={2,4,6}; int* p=a; (*p)++; p++; std::cout<<a[0]<<\" \"<<*p;}",
+    "options": {
+      "A": "Compilation error",
+      "B": "3 4",
+      "C": "3 6",
+      "D": "2 5"
+    },
+    "correct_answer": "B",
+    "explanation": "The first statement increments the pointed-to value, changing a[0] to 3. The separate p++ then advances the pointer to a[1], whose value remains 4."
+  },
+  {
+    "id": "2.2-020",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def walk(nxt, head):\n    out = []\n    while head is not None:\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={1:2,2:3,3:None}\nnxt[9]=nxt[2]\nnxt[2]=9\nprint(walk(nxt,1))",
+    "options": {
+      "A": "[1, 2, 9, 3]",
+      "B": "[1, 2, 9]",
+      "C": "[9, 1, 2, 3]",
+      "D": "[1, 9, 2, 3]"
+    },
+    "correct_answer": "A",
+    "explanation": "The new node first saves node 2's old successor, then node 2 points to it. This preserves the suffix after the insertion."
+  },
+  {
+    "id": "2.2-021",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def walk(nxt, head):\n    out = []\n    while head is not None:\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={1:2,2:3,3:4,4:None}\nnxt[2]=nxt[nxt[2]]\nprint(walk(nxt,1))",
+    "options": {
+      "A": "[1, 3, 4]",
+      "B": "[1, 2, 4]",
+      "C": "[1, 2, 3]",
+      "D": "[1, 2]"
+    },
+    "correct_answer": "B",
+    "explanation": "The known predecessor node 2 bypasses node 3 and links directly to node 4. This removes node 3 from the reachable chain."
+  },
+  {
+    "id": "2.2-022",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def walk(nxt, head):\n    out = []\n    while head is not None:\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={1:2,2:3,3:4,4:None}\nprev=None\ncur=1\nwhile cur is not None:\n    after=nxt[cur]\n    nxt[cur]=prev\n    prev,cur=cur,after\nprint(walk(nxt,prev))",
+    "options": {
+      "A": "[1, 2, 3, 4]",
+      "B": "[4, 2, 3, 1]",
+      "C": "[4, 3, 2, 1]",
+      "D": "[4]"
+    },
+    "correct_answer": "C",
+    "explanation": "Saving after before reversing each link prevents losing the unprocessed suffix. prev ends at the old tail, now the new head."
+  },
+  {
+    "id": "2.2-023",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def walk(nxt, head):\n    out = []\n    while head is not None:\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={0:1,1:2,2:3,3:4,4:None}\nprev=0\nwhile nxt[prev] is not None and nxt[nxt[prev]] is not None:\n    a=nxt[prev]\n    b=nxt[a]\n    nxt[a]=nxt[b]\n    nxt[b]=a\n    nxt[prev]=b\n    prev=a\nprint(walk(nxt,nxt[0]))",
+    "options": {
+      "A": "[1, 2, 3, 4]",
+      "B": "[4, 3, 2, 1]",
+      "C": "[2, 3, 4, 1]",
+      "D": "[2, 1, 4, 3]"
+    },
+    "correct_answer": "D",
+    "explanation": "Each iteration rewires one adjacent pair and leaves prev at that pair's new tail. The dummy node lets the first pair change the head using the same rule."
+  },
+  {
+    "id": "2.2-024",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "nxt={10:20,20:30,30:40,40:50,50:None}\nslow=fast=10\nfor _ in range(2):\n    fast=nxt[fast]\nwhile fast is not None:\n    slow=nxt[slow]\n    fast=nxt[fast]\nprint(slow)",
+    "options": {
+      "A": "50",
+      "B": "30",
+      "C": "40",
+      "D": "20"
+    },
+    "correct_answer": "C",
+    "explanation": "The initial two-link lead means slow is the second node from the end when fast reaches null. Here that is node 40."
+  },
+  {
+    "id": "2.2-025",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "nxt={1:2,2:3,3:4,4:None}\nslow=fast=1\nwhile fast is not None and nxt[fast] is not None:\n    slow=nxt[slow]\n    fast=nxt[nxt[fast]]\nprint(slow)",
+    "options": {
+      "A": "3",
+      "B": "2",
+      "C": "1",
+      "D": "4"
+    },
+    "correct_answer": "A",
+    "explanation": "Starting both at the head and moving while fast has a successor selects the second middle of an even-length list. The states are (2,3) and (3,null)."
+  },
+  {
+    "id": "2.2-026",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "nxt={1:2,2:3,3:4,4:5,5:3}\nslow=fast=1\nsteps=0\nwhile True:\n    slow=nxt[slow]\n    fast=nxt[nxt[fast]]\n    steps+=1\n    if slow==fast:\n        break\nprint(slow,steps)",
+    "options": {
+      "A": "3 2",
+      "B": "3 3",
+      "C": "4 3",
+      "D": "5 4"
+    },
+    "correct_answer": "C",
+    "explanation": "After one, two, and three moves, the pointer pairs are (2,3),(3,5),(4,4). Equality is tested after moving, so initial equality does not count."
+  },
+  {
+    "id": "2.2-027",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "nxt={1:2,2:3,3:4,4:5,5:3}\np=1\nq=4\nwhile p!=q:\n    p=nxt[p]\n    q=nxt[q]\nprint(p)",
+    "options": {
+      "A": "4",
+      "B": "1",
+      "C": "5",
+      "D": "3"
+    },
+    "correct_answer": "D",
+    "explanation": "Node 4 is the Floyd meeting point for this list. Resetting one pointer to head 1 and moving both one step makes them meet at the cycle entry 3."
+  },
+  {
+    "id": "2.2-028",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "nxt={1:2,2:3,3:4,4:None}\nslow=fast=1\ncycle=False\nwhile fast is not None and nxt[fast] is not None:\n    slow=nxt[slow]\n    fast=nxt[nxt[fast]]\n    if slow==fast:\n        cycle=True\n        break\nprint(cycle)",
+    "options": {
+      "A": "4",
+      "B": "True",
+      "C": "None",
+      "D": "False"
+    },
+    "correct_answer": "D",
+    "explanation": "The fast pointer reaches null instead of meeting slow at a live node. The loop guards prevent dereferencing a null successor."
+  },
+  {
+    "id": "2.2-029",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def walk(nxt, head):\n    out = []\n    while head is not None:\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={1:2,2:3,3:None}\nprv={1:None,2:1,3:2}\ncur=head=1\nwhile cur is not None:\n    nxt[cur],prv[cur]=prv[cur],nxt[cur]\n    head=cur\n    cur=prv[cur]\nprint(walk(nxt,head),prv[head])",
+    "options": {
+      "A": "[3, 2, 1] None",
+      "B": "[3, 2, 1] 2",
+      "C": "[1, 2, 3] None",
+      "D": "[3] None"
+    },
+    "correct_answer": "A",
+    "explanation": "Each node swaps its links. After the swap, prv[cur] holds the old next link for iteration. The old tail becomes head and its new previous pointer is null."
+  },
+  {
+    "id": "2.2-030",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def take(nxt, head, count):\n    out = []\n    for _ in range(count):\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={1:2,2:3,3:1}\nhead,tail=1,3\nnxt[4]=head\nnxt[tail]=4\ntail=4\nprint(take(nxt,head,4),nxt[tail])",
+    "options": {
+      "A": "[1, 2, 4, 3] 1",
+      "B": "[1, 2, 3, 4] None",
+      "C": "[4, 1, 2, 3] 1",
+      "D": "[1, 2, 3, 4] 1"
+    },
+    "correct_answer": "D",
+    "explanation": "The new tail points to the unchanged head, and the old tail points to the new tail. The cycle remains closed after four nodes."
+  },
+  {
+    "id": "2.2-031",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def take(nxt, head, count):\n    out = []\n    for _ in range(count):\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={1:2,2:3,3:1}\nhead,tail=1,3\nhead=nxt[head]\nnxt[tail]=head\nprint(take(nxt,head,2),nxt[tail])",
+    "options": {
+      "A": "[1, 2] 1",
+      "B": "[3, 2] 2",
+      "C": "[2, 3] 1",
+      "D": "[2, 3] 2"
+    },
+    "correct_answer": "D",
+    "explanation": "Both head and the tail's next pointer must change. Keeping the old tail link to node 1 would leave the deleted head in the circle."
+  },
+  {
+    "id": "2.2-032",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "nxt={7:7}\nhead=tail=7\nif head==tail:\n    head=tail=None\nprint(head,tail)",
+    "options": {
+      "A": "7 None",
+      "B": "None 7",
+      "C": "7 7",
+      "D": "None None"
+    },
+    "correct_answer": "D",
+    "explanation": "Deleting the sole node empties the circular list. Both external head and tail references must represent the empty state."
+  },
+  {
+    "id": "2.2-033",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "s=list(\"abcdef\")\nl,r=1,3\nwhile l<r:\n    s[l],s[r]=s[r],s[l]\n    l+=1\n    r-=1\nprint(\"\".join(s))",
+    "options": {
+      "A": "adcbef",
+      "B": "aedcbf",
+      "C": "abdcef",
+      "D": "abcdef"
+    },
+    "correct_answer": "A",
+    "explanation": "Only the inclusive positions 1 through 3, originally b,c,d, are reversed. The prefix a and suffix e,f are unchanged."
+  },
+  {
+    "id": "2.2-034",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "a=[1,2,3,4,5]\nk=2\na[:k]=reversed(a[:k])\na[k:]=reversed(a[k:])\na.reverse()\nprint(a)",
+    "options": {
+      "A": "[2, 1, 5, 4, 3]",
+      "B": "[4, 5, 1, 2, 3]",
+      "C": "[3, 4, 5, 1, 2]",
+      "D": "[5, 4, 3, 2, 1]"
+    },
+    "correct_answer": "C",
+    "explanation": "Reversing the prefix and suffix and then the whole array rotates it left by k. This is not a right rotation or merely a full reversal."
+  },
+  {
+    "id": "2.2-035",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed language outcome applies? Do not assume a particular pointer size.",
+    "code_snippet": "#include <iostream>\n#include <cstddef>\ntemplate<std::size_t N> std::size_t length(int (&)[N]){return N;}\nint main(){int a[7]={}; std::cout<<length(a);}",
+    "options": {
+      "A": "Undefined behavior",
+      "B": "Compilation error",
+      "C": "1",
+      "D": "7"
+    },
+    "correct_answer": "D",
+    "explanation": "The array-reference parameter preserves its extent for template deduction. It does not use the array-to-pointer adjustment of a plain int a[] parameter."
+  },
+  {
+    "id": "2.2-036",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Medium",
+    "question": "C++17. What is printed, or which listed language outcome applies? Do not assume a particular pointer size.",
+    "code_snippet": "#include <iostream>\nint main(){int a[8]={}; int* p=a+5; int* q=a+1; std::cout<<(p-q);}",
+    "options": {
+      "A": "4",
+      "B": "5",
+      "C": "Compilation error",
+      "D": "16"
+    },
+    "correct_answer": "A",
+    "explanation": "Subtraction within the same array yields an element count: 5-1=4. It does not return the byte distance or depend on sizeof(int)."
+  },
+  {
+    "id": "2.2-037",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Hard",
+    "question": "A three-dimensional row-major array has bounds [-1..1][2..5][0..4]. The first element A[-1][2][0] is at byte address 400; elements are eight bytes. What is the address of A[1][3][4]?",
+    "code_snippet": null,
+    "options": {
+      "A": "768",
+      "B": "720",
+      "C": "536",
+      "D": "792"
+    },
+    "correct_answer": "D",
+    "explanation": "After subtracting lower bounds, the linear element offset is ((2*4)+1)*5+4=49. Address=400+49*8=792."
+  },
+  {
+    "id": "2.2-038",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Hard",
+    "question": "Standard Floyd detection starts both pointers at the head, then advances slow one and fast two links before comparing them. The noncyclic prefix length is mu=7 links and cycle length lambda=5. What is the pair (iterations to first meeting, one-step iterations in the head-reset phase to the entry)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(5,7)",
+      "B": "(7,5)",
+      "C": "(12,7)",
+      "D": "(10,7)"
+    },
+    "correct_answer": "D",
+    "explanation": "A meeting requires t>=mu and t divisible by lambda; the first such positive t is 10. The standard reset phase reaches the entry after exactly mu=7 steps."
+  },
+  {
+    "id": "2.2-039",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Hard",
+    "question": "Standard Floyd detection starts both pointers at the cycle entry of a pure four-node cycle, moves before testing equality, and later resets one pointer to the original head. What is the pair (iterations to first meeting, additional reset-phase steps to the entry)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(4,4)",
+      "B": "(4,0)",
+      "C": "(2,0)",
+      "D": "(0,0)"
+    },
+    "correct_answer": "B",
+    "explanation": "Relative speed is one link per iteration, so the first positive meeting is after four iterations, back at the head. Both reset-phase pointers are already at the entry; no additional moves are required."
+  },
+  {
+    "id": "2.2-040",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Hard",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def walk(nxt, head):\n    out = []\n    while head is not None:\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={\"A\":\"B\",\"B\":\"C\",\"C\":\"D\",\"D\":None}\nvalue={\"A\":10,\"B\":20,\"C\":30,\"D\":40}\np=\"B\"\nvictim=nxt[p]\nvalue[p]=value[victim]\nnxt[p]=nxt[victim]\ndel nxt[victim]\ndel value[victim]\nprint([value[x] for x in walk(nxt,\"A\")],victim)",
+    "options": {
+      "A": "[10, 30, 40] C",
+      "B": "[10, 30, 40] B",
+      "C": "[10, 20, 30] D",
+      "D": "[10, 20, 40] C"
+    },
+    "correct_answer": "A",
+    "explanation": "Copying the successor payload into B and bypassing/deleting C changes values without physically deleting B. This constant-field trick requires a non-tail node and does not preserve node identity."
+  },
+  {
+    "id": "2.2-041",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Hard",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "def walk(nxt, head):\n    out = []\n    while head is not None:\n        out.append(head)\n        head = nxt[head]\n    return out\nnxt={i:i+1 for i in range(1,8)}\nnxt[8]=None\nnxt[0]=1\nprev=0\nk=3\nwhile True:\n    end=prev\n    for _ in range(k):\n        end=nxt.get(end)\n        if end is None:\n            break\n    if end is None:\n        break\n    after=nxt[end]\n    cur=nxt[prev]\n    old_first=cur\n    back=after\n    while cur!=after:\n        forward=nxt[cur]\n        nxt[cur]=back\n        back,cur=cur,forward\n    nxt[prev]=end\n    prev=old_first\nprint(walk(nxt,nxt[0]))",
+    "options": {
+      "A": "[3, 2, 1, 6, 5, 4, 7, 8]",
+      "B": "[1, 2, 3, 4, 5, 6, 7, 8]",
+      "C": "[8, 7, 6, 5, 4, 3, 2, 1]",
+      "D": "[3, 2, 1, 6, 5, 4, 8, 7]"
+    },
+    "correct_answer": "A",
+    "explanation": "The preliminary k-link scan requires a complete group before reversal. Two groups of three reverse; the final two nodes do not form a full group and stay in original order."
+  },
+  {
+    "id": "2.2-042",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Hard",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "nxt={1:2,2:5,3:4,4:5,5:6,6:None}\na,b=1,3\np,q=a,b\nwhile p!=q:\n    p=nxt[p] if p is not None else b\n    q=nxt[q] if q is not None else a\nprint(p)",
+    "options": {
+      "A": "4",
+      "B": "6",
+      "C": "5",
+      "D": "2"
+    },
+    "correct_answer": "C",
+    "explanation": "Head switching equalizes the total path length traversed by the two pointers. The first shared node by identity is 5, followed by shared node 6; equal payloads in separate nodes would not suffice."
+  },
+  {
+    "id": "2.2-043",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Hard",
+    "question": "Python 3. What is printed? Dictionaries named nxt/prv represent node next/previous pointers; None is a null pointer. Node labels identify nodes, not implicit array positions.",
+    "code_snippet": "nxt={0:1,1:2,2:3,3:4,4:1}\nslow=fast=0\nwhile True:\n    slow=nxt[slow]\n    for _ in range(3):\n        fast=nxt[fast]\n    if slow==fast:\n        break\nmeeting=slow\np,q=0,meeting\nfound=(p==q)\nfor _ in range(8):\n    if found:\n        break\n    p,q=nxt[p],nxt[q]\n    found=(p==q)\nprint(meeting,found)",
+    "options": {
+      "A": "4 False",
+      "B": "1 True",
+      "C": "2 False",
+      "D": "2 True"
+    },
+    "correct_answer": "C",
+    "explanation": "With the altered 3x fast speed, the first meeting is node 2 after two moves. The standard 2x proof no longer applies: after reset the pointers enter the four-cycle separated by two links and never meet at equal speed."
+  },
+  {
+    "id": "2.2-044",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed, or which listed language outcome applies? Do not assume a particular pointer size.",
+    "code_snippet": "#include <iostream>\nvoid f(int*){std::cout<<\"P \";} void f(int (*)[4]){std::cout<<\"A\";}\nint main(){int a[4]={}; f(a); f(&a);}",
+    "options": {
+      "A": "Compilation error",
+      "B": "P A",
+      "C": "P P",
+      "D": "A A"
+    },
+    "correct_answer": "B",
+    "explanation": "a decays to pointer-to-element int*. &a instead has pointer-to-whole-array type int (*)[4]. They select different overloads even though both relate to the same array storage."
+  },
+  {
+    "id": "2.2-045",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.2",
+    "subpart_name": "Linear Data Structures (Arrays, Strings & Linked Lists)",
+    "difficulty": "Hard",
+    "question": "C++17. What is printed, or which listed language outcome applies? Do not assume a particular pointer size.",
+    "code_snippet": "#include <iostream>\nint main(){int a[3]={1,2,3}; int* p=a+3; std::cout<<*p;}",
+    "options": {
+      "A": "Undefined behavior",
+      "B": "3",
+      "C": "0",
+      "D": "Compilation error"
+    },
+    "correct_answer": "A",
+    "explanation": "Forming the one-past pointer is allowed, but dereferencing it is not. The access is outside the array object and has no guaranteed printed value."
+  }
+]

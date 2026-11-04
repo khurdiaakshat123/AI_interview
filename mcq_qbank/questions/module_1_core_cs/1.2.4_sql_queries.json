@@ -1,0 +1,597 @@
+[
+  {
+    "id": "1.2.4-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Easy",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH A(id) AS (VALUES (1),(2)),\nB(aid,label) AS (VALUES (1,'x'),(1,'y'),(3,'z'))\nSELECT A.id,B.label FROM A JOIN B ON A.id=B.aid\nORDER BY A.id,B.label;",
+    "options": {
+      "A": "[[1,\"x\"],[1,\"y\"],[3,\"z\"]]",
+      "B": "[[1,\"x\"],[2,null]]",
+      "C": "[[1,\"x\"],[1,\"y\"]]",
+      "D": "[[1,\"x\"]]"
+    },
+    "correct_answer": "C",
+    "explanation": "Only id 1 matches, but it matches two B rows, producing both x and y. An inner join drops A's unmatched id 2 and B's unmatched aid 3 rather than manufacturing NULL-extended rows."
+  },
+  {
+    "id": "1.2.4-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Easy",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH A(id) AS (VALUES (1),(2)),\nB(aid,label) AS (VALUES (1,'x'))\nSELECT A.id,B.label FROM A LEFT JOIN B ON A.id=B.aid\nORDER BY A.id;",
+    "options": {
+      "A": "[[1,\"x\"],[2,null]]",
+      "B": "[[1,\"x\"],[2,\"\"]]",
+      "C": "[[1,\"x\"]]",
+      "D": "[[1,\"x\"],[1,null],[2,null]]"
+    },
+    "correct_answer": "A",
+    "explanation": "A left join retains each A row. Id 1 matches x; id 2 has no matching B row, so the selected B column is SQL NULL, represented by null rather than an empty string."
+  },
+  {
+    "id": "1.2.4-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Easy",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(v) AS (VALUES (10),(NULL),(20))\nSELECT COUNT(*),COUNT(v) FROM T;",
+    "options": {
+      "A": "[[2,2]]",
+      "B": "[[2,3]]",
+      "C": "[[3,3]]",
+      "D": "[[3,2]]"
+    },
+    "correct_answer": "D",
+    "explanation": "COUNT(*) counts all three input rows, including the row whose v is NULL. COUNT(v) counts only the two non-NULL v values."
+  },
+  {
+    "id": "1.2.4-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Easy",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(id,v) AS (VALUES (1,NULL),(2,0),(3,NULL))\nSELECT id FROM T WHERE v=NULL ORDER BY id;",
+    "options": {
+      "A": "[]",
+      "B": "[[1],[2],[3]]",
+      "C": "[[2]]",
+      "D": "[[1],[3]]"
+    },
+    "correct_answer": "A",
+    "explanation": "An equality comparison with NULL evaluates to UNKNOWN, including NULL=NULL. WHERE retains only TRUE, so no row passes. Testing nullness requires IS NULL rather than =NULL."
+  },
+  {
+    "id": "1.2.4-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Easy",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(id,a,b) AS (VALUES (1,NULL,5),(2,0,7),(3,NULL,NULL))\nSELECT id,COALESCE(a,b,99) AS v FROM T ORDER BY id;",
+    "options": {
+      "A": "[[1,null],[2,0],[3,null]]",
+      "B": "[[1,99],[2,0],[3,99]]",
+      "C": "[[1,5],[2,0],[3,99]]",
+      "D": "[[1,5],[2,7],[3,99]]"
+    },
+    "correct_answer": "C",
+    "explanation": "COALESCE returns its first non-NULL argument. Zero is a non-NULL value, so row 2 returns 0 rather than 7; only row 3 needs the final fallback 99."
+  },
+  {
+    "id": "1.2.4-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Easy",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(id,a,b) AS (VALUES (1,4,4),(2,4,5),(3,NULL,4))\nSELECT id,NULLIF(a,b) AS v FROM T ORDER BY id;",
+    "options": {
+      "A": "[[1,4],[2,4],[3,null]]",
+      "B": "[[1,null],[2,null],[3,null]]",
+      "C": "[[1,null],[2,4],[3,4]]",
+      "D": "[[1,null],[2,4],[3,null]]"
+    },
+    "correct_answer": "D",
+    "explanation": "NULLIF returns NULL when its arguments compare equal and otherwise returns the first argument. Equal 4s become NULL, unequal 4 and 5 return 4, and a first argument that is already NULL remains NULL."
+  },
+  {
+    "id": "1.2.4-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Easy",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH Sales(g,qty) AS (VALUES ('A',2),('A',3),('B',4),('C',1))\nSELECT g,SUM(qty) AS total FROM Sales\nGROUP BY g HAVING SUM(qty)>=5 ORDER BY g;",
+    "options": {
+      "A": "[[\"B\",4]]",
+      "B": "[[\"A\",5]]",
+      "C": "[[\"A\",3]]",
+      "D": "[[\"A\",5],[\"B\",4]]"
+    },
+    "correct_answer": "B",
+    "explanation": "Group totals are A=5, B=4, and C=1. HAVING applies after grouping and retains only the group whose total is at least 5, so the result is A with total 5."
+  },
+  {
+    "id": "1.2.4-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Easy",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(id,score) AS (VALUES (1,5),(2,9),(3,9))\nSELECT id,ROW_NUMBER() OVER (ORDER BY score DESC,id ASC) AS rn\nFROM T ORDER BY id;",
+    "options": {
+      "A": "[[1,3],[2,1],[3,2]]",
+      "B": "[[1,1],[2,1],[3,1]]",
+      "C": "[[1,3],[2,1],[3,1]]",
+      "D": "[[1,1],[2,2],[3,3]]"
+    },
+    "correct_answer": "A",
+    "explanation": "The window order is id 2, id 3, id 1 because descending score is followed by ascending id as a tie-breaker. ROW_NUMBER assigns 1,2,3 in that order; the final ORDER BY id changes display order but not those assigned numbers."
+  },
+  {
+    "id": "1.2.4-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Easy",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(id,score) AS (VALUES (1,100),(2,100),(3,90))\nSELECT id,RANK() OVER (ORDER BY score DESC) AS r,\nDENSE_RANK() OVER (ORDER BY score DESC) AS d\nFROM T ORDER BY id;",
+    "options": {
+      "A": "[[1,1,1],[2,1,1],[3,2,3]]",
+      "B": "[[1,1,1],[2,2,2],[3,3,3]]",
+      "C": "[[1,1,1],[2,1,1],[3,2,2]]",
+      "D": "[[1,1,1],[2,1,1],[3,3,2]]"
+    },
+    "correct_answer": "D",
+    "explanation": "The two 100 scores are peers with rank and dense rank 1. RANK skips the next position after the two-row peer group, giving 90 rank 3; DENSE_RANK advances only one distinct-value group, giving 90 dense rank 2."
+  },
+  {
+    "id": "1.2.4-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Easy",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH E(id,salary) AS (VALUES (1,10),(2,20),(3,30))\nSELECT id FROM E WHERE salary>(SELECT AVG(salary) FROM E) ORDER BY id;",
+    "options": {
+      "A": "[[2],[3]]",
+      "B": "[[1]]",
+      "C": "[[3]]",
+      "D": "[]"
+    },
+    "correct_answer": "C",
+    "explanation": "The scalar subquery computes average salary 20. The strict greater-than predicate keeps only salary 30, belonging to id 3; salary 20 is equal to the average and is excluded."
+  },
+  {
+    "id": "1.2.4-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH C(id) AS (VALUES (1),(2)),\nO(id,cid) AS (VALUES (10,1),(11,1),(12,2)),\nI(oid,qty) AS (VALUES (10,2),(10,3),(10,1),(12,4))\nSELECT C.id,COUNT(*) AS joined_rows,SUM(I.qty) AS qty\nFROM C JOIN O ON O.cid=C.id JOIN I ON I.oid=O.id\nGROUP BY C.id ORDER BY C.id;",
+    "options": {
+      "A": "[[1,2,6],[2,1,4]]",
+      "B": "[[1,4,6],[2,1,4]]",
+      "C": "[[1,3,6],[2,1,4]]",
+      "D": "[[1,3,5],[2,1,4]]"
+    },
+    "correct_answer": "C",
+    "explanation": "Order 10 expands to three item rows totaling 6. Order 11 has no item and disappears from the inner join. Customer 1 therefore contributes three joined rows; customer 2 contributes the one item row of order 12 with quantity 4."
+  },
+  {
+    "id": "1.2.4-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH D(id) AS (VALUES (1),(2)),\nE(id,did,active) AS (VALUES (1,1,0),(2,1,1))\nSELECT D.id,E.id FROM D LEFT JOIN E ON E.did=D.id\nWHERE E.active=1 ORDER BY D.id,E.id;",
+    "options": {
+      "A": "[[1,2]]",
+      "B": "[[1,2],[2,null]]",
+      "C": "[[1,1],[1,2]]",
+      "D": "[[2,null]]"
+    },
+    "correct_answer": "A",
+    "explanation": "The join initially creates matches for department 1 and a NULL-extended row for department 2. WHERE E.active=1 rejects both the inactive employee and the NULL-extended row, leaving only department 1 with employee 2."
+  },
+  {
+    "id": "1.2.4-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH D(id) AS (VALUES (1),(2)),\nE(id,did,active) AS (VALUES (1,1,0),(2,1,1))\nSELECT D.id,E.id FROM D\nLEFT JOIN E ON E.did=D.id AND E.active=1\nORDER BY D.id,E.id;",
+    "options": {
+      "A": "[[1,1],[1,2],[2,null]]",
+      "B": "[[1,null],[2,null]]",
+      "C": "[[1,2],[2,null]]",
+      "D": "[[1,2]]"
+    },
+    "correct_answer": "C",
+    "explanation": "The active predicate is part of the join condition, so employee 2 is the only right-side match. The left join still retains department 2 as a NULL-extended row because no WHERE predicate subsequently removes it."
+  },
+  {
+    "id": "1.2.4-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH P(id) AS (VALUES (1),(2)),\nC(id,pid) AS (VALUES (10,1),(11,1))\nSELECT P.id,COUNT(*) AS rows_in_group,COUNT(C.id) AS children\nFROM P LEFT JOIN C ON C.pid=P.id\nGROUP BY P.id ORDER BY P.id;",
+    "options": {
+      "A": "[[1,2,2],[2,1,1]]",
+      "B": "[[1,1,2],[2,1,0]]",
+      "C": "[[1,2,2],[2,1,0]]",
+      "D": "[[1,2,2],[2,0,0]]"
+    },
+    "correct_answer": "C",
+    "explanation": "Parent 1 has two matching child rows. Parent 2 has one NULL-extended joined row, counted by COUNT(*), but its C.id is NULL and contributes zero to COUNT(C.id)."
+  },
+  {
+    "id": "1.2.4-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH S(g,amount) AS (VALUES ('A',2),('A',8),('B',6),('B',7),('C',4))\nSELECT g,SUM(amount) AS total FROM S WHERE amount>=5\nGROUP BY g HAVING COUNT(*)>=2 ORDER BY g;",
+    "options": {
+      "A": "[[\"A\",8],[\"B\",13]]",
+      "B": "[[\"A\",10]]",
+      "C": "[[\"A\",10],[\"B\",13]]",
+      "D": "[[\"B\",13]]"
+    },
+    "correct_answer": "D",
+    "explanation": "WHERE first removes A's 2 and C's 4. A then has only one surviving row and fails HAVING COUNT(*)>=2. B retains two rows, 6 and 7, and returns total 13."
+  },
+  {
+    "id": "1.2.4-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(g,v) AS (VALUES ('A',10),('A',NULL),('A',20),('B',NULL),('B',NULL))\nSELECT g,AVG(v),SUM(v),COUNT(v) FROM T GROUP BY g ORDER BY g;",
+    "options": {
+      "A": "[[\"A\",15.0,30,2],[\"B\",0.0,0,0]]",
+      "B": "[[\"A\",10.0,30,3],[\"B\",0.0,0,2]]",
+      "C": "[[\"A\",15.0,30,3],[\"B\",null,null,2]]",
+      "D": "[[\"A\",15.0,30,2],[\"B\",null,null,0]]"
+    },
+    "correct_answer": "D",
+    "explanation": "AVG, SUM, and COUNT(v) ignore NULL inputs. A has two numeric values, giving average 15.0, sum 30, and count 2. B has no non-NULL values: AVG and SUM return NULL, while COUNT(v) returns 0."
+  },
+  {
+    "id": "1.2.4-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH P(id) AS (VALUES (1),(2),(3)),\nB(id) AS (VALUES (2),(NULL))\nSELECT id FROM P WHERE id NOT IN (SELECT id FROM B) ORDER BY id;",
+    "options": {
+      "A": "[]",
+      "B": "[[1],[3]]",
+      "C": "[[1],[2],[3]]",
+      "D": "[[2]]"
+    },
+    "correct_answer": "A",
+    "explanation": "For ids 1 and 3, comparison with 2 is unequal but comparison with the NULL member is UNKNOWN, so NOT IN is UNKNOWN. Id 2 is explicitly present and fails NOT IN. WHERE therefore keeps no rows."
+  },
+  {
+    "id": "1.2.4-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH P(id) AS (VALUES (1),(2),(3)),\nB(id) AS (VALUES (2),(NULL))\nSELECT P.id FROM P\nWHERE NOT EXISTS (SELECT 1 FROM B WHERE B.id=P.id) ORDER BY P.id;",
+    "options": {
+      "A": "[[1],[2],[3]]",
+      "B": "[[1],[3]]",
+      "C": "[[2]]",
+      "D": "[]"
+    },
+    "correct_answer": "B",
+    "explanation": "Only B.id=2 satisfies the correlated equality for an outer row. The NULL B row matches no id, so NOT EXISTS retains ids 1 and 3. Unlike NOT IN with a NULL member, this test does not poison all unmatched outer rows."
+  },
+  {
+    "id": "1.2.4-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH E(id,dept,salary) AS (VALUES (1,'A',10),(2,'A',30),(3,'B',20),(4,'B',20))\nSELECT e.id FROM E e\nWHERE e.salary>(SELECT AVG(x.salary) FROM E x WHERE x.dept=e.dept)\nORDER BY e.id;",
+    "options": {
+      "A": "[[3],[4]]",
+      "B": "[[1],[2]]",
+      "C": "[[2],[3],[4]]",
+      "D": "[[2]]"
+    },
+    "correct_answer": "D",
+    "explanation": "The correlated subquery computes average 20 separately for A and B. Only A's salary 30 is strictly above its department average. Both B salaries equal their average and are excluded."
+  },
+  {
+    "id": "1.2.4-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH O(id,amount) AS (VALUES (1,100),(2,50)),\nTag(oid,tag) AS (VALUES (1,'a'),(1,'b'),(2,'a'))\nSELECT SUM(O.amount),COUNT(DISTINCT O.id)\nFROM O JOIN Tag ON Tag.oid=O.id;",
+    "options": {
+      "A": "[[250,3]]",
+      "B": "[[150,2]]",
+      "C": "[[150,3]]",
+      "D": "[[250,2]]"
+    },
+    "correct_answer": "D",
+    "explanation": "Order 1 appears twice after the join, so SUM reads 100 + 100 + 50 = 250. COUNT(DISTINCT O.id) independently removes repeated order identifiers and returns 2; it does not deduplicate the rows seen by SUM."
+  },
+  {
+    "id": "1.2.4-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH E(id,dept,score) AS (VALUES (1,'A',90),(2,'A',90),(3,'A',80),(4,'B',70)),\nW AS (SELECT id,dept,ROW_NUMBER() OVER (PARTITION BY dept ORDER BY score DESC,id) AS rn FROM E)\nSELECT dept,id,rn FROM W WHERE rn<=2 ORDER BY dept,rn;",
+    "options": {
+      "A": "[[\"A\",1,1],[\"A\",2,2]]",
+      "B": "[[\"A\",1,1],[\"A\",2,1],[\"B\",4,1]]",
+      "C": "[[\"A\",1,1],[\"A\",2,2],[\"B\",4,1]]",
+      "D": "[[\"A\",1,1],[\"A\",3,2],[\"B\",4,1]]"
+    },
+    "correct_answer": "C",
+    "explanation": "ROW_NUMBER restarts for each department, and id deterministically breaks A's score tie. A's first two rows are ids 1 and 2; B's only row, id 4, has rn 1 and also passes. Filtering occurs in the outer query after window evaluation."
+  },
+  {
+    "id": "1.2.4-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH E(id,salary) AS (VALUES (1,100),(2,100),(3,90),(4,80)),\nW AS (SELECT id,salary,DENSE_RANK() OVER (ORDER BY salary DESC) AS dr FROM E)\nSELECT id,salary FROM W WHERE dr=2 ORDER BY id;",
+    "options": {
+      "A": "[[4,80]]",
+      "B": "[[2,100]]",
+      "C": "[[3,90]]",
+      "D": "[[1,100],[2,100]]"
+    },
+    "correct_answer": "C",
+    "explanation": "The distinct salary levels 100,90,80 receive dense ranks 1,2,3. Both 100 rows share rank 1, so the second distinct level is 90 at id 3, rather than the second physical row."
+  },
+  {
+    "id": "1.2.4-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(id,v) AS (VALUES (1,10),(2,NULL),(3,30))\nSELECT id,LAG(v,1,99) OVER (ORDER BY id) AS prev,\nCOALESCE(LAG(v,1,99) OVER (ORDER BY id),77) AS normalized_prev\nFROM T ORDER BY id;",
+    "options": {
+      "A": "[[1,null,77],[2,10,10],[3,null,77]]",
+      "B": "[[1,99,99],[2,10,10],[3,null,77]]",
+      "C": "[[1,99,99],[2,null,77],[3,30,30]]",
+      "D": "[[1,99,99],[2,10,10],[3,99,99]]"
+    },
+    "correct_answer": "B",
+    "explanation": "The default 99 applies only when the preceding row does not exist, which occurs for id 1. Id 3 has a preceding row whose v actually is NULL, so LAG returns NULL rather than its default. COALESCE converts that returned NULL to 77."
+  },
+  {
+    "id": "1.2.4-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(id,g,v) AS (VALUES (1,'A',10),(2,'A',20),(3,'B',30))\nSELECT id,LEAD(v,1,-1) OVER (PARTITION BY g ORDER BY id) AS nxt\nFROM T ORDER BY id;",
+    "options": {
+      "A": "[[1,20],[2,-1],[3,-1]]",
+      "B": "[[1,20],[2,30],[3,-1]]",
+      "C": "[[1,20],[2,null],[3,null]]",
+      "D": "[[1,-1],[2,-1],[3,-1]]"
+    },
+    "correct_answer": "A",
+    "explanation": "LEAD stays within each partition. In A, id 1 sees id 2's value 20, but id 2 has no successor. B has only one row and no successor either, so both partition-ending rows receive the explicit default -1."
+  },
+  {
+    "id": "1.2.4-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(id,k,v) AS (VALUES (1,1,10),(2,1,20),(3,2,5))\nSELECT id,\nSUM(v) OVER (ORDER BY k RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS range_total,\nSUM(v) OVER (ORDER BY k,id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS rows_total\nFROM T ORDER BY id;",
+    "options": {
+      "A": "[[1,10,10],[2,30,30],[3,35,35]]",
+      "B": "[[1,30,10],[2,30,30],[3,35,35]]",
+      "C": "[[1,10,30],[2,30,30],[3,35,35]]",
+      "D": "[[1,30,30],[2,30,30],[3,35,35]]"
+    },
+    "correct_answer": "B",
+    "explanation": "The RANGE frame includes every peer of the current k, so both k=1 rows see 10+20=30. The ROWS frame uses the unique (k,id) order and advances one row at a time, giving 10,30,35. Both frames include all rows by id 3."
+  },
+  {
+    "id": "1.2.4-026",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH A(id) AS (VALUES (1),(2),(3)),\nB(id,v) AS (VALUES (1,NULL),(2,5))\nSELECT A.id FROM A LEFT JOIN B ON B.id=A.id\nWHERE B.v IS NULL ORDER BY A.id;",
+    "options": {
+      "A": "[[1],[2],[3]]",
+      "B": "[[1]]",
+      "C": "[[1],[3]]",
+      "D": "[[3]]"
+    },
+    "correct_answer": "C",
+    "explanation": "Id 1 has a genuine B match whose v is NULL; id 3 has no B match and gets a NULL-extended v. Both satisfy the predicate. Testing nullable B.v does not distinguish an unmatched row from a matched row with a NULL value."
+  },
+  {
+    "id": "1.2.4-027",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(id,a,b) AS (VALUES (1,10,2),(2,10,0),(3,NULL,2))\nSELECT id,COALESCE(1.0*a/NULLIF(b,0),-1) AS ratio FROM T ORDER BY id;",
+    "options": {
+      "A": "[[1,5.0],[2,0],[3,-1]]",
+      "B": "[[1,5.0],[2,-1],[3,-1]]",
+      "C": "[[1,5.0],[2,null],[3,null]]",
+      "D": "[[1,5.0],[2,-1],[3,0]]"
+    },
+    "correct_answer": "B",
+    "explanation": "NULLIF turns the zero denominator into NULL. Division by that NULL, or by a non-NULL denominator with NULL numerator, returns NULL and triggers COALESCE's -1. Row 1 uses real arithmetic because of 1.0 and returns 5.0."
+  },
+  {
+    "id": "1.2.4-028",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Medium",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(id) AS (VALUES (1),(2),(3)),\nR(id) AS (VALUES (2),(2),(NULL))\nSELECT id FROM T WHERE id IN (SELECT id FROM R) ORDER BY id;",
+    "options": {
+      "A": "[[1],[3]]",
+      "B": "[[2]]",
+      "C": "[[2],[2]]",
+      "D": "[]"
+    },
+    "correct_answer": "B",
+    "explanation": "IN is a membership predicate, not a join that duplicates outer rows for each inner match. Id 2 has a TRUE match and appears once. The NULL member makes unmatched comparisons UNKNOWN but does not override id 2's TRUE match."
+  },
+  {
+    "id": "1.2.4-029",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Hard",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH O(id,cid,amount) AS (VALUES (1,1,100),(2,1,50)),\nP(oid,amount) AS (VALUES (1,40),(1,60),(2,50)),\nS(oid,sid) AS (VALUES (1,10),(1,11),(2,12))\nSELECT SUM(P.amount),SUM(O.amount),COUNT(*)\nFROM O JOIN P ON P.oid=O.id JOIN S ON S.oid=O.id;",
+    "options": {
+      "A": "[[250,150,5]]",
+      "B": "[[250,450,5]]",
+      "C": "[[150,150,2]]",
+      "D": "[[150,450,5]]"
+    },
+    "correct_answer": "B",
+    "explanation": "Order 1 combines two payments with two shipments, producing four joined rows. Its payments contribute (40+60)*2=200, and its order amount contributes 100*4=400. Order 2 adds one row with payment 50 and order amount 50. Totals are 250,450,5; independent one-to-many joins multiply rather than merely append their rows."
+  },
+  {
+    "id": "1.2.4-030",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Hard",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(acct,day,amount) AS (VALUES ('A',1,10),('A',1,20),('A',2,5),('A',3,7),('A',3,8),('B',1,NULL),('B',2,4)),\nW AS (SELECT *,DENSE_RANK() OVER (PARTITION BY acct ORDER BY day DESC) AS dr FROM T)\nSELECT acct,SUM(amount),COUNT(*),COUNT(amount) FROM W WHERE dr<=2\nGROUP BY acct HAVING SUM(amount)>=4 ORDER BY acct;",
+    "options": {
+      "A": "[[\"A\",20,3,3],[\"B\",4,2,1]]",
+      "B": "[[\"A\",15,2,2],[\"B\",4,2,1]]",
+      "C": "[[\"A\",50,5,5],[\"B\",4,2,1]]",
+      "D": "[[\"A\",20,3,3],[\"B\",4,1,1]]"
+    },
+    "correct_answer": "A",
+    "explanation": "DENSE_RANK selects the latest two distinct days per account, not two physical rows. A retains day 3's 7 and 8 plus day 2's 5, totaling 20 over three rows. B retains both days, with sum 4, two rows, but only one non-NULL amount. Both sums meet the inclusive HAVING threshold."
+  },
+  {
+    "id": "1.2.4-031",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Hard",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(day) AS (VALUES (1),(2),(4),(5),(6),(10)),\nW AS (SELECT day,day-ROW_NUMBER() OVER (ORDER BY day) AS island FROM T)\nSELECT MIN(day) AS lo,MAX(day) AS hi,COUNT(*) AS n FROM W\nGROUP BY island HAVING COUNT(*)>=2 ORDER BY lo;",
+    "options": {
+      "A": "[[1,2,2],[4,6,3],[10,10,1]]",
+      "B": "[[1,2,2],[4,6,3]]",
+      "C": "[[1,10,6]]",
+      "D": "[[1,6,5]]"
+    },
+    "correct_answer": "B",
+    "explanation": "ROW_NUMBER values are 1,2,3,4,5,6, so day minus row number is 0,0,1,1,1,4. Grouping that difference identifies consecutive-day islands. HAVING removes the singleton day 10 and retains ranges 1-2 and 4-6."
+  },
+  {
+    "id": "1.2.4-032",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Hard",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH Student(id) AS (VALUES (1),(2),(3)),\nRequired(course) AS (VALUES (10),(20)),\nPassed(sid,course) AS (VALUES (1,10),(1,20),(2,10),(3,10),(3,20),(3,20))\nSELECT s.id FROM Student s\nWHERE NOT EXISTS (SELECT 1 FROM Required r\n WHERE NOT EXISTS (SELECT 1 FROM Passed p WHERE p.sid=s.id AND p.course=r.course))\nORDER BY s.id;",
+    "options": {
+      "A": "[[2]]",
+      "B": "[[1]]",
+      "C": "[[1],[2],[3]]",
+      "D": "[[1],[3]]"
+    },
+    "correct_answer": "D",
+    "explanation": "The outer NOT EXISTS asks whether there is no required course lacking a matching pass. Students 1 and 3 have both required courses; student 2 lacks course 20. Duplicated pass rows do not change existence, so student 3 still qualifies once."
+  },
+  {
+    "id": "1.2.4-033",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Hard",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH T(id,g,v) AS (VALUES (1,'A',10),(2,'A',NULL),(3,'A',30),(4,'A',40),(5,'B',50),(6,'B',60)),\nW AS (SELECT id,g,v,LAG(v,1,-1) OVER (PARTITION BY g ORDER BY id) AS prev,\nLEAD(v,1,-1) OVER (PARTITION BY g ORDER BY id) AS nxt FROM T)\nSELECT id,prev,nxt FROM W WHERE v>=30 AND COALESCE(prev,-1)<30 ORDER BY id;",
+    "options": {
+      "A": "[[3,10,40],[5,-1,60]]",
+      "B": "[[3,-1,40],[5,-1,60]]",
+      "C": "[[3,null,40],[4,30,-1],[5,-1,60],[6,50,-1]]",
+      "D": "[[3,null,40],[5,-1,60]]"
+    },
+    "correct_answer": "D",
+    "explanation": "The windows see all rows inside each partition before the outer filter. Id 3's actual predecessor value is NULL, not the missing-row default -1, and COALESCE makes its predicate pass. Id 5 has no predecessor within B and receives default -1. Ids 4 and 6 fail because their predecessors are 30 and 50. The surviving successor values are 40 and 60."
+  },
+  {
+    "id": "1.2.4-034",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Hard",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH C(id) AS (VALUES (1),(2),(3)),\nO(id,cid,total) AS (VALUES (10,1,100),(11,1,NULL),(12,2,50)),\nR(oid,amount) AS (VALUES (10,100),(10,20),(12,NULL))\nSELECT C.id,SUM(COALESCE(O.total,0)-COALESCE(R.amount,0)) AS net,\nCOUNT(DISTINCT O.id) AS orders,COUNT(R.oid) AS refund_rows\nFROM C LEFT JOIN O ON O.cid=C.id LEFT JOIN R ON R.oid=O.id\nGROUP BY C.id\nHAVING COUNT(R.oid)=0 OR SUM(COALESCE(O.total,0)-COALESCE(R.amount,0))>=50\nORDER BY C.id;",
+    "options": {
+      "A": "[[1,80,2,2],[2,50,1,1],[3,0,0,0]]",
+      "B": "[[1,-20,2,2],[2,50,1,1],[3,null,0,0]]",
+      "C": "[[1,-20,2,2],[2,50,1,0],[3,0,0,0]]",
+      "D": "[[1,80,2,2],[2,50,1,1]]"
+    },
+    "correct_answer": "A",
+    "explanation": "Customer 1 contributes (100-100)+(100-20)+(0-0)=80 because order 10 repeats for two refund rows. Customer 2 has a matching refund row with NULL amount, so its net is 50 but COUNT(R.oid)=1. Customer 3 has one fully NULL-extended row; COALESCE gives net 0, both identifier counts are zero, and the first HAVING branch retains it. All three groups therefore qualify."
+  },
+  {
+    "id": "1.2.4-035",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.2.4",
+    "subpart_name": "SQL Queries & Output Prediction",
+    "difficulty": "Hard",
+    "question": "Using SQLite SQL, what complete ordered result does this self-contained query return? Each inner JSON array is one output row in SELECT-column order; null denotes SQL NULL.",
+    "code_snippet": "WITH E(id,dept,salary) AS (VALUES (1,'A',100),(2,'A',90),(3,'A',90),(4,'A',80),(5,'B',50),(6,'B',50),(7,'B',NULL),(8,'C',NULL))\nSELECT e.id,e.dept,e.salary FROM E e\nWHERE 1=(SELECT COUNT(DISTINCT x.salary) FROM E x\n WHERE x.dept=e.dept AND x.salary>e.salary)\nORDER BY e.dept,e.id;",
+    "options": {
+      "A": "[[4,\"A\",80]]",
+      "B": "[[2,\"A\",90],[3,\"A\",90]]",
+      "C": "[[2,\"A\",90],[3,\"A\",90],[5,\"B\",50],[6,\"B\",50]]",
+      "D": "[[2,\"A\",90]]"
+    },
+    "correct_answer": "B",
+    "explanation": "The correlated count is the number of distinct higher salaries in the same department. Each A salary 90 has exactly one higher level, 100, so both tied rows qualify. A salary 80 has two higher levels. B's 50 salaries have none, and comparisons to an outer NULL salary are UNKNOWN, yielding count 0 rather than 1. Thus departments without a second distinct non-NULL level contribute no rows."
+  }
+]

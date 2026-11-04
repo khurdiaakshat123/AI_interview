@@ -1,0 +1,682 @@
+[
+  {
+    "id": "2.7-001",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "Records arrive as (2,A),(1,B),(2,C). A stable sort orders them by the numeric key only, ascending. What is the resulting record order?",
+    "code_snippet": null,
+    "options": {
+      "A": "(1,B),(2,C),(2,A)",
+      "B": "(2,A),(2,C),(1,B)",
+      "C": "(2,C),(2,A),(1,B)",
+      "D": "(1,B),(2,A),(2,C)"
+    },
+    "correct_answer": "D",
+    "explanation": "The two key-2 records preserve their original A-before-C order. Stability concerns equal keys, not leaving all records in original order."
+  },
+  {
+    "id": "2.7-002",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "Which listed conventional in-place comparison sort is stable when insertion shifts only keys strictly greater than the inserted key?",
+    "code_snippet": null,
+    "options": {
+      "A": "Ordinary swap-based selection sort",
+      "B": "Ordinary in-place Lomuto quicksort",
+      "C": "Ordinary in-place heapsort",
+      "D": "Insertion sort"
+    },
+    "correct_answer": "D",
+    "explanation": "Shifting only strictly larger keys keeps equal keys in their previous order. The other stated conventional algorithms can move equal-key records past one another."
+  },
+  {
+    "id": "2.7-003",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "An inversion is a pair i<j with a[i]>a[j]. How many inversions are in [3,1,2]?",
+    "code_snippet": null,
+    "options": {
+      "A": "1",
+      "B": "2",
+      "C": "0",
+      "D": "3"
+    },
+    "correct_answer": "B",
+    "explanation": "The pairs (3,1) and (3,2) are inversions. The pair (1,2) is already ordered."
+  },
+  {
+    "id": "2.7-004",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "A strictly increasing array of n distinct keys contains how many inversions?",
+    "code_snippet": null,
+    "options": {
+      "A": "0",
+      "B": "n",
+      "C": "n(n-1)/2",
+      "D": "n-1"
+    },
+    "correct_answer": "A",
+    "explanation": "Every earlier key is smaller, so no pair satisfies the strict inversion inequality. The maximum formula applies to decreasing order instead."
+  },
+  {
+    "id": "2.7-005",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "To use ordinary binary search for a key in an array by repeatedly discarding one ordered half, which condition supplies the needed search-order guarantee?",
+    "code_snippet": null,
+    "options": {
+      "A": "All keys have the same number of decimal digits",
+      "B": "The array length is a power of two",
+      "C": "The target is known to be present, even if the array is arbitrarily ordered",
+      "D": "The array is sorted under the same comparison used by the search"
+    },
+    "correct_answer": "D",
+    "explanation": "Sorted order makes comparison outcomes eliminate an entire side. Presence, digit length, and power-of-two size alone provide no such ordering information."
+  },
+  {
+    "id": "2.7-006",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "For nonnegative integer bounds 0<=lo<=hi within a signed machine type, which expression gives the floor midpoint while avoiding overflow from lo+hi? Assume hi-lo fits that type.",
+    "code_snippet": null,
+    "options": {
+      "A": "lo+(hi-lo)//2",
+      "B": "hi+(hi-lo)//2",
+      "C": "(lo+hi)//2",
+      "D": "lo+hi//2"
+    },
+    "correct_answer": "A",
+    "explanation": "The difference-based expression stays between lo and hi under these assumptions. The direct sum may overflow; the other expressions do not generally compute the midpoint."
+  },
+  {
+    "id": "2.7-007",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "In sorted array [1,2,2,4], lower_bound(2) means the first index whose value is at least 2. What index is returned?",
+    "code_snippet": null,
+    "options": {
+      "A": "3",
+      "B": "1",
+      "C": "2",
+      "D": "0"
+    },
+    "correct_answer": "B",
+    "explanation": "The first qualifying element is the first 2 at index 1, not an arbitrary matching duplicate."
+  },
+  {
+    "id": "2.7-008",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "In sorted array [1,2,2,4], upper_bound(2) means the first index whose value is strictly greater than 2. What index is returned?",
+    "code_snippet": null,
+    "options": {
+      "A": "1",
+      "B": "2",
+      "C": "4",
+      "D": "3"
+    },
+    "correct_answer": "D",
+    "explanation": "The first strictly greater value is 4 at index 3. All duplicates of the target are skipped."
+  },
+  {
+    "id": "2.7-009",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "A conventional array mergesort retains one n-element auxiliary merge buffer and logarithmic recursive frames. Excluding input storage, what is its peak auxiliary-space bound?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n)",
+      "B": "Theta(1)",
+      "C": "Theta(n log n)",
+      "D": "Theta(log n)"
+    },
+    "correct_answer": "A",
+    "explanation": "The linear merge buffer dominates the logarithmic call stack. Summing buffer work across every recursion level would confuse total work with peak live space."
+  },
+  {
+    "id": "2.7-010",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "A two-way quicksort always selects the first element as pivot and partitions distinct sorted input into sizes 0 and n-1. With linear partition work, what is its worst-case time?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n)",
+      "B": "Theta(log n)",
+      "C": "Theta(n^2)",
+      "D": "Theta(n log n)"
+    },
+    "correct_answer": "C",
+    "explanation": "The recurrence T(n)=T(n-1)+Theta(n) sums a decreasing arithmetic series, yielding quadratic time."
+  },
+  {
+    "id": "2.7-011",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "Which problem admits the usual value-to-weight-ratio greedy rule under the stated assumptions?",
+    "code_snippet": null,
+    "options": {
+      "A": "General minimum-coin change for arbitrary denominations",
+      "B": "General 0/1 knapsack with indivisible items",
+      "C": "Fractional knapsack with divisible items, positive weights, and nonnegative values",
+      "D": "Every shortest-path problem with arbitrary negative cycles"
+    },
+    "correct_answer": "C",
+    "explanation": "Divisibility permits taking exactly the needed fraction of the best remaining ratio. The other problems lack this general guarantee for that rule."
+  },
+  {
+    "id": "2.7-012",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Easy",
+    "question": "Which property most directly motivates memoizing a recursive algorithm's state results?",
+    "code_snippet": null,
+    "options": {
+      "A": "A locally best choice is automatically globally best",
+      "B": "The same subproblem states are reached repeatedly",
+      "C": "The algorithm makes no repeated computation",
+      "D": "Every recursive branch uses a disjoint independent state"
+    },
+    "correct_answer": "B",
+    "explanation": "Memoization reuses solutions to overlapping states. It does not by itself prove that a greedy choice is valid or help when all states are distinct and never revisited."
+  },
+  {
+    "id": "2.7-013",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "left=[(1,\"A\"),(2,\"B\")]\nright=[(1,\"C\"),(2,\"D\")]\ni=j=0\nout=[]\nwhile i<len(left) and j<len(right):\n    if left[i][0]<=right[j][0]:\n        out.append(left[i]); i+=1\n    else:\n        out.append(right[j]); j+=1\nout+=left[i:]+right[j:]\nprint(\" \".join(label for key,label in out))",
+    "options": {
+      "A": "A C B D",
+      "B": "C A D B",
+      "C": "A B C D",
+      "D": "C D A B"
+    },
+    "correct_answer": "A",
+    "explanation": "Taking the left record on equal keys preserves the original left-subrange-before-right-subrange ordering for ties, producing stable merge order."
+  },
+  {
+    "id": "2.7-014",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "a=[(2,\"A\"),(2,\"B\"),(1,\"C\")]\nfor i in range(len(a)-1):\n    j=min(range(i,len(a)),key=lambda j:a[j][0])\n    a[i],a[j]=a[j],a[i]\nprint(\" \".join(label for key,label in a))",
+    "options": {
+      "A": "C B A",
+      "B": "B A C",
+      "C": "A B C",
+      "D": "C A B"
+    },
+    "correct_answer": "A",
+    "explanation": "The first swap moves C forward and A behind equal-key B. Ordinary selection sort is therefore not stable despite producing sorted numeric keys."
+  },
+  {
+    "id": "2.7-015",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "a=[(2,\"A\"),(1,\"B\"),(2,\"C\")]\nfor end in range(len(a)-1,0,-1):\n    for i in range(end):\n        if a[i][0]>a[i+1][0]:\n            a[i],a[i+1]=a[i+1],a[i]\nprint(\" \".join(label for key,label in a))",
+    "options": {
+      "A": "A B C",
+      "B": "B C A",
+      "C": "B A C",
+      "D": "C B A"
+    },
+    "correct_answer": "C",
+    "explanation": "Swapping only strict inversions keeps the equal-key A,C pair in original order. B moves ahead of them, producing a stable sort."
+  },
+  {
+    "id": "2.7-016",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "a=[2,4,1,3,5]\nprint(sum(a[i]>a[j] for i in range(len(a)) for j in range(i+1,len(a))))",
+    "options": {
+      "A": "2",
+      "B": "5",
+      "C": "4",
+      "D": "3"
+    },
+    "correct_answer": "D",
+    "explanation": "The inversions are (2,1),(4,1),(4,3), where values describe the three index-ordered pairs."
+  },
+  {
+    "id": "2.7-017",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "a=[2,2,1]\nprint(sum(a[i]>a[j] for i in range(len(a)) for j in range(i+1,len(a))))",
+    "options": {
+      "A": "3",
+      "B": "1",
+      "C": "0",
+      "D": "2"
+    },
+    "correct_answer": "D",
+    "explanation": "Each 2 precedes and exceeds 1, producing two inversions. Equal 2s do not form a strict inversion."
+  },
+  {
+    "id": "2.7-018",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "During merge-based inversion counting, the left sorted half is [1,4,6] and the right sorted half [2,3,5]. How many cross-half inversions are there?",
+    "code_snippet": null,
+    "options": {
+      "A": "6",
+      "B": "5",
+      "C": "3",
+      "D": "9"
+    },
+    "correct_answer": "B",
+    "explanation": "4 exceeds 2 and 3; 6 exceeds 2,3,5; 1 exceeds none. These cross pairs total 2+3=5."
+  },
+  {
+    "id": "2.7-019",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "a=[4,2,5,1,3]\npivot=a[-1]\ni=0\nfor j in range(len(a)-1):\n    if a[j]<=pivot:\n        a[i],a[j]=a[j],a[i]\n        i+=1\na[i],a[-1]=a[-1],a[i]\nprint(i,a)",
+    "options": {
+      "A": "2 [2, 1, 5, 4, 3]",
+      "B": "2 [2, 1, 3, 4, 5]",
+      "C": "2 [1, 2, 3, 4, 5]",
+      "D": "3 [2, 1, 4, 3, 5]"
+    },
+    "correct_answer": "B",
+    "explanation": "Lomuto partition places pivot 3 at index 2. Its left side is <=3 and right side >3, but the sides need not themselves be sorted."
+  },
+  {
+    "id": "2.7-020",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "A quicksort variant always divides distinct keys into two rank-balanced subproblems and spends Theta(n) per partition. What is its tight total time?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n log n)",
+      "B": "Theta((log n)^2)",
+      "C": "Theta(n)",
+      "D": "Theta(n^2)"
+    },
+    "correct_answer": "A",
+    "explanation": "Balanced recursion has logarithmic depth and linear total partition work per level, giving Theta(n log n). This assumption concerns rank balance, not merely the pivot's array index."
+  },
+  {
+    "id": "2.7-021",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "a=[1,3,5]\nx=4\nlo,hi=0,len(a)\nwhile lo<hi:\n    mid=lo+(hi-lo)//2\n    if a[mid]<x:\n        lo=mid+1\n    else:\n        hi=mid\nprint(lo)",
+    "options": {
+      "A": "2",
+      "B": "-1",
+      "C": "1",
+      "D": "3"
+    },
+    "correct_answer": "A",
+    "explanation": "This half-open search returns the first position >=4. The target is absent, but its insertion position is index 2 before 5 rather than a not-found sentinel."
+  },
+  {
+    "id": "2.7-022",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "a=[1,2,2,2,4]\nx=2\nlo,hi=0,len(a)\nwhile lo<hi:\n    mid=(lo+hi)//2\n    if a[mid]<=x:\n        lo=mid+1\n    else:\n        hi=mid\nprint(lo)",
+    "options": {
+      "A": "1",
+      "B": "3",
+      "C": "4",
+      "D": "5"
+    },
+    "correct_answer": "C",
+    "explanation": "Using <= advances past all target duplicates. The resulting upper-bound position is 4, at the value 4."
+  },
+  {
+    "id": "2.7-023",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "a=[1,2,2,2,4]\ndef bound(x,strict):\n    lo,hi=0,len(a)\n    while lo<hi:\n        mid=(lo+hi)//2\n        if a[mid]<x or (strict and a[mid]==x):\n            lo=mid+1\n        else:\n            hi=mid\n    return lo\nprint(bound(2,True)-bound(2,False))",
+    "options": {
+      "A": "2",
+      "B": "3",
+      "C": "4",
+      "D": "1"
+    },
+    "correct_answer": "B",
+    "explanation": "Upper bound is 4 and lower bound is 1. Their difference counts the three occurrences without scanning the duplicate run."
+  },
+  {
+    "id": "2.7-024",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "predicate=[True,True,True,False,False]\nlo,hi=0,len(predicate)-1\nanswer=-1\nwhile lo<=hi:\n    mid=(lo+hi)//2\n    if predicate[mid]:\n        answer=mid\n        lo=mid+1\n    else:\n        hi=mid-1\nprint(answer)",
+    "options": {
+      "A": "3",
+      "B": "0",
+      "C": "2",
+      "D": "4"
+    },
+    "correct_answer": "C",
+    "explanation": "The closed-interval search records a true candidate and moves right to find the last true position. The first false index 3 is not the requested last true index."
+  },
+  {
+    "id": "2.7-025",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "a=[]\nlo,hi=0,len(a)\nwhile lo<hi:\n    mid=(lo+hi)//2\n    if a[mid]<7:\n        lo=mid+1\n    else:\n        hi=mid\nprint(lo)",
+    "options": {
+      "A": "-1",
+      "B": "0",
+      "C": "1",
+      "D": "IndexError"
+    },
+    "correct_answer": "B",
+    "explanation": "A half-open lower-bound search handles empty input without entering the loop. Zero is the valid insertion position, not an existing-element claim."
+  },
+  {
+    "id": "2.7-026",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3 (analysis). Calling this function with a=[1,2] and x=0 produces which behavior?",
+    "code_snippet": "def bad_search(a,x):\n    lo,hi=0,len(a)-1\n    while lo<=hi:\n        mid=(lo+hi)//2\n        if a[mid]==x:\n            return mid\n        if a[mid]<x:\n            lo=mid+1\n        else:\n            hi=mid\n    return -1",
+    "options": {
+      "A": "It returns index 0",
+      "B": "It raises IndexError before any comparison",
+      "C": "It repeats lo=hi=0 indefinitely",
+      "D": "It returns -1 after two iterations"
+    },
+    "correct_answer": "C",
+    "explanation": "Once mid=0 has been ruled out, hi=mid leaves it in a closed search interval. The interval remains [0,0]; using hi=mid-1 is required for this closed-bound convention."
+  },
+  {
+    "id": "2.7-027",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "weights=[3,2,2,4,1,4]\ndef feasible(cap):\n    days=1\n    load=0\n    for w in weights:\n        if load+w>cap:\n            days+=1\n            load=0\n        load+=w\n    return days<=3\nlo,hi=max(weights),sum(weights)\nwhile lo<hi:\n    mid=(lo+hi)//2\n    if feasible(mid):\n        hi=mid\n    else:\n        lo=mid+1\nprint(lo)",
+    "options": {
+      "A": "7",
+      "B": "8",
+      "C": "5",
+      "D": "6"
+    },
+    "correct_answer": "D",
+    "explanation": "Capacity 6 permits daily groups [3,2],[2,4],[1,4]. Capacity 5 needs four days. Positive weights make feasibility monotone, so binary search finds the smallest feasible capacity."
+  },
+  {
+    "id": "2.7-028",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "intervals=[(1,3),(2,5),(3,4),(4,7)]\nend=-1\ncount=0\nfor start,finish in sorted(intervals,key=lambda t:t[1]):\n    if start>=end:\n        count+=1\n        end=finish\nprint(count)",
+    "options": {
+      "A": "3",
+      "B": "1",
+      "C": "2",
+      "D": "4"
+    },
+    "correct_answer": "A",
+    "explanation": "Earliest-finish selection takes [1,3],[3,4],[4,7]. End-equals-start is permitted, and the rejected [2,5] would block compatible shorter-ending choices."
+  },
+  {
+    "id": "2.7-029",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "coins=[1,3,4]\nremaining=6\ngreedy=0\nfor c in sorted(coins,reverse=True):\n    greedy+=remaining//c\n    remaining%=c\ndp=[0]+[float(\"inf\")]*6\nfor amount in range(1,7):\n    dp[amount]=min(dp[amount-c]+1 for c in coins if c<=amount)\nprint(greedy,dp[6])",
+    "options": {
+      "A": "2 2",
+      "B": "2 3",
+      "C": "3 3",
+      "D": "3 2"
+    },
+    "correct_answer": "D",
+    "explanation": "Largest-first gives 4+1+1, but optimal unlimited-coin change is 3+3. This denomination system disproves a universal greedy guarantee."
+  },
+  {
+    "id": "2.7-030",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "weights=[2,3,4]\nvalues=[4,5,7]\ncapacity=5\ndp=[0]*(capacity+1)\nfor w,v in zip(weights,values):\n    for c in range(capacity,w-1,-1):\n        dp[c]=max(dp[c],dp[c-w]+v)\nprint(dp[capacity])",
+    "options": {
+      "A": "9",
+      "B": "11",
+      "C": "8",
+      "D": "7"
+    },
+    "correct_answer": "A",
+    "explanation": "Descending capacity updates enforce at most one use per item. The best choice combines the weight-2 and weight-3 items, value 4+5=9."
+  },
+  {
+    "id": "2.7-031",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "capacity=4\na=[0]*5\nb=[0]*5\nfor c in range(2,capacity+1):\n    a[c]=max(a[c],a[c-2]+3)\nfor c in range(capacity,1,-1):\n    b[c]=max(b[c],b[c-2]+3)\nprint(a[4],b[4])",
+    "options": {
+      "A": "3 6",
+      "B": "3 3",
+      "C": "6 6",
+      "D": "6 3"
+    },
+    "correct_answer": "D",
+    "explanation": "The upward update can reuse the just-updated capacity-2 state, taking the weight-2 item twice. Descending order reads the previous item layer and allows only one use."
+  },
+  {
+    "id": "2.7-032",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "from functools import lru_cache\nnaive_calls=0\ndef naive(n):\n    global naive_calls\n    naive_calls+=1\n    return n if n<2 else naive(n-1)+naive(n-2)\nmisses=0\n@lru_cache(None)\ndef memo(n):\n    global misses\n    misses+=1\n    return n if n<2 else memo(n-1)+memo(n-2)\nnaive(6)\nmemo(6)\nprint(naive_calls,misses)",
+    "options": {
+      "A": "7 7",
+      "B": "25 7",
+      "C": "13 7",
+      "D": "25 13"
+    },
+    "correct_answer": "B",
+    "explanation": "The naive recursion tree contains 2*F7-1=25 calls. Memoization executes its body once for each state 0 through 6, giving seven distinct evaluations."
+  },
+  {
+    "id": "2.7-033",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Hard",
+    "question": "All n keys are equal. Compare ordinary two-way Lomuto quicksort using <=pivot with a three-way variant that partitions <,=,> in one linear scan and recurses only on < and >. What are their tight running times on this input?",
+    "code_snippet": null,
+    "options": {
+      "A": "Both Theta(n log n)",
+      "B": "Two-way Theta(n log n); three-way Theta(n)",
+      "C": "Both Theta(n^2)",
+      "D": "Two-way Theta(n^2); three-way Theta(n)"
+    },
+    "correct_answer": "D",
+    "explanation": "Two-way partition puts the pivot at one end, leaving n-1 equal keys to recur on. Three-way partition places all keys in the equal band immediately, so no nonempty recursive subproblem remains."
+  },
+  {
+    "id": "2.7-034",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Hard",
+    "question": "Randomized quicksort picks an independent uniform pivot from each current subarray of distinct keys and uses linear partition work. For any fixed input order, what are the tight expected time over pivot randomness and worst time over pivot choices?",
+    "code_snippet": null,
+    "options": {
+      "A": "Expected Theta(n), worst Theta(n log n)",
+      "B": "Expected Theta(n log n), worst Theta(n^2)",
+      "C": "Expected Theta(n^2), worst Theta(n^2)",
+      "D": "Expected Theta(n log n), worst Theta(n log n)"
+    },
+    "correct_answer": "B",
+    "explanation": "Randomness gives the expected balance needed for n log n work, but an extreme pivot can still be chosen at every step with nonzero probability, producing a quadratic path."
+  },
+  {
+    "id": "2.7-035",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Hard",
+    "question": "A quicksort implementation recursively processes only the smaller partition and handles the larger partition using a loop in the same call frame. Partition workspace is constant, and no compiler tail-call elimination is assumed. What is the tight worst-case auxiliary call-stack space?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(1)",
+      "B": "Theta(n log n)",
+      "C": "Theta(log n)",
+      "D": "Theta(n)"
+    },
+    "correct_answer": "C",
+    "explanation": "Every actual recursive descent reduces the subproblem by at least half. Balanced inputs attain logarithmic depth, while highly unbalanced partitions are handled largely by iteration rather than linear stack growth."
+  },
+  {
+    "id": "2.7-036",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Hard",
+    "question": "C++17 arithmetic is signed 64-bit with no wider promotion. A binary-search range can span L=-2^63 through R=2^63-1. Is L+(R-L)/2 guaranteed safe merely because the final mathematical midpoint lies in range?",
+    "code_snippet": null,
+    "options": {
+      "A": "No; every midpoint of these endpoints is mathematically outside the range",
+      "B": "No; the intermediate R-L exceeds the signed range",
+      "C": "Yes; subtraction cannot overflow when R>=L",
+      "D": "Yes; a representable final result guarantees all intermediates fit"
+    },
+    "correct_answer": "B",
+    "explanation": "R-L=2^64-1 is not representable as signed 64-bit. The familiar formula needs its range assumptions or a genuinely overflow-safe/wider computation; signed overflow is not repaired by a later division."
+  },
+  {
+    "id": "2.7-037",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Hard",
+    "question": "A uniformly random permutation of eight distinct keys is chosen. What is the pair (expected inversion count,maximum inversion count)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(7,28)",
+      "B": "(28,28)",
+      "C": "(14,28)",
+      "D": "(14,56)"
+    },
+    "correct_answer": "C",
+    "explanation": "There are binomial(8,2)=28 index pairs. Each is inverted with probability one-half, giving expectation 14 by linearity; decreasing order inverts all 28 pairs."
+  },
+  {
+    "id": "2.7-038",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Hard",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "rows=[(\"B\",\"z\"),(\"A\",\"y\"),(\"B\",\"a\"),(\"A\",\"x\")]\nrows.sort(key=lambda r:r[1])\nrows.sort(key=lambda r:r[0])\nprint(\" \".join(a+b for a,b in rows))",
+    "options": {
+      "A": "Ba Ax Ay Bz",
+      "B": "Bz Ay Ba Ax",
+      "C": "Ax Ay Ba Bz",
+      "D": "Ay Ax Ba Bz"
+    },
+    "correct_answer": "C",
+    "explanation": "Python's stable second sort makes department the primary key while retaining the first name-sort order within each department. Sorting secondary key first is essential to this stable multi-pass scheme."
+  },
+  {
+    "id": "2.7-039",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Hard",
+    "question": "Python 3. What is printed? Array indices are zero-based; tagged records are compared only by the key explicitly specified.",
+    "code_snippet": "from itertools import combinations\nintervals=[(0,3),(3,6),(2,4)]\nchosen=[]\nfor candidate in sorted(intervals,key=lambda t:(t[1]-t[0],t[0])):\n    if all(candidate[1]<=x[0] or x[1]<=candidate[0] for x in chosen):\n        chosen.append(candidate)\nbest=0\nfor n in range(len(intervals)+1):\n    for subset in combinations(intervals,n):\n        if all(a[1]<=b[0] or b[1]<=a[0] for a,b in combinations(subset,2)):\n            best=max(best,n)\nprint(len(chosen),best)",
+    "options": {
+      "A": "1 1",
+      "B": "2 3",
+      "C": "1 2",
+      "D": "2 2"
+    },
+    "correct_answer": "C",
+    "explanation": "Shortest-duration-first chooses [2,4] and blocks both other intervals. The compatible pair [0,3],[3,6] is optimal. This is a counterexample to that greedy rule, not to earliest-finish scheduling."
+  },
+  {
+    "id": "2.7-040",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.7",
+    "subpart_name": "Searching, Sorting & Algorithmic Paradigms",
+    "difficulty": "Hard",
+    "question": "A 0/1-knapsack DP explicitly fills n*W capacity states. W is supplied in binary and may be arbitrarily large. Which statement correctly describes the O(nW) bound relative to input bit length?",
+    "code_snippet": null,
+    "options": {
+      "A": "It is pseudo-polynomial and can be exponential in the bit length of W",
+      "B": "It is automatically O(n log W) after binary encoding",
+      "C": "It is always polynomial in log2 W because W is an integer",
+      "D": "It is strongly polynomial, independent of capacity magnitude"
+    },
+    "correct_answer": "A",
+    "explanation": "A b-bit capacity can have magnitude near 2^b. Iterating through all W capacities therefore need not be polynomial in b, even though the bound is polynomial in the numeric value W."
+  }
+]

@@ -1,0 +1,427 @@
+[
+  {
+    "id": "1.3.1-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Easy",
+    "question": "A router decapsulates an incoming Ethernet frame and consults the destination IP address to select a next hop toward another network. Which OSI layer primarily performs that route selection?",
+    "code_snippet": null,
+    "options": {
+      "A": "Transport layer",
+      "B": "Data link layer",
+      "C": "Network layer",
+      "D": "Physical layer"
+    },
+    "correct_answer": "C",
+    "explanation": "Choosing an IP next hop across networks is a network-layer responsibility. Ethernet framing addresses the current link, the physical layer transmits signals, and transport protocols provide services between endpoints rather than choosing the router's IP next hop."
+  },
+  {
+    "id": "1.3.1-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Easy",
+    "question": "A system design uses the OSI presentation and session functions for data representation and dialog management. When described using the conventional four-layer TCP/IP model, which layer groups these functions with application protocols?",
+    "code_snippet": null,
+    "options": {
+      "A": "Link layer",
+      "B": "Transport layer",
+      "C": "Application layer",
+      "D": "Internet layer"
+    },
+    "correct_answer": "C",
+    "explanation": "The four-layer TCP/IP model groups the functions commonly separated as OSI application, presentation, and session into its application layer. Its other layers do not create separate presentation and session layers."
+  },
+  {
+    "id": "1.3.1-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Easy",
+    "question": "A sender serializes a 12,000-bit frame onto a 6 Mbit/s link. Ignore propagation, queueing, and processing. Using 1 Mbit/s = 1,000,000 bit/s, how long does it take to put the complete frame onto the link?",
+    "code_snippet": null,
+    "options": {
+      "A": "0.5 ms",
+      "B": "2 ms",
+      "C": "12 ms",
+      "D": "72 ms"
+    },
+    "correct_answer": "B",
+    "explanation": "Serialization time is frame bits divided by bit rate: 12,000 / 6,000,000 = 0.002 seconds = 2 ms. Propagation time is a separate quantity and is excluded."
+  },
+  {
+    "id": "1.3.1-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Easy",
+    "question": "Host A sends an IP datagram to remote host B through router R. A and R share the first Ethernet LAN, all needed MAC addresses are known, and there is no bridge or tunnel between them. What destination address appears in the first Ethernet frame carrying that datagram?",
+    "code_snippet": null,
+    "options": {
+      "A": "The MAC address of R's interface on A's LAN",
+      "B": "The IP address of R's interface on A's LAN",
+      "C": "The MAC address of B's remote interface",
+      "D": "The IP address of B"
+    },
+    "correct_answer": "A",
+    "explanation": "The Ethernet frame reaches the local next hop, so its destination is R's local MAC address. The datagram can still carry B's destination IP address; IP addresses are not substituted into the Ethernet destination-MAC field."
+  },
+  {
+    "id": "1.3.1-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Easy",
+    "question": "An HDLC-like bit-stuffing rule inserts a zero immediately after every run of five transmitted data one-bits, resetting the run count after that inserted zero. Flags are excluded. What stuffed bit string results from the payload below? Preserve every original payload bit.",
+    "code_snippet": "Payload: 111110",
+    "options": {
+      "A": "1111010",
+      "B": "1111100",
+      "C": "1111110",
+      "D": "111110"
+    },
+    "correct_answer": "B",
+    "explanation": "The first five ones require an inserted zero. The payload's original trailing zero is then transmitted as well, yielding five ones followed by two zeros: 1111100. The inserted zero does not replace an original bit."
+  },
+  {
+    "id": "1.3.1-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Easy",
+    "question": "A textbook CRC encoder uses generator bits 1011, interpreted from highest power to constant term over GF(2). It appends the remainder to the original message, with no reflection or initial/final XOR. How many CRC remainder bits are appended?",
+    "code_snippet": null,
+    "options": {
+      "A": "2",
+      "B": "3",
+      "C": "11",
+      "D": "4"
+    },
+    "correct_answer": "B",
+    "explanation": "Generator 1011 represents x^3+x+1 and has degree 3. A remainder has degree below 3 and is represented with exactly three bits, including leading zeros if needed. The four generator bits do not imply a four-bit CRC."
+  },
+  {
+    "id": "1.3.1-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Easy",
+    "question": "An alternating-bit Stop-and-Wait receiver has accepted and delivered frame 0, then sent ACK 0. The ACK is lost. The sender times out and retransmits the same frame 0 before sending any new frame. The receiver remembers its expected sequence bit and detects duplicates. What should it do?",
+    "code_snippet": null,
+    "options": {
+      "A": "Discard the duplicate and remain silent until a frame 1 arrives",
+      "B": "Discard the duplicate payload and send ACK 0 again",
+      "C": "Deliver frame 0 to the application a second time and send ACK 0",
+      "D": "Treat the retransmitted frame as a new frame 1 without examining its sequence bit"
+    },
+    "correct_answer": "B",
+    "explanation": "The receiver still expects frame 1, so the repeated frame 0 is an already delivered duplicate. Re-acknowledging 0 lets the sender recover from the lost ACK without delivering the payload twice."
+  },
+  {
+    "id": "1.3.1-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Easy",
+    "question": "Compute a 16-bit one's-complement checksum for the two data words below: add them with end-around carry and then complement all 16 sum bits. The checksum field is initially zero. What checksum is generated?",
+    "code_snippet": "Data words: 0x1234, 0x1111",
+    "options": {
+      "A": "0xDCBB",
+      "B": "0xEDCB",
+      "C": "0x2345",
+      "D": "0xDCBA"
+    },
+    "correct_answer": "D",
+    "explanation": "The data sum is 0x1234 + 0x1111 = 0x2345, with no carry out. Complementing its 16 bits gives 0xDCBA. The uncomplemented sum is not the transmitted checksum."
+  },
+  {
+    "id": "1.3.1-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "A bit-stuffed frame payload is shown below with a space only to aid reading. Insert a zero after every five consecutive payload ones, resetting the run after insertion; an original zero also resets it. Ignore flags and all other fields. What is the pair (inserted zeros, transmitted payload bits)?",
+    "code_snippet": "Payload: 1111111111 0 111111",
+    "options": {
+      "A": "(3,20)",
+      "B": "(3,17)",
+      "C": "(4,21)",
+      "D": "(2,19)"
+    },
+    "correct_answer": "A",
+    "explanation": "The first ten ones require two inserted zeros, and the final six ones require one. The original payload has 10 + 1 + 6 = 17 bits, so three insertions produce 20 transmitted bits. The original middle zero is not itself a stuffed bit."
+  },
+  {
+    "id": "1.3.1-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "A byte-oriented framing model uses FLAG=0x7E and ESC=0x7D. Inside a payload, replace each FLAG or ESC byte by ESC followed by that byte XOR 0x20; leave all other payload bytes unchanged. Exclude the outer flag delimiters. What encoded payload is transmitted?",
+    "code_snippet": "Original payload bytes: 7E 7D 41 7E",
+    "options": {
+      "A": "7D 7E 7D 7D 41 7D 7E",
+      "B": "7D 5E 7D 5D 7D 61 7D 5E",
+      "C": "7D 5E 7D 5D 41 7D 5E",
+      "D": "5E 5D 41 5E"
+    },
+    "correct_answer": "C",
+    "explanation": "0x7E XOR 0x20 is 0x5E, and 0x7D XOR 0x20 is 0x5D. Each escaped byte is preceded by 0x7D. Byte 0x41 needs no escape, so the four original bytes expand to seven encoded payload bytes."
+  },
+  {
+    "id": "1.3.1-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "Use textbook CRC polynomial division over GF(2), with the leftmost bit the highest power. Append three zeros to message 1101, divide by generator 1011, and replace those zeros with the three-bit remainder. There is no reflection or initial/final XOR. Which pair gives (remainder, transmitted codeword)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(111,1101111)",
+      "B": "(001,1101001)",
+      "C": "(100,1101100)",
+      "D": "(011,1101011)"
+    },
+    "correct_answer": "B",
+    "explanation": "Dividing 1101000 by 1011 using XOR subtraction leaves remainder 001. The systematic codeword is the unchanged message followed by that remainder, 1101001, which is divisible by 1011."
+  },
+  {
+    "id": "1.3.1-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "Generate a 16-bit one's-complement checksum over the data words below. Fold any carry beyond bit 15 back into the low 16 bits before complementing. What checksum results?",
+    "code_snippet": "Data words: 0xF234, 0x2345",
+    "options": {
+      "A": "0x157A",
+      "B": "0x1579",
+      "C": "0xEA86",
+      "D": "0xEA85"
+    },
+    "correct_answer": "D",
+    "explanation": "The ordinary sum is 0x11579. End-around carry folds this to 0x1579 + 1 = 0x157A, whose 16-bit complement is 0xEA85. Complementing the truncated sum before folding would incorrectly produce 0xEA86."
+  },
+  {
+    "id": "1.3.1-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "A receiver verifies a 16-bit one's-complement checksum by adding the data words and received checksum with end-around carry. It accepts only an all-ones folded sum. For the received values below, which outcome occurs?",
+    "code_snippet": "Data words: 0x1234, 0x1111\nReceived checksum: 0xDCBB",
+    "options": {
+      "A": "Folded sum 0x0000; accept",
+      "B": "Folded sum 0x0001; reject",
+      "C": "Folded sum 0xFFFF; accept",
+      "D": "Folded sum 0x0001; accept"
+    },
+    "correct_answer": "B",
+    "explanation": "0x1234 + 0x1111 + 0xDCBB = 0x10000. Folding the carry gives 0x0001, not 0xFFFF, so verification fails. The correct checksum for these data would have been 0xDCBA."
+  },
+  {
+    "id": "1.3.1-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "A loss-free Stop-and-Wait link sends 1,000-bit data frames at 1 Mbit/s. One-way propagation is 4 ms in each direction. ACK serialization and processing time are zero; an ACK is generated only after the full data frame arrives. With continuous data available, what fraction of elapsed time is spent serializing data frames, rounded to two decimal places?",
+    "code_snippet": null,
+    "options": {
+      "A": "25.00%",
+      "B": "12.50%",
+      "C": "11.11%",
+      "D": "20.00%"
+    },
+    "correct_answer": "C",
+    "explanation": "Frame serialization takes 1 ms. A send-to-ACK cycle takes 1 + 4 + 4 = 9 ms, so useful transmission utilization is 1/9 = 11.11%. The frame's own serialization belongs in the denominator as well as the round-trip propagation."
+  },
+  {
+    "id": "1.3.1-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "A Stop-and-Wait sender transmits 2,000-bit data frames at 2 Mbit/s. One-way propagation is 3 ms each way. Each ACK is 100 bits sent on a 1 Mbit/s reverse link, starting after the complete data frame arrives. There is no loss, processing delay, or other overhead. All data-frame bits count as useful data. What is the steady-state useful throughput in decimal kbit/s, rounded to two decimal places?",
+    "code_snippet": null,
+    "options": {
+      "A": "645.16 kbit/s",
+      "B": "285.71 kbit/s",
+      "C": "2000.00 kbit/s",
+      "D": "281.69 kbit/s"
+    },
+    "correct_answer": "D",
+    "explanation": "The cycle is 1 ms data serialization + 3 ms forward propagation + 0.1 ms ACK serialization + 3 ms return propagation = 7.1 ms. Throughput is 2,000/0.0071 = 281,690.14 bit/s = 281.69 kbit/s. Ignoring ACK serialization would give 285.71."
+  },
+  {
+    "id": "1.3.1-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "An ARQ design needs a sender window of ten frames. Use the standard modulo-sequence-space bounds: Go-Back-N has receiver window 1 and requires sender window at most 2^m-1; Selective Repeat uses equal sender/receiver windows and requires window at most 2^(m-1). No extra epoch tags are available. What minimum sequence-bit counts are needed for (Go-Back-N, Selective Repeat)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(4,4)",
+      "B": "(5,5)",
+      "C": "(3,4)",
+      "D": "(4,5)"
+    },
+    "correct_answer": "D",
+    "explanation": "Go-Back-N needs 2^m >= 11, so four bits suffice. Selective Repeat needs 2^m >= 20 to separate the old and current windows, so five bits are necessary. Both algorithms must represent more states than just the ten currently outstanding frames."
+  },
+  {
+    "id": "1.3.1-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "A Selective Repeat receiver uses sequence numbers modulo 16 and a four-frame receive window whose base is initially 14. Its buffer is empty. It accepts and individually ACKs any frame in the current window, buffers out-of-order frames, and delivers only the contiguous prefix beginning at the base. Frame 15 arrives, then frame 14; neither is corrupted or duplicated. What is the final base and application delivery order?",
+    "code_snippet": null,
+    "options": {
+      "A": "Base 0; delivery order 15,14",
+      "B": "Base 2; delivery order 14,15,0,1",
+      "C": "Base 14; no delivery",
+      "D": "Base 0; delivery order 14,15"
+    },
+    "correct_answer": "D",
+    "explanation": "The initial acceptable sequence numbers are 14,15,0,1. Frame 15 is buffered while 14 is missing. Receiving 14 releases both 14 and the buffered 15 in order; the next missing sequence number is 0, so the base becomes 0."
+  },
+  {
+    "id": "1.3.1-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "A Go-Back-N sender uses sequence numbers modulo 8 and a four-frame sender window. Its base is 2 and next sequence number is 6, meaning frames 2,3,4,5 are outstanding. ACK k cumulatively acknowledges every frame before k in the current outstanding sequence and identifies k as the receiver's next expected frame. A valid ACK 4 arrives. Which state and new transmissions are permitted immediately?",
+    "code_snippet": null,
+    "options": {
+      "A": "Base 4; outstanding 4,5; may send new frames 6,7",
+      "B": "Base 2; outstanding 2,3,4,5; no new frame may be sent",
+      "C": "Base 5; outstanding 5; may send new frames 6,7,0",
+      "D": "Base 4; no outstanding frames; may send 4,5,6,7 as new data"
+    },
+    "correct_answer": "A",
+    "explanation": "ACK 4 acknowledges frames 2 and 3, not frame 4. The window advances to sequence positions 4,5,6,7. Frames 4 and 5 remain outstanding, leaving two slots for new frames 6 and 7."
+  },
+  {
+    "id": "1.3.1-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "Compare Go-Back-N and Selective Repeat for a batch of frames 0 through 4 sent once in that order. Frame 2 is lost; every other frame and every ACK is delivered. Go-Back-N discards out-of-order frames and retransmits all still-outstanding frames when frame 2 times out. Selective Repeat buffers out-of-order frames and retransmits only the lost frame. No new data outside this batch is sent, and no unnecessary timer expires. How many total data-frame transmissions complete the batch under (Go-Back-N, Selective Repeat)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(8,6)",
+      "B": "(10,6)",
+      "C": "(6,6)",
+      "D": "(8,8)"
+    },
+    "correct_answer": "A",
+    "explanation": "Each scheme initially transmits five frames. Go-Back-N must resend 2,3,4 because 3 and 4 were discarded, giving 5+3=8. Selective Repeat retains 3 and 4 and resends only 2, giving 5+1=6. ACK transmissions are excluded."
+  },
+  {
+    "id": "1.3.1-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Medium",
+    "question": "A loss-free sliding-window link sends 1,000-bit frames at 10 Mbit/s, with one-way propagation of 1 ms. ACKs are generated after a whole frame arrives and have zero serialization and processing time. A frame occupies one sender-window slot until its ACK returns. Assume an ACK arriving at a transmission boundary frees its slot before the next frame starts. What minimum integer window size keeps data transmission continuous?",
+    "code_snippet": null,
+    "options": {
+      "A": "10 frames",
+      "B": "21 frames",
+      "C": "20 frames",
+      "D": "22 frames"
+    },
+    "correct_answer": "B",
+    "explanation": "Frame serialization takes 0.1 ms, and the first ACK returns 0.1+2*1=2.1 ms after the first send begins. The sender must cover that interval with W*0.1 ms of serial transmission. W >= 2.1/0.1 = 21, including the frame currently being serialized."
+  },
+  {
+    "id": "1.3.1-021",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Hard",
+    "question": "A Selective Repeat design incorrectly uses a five-frame receive window with three-bit sequence numbers modulo 8. After delivering old frames 0 through 4, the receiver's base is 5; all their ACKs were lost. It accepts any sequence number in its current window as current-generation data before considering duplicate history. The sender retransmits old frame 0. Which classification and minimum sequence-bit repair are correct, keeping window size five?",
+    "code_snippet": null,
+    "options": {
+      "A": "Old 0 lies in the current window and can be misclassified as new; use at least four sequence bits",
+      "B": "Old 0 is outside the current window; increasing the window to eight fixes the ambiguity",
+      "C": "Old 0 is outside the current window; three bits already meet the standard bound",
+      "D": "Old 0 lies in the current window, but three bits suffice because ACKs identify the generation"
+    },
+    "correct_answer": "A",
+    "explanation": "The current five positions are 5,6,7,0,1, so an old 0 overlaps a current acceptable sequence number. Equal Selective Repeat windows require sequence space at least 2W=10; three bits give only eight states, while four give sixteen. Without generation information, ACK loss can expose the ambiguity."
+  },
+  {
+    "id": "1.3.1-022",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Hard",
+    "question": "A textbook CRC uses generator 1011 over GF(2), with no initial/final XOR or reflection. A seven-bit transmitted codeword is valid when divisible by that generator. The channel XORs one of the nonzero seven-bit error masks below with a valid codeword. Which mask can change the bits yet leave a zero CRC remainder?",
+    "code_snippet": null,
+    "options": {
+      "A": "0000001",
+      "B": "0010000",
+      "C": "1011000",
+      "D": "1000001"
+    },
+    "correct_answer": "C",
+    "explanation": "1011000 is generator 1011 shifted left by three positions, so it is a nonzero multiple of the generator. XORing a multiple into another multiple preserves divisibility. The other listed masks have nonzero remainders, so this particular undetected-error pattern is uniquely identified."
+  },
+  {
+    "id": "1.3.1-023",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Hard",
+    "question": "A sender computes a 16-bit one's-complement checksum over the original two words. In transit, one word increases by one and the other decreases by one as shown, while the transmitted checksum is unchanged. The receiver folds end-around carry over the received words plus checksum and accepts only 0xFFFF. What happens?",
+    "code_snippet": "Original words: 0x1234, 0xABCD\nReceived words: 0x1235, 0xABCC",
+    "options": {
+      "A": "Folded sum 0xFFFF; the corruption is not detected",
+      "B": "Folded sum 0xFFFE; the corruption is detected",
+      "C": "Folded sum 0xFFFF; the corruption is detected",
+      "D": "Folded sum 0x0000; the corruption is not detected"
+    },
+    "correct_answer": "A",
+    "explanation": "The original and corrupted data sums both equal 0xBE01 because the changes cancel. The generated checksum is 0x41FE, so either word pair plus that checksum sums to 0xFFFF. A checksum is an error detector with possible collisions, not a guarantee that unchanged sums imply unchanged data."
+  },
+  {
+    "id": "1.3.1-024",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Hard",
+    "question": "A Go-Back-N sender emits only frames 0,1,2,3 back-to-back beginning at time 0. Each frame takes 1 ms to serialize, each direction has 0.5 ms propagation, and ACK serialization/processing is zero. Frame 1 is lost only on its first transmission. The receiver discards out-of-order frames and ACK k means next expected k. ACK 1 for frame 0 arrives at time 2 ms, advances the base to 1, and restarts a five-ms timer. Duplicate ACKs do not restart it. On timeout, all outstanding frames are retransmitted back-to-back without cancellation. No other timeout or loss occurs. What is the pair (time the sender receives the final ACK for the batch, total data-frame transmissions)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(9 ms,5)",
+      "B": "(11 ms,8)",
+      "C": "(10 ms,7)",
+      "D": "(11 ms,7)"
+    },
+    "correct_answer": "D",
+    "explanation": "Frames 2 and 3 arrive while 1 is missing and are discarded. The timer restarted at 2 expires at 7. Frames 1,2,3 are retransmitted over [7,8), [8,9), [9,10). The last frame finishes arriving at 10.5 and its ACK returns at 11. Four original plus three retransmitted data frames give seven transmissions."
+  },
+  {
+    "id": "1.3.1-025",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.3.1",
+    "subpart_name": "Network Architecture & Physical/Data Link Layers",
+    "difficulty": "Hard",
+    "question": "An educational bit-stuffed sliding-window link sends identical frames. Each has an 8,000-bit all-ones useful payload and 160 other in-frame bits that are all zero. Insert a zero after every five consecutive in-frame ones; exclude the two eight-bit flag delimiters from stuffing. The serial link rate is 10 Mbit/s, one-way propagation is 4 ms, the sender window is eight frames, and each individual ACK returns with zero serialization/processing delay after the entire frame arrives. There is no loss or other overhead. What maximum steady-state useful payload throughput is attainable, rounded to two decimal places in decimal Mbit/s?",
+    "code_snippet": null,
+    "options": {
+      "A": "8.18 Mbit/s",
+      "B": "10.00 Mbit/s",
+      "C": "7.13 Mbit/s",
+      "D": "8.00 Mbit/s"
+    },
+    "correct_answer": "C",
+    "explanation": "The payload causes 8,000/5=1,600 stuffed zeros. Total wire length is 8,000+160+1,600+16=9,776 bits, taking 0.9776 ms. Send-to-ACK time is 8.9776 ms. The window bound is 8*8,000/0.0089776=7.12885 Mbit/s, below the serialization-only payload limit 10*8,000/9,776=8.18331 Mbit/s. Thus the window limits useful throughput to 7.13 Mbit/s."
+  }
+]

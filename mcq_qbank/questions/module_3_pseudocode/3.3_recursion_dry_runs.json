@@ -1,0 +1,852 @@
+[
+  {
+    "id": "3.3-001",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What factorial value is printed?",
+    "code_snippet": "Function Integer fact(Integer n) {\n    if (n <= 1) {\n        return 1;\n    }\n    return n * fact(n - 1);\n}\nMain {\n    Print(fact(5));\n}",
+    "options": {
+      "A": "120",
+      "B": "24",
+      "C": "60",
+      "D": "720"
+    },
+    "correct_answer": "A",
+    "explanation": "The return chain multiplies 5*4*3*2*1, yielding 120."
+  },
+  {
+    "id": "3.3-002",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What recursive sum is printed?",
+    "code_snippet": "Function Integer sum(Integer n) {\n    if (n == 0) {\n        return 0;\n    }\n    return n + sum(n - 1);\n}\nMain {\n    Print(sum(4));\n}",
+    "options": {
+      "A": "4",
+      "B": "10",
+      "C": "15",
+      "D": "6"
+    },
+    "correct_answer": "B",
+    "explanation": "The calls return 0,1,3,6,10 while unwinding from n=0 through n=4."
+  },
+  {
+    "id": "3.3-003",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What power is printed?",
+    "code_snippet": "Function Integer power(Integer n) {\n    if (n == 0) {\n        return 1;\n    }\n    return 2 * power(n - 1);\n}\nMain {\n    Print(power(5));\n}",
+    "options": {
+      "A": "10",
+      "B": "64",
+      "C": "16",
+      "D": "32"
+    },
+    "correct_answer": "D",
+    "explanation": "Each of five non-base calls doubles the result. Starting from 1 gives 2^5=32."
+  },
+  {
+    "id": "3.3-004",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What order is printed before the recursive calls?",
+    "code_snippet": "Function Void show(Integer n) {\n    if (n == 0) {\n        return;\n    }\n    Print(n);\n    show(n - 1);\n}\nMain {\n    show(3);\n}",
+    "options": {
+      "A": "3 2 1",
+      "B": "3 2 1 0",
+      "C": "1 2 3",
+      "D": "0 1 2 3"
+    },
+    "correct_answer": "A",
+    "explanation": "Each non-base frame prints before descending; the zero frame returns without printing."
+  },
+  {
+    "id": "3.3-005",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What order is printed after the recursive calls?",
+    "code_snippet": "Function Void show(Integer n) {\n    if (n == 0) {\n        return;\n    }\n    show(n - 1);\n    Print(n);\n}\nMain {\n    show(3);\n}",
+    "options": {
+      "A": "0 1 2 3",
+      "B": "1 2 3 0",
+      "C": "3 2 1",
+      "D": "1 2 3"
+    },
+    "correct_answer": "D",
+    "explanation": "Printing occurs while the stack unwinds, from the smallest positive argument to the largest."
+  },
+  {
+    "id": "3.3-006",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What value is returned by the additive recurrence?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n == 0) {\n        return 1;\n    }\n    return 2 + f(n - 1);\n}\nMain {\n    Print(f(3));\n}",
+    "options": {
+      "A": "5",
+      "B": "6",
+      "C": "8",
+      "D": "7"
+    },
+    "correct_answer": "D",
+    "explanation": "The base contributes 1 and the three non-base calls contribute 2 each, totaling 7."
+  },
+  {
+    "id": "3.3-007",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What digit sum is printed for a number containing zero?",
+    "code_snippet": "Function Integer digits(Integer n) {\n    if (n == 0) {\n        return 0;\n    }\n    return (n mod 10) + digits(n div 10);\n}\nMain {\n    Print(digits(507));\n}",
+    "options": {
+      "A": "507",
+      "B": "7",
+      "C": "12",
+      "D": "5"
+    },
+    "correct_answer": "C",
+    "explanation": "The extracted digits are 7,0,5, whose sum is 12."
+  },
+  {
+    "id": "3.3-008",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What digit count is printed, including trailing zero digits?",
+    "code_snippet": "Function Integer count(Integer n) {\n    if (n == 0) {\n        return 0;\n    }\n    return 1 + count(n div 10);\n}\nMain {\n    Print(count(1200));\n}",
+    "options": {
+      "A": "5",
+      "B": "4",
+      "C": "3",
+      "D": "2"
+    },
+    "correct_answer": "B",
+    "explanation": "The positive arguments are 1200,120,12,1. Each contributes one before the zero base call."
+  },
+  {
+    "id": "3.3-009",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What does decrementing the argument by two return?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n <= 0) {\n        return 0;\n    }\n    return 1 + f(n - 2);\n}\nMain {\n    Print(f(7));\n}",
+    "options": {
+      "A": "7",
+      "B": "4",
+      "C": "3",
+      "D": "5"
+    },
+    "correct_answer": "B",
+    "explanation": "Non-base arguments are 7,5,3,1. Four contributions are added before the -1 base call."
+  },
+  {
+    "id": "3.3-010",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What count is printed by recursive halving?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n == 0) {\n        return 0;\n    }\n    return 1 + f(n div 2);\n}\nMain {\n    Print(f(20));\n}",
+    "options": {
+      "A": "6",
+      "B": "10",
+      "C": "4",
+      "D": "5"
+    },
+    "correct_answer": "D",
+    "explanation": "Arguments 20,10,5,2,1 contribute five ones; argument 0 terminates recursion."
+  },
+  {
+    "id": "3.3-011",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What does the factorial base case print directly?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n == 0) {\n        return 1;\n    }\n    return n * f(n - 1);\n}\nMain {\n    Print(f(0));\n}",
+    "options": {
+      "A": "0",
+      "B": "-1",
+      "C": "1",
+      "D": "2"
+    },
+    "correct_answer": "C",
+    "explanation": "The initial argument already matches the base case, so no recursive call or multiplication occurs."
+  },
+  {
+    "id": "3.3-012",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What pair demonstrates pass-by-value argument handling?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n == 0) {\n        return n;\n    }\n    n = n - 1;\n    return f(n);\n}\nMain {\n    Integer n = 4;\n    Print(f(n), n);\n}",
+    "options": {
+      "A": "0 4",
+      "B": "4 4",
+      "C": "1 3",
+      "D": "0 0"
+    },
+    "correct_answer": "A",
+    "explanation": "Each call mutates only its own n. The recursive result is zero, while Main retains n=4."
+  },
+  {
+    "id": "3.3-013",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What sequence is printed on descent and unwinding?",
+    "code_snippet": "Function Void f(Integer n) {\n    if (n == 0) {\n        return;\n    }\n    Print(n);\n    f(n - 1);\n    Print(n);\n}\nMain {\n    f(2);\n}",
+    "options": {
+      "A": "2 2 1 1",
+      "B": "2 1 0 1 2",
+      "C": "2 1 1 2",
+      "D": "1 2 2 1"
+    },
+    "correct_answer": "C",
+    "explanation": "Descent prints 2,1; the base prints nothing; unwinding prints 1,2."
+  },
+  {
+    "id": "3.3-014",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What return value results from subtracting during unwinding?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n == 0) {\n        return 10;\n    }\n    return f(n - 1) - 1;\n}\nMain {\n    Print(f(3));\n}",
+    "options": {
+      "A": "9",
+      "B": "7",
+      "C": "3",
+      "D": "13"
+    },
+    "correct_answer": "B",
+    "explanation": "Three non-base frames each subtract one from the base result 10, giving 7."
+  },
+  {
+    "id": "3.3-015",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Easy",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What value does this parity recurrence print?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n == 0) {\n        return 1;\n    }\n    return 1 - f(n - 1);\n}\nMain {\n    Print(f(5));\n}",
+    "options": {
+      "A": "5",
+      "B": "-4",
+      "C": "1",
+      "D": "0"
+    },
+    "correct_answer": "D",
+    "explanation": "The result alternates 1,0,1,0,... starting at f(0)=1. Odd argument 5 therefore returns 0."
+  },
+  {
+    "id": "3.3-016",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What Fibonacci value is printed?",
+    "code_snippet": "Function Integer fib(Integer n) {\n    if (n <= 1) {\n        return n;\n    }\n    return fib(n - 1) + fib(n - 2);\n}\nMain {\n    Print(fib(6));\n}",
+    "options": {
+      "A": "13",
+      "B": "5",
+      "C": "12",
+      "D": "8"
+    },
+    "correct_answer": "D",
+    "explanation": "The base values 0 and 1 give f(2)=1,f(3)=2,f(4)=3,f(5)=5,f(6)=8."
+  },
+  {
+    "id": "3.3-017",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What is returned by the complete two-branch recursion?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n == 0) {\n        return 1;\n    }\n    return f(n - 1) + f(n - 1);\n}\nMain {\n    Print(f(3));\n}",
+    "options": {
+      "A": "8",
+      "B": "15",
+      "C": "7",
+      "D": "4"
+    },
+    "correct_answer": "A",
+    "explanation": "Each level doubles the returned leaf total. There are 2^3=8 base leaves, each returning one."
+  },
+  {
+    "id": "3.3-018",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What result and total function-entry count are printed?",
+    "code_snippet": "Global Integer calls = 0;\nFunction Integer fib(Integer n) {\n    calls++;\n    if (n <= 1) {\n        return n;\n    }\n    return fib(n - 1) + fib(n - 2);\n}\nMain {\n    Integer result = fib(4);\n    Print(result, calls);\n}",
+    "options": {
+      "A": "3 7",
+      "B": "5 9",
+      "C": "3 9",
+      "D": "3 5"
+    },
+    "correct_answer": "C",
+    "explanation": "Entry counts satisfy C(0)=C(1)=1 and C(n)=1+C(n-1)+C(n-2), giving C(4)=9; fib(4)=3."
+  },
+  {
+    "id": "3.3-019",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What is printed by preorder traversal of the recursion tree?",
+    "code_snippet": "Function Void f(Integer n) {\n    if (n == 0) {\n        return;\n    }\n    Print(n);\n    f(n - 1);\n    f(n - 1);\n}\nMain {\n    f(2);\n}",
+    "options": {
+      "A": "2 1 0 0 1 0 0",
+      "B": "2 2 1",
+      "C": "2 1 1",
+      "D": "1 1 2"
+    },
+    "correct_answer": "C",
+    "explanation": "The root prints 2, then each of its two n=1 children prints 1. Zero-argument calls print nothing."
+  },
+  {
+    "id": "3.3-020",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What is printed by postorder traversal of the recursion tree?",
+    "code_snippet": "Function Void f(Integer n) {\n    if (n == 0) {\n        return;\n    }\n    f(n - 1);\n    f(n - 1);\n    Print(n);\n}\nMain {\n    f(2);\n}",
+    "options": {
+      "A": "2 1 1",
+      "B": "1 2 1",
+      "C": "0 0 1 0 0 1 2",
+      "D": "1 1 2"
+    },
+    "correct_answer": "D",
+    "explanation": "Both n=1 subtrees print before their parent n=2, giving 1,1,2."
+  },
+  {
+    "id": "3.3-021",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What is printed when each non-base return adds one extra unit?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n <= 1) {\n        return n;\n    }\n    return f(n - 1) + f(n - 2) + 1;\n}\nMain {\n    Print(f(4));\n}",
+    "options": {
+      "A": "9",
+      "B": "7",
+      "C": "5",
+      "D": "3"
+    },
+    "correct_answer": "B",
+    "explanation": "The successive values are f(0)=0,f(1)=1,f(2)=2,f(3)=4,f(4)=7."
+  },
+  {
+    "id": "3.3-022",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What value is printed by a recurrence with a doubled second branch?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n <= 1) {\n        return n;\n    }\n    return f(n - 1) + (2 * f(n - 2));\n}\nMain {\n    Print(f(4));\n}",
+    "options": {
+      "A": "5",
+      "B": "7",
+      "C": "3",
+      "D": "8"
+    },
+    "correct_answer": "A",
+    "explanation": "Starting from 0,1, the next values are 1,3,5. The coefficient two applies only to the second branch."
+  },
+  {
+    "id": "3.3-023",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What does the alternating subtraction recurrence return?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n == 0) {\n        return 0;\n    }\n    return n - f(n - 1);\n}\nMain {\n    Print(f(5));\n}",
+    "options": {
+      "A": "-3",
+      "B": "3",
+      "C": "15",
+      "D": "5"
+    },
+    "correct_answer": "B",
+    "explanation": "Unwinding gives 1,1,2,2,3 for arguments 1 through 5. Recursive subtraction is not subtraction of every prior argument independently."
+  },
+  {
+    "id": "3.3-024",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What reversed decimal value is printed by the accumulator recursion?",
+    "code_snippet": "Function Integer reverse(Integer n, Integer acc) {\n    if (n == 0) {\n        return acc;\n    }\n    return reverse(n div 10, (acc * 10) + (n mod 10));\n}\nMain {\n    Print(reverse(507, 0));\n}",
+    "options": {
+      "A": "507",
+      "B": "705",
+      "C": "75",
+      "D": "750"
+    },
+    "correct_answer": "B",
+    "explanation": "Accumulator values are 7,70,705 as digits 7,0,5 are consumed. The middle zero remains part of the result."
+  },
+  {
+    "id": "3.3-025",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What maximum number of simultaneously active depth calls is printed, including the initial and base calls?",
+    "code_snippet": "Global Integer active = 0;\nGlobal Integer peak = 0;\nFunction Void depth(Integer n) {\n    active++;\n    if (active > peak) {\n        peak = active;\n    }\n    if (n > 1) {\n        depth(n div 2);\n    }\n    active--;\n}\nMain {\n    depth(13);\n    Print(peak);\n}",
+    "options": {
+      "A": "13",
+      "B": "5",
+      "C": "3",
+      "D": "4"
+    },
+    "correct_answer": "D",
+    "explanation": "The deepest active chain has arguments 13,6,3,1. Both the initial and base frames count, so peak is four."
+  },
+  {
+    "id": "3.3-026",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What peak active-frame count is printed for the two-branch Fibonacci traversal?",
+    "code_snippet": "Global Integer active = 0;\nGlobal Integer peak = 0;\nFunction Void visit(Integer n) {\n    active++;\n    if (active > peak) {\n        peak = active;\n    }\n    if (n > 1) {\n        visit(n - 1);\n        visit(n - 2);\n    }\n    active--;\n}\nMain {\n    visit(5);\n    Print(peak, active);\n}",
+    "options": {
+      "A": "5 0",
+      "B": "5 5",
+      "C": "9 0",
+      "D": "6 0"
+    },
+    "correct_answer": "A",
+    "explanation": "The deepest chain is 5,4,3,2,1, with five visit frames. Sibling branches run sequentially; all frames have returned before active is printed."
+  },
+  {
+    "id": "3.3-027",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What sequence is printed when the smaller branch runs first?",
+    "code_snippet": "Function Void f(Integer n) {\n    if (n <= 0) {\n        return;\n    }\n    f(n - 2);\n    Print(n);\n    f(n - 1);\n}\nMain {\n    f(3);\n}",
+    "options": {
+      "A": "1 3 1 2",
+      "B": "1 3 2 1",
+      "C": "1 2 3 1",
+      "D": "3 1 2 1"
+    },
+    "correct_answer": "B",
+    "explanation": "f(3) first runs f(1), which prints 1; then prints 3; f(2) prints 2 followed by its f(1), giving 1,3,2,1."
+  },
+  {
+    "id": "3.3-028",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What value is printed when the second branch consumes the first result?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n <= 1) {\n        return 1;\n    }\n    Integer a = f(n - 1);\n    return a + f(n - 2) + n;\n}\nMain {\n    Print(f(4));\n}",
+    "options": {
+      "A": "16",
+      "B": "11",
+      "C": "14",
+      "D": "18"
+    },
+    "correct_answer": "A",
+    "explanation": "f(2)=1+1+2=4; f(3)=4+1+3=8; f(4)=8+4+4=16."
+  },
+  {
+    "id": "3.3-029",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What does this recursive binary digit construction return?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n == 0) {\n        return 0;\n    }\n    return (10 * f(n div 2)) + (n mod 2);\n}\nMain {\n    Print(f(13));\n}",
+    "options": {
+      "A": "1101",
+      "B": "1011",
+      "C": "13",
+      "D": "1110"
+    },
+    "correct_answer": "A",
+    "explanation": "Recursing to the most significant bit and appending remainders builds decimal digits representing binary 1101."
+  },
+  {
+    "id": "3.3-030",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What pair results when a global counts only non-base entries?",
+    "code_snippet": "Global Integer count = 0;\nFunction Integer f(Integer n) {\n    if (n == 0) {\n        return 1;\n    }\n    count++;\n    return n + f(n - 1);\n}\nMain {\n    Integer result = f(3);\n    Print(result, count);\n}",
+    "options": {
+      "A": "6 4",
+      "B": "6 3",
+      "C": "7 3",
+      "D": "7 4"
+    },
+    "correct_answer": "C",
+    "explanation": "The return is 3+2+1+1=7. Only arguments 3,2,1 increment count; the base returns before incrementing."
+  },
+  {
+    "id": "3.3-031",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What is printed across two top-level calls sharing a global counter?",
+    "code_snippet": "Global Integer counter = 0;\nFunction Integer f(Integer n) {\n    if (n == 0) {\n        return counter;\n    }\n    counter++;\n    return f(n - 1);\n}\nMain {\n    Print(f(2));\n    Print(f(1));\n}",
+    "options": {
+      "A": "2 1",
+      "B": "3 3",
+      "C": "2 3",
+      "D": "0 0"
+    },
+    "correct_answer": "C",
+    "explanation": "The first call increments the persistent counter twice. The second continues from 2 and increments it to 3."
+  },
+  {
+    "id": "3.3-032",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What does a static local retain between two invocations?",
+    "code_snippet": "Function Integer f(Integer n) {\n    Static Integer s = 0;\n    s++;\n    if (n == 0) {\n        return s;\n    }\n    return f(n - 1);\n}\nMain {\n    Print(f(2));\n    Print(f(1));\n}",
+    "options": {
+      "A": "2 3",
+      "B": "3 2",
+      "C": "1 1",
+      "D": "3 5"
+    },
+    "correct_answer": "D",
+    "explanation": "Each entry, including a base entry, increments the single persistent s. Three entries precede the first result and two more precede the second."
+  },
+  {
+    "id": "3.3-033",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What result follows saving a local before a deeper call changes global state?",
+    "code_snippet": "Global Integer g = 1;\nFunction Integer f(Integer n) {\n    if (n == 0) {\n        return g;\n    }\n    Integer saved = g;\n    g = g + n;\n    return saved + f(n - 1);\n}\nMain {\n    Integer result = f(3);\n    Print(result, g);\n}",
+    "options": {
+      "A": "7 7",
+      "B": "14 7",
+      "C": "18 7",
+      "D": "17 1"
+    },
+    "correct_answer": "C",
+    "explanation": "Saved values are 1,4,6. The base sees g=7, so the sum is 1+4+6+7=18."
+  },
+  {
+    "id": "3.3-034",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What is printed when locals survive across a recursive call?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n == 0) {\n        return 0;\n    }\n    Integer x = n * 2;\n    Integer y = f(n - 1);\n    return x + y;\n}\nMain {\n    Print(f(4));\n}",
+    "options": {
+      "A": "20",
+      "B": "8",
+      "C": "16",
+      "D": "10"
+    },
+    "correct_answer": "A",
+    "explanation": "Each frame retains its own x. The result is 8+6+4+2+0=20."
+  },
+  {
+    "id": "3.3-035",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What sequence is printed by recursion between two loop iterations?",
+    "code_snippet": "Function Void f(Integer n) {\n    if (n == 0) {\n        return;\n    }\n    Integer i;\n    for (i = 0; i < 2; i++) {\n        Print(n);\n        f(n - 1);\n    }\n}\nMain {\n    f(2);\n}",
+    "options": {
+      "A": "2 1 2 1",
+      "B": "1 1 2 1 1 2",
+      "C": "2 1 1 2 1 1",
+      "D": "2 2 1 1"
+    },
+    "correct_answer": "C",
+    "explanation": "Each n=2 loop iteration prints 2 then runs an n=1 call that prints 1 twice. These groups occur twice."
+  },
+  {
+    "id": "3.3-036",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What return value uses an even/odd recursive branch?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n <= 1) {\n        return n;\n    }\n    if ((n mod 2) == 0) {\n        return f(n div 2) + 1;\n    }\n    return f(n - 1) + 2;\n}\nMain {\n    Print(f(11));\n}",
+    "options": {
+      "A": "11",
+      "B": "8",
+      "C": "6",
+      "D": "7"
+    },
+    "correct_answer": "B",
+    "explanation": "The chain is 11->10->5->4->2->1. Added costs are 2,1,2,1,1 plus base 1, totaling 8."
+  },
+  {
+    "id": "3.3-037",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What return value does this recursive greatest-common-divisor function print?",
+    "code_snippet": "Function Integer gcd(Integer a, Integer b) {\n    if (b == 0) {\n        return a;\n    }\n    return gcd(b, a mod b);\n}\nMain {\n    Print(gcd(84, 30));\n}",
+    "options": {
+      "A": "12",
+      "B": "3",
+      "C": "6",
+      "D": "14"
+    },
+    "correct_answer": "C",
+    "explanation": "The argument pairs are (84,30),(30,24),(24,6),(6,0). The base returns 6."
+  },
+  {
+    "id": "3.3-038",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What is printed when a reference-free local is incremented after the recursive return?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n == 0) {\n        return 0;\n    }\n    Integer value = f(n - 1);\n    n++;\n    return value + n;\n}\nMain {\n    Print(f(3));\n}",
+    "options": {
+      "A": "12",
+      "B": "6",
+      "C": "9",
+      "D": "3"
+    },
+    "correct_answer": "C",
+    "explanation": "Unwinding adds the incremented local arguments 2,3,4. Their sum is 9; caller arguments are independent."
+  },
+  {
+    "id": "3.3-039",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What is printed when the second recursive branch is skipped by a returned-value test?",
+    "code_snippet": "Function Integer f(Integer n) {\n    if (n <= 1) {\n        return n;\n    }\n    Integer a = f(n - 1);\n    if (a >= 2) {\n        return a + 1;\n    }\n    return a + f(n - 2) + 1;\n}\nMain {\n    Print(f(5));\n}",
+    "options": {
+      "A": "4",
+      "B": "8",
+      "C": "5",
+      "D": "7"
+    },
+    "correct_answer": "C",
+    "explanation": "f(2)=2. Thereafter the a>=2 branch returns a+1, giving f(3)=3,f(4)=4,f(5)=5 without a second call at those levels."
+  },
+  {
+    "id": "3.3-040",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Medium",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What result and base-leaf count are printed for unequal branches?",
+    "code_snippet": "Global Integer leaves = 0;\nFunction Integer f(Integer n) {\n    if (n <= 0) {\n        leaves++;\n        return 1;\n    }\n    return f(n - 1) + f(n - 2);\n}\nMain {\n    Integer result = f(3);\n    Print(result, leaves);\n}",
+    "options": {
+      "A": "4 5",
+      "B": "5 5",
+      "C": "5 9",
+      "D": "3 3"
+    },
+    "correct_answer": "B",
+    "explanation": "Leaf totals satisfy L(n)=L(n-1)+L(n-2) with L(0)=L(-1)=1, yielding L(1)=2,L(2)=3,L(3)=5. Each leaf returns one."
+  },
+  {
+    "id": "3.3-041",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What result and final global value follow the left-to-right branching mutations?",
+    "code_snippet": "Global Integer g = 0;\nFunction Integer f(Integer n) {\n    g++;\n    if (n == 0) {\n        return g;\n    }\n    Integer a = f(n - 1);\n    g = g + n;\n    Integer b = f(n - 1);\n    return a + b + g;\n}\nMain {\n    Integer result = f(2);\n    Print(result, g);\n}",
+    "options": {
+      "A": "46 7",
+      "B": "55 11",
+      "C": "59 7",
+      "D": "51 11"
+    },
+    "correct_answer": "B",
+    "explanation": "The first n=1 subtree returns 13 with g=5. After adding 2, the second subtree returns 31 with g=11. The root adds 13+31+11=55."
+  },
+  {
+    "id": "3.3-042",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What result follows static mutation both before descent and after return?",
+    "code_snippet": "Function Integer f(Integer n) {\n    Static Integer s = 1;\n    if (n == 0) {\n        return s;\n    }\n    s = s + n;\n    Integer a = f(n - 1);\n    s++;\n    return a + s;\n}\nMain {\n    Print(f(3));\n    Print(f(0));\n}",
+    "options": {
+      "A": "34 10",
+      "B": "34 7",
+      "C": "28 7",
+      "D": "31 10"
+    },
+    "correct_answer": "A",
+    "explanation": "Descent raises s to 7. Unwinding increments it to 8,9,10 and accumulates 7+8+9+10=34. The next base call observes 10."
+  },
+  {
+    "id": "3.3-043",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What sequence and final global value follow sibling calls with restoration?",
+    "code_snippet": "Global Integer g = 0;\nFunction Void f(Integer n) {\n    if (n == 0) {\n        Print(g);\n        return;\n    }\n    g = g + n;\n    f(n - 1);\n    g = g - n;\n    f(n - 1);\n}\nMain {\n    f(2);\n    Print(g);\n}",
+    "options": {
+      "A": "3 2 1 0 0",
+      "B": "3 3 1 1 0",
+      "C": "2 1 0 0 0",
+      "D": "3 2 3 2 2"
+    },
+    "correct_answer": "A",
+    "explanation": "The first n=1 subtree prints 3 then 2; restoration removes the root contribution before the second subtree prints 1 then 0. All contributions are restored to zero."
+  },
+  {
+    "id": "3.3-044",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What is printed when a static counter is shared across all tree nodes and a later root call?",
+    "code_snippet": "Function Integer f(Integer n) {\n    Static Integer serial = 0;\n    serial++;\n    Integer mine = serial;\n    if (n == 0) {\n        return mine;\n    }\n    Integer left = f(n - 1);\n    Integer right = f(n - 1);\n    return mine + left + right;\n}\nMain {\n    Print(f(2));\n    Print(f(1));\n}",
+    "options": {
+      "A": "28 30",
+      "B": "28 6",
+      "C": "21 27",
+      "D": "28 27"
+    },
+    "correct_answer": "D",
+    "explanation": "The first tree visits seven nodes with serials 1 through 7, summing to 28. The second visits serials 8,9,10 and returns 27."
+  },
+  {
+    "id": "3.3-045",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What result and global value are printed when one call uses a global-derived argument?",
+    "code_snippet": "Global Integer g = 0;\nFunction Integer f(Integer n) {\n    if (n <= 0) {\n        g++;\n        return g;\n    }\n    g = g + n;\n    Integer a = f(n - 1);\n    g++;\n    Integer b = f(g mod 2);\n    return a + b;\n}\nMain {\n    Integer result = f(2);\n    Print(result, g);\n}",
+    "options": {
+      "A": "31 11",
+      "B": "9 5",
+      "C": "15 7",
+      "D": "16 8"
+    },
+    "correct_answer": "A",
+    "explanation": "The first n=1 frame reaches g=5 before its parity-selected call. That nested n=1 frame returns 16 with g=9, so the first frame returns 20. At the root, g increments to 10, selecting a base call that returns 11. The root returns 31."
+  },
+  {
+    "id": "3.3-046",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What result is printed when the same local snapshot is used around two recursive calls?",
+    "code_snippet": "Global Integer g = 1;\nFunction Integer f(Integer n) {\n    if (n == 0) {\n        g++;\n        return g;\n    }\n    Integer saved = g;\n    Integer a = f(n - 1);\n    Integer b = f(n - 1);\n    return saved + a + b;\n}\nMain {\n    Integer result = f(2);\n    Print(result, g);\n}",
+    "options": {
+      "A": "17 4",
+      "B": "19 5",
+      "C": "20 5",
+      "D": "14 5"
+    },
+    "correct_answer": "B",
+    "explanation": "The left n=1 frame saves 1 and returns 1+2+3=6. The right saves 3 and returns 3+4+5=12. The root adds its saved 1, giving 19."
+  },
+  {
+    "id": "3.3-047",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What maximum frame count and total entries are printed for this mixed decrement recursion?",
+    "code_snippet": "Global Integer active = 0;\nGlobal Integer peak = 0;\nGlobal Integer calls = 0;\nFunction Void f(Integer n) {\n    active++;\n    calls++;\n    if (active > peak) {\n        peak = active;\n    }\n    if (n > 0) {\n        f(n - 2);\n        f(n - 3);\n    }\n    active--;\n}\nMain {\n    f(7);\n    Print(peak, calls);\n}",
+    "options": {
+      "A": "5 17",
+      "B": "4 17",
+      "C": "5 25",
+      "D": "8 17"
+    },
+    "correct_answer": "A",
+    "explanation": "The deepest path is 7,5,3,1,-1, containing five frames. Counting both branches and base entries by C(n)=1+C(n-2)+C(n-3) for positive n gives 17 entries."
+  },
+  {
+    "id": "3.3-048",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What value is printed by this nested recursive return argument?",
+    "code_snippet": "Global Integer calls = 0;\nFunction Integer f(Integer n) {\n    calls++;\n    if (n > 10) {\n        return n - 1;\n    }\n    return f(f(n + 2));\n}\nMain {\n    Integer result = f(9);\n    Print(result, calls);\n}",
+    "options": {
+      "A": "11 5",
+      "B": "10 3",
+      "C": "9 7",
+      "D": "10 5"
+    },
+    "correct_answer": "D",
+    "explanation": "f(9) calls f(11)=10, then f(10), which calls f(12)=11 and f(11)=10. Including the initial call gives five entries."
+  },
+  {
+    "id": "3.3-049",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What sequence is printed when a static value changes between pre- and post-recursion output?",
+    "code_snippet": "Function Void f(Integer n) {\n    Static Integer s = 0;\n    s = s + 1;\n    Integer mine = s;\n    if (n == 0) {\n        Print(mine, s);\n        return;\n    }\n    f(n - 1);\n    s = s + mine;\n    Print(mine, s);\n}\nMain {\n    f(2);\n    f(0);\n}",
+    "options": {
+      "A": "3 3 2 4 1 5 6 6",
+      "B": "1 1 2 2 3 3 4 4",
+      "C": "3 3 2 5 1 6 3 3",
+      "D": "3 3 2 5 1 6 7 7"
+    },
+    "correct_answer": "D",
+    "explanation": "Entries save mine=1,2,3. The base prints 3,3; unwinding adds saved 2 then 1 to the shared s, producing 5 and 6. A later base call increments s to 7."
+  },
+  {
+    "id": "3.3-050",
+    "module": "Module 3: Pseudocode, Bitwise & Code Tracing",
+    "subpart_id": "3.3",
+    "subpart_name": "Recursive Function Dry-Runs",
+    "difficulty": "Hard",
+    "question": "Typed pseudocode uses signed 32-bit Integer values, pass-by-value parameters, left-to-right evaluation, and div truncating toward zero. Globals and Static locals persist across calls; ordinary locals are fresh. Print appends space-separated tokens. What result and final global value follow this three-stage recursive mutation?",
+    "code_snippet": "Global Integer g = 1;\nFunction Integer f(Integer n) {\n    if (n == 0) {\n        g = g + 1;\n        return g;\n    }\n    Integer before = g;\n    g = g + n;\n    Integer left = f(n - 1);\n    g = g - before;\n    Integer right = f(n - 1);\n    return left - right + g;\n}\nMain {\n    Integer result = f(2);\n    Print(result, g);\n}",
+    "options": {
+      "A": "1 5",
+      "B": "-1 1",
+      "C": "4 3",
+      "D": "5 5"
+    },
+    "correct_answer": "C",
+    "explanation": "The left subtree saves before=3 and returns 5 with g=3. The root subtracts its saved 1, leaving g=2; the right subtree returns 4 with g=3. The root then returns 5-4+3=4."
+  }
+]

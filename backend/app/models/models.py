@@ -199,3 +199,18 @@ class LCSubmission(Base):
     error_message = Column(Text, nullable=True)
     submitted_at = Column(DateTime(timezone=True), default=utc_now)
 
+class MCQUserProgress(Base):
+    __tablename__ = "mcq_user_progress"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    user_id = Column(String(36), ForeignKey("users.id"), index=True, nullable=False)
+    question_id = Column(String(50), index=True, nullable=False)
+    selected_option = Column(String(10), nullable=True)  # "A", "B", "C", "D"
+    is_correct = Column(Boolean, default=False)
+    status = Column(String(20), default="todo")  # "todo" | "attempted" | "solved"
+    is_starred = Column(Boolean, default=False)
+    notes = Column(Text, nullable=True)
+    attempts_count = Column(Integer, default=0)
+    updated_at = Column(DateTime(timezone=True), default=utc_now, onupdate=utc_now)
+
+

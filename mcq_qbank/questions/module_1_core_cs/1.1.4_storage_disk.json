@@ -1,0 +1,342 @@
+[
+  {
+    "id": "1.1.4-001",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Easy",
+    "question": "In a simplified inode-based file system, a directory entry maps a filename to an inode number, while the inode stores file metadata and data-block pointers. A regular file is renamed within its directory to a name that does not already exist. Ignoring timestamp updates, which change is sufficient without relocating the file's contents?",
+    "code_snippet": null,
+    "options": {
+      "A": "Allocate a new inode and copy every data block to new locations",
+      "B": "Replace a filename field inside the file's inode and rewrite its data blocks",
+      "C": "Change the name in the directory entry while retaining the same inode number",
+      "D": "Replace only the file's data-block pointers while retaining the old directory entry"
+    },
+    "correct_answer": "C",
+    "explanation": "The filename-to-inode association is stored in the directory. Renaming the entry can preserve both the inode identity and its data-block mappings; neither a replacement inode nor a copy of the file contents is required in this model."
+  },
+  {
+    "id": "1.1.4-002",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Easy",
+    "question": "A file uses contiguous allocation and occupies 10 consecutive disk blocks starting at physical block 120. Logical blocks are numbered from 0. Which physical block contains logical block 7?",
+    "code_snippet": null,
+    "options": {
+      "A": "127",
+      "B": "126",
+      "C": "128",
+      "D": "130"
+    },
+    "correct_answer": "A",
+    "explanation": "Contiguous allocation maps logical block i to start + i. Therefore logical block 7 is at physical block 120 + 7 = 127. It is within the allocated logical range 0 through 9."
+  },
+  {
+    "id": "1.1.4-003",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Easy",
+    "question": "A file uses linked allocation, with the next-block pointer stored inside each data block. Its first-block address is already known, but no data blocks or intermediate pointers are cached, and there is no separate FAT or index. The file has at least six blocks, numbered logically from 0. How many disk-block reads are needed to obtain the data in logical block 5, including the target-block read?",
+    "code_snippet": null,
+    "options": {
+      "A": "1",
+      "B": "6",
+      "C": "5",
+      "D": "7"
+    },
+    "correct_answer": "B",
+    "explanation": "The system must read logical blocks 0 through 4 to discover successive next-block addresses, then read block 5 for its data. That is five traversal reads plus one target read, or six reads total. Knowing the first address does not cache the first block's pointer."
+  },
+  {
+    "id": "1.1.4-004",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Easy",
+    "question": "A file uses one single-level index block of size 4 KiB, containing only 4-byte addresses of data blocks. Every data block is also 4 KiB. There are no direct pointers, extra index levels, reserved index entries, or other file-size limits. What is the maximum file-data capacity addressed by this index block? Here 1 KiB = 2^10 bytes and 1 MiB = 2^20 bytes.",
+    "code_snippet": null,
+    "options": {
+      "A": "1 MiB",
+      "B": "2 MiB",
+      "C": "8 MiB",
+      "D": "4 MiB"
+    },
+    "correct_answer": "D",
+    "explanation": "The index block holds 4,096/4 = 1,024 data-block addresses. These address 1,024 * 4,096 = 4,194,304 bytes of file data, or 4 MiB. The index block's own storage is metadata, not file-data capacity."
+  },
+  {
+    "id": "1.1.4-005",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Easy",
+    "question": "A disk head starts at cylinder 50. The pending requests below are serviced using FCFS in the listed arrival order, with no new arrivals. Head movement is the sum of absolute cylinder differences, and measurement stops when the final request is serviced. What is the total movement?",
+    "code_snippet": "Request queue: 60, 20, 40",
+    "options": {
+      "A": "30 cylinders",
+      "B": "50 cylinders",
+      "C": "70 cylinders",
+      "D": "90 cylinders"
+    },
+    "correct_answer": "C",
+    "explanation": "FCFS follows 50 -> 60 -> 20 -> 40. Movement = |60 - 50| + |20 - 60| + |40 - 20| = 10 + 40 + 20 = 70 cylinders. Net displacement does not measure total head travel."
+  },
+  {
+    "id": "1.1.4-006",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Easy",
+    "question": "A disk head is at cylinder 50, with the four pending requests below. SSTF selects the request with the smallest absolute cylinder distance from the current head position. Which request is selected first?",
+    "code_snippet": "Request queue: 20, 65, 90, 5",
+    "options": {
+      "A": "20",
+      "B": "65",
+      "C": "90",
+      "D": "5"
+    },
+    "correct_answer": "B",
+    "explanation": "Distances from cylinder 50 are 30, 15, 40, and 45 cylinders for requests 20, 65, 90, and 5. The unique shortest seek is to cylinder 65, regardless of its position in the arrival queue."
+  },
+  {
+    "id": "1.1.4-007",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Medium",
+    "question": "An inode has 12 direct data-block pointers, one single-indirect pointer, and one double-indirect pointer. A block is 4 KiB, and each pointer occupies 4 bytes. Every indirect block contains only pointers, and a double-indirect block points to single-indirect blocks. There are no other file-size limits. How many data blocks can the inode address in total, excluding indirect metadata blocks? Here 1 KiB = 1,024 bytes.",
+    "code_snippet": null,
+    "options": {
+      "A": "1,049,612",
+      "B": "1,048,588",
+      "C": "1,048,576",
+      "D": "1,049,600"
+    },
+    "correct_answer": "A",
+    "explanation": "Each indirect block contains 4,096/4 = 1,024 pointers. The direct, single-indirect, and double-indirect ranges address 12, 1,024, and 1,024^2 data blocks. Their sum is 12 + 1,024 + 1,048,576 = 1,049,612."
+  },
+  {
+    "id": "1.1.4-008",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Medium",
+    "question": "A file's inode has 12 direct pointers followed by a single-indirect pointer. Logical data blocks are numbered from 0, and single-indirect entries are also numbered from 0. Blocks are 4,096 bytes. The inode is cached, but all indirect blocks and data blocks are uncached. A read requests the byte at decimal file offset 118,884, which is within the fully allocated file. There is no read-ahead or other I/O. Which mapping entry is used, and how many disk-block reads are needed for this byte?",
+    "code_snippet": null,
+    "options": {
+      "A": "Direct entry 17; 1 read",
+      "B": "Single-indirect entry 29; 2 reads",
+      "C": "Single-indirect entry 17; 1 read",
+      "D": "Single-indirect entry 17; 2 reads"
+    },
+    "correct_answer": "D",
+    "explanation": "118,884 = 29 * 4,096 + 100, so the byte lies in logical data block 29. Direct pointers cover blocks 0 through 11; the single-indirect entry is 29 - 12 = 17. Reading the indirect block and then the target data block requires two reads. The inode costs no read because it is cached."
+  },
+  {
+    "id": "1.1.4-009",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Medium",
+    "question": "A linked-allocation file contains 10,201 bytes of user data. Each allocated disk block is 1,024 bytes and reserves 4 bytes for a next-block pointer, including a null pointer in the last block. The remaining 1,020 bytes per block hold user data. Ignoring directory and inode storage, what is the pair (allocated block count, unused user-data capacity in the last block)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(10, 39 bytes)",
+      "B": "(11, 1019 bytes)",
+      "C": "(11, 1063 bytes)",
+      "D": "(11, 1023 bytes)"
+    },
+    "correct_answer": "B",
+    "explanation": "Ten blocks hold 10 * 1,020 = 10,200 user bytes, so one more block is needed for the final byte. Its unused user-data capacity is 1,020 - 1 = 1,019 bytes. The 44 bytes of pointers across all eleven blocks are metadata, not unused payload capacity in the last block."
+  },
+  {
+    "id": "1.1.4-010",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Medium",
+    "question": "A disk head starts at cylinder 53 and uses FCFS for the queue below, whose listed order is the arrival order. All requests are pending before movement starts, and no new requests arrive. Count absolute cylinder travel only and stop after servicing the final request. What is the total head movement?",
+    "code_snippet": "Request queue: 98, 183, 37, 122, 14, 124, 65, 67",
+    "options": {
+      "A": "236 cylinders",
+      "B": "208 cylinders",
+      "C": "640 cylinders",
+      "D": "668 cylinders"
+    },
+    "correct_answer": "C",
+    "explanation": "The successive distances are 45, 85, 146, 85, 108, 110, 59, and 2 cylinders. Their sum is 640. FCFS preserves the queue order rather than sorting requests or repeatedly choosing the nearest one."
+  },
+  {
+    "id": "1.1.4-011",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Medium",
+    "question": "A disk head starts at cylinder 50 and uses SSTF for the pending requests below. At every selection, equal seek distances are broken by choosing the smaller cylinder number. No new requests arrive, and movement stops after the last service. Which option gives the service order and total head movement?",
+    "code_snippet": "Request queue: 10, 30, 70, 90",
+    "options": {
+      "A": "70, 90, 30, 10; 120 cylinders",
+      "B": "30, 70, 90, 10; 160 cylinders",
+      "C": "30, 10, 90, 70; 140 cylinders",
+      "D": "30, 10, 70, 90; 120 cylinders"
+    },
+    "correct_answer": "D",
+    "explanation": "Initially 30 and 70 are both 20 cylinders away, so the tie rule selects 30. From there, 10 is nearest, followed by 70 and 90. Travel is 20 + 20 + 60 + 20 = 120 cylinders. Choosing 70 first would violate the stated tie rule even though that alternative also travels 120 cylinders."
+  },
+  {
+    "id": "1.1.4-012",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Medium",
+    "question": "Compare independent SCAN and LOOK runs on cylinders 0 through 199. The head starts at 50 moving toward larger cylinder numbers, with exactly the pending requests below and no new arrivals. SCAN goes to endpoint 199 before reversing to service lower requests; LOOK reverses at the highest pending request instead. Both service encountered requests and stop immediately after the last request is serviced. What is the pair (SCAN movement, LOOK movement)? Count all physical travel in cylinders.",
+    "code_snippet": "Pending requests: 10, 20, 70, 90",
+    "options": {
+      "A": "(120, 120)",
+      "B": "(338, 120)",
+      "C": "(348, 120)",
+      "D": "(338, 338)"
+    },
+    "correct_answer": "B",
+    "explanation": "SCAN travels 50 -> 199 -> 10, covering (199 - 50) + (199 - 10) = 338 cylinders. LOOK travels 50 -> 90 -> 10, covering (90 - 50) + (90 - 10) = 120. Neither run continues toward cylinder 0 after servicing the final request at 10."
+  },
+  {
+    "id": "1.1.4-013",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Medium",
+    "question": "A disk has cylinders 0 through 199 and uses C-SCAN, servicing requests only while moving toward larger cylinder numbers. The head starts at 50 with the pending requests below. After reaching 199 it returns directly to 0 without servicing requests during the return, then resumes upward service. Charge the full 199-cylinder return movement, allow no new arrivals, and stop when the last request is serviced. What is the total head movement?",
+    "code_snippet": "Pending requests: 10, 20, 70, 90",
+    "options": {
+      "A": "368 cylinders",
+      "B": "169 cylinders",
+      "C": "338 cylinders",
+      "D": "120 cylinders"
+    },
+    "correct_answer": "A",
+    "explanation": "The path is 50 -> 70 -> 90 -> 199 -> 0 -> 10 -> 20. Total movement = (199 - 50) + (199 - 0) + (20 - 0) = 149 + 199 + 20 = 368 cylinders. The return is charged even though it services no requests, and the run ends at 20 rather than continuing to an endpoint."
+  },
+  {
+    "id": "1.1.4-014",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Medium",
+    "question": "A disk head starts at cylinder 80 moving toward smaller cylinder numbers and uses LOOK. All requests below are initially pending, and no new ones arrive. LOOK reverses at the lowest pending request in its initial direction, not at a disk endpoint, and stops after the final service. What is the total movement?",
+    "code_snippet": "Pending requests: 10, 50, 90, 160",
+    "options": {
+      "A": "150 cylinders",
+      "B": "230 cylinders",
+      "C": "220 cylinders",
+      "D": "300 cylinders"
+    },
+    "correct_answer": "C",
+    "explanation": "The service order is 50, 10, 90, 160. Travel is (80 - 50) + (50 - 10) + (90 - 10) + (160 - 90) = 30 + 40 + 80 + 70 = 220 cylinders. The initial downward direction matters; starting upward would give 230."
+  },
+  {
+    "id": "1.1.4-015",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Medium",
+    "question": "An SSTF disk head starts at cylinder 50 with an old request at 190 and a request at 49. Whenever the head services 49, a new request at 50 arrives before the next selection; whenever it services 50, a new request at 49 arrives before the next selection. This arrival pattern continues forever, with no other requests. SSTF always selects the currently nearest pending request. What happens to the request at 190?",
+    "code_snippet": null,
+    "options": {
+      "A": "It must be serviced after at most two nearby requests because it arrived first",
+      "B": "It is serviced on the next upward sweep because SSTF requires an endpoint visit",
+      "C": "It is serviced next, while all alternating requests remain unserved",
+      "D": "It can starve indefinitely while the head continues servicing requests at 49 and 50"
+    },
+    "correct_answer": "D",
+    "explanation": "At each selection a pending request is only one cylinder away, while 190 is at least 140 cylinders away. SSTF therefore keeps choosing the alternating nearby requests. It imposes neither FIFO order nor SCAN-style sweeps, so this legal infinite arrival stream starves the older distant request."
+  },
+  {
+    "id": "1.1.4-016",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Medium",
+    "question": "Compare two independent file-system designs: pure contiguous allocation and linked allocation. In each design, a file currently occupies blocks 100 through 103 in order and must append one block. Block 104 belongs to another file, blocks 200 through 205 are free, and no other blocks are free. Sufficient metadata space is available. Contiguous allocation does not support multiple extents. Without relocating any existing data block of this file, can the append succeed under (contiguous allocation, linked allocation)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(No, Yes)",
+      "B": "(Yes, No)",
+      "C": "(Yes, Yes)",
+      "D": "(No, No)"
+    },
+    "correct_answer": "A",
+    "explanation": "Contiguous allocation needs block 104 to extend the current extent in place, but that block is unavailable. Moving the file to a larger free run would violate the no-relocation requirement. Linked allocation can append block 200, update the old tail's next pointer, and retain all existing data-block locations."
+  },
+  {
+    "id": "1.1.4-017",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Hard",
+    "question": "An inode has 12 direct pointers, one single-indirect pointer, and one double-indirect pointer. Blocks are 1 KiB and pointers are 4 bytes; every indirect block holds only pointers. A non-sparse file is exactly 525 KiB, and its data fills logical blocks in order, using direct pointers first, then the single-indirect range, then the double-indirect range. Allocate indirect blocks only when needed. How many total disk blocks hold this file's data and indirect metadata, excluding the inode itself and directory storage? Here 1 KiB = 1,024 bytes.",
+    "code_snippet": null,
+    "options": {
+      "A": "528",
+      "B": "529",
+      "C": "527",
+      "D": "530"
+    },
+    "correct_answer": "B",
+    "explanation": "There are 525 data blocks, and an indirect block holds 1,024/4 = 256 pointers. After 12 direct and 256 single-indirect data blocks, 257 data blocks remain in the double-indirect range. Metadata comprises one single-indirect block, one double-indirect root, and ceil(257/256) = two indirect children. Total = 525 + 1 + 1 + 2 = 529 blocks. The extra child is required even though it holds only one data-block pointer."
+  },
+  {
+    "id": "1.1.4-018",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Hard",
+    "question": "A SCAN disk has cylinders 0 through 199. At time 0 the head is at 50, moving upward, with requests at 80 and 20 pending. The head moves continuously at one cylinder per ms; service time is zero. A request arriving at a cylinder still ahead in the current sweep is serviced when encountered; one arriving after the head has passed its cylinder waits for the return sweep. The head reverses only at disk endpoints while requests remain. Additional requests arrive as shown, and there are no others. At what absolute time is the request that arrives at cylinder 60 serviced?",
+    "code_snippet": "Arrival time | Requested cylinder\n15 ms        | 60\n100 ms       | 180",
+    "options": {
+      "A": "20 ms",
+      "B": "50 ms",
+      "C": "149 ms",
+      "D": "288 ms"
+    },
+    "correct_answer": "D",
+    "explanation": "At time 15 the head is at 65, so the new request at 60 has missed the upward sweep. The head services 80 at time 30. At time 100 it is at 150, so the new request at 180 is serviced on the same sweep at time 130. SCAN reaches endpoint 199 at time 149, then needs 199 - 60 = 139 ms to return to 60. The requested absolute service time is 149 + 139 = 288 ms, rather than its waiting time of 273 ms."
+  },
+  {
+    "id": "1.1.4-019",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Hard",
+    "question": "Compare independent SSTF and FCFS runs for the queue below. All four requests arrive at time 0, when the head is at cylinder 50. Each service takes 2 ms plus 0.1 ms per cylinder traveled from the previous head position; these costs are serial and include every service cost. SSTF selects by cylinder distance only and breaks ties toward the smaller cylinder. FCFS uses the listed order. No new requests arrive. Define response time here as arrival-to-service-completion time. What is the pair (mean response time under SSTF, mean response time under FCFS)?",
+    "code_snippet": "Request queue: 10, 90, 20, 80",
+    "options": {
+      "A": "(12.5 ms, 20.0 ms)",
+      "B": "(20.0 ms, 12.5 ms)",
+      "C": "(20.0 ms, 33.0 ms)",
+      "D": "(7.5 ms, 15.0 ms)"
+    },
+    "correct_answer": "A",
+    "explanation": "SSTF serves 20, 10, 80, 90, traveling 30, 10, 70, 10 cylinders. Service durations are 5, 3, 9, 3 ms, giving completion times 5, 8, 17, 20 and mean 50/4 = 12.5 ms. FCFS travels 40, 80, 70, 60 cylinders, with durations 6, 10, 9, 8 ms and completion times 6, 16, 25, 33, averaging 80/4 = 20.0 ms. Averaging individual service durations instead of cumulative completion times would answer a different question."
+  },
+  {
+    "id": "1.1.4-020",
+    "module": "Module 1: Core Computer Science Fundamentals",
+    "subpart_id": "1.1.4",
+    "subpart_name": "Storage Systems, File Systems & Disk Scheduling",
+    "difficulty": "Hard",
+    "question": "In a simplified inode-based file system, /a and /b are hard links to regular-file inode I, while /c names a different regular-file inode J. Initially there are no open descriptors. All operations below succeed in one file system. rename replaces the destination directory entry atomically without changing the file identity of existing open descriptors. unlink removes only the named hard link. An inode's data blocks become reclaimable only when both its hard-link count and open-descriptor count are zero; there are no other references or deferred-reclamation rules. Immediately after the trace, which inode's data blocks are reclaimable?",
+    "code_snippet": "fdI = open('/a')\nfdJ = open('/c')\nunlink('/a')\nrename('/b', '/c')\nclose(fdI)\nunlink('/c')\n// fdJ remains open",
+    "options": {
+      "A": "Both I and J, because neither has a remaining directory name",
+      "B": "Neither I nor J, because both still have an open descriptor",
+      "C": "Only I; J remains referenced by fdJ",
+      "D": "Only J; I remains referenced by the renamed /c directory entry"
+    },
+    "correct_answer": "C",
+    "explanation": "I starts with two hard links. Removing /a leaves one; renaming /b to /c retains that one link while removing J's only link. fdJ still refers to J. Closing fdI leaves I with no open descriptor, and the final unlink removes I's last link, making I's blocks reclaimable. J has zero links but one open descriptor, so its blocks are retained."
+  }
+]

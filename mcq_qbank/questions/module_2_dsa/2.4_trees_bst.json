@@ -1,0 +1,1022 @@
+[
+  {
+    "id": "2.4-001",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? None represents an empty child.",
+    "code_snippet": "t={4:(2,6),2:(1,3),1:(None,None),3:(None,None),6:(None,7),7:(None,None)}\ndef inorder(v):\n    return [] if v is None else inorder(t[v][0])+[v]+inorder(t[v][1])\nprint(inorder(4))",
+    "options": {
+      "A": "[4, 2, 1, 3, 6, 7]",
+      "B": "[1, 3, 2, 7, 6, 4]",
+      "C": "[1, 2, 3, 4, 7, 6]",
+      "D": "[1, 2, 3, 4, 6, 7]"
+    },
+    "correct_answer": "D",
+    "explanation": "Inorder visits left subtree, node, right subtree. Node 6 has only a right child, so 6 precedes 7."
+  },
+  {
+    "id": "2.4-002",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? None represents an empty child.",
+    "code_snippet": "t={\"A\":(\"B\",\"C\"),\"B\":(\"D\",None),\"C\":(\"E\",\"F\"),\"D\":(None,None),\"E\":(None,None),\"F\":(None,None)}\ndef preorder(v):\n    return [] if v is None else [v]+preorder(t[v][0])+preorder(t[v][1])\nprint(\" \".join(preorder(\"A\")))",
+    "options": {
+      "A": "D B A E C F",
+      "B": "D B E F C A",
+      "C": "A B C D E F",
+      "D": "A B D C E F"
+    },
+    "correct_answer": "D",
+    "explanation": "Preorder emits each subtree root before its children. The complete B subtree comes before the C subtree."
+  },
+  {
+    "id": "2.4-003",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? None represents an empty child.",
+    "code_snippet": "t={10:(5,15),5:(None,None),15:(12,20),12:(None,None),20:(None,None)}\ndef postorder(v):\n    return [] if v is None else postorder(t[v][0])+postorder(t[v][1])+[v]\nprint(postorder(10))",
+    "options": {
+      "A": "[10, 5, 15, 12, 20]",
+      "B": "[5, 20, 12, 15, 10]",
+      "C": "[5, 10, 12, 15, 20]",
+      "D": "[5, 12, 20, 15, 10]"
+    },
+    "correct_answer": "D",
+    "explanation": "Postorder finishes both child subtrees before the parent, giving 12,20,15 inside the right subtree and root 10 last."
+  },
+  {
+    "id": "2.4-004",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? None represents an empty child.",
+    "code_snippet": "from collections import deque\nt={1:(2,3),2:(4,None),3:(5,6),4:(None,None),5:(None,None),6:(None,None)}\nq=deque([1])\nout=[]\nwhile q:\n    v=q.popleft()\n    out.append(v)\n    q.extend(x for x in t[v] if x is not None)\nprint(out)",
+    "options": {
+      "A": "[1, 2, 3, 4, 5, 6]",
+      "B": "[1, 2, 4, 3, 5, 6]",
+      "C": "[4, 2, 1, 5, 3, 6]",
+      "D": "[4, 2, 5, 6, 3, 1]"
+    },
+    "correct_answer": "A",
+    "explanation": "FIFO processing gives level order, visiting left child before right child within each parent's next-level additions."
+  },
+  {
+    "id": "2.4-005",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "Tree height counts edges on the longest root-to-leaf path. What is the height of a nonempty tree consisting of one node?",
+    "code_snippet": null,
+    "options": {
+      "A": "-1",
+      "B": "1",
+      "C": "0",
+      "D": "2"
+    },
+    "correct_answer": "C",
+    "explanation": "The root is already a leaf, so the longest path contains zero edges. Height -1 is a separate convention for an empty tree."
+  },
+  {
+    "id": "2.4-006",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "What is the maximum number of nodes in a binary tree of height 3 edges?",
+    "code_snippet": null,
+    "options": {
+      "A": "7",
+      "B": "8",
+      "C": "16",
+      "D": "15"
+    },
+    "correct_answer": "D",
+    "explanation": "The fullest tree has 1+2+4+8=15 nodes across levels 0 through 3."
+  },
+  {
+    "id": "2.4-007",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "What is the minimum number of nodes in an ordinary binary tree of height 4 edges, without any balance or fullness requirement?",
+    "code_snippet": null,
+    "options": {
+      "A": "15",
+      "B": "31",
+      "C": "5",
+      "D": "4"
+    },
+    "correct_answer": "C",
+    "explanation": "A single chain of four edges contains five nodes and attains that height with no extra branches."
+  },
+  {
+    "id": "2.4-008",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "A BST contains distinct keys and uses the strict rule all left keys < node < all right keys. Which traversal necessarily lists the keys in increasing order?",
+    "code_snippet": null,
+    "options": {
+      "A": "Level-order",
+      "B": "Postorder",
+      "C": "Inorder",
+      "D": "Preorder"
+    },
+    "correct_answer": "C",
+    "explanation": "Inorder exhausts smaller left keys, then the node, then larger right keys recursively. The other traversals depend on shape and do not generally sort keys."
+  },
+  {
+    "id": "2.4-009",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? None represents an empty child.",
+    "code_snippet": "t={20:(10,30),10:(None,None),30:(25,40),25:(None,None),40:(None,None)}\nv=20\npath=[]\nwhile v is not None:\n    path.append(v)\n    if v==25:\n        break\n    v=t[v][0] if 25<v else t[v][1]\nprint(path)",
+    "options": {
+      "A": "[20, 30, 25]",
+      "B": "[20, 25]",
+      "C": "[20, 10, 25]",
+      "D": "[20, 30, 40]"
+    },
+    "correct_answer": "A",
+    "explanation": "25 exceeds 20, so search takes the right branch; it is less than 30, so the next branch is left."
+  },
+  {
+    "id": "2.4-010",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "In the displayed BST with distinct keys, what is its minimum key?",
+    "code_snippet": "Root: 50\nNode: left,right (- means empty)\n50: 20,70\n20: 10,30\n10: -,-\n30: -,-\n70: -,-",
+    "options": {
+      "A": "20",
+      "B": "50",
+      "C": "30",
+      "D": "10"
+    },
+    "correct_answer": "D",
+    "explanation": "The minimum is reached by following left children until no left child remains, here 50->20->10."
+  },
+  {
+    "id": "2.4-011",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "In the displayed BST, what is the inorder successor of key 20?",
+    "code_snippet": "Root: 20\nNode: left,right (- means empty)\n20: 10,30\n10: -,-\n30: 25,40\n25: -,-\n40: -,-",
+    "options": {
+      "A": "10",
+      "B": "40",
+      "C": "30",
+      "D": "25"
+    },
+    "correct_answer": "D",
+    "explanation": "Because 20 has a right subtree, its successor is that subtree's leftmost key, 25, rather than necessarily its immediate right child."
+  },
+  {
+    "id": "2.4-012",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "A plain unbalanced BST is built by inserting n increasing distinct keys. What is the tight worst-case search time after construction?",
+    "code_snippet": null,
+    "options": {
+      "A": "Theta(n log n)",
+      "B": "Theta(log n)",
+      "C": "Theta(n)",
+      "D": "Theta(1)"
+    },
+    "correct_answer": "C",
+    "explanation": "The insertion order creates a rightward chain. A search for its deepest key or a larger absent key traverses linearly many nodes."
+  },
+  {
+    "id": "2.4-013",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "A nonempty full binary tree has seven internal nodes, each with exactly two children. How many leaves does it have?",
+    "code_snippet": null,
+    "options": {
+      "A": "8",
+      "B": "7",
+      "C": "15",
+      "D": "14"
+    },
+    "correct_answer": "A",
+    "explanation": "For a full binary tree, leaves equal internal nodes plus one, giving eight."
+  },
+  {
+    "id": "2.4-014",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "An arbitrary nonempty finite binary tree has five nodes with two children and three nodes with one child. How many leaves are there?",
+    "code_snippet": null,
+    "options": {
+      "A": "5",
+      "B": "6",
+      "C": "8",
+      "D": "9"
+    },
+    "correct_answer": "B",
+    "explanation": "The identity L=N2+1 holds even when unary nodes exist. The three one-child nodes do not change the leaf-to-two-child-node relation."
+  },
+  {
+    "id": "2.4-015",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "How many structurally distinct BSTs can store three fixed distinct sorted keys, counting left/right shape and not insertion permutations?",
+    "code_snippet": null,
+    "options": {
+      "A": "3",
+      "B": "9",
+      "C": "6",
+      "D": "5"
+    },
+    "correct_answer": "D",
+    "explanation": "The count is Catalan C3=5. Different insertion permutations can produce the same shape and are not counted separately."
+  },
+  {
+    "id": "2.4-016",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "When counting BST structures with Catalan numbers, how many empty-tree structures are counted for zero keys?",
+    "code_snippet": null,
+    "options": {
+      "A": "Undefined because every BST must be nonempty",
+      "B": "0",
+      "C": "2",
+      "D": "1"
+    },
+    "correct_answer": "D",
+    "explanation": "The single empty tree gives C0=1 and supplies the identity contribution when one side of a root is empty."
+  },
+  {
+    "id": "2.4-017",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "Starting empty, insert 30,20,10. Which correction and final root result? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 30,20,10",
+    "options": {
+      "A": "Single right rotation; root 20",
+      "B": "No rotation; root 30",
+      "C": "Left-right double rotation; root 10",
+      "D": "Single left rotation; root 20"
+    },
+    "correct_answer": "A",
+    "explanation": "This is an LL imbalance at 30. A right rotation promotes 20, leaving 10 and 30 as its children."
+  },
+  {
+    "id": "2.4-018",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Easy",
+    "question": "Starting empty, insert 10,20,30. Which correction and final root result? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 10,20,30",
+    "options": {
+      "A": "Right-left double rotation; root 30",
+      "B": "Single left rotation; root 20",
+      "C": "No rotation; root 10",
+      "D": "Single right rotation; root 20"
+    },
+    "correct_answer": "B",
+    "explanation": "The RR imbalance at 10 requires one left rotation, promoting 20."
+  },
+  {
+    "id": "2.4-019",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "Starting empty, insert 30,10,20. Which correction is required at the first imbalance? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 30,10,20",
+    "options": {
+      "A": "Right rotation on 10, then left rotation on 30",
+      "B": "Left rotation on 10, then right rotation on 30",
+      "C": "Right rotation on 30 only",
+      "D": "Left rotation on 30 only"
+    },
+    "correct_answer": "B",
+    "explanation": "Insertion lies in the right subtree of the left child, the LR case. The two rotations place 20 above 10 and 30."
+  },
+  {
+    "id": "2.4-020",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "Starting empty, insert 10,30,20. Which correction is required at the first imbalance? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 10,30,20",
+    "options": {
+      "A": "Left rotation on 10 only",
+      "B": "Right rotation on 30, then left rotation on 10",
+      "C": "Left rotation on 30, then right rotation on 10",
+      "D": "Right rotation on 10 only"
+    },
+    "correct_answer": "B",
+    "explanation": "This is the RL case: first straighten the right child with a right rotation, then rotate the root left."
+  },
+  {
+    "id": "2.4-021",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "All labels are distinct. Reconstruct the binary tree from these traversals. What is its postorder?",
+    "code_snippet": "Inorder: D B E A F C\nPreorder: A B D E C F",
+    "options": {
+      "A": "A B D E C F",
+      "B": "D E B C F A",
+      "C": "D B E F C A",
+      "D": "D E B F C A"
+    },
+    "correct_answer": "D",
+    "explanation": "A splits the inorder sequence into D,B,E and F,C. The subtrees root at B and C, with F as C's left child; postorder finishes them before A."
+  },
+  {
+    "id": "2.4-022",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "Distinct labels have inorder 2,1,3 and postorder 2,3,1. What is the preorder of the uniquely reconstructed tree?",
+    "code_snippet": null,
+    "options": {
+      "A": "1 2 3",
+      "B": "2 3 1",
+      "C": "3 2 1",
+      "D": "2 1 3"
+    },
+    "correct_answer": "A",
+    "explanation": "The last postorder element 1 is root. Inorder puts 2 on its left and 3 on its right, so preorder is 1,2,3."
+  },
+  {
+    "id": "2.4-023",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "A tree has distinct labels and inorder C A B. Which listed preorder is incompatible with that inorder?",
+    "code_snippet": null,
+    "options": {
+      "A": "A C B",
+      "B": "A B C",
+      "C": "C A B",
+      "D": "B A C"
+    },
+    "correct_answer": "B",
+    "explanation": "If A is root, inorder requires C in its left subtree and B on its right. Preorder A,B,C incorrectly visits B before the required left-subtree node C."
+  },
+  {
+    "id": "2.4-024",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "Distinct labels have preorder A B and postorder B A. Without a full-tree restriction, how many ordered binary-tree shapes realize these traversals?",
+    "code_snippet": null,
+    "options": {
+      "A": "4",
+      "B": "0",
+      "C": "2",
+      "D": "1"
+    },
+    "correct_answer": "C",
+    "explanation": "B may be either the sole left child or the sole right child of A. Preorder and postorder cannot distinguish those unary orientations."
+  },
+  {
+    "id": "2.4-025",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "For arbitrary binary trees with distinct labels and no additional shape constraints, which traversal pair guarantees unique reconstruction?",
+    "code_snippet": null,
+    "options": {
+      "A": "Preorder and postorder",
+      "B": "Inorder alone, repeated twice",
+      "C": "Preorder and inorder",
+      "D": "Preorder alone, repeated twice"
+    },
+    "correct_answer": "C",
+    "explanation": "The preorder root partitions inorder into unique left/right label sets, and recursion repeats that argument. Preorder/postorder remain ambiguous for unary children."
+  },
+  {
+    "id": "2.4-026",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "For distinct labels with the following traversals, what is the preorder sequence of the root's right subtree?",
+    "code_snippet": "Inorder: A B C D E F G\nPreorder: D B A C F E G",
+    "options": {
+      "A": "B A C",
+      "B": "G F E",
+      "C": "E F G",
+      "D": "F E G"
+    },
+    "correct_answer": "D",
+    "explanation": "Root D splits inorder after A,B,C. The remaining three preorder entries belong to its right subtree, whose root is F."
+  },
+  {
+    "id": "2.4-027",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "A finite binary tree has 20 nodes, of which eight are leaves. How many nodes have exactly one child?",
+    "code_snippet": null,
+    "options": {
+      "A": "7",
+      "B": "4",
+      "C": "12",
+      "D": "5"
+    },
+    "correct_answer": "D",
+    "explanation": "N2=L-1=7. Subtracting the eight leaves and seven two-child nodes from twenty leaves five unary nodes."
+  },
+  {
+    "id": "2.4-028",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "For height exactly 4 edges, what is the maximum possible number of leaves in a binary tree?",
+    "code_snippet": null,
+    "options": {
+      "A": "16",
+      "B": "8",
+      "C": "31",
+      "D": "15"
+    },
+    "correct_answer": "A",
+    "explanation": "There can be at most 2^4 nodes at depth four. A perfect binary tree attains sixteen leaves, and no shallower leaf arrangement can exceed that count."
+  },
+  {
+    "id": "2.4-029",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "A complete binary tree has 10 nodes, filled by levels and left-to-right in the last level. What is the pair (height in edges, leaf count)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(4,5)",
+      "B": "(3,4)",
+      "C": "(3,5)",
+      "D": "(2,5)"
+    },
+    "correct_answer": "C",
+    "explanation": "The nodes occupy zero-based indices 0..9, giving floor(log2 10)=3 height. Nodes at indices 5..9 have no children, so five are leaves."
+  },
+  {
+    "id": "2.4-030",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "A perfect binary tree has height 4 edges. What is the pair (total nodes, leaves)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(31,16)",
+      "B": "(15,8)",
+      "C": "(31,15)",
+      "D": "(16,8)"
+    },
+    "correct_answer": "A",
+    "explanation": "Levels 0..4 contain 2^5-1=31 nodes, and the last level contains 2^4=16 leaves."
+  },
+  {
+    "id": "2.4-031",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "A finite nonempty binary tree has 17 nodes and four nodes with exactly one child. How many leaves does it contain?",
+    "code_snippet": null,
+    "options": {
+      "A": "7",
+      "B": "9",
+      "C": "8",
+      "D": "6"
+    },
+    "correct_answer": "A",
+    "explanation": "Using N0=N2+1 and N0+N1+N2=17 gives 2N0+4-1=17, hence N0=7."
+  },
+  {
+    "id": "2.4-032",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "Insert the keys below into a plain BST, then delete key 30 by replacing a one-child node with its child. Which key becomes the right child of node 20?",
+    "code_snippet": "BST insertion sequence: 40,20,60,10,30,50,70,25",
+    "options": {
+      "A": "30",
+      "B": "40",
+      "C": "10",
+      "D": "25"
+    },
+    "correct_answer": "D",
+    "explanation": "Before deletion, 30 is 20's right child and has only left child 25. Its parent link is redirected to 25."
+  },
+  {
+    "id": "2.4-033",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "Build a plain BST from the keys below. Delete root 40 by replacing its key with the inorder successor, then removing that successor node. What is the resulting preorder?",
+    "code_snippet": "BST insertion sequence: 40,20,60,10,30,50,70",
+    "options": {
+      "A": "30 20 10 60 50 70",
+      "B": "50 20 10 30 70 60",
+      "C": "60 20 10 30 50 70",
+      "D": "50 20 10 30 60 70"
+    },
+    "correct_answer": "D",
+    "explanation": "The successor is minimum key 50 in the right subtree. It replaces 40 at the root, and 60's left link becomes empty."
+  },
+  {
+    "id": "2.4-034",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "In the displayed BST, what is the inorder predecessor of 30?",
+    "code_snippet": "Root: 50\nNode: left,right (- means empty)\n50: 30,70\n30: 20,40\n20: -,25\n25: -,-\n40: -,-\n70: -,-",
+    "options": {
+      "A": "20",
+      "B": "40",
+      "C": "25",
+      "D": "50"
+    },
+    "correct_answer": "C",
+    "explanation": "A node with a left subtree has predecessor equal to that subtree's maximum. Following right from 20 reaches 25."
+  },
+  {
+    "id": "2.4-035",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "In a strict BST rooted at 20, the left child is 10 with children 5 and 15; the right child is 30. What is the lowest common ancestor of 5 and 15?",
+    "code_snippet": null,
+    "options": {
+      "A": "5",
+      "B": "15",
+      "C": "20",
+      "D": "10"
+    },
+    "correct_answer": "D",
+    "explanation": "Both keys first lie left of 20, then split around 10. Thus 10 is their lowest shared ancestor."
+  },
+  {
+    "id": "2.4-036",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "A BST contains exactly the distinct keys below. How many lie in the inclusive range [12,30]?",
+    "code_snippet": "Keys: 20,10,30,5,15,25,35",
+    "options": {
+      "A": "5",
+      "B": "3",
+      "C": "4",
+      "D": "2"
+    },
+    "correct_answer": "C",
+    "explanation": "The qualifying keys are 15,20,25,30. The upper endpoint is included, while 10 and 35 are outside the range."
+  },
+  {
+    "id": "2.4-037",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "Insert the distinct keys below into a BST. Using one-based ranks in increasing key order, what is the fourth-smallest key?",
+    "code_snippet": "BST insertion sequence: 8,3,10,1,6,14,4,7,13",
+    "options": {
+      "A": "8",
+      "B": "7",
+      "C": "6",
+      "D": "4"
+    },
+    "correct_answer": "C",
+    "explanation": "Inorder sorts the keys as 1,3,4,6,7,8,10,13,14. Rank four is 6; insertion order is not order-statistic rank."
+  },
+  {
+    "id": "2.4-038",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "The displayed tree passes comparisons with each node's immediate children, but is not a strict BST. Which node violates an ancestor bound?",
+    "code_snippet": "Root: 10\nNode: left,right (- means empty)\n10: 5,15\n5: -,-\n15: 6,20\n6: -,-\n20: -,-",
+    "options": {
+      "A": "6",
+      "B": "20",
+      "C": "15",
+      "D": "5"
+    },
+    "correct_answer": "A",
+    "explanation": "Node 6 is in root 10's right subtree and must exceed 10. Comparing it only with parent 15 misses the global lower bound."
+  },
+  {
+    "id": "2.4-039",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "How many structurally distinct BSTs store four fixed distinct keys?",
+    "code_snippet": null,
+    "options": {
+      "A": "16",
+      "B": "14",
+      "C": "24",
+      "D": "8"
+    },
+    "correct_answer": "B",
+    "explanation": "The Catalan recurrence gives C4=C0C3+C1C2+C2C1+C3C0=5+2+2+5=14."
+  },
+  {
+    "id": "2.4-040",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "A BST uses keys 1..5 and must have root 3. How many distinct BST structures satisfy that root constraint?",
+    "code_snippet": null,
+    "options": {
+      "A": "5",
+      "B": "10",
+      "C": "4",
+      "D": "14"
+    },
+    "correct_answer": "C",
+    "explanation": "The two smaller keys and two larger keys form independent subtrees. C2*C2=2*2=4 shapes result."
+  },
+  {
+    "id": "2.4-041",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "How many structurally distinct BSTs store keys 1..5, identifying insertion permutations that produce the same tree as one structure?",
+    "code_snippet": null,
+    "options": {
+      "A": "32",
+      "B": "42",
+      "C": "25",
+      "D": "120"
+    },
+    "correct_answer": "B",
+    "explanation": "The Catalan number C5 is 42. The 120 insertion permutations are not distinct trees because multiple permutations can yield the same structure."
+  },
+  {
+    "id": "2.4-042",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "What is the final preorder after the listed insertions? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 10,20,30,40,50",
+    "options": {
+      "A": "30 20 10 40 50",
+      "B": "20 10 40 30 50",
+      "C": "40 20 10 30 50",
+      "D": "20 10 30 40 50"
+    },
+    "correct_answer": "B",
+    "explanation": "Insertion of 30 rotates the initial chain; insertion of 50 later rotates the right subtree. The final root is 20, with right subtree rooted at 40."
+  },
+  {
+    "id": "2.4-043",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "What is the final preorder after the listed insertions? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 50,30,70,20,40,10",
+    "options": {
+      "A": "30 10 20 50 40 70",
+      "B": "30 20 10 50 40 70",
+      "C": "50 30 20 10 40 70",
+      "D": "40 30 20 10 50 70"
+    },
+    "correct_answer": "B",
+    "explanation": "The last key creates an LL imbalance at 50. A single right rotation promotes 30 and preserves key 40 as the new left child of 50."
+  },
+  {
+    "id": "2.4-044",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "What is the final preorder after the listed insertions? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 50,30,70,60,80,90",
+    "options": {
+      "A": "70 50 30 60 80 90",
+      "B": "80 70 50 30 60 90",
+      "C": "50 30 70 60 80 90",
+      "D": "70 30 50 60 80 90"
+    },
+    "correct_answer": "A",
+    "explanation": "The final insertion creates an RR imbalance at 50. One left rotation promotes 70 and moves subtree 60 to become 50's right child."
+  },
+  {
+    "id": "2.4-045",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "What is the final preorder after the listed insertions? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 40,20,60,10,30,25",
+    "options": {
+      "A": "30 20 10 25 40 60",
+      "B": "20 10 30 25 40 60",
+      "C": "40 20 10 30 25 60",
+      "D": "30 10 20 25 40 60"
+    },
+    "correct_answer": "A",
+    "explanation": "The imbalance is LR at 40. Rotating 20 left then 40 right makes 30 root, with 25 transferred into 20's right subtree."
+  },
+  {
+    "id": "2.4-046",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "What is the final preorder after the listed insertions? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 40,20,60,50,70,55",
+    "options": {
+      "A": "50 20 40 60 55 70",
+      "B": "50 40 20 60 55 70",
+      "C": "40 20 60 50 55 70",
+      "D": "60 40 20 50 55 70"
+    },
+    "correct_answer": "B",
+    "explanation": "The last key lies in the right child's left subtree, producing RL at 40. The rotations promote 50, with 55 becoming 60's left child."
+  },
+  {
+    "id": "2.4-047",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "How many primitive rotations occur over this entire insertion sequence? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 30,20,40,10,25,35,50,5",
+    "options": {
+      "A": "0",
+      "B": "3",
+      "C": "1",
+      "D": "2"
+    },
+    "correct_answer": "A",
+    "explanation": "Every node remains within a height difference of one. An increase in height does not itself require rotation unless a balance factor reaches magnitude two."
+  },
+  {
+    "id": "2.4-048",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Medium",
+    "question": "For the tree below, define empty height=-1, leaf height=0, and balance factor=left height minus right height. What are balance factors (node 30,node 20)?",
+    "code_snippet": "Root: 30\nNode: left,right (- means empty)\n30: 20,40\n20: 10,-\n40: -,-\n10: -,-",
+    "options": {
+      "A": "(1,0)",
+      "B": "(2,1)",
+      "C": "(1,1)",
+      "D": "(-1,-1)"
+    },
+    "correct_answer": "C",
+    "explanation": "20 has heights 0 and -1, giving +1. At 30, its left subtree height is 1 and right height 0, again +1."
+  },
+  {
+    "id": "2.4-049",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "The distinct-label tree is full: every internal node has exactly two children. What inorder follows from the given preorder/postorder?",
+    "code_snippet": "Preorder: A B D E C F G\nPostorder: D E B F G C A",
+    "options": {
+      "A": "D B E A F C G",
+      "B": "D E B A F G C",
+      "C": "D B E F A C G",
+      "D": "A B D E C F G"
+    },
+    "correct_answer": "A",
+    "explanation": "The full-tree requirement removes unary-child ambiguity. B contains D,E and C contains F,G, so their inorder sequences surround A as D,B,E,A,F,C,G."
+  },
+  {
+    "id": "2.4-050",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "Preorder values are A,A and inorder values are A,A. Node values need not be distinct, and left/right orientation matters. How many different two-node tree shapes are compatible?",
+    "code_snippet": null,
+    "options": {
+      "A": "2",
+      "B": "0",
+      "C": "4",
+      "D": "1"
+    },
+    "correct_answer": "A",
+    "explanation": "The second A may be the root's left or right child, giving identical value traversals. Distinct-label reconstruction guarantees do not apply to repeated values."
+  },
+  {
+    "id": "2.4-051",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "A BST contains fixed keys 1..5, and its root must be either 2 or 4. How many distinct structures are possible?",
+    "code_snippet": null,
+    "options": {
+      "A": "5",
+      "B": "20",
+      "C": "10",
+      "D": "14"
+    },
+    "correct_answer": "C",
+    "explanation": "Root 2 contributes C1*C3=5 structures, and root 4 contributes C3*C1=5. The two root cases are disjoint, totaling ten."
+  },
+  {
+    "id": "2.4-052",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "How many insertion permutations of keys 1..7 produce exactly the displayed plain BST? No rotations occur.",
+    "code_snippet": "Root: 4\nNode: left,right (- means empty)\n4: 2,6\n2: 1,3\n6: 5,7\n1: -,-\n3: -,-\n5: -,-\n7: -,-",
+    "options": {
+      "A": "5040",
+      "B": "80",
+      "C": "20",
+      "D": "40"
+    },
+    "correct_answer": "B",
+    "explanation": "Root 4 must come first. Interleave the three left and three right insertions in binomial(6,3)=20 ways. Each three-node subtree has two legal orders after its root, giving 20*2*2=80."
+  },
+  {
+    "id": "2.4-053",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "A binary tree with distinct labels has preorder 1,2,3,4,5 and postorder 5,4,3,2,1. No fullness constraint is given. How many ordered tree shapes realize these traversals?",
+    "code_snippet": null,
+    "options": {
+      "A": "1",
+      "B": "5",
+      "C": "16",
+      "D": "42"
+    },
+    "correct_answer": "C",
+    "explanation": "These opposite orders force a chain. Each of its four parent-child links may independently be left or right, so 2^4=16 shapes have those traversals."
+  },
+  {
+    "id": "2.4-054",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "An AVL tree uses edge height, with an empty subtree height -1. What is the minimum node count at height 5?",
+    "code_snippet": null,
+    "options": {
+      "A": "31",
+      "B": "12",
+      "C": "20",
+      "D": "32"
+    },
+    "correct_answer": "C",
+    "explanation": "Minimum AVL sizes obey N(h)=1+N(h-1)+N(h-2), with N(-1)=0,N(0)=1. The sequence through height 5 is 1,2,4,7,12,20."
+  },
+  {
+    "id": "2.4-055",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "An AVL tree has exactly 17 nodes and uses height in edges. What is its maximum possible height?",
+    "code_snippet": null,
+    "options": {
+      "A": "4",
+      "B": "3",
+      "C": "5",
+      "D": "8"
+    },
+    "correct_answer": "A",
+    "explanation": "Height 5 requires at least 20 nodes, while height 4 can be achieved with 17. The Fibonacci minimum-node bound rules out all larger heights."
+  },
+  {
+    "id": "2.4-056",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "Starting empty, insert keys 1 through 7 in increasing order. How many primitive rotations occur in total? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 1,2,3,4,5,6,7",
+    "options": {
+      "A": "2",
+      "B": "4",
+      "C": "6",
+      "D": "1"
+    },
+    "correct_answer": "B",
+    "explanation": "Left rotations occur at insertions 3,5,6,7, once each. The final tree is perfect with root 4; reaching a balanced final shape does not mean only one rotation occurred."
+  },
+  {
+    "id": "2.4-057",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "What is the final preorder after this insertion sequence? Use standard AVL insertion with distinct keys, rebalancing at the lowest unbalanced ancestor; a double rotation counts as two primitive rotations.",
+    "code_snippet": "AVL insertion sequence: 9,5,10,0,6,11,-1,1,2",
+    "options": {
+      "A": "9 5 1 0 -1 2 6 10 11",
+      "B": "9 1 0 -1 5 2 6 10 11",
+      "C": "9 0 -1 5 1 2 6 10 11",
+      "D": "5 1 0 -1 2 9 6 10 11"
+    },
+    "correct_answer": "B",
+    "explanation": "The final insertion causes an LR correction at node 5, not at the global root. It promotes 1 inside the left subtree, preserving root 9 and redistributing nodes 0,2,5,6."
+  },
+  {
+    "id": "2.4-058",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "Insert increasing keys 1..31 into two initially empty trees: a plain BST and a standard AVL tree. Height counts edges. What is the pair of final heights (plain BST,AVL)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(30,5)",
+      "B": "(30,4)",
+      "C": "(4,4)",
+      "D": "(31,5)"
+    },
+    "correct_answer": "B",
+    "explanation": "The plain BST is a 31-node chain with 30 edges. Standard AVL insertion on this increasing sequence yields the perfect five-level tree, height four."
+  },
+  {
+    "id": "2.4-059",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "Which sequence cannot be the preorder traversal of a strict BST with distinct keys?",
+    "code_snippet": null,
+    "options": {
+      "A": "50 30 20 25 40 35 45",
+      "B": "50 70 60 80",
+      "C": "50 30 20 40 70 60 80",
+      "D": "50 30 20 40 70 60 35 80"
+    },
+    "correct_answer": "D",
+    "explanation": "After preorder enters root 50's right subtree at 70, every later node in that subtree must exceed 50. The later 35 violates that inherited bound despite being less than its nearby ancestor 60."
+  },
+  {
+    "id": "2.4-060",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.4",
+    "subpart_name": "Trees & Binary Search Trees",
+    "difficulty": "Hard",
+    "question": "A full binary tree has exactly nine leaves and no one-child nodes. What is the pair (minimum possible height,maximum possible height), counting edges?",
+    "code_snippet": null,
+    "options": {
+      "A": "(4,9)",
+      "B": "(4,8)",
+      "C": "(4,16)",
+      "D": "(3,8)"
+    },
+    "correct_answer": "B",
+    "explanation": "At least ceil(log2 9)=4 edges are needed; splitting one leaf of an eight-leaf perfect tree attains four. A full comb with eight internal nodes attains height eight; each internal level must also supply a side leaf."
+  }
+]

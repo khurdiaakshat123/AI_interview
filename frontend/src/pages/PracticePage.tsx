@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { 
   Code2, Database, Search, Star, Filter, RotateCcw, 
   ChevronLeft, ChevronRight, Play, CloudUpload, CheckCircle2, 
   AlertCircle, Clock, BookOpen, Lightbulb, FileText, 
   Layers, ExternalLink, ArrowLeft, Maximize2, Minimize2, 
-  Sparkles, Check, Copy, HelpCircle, X, ChevronDown, ListFilter, Shuffle, Bug
+  Sparkles, Check, Copy, HelpCircle, X, ChevronDown, ListFilter, Shuffle, Bug, Brain
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { api } from '../services/api';
@@ -16,6 +16,7 @@ import {
 import { LCMarkdownViewer } from '../components/LCMarkdownViewer';
 import { LCTimer } from '../components/practice/LCTimer';
 import { LCAnalyticsCard } from '../components/practice/LCAnalyticsCard';
+import { MCQPracticeView } from '../components/mcq/MCQPracticeView';
 import Editor, { OnMount } from '@monaco-editor/react';
 
 interface PracticePageProps {
@@ -82,6 +83,9 @@ const DB_LANGUAGES = [
 export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, onNavigate }) => {
   const { problemSlug } = useParams<{ problemSlug?: string }>();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialMode = searchParams.get('tab') === 'mcq' || searchParams.get('mode') === 'mcq' ? 'mcq' : 'coding';
+  const [practiceTab, setPracticeTab] = useState<'coding' | 'mcq'>(initialMode);
 
   // Mode: Explorer (list) vs Solver (workspace)
   const [activeQuestionId, setActiveQuestionId] = useState<string | null>(problemSlug || initialQuestionId || null);
@@ -445,19 +449,53 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
             </div>
 
             <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={handlePickRandom}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover text-xs font-medium text-text transition-colors shadow-xs cursor-pointer"
-                title="Pick a random problem"
-              >
-                <Shuffle className="w-3.5 h-3.5 text-accent" />
-                <span>Pick Random</span>
-              </button>
+              {/* Segmented Switcher: Coding vs MCQ */}
+              <div className="flex items-center gap-1 p-1 bg-surface border border-border rounded-xl shadow-xs">
+                <button
+                  type="button"
+                  onClick={() => { setPracticeTab('coding'); setSearchParams({}); }}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                    practiceTab === 'coding'
+                      ? 'bg-accent text-accent-contrast shadow-xs font-semibold'
+                      : 'text-text-muted hover:text-text hover:bg-surface-hover'
+                  }`}
+                >
+                  <Code2 className="w-3.5 h-3.5" />
+                  <span>Coding Bank (3,269)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setPracticeTab('mcq'); setSearchParams({ tab: 'mcq' }); }}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                    practiceTab === 'mcq'
+                      ? 'bg-accent text-accent-contrast shadow-xs font-semibold'
+                      : 'text-text-muted hover:text-text hover:bg-surface-hover'
+                  }`}
+                >
+                  <Brain className="w-3.5 h-3.5" />
+                  <span>MCQ Bank (1,500)</span>
+                </button>
+              </div>
+
+              {practiceTab === 'coding' && (
+                <button
+                  type="button"
+                  onClick={handlePickRandom}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover text-xs font-medium text-text transition-colors shadow-xs cursor-pointer"
+                  title="Pick a random problem"
+                >
+                  <Shuffle className="w-3.5 h-3.5 text-accent" />
+                  <span>Pick Random</span>
+                </button>
+              )}
             </div>
           </div>
 
-          {/* Top Analytics Cards */}
+          {practiceTab === 'mcq' ? (
+            <MCQPracticeView />
+          ) : (
+            <>
+              {/* Top Analytics Cards */}
           <LCAnalyticsCard analytics={analytics} loading={loadingAnalytics} />
 
           {/* Category Tabs: All / DSA / Database */}
@@ -497,6 +535,14 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
               >
                 <Database className="w-3.5 h-3.5" />
                 <span>Database SQL (105)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { setPracticeTab('mcq'); setSearchParams({ tab: 'mcq' }); }}
+                className="px-3 py-1.5 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer bg-surface text-text-muted hover:text-text hover:bg-surface-hover border border-border"
+              >
+                <Brain className="w-3.5 h-3.5 text-accent" />
+                <span>MCQ Questions (1,500)</span>
               </button>
             </div>
 
@@ -811,6 +857,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
               </div>
             </div>
           </div>
+            </>
+          )}
         </div>
       </div>
     );

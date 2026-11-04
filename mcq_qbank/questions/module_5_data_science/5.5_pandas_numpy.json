@@ -1,0 +1,427 @@
+[
+  {
+    "id": "5.5-001",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Easy",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What scalar is printed by positional indexing?",
+    "code_snippet": "import pandas as pd\ndf = pd.DataFrame({\"v\": [5, 6, 7]}, index=[10, 20, 30])\nprint(df.iloc[1, 0])",
+    "options": {
+      "A": "20",
+      "B": "5",
+      "C": "6",
+      "D": "7"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: iloc uses zero-based positions, so row position 1 is the second row. Step 2: Column position 0 is v. Step 3: The selected scalar is 6; index label 20 does not change its position."
+  },
+  {
+    "id": "5.5-002",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Easy",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What scalar is printed by label indexing?",
+    "code_snippet": "import pandas as pd\ndf = pd.DataFrame({\"v\": [12, 24, 36]}, index=[10, 20, 30])\nprint(df.loc[20, \"v\"])",
+    "options": {
+      "A": "24",
+      "B": "36",
+      "C": "12",
+      "D": "20"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: loc interprets 20 as an index label, not the twenty-first row position. Step 2: That row has v=24, which is printed."
+  },
+  {
+    "id": "5.5-003",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Easy",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. How many rows remain after the default missing-row removal?",
+    "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({\"a\": [1, np.nan, 3]})\nprint(len(df.dropna()))",
+    "options": {
+      "A": "1",
+      "B": "0",
+      "C": "3",
+      "D": "2"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: The middle row contains a missing value. Step 2: Default dropna removes rows with any missing value. Step 3: The first and third rows survive, giving count 2."
+  },
+  {
+    "id": "5.5-004",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Easy",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What list is printed after filling missing entries?",
+    "code_snippet": "import pandas as pd\nimport numpy as np\ns = pd.Series([1, np.nan, 3])\nprint(s.fillna(0).astype(int).tolist())",
+    "options": {
+      "A": "[1, 0, 3]",
+      "B": "[0, 0, 0]",
+      "C": "[1, 3]",
+      "D": "[1, 1, 3]"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: fillna(0) replaces only the missing middle element, giving [1.0,0.0,3.0]. Step 2: astype(int) converts these to integers. Step 3: tolist produces [1,0,3] without dropping positions."
+  },
+  {
+    "id": "5.5-005",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Easy",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What list results from summing over axis 0?",
+    "code_snippet": "import numpy as np\na = np.array([[1, 2], [3, 4]])\nprint(a.sum(axis=0).tolist())",
+    "options": {
+      "A": "[4, 6]",
+      "B": "[3, 7]",
+      "C": "[[4, 6]]",
+      "D": "[10]"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: Reducing axis 0 combines rows while retaining the two columns. Step 2: Column sums are 1+3=4 and 2+4=6. Step 3: The result is a one-dimensional array, printed as [4,6]."
+  },
+  {
+    "id": "5.5-006",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Easy",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What scalar does the one-dimensional dot product print?",
+    "code_snippet": "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.dot(a, b))",
+    "options": {
+      "A": "21",
+      "B": "15",
+      "C": "[4, 10, 18]",
+      "D": "32"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Multiply corresponding entries: 1(4)=4,2(5)=10,3(6)=18. Step 2: A 1D dot product sums them: 4+10+18=32."
+  },
+  {
+    "id": "5.5-007",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Easy",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What ordered list of group sums is printed?",
+    "code_snippet": "import pandas as pd\ndf = pd.DataFrame({\"g\": [\"b\", \"a\", \"b\"], \"v\": [2, 3, 4]})\nprint(df.groupby(\"g\", sort=True)[\"v\"].sum().tolist())",
+    "options": {
+      "A": "[9]",
+      "B": "[2, 3, 4]",
+      "C": "[3, 6]",
+      "D": "[6, 3]"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Group a contains 3, while group b contains 2 and 4. Step 2: Their sums are 3 and 6. Step 3: sort=True orders group labels as a,b, so the printed values follow [3,6]."
+  },
+  {
+    "id": "5.5-008",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What list is printed by the inclusive label slice?",
+    "code_snippet": "import pandas as pd\ns = pd.Series([10, 20, 30, 40], index=[\"a\", \"b\", \"c\", \"d\"])\nprint(s.loc[\"b\":\"d\"].tolist())",
+    "options": {
+      "A": "[10, 20, 30]",
+      "B": "[20, 30, 40]",
+      "C": "[30, 40]",
+      "D": "[20, 30]"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: The monotone label slice starts at b and stops at d. Step 2: loc includes both existing endpoint labels. Step 3: The selected labels b,c,d contain [20,30,40]."
+  },
+  {
+    "id": "5.5-009",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What list is printed by the negative-step positional slice?",
+    "code_snippet": "import pandas as pd\ns = pd.Series([10, 20, 30, 40, 50], index=[9, 7, 5, 3, 1])\nprint(s.iloc[::-2].tolist())",
+    "options": {
+      "A": "[10, 30, 50]",
+      "B": "[40, 20]",
+      "C": "[50, 40, 30, 20, 10]",
+      "D": "[50, 30, 10]"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: iloc follows ordinary positional slicing, independent of index labels. Step 2: Starting from the final position and stepping by -2 selects positions 4,2,0. Step 3: Those values are [50,30,10]."
+  },
+  {
+    "id": "5.5-010",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What two lines compare label-aligned and positional boolean selection?",
+    "code_snippet": "import pandas as pd\ndf = pd.DataFrame({\"v\": [10, 20, 30]}, index=[\"a\", \"b\", \"c\"])\nmask = pd.Series([True, False, True], index=[\"c\", \"a\", \"b\"])\nprint(df.loc[mask, \"v\"].tolist())\nprint(df.iloc[mask.to_numpy(), 0].tolist())",
+    "options": {
+      "A": "[10, 30]\n[20, 30]",
+      "B": "[20, 30]\n[10, 30]",
+      "C": "[20, 30]\n[20, 30]",
+      "D": "[30, 20]\n[10, 30]"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: loc aligns the mask by labels: a=False,b=True,c=True, selecting [20,30] in dataframe order. Step 2: to_numpy removes the mask labels, leaving positional booleans [True,False,True]. Step 3: iloc therefore selects positions 0 and 2, yielding [10,30]."
+  },
+  {
+    "id": "5.5-011",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What nested list is printed by the named group aggregations?",
+    "code_snippet": "import pandas as pd\ndf = pd.DataFrame({\"g\": [\"a\", \"b\", \"a\"], \"v\": [2, 5, 6]})\nout = df.groupby(\"g\", sort=True).agg(total=(\"v\", \"sum\"), n=(\"v\", \"count\"))\nprint(out[[\"total\", \"n\"]].to_numpy().tolist())",
+    "options": {
+      "A": "[[8, 2], [5, 1]]",
+      "B": "[[2, 2], [5, 1], [6, 2]]",
+      "C": "[[4, 2], [5, 1]]",
+      "D": "[[5, 1], [8, 2]]"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: Group a has values 2 and 6, so sum=8 and nonmissing count=2. Step 2: Group b has sum=5,count=1. Step 3: Sorted group order a,b and explicit column order total,n give [[8,2],[5,1]]."
+  },
+  {
+    "id": "5.5-012",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What list is printed by transform rather than aggregation?",
+    "code_snippet": "import pandas as pd\ndf = pd.DataFrame({\"g\": [\"b\", \"a\", \"b\"], \"v\": [2, 10, 6]})\nprint(df.groupby(\"g\")[\"v\"].transform(\"mean\").tolist())",
+    "options": {
+      "A": "[4.0, 10.0]",
+      "B": "[2.0, 10.0, 6.0]",
+      "C": "[4.0, 10.0, 4.0]",
+      "D": "[10.0, 4.0]"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Group b has mean (2+6)/2=4 and group a has mean 10. Step 2: transform broadcasts each group's result back to its original rows. Step 3: Original row order b,a,b yields [4.0,10.0,4.0], retaining three positions."
+  },
+  {
+    "id": "5.5-013",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What nested list results from the inner merge and explicit sort?",
+    "code_snippet": "import pandas as pd\nleft = pd.DataFrame({\"k\": [1, 1, 2], \"v\": [\"a\", \"b\", \"c\"]})\nright = pd.DataFrame({\"k\": [1, 1, 3], \"w\": [10, 20, 30]})\nout = left.merge(right, on=\"k\", how=\"inner\").sort_values([\"v\", \"w\"])\nprint(out[[\"v\", \"w\"]].to_numpy().tolist())",
+    "options": {
+      "A": "[['a', 10], ['b', 20]]",
+      "B": "[['a', 10], ['b', 20], ['c', 30]]",
+      "C": "[['a', 10], ['a', 20], ['b', 10], ['b', 20]]",
+      "D": "[['a', 20], ['b', 10]]"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Key 1 appears twice on each side, so it creates 2*2=4 matches. Step 2: Keys 2 and 3 have no inner match. Step 3: Sorting by v,w orders all combinations as a/10,a/20,b/10,b/20; merge does not pair duplicate keys one-to-one."
+  },
+  {
+    "id": "5.5-014",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What index list and value list are printed after row concatenation?",
+    "code_snippet": "import pandas as pd\na = pd.DataFrame({\"v\": [1, 2]}, index=[0, 1])\nb = pd.DataFrame({\"v\": [3]}, index=[0])\nout = pd.concat([a, b], axis=0)\nprint(out.index.tolist())\nprint(out[\"v\"].tolist())",
+    "options": {
+      "A": "[0, 0, 1]\n[1, 3, 2]",
+      "B": "[0, 1, 0]\n[1, 2, 3]",
+      "C": "[0, 1, 2]\n[1, 2, 3]",
+      "D": "[0, 1]\n[3, 2]"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: axis=0 stacks rows in input order. Step 2: Without ignore_index=True, original labels remain, including duplicate label 0. Step 3: The index is [0,1,0] and the values are [1,2,3]."
+  },
+  {
+    "id": "5.5-015",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What nested list follows column concatenation with index alignment?",
+    "code_snippet": "import pandas as pd\na = pd.DataFrame({\"x\": [1, 2]}, index=[\"a\", \"b\"])\nb = pd.DataFrame({\"y\": [10, 20]}, index=[\"b\", \"c\"])\nout = pd.concat([a, b], axis=1).sort_index().fillna(0).astype(int)\nprint(out[[\"x\", \"y\"]].to_numpy().tolist())",
+    "options": {
+      "A": "[[1, 10], [2, 20]]",
+      "B": "[[2, 10]]",
+      "C": "[[1, 0], [2, 10], [0, 20]]",
+      "D": "[[1, 10], [2, 0], [0, 20]]"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: axis=1 aligns row labels on their union a,b,c. Step 2: The aligned rows are [1,missing],[2,10],[missing,20]. Step 3: Fill with zero and cast to integers to obtain [[1,0],[2,10],[0,20]]."
+  },
+  {
+    "id": "5.5-016",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What original row labels survive this all-missing subset rule?",
+    "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({\"a\": [1, np.nan, np.nan], \"b\": [np.nan, 2, np.nan]})\nprint(df.dropna(subset=[\"a\", \"b\"], how=\"all\").index.tolist())",
+    "options": {
+      "A": "[]",
+      "B": "[0, 1]",
+      "C": "[2]",
+      "D": "[0, 1, 2]"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Row 0 has a nonmissing a and row 1 has a nonmissing b. Step 2: Only row 2 is missing in both specified columns. Step 3: how=\"all\" removes row 2, preserving original labels [0,1]."
+  },
+  {
+    "id": "5.5-017",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What missing-count list is printed after a column-specific fill?",
+    "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({\"a\": [1, np.nan], \"b\": [np.nan, 4]})\nout = df.fillna({\"a\": 0})\nprint(out[[\"a\", \"b\"]].isna().sum().tolist())",
+    "options": {
+      "A": "[1, 1]",
+      "B": "[0, 0]",
+      "C": "[1, 0]",
+      "D": "[0, 1]"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: The mapping specifies replacement only for column a, so its missing value becomes 0. Step 2: Column b's missing entry is untouched. Step 3: Per-column missing counts are [0,1]."
+  },
+  {
+    "id": "5.5-018",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What nested list is printed by broadcasting a row vector?",
+    "code_snippet": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nb = np.array([10, 20, 30])\nprint((a + b).tolist())",
+    "options": {
+      "A": "[[11, 12, 13], [24, 25, 26]]",
+      "B": "[[11, 22, 33], [14, 25, 36]]",
+      "C": "[[10, 40, 90], [40, 100, 180]]",
+      "D": "[[11, 22, 33]]"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Shapes (2,3) and (3,) align on their trailing dimension 3. Step 2: Treat b as shape (1,3), repeated across the two rows. Step 3: Rowwise addition gives [11,22,33] and [14,25,36]."
+  },
+  {
+    "id": "5.5-019",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What nested list follows explicit column-vector expansion?",
+    "code_snippet": "import numpy as np\na = np.array([10, 20, 30])[:, None]\nb = np.array([1, 2])\nprint((a - b).tolist())",
+    "options": {
+      "A": "[[9, 19, 29], [8, 18, 28]]",
+      "B": "[[9, 18, 29]]",
+      "C": "[[9, 8], [19, 18], [29, 28]]",
+      "D": "[9, 18]"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: a has shape (3,1), while b has shape (2,), interpreted as (1,2). Step 2: Broadcasting produces shape (3,2). Step 3: Each row subtracts [1,2] from its scalar, giving [9,8],[19,18],[29,28]."
+  },
+  {
+    "id": "5.5-020",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Medium",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What two lines distinguish matrix dot product from elementwise multiplication?",
+    "code_snippet": "import numpy as np\na = np.array([[1, 2], [3, 4]])\nb = np.array([[2, 0], [1, 2]])\nprint(np.dot(a, b).tolist())\nprint((a * b).tolist())",
+    "options": {
+      "A": "[[2, 0], [3, 8]]\n[[4, 4], [10, 8]]",
+      "B": "[[2, 4], [6, 8]]\n[[2, 0], [3, 8]]",
+      "C": "[[4, 4], [10, 8]]\n[[4, 4], [10, 8]]",
+      "D": "[[4, 4], [10, 8]]\n[[2, 0], [3, 8]]"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Dot computes row-column products: entries are 1*2+2*1=4,1*0+2*2=4,3*2+4*1=10,3*0+4*2=8. Step 2: The * operator instead multiplies corresponding entries, giving [[2,0],[3,8]]."
+  },
+  {
+    "id": "5.5-021",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Hard",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What centered list results after groupwise missing-value imputation and the all-missing-group fallback?",
+    "code_snippet": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({\"g\": [\"b\", \"a\", \"b\", \"a\", \"c\"], \"v\": [2, np.nan, 6, 10, np.nan]})\nmeans = df.groupby(\"g\")[\"v\"].transform(\"mean\")\nfilled = df[\"v\"].fillna(means).fillna(0)\ncentered = filled - filled.groupby(df[\"g\"]).transform(\"mean\")\nprint(centered.tolist())",
+    "options": {
+      "A": "[0.0, 0.0, 0.0, 0.0, 0.0]",
+      "B": "[2.0, 10.0, 6.0, 10.0, 0.0]",
+      "C": "[-2.0, 0.0, 2.0, 0.0, 0.0]",
+      "D": "[-2.0, 0.0, 2.0, 0.0, -4.0]"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Nonmissing group means are b=4,a=10,c=missing. Step 2: Group filling and fallback produce [2,10,6,10,0]. Step 3: Recomputed group means are b=4,a=10,c=0. Step 4: Subtract the aligned mean in original row order to obtain [-2,0,2,0,0], represented as floats."
+  },
+  {
+    "id": "5.5-022",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Hard",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What total row count and null-key row count are printed by this pandas merge?",
+    "code_snippet": "import pandas as pd\nimport numpy as np\nleft = pd.DataFrame({\"k\": [1, np.nan, np.nan]})\nright = pd.DataFrame({\"k\": [np.nan, np.nan, 1]})\nout = left.merge(right, on=\"k\", how=\"inner\")\nprint(len(out), out[\"k\"].isna().sum())",
+    "options": {
+      "A": "1 0",
+      "B": "9 8",
+      "C": "3 2",
+      "D": "5 4"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: pandas merge matches null keys to null keys, unlike an ordinary SQL equality join. Step 2: Two null-key rows on each side produce 2*2=4 matched rows. Step 3: Key 1 adds one row, so total rows=5 and null-key rows=4."
+  },
+  {
+    "id": "5.5-023",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Hard",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What shape and reduced nested list are printed after three-dimensional broadcasting?",
+    "code_snippet": "import numpy as np\na = np.arange(6).reshape(2, 1, 3)\nb = np.arange(4).reshape(1, 4, 1)\nc = a + b\nprint(c.shape)\nprint(c.sum(axis=1).tolist())",
+    "options": {
+      "A": "(2, 4, 3)\n[[6, 7, 8], [9, 10, 11]]",
+      "B": "(2, 4, 3)\n[[6, 10, 14], [18, 22, 26]]",
+      "C": "(2, 4, 3)\n[[6, 6, 6], [6, 6, 6]]",
+      "D": "(2, 1, 3)\n[[0, 1, 2], [3, 4, 5]]"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Shapes (2,1,3) and (1,4,1) broadcast to (2,4,3). Step 2: Summing axis 1 adds four copies of each original a entry plus offsets 0+1+2+3=6. Step 3: For value a_ij, the sum is 4*a_ij+6, giving [[6,10,14],[18,22,26]]."
+  },
+  {
+    "id": "5.5-024",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Hard",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What shapes and selected scalar values distinguish high-dimensional dot from batched matrix multiplication?",
+    "code_snippet": "import numpy as np\na = np.arange(12).reshape(2, 2, 3)\nb = np.ones((2, 3, 4), dtype=int)\nd = np.dot(a, b)\nm = a @ b\nprint(d.shape, m.shape, int(d[1, 0, 0, 0]), int(m[1, 0, 0]))",
+    "options": {
+      "A": "(2, 2, 2, 4) (2, 2, 4) 21 21",
+      "B": "(2, 2, 2, 4) (2, 2, 2, 4) 21 21",
+      "C": "(2, 2, 4) (2, 2, 4) 21 21",
+      "D": "(2, 2, 2, 4) (2, 2, 4) 6 6"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: dot contracts a's final axis with b's second-last axis and retains both sets of leading axes, producing (2,2,2,4). Step 2: @ broadcasts/matches the leading batch axes, producing (2,2,4). Step 3: The selected a row is [6,7,8], dotted with ones, so both selected values equal 21."
+  },
+  {
+    "id": "5.5-025",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.5",
+    "subpart_name": "Data Wrangling with Python (Pandas & NumPy)",
+    "difficulty": "Hard",
+    "question": "Python 3 with pandas 2.3.x and NumPy 2.2.x. What two lists are printed after label-aligned assignment followed by positional assignment?",
+    "code_snippet": "import pandas as pd\ndf = pd.DataFrame({\"v\": [1, 2, 3]}, index=[\"a\", \"b\", \"c\"])\ndf.loc[[\"c\", \"a\"], \"v\"] = pd.Series([100, 200], index=[\"a\", \"c\"])\nprint(df[\"v\"].tolist())\ndf.iloc[[2, 0], 0] = [7, 9]\nprint(df[\"v\"].tolist())",
+    "options": {
+      "A": "[100, 2, 200]\n[9, 2, 7]",
+      "B": "[200, 2, 100]\n[9, 2, 7]",
+      "C": "[100, 2, 200]\n[7, 2, 9]",
+      "D": "[200, 2, 100]\n[7, 2, 9]"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: The Series assigned through loc aligns by labels, so a receives 100 and c receives 200 despite the requested row order c,a. Step 2: The first print in dataframe order a,b,c is [100,2,200]. Step 3: iloc then assigns list values by positions: c receives 7 and a receives 9, giving [9,2,7]."
+  }
+]

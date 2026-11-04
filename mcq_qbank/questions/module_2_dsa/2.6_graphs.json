@@ -1,0 +1,767 @@
+[
+  {
+    "id": "2.6-001",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "An adjacency matrix represents a graph with 100 vertices using one entry per ordered vertex pair, including diagonal positions. How many entries are allocated?",
+    "code_snippet": null,
+    "options": {
+      "A": "9900",
+      "B": "100",
+      "C": "10000",
+      "D": "200"
+    },
+    "correct_answer": "C",
+    "explanation": "The square matrix has 100 rows and 100 columns, regardless of how many edges are present."
+  },
+  {
+    "id": "2.6-002",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "A simple undirected graph has 20 vertices and 30 edges. Its adjacency lists store each edge once at each endpoint. How many neighbor entries are stored in total?",
+    "code_snippet": null,
+    "options": {
+      "A": "40",
+      "B": "600",
+      "C": "60",
+      "D": "30"
+    },
+    "correct_answer": "C",
+    "explanation": "Each undirected edge contributes two neighbor entries. Vertex-list headers are separate from the requested neighbor-entry count."
+  },
+  {
+    "id": "2.6-003",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "Compare testing for directed edge (u,v) using an adjacency matrix versus a plain unsorted adjacency list for u. No auxiliary hash index is stored. What are tight worst-case costs, expressed using degree deg(u)?",
+    "code_snippet": null,
+    "options": {
+      "A": "Matrix Theta(V^2); list Theta(V^2)",
+      "B": "Matrix Theta(1); list Theta(log(1+deg(u)))",
+      "C": "Matrix Theta(V); list Theta(1)",
+      "D": "Matrix Theta(1); list Theta(1+deg(u))"
+    },
+    "correct_answer": "D",
+    "explanation": "The matrix directly indexes one cell. The unsorted list may require scanning all of u's neighbors, with constant overhead even for an empty list."
+  },
+  {
+    "id": "2.6-004",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "All edges of an unweighted graph represent one hop. Which standard traversal guarantees minimum-hop distances from a chosen source?",
+    "code_snippet": null,
+    "options": {
+      "A": "Ordinary DFS discovery depth",
+      "B": "Kruskal without a source",
+      "C": "BFS",
+      "D": "Prim without considering edge weights"
+    },
+    "correct_answer": "C",
+    "explanation": "BFS expands vertices by increasing hop distance. DFS depth depends on traversal choices, and MST algorithms solve a different optimization problem."
+  },
+  {
+    "id": "2.6-005",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "g={\"A\":[\"B\",\"C\"],\"B\":[\"D\"],\"C\":[\"D\"],\"D\":[]}\nseen=set()\nout=[]\ndef dfs(v):\n    seen.add(v)\n    out.append(v)\n    for u in g[v]:\n        if u not in seen:\n            dfs(u)\ndfs(\"A\")\nprint(\" \".join(out))",
+    "options": {
+      "A": "A B D C",
+      "B": "A C D B",
+      "C": "D B C A",
+      "D": "A B C D"
+    },
+    "correct_answer": "A",
+    "explanation": "DFS finishes the B-to-D branch before returning to visit C. D is already discovered when C later encounters it."
+  },
+  {
+    "id": "2.6-006",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "from collections import deque\ng={\"A\":[\"B\",\"C\"],\"B\":[\"D\"],\"C\":[\"D\"],\"D\":[]}\nq=deque([\"A\"])\nseen={\"A\"}\nout=[]\nwhile q:\n    v=q.popleft()\n    out.append(v)\n    for u in g[v]:\n        if u not in seen:\n            seen.add(u)\n            q.append(u)\nprint(\" \".join(out))",
+    "options": {
+      "A": "A C B D",
+      "B": "A B C D",
+      "C": "A B D C",
+      "D": "A B C D D"
+    },
+    "correct_answer": "B",
+    "explanation": "FIFO expands A's neighbors B,C before D. Marking on enqueue prevents D from being queued twice through its two incoming paths."
+  },
+  {
+    "id": "2.6-007",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "For a valid topological ordering of a directed graph, what must hold for every directed edge u->v?",
+    "code_snippet": null,
+    "options": {
+      "A": "u and v must be adjacent in the order",
+      "B": "u appears before v",
+      "C": "u must have lower numeric label than v",
+      "D": "v appears before u"
+    },
+    "correct_answer": "B",
+    "explanation": "Topological order respects every dependency edge; adjacency and numeric label ordering are not required."
+  },
+  {
+    "id": "2.6-008",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "A directed graph contains a directed cycle. What follows about topological ordering of all its vertices?",
+    "code_snippet": null,
+    "options": {
+      "A": "No topological ordering exists",
+      "B": "BFS order is always a topological ordering",
+      "C": "Reversing DFS discovery order always repairs the cycle",
+      "D": "Exactly one ordering exists"
+    },
+    "correct_answer": "A",
+    "explanation": "A cycle would require each member to precede the next and eventually itself, making a complete topological order impossible."
+  },
+  {
+    "id": "2.6-009",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "Which condition is a standard sufficient guarantee for correctness of the settle-once form of Dijkstra's single-source algorithm?",
+    "code_snippet": null,
+    "options": {
+      "A": "The graph has no negative cycle, even if reachable negative edges exist",
+      "B": "Every vertex has at most one outgoing edge, regardless of weights",
+      "C": "All edge weights are distinct, regardless of sign",
+      "D": "All edges reachable from the source have nonnegative weights"
+    },
+    "correct_answer": "D",
+    "explanation": "Nonnegative reachable edges make the smallest tentative distance safe to finalize. Absence of negative cycles alone does not ensure Dijkstra's greedy finalization is valid."
+  },
+  {
+    "id": "2.6-010",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "Bellman-Ford performs complete relaxation passes from one source. If there is no reachable negative-weight cycle, how many passes suffice in the worst case for V vertices?",
+    "code_snippet": null,
+    "options": {
+      "A": "V^2",
+      "B": "E-1",
+      "C": "V-1",
+      "D": "1"
+    },
+    "correct_answer": "C",
+    "explanation": "Any shortest path can be chosen with at most V-1 edges. Each pass guarantees correctness for paths with at least one more edge, although some edge orders converge earlier."
+  },
+  {
+    "id": "2.6-011",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "Floyd-Warshall updates a V-by-V distance matrix in place over all intermediate vertices. Including that matrix, what are the standard time and storage bounds?",
+    "code_snippet": null,
+    "options": {
+      "A": "Time Theta(V^2), storage Theta(V)",
+      "B": "Time Theta(VE), storage Theta(E)",
+      "C": "Time Theta(V log V), storage Theta(V^3)",
+      "D": "Time Theta(V^3), storage Theta(V^2)"
+    },
+    "correct_answer": "D",
+    "explanation": "The three nested vertex loops perform cubic work and retain one quadratic matrix. This storage statement includes the required distance matrix rather than asking only for extra scalar workspace."
+  },
+  {
+    "id": "2.6-012",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "A connected undirected graph has seven vertices. How many edges does any minimum spanning tree contain?",
+    "code_snippet": null,
+    "options": {
+      "A": "21",
+      "B": "6",
+      "C": "7",
+      "D": "5"
+    },
+    "correct_answer": "B",
+    "explanation": "Every spanning tree on V vertices has V-1 edges, independent of its edge weights."
+  },
+  {
+    "id": "2.6-013",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Easy",
+    "question": "Kruskal examines an edge whose endpoints already have the same DSU representative. Why must that edge be rejected from the growing forest?",
+    "code_snippet": null,
+    "options": {
+      "A": "It can never belong to the original graph",
+      "B": "It must have a negative weight",
+      "C": "It would create a cycle in that forest",
+      "D": "It proves the graph is disconnected"
+    },
+    "correct_answer": "C",
+    "explanation": "DSU equality means a path already connects the endpoints using accepted edges. Adding another connecting edge closes a cycle."
+  },
+  {
+    "id": "2.6-014",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "from collections import deque\ng={\"A\":[\"B\",\"C\"],\"B\":[\"A\",\"D\"],\"C\":[\"A\",\"E\"],\"D\":[\"B\",\"F\"],\"E\":[\"C\",\"F\"],\"F\":[\"D\",\"E\"]}\nd={\"A\":0}\nq=deque([\"A\"])\nwhile q:\n    v=q.popleft()\n    for u in g[v]:\n        if u not in d:\n            d[u]=d[v]+1\n            q.append(u)\nprint(d[\"F\"])",
+    "options": {
+      "A": "4",
+      "B": "2",
+      "C": "5",
+      "D": "3"
+    },
+    "correct_answer": "D",
+    "explanation": "The first routes to F contain three edges, through either A-B-D-F or A-C-E-F. BFS records that distance once on discovery."
+  },
+  {
+    "id": "2.6-015",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "from collections import deque\ng={\"A\":[\"B\",\"C\"],\"B\":[\"D\",\"E\"],\"C\":[\"F\"],\"D\":[],\"E\":[],\"F\":[]}\nq=deque([\"A\"])\nseen={\"A\"}\nfor _ in range(2):\n    v=q.popleft()\n    for u in g[v]:\n        if u not in seen:\n            seen.add(u)\n            q.append(u)\nprint(list(q))",
+    "options": {
+      "A": "['C', 'F', 'D', 'E']",
+      "B": "['D', 'E', 'C']",
+      "C": "['B', 'C']",
+      "D": "['C', 'D', 'E']"
+    },
+    "correct_answer": "D",
+    "explanation": "The two processed vertices are A and B. C was already queued, so B's newly discovered D,E are appended behind it."
+  },
+  {
+    "id": "2.6-016",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "g={\"A\":[\"B\",\"C\"],\"B\":[\"D\"],\"C\":[\"D\"],\"D\":[]}\nseen=set()\nfinished=[]\ndef dfs(v):\n    seen.add(v)\n    for u in g[v]:\n        if u not in seen:\n            dfs(u)\n    finished.append(v)\ndfs(\"A\")\nprint(\" \".join(finished))",
+    "options": {
+      "A": "A B D C",
+      "B": "D B C A",
+      "C": "B D C A",
+      "D": "D C B A"
+    },
+    "correct_answer": "B",
+    "explanation": "D finishes before B; C later sees D already visited and finishes next. A finishes last after both branches. Finishing order differs from discovery order."
+  },
+  {
+    "id": "2.6-017",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "g={1:[2],2:[1],3:[4],4:[3],5:[]}\nseen=set()\ndef dfs(v):\n    seen.add(v)\n    for u in g[v]:\n        if u not in seen:\n            dfs(u)\nroots=0\nfor v in sorted(g):\n    if v not in seen:\n        roots+=1\n        dfs(v)\nprint(roots)",
+    "options": {
+      "A": "2",
+      "B": "5",
+      "C": "3",
+      "D": "4"
+    },
+    "correct_answer": "C",
+    "explanation": "The DFS forest has components {1,2}, {3,4}, and isolated {5}. Every unvisited starting vertex begins one new component traversal."
+  },
+  {
+    "id": "2.6-018",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "a=[[0,1,1],[0,0,1],[1,0,0]]\nprint([sum(a[u][v] for u in range(3)) for v in range(3)])",
+    "options": {
+      "A": "[1, 2, 1]",
+      "B": "[2, 1, 1]",
+      "C": "[1, 1, 2]",
+      "D": "[2, 2, 2]"
+    },
+    "correct_answer": "C",
+    "explanation": "For a directed adjacency matrix with rows as sources, column sums are indegrees. Row sums would instead be outdegrees."
+  },
+  {
+    "id": "2.6-019",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "A simple undirected complete graph has six vertices. What is the pair (edge count,total adjacency-list neighbor entries)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(36,72)",
+      "B": "(15,30)",
+      "C": "(15,15)",
+      "D": "(30,30)"
+    },
+    "correct_answer": "B",
+    "explanation": "There are binomial(6,2)=15 edges and each is stored twice in endpoint adjacency lists."
+  },
+  {
+    "id": "2.6-020",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "For an asymptotic family of graphs with V vertices and E=3V edges, compare adjacency-list storage with an ordinary full adjacency matrix. Ignore constant-size weights per entry. Which tight pair is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "Both Theta(V^2)",
+      "B": "Both Theta(V)",
+      "C": "List Theta(V^2), matrix Theta(V)",
+      "D": "List Theta(V), matrix Theta(V^2)"
+    },
+    "correct_answer": "D",
+    "explanation": "Lists take Theta(V+E)=Theta(V) for this sparse family. A full matrix allocates V^2 cells regardless of sparsity."
+  },
+  {
+    "id": "2.6-021",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "import heapq\ng={1:[3],2:[3,4],3:[5],4:[5],5:[]}\ndegree={v:0 for v in g}\nfor neighbors in g.values():\n    for u in neighbors:\n        degree[u]+=1\nh=[v for v in g if degree[v]==0]\nheapq.heapify(h)\nout=[]\nwhile h:\n    v=heapq.heappop(h)\n    out.append(v)\n    for u in g[v]:\n        degree[u]-=1\n        if degree[u]==0:\n            heapq.heappush(h,u)\nprint(out)",
+    "options": {
+      "A": "[1, 3, 2, 4, 5]",
+      "B": "[1, 2, 3, 4, 5]",
+      "C": "[2, 1, 4, 3, 5]",
+      "D": "[1, 2, 5, 3, 4]"
+    },
+    "correct_answer": "B",
+    "explanation": "Kahn's algorithm chooses the smallest available zero-indegree label using a min-heap. After 1,2 are removed, both 3,4 are ready and 3 is chosen first."
+  },
+  {
+    "id": "2.6-022",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "A directed graph has vertices 1,2,3 and only edges 1->3 and 2->3. How many topological orders exist?",
+    "code_snippet": null,
+    "options": {
+      "A": "6",
+      "B": "3",
+      "C": "2",
+      "D": "1"
+    },
+    "correct_answer": "C",
+    "explanation": "3 must follow both other vertices, but 1 and 2 can occur in either order."
+  },
+  {
+    "id": "2.6-023",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "A DAG has edges A->B,A->C,B->D,C->D. What does Kahn's algorithm reveal about uniqueness of its topological order?",
+    "code_snippet": null,
+    "options": {
+      "A": "It is unique because A is the only initial zero-indegree vertex",
+      "B": "It is not unique: B and C are simultaneously available after A",
+      "C": "It is unique because the graph has no directed cycle",
+      "D": "No topological order exists because D has indegree two"
+    },
+    "correct_answer": "B",
+    "explanation": "The two orders A,B,C,D and A,C,B,D both satisfy all edges. Uniqueness requires one available choice at every step, not merely at the start."
+  },
+  {
+    "id": "2.6-024",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "g={\"A\":[\"B\"],\"B\":[\"C\"],\"C\":[\"A\"]}\ncolor={v:0 for v in g}\ndef cycle(v):\n    color[v]=1\n    for u in g[v]:\n        if color[u]==1 or (color[u]==0 and cycle(u)):\n            return True\n    color[v]=2\n    return False\nprint(cycle(\"A\"))",
+    "options": {
+      "A": "False",
+      "B": "Compilation error",
+      "C": "True",
+      "D": "None"
+    },
+    "correct_answer": "C",
+    "explanation": "An edge to a gray vertex still on the recursion path is a directed back edge. C->A reaches gray A and identifies the cycle."
+  },
+  {
+    "id": "2.6-025",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "import heapq,math\ng={\"S\":[(\"A\",5),(\"B\",2)],\"B\":[(\"A\",1),(\"T\",8)],\"A\":[(\"T\",2)],\"T\":[]}\nd={v:math.inf for v in g}\nd[\"S\"]=0\nh=[(0,\"S\")]\nwhile h:\n    cost,v=heapq.heappop(h)\n    if cost!=d[v]:\n        continue\n    for u,w in g[v]:\n        if cost+w<d[u]:\n            d[u]=cost+w\n            heapq.heappush(h,(d[u],u))\nprint(d[\"A\"],d[\"T\"])",
+    "options": {
+      "A": "3 5",
+      "B": "3 10",
+      "C": "5 5",
+      "D": "5 7"
+    },
+    "correct_answer": "A",
+    "explanation": "S-B-A improves A from 5 to 3, and A-T gives T cost 5. The direct B-T candidate costs 10 and is superseded."
+  },
+  {
+    "id": "2.6-026",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "import heapq,math\ng={\"S\":[(\"A\",10),(\"B\",1)],\"B\":[(\"A\",1)],\"A\":[]}\nd={v:math.inf for v in g}\nd[\"S\"]=0\nh=[(0,\"S\")]\nout=[]\nwhile h:\n    cost,v=heapq.heappop(h)\n    if cost!=d[v]:\n        continue\n    out.append(v)\n    for u,w in g[v]:\n        if cost+w<d[u]:\n            d[u]=cost+w\n            heapq.heappush(h,(d[u],u))\nprint(\" \".join(out))",
+    "options": {
+      "A": "S A B",
+      "B": "S B A",
+      "C": "S A B A",
+      "D": "S B A A"
+    },
+    "correct_answer": "B",
+    "explanation": "The queue retains an obsolete A=10 entry after A improves to 2. The stale-entry check suppresses it, so only the valid S,B,A expansions are printed."
+  },
+  {
+    "id": "2.6-027",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "A directed graph has S->A weight 0, A->T weight 2, and S->T weight 5. Which shortest-path statement is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "Dijkstra is valid here and finds distance 2 from S to T",
+      "B": "The zero edge creates a negative cycle",
+      "C": "The shortest distance is 5 because zero-weight edges are ignored",
+      "D": "Dijkstra requires strictly positive edges and cannot handle this zero edge"
+    },
+    "correct_answer": "A",
+    "explanation": "Zero is nonnegative, so it does not invalidate Dijkstra. The path S-A-T costs 0+2=2."
+  },
+  {
+    "id": "2.6-028",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "import math\nedges=[(\"B\",\"C\",1),(\"A\",\"B\",1),(\"S\",\"A\",1)]\nd={\"S\":0,\"A\":math.inf,\"B\":math.inf,\"C\":math.inf}\nfor _ in range(2):\n    for u,v,w in edges:\n        if d[u]!=math.inf and d[u]+w<d[v]:\n            d[v]=d[u]+w\nprint(d[\"B\"],d[\"C\"])",
+    "options": {
+      "A": "1 2",
+      "B": "inf inf",
+      "C": "2 inf",
+      "D": "2 3"
+    },
+    "correct_answer": "C",
+    "explanation": "The reverse edge order propagates the source distance only one edge per pass. A becomes 1 in pass one and B becomes 2 in pass two; C waits for pass three."
+  },
+  {
+    "id": "2.6-029",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Bellman-Ford starts at S in the directed graph below. What does an additional relaxation test after V-1 passes establish?",
+    "code_snippet": "Edges: S->A(1), A->B(-2), B->A(1)",
+    "options": {
+      "A": "Every vertex has a finite shortest-path distance",
+      "B": "Only an unreachable negative cycle exists",
+      "C": "There is no negative cycle because S has no incoming edge",
+      "D": "A negative cycle reachable from S exists"
+    },
+    "correct_answer": "D",
+    "explanation": "A-B-A costs -1 and is reachable through S->A. Its repeated improvement remains detectable after the normal path-length passes."
+  },
+  {
+    "id": "2.6-030",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "import math\nd=[[0,3,10],[math.inf,0,4],[math.inf,math.inf,0]]\nk=1\nfor i in range(3):\n    for j in range(3):\n        d[i][j]=min(d[i][j],d[i][k]+d[k][j])\nprint(d[0][2])",
+    "options": {
+      "A": "3",
+      "B": "10",
+      "C": "4",
+      "D": "7"
+    },
+    "correct_answer": "D",
+    "explanation": "Allowing vertex 1 as an intermediate improves 0->2 to 0->1->2 with cost 3+4=7."
+  },
+  {
+    "id": "2.6-031",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "import math\nd=[[0,4,5],[math.inf,0,-2],[math.inf,math.inf,0]]\nfor k in range(3):\n    for i in range(3):\n        for j in range(3):\n            d[i][j]=min(d[i][j],d[i][k]+d[k][j])\nprint(d[0][2])",
+    "options": {
+      "A": "2",
+      "B": "The graph has a negative cycle",
+      "C": "5",
+      "D": "-2"
+    },
+    "correct_answer": "A",
+    "explanation": "Floyd-Warshall can use the negative edge without a negative cycle. The path 0->1->2 improves cost 5 to 4-2=2."
+  },
+  {
+    "id": "2.6-032",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Prim starts at A in the connected undirected graph below. What is its MST total weight?",
+    "code_snippet": "Edges: A-B(1), A-C(4), B-C(2), B-D(5), C-D(3)",
+    "options": {
+      "A": "6",
+      "B": "7",
+      "C": "9",
+      "D": "8"
+    },
+    "correct_answer": "A",
+    "explanation": "The lightest crossing choices are A-B=1, B-C=2, C-D=3. These connect all four vertices with total 6."
+  },
+  {
+    "id": "2.6-033",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "edges=[(1,\"A\",\"B\"),(2,\"B\",\"C\"),(3,\"A\",\"C\"),(4,\"C\",\"D\"),(5,\"B\",\"D\")]\np={v:v for v in \"ABCD\"}\ndef find(x):\n    while p[x]!=x:\n        x=p[x]\n    return x\nchosen=[]\ntotal=0\nfor w,a,b in sorted(edges):\n    x,y=find(a),find(b)\n    if x!=y:\n        p[x]=y\n        chosen.append(a+b)\n        total+=w\nprint(total,\" \".join(chosen))",
+    "options": {
+      "A": "7 AB BC CD",
+      "B": "10 AB CD BD",
+      "C": "7 AB AC CD",
+      "D": "6 AB BC AC"
+    },
+    "correct_answer": "A",
+    "explanation": "A-C is rejected because A and C are already connected through B. The accepted edges have weights 1,2,4, totaling 7."
+  },
+  {
+    "id": "2.6-034",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "p={x:x for x in range(1,6)}\ndef find(x):\n    if p[x]!=x:\n        p[x]=find(p[x])\n    return p[x]\ndef union(a,b):\n    a,b=find(a),find(b)\n    if a!=b:\n        p[a]=b\nunion(1,2)\nunion(2,3)\nunion(4,5)\nprint(find(1)==find(3),find(1)==find(4))",
+    "options": {
+      "A": "True False",
+      "B": "False True",
+      "C": "False False",
+      "D": "True True"
+    },
+    "correct_answer": "A",
+    "explanation": "The unions create components {1,2,3} and {4,5}. Path compression changes internal parent links, not the represented connectivity."
+  },
+  {
+    "id": "2.6-035",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "A connected undirected graph has cut {A,B} versus {C,D}. Its crossing edges are B-C weight 2, A-C weight 5, and B-D weight 7. What must hold for edge B-C?",
+    "code_snippet": null,
+    "options": {
+      "A": "It is mandatory only if weight 2 is the minimum weight anywhere in the graph",
+      "B": "It belongs to every MST",
+      "C": "It belongs to no MST",
+      "D": "It belongs to some but not all MSTs"
+    },
+    "correct_answer": "B",
+    "explanation": "B-C is the unique lightest edge across this cut. The cut exchange property forces it into every MST, regardless of smaller edges internal to either side."
+  },
+  {
+    "id": "2.6-036",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Medium",
+    "question": "A connected undirected triangle has edge weights A-B=-3, B-C=1, A-C=2. What is the minimum spanning-tree total?",
+    "code_snippet": null,
+    "options": {
+      "A": "-2",
+      "B": "0",
+      "C": "No MST exists because an edge is negative",
+      "D": "3"
+    },
+    "correct_answer": "A",
+    "explanation": "MST algorithms allow negative weights. Selecting A-B and B-C spans the vertices with cost -3+1=-2; no cycle is included in a spanning tree."
+  },
+  {
+    "id": "2.6-037",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Hard",
+    "question": "Python 3. What is printed? Adjacency entries are processed in their displayed list order; vertices are marked when discovered unless the code explicitly does otherwise.",
+    "code_snippet": "import heapq,math\ng={\"S\":[(\"A\",2),(\"B\",5)],\"A\":[(\"T\",2)],\"B\":[(\"A\",-4),(\"T\",10)],\"T\":[]}\nd={v:math.inf for v in g}\nd[\"S\"]=0\nh=[(0,\"S\")]\ndone=set()\nwhile h:\n    cost,v=heapq.heappop(h)\n    if v in done:\n        continue\n    done.add(v)\n    for u,w in g[v]:\n        if u not in done and cost+w<d[u]:\n            d[u]=cost+w\n            heapq.heappush(h,(d[u],u))\nb={v:math.inf for v in g}\nb[\"S\"]=0\nfor _ in range(len(g)-1):\n    for v in g:\n        for u,w in g[v]:\n            if b[v]+w<b[u]:\n                b[u]=b[v]+w\nprint(d[\"T\"],b[\"T\"])",
+    "options": {
+      "A": "3 3",
+      "B": "4 3",
+      "C": "4 4",
+      "D": "7 3"
+    },
+    "correct_answer": "B",
+    "explanation": "Settle-once Dijkstra finalizes A=2 and T=4 before B=5 can expose the negative edge. The true route S-B-A-T costs 5-4+2=3, which Bellman-Ford finds. There is no negative cycle; that alone does not rescue Dijkstra."
+  },
+  {
+    "id": "2.6-038",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Hard",
+    "question": "A directed graph contains S->A(2), A->B(1), X->Y(-2), and Y->X(1), with no other edges. Bellman-Ford initializes only S to zero and others to infinity. Compare its reachable-negative-cycle test with an all-pairs Floyd-Warshall negative-diagonal test.",
+    "code_snippet": null,
+    "options": {
+      "A": "Bellman-Ford must report X-Y as reachable from S",
+      "B": "Both tests report a source-reachable negative cycle",
+      "C": "Neither can detect any negative cycle",
+      "D": "Bellman-Ford from S finds no reachable negative cycle; Floyd-Warshall detects a negative diagonal"
+    },
+    "correct_answer": "D",
+    "explanation": "The negative X-Y-X cycle is disconnected from S, so it cannot relax source-infinite distances. An all-pairs computation still exposes it through a negative distance from X or Y back to itself."
+  },
+  {
+    "id": "2.6-039",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Hard",
+    "question": "Shortest-walk distances allow repeated edges. In the directed graph below, which listed source-target pair has no finite minimum because a reachable negative cycle can also reach the target?",
+    "code_snippet": "Edges: E->A(4), A->B(1), B->C(-3), C->B(1), C->D(2)",
+    "options": {
+      "A": "(A,A)",
+      "B": "(D,D)",
+      "C": "(E,A)",
+      "D": "(E,D)"
+    },
+    "correct_answer": "D",
+    "explanation": "The B-C cycle costs -2. E can reach it, and it can reach D, so E-to-D costs are unbounded below. It has no path back to A, and D cannot return to the cycle, leaving the other listed pairs finite."
+  },
+  {
+    "id": "2.6-040",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Hard",
+    "question": "How many topological orders exist for vertices A,B,C,D,E and exactly these directed edges?",
+    "code_snippet": "A->D\nB->D\nB->E\nC->E",
+    "options": {
+      "A": "20",
+      "B": "16",
+      "C": "12",
+      "D": "24"
+    },
+    "correct_answer": "B",
+    "explanation": "Both D and E depend on pairs among A,B,C, but neither depends on the other. Enumerating eligible-zero-indegree choices gives 16 linear extensions; simply permuting the initial three vertices misses interleavings where D or E becomes ready earlier."
+  },
+  {
+    "id": "2.6-041",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Hard",
+    "question": "An undirected graph is a four-cycle A-B-C-D-A with all four cycle edges of weight 1, plus diagonal A-C of weight 2. What is the pair (number of distinct MST edge sets,minimum total weight)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(4,3)",
+      "B": "(5,3)",
+      "C": "(4,4)",
+      "D": "(1,3)"
+    },
+    "correct_answer": "A",
+    "explanation": "Any three of the four unit cycle edges form a spanning tree of weight 3. Using the heavier diagonal cannot achieve that minimum, so omitting each cycle edge gives exactly four MSTs."
+  },
+  {
+    "id": "2.6-042",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Hard",
+    "question": "A connected triangle has A-B weight 1, B-C weight 1, and A-C weight 3. Which statement about MST uniqueness is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "The graph has exactly three MSTs",
+      "B": "Kruskal cannot decide between equal weights, so no MST exists",
+      "C": "The MST is unique despite repeated weights",
+      "D": "Repeated edge weights always imply multiple MSTs"
+    },
+    "correct_answer": "C",
+    "explanation": "Both unit edges are required for the minimum cost 2, determining one edge set. Globally distinct weights are sufficient for uniqueness, but not necessary."
+  },
+  {
+    "id": "2.6-043",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Hard",
+    "question": "For the connected undirected graph below, what is the second-smallest DISTINCT spanning-tree total weight?",
+    "code_snippet": "Edges: A-B(1), B-C(2), A-C(3), C-D(4), B-D(5), A-D(7)",
+    "options": {
+      "A": "9",
+      "B": "10",
+      "C": "7",
+      "D": "8"
+    },
+    "correct_answer": "D",
+    "explanation": "The MST uses A-B,B-C,C-D for total 7. Replacing B-C with A-C gives a tree of total 8; no integer cost strictly between 7 and 8 exists. Another exchange also gives 8, but repeated totals count once."
+  },
+  {
+    "id": "2.6-044",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Hard",
+    "question": "An undirected graph has vertices A,B,C,D,E and only edges A-B weight 1 and C-D weight 2. A traversal restarts Prim at every still-unvisited component, including isolated vertices. What is the tuple (components,edges in the resulting minimum spanning forest,total forest weight)?",
+    "code_snippet": null,
+    "options": {
+      "A": "(1,4,3)",
+      "B": "(3,2,3)",
+      "C": "(3,4,3)",
+      "D": "(2,2,3)"
+    },
+    "correct_answer": "B",
+    "explanation": "There are components {A,B},{C,D},{E}. Each contributes a tree, with V-components=5-3=2 total edges and weight 1+2=3. No spanning tree of all five vertices exists."
+  },
+  {
+    "id": "2.6-045",
+    "module": "Module 2: Data Structures & Algorithms",
+    "subpart_id": "2.6",
+    "subpart_name": "Graph Algorithms & Representations",
+    "difficulty": "Hard",
+    "question": "A perfect binary tree has V nodes and height Theta(log V). Compare BFS queue space with recursive DFS call-stack space. The tree is known acyclic, so no visited array is used; exclude input storage and output. What is the tight pair of peak traversal-state bounds?",
+    "code_snippet": null,
+    "options": {
+      "A": "BFS Theta(V), DFS Theta(log V)",
+      "B": "Both Theta(V)",
+      "C": "Both Theta(log V)",
+      "D": "BFS Theta(log V), DFS Theta(V)"
+    },
+    "correct_answer": "A",
+    "explanation": "The BFS queue reaches a leaf frontier containing a constant fraction of all vertices. Recursive DFS retains one root-to-leaf path; the explicitly excluded visited array must not be added to its stack bound."
+  }
+]

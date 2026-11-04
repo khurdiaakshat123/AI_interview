@@ -1,0 +1,427 @@
+[
+  {
+    "id": "4.4-001",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Easy",
+    "question": "Under standard HTTP semantics, which method is both safe and idempotent for retrieving a resource representation?",
+    "code_snippet": null,
+    "options": {
+      "A": "PATCH",
+      "B": "POST",
+      "C": "GET",
+      "D": "DELETE"
+    },
+    "correct_answer": "C",
+    "explanation": "GET requests retrieval without asking for a state-changing action and is idempotent. DELETE is idempotent but not safe; POST and PATCH have no general idempotency guarantee."
+  },
+  {
+    "id": "4.4-002",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Easy",
+    "question": "A POST successfully creates a new resource, and the server can identify its URI. Which response most directly communicates creation?",
+    "code_snippet": null,
+    "options": {
+      "A": "201 Created, normally with a Location header identifying the resource",
+      "B": "200 OK as a mandatory creation-only status",
+      "C": "404 Not Found with the new resource representation",
+      "D": "301 Moved Permanently as a creation acknowledgment"
+    },
+    "correct_answer": "A",
+    "explanation": "201 specifically indicates creation. Location can identify the primary new resource; 200 is a general success code rather than the creation-specific choice."
+  },
+  {
+    "id": "4.4-003",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Easy",
+    "question": "Which mapping of HTTP response status families is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "4xx: successful responses; 5xx: redirections",
+      "B": "4xx: informational responses; 5xx: successful responses",
+      "C": "4xx: redirections; 5xx: informational responses",
+      "D": "4xx: client-error responses; 5xx: server-error responses"
+    },
+    "correct_answer": "D",
+    "explanation": "HTTP assigns client errors to the 4xx class and server errors to the 5xx class. The classes describe response semantics, not which party must always change code."
+  },
+  {
+    "id": "4.4-004",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Easy",
+    "question": "A normal GET succeeds and returns the requested representation without a redirect or conditional-cache result. Which status is appropriate?",
+    "code_snippet": null,
+    "options": {
+      "A": "301 Moved Permanently",
+      "B": "201 Created",
+      "C": "200 OK",
+      "D": "500 Internal Server Error"
+    },
+    "correct_answer": "C",
+    "explanation": "200 indicates successful processing; for GET, its content normally represents the target resource."
+  },
+  {
+    "id": "4.4-005",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Easy",
+    "question": "An existing public page has moved permanently to a new URI, and the response supplies that URI in Location. Which listed status expresses that permanent redirect?",
+    "code_snippet": null,
+    "options": {
+      "A": "304 Not Modified",
+      "B": "301 Moved Permanently",
+      "C": "503 Service Unavailable",
+      "D": "400 Bad Request"
+    },
+    "correct_answer": "B",
+    "explanation": "301 communicates a permanent URI change. 304 is a conditional-request result, not a redirect to a new page."
+  },
+  {
+    "id": "4.4-006",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Easy",
+    "question": "The origin server has no current representation for a requested URI and chooses to report that absence. Which status fits?",
+    "code_snippet": null,
+    "options": {
+      "A": "201 Created",
+      "B": "404 Not Found",
+      "C": "200 OK",
+      "D": "502 Bad Gateway"
+    },
+    "correct_answer": "B",
+    "explanation": "404 reports that no current representation was found or that the server is unwilling to disclose one. This scenario explicitly reports absence."
+  },
+  {
+    "id": "4.4-007",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Easy",
+    "question": "Which browser storage mechanism is automatically attached to eligible HTTP requests according to its scope, attributes, credentials mode, and browser policy?",
+    "code_snippet": null,
+    "options": {
+      "A": "sessionStorage entries",
+      "B": "Cookies",
+      "C": "All JavaScript variables in the page",
+      "D": "localStorage entries"
+    },
+    "correct_answer": "B",
+    "explanation": "Browsers generate Cookie headers for eligible stored cookies. Web Storage and ordinary variables are not automatically serialized into HTTP requests."
+  },
+  {
+    "id": "4.4-008",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "A resource API supports complete replacement of a representation and partial modification of specified fields. Which method pairing best matches those intended operations?",
+    "code_snippet": null,
+    "options": {
+      "A": "POST is the only method capable of either operation",
+      "B": "PUT for replacement; PATCH for partial modification",
+      "C": "PATCH for complete replacement only; GET for partial modification",
+      "D": "GET for replacement; DELETE for partial modification"
+    },
+    "correct_answer": "B",
+    "explanation": "PUT expresses creation or replacement of target state using the supplied representation. PATCH applies a patch document. The precise accepted representations and patch format are API-defined."
+  },
+  {
+    "id": "4.4-009",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "The first DELETE /items/7 removes an existing item and returns success. A repeated identical DELETE returns 404 because the item is already absent. Is that status difference alone a violation of DELETE idempotency?",
+    "code_snippet": null,
+    "options": {
+      "A": "No; the intended final state is still that item 7 is absent",
+      "B": "Yes; idempotency requires identical status codes and bodies",
+      "C": "No; because DELETE is defined as a safe read-only method",
+      "D": "Yes; DELETE must recreate the item before a retry"
+    },
+    "correct_answer": "A",
+    "explanation": "Idempotency concerns the intended effect on server state, not identical responses. Both requests leave the item absent, even if the second response differs."
+  },
+  {
+    "id": "4.4-010",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "GET /accounts/7?close=true closes an account as its requested action. Which HTTP design issue is most direct?",
+    "code_snippet": null,
+    "options": {
+      "A": "It is correct solely because the URI uses a noun",
+      "B": "It violates a rule that GET cannot contain a query string",
+      "C": "It assigns a requested state-changing action to the safe GET method",
+      "D": "It makes every response automatically uncacheable regardless of headers"
+    },
+    "correct_answer": "C",
+    "explanation": "GET is intended to be safe. Query parameters are allowed, but using one to request account closure violates safe-method semantics and risks unintended activation by automated retrieval."
+  },
+  {
+    "id": "4.4-011",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "A client has a cached GET representation tagged \"v3\". It sends If-None-Match: \"v3\", and the selected current representation still matches that validator. What response normally allows reuse of the cached representation?",
+    "code_snippet": null,
+    "options": {
+      "A": "301 Moved Permanently with a new URI required",
+      "B": "201 Created with a second resource",
+      "C": "500 Internal Server Error because the validator matched",
+      "D": "304 Not Modified, without a response content body"
+    },
+    "correct_answer": "D",
+    "explanation": "For a conditional GET, a matching If-None-Match validator leads to 304. The client reuses its stored representation; the 304 does not carry a replacement representation body."
+  },
+  {
+    "id": "4.4-012",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "A server rejects an HTTP request because its request syntax is malformed. Which listed status is the direct client-error choice?",
+    "code_snippet": null,
+    "options": {
+      "A": "404 Not Found",
+      "B": "503 Service Unavailable",
+      "C": "401 Unauthorized",
+      "D": "400 Bad Request"
+    },
+    "correct_answer": "D",
+    "explanation": "400 covers malformed syntax and other perceived client-request errors. 401 concerns authentication, while 503 signals temporary service unavailability."
+  },
+  {
+    "id": "4.4-013",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "A protected endpoint receives no acceptable authentication credentials and challenges the client to authenticate. Which response pairing fits standard HTTP semantics?",
+    "code_snippet": null,
+    "options": {
+      "A": "403 Forbidden with a mandatory Location redirect",
+      "B": "401 Unauthorized with a WWW-Authenticate challenge",
+      "C": "200 OK with a mandatory WWW-Authenticate challenge",
+      "D": "502 Bad Gateway with a session identifier"
+    },
+    "correct_answer": "B",
+    "explanation": "401 indicates the absence of valid authentication credentials for the target resource. The server must include at least one applicable WWW-Authenticate challenge."
+  },
+  {
+    "id": "4.4-014",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "A server authenticates a user successfully but refuses a requested operation because that user lacks the required role. It chooses to disclose this authorization refusal. Which status fits?",
+    "code_snippet": null,
+    "options": {
+      "A": "301 Moved Permanently",
+      "B": "201 Created",
+      "C": "403 Forbidden",
+      "D": "401 Unauthorized solely because any refusal is an authentication failure"
+    },
+    "correct_answer": "C",
+    "explanation": "403 expresses that the server understood the request but refuses to fulfill it. The stated reason is authorization, not missing or invalid authentication."
+  },
+  {
+    "id": "4.4-015",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "An origin server encounters an unexpected internal exception while processing an otherwise valid request and cannot complete it. Which general status fits this failure?",
+    "code_snippet": null,
+    "options": {
+      "A": "400 Bad Request",
+      "B": "500 Internal Server Error",
+      "C": "201 Created",
+      "D": "304 Not Modified"
+    },
+    "correct_answer": "B",
+    "explanation": "500 represents an unexpected server condition that prevents fulfillment. More specific gateway and temporary-unavailability conditions are not stated here."
+  },
+  {
+    "id": "4.4-016",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "Scenario A: a reverse proxy receives an invalid response from its upstream while serving a request. Scenario B: an origin server temporarily cannot serve requests because it is overloaded. Which status pairing is most precise?",
+    "code_snippet": null,
+    "options": {
+      "A": "A: 404 Not Found; B: 400 Bad Request",
+      "B": "A: 503 Service Unavailable; B: 502 Bad Gateway",
+      "C": "A: 200 OK; B: 301 Moved Permanently",
+      "D": "A: 502 Bad Gateway; B: 503 Service Unavailable"
+    },
+    "correct_answer": "D",
+    "explanation": "502 describes an invalid upstream response received by a gateway. 503 describes temporary inability to serve, such as overload or scheduled maintenance; Retry-After may describe a recovery delay."
+  },
+  {
+    "id": "4.4-017",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "Which design best satisfies REST constraints concerning stateless interactions, cacheability, and layered systems?",
+    "code_snippet": null,
+    "options": {
+      "A": "Each request carries needed interaction context, responses indicate caching rules, and clients need not know every intermediary layer",
+      "B": "Every response must be unconditionally cached forever even when personalized",
+      "C": "Every request depends on private conversational state stored only in the previous server process",
+      "D": "Clients must bypass every intermediary and contact the origin implementation directly"
+    },
+    "correct_answer": "A",
+    "explanation": "REST combines self-contained interactions, explicit cache semantics, and a layered architecture. It does not require process-local conversational state, direct-only connections, or indiscriminate caching."
+  },
+  {
+    "id": "4.4-018",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "In a conventional server-side login-session design, a browser stores an opaque session ID in a cookie. Where is the associated server-side session state normally stored?",
+    "code_snippet": null,
+    "options": {
+      "A": "Inside the Cookie header as an automatically embedded complete server memory snapshot",
+      "B": "Necessarily inside localStorage because every cookie is a storage pointer",
+      "C": "In a server-side session store indexed by that identifier",
+      "D": "Necessarily inside the browser's sessionStorage because the word session is used"
+    },
+    "correct_answer": "C",
+    "explanation": "A server-side session ID identifies state held by the service, perhaps in a shared database or cache. A login session is not the same concept as the sessionStorage browser API."
+  },
+  {
+    "id": "4.4-019",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "Assume ordinary first-party pages with storage enabled and no additional partitioning distinctions. Which page shares the localStorage origin of https://example.com/app?",
+    "code_snippet": null,
+    "options": {
+      "A": "http://example.com/app",
+      "B": "https://api.example.com/app",
+      "C": "https://example.com:8443/app",
+      "D": "https://example.com/other"
+    },
+    "correct_answer": "D",
+    "explanation": "Web Storage is associated with an origin, whose scheme, host, and effective port must match. A path change keeps the origin; the other choices change one of those components."
+  },
+  {
+    "id": "4.4-020",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Medium",
+    "question": "Browser JavaScript on https://app.example wants to send a cross-origin PUT to https://api.example with Content-Type: application/json. No cached preflight permission exists. What permission-check request does CORS normally require first?",
+    "code_snippet": null,
+    "options": {
+      "A": "HEAD with Access-Control-Request-Method: GET",
+      "B": "The PUT must always be sent directly without any preflight",
+      "C": "POST with Access-Control-Allow-Origin set by the client",
+      "D": "OPTIONS with Access-Control-Request-Method: PUT"
+    },
+    "correct_answer": "D",
+    "explanation": "PUT is not a CORS-safelisted method, and application/json is not a safelisted Content-Type. An OPTIONS preflight asks whether the target permits the actual method and relevant headers."
+  },
+  {
+    "id": "4.4-021",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Hard",
+    "question": "A browser fetch from https://app.example to https://api.example uses credentials: \"include\". Cookie policy permits the eligible cookie, the GET reaches the server, and no other blocking policy applies. The response headers are shown. Why can the script not read the response?",
+    "code_snippet": "HTTP/1.1 200 OK\nAccess-Control-Allow-Origin: *\nAccess-Control-Allow-Credentials: true\nContent-Type: application/json\n\n{\"balance\": 42}",
+    "options": {
+      "A": "All cross-origin GET requests require a POST preflight first",
+      "B": "Credentialed CORS requires a matching explicit allowed origin; wildcard * does not satisfy it",
+      "C": "The request cannot have reached the server because every CORS error prevents network transmission",
+      "D": "Access-Control-Allow-Credentials must be changed from true to false"
+    },
+    "correct_answer": "B",
+    "explanation": "With credentials mode include, Access-Control-Allow-Origin cannot be *. A matching explicit origin plus Access-Control-Allow-Credentials: true is needed to expose the response; read blocking does not prove the request was unsent."
+  },
+  {
+    "id": "4.4-022",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Hard",
+    "question": "A browser uses ordinary fetch to make a cross-origin POST with credentials: \"omit\", Content-Type: application/x-www-form-urlencoded, no custom headers, and a simple string body. No other policy or transport restriction applies. The server accepts the request and changes its data but returns no CORS response headers. Which outcome is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "The POST can be sent and processed, but the browser blocks script access to its response",
+      "B": "The response is always readable because the POST Content-Type is safelisted",
+      "C": "Omitting CORS response headers automatically rolls back the server's data change",
+      "D": "The browser must preflight every POST and never sends this one"
+    },
+    "correct_answer": "A",
+    "explanation": "This request does not require preflight under the stated conditions. Missing CORS permission prevents response exposure to the script; it does not undo a request the server has already processed."
+  },
+  {
+    "id": "4.4-023",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Hard",
+    "question": "An API defines two PATCH documents with the exact sequential operations shown. Each resource starts with counter=3. Each document is applied twice to its own resource, without other writes. Considering only the intended counter state, which statement is correct?",
+    "code_snippet": "PATCH document A:\n    set counter = 5\n    increment counter by 1\n\nPATCH document B:\n    increment counter by 2",
+    "options": {
+      "A": "A is idempotent and ends at 6; B is not idempotent and ends at 7",
+      "B": "Both are idempotent and both end at 6",
+      "C": "A is non-idempotent and ends at 12; B is idempotent and ends at 5",
+      "D": "Both are non-idempotent merely because the HTTP method is PATCH"
+    },
+    "correct_answer": "A",
+    "explanation": "A resets to 5 before incrementing, so each complete application ends at 6. B increments the existing state by two each time, producing 3->5->7. PATCH can be designed idempotently but is not generally guaranteed to be."
+  },
+  {
+    "id": "4.4-024",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Hard",
+    "question": "A same-origin page stores token L in localStorage and has eligible login cookie S marked Secure and HttpOnly. An injected same-origin script executes with ordinary page privileges, and no additional policy blocks its requests. Which capability description is accurate?",
+    "code_snippet": null,
+    "options": {
+      "A": "It can read L and issue same-origin authenticated requests using S, but cannot directly read S through document.cookie",
+      "B": "It can read S but localStorage is automatically hidden from same-origin JavaScript",
+      "C": "It can read neither L nor S and cannot issue authenticated requests",
+      "D": "It can read both L and S because HttpOnly affects only transport encryption"
+    },
+    "correct_answer": "A",
+    "explanation": "localStorage is script-accessible for the origin. HttpOnly hides S from script cookie-reading APIs, but the browser can still attach that eligible cookie to script-initiated requests. Secure restricts its transport to secure channels."
+  },
+  {
+    "id": "4.4-025",
+    "module": "Module 4: Applied Systems, Cloud & Software Engineering",
+    "subpart_id": "4.4",
+    "subpart_name": "Web Fundamentals & REST APIs",
+    "difficulty": "Hard",
+    "question": "No preflight cache entry exists for the proposed cross-origin PUT. Its requested unsafe header names and the server's preflight response are shown. Credentials mode is omit, there are no redirects, and every other policy check passes. What does the browser do next?",
+    "code_snippet": "OPTIONS /items/7 HTTP/1.1\nHost: api.example\nOrigin: https://app.example\nAccess-Control-Request-Method: PUT\nAccess-Control-Request-Headers: authorization, content-type\n\nHTTP/1.1 200 OK\nAccess-Control-Allow-Origin: https://app.example\nAccess-Control-Allow-Methods: PUT\nAccess-Control-Allow-Headers: Content-Type",
+    "options": {
+      "A": "Treat the OPTIONS 200 as the completed PUT response without sending the update",
+      "B": "Send the PUT because allowing its method automatically allows every header",
+      "C": "Fail the preflight and withhold the PUT because authorization is not allowed by Access-Control-Allow-Headers",
+      "D": "Send the PUT but silently strip Authorization while retaining the application's intended request"
+    },
+    "correct_answer": "C",
+    "explanation": "The preflight must authorize the method and all relevant unsafe request headers. Content-Type alone does not authorize Authorization, so the actual PUT is not sent under these assumptions."
+  }
+]

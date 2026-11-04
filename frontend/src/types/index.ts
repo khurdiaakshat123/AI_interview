@@ -457,3 +457,94 @@ export interface DebugTraceResult {
   stdout?: string;
   error?: string | null;
 }
+
+// ==========================================
+// MCQ Question Bank & Practice Interfaces
+// ==========================================
+export interface MCQSubpartInfo {
+  id: string;
+  name: string;
+}
+
+export interface MCQBroadTopic {
+  id: string;
+  name: string;
+  short_name: string;
+  description: string;
+  icon: string;
+  color: string;
+  total_questions: number;
+  difficulty_counts: {
+    Easy: number;
+    Medium: number;
+    Hard: number;
+  };
+  with_code_count: number;
+  subparts: MCQSubpartInfo[];
+  solved_count?: number;
+  attempted_count?: number;
+  starred_count?: number;
+  progress_pct?: number;
+}
+
+export interface MCQQuestionSummary {
+  id: string;
+  broad_topic_id: string;
+  broad_topic_name: string;
+  subpart_id: string;
+  subpart_name: string;
+  difficulty: 'Easy' | 'Medium' | 'Hard';
+  question: string;
+  has_code: boolean;
+  code_snippet: string | null;
+  options: Record<string, string>;
+  status: 'todo' | 'attempted' | 'solved';
+  is_starred: boolean;
+  user_answer?: string | null;
+  is_correct?: boolean;
+}
+
+export interface MCQQuestionDetail extends MCQQuestionSummary {
+  correct_answer: string;
+  explanation: string;
+  module?: string;
+  notes?: string;
+  attempts_count?: number;
+}
+
+export interface MCQSubmitResult {
+  question_id: string;
+  selected_option: string;
+  is_correct: boolean;
+  correct_answer: string;
+  explanation: string;
+  status: string;
+  attempts_count: number;
+}
+
+export interface MCQAnalytics {
+  total_questions: number;
+  solved_count: number;
+  attempted_count: number;
+  todo_count: number;
+  accuracy: number;
+  broad_topics: Array<{
+    id: string;
+    name: string;
+    short_name: string;
+    icon: string;
+    color: string;
+    total: number;
+    solved: number;
+    attempted: number;
+  }>;
+  difficulty_breakdown: Record<string, { total: number; solved: number }>;
+}
+
+export interface MCQQuiz {
+  quiz_id: string;
+  mode: string;
+  total_questions: number;
+  questions: MCQQuestionSummary[];
+}
+

@@ -1,0 +1,512 @@
+[
+  {
+    "id": "5.4-001",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Easy",
+    "question": "For binary classification with at least one predicted positive, which formula defines positive-class precision?",
+    "code_snippet": null,
+    "options": {
+      "A": "(TP+TN)/(TP+TN+FP+FN)",
+      "B": "TP/(TP+FN)",
+      "C": "TN/(TN+FP)",
+      "D": "TP/(TP+FP)"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: There are TP+FP predicted positives. Step 2: TP of them are truly positive. Step 3: Precision is the fraction TP/(TP+FP); the denominator assumption avoids division by zero."
+  },
+  {
+    "id": "5.4-002",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Easy",
+    "question": "For binary classification with at least one actual positive, which formula defines positive-class recall?",
+    "code_snippet": null,
+    "options": {
+      "A": "TN/(TN+FP)",
+      "B": "TP/(TP+FN)",
+      "C": "TP/(TP+FP)",
+      "D": "FP/(FP+TN)"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: There are TP+FN actual positives. Step 2: TP are correctly retrieved. Step 3: Recall, also called sensitivity or true-positive rate, is TP/(TP+FN)."
+  },
+  {
+    "id": "5.4-003",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Easy",
+    "question": "For binary classification with at least one actual negative, which formula defines specificity?",
+    "code_snippet": null,
+    "options": {
+      "A": "TP/(TP+FP)",
+      "B": "FN/(FN+TP)",
+      "C": "TP/(TP+FN)",
+      "D": "TN/(TN+FP)"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Actual negatives total TN+FP. Step 2: Correctly rejected negatives total TN. Step 3: Specificity, or true-negative rate, is TN/(TN+FP)."
+  },
+  {
+    "id": "5.4-004",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Easy",
+    "question": "A classifier has TP=45,TN=45,FP=5,FN=5. What is its accuracy?",
+    "code_snippet": null,
+    "options": {
+      "A": "0.95",
+      "B": "0.9",
+      "C": "0.81",
+      "D": "0.45"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Total cases=45+45+5+5=100. Step 2: Correct cases=TP+TN=90. Step 3: Accuracy=90/100=0.9."
+  },
+  {
+    "id": "5.4-005",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Easy",
+    "question": "When precision P and recall R are positive, which expression defines their F1 score?",
+    "code_snippet": null,
+    "options": {
+      "A": "2(P+R)/(PR)",
+      "B": "(P+R)/2",
+      "C": "PR",
+      "D": "2PR/(P+R)"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: The harmonic mean is 2/(1/P+1/R). Step 2: Multiplying numerator and denominator by PR yields 2PR/(P+R). It is not the arithmetic mean."
+  },
+  {
+    "id": "5.4-006",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Easy",
+    "question": "For the standard binary ROC curve, what are the horizontal and vertical axes?",
+    "code_snippet": null,
+    "options": {
+      "A": "Horizontal: false-positive rate; vertical: true-positive rate",
+      "B": "Horizontal: recall; vertical: precision",
+      "C": "Horizontal: true-negative rate; vertical: false-negative rate",
+      "D": "Horizontal: accuracy; vertical: F1"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: At each threshold compute FPR=FP/(FP+TN) and TPR=TP/(TP+FN). Step 2: Plot FPR horizontally and TPR vertically as the threshold varies."
+  },
+  {
+    "id": "5.4-007",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Easy",
+    "question": "Positive and negative cases receive identically distributed continuous scores, independently of their labels. What is the population ROC-AUC?",
+    "code_snippet": null,
+    "options": {
+      "A": "The classification accuracy at threshold 0.5 for every prevalence",
+      "B": "1",
+      "C": "0.5",
+      "D": "0"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Identical continuous score distributions give no ties and equal probabilities that either class scores higher. Step 2: P(score_positive>score_negative)=1/2, which is the ranking interpretation of ROC-AUC. This does not fix accuracy at a selected threshold."
+  },
+  {
+    "id": "5.4-008",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Easy",
+    "question": "Which penalty is the conventional squared L2 penalty used in ridge regression?",
+    "code_snippet": null,
+    "options": {
+      "A": "lambda * number_of_nonzero_coefficients",
+      "B": "lambda * sum_j abs(beta_j)",
+      "C": "lambda * sum_j beta_j^2",
+      "D": "lambda * sum_j sign(beta_j)"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: The squared L2 norm is ||beta||_2^2=sum_j beta_j^2. Step 2: Multiplying by nonnegative lambda penalizes large coefficients smoothly. Intercept treatment must be specified separately in an implementation."
+  },
+  {
+    "id": "5.4-009",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Easy",
+    "question": "Which statement best describes the feature-selection behavior of an L1 penalty in lasso?",
+    "code_snippet": null,
+    "options": {
+      "A": "It can set some fitted coefficients exactly to zero",
+      "B": "It guarantees every fitted coefficient is nonzero",
+      "C": "It guarantees exactly one selected feature for every dataset",
+      "D": "It never changes the unpenalized coefficient estimates"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: The absolute-value penalty has a corner at zero. Step 2: Its subgradient can balance a range of loss gradients at a zero coefficient. Step 3: Exact zeros are possible, although their number and identity depend on the data and penalty."
+  },
+  {
+    "id": "5.4-010",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "A confusion matrix has TP=40,FP=10,FN=20,TN=130. What are positive-class precision and recall?",
+    "code_snippet": null,
+    "options": {
+      "A": "2/3, 4/5",
+      "B": "4/5, 2/3",
+      "C": "4/5, 13/14",
+      "D": "1/5, 1/3"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Precision=40/(40+10)=40/50=4/5. Step 2: Recall=40/(40+20)=40/60=2/3. True negatives do not enter either denominator."
+  },
+  {
+    "id": "5.4-011",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "A target population has positive prevalence 0.1. A classifier has recall 0.8 and specificity 0.9 in that population. What is its positive-class precision?",
+    "code_snippet": null,
+    "options": {
+      "A": "1/10",
+      "B": "9/10",
+      "C": "4/5",
+      "D": "8/17"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: True-positive population mass is 0.1(0.8)=0.08. Step 2: False-positive mass is 0.9(1-0.9)=0.09. Step 3: Precision=0.08/(0.08+0.09)=8/17; it depends on prevalence as well as recall and specificity."
+  },
+  {
+    "id": "5.4-012",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "Rows in the shown confusion matrix are actual classes and columns are predicted classes. What are specificity and positive-class recall?",
+    "code_snippet": "                 Predicted negative | Predicted positive\nActual negative: 90                 | 10\nActual positive: 20                 | 30",
+    "options": {
+      "A": "0.75, 0.6",
+      "B": "0.6, 0.9",
+      "C": "0.9, 0.75",
+      "D": "0.9, 0.6"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: TN=90,FP=10,FN=20,TP=30 from the stated orientation. Step 2: Specificity=90/(90+10)=0.9. Step 3: Recall=30/(30+20)=0.6."
+  },
+  {
+    "id": "5.4-013",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "For TP=30,FP=10,FN=20,TN=40, what is the positive-class F1 score?",
+    "code_snippet": null,
+    "options": {
+      "A": "2/3",
+      "B": "3/4",
+      "C": "7/10",
+      "D": "3/5"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: Precision=30/40=3/4 and recall=30/50=3/5. Step 2: F1=2TP/(2TP+FP+FN)=60/(60+10+20)=60/90=2/3."
+  },
+  {
+    "id": "5.4-014",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "A test set has 990 negatives and 10 positives. A model predicts every case negative. What are accuracy and positive-class recall?",
+    "code_snippet": null,
+    "options": {
+      "A": "0.99, 1",
+      "B": "0.01, 0",
+      "C": "0.99, 0",
+      "D": "1, 0.99"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: TN=990,FN=10,TP=FP=0. Step 2: Accuracy=(990+0)/1000=0.99. Step 3: Recall=0/(0+10)=0, so high accuracy alone hides complete failure to retrieve positives."
+  },
+  {
+    "id": "5.4-015",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "Two positive cases score 0.9 and 0.6; two negative cases score 0.8 and 0.1. Higher means more positive, and there are no ties. What is the empirical ROC-AUC?",
+    "code_snippet": null,
+    "options": {
+      "A": "3/4",
+      "B": "1/4",
+      "C": "1",
+      "D": "1/2"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: Compare all 2*2=4 positive-negative pairs. Step 2: Score 0.9 beats both negatives; score 0.6 beats only 0.1. Step 3: Three winning pairs out of four give AUC=3/4."
+  },
+  {
+    "id": "5.4-016",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "On a fixed binary dataset containing both classes, a classifier predicts positive whenever score>=threshold. As the threshold is lowered, which rates are guaranteed not to decrease?",
+    "code_snippet": null,
+    "options": {
+      "A": "Precision and specificity",
+      "B": "Precision and accuracy",
+      "C": "Accuracy and F1",
+      "D": "True-positive rate and false-positive rate"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Lowering the threshold can only add cases to the predicted-positive set. Step 2: TP and FP therefore cannot decrease. Step 3: Since actual-positive and actual-negative counts stay fixed, TPR and FPR cannot decrease; precision and accuracy can move either way."
+  },
+  {
+    "id": "5.4-017",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "On a held-out dataset with a nonconstant response, SSE=150 and SST=100, where SST is measured about that evaluation set's response mean. Using R^2=1-SSE/SST, what is R^2?",
+    "code_snippet": null,
+    "options": {
+      "A": "0.2",
+      "B": "-0.5",
+      "C": "0.04",
+      "D": "0.5"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Compute SSE/SST=150/100=1.5. Step 2: R^2=1-1.5=-0.5. Negative held-out R^2 is possible: these predictions have greater squared error than predicting the evaluation-set response mean."
+  },
+  {
+    "id": "5.4-018",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "An OLS model has an intercept, n=21 observations, k=2 predictors excluding the intercept, and R^2=0.8. Using adjusted R^2=1-(1-R^2)(n-1)/(n-k-1), what is adjusted R^2?",
+    "code_snippet": null,
+    "options": {
+      "A": "3/4",
+      "B": "7/9",
+      "C": "9/10",
+      "D": "4/5"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Residual degrees of freedom are 21-2-1=18. Step 2: Adjusted R^2=1-(0.2)(20/18)=1-2/9=7/9. The predictor count excludes the intercept."
+  },
+  {
+    "id": "5.4-019",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "An unconstrained OLS model with an intercept is refitted on exactly the same observations after adding a predictor. The response is nonconstant, and both residual degrees of freedom remain positive. Which statement is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "Training R^2 cannot decrease, but adjusted R^2 can decrease",
+      "B": "A larger training R^2 guarantees a larger test-set R^2",
+      "C": "Both training R^2 and adjusted R^2 must increase strictly",
+      "D": "Training R^2 must decrease because there are more coefficients"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: The expanded model can reproduce the old fit by setting the new coefficient to zero, so minimized SSE cannot increase. Step 2: With the same SST, training R^2 cannot decrease. Step 3: Adjusted R^2 also penalizes lost degrees of freedom, so a small SSE improvement may not compensate."
+  },
+  {
+    "id": "5.4-020",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "A pipeline chooses regularization strength using five-fold cross-validation and includes mean/standard-deviation feature scaling. Which procedure avoids validation-fold leakage?",
+    "code_snippet": null,
+    "options": {
+      "A": "Fit the scaler separately on each fold's training portion and apply it to that fold's held-out portion",
+      "B": "Fit the scaler once on all observations before forming the folds",
+      "C": "Choose the strength using the final untouched test labels first",
+      "D": "Fit each fold's scaler using its held-out portion only and then train on all labels"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: Each validation fold must imitate unseen data. Step 2: Estimate scaling parameters from the corresponding training folds only. Step 3: Transform both portions with those parameters, fit the model on training data, and score the held-out fold."
+  },
+  {
+    "id": "5.4-021",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "Across repeated representative iid train/validation splits, a highly flexible model has very low training error but much higher validation error. Which bias-variance diagnosis is most consistent with this pattern?",
+    "code_snippet": null,
+    "options": {
+      "A": "Proof that all validation labels are incorrect",
+      "B": "High variance and overfitting; stronger regularization may improve generalization",
+      "C": "High bias with equally poor training and validation fit",
+      "D": "A guarantee that removing every penalty will improve validation performance"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Low training error shows the model can closely fit its observed sample. Step 2: Repeatedly worse validation performance indicates poor generalization consistent with high variance. Step 3: Regularization can trade some extra bias for reduced variance, though improvement must be validated."
+  },
+  {
+    "id": "5.4-022",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "In a two-coefficient constrained view of regularization, why can an L1 constraint promote exact zeros more readily than a squared L2 constraint?",
+    "code_snippet": null,
+    "options": {
+      "A": "The L1 feasible region has axis-aligned corners, while the L2 region has a smooth circular boundary",
+      "B": "The L1 region is a smooth circle and the L2 region is a diamond",
+      "C": "The L2 constraint requires every coefficient to be zero for any radius",
+      "D": "The L1 constraint permits only positive coefficients"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: |beta1|+|beta2|<=t forms a diamond with corners on the coordinate axes. Step 2: beta1^2+beta2^2<=t forms a disk. Step 3: A loss contour can touch an L1 corner where one coefficient is zero; L2 shrinkage does not have those corners."
+  },
+  {
+    "id": "5.4-023",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "For scalar beta, minimize (6-beta)^2+2*beta^2. No intercept is present. What is the ridge optimum?",
+    "code_snippet": null,
+    "options": {
+      "A": "4",
+      "B": "2",
+      "C": "3",
+      "D": "6"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: Differentiate: 2(beta-6)+4beta=6beta-12. Step 2: Set the derivative to zero, giving beta=2. Step 3: The second derivative is 6>0, so this is the unique minimum."
+  },
+  {
+    "id": "5.4-024",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Medium",
+    "question": "For scalar beta, minimize (1/2)(beta-3)^2+abs(beta). What is the lasso optimum?",
+    "code_snippet": null,
+    "options": {
+      "A": "1",
+      "B": "1.5",
+      "C": "2",
+      "D": "0"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: On beta>0 the derivative is beta-3+1=beta-2, giving candidate beta=2. Step 2: The zero-point loss gradient -3 cannot be balanced by the penalty subgradient [-1,1]. Step 3: Convexity establishes beta=2 as the global minimum."
+  },
+  {
+    "id": "5.4-025",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Hard",
+    "question": "Positive scores are [0.8,0.5] and negative scores are [0.5,0.2]. Empirical ROC-AUC gives half credit to a positive-negative tie. What is AUC?",
+    "code_snippet": null,
+    "options": {
+      "A": "7/8",
+      "B": "3/4",
+      "C": "1",
+      "D": "1/2"
+    },
+    "correct_answer": "A",
+    "explanation": "Step 1: There are four positive-negative pairs. Step 2: Positive 0.8 earns two wins. Positive 0.5 earns one win against 0.2 and half a win against 0.5. Step 3: AUC=(2+1+0.5)/4=3.5/4=7/8."
+  },
+  {
+    "id": "5.4-026",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Hard",
+    "question": "Two nested OLS models use the same n=20 observations and an intercept. SST=190. The old model has k=2 predictors and SSE=90; the new has k=3 and SSE=86. Predictor counts exclude the intercept. Which change is correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "Both R^2 and adjusted R^2 increase",
+      "B": "R^2 increases; adjusted R^2 decreases from 8/17 to 37/80",
+      "C": "R^2 decreases; adjusted R^2 increases from 8/17 to 37/80",
+      "D": "Both R^2 and adjusted R^2 stay unchanged"
+    },
+    "correct_answer": "B",
+    "explanation": "Step 1: SSE falls with fixed SST, so R^2 increases from 1-90/190 to 1-86/190. Step 2: SST/(n-1)=190/19=10. Step 3: Old adjusted R^2=1-(90/17)/10=8/17, about 0.4706. New adjusted R^2=1-(86/16)/10=37/80=0.4625, which is smaller."
+  },
+  {
+    "id": "5.4-027",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Hard",
+    "question": "A no-intercept design satisfies X^T X=I and X^T y=[3,-0.5,2]. Compare lasso objective (1/2)||y-X beta||^2+sum_j abs(beta_j) and ridge objective (1/2)||y-X beta||^2+(1/2)sum_j beta_j^2. What are their coefficient vectors?",
+    "code_snippet": null,
+    "options": {
+      "A": "Lasso: [1.5,-0.25,1]; ridge: [2,0,1]",
+      "B": "Lasso: [2,-1.5,1]; ridge: [1,-0.5,1]",
+      "C": "Lasso: [3,-0.5,2]; ridge: [3,-0.5,2]",
+      "D": "Lasso: [2,0,1]; ridge: [1.5,-0.25,1]"
+    },
+    "correct_answer": "D",
+    "explanation": "Step 1: Orthonormality separates the loss into (1/2)sum_j(beta_j-z_j)^2 plus a constant, with z=X^T y. Step 2: Lasso soft-thresholds each z at 1: sign(z)max(|z|-1,0), giving [2,0,1]. Step 3: Ridge solves beta_j-z_j+beta_j=0, so beta=z/2=[1.5,-0.25,1]."
+  },
+  {
+    "id": "5.4-028",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Hard",
+    "question": "A no-intercept ridge problem minimizes ||y-X beta||^2+||beta||^2. Given X^T X=[[2,1],[1,2]] and X^T y=[3,0], what is its coefficient vector?",
+    "code_snippet": null,
+    "options": {
+      "A": "[1, 0]",
+      "B": "[2, -1]",
+      "C": "[9/8, -3/8]",
+      "D": "[3/4, -1/4]"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: The normal equations are (X^T X+I)beta=X^T y, so [[3,1],[1,3]]beta=[3,0]. Step 2: The inverse is (1/8)[[3,-1],[-1,3]]. Step 3: Multiplying gives beta=[9/8,-3/8]."
+  },
+  {
+    "id": "5.4-029",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Hard",
+    "question": "Observe Y=theta+epsilon with theta=2, E[epsilon]=0, and Var(epsilon)=1. Estimate theta by beta_hat=Y/(1+lambda), the minimizer of (Y-beta)^2+lambda*beta^2. For lambda>=0, which lambda minimizes E[(beta_hat-theta)^2], and what is that minimum risk?",
+    "code_snippet": null,
+    "options": {
+      "A": "lambda=0; risk=0",
+      "B": "lambda=4; risk=1/5",
+      "C": "lambda=1/4; risk=4/5",
+      "D": "lambda=1; risk=1/2"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Bias is -2lambda/(1+lambda), and estimator variance is 1/(1+lambda)^2. Step 2: Estimation risk is (4lambda^2+1)/(1+lambda)^2. Step 3: Its derivative is (8lambda-2)/(1+lambda)^3, changing from negative to positive at lambda=1/4. Step 4: Substitution gives risk=0.8=4/5. This estimates theta, not a new noisy response."
+  },
+  {
+    "id": "5.4-030",
+    "module": "Module 5: Data Science & Analytics Track",
+    "subpart_id": "5.4",
+    "subpart_name": "Model Evaluation, Validation & Regularization",
+    "difficulty": "Hard",
+    "question": "Two identical nonzero design columns equal x, with ||x||^2=1 and y=3x; there is no intercept. Compare ridge loss ||y-X beta||^2+beta1^2+beta2^2 with lasso loss ||y-X beta||^2+2(abs(beta1)+abs(beta2)). Which minimizers are correct?",
+    "code_snippet": null,
+    "options": {
+      "A": "Both methods uniquely give (1,1)",
+      "B": "Lasso uniquely gives (2,0); ridge uniquely gives (3,0)",
+      "C": "Ridge uniquely gives (1,1); lasso permits every nonnegative pair with sum 2",
+      "D": "Ridge permits every pair with sum 3; lasso has no minimizer"
+    },
+    "correct_answer": "C",
+    "explanation": "Step 1: Write s=beta1+beta2; RSS=(3-s)^2. Step 2: For a fixed s, ridge minimizes beta1^2+beta2^2 at beta1=beta2=s/2. Its reduced loss is (3-s)^2+s^2/2, minimized at s=2, giving (1,1). Step 3: Lasso has penalty at least 2|s|, attained by any nonnegative pair when s>=0. Minimizing (3-s)^2+2|s| gives s=2, leaving all nonnegative decompositions optimal."
+  }
+]
