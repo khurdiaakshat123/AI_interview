@@ -132,6 +132,98 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   const [editorTheme, setEditorTheme] = useState<string>('vs-dark');
 
   const editorRef = useRef<any>(null);
+  const workspaceRef = useRef<HTMLDivElement | null>(null);
+  const rightPaneRef = useRef<HTMLDivElement | null>(null);
+
+  const [isDesktop, setIsDesktop] = useState<boolean>(() => typeof window !== 'undefined' && window.innerWidth >= 1024);
+  const [isDraggingH, setIsDraggingH] = useState<boolean>(false);
+  const [isDraggingV, setIsDraggingV] = useState<boolean>(false);
+
+  // Split-pane sizes with persistent user preferences
+  const [leftWidthPct, setLeftWidthPct] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem('intervyn_lc_left_width');
+      if (saved) {
+        const val = parseFloat(saved);
+        if (!isNaN(val) && val >= 20 && val <= 75) return val;
+      }
+    } catch {}
+    return 42;
+  });
+
+  const [editorHeightPct, setEditorHeightPct] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem('intervyn_lc_editor_height');
+      if (saved) {
+        const val = parseFloat(saved);
+        if (!isNaN(val) && val >= 25 && val <= 85) return val;
+      }
+    } catch {}
+    return 62;
+  });
+
+  // Track window resize for desktop breakpoint
+  useEffect(() => {
+    const onResize = () => setIsDesktop(window.innerWidth >= 1024);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  // Splitter Drag Handlers
+  const handleMouseDownH = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDraggingH(true);
+  };
+
+  const handleMouseDownV = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDraggingV(true);
+  };
+
+  useEffect(() => {
+    if (!isDraggingH && !isDraggingV) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDraggingH && workspaceRef.current) {
+        const rect = workspaceRef.current.getBoundingClientRect();
+        const newPct = ((e.clientX - rect.left) / rect.width) * 100;
+        const clamped = Math.min(Math.max(newPct, 20), 75);
+        setLeftWidthPct(clamped);
+        editorRef.current?.layout();
+      } else if (isDraggingV && rightPaneRef.current) {
+        const rect = rightPaneRef.current.getBoundingClientRect();
+        const newPct = ((e.clientY - rect.top) / rect.height) * 100;
+        const clamped = Math.min(Math.max(newPct, 25), 85);
+        setEditorHeightPct(clamped);
+        editorRef.current?.layout();
+      }
+    };
+
+    const handleMouseUp = () => {
+      if (isDraggingH) {
+        setIsDraggingH(false);
+        try {
+          localStorage.setItem('intervyn_lc_left_width', String(leftWidthPct));
+        } catch {}
+      }
+      if (isDraggingV) {
+        setIsDraggingV(false);
+        try {
+          localStorage.setItem('intervyn_lc_editor_height', String(editorHeightPct));
+        } catch {}
+      }
+      setTimeout(() => {
+        editorRef.current?.layout();
+      }, 50);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDraggingH, isDraggingV, leftWidthPct, editorHeightPct]);
 
   // Search debounce
   useEffect(() => {
@@ -223,10 +315,34 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
       const defaultLang = data.category === 'database' ? 'mysql' : 'cpp';
       setSelectedLang(defaultLang);
 
-      // Starter code
-      const initialCode = data.starterCode?.[defaultLang] || 
-        (data.category === 'database' ? '# Write your MySQL query statement below\n' : (data.starterCode?.['python3'] || '# Write your solution below\n'));
-      setCode(initialCode);
+      const qKey = data.slug || data.id;
+      const validLangs = data.category === 'database' ? DB_LANGUAGES : DSA_LANGUAGES;
+
+      // 1. Restore Language: Use user's previously chosen language for this problem if available
+      let langToUse = defaultLang;
+      try {
+        const savedLang = localStorage.getItem(`intervyn_lc_lang_${qKey}`);
+        if (savedLang && validLangs.some(l => l.id === savedLang)) {
+          langToUse = savedLang;
+        }
+      } catch {}
+      setSelectedLang(langToUse);
+
+      // 2. Restore Code: Check if user previously wrote code for this problem and language
+      let codeToUse = '';
+      try {
+        const savedCode = localStorage.getItem(`intervyn_lc_code_${qKey}_${langToUse}`) ||
+                          localStorage.getItem(`intervyn_lc_code_${qKey}`);
+        if (savedCode !== null && savedCode.trim() !== '') {
+          codeToUse = savedCode;
+        }
+      } catch {}
+
+      if (!codeToUse) {
+        codeToUse = data.starterCode?.[langToUse] || 
+          (data.category === 'database' ? '# Write your MySQL query statement below\n' : (data.starterCode?.['python3'] || '# Write your solution below\n'));
+      }
+      setCode(codeToUse);
     } catch (e) {
       console.error('Failed to load question details:', e);
     } finally {
@@ -253,14 +369,50 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
     }
   }, [activeQuestionId, loadQuestionDetail]);
 
-  // Handle Language Change in Solver
-  const handleLanguageChange = (lang: string) => {
-    setSelectedLang(lang);
+  // Handle Language Change in Solver with Persistence
+  const handleLanguageChange = (newLang: string) => {
     if (questionDetail) {
-      const langStarter = questionDetail.starterCode?.[lang];
-      if (langStarter) {
-        setCode(langStarter);
+      const qKey = questionDetail.slug || questionDetail.id;
+      // Persist current code for the previous language
+      try {
+        localStorage.setItem(`intervyn_lc_code_${qKey}_${selectedLang}`, code);
+      } catch {}
+
+      setSelectedLang(newLang);
+      try {
+        localStorage.setItem(`intervyn_lc_lang_${qKey}`, newLang);
+      } catch {}
+
+      // Check if user previously wrote code in the target language
+      let targetCode = '';
+      try {
+        const saved = localStorage.getItem(`intervyn_lc_code_${qKey}_${newLang}`);
+        if (saved !== null && saved.trim() !== '') {
+          targetCode = saved;
+        }
+      } catch {}
+
+      if (!targetCode) {
+        targetCode = questionDetail.starterCode?.[newLang] || 
+          (questionDetail.category === 'database' ? '# Write your MySQL query statement below\n' : '');
       }
+      setCode(targetCode);
+    } else {
+      setSelectedLang(newLang);
+    }
+  };
+
+  // Handle Code Change with instant persistence
+  const handleCodeChange = (val: string | undefined) => {
+    const newCode = val || '';
+    setCode(newCode);
+    if (questionDetail) {
+      const qKey = questionDetail.slug || questionDetail.id;
+      try {
+        localStorage.setItem(`intervyn_lc_code_${qKey}_${selectedLang}`, newCode);
+        localStorage.setItem(`intervyn_lc_code_${qKey}`, newCode);
+        localStorage.setItem(`intervyn_lc_lang_${qKey}`, selectedLang);
+      } catch {}
     }
   };
 
@@ -373,11 +525,17 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
     });
   };
 
-  // Reset Code
+  // Reset Code with persistence update
   const handleResetCode = () => {
     if (!questionDetail) return;
-    const starter = questionDetail.starterCode?.[selectedLang] || '';
+    const starter = questionDetail.starterCode?.[selectedLang] || 
+      (questionDetail.category === 'database' ? '# Write your MySQL query statement below\n' : '');
     setCode(starter);
+    const qKey = questionDetail.slug || questionDetail.id;
+    try {
+      localStorage.setItem(`intervyn_lc_code_${qKey}_${selectedLang}`, starter);
+      localStorage.setItem(`intervyn_lc_code_${qKey}`, starter);
+    } catch {}
   };
 
   // Copy Code
@@ -996,12 +1154,27 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
         </div>
       </header>
 
-      {/* Main Two-Column Split Workspace */}
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 min-h-0">
+      {/* Fullscreen Overlay while dragging to prevent mouse event trapping */}
+      {(isDraggingH || isDraggingV) && (
+        <div 
+          className={`fixed inset-0 z-50 select-none ${isDraggingH ? 'cursor-col-resize' : 'cursor-row-resize'}`}
+          style={{ userSelect: 'none' }}
+        />
+      )}
+
+      {/* Main Two-Column Split Workspace with Draggable Divider */}
+      <div 
+        ref={workspaceRef}
+        className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-hidden relative select-none"
+        style={{ height: 'calc(100vh - 50px)' }}
+      >
         {/* ================================================================= */}
         {/* LEFT PANE: Problem Statement, Editorial, Hints, Submissions */}
         {/* ================================================================= */}
-        <div className="lg:col-span-5 border-r border-border flex flex-col bg-bg overflow-hidden h-[calc(100vh-50px)]">
+        <div 
+          className="flex flex-col bg-bg overflow-hidden h-full border-b lg:border-b-0 lg:border-r border-border shrink-0 w-full"
+          style={{ width: isDesktop ? `${leftWidthPct}%` : '100%' }}
+        >
           {/* Top Left Navigation Tabs */}
           <div className="flex items-center border-b border-border bg-surface px-2 overflow-x-auto">
             <button
@@ -1475,9 +1648,34 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
         </div>
 
         {/* ================================================================= */}
+        {/* VERTICAL SPLITTER (LEFT / RIGHT RESIZE HANDLE) */}
+        {/* ================================================================= */}
+        <div
+          onMouseDown={handleMouseDownH}
+          onDoubleClick={() => {
+            setLeftWidthPct(42);
+            try { localStorage.setItem('intervyn_lc_left_width', '42'); } catch {}
+            setTimeout(() => editorRef.current?.layout(), 50);
+          }}
+          className={`hidden lg:flex w-2.5 -mx-1.5 z-30 cursor-col-resize items-center justify-center group relative hover:bg-accent/30 transition-colors select-none ${
+            isDraggingH ? 'bg-accent/50' : 'bg-transparent'
+          }`}
+          title="Drag to resize panes (Double-click to reset)"
+        >
+          <div className={`w-[2px] h-full transition-colors ${isDraggingH ? 'bg-accent' : 'bg-border/60 group-hover:bg-accent'}`} />
+          <div className={`absolute top-1/2 -translate-y-1/2 w-1.5 h-8 rounded-full transition-colors flex items-center justify-center ${isDraggingH ? 'bg-accent shadow-xs' : 'bg-border group-hover:bg-accent'}`}>
+            <div className="w-0.5 h-3 bg-bg/80 rounded-full" />
+          </div>
+        </div>
+
+        {/* ================================================================= */}
         {/* RIGHT PANE: Code Editor (Top) & Testcase/Result Console (Bottom) */}
         {/* ================================================================= */}
-        <div className="lg:col-span-7 flex flex-col bg-surface overflow-hidden h-[calc(100vh-50px)]">
+        <div 
+          ref={rightPaneRef}
+          className="flex flex-col bg-surface overflow-hidden h-full min-w-0 flex-1 w-full"
+          style={{ width: isDesktop ? `${100 - leftWidthPct}%` : '100%' }}
+        >
           {/* Top Code Editor Header */}
           <div className="px-4 py-2 border-b border-border bg-surface flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
@@ -1520,31 +1718,76 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
             </div>
           </div>
 
-          {/* Monaco Code Editor Area */}
-          <div className="flex-1 min-h-[300px] border-b border-border relative">
-            <Editor
-              height="100%"
-              language={availableLangs.find(l => l.id === selectedLang)?.monacoLang || 'cpp'}
-              theme={editorTheme}
-              value={code}
-              onChange={(val) => setCode(val || '')}
-              onMount={handleEditorMount}
-              options={{
-                fontSize: 13,
-                fontFamily: '"JetBrains Mono", Consolas, "Courier New", monospace',
-                tabSize: 4,
-                minimap: { enabled: false },
-                scrollBeyondLastLine: false,
-                wordWrap: 'on',
-                lineNumbers: 'on',
-                automaticLayout: true,
-                padding: { top: 10, bottom: 10 }
-              }}
-            />
+          {/* Top Code Editor Container */}
+          <div 
+            className="flex flex-col min-h-[140px] relative overflow-hidden"
+            style={{ height: isDesktop ? `${editorHeightPct}%` : '55vh' }}
+          >
+            {/* Monaco Code Editor Area */}
+            <div className="flex-1 w-full min-h-0 relative">
+              <Editor
+                height="100%"
+                language={availableLangs.find(l => l.id === selectedLang)?.monacoLang || 'cpp'}
+                theme={editorTheme}
+                value={code}
+                onChange={handleCodeChange}
+                onMount={handleEditorMount}
+                options={{
+                  fontSize: 13,
+                  fontFamily: '"JetBrains Mono", Consolas, "Courier New", monospace',
+                  tabSize: 4,
+                  minimap: { enabled: false },
+                  scrollBeyondLastLine: false,
+                  wordWrap: 'on',
+                  lineNumbers: 'on',
+                  automaticLayout: true,
+                  padding: { top: 10, bottom: 10 }
+                }}
+              />
+            </div>
+
+            {/* Editor Footer Status Bar (LeetCode Style) */}
+            <div className="px-3.5 py-1 border-t border-border/40 bg-surface/90 flex items-center justify-between text-[11px] font-mono text-text-muted shrink-0 select-none">
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-emerald-500 font-medium">Saved</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-text-muted/70">
+                  {availableLangs.find(l => l.id === selectedLang)?.label}
+                </span>
+                <span className="text-text-muted/40">·</span>
+                <span className="text-text-muted/70">Draft Preserved</span>
+              </div>
+            </div>
+          </div>
+
+          {/* ================================================================= */}
+          {/* HORIZONTAL SPLITTER (EDITOR / CONSOLE RESIZE HANDLE) */}
+          {/* ================================================================= */}
+          <div
+            onMouseDown={handleMouseDownV}
+            onDoubleClick={() => {
+              setEditorHeightPct(62);
+              try { localStorage.setItem('intervyn_lc_editor_height', '62'); } catch {}
+              setTimeout(() => editorRef.current?.layout(), 50);
+            }}
+            className={`hidden lg:flex h-2.5 -my-1.5 z-30 cursor-row-resize items-center justify-center group relative hover:bg-accent/30 transition-colors select-none ${
+              isDraggingV ? 'bg-accent/50' : 'bg-transparent'
+            }`}
+            title="Drag to resize console (Double-click to reset)"
+          >
+            <div className={`h-[2px] w-full transition-colors ${isDraggingV ? 'bg-accent' : 'bg-border/60 group-hover:bg-accent'}`} />
+            <div className={`absolute left-1/2 -translate-x-1/2 h-1.5 w-8 rounded-full transition-colors flex items-center justify-center ${isDraggingV ? 'bg-accent shadow-xs' : 'bg-border group-hover:bg-accent'}`}>
+              <div className="h-0.5 w-3 bg-bg/80 rounded-full" />
+            </div>
           </div>
 
           {/* Bottom Console: Testcase & Results (Split Tabs) */}
-          <div className="h-64 flex flex-col bg-bg">
+          <div 
+            className="flex flex-col bg-bg overflow-hidden min-h-[120px] flex-1"
+            style={{ height: isDesktop ? `${100 - editorHeightPct}%` : 'auto' }}
+          >
             {/* Console Header Tabs */}
             <div className="px-3 border-b border-border bg-surface flex items-center justify-between">
               <div className="flex items-center">
@@ -1862,7 +2105,15 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
               <button
                 type="button"
                 onClick={() => {
-                  setCode(viewingSubmissionCode.code);
+                  const loadedCode = viewingSubmissionCode.code;
+                  setCode(loadedCode);
+                  if (questionDetail) {
+                    const qKey = questionDetail.slug || questionDetail.id;
+                    try {
+                      localStorage.setItem(`intervyn_lc_code_${qKey}_${selectedLang}`, loadedCode);
+                      localStorage.setItem(`intervyn_lc_code_${qKey}`, loadedCode);
+                    } catch {}
+                  }
                   setViewingSubmissionCode(null);
                 }}
                 className="px-3 py-1.5 rounded-lg bg-accent text-accent-contrast text-xs font-medium hover:bg-accent-hover transition-colors"
