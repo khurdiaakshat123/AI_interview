@@ -138,6 +138,19 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   const [isDesktop, setIsDesktop] = useState<boolean>(() => typeof window !== 'undefined' && window.innerWidth >= 1024);
   const [isDraggingH, setIsDraggingH] = useState<boolean>(false);
   const [isDraggingV, setIsDraggingV] = useState<boolean>(false);
+  const [isEditorMaximized, setIsEditorMaximized] = useState<boolean>(false);
+
+  // Escape key to exit maximized editor
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isEditorMaximized) {
+        setIsEditorMaximized(false);
+        setTimeout(() => editorRef.current?.layout(), 50);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isEditorMaximized]);
 
   // Split-pane sizes with persistent user preferences
   const [leftWidthPct, setLeftWidthPct] = useState<number>(() => {
@@ -156,11 +169,17 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
       const saved = localStorage.getItem('intervyn_lc_editor_height');
       if (saved) {
         const val = parseFloat(saved);
-        if (!isNaN(val) && val >= 25 && val <= 85) return val;
+        // Reset if saved abnormally small (< 40%) so user isn't stuck with a squished editor
+        if (!isNaN(val) && val >= 40 && val <= 85) return val;
       }
     } catch {}
     return 62;
   });
+
+  const leftWidthPctRef = useRef(leftWidthPct);
+  leftWidthPctRef.current = leftWidthPct;
+  const editorHeightPctRef = useRef(editorHeightPct);
+  editorHeightPctRef.current = editorHeightPct;
 
   // Track window resize for desktop breakpoint
   useEffect(() => {
@@ -183,33 +202,41 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   useEffect(() => {
     if (!isDraggingH && !isDraggingV) return;
 
+    let rafId: number | null = null;
+
     const handleMouseMove = (e: MouseEvent) => {
       if (isDraggingH && workspaceRef.current) {
         const rect = workspaceRef.current.getBoundingClientRect();
         const newPct = ((e.clientX - rect.left) / rect.width) * 100;
         const clamped = Math.min(Math.max(newPct, 20), 75);
+        leftWidthPctRef.current = clamped;
         setLeftWidthPct(clamped);
-        editorRef.current?.layout();
       } else if (isDraggingV && rightPaneRef.current) {
         const rect = rightPaneRef.current.getBoundingClientRect();
         const newPct = ((e.clientY - rect.top) / rect.height) * 100;
-        const clamped = Math.min(Math.max(newPct, 25), 85);
+        const clamped = Math.min(Math.max(newPct, 25), 80);
+        editorHeightPctRef.current = clamped;
         setEditorHeightPct(clamped);
-        editorRef.current?.layout();
       }
+
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        editorRef.current?.layout();
+      });
     };
 
     const handleMouseUp = () => {
+      if (rafId) cancelAnimationFrame(rafId);
       if (isDraggingH) {
         setIsDraggingH(false);
         try {
-          localStorage.setItem('intervyn_lc_left_width', String(leftWidthPct));
+          localStorage.setItem('intervyn_lc_left_width', String(leftWidthPctRef.current));
         } catch {}
       }
       if (isDraggingV) {
         setIsDraggingV(false);
         try {
-          localStorage.setItem('intervyn_lc_editor_height', String(editorHeightPct));
+          localStorage.setItem('intervyn_lc_editor_height', String(editorHeightPctRef.current));
         } catch {}
       }
       setTimeout(() => {
@@ -220,10 +247,11 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseup', handleMouseUp);
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isDraggingH, isDraggingV, leftWidthPct, editorHeightPct]);
+  }, [isDraggingH, isDraggingV]);
 
   // Search debounce
   useEffect(() => {
@@ -1040,9 +1068,9 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   const availableLangs = isDsa ? DSA_LANGUAGES : DB_LANGUAGES;
 
   return (
-    <div className="min-h-screen bg-bg text-text flex flex-col">
+    <div className="h-[calc(100vh-64px)] bg-bg text-text flex flex-col overflow-hidden">
       {/* Top LeetCode Navigation Bar */}
-      <header className="sticky top-16 z-40 bg-surface border-b border-border px-4 py-2 flex items-center justify-between gap-4">
+      <header className="shrink-0 z-40 bg-surface border-b border-border px-4 py-2 flex items-center justify-between gap-4">
         {/* Left: Back to Problem List & Question Navigator */}
         <div className="flex items-center gap-3">
           <button
@@ -1166,14 +1194,13 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
       <div 
         ref={workspaceRef}
         className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-hidden relative select-none"
-        style={{ height: 'calc(100vh - 50px)' }}
       >
         {/* ================================================================= */}
         {/* LEFT PANE: Problem Statement, Editorial, Hints, Submissions */}
         {/* ================================================================= */}
         <div 
-          className="flex flex-col bg-bg overflow-hidden h-full border-b lg:border-b-0 lg:border-r border-border shrink-0 w-full"
-          style={{ width: isDesktop ? `${leftWidthPct}%` : '100%' }}
+          className={`${isEditorMaximized ? 'hidden' : 'flex flex-col bg-bg overflow-hidden h-full border-b lg:border-b-0 lg:border-r border-border shrink-0 w-full lg:w-auto'}`}
+          style={{ width: isDesktop && !isEditorMaximized ? `${leftWidthPct}%` : '100%' }}
         >
           {/* Top Left Navigation Tabs */}
           <div className="flex items-center border-b border-border bg-surface px-2 overflow-x-auto">
@@ -1650,79 +1677,100 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
         {/* ================================================================= */}
         {/* VERTICAL SPLITTER (LEFT / RIGHT RESIZE HANDLE) */}
         {/* ================================================================= */}
-        <div
-          onMouseDown={handleMouseDownH}
-          onDoubleClick={() => {
-            setLeftWidthPct(42);
-            try { localStorage.setItem('intervyn_lc_left_width', '42'); } catch {}
-            setTimeout(() => editorRef.current?.layout(), 50);
-          }}
-          className={`hidden lg:flex w-2.5 -mx-1.5 z-30 cursor-col-resize items-center justify-center group relative hover:bg-accent/30 transition-colors select-none ${
-            isDraggingH ? 'bg-accent/50' : 'bg-transparent'
-          }`}
-          title="Drag to resize panes (Double-click to reset)"
-        >
-          <div className={`w-[2px] h-full transition-colors ${isDraggingH ? 'bg-accent' : 'bg-border/60 group-hover:bg-accent'}`} />
-          <div className={`absolute top-1/2 -translate-y-1/2 w-1.5 h-8 rounded-full transition-colors flex items-center justify-center ${isDraggingH ? 'bg-accent shadow-xs' : 'bg-border group-hover:bg-accent'}`}>
-            <div className="w-0.5 h-3 bg-bg/80 rounded-full" />
+        {!isEditorMaximized && (
+          <div
+            onMouseDown={handleMouseDownH}
+            onDoubleClick={() => {
+              setLeftWidthPct(42);
+              leftWidthPctRef.current = 42;
+              try { localStorage.setItem('intervyn_lc_left_width', '42'); } catch {}
+              setTimeout(() => editorRef.current?.layout(), 50);
+            }}
+            className={`hidden lg:flex w-2.5 -mx-1.5 z-30 cursor-col-resize items-center justify-center group relative hover:bg-accent/30 transition-colors select-none ${
+              isDraggingH ? 'bg-accent/50' : 'bg-transparent'
+            }`}
+            title="Drag to resize panes (Double-click to reset)"
+          >
+            <div className={`w-[2px] h-full transition-colors ${isDraggingH ? 'bg-accent' : 'bg-border/60 group-hover:bg-accent'}`} />
+            <div className={`absolute top-1/2 -translate-y-1/2 w-1.5 h-8 rounded-full transition-colors flex items-center justify-center ${isDraggingH ? 'bg-accent shadow-xs' : 'bg-border group-hover:bg-accent'}`}>
+              <div className="w-0.5 h-3 bg-bg/80 rounded-full" />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* ================================================================= */}
         {/* RIGHT PANE: Code Editor (Top) & Testcase/Result Console (Bottom) */}
         {/* ================================================================= */}
         <div 
           ref={rightPaneRef}
-          className="flex flex-col bg-surface overflow-hidden h-full min-w-0 flex-1 w-full"
-          style={{ width: isDesktop ? `${100 - leftWidthPct}%` : '100%' }}
+          className={`flex flex-col bg-surface overflow-hidden h-full min-w-0 ${isEditorMaximized ? 'w-full' : 'flex-1'}`}
         >
-          {/* Top Code Editor Header */}
-          <div className="px-4 py-2 border-b border-border bg-surface flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5 text-xs font-mono font-semibold text-text">
-                <Code2 className="w-3.5 h-3.5 text-accent" />
-                <span>Code</span>
+          {/* Top Code Editor Section (Header + Monaco + Footer Status) */}
+          <div 
+            className="flex flex-col min-h-[160px] relative overflow-hidden shrink-0"
+            style={{ 
+              height: isEditorMaximized ? '100%' : (isDesktop ? `${editorHeightPct}%` : '55vh'),
+              minHeight: isEditorMaximized ? '100%' : undefined 
+            }}
+          >
+            {/* Top Code Editor Header */}
+            <div className="px-4 py-2 border-b border-border bg-surface flex items-center justify-between gap-3 shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5 text-xs font-mono font-semibold text-text">
+                  <Code2 className="w-3.5 h-3.5 text-accent" />
+                  <span>Code</span>
+                </div>
+
+                {/* Language Selector Dropdown */}
+                <select
+                  value={selectedLang}
+                  onChange={(e) => handleLanguageChange(e.target.value)}
+                  className="px-2.5 py-1 rounded bg-bg border border-border text-xs font-mono text-text focus:outline-none focus:border-border-focus cursor-pointer"
+                >
+                  {availableLangs.map(l => (
+                    <option key={l.id} value={l.id}>{l.label}</option>
+                  ))}
+                </select>
               </div>
 
-              {/* Language Selector Dropdown */}
-              <select
-                value={selectedLang}
-                onChange={(e) => handleLanguageChange(e.target.value)}
-                className="px-2.5 py-1 rounded bg-bg border border-border text-xs font-mono text-text focus:outline-none focus:border-border-focus cursor-pointer"
-              >
-                {availableLangs.map(l => (
-                  <option key={l.id} value={l.id}>{l.label}</option>
-                ))}
-              </select>
+              {/* Editor Actions: Reset Code, Copy Code, Maximize / Restore */}
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleCopyCode}
+                  className="p-1.5 rounded hover:bg-surface-hover text-text-muted hover:text-text transition-colors"
+                  title="Copy Code to Clipboard"
+                >
+                  {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleResetCode}
+                  className="p-1.5 rounded hover:bg-surface-hover text-text-muted hover:text-text transition-colors"
+                  title="Reset to default starter code"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsEditorMaximized(prev => !prev);
+                    setTimeout(() => editorRef.current?.layout(), 50);
+                  }}
+                  className={`p-1.5 rounded transition-colors ${
+                    isEditorMaximized 
+                      ? 'bg-accent/15 text-accent hover:bg-accent/25' 
+                      : 'hover:bg-surface-hover text-text-muted hover:text-text'
+                  }`}
+                  title={isEditorMaximized ? "Exit Fullscreen (Esc)" : "Maximize Typing Window"}
+                >
+                  {isEditorMaximized ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                </button>
+              </div>
             </div>
 
-            {/* Editor Actions: Reset Code, Copy Code */}
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={handleCopyCode}
-                className="p-1.5 rounded hover:bg-surface-hover text-text-muted hover:text-text transition-colors"
-                title="Copy Code to Clipboard"
-              >
-                {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-              </button>
-
-              <button
-                type="button"
-                onClick={handleResetCode}
-                className="p-1.5 rounded hover:bg-surface-hover text-text-muted hover:text-text transition-colors"
-                title="Reset to default starter code"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Top Code Editor Container */}
-          <div 
-            className="flex flex-col min-h-[140px] relative overflow-hidden"
-            style={{ height: isDesktop ? `${editorHeightPct}%` : '55vh' }}
-          >
             {/* Monaco Code Editor Area */}
             <div className="flex-1 w-full min-h-0 relative">
               <Editor
@@ -1765,29 +1813,32 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
           {/* ================================================================= */}
           {/* HORIZONTAL SPLITTER (EDITOR / CONSOLE RESIZE HANDLE) */}
           {/* ================================================================= */}
-          <div
-            onMouseDown={handleMouseDownV}
-            onDoubleClick={() => {
-              setEditorHeightPct(62);
-              try { localStorage.setItem('intervyn_lc_editor_height', '62'); } catch {}
-              setTimeout(() => editorRef.current?.layout(), 50);
-            }}
-            className={`hidden lg:flex h-2.5 -my-1.5 z-30 cursor-row-resize items-center justify-center group relative hover:bg-accent/30 transition-colors select-none ${
-              isDraggingV ? 'bg-accent/50' : 'bg-transparent'
-            }`}
-            title="Drag to resize console (Double-click to reset)"
-          >
-            <div className={`h-[2px] w-full transition-colors ${isDraggingV ? 'bg-accent' : 'bg-border/60 group-hover:bg-accent'}`} />
-            <div className={`absolute left-1/2 -translate-x-1/2 h-1.5 w-8 rounded-full transition-colors flex items-center justify-center ${isDraggingV ? 'bg-accent shadow-xs' : 'bg-border group-hover:bg-accent'}`}>
-              <div className="h-0.5 w-3 bg-bg/80 rounded-full" />
+          {!isEditorMaximized && (
+            <div
+              onMouseDown={handleMouseDownV}
+              onDoubleClick={() => {
+                setEditorHeightPct(62);
+                editorHeightPctRef.current = 62;
+                try { localStorage.setItem('intervyn_lc_editor_height', '62'); } catch {}
+                setTimeout(() => editorRef.current?.layout(), 50);
+              }}
+              className={`hidden lg:flex h-3 -my-1.5 z-30 cursor-row-resize items-center justify-center group relative hover:bg-accent/30 transition-colors select-none ${
+                isDraggingV ? 'bg-accent/50' : 'bg-transparent'
+              }`}
+              title="Drag to resize console (Double-click to reset)"
+            >
+              <div className={`h-[2px] w-full transition-colors ${isDraggingV ? 'bg-accent' : 'bg-border/60 group-hover:bg-accent'}`} />
+              <div className={`absolute left-1/2 -translate-x-1/2 h-1.5 w-8 rounded-full transition-colors flex items-center justify-center ${isDraggingV ? 'bg-accent shadow-xs' : 'bg-border group-hover:bg-accent'}`}>
+                <div className="h-0.5 w-3 bg-bg/80 rounded-full" />
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Bottom Console: Testcase & Results (Split Tabs) */}
-          <div 
-            className="flex flex-col bg-bg overflow-hidden min-h-[120px] flex-1"
-            style={{ height: isDesktop ? `${100 - editorHeightPct}%` : 'auto' }}
-          >
+          {!isEditorMaximized && (
+            <div 
+              className="flex flex-col bg-bg overflow-hidden min-h-[100px] flex-1"
+            >
             {/* Console Header Tabs */}
             <div className="px-3 border-b border-border bg-surface flex items-center justify-between">
               <div className="flex items-center">
@@ -2031,6 +2082,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
               )}
             </div>
           </div>
+          )}
         </div>
       </div>
 
