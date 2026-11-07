@@ -213,4 +213,17 @@ class MCQUserProgress(Base):
     attempts_count = Column(Integer, default=0)
     updated_at = Column(DateTime(timezone=True), default=utc_now, onupdate=utc_now)
 
+class CustomPracticeSession(Base):
+    __tablename__ = "custom_practice_sessions"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    creator_user_id = Column(String(36), ForeignKey("users.id"), nullable=True)
+    title = Column(String(200), default="Timed Practice Session")
+    session_type = Column(String(20), default="hybrid")  # "mcq" | "dsa" | "hybrid"
+    duration_minutes = Column(Integer, default=30)
+    marking_scheme_json = Column(JSON, default=dict)
+    sections_json = Column(JSON, default=list)
+    questions_json = Column(JSON, default=list)
+    solutions_json = Column(JSON, default=dict)
+    created_at = Column(DateTime(timezone=True), default=utc_now)
 

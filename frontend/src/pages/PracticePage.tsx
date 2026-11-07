@@ -17,6 +17,8 @@ import { LCMarkdownViewer } from '../components/LCMarkdownViewer';
 import { LCTimer } from '../components/practice/LCTimer';
 import { LCAnalyticsCard } from '../components/practice/LCAnalyticsCard';
 import { MCQPracticeView } from '../components/mcq/MCQPracticeView';
+import { MCQTopicPracticeWindow } from '../components/mcq/MCQTopicPracticeWindow';
+import { TimedPracticeConfigModal } from '../components/practice/TimedPracticeConfigModal';
 import Editor, { OnMount } from '@monaco-editor/react';
 
 interface PracticePageProps {
@@ -86,6 +88,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   const [searchParams, setSearchParams] = useSearchParams();
   const initialMode = searchParams.get('tab') === 'mcq' || searchParams.get('mode') === 'mcq' ? 'mcq' : 'coding';
   const [practiceTab, setPracticeTab] = useState<'coding' | 'mcq'>(initialMode);
+  const [timedPracticeModalOpen, setTimedPracticeModalOpen] = useState<boolean>(false);
+  const [activePracticeTopic, setActivePracticeTopic] = useState<{ id: string; name: string; count: number } | null>(null);
 
   // Mode: Explorer (list) vs Solver (workspace)
   const [activeQuestionId, setActiveQuestionId] = useState<string | null>(problemSlug || initialQuestionId || null);
@@ -613,6 +617,29 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   };
 
   // =========================================================================
+  // VIEW 1.5: DEDICATED UNTIMED MCQ TOPIC PRACTICE VIEW
+  // =========================================================================
+  if (activePracticeTopic) {
+    return (
+      <div className="h-[calc(100vh-64px)] bg-bg text-text flex flex-col overflow-hidden">
+        <MCQTopicPracticeWindow
+          isOpen={true}
+          topicId={activePracticeTopic.id}
+          topicTitle={activePracticeTopic.name}
+          totalQuestionsCount={activePracticeTopic.count}
+          onClose={() => setActivePracticeTopic(null)}
+          onProgressUpdated={() => {}}
+        />
+        <TimedPracticeConfigModal
+          isOpen={timedPracticeModalOpen}
+          onClose={() => setTimedPracticeModalOpen(false)}
+          initialType="both"
+        />
+      </div>
+    );
+  }
+
+  // =========================================================================
   // VIEW 1: LEETCODE QUESTION EXPLORER / CATALOG
   // =========================================================================
   if (!activeQuestionId) {
@@ -634,7 +661,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               {/* Segmented Switcher: Coding vs MCQ */}
               <div className="flex items-center gap-1 p-1 bg-surface border border-border rounded-xl shadow-xs">
                 <button
@@ -663,26 +690,25 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                 </button>
               </div>
 
-              {practiceTab === 'coding' && (
-                <button
-                  type="button"
-                  onClick={handlePickRandom}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover text-xs font-medium text-text transition-colors shadow-xs cursor-pointer"
-                  title="Pick a random problem"
-                >
-                  <Shuffle className="w-3.5 h-3.5 text-accent" />
-                  <span>Pick Random</span>
-                </button>
-              )}
+              {/* Timed Practice Button directly beside Coding & MCQ */}
+              <button
+                type="button"
+                onClick={() => setTimedPracticeModalOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-accent text-accent-contrast hover:bg-accent-hover text-xs font-semibold shadow-xs transition-all cursor-pointer active:scale-95"
+                title="Prepare a timed practice session (select MCQ, DSA, or both)"
+              >
+                <Clock className="w-3.5 h-3.5" />
+                <span>Timed Practice</span>
+              </button>
             </div>
           </div>
 
           {practiceTab === 'mcq' ? (
-            <MCQPracticeView />
+            <MCQPracticeView onSelectPracticeTopic={setActivePracticeTopic} />
           ) : (
             <>
               {/* Top Analytics Cards */}
-          <LCAnalyticsCard analytics={analytics} loading={loadingAnalytics} />
+          <LCAnalyticsCard analytics={analytics} loading={loadingAnalytics} onPickRandom={handlePickRandom} />
 
           {/* Category Tabs: All / DSA / Database */}
           <div className="flex items-center justify-between border-b border-border pb-3">
@@ -721,14 +747,6 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
               >
                 <Database className="w-3.5 h-3.5" />
                 <span>Database SQL (105)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => { setPracticeTab('mcq'); setSearchParams({ tab: 'mcq' }); }}
-                className="px-3 py-1.5 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer bg-surface text-text-muted hover:text-text hover:bg-surface-hover border border-border"
-              >
-                <Brain className="w-3.5 h-3.5 text-accent" />
-                <span>MCQ Questions (1,500)</span>
               </button>
             </div>
 
@@ -1046,6 +1064,13 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
             </>
           )}
         </div>
+
+        {/* Timed Practice Config Studio Modal */}
+        <TimedPracticeConfigModal
+          isOpen={timedPracticeModalOpen}
+          onClose={() => setTimedPracticeModalOpen(false)}
+          initialType="both"
+        />
       </div>
     );
   }
@@ -1081,6 +1106,16 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Problems</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setTimedPracticeModalOpen(true)}
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium text-accent hover:bg-accent/15 border border-accent/30 transition-colors cursor-pointer"
+            title="Launch Timed Practice Studio"
+          >
+            <Clock className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Timed Practice</span>
           </button>
 
           <span className="text-border">|</span>
@@ -2119,6 +2154,13 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
           </div>
         </div>
       )}
+
+      {/* Timed Practice Config Studio Modal */}
+      <TimedPracticeConfigModal
+        isOpen={timedPracticeModalOpen}
+        onClose={() => setTimedPracticeModalOpen(false)}
+        initialType="both"
+      />
 
       {/* Submission Code Modal */}
       {viewingSubmissionCode && (

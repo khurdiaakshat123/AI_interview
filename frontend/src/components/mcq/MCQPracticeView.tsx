@@ -10,8 +10,13 @@ import { api } from '../../services/api';
 import { MCQTopicCard } from './MCQTopicCard';
 import { MCQQuestionModal } from './MCQQuestionModal';
 import { MCQQuizModal } from './MCQQuizModal';
+import { MCQTopicPracticeWindow } from './MCQTopicPracticeWindow';
 
-export const MCQPracticeView: React.FC = () => {
+interface MCQPracticeViewProps {
+  onSelectPracticeTopic?: (topic: { id: string; name: string; count: number }) => void;
+}
+
+export const MCQPracticeView: React.FC<MCQPracticeViewProps> = ({ onSelectPracticeTopic }) => {
   // Broad Topics & Analytics State
   const [broadTopics, setBroadTopics] = useState<MCQBroadTopic[]>([]);
   const [loadingTopics, setLoadingTopics] = useState(true);
@@ -35,6 +40,9 @@ export const MCQPracticeView: React.FC = () => {
 
   // Active Interactive Solver Modal
   const [activeQuestionId, setActiveQuestionId] = useState<string | null>(null);
+
+  // Active Topic Practice Window State
+  const [activePracticeTopic, setActivePracticeTopic] = useState<{ id: string; name: string; count: number } | null>(null);
 
   // Quiz Modal State
   const [quizModalOpen, setQuizModalOpen] = useState(false);
@@ -94,15 +102,21 @@ export const MCQPracticeView: React.FC = () => {
     loadQuestions();
   }, [loadQuestions]);
 
-  // Toggle single topic in cards or filter
+  // Launch untimed full-window topic practice on card click
   const handleTopicCardClick = (topicId: string) => {
-    if (selectedTopics.length === 1 && selectedTopics[0] === topicId) {
-      // Toggle off -> show all
-      setSelectedTopics([]);
-    } else {
-      setSelectedTopics([topicId]);
+    const topic = broadTopics.find(t => t.id === topicId);
+    if (topic) {
+      const topicData = {
+        id: topic.id,
+        name: topic.name,
+        count: topic.total_questions || 0
+      };
+      if (onSelectPracticeTopic) {
+        onSelectPracticeTopic(topicData);
+      } else {
+        setActivePracticeTopic(topicData);
+      }
     }
-    setPage(1);
   };
 
   const toggleTopicMulti = (topicId: string) => {
@@ -138,11 +152,6 @@ export const MCQPracticeView: React.FC = () => {
         console.error(err);
       }
     }
-  };
-
-  const handleStartTopicQuiz = (topicId: string) => {
-    setQuizInitialTopic(topicId);
-    setQuizModalOpen(true);
   };
 
   // Navigate next/prev inside solver modal
@@ -229,22 +238,14 @@ export const MCQPracticeView: React.FC = () => {
             <span className="text-[11px] font-mono uppercase tracking-wider text-text-muted">Quick Practice</span>
             <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-accent/10 text-accent">Interactive</span>
           </div>
-          <div className="flex items-center gap-2 mt-2">
+          <div className="mt-2">
             <button
               type="button"
               onClick={handlePickRandom}
-              className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-hover text-xs font-medium text-text cursor-pointer transition-colors shadow-xs"
+              className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-border bg-surface hover:bg-surface-hover text-xs font-medium text-text cursor-pointer transition-colors shadow-xs"
             >
               <Shuffle className="w-3.5 h-3.5 text-accent" />
-              <span>Random</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => { setQuizInitialTopic(undefined); setQuizModalOpen(true); }}
-              className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent text-accent-contrast text-xs font-medium cursor-pointer hover:bg-accent-hover transition-colors shadow-xs"
-            >
-              <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Quiz</span>
+              <span>Pick Random Question</span>
             </button>
           </div>
         </div>
@@ -277,7 +278,6 @@ export const MCQPracticeView: React.FC = () => {
               topic={topic}
               isSelected={selectedTopics.includes(topic.id)}
               onSelect={handleTopicCardClick}
-              onStartQuiz={handleStartTopicQuiz}
             />
           ))}
         </div>
@@ -608,6 +608,25 @@ export const MCQPracticeView: React.FC = () => {
           initialTopicId={quizInitialTopic}
           onClose={() => setQuizModalOpen(false)}
           onQuizCompleted={loadMetadata}
+        />
+      )}
+
+      {/* Untimed Full-Window Topic Practice Window (Fallback if not handled by parent) */}
+      {!onSelectPracticeTopic && activePracticeTopic && (
+        <MCQTopicPracticeWindow
+          isOpen={Boolean(activePracticeTopic)}
+          topicId={activePracticeTopic.id}
+          topicTitle={activePracticeTopic.name}
+          totalQuestionsCount={activePracticeTopic.count}
+          onClose={() => {
+            setActivePracticeTopic(null);
+            loadMetadata();
+            loadQuestions();
+          }}
+          onProgressUpdated={() => {
+            loadMetadata();
+            loadQuestions();
+          }}
         />
       )}
     </div>

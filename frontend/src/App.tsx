@@ -8,6 +8,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import { JDIntakePage } from './pages/JDIntakePage';
 import { PracticeConfigPage } from './pages/PracticeConfigPage';
 import { PracticePage } from './pages/PracticePage';
+import { TimedSessionPage } from './pages/TimedSessionPage';
 import { PracticeDebugPage } from './pages/PracticeDebugPage';
 import { PracticeRunnerPage } from './pages/PracticeRunnerPage';
 import { MockOARunnerPage } from './pages/MockOARunnerPage';
@@ -185,23 +186,25 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-bg text-text font-sans antialiased selection:bg-accent/25 selection:text-text">
-      {/* Top Navigation */}
-      <Navbar 
-        currentTab={getActiveTab(location.pathname)} 
-        setCurrentTab={handleNavigate} 
-        candidate={candidate}
-        onOpenCandidateSetup={() => {
-          if (!currentUser) {
-            setShowAuthModal(true);
-            return;
-          }
-          setShowCandidateSetup(true);
-        }}
-        onAuthChange={handleAuthChange}
-        currentUser={currentUser}
-        onOpenAuth={() => setShowAuthModal(true)}
-        onSignOut={handleSignOut}
-      />
+      {/* Top Navigation (hidden during dedicated timed assessment runner to avoid double headers) */}
+      {!location.pathname.startsWith('/practice/timed-session') && (
+        <Navbar 
+          currentTab={getActiveTab(location.pathname)} 
+          setCurrentTab={handleNavigate} 
+          candidate={candidate}
+          onOpenCandidateSetup={() => {
+            if (!currentUser) {
+              setShowAuthModal(true);
+              return;
+            }
+            setShowCandidateSetup(true);
+          }}
+          onAuthChange={handleAuthChange}
+          currentUser={currentUser}
+          onOpenAuth={() => setShowAuthModal(true)}
+          onSignOut={handleSignOut}
+        />
+      )}
 
       {/* Candidate & Custom JD Setup Modal */}
       <CandidateSetupModal
@@ -269,6 +272,16 @@ export const App: React.FC = () => {
                 onNavigate={handleNavigate}
               />
             }
+          />
+
+          <Route
+            path="/practice/timed-session/:sessionId"
+            element={<TimedSessionPage />}
+          />
+
+          <Route
+            path="/practice/timed-session"
+            element={<TimedSessionPage />}
           />
 
           <Route

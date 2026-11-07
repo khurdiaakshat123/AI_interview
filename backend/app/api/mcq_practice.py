@@ -49,7 +49,7 @@ def list_mcq_questions(
     has_code: Optional[bool] = Query(None, description="Filter questions that include code snippets"),
     starred_only: bool = Query(False, description="Filter only bookmarked / starred questions"),
     page: int = Query(1, ge=1),
-    limit: int = Query(30, ge=1, le=100),
+    limit: int = Query(30, ge=1, le=500),
     sort_by: str = Query("id", description="Sort by: id | difficulty | random"),
     order: str = Query("asc", description="Sort order: asc | desc"),
     db: Session = Depends(get_db),

@@ -4,7 +4,8 @@ import {
   InterviewTurn, InterviewFinalReport, ReviewQueueItem,
   LCQuestionSummary, LCQuestionDetail, LCSubmission, LCAnalytics, LCRunResult, LCSubmitResult,
   DebugTraceResult,
-  MCQBroadTopic, MCQQuestionSummary, MCQQuestionDetail, MCQSubmitResult, MCQAnalytics, MCQQuiz, MCQQuizSubmitResult
+  MCQBroadTopic, MCQQuestionSummary, MCQQuestionDetail, MCQSubmitResult, MCQAnalytics, MCQQuiz, MCQQuizSubmitResult,
+  CustomPracticeSessionData, CustomSessionResult, CustomSessionMetadata
 } from '../types';
 
 const LIVE_RENDER_API = 'https://ai-interview-4bio.onrender.com/api';
@@ -611,6 +612,45 @@ export const api = {
     broad_topic_count: number;
   }> {
     return request('/practice/mcq/validation');
+  },
+
+  // ==========================================
+  // CUSTOM PRACTICE & TIMED ASSESSMENTS
+  // ==========================================
+  async getCustomSessionMetadata(): Promise<CustomSessionMetadata> {
+    return request<CustomSessionMetadata>('/practice/custom-session/metadata');
+  },
+
+  async prepareCustomSession(payload: {
+    title?: string;
+    session_type: 'mcq' | 'dsa' | 'hybrid';
+    duration_minutes: number;
+    marking_scheme?: {
+      mcq_correct: number;
+      mcq_negative: number;
+      coding_weight: number;
+    };
+    sections: any[];
+  }): Promise<CustomPracticeSessionData> {
+    return request<CustomPracticeSessionData>('/practice/custom-session/prepare', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+  },
+
+  async getCustomSession(sessionId: string): Promise<CustomPracticeSessionData> {
+    return request<CustomPracticeSessionData>(`/practice/custom-session/${sessionId}`);
+  },
+
+  async submitCustomSession(sessionId: string, payload: {
+    mcq_answers: Record<string, string | null>;
+    coding_submissions: Record<string, any>;
+    time_spent_seconds: number;
+  }): Promise<CustomSessionResult> {
+    return request<CustomSessionResult>(`/practice/custom-session/${sessionId}/submit`, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
   }
 };
 

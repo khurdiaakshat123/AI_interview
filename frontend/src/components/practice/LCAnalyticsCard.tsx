@@ -1,13 +1,14 @@
 import React from 'react';
 import { LCAnalytics } from '../../types';
-import { Trophy, Code2, Database, Star, Flame } from 'lucide-react';
+import { Trophy, Code2, Database, Star, Flame, Shuffle } from 'lucide-react';
 
 interface LCAnalyticsCardProps {
   analytics: LCAnalytics | null;
   loading?: boolean;
+  onPickRandom?: () => void;
 }
 
-export const LCAnalyticsCard: React.FC<LCAnalyticsCardProps> = ({ analytics, loading }) => {
+export const LCAnalyticsCard: React.FC<LCAnalyticsCardProps> = ({ analytics, loading, onPickRandom }) => {
   if (loading || !analytics) {
     return (
       <div className="p-6 rounded-[12px] bg-surface border border-border animate-pulse">
@@ -152,33 +153,50 @@ export const LCAnalyticsCard: React.FC<LCAnalyticsCardProps> = ({ analytics, loa
         </div>
 
         {/* Right Column: Category Split (DSA & Database) */}
-        <div className="lg:col-span-3 grid grid-cols-2 lg:grid-cols-1 gap-3">
-          {/* DSA Card */}
-          <div className="p-3 rounded-lg bg-bg border border-border flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-md bg-surface flex items-center justify-center border border-border text-accent">
-                <Code2 className="w-4 h-4" />
-              </div>
-              <div>
-                <div className="text-[13px] font-medium text-text">Algorithms</div>
-                <div className="text-[11px] text-text-muted font-mono">{dsa?.solved || 0} / {dsa?.total || 0} Solved</div>
-              </div>
-            </div>
-            <span className="text-xs font-mono font-semibold text-text">{dsa?.percentage || 0}%</span>
+        <div className="lg:col-span-3 space-y-2.5">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-mono uppercase tracking-wider text-text-muted">Categories</span>
+            {onPickRandom && (
+              <button
+                type="button"
+                onClick={onPickRandom}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border bg-surface hover:bg-surface-hover text-xs font-medium text-text transition-colors shadow-xs cursor-pointer hover:border-accent/40 active:scale-95"
+                title="Pick a random coding problem"
+              >
+                <Shuffle className="w-3.5 h-3.5 text-accent" />
+                <span>Pick Random</span>
+              </button>
+            )}
           </div>
 
-          {/* Database Card */}
-          <div className="p-3 rounded-lg bg-bg border border-border flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-md bg-surface flex items-center justify-center border border-border text-amber-500">
-                <Database className="w-4 h-4" />
+          <div className="grid grid-cols-2 lg:grid-cols-1 gap-2.5">
+            {/* DSA Card */}
+            <div className="p-2.5 rounded-lg bg-bg border border-border flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-md bg-surface flex items-center justify-center border border-border text-accent">
+                  <Code2 className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-[13px] font-medium text-text">Algorithms</div>
+                  <div className="text-[11px] text-text-muted font-mono">{dsa?.solved || 0} / {dsa?.total || 0} Solved</div>
+                </div>
               </div>
-              <div>
-                <div className="text-[13px] font-medium text-text">Database (SQL)</div>
-                <div className="text-[11px] text-text-muted font-mono">{database?.solved || 0} / {database?.total || 0} Solved</div>
-              </div>
+              <span className="text-xs font-mono font-semibold text-text">{dsa?.percentage || 0}%</span>
             </div>
-            <span className="text-xs font-mono font-semibold text-text">{database?.percentage || 0}%</span>
+
+            {/* Database Card */}
+            <div className="p-2.5 rounded-lg bg-bg border border-border flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-md bg-surface flex items-center justify-center border border-border text-amber-500">
+                  <Database className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-[13px] font-medium text-text">Database (SQL)</div>
+                  <div className="text-[11px] text-text-muted font-mono">{database?.solved || 0} / {database?.total || 0} Solved</div>
+                </div>
+              </div>
+              <span className="text-xs font-mono font-semibold text-text">{database?.percentage || 0}%</span>
+            </div>
           </div>
         </div>
       </div>

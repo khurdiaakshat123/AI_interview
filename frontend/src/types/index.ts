@@ -579,4 +579,138 @@ export interface MCQQuizSubmitResult {
   detailed_results: MCQQuizResultQuestion[];
 }
 
+export interface CustomSessionSectionConfig {
+  id: string;
+  name: string;
+  section_type: 'mcq' | 'dsa';
+  topic: string;
+  difficulty: string;
+  count: number;
+  specific_question_ids?: string[];
+}
+
+export interface CustomSessionQuestion {
+  id: string;
+  type: 'mcq' | 'dsa';
+  section_id: string;
+  section_name: string;
+  num?: number;
+  slug?: string;
+  title?: string;
+  category?: string;
+  subcategory?: string;
+  broad_topic_id?: string;
+  broad_topic_name?: string;
+  subpart_name?: string;
+  difficulty: string;
+  question?: string;
+  options?: Record<string, string>;
+  has_code?: boolean;
+  code_snippet?: string | null;
+  contentHtml?: string;
+  contentMarkdown?: string;
+  starterCode?: Record<string, string>;
+  sampleTestCases?: any[];
+  sqlSchema?: string;
+  sqlSetup?: string[];
+  marking?: {
+    correct?: number;
+    negative?: number;
+    weight?: number;
+  };
+}
+
+export interface CustomPracticeSessionData {
+  id: string;
+  title: string;
+  session_type: 'mcq' | 'dsa' | 'hybrid';
+  duration_minutes: number;
+  marking_scheme: {
+    mcq_correct: number;
+    mcq_negative: number;
+    coding_weight: number;
+  };
+  sections: Array<{
+    id: string;
+    name: string;
+    section_type: 'mcq' | 'dsa';
+    topic: string;
+    difficulty: string;
+    count: number;
+  }>;
+  total_questions: number;
+  questions: CustomSessionQuestion[];
+  share_url: string;
+  created_at?: string;
+}
+
+export interface CustomSessionResult {
+  session_id: string;
+  title: string;
+  session_type: string;
+  total_score: number;
+  max_possible_score: number;
+  percentage: number;
+  time_spent_seconds: number;
+  duration_minutes: number;
+  mcq_summary: {
+    correct: number;
+    incorrect: number;
+    unanswered: number;
+    score: number;
+    max_score: number;
+    negative_marking_penalty: number;
+  };
+  coding_summary: {
+    solved: number;
+    attempted: number;
+    total: number;
+    score: number;
+    max_score: number;
+  };
+  section_stats: Array<{
+    name: string;
+    section_type: string;
+    total: number;
+    attempted: number;
+    correct: number;
+    incorrect: number;
+    score: number;
+    max_score: number;
+    percentage: number;
+  }>;
+  questions: Array<{
+    id: string;
+    type: 'mcq' | 'dsa';
+    section_id: string;
+    section_name?: string;
+    num?: number;
+    title?: string;
+    question?: string;
+    difficulty?: string;
+    options?: Record<string, string>;
+    code_snippet?: string | null;
+    user_answer?: string | null;
+    correct_answer?: string;
+    is_attempted?: boolean;
+    is_correct?: boolean;
+    points_awarded: number;
+    max_points: number;
+    explanation?: string;
+    user_code?: string;
+    language?: string;
+    status?: string;
+    passed_tests?: number;
+    total_tests?: number;
+    official_solution?: string;
+  }>;
+}
+
+export interface CustomSessionMetadata {
+  mcq_topics: Array<{ id: string; name: string; count: number }>;
+  dsa_topics: Array<{ id: string; name: string }>;
+  difficulties: string[];
+  sample_dsa: Array<{ id: string; num: number; title: string; difficulty: string; subcategory: string }>;
+  sample_mcq: Array<{ id: string; topic: string; difficulty: string; question: string }>;
+}
 

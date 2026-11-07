@@ -2,7 +2,7 @@ import React from 'react';
 import { 
   Cpu, Database, Network, Boxes, Binary, FileCode2, 
   Terminal, LineChart, Brain, CheckCircle2, BookOpen, 
-  Layers, Play, Sparkles 
+  Layers, Play, Sparkles, ArrowRight 
 } from 'lucide-react';
 import { MCQBroadTopic } from '../../types';
 import { getTopicColorClasses } from '../../utils/mcqTopics';
@@ -129,19 +129,10 @@ export const MCQTopicCard: React.FC<MCQTopicCardProps> = ({
             {progressPct}% completed
           </span>
 
-          {onStartQuiz && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onStartQuiz(topic.id);
-              }}
-              className="inline-flex items-center gap-1 text-[11px] font-medium text-accent hover:text-accent-hover transition-colors cursor-pointer"
-            >
-              <Play className="w-3 h-3 fill-current" />
-              <span>Quick Quiz</span>
-            </button>
-          )}
+          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-accent group-hover:translate-x-0.5 transition-transform">
+            <span>Start Practice</span>
+            <ArrowRight className="w-3 h-3" />
+          </span>
         </div>
       </div>
     </div>
