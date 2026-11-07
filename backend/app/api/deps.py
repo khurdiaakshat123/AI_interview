@@ -13,28 +13,36 @@ def get_current_user(
     FastAPI dependency to extract and verify the authenticated User.
     Supports:
     - Bearer google_token_<user_id>
+    - Bearer mock_token_<user_id>
     - Bearer token_<user_id>
-    - Bearer guest_<guest_device_id> (isolated per device/browser session)
+    - Bearer guest_<guest_device_id> or Bearer g_<guest_device_id>
     Guarantees strict multi-tenant / multi-user data isolation.
-    Safely handles tokens of arbitrary lengths without database truncation errors.
+    CRITICAL SECURITY: Email addresses and google_ids are NEVER accepted as bearer tokens.
     """
     if authorization and authorization.startswith("Bearer "):
         raw_token = authorization.replace("Bearer ", "").strip()
         if raw_token:
-            try:
-                # 1. Look up existing user by exact ID (if valid UUID length <= 36)
-                if len(raw_token) <= 36:
-                    user = db.query(User).filter(User.id == raw_token).first()
-                    if user:
-                        return user
+            # SECURITY: An email address must NEVER be accepted as an authentication token
+            if "@" in raw_token:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Invalid authentication token format. Email addresses cannot be used as tokens."
+                )
 
-                # 2. Look up existing user by prefix
+            try:
+                # 1. Look up existing user by prefix
                 for prefix in ("google_token_", "mock_token_", "token_"):
                     if raw_token.startswith(prefix):
                         target_id = raw_token.replace(prefix, "").strip()[:36]
                         user = db.query(User).filter(User.id == target_id).first()
                         if user:
                             return user
+
+                # 2. Look up existing user by exact ID (if valid UUID <= 36 chars and not guest)
+                if len(raw_token) <= 36 and not raw_token.startswith("guest_") and not raw_token.startswith("g_"):
+                    user = db.query(User).filter(User.id == raw_token).first()
+                    if user:
+                        return user
 
                 # Fallback: if raw_token has format <prefix>_<uuid>
                 if "_" in raw_token and not (raw_token.startswith("guest_") or raw_token.startswith("g_")):
@@ -43,13 +51,7 @@ def get_current_user(
                     if user:
                         return user
 
-                # 3. Look up existing user by email or google_id
-                if len(raw_token) <= 255:
-                    user = db.query(User).filter((User.email == raw_token) | (User.google_id == raw_token)).first()
-                    if user:
-                        return user
-
-                # 4. Resolve or create guest user
+                # 3. Resolve or create guest user
                 if raw_token.startswith("guest_") or raw_token.startswith("g_"):
                     safe_guest_id = raw_token[:36]
                     guest_user = db.query(User).filter(User.id == safe_guest_id).first()
@@ -70,13 +72,25 @@ def get_current_user(
                             guest_user = db.query(User).filter(User.id == safe_guest_id).first()
                     if guest_user:
                         return guest_user
+
+                # Token provided but could not be resolved to any authentic user
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Invalid or expired authentication credentials"
+                )
+            except HTTPException:
+                raise
             except Exception:
                 try:
                     db.rollback()
                 except Exception:
                     pass
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Authentication failed"
+                )
 
-    # Fallback to isolated anonymous guest if unauthenticated or token not found
+    # Fallback to isolated anonymous guest only if NO Authorization header was supplied at all
     try:
         anon_id = generate_uuid()
         guest = User(
@@ -114,16 +128,10 @@ def get_current_user_optional(
         return None
 
     raw_token = authorization.replace("Bearer ", "").strip()
-    if not raw_token:
+    if not raw_token or "@" in raw_token:
         return None
 
     try:
-        # Check by exact ID (if <= 36 chars)
-        if len(raw_token) <= 36:
-            user = db.query(User).filter(User.id == raw_token).first()
-            if user:
-                return user
-
         # Check google_token_ / mock_token_ / token_ prefixes
         for prefix in ("google_token_", "mock_token_", "token_"):
             if raw_token.startswith(prefix):
@@ -131,6 +139,12 @@ def get_current_user_optional(
                 user = db.query(User).filter(User.id == target_id).first()
                 if user:
                     return user
+
+        # Check by exact ID (if <= 36 chars and not guest)
+        if len(raw_token) <= 36 and not raw_token.startswith("guest_") and not raw_token.startswith("g_"):
+            user = db.query(User).filter(User.id == raw_token).first()
+            if user:
+                return user
 
         # Fallback: if raw_token has format <prefix>_<uuid>
         if "_" in raw_token and not (raw_token.startswith("guest_") or raw_token.startswith("g_")):
@@ -143,12 +157,6 @@ def get_current_user_optional(
         if raw_token.startswith("guest_") or raw_token.startswith("g_"):
             safe_id = raw_token[:36]
             user = db.query(User).filter(User.id == safe_id).first()
-            if user:
-                return user
-
-        # Check email or google_id
-        if len(raw_token) <= 255:
-            user = db.query(User).filter((User.email == raw_token) | (User.google_id == raw_token)).first()
             if user:
                 return user
 

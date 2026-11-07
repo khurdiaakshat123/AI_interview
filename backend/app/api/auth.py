@@ -1,5 +1,8 @@
 import json
 import base64
+import hashlib
+import secrets
+import hmac
 import httpx
 from fastapi import APIRouter, Depends, HTTPException, Header, status
 from sqlalchemy.orm import Session
@@ -10,6 +13,59 @@ from backend.app.models.models import User, generate_uuid, utc_now
 from backend.app.schemas.schemas import UserSignup, UserLogin, UserOut, TokenResponse, GoogleAuthRequest
 
 router = APIRouter(prefix="/api/auth", tags=["Auth"])
+
+def hash_password(password: str) -> str:
+    """
+    Hashes a password using PBKDF2-HMAC-SHA256 with 100,000 iterations
+    and a cryptographically secure 16-byte random salt.
+    Format: pbkdf2_sha256$100000$<salt_hex>$<hash_hex>
+    """
+    salt = secrets.token_hex(16)
+    dk = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt.encode("utf-8"), 100_000)
+    return f"pbkdf2_sha256$100000${salt}${dk.hex()}"
+
+def verify_password(plain_password: str, stored_hash: str) -> bool:
+    """
+    Verifies a plain password against a stored password hash.
+    Supports PBKDF2-HMAC-SHA256, and legacy 'hashed_' prefix for backward compatibility.
+    Rejects accounts with OAuth-only markers (e.g. 'google_oauth', 'guest_oauth').
+    """
+    if not stored_hash or not plain_password:
+        return False
+
+    # Never allow password login for accounts that exclusively use OAuth/guest
+    if stored_hash in ("google_oauth", "guest_oauth", "guest_auth", "mock_hash_auto"):
+        return False
+
+    # Standard secure format: pbkdf2_sha256$<iterations>$<salt>$<hash>
+    if stored_hash.startswith("pbkdf2_sha256$"):
+        parts = stored_hash.split("$")
+        if len(parts) == 4:
+            try:
+                iterations = int(parts[1])
+                salt = parts[2].encode("utf-8")
+                expected_hash = parts[3]
+                dk = hashlib.pbkdf2_hmac("sha256", plain_password.encode("utf-8"), salt, iterations)
+                return hmac.compare_digest(dk.hex(), expected_hash)
+            except Exception:
+                return False
+
+    # Format variant: pbkdf2:sha256:<iterations>$<salt>$<hash>
+    if stored_hash.startswith("pbkdf2:sha256:"):
+        try:
+            algo_iter, salt_str, expected_hash = stored_hash.split("$")
+            iterations = int(algo_iter.split(":")[-1])
+            dk = hashlib.pbkdf2_hmac("sha256", plain_password.encode("utf-8"), salt_str.encode("utf-8"), iterations)
+            return hmac.compare_digest(dk.hex(), expected_hash)
+        except Exception:
+            return False
+
+    # Legacy format: 'hashed_<plain_password>'
+    if stored_hash.startswith("hashed_"):
+        expected = stored_hash[len("hashed_"):]
+        return hmac.compare_digest(plain_password, expected)
+
+    return False
 
 def _sync_to_supabase_auth(db: Session, user: User, is_google: bool = True):
     """
@@ -165,15 +221,24 @@ async def google_auth(payload: GoogleAuthRequest, db: Session = Depends(get_db))
 
 @router.post("/signup", response_model=TokenResponse)
 def signup(payload: UserSignup, db: Session = Depends(get_db)):
-    existing = db.query(User).filter(User.email == payload.email).first()
+    clean_email = payload.email.strip().lower()
+    clean_name = payload.name.strip()
+
+    if not clean_email or not payload.password:
+        raise HTTPException(status_code=400, detail="Email and password are required")
+
+    if len(payload.password) < 6:
+        raise HTTPException(status_code=400, detail="Password must be at least 6 characters")
+
+    existing = db.query(User).filter(User.email == clean_email).first()
     if existing:
         raise HTTPException(status_code=400, detail="Email already registered")
 
     user = User(
         id=generate_uuid(),
-        name=payload.name,
-        email=payload.email,
-        password_hash="hashed_" + payload.password,
+        name=clean_name or clean_email.split("@")[0].title(),
+        email=clean_email,
+        password_hash=hash_password(payload.password),
         created_at=utc_now()
     )
     db.add(user)
@@ -189,19 +254,33 @@ def signup(payload: UserSignup, db: Session = Depends(get_db)):
 
 @router.post("/login", response_model=TokenResponse)
 def login(payload: UserLogin, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == payload.email).first()
-    if not user:
-        # For demo purposes, auto-create if not found
-        user = User(
-            id=generate_uuid(),
-            name=payload.email.split("@")[0].title(),
-            email=payload.email,
-            password_hash="hashed_" + payload.password,
-            created_at=utc_now()
+    clean_email = payload.email.strip().lower()
+    clean_password = payload.password
+
+    if not clean_email or not clean_password:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email and password are required"
         )
-        db.add(user)
+
+    user = db.query(User).filter(User.email == clean_email).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid email or password"
+        )
+
+    # Strictly verify password against stored hash
+    if not user.password_hash or not verify_password(clean_password, user.password_hash):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid email or password"
+        )
+
+    # Transparently upgrade legacy hash format to PBKDF2-HMAC-SHA256
+    if not user.password_hash.startswith("pbkdf2_sha256$"):
+        user.password_hash = hash_password(clean_password)
         db.commit()
-        db.refresh(user)
 
     _sync_to_supabase_auth(db, user, is_google=False)
 
