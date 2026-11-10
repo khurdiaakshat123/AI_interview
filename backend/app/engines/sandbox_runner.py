@@ -1600,7 +1600,8 @@ int main() {{
         is_void = (ret_type.strip().lower() == "void")
         if is_void:
             exec_code = f"sol.{method}({args_str});"
-            output_code = f'actual = formatOutput({arg_names[0] if arg_names else "\"\""});'
+            void_target = arg_names[0] if arg_names else '""'
+            output_code = f"actual = formatOutput({void_target});"
         elif "treenode" in ret_type.strip().lower():
             exec_code = f"TreeNode res = sol.{method}({args_str});"
             output_code = "actual = formatTreeNode(res);"
