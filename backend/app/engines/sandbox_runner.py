@@ -88,18 +88,11 @@ class SandboxRunner:
         start_t = time.perf_counter()
         peak_rss = 0
 
-        # Memory safeguard for Linux container (Render 512MB RAM cap)
+        # Safeguard memory limits for Linux container (Render 512MB RAM cap)
+        # Note: Do not constrain virtual address space (RLIMIT_AS) as 64-bit runtimes
+        # (OpenBLAS, JVM, Node V8) require address space reservation; physical resident
+        # memory (RSS) is monitored and enforced dynamically by _monitor_memory.
         preexec = None
-        if sys.platform != "win32":
-            def _set_child_limits():
-                try:
-                    import resource
-                    # Set a generous 1GB virtual address space limit so BLAS/JVM/Python runtime can mmap
-                    limit_bytes = 1024 * 1024 * 1024
-                    resource.setrlimit(resource.RLIMIT_AS, (limit_bytes, limit_bytes))
-                except Exception:
-                    pass
-            preexec = _set_child_limits
 
         exec_env = dict(env or os.environ)
         exec_env.setdefault("OPENBLAS_NUM_THREADS", "1")
@@ -420,7 +413,20 @@ class SandboxRunner:
             "pd." in code or "DataFrame" in code or "pandas" in code or
             any("headers" in str(tc.get("input", "")) or "+---" in str(tc.get("input", "")) or "table:" in str(tc.get("input", "")).lower() for tc in test_cases)
         )
-        pandas_import = """try:\n    import pandas as pd\n    import numpy as np\nexcept ImportError:\n    pass""" if is_pandas_needed else ""
+        if is_pandas_needed:
+            pandas_import = """try:
+    import pandas as pd
+    import numpy as np
+    from backend.app.engines.db_fixture_normalizer import (
+        normalize_database_fixture as _normalize_database_fixture,
+        bind_pandas_arguments as _bind_pandas_arguments,
+        compare_pandas_results as _compare_pandas_results,
+        df_to_ascii_table as _df_to_ascii_table
+    )
+except ImportError:
+    pass"""
+        else:
+            pandas_import = ""
         template = """# -*- coding: utf-8 -*-
 import json
 import time
@@ -436,16 +442,6 @@ if repo_root not in sys.path:
     sys.path.insert(0, repo_root)
 
 __PANDAS_IMPORT__
-
-try:
-    from backend.app.engines.db_fixture_normalizer import (
-        normalize_database_fixture as _normalize_database_fixture,
-        bind_pandas_arguments as _bind_pandas_arguments,
-        compare_pandas_results as _compare_pandas_results,
-        df_to_ascii_table as _df_to_ascii_table
-    )
-except ImportError:
-    pass
 
 true = True
 false = False
