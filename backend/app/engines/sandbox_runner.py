@@ -94,12 +94,19 @@ class SandboxRunner:
             def _set_child_limits():
                 try:
                     import resource
-                    # Cap child process address space to 256MB to protect host container
-                    limit_bytes = 256 * 1024 * 1024
+                    # Set a generous 1GB virtual address space limit so BLAS/JVM/Python runtime can mmap
+                    limit_bytes = 1024 * 1024 * 1024
                     resource.setrlimit(resource.RLIMIT_AS, (limit_bytes, limit_bytes))
                 except Exception:
                     pass
             preexec = _set_child_limits
+
+        exec_env = dict(env or os.environ)
+        exec_env.setdefault("OPENBLAS_NUM_THREADS", "1")
+        exec_env.setdefault("MKL_NUM_THREADS", "1")
+        exec_env.setdefault("OMP_NUM_THREADS", "1")
+        exec_env.setdefault("NUMEXPR_NUM_THREADS", "1")
+        exec_env.setdefault("PYTHONUNBUFFERED", "1")
 
         proc = subprocess.Popen(
             cmd,
@@ -107,7 +114,7 @@ class SandboxRunner:
             stderr=subprocess.PIPE,
             text=True,
             cwd=cwd,
-            env=env,
+            env=exec_env,
             preexec_fn=preexec
         )
 
