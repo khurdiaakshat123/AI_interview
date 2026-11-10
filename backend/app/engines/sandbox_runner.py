@@ -201,7 +201,7 @@ class SandboxRunner:
         test_cases: Optional[List[Dict[str, Any]]] = None,
         custom_input: Optional[str] = None,
         approach: str = "O(N) Time, O(1) Space",
-        timeout_seconds: float = 4.0
+        timeout_seconds: float = 10.0
     ) -> Dict[str, Any]:
         code_clean = str(user_code or "").strip()
         lang = cls.normalize_language(language)
@@ -248,7 +248,7 @@ class SandboxRunner:
         user_code: str,
         test_cases: List[Dict[str, Any]],
         approach: str = "O(N) Time, O(1) Space",
-        timeout_seconds: float = 4.0,
+        timeout_seconds: float = 10.0,
         language: str = "python"
     ) -> Dict[str, Any]:
         return cls.evaluate_code(
@@ -334,13 +334,14 @@ class SandboxRunner:
             tmp_path = tmp.name
             tmp.write(harness)
 
-        site_paths = [p for p in sys.path if "site-packages" in p.lower() or "lib" in p.lower()]
-        clean_env = {
-            "SYSTEMROOT": os.environ.get("SYSTEMROOT", "C:\\Windows"),
-            "WINDIR": os.environ.get("WINDIR", "C:\\Windows"),
-            "PATH": os.environ.get("PATH", ""),
-            "PYTHONPATH": os.pathsep.join(site_paths)
-        }
+        clean_env = dict(os.environ)
+        clean_env["PYTHONUNBUFFERED"] = "1"
+        clean_env["LANG"] = "C.UTF-8"
+        clean_env["LC_ALL"] = "C.UTF-8"
+        clean_env["OPENBLAS_NUM_THREADS"] = "1"
+        clean_env["MKL_NUM_THREADS"] = "1"
+        clean_env["OMP_NUM_THREADS"] = "1"
+        clean_env["NUMEXPR_NUM_THREADS"] = "1"
 
         try:
             retcode, stdout, stderr, proc_runtime_ms, proc_memory_mb = cls._execute_process_with_telemetry(

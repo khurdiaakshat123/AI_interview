@@ -899,7 +899,7 @@ class LCQuestionService:
             user_code=code,
             language=language,
             test_cases=enriched_cases,
-            timeout_seconds=4.0
+            timeout_seconds=10.0
         )
 
         return res
@@ -1053,7 +1053,7 @@ class LCQuestionService:
             user_code=code,
             language=language,
             test_cases=enriched_cases,
-            timeout_seconds=4.0
+            timeout_seconds=10.0
         )
 
 
