@@ -1,3 +1,4 @@
+import { getAuthSession, subscribeAuthSync } from '../utils/auth_sync';
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { 
@@ -94,9 +95,15 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [stepMessage, setStepMessage] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const boundSession = React.useRef<{ userId: string | null; sessionGen: string | null }>({ userId: null, sessionGen: null });
 
   React.useEffect(() => {
     if (isOpen) {
+      const sess = getAuthSession();
+      boundSession.current = {
+        userId: sess.user?.id || currentUser?.id || null,
+        sessionGen: sess.sessionGeneration || null
+      };
       if (initialCandidate) {
         if (initialCandidate.name) setName(initialCandidate.name);
         if (initialCandidate.email) setEmail(initialCandidate.email);
@@ -114,10 +121,34 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
     }
   }, [isOpen, initialCandidate, currentUser]);
 
+  React.useEffect(() => {
+    if (!isOpen) return;
+
+    const unsubscribe = subscribeAuthSync(() => {
+      const sess = getAuthSession();
+      const currentUid = sess.user?.id || null;
+      const currentGen = sess.sessionGeneration || null;
+
+      if (boundSession.current.userId && (currentUid !== boundSession.current.userId || currentGen !== boundSession.current.sessionGen)) {
+        setError('Authentication context changed in another tab. Form has been safely locked to protect account data.');
+        setTimeout(() => {
+          onClose();
+        }, 1200);
+      }
+    });
+
+    return unsubscribe;
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleSaveProfileOnly = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
+    const currentSess = getAuthSession();
+    if (boundSession.current.userId && (currentSess.user?.id !== boundSession.current.userId || currentSess.sessionGeneration !== boundSession.current.sessionGen)) {
+      setError('Form belongs to a previous authentication session. Please reopen the profile form.');
+      return;
+    }
     if (!name.trim() || !email.trim()) {
       setError('Please provide candidate name and email address.');
       return;
@@ -169,6 +200,11 @@ export const CandidateSetupModal: React.FC<CandidateSetupModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const currentSess = getAuthSession();
+    if (boundSession.current.userId && (currentSess.user?.id !== boundSession.current.userId || currentSess.sessionGeneration !== boundSession.current.sessionGen)) {
+      setError('Form belongs to a previous authentication session. Please reopen the profile form.');
+      return;
+    }
     if (!name.trim() || !email.trim() || !company.trim() || !role.trim()) {
       setError('Please provide all required profile fields.');
       return;

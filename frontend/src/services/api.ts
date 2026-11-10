@@ -1,6 +1,7 @@
+import { getAuthSession, clearAuthSession } from '../utils/auth_sync';
 import {
   RoleTopicProfile, PracticeSession, CheckAnswerResponse,
-  MockOAVariant, MockOAReport, StructuredResume,
+  MockOAVariant, MockOAReport, StructuredResume, CandidateProfile,
   InterviewTurn, InterviewFinalReport, ReviewQueueItem,
   LCQuestionSummary, LCQuestionDetail, LCSubmission, LCAnalytics, LCRunResult, LCSubmitResult,
   DebugTraceResult,
@@ -30,8 +31,28 @@ const BASE_URL = isValidEnvBase
 
 async function handleResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {
+    if (res.status === 401 || res.status === 409) {
+      try {
+        clearAuthSession(true);
+      } catch {}
+    }
     const errorText = await res.text();
-    throw new Error(errorText || `Request failed with status ${res.status}`);
+    let cleanMessage = errorText;
+    try {
+      const parsed = JSON.parse(errorText);
+      if (parsed.detail) {
+        if (typeof parsed.detail === 'string') {
+          cleanMessage = parsed.detail;
+        } else if (Array.isArray(parsed.detail)) {
+          cleanMessage = parsed.detail.map((d: any) => d.msg || JSON.stringify(d)).join(', ');
+        } else if (typeof parsed.detail === 'object') {
+          cleanMessage = JSON.stringify(parsed.detail);
+        }
+      } else if (parsed.message) {
+        cleanMessage = String(parsed.message);
+      }
+    } catch {}
+    throw new Error(cleanMessage || `Request failed with status ${res.status}`);
   }
   const text = await res.text();
   try {
@@ -44,20 +65,20 @@ async function handleResponse<T>(res: Response): Promise<T> {
 export function getAuthToken(): string {
   if (typeof window === 'undefined') return '';
 
-  // Clean up any stale or oversized (> 255 chars) token
   let token = localStorage.getItem('intervyn_token');
-  if (token && (token.startsWith('guest_anon_') || token.length > 255)) {
+  if (token && (token.startsWith('guest_anon_') || token.startsWith('g_') || token.length > 2048)) {
     try {
       localStorage.removeItem('intervyn_token');
     } catch {}
     token = null;
   }
-  if (token) return token;
+  return token || '';
+}
 
+export function getGuestId(): string {
+  if (typeof window === 'undefined') return '';
   let guestId = localStorage.getItem('intervyn_guest_id');
-  // Auto-heal: Purge any legacy, corrupted, or oversized (> 36 chars) guest ID
   if (!guestId || guestId.length > 36 || guestId.startsWith('guest_anon_')) {
-    // Generate clean 24-character guest ID: 'g_' + 10 chars + timestamp
     guestId = 'g_' + Math.random().toString(36).substring(2, 12) + Date.now().toString(36);
     try {
       localStorage.setItem('intervyn_guest_id', guestId);
@@ -69,9 +90,20 @@ export function getAuthToken(): string {
 export function getAuthHeaders(customHeaders?: HeadersInit): Headers {
   const headers = new Headers(customHeaders || {});
   if (typeof window !== 'undefined') {
-    const token = getAuthToken();
+    const session = getAuthSession();
+    const token = session.token || getAuthToken();
     if (token && !headers.has('Authorization')) {
       headers.set('Authorization', `Bearer ${token}`);
+    }
+    if (session.user?.id && !headers.has('X-Expected-User-Id')) {
+      headers.set('X-Expected-User-Id', String(session.user.id));
+    }
+    if (session.sessionGeneration && !headers.has('X-Session-Generation')) {
+      headers.set('X-Session-Generation', String(session.sessionGeneration));
+    }
+    const guestId = getGuestId();
+    if (guestId && !headers.has('X-Guest-ID')) {
+      headers.set('X-Guest-ID', guestId);
     }
   }
   return headers;
@@ -83,34 +115,47 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
     headers.set('Content-Type', 'application/json');
   }
   const primaryUrl = endpoint.startsWith('http') ? endpoint : `${BASE_URL}${endpoint}`;
+  
+  // Security guard: NEVER forward sensitive authentication credentials to a fallback external domain
+  const isAuthEndpoint = endpoint.startsWith('/auth') || endpoint.includes('/auth/');
+
+  let res: Response;
   try {
-    const res = await fetch(primaryUrl, {
+    res = await fetch(primaryUrl, {
       ...options,
       headers
     });
-    return await handleResponse<T>(res);
-  } catch (primaryErr: any) {
-    // If primary failed (network error, connection refused, or non-JSON/HTML 200 response),
-    // and it wasn't already calling the direct live Render backend:
+  } catch (networkErr: any) {
+    // ONLY attempt fallback if primary server was unreachable (genuine network connection failure)
+    // AND endpoint is not sensitive authentication
     const isDirectRender = primaryUrl.startsWith(LIVE_RENDER_API);
-    if (!isDirectRender && !endpoint.startsWith('http')) {
+    if (!isDirectRender && !isAuthEndpoint && !endpoint.startsWith('http')) {
       const fallbackUrl = `${LIVE_RENDER_API}${endpoint}`;
       try {
-        console.warn(`Primary API call to ${primaryUrl} failed (${primaryErr?.message}). Retrying with live Render backend: ${fallbackUrl}`);
+        console.warn(`Primary server unreachable at ${primaryUrl}. Retrying read with remote backend: ${fallbackUrl}`);
         const fallbackRes = await fetch(fallbackUrl, {
           ...options,
           headers
         });
         return await handleResponse<T>(fallbackRes);
       } catch (fallbackErr: any) {
-        throw new Error(primaryErr?.message || (fallbackErr as any)?.message || 'Failed to connect to backend server');
+        throw new Error(networkErr?.message || (fallbackErr as any)?.message || 'Failed to connect to backend server');
       }
     }
-    throw primaryErr;
+    throw networkErr;
   }
+
+  // If the server responded (including HTTP 401, 403, 400), process directly without retrying against external servers
+  return await handleResponse<T>(res);
 }
 
 export const api = {
+  async logout(): Promise<void> {
+    try {
+      await request('/auth/logout', { method: 'POST' });
+    } catch {}
+    clearAuthSession(true);
+  },
   // Role Profiles
   async getRoleProfiles(): Promise<RoleTopicProfile[]> {
     return request<RoleTopicProfile[]>('/role-profiles');
@@ -230,6 +275,50 @@ export const api = {
   },
 
   // Interview
+  async getCandidateProfile(): Promise<CandidateProfile> {
+    const raw = await request<any>('/candidate/profile');
+    return {
+      name: raw.name || '',
+      email: raw.email || '',
+      company: raw.company || 'Google',
+      role: raw.role || 'Software Engineer II (L4)',
+      experience: raw.experience || '1-3 years',
+      resumeText: raw.resume_text || raw.resumeText || '',
+      resumeFileName: raw.resume_file_name || raw.resumeFileName || '',
+      resumeWordCount: raw.resume_word_count ?? raw.resumeWordCount ?? 0,
+      jdText: raw.jd_text || raw.jdText || ''
+    };
+  },
+
+  async updateCandidateProfile(payload: Partial<CandidateProfile>): Promise<CandidateProfile> {
+    const body = {
+      name: payload.name,
+      email: payload.email,
+      company: payload.company,
+      role: payload.role,
+      experience: payload.experience,
+      resume_text: payload.resumeText !== undefined ? payload.resumeText : (payload as any).resume_text,
+      resume_file_name: payload.resumeFileName !== undefined ? payload.resumeFileName : (payload as any).resume_file_name,
+      resume_word_count: payload.resumeWordCount !== undefined ? payload.resumeWordCount : (payload as any).resume_word_count,
+      jd_text: payload.jdText !== undefined ? payload.jdText : (payload as any).jd_text
+    };
+    const raw = await request<any>('/candidate/profile', {
+      method: 'POST',
+      body: JSON.stringify(body)
+    });
+    return {
+      name: raw.name || '',
+      email: raw.email || '',
+      company: raw.company || 'Google',
+      role: raw.role || 'Software Engineer II (L4)',
+      experience: raw.experience || '1-3 years',
+      resumeText: raw.resume_text || raw.resumeText || '',
+      resumeFileName: raw.resume_file_name || raw.resumeFileName || '',
+      resumeWordCount: raw.resume_word_count ?? raw.resumeWordCount ?? 0,
+      jdText: raw.jd_text || raw.jdText || ''
+    };
+  },
+
   async parseResume(payload: {
     candidate_name: string;
     candidate_email?: string;
@@ -409,21 +498,21 @@ export const api = {
   },
 
   // Auth & Google Login
-  async loginWithGoogle(credential: string, userInfo?: any): Promise<{ access_token: string; user: any }> {
+  async loginWithGoogle(credential: string, userInfo?: any): Promise<{ access_token: string; session_generation?: string; user: any }> {
     return request<{ access_token: string; user: any }>('/auth/google', {
       method: 'POST',
       body: JSON.stringify({ credential, user_info: userInfo })
     });
   },
 
-  async login(email: string, password: string): Promise<{ access_token: string; user: any }> {
+  async login(email: string, password: string): Promise<{ access_token: string; session_generation?: string; user: any }> {
     return request<{ access_token: string; user: any }>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password })
     });
   },
 
-  async signup(name: string, email: string, password: string): Promise<{ access_token: string; user: any }> {
+  async signup(name: string, email: string, password: string): Promise<{ access_token: string; session_generation?: string; user: any }> {
     return request<{ access_token: string; user: any }>('/auth/signup', {
       method: 'POST',
       body: JSON.stringify({ name, email, password })

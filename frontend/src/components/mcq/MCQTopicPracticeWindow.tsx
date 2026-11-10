@@ -455,10 +455,19 @@ export const MCQTopicPracticeWindow: React.FC<MCQTopicPracticeWindowProps> = ({
                       return (
                         <div
                           key={key}
+                          role="radio"
+                          aria-checked={isSelected}
+                          tabIndex={!hasSubmitted ? 0 : -1}
                           onClick={() => {
                             if (!hasSubmitted) setSelectedOption(key);
                           }}
-                          className={`p-4 rounded-xl border transition-all duration-150 flex items-start gap-3.5 select-none ${
+                          onKeyDown={(e) => {
+                            if (!hasSubmitted && (e.key === ' ' || e.key === 'Enter')) {
+                              e.preventDefault();
+                              setSelectedOption(key);
+                            }
+                          }}
+                          className={`p-4 rounded-xl border transition-all duration-150 flex items-start gap-3.5 select-none focus:outline-none focus:ring-2 focus:ring-accent ${
                             !hasSubmitted ? 'cursor-pointer active:scale-[0.995]' : 'cursor-default'
                           } ${cardStyle}`}
                         >

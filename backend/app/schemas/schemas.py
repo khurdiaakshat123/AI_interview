@@ -22,6 +22,7 @@ class UserOut(BaseModel):
     email: str
     google_id: Optional[str] = None
     avatar_url: Optional[str] = None
+    session_generation: Optional[str] = None
     created_at: datetime
 
     class Config:
@@ -30,6 +31,7 @@ class UserOut(BaseModel):
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
+    session_generation: Optional[str] = None
     user: UserOut
 
 # --- Role Topic Profile ---
@@ -373,3 +375,30 @@ class CandidateSetupResponse(BaseModel):
     company: str
     role: str
     candidate_name: Optional[str] = None
+
+class CandidateProfilePayload(BaseModel):
+    name: Optional[str] = None
+    email: Optional[str] = None
+    company: Optional[str] = None
+    role: Optional[str] = None
+    experience: Optional[str] = None
+    resume_text: Optional[str] = None
+    resume_file_name: Optional[str] = None
+    resume_word_count: Optional[int] = None
+    jd_text: Optional[str] = None
+
+class CandidateProfileOut(BaseModel):
+    name: str
+    email: str
+    company: str
+    role: str
+    experience: Optional[str] = '1-3 years'
+    resume_text: Optional[str] = ''
+    resume_file_name: Optional[str] = None
+    resume_word_count: Optional[int] = 0
+    jd_text: Optional[str] = ''
+    updated_at: Optional[datetime] = None
+
+    class Config:
+        from_attributes = True
+

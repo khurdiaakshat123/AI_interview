@@ -3,14 +3,35 @@ import base64
 import hashlib
 import secrets
 import hmac
+import os
+import datetime
+import jwt
 import httpx
 from fastapi import APIRouter, Depends, HTTPException, Header, status
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 from typing import Optional
 from backend.app.database import get_db
-from backend.app.models.models import User, generate_uuid, utc_now
+from backend.app.models.models import User, RevokedToken, generate_uuid, utc_now
 from backend.app.schemas.schemas import UserSignup, UserLogin, UserOut, TokenResponse, GoogleAuthRequest
+
+JWT_SECRET = os.environ.get("JWT_SECRET", "intervyn_jwt_secret_key_prod_auth_2026_super_secure_32b")
+JWT_ALGORITHM = "HS256"
+
+def create_access_token(user_id: str, email: str, session_gen: Optional[str] = None, expires_delta: Optional[datetime.timedelta] = None) -> str:
+    if expires_delta is None:
+        expires_delta = datetime.timedelta(days=7)
+    now = datetime.datetime.now(datetime.timezone.utc)
+    jti = generate_uuid()
+    payload = {
+        "sub": str(user_id),
+        "email": str(email),
+        "jti": jti,
+        "session_gen": str(session_gen) if session_gen else generate_uuid(),
+        "exp": now + expires_delta,
+        "iat": now
+    }
+    return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
 router = APIRouter(prefix="/api/auth", tags=["Auth"])
 
@@ -126,59 +147,41 @@ def _sync_to_supabase_auth(db: Session, user: User, is_google: bool = True):
 async def google_auth(payload: GoogleAuthRequest, db: Session = Depends(get_db)):
     """
     Authenticates a user via Google Identity Services ID Token (JWT).
-    Verifies the token cryptographic claims, upserts the user in the database,
-    and returns a session access token.
+    Cryptographically verifies the token claims with Google OAuth endpoints,
+    upserts the verified user in the database, and returns a session access token.
     """
     credential = payload.credential.strip()
+    if not credential:
+        raise HTTPException(status_code=400, detail="Missing Google credential token")
+
     email = None
     name = None
     picture = None
     sub = None
 
-    # 1. Handle Demo / Simulated Google Login
-    if credential.startswith("demo_") or credential == "google_simulated":
-        info = payload.user_info or {}
-        email = info.get("email") or "google.candidate@intervyn.ai"
-        name = info.get("name") or "Google Candidate"
-        picture = info.get("picture") or "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
-        sub = f"google_demo_{abs(hash(email)) % 1000000}"
-    else:
-        # 2. Real Google OAuth ID Token verification via Google's tokeninfo endpoint
-        try:
-            async with httpx.AsyncClient(timeout=10.0) as client:
-                res = await client.get(f"https://oauth2.googleapis.com/tokeninfo?id_token={credential}")
-                if res.status_code == 200:
-                    data = res.json()
-                    email = data.get("email")
-                    name = data.get("name") or (email.split("@")[0].title() if email else "Candidate")
-                    picture = data.get("picture")
-                    sub = data.get("sub")
-                else:
-                    # Fallback: Parse unverified JWT payload if Google API has network edge delay
-                    parts = credential.split(".")
-                    if len(parts) == 3:
-                        padded = parts[1] + "=" * ((4 - len(parts[1]) % 4) % 4)
-                        decoded = json.loads(base64.urlsafe_b64decode(padded.encode()).decode())
-                        email = decoded.get("email")
-                        name = decoded.get("name") or (email.split("@")[0].title() if email else "Candidate")
-                        picture = decoded.get("picture")
-                        sub = decoded.get("sub")
-                    else:
-                        raise HTTPException(status_code=400, detail="Invalid Google token format")
-        except HTTPException:
-            raise
-        except Exception as e:
-            if payload.user_info and payload.user_info.get("email"):
-                info = payload.user_info
-                email = info.get("email")
-                name = info.get("name") or (email.split("@")[0].title() if email else "Candidate")
-                picture = info.get("picture")
-                sub = info.get("sub") or f"google_{abs(hash(email)) % 1000000}"
+    # Strict real Google OAuth ID Token verification via Google's tokeninfo endpoint
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            res = await client.get(f"https://oauth2.googleapis.com/tokeninfo?id_token={credential}")
+            if res.status_code == 200:
+                data = res.json()
+                email = data.get("email")
+                # Verify email is verified by Google
+                email_verified = data.get("email_verified")
+                if email_verified is not None and not str(email_verified).lower() in ("true", "1"):
+                    raise HTTPException(status_code=401, detail="Google account email is not verified")
+                name = data.get("name") or (email.split("@")[0].title() if email else "Candidate")
+                picture = data.get("picture")
+                sub = data.get("sub")
             else:
-                raise HTTPException(status_code=400, detail=f"Failed to verify Google token: {str(e)}")
+                raise HTTPException(status_code=401, detail="Google token verification failed: token invalid or expired")
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=401, detail=f"Google authentication error: {str(e)}")
 
-    if not email:
-        raise HTTPException(status_code=400, detail="Could not retrieve email from Google token")
+    if not email or not sub:
+        raise HTTPException(status_code=401, detail="Google token payload missing verified email or identity")
 
     # Find existing user by google_id or email
     user = None
@@ -195,10 +198,12 @@ async def google_auth(payload: GoogleAuthRequest, db: Session = Depends(get_db))
             user.avatar_url = picture
         if name and (not user.name or user.name == "Alex Mercer"):
             user.name = name
+        user.session_generation = generate_uuid()
         db.commit()
         db.refresh(user)
     else:
         # Create new user
+        new_session = generate_uuid()
         user = User(
             id=generate_uuid(),
             name=name or email.split("@")[0].title(),
@@ -206,6 +211,7 @@ async def google_auth(payload: GoogleAuthRequest, db: Session = Depends(get_db))
             google_id=sub,
             avatar_url=picture,
             password_hash="google_oauth",
+            session_generation=new_session,
             created_at=utc_now()
         )
         db.add(user)
@@ -215,7 +221,8 @@ async def google_auth(payload: GoogleAuthRequest, db: Session = Depends(get_db))
     _sync_to_supabase_auth(db, user, is_google=True)
 
     return TokenResponse(
-        access_token=f"google_token_{user.id}",
+        access_token=create_access_token(user.id, user.email, session_gen=user.session_generation),
+        session_generation=user.session_generation,
         user=UserOut.model_validate(user)
     )
 
@@ -234,11 +241,13 @@ def signup(payload: UserSignup, db: Session = Depends(get_db)):
     if existing:
         raise HTTPException(status_code=400, detail="Email already registered")
 
+    new_session = generate_uuid()
     user = User(
         id=generate_uuid(),
         name=clean_name or clean_email.split("@")[0].title(),
         email=clean_email,
         password_hash=hash_password(payload.password),
+        session_generation=new_session,
         created_at=utc_now()
     )
     db.add(user)
@@ -248,7 +257,8 @@ def signup(payload: UserSignup, db: Session = Depends(get_db)):
     _sync_to_supabase_auth(db, user, is_google=False)
 
     return TokenResponse(
-        access_token=f"mock_token_{user.id}",
+        access_token=create_access_token(user.id, user.email, session_gen=user.session_generation),
+        session_generation=user.session_generation,
         user=UserOut.model_validate(user)
     )
 
@@ -280,14 +290,65 @@ def login(payload: UserLogin, db: Session = Depends(get_db)):
     # Transparently upgrade legacy hash format to PBKDF2-HMAC-SHA256
     if not user.password_hash.startswith("pbkdf2_sha256$"):
         user.password_hash = hash_password(clean_password)
-        db.commit()
+
+    # Distinct new login session generation
+    user.session_generation = generate_uuid()
+    db.commit()
+    db.refresh(user)
 
     _sync_to_supabase_auth(db, user, is_google=False)
 
     return TokenResponse(
-        access_token=f"mock_token_{user.id}",
+        access_token=create_access_token(user.id, user.email, session_gen=user.session_generation),
+        session_generation=user.session_generation,
         user=UserOut.model_validate(user)
     )
+
+@router.post("/logout")
+def logout(
+    authorization: Optional[str] = Header(None),
+    db: Session = Depends(get_db)
+):
+    """
+    Revokes the current JWT bearer token and rotates the user session generation,
+    rendering any copied or stored tokens immediately unauthorized across all protected endpoints.
+    """
+    if not authorization or not authorization.startswith("Bearer "):
+        return {"status": "success", "message": "Logged out successfully"}
+
+    token = authorization.replace("Bearer ", "").strip()
+    try:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM], options={"verify_exp": False})
+        jti = payload.get("jti")
+        user_id = payload.get("sub")
+        session_gen = payload.get("session_gen")
+        exp_ts = payload.get("exp")
+        exp_dt = datetime.datetime.fromtimestamp(exp_ts, tz=datetime.timezone.utc) if exp_ts else datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=7)
+
+        if jti and user_id:
+            existing_rev = db.query(RevokedToken).filter(RevokedToken.jti == jti).first()
+            if not existing_rev:
+                rev = RevokedToken(
+                    id=generate_uuid(),
+                    jti=jti,
+                    user_id=str(user_id),
+                    session_generation=str(session_gen) if session_gen else None,
+                    revoked_at=utc_now(),
+                    expires_at=exp_dt
+                )
+                db.add(rev)
+
+        if user_id:
+            user = db.query(User).filter(User.id == str(user_id)).first()
+            if user:
+                # Rotate session generation so previous session tokens are invalidated
+                user.session_generation = generate_uuid()
+
+        db.commit()
+    except Exception:
+        pass
+
+    return {"status": "success", "message": "Logged out and credentials revoked successfully"}
 
 from backend.app.api.deps import get_current_user
 

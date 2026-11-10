@@ -240,21 +240,88 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
     }
   }, [inputText, isListening]);
 
-  // Reset interview state if initialTurn or session_id changes
+  // Restore or reset interview state on mount / session change (fixes refresh reset)
   useEffect(() => {
     stopAllSpeech();
-    setCurrentTurn(initialTurn);
-    setMessages([
-      {
-        sender: 'INTERVIEWER',
-        text: initialTurn.question_text,
-        topic: initialTurn.current_topic,
-        depth: initialTurn.depth_level,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      }
-    ]);
     setInputText('');
     spokenQuestionIdsRef.current.clear();
+
+    const sessionId = initialTurn?.session_id;
+    if (!sessionId) {
+      setCurrentTurn(initialTurn);
+      setMessages([
+        {
+          sender: 'INTERVIEWER',
+          text: initialTurn.question_text,
+          topic: initialTurn.current_topic,
+          depth: initialTurn.depth_level,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        }
+      ]);
+      return;
+    }
+
+    let isMounted = true;
+    api.getInterviewTranscript(sessionId).then(data => {
+      if (!isMounted || !data) return;
+
+      if (data.status === 'COMPLETED' && data.final_report) {
+        onNavigate('interview-report', { report: data.final_report });
+        return;
+      }
+
+      if (data.transcript && data.transcript.length > 0) {
+        const restoredMessages: ChatMessage[] = data.transcript.map((t: any) => ({
+          sender: t.sender,
+          text: t.text,
+          topic: t.topic,
+          depth: t.depth_level,
+          timestamp: t.timestamp ? new Date(t.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''
+        }));
+        setMessages(restoredMessages);
+
+        const lastInterviewer: any = [...data.transcript].reverse().find((t: any) => t.sender === 'INTERVIEWER');
+        if (lastInterviewer) {
+          if (lastInterviewer.question_id) {
+            spokenQuestionIdsRef.current.add(lastInterviewer.question_id);
+          }
+          setCurrentTurn(prev => ({
+            ...prev,
+            question_id: lastInterviewer.question_id || prev.question_id,
+            question_text: lastInterviewer.text || prev.question_text,
+            current_topic: lastInterviewer.topic || prev.current_topic,
+            depth_level: lastInterviewer.depth_level || prev.depth_level,
+            phase: data.current_phase || prev.phase,
+            is_completed: data.status === 'COMPLETED'
+          }));
+        }
+      } else {
+        setCurrentTurn(initialTurn);
+        setMessages([
+          {
+            sender: 'INTERVIEWER',
+            text: initialTurn.question_text,
+            topic: initialTurn.current_topic,
+            depth: initialTurn.depth_level,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          }
+        ]);
+      }
+    }).catch(err => {
+      console.warn('[LiveInterviewPage] Transcript restoration warning:', err);
+      setCurrentTurn(initialTurn);
+      setMessages([
+        {
+          sender: 'INTERVIEWER',
+          text: initialTurn.question_text,
+          topic: initialTurn.current_topic,
+          depth: initialTurn.depth_level,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        }
+      ]);
+    });
+
+    return () => { isMounted = false; };
   }, [initialTurn.session_id]);
 
   // Clean up recognition on unmount
@@ -484,19 +551,17 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
     inputTextRef.current = '';
 
     // Add candidate message to local log
-    const updatedMessages: ChatMessage[] = [
-      ...messages,
+    setMessages(prev => [
+      ...prev,
       {
         sender: 'CANDIDATE',
         text: candidateAnswer,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }
-    ];
-    setMessages(updatedMessages);
+    ]);
     setIsProcessing(true);
 
     let fullQuestionText = '';
-    let streamInterviewerMsgAdded = false;
 
     try {
       await api.streamAnswerInterviewQuestion(
@@ -511,8 +576,17 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
           // Live stream into interviewer message bubble in chat
           fullQuestionText += (fullQuestionText ? ' ' : '') + sentence;
           setMessages(prev => {
-            if (!streamInterviewerMsgAdded) {
-              streamInterviewerMsgAdded = true;
+            const lastMsg = prev[prev.length - 1];
+            // Only update if the last message is already the streaming INTERVIEWER message.
+            // Never overwrite the CANDIDATE answer bubble!
+            if (lastMsg && lastMsg.sender === 'INTERVIEWER') {
+              const next = [...prev];
+              next[next.length - 1] = {
+                ...lastMsg,
+                text: fullQuestionText
+              };
+              return next;
+            } else {
               return [
                 ...prev,
                 {
@@ -523,13 +597,6 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
                   timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                 }
               ];
-            } else {
-              const next = [...prev];
-              next[next.length - 1] = {
-                ...next[next.length - 1],
-                text: fullQuestionText
-              };
-              return next;
             }
           });
         },
@@ -545,26 +612,30 @@ export const LiveInterviewPage: React.FC<LiveInterviewPageProps> = ({
           }
 
           setMessages(prev => {
-            const next = [...prev];
-            if (next.length > 0 && next[next.length - 1].sender === 'INTERVIEWER') {
+            const lastMsg = prev[prev.length - 1];
+            if (lastMsg && lastMsg.sender === 'INTERVIEWER') {
+              const next = [...prev];
               next[next.length - 1] = {
-                ...next[next.length - 1],
+                ...lastMsg,
                 text: nextTurn.question_text,
                 topic: nextTurn.current_topic,
                 depth: nextTurn.depth_level,
                 evalPrev: nextTurn.eval_previous
               };
+              return next;
             } else {
-              next.push({
-                sender: 'INTERVIEWER',
-                text: nextTurn.question_text,
-                topic: nextTurn.current_topic,
-                depth: nextTurn.depth_level,
-                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                evalPrev: nextTurn.eval_previous
-              });
+              return [
+                ...prev,
+                {
+                  sender: 'INTERVIEWER',
+                  text: nextTurn.question_text,
+                  topic: nextTurn.current_topic,
+                  depth: nextTurn.depth_level,
+                  timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                  evalPrev: nextTurn.eval_previous
+                }
+              ];
             }
-            return next;
           });
 
           if (nextTurn.is_completed) {

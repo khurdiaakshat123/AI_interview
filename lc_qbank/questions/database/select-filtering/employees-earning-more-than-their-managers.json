@@ -8,7 +8,7 @@
   "tags": [
     "Database"
   ],
-  "statement": "Table: `Employee`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| id          | int     |\n| name        | varchar |\n| salary      | int     |\n| managerId   | int     |\n+-------------+---------+\nid is the primary key (column with unique values) for this table.\nEach row of this table indicates the ID of an employee, their name, salary, and the ID of their manager.\n```\n\nWrite a solution to find the employees who earn more than their managers.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployee table:\n+----+-------+--------+-----------+\n| id | name  | salary | managerId |\n+----+-------+--------+-----------+\n| 1  | Joe   | 70000  | 3         |\n| 2  | Henry | 80000  | 4         |\n| 3  | Sam   | 60000  | Null      |\n| 4  | Max   | 90000  | Null      |\n+----+-------+--------+-----------+\nOutput: \n+----------+\n| Employee |\n+----------+\n| Joe      |\n+----------+\nExplanation: Joe is the only employee who earns more than his manager.\n```",
+  "statement": "Table: `Employee`\n\n```\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| id          | int     |\n| name        | varchar |\n| salary      | int     |\n| managerId   | int     |\n+-------------+---------+\nid is the primary key (column with unique values) for this table.\nEach row of this table indicates the ID of an employee, their name, salary, and the ID of their manager.\n```\n\nWrite a solution\u00a0to find the employees who earn more than their managers.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployee table:\n+----+-------+--------+-----------+\n| id | name  | salary | managerId |\n+----+-------+--------+-----------+\n| 1  | Joe   | 70000  | 3         |\n| 2  | Henry | 80000  | 4         |\n| 3  | Sam   | 60000  | Null      |\n| 4  | Max   | 90000  | Null      |\n+----+-------+--------+-----------+\nOutput: \n+----------+\n| Employee |\n+----------+\n| Joe      |\n+----------+\nExplanation: Joe is the only employee who earns more than his manager.\n```",
   "constraints": [],
   "examples": [
     {
@@ -36,7 +36,7 @@
       "expectedOutput": "+----------+\n| Employee |\n+----------+\n| Joe      |\n+----------+"
     },
     {
-      "input": "Employee table:\n+----+-------+--------+-----------+\n| id | name  | salary | managerId |\n+----+-------+--------+-----------+\n| 1  | Joe   | 70000  | 3         |\n| 2  | Henry | 80000  | 4         |\n| 3  | Sam   | 60000  | Null      |\n| 4  | Max   | 90000  | Null      |\n+----+-------+--------+-----------+",
+      "input": "{\"headers\":{\"Employee\":[\"id\",\"name\",\"salary\",\"managerId\"]},\"rows\":{\"Employee\":[[1,\"Joe\",70000,3],[2,\"Henry\",80000,4],[3,\"Sam\",60000,null],[4,\"Max\",90000,null]]}}",
       "expectedOutput": "+----------+\n| Employee |\n+----------+\n| Joe      |\n+----------+"
     }
   ],

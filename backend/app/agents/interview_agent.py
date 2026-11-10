@@ -838,4 +838,7 @@ class InterviewAgent:
         session.agent1_report_json = {"score": final_exp_score, "star_rating": round(final_exp_score / 20.0, 2)}
         session.agent2_report_json = {"score": final_subj_score}
         session.final_report_json = final_report
+        session.status = "COMPLETED"
+        if not session.completed_at:
+            session.completed_at = utc_now()
         db.commit()

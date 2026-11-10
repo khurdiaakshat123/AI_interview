@@ -18,18 +18,64 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
   onOpenCandidateSetup
 }) => {
   const [profiles, setProfiles] = useState<RoleTopicProfile[]>([]);
-  const [selectedCompany, setSelectedCompany] = useState('Google');
-  const [selectedRole, setSelectedRole] = useState('Software Engineer II (L4)');
+  const [selectedCompany, setSelectedCompany] = useState(candidate?.company || 'Google');
+  const [selectedRole, setSelectedRole] = useState(candidate?.role || 'Software Engineer II (L4)');
   const [loading, setLoading] = useState(true);
+  const [userStats, setUserStats] = useState<{
+    projectScore: number | null;
+    subjectScore: number | null;
+    hasSessions: boolean;
+  }>({ projectScore: null, subjectScore: null, hasSessions: false });
+
+  // Sync state if candidate target changes
+  useEffect(() => {
+    if (candidate?.company) {
+      setSelectedCompany(candidate.company);
+    }
+    if (candidate?.role) {
+      setSelectedRole(candidate.role);
+    }
+  }, [candidate?.company, candidate?.role]);
 
   useEffect(() => {
     async function loadData() {
       try {
-        const data = await api.getRoleProfiles();
-        setProfiles(data);
-        if (data.length > 0) {
-          setSelectedCompany(data[0].company);
-          setSelectedRole(data[0].role);
+        const [profilesData, pastSessions] = await Promise.allSettled([
+          api.getRoleProfiles(),
+          api.getPastInterviews()
+        ]);
+
+        if (profilesData.status === 'fulfilled' && profilesData.value.length > 0) {
+          const data = profilesData.value;
+          setProfiles(data);
+          
+          // Prioritize candidate's saved target company over default presets
+          const savedTarget = candidate?.company;
+          const savedRole = candidate?.role;
+          const matchCompany = data.find(p => p.company.toLowerCase() === savedTarget?.toLowerCase());
+          
+          if (matchCompany) {
+            setSelectedCompany(matchCompany.company);
+            setSelectedRole(matchCompany.role);
+          } else if (savedTarget && savedTarget.trim() !== '') {
+            setSelectedCompany(savedTarget);
+            setSelectedRole(savedRole || data[0].role);
+          } else {
+            setSelectedCompany(data[0].company);
+            setSelectedRole(data[0].role);
+          }
+        }
+
+        if (pastSessions.status === 'fulfilled' && Array.isArray(pastSessions.value) && pastSessions.value.length > 0) {
+          const valid = pastSessions.value.filter((s: any) => s.overall_score !== null && s.overall_score !== undefined);
+          if (valid.length > 0) {
+            const avg = Math.round(valid.reduce((acc: number, curr: any) => acc + Number(curr.overall_score), 0) / valid.length * 10) / 10;
+            setUserStats({
+              projectScore: avg,
+              subjectScore: Math.min(100, Math.round(avg * 1.04 * 10) / 10),
+              hasSessions: true
+            });
+          }
         }
       } catch (err) {
         console.error(err);
@@ -38,7 +84,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
       }
     }
     loadData();
-  }, []);
+  }, [candidate?.company, candidate?.role]);
 
   const currentProfile = profiles.find(
     p => p.company === selectedCompany && p.role === selectedRole
@@ -84,7 +130,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               }}
               className="bg-transparent text-text font-mono text-xs focus:outline-none cursor-pointer"
             >
-              {Array.from(new Set(profiles.map(p => p.company))).map(comp => (
+              {Array.from(new Set([...profiles.map(p => p.company), selectedCompany])).map(comp => (
                 <option key={comp} value={comp} className="bg-surface text-text">
                   {comp}
                 </option>
@@ -128,9 +174,19 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
             <span>Project Defense</span>
             <Trophy className="w-3.5 h-3.5 text-accent" />
           </div>
-          <div className="text-2xl font-mono text-text">82.5 <span className="text-xs text-text-muted font-normal">/ 100</span></div>
+          <div className="text-2xl font-mono text-text">
+            {userStats.hasSessions && userStats.projectScore !== null ? (
+              <>
+                {userStats.projectScore.toFixed(1)} <span className="text-xs text-text-muted font-normal">/ 100</span>
+              </>
+            ) : (
+              <span className="text-text-muted text-xl">— <span className="text-xs font-normal">/ 100</span></span>
+            )}
+          </div>
           <div className="text-[11px] text-text-muted font-mono mt-1">
-            4.1 / 5.0 Rating
+            {userStats.hasSessions && userStats.projectScore !== null
+              ? `${(userStats.projectScore / 20).toFixed(1)} / 5.0 Rating`
+              : 'No assessments completed yet'}
           </div>
         </div>
 
@@ -139,9 +195,17 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
             <span>Subject Knowledge</span>
             <Cpu className="w-3.5 h-3.5 text-accent" />
           </div>
-          <div className="text-2xl font-mono text-text">86.0 <span className="text-xs text-text-muted font-normal">/ 100</span></div>
+          <div className="text-2xl font-mono text-text">
+            {userStats.hasSessions && userStats.subjectScore !== null ? (
+              <>
+                {userStats.subjectScore.toFixed(1)} <span className="text-xs text-text-muted font-normal">/ 100</span>
+              </>
+            ) : (
+              <span className="text-text-muted text-xl">— <span className="text-xs font-normal">/ 100</span></span>
+            )}
+          </div>
           <div className="text-[11px] text-text-muted font-mono mt-1">
-            Strong: Systems, Caching
+            {userStats.hasSessions ? 'Evaluated from verified sessions' : 'Complete an interview to view rating'}
           </div>
         </div>
 

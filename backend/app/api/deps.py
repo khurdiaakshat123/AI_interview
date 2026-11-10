@@ -1,128 +1,118 @@
 import os
+import jwt
 from typing import Optional
 from fastapi import Header, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from backend.app.database import get_db
-from backend.app.models.models import User, generate_uuid, utc_now
+from backend.app.models.models import User, RevokedToken, generate_uuid, utc_now
+
+JWT_SECRET = os.environ.get("JWT_SECRET", "intervyn_jwt_secret_key_prod_auth_2026_super_secure_32b")
+JWT_ALGORITHM = "HS256"
 
 def get_current_user(
     authorization: Optional[str] = Header(None),
+    x_expected_user_id: Optional[str] = Header(None, alias="X-Expected-User-Id"),
+    x_session_generation: Optional[str] = Header(None, alias="X-Session-Generation"),
     db: Session = Depends(get_db)
 ) -> User:
     """
-    FastAPI dependency to extract and verify the authenticated User.
-    Supports:
-    - Bearer google_token_<user_id>
-    - Bearer mock_token_<user_id>
-    - Bearer token_<user_id>
-    - Bearer guest_<guest_device_id> or Bearer g_<guest_device_id>
-    Guarantees strict multi-tenant / multi-user data isolation.
-    CRITICAL SECURITY: Email addresses and google_ids are NEVER accepted as bearer tokens.
+    FastAPI dependency to extract and verify the authenticated User via signed JWT.
+    Guarantees strict multi-tenant authentication, token revocation enforcement,
+    and cross-tab session generation verification.
     """
-    if authorization and authorization.startswith("Bearer "):
-        raw_token = authorization.replace("Bearer ", "").strip()
-        if raw_token:
-            # SECURITY: An email address must NEVER be accepted as an authentication token
-            if "@" in raw_token:
-                raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Invalid authentication token format. Email addresses cannot be used as tokens."
-                )
+    if not authorization or not authorization.startswith("Bearer "):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication credentials required"
+        )
 
-            try:
-                # 1. Look up existing user by prefix
-                for prefix in ("google_token_", "mock_token_", "token_"):
-                    if raw_token.startswith(prefix):
-                        target_id = raw_token.replace(prefix, "").strip()[:36]
-                        user = db.query(User).filter(User.id == target_id).first()
-                        if user:
-                            return user
+    raw_token = authorization.replace("Bearer ", "").strip()
+    if not raw_token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication token is missing"
+        )
 
-                # 2. Look up existing user by exact ID (if valid UUID <= 36 chars and not guest)
-                if len(raw_token) <= 36 and not raw_token.startswith("guest_") and not raw_token.startswith("g_"):
-                    user = db.query(User).filter(User.id == raw_token).first()
-                    if user:
-                        return user
+    if "@" in raw_token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication token format. Email addresses cannot be used as tokens."
+        )
 
-                # Fallback: if raw_token has format <prefix>_<uuid>
-                if "_" in raw_token and not (raw_token.startswith("guest_") or raw_token.startswith("g_")):
-                    target_id = raw_token.split("_")[-1][:36]
-                    user = db.query(User).filter(User.id == target_id).first()
-                    if user:
-                        return user
-
-                # 3. Resolve or create guest user
-                if raw_token.startswith("guest_") or raw_token.startswith("g_"):
-                    safe_guest_id = raw_token[:36]
-                    guest_user = db.query(User).filter(User.id == safe_guest_id).first()
-                    if not guest_user:
-                        try:
-                            guest_user = User(
-                                id=safe_guest_id,
-                                name="Guest Candidate",
-                                email=f"{safe_guest_id}@guest.intervyn.ai"[:255],
-                                password_hash="guest_auth",
-                                created_at=utc_now()
-                            )
-                            db.add(guest_user)
-                            db.commit()
-                            db.refresh(guest_user)
-                        except Exception:
-                            db.rollback()
-                            guest_user = db.query(User).filter(User.id == safe_guest_id).first()
-                    if guest_user:
-                        return guest_user
-
-                # Token provided but could not be resolved to any authentic user
-                raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Invalid or expired authentication credentials"
-                )
-            except HTTPException:
-                raise
-            except Exception:
-                try:
-                    db.rollback()
-                except Exception:
-                    pass
-                raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Authentication failed"
-                )
-
-    # Fallback to isolated anonymous guest only if NO Authorization header was supplied at all
+    # 1. Attempt to decode and verify signed JWT
     try:
-        anon_id = generate_uuid()
-        guest = User(
-            id=anon_id,
-            name="Guest Candidate",
-            email=f"{anon_id}@guest.intervyn.ai",
-            password_hash="guest_oauth",
-            created_at=utc_now()
+        payload = jwt.decode(raw_token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+        user_id = payload.get("sub")
+        jti = payload.get("jti")
+        session_gen = payload.get("session_gen")
+
+        if not user_id:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid token payload"
+            )
+
+        # Check explicit token revocation list
+        if jti:
+            is_revoked = db.query(RevokedToken).filter(RevokedToken.jti == jti).first()
+            if is_revoked:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Authentication token has been revoked. Please log in again."
+                )
+
+        user = db.query(User).filter(User.id == user_id).first()
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="User account associated with this token does not exist"
+            )
+
+        # Enforce session generation validity (prevent use of tokens from prior login sessions)
+        if user.session_generation and session_gen and user.session_generation != session_gen:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Authentication session has expired or been terminated. Please log in again."
+            )
+
+        # Validate client-provided precondition headers if passed
+        if x_expected_user_id and x_expected_user_id != user.id:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail="Account context mismatch: Current authenticated user does not match the expected user."
+            )
+
+        if x_session_generation and session_gen and x_session_generation != session_gen:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail="Session generation mismatch: Operation belongs to a stale session."
+            )
+
+        return user
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication token has expired. Please log in again."
         )
-        db.add(guest)
-        db.commit()
-        db.refresh(guest)
-        return guest
-    except Exception:
-        try:
-            db.rollback()
-        except Exception:
-            pass
-        return User(
-            id=generate_uuid(),
-            name="Guest Candidate",
-            email=f"guest_{generate_uuid()[:8]}@guest.intervyn.ai"
-        )
+    except jwt.PyJWTError:
+        pass
+
+    # 2. Strict rejection: Raw user IDs, mock_token_*, google_token_*, or unverified strings
+    # MUST NEVER authenticate as legitimate accounts.
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Invalid or unverified authentication credentials"
+    )
 
 def get_current_user_optional(
     authorization: Optional[str] = Header(None),
+    x_expected_user_id: Optional[str] = Header(None, alias="X-Expected-User-Id"),
+    x_session_generation: Optional[str] = Header(None, alias="X-Session-Generation"),
     db: Session = Depends(get_db)
 ) -> Optional[User]:
     """
-    Optional user dependency: returns User for token (authenticated or guest token),
-    or None if no authorization header is present or if user record does not exist.
-    Completely read-only: NEVER mutates the database and NEVER raises 500 errors.
+    Optional user dependency: returns authenticated User if a valid, unrevoked signed JWT
+    is present and session matches. Returns None if credentials missing or revoked.
     """
     if not authorization or not authorization.startswith("Bearer "):
         return None
@@ -132,38 +122,34 @@ def get_current_user_optional(
         return None
 
     try:
-        # Check google_token_ / mock_token_ / token_ prefixes
-        for prefix in ("google_token_", "mock_token_", "token_"):
-            if raw_token.startswith(prefix):
-                target_id = raw_token.replace(prefix, "").strip()[:36]
-                user = db.query(User).filter(User.id == target_id).first()
-                if user:
-                    return user
+        payload = jwt.decode(raw_token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+        user_id = payload.get("sub")
+        jti = payload.get("jti")
+        session_gen = payload.get("session_gen")
 
-        # Check by exact ID (if <= 36 chars and not guest)
-        if len(raw_token) <= 36 and not raw_token.startswith("guest_") and not raw_token.startswith("g_"):
-            user = db.query(User).filter(User.id == raw_token).first()
-            if user:
-                return user
+        if not user_id:
+            return None
 
-        # Fallback: if raw_token has format <prefix>_<uuid>
-        if "_" in raw_token and not (raw_token.startswith("guest_") or raw_token.startswith("g_")):
-            target_id = raw_token.split("_")[-1][:36]
-            user = db.query(User).filter(User.id == target_id).first()
-            if user:
-                return user
+        # Check explicit token revocation
+        if jti:
+            is_revoked = db.query(RevokedToken).filter(RevokedToken.jti == jti).first()
+            if is_revoked:
+                return None
 
-        # Check guest_ / g_ prefixes
-        if raw_token.startswith("guest_") or raw_token.startswith("g_"):
-            safe_id = raw_token[:36]
-            user = db.query(User).filter(User.id == safe_id).first()
-            if user:
-                return user
+        user = db.query(User).filter(User.id == user_id).first()
+        if not user:
+            return None
 
-        return None
+        # Enforce session generation check
+        if user.session_generation and session_gen and user.session_generation != session_gen:
+            return None
+
+        # Check preconditions if provided
+        if x_expected_user_id and x_expected_user_id != user.id:
+            return None
+        if x_session_generation and session_gen and x_session_generation != session_gen:
+            return None
+
+        return user
     except Exception:
-        try:
-            db.rollback()
-        except Exception:
-            pass
         return None

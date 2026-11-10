@@ -60,9 +60,16 @@ app.include_router(admin_router)
 app.include_router(settings_router)
 
 # Mount LC assets if directory exists
-assets_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../frontend/public/lc_assets"))
-if os.path.exists(assets_dir):
+candidate_asset_dirs = [
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "../../frontend/public/lc_assets")),
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../frontend/public/lc_assets")),
+    os.path.abspath(os.path.join(os.getcwd(), "frontend/public/lc_assets")),
+    "/app/frontend/public/lc_assets"
+]
+assets_dir = next((d for d in candidate_asset_dirs if os.path.exists(d)), None)
+if assets_dir:
     app.mount("/lc_assets", StaticFiles(directory=assets_dir), name="lc_assets")
+    print(f"[Main] Mounted /lc_assets from {assets_dir}")
 
 
 @app.get("/api/health")

@@ -21,7 +21,18 @@ class User(Base):
     name = Column(String(255), nullable=False)
     google_id = Column(String(255), unique=True, index=True, nullable=True)
     avatar_url = Column(String(500), nullable=True)
+    session_generation = Column(String(64), default=generate_uuid, nullable=False)
     created_at = Column(DateTime(timezone=True), default=utc_now)
+
+class RevokedToken(Base):
+    __tablename__ = "revoked_tokens"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    jti = Column(String(64), unique=True, index=True, nullable=False)
+    user_id = Column(String(36), index=True, nullable=False)
+    session_generation = Column(String(64), index=True, nullable=True)
+    revoked_at = Column(DateTime(timezone=True), default=utc_now)
+    expires_at = Column(DateTime(timezone=True), nullable=False)
 
 class TimeWindow(Base):
     __tablename__ = "time_windows"
@@ -226,4 +237,21 @@ class CustomPracticeSession(Base):
     questions_json = Column(JSON, default=list)
     solutions_json = Column(JSON, default=dict)
     created_at = Column(DateTime(timezone=True), default=utc_now)
+
+class UserProfile(Base):
+    __tablename__ = "user_profiles"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    user_id = Column(String(36), ForeignKey("users.id"), unique=True, index=True, nullable=False)
+    name = Column(String(255), nullable=True)
+    email = Column(String(255), nullable=True)
+    company = Column(String(100), default="Google")
+    role = Column(String(100), default="Software Engineer II (L4)")
+    experience = Column(String(50), default="1-3 years")
+    resume_text = Column(Text, nullable=True)
+    resume_file_name = Column(String(255), nullable=True)
+    resume_word_count = Column(Integer, default=0)
+    jd_text = Column(Text, nullable=True)
+    updated_at = Column(DateTime(timezone=True), default=utc_now, onupdate=utc_now)
+
 

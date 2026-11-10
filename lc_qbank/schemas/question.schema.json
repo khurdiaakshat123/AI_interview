@@ -35,7 +35,10 @@
     "category": {
       "type": "string",
       "description": "Top-level category",
-      "enum": ["dsa", "database"]
+      "enum": [
+        "dsa",
+        "database"
+      ]
     },
     "subcategory": {
       "type": "string",
@@ -45,7 +48,11 @@
     "difficulty": {
       "type": "string",
       "description": "Question difficulty level",
-      "enum": ["Easy", "Medium", "Hard"]
+      "enum": [
+        "Easy",
+        "Medium",
+        "Hard"
+      ]
     },
     "tags": {
       "type": "array",
@@ -84,18 +91,27 @@
             "description": "Expected output"
           },
           "explanation": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "description": "Optional explanation of the example",
             "default": null
           }
         },
-        "required": ["input", "output"],
+        "required": [
+          "input",
+          "output"
+        ],
         "additionalProperties": false
       },
       "default": []
     },
     "starterCode": {
-      "type": ["object", "null"],
+      "type": [
+        "object",
+        "null"
+      ],
       "description": "Starter code templates keyed by language slug",
       "additionalProperties": {
         "type": "string"
@@ -103,7 +119,10 @@
       "default": null
     },
     "publicTests": {
-      "type": ["array", "null"],
+      "type": [
+        "array",
+        "null"
+      ],
       "description": "Public test cases provided by LeetCode",
       "items": {
         "type": "object",
@@ -115,18 +134,27 @@
             "type": "string"
           }
         },
-        "required": ["input", "expectedOutput"],
+        "required": [
+          "input",
+          "expectedOutput"
+        ],
         "additionalProperties": false
       },
       "default": null
     },
     "sqlSchema": {
-      "type": ["string", "null"],
+      "type": [
+        "string",
+        "null"
+      ],
       "description": "SQL CREATE TABLE statements for database questions",
       "default": null
     },
     "sqlSetup": {
-      "type": ["array", "null"],
+      "type": [
+        "array",
+        "null"
+      ],
       "description": "SQL INSERT statements for database question setup",
       "items": {
         "type": "string"
@@ -150,7 +178,10 @@
       "default": []
     },
     "testCases": {
-      "type": ["array", "null"],
+      "type": [
+        "array",
+        "null"
+      ],
       "description": "Comprehensive test cases covering boundary, edge, duplicate, and scale conditions",
       "items": {
         "type": "object",
@@ -162,7 +193,10 @@
             "type": "string"
           }
         },
-        "required": ["input", "expectedOutput"],
+        "required": [
+          "input",
+          "expectedOutput"
+        ],
         "additionalProperties": false
       },
       "default": null
@@ -170,7 +204,11 @@
     "source": {
       "type": "object",
       "description": "Provenance information for the question",
-      "required": ["name", "url", "collectedAt"],
+      "required": [
+        "name",
+        "url",
+        "collectedAt"
+      ],
       "additionalProperties": false,
       "properties": {
         "name": {
@@ -194,12 +232,43 @@
           "format": "date-time"
         },
         "sourceUpdatedAt": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "ISO 8601 timestamp of when the source was last updated",
           "format": "date-time",
           "default": null
         }
       }
+    },
+    "timeComplexity": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Optimal time complexity Big-O string (e.g. O(n), O(n\u00b2), O(log n))"
+    },
+    "spaceComplexity": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Optimal auxiliary space complexity Big-O string (e.g. O(1), O(n))"
+    },
+    "complexityDetails": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Detailed explanation of time and space trade-offs"
+    },
+    "approach": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "High-level algorithmic approach or strategy"
     }
   }
 }

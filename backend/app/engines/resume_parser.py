@@ -152,7 +152,7 @@ class ResumeParser:
 
         # 1. Extract Name and Email heuristically
         name = "Candidate"
-        email = "candidate@example.com"
+        email = None
 
         email_match = re.search(r'[\w\.-]+@[\w\.-]+\.\w+', text)
         if email_match:

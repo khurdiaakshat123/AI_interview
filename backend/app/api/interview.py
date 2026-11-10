@@ -1,3 +1,4 @@
+import os
 import json
 import asyncio
 import re
@@ -52,21 +53,61 @@ def parse_resume(payload: ResumeUploadRequest, db: Session = Depends(get_db), cu
         section_weights=resume.section_weights_json or {}
     )
 
+SAMPLE_TEMPLATE_RESUME = {
+    "id": "sample_template_resume_default",
+    "candidate_name": "Alex Mercer (Sample)",
+    "candidate_email": "sample.candidate@intervyn.ai",
+    "work_experience": [
+        {
+            "company": "CloudScale Systems",
+            "role": "Senior Software Engineer",
+            "duration": "2021 - Present",
+            "description": "Architected low-latency distributed event ingestion pipeline processing 120k events/sec with Apache Kafka and Go. Reduced p99 latency from 85ms to 18ms via zero-allocation memory pools."
+        }
+    ],
+    "projects": [
+        {
+            "project_id": "proj_sample_kv_store",
+            "title": "Distributed Key-Value Store",
+            "technologies": ["Go", "Raft Consensus", "gRPC", "RocksDB"],
+            "description": "Implemented Raft consensus algorithm with leader election, log compaction, and linearizable read index.",
+            "overall_relevance": 0.85,
+            "questioning_priority": 1,
+            "relevant_topics": ["Distributed Systems", "Consensus", "Storage"],
+            "irrelevant_topics": []
+        }
+    ],
+    "skills": ["Go", "Python", "Distributed Systems", "PostgreSQL", "Kafka", "Docker", "Kubernetes"],
+    "education": [
+        {
+            "institution": "University of Technology",
+            "degree": "B.S. in Computer Science",
+            "year": "2021"
+        }
+    ],
+    "section_weights": {
+        "work_experience": 0.45,
+        "projects": 0.35,
+        "skills": 0.15,
+        "education": 0.05
+    }
+}
+
 @router.get("/resumes/sample", response_model=StructuredResumeOut)
 def get_sample_resume(db: Session = Depends(get_db)):
-    resume = db.query(StructuredResume).first()
-    if not resume:
-        raise HTTPException(status_code=404, detail="No resume found")
-
+    """
+    Returns an anonymized sample candidate resume template for preview/testing.
+    Never exposes real user resumes across account boundaries.
+    """
     return StructuredResumeOut(
-        id=resume.id,
-        candidate_name=resume.candidate_name,
-        candidate_email=resume.candidate_email,
-        work_experience=resume.sections_json.get("work_experience", []),
-        projects=resume.sections_json.get("projects", []),
-        skills=resume.sections_json.get("skills", []),
-        education=resume.sections_json.get("education", []),
-        section_weights=resume.section_weights_json or {}
+        id=SAMPLE_TEMPLATE_RESUME["id"],
+        candidate_name=SAMPLE_TEMPLATE_RESUME["candidate_name"],
+        candidate_email=SAMPLE_TEMPLATE_RESUME["candidate_email"],
+        work_experience=SAMPLE_TEMPLATE_RESUME["work_experience"],
+        projects=SAMPLE_TEMPLATE_RESUME["projects"],
+        skills=SAMPLE_TEMPLATE_RESUME["skills"],
+        education=SAMPLE_TEMPLATE_RESUME["education"],
+        section_weights=SAMPLE_TEMPLATE_RESUME["section_weights"]
     )
 
 @router.post("/sessions", response_model=InterviewTurnOut)
@@ -305,15 +346,32 @@ def correct_transcript_standalone(payload: CorrectTranscriptRequest):
     return CorrectTranscriptResponse(**res)
 
 @router.get("/sessions/{id}/report", response_model=InterviewFinalReportOut)
-def get_interview_report(id: str, db: Session = Depends(get_db)):
+def get_interview_report(
+    id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
     session = db.query(InterviewSession).filter(InterviewSession.id == id).first()
     if not session:
         raise HTTPException(status_code=404, detail="Interview session not found")
+
+    admin_emails = {e.strip().lower() for e in os.getenv("ADMIN_EMAILS", "admin@intervyn.ai,evaluator@intervyn.ai").split(",") if e.strip()}
+    is_admin = current_user.email.lower() in admin_emails
+    if session.user_id and session.user_id != current_user.id and not is_admin:
+        raise HTTPException(status_code=403, detail="Access denied to interview report")
 
     # Ensure reports are computed
     if not session.final_report_json:
         InterviewAgent._generate_final_reports(db, session)
         db.refresh(session)
+
+    # Concluding an interview completes it: update status and completed_at
+    if session.status != "COMPLETED":
+        session.status = "COMPLETED"
+    if not session.completed_at:
+        session.completed_at = utc_now()
+    db.commit()
+    db.refresh(session)
 
     report = session.final_report_json or {}
     evidence_rows = db.query(InterviewEvidence).filter(InterviewEvidence.session_id == session.id).all()
@@ -408,20 +466,14 @@ async def stream_interview_session(id: str, db: Session = Depends(get_db)):
 @router.get("/sessions")
 def list_interview_sessions(
     db: Session = Depends(get_db),
-    current_user: Optional[User] = Depends(get_current_user_optional)
+    current_user: User = Depends(get_current_user)
 ):
     """
-    List past interview sessions with metadata and high-level results.
+    List past interview sessions with metadata and high-level results for the authenticated user only.
     """
-    query = db.query(InterviewSession)
-    if current_user and not current_user.id.startswith("guest_anon_"):
-        user_sessions = query.filter(InterviewSession.user_id == current_user.id).order_by(InterviewSession.created_at.desc()).all()
-        if user_sessions:
-            sessions = user_sessions
-        else:
-            sessions = db.query(InterviewSession).order_by(InterviewSession.created_at.desc()).limit(20).all()
-    else:
-        sessions = db.query(InterviewSession).order_by(InterviewSession.created_at.desc()).limit(20).all()
+    sessions = db.query(InterviewSession).filter(
+        InterviewSession.user_id == current_user.id
+    ).order_by(InterviewSession.created_at.desc()).all()
 
     results = []
     for s in sessions:
@@ -429,6 +481,9 @@ def list_interview_sessions(
         candidate_name = resume.candidate_name if resume else "Candidate"
         final_rep = s.final_report_json or {}
         score = final_rep.get("resume_related_score") or final_rep.get("experience_score")
+        if score is None and s.agent1_report_json:
+            score = s.agent1_report_json.get("score")
+
         results.append({
             "id": s.id,
             "company": s.company,
@@ -440,18 +495,29 @@ def list_interview_sessions(
             "created_at": s.created_at.isoformat() if s.created_at else None,
             "completed_at": s.completed_at.isoformat() if s.completed_at else None,
             "score": round(score, 1) if score is not None else None,
+            "overall_score": round(score, 1) if score is not None else None,
             "has_report": bool(s.final_report_json)
         })
     return results
 
 @router.get("/sessions/{id}/transcript")
-def get_interview_transcript(id: str, db: Session = Depends(get_db)):
+def get_interview_transcript(
+    id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
     """
     Retrieve full interview session transcript with turn-by-turn dialogue text.
+    Secured: only the session owner or admin can access.
     """
     session = db.query(InterviewSession).filter(InterviewSession.id == id).first()
     if not session:
         raise HTTPException(status_code=404, detail="Interview session not found")
+
+    admin_emails = {e.strip().lower() for e in os.getenv("ADMIN_EMAILS", "admin@intervyn.ai,evaluator@intervyn.ai").split(",") if e.strip()}
+    is_admin = current_user.email.lower() in admin_emails
+    if session.user_id and session.user_id != current_user.id and not is_admin:
+        raise HTTPException(status_code=403, detail="Access denied to interview transcript")
 
     resume = db.query(StructuredResume).filter(StructuredResume.id == session.resume_id).first() if session.resume_id else None
     candidate_name = resume.candidate_name if resume else "Candidate"

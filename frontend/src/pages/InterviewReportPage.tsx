@@ -49,9 +49,9 @@ export const InterviewReportPage: React.FC<InterviewReportPageProps> = ({ report
   const subjectScore = report.subject_knowledge_score;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8 overflow-x-hidden">
       {/* Header Banner */}
-      <div className="p-6 sm:p-8 rounded-xl bg-surface border border-border flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div className="p-4 sm:p-6 md:p-8 rounded-xl bg-surface border border-border flex flex-col lg:flex-row lg:items-center justify-between gap-6 min-w-0">
         <div>
           <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-text-muted mb-2">
             <Award className="w-3.5 h-3.5 text-accent" />
@@ -67,9 +67,9 @@ export const InterviewReportPage: React.FC<InterviewReportPageProps> = ({ report
         </div>
 
         {/* Dual Headline Score Cards */}
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full lg:w-auto">
           {/* Card 1: Experience / Resume Score */}
-          <div className="p-4 rounded-xl bg-bg border border-border text-center min-w-[200px] flex-1 sm:flex-initial">
+          <div className="p-3.5 sm:p-4 rounded-xl bg-bg border border-border text-center w-full sm:min-w-[160px] flex-1">
             <div className="text-[11px] font-mono uppercase tracking-wider text-text-muted flex items-center justify-center gap-1.5">
               <Briefcase className="w-3.5 h-3.5 text-text-muted" />
               Experience / Resume
@@ -93,7 +93,7 @@ export const InterviewReportPage: React.FC<InterviewReportPageProps> = ({ report
           </div>
 
           {/* Card 2: Subject Knowledge Score */}
-          <div className="p-4 rounded-xl bg-bg border border-border text-center min-w-[200px] flex-1 sm:flex-initial">
+          <div className="p-3.5 sm:p-4 rounded-xl bg-bg border border-border text-center w-full sm:min-w-[160px] flex-1">
             <div className="text-[11px] font-mono uppercase tracking-wider text-text-muted flex items-center justify-center gap-1.5">
               <Cpu className="w-3.5 h-3.5 text-text-muted" />
               Subject Knowledge
@@ -410,22 +410,22 @@ export const InterviewReportPage: React.FC<InterviewReportPageProps> = ({ report
                 {/* Accordion Trigger */}
                 <div
                   onClick={() => toggleEvidence(ev.id)}
-                  className="p-4 flex flex-wrap items-center justify-between gap-3 cursor-pointer hover:bg-surface transition-colors"
+                  className="p-3 sm:p-4 flex items-center justify-between gap-2.5 sm:gap-3 cursor-pointer hover:bg-surface transition-colors min-w-0"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="px-2 py-0.5 rounded bg-surface border border-border text-[10px] font-mono text-text-muted">
+                  <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                    <span className="px-2 py-0.5 rounded bg-surface border border-border text-[10px] font-mono text-text-muted shrink-0">
                       {ev.evidence_ref || 'EV-TURN'}
                     </span>
-                    <span className="font-medium text-text">
+                    <span className="font-medium text-text break-words line-clamp-2 sm:line-clamp-none min-w-0">
                       {ev.topic}: {ev.subtopic}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-4">
-                    <span className="font-mono text-success font-medium">
+                  <div className="flex items-center gap-2 sm:gap-4 shrink-0 text-right">
+                    <span className="font-mono text-success font-medium text-xs sm:text-sm">
                       +{Number(ev.earned_points || 0).toFixed(1)} / {Number(ev.possible_points || 0).toFixed(1)} pts
                     </span>
-                    {isExpanded ? <ChevronUp className="w-4 h-4 text-text-muted" /> : <ChevronDown className="w-4 h-4 text-text-muted" />}
+                    {isExpanded ? <ChevronUp className="w-4 h-4 text-text-muted shrink-0" /> : <ChevronDown className="w-4 h-4 text-text-muted shrink-0" />}
                   </div>
                 </div>
 
@@ -434,7 +434,7 @@ export const InterviewReportPage: React.FC<InterviewReportPageProps> = ({ report
                   <div className="p-4 bg-surface border-t border-border space-y-3">
                     <div>
                       <span className="text-[11px] font-mono uppercase text-text-muted block mb-1">Candidate Answer:</span>
-                      <p className="p-3 rounded-lg bg-bg border border-border text-text italic leading-relaxed">
+                      <p className="p-3 rounded-lg bg-bg border border-border text-text italic leading-relaxed break-words">
                         "{ev.user_answer}"
                       </p>
                     </div>

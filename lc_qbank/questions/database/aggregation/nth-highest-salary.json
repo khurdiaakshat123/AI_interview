@@ -8,7 +8,7 @@
   "tags": [
     "Database"
   ],
-  "statement": "Table: `Employee`\n\n```\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| id          | int  |\n| salary      | int  |\n+-------------+------+\nid is the primary key (column with unique values) for this table.\nEach row of this table contains information about the salary of an employee.\n```\n\nWrite a solution to find the `n^(th)` highest **distinct** salary from the `Employee` table. If there are less than `n` distinct salaries, return `null`.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n| 2  | 200    |\n| 3  | 300    |\n+----+--------+\nn = 2\nOutput: \n+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| 200                    |\n+------------------------+\n```\n\n**Example 2:**\n\n```\nInput: \nEmployee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n+----+--------+\nn = 2\nOutput: \n+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| null                   |\n+------------------------+\n```",
+  "statement": "Table: `Employee`\n\n```\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| id          | int  |\n| salary      | int  |\n+-------------+------+\nid is the primary key (column with unique values) for this table.\nEach row of this table contains information about the salary of an employee.\n```\n\nWrite a solution to find the `n^(th)` highest **distinct** salary from the `Employee` table. If there are less than `n` distinct salaries, return\u00a0`null`.\n\nThe result format is in the following example.\n\n**Example 1:**\n\n```\nInput: \nEmployee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n| 2  | 200    |\n| 3  | 300    |\n+----+--------+\nn = 2\nOutput: \n+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| 200                    |\n+------------------------+\n```\n\n**Example 2:**\n\n```\nInput: \nEmployee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n+----+--------+\nn = 2\nOutput: \n+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| null                   |\n+------------------------+\n```",
   "constraints": [],
   "examples": [
     {
@@ -49,11 +49,11 @@
       "expectedOutput": "+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| null                   |\n+------------------------+"
     },
     {
-      "input": "Employee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n| 2  | 200    |\n| 3  | 300    |\n+----+--------+\nn = 2",
+      "input": "{\"headers\":{\"Employee\":[\"id\",\"salary\"]},\"rows\":{\"Employee\":[[1,100],[2,200],[3,300]]},\"n\":2,\"argument\":2}",
       "expectedOutput": "+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| 200                    |\n+------------------------+"
     },
     {
-      "input": "Employee table:\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n+----+--------+\nn = 2",
+      "input": "{\"headers\":{\"Employee\":[\"id\",\"salary\"]},\"rows\":{\"Employee\":[[1,100]]},\"n\":2,\"argument\":2}",
       "expectedOutput": "+------------------------+\n| getNthHighestSalary(2) |\n+------------------------+\n| null                   |\n+------------------------+"
     }
   ],

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { setAuthSession } from '../utils/auth_sync';
+import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { X, Sparkles, Mail, Lock, User as UserIcon, Loader2, AlertCircle } from "lucide-react";
 import { api } from "../services/api";
@@ -15,6 +16,20 @@ interface AuthModalProps {
   onSuccess: (user: any, token: string) => void;
 }
 
+const cleanErrorMessage = (err: any): string => {
+  if (!err) return "Authentication failed";
+  const raw = err.message || String(err);
+  try {
+    const parsed = JSON.parse(raw);
+    if (parsed.detail && typeof parsed.detail === 'string') return parsed.detail;
+    if (parsed.detail && Array.isArray(parsed.detail)) {
+      return parsed.detail.map((d: any) => d.msg || JSON.stringify(d)).join(', ');
+    }
+    if (parsed.message) return parsed.message;
+  } catch {}
+  return raw;
+};
+
 export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess }) => {
   const [activeTab, setActiveTab] = useState<"signin" | "signup">("signin");
   const [name, setName] = useState("");
@@ -22,6 +37,50 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  // Keyboard accessibility: Escape key to close modal & focus trap
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (e.key === "Tab" && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusable || focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          last.focus();
+          e.preventDefault();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          first.focus();
+          e.preventDefault();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Initial focus on first input or close button
+    const timer = setTimeout(() => {
+      const firstInput = modalRef.current?.querySelector<HTMLElement>("input, button");
+      firstInput?.focus();
+    }, 50);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      clearTimeout(timer);
+    };
+  }, [isOpen, onClose]);
 
   const googleClientId = (import.meta as any).env?.VITE_GOOGLE_CLIENT_ID;
 
@@ -70,12 +129,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
     setError(null);
     try {
       const res = await api.loginWithGoogle(response.credential);
-      localStorage.setItem("intervyn_token", res.access_token);
-      localStorage.setItem("intervyn_user", JSON.stringify(res.user));
+      setAuthSession(res.access_token, res.user, res.session_generation);
       onSuccess(res.user, res.access_token);
       onClose();
     } catch (err: any) {
-      setError(err.message || "Google authentication failed");
+      setError(cleanErrorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -95,12 +153,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
         res = await api.login(email.trim(), password);
       }
 
-      localStorage.setItem("intervyn_token", res.access_token);
-      localStorage.setItem("intervyn_user", JSON.stringify(res.user));
+      setAuthSession(res.access_token, res.user, res.session_generation);
       onSuccess(res.user, res.access_token);
       onClose();
     } catch (err: any) {
-      setError(err.message || "Authentication failed");
+      setError(cleanErrorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -110,7 +167,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
 
   return createPortal(
     <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center p-4 overflow-y-auto">
-      <div className="w-full max-w-md p-6 sm:p-8 rounded-[12px] bg-surface border border-border relative space-y-5">
+      <div ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="auth-modal-title" className="w-full max-w-md p-6 sm:p-8 rounded-[12px] bg-surface border border-border relative space-y-5 outline-none">
         <button
           onClick={onClose}
           className="absolute top-5 right-5 p-1.5 rounded-md text-text-muted hover:text-text hover:bg-surface-hover transition-colors"
@@ -119,7 +176,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
         </button>
 
         <div className="text-center space-y-1.5">
-          <h2 className="font-serif text-2xl text-text font-normal tracking-tight">
+          <h2 id="auth-modal-title" className="font-serif text-2xl text-text font-normal tracking-tight">
             Welcome to intervyn<span className="text-accent">.</span>
           </h2>
           <p className="text-xs text-text-muted">

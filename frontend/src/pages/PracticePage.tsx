@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { 
   Code2, Database, Search, Star, Filter, RotateCcw, 
   ChevronLeft, ChevronRight, Play, CloudUpload, CheckCircle2, 
@@ -82,10 +82,31 @@ const DB_LANGUAGES = [
   { id: 'pythondata', label: 'Pandas', monacoLang: 'python' },
 ];
 
+const getStorageUserScope = (): string => {
+  try {
+    const user = JSON.parse(localStorage.getItem('intervyn_user') || 'null');
+    return user?.id ? `u_${user.id}` : 'guest';
+  } catch {
+    return 'guest';
+  }
+};
+
+const getScopedLcCodeKey = (qKey: string, lang?: string): string => {
+  const scope = getStorageUserScope();
+  return lang ? `intervyn_lc_code_${scope}_${qKey}_${lang}` : `intervyn_lc_code_${scope}_${qKey}`;
+};
+
+const getScopedLcLangKey = (qKey: string): string => {
+  const scope = getStorageUserScope();
+  return `intervyn_lc_lang_${scope}_${qKey}`;
+};
+
 export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, onNavigate }) => {
   const { problemSlug } = useParams<{ problemSlug?: string }>();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const navState = location.state as { code?: string; language?: string } | undefined;
   const initialMode = searchParams.get('tab') === 'mcq' || searchParams.get('mode') === 'mcq' ? 'mcq' : 'coding';
   const [practiceTab, setPracticeTab] = useState<'coding' | 'mcq'>(initialMode);
   const [timedPracticeModalOpen, setTimedPracticeModalOpen] = useState<boolean>(false);
@@ -117,10 +138,11 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   // Solver State
   const [questionDetail, setQuestionDetail] = useState<LCQuestionDetail | null>(null);
   const [loadingDetail, setLoadingDetail] = useState<boolean>(false);
+  const [questionError, setQuestionError] = useState<string | null>(null);
   const [solverTab, setSolverTab] = useState<'description' | 'editorial' | 'hints' | 'submissions' | 'result'>('description');
   const [lastSubmittedCode, setLastSubmittedCode] = useState<string>('');
   const [lastSubmittedLang, setLastSubmittedLang] = useState<string>('cpp');
-  const [selectedLang, setSelectedLang] = useState<string>('cpp');
+  const [selectedLang, setSelectedLang] = useState<string>(() => navState?.language || 'cpp');
   const [code, setCode] = useState<string>('');
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -353,7 +375,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
       // 1. Restore Language: Use user's previously chosen language for this problem if available
       let langToUse = defaultLang;
       try {
-        const savedLang = localStorage.getItem(`intervyn_lc_lang_${qKey}`);
+        const savedLang = localStorage.getItem(getScopedLcLangKey(qKey));
         if (savedLang && validLangs.some(l => l.id === savedLang)) {
           langToUse = savedLang;
         }
@@ -361,10 +383,9 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
       setSelectedLang(langToUse);
 
       // 2. Restore Code: Check if user previously wrote code for this problem and language
-      let codeToUse = '';
+      let codeToUse = (navState?.code && (navState.language === langToUse || !navState.language)) ? navState.code : '';
       try {
-        const savedCode = localStorage.getItem(`intervyn_lc_code_${qKey}_${langToUse}`) ||
-                          localStorage.getItem(`intervyn_lc_code_${qKey}`);
+        const savedCode = localStorage.getItem(getScopedLcCodeKey(qKey, langToUse)) || localStorage.getItem(getScopedLcCodeKey(qKey));
         if (savedCode !== null && savedCode.trim() !== '') {
           codeToUse = savedCode;
         }
@@ -375,8 +396,9 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
           (data.category === 'database' ? '# Write your MySQL query statement below\n' : (data.starterCode?.['python3'] || '# Write your solution below\n'));
       }
       setCode(codeToUse);
-    } catch (e) {
+    } catch (e: any) {
       console.error('Failed to load question details:', e);
+      setQuestionError(e?.message || 'Question not found or invalid URL.');
     } finally {
       setLoadingDetail(false);
     }
@@ -407,18 +429,18 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
       const qKey = questionDetail.slug || questionDetail.id;
       // Persist current code for the previous language
       try {
-        localStorage.setItem(`intervyn_lc_code_${qKey}_${selectedLang}`, code);
+        localStorage.setItem(getScopedLcCodeKey(qKey, selectedLang), code);
       } catch {}
 
       setSelectedLang(newLang);
       try {
-        localStorage.setItem(`intervyn_lc_lang_${qKey}`, newLang);
+        localStorage.setItem(getScopedLcLangKey(qKey), newLang);
       } catch {}
 
       // Check if user previously wrote code in the target language
       let targetCode = '';
       try {
-        const saved = localStorage.getItem(`intervyn_lc_code_${qKey}_${newLang}`);
+        const saved = localStorage.getItem(getScopedLcCodeKey(qKey, newLang));
         if (saved !== null && saved.trim() !== '') {
           targetCode = saved;
         }
@@ -441,9 +463,9 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
     if (questionDetail) {
       const qKey = questionDetail.slug || questionDetail.id;
       try {
-        localStorage.setItem(`intervyn_lc_code_${qKey}_${selectedLang}`, newCode);
-        localStorage.setItem(`intervyn_lc_code_${qKey}`, newCode);
-        localStorage.setItem(`intervyn_lc_lang_${qKey}`, selectedLang);
+        localStorage.setItem(getScopedLcCodeKey(qKey, selectedLang), newCode);
+        localStorage.setItem(getScopedLcCodeKey(qKey), newCode);
+        localStorage.setItem(getScopedLcLangKey(qKey), selectedLang);
       } catch {}
     }
   };
@@ -544,7 +566,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   const handleOpenDebugger = () => {
     if (!questionDetail) return;
     try {
-      localStorage.setItem(`intervyn_lc_code_${questionDetail.slug || questionDetail.id}`, code);
+      localStorage.setItem(getScopedLcCodeKey(questionDetail.slug || questionDetail.id, selectedLang), code);
+      localStorage.setItem(getScopedLcCodeKey(questionDetail.slug || questionDetail.id), code);
     } catch {}
 
     const slug = questionDetail.slug || questionDetail.id;
@@ -565,8 +588,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
     setCode(starter);
     const qKey = questionDetail.slug || questionDetail.id;
     try {
-      localStorage.setItem(`intervyn_lc_code_${qKey}_${selectedLang}`, starter);
-      localStorage.setItem(`intervyn_lc_code_${qKey}`, starter);
+      localStorage.setItem(getScopedLcCodeKey(qKey, selectedLang), starter);
+      localStorage.setItem(getScopedLcCodeKey(qKey), starter);
     } catch {}
   };
 
@@ -712,7 +735,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
 
           {/* Category Tabs: All / DSA / Database */}
           <div className="flex items-center justify-between border-b border-border pb-3">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
               <button
                 type="button"
                 onClick={() => { setCategory('all'); setSelectedSubcategory('all'); setPage(1); }}
@@ -991,12 +1014,24 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
 
                           {/* Time Complexity */}
                           <td className="py-3 px-4 font-mono text-[11.5px] text-text-muted">
-                            <span className="text-text/80">{q.timeComplexity}</span>
+                            {q.category === 'database' ? (
+                              <span className="text-text-muted/60 text-[11px]">-</span>
+                            ) : q.timeComplexity === 'Unverified' || !q.timeComplexity ? (
+                              <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-sans font-medium bg-surface-hover text-text-muted border border-border">Unverified</span>
+                            ) : (
+                              <span className="text-text/90 font-medium">{q.timeComplexity}</span>
+                            )}
                           </td>
 
                           {/* Space Complexity */}
                           <td className="py-3 px-4 font-mono text-[11.5px] text-text-muted">
-                            <span className="text-text/80">{q.spaceComplexity}</span>
+                            {q.category === 'database' ? (
+                              <span className="text-text-muted/60 text-[11px]">-</span>
+                            ) : q.spaceComplexity === 'Unverified' || !q.spaceComplexity ? (
+                              <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-sans font-medium bg-surface-hover text-text-muted border border-border">Unverified</span>
+                            ) : (
+                              <span className="text-text/90 font-medium">{q.spaceComplexity}</span>
+                            )}
                           </td>
 
                           {/* Action Button */}
@@ -1078,6 +1113,32 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   // =========================================================================
   // VIEW 2: LEETCODE QUESTION SOLVER WORKSPACE
   // =========================================================================
+  if (questionError) {
+    return (
+      <div className="min-h-screen bg-bg flex items-center justify-center p-6">
+        <div className="flex flex-col items-center gap-4 text-center max-w-md p-8 rounded-2xl bg-surface border border-border shadow-lg">
+          <div className="w-12 h-12 rounded-full bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-500 text-xl font-bold font-mono">
+            404
+          </div>
+          <div>
+            <h2 className="text-base font-bold text-text mb-1">Problem Not Found</h2>
+            <p className="text-xs text-text-muted leading-relaxed">
+              We couldn't locate problem <span className="font-mono text-accent font-semibold">{activeQuestionId}</span>. It may have been moved or the URL might be invalid.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => navigate('/practice')}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-accent-contrast text-xs font-medium hover:opacity-90 transition-opacity cursor-pointer"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Return to Problem List</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (loadingDetail || !questionDetail) {
     return (
       <div className="min-h-screen bg-bg flex items-center justify-center text-text font-mono">
@@ -1095,9 +1156,9 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   return (
     <div className="h-[calc(100vh-64px)] bg-bg text-text flex flex-col overflow-hidden">
       {/* Top LeetCode Navigation Bar */}
-      <header className="shrink-0 z-40 bg-surface border-b border-border px-4 py-2 flex items-center justify-between gap-4">
+      <header className="shrink-0 z-40 bg-surface border-b border-border px-3 sm:px-4 py-2 flex items-center justify-between gap-2 sm:gap-4 overflow-x-auto scrollbar-none">
         {/* Left: Back to Problem List & Question Navigator */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
           <button
             type="button"
             onClick={() => navigate('/practice')}
@@ -1177,10 +1238,13 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
             type="button"
             onClick={handleOpenDebugger}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-accent/40 bg-accent/10 hover:bg-accent/20 text-accent text-xs font-medium transition-colors shadow-xs cursor-pointer"
-            title="Step-by-step visual debugger with live variable tracking"
+            title={['python', 'python3', 'py'].includes(selectedLang.toLowerCase()) ? "Step-by-step visual debugger with live variable tracking" : "Visual step debugger (Supported natively in Python)"}
           >
             <Bug className="w-3.5 h-3.5" />
             <span>Debug</span>
+            {!['python', 'python3', 'py'].includes(selectedLang.toLowerCase()) && (
+              <span className="text-[10px] px-1 py-0.2 rounded bg-accent/20 text-accent font-mono ml-0.5">py</span>
+            )}
           </button>
 
           {/* Submit Code Button */}
@@ -1564,26 +1628,59 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
             {/* TAB: EDITORIAL / APPROACH */}
             {solverTab === 'editorial' && (
               <div className="space-y-4 animate-fadeIn">
-                <div className="p-4 rounded-lg bg-surface border border-border space-y-2">
-                  <div className="flex items-center gap-2 text-accent font-semibold text-sm">
-                    <Sparkles className="w-4 h-4" />
-                    <span>Intuition & Algorithmic Approach</span>
-                  </div>
-                  <p className="text-xs leading-relaxed text-text-muted">
-                    This problem belongs to the <strong className="text-text">{questionDetail.subcategory}</strong> category.
-                    Aim for an optimal solution matching the expected complexity:
-                  </p>
-                  <div className="grid grid-cols-2 gap-2 pt-2 text-xs font-mono">
-                    <div className="p-2 rounded bg-bg border border-border">
-                      <span className="text-text-muted">Optimal Time:</span>
-                      <div className="text-text font-semibold">{questionDetail.timeComplexity}</div>
+                {questionDetail.category === 'database' ? (
+                  <div className="p-4 rounded-lg bg-surface border border-border space-y-2">
+                    <div className="flex items-center gap-2 text-accent font-semibold text-sm">
+                      <Sparkles className="w-4 h-4" />
+                      <span>Relational Query Optimization</span>
                     </div>
-                    <div className="p-2 rounded bg-bg border border-border">
-                      <span className="text-text-muted">Auxiliary Space:</span>
-                      <div className="text-text font-semibold">{questionDetail.spaceComplexity}</div>
-                    </div>
+                    <p className="text-xs leading-relaxed text-text-muted">
+                      This problem belongs to the <strong className="text-text">{questionDetail.subcategory}</strong> relational category.
+                      Optimize table filtering, join order, and indexing strategy to minimize scanned rows and disk I/O.
+                    </p>
                   </div>
-                </div>
+                ) : (
+                  <div className="p-4 rounded-lg bg-surface border border-border space-y-2">
+                    <div className="flex items-center gap-2 text-accent font-semibold text-sm">
+                      <Sparkles className="w-4 h-4" />
+                      <span>Intuition & Algorithmic Approach</span>
+                    </div>
+                    <p className="text-xs leading-relaxed text-text-muted">
+                      This problem belongs to the <strong className="text-text">{questionDetail.subcategory}</strong> category.
+                      {questionDetail.timeComplexity && questionDetail.timeComplexity !== 'Unverified'
+                        ? 'Aim for an optimal solution matching the verified complexity bounds:'
+                        : 'Complexity bounds for this problem are currently undergoing verification.'}
+                    </p>
+                    {questionDetail.timeComplexity && questionDetail.timeComplexity !== 'Unverified' ? (
+                      <div className="grid grid-cols-2 gap-2 pt-2 text-xs font-mono">
+                        <div className="p-2 rounded bg-bg border border-border">
+                          <span className="text-text-muted">Optimal Time:</span>
+                          <div className="text-text font-semibold">{questionDetail.timeComplexity}</div>
+                        </div>
+                        <div className="p-2 rounded bg-bg border border-border">
+                          <span className="text-text-muted">Auxiliary Space:</span>
+                          <div className="text-text font-semibold">{questionDetail.spaceComplexity}</div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="pt-2 text-xs">
+                        <span className="inline-flex items-center px-2 py-1 rounded bg-surface-hover text-text-muted border border-border font-sans font-medium text-[11px]">
+                          Complexity Unverified
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {questionDetail.approach && (
+                  <div className="p-4 rounded-lg bg-surface border border-border space-y-1.5 text-xs">
+                    <div className="font-semibold text-text flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-accent" />
+                      <span>Verified Solution Approach</span>
+                    </div>
+                    <p className="text-text-muted leading-relaxed font-sans">{questionDetail.approach}</p>
+                  </div>
+                )}
 
                 <div className="space-y-2 text-xs text-text-muted leading-relaxed">
                   <h4 className="font-semibold text-text text-sm">Key Strategy</h4>
@@ -2204,8 +2301,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
                   if (questionDetail) {
                     const qKey = questionDetail.slug || questionDetail.id;
                     try {
-                      localStorage.setItem(`intervyn_lc_code_${qKey}_${selectedLang}`, loadedCode);
-                      localStorage.setItem(`intervyn_lc_code_${qKey}`, loadedCode);
+                      localStorage.setItem(getScopedLcCodeKey(qKey, selectedLang), loadedCode);
+                      localStorage.setItem(getScopedLcCodeKey(qKey), loadedCode);
                     } catch {}
                   }
                   setViewingSubmissionCode(null);

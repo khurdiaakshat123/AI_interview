@@ -26,18 +26,22 @@
   },
   "publicTests": [
     {
-      "input": "{\"headers\":{\"Person\":[\"personId\",\"lastName\",\"firstName\"],\"Address\":[\"addressId\",\"personId\",\"city\",\"state\"]},\"rows\":{\"Person\":[[1,\"Wang\",\"Allen\"],[2,\"Alice\",\"Bob\"]],\"Address\":[[1,2,\"New York City\",\"New York\"],[2,3,\"Leetcode\",\"California\"]]}}",
+      "input": "{\"headers\": {\"Person\": [\"personId\", \"lastName\", \"firstName\"], \"Address\": [\"addressId\", \"personId\", \"city\", \"state\"]}, \"rows\": {\"Person\": [[1, \"Wang\", \"Allen\"], [2, \"Alice\", \"Bob\"]], \"Address\": [[1, 2, \"New York City\", \"New York\"], [2, 3, \"Leetcode\", \"California\"]]}}",
       "expectedOutput": "+-----------+----------+---------------+----------+\n| firstName | lastName | city          | state    |\n+-----------+----------+---------------+----------+\n| Allen     | Wang     | Null          | Null     |\n| Bob       | Alice    | New York City | New York |\n+-----------+----------+---------------+----------+"
     }
   ],
   "testCases": [
     {
-      "input": "{\"headers\":{\"Person\":[\"personId\",\"lastName\",\"firstName\"],\"Address\":[\"addressId\",\"personId\",\"city\",\"state\"]},\"rows\":{\"Person\":[[1,\"Wang\",\"Allen\"],[2,\"Alice\",\"Bob\"]],\"Address\":[[1,2,\"New York City\",\"New York\"],[2,3,\"Leetcode\",\"California\"]]}}",
+      "input": "{\"headers\": {\"Person\": [\"personId\", \"lastName\", \"firstName\"], \"Address\": [\"addressId\", \"personId\", \"city\", \"state\"]}, \"rows\": {\"Person\": [[1, \"Wang\", \"Allen\"], [2, \"Alice\", \"Bob\"]], \"Address\": [[1, 2, \"New York City\", \"New York\"], [2, 3, \"Leetcode\", \"California\"]]}}",
       "expectedOutput": "+-----------+----------+---------------+----------+\n| firstName | lastName | city          | state    |\n+-----------+----------+---------------+----------+\n| Allen     | Wang     | Null          | Null     |\n| Bob       | Alice    | New York City | New York |\n+-----------+----------+---------------+----------+"
     },
     {
-      "input": "Person table:\n+----------+----------+-----------+\n| personId | lastName | firstName |\n+----------+----------+-----------+\n| 1        | Wang     | Allen     |\n| 2        | Alice    | Bob       |\n+----------+----------+-----------+\nAddress table:\n+-----------+----------+---------------+------------+\n| addressId | personId | city          | state      |\n+-----------+----------+---------------+------------+\n| 1         | 2        | New York City | New York   |\n| 2         | 3        | Leetcode      | California |\n+-----------+----------+---------------+------------+",
-      "expectedOutput": "+-----------+----------+---------------+----------+\n| firstName | lastName | city          | state    |\n+-----------+----------+---------------+----------+\n| Allen     | Wang     | Null          | Null     |\n| Bob       | Alice    | New York City | New York |\n+-----------+----------+---------------+----------+"
+      "input": "{\"headers\": {\"Person\": [\"personId\", \"lastName\", \"firstName\"], \"Address\": [\"addressId\", \"personId\", \"city\", \"state\"]}, \"rows\": {\"Person\": [[10, \"Miller\", \"David\"], [20, \"Taylor\", \"Sarah\"], [30, \"Clark\", \"James\"], [40, \"Davis\", \"Emma\"]], \"Address\": [[101, 10, \"Chicago\", \"Illinois\"], [102, 30, \"Seattle\", \"Washington\"], [103, 50, \"Austin\", \"Texas\"]]}}",
+      "expectedOutput": "+-----------+----------+---------------+------------+\n| firstName | lastName | city          | state      |\n+-----------+----------+---------------+------------+\n| David     | Miller   | Chicago       | Illinois   |\n| Sarah     | Taylor   | Null          | Null       |\n| James     | Clark    | Seattle       | Washington |\n| Emma      | Davis    | Null          | Null       |\n+-----------+----------+---------------+------------+"
+    },
+    {
+      "input": "{\"headers\": {\"Person\": [\"personId\", \"lastName\", \"firstName\"], \"Address\": [\"addressId\", \"personId\", \"city\", \"state\"]}, \"rows\": {\"Person\": [[5, \"Doe\", \"John\"], [6, \"Smith\", \"Jane\"]], \"Address\": []}}",
+      "expectedOutput": "+-----------+----------+------+-------+\n| firstName | lastName | city | state |\n+-----------+----------+------+-------+\n| John      | Doe      | Null | Null  |\n| Jane      | Smith    | Null | Null  |\n+-----------+----------+------+-------+"
     }
   ],
   "sqlSchema": "Create table If Not Exists Person (personId int, firstName varchar(255), lastName varchar(255))\n\nCreate table If Not Exists Address (addressId int, personId int, city varchar(255), state varchar(255))\n\nTruncate table Person\n\nTruncate table Address",

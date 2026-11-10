@@ -8,6 +8,15 @@ import {
 import { api } from '../services/api';
 import { LCQuestionDetail, DebugStep, DebugTraceResult } from '../types';
 
+const getDebugStorageScope = (): string => {
+  try {
+    const user = JSON.parse(localStorage.getItem('intervyn_user') || 'null');
+    return user?.id ? `u_${user.id}` : 'guest';
+  } catch {
+    return 'guest';
+  }
+};
+
 export const PracticeDebugPage: React.FC = () => {
   const { problemSlug } = useParams<{ problemSlug: string }>();
   const navigate = useNavigate();
@@ -28,7 +37,8 @@ export const PracticeDebugPage: React.FC = () => {
   // Debugger code & language
   const [code, setCode] = useState<string>(() => {
     if (statePayload?.code) return statePayload.code;
-    return localStorage.getItem(`intervyn_lc_code_${problemSlug}`) || '';
+    const scope = getDebugStorageScope();
+    return localStorage.getItem(`intervyn_lc_code_${scope}_${problemSlug}`) || localStorage.getItem(`intervyn_lc_code_${problemSlug}`) || '';
   });
   const [selectedLang, setSelectedLang] = useState<string>(
     statePayload?.language || 'cpp'
@@ -119,6 +129,48 @@ export const PracticeDebugPage: React.FC = () => {
       });
     } finally {
       setIsTracing(false);
+    }
+  };
+
+  const handleReturnToSolver = () => {
+    const slug = problemSlug || questionDetail?.slug || questionDetail?.id;
+    navigate(`/practice/${slug}`, {
+      state: {
+        code,
+        language: selectedLang
+      }
+    });
+  };
+
+  const handleSwitchToPythonAndDebug = () => {
+    const pythonStarter = questionDetail?.starterCode?.['python3'] || questionDetail?.starterCode?.['python'] || '';
+    const newCode = pythonStarter || code;
+    setSelectedLang('python');
+    if (pythonStarter) {
+      setCode(pythonStarter);
+    }
+    if (problemSlug && activeInputData) {
+      setIsTracing(true);
+      setIsPlaying(false);
+      api.debugLCCode(
+        problemSlug,
+        newCode,
+        'python',
+        activeInputData
+      ).then(res => {
+        setTraceResult(res);
+        setCurrentStepIndex(0);
+      }).catch(err => {
+        setTraceResult({
+          status: 'ERROR',
+          steps: [],
+          total_steps: 0,
+          max_steps_reached: false,
+          error: err.message || 'Failed to start debugger trace.'
+        });
+      }).finally(() => {
+        setIsTracing(false);
+      });
     }
   };
 
@@ -281,7 +333,7 @@ export const PracticeDebugPage: React.FC = () => {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => navigate(`/practice/${problemSlug || questionDetail?.slug || questionDetail?.id}`)}
+            onClick={handleReturnToSolver}
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium text-text-muted hover:text-text hover:bg-surface-hover border border-border transition-colors cursor-pointer"
             title="Return to problem description and editor"
           >
@@ -493,13 +545,49 @@ export const PracticeDebugPage: React.FC = () => {
         </div>
       )}
 
+            {/* Unsupported Language Notification Banner */}
+      {traceResult?.status === 'NOT_SUPPORTED' && (
+        <div className="bg-amber-500/10 border-b border-amber-500/30 px-4 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs animate-fadeIn">
+          <div className="flex items-center gap-3 text-amber-500">
+            <AlertCircle className="w-5 h-5 shrink-0" />
+            <div>
+              <div className="font-semibold text-amber-500">Visual Stepping Available for Python Only</div>
+              <div className="text-text-muted mt-0.5">
+                {traceResult.error || `Interactive step tracing is natively supported for Python. For ${selectedLang.toUpperCase()}, use the Code Runner for native compiler diagnostics and execution.`}
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={handleSwitchToPythonAndDebug}
+              className="px-3 py-1.5 rounded-lg bg-accent hover:bg-accent-hover text-accent-contrast font-medium text-xs shadow-xs transition-colors cursor-pointer"
+            >
+              Switch to Python & Debug
+            </button>
+            <button
+              type="button"
+              onClick={handleReturnToSolver}
+              className="px-3 py-1.5 rounded-lg bg-surface hover:bg-surface-hover border border-border text-text font-medium text-xs transition-colors cursor-pointer"
+            >
+              Return to Code Runner
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Progress timeline scrubber */}
       <div className="bg-surface/50 border-b border-border px-4 py-1.5 flex items-center justify-between gap-4 text-xs">
         <div className="flex items-center gap-2 font-mono text-xs">
           <span className="font-bold text-accent">
-            Step {steps.length ? currentStepIndex + 1 : 0}
+            {traceResult?.status === 'NOT_SUPPORTED' ? 'N/A' : `Step ${steps.length ? currentStepIndex + 1 : 0}`}
           </span>
           <span className="text-text-muted">/ {steps.length}</span>
+          {traceResult?.status === 'NOT_SUPPORTED' && (
+            <span className="text-[10px] font-sans px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/30 font-medium">
+              Python only
+            </span>
+          )}
           {currentStep && (
             <span className="text-text-muted">
               (Line {currentStep.line} • <span className="text-accent">{currentStep.event}</span>)
@@ -830,9 +918,19 @@ export const PracticeDebugPage: React.FC = () => {
             <div className="p-3 rounded-xl bg-bg border border-border font-mono text-xs space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-text-muted text-[11px]">Final Return:</span>
-                <span className="font-bold text-emerald-500">
-                  {traceResult?.return_value !== undefined ? JSON.stringify(traceResult.return_value) : 'Pending...'}
-                </span>
+                {traceResult?.status === 'NOT_SUPPORTED' ? (
+                  <span className="text-amber-500 font-semibold font-mono text-xs">N/A (unsupported)</span>
+                ) : traceResult?.status === 'ERROR' ? (
+                  <span className="text-rose-500 font-semibold font-mono text-xs">Failed</span>
+                ) : traceResult?.return_value !== undefined && traceResult?.return_value !== null ? (
+                  <span className="font-bold text-emerald-500 font-mono">
+                    {JSON.stringify(traceResult.return_value)}
+                  </span>
+                ) : traceResult?.return_value === null ? (
+                  <span className="font-mono text-text-muted">null</span>
+                ) : (
+                  <span className="text-text-muted italic">Pending...</span>
+                )}
               </div>
               {currentStep?.stdout && (
                 <div className="pt-2 border-t border-border">

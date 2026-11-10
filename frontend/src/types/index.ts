@@ -370,6 +370,8 @@ export interface LCQuestionDetail extends LCQuestionSummary {
   hints: string[];
   sqlSchema?: string | null;
   sqlSetup?: string[] | null;
+  approach?: string | null;
+  complexityDetails?: string | null;
   prevSubmissions: LCSubmission[];
 }
 
@@ -449,7 +451,7 @@ export interface DebugStep {
 }
 
 export interface DebugTraceResult {
-  status: 'SUCCESS' | 'ERROR' | 'RUNTIME_ERROR' | 'TIMEOUT';
+  status: 'SUCCESS' | 'ERROR' | 'RUNTIME_ERROR' | 'TIMEOUT' | 'NOT_SUPPORTED';
   steps: DebugStep[];
   total_steps: number;
   max_steps_reached: boolean;

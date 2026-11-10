@@ -1,3 +1,4 @@
+import { getAuthSession, setAuthSession, clearAuthSession, subscribeAuthSync } from './utils/auth_sync';
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
@@ -18,6 +19,7 @@ import { LiveInterviewPage } from './pages/LiveInterviewPage';
 import { InterviewReportPage } from './pages/InterviewReportPage';
 import { AdminReviewPage } from './pages/AdminReviewPage';
 import { CandidateProfile } from './types';
+import { api } from './services/api';
 
 const TAB_TO_PATH: Record<string, string> = {
   'landing': '/',
@@ -45,6 +47,35 @@ const getActiveTab = (pathname: string): string => {
   return 'landing';
 };
 
+const getProfileStorageKey = (userId?: string | null): string => {
+  return userId ? `intervyn_candidate_profile_${userId}` : 'intervyn_candidate_profile_guest';
+};
+
+const getDefaultCandidateProfile = (user?: any): CandidateProfile => {
+  if (user && user.name) {
+    return {
+      name: user.name,
+      email: user.email || '',
+      company: 'Google',
+      role: 'Software Engineer II (L4)',
+      experience: '1-3 years',
+      resumeText: '',
+      resumeWordCount: 0,
+      jdText: ''
+    };
+  }
+  return {
+    name: 'Alex Mercer',
+    email: 'alex.mercer@intervyn.ai',
+    company: 'Google',
+    role: 'Software Engineer II (L4)',
+    experience: '1-3 years',
+    resumeText: '',
+    resumeWordCount: 0,
+    jdText: ''
+  };
+};
+
 export const App: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -62,27 +93,88 @@ export const App: React.FC = () => {
 
   const [candidate, setCandidate] = useState<CandidateProfile>(() => {
     try {
-      const savedProfile = localStorage.getItem('intervyn_candidate_profile');
+      const savedUser = JSON.parse(localStorage.getItem('intervyn_user') || 'null');
+      const key = getProfileStorageKey(savedUser?.id);
+      const savedProfile = localStorage.getItem(key);
       if (savedProfile) {
         return JSON.parse(savedProfile);
       }
-      const savedUser = JSON.parse(localStorage.getItem('intervyn_user') || 'null');
-      if (savedUser && savedUser.name) {
-        return {
-          name: savedUser.name,
-          email: savedUser.email || '',
-          company: 'Google',
-          role: 'Software Engineer II (L4)'
-        };
+      return getDefaultCandidateProfile(savedUser);
+    } catch {
+      return getDefaultCandidateProfile();
+    }
+  });
+
+  const loadUserProfile = async (user: any) => {
+    if (!user) {
+      setCandidate(getDefaultCandidateProfile());
+      return;
+    }
+
+    const key = getProfileStorageKey(user.id);
+    let loadedFromCache = false;
+    try {
+      const cached = localStorage.getItem(key);
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        setCandidate(parsed);
+        loadedFromCache = true;
       }
     } catch {}
-    return {
-      name: 'Alex Mercer',
-      email: 'alex.mercer@intervyn.ai',
-      company: 'Google',
-      role: 'Software Engineer II (L4)'
+
+    try {
+      const serverProfile = await api.getCandidateProfile();
+      if (serverProfile) {
+        setCandidate(prev => {
+          const merged: CandidateProfile = {
+            ...prev,
+            name: serverProfile.name || user.name || prev.name,
+            email: serverProfile.email || user.email || prev.email,
+            company: serverProfile.company || prev.company || 'Google',
+            role: serverProfile.role || prev.role || 'Software Engineer II (L4)',
+            experience: serverProfile.experience || prev.experience || '1-3 years',
+            resumeText: serverProfile.resumeText !== undefined ? serverProfile.resumeText : prev.resumeText,
+            resumeFileName: serverProfile.resumeFileName || prev.resumeFileName,
+            resumeWordCount: serverProfile.resumeWordCount ?? prev.resumeWordCount ?? 0,
+            jdText: serverProfile.jdText !== undefined ? serverProfile.jdText : prev.jdText
+          };
+          try {
+            localStorage.setItem(key, JSON.stringify(merged));
+          } catch {}
+          return merged;
+        });
+      }
+    } catch (e) {
+      console.warn('Failed to fetch candidate profile from server:', e);
+      if (!loadedFromCache) {
+        setCandidate(getDefaultCandidateProfile(user));
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (currentUser?.id) {
+      loadUserProfile(currentUser);
+    }
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = subscribeAuthSync((event) => {
+      if (event.type === 'LOGOUT') {
+        setCurrentUser(null);
+        setCandidate(getDefaultCandidateProfile());
+        navigate('/', { replace: true });
+      } else if (event.type === 'LOGIN' || event.type === 'ACCOUNT_SWITCH') {
+        if (event.user) {
+          setCurrentUser(event.user);
+          loadUserProfile(event.user);
+        }
+      }
+    });
+    return () => {
+      unsubscribe();
     };
-  });
+  }, [navigate]);
 
   // Strict gating: Non-authenticated users can only view the landing page
   useEffect(() => {
@@ -96,51 +188,52 @@ export const App: React.FC = () => {
       const merged: CandidateProfile = {
         ...prev,
         ...updatedProfile,
-        name: updatedProfile.name || prev.name,
-        email: updatedProfile.email || prev.email,
-        company: updatedProfile.company || prev.company,
-        role: updatedProfile.role || prev.role
+        name: updatedProfile.name !== undefined ? updatedProfile.name : prev.name,
+        email: updatedProfile.email !== undefined ? updatedProfile.email : prev.email,
+        company: updatedProfile.company !== undefined ? updatedProfile.company : prev.company,
+        role: updatedProfile.role !== undefined ? updatedProfile.role : prev.role,
+        resumeText: updatedProfile.resumeText !== undefined ? updatedProfile.resumeText : prev.resumeText,
+        resumeFileName: updatedProfile.resumeFileName !== undefined ? updatedProfile.resumeFileName : prev.resumeFileName,
+        resumeWordCount: updatedProfile.resumeWordCount !== undefined ? updatedProfile.resumeWordCount : prev.resumeWordCount,
+        jdText: updatedProfile.jdText !== undefined ? updatedProfile.jdText : prev.jdText
       };
       try {
-        localStorage.setItem('intervyn_candidate_profile', JSON.stringify(merged));
+        const key = getProfileStorageKey(currentUser?.id);
+        localStorage.setItem(key, JSON.stringify(merged));
       } catch (e) {
         console.error('Failed to store candidate profile', e);
+      }
+      if (currentUser?.id) {
+        api.updateCandidateProfile(merged).catch(err => {
+          console.warn('Failed to persist profile to backend:', err);
+        });
       }
       return merged;
     });
   };
 
   const handleAuthSuccess = (user: any, token: string) => {
+    setAuthSession(token, user);
     setCurrentUser(user);
-    if (user) {
-      handleSaveProfile({
-        name: user.name || candidate.name,
-        email: user.email || candidate.email
-      });
-    }
+    loadUserProfile(user);
     setShowAuthModal(false);
   };
 
   const handleSignOut = () => {
-    localStorage.removeItem('intervyn_token');
-    localStorage.removeItem('intervyn_user');
+    api.logout().catch(console.error);
     setCurrentUser(null);
+    setCandidate(getDefaultCandidateProfile());
     navigate('/');
   };
 
   const handleAuthChange = (user: any) => {
     setCurrentUser(user);
     if (user) {
-      handleSaveProfile({
-        name: user.name,
-        email: user.email
-      });
+      loadUserProfile(user);
     } else {
-      setCandidate(prev => ({
-        ...prev,
-        name: 'Alex Mercer',
-        email: 'alex.mercer@intervyn.ai'
-      }));
+      localStorage.removeItem('intervyn_token');
+      localStorage.removeItem('intervyn_user');
+      setCandidate(getDefaultCandidateProfile());
     }
   };
 

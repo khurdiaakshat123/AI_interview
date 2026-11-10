@@ -1,3 +1,4 @@
+import { getAuthSession, setAuthSession, subscribeAuthSync } from '../utils/auth_sync';
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { 
@@ -5,7 +6,7 @@ import {
   Key, Check, Settings, X, ExternalLink, UserPlus, LogOut,
   ChevronDown, FileText, Briefcase
 } from 'lucide-react';
-import { BASE_URL } from '../services/api';
+import { api, BASE_URL } from '../services/api';
 import { AuthModal } from './AuthModal';
 import { CandidateProfile } from '../types';
 import { ThemeToggle } from './ThemeToggle';
@@ -35,6 +36,19 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [internalAuthModal, setInternalAuthModal] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const profileMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const unsubscribe = subscribeAuthSync((event) => {
+      if (event.type === 'LOGOUT') {
+        setInternalUser(null);
+      } else if (event.type === 'LOGIN' || event.type === 'ACCOUNT_SWITCH') {
+        setInternalUser(event.user || null);
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -84,6 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [isSaving, setIsSaving] = useState(false);
 
   const handleAuthSuccess = (user: any, token: string) => {
+    setAuthSession(token, user);
     setInternalUser(user);
     if (onAuthChange) {
       onAuthChange(user);
@@ -91,8 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   const handleSignOut = () => {
-    localStorage.removeItem('intervyn_token');
-    localStorage.removeItem('intervyn_user');
+    api.logout().catch(console.error);
     setInternalUser(null);
     if (onSignOut) {
       onSignOut();

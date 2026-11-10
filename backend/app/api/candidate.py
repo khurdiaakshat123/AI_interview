@@ -4,19 +4,19 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from sqlalchemy.orm import Session
 from backend.app.database import get_db
 from backend.app.models.models import (
-    User, RoleTopicProfile, StructuredResume, InterviewSession, generate_uuid, utc_now
+    User, RoleTopicProfile, StructuredResume, InterviewSession, UserProfile, generate_uuid, utc_now
 )
 from backend.app.schemas.schemas import (
     CandidateSetupRequest, CandidateSetupResponse, UserOut,
     RoleTopicProfileOut, StructuredResumeOut, InterviewTurnOut,
-    SubjectDetail, TopicDetail, ProvenanceEvidence, ProjectRelevance
+    SubjectDetail, TopicDetail, ProvenanceEvidence, ProjectRelevance, CandidateProfilePayload, CandidateProfileOut
 )
 from backend.app.agents.role_profile_agent import RoleProfileAgent
 from backend.app.engines.resume_parser import ResumeParser
 from backend.app.engines.document_parser import DocumentParser
 from backend.app.agents.interview_agent import InterviewAgent
 
-from backend.app.api.deps import get_current_user_optional
+from backend.app.api.deps import get_current_user, get_current_user_optional
 
 router = APIRouter(prefix="/api/candidate", tags=["Candidate & Custom Onboarding"])
 
@@ -94,6 +94,112 @@ async def extract_file_content(file: UploadFile = File(...)):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to process file: {str(e)}")
+
+@router.get("/profile", response_model=CandidateProfileOut)
+def get_candidate_profile(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+
+    profile = db.query(UserProfile).filter(UserProfile.user_id == current_user.id).first()
+    if profile:
+        return CandidateProfileOut(
+            name=profile.name or current_user.name,
+            email=profile.email or current_user.email,
+            company=profile.company or "Google",
+            role=profile.role or "Software Engineer II (L4)",
+            experience=profile.experience or "1-3 years",
+            resume_text=profile.resume_text or "",
+            resume_file_name=profile.resume_file_name,
+            resume_word_count=profile.resume_word_count or 0,
+            jd_text=profile.jd_text or "",
+            updated_at=profile.updated_at
+        )
+
+    latest_resume = (
+        db.query(StructuredResume)
+        .filter(StructuredResume.user_id == current_user.id)
+        .order_by(StructuredResume.created_at.desc())
+        .first()
+    )
+
+    resume_text = latest_resume.raw_text if latest_resume else ""
+    candidate_name = latest_resume.candidate_name if (latest_resume and latest_resume.candidate_name and latest_resume.candidate_name != "Candidate") else current_user.name
+
+    return CandidateProfileOut(
+        name=candidate_name or current_user.name,
+        email=current_user.email,
+        company="Google",
+        role="Software Engineer II (L4)",
+        experience="1-3 years",
+        resume_text=resume_text,
+        resume_file_name=None,
+        resume_word_count=len(resume_text.split()) if resume_text else 0,
+        jd_text=""
+    )
+
+@router.post("/profile", response_model=CandidateProfileOut)
+def update_candidate_profile(
+    payload: CandidateProfilePayload,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    profile = db.query(UserProfile).filter(UserProfile.user_id == current_user.id).first()
+    if not profile:
+        profile = UserProfile(
+            id=generate_uuid(),
+            user_id=current_user.id,
+            name=payload.name or current_user.name,
+            email=payload.email or current_user.email,
+            company=payload.company or "Google",
+            role=payload.role or "Software Engineer II (L4)",
+            experience=payload.experience or "1-3 years",
+            resume_text=payload.resume_text or "",
+            resume_file_name=payload.resume_file_name,
+            resume_word_count=payload.resume_word_count or (len(payload.resume_text.split()) if payload.resume_text else 0),
+            jd_text=payload.jd_text or "",
+            updated_at=utc_now()
+        )
+        db.add(profile)
+    else:
+        if payload.name is not None:
+            profile.name = payload.name
+        if payload.email is not None:
+            profile.email = payload.email
+        if payload.company is not None:
+            profile.company = payload.company
+        if payload.role is not None:
+            profile.role = payload.role
+        if payload.experience is not None:
+            profile.experience = payload.experience
+        if payload.resume_text is not None:
+            profile.resume_text = payload.resume_text
+            profile.resume_word_count = payload.resume_word_count or (len(payload.resume_text.split()) if payload.resume_text else 0)
+        if payload.resume_file_name is not None:
+            profile.resume_file_name = payload.resume_file_name
+        if payload.jd_text is not None:
+            profile.jd_text = payload.jd_text
+        profile.updated_at = utc_now()
+
+    # Never mutate login authentication identity (current_user.email) from candidate profile updates
+    if payload.name and payload.name.strip():
+        current_user.name = payload.name.strip()
+
+    db.commit()
+    db.refresh(profile)
+
+    return CandidateProfileOut(
+        name=profile.name or current_user.name,
+        email=profile.email or current_user.email,
+        company=profile.company or "Google",
+        role=profile.role or "Software Engineer II (L4)",
+        experience=profile.experience or "1-3 years",
+        resume_text=profile.resume_text or "",
+        resume_file_name=profile.resume_file_name,
+        resume_word_count=profile.resume_word_count or 0,
+        jd_text=profile.jd_text or "",
+        updated_at=profile.updated_at
+    )
 
 @router.post("/setup", response_model=CandidateSetupResponse)
 def setup_candidate_and_run(
@@ -184,6 +290,38 @@ def setup_candidate_and_run(
     db.add(resume_obj)
     db.commit()
     db.refresh(resume_obj)
+
+    # Sync UserProfile for persistence
+    existing_prof = db.query(UserProfile).filter(UserProfile.user_id == user.id).first()
+    if not existing_prof:
+        existing_prof = UserProfile(
+            id=generate_uuid(),
+            user_id=user.id,
+            name=candidate_name,
+            email=candidate_email,
+            company=company,
+            role=role,
+            experience=payload.experience_years or "1-3 years",
+            resume_text=payload.resume_text or "",
+            resume_word_count=len((payload.resume_text or "").split()),
+            jd_text=payload.jd_text or "",
+            updated_at=utc_now()
+        )
+        db.add(existing_prof)
+    else:
+        existing_prof.name = candidate_name
+        existing_prof.email = candidate_email
+        existing_prof.company = company
+        existing_prof.role = role
+        existing_prof.experience = payload.experience_years or existing_prof.experience
+        if payload.resume_text:
+            existing_prof.resume_text = payload.resume_text
+            existing_prof.resume_word_count = len(payload.resume_text.split())
+        if payload.jd_text is not None:
+            existing_prof.jd_text = payload.jd_text
+        existing_prof.updated_at = utc_now()
+    db.commit()
+
 
     # 4. Initialize Live Interview Session
     try:

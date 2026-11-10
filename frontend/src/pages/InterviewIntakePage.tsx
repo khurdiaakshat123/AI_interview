@@ -59,15 +59,20 @@ export const InterviewIntakePage: React.FC<InterviewIntakePageProps> = ({
   const [stepMessage, setStepMessage] = useState('');
   const [parseError, setParseError] = useState<string | null>(null);
 
-  // Sync state if candidateProfile changes from external update
+  // Sync state if candidateProfile changes from external update (account switch or DB restore)
   useEffect(() => {
     if (candidateProfile) {
-      if (candidateProfile.company) setCompany(candidateProfile.company);
-      if (candidateProfile.role) setRole(candidateProfile.role);
-      if (candidateProfile.name) setCandidateName(candidateProfile.name);
-      if (candidateProfile.email) setCandidateEmail(candidateProfile.email);
-      if (candidateProfile.resumeText !== undefined) setResumeText(candidateProfile.resumeText);
-      if (candidateProfile.jdText !== undefined && !jdText) setJdText(candidateProfile.jdText);
+      setCompany(candidateProfile.company || initialCompany || 'Google');
+      setRole(candidateProfile.role || initialRole || 'Software Engineer II (L4)');
+      setCandidateName(candidateProfile.name || 'Candidate');
+      setCandidateEmail(candidateProfile.email || '');
+      setResumeText(candidateProfile.resumeText || '');
+      setJdText(candidateProfile.jdText || '');
+      setShowEditCandidateDetails(!candidateProfile.resumeText?.trim());
+      if (!candidateProfile.resumeText?.trim()) {
+        setStructuredResume(null);
+        setIsCustomResumeParsed(false);
+      }
     }
   }, [candidateProfile]);
 
