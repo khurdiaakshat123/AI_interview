@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from backend.app.database import engine, Base, SessionLocal
+from backend.app.database import engine, Base, SessionLocal, ensure_db_migrations
 from backend.app.seed.seed_data import seed_database
 from backend.app.api import (
     auth_router,
@@ -23,6 +23,7 @@ from backend.app.api.custom_practice import router as custom_practice_router
 async def lifespan(app: FastAPI):
     # Initialize database tables
     Base.metadata.create_all(bind=engine)
+    ensure_db_migrations(engine)
     db = SessionLocal()
     try:
         seed_database(db)

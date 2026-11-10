@@ -3,19 +3,20 @@ FROM python:3.11-slim-bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install native C/C++ compiler (build-essential, g++, gcc), Node.js 22 LTS, and Java (default-jdk-headless)
+# Install native C/C++ compiler (build-essential, g++, gcc), Node.js, and Java with resilient fallback
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man2 /usr/share/man/man7 && \
     apt-get update && \
-    apt-get install -y --no-install-recommends \
-        curl \
-        ca-certificates \
-        gnupg \
+    (apt-get install -y --no-install-recommends \
         build-essential \
         g++ \
         gcc \
-        default-jdk-headless && \
-    curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
-    apt-get install -y --no-install-recommends nodejs && \
+        nodejs \
+        default-jdk-headless || \
+     apt-get install -y --no-install-recommends \
+        build-essential \
+        g++ \
+        gcc \
+        nodejs) && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app

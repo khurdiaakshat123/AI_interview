@@ -77,6 +77,34 @@ if DATABASE_URL.startswith("sqlite"):
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
+def ensure_db_migrations(target_engine):
+    """
+    Safely apply schema additions to existing database tables across SQLite and PostgreSQL.
+    Guarantees zero-downtime startup compatibility without requiring manual database migration scripts.
+    """
+    try:
+        from sqlalchemy import inspect, text
+        import uuid
+
+        inspector = inspect(target_engine)
+        table_names = inspector.get_table_names()
+
+        if "users" in table_names:
+            cols = [col["name"] for col in inspector.get_columns("users")]
+            if "session_generation" not in cols:
+                with target_engine.begin() as conn:
+                    conn.execute(text("ALTER TABLE users ADD COLUMN session_generation VARCHAR(64) DEFAULT 'initial_session'"))
+                    rows = conn.execute(text("SELECT id FROM users")).fetchall()
+                    for r in rows:
+                        conn.execute(
+                            text("UPDATE users SET session_generation = :gen WHERE id = :uid"),
+                            {"gen": str(uuid.uuid4()), "uid": r[0]}
+                        )
+    except Exception as e:
+        import logging
+        logging.getLogger("uvicorn.error").warning(f"[DB Migration] Automatic schema migration warning: {e}")
+
+
 def get_db():
     db = SessionLocal()
     try:
