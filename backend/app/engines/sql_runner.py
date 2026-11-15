@@ -34,18 +34,42 @@ class SQLRunner:
         return clean.strip().rstrip(';').strip()
 
     @classmethod
-    def transpile_to_duckdb(cls, sql: str) -> str:
-        """Transpile MySQL, Postgres, and T-SQL (SQL Server) syntax to DuckDB."""
+    def transpile_to_duckdb(cls, sql: str, dialect: str = "mysql") -> str:
+        """Transpile explicitly selected SQL dialect syntax to DuckDB."""
         clean = cls.clean_query(sql)
+        d = (dialect or "mysql").lower().strip()
+        if d in ["postgresql", "psql"]:
+            read_dialect = "postgres"
+        elif d in ["mssql", "sqlserver"]:
+            read_dialect = "tsql"
+        elif d in ["oracle", "oraclesql"]:
+            read_dialect = "oracle"
+        elif d in ["sqlite", "sqlite3"]:
+            read_dialect = "sqlite"
+        else:
+            read_dialect = "mysql"
+
+        # Handle MySQL multi-table DELETE syntax: DELETE p1 FROM Person p1 JOIN Person p2 ...
+        if read_dialect == "mysql":
+            del_match = re.match(
+                r'^\s*DELETE\s+([a-zA-Z0-9_]+)\s+FROM\s+([a-zA-Z0-9_]+)\s+(?:AS\s+)?\1\s+((?:JOIN|,)\s+[\s\S]+?);?\s*$',
+                clean,
+                re.IGNORECASE
+            )
+            if del_match:
+                alias = del_match.group(1)
+                tbl = del_match.group(2)
+                rest = del_match.group(3)
+                clean = f"DELETE FROM {tbl} WHERE id IN (SELECT {alias}.id FROM {tbl} AS {alias} {rest});"
+
         if not HAS_SQLGLOT:
             return clean
-        for dialect in ["mysql", "postgres", "tsql"]:
-            try:
-                transpiled = sqlglot.transpile(clean, read=dialect, write="duckdb")[0]
-                return transpiled
-            except Exception:
-                continue
-        return clean
+
+        try:
+            transpiled = sqlglot.transpile(clean, read=read_dialect, write="duckdb")[0]
+            return transpiled
+        except Exception:
+            return clean
 
     @classmethod
     def parse_fixtures(cls, raw_input: str) -> Dict[str, Dict[str, Any]]:
@@ -119,10 +143,21 @@ class SQLRunner:
 
     @staticmethod
     def parse_ascii_table(table_str: str) -> Tuple[List[str], List[List[str]]]:
-        """Parse ASCII markdown table into headers and cell rows."""
+        """Parse ASCII markdown table or JSON schema into headers and cell rows."""
         if not table_str or not isinstance(table_str, str):
             return [], []
-        lines = [l.strip() for l in table_str.strip().splitlines() if l.strip()]
+        clean = table_str.strip()
+        if clean.startswith("{"):
+            try:
+                data = json.loads(clean)
+                if isinstance(data, dict) and "headers" in data and "rows" in data:
+                    tbl = list(data["headers"].keys())[0]
+                    headers = [str(c) for c in data["headers"][tbl]]
+                    rows = [[str(v) if v is not None else "null" for v in r] for r in data["rows"].get(tbl, [])]
+                    return headers, rows
+            except Exception:
+                pass
+        lines = [l.strip() for l in clean.splitlines() if l.strip()]
         data_lines = [l for l in lines if l.startswith("|") and l.endswith("|")]
         if not data_lines:
             return [], []
@@ -285,7 +320,7 @@ class SQLRunner:
         return True, ""
 
     @classmethod
-    def evaluate(cls, user_code: str, test_cases: List[Dict[str, Any]], timeout: float = 4.0, is_ordered: Optional[bool] = None) -> Dict[str, Any]:
+    def evaluate(cls, user_code: str, test_cases: List[Dict[str, Any]], timeout: float = 4.0, is_ordered: Optional[bool] = None, dialect: str = "mysql") -> Dict[str, Any]:
         """
         Executes candidate SQL query against testcases in an isolated in-memory engine.
         Returns LeetCode-compatible telemetry, status (ACCEPTED/WRONG_ANSWER), and output tables.
@@ -306,7 +341,7 @@ class SQLRunner:
                 "test_case_results": []
             }
 
-        transpiled_sql = cls.transpile_to_duckdb(clean_user_sql)
+        transpiled_sql = cls.transpile_to_duckdb(clean_user_sql, dialect=dialect)
         query_has_order = bool(re.search(r'\border\s+by\b', clean_user_sql, re.IGNORECASE))
         is_dml = bool(re.match(r'^(?:delete|update|insert)\b', clean_user_sql, re.IGNORECASE))
 
@@ -416,6 +451,13 @@ class SQLRunner:
         score_frac = round(passed_count / len(results), 4) if results else 0.0
         status = "ACCEPTED" if all_passed else "WRONG_ANSWER"
 
+        rss_mb = None
+        try:
+            import psutil
+            rss_mb = round(psutil.Process().memory_info().rss / (1024 * 1024), 2)
+        except Exception:
+            pass
+
         return {
             "status": status,
             "is_correct": all_passed,
@@ -426,6 +468,6 @@ class SQLRunner:
             "compiler_output": "Execution completed successfully." if all_passed else (results[0].get("error") if results else "Execution failed."),
             "error": None if all_passed else (results[0].get("error") if results else "Execution failed."),
             "runtime_ms": max(0.1, round(total_time_ms, 2)),
-            "memory_mb": 12.5,
+            "memory_mb": rss_mb,
             "test_case_results": results
         }

@@ -38,7 +38,10 @@ export const PracticeDebugPage: React.FC = () => {
   const [code, setCode] = useState<string>(() => {
     if (statePayload?.code) return statePayload.code;
     const scope = getDebugStorageScope();
-    return localStorage.getItem(`intervyn_lc_code_${scope}_${problemSlug}`) || localStorage.getItem(`intervyn_lc_code_${problemSlug}`) || '';
+    const l = statePayload?.language || 'cpp';
+    return localStorage.getItem(`intervyn_lc_code_${scope}_${problemSlug}_${l}`) ||
+           localStorage.getItem(`intervyn_lc_code_${scope}_${problemSlug}`) ||
+           localStorage.getItem(`intervyn_lc_code_${problemSlug}`) || '';
   });
   const [selectedLang, setSelectedLang] = useState<string>(
     statePayload?.language || 'cpp'
@@ -551,9 +554,9 @@ export const PracticeDebugPage: React.FC = () => {
           <div className="flex items-center gap-3 text-amber-500">
             <AlertCircle className="w-5 h-5 shrink-0" />
             <div>
-              <div className="font-semibold text-amber-500">Visual Stepping Available for Python Only</div>
+              <div className="font-semibold text-amber-500">Visual Stepping Not Supported for This Language</div>
               <div className="text-text-muted mt-0.5">
-                {traceResult.error || `Interactive step tracing is natively supported for Python. For ${selectedLang.toUpperCase()}, use the Code Runner for native compiler diagnostics and execution.`}
+                {traceResult.error || `Interactive step tracing is not available for ${selectedLang.toUpperCase()}.`}
               </div>
             </div>
           </div>
@@ -585,7 +588,7 @@ export const PracticeDebugPage: React.FC = () => {
           <span className="text-text-muted">/ {steps.length}</span>
           {traceResult?.status === 'NOT_SUPPORTED' && (
             <span className="text-[10px] font-sans px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/30 font-medium">
-              Python only
+              Unsupported
             </span>
           )}
           {currentStep && (

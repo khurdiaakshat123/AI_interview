@@ -66,6 +66,7 @@ const DB_TOPICS = [
 ];
 
 const DSA_LANGUAGES = [
+  { id: 'c', label: 'C', monacoLang: 'c' },
   { id: 'cpp', label: 'C++', monacoLang: 'cpp' },
   { id: 'java', label: 'Java', monacoLang: 'java' },
   { id: 'python3', label: 'Python 3', monacoLang: 'python' },
@@ -370,7 +371,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
       setSelectedLang(defaultLang);
 
       const qKey = data.slug || data.id;
-      const validLangs = data.category === 'database' ? DB_LANGUAGES : DSA_LANGUAGES;
+      const validLangs = data.category === 'database' ? DB_LANGUAGES : DSA_LANGUAGES.filter(lang => lang.id !== 'c' || (data.starterCode && 'c' in data.starterCode));
 
       // 1. Restore Language: Use user's previously chosen language for this problem if available
       let langToUse = defaultLang;
@@ -1151,7 +1152,7 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
   }
 
   const isDsa = questionDetail.category !== 'database';
-  const availableLangs = isDsa ? DSA_LANGUAGES : DB_LANGUAGES;
+  const availableLangs = isDsa ? DSA_LANGUAGES.filter(lang => lang.id !== 'c' || (questionDetail?.starterCode && 'c' in questionDetail.starterCode)) : DB_LANGUAGES;
 
   return (
     <div className="h-[calc(100vh-64px)] bg-bg text-text flex flex-col overflow-hidden">

@@ -36,8 +36,16 @@
       "expectedOutput": "+----+------------------+\n| id | email            |\n+----+------------------+\n| 1  | john@example.com |\n| 2  | bob@example.com  |\n+----+------------------+"
     },
     {
-      "input": "{\"headers\":{\"Person\":[\"id\",\"email\"]},\"rows\":{\"Person\":[[1,\"john@example.com\"],[2,\"bob@example.com\"],[3,\"john@example.com\"]]}}",
-      "expectedOutput": "+----+------------------+\n| id | email            |\n+----+------------------+\n| 1  | john@example.com |\n| 2  | bob@example.com  |\n+----+------------------+"
+      "input": "{\"headers\": {\"Person\": [\"id\", \"email\"]}, \"rows\": {\"Person\": [[10, \"alpha@test.com\"], [20, \"beta@test.com\"], [30, \"gamma@test.com\"], [40, \"alpha@test.com\"], [50, \"gamma@test.com\"]]}}",
+      "expectedOutput": "+----+----------------+\n| id | email          |\n+----+----------------+\n| 10 | alpha@test.com |\n| 20 | beta@test.com  |\n| 30 | gamma@test.com |\n+----+----------------+"
+    },
+    {
+      "input": "{\"headers\": {\"Person\": [\"id\", \"email\"]}, \"rows\": {\"Person\": [[100, \"unique1@test.com\"], [200, \"unique2@test.com\"]]}}",
+      "expectedOutput": "+-----+------------------+\n| id  | email            |\n+-----+------------------+\n| 100 | unique1@test.com |\n| 200 | unique2@test.com |\n+-----+------------------+"
+    },
+    {
+      "input": "{\"headers\": {\"Person\": [\"id\", \"email\"]}, \"rows\": {\"Person\": [[5, \"dup@test.com\"], [6, \"dup@test.com\"], [7, \"dup@test.com\"]]}}",
+      "expectedOutput": "+----+--------------+\n| id | email        |\n+----+--------------+\n| 5  | dup@test.com |\n+----+--------------+"
     }
   ],
   "sqlSchema": "Create table If Not Exists Person (Id int, Email varchar(255))\n\nTruncate table Person",

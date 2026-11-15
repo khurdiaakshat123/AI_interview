@@ -10,6 +10,8 @@ import tempfile
 import psutil
 import threading
 from typing import Dict, Any, List, Optional, Tuple
+from backend.app.engines.c_runner import CRunner
+from backend.app.engines.comparison_engine import ComparisonContract
 
 class SandboxSecurityError(Exception):
     pass
@@ -191,7 +193,7 @@ class SandboxRunner:
             return "csharp"
         if l in ["sql", "postgresql", "psql", "mysql", "mssql", "oraclesql", "sqlite"]:
             return "sql"
-        return "python"
+        return "unsupported"
 
     @classmethod
     def evaluate_code(
@@ -201,11 +203,25 @@ class SandboxRunner:
         test_cases: Optional[List[Dict[str, Any]]] = None,
         custom_input: Optional[str] = None,
         approach: str = "O(N) Time, O(1) Space",
-        timeout_seconds: float = 10.0
+        timeout_seconds: float = 10.0,
+        question_slug: Optional[str] = None
     ) -> Dict[str, Any]:
         code_clean = str(user_code or "").strip()
         lang = cls.normalize_language(language)
         tests = test_cases or []
+
+        if lang == "unsupported":
+            return {
+                "status": "UNSUPPORTED_LANGUAGE",
+                "is_correct": False,
+                "score_fraction": 0.0,
+                "feedback": f"Unsupported or unrecognized programming language: '{language}'.",
+                "compiler_output": f"Language '{language}' is not supported by the runner.",
+                "error": f"Unsupported language: '{language}'.",
+                "runtime_ms": None,
+                "memory_mb": None,
+                "test_case_results": []
+            }
 
         if custom_input is not None and custom_input.strip():
             tests = [{
@@ -230,17 +246,27 @@ class SandboxRunner:
         if lang == "python":
             return cls._evaluate_python(code_clean, tests, approach, timeout_seconds)
         elif lang == "cpp":
-            return cls._evaluate_cpp(code_clean, tests, approach, timeout_seconds)
+            return cls._evaluate_cpp(code_clean, tests, approach, timeout_seconds, question_slug=question_slug)
         elif lang == "c":
-            return cls._evaluate_c(code_clean, tests, approach, timeout_seconds)
+            return cls._evaluate_c(code_clean, tests, approach, timeout_seconds, question_slug=question_slug)
         elif lang == "java":
-            return cls._evaluate_java(code_clean, tests, approach, timeout_seconds)
+            return cls._evaluate_java(code_clean, tests, approach, timeout_seconds, question_slug=question_slug)
         elif lang in ["javascript", "typescript"]:
-            return cls._evaluate_javascript(code_clean, tests, approach, timeout_seconds, is_typescript=(lang == "typescript"))
+            return cls._evaluate_javascript(code_clean, tests, approach, timeout_seconds, is_typescript=(lang == "typescript"), question_slug=question_slug)
         elif lang == "sql":
-            return cls._evaluate_sql_fallback(code_clean, tests, approach)
+            return cls._evaluate_sql_fallback(code_clean, tests, approach, dialect=language)
         else:
-            return cls._evaluate_universal_fallback(code_clean, lang, tests, approach)
+            return {
+                "status": "UNSUPPORTED_LANGUAGE",
+                "is_correct": False,
+                "score_fraction": 0.0,
+                "feedback": f"Language '{lang}' is not supported for native compilation and execution.",
+                "compiler_output": f"Language '{lang}' is not supported.",
+                "error": f"Language '{lang}' is not supported.",
+                "runtime_ms": None,
+                "memory_mb": None,
+                "test_case_results": []
+            }
 
     @classmethod
     def evaluate_code_against_tests(
@@ -249,14 +275,16 @@ class SandboxRunner:
         test_cases: List[Dict[str, Any]],
         approach: str = "O(N) Time, O(1) Space",
         timeout_seconds: float = 10.0,
-        language: str = "python"
+        language: str = "python",
+        question_slug: Optional[str] = None
     ) -> Dict[str, Any]:
         return cls.evaluate_code(
             user_code=user_code,
             language=language,
             test_cases=test_cases,
             approach=approach,
-            timeout_seconds=timeout_seconds
+            timeout_seconds=timeout_seconds,
+            question_slug=question_slug
         )
 
     # -------------------------------------------------------------------------
@@ -862,7 +890,8 @@ if __name__ == "__main__":
         code: str,
         test_cases: List[Dict[str, Any]],
         approach: str,
-        timeout: float
+        timeout: float,
+        question_slug: Optional[str] = None
     ) -> Dict[str, Any]:
         for pat in cls.CPP_FORBIDDEN_PATTERNS:
             if re.search(pat, code, re.IGNORECASE):
@@ -941,7 +970,7 @@ if __name__ == "__main__":
                         "memory_mb": proc_mem,
                         "test_case_results": []
                     }
-                return cls._parse_sandbox_output(stdout, test_cases, approach, proc_rt, proc_mem)
+                return cls._parse_sandbox_output(stdout, test_cases, approach, proc_rt, proc_mem, question_slug=question_slug)
             except subprocess.TimeoutExpired:
                 return {
                     "status": "TLE",
@@ -1041,21 +1070,19 @@ if __name__ == "__main__":
         string actual = "";
         string user_stdout = "";
         bool passed = false;
+        double case_ms = 0.0;
         try {{
 {vars_str}
+            auto _t0 = std::chrono::high_resolution_clock::now();
             {{
                 CoutRedirect _redir;
                 {call_code}
                 user_stdout = _redir.str();
             }}
+            auto _t1 = std::chrono::high_resolution_clock::now();
+            case_ms = std::chrono::duration<double, std::milli>(_t1 - _t0).count();
             string exp_str = {cmp_exp_lit};
-            string act_cmp = actual;
-            string exp_cmp = exp_str;
-            transform(act_cmp.begin(), act_cmp.end(), act_cmp.begin(), ::tolower);
-            transform(exp_cmp.begin(), exp_cmp.end(), exp_cmp.begin(), ::tolower);
-            act_cmp.erase(remove_if(act_cmp.begin(), act_cmp.end(), ::isspace), act_cmp.end());
-            exp_cmp.erase(remove_if(exp_cmp.begin(), exp_cmp.end(), ::isspace), exp_cmp.end());
-            passed = {is_custom_str} || (act_cmp == exp_cmp);
+            passed = {is_custom_str} || (actual == exp_str);
         }} catch (...) {{
             actual = "Runtime Exception";
             passed = false;
@@ -1070,7 +1097,7 @@ if __name__ == "__main__":
                   << ", \\"actual_output\\": \\"" << escape_json(disp_actual) << "\\""
                   << ", \\"stdout\\": \\"" << escape_json(user_stdout) << "\\""
                   << ", \\"passed\\": " << (passed ? "true" : "false")
-                  << ", \\"runtime_ms\\": 1.2}}";
+                  << ", \\"runtime_ms\\": " << std::max(0.01, case_ms) << "}}";
     }}"""
 
     @classmethod
@@ -1096,6 +1123,7 @@ if __name__ == "__main__":
 #include <stack>
 #include <deque>
 #include <cmath>
+#include <chrono>
 using namespace std;
 
 #ifndef LC_DATA_STRUCTURES
@@ -1420,61 +1448,73 @@ int main() {{
         code: str,
         test_cases: List[Dict[str, Any]],
         approach: str,
-        timeout: float
+        timeout: float,
+        question_slug: Optional[str] = None
     ) -> Dict[str, Any]:
-        gcc = shutil.which("gcc") or shutil.which("g++")
-        if not gcc:
-            return cls._evaluate_universal_fallback(code, "c", test_cases, approach)
+        res = CRunner.execute(code, test_cases, timeout_seconds=timeout)
+        if "status" in res:
+            return res
 
-        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmpdir:
-            src = os.path.join(tmpdir, "solution.c")
-            exe = os.path.join(tmpdir, "solution.exe" if sys.platform == "win32" else "solution")
+        raw_results = res.get("_raw_c_results", [])
+        proc_rt = res.get("proc_rt")
+        proc_mem = res.get("proc_mem")
+        user_stdout = res.get("user_stdout", "")
 
-            has_main = "int main(" in code
-            if not has_main:
-                harness = f"""
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
+        results = []
+        all_passed = True
+        first_mismatch = None
 
-{code}
+        for idx, tc in enumerate(test_cases):
+            expected = str(tc.get("expected_output") or tc.get("expectedOutput") or "").strip()
+            actual = ""
+            case_rt = 0.0
+            if idx < len(raw_results):
+                actual = str(raw_results[idx].get("actual_output", "")).strip()
+                case_rt = float(raw_results[idx].get("runtime_ms", 0.0))
 
-int main() {{
-    printf("---SANDBOX_RESULTS_START---\\n");
-    printf("{{\\"results\\": [");
-""" + "\n".join([
-                    f"""    if ({i} > 0) printf(",");
-    printf("{{\\"test_case_index\\": {i + 1}, \\"input_data\\": \\"{tc.get('input', '')}\\", \\"expected_output\\": \\"{tc.get('expected_output', '')}\\", \\"actual_output\\": \\"{tc.get('expected_output', '')}\\", \\"passed\\": true, \\"runtime_ms\\": 1.1}}");"""
-                    for i, tc in enumerate(test_cases)
-                ]) + """
-    printf("]}}\\n");
-    printf("---SANDBOX_RESULTS_END---\\n");
-    return 0;
-}
-"""
-            else:
-                harness = code
+            passed, mismatch_reason = ComparisonContract.compare(actual, expected, question_slug=question_slug)
+            if not passed:
+                all_passed = False
+                if not first_mismatch:
+                    first_mismatch = (idx + 1, expected, actual, mismatch_reason)
 
-            with open(src, "w", encoding="utf-8") as f:
-                f.write(harness)
+            is_hidden = bool(tc.get("is_hidden", False))
+            results.append({
+                "test_case_index": idx + 1,
+                "input_data": "(Hidden)" if is_hidden else str(tc.get("input", "")),
+                "expected_output": "(Hidden)" if is_hidden else expected,
+                "actual_output": "(Hidden passed)" if (is_hidden and passed) else ("(Hidden failed)" if is_hidden else actual),
+                "stdout": user_stdout,
+                "passed": passed,
+                "runtime_ms": max(0.01, round(case_rt, 2))
+            })
 
-            comp = subprocess.run([gcc, "-O2", src, "-o", exe], capture_output=True, text=True)
-            if comp.returncode != 0:
-                return {
-                    "status": "COMPILATION_ERROR",
-                    "is_correct": False,
-                    "score_fraction": 0.0,
-                    "feedback": "C Compilation Error.",
-                    "compiler_output": comp.stderr.strip(),
-                    "error": comp.stderr.strip(),
-                    "runtime_ms": None,
-                    "memory_mb": None,
-                    "test_case_results": []
-                }
+        passed_count = sum(1 for r in results if r["passed"])
+        total = len(results)
+        score_fraction = round(passed_count / total, 2) if total > 0 else 0.0
 
-            retcode, stdout, stderr, proc_rt, proc_mem = cls._execute_process_with_telemetry([exe], timeout=timeout)
-            return cls._parse_sandbox_output(stdout, test_cases, approach, proc_rt, proc_mem)
+        if all_passed:
+            comp_out = "Execution completed successfully."
+        elif first_mismatch:
+            f_idx, exp_val, act_val, reason = first_mismatch
+            comp_out = f"Wrong Answer on testcase {f_idx}: Expected {exp_val}, got {act_val}."
+            if reason:
+                comp_out += f" ({reason})"
+        else:
+            comp_out = "Wrong Answer: Test cases did not pass."
+
+        return {
+            "status": "ACCEPTED" if all_passed else "WRONG_ANSWER",
+            "is_correct": all_passed,
+            "score_fraction": score_fraction,
+            "test_cases_passed": passed_count,
+            "total_test_cases": total,
+            "feedback": f"Passed {passed_count}/{total} test cases." + (" All test cases passed!" if all_passed else " Check failing test cases below."),
+            "test_case_results": results,
+            "runtime_ms": proc_rt,
+            "memory_mb": proc_mem,
+            "compiler_output": comp_out
+        }
 
     # -------------------------------------------------------------------------
     # JAVA RUNNER
@@ -1618,6 +1658,7 @@ int main() {{
             String actual = "";
             String userStdout = "";
             boolean passed = false;
+            double caseMs = 0.01;
             try {{
 {vars_str}
                 ByteArrayOutputStream userOut = new ByteArrayOutputStream();
@@ -1626,6 +1667,7 @@ int main() {{
                 PrintStream oldErr = System.err;
                 System.setOut(userPs);
                 System.setErr(userPs);
+                long tStart = System.nanoTime();
                 try {{
                     {exec_code}
                     {output_code}
@@ -1633,11 +1675,10 @@ int main() {{
                     System.setOut(oldOut);
                     System.setErr(oldErr);
                 }}
+                caseMs = Math.max(0.01, (System.nanoTime() - tStart) / 1000000.0);
                 userStdout = userOut.toString();
                 String expStr = readData("{exp_file}");
-                String actCmp = actual.replaceAll("\\\\s+", "").toLowerCase();
-                String expCmp = expStr.replaceAll("\\\\s+", "").toLowerCase();
-                passed = {is_custom_str} || actCmp.equals(expCmp);
+                passed = {is_custom_str} || actual.equals(expStr);
             }} catch (Exception e) {{
                 actual = "Runtime Exception: " + e.getMessage();
                 passed = false;
@@ -1651,7 +1692,7 @@ int main() {{
                 + ", \\"actual_output\\": \\"" + escapeJson(dispActual) + "\\""
                 + ", \\"stdout\\": \\"" + escapeJson(userStdout) + "\\""
                 + ", \\"passed\\": " + passed
-                + ", \\"runtime_ms\\": 1.2}}");
+                + ", \\"runtime_ms\\": " + caseMs + "}}");
         }}"""
 
     @classmethod
@@ -1692,6 +1733,7 @@ int main() {{
             String actual = "";
             String userStdout = "";
             boolean passed = false;
+            double caseMs = 0.01;
             try {{
                 ByteArrayOutputStream userOut = new ByteArrayOutputStream();
                 PrintStream userPs = new PrintStream(userOut);
@@ -1699,17 +1741,17 @@ int main() {{
                 PrintStream oldErr = System.err;
                 System.setOut(userPs);
                 System.setErr(userPs);
+                long tStart = System.nanoTime();
                 try {{
                     actual = runLRUCacheCase(readData("{ops_file}"), readData("{args_file}"));
                 }} finally {{
                     System.setOut(oldOut);
                     System.setErr(oldErr);
                 }}
+                caseMs = Math.max(0.01, (System.nanoTime() - tStart) / 1000000.0);
                 userStdout = userOut.toString();
                 String expStr = readData("{exp_file}");
-                String actCmp = actual.replaceAll("\\\\s+", "").toLowerCase();
-                String expCmp = expStr.replaceAll("\\\\s+", "").toLowerCase();
-                passed = {is_custom_str} || actCmp.equals(expCmp);
+                passed = {is_custom_str} || actual.equals(expStr);
             }} catch (Exception e) {{
                 actual = "Runtime Exception: " + e.getMessage();
                 passed = false;
@@ -1723,7 +1765,7 @@ int main() {{
                 + ", \\"actual_output\\": \\"" + escapeJson(dispActual) + "\\""
                 + ", \\"stdout\\": \\"" + escapeJson(userStdout) + "\\""
                 + ", \\"passed\\": " + passed
-                + ", \\"runtime_ms\\": 1.2}}");
+                + ", \\"runtime_ms\\": " + caseMs + "}}");
         }}"""
 
     @classmethod
@@ -1732,7 +1774,8 @@ int main() {{
         code: str,
         test_cases: List[Dict[str, Any]],
         approach: str,
-        timeout: float
+        timeout: float,
+        question_slug: Optional[str] = None
     ) -> Dict[str, Any]:
         javac = shutil.which("javac")
         java = shutil.which("java")
@@ -2096,7 +2139,7 @@ public class Main {{
                         "memory_mb": proc_mem,
                         "test_case_results": []
                     }
-                return cls._parse_sandbox_output(stdout, test_cases, approach, proc_rt, proc_mem)
+                return cls._parse_sandbox_output(stdout, test_cases, approach, proc_rt, proc_mem, question_slug=question_slug)
             except subprocess.TimeoutExpired:
                 return {
                     "status": "TLE",
@@ -2139,13 +2182,45 @@ public class Main {{
         return "solve"
 
     @classmethod
+    def typecheck_typescript(cls, code: str) -> Optional[str]:
+        tsc_bin = shutil.which("tsc")
+        if not tsc_bin:
+            local_tsc = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../frontend/node_modules/.bin/tsc.cmd" if sys.platform == "win32" else "../../../frontend/node_modules/.bin/tsc"))
+            if os.path.exists(local_tsc):
+                tsc_bin = local_tsc
+        if not tsc_bin:
+            return None
+        with tempfile.NamedTemporaryFile(suffix=".ts", delete=False, mode="w", encoding="utf-8") as f:
+            f.write(code)
+            tmp_path = f.name
+        try:
+            tsc_proc = subprocess.run(
+                [tsc_bin, "--noEmit", "--target", "es2022", "--moduleResolution", "node", tmp_path],
+                capture_output=True,
+                text=True,
+                shell=(sys.platform == "win32"),
+                timeout=10.0
+            )
+            if tsc_proc.returncode != 0:
+                return (tsc_proc.stdout or tsc_proc.stderr).replace(tmp_path, "solution.ts").strip()
+            return None
+        except Exception:
+            return None
+        finally:
+            try:
+                os.remove(tmp_path)
+            except Exception:
+                pass
+
+    @classmethod
     def _evaluate_javascript(
         cls,
         code: str,
         test_cases: List[Dict[str, Any]],
         approach: str,
         timeout: float,
-        is_typescript: bool = False
+        is_typescript: bool = False,
+        question_slug: Optional[str] = None
     ) -> Dict[str, Any]:
         node = shutil.which("node")
         if not node:
@@ -2277,6 +2352,7 @@ for (let i = 0; i < testCases.length; i++) {{
     const exp = String(tc.expected_output || tc.expectedOutput || '').trim();
     let actual = '';
     let passed = false;
+    const _t0 = performance.now();
 
     let userStdout = '';
     const _userLogs = [];
@@ -2406,19 +2482,7 @@ for (let i = 0; i < testCases.length; i++) {{
                 actual = String(ret);
             }}
 
-            const normActual = actual.replace(/\\s+/g, '').toLowerCase();
-            const normExp = exp.replace(/\\s+/g, '').toLowerCase();
-            passed = tc.is_custom ? true : (normActual === normExp || actual.toLowerCase() === exp.toLowerCase());
-            if (!passed && Array.isArray(ret)) {{
-                try {{
-                    const parsedExp = JSON.parse(exp);
-                    if (Array.isArray(parsedExp) && ret.length === parsedExp.length) {{
-                        const s1 = [...ret].sort();
-                        const s2 = [...parsedExp].sort();
-                        if (JSON.stringify(s1) === JSON.stringify(s2)) passed = true;
-                    }}
-                }} catch(e) {{}}
-            }}
+            passed = tc.is_custom ? true : (actual === exp);
         }} else {{
             actual = 'No solution method detected';
             passed = false;
@@ -2431,6 +2495,8 @@ for (let i = 0; i < testCases.length; i++) {{
         console.error = _origErr;
     }}
 
+    const _case_ms = Math.max(0.01, Math.round((performance.now() - _t0) * 100) / 100);
+
     results.push({{
         test_case_index: i + 1,
         input_data: tc.is_hidden ? '(Hidden)' : String(tc.input),
@@ -2438,7 +2504,7 @@ for (let i = 0; i < testCases.length; i++) {{
         actual_output: tc.is_hidden ? (passed ? '(Hidden passed)' : '(Hidden failed)') : actual,
         stdout: userStdout,
         passed,
-        runtime_ms: 1.5
+        runtime_ms: _case_ms
     }});
 }}
 
@@ -2452,13 +2518,28 @@ console.log('---SANDBOX_RESULTS_END---');
             tmp.write(harness)
 
         try:
+            if is_typescript:
+                type_err = cls.typecheck_typescript(code)
+                if type_err:
+                    return {
+                        "status": "COMPILATION_ERROR",
+                        "is_correct": False,
+                        "score_fraction": 0.0,
+                        "feedback": "TypeScript Type Check Error: Code contains type violations.",
+                        "compiler_output": type_err,
+                        "error": type_err,
+                        "runtime_ms": None,
+                        "memory_mb": None,
+                        "test_case_results": []
+                    }
+
             cmd = [node, "--experimental-strip-types", tmp_path] if is_typescript else [node, tmp_path]
             retcode, stdout, stderr, proc_rt, proc_mem = cls._execute_process_with_telemetry(
                 cmd,
                 timeout=timeout
             )
             if retcode != 0:
-                is_syntax = "SyntaxError" in stderr
+                is_syntax = "SyntaxError" in stderr or "TypeError" in stderr
                 return {
                     "status": "COMPILATION_ERROR" if is_syntax else "RUNTIME_ERROR",
                     "is_correct": False,
@@ -2470,7 +2551,7 @@ console.log('---SANDBOX_RESULTS_END---');
                     "memory_mb": proc_mem,
                     "test_case_results": []
                 }
-            return cls._parse_sandbox_output(stdout, test_cases, approach, proc_rt, proc_mem)
+            return cls._parse_sandbox_output(stdout, test_cases, approach, proc_rt, proc_mem, question_slug=question_slug)
         finally:
             if os.path.exists(tmp_path):
                 try: os.remove(tmp_path)
@@ -2519,10 +2600,10 @@ console.log('---SANDBOX_RESULTS_END---');
     # SQL EVALUATOR
     # -------------------------------------------------------------------------
     @classmethod
-    def _evaluate_sql_fallback(cls, sql: str, test_cases: List[Dict[str, Any]], approach: str = "") -> Dict[str, Any]:
+    def _evaluate_sql_fallback(cls, sql: str, test_cases: List[Dict[str, Any]], approach: str = "", dialect: str = "mysql") -> Dict[str, Any]:
         try:
             from backend.app.engines.sql_runner import SQLRunner
-            return SQLRunner.evaluate(user_code=sql, test_cases=test_cases)
+            return SQLRunner.evaluate(user_code=sql, test_cases=test_cases, dialect=dialect)
         except Exception:
             pass
         import sqlite3
@@ -2693,58 +2774,10 @@ console.log('---SANDBOX_RESULTS_END---');
             "compiler_output": "SQL query evaluated successfully." if all_passed else "Query results did not match expected output."
         }
     @classmethod
-    def _check_universal_equality(cls, actual: Any, expected: Any) -> bool:
-        """Universal validation across all languages for order-agnostic collections, unquoted strings, and JSON."""
-        if actual is None or expected is None:
-            return False
-        act_s = str(actual).strip()
-        exp_s = str(expected).strip()
-        if not act_s or not exp_s:
-            return act_s == exp_s
-        # For tabular results (ASCII tables), do NOT perform blind lowercased string equality
-        if ("+---" in act_s or "+---" in exp_s) and ("|" in act_s or "|" in exp_s):
-            return False
-
-        if act_s == exp_s:
-            return True
-        if act_s.lower() == exp_s.lower() or act_s.replace(" ", "").lower() == exp_s.replace(" ", "").lower():
-            return True
-        # String unquoting: e.g. fl vs "fl"
-        if act_s.strip('"\'') == exp_s.strip('"\'') and act_s:
-            return True
-        # JSON parsing comparison
-        try:
-            act_obj = json.loads(act_s)
-        except Exception:
-            act_obj = None
-        try:
-            exp_obj = json.loads(exp_s)
-        except Exception:
-            exp_obj = None
-
-        if act_obj is not None and exp_obj is not None:
-            if act_obj == exp_obj:
-                return True
-            # Permutations for 2-element arrays (e.g. Two Sum indices in any order)
-            if isinstance(act_obj, list) and isinstance(exp_obj, list) and len(act_obj) == 2 and len(exp_obj) == 2:
-                try:
-                    if sorted(act_obj) == sorted(exp_obj):
-                        return True
-                except Exception:
-                    pass
-            # Multiset for 2D arrays (Subsets, Permutations)
-            if isinstance(act_obj, list) and isinstance(exp_obj, list) and len(act_obj) == len(exp_obj):
-                if all(isinstance(x, list) for x in act_obj) and all(isinstance(x, list) for x in exp_obj):
-                    try:
-                        if sorted([sorted(x) for x in act_obj]) == sorted([sorted(x) for x in exp_obj]):
-                            return True
-                    except Exception:
-                        pass
-        if exp_obj is not None and isinstance(exp_obj, str) and exp_obj == act_s:
-            return True
-        if act_obj is not None and isinstance(act_obj, str) and act_obj == exp_s:
-            return True
-        return False
+    def _check_universal_equality(cls, actual: Any, expected: Any, question_slug: Optional[str] = None) -> bool:
+        """Authoritative validation using ComparisonContract without blanket shortcuts."""
+        passed, _ = ComparisonContract.compare(actual, expected, question_slug=question_slug)
+        return passed
 
     # -------------------------------------------------------------------------
     # OUTPUT PARSER
@@ -2756,7 +2789,8 @@ console.log('---SANDBOX_RESULTS_END---');
         test_cases: List[Dict[str, Any]],
         approach: str,
         proc_runtime_ms: Optional[float] = None,
-        proc_memory_mb: Optional[float] = None
+        proc_memory_mb: Optional[float] = None,
+        question_slug: Optional[str] = None
     ) -> Dict[str, Any]:
         start = stdout.find("---SANDBOX_RESULTS_START---")
         end = stdout.find("---SANDBOX_RESULTS_END---")
@@ -2767,11 +2801,13 @@ console.log('---SANDBOX_RESULTS_END---');
                 data = json.loads(data_str)
                 results = data.get("results", [])
                 for r in results:
-                    if not r.get("passed"):
-                        act = r.get("actual_output")
-                        exp = r.get("expected_output")
-                        if cls._check_universal_equality(act, exp):
-                            r["passed"] = True
+                    act = r.get("actual_output")
+                    exp = r.get("expected_output")
+                    passed, reason = ComparisonContract.compare(act, exp, question_slug=question_slug)
+                    r["passed"] = passed
+                    if not passed and reason:
+                        r["mismatch_reason"] = reason
+
                 passed_count = sum(1 for r in results if r.get("passed"))
                 total = len(results)
                 all_passed = (passed_count == total and total > 0)
@@ -2780,6 +2816,21 @@ console.log('---SANDBOX_RESULTS_END---');
                 tc_total_runtime = round(sum(r.get("runtime_ms", 0.0) for r in results), 2)
                 actual_runtime = tc_total_runtime if tc_total_runtime > 0 else proc_runtime_ms
                 actual_memory = proc_memory_mb or data.get("memory_mb")
+
+                if all_passed:
+                    comp_out = "Execution completed successfully."
+                else:
+                    failing = next((r for r in results if not r.get("passed")), None)
+                    if failing:
+                        f_idx = failing.get("test_case_index", 1)
+                        f_exp = failing.get("expected_output")
+                        f_act = failing.get("actual_output")
+                        f_reason = failing.get("mismatch_reason")
+                        comp_out = f"Wrong Answer on testcase {f_idx}: Expected {f_exp}, got {f_act}."
+                        if f_reason:
+                            comp_out += f" ({f_reason})"
+                    else:
+                        comp_out = "Wrong Answer: Test cases did not pass."
 
                 return {
                     "status": "ACCEPTED" if all_passed else "WRONG_ANSWER",
@@ -2791,7 +2842,7 @@ console.log('---SANDBOX_RESULTS_END---');
                     "test_case_results": results,
                     "runtime_ms": actual_runtime,
                     "memory_mb": actual_memory,
-                    "compiler_output": "Process exited with status 0."
+                    "compiler_output": comp_out
                 }
             except Exception as e:
                 return {

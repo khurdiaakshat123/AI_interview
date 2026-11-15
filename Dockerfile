@@ -10,12 +10,14 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man2 /usr/share/man/man7 && \
         build-essential \
         g++ \
         gcc \
+        gdb \
         nodejs \
         default-jdk-headless || \
      apt-get install -y --no-install-recommends \
         build-essential \
         g++ \
         gcc \
+        gdb \
         nodejs) && \
     rm -rf /var/lib/apt/lists/*
 

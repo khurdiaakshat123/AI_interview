@@ -28,6 +28,10 @@
     {
       "input": "{\"headers\": {\"Person\": [\"personId\", \"lastName\", \"firstName\"], \"Address\": [\"addressId\", \"personId\", \"city\", \"state\"]}, \"rows\": {\"Person\": [[1, \"Wang\", \"Allen\"], [2, \"Alice\", \"Bob\"]], \"Address\": [[1, 2, \"New York City\", \"New York\"], [2, 3, \"Leetcode\", \"California\"]]}}",
       "expectedOutput": "+-----------+----------+---------------+----------+\n| firstName | lastName | city          | state    |\n+-----------+----------+---------------+----------+\n| Allen     | Wang     | Null          | Null     |\n| Bob       | Alice    | New York City | New York |\n+-----------+----------+---------------+----------+"
+    },
+    {
+      "input": "{\"headers\": {\"Person\": [\"personId\", \"lastName\", \"firstName\"], \"Address\": [\"addressId\", \"personId\", \"city\", \"state\"]}, \"rows\": {\"Person\": [[10, \"Miller\", \"David\"], [20, \"Taylor\", \"Sarah\"], [30, \"Clark\", \"James\"], [40, \"Davis\", \"Emma\"]], \"Address\": [[101, 10, \"Chicago\", \"Illinois\"], [102, 30, \"Seattle\", \"Washington\"], [103, 50, \"Austin\", \"Texas\"]]}}",
+      "expectedOutput": "+-----------+----------+---------------+------------+\n| firstName | lastName | city          | state      |\n+-----------+----------+---------------+------------+\n| David     | Miller   | Chicago       | Illinois   |\n| Sarah     | Taylor   | Null          | Null       |\n| James     | Clark    | Seattle       | Washington |\n| Emma      | Davis    | Null          | Null       |\n+-----------+----------+---------------+------------+"
     }
   ],
   "testCases": [
