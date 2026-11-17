@@ -1239,13 +1239,10 @@ export const PracticePage: React.FC<PracticePageProps> = ({ initialQuestionId, o
             type="button"
             onClick={handleOpenDebugger}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-accent/40 bg-accent/10 hover:bg-accent/20 text-accent text-xs font-medium transition-colors shadow-xs cursor-pointer"
-            title={['python', 'python3', 'py'].includes(selectedLang.toLowerCase()) ? "Step-by-step visual debugger with live variable tracking" : "Visual step debugger (Supported natively in Python)"}
+            title="Step-by-step visual debugger with live variable tracking"
           >
             <Bug className="w-3.5 h-3.5" />
             <span>Debug</span>
-            {!['python', 'python3', 'py'].includes(selectedLang.toLowerCase()) && (
-              <span className="text-[10px] px-1 py-0.2 rounded bg-accent/20 text-accent font-mono ml-0.5">py</span>
-            )}
           </button>
 
           {/* Submit Code Button */}

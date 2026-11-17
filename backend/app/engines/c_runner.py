@@ -18,6 +18,22 @@ C_HEADERS = r'''
 #include <limits.h>
 #include <time.h>
 #include <ctype.h>
+#include <stdarg.h>
+#include <stdint.h>
+#ifdef _WIN32
+#include <io.h>
+#define c_dup _dup
+#define c_dup2 _dup2
+#define c_close _close
+#define c_fileno _fileno
+#else
+#include <unistd.h>
+extern int fileno(FILE* stream);
+#define c_dup dup
+#define c_dup2 dup2
+#define c_close close
+#define c_fileno fileno
+#endif
 '''
 
 C_STRUCT_LISTNODE = r'''
@@ -248,7 +264,9 @@ static struct TreeNode* c_parse_treenode(const char* raw) {
     root->left = NULL;
     root->right = NULL;
     
-    struct TreeNode* queue[4096];
+    size_t queue_cap = strlen(raw) + 1;
+    struct TreeNode** queue = (struct TreeNode**)malloc(queue_cap * sizeof(*queue));
+    if (!queue) exit(3);
     int head = 0, tail = 0;
     queue[tail++] = root;
     
@@ -275,140 +293,197 @@ static struct TreeNode* c_parse_treenode(const char* raw) {
             queue[tail++] = curr->right;
         }
     }
+    free(queue);
     free(s);
     return root;
 }
 
-/* Formatters */
-static void c_format_int(int v, char* buf, size_t buf_sz) { snprintf(buf, buf_sz, "%d", v); }
-static void c_format_long(long long v, char* buf, size_t buf_sz) { snprintf(buf, buf_sz, "%lld", v); }
-static void c_format_double(double v, char* buf, size_t buf_sz) { snprintf(buf, buf_sz, "%.5f", v); }
-static void c_format_bool(bool v, char* buf, size_t buf_sz) { snprintf(buf, buf_sz, "%s", v ? "true" : "false"); }
-static void c_format_string(const char* s, char* buf, size_t buf_sz) {
-    if (!s) { snprintf(buf, buf_sz, "\"\""); return; }
-    snprintf(buf, buf_sz, "\"%s\"", s);
+/* Dynamically sized output: allocation failure is an execution error, never truncation. */
+typedef struct { char* data; size_t len, cap; } CBuffer;
+static void c_reserve(CBuffer* b, size_t extra) {
+    if (extra > SIZE_MAX - b->len - 1) exit(3);
+    size_t need = b->len + extra + 1;
+    if (need <= b->cap) return;
+    size_t cap = b->cap ? b->cap : 64;
+    while (cap < need) { if (cap > SIZE_MAX / 2) { cap = need; break; } cap *= 2; }
+    char* data = (char*)realloc(b->data, cap);
+    if (!data) exit(3);
+    b->data = data; b->cap = cap;
+    b->data[b->len] = 0;
 }
-
-static void c_format_int_array(const int* arr, int sz, char* buf, size_t buf_sz) {
-    if (!arr || sz <= 0) { snprintf(buf, buf_sz, "[]"); return; }
-    size_t off = snprintf(buf, buf_sz, "[");
-    for (int i = 0; i < sz && off < buf_sz - 20; i++) {
-        if (i > 0) off += snprintf(buf + off, buf_sz - off, ",");
-        off += snprintf(buf + off, buf_sz - off, "%d", arr[i]);
+static void c_append(CBuffer* b, const char* text) {
+    size_t len = strlen(text); c_reserve(b, len);
+    memcpy(b->data + b->len, text, len + 1); b->len += len;
+}
+static void c_printf(CBuffer* b, const char* fmt, ...) {
+    va_list args, copy; va_start(args, fmt); va_copy(copy, args);
+    int len = vsnprintf(NULL, 0, fmt, copy); va_end(copy);
+    if (len < 0) exit(3);
+    c_reserve(b, (size_t)len);
+    vsnprintf(b->data + b->len, b->cap - b->len, fmt, args);
+    b->len += (size_t)len; va_end(args);
+}
+static void c_escape_json_bytes(const char* src, size_t len, CBuffer* dst) {
+    for (const unsigned char* p = (const unsigned char*)src; p < (const unsigned char*)src + len; p++) {
+        if (*p == '"' || *p == '\\') { c_append(dst, "\\"); c_printf(dst, "%c", *p); }
+        else if (*p < 32) c_printf(dst, "\\u%04x", *p);
+        else c_printf(dst, "%c", *p);
     }
-    snprintf(buf + off, buf_sz - off, "]");
+    c_reserve(dst, 0);
 }
-
-static void c_format_matrix(int** mat, int rows, const int* cols, char* buf, size_t buf_sz) {
-    if (!mat || rows <= 0) { snprintf(buf, buf_sz, "[]"); return; }
-    size_t off = snprintf(buf, buf_sz, "[");
-    for (int i = 0; i < rows && off < buf_sz - 40; i++) {
-        if (i > 0) off += snprintf(buf + off, buf_sz - off, ",");
-        char row_buf[1024];
-        c_format_int_array(mat[i], cols ? cols[i] : 0, row_buf, sizeof(row_buf));
-        off += snprintf(buf + off, buf_sz - off, "%s", row_buf);
+static void c_escape_json(const char* src, CBuffer* dst) {
+    c_escape_json_bytes(src ? src : "", src ? strlen(src) : 0, dst);
+}
+static FILE* c_capture_begin(int* saved_out, int* saved_err) {
+    fflush(stdout); fflush(stderr);
+    FILE* capture = tmpfile();
+    *saved_out = c_dup(c_fileno(stdout)); *saved_err = c_dup(c_fileno(stderr));
+    if (!capture || *saved_out < 0 || *saved_err < 0) exit(3);
+    if (c_dup2(c_fileno(capture), c_fileno(stdout)) < 0 ||
+        c_dup2(c_fileno(capture), c_fileno(stderr)) < 0) exit(3);
+    return capture;
+}
+static void c_capture_end(FILE* capture, int saved_out, int saved_err, CBuffer* escaped) {
+    if (fflush(stdout) || fflush(stderr)) exit(3);
+    if (c_dup2(saved_out, c_fileno(stdout)) < 0 || c_dup2(saved_err, c_fileno(stderr)) < 0) exit(3);
+    c_close(saved_out); c_close(saved_err);
+    if (fseek(capture, 0, SEEK_SET)) exit(3);
+    char chunk[4096]; size_t count;
+    while ((count = fread(chunk, 1, sizeof(chunk), capture)) > 0) c_escape_json_bytes(chunk, count, escaped);
+    if (ferror(capture)) exit(3);
+    c_reserve(escaped, 0); fclose(capture);
+}
+static void c_format_int(int v, CBuffer* b) { c_printf(b, "%d", v); }
+static void c_format_long(long long v, CBuffer* b) { c_printf(b, "%lld", v); }
+static void c_format_double(double v, CBuffer* b) {
+    if (!isfinite(v)) exit(3);
+    c_printf(b, "%.17g", v);
+}
+static void c_format_bool(bool v, CBuffer* b) { c_append(b, v ? "true" : "false"); }
+static void c_format_string(const char* v, CBuffer* b) {
+    if (!v) { c_append(b, "null"); return; }
+    c_append(b, "\""); c_escape_json(v, b); c_append(b, "\"");
+}
+static void c_format_int_array(const volatile int* arr, int sz, CBuffer* b) {
+    if (sz < 0 || (sz && !arr)) exit(3);
+    c_append(b, "[");
+    for (int i = 0; i < sz; i++) { if (i) c_append(b, ","); c_printf(b, "%d", arr[i]); }
+    c_append(b, "]");
+}
+static void c_format_matrix(const volatile int* const* mat, int rows, const int* cols, CBuffer* b) {
+    if (rows < 0 || (rows && (!mat || !cols))) exit(3);
+    c_append(b, "[");
+    for (int i = 0; i < rows; i++) {
+        if (i) c_append(b, ","); c_format_int_array(mat[i], cols[i], b);
     }
-    snprintf(buf + off, buf_sz - off, "]");
+    c_append(b, "]");
 }
-
-static void c_format_listnode(struct ListNode* head, char* buf, size_t buf_sz) {
-    if (!head) { snprintf(buf, buf_sz, "[]"); return; }
-    size_t off = snprintf(buf, buf_sz, "[");
-    struct ListNode* curr = head;
-    bool first = true;
-    while (curr && off < buf_sz - 20) {
-        if (!first) off += snprintf(buf + off, buf_sz - off, ",");
-        off += snprintf(buf + off, buf_sz - off, "%d", curr->val);
-        first = false;
-        curr = curr->next;
+static void c_format_listnode(struct ListNode* head, CBuffer* b) {
+    struct ListNode *slow = head, *fast = head;
+    while (fast && fast->next) {
+        slow = slow->next; fast = fast->next->next; if (slow == fast) exit(3);
     }
-    snprintf(buf + off, buf_sz - off, "]");
+    c_append(b, "["); bool first = true;
+    for (; head; head = head->next) {
+        if (!first) c_append(b, ","); first = false; c_printf(b, "%d", head->val);
+    }
+    c_append(b, "]");
 }
-
-static void c_format_treenode(struct TreeNode* root, char* buf, size_t buf_sz) {
-    if (!root) { snprintf(buf, buf_sz, "[]"); return; }
-    struct TreeNode* queue[4096];
-    int head = 0, tail = 0;
+static void c_format_treenode(struct TreeNode* root, CBuffer* b) {
+    size_t head = 0, tail = 0, cap = 16, last = 0;
+    size_t seen_cap = 32, seen_count = 0;
+    struct TreeNode** seen = (struct TreeNode**)calloc(seen_cap, sizeof(*seen));
+    struct TreeNode** queue = (struct TreeNode**)malloc(cap * sizeof(*queue));
+    if (!queue || !seen) exit(3);
     queue[tail++] = root;
-    
-    char* vals[4096];
-    int val_count = 0;
-    while (head < tail && val_count < 4000) {
-        struct TreeNode* curr = queue[head++];
-        if (curr) {
-            char* nb = (char*)malloc(32);
-            snprintf(nb, 32, "%d", curr->val);
-            vals[val_count++] = nb;
-            queue[tail++] = curr->left;
-            queue[tail++] = curr->right;
-        } else {
-            vals[val_count++] = c_strdup("null");
+    c_append(b, "[");
+    while (head < tail) {
+        struct TreeNode* node = queue[head++];
+        if (head > 1) c_append(b, ",");
+        if (!node) { c_append(b, "null"); continue; }
+        if (seen_count * 2 >= seen_cap) {
+            if (seen_cap > SIZE_MAX / 2 / sizeof(*seen)) exit(3);
+            size_t old_cap = seen_cap; seen_cap *= 2;
+            struct TreeNode** grown = (struct TreeNode**)calloc(seen_cap, sizeof(*seen));
+            if (!grown) exit(3);
+            for (size_t i = 0; i < old_cap; i++) if (seen[i]) {
+                size_t slot = ((uintptr_t)seen[i] >> 3) & (seen_cap - 1);
+                while (grown[slot]) slot = (slot + 1) & (seen_cap - 1);
+                grown[slot] = seen[i];
+            }
+            free(seen); seen = grown;
         }
+        size_t slot = ((uintptr_t)node >> 3) & (seen_cap - 1);
+        while (seen[slot] && seen[slot] != node) slot = (slot + 1) & (seen_cap - 1);
+        if (seen[slot]) exit(3); /* A cycle or shared node is not a binary tree. */
+        seen[slot] = node; seen_count++;
+        c_printf(b, "%d", node->val); last = b->len;
+        if (tail + 2 > cap) {
+            if (cap > SIZE_MAX / 2 / sizeof(*queue)) exit(3);
+            cap *= 2; void* next = realloc(queue, cap * sizeof(*queue));
+            if (!next) exit(3); queue = (struct TreeNode**)next;
+        }
+        queue[tail++] = node->left; queue[tail++] = node->right;
     }
-    while (val_count > 0 && strcmp(vals[val_count - 1], "null") == 0) {
-        free(vals[--val_count]);
-    }
-    size_t off = snprintf(buf, buf_sz, "[");
-    for (int i = 0; i < val_count && off < buf_sz - 20; i++) {
-        if (i > 0) off += snprintf(buf + off, buf_sz - off, ",");
-        off += snprintf(buf + off, buf_sz - off, "%s", vals[i]);
-        free(vals[i]);
-    }
-    snprintf(buf + off, buf_sz - off, "]");
+    b->len = last ? last : 1; b->data[b->len] = 0;
+    c_append(b, "]"); free(queue); free(seen);
 }
 
-static void c_escape_json(const char* src, char* dst, size_t dst_sz) {
-    size_t j = 0;
-    for (size_t i = 0; src[i] && j < dst_sz - 4; i++) {
-        if (src[i] == '"' || src[i] == '\\') {
-            dst[j++] = '\\';
-            dst[j++] = src[i];
-        } else if (src[i] == '\n') {
-            dst[j++] = '\\';
-            dst[j++] = 'n';
-        } else if (src[i] == '\r') {
-            dst[j++] = '\\';
-            dst[j++] = 'r';
-        } else if (src[i] == '\t') {
-            dst[j++] = '\\';
-            dst[j++] = 't';
-        } else {
-            dst[j++] = src[i];
-        }
-    }
-    dst[j] = '\0';
-}
 '''
 
 C_HARNESS_PREAMBLE = C_HEADERS + "\n" + C_STRUCT_LISTNODE + "\n" + C_STRUCT_TREENODE + "\n" + C_HARNESS_HELPERS
 
 class CRunner:
     @classmethod
-    def split_input(cls, raw: str) -> List[str]:
-        raw = raw.strip()
-        lines = [l.strip() for l in raw.splitlines() if l.strip()]
-        if len(lines) == 1 and (',' in lines[0] or '=' in lines[0]):
-            pattern = r"(?:^|[\n,])\s*([a-zA-Z_]\w*)\s*=\s*"
-            if re.search(pattern, lines[0]):
-                splits = re.split(pattern, lines[0])
-                vals = []
-                for i in range(2, len(splits), 2):
-                    vals.append(splits[i].strip().rstrip(","))
-                if vals:
-                    return vals
-            parts, cur, depth = [], [], 0
-            for ch in lines[0]:
-                if ch in '[{(': depth += 1
-                elif ch in ']})': depth -= 1
-                if ch == ',' and depth == 0:
-                    parts.append(''.join(cur).strip())
-                    cur = []
-                else:
-                    cur.append(ch)
-            if cur:
-                parts.append(''.join(cur).strip())
-            return parts
-        return lines
+    def split_input(cls, raw: str, strip_labels: bool = True) -> List[str]:
+        """Split argument syntax without interpreting quoted or nested contents."""
+        values, current = [], []
+        quote, escaped, depth = None, False, 0
+
+        def flush():
+            token = ''.join(current).strip()
+            current.clear()
+            if token:
+                # A label is syntax only at the start of a complete argument.
+                values.append(re.sub(r'^[a-zA-Z_]\w*\s*=\s*', '', token, count=1) if strip_labels else token)
+
+        for char in raw.strip():
+            if quote:
+                current.append(char)
+                if escaped:
+                    escaped = False
+                elif char == '\\':
+                    escaped = True
+                elif char == quote:
+                    quote = None
+                continue
+            if char in ('"', "'"):
+                quote = char
+            elif char in '[{(':
+                depth += 1
+            elif char in ']})':
+                depth -= 1
+            elif char in ',\r\n' and depth == 0:
+                flush()
+                continue
+            current.append(char)
+        flush()
+        return values
+
+    @classmethod
+    def normalize_labeled_input(cls, raw: str) -> str:
+        """Convert example argument labels to positional input without changing raw values."""
+        tokens = cls.split_input(raw, strip_labels=False)
+        label = r'^[a-zA-Z_]\w*\s*=\s*'
+        if not any(re.match(label, token) for token in tokens):
+            return raw
+        return '\n'.join(re.sub(label, '', token, count=1) for token in tokens)
+
+    @staticmethod
+    def _normalize_c_type(c_type: str) -> str:
+        """Classify pointer depth independently of CV/restrict qualifiers."""
+        unqualified = re.sub(r'\b(?:const|volatile|restrict|__restrict|__restrict__)\b', '', c_type)
+        return re.sub(r'\s+', '', unqualified)
 
     @classmethod
     def detect_c_signature(cls, code: str, expected_func: Optional[str] = None) -> Optional[Tuple[str, str, List[Tuple[str, str]]]]:
@@ -416,7 +491,7 @@ class CRunner:
         clean_code = re.sub(r'/\*.*?\*/', '', clean_code, flags=re.DOTALL)
         
         matches = list(re.finditer(
-            r'(?:^|[\n;])\s*([a-zA-Z0-9_* ]+?)\s+([a-zA-Z_]\w*)\s*\(([\s\S]*?)\)\s*\{',
+            r'(?:^|[\n;}])\s*([a-zA-Z0-9_* ]+?[\s*])([a-zA-Z_]\w*)\s*\(([\s\S]*?)\)\s*\{',
             clean_code
         ))
         
@@ -434,7 +509,7 @@ class CRunner:
                 continue
             if re.search(r'\bstruct\b', raw_ret) and '*' not in raw_ret:
                 continue
-            if not any(raw_ret.startswith(k) for k in ("int", "void", "char", "bool", "float", "double", "long", "struct", "short", "unsigned", "signed")) and not raw_ret.endswith('*'):
+            if not any(raw_ret.startswith(k) for k in ("int", "void", "char", "bool", "float", "double", "long", "struct", "short", "unsigned", "signed")) and not cls._normalize_c_type(raw_ret).endswith('*'):
                 continue
                 
             raw_ret = re.sub(r'\b(static|inline|extern)\s+', '', raw_ret).strip()
@@ -497,23 +572,23 @@ class CRunner:
             
             while p_idx < len(params):
                 p_type, p_name = params[p_idx]
-                p_type_clean = p_type.replace(' ', '')
+                p_type_clean = cls._normalize_c_type(p_type)
                 
                 # Check for out-parameters: returnSize
-                if "returnSize" in p_name or ("int*" in p_type_clean and "return" in p_name.lower()):
+                if p_type_clean == "int*" and p_name.lower() == "returnsize":
                     decls.append(f"        int ret_sz_{tc_idx} = 0;")
                     call_args.append(f"&ret_sz_{tc_idx}")
                     p_idx += 1
                     continue
                 # Check for out-parameters: returnColumnSizes
-                if "returnColumnSizes" in p_name or ("int**" in p_type_clean and "column" in p_name.lower()):
+                if p_type_clean == "int**" and p_name.lower() == "returncolumnsizes":
                     decls.append(f"        int* ret_col_sz_{tc_idx} = NULL;")
                     call_args.append(f"&ret_col_sz_{tc_idx}")
                     p_idx += 1
                     continue
                 
                 val_str = inp_lines[inp_idx] if inp_idx < len(inp_lines) else ""
-                safe_val = val_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n')
+                safe_val = val_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '\\r')
                 
                 # Check for 2D matrix: int** matrix, int matrixSize, int* matrixColSize
                 if "int**" in p_type_clean and p_idx + 2 < len(params) and "size" in params[p_idx + 1][1].lower():
@@ -595,56 +670,61 @@ class CRunner:
             
             args_str = ", ".join(call_args)
             decls_str = "\n".join(decls)
-            ret_clean = ret_type.replace(' ', '')
+            ret_clean = cls._normalize_c_type(ret_type)
             
             if ret_clean == "void":
                 call_stmt = f"        {func_name}({args_str});"
                 if first_arg_type == "int_array":
-                    fmt_stmt = f"        c_format_int_array({first_arg_name[0]}, {first_arg_name[1]}, act_buf, sizeof(act_buf));"
+                    fmt_stmt = f"        c_format_int_array({first_arg_name[0]}, {first_arg_name[1]}, &act_buf);"
                 elif first_arg_type == "matrix":
-                    fmt_stmt = f"        c_format_matrix({first_arg_name[0]}, {first_arg_name[1]}, {first_arg_name[2]}, act_buf, sizeof(act_buf));"
+                    fmt_stmt = f"        c_format_matrix((const volatile int* const*){first_arg_name[0]}, {first_arg_name[1]}, {first_arg_name[2]}, &act_buf);"
                 else:
-                    fmt_stmt = '        snprintf(act_buf, sizeof(act_buf), "void");'
-            elif "int*" in ret_clean:
-                call_stmt = f"        int* ret_val = {func_name}({args_str});"
-                fmt_stmt = f"        c_format_int_array(ret_val, ret_sz_{tc_idx}, act_buf, sizeof(act_buf));\n        if (ret_val) free(ret_val);"
-            elif "int**" in ret_clean:
-                call_stmt = f"        int** ret_val = {func_name}({args_str});"
-                fmt_stmt = f"        c_format_matrix(ret_val, ret_sz_{tc_idx}, ret_col_sz_{tc_idx}, act_buf, sizeof(act_buf));"
+                    fmt_stmt = '        c_append(&act_buf, "null");'
+            elif ret_clean == "int*":
+                call_stmt = f"        {ret_type} ret_val = {func_name}({args_str});"
+                fmt_stmt = f"        c_format_int_array(ret_val, ret_sz_{tc_idx}, &act_buf);"
+            elif ret_clean == "int**":
+                call_stmt = f"        {ret_type} ret_val = {func_name}({args_str});"
+                fmt_stmt = f"        c_format_matrix((const volatile int* const*)ret_val, ret_sz_{tc_idx}, ret_col_sz_{tc_idx}, &act_buf);"
             elif "char*" in ret_clean:
                 call_stmt = f"        char* ret_val = {func_name}({args_str});"
-                fmt_stmt = f"        c_format_string(ret_val, act_buf, sizeof(act_buf));"
+                fmt_stmt = f"        c_format_string(ret_val, &act_buf);"
             elif "listnode" in ret_type.lower():
                 call_stmt = f"        struct ListNode* ret_val = {func_name}({args_str});"
-                fmt_stmt = f"        c_format_listnode(ret_val, act_buf, sizeof(act_buf));"
+                fmt_stmt = f"        c_format_listnode(ret_val, &act_buf);"
             elif "treenode" in ret_type.lower():
                 call_stmt = f"        struct TreeNode* ret_val = {func_name}({args_str});"
-                fmt_stmt = f"        c_format_treenode(ret_val, act_buf, sizeof(act_buf));"
+                fmt_stmt = f"        c_format_treenode(ret_val, &act_buf);"
             elif "bool" in ret_clean:
                 call_stmt = f"        bool ret_val = {func_name}({args_str});"
-                fmt_stmt = f"        c_format_bool(ret_val, act_buf, sizeof(act_buf));"
+                fmt_stmt = f"        c_format_bool(ret_val, &act_buf);"
             elif "double" in ret_clean or "float" in ret_clean:
                 call_stmt = f"        double ret_val = {func_name}({args_str});"
-                fmt_stmt = f"        c_format_double(ret_val, act_buf, sizeof(act_buf));"
+                fmt_stmt = f"        c_format_double(ret_val, &act_buf);"
             elif "long" in ret_clean:
                 call_stmt = f"        long long ret_val = {func_name}({args_str});"
-                fmt_stmt = f"        c_format_long(ret_val, act_buf, sizeof(act_buf));"
+                fmt_stmt = f"        c_format_long(ret_val, &act_buf);"
             else:
                 call_stmt = f"        int ret_val = {func_name}({args_str});"
-                fmt_stmt = f"        c_format_int(ret_val, act_buf, sizeof(act_buf));"
+                fmt_stmt = f"        c_format_int(ret_val, &act_buf);"
 
             case_str = f"""    /* Case {tc_idx + 1} */
     {{
-        char act_buf[4096];
-        char esc_act[8192];
+        CBuffer act_buf = {{0}};
+        CBuffer esc_act = {{0}};
+        CBuffer esc_stdout = {{0}};
 {decls_str}
+        int saved_out, saved_err;
+        FILE* captured = c_capture_begin(&saved_out, &saved_err);
         clock_t t0 = clock();
 {call_stmt}
         double elapsed_ms = ((double)(clock() - t0) / CLOCKS_PER_SEC) * 1000.0;
+        c_capture_end(captured, saved_out, saved_err, &esc_stdout);
 {fmt_stmt}
-        c_escape_json(act_buf, esc_act, sizeof(esc_act));
+        c_escape_json(act_buf.data, &esc_act);
         if ({tc_idx} > 0) fputs(",\\n", out_file);
-        fprintf(out_file, "    {{\\\"test_case_index\\\": {tc_idx + 1}, \\\"actual_output\\\": \\\"%s\\\", \\\"runtime_ms\\\": %.3f}}", esc_act, elapsed_ms);
+        fprintf(out_file, "    {{\\\"test_case_index\\\": {tc_idx + 1}, \\\"actual_output\\\": \\\"%s\\\", \\\"stdout\\\": \\\"%s\\\", \\\"runtime_ms\\\": %.3f}}", esc_act.data, esc_stdout.data, elapsed_ms);
+        free(act_buf.data); free(esc_act.data); free(esc_stdout.data);
     }}"""
             cases_code.append(case_str)
 
@@ -735,7 +815,7 @@ int main(int argc, char** argv) {{
             with open(src_file, "w", encoding="utf-8") as f:
                 f.write(harness)
 
-            comp = subprocess.run([gcc, "-std=c11", "-O2", "-pipe", src_file, "-o", exe_file], capture_output=True, text=True)
+            comp = subprocess.run([gcc, "-std=c11", "-O2", "-pipe", src_file, "-o", exe_file, "-lm"], capture_output=True, text=True)
             if comp.returncode != 0:
                 clean_err = comp.stderr.replace(tmpdir, "").replace("\\", "/").strip()
                 return {

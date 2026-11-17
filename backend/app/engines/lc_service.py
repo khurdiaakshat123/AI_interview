@@ -836,7 +836,7 @@ class LCQuestionService:
 
                 test_cases = [
 
-                    {"input": t.get("input", ""), "expected_output": t.get("expectedOutput") or t.get("expected_output", "")}
+                    {**t, "input": t.get("input", ""), "expected_output": t.get("expectedOutput", t.get("expected_output", ""))}
 
                     for t in tests[:3]
 
@@ -899,6 +899,7 @@ class LCQuestionService:
             user_code=code,
             language=language,
             test_cases=enriched_cases,
+            question_slug=q_ref.get("slug"),
             timeout_seconds=10.0
         )
 
@@ -988,7 +989,7 @@ class LCQuestionService:
 
                 test_cases = [
 
-                    {"input": t.get("input", ""), "expected_output": t.get("expectedOutput") or t.get("expected_output", "")}
+                    {**t, "input": t.get("input", ""), "expected_output": t.get("expectedOutput", t.get("expected_output", ""))}
 
                     for t in tests
 
@@ -1053,6 +1054,7 @@ class LCQuestionService:
             user_code=code,
             language=language,
             test_cases=enriched_cases,
+            question_slug=q_ref.get("slug"),
             timeout_seconds=10.0
         )
 
@@ -1073,6 +1075,10 @@ class LCQuestionService:
         elif raw_status in ["TLE", "Time Limit Exceeded"]:
 
             status_label = "Time Limit Exceeded"
+
+        elif raw_status == "TOOLCHAIN_UNAVAILABLE":
+
+            status_label = "Toolchain Unavailable"
 
         elif is_correct:
 

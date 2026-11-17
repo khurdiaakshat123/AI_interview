@@ -18,6 +18,11 @@ except ImportError:
 
 import sqlite3
 
+
+class _AsciiCell(str):
+    """Legacy table text whose scalar type is not present in the wire format."""
+
+
 class SQLRunner:
     """
     Dedicated Relational SQL Compiler and Judge Engine for technical interviews.
@@ -34,7 +39,7 @@ class SQLRunner:
         return clean.strip().rstrip(';').strip()
 
     @classmethod
-    def transpile_to_duckdb(cls, sql: str, dialect: str = "mysql") -> str:
+    def transpile_to_duckdb(cls, sql: str, dialect: str = "mysql", fixtures: Optional[Dict[str, Any]] = None) -> str:
         """Transpile explicitly selected SQL dialect syntax to DuckDB."""
         clean = cls.clean_query(sql)
         d = (dialect or "mysql").lower().strip()
@@ -49,27 +54,40 @@ class SQLRunner:
         else:
             read_dialect = "mysql"
 
-        # Handle MySQL multi-table DELETE syntax: DELETE p1 FROM Person p1 JOIN Person p2 ...
-        if read_dialect == "mysql":
-            del_match = re.match(
-                r'^\s*DELETE\s+([a-zA-Z0-9_]+)\s+FROM\s+([a-zA-Z0-9_]+)\s+(?:AS\s+)?\1\s+((?:JOIN|,)\s+[\s\S]+?);?\s*$',
-                clean,
-                re.IGNORECASE
-            )
-            if del_match:
-                alias = del_match.group(1)
-                tbl = del_match.group(2)
-                rest = del_match.group(3)
-                clean = f"DELETE FROM {tbl} WHERE id IN (SELECT {alias}.id FROM {tbl} AS {alias} {rest});"
-
         if not HAS_SQLGLOT:
             return clean
 
-        try:
-            transpiled = sqlglot.transpile(clean, read=read_dialect, write="duckdb")[0]
-            return transpiled
-        except Exception:
-            return clean
+        tree = sqlglot.parse_one(clean, read=read_dialect)
+        exp = sqlglot.exp
+        if isinstance(tree, exp.Delete) and tree.args.get("tables"):
+            targets = tree.args["tables"]
+            if len(targets) != 1:
+                raise ValueError("Deleting from multiple target tables is not supported by this SQL engine")
+            source = tree.this
+            alias = targets[0].name
+            target = next((t for t in source.find_all(exp.Table) if t.alias_or_name == alias), None)
+            if target is None:
+                raise ValueError("DELETE target alias was not found in its source relation")
+            schema = next((v for k, v in (fixtures or {}).items() if k.lower() == target.name.lower()), None)
+            if not schema or not schema.get("cols"):
+                raise ValueError("Joined DELETE requires the target table schema")
+            # Correlate the complete typed target row. This preserves joins (including
+            # outer joins), NULL semantics and duplicate rows without assuming a key.
+            used = {t.alias_or_name for t in source.find_all(exp.Table)}
+            outer_alias = "__judge_delete_target"
+            while outer_alias in used:
+                outer_alias += "_"
+            predicates = [exp.NullSafeEQ(
+                this=exp.column(c, table=outer_alias, quoted=True),
+                expression=exp.column(c, table=alias, quoted=True)) for c in schema["cols"]]
+            if tree.args.get("where"):
+                predicates.insert(0, tree.args["where"].this.copy())
+            selection = exp.select("1").from_(source.copy()).where(exp.and_(*predicates))
+            outer = target.copy()
+            outer.set("joins", None)
+            outer.set("alias", exp.TableAlias(this=exp.to_identifier(outer_alias)))
+            tree = exp.Delete(this=outer, where=exp.Where(this=exp.Exists(this=selection)))
+        return tree.sql(dialect="duckdb" if HAS_DUCKDB else "sqlite")
 
     @classmethod
     def parse_fixtures(cls, raw_input: str) -> Dict[str, Dict[str, Any]]:
@@ -142,18 +160,23 @@ class SQLRunner:
         return tables
 
     @staticmethod
-    def parse_ascii_table(table_str: str) -> Tuple[List[str], List[List[str]]]:
+    def parse_ascii_table(table_str: Any) -> Tuple[List[str], List[List[Any]]]:
         """Parse ASCII markdown table or JSON schema into headers and cell rows."""
-        if not table_str or not isinstance(table_str, str):
+        if isinstance(table_str, dict):
+            clean = json.dumps(table_str)
+        elif isinstance(table_str, str):
+            clean = table_str.strip()
+        else:
             return [], []
-        clean = table_str.strip()
         if clean.startswith("{"):
             try:
                 data = json.loads(clean)
                 if isinstance(data, dict) and "headers" in data and "rows" in data:
-                    tbl = list(data["headers"].keys())[0]
-                    headers = [str(c) for c in data["headers"][tbl]]
-                    rows = [[str(v) if v is not None else "null" for v in r] for r in data["rows"].get(tbl, [])]
+                    if isinstance(data["headers"], list):
+                        headers, rows = data["headers"], data["rows"]
+                    else:
+                        tbl = list(data["headers"].keys())[0]
+                        headers, rows = data["headers"][tbl], data["rows"].get(tbl, [])
                     return headers, rows
             except Exception:
                 pass
@@ -165,7 +188,15 @@ class SQLRunner:
         rows = []
         for dl in data_lines[1:]:
             row = [c.strip() for c in dl[1:-1].split("|")]
-            rows.append(row)
+            typed = []
+            for cell in row:
+                if cell.lower() in ("null", "none"):
+                    typed.append(None)
+                else:
+                    # ASCII tables do not encode scalar types. Preserve the
+                    # complete cell, including meaningful quotes in text values.
+                    typed.append(_AsciiCell(cell))
+            rows.append(typed)
         return headers, rows
 
     @staticmethod
@@ -204,39 +235,64 @@ class SQLRunner:
 
     @classmethod
     def normalize_cell_value(cls, val: Any) -> Any:
-        """Normalize cell values across SQL types (nulls, floats, ints, dates)."""
-        if val is None:
+        """Keep database values typed; only normalize native date/decimal objects."""
+        from datetime import date, datetime
+        from decimal import Decimal
+        if isinstance(val, (date, datetime)):
+            return val.isoformat()
+        if isinstance(val, Decimal):
+            return float(val)
+        return val
+
+    @classmethod
+    def _cell_kind(cls, value: Any) -> Optional[str]:
+        value = cls.normalize_cell_value(value)
+        if value is None:
             return None
-        s = str(val).strip()
-        if s.lower() in ("null", "none"):
-            return None
-        try:
-            f = float(s)
-            if math.isnan(f):
-                return None
-            return round(f, 4)
-        except (ValueError, TypeError):
-            pass
-        return s
+        if isinstance(value, bool):
+            return "boolean"
+        if isinstance(value, (int, float)):
+            return "number"
+        if isinstance(value, list):
+            return "array"
+        if isinstance(value, dict):
+            return "object"
+        return "text" if isinstance(value, str) else None
+
+    @staticmethod
+    def _decode_ascii_cell(value: Any, kind: Optional[str]) -> Any:
+        if not isinstance(value, _AsciiCell):
+            return value  # Canonical JSON values already carry their types.
+        if kind == "text":
+            return str(value)
+        if kind in ("number", "boolean", "array", "object"):
+            if kind == "boolean" and value.lower() in ("true", "false"):
+                return value.lower() == "true"
+            try:
+                decoded = json.loads(value)
+                if kind == "number" and type(decoded) in (int, float):
+                    return decoded
+                if kind == "array" and isinstance(decoded, list):
+                    return decoded
+                if kind == "object" and isinstance(decoded, dict):
+                    return decoded
+            except ValueError:
+                if kind == "number" and re.fullmatch(r'[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?', value):
+                    return float(value) if re.search(r'[.eE]', value) else int(value, 10)
+            return str(value)
+        return value
 
     @classmethod
     def compare_cells(cls, act: Any, exp: Any) -> bool:
-        """
-        Compare two cells:
-        - NULLs normalized identically.
-        - Floats compared within 1e-3 tolerance.
-        - Strings compared with STRICT CASE SENSITIVITY ('Allen' != 'ALLEN').
-        """
-        n_act = cls.normalize_cell_value(act)
-        n_exp = cls.normalize_cell_value(exp)
-        if n_act is None and n_exp is None:
-            return True
-        if n_act is None or n_exp is None:
-            return False
-        if isinstance(n_act, (int, float)) and isinstance(n_exp, (int, float)):
-            return abs(n_act - n_exp) < 1e-3
-        # Strict string equality (preserves case!)
-        return str(n_act).strip() == str(n_exp).strip()
+        exp = cls._decode_ascii_cell(exp, cls._cell_kind(act))
+        a, b = cls.normalize_cell_value(act), cls.normalize_cell_value(exp)
+        if a is None or b is None:
+            return a is None and b is None
+        if isinstance(a, bool) or isinstance(b, bool):
+            return type(a) is type(b) and a == b
+        if isinstance(a, (int, float)) and isinstance(b, (int, float)):
+            return math.isfinite(a) and math.isfinite(b) and math.isclose(a, b, rel_tol=0, abs_tol=1e-3)
+        return type(a) is type(b) and a == b
 
     @staticmethod
     def _is_reverse_sorted(exp_rows: List[Tuple], actual_rows: List[Tuple]) -> bool:
@@ -260,7 +316,8 @@ class SQLRunner:
     @classmethod
     def compare_results(cls, actual_cols: List[str], actual_rows: List[Tuple],
                         expected_ascii: str, query_has_order: bool = False,
-                        is_ordered: Optional[bool] = None) -> Tuple[bool, str]:
+                        is_ordered: Optional[bool] = None,
+                        expected_column_kinds: Optional[List[Optional[str]]] = None) -> Tuple[bool, str]:
         """
         Verify candidate query results against expected testcase ASCII table.
         - Column headers matched case-insensitively.
@@ -273,6 +330,17 @@ class SQLRunner:
             if not actual_rows:
                 return True, ""
             return False, f"Expected empty result, got {len(actual_rows)} rows" 
+
+        kinds = []
+        for i in range(len(exp_cols)):
+            trusted = expected_column_kinds[i] if expected_column_kinds and i < len(expected_column_kinds) else None
+            observed = {cls._cell_kind(row[i]) for row in actual_rows if i < len(row) and row[i] is not None}
+            # Resolve only legacy expected cells against the native output type.
+            # Input-column types cannot describe aggregates or date expressions.
+            # Typed JSON expectations stay authoritative regardless of this hint.
+            kinds.append(trusted or (next(iter(observed)) if len(observed) == 1 else None))
+        exp_rows = [[cls._decode_ascii_cell(cell, kinds[i]) if i < len(kinds) else cell
+                     for i, cell in enumerate(row)] for row in exp_rows]
 
         # 1. Header count and names comparison (case-insensitive for column names)
         if len(actual_cols) != len(exp_cols):
@@ -341,7 +409,6 @@ class SQLRunner:
                 "test_case_results": []
             }
 
-        transpiled_sql = cls.transpile_to_duckdb(clean_user_sql, dialect=dialect)
         query_has_order = bool(re.search(r'\border\s+by\b', clean_user_sql, re.IGNORECASE))
         is_dml = bool(re.match(r'^(?:delete|update|insert)\b', clean_user_sql, re.IGNORECASE))
 
@@ -369,7 +436,7 @@ class SQLRunner:
                         first_table_name = tbl
                     cols = data["cols"]
                     rows = data["rows"]
-                    if rows and HAS_DUCKDB:
+                    if rows:
                         types = []
                         for col_idx in range(len(cols)):
                             sample_val = None
@@ -394,18 +461,21 @@ class SQLRunner:
                         placeholders = ", ".join(["?"] * len(cols))
                         conn.executemany(f'INSERT INTO "{tbl}" VALUES ({placeholders});', rows)
 
-                # 2. Execute candidate query
-                try:
-                    rel = conn.execute(transpiled_sql)
-                except Exception:
-                    rel = conn.execute(clean_user_sql)
+                # 2. Transpile using the fixture schema, then execute once.
+                transpiled_sql = cls.transpile_to_duckdb(clean_user_sql, dialect=dialect, fixtures=fixtures)
+                rel = conn.execute(transpiled_sql)
 
                 # 3. Handle DML (DELETE / UPDATE): verify remaining table state
                 if is_dml:
-                    target_table = first_table_name or "Person"
-                    m_del = re.search(r'\b(?:from|update)\s+([A-Za-z0-9_]+)', clean_user_sql, re.IGNORECASE)
-                    if m_del and m_del.group(1) in fixtures:
-                        target_table = m_del.group(1)
+                    target_table = first_table_name
+                    if HAS_SQLGLOT:
+                        mutation = sqlglot.parse_one(transpiled_sql, read="duckdb" if HAS_DUCKDB else "sqlite")
+                        if isinstance(mutation.this, sqlglot.exp.Table):
+                            target_table = mutation.this.name
+                    else:
+                        m_del = re.search(r'\b(?:from|update)\s+([A-Za-z0-9_]+)', clean_user_sql, re.IGNORECASE)
+                        if m_del and m_del.group(1) in fixtures:
+                            target_table = m_del.group(1)
                     rel = conn.execute(f'SELECT * FROM "{target_table}"')
 
                 actual_rows = rel.fetchall()
@@ -414,7 +484,9 @@ class SQLRunner:
 
                 # 4. Compare with expected output
                 case_is_ordered = tc.get("is_ordered", tc.get("ordered", is_ordered))
-                passed, reason = cls.compare_results(actual_cols, actual_rows, raw_expected, query_has_order=query_has_order, is_ordered=case_is_ordered)
+                passed, reason = cls.compare_results(actual_cols, actual_rows, raw_expected,
+                                                     query_has_order=query_has_order, is_ordered=case_is_ordered,
+                                                     expected_column_kinds=tc.get("expected_column_kinds"))
                 if not passed:
                     all_passed = False
 
@@ -449,6 +521,7 @@ class SQLRunner:
 
         passed_count = sum(1 for r in results if r["passed"])
         score_frac = round(passed_count / len(results), 4) if results else 0.0
+        all_passed = all_passed and bool(results)
         status = "ACCEPTED" if all_passed else "WRONG_ANSWER"
 
         rss_mb = None

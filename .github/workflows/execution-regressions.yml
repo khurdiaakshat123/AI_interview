@@ -1,0 +1,44 @@
+name: Compiler and debugger regressions
+
+on:
+  pull_request:
+    paths:
+      - 'backend/app/engines/**'
+      - 'backend/tests/test_execution_correctness.py'
+      - 'frontend/**'
+      - 'Dockerfile'
+      - 'requirements.txt'
+      - '.github/workflows/execution-regressions.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  linux-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the deployment image with all advertised toolchains
+        run: docker build -t intervyn-execution-tests .
+      - name: Exercise real compilers and debuggers in the deployment image
+        run: >-
+          docker run --rm --cap-add=SYS_PTRACE --memory=2g
+          -e DATABASE_URL=sqlite:///:memory:
+          --entrypoint python intervyn-execution-tests
+          -m unittest backend.tests.test_execution_correctness -v
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+        working-directory: frontend
+      - run: npm run build
+        working-directory: frontend
