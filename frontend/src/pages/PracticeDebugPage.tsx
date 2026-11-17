@@ -205,7 +205,9 @@ export const PracticeDebugPage: React.FC = () => {
 
   // Step navigation controls
   const steps = traceResult?.steps || [];
+  const traceFailed = !!traceResult && !['SUCCESS', 'NOT_SUPPORTED', 'STEP_LIMIT'].includes(traceResult.status);
   const currentStep: DebugStep | undefined = steps[currentStepIndex];
+  const visibleStdout = currentStep?.stdout || (currentStepIndex === steps.length - 1 ? traceResult?.stdout : '');
 
   const handleStepNext = () => {
     if (currentStepIndex < steps.length - 1) {
@@ -700,13 +702,13 @@ export const PracticeDebugPage: React.FC = () => {
         {/* =================================================================== */}
         <div className="lg:col-span-5 flex flex-col bg-surface overflow-y-auto h-[calc(100vh-140px)] p-4 space-y-4">
           {/* Error notice if trace failed */}
-          {traceResult?.status === 'ERROR' && (
+          {traceFailed && (
             <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-500 text-xs font-mono space-y-1">
               <div className="font-bold flex items-center gap-1.5">
                 <AlertCircle className="w-4 h-4" />
                 <span>Execution Error</span>
               </div>
-              <p className="whitespace-pre-wrap">{traceResult.error}</p>
+              <p className="whitespace-pre-wrap">{traceResult?.error || 'The debugger could not complete execution.'}</p>
             </div>
           )}
 
@@ -923,8 +925,10 @@ export const PracticeDebugPage: React.FC = () => {
                 <span className="text-text-muted text-[11px]">Final Return:</span>
                 {traceResult?.status === 'NOT_SUPPORTED' ? (
                   <span className="text-amber-500 font-semibold font-mono text-xs">N/A (unsupported)</span>
-                ) : traceResult?.status === 'ERROR' ? (
+                ) : traceFailed ? (
                   <span className="text-rose-500 font-semibold font-mono text-xs">Failed</span>
+                ) : traceResult?.status === 'STEP_LIMIT' ? (
+                  <span className="text-amber-500 font-mono text-xs">Unavailable (step limit)</span>
                 ) : traceResult?.return_value !== undefined && traceResult?.return_value !== null ? (
                   <span className="font-bold text-emerald-500 font-mono">
                     {JSON.stringify(traceResult.return_value)}
@@ -935,11 +939,11 @@ export const PracticeDebugPage: React.FC = () => {
                   <span className="text-text-muted italic">Pending...</span>
                 )}
               </div>
-              {currentStep?.stdout && (
+              {visibleStdout && (
                 <div className="pt-2 border-t border-border">
                   <span className="text-text-muted text-[10px] block mb-1">Standard Output:</span>
                   <pre className="p-2 rounded bg-surface text-text text-[11px] overflow-x-auto whitespace-pre-wrap">
-                    {currentStep.stdout}
+                    {visibleStdout}
                   </pre>
                 </div>
               )}

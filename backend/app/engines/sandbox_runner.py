@@ -13,6 +13,10 @@ from typing import Dict, Any, List, Optional, Tuple
 from backend.app.engines.c_runner import CRunner
 from backend.app.engines.comparison_engine import ComparisonContract
 
+class ToolchainUnavailableError(RuntimeError):
+    pass
+
+
 class SandboxSecurityError(Exception):
     pass
 
@@ -25,8 +29,7 @@ class SandboxRunner:
     1. Static Security Screening: Blocks unsafe system calls, process spawning, network sockets, reflection.
     2. Process Isolation: Subprocess execution in sterile environment with isolated temp directories.
     3. Strict Resource Controls: 4.0s wall-clock timeout preventing infinite loops and CPU exhaustion.
-    4. Deterministic Universal Fallback: If host environment lacks a specific native toolchain or if
-       test harness encounters esoteric structures, simulates accurate execution without false errors.
+    4. Explicit toolchain failures: unavailable compilers never produce simulated success.
     5. Actual Live Telemetry: Measures actual wall-clock elapsed time (ms) and actual peak resident
        memory (RSS MB) using psutil. Never emits simulated or random fake numbers.
     """
@@ -244,7 +247,7 @@ class SandboxRunner:
             }
 
         if lang == "python":
-            return cls._evaluate_python(code_clean, tests, approach, timeout_seconds)
+            return cls._evaluate_python(code_clean, tests, approach, timeout_seconds, question_slug=question_slug)
         elif lang == "cpp":
             return cls._evaluate_cpp(code_clean, tests, approach, timeout_seconds, question_slug=question_slug)
         elif lang == "c":
@@ -296,7 +299,8 @@ class SandboxRunner:
         code: str,
         test_cases: List[Dict[str, Any]],
         approach: str,
-        timeout: float
+        timeout: float,
+        question_slug: Optional[str] = None
     ) -> Dict[str, Any]:
         # 1. AST Security Screen
         try:
@@ -404,7 +408,7 @@ class SandboxRunner:
                     ]
                 }
 
-            return cls._parse_sandbox_output(stdout, test_cases, approach, proc_runtime_ms, proc_memory_mb)
+            return cls._parse_sandbox_output(stdout, test_cases, approach, proc_runtime_ms, proc_memory_mb, question_slug=question_slug)
 
         except subprocess.TimeoutExpired:
             return {
@@ -595,6 +599,7 @@ def __run():
         passed = False
         actual = None
         user_stdout = ""
+        table_output = None
 
         # 1. Check if test case is an interactive/class Design problem (e.g. LRUCache, MinStack)
         is_design_call = False
@@ -762,6 +767,7 @@ def __run():
                     ret = []
                 elif is_pandas_db:
                     if isinstance(ret, pd.DataFrame):
+                        table_output = json.loads(ret.to_json(orient="split", date_format="iso"))
                         try:
                             passed, reason, act_ascii = _compare_pandas_results(ret, exp, is_ordered=tc.get("is_ordered"))
                             actual = act_ascii
@@ -779,7 +785,7 @@ def __run():
                     elif isinstance(ret, (list, dict)):
                         actual = json.dumps(ret, separators=(',', ':'))
                     else:
-                        actual = str(ret).strip()
+                        actual = json.dumps(ret, ensure_ascii=False)
 
                     norm_actual = actual.replace(" ", "").lower()
                     norm_exp = exp.replace(" ", "").lower()
@@ -818,7 +824,8 @@ def __run():
             "test_case_index": idx + 1,
             "input_data": "(Hidden test case)" if is_hidden else (str(inp)[:500] + "... (truncated)" if len(str(inp)) > 500 else str(inp)),
             "expected_output": "(Hidden)" if is_hidden else exp,
-            "actual_output": ("(Hidden passed)" if passed else "(Hidden failed)") if is_hidden else actual,
+            "actual_output": actual,
+            "_table_output": table_output,
             "stdout": user_stdout,
             "passed": passed,
             "runtime_ms": max(0.1, elapsed)
@@ -1087,7 +1094,7 @@ if __name__ == "__main__":
             actual = "Runtime Exception";
             passed = false;
         }}
-        string disp_actual = {is_hidden_str} ? (passed ? "(Hidden passed)" : "(Hidden failed)") : actual;
+        string disp_actual = actual;
         string disp_inp_val = {disp_inp_lit};
         string disp_exp_val = {disp_exp_lit};
         if ({idx} > 0) std::cout << ",";
@@ -1124,6 +1131,8 @@ if __name__ == "__main__":
 #include <deque>
 #include <cmath>
 #include <chrono>
+#include <iomanip>
+#include <limits>
 using namespace std;
 
 #ifndef LC_DATA_STRUCTURES
@@ -1279,6 +1288,8 @@ inline string escape_json(const string& s) {
         else if (c == 10) oss << char(92) << 'n';
         else if (c == 13) oss << char(92) << 'r';
         else if (c == 9) oss << char(92) << 't';
+        else if (static_cast<unsigned char>(c) < 32)
+            oss << char(92) << 'u' << hex << setw(4) << setfill('0') << int(static_cast<unsigned char>(c)) << dec;
         else oss << c;
     }
     return oss.str();
@@ -1286,18 +1297,22 @@ inline string escape_json(const string& s) {
 
 inline string format_output(int x) { return to_string(x); }
 inline string format_output(long long x) { return to_string(x); }
-inline string format_output(double x) { return to_string(x); }
+inline string format_output(double x) {
+    ostringstream out;
+    out << setprecision(numeric_limits<double>::max_digits10) << x;
+    return out.str();
+}
 inline string format_output(bool b) { return b ? "true" : "false"; }
-inline string format_output(const string& s) { return s; }
-inline string format_output(const char* s) { return string(s); }
-inline string format_output(char c) { return string(1, c); }
+inline string format_output(const string& s) { return string(1, char(34)) + escape_json(s) + char(34); }
+inline string format_output(const char* s) { return format_output(string(s)); }
+inline string format_output(char c) { return format_output(string(1, c)); }
 
 inline string format_output(const vector<string>& vec) {
     ostringstream oss;
     oss << "[";
     for (size_t i = 0; i < vec.size(); i++) {
         if (i > 0) oss << ",";
-        oss << char(34) << vec[i] << char(34);
+        oss << format_output(vec[i]);
     }
     oss << "]";
     return oss.str();
@@ -1308,7 +1323,7 @@ inline string format_output(const vector<char>& vec) {
     oss << "[";
     for (size_t i = 0; i < vec.size(); i++) {
         if (i > 0) oss << ",";
-        oss << char(34) << vec[i] << char(34);
+        oss << format_output(vec[i]);
     }
     oss << "]";
     return oss.str();
@@ -1460,61 +1475,11 @@ int main() {{
         proc_mem = res.get("proc_mem")
         user_stdout = res.get("user_stdout", "")
 
-        results = []
-        all_passed = True
-        first_mismatch = None
-
-        for idx, tc in enumerate(test_cases):
-            expected = str(tc.get("expected_output") or tc.get("expectedOutput") or "").strip()
-            actual = ""
-            case_rt = 0.0
-            if idx < len(raw_results):
-                actual = str(raw_results[idx].get("actual_output", "")).strip()
-                case_rt = float(raw_results[idx].get("runtime_ms", 0.0))
-
-            passed, mismatch_reason = ComparisonContract.compare(actual, expected, question_slug=question_slug)
-            if not passed:
-                all_passed = False
-                if not first_mismatch:
-                    first_mismatch = (idx + 1, expected, actual, mismatch_reason)
-
-            is_hidden = bool(tc.get("is_hidden", False))
-            results.append({
-                "test_case_index": idx + 1,
-                "input_data": "(Hidden)" if is_hidden else str(tc.get("input", "")),
-                "expected_output": "(Hidden)" if is_hidden else expected,
-                "actual_output": "(Hidden passed)" if (is_hidden and passed) else ("(Hidden failed)" if is_hidden else actual),
-                "stdout": user_stdout,
-                "passed": passed,
-                "runtime_ms": max(0.01, round(case_rt, 2))
-            })
-
-        passed_count = sum(1 for r in results if r["passed"])
-        total = len(results)
-        score_fraction = round(passed_count / total, 2) if total > 0 else 0.0
-
-        if all_passed:
-            comp_out = "Execution completed successfully."
-        elif first_mismatch:
-            f_idx, exp_val, act_val, reason = first_mismatch
-            comp_out = f"Wrong Answer on testcase {f_idx}: Expected {exp_val}, got {act_val}."
-            if reason:
-                comp_out += f" ({reason})"
-        else:
-            comp_out = "Wrong Answer: Test cases did not pass."
-
-        return {
-            "status": "ACCEPTED" if all_passed else "WRONG_ANSWER",
-            "is_correct": all_passed,
-            "score_fraction": score_fraction,
-            "test_cases_passed": passed_count,
-            "total_test_cases": total,
-            "feedback": f"Passed {passed_count}/{total} test cases." + (" All test cases passed!" if all_passed else " Check failing test cases below."),
-            "test_case_results": results,
-            "runtime_ms": proc_rt,
-            "memory_mb": proc_mem,
-            "compiler_output": comp_out
-        }
+        payload = "---SANDBOX_RESULTS_START---\n" + json.dumps({"results": raw_results}) + "\n---SANDBOX_RESULTS_END---"
+        result = cls._parse_sandbox_output(payload, test_cases, approach, proc_rt, proc_mem, question_slug)
+        for tc, row in zip(test_cases, result.get("test_case_results", [])):
+            row["stdout"] = "" if tc.get("is_hidden") else user_stdout
+        return result
 
     # -------------------------------------------------------------------------
     # JAVA RUNNER
@@ -1683,7 +1648,7 @@ int main() {{
                 actual = "Runtime Exception: " + e.getMessage();
                 passed = false;
             }}
-            String dispActual = {is_hidden_str} ? (passed ? "(Hidden passed)" : "(Hidden failed)") : truncateDisp(actual, 5000);
+            String dispActual = actual;
             String inpDisp = {is_hidden_str} ? "(Hidden)" : truncateDisp(readData("{inp_file}"), 5000);
             String expDisp = {is_hidden_str} ? "(Hidden)" : truncateDisp(readData("{exp_file}"), 5000);
             System.out.print("{{\\"test_case_index\\": {idx + 1}"
@@ -1756,7 +1721,7 @@ int main() {{
                 actual = "Runtime Exception: " + e.getMessage();
                 passed = false;
             }}
-            String dispActual = {is_hidden_str} ? (passed ? "(Hidden passed)" : "(Hidden failed)") : truncateDisp(actual, 5000);
+            String dispActual = actual;
             String inpDisp = {is_hidden_str} ? "(Hidden)" : truncateDisp(readData("{inp_file}"), 5000);
             String expDisp = {is_hidden_str} ? "(Hidden)" : truncateDisp(readData("{exp_file}"), 5000);
             System.out.print("{{\\"test_case_index\\": {idx + 1}"
@@ -1782,329 +1747,11 @@ int main() {{
         if not javac or not java:
             return cls._evaluate_universal_fallback(code, "java", test_cases, approach)
 
-        first_inp = str(test_cases[0].get("input", "")).strip() if test_cases else ""
-        clean_code = re.sub(r'//.*?$', '', code, flags=re.MULTILINE)
-        clean_code = re.sub(r'/\*.*?\*/', '', clean_code, flags=re.DOTALL)
-        is_design = (first_inp.startswith('["') and ("\n[[" in first_inp or "LRUCache" in first_inp)) or ("class LRUCache" in clean_code or "LRUCache(" in clean_code)
-
-        cls_m = re.search(r'class\s+([a-zA-Z0-9_]+)', clean_code)
-        design_cls = cls_m.group(1) if cls_m else "LRUCache"
-
-        if not is_design:
-            sig = cls._detect_java_signature(code)
-            if not sig:
-                return cls._evaluate_universal_fallback(code, "java", test_cases, approach)
-            ret_type, method, params = sig
-        else:
-            ret_type, method, params = ("void", "design", [])
-
         with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmpdir:
-            file_class = design_cls if is_design else "Solution"
-            sol_file = os.path.join(tmpdir, f"{file_class}.java")
-            main_file = os.path.join(tmpdir, "Main.java")
-
-            safe_code = re.sub(r'\bpublic\s+class\s+' + file_class + r'\b', f'class {file_class}', code)
-            with open(sol_file, "w", encoding="utf-8") as f:
-                f.write(safe_code)
-
-            lru_method_def = '''
-    static String runLRUCacheCase(String opsJson, String argsJson) {
-        String[] ops = parseStringArray(opsJson);
-        int[][] args = parseInt2DArray(argsJson);
-        LRUCache cache = null;
-        List<String> res = new ArrayList<>();
-        for (int i = 0; i < ops.length; i++) {
-            String op = ops[i];
-            int[] a = (i < args.length) ? args[i] : new int[0];
-            if (op.equals("LRUCache")) {
-                int cap = (a.length > 0) ? a[0] : 0;
-                cache = new LRUCache(cap);
-                res.add("null");
-            } else if (op.equals("put")) {
-                if (cache != null && a.length >= 2) {
-                    cache.put(a[0], a[1]);
-                }
-                res.add("null");
-            } else if (op.equals("get")) {
-                if (cache != null && a.length >= 1) {
-                    int val = cache.get(a[0]);
-                    res.add(String.valueOf(val));
-                } else {
-                    res.add("-1");
-                }
-            } else {
-                res.add("null");
-            }
-        }
-        StringBuilder sb = new StringBuilder("[");
-        for (int i = 0; i < res.size(); i++) {
-            if (i > 0) sb.append(",");
-            sb.append(res.get(i));
-        }
-        sb.append("]");
-        return sb.toString();
-    }
-'''
-            if is_design:
-                cases_java = "\n".join([cls._build_java_design_case(i, design_cls, tc, tmpdir) for i, tc in enumerate(test_cases)])
-                inst_code = ""
-                lru_method = lru_method_def
-            else:
-                cases_java = "\n".join([cls._build_java_case(i, method, params, ret_type, tc, tmpdir) for i, tc in enumerate(test_cases)])
-                inst_code = "Solution sol = new Solution();"
-                lru_method = "" 
-
-            main_src = f"""
-import java.util.*;
-import java.io.*;
-
-class ListNode {{
-    int val;
-    ListNode next;
-    ListNode() {{}}
-    ListNode(int val) {{ this.val = val; }}
-    ListNode(int val, ListNode next) {{ this.val = val; this.next = next; }}
-}}
-
-class TreeNode {{
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode() {{}}
-    TreeNode(int val) {{ this.val = val; }}
-    TreeNode(int val, TreeNode left, TreeNode right) {{
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }}
-}}
-
-public class Main {{
-    static int parseInt(String s) {{
-        String clean = s.replaceAll("[^0-9\\\\-]", "");
-        return clean.isEmpty() ? 0 : Integer.parseInt(clean);
-    }}
-    static long parseLong(String s) {{
-        String clean = s.replaceAll("[^0-9\\\\-]", "");
-        return clean.isEmpty() ? 0L : Long.parseLong(clean);
-    }}
-    static double parseDouble(String s) {{
-        String clean = s.replaceAll("[^0-9\\\\.-]", "");
-        return clean.isEmpty() ? 0.0 : Double.parseDouble(clean);
-    }}
-    static boolean parseBool(String s) {{
-        return s.trim().equalsIgnoreCase("true");
-    }}
-    static String parseString(String s) {{
-        String t = s.trim();
-        if (t.startsWith("\\\"") && t.endsWith("\\\"") && t.length() >= 2) {{
-            return t.substring(1, t.length() - 1);
-        }}
-        return t;
-    }}
-    static int[] parseIntArray(String s) {{
-        String clean = s.replace("[", "").replace("]", "").trim();
-        if (clean.isEmpty()) return new int[0];
-        String[] parts = clean.split(",");
-        int[] arr = new int[parts.length];
-        for (int i = 0; i < parts.length; i++) {{
-            arr[i] = Integer.parseInt(parts[i].trim());
-        }}
-        return arr;
-    }}
-    static String[] parseStringArray(String s) {{
-        String clean = s.replace("[", "").replace("]", "").trim();
-        if (clean.isEmpty()) return new String[0];
-        String[] parts = clean.split(",");
-        String[] arr = new String[parts.length];
-        for (int i = 0; i < parts.length; i++) {{
-            arr[i] = parseString(parts[i]);
-        }}
-        return arr;
-    }}
-    static int[][] parseInt2DArray(String s) {{
-        s = s.trim();
-        if (!s.startsWith("[[") || !s.endsWith("]]")) return new int[0][0];
-        String inner = s.substring(1, s.length() - 1).trim();
-        List<int[]> list = new ArrayList<>();
-        int depth = 0;
-        int start = -1;
-        for (int i = 0; i < inner.length(); i++) {{
-            char c = inner.charAt(i);
-            if (c == '[') {{
-                depth++;
-                if (depth == 1) start = i;
-            }} else if (c == ']') {{
-                depth--;
-                if (depth == 0 && start != -1) {{
-                    list.add(parseIntArray(inner.substring(start, i + 1)));
-                    start = -1;
-                }}
-            }}
-        }}
-        return list.toArray(new int[list.size()][]);
-    }}
-    static ListNode parseListNode(String s) {{
-        int[] arr = parseIntArray(s);
-        if (arr.length == 0) return null;
-        ListNode head = new ListNode(arr[0]);
-        ListNode curr = head;
-        for (int i = 1; i < arr.length; i++) {{
-            curr.next = new ListNode(arr[i]);
-            curr = curr.next;
-        }}
-        return head;
-    }}
-    static TreeNode parseTreeNode(String s) {{
-        String clean = s.trim();
-        if (!clean.startsWith("[") || !clean.endsWith("]")) return null;
-        clean = clean.substring(1, clean.length() - 1).trim();
-        if (clean.isEmpty()) return null;
-        String[] parts = clean.split(",");
-        if (parts.length == 0) return null;
-        String first = parts[0].trim();
-        if (first.equals("null") || first.isEmpty()) return null;
-
-        TreeNode root = new TreeNode(Integer.parseInt(first));
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        int i = 1;
-        while (!queue.isEmpty() && i < parts.length) {{
-            TreeNode curr = queue.poll();
-            if (i < parts.length) {{
-                String p = parts[i++].trim();
-                if (!p.equals("null") && !p.isEmpty()) {{
-                    curr.left = new TreeNode(Integer.parseInt(p));
-                    queue.offer(curr.left);
-                }}
-            }}
-            if (i < parts.length) {{
-                String p = parts[i++].trim();
-                if (!p.equals("null") && !p.isEmpty()) {{
-                    curr.right = new TreeNode(Integer.parseInt(p));
-                    queue.offer(curr.right);
-                }}
-            }}
-        }}
-        return root;
-    }}
-
-    static String formatTreeNode(TreeNode root) {{
-        if (root == null) return "[]";
-        List<String> vals = new ArrayList<>();
-        Queue<TreeNode> queue = new LinkedList<>();
-        Set<TreeNode> visited = new HashSet<>();
-        queue.offer(root);
-        visited.add(root);
-        while (!queue.isEmpty() && vals.size() < 50000) {{
-            TreeNode curr = queue.poll();
-            if (curr != null) {{
-                vals.add(String.valueOf(curr.val));
-                if (curr.left != null && visited.add(curr.left)) {{
-                    queue.offer(curr.left);
-                }} else if (curr.left == null) {{
-                    queue.offer(null);
-                }}
-                if (curr.right != null && visited.add(curr.right)) {{
-                    queue.offer(curr.right);
-                }} else if (curr.right == null) {{
-                    queue.offer(null);
-                }}
-            }} else {{
-                vals.add("null");
-            }}
-        }}
-        int lastNonNull = vals.size() - 1;
-        while (lastNonNull >= 0 && vals.get(lastNonNull).equals("null")) {{
-            lastNonNull--;
-        }}
-        if (lastNonNull < 0) return "[]";
-        StringBuilder sb = new StringBuilder("[");
-        for (int i = 0; i <= lastNonNull; i++) {{
-            if (i > 0) sb.append(",");
-            sb.append(vals.get(i));
-        }}
-        sb.append("]");
-        return sb.toString();
-    }}
-
-{lru_method}
-
-    static String formatOutput(Object obj) {{
-        if (obj == null) return "null";
-        if (obj instanceof TreeNode) {{
-            return formatTreeNode((TreeNode) obj);
-        }}
-        if (obj instanceof int[]) {{
-            return Arrays.toString((int[]) obj).replace(" ", "");
-        }}
-        if (obj instanceof boolean[]) {{
-            return Arrays.toString((boolean[]) obj).replace(" ", "");
-        }}
-        if (obj instanceof Object[]) {{
-            return Arrays.deepToString((Object[]) obj).replace(" ", "");
-        }}
-        if (obj instanceof List) {{
-            return obj.toString().replace(" ", "");
-        }}
-        if (obj instanceof ListNode) {{
-            StringBuilder sb = new StringBuilder("[");
-            ListNode cur = (ListNode) obj;
-            boolean first = true;
-            while (cur != null) {{
-                if (!first) sb.append(",");
-                sb.append(cur.val);
-                first = false;
-                cur = cur.next;
-            }}
-            sb.append("]");
-            return sb.toString();
-        }}
-        return String.valueOf(obj);
-    }}
-
-    static String readData(String filename) {{
-        try {{
-            return java.nio.file.Files.readString(java.nio.file.Paths.get(filename), java.nio.charset.StandardCharsets.UTF_8);
-        }} catch (Exception e) {{
-            return "";
-        }}
-    }}
-
-    static String truncateDisp(String s, int maxLen) {{
-        if (s == null) return "";
-        return s.length() > maxLen ? s.substring(0, maxLen) + "... (truncated)" : s;
-    }}
-
-    static String escapeJson(String s) {{
-        if (s == null) return "";
-        StringBuilder sb = new StringBuilder();
-        for (char c : s.toCharArray()) {{
-            if (c == 34) sb.append((char)92).append((char)34);
-            else if (c == 92) sb.append((char)92).append((char)92);
-            else if (c == 8) sb.append((char)92).append('b');
-            else if (c == 12) sb.append((char)92).append('f');
-            else if (c == 10) sb.append((char)92).append('n');
-            else if (c == 13) sb.append((char)92).append('r');
-            else if (c == 9) sb.append((char)92).append('t');
-            else sb.append(c);
-        }}
-        return sb.toString();
-    }}
-
-    public static void main(String[] args) {{
-        System.out.println("---SANDBOX_RESULTS_START---");
-        System.out.print("{{\\"results\\": [");
-        {inst_code}
-{cases_java}
-        System.out.println("]}}");
-        System.out.println("---SANDBOX_RESULTS_END---");
-    }}
-}}
-"""
-            with open(main_file, "w", encoding="utf-8") as f:
-                f.write(main_src)
-
+            try:
+                sol_file, main_file = cls._prepare_java_harness(code, test_cases, tmpdir)
+            except ValueError:
+                return cls._evaluate_universal_fallback(code, "java", test_cases, approach)
             comp = subprocess.run([javac, sol_file, main_file], capture_output=True, text=True, cwd=tmpdir)
             if comp.returncode != 0:
                 clean_err = comp.stderr.replace(tmpdir, "").strip()
@@ -2153,24 +1800,338 @@ public class Main {{
                     "test_case_results": []
                 }
 
+    @classmethod
+    def _prepare_java_harness(cls, code: str, test_cases: List[Dict[str, Any]], tmpdir: str) -> Tuple[str, str]:
+        first_inp = str(test_cases[0].get("input", "")).strip() if test_cases else ""
+        clean_code = re.sub(r'//.*?$', '', code, flags=re.MULTILINE)
+        clean_code = re.sub(r'/\*.*?\*/', '', clean_code, flags=re.DOTALL)
+        is_design = (first_inp.startswith('["') and ("\n[[" in first_inp or "LRUCache" in first_inp)) or ("class LRUCache" in clean_code or "LRUCache(" in clean_code)
+
+        cls_m = re.search(r'class\s+([a-zA-Z0-9_]+)', clean_code)
+        design_cls = cls_m.group(1) if cls_m else "LRUCache"
+
+        if not is_design:
+            sig = cls._detect_java_signature(code)
+            if not sig:
+                raise ValueError("Could not detect Java solution method")
+            ret_type, method, params = sig
+        else:
+            ret_type, method, params = ("void", "design", [])
+
+        file_class = design_cls if is_design else "Solution"
+        sol_file = os.path.join(tmpdir, f"{file_class}.java")
+        main_file = os.path.join(tmpdir, "Main.java")
+
+        safe_code = re.sub(r'\bpublic\s+class\s+' + file_class + r'\b', f'class {file_class}', code)
+        with open(sol_file, "w", encoding="utf-8") as f:
+            f.write(safe_code)
+
+        lru_method_def = '''
+static String runLRUCacheCase(String opsJson, String argsJson) {
+    String[] ops = parseStringArray(opsJson);
+    int[][] args = parseInt2DArray(argsJson);
+    LRUCache cache = null;
+    List<String> res = new ArrayList<>();
+    for (int i = 0; i < ops.length; i++) {
+        String op = ops[i];
+        int[] a = (i < args.length) ? args[i] : new int[0];
+        if (op.equals("LRUCache")) {
+            int cap = (a.length > 0) ? a[0] : 0;
+            cache = new LRUCache(cap);
+            res.add("null");
+        } else if (op.equals("put")) {
+            if (cache != null && a.length >= 2) {
+                cache.put(a[0], a[1]);
+            }
+            res.add("null");
+        } else if (op.equals("get")) {
+            if (cache != null && a.length >= 1) {
+                int val = cache.get(a[0]);
+                res.add(String.valueOf(val));
+            } else {
+                res.add("-1");
+            }
+        } else {
+            res.add("null");
+        }
+    }
+    StringBuilder sb = new StringBuilder("[");
+    for (int i = 0; i < res.size(); i++) {
+        if (i > 0) sb.append(",");
+        sb.append(res.get(i));
+    }
+    sb.append("]");
+    return sb.toString();
+}
+'''
+        if is_design:
+            cases_java = "\n".join([cls._build_java_design_case(i, design_cls, tc, tmpdir) for i, tc in enumerate(test_cases)])
+            inst_code = ""
+            lru_method = lru_method_def
+        else:
+            cases_java = "\n".join([cls._build_java_case(i, method, params, ret_type, tc, tmpdir) for i, tc in enumerate(test_cases)])
+            inst_code = "Solution sol = new Solution();"
+            lru_method = ""
+
+        main_src = f"""
+import java.util.*;
+import java.io.*;
+
+class ListNode {{
+int val;
+ListNode next;
+ListNode() {{}}
+ListNode(int val) {{ this.val = val; }}
+ListNode(int val, ListNode next) {{ this.val = val; this.next = next; }}
+}}
+
+class TreeNode {{
+int val;
+TreeNode left;
+TreeNode right;
+TreeNode() {{}}
+TreeNode(int val) {{ this.val = val; }}
+TreeNode(int val, TreeNode left, TreeNode right) {{
+    this.val = val;
+    this.left = left;
+    this.right = right;
+}}
+}}
+
+public class Main {{
+static int parseInt(String s) {{
+    String clean = s.replaceAll("[^0-9\\\\-]", "");
+    return clean.isEmpty() ? 0 : Integer.parseInt(clean);
+}}
+static long parseLong(String s) {{
+    String clean = s.replaceAll("[^0-9\\\\-]", "");
+    return clean.isEmpty() ? 0L : Long.parseLong(clean);
+}}
+static double parseDouble(String s) {{
+    String clean = s.replaceAll("[^0-9\\\\.-]", "");
+    return clean.isEmpty() ? 0.0 : Double.parseDouble(clean);
+}}
+static boolean parseBool(String s) {{
+    return s.trim().equalsIgnoreCase("true");
+}}
+static String parseString(String s) {{
+    String t = s.trim();
+    if (t.startsWith("\\\"") && t.endsWith("\\\"") && t.length() >= 2) {{
+        return t.substring(1, t.length() - 1);
+    }}
+    return t;
+}}
+static int[] parseIntArray(String s) {{
+    String clean = s.replace("[", "").replace("]", "").trim();
+    if (clean.isEmpty()) return new int[0];
+    String[] parts = clean.split(",");
+    int[] arr = new int[parts.length];
+    for (int i = 0; i < parts.length; i++) {{
+        arr[i] = Integer.parseInt(parts[i].trim());
+    }}
+    return arr;
+}}
+static String[] parseStringArray(String s) {{
+    String clean = s.replace("[", "").replace("]", "").trim();
+    if (clean.isEmpty()) return new String[0];
+    String[] parts = clean.split(",");
+    String[] arr = new String[parts.length];
+    for (int i = 0; i < parts.length; i++) {{
+        arr[i] = parseString(parts[i]);
+    }}
+    return arr;
+}}
+static int[][] parseInt2DArray(String s) {{
+    s = s.trim();
+    if (!s.startsWith("[[") || !s.endsWith("]]")) return new int[0][0];
+    String inner = s.substring(1, s.length() - 1).trim();
+    List<int[]> list = new ArrayList<>();
+    int depth = 0;
+    int start = -1;
+    for (int i = 0; i < inner.length(); i++) {{
+        char c = inner.charAt(i);
+        if (c == '[') {{
+            depth++;
+            if (depth == 1) start = i;
+        }} else if (c == ']') {{
+            depth--;
+            if (depth == 0 && start != -1) {{
+                list.add(parseIntArray(inner.substring(start, i + 1)));
+                start = -1;
+            }}
+        }}
+    }}
+    return list.toArray(new int[list.size()][]);
+}}
+static ListNode parseListNode(String s) {{
+    int[] arr = parseIntArray(s);
+    if (arr.length == 0) return null;
+    ListNode head = new ListNode(arr[0]);
+    ListNode curr = head;
+    for (int i = 1; i < arr.length; i++) {{
+        curr.next = new ListNode(arr[i]);
+        curr = curr.next;
+    }}
+    return head;
+}}
+static TreeNode parseTreeNode(String s) {{
+    String clean = s.trim();
+    if (!clean.startsWith("[") || !clean.endsWith("]")) return null;
+    clean = clean.substring(1, clean.length() - 1).trim();
+    if (clean.isEmpty()) return null;
+    String[] parts = clean.split(",");
+    if (parts.length == 0) return null;
+    String first = parts[0].trim();
+    if (first.equals("null") || first.isEmpty()) return null;
+
+    TreeNode root = new TreeNode(Integer.parseInt(first));
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+    int i = 1;
+    while (!queue.isEmpty() && i < parts.length) {{
+        TreeNode curr = queue.poll();
+        if (i < parts.length) {{
+            String p = parts[i++].trim();
+            if (!p.equals("null") && !p.isEmpty()) {{
+                curr.left = new TreeNode(Integer.parseInt(p));
+                queue.offer(curr.left);
+            }}
+        }}
+        if (i < parts.length) {{
+            String p = parts[i++].trim();
+            if (!p.equals("null") && !p.isEmpty()) {{
+                curr.right = new TreeNode(Integer.parseInt(p));
+                queue.offer(curr.right);
+            }}
+        }}
+    }}
+    return root;
+}}
+
+static String formatTreeNode(TreeNode root) {{
+    if (root == null) return "[]";
+    List<String> vals = new ArrayList<>();
+    Queue<TreeNode> queue = new LinkedList<>();
+    Set<TreeNode> visited = new HashSet<>();
+    queue.offer(root);
+    visited.add(root);
+    while (!queue.isEmpty() && vals.size() < 50000) {{
+        TreeNode curr = queue.poll();
+        if (curr != null) {{
+            vals.add(String.valueOf(curr.val));
+            if (curr.left != null && visited.add(curr.left)) {{
+                queue.offer(curr.left);
+            }} else if (curr.left == null) {{
+                queue.offer(null);
+            }}
+            if (curr.right != null && visited.add(curr.right)) {{
+                queue.offer(curr.right);
+            }} else if (curr.right == null) {{
+                queue.offer(null);
+            }}
+        }} else {{
+            vals.add("null");
+        }}
+    }}
+    int lastNonNull = vals.size() - 1;
+    while (lastNonNull >= 0 && vals.get(lastNonNull).equals("null")) {{
+        lastNonNull--;
+    }}
+    if (lastNonNull < 0) return "[]";
+    StringBuilder sb = new StringBuilder("[");
+    for (int i = 0; i <= lastNonNull; i++) {{
+        if (i > 0) sb.append(",");
+        sb.append(vals.get(i));
+    }}
+    sb.append("]");
+    return sb.toString();
+}}
+
+{lru_method}
+
+static String formatOutput(Object obj) {{
+    if (obj == null) return "null";
+    if (obj instanceof TreeNode) {{
+        return formatTreeNode((TreeNode) obj);
+    }}
+    if (obj instanceof String || obj instanceof Character) {{
+        return String.valueOf((char)34) + escapeJson(String.valueOf(obj)) + (char)34;
+    }}
+    if (obj.getClass().isArray()) {{
+        StringJoiner out = new StringJoiner(",", "[", "]");
+        for (int i = 0; i < java.lang.reflect.Array.getLength(obj); i++)
+            out.add(formatOutput(java.lang.reflect.Array.get(obj, i)));
+        return out.toString();
+    }}
+    if (obj instanceof Iterable) {{
+        StringJoiner out = new StringJoiner(",", "[", "]");
+        for (Object value : (Iterable<?>) obj) out.add(formatOutput(value));
+        return out.toString();
+    }}
+    if (obj instanceof ListNode) {{
+        StringBuilder sb = new StringBuilder("[");
+        ListNode cur = (ListNode) obj;
+        boolean first = true;
+        while (cur != null) {{
+            if (!first) sb.append(",");
+            sb.append(cur.val);
+            first = false;
+            cur = cur.next;
+        }}
+        sb.append("]");
+        return sb.toString();
+    }}
+    return String.valueOf(obj);
+}}
+
+static String readData(String filename) {{
+    try {{
+        return java.nio.file.Files.readString(java.nio.file.Paths.get(filename), java.nio.charset.StandardCharsets.UTF_8);
+    }} catch (Exception e) {{
+        return "";
+    }}
+}}
+
+static String truncateDisp(String s, int maxLen) {{
+    if (s == null) return "";
+    return s.length() > maxLen ? s.substring(0, maxLen) + "... (truncated)" : s;
+}}
+
+static String escapeJson(String s) {{
+    if (s == null) return "";
+    StringBuilder sb = new StringBuilder();
+    for (char c : s.toCharArray()) {{
+        if (c == 34) sb.append((char)92).append((char)34);
+        else if (c == 92) sb.append((char)92).append((char)92);
+        else if (c == 8) sb.append((char)92).append('b');
+        else if (c == 12) sb.append((char)92).append('f');
+        else if (c == 10) sb.append((char)92).append('n');
+        else if (c == 13) sb.append((char)92).append('r');
+        else if (c == 9) sb.append((char)92).append('t');
+        else if (c < 32) sb.append((char)92).append(String.format("u%04x", (int)c));
+        else sb.append(c);
+    }}
+    return sb.toString();
+}}
+
+public static void main(String[] args) {{
+    System.out.println("---SANDBOX_RESULTS_START---");
+    System.out.print("{{\\"results\\": [");
+    {inst_code}
+{cases_java}
+    System.out.println("]}}");
+    System.out.println("---SANDBOX_RESULTS_END---");
+}}
+}}
+"""
+        with open(main_file, "w", encoding="utf-8") as f:
+            f.write(main_src)
+
+        return sol_file, main_file
+
     # -------------------------------------------------------------------------
     # JAVASCRIPT / TYPESCRIPT RUNNER (Node.js)
     # -------------------------------------------------------------------------
-    @classmethod
-    def _strip_typescript(cls, code: str) -> str:
-        c = re.sub(r'/\*[\s\S]*?\*/', '', code)
-        c = re.sub(r'//.*', '', c)
-        c = re.sub(r'interface\s+\w+\s*\{[^}]*\}', '', c)
-        c = re.sub(r'type\s+\w+\s*=\s*[^;]+;', '', c)
-        c = re.sub(r'\):\s*[\w\[\]<>, |?]+\s*\{', ') {', c)
-        c = re.sub(r':\s*[\w\[\]|?]+(\s*[,=)])', r'\1', c)
-        c = re.sub(r'<[A-Za-z0-9_,\s|?]+>(?=\()', '', c)
-        # Strip TypeScript 'as <Type>' cast expressions
-        c = re.sub(r'\s+as\s+[\w\[\]<>|?]+', '', c)
-        # Strip TypeScript non-null assertions on identifiers, indexing, calls, or parens: e.g. arr[i]!, map.get(k)!, val!
-        c = re.sub(r'([)\]\w])!(?=[.\[\),;:\s\n\r]|$)', r'\1', c)
-        return c
-
     @classmethod
     def _detect_js_method(cls, code: str) -> str:
         m = re.search(r'class\s+Solution\s*\{[\s\S]*?([a-zA-Z_]\w*)\s*\(', code)
@@ -2182,35 +2143,51 @@ public class Main {{
         return "solve"
 
     @classmethod
-    def typecheck_typescript(cls, code: str) -> Optional[str]:
-        tsc_bin = shutil.which("tsc")
-        if not tsc_bin:
-            local_tsc = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../frontend/node_modules/.bin/tsc.cmd" if sys.platform == "win32" else "../../../frontend/node_modules/.bin/tsc"))
-            if os.path.exists(local_tsc):
-                tsc_bin = local_tsc
-        if not tsc_bin:
-            return None
-        with tempfile.NamedTemporaryFile(suffix=".ts", delete=False, mode="w", encoding="utf-8") as f:
-            f.write(code)
-            tmp_path = f.name
-        try:
-            tsc_proc = subprocess.run(
-                [tsc_bin, "--noEmit", "--target", "es2022", "--moduleResolution", "node", tmp_path],
-                capture_output=True,
-                text=True,
-                shell=(sys.platform == "win32"),
-                timeout=10.0
-            )
-            if tsc_proc.returncode != 0:
-                return (tsc_proc.stdout or tsc_proc.stderr).replace(tmp_path, "solution.ts").strip()
-            return None
-        except Exception:
-            return None
-        finally:
+    def compile_typescript(cls, code: str) -> Tuple[str, Dict[str, Any]]:
+        node = shutil.which("node")
+        configured = os.environ.get("INTERVYN_TSC_PATH")
+        local = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../frontend/node_modules/typescript/bin/tsc"))
+        tsc = configured or (local if os.path.isfile(local) else shutil.which("tsc"))
+        if tsc and tsc.lower().endswith(".cmd"):
+            tsc = os.path.join(os.path.dirname(tsc), "node_modules", "typescript", "bin", "tsc")
+        if not node or not tsc or not os.path.isfile(tsc):
+            raise ToolchainUnavailableError("TypeScript compiler (tsc) and Node.js are required; type checking was not performed.")
+        declarations = ""
+        for name, body in {
+            "ListNode": "val: number; next: ListNode | null; constructor(val?: number, next?: ListNode | null);",
+            "TreeNode": "val: number; left: TreeNode | null; right: TreeNode | null; constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null);",
+        }.items():
+            if not re.search(r"\b(?:class|interface|type)\s+" + name + r"\b", code):
+                declarations += "\ndeclare class " + name + " { " + body + " }\n"
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as directory:
+            src = os.path.join(directory, "solution.ts")
+            with open(src, "w", encoding="utf-8") as f:
+                f.write(code + declarations)
             try:
-                os.remove(tmp_path)
-            except Exception:
-                pass
+                proc = subprocess.run([node, tsc, "--target", "es2022", "--module", "commonjs",
+                                       "--sourceMap", "--inlineSources", "--noEmitOnError", src],
+                                      capture_output=True, text=True, timeout=20)
+            except (OSError, subprocess.TimeoutExpired) as exc:
+                raise ToolchainUnavailableError("TypeScript compiler could not complete: " + str(exc)) from exc
+            if proc.returncode:
+                raise ValueError((proc.stdout or proc.stderr or "TypeScript compilation failed").replace(directory, "").strip())
+            try:
+                with open(os.path.join(directory, "solution.js"), encoding="utf-8") as f:
+                    javascript = f.read()
+                with open(os.path.join(directory, "solution.js.map"), encoding="utf-8") as f:
+                    source_map = json.load(f)
+                return javascript, source_map
+            except (OSError, ValueError) as exc:
+                raise ToolchainUnavailableError("TypeScript compiler did not produce valid JavaScript and source map") from exc
+
+    @classmethod
+    def typecheck_typescript(cls, code: str) -> Optional[str]:
+        # Missing/broken toolchains raise explicitly; None means a completed successful check.
+        try:
+            cls.compile_typescript(code)
+        except ValueError as exc:
+            return str(exc)
+        return None
 
     @classmethod
     def _evaluate_javascript(
@@ -2226,7 +2203,49 @@ public class Main {{
         if not node:
             return cls._evaluate_universal_fallback(code, "typescript" if is_typescript else "javascript", test_cases, approach)
 
-        # When is_typescript is True, keep raw TypeScript intact for native Node V8 execution
+        if is_typescript:
+            try:
+                code, _ = cls.compile_typescript(code)
+            except (ToolchainUnavailableError, ValueError) as exc:
+                return {
+                    "status": "TOOLCHAIN_UNAVAILABLE" if isinstance(exc, ToolchainUnavailableError) else "COMPILATION_ERROR",
+                    "is_correct": False, "score_fraction": 0.0,
+                    "feedback": str(exc), "compiler_output": str(exc), "error": str(exc),
+                    "runtime_ms": None, "memory_mb": None, "test_case_results": []
+                }
+        harness = cls._build_javascript_harness(code, test_cases)
+        suffix = ".js"
+        with tempfile.NamedTemporaryFile(mode="w", suffix=suffix, delete=False, encoding="utf-8") as tmp:
+            tmp_path = tmp.name
+            tmp.write(harness)
+
+        try:
+            cmd = [node, tmp_path]
+            retcode, stdout, stderr, proc_rt, proc_mem = cls._execute_process_with_telemetry(
+                cmd,
+                timeout=timeout
+            )
+            if retcode != 0:
+                is_syntax = "SyntaxError" in stderr or "TypeError" in stderr
+                return {
+                    "status": "COMPILATION_ERROR" if is_syntax else "RUNTIME_ERROR",
+                    "is_correct": False,
+                    "score_fraction": 0.0,
+                    "feedback": f"{'Syntax error' if is_syntax else 'Runtime error'} in solution.",
+                    "compiler_output": stderr.strip(),
+                    "error": stderr.strip(),
+                    "runtime_ms": proc_rt,
+                    "memory_mb": proc_mem,
+                    "test_case_results": []
+                }
+            return cls._parse_sandbox_output(stdout, test_cases, approach, proc_rt, proc_mem, question_slug=question_slug)
+        finally:
+            if os.path.exists(tmp_path):
+                try: os.remove(tmp_path)
+                except Exception: pass
+
+    @classmethod
+    def _build_javascript_harness(cls, code: str, test_cases: List[Dict[str, Any]]) -> str:
         exec_code = code
         test_cases_json = json.dumps(test_cases)
         detected = cls._detect_js_method(exec_code)
@@ -2475,7 +2494,7 @@ for (let i = 0; i < testCases.length; i++) {{
             }} else if (typeof ret === 'number') {{
                 actual = String(ret);
             }} else if (typeof ret === 'string') {{
-                actual = ret;
+                actual = JSON.stringify(ret);
             }} else if (typeof ret === 'object') {{
                 actual = JSON.stringify(ret);
             }} else {{
@@ -2501,7 +2520,7 @@ for (let i = 0; i < testCases.length; i++) {{
         test_case_index: i + 1,
         input_data: tc.is_hidden ? '(Hidden)' : String(tc.input),
         expected_output: tc.is_hidden ? '(Hidden)' : exp,
-        actual_output: tc.is_hidden ? (passed ? '(Hidden passed)' : '(Hidden failed)') : actual,
+        actual_output: actual,
         stdout: userStdout,
         passed,
         runtime_ms: _case_ms
@@ -2512,50 +2531,7 @@ console.log('---SANDBOX_RESULTS_START---');
 console.log(JSON.stringify({{ results }}));
 console.log('---SANDBOX_RESULTS_END---');
 """
-        suffix = ".ts" if is_typescript else ".js"
-        with tempfile.NamedTemporaryFile(mode="w", suffix=suffix, delete=False, encoding="utf-8") as tmp:
-            tmp_path = tmp.name
-            tmp.write(harness)
-
-        try:
-            if is_typescript:
-                type_err = cls.typecheck_typescript(code)
-                if type_err:
-                    return {
-                        "status": "COMPILATION_ERROR",
-                        "is_correct": False,
-                        "score_fraction": 0.0,
-                        "feedback": "TypeScript Type Check Error: Code contains type violations.",
-                        "compiler_output": type_err,
-                        "error": type_err,
-                        "runtime_ms": None,
-                        "memory_mb": None,
-                        "test_case_results": []
-                    }
-
-            cmd = [node, "--experimental-strip-types", tmp_path] if is_typescript else [node, tmp_path]
-            retcode, stdout, stderr, proc_rt, proc_mem = cls._execute_process_with_telemetry(
-                cmd,
-                timeout=timeout
-            )
-            if retcode != 0:
-                is_syntax = "SyntaxError" in stderr or "TypeError" in stderr
-                return {
-                    "status": "COMPILATION_ERROR" if is_syntax else "RUNTIME_ERROR",
-                    "is_correct": False,
-                    "score_fraction": 0.0,
-                    "feedback": f"{'Syntax error' if is_syntax else 'Runtime error'} in solution.",
-                    "compiler_output": stderr.strip(),
-                    "error": stderr.strip(),
-                    "runtime_ms": proc_rt,
-                    "memory_mb": proc_mem,
-                    "test_case_results": []
-                }
-            return cls._parse_sandbox_output(stdout, test_cases, approach, proc_rt, proc_mem, question_slug=question_slug)
-        finally:
-            if os.path.exists(tmp_path):
-                try: os.remove(tmp_path)
-                except Exception: pass
+        return harness
 
     # -------------------------------------------------------------------------
     # UNIVERSAL / CLOUD FALLBACK EVALUATOR
@@ -2601,178 +2577,9 @@ console.log('---SANDBOX_RESULTS_END---');
     # -------------------------------------------------------------------------
     @classmethod
     def _evaluate_sql_fallback(cls, sql: str, test_cases: List[Dict[str, Any]], approach: str = "", dialect: str = "mysql") -> Dict[str, Any]:
-        try:
-            from backend.app.engines.sql_runner import SQLRunner
-            return SQLRunner.evaluate(user_code=sql, test_cases=test_cases, dialect=dialect)
-        except Exception:
-            pass
-        import sqlite3
-        start_t = time.perf_counter()
-        clean = re.sub(r'--.*?$', '', sql, flags=re.MULTILINE)
-        clean = re.sub(r'#.*?$', '', clean, flags=re.MULTILINE)
-        clean = re.sub(r'/\*.*?\*/', '', clean, flags=re.DOTALL)
-        clean_stripped = clean.strip()
+        from backend.app.engines.sql_runner import SQLRunner
+        return SQLRunner.evaluate(user_code=sql, test_cases=test_cases, dialect=dialect)
 
-        elapsed_ms = round((time.perf_counter() - start_t) * 1000, 2)
-
-        if not clean_stripped:
-            return {
-                "status": "WRONG_ANSWER",
-                "is_correct": False,
-                "score_fraction": 0.0,
-                "feedback": "Empty SQL query submitted.",
-                "compiler_output": "Empty SQL query submitted.",
-                "error": "Empty SQL query submitted.",
-                "runtime_ms": max(0.1, elapsed_ms),
-                "memory_mb": None,
-                "test_case_results": []
-            }
-
-        def parse_table_output(table_str: str):
-            lines = [l.strip() for l in table_str.strip().splitlines() if l.strip()]
-            data_lines = [l for l in lines if l.startswith("|") and l.endswith("|")]
-            if not data_lines:
-                return [], []
-            headers = [c.strip() for c in data_lines[0][1:-1].split("|")]
-            rows = []
-            for dl in data_lines[1:]:
-                row = [c.strip() for c in dl[1:-1].split("|")]
-                rows.append(row)
-            return headers, rows
-
-        def format_table(headers, rows):
-            if not headers and not rows:
-                return "Empty Set"
-            cols = headers if headers else [f"col_{i}" for i in range(len(rows[0])) if rows]
-            str_rows = [[str(c) if c is not None else "null" for c in r] for r in rows]
-            col_widths = [len(c) for c in cols]
-            for r in str_rows:
-                for i, val in enumerate(r):
-                    col_widths[i] = max(col_widths[i], len(val))
-            sep = "+" + "+".join(["-" * (w + 2) for w in col_widths]) + "+"
-            hdr_line = "|" + "|".join([f" {c.ljust(w)} " for c, w in zip(cols, col_widths)]) + "|"
-            res = [sep, hdr_line, sep]
-            for r in str_rows:
-                res.append("|" + "|".join([f" {val.ljust(w)} " for val, w in zip(r, col_widths)]) + "|")
-            res.append(sep)
-            return "\n".join(res)
-
-        results = []
-        all_passed = True
-        total_time_ms = 0.0
-
-        for idx, tc in enumerate(test_cases):
-            tc_start = time.perf_counter()
-            conn = sqlite3.connect(":memory:")
-            cur = conn.cursor()
-            raw_input = tc.get("input", "")
-            raw_expected = tc.get("expected_output") or tc.get("expectedOutput") or ""
-            
-            # Setup database tables and rows from fixture
-            try:
-                if isinstance(raw_input, str) and raw_input.strip().startswith("{"):
-                    inp_data = json.loads(raw_input)
-                    if isinstance(inp_data, dict) and "headers" in inp_data and "rows" in inp_data:
-                        for tbl, cols in inp_data["headers"].items():
-                            col_defs = ", ".join([f'"{col}"' for col in cols])
-                            cur.execute(f'CREATE TABLE "{tbl}" ({col_defs});')
-                            rows = inp_data["rows"].get(tbl, [])
-                            if rows:
-                                placeholders = ", ".join(["?"] * len(cols))
-                                cur.executemany(f'INSERT INTO "{tbl}" VALUES ({placeholders});', rows)
-            except Exception as setup_err:
-                pass
-
-            # Execute Candidate SQL Query
-            try:
-                # Remove trailing semicolon if present for clean execution
-                query_to_run = clean_stripped.rstrip(";").strip()
-                cur.execute(query_to_run)
-                actual_rows = cur.fetchall()
-                actual_cols = [desc[0] for desc in cur.description] if cur.description else []
-                actual_table_str = format_table(actual_cols, actual_rows)
-                
-                exp_cols, exp_rows = parse_table_output(raw_expected) if isinstance(raw_expected, str) and "|" in raw_expected else ([], [])
-                
-                # Compare column names and row values
-                cols_match = True
-                if exp_cols:
-                    cols_match = ([c.lower() for c in actual_cols] == [c.lower() for c in exp_cols])
-                
-                def normalize_cell(val):
-                    if val is None:
-                        return "null"
-                    s = str(val).strip()
-                    if s.lower() in ("null", "none"):
-                        return "null"
-                    try:
-                        f = float(s)
-                        if f.is_integer():
-                            return str(int(f))
-                        return str(f)
-                    except (ValueError, TypeError):
-                        pass
-                    return s.lower()
-
-                norm_actual_rows = [[normalize_cell(x) for x in r] for r in actual_rows]
-                norm_exp_rows = [[normalize_cell(x) for x in r] for r in exp_rows]
-                
-                # Check row equality (either order-exact or set-exact if unordered)
-                rows_match = (norm_actual_rows == norm_exp_rows)
-                if not rows_match and len(norm_actual_rows) == len(norm_exp_rows):
-                    # Try sorted comparison in case ordering wasn't specified
-                    try:
-                        rows_match = (sorted([tuple(r) for r in norm_actual_rows]) == sorted([tuple(r) for r in norm_exp_rows]))
-                    except Exception:
-                        rows_match = False
-
-                passed = cols_match and rows_match
-                if not passed:
-                    all_passed = False
-
-                tc_elapsed = round((time.perf_counter() - tc_start) * 1000, 2)
-                total_time_ms += tc_elapsed
-
-                results.append({
-                    "test_case_index": idx + 1,
-                    "input_data": raw_input,
-                    "expected_output": raw_expected,
-                    "actual_output": actual_table_str,
-                    "passed": passed,
-                    "runtime_ms": max(0.1, tc_elapsed)
-                })
-            except Exception as sql_exec_err:
-                all_passed = False
-                tc_elapsed = round((time.perf_counter() - tc_start) * 1000, 2)
-                total_time_ms += tc_elapsed
-                results.append({
-                    "test_case_index": idx + 1,
-                    "input_data": raw_input,
-                    "expected_output": raw_expected,
-                    "actual_output": f"SQL Execution Error: {str(sql_exec_err)}",
-                    "passed": False,
-                    "error": str(sql_exec_err),
-                    "runtime_ms": max(0.1, tc_elapsed)
-                })
-            finally:
-                conn.close()
-
-        passed_count = sum(1 for r in results if r.get("passed"))
-        total = len(results)
-        score_fraction = round(passed_count / total, 2) if total > 0 else 0.0
-
-        return {
-            "status": "ACCEPTED" if (all_passed and total > 0) else "WRONG_ANSWER",
-            "is_correct": (all_passed and total > 0),
-            "score_fraction": score_fraction,
-            "test_cases_passed": passed_count,
-            "total_test_cases": total,
-            "feedback": f"Passed {passed_count}/{total} test cases." if not all_passed else f"All {total} test cases passed!",
-            "test_case_results": results,
-            "runtime_ms": max(0.1, round(total_time_ms, 2)),
-            "memory_mb": None,
-            "compiler_output": "SQL query evaluated successfully." if all_passed else "Query results did not match expected output."
-        }
     @classmethod
     def _check_universal_equality(cls, actual: Any, expected: Any, question_slug: Optional[str] = None) -> bool:
         """Authoritative validation using ComparisonContract without blanket shortcuts."""
@@ -2792,21 +2599,45 @@ console.log('---SANDBOX_RESULTS_END---');
         proc_memory_mb: Optional[float] = None,
         question_slug: Optional[str] = None
     ) -> Dict[str, Any]:
-        start = stdout.find("---SANDBOX_RESULTS_START---")
-        end = stdout.find("---SANDBOX_RESULTS_END---")
+        start = stdout.rfind("---SANDBOX_RESULTS_START---")
+        end = stdout.rfind("---SANDBOX_RESULTS_END---")
 
         if start != -1 and end != -1:
             try:
                 data_str = stdout[start + len("---SANDBOX_RESULTS_START---"):end].strip()
                 data = json.loads(data_str)
                 results = data.get("results", [])
-                for r in results:
+                if not isinstance(results, list) or len(results) != len(test_cases):
+                    raise ValueError("Runner did not return exactly one result per test case")
+                for idx, (r, tc) in enumerate(zip(results, test_cases)):
+                    if r.get("test_case_index") != idx + 1:
+                        raise ValueError("Invalid or duplicate test case index")
                     act = r.get("actual_output")
-                    exp = r.get("expected_output")
-                    passed, reason = ComparisonContract.compare(act, exp, question_slug=question_slug)
+                    exp = tc.get("expected_output", tc.get("expectedOutput", ""))
+                    error = str(act).startswith(("Runtime Error:", "Runtime Exception", "Fixture Error:", "No solution"))
+                    table = r.pop("_table_output", None)
+                    if table is not None:
+                        import pandas as pd
+                        from backend.app.engines.db_fixture_normalizer import compare_pandas_results
+                        frame = pd.DataFrame(table["data"], columns=table["columns"])
+                        passed, reason, _ = compare_pandas_results(frame, exp, is_ordered=tc.get("is_ordered"))
+                    else:
+                        options = dict(tc.get("comparison_contract") or {})
+                        for key in ("is_ordered", "unordered_outer", "unordered_inner", "order_agnostic_indices", "float_tolerance"):
+                            if tc.get(key) is not None:
+                                options[key] = tc[key]
+                        passed, reason = ComparisonContract.compare(act, exp, question_slug=question_slug, contract=options)
+                    passed = not error and (bool(tc.get("is_custom")) or passed)
                     r["passed"] = passed
+                    hidden = bool(tc.get("is_hidden"))
+                    r["input_data"] = "(Hidden)" if hidden else str(tc.get("input", ""))
+                    r["expected_output"] = "(Hidden)" if hidden else exp
+                    if hidden:
+                        r["actual_output"] = "(Hidden passed)" if passed else "(Hidden failed)"
+                        r["stdout"] = ""
+                        r.pop("error", None)
                     if not passed and reason:
-                        r["mismatch_reason"] = reason
+                        r["mismatch_reason"] = "Hidden test output mismatch." if hidden else reason
 
                 passed_count = sum(1 for r in results if r.get("passed"))
                 total = len(results)
@@ -2850,7 +2681,7 @@ console.log('---SANDBOX_RESULTS_END---');
                     "is_correct": False,
                     "score_fraction": 0.0,
                     "feedback": f"Could not parse runner payload: {str(e)}",
-                    "compiler_output": stdout[:300],
+                    "compiler_output": "Invalid execution result payload.",
                     "error": f"Payload parse error: {str(e)}",
                     "runtime_ms": proc_runtime_ms,
                     "memory_mb": proc_memory_mb,

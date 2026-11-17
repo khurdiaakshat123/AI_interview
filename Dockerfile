@@ -1,27 +1,29 @@
+# Build a real TypeScript compiler alongside the Node runtime.
+FROM node:22-bookworm-slim AS typescript-toolchain
+RUN npm install --global typescript@5.7.3
+
 # Multi-Language Compilation & Execution Environment for Intervyn
 FROM python:3.11-slim-bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install native C/C++ compiler (build-essential, g++, gcc), Node.js, and Java with resilient fallback
+# Fail the image build if a required advertised toolchain cannot be installed.
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man2 /usr/share/man/man7 && \
     apt-get update && \
-    (apt-get install -y --no-install-recommends \
+    apt-get install -y --no-install-recommends \
         build-essential \
         g++ \
         gcc \
         gdb \
-        nodejs \
-        default-jdk-headless || \
-     apt-get install -y --no-install-recommends \
-        build-essential \
-        g++ \
-        gcc \
-        gdb \
-        nodejs) && \
+        default-jdk-headless && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+
+COPY --from=typescript-toolchain /usr/local/bin/node /usr/local/bin/node
+COPY --from=typescript-toolchain /usr/local/lib/node_modules/typescript /opt/typescript
+ENV INTERVYN_TSC_PATH=/opt/typescript/bin/tsc
+RUN node --version && node /opt/typescript/bin/tsc --version && javac -version && gdb --version
 
 # Install Python requirements
 COPY requirements.txt .
