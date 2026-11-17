@@ -10,7 +10,7 @@ import websocket
 from typing import Dict, Any, List, Optional, Tuple
 
 from backend.app.engines.c_runner import CRunner, C_HEADERS, C_STRUCT_LISTNODE, C_STRUCT_TREENODE, C_HARNESS_HELPERS
-from backend.app.engines.execution_serialization import json_safe_trace
+from backend.app.engines.execution_serialization import framed_payload, json_safe_trace
 
 
 class DebugTracer:
@@ -36,6 +36,7 @@ class DebugTracer:
     ) -> Dict[str, Any]:
         lang = (language or "python").lower().strip()
         clean_code = str(code or "").strip()
+        input_data = CRunner.normalize_labeled_input(input_data or "")
         max_steps = max(1, min(int(max_steps), cls.MAX_STEPS_DEFAULT))
 
         if not clean_code:
@@ -444,12 +445,9 @@ if __name__ == "__main__":
 
     @classmethod
     def _parse_trace_output(cls, stdout: str, stderr: str) -> Dict[str, Any]:
-        start = stdout.find("---DEBUG_TRACE_START---")
-        end = stdout.find("---DEBUG_TRACE_END---")
-
-        if start != -1 and end != -1:
+        raw_json = framed_payload(stdout, "DEBUG_TRACE")
+        if raw_json is not None:
             try:
-                raw_json = stdout[start + len("---DEBUG_TRACE_START---"):end].strip()
                 data = json.loads(raw_json)
                 return data
             except Exception as e:

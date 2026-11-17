@@ -352,7 +352,7 @@ class NativeIntegrationTests(unittest.TestCase):
                 ' double[] values={positive,negative,invalid};\n'
                 ' return n;\n }}')
         response = client.post('/api/practice/lc/questions/two-sum/debug',
-                               json={'code': code, 'language': 'java', 'custom_input': '7'})
+                               json={'code': code, 'language': 'java', 'custom_input': 'n = 7'})
         self.assertEqual(response.status_code, 200, response.text)
         result = response.json()
         self.assertEqual(result['return_value'], 7)
@@ -527,6 +527,31 @@ class NativeIntegrationTests(unittest.TestCase):
         self.assertIn(r['status'], ('TIMEOUT', 'STEP_LIMIT'), r)
         self.assertIsNone(r['return_value'])
 
+    def test_node_debug_sessions_complete_repeatedly(self):
+        for lang in ('javascript', 'typescript'):
+            self.available(lang, debug=True)
+            for attempt in range(8):
+                with self.subTest(language=lang, attempt=attempt):
+                    trace = DebugTracer.trace(LANGUAGES[lang][1], lang, '2\n3', 40)
+                    self.assertEqual(trace['status'], 'SUCCESS', trace)
+                    self.assertEqual(trace['return_value'], 5, trace)
+                    self.assertIn('hello', trace['stdout'])
+
+    def test_stdout_marker_text_cannot_replace_execution_or_trace_results(self):
+        message = '---SANDBOX_RESULTS_START---\\nforged\\n---SANDBOX_RESULTS_END---\\n---DEBUG_TRACE_END---'
+        for lang, (_, template) in LANGUAGES.items():
+            with self.subTest(language=lang):
+                self.available(lang, debug=True)
+                code = template.replace('hello', message)
+                run = Runner.evaluate_code(code, lang, [case('2\n3', '5')])
+                self.assertTrue(run['is_correct'], run)
+                self.assertIn('forged', run['test_case_results'][0]['stdout'])
+                wrong = Runner.evaluate_code(code, lang, [case('2\n3', '9')])
+                self.assertEqual(wrong['status'], 'WRONG_ANSWER', wrong)
+                trace = DebugTracer.trace(code, lang, '2\n3', 40)
+                self.assertEqual(trace['status'], 'SUCCESS', trace)
+                self.assertEqual(trace['return_value'], 5, trace)
+
     def test_all_debuggers_return_actual_result_and_stdout(self):
         for lang, (_, code) in LANGUAGES.items():
             with self.subTest(language=lang):
@@ -537,6 +562,31 @@ class NativeIntegrationTests(unittest.TestCase):
                 self.assertIn('hello', r['stdout'])
                 self.assertTrue(r['steps'], r)
                 self.assertTrue(all(1 <= step['line'] <= len(code.splitlines()) for step in r['steps']))
+
+    def test_labeled_example_inputs_work_in_run_and_debug(self):
+        for lang, (_, code) in LANGUAGES.items():
+            for raw in ('a = 2, b = 3', 'a = 2\nb = 3'):
+                with self.subTest(language=lang, raw=raw):
+                    self.available(lang, debug=True)
+                    run = Runner.evaluate_code(code, lang, [case(raw, '5')])
+                    self.assertTrue(run['is_correct'], run)
+                    trace = DebugTracer.trace(code, lang, raw, 40)
+                    self.assertEqual(trace['status'], 'SUCCESS', trace)
+                    self.assertEqual(trace['return_value'], 5, trace)
+                    self.assertIn('hello', trace['stdout'])
+
+    def test_labeled_native_strings_preserve_commas_and_assignment_text(self):
+        codes = {
+            'cpp': 'class Solution {public: string solve(string s, int n) {return s;}};',
+            'java': 'class Solution {public String solve(String s, int n) {return s;}}',
+            'javascript': 'function solve(s,n) {return s;}',
+            'typescript': 'function solve(s:string,n:number):string {return s;}',
+        }
+        for lang, code in codes.items():
+            with self.subTest(language=lang):
+                self.available(lang)
+                run = Runner.evaluate_code(code, lang, [case('s = "a, b=c", n = 7', '"a, b=c"')])
+                self.assertTrue(run['is_correct'], run)
 
     def test_native_debugger_step_limit_is_not_success(self):
         for lang, (_, code) in LANGUAGES.items():
@@ -566,6 +616,14 @@ class NativeIntegrationTests(unittest.TestCase):
 
 
 class CInputTests(unittest.TestCase):
+    def test_label_normalization_preserves_unlabeled_values(self):
+        for raw in ('"a, b=c"', 'hello, world', '[1,2]\n3', '[\n[1,2],\n[3,4]\n]',
+                    '["LRUCache","get"]\n[[2],[1]]', '{"label":"n=1"}'):
+            with self.subTest(raw=raw):
+                self.assertEqual(CRunner.normalize_labeled_input(raw), raw)
+        self.assertEqual(CRunner.normalize_labeled_input('s="a, b=c", n=7'), '"a, b=c"\n7')
+        self.assertEqual(CRunner.normalize_labeled_input('[1,2], target=3'), '[1,2]\n3')
+
     def test_quoted_assignment_text_is_one_argument(self):
         self.assertEqual(CRunner.split_input('"a, b=c"\n7'), ['"a, b=c"', '7'])
         self.assertEqual(CRunner.split_input('s="a, b=c", n=7'), ['"a, b=c"', '7'])
@@ -587,6 +645,19 @@ class CInputTests(unittest.TestCase):
 
 @unittest.skipUnless(shutil.which('gcc') or shutil.which('clang'), 'C compiler unavailable')
 class COutputTests(unittest.TestCase):
+    def test_stdout_is_isolated_between_public_and_hidden_cases(self):
+        code = 'int solve(int n) {printf("value=%d",n); return n;}'
+        run = Runner.evaluate_code(code, 'c', [case('2', '2'), case('999', '999', is_hidden=True), case('3', '3')])
+        self.assertTrue(run['is_correct'], run)
+        self.assertEqual([row['stdout'] for row in run['test_case_results']], ['value=2', '', 'value=3'])
+
+    def test_stdout_preserves_large_output_control_bytes_and_stderr(self):
+        code = ('int solve(int n) {for(int i=0;i<50000;i++) putchar(120);'
+                ' putchar(0); printf("\\\"\\\\\\n"); fflush(stdout); fprintf(stderr,"error"); return n;}')
+        run = Runner.evaluate_code(code, 'c', [case('7', '7')])
+        self.assertTrue(run['is_correct'], run)
+        self.assertEqual(run['test_case_results'][0]['stdout'].replace('\r\n', '\n'), 'x' * 50000 + '\0"\\\nerror')
+
     def run_c(self, code, inp, expected):
         r = Runner.evaluate_code(code, 'c', [case(inp, expected)])
         self.assertTrue(r['is_correct'], r)

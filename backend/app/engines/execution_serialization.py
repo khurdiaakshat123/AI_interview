@@ -4,7 +4,17 @@ from datetime import date, datetime, time, timedelta
 from decimal import Decimal
 import json
 import math
+import re
 import sys
+
+
+def framed_payload(output, name):
+    """Read whole-line framing; marker text inside JSON strings is ordinary data."""
+    starts = list(re.finditer(r'^---' + re.escape(name) + r'_START---\r?$', output, re.MULTILINE))
+    ends = list(re.finditer(r'^---' + re.escape(name) + r'_END---\r?$', output, re.MULTILINE))
+    if not starts or not ends or ends[-1].start() <= starts[-1].end():
+        return None
+    return output[starts[-1].end():ends[-1].start()].strip()
 
 
 def _numpy_scalar(value):

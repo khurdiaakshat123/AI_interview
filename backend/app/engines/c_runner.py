@@ -20,6 +20,20 @@ C_HEADERS = r'''
 #include <ctype.h>
 #include <stdarg.h>
 #include <stdint.h>
+#ifdef _WIN32
+#include <io.h>
+#define c_dup _dup
+#define c_dup2 _dup2
+#define c_close _close
+#define c_fileno _fileno
+#else
+#include <unistd.h>
+extern int fileno(FILE* stream);
+#define c_dup dup
+#define c_dup2 dup2
+#define c_close close
+#define c_fileno fileno
+#endif
 '''
 
 C_STRUCT_LISTNODE = r'''
@@ -309,13 +323,35 @@ static void c_printf(CBuffer* b, const char* fmt, ...) {
     vsnprintf(b->data + b->len, b->cap - b->len, fmt, args);
     b->len += (size_t)len; va_end(args);
 }
-static void c_escape_json(const char* src, CBuffer* dst) {
-    for (const unsigned char* p = (const unsigned char*)src; *p; p++) {
+static void c_escape_json_bytes(const char* src, size_t len, CBuffer* dst) {
+    for (const unsigned char* p = (const unsigned char*)src; p < (const unsigned char*)src + len; p++) {
         if (*p == '"' || *p == '\\') { c_append(dst, "\\"); c_printf(dst, "%c", *p); }
         else if (*p < 32) c_printf(dst, "\\u%04x", *p);
         else c_printf(dst, "%c", *p);
     }
     c_reserve(dst, 0);
+}
+static void c_escape_json(const char* src, CBuffer* dst) {
+    c_escape_json_bytes(src ? src : "", src ? strlen(src) : 0, dst);
+}
+static FILE* c_capture_begin(int* saved_out, int* saved_err) {
+    fflush(stdout); fflush(stderr);
+    FILE* capture = tmpfile();
+    *saved_out = c_dup(c_fileno(stdout)); *saved_err = c_dup(c_fileno(stderr));
+    if (!capture || *saved_out < 0 || *saved_err < 0) exit(3);
+    if (c_dup2(c_fileno(capture), c_fileno(stdout)) < 0 ||
+        c_dup2(c_fileno(capture), c_fileno(stderr)) < 0) exit(3);
+    return capture;
+}
+static void c_capture_end(FILE* capture, int saved_out, int saved_err, CBuffer* escaped) {
+    if (fflush(stdout) || fflush(stderr)) exit(3);
+    if (c_dup2(saved_out, c_fileno(stdout)) < 0 || c_dup2(saved_err, c_fileno(stderr)) < 0) exit(3);
+    c_close(saved_out); c_close(saved_err);
+    if (fseek(capture, 0, SEEK_SET)) exit(3);
+    char chunk[4096]; size_t count;
+    while ((count = fread(chunk, 1, sizeof(chunk), capture)) > 0) c_escape_json_bytes(chunk, count, escaped);
+    if (ferror(capture)) exit(3);
+    c_reserve(escaped, 0); fclose(capture);
 }
 static void c_format_int(int v, CBuffer* b) { c_printf(b, "%d", v); }
 static void c_format_long(long long v, CBuffer* b) { c_printf(b, "%lld", v); }
@@ -399,7 +435,7 @@ C_HARNESS_PREAMBLE = C_HEADERS + "\n" + C_STRUCT_LISTNODE + "\n" + C_STRUCT_TREE
 
 class CRunner:
     @classmethod
-    def split_input(cls, raw: str) -> List[str]:
+    def split_input(cls, raw: str, strip_labels: bool = True) -> List[str]:
         """Split argument syntax without interpreting quoted or nested contents."""
         values, current = [], []
         quote, escaped, depth = None, False, 0
@@ -409,7 +445,7 @@ class CRunner:
             current.clear()
             if token:
                 # A label is syntax only at the start of a complete argument.
-                values.append(re.sub(r'^[a-zA-Z_]\w*\s*=\s*', '', token, count=1))
+                values.append(re.sub(r'^[a-zA-Z_]\w*\s*=\s*', '', token, count=1) if strip_labels else token)
 
         for char in raw.strip():
             if quote:
@@ -433,6 +469,15 @@ class CRunner:
             current.append(char)
         flush()
         return values
+
+    @classmethod
+    def normalize_labeled_input(cls, raw: str) -> str:
+        """Convert example argument labels to positional input without changing raw values."""
+        tokens = cls.split_input(raw, strip_labels=False)
+        label = r'^[a-zA-Z_]\w*\s*=\s*'
+        if not any(re.match(label, token) for token in tokens):
+            return raw
+        return '\n'.join(re.sub(label, '', token, count=1) for token in tokens)
 
     @staticmethod
     def _normalize_c_type(c_type: str) -> str:
@@ -667,15 +712,19 @@ class CRunner:
     {{
         CBuffer act_buf = {{0}};
         CBuffer esc_act = {{0}};
+        CBuffer esc_stdout = {{0}};
 {decls_str}
+        int saved_out, saved_err;
+        FILE* captured = c_capture_begin(&saved_out, &saved_err);
         clock_t t0 = clock();
 {call_stmt}
         double elapsed_ms = ((double)(clock() - t0) / CLOCKS_PER_SEC) * 1000.0;
+        c_capture_end(captured, saved_out, saved_err, &esc_stdout);
 {fmt_stmt}
         c_escape_json(act_buf.data, &esc_act);
         if ({tc_idx} > 0) fputs(",\\n", out_file);
-        fprintf(out_file, "    {{\\\"test_case_index\\\": {tc_idx + 1}, \\\"actual_output\\\": \\\"%s\\\", \\\"runtime_ms\\\": %.3f}}", esc_act.data, elapsed_ms);
-        free(act_buf.data); free(esc_act.data);
+        fprintf(out_file, "    {{\\\"test_case_index\\\": {tc_idx + 1}, \\\"actual_output\\\": \\\"%s\\\", \\\"stdout\\\": \\\"%s\\\", \\\"runtime_ms\\\": %.3f}}", esc_act.data, esc_stdout.data, elapsed_ms);
+        free(act_buf.data); free(esc_act.data); free(esc_stdout.data);
     }}"""
             cases_code.append(case_str)
 

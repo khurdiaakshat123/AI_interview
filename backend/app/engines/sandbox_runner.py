@@ -12,6 +12,7 @@ import threading
 from typing import Dict, Any, List, Optional, Tuple
 from backend.app.engines.c_runner import CRunner
 from backend.app.engines.comparison_engine import ComparisonContract
+from backend.app.engines.execution_serialization import framed_payload
 
 class ToolchainUnavailableError(RuntimeError):
     pass
@@ -441,7 +442,11 @@ class SandboxRunner:
 
     @classmethod
     def _build_python_harness(cls, code: str, test_cases: List[Dict[str, Any]]) -> str:
-        test_cases_json = json.dumps(test_cases)
+        test_cases_json = json.dumps([
+            {**tc, "input": CRunner.normalize_labeled_input(tc["input"])}
+            if isinstance(tc.get("input"), str) else tc
+            for tc in test_cases
+        ])
         is_pandas_needed = (
             "pd." in code or "DataFrame" in code or "pandas" in code or
             any("headers" in str(tc.get("input", "")) or "+---" in str(tc.get("input", "")) or "table:" in str(tc.get("input", "")).lower() for tc in test_cases)
@@ -1000,7 +1005,7 @@ if __name__ == "__main__":
         ret_type: str,
         tc: Dict[str, Any]
     ) -> str:
-        inp_str = str(tc.get("input", "")).strip()
+        inp_str = CRunner.normalize_labeled_input(str(tc.get("input", ""))).strip()
         exp = str(tc.get("expected_output") or tc.get("expectedOutput") or "").strip()
         is_hidden = bool(tc.get("is_hidden", False))
         is_custom = bool(tc.get("is_custom", False))
@@ -1475,13 +1480,8 @@ int main() {{
         raw_results = res.get("_raw_c_results", [])
         proc_rt = res.get("proc_rt")
         proc_mem = res.get("proc_mem")
-        user_stdout = res.get("user_stdout", "")
-
         payload = "---SANDBOX_RESULTS_START---\n" + json.dumps({"results": raw_results}) + "\n---SANDBOX_RESULTS_END---"
-        result = cls._parse_sandbox_output(payload, test_cases, approach, proc_rt, proc_mem, question_slug)
-        for tc, row in zip(test_cases, result.get("test_case_results", [])):
-            row["stdout"] = "" if tc.get("is_hidden") else user_stdout
-        return result
+        return cls._parse_sandbox_output(payload, test_cases, approach, proc_rt, proc_mem, question_slug)
 
     # -------------------------------------------------------------------------
     # JAVA RUNNER
@@ -1532,7 +1532,7 @@ int main() {{
         tc: Dict[str, Any],
         tmpdir: str
     ) -> str:
-        inp_str = str(tc.get("input", "")).strip()
+        inp_str = CRunner.normalize_labeled_input(str(tc.get("input", ""))).strip()
         exp = str(tc.get("expected_output") or tc.get("expectedOutput") or "").strip()
         is_hidden = bool(tc.get("is_hidden", False))
         is_custom = bool(tc.get("is_custom", False))
@@ -2297,7 +2297,11 @@ public static void main(String[] args) {{
     @classmethod
     def _build_javascript_harness(cls, code: str, test_cases: List[Dict[str, Any]]) -> str:
         exec_code = code
-        test_cases_json = json.dumps(test_cases)
+        test_cases_json = json.dumps([
+            {**tc, "input": CRunner.normalize_labeled_input(tc["input"])}
+            if isinstance(tc.get("input"), str) else tc
+            for tc in test_cases
+        ])
         detected = cls._detect_js_method(exec_code)
         is_tree = bool(re.search(r"TreeNode\\b|invertTree|invert_tree|root", exec_code, re.IGNORECASE))
         is_tree_str = "true" if is_tree else "false"
@@ -2655,12 +2659,9 @@ console.log('---SANDBOX_RESULTS_END---');
         proc_memory_mb: Optional[float] = None,
         question_slug: Optional[str] = None
     ) -> Dict[str, Any]:
-        start = stdout.rfind("---SANDBOX_RESULTS_START---")
-        end = stdout.rfind("---SANDBOX_RESULTS_END---")
-
-        if start != -1 and end != -1:
+        data_str = framed_payload(stdout, "SANDBOX_RESULTS")
+        if data_str is not None:
             try:
-                data_str = stdout[start + len("---SANDBOX_RESULTS_START---"):end].strip()
                 data = json.loads(data_str)
                 results = data.get("results", [])
                 had_runtime_error = False

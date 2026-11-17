@@ -16,6 +16,7 @@ import psutil
 import websocket
 
 from backend.app.engines.c_runner import CRunner
+from backend.app.engines.execution_serialization import framed_payload
 from backend.app.engines.sandbox_runner import SandboxRunner, ToolchainUnavailableError
 
 
@@ -58,11 +59,10 @@ def read(path):
 
 
 def payload_row(output):
-    start = output.rfind("---SANDBOX_RESULTS_START---")
-    end = output.rfind("---SANDBOX_RESULTS_END---")
-    if start < 0 or end < start:
+    payload = framed_payload(output, "SANDBOX_RESULTS")
+    if payload is None:
         raise ValueError("Program did not complete its execution harness")
-    rows = json.loads(output[start + len("---SANDBOX_RESULTS_START---"):end])["results"]
+    rows = json.loads(payload)["results"]
     if len(rows) != 1:
         raise ValueError("Debugger expected exactly one execution result")
     return rows[0]
@@ -436,13 +436,17 @@ def trace_node(code, input_data, max_steps, timeout, is_ts=False):
                 rpc("Debugger.resume")
             else:
                 raise TimeoutError("Node debugging timed out")
+            # Release breakpoints and inspected handles before closing the transport.
+            # The process must still exit normally before its result is accepted.
+            rpc("Debugger.disable")
+            rpc("Runtime.disable")
             ws.close()
             ws = None
             proc.wait(timeout=max(0.1, deadline - time.monotonic()))
             for reader in readers:
                 reader.join(timeout=1)
             if proc.returncode:
-                return result("RUNTIME_ERROR", steps, "".join(stderr))
+                return result("RUNTIME_ERROR", steps, f"Node exited with code {proc.returncode}: " + "".join(stderr))
             return completed(steps, payload_row("".join(stdout)))
         except (TimeoutError, subprocess.TimeoutExpired):
             return result("TIMEOUT", steps, "Node debugging timed out.")
