@@ -18,6 +18,11 @@ except ImportError:
 
 import sqlite3
 
+
+class _AsciiCell(str):
+    """Legacy table text whose scalar type is not present in the wire format."""
+
+
 class SQLRunner:
     """
     Dedicated Relational SQL Compiler and Judge Engine for technical interviews.
@@ -155,7 +160,7 @@ class SQLRunner:
         return tables
 
     @staticmethod
-    def parse_ascii_table(table_str: str) -> Tuple[List[str], List[List[str]]]:
+    def parse_ascii_table(table_str: Any) -> Tuple[List[str], List[List[Any]]]:
         """Parse ASCII markdown table or JSON schema into headers and cell rows."""
         if isinstance(table_str, dict):
             clean = json.dumps(table_str)
@@ -188,10 +193,9 @@ class SQLRunner:
                 if cell.lower() in ("null", "none"):
                     typed.append(None)
                 else:
-                    try:
-                        typed.append(json.loads(cell))
-                    except ValueError:
-                        typed.append(cell)
+                    # ASCII tables do not encode scalar types. Preserve the
+                    # complete cell, including meaningful quotes in text values.
+                    typed.append(_AsciiCell(cell))
             rows.append(typed)
         return headers, rows
 
@@ -241,7 +245,46 @@ class SQLRunner:
         return val
 
     @classmethod
+    def _cell_kind(cls, value: Any) -> Optional[str]:
+        value = cls.normalize_cell_value(value)
+        if value is None:
+            return None
+        if isinstance(value, bool):
+            return "boolean"
+        if isinstance(value, (int, float)):
+            return "number"
+        if isinstance(value, list):
+            return "array"
+        if isinstance(value, dict):
+            return "object"
+        return "text" if isinstance(value, str) else None
+
+    @staticmethod
+    def _decode_ascii_cell(value: Any, kind: Optional[str]) -> Any:
+        if not isinstance(value, _AsciiCell):
+            return value  # Canonical JSON values already carry their types.
+        if kind == "text":
+            return str(value)
+        if kind in ("number", "boolean", "array", "object"):
+            if kind == "boolean" and value.lower() in ("true", "false"):
+                return value.lower() == "true"
+            try:
+                decoded = json.loads(value)
+                if kind == "number" and type(decoded) in (int, float):
+                    return decoded
+                if kind == "array" and isinstance(decoded, list):
+                    return decoded
+                if kind == "object" and isinstance(decoded, dict):
+                    return decoded
+            except ValueError:
+                if kind == "number" and re.fullmatch(r'[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?', value):
+                    return float(value) if re.search(r'[.eE]', value) else int(value, 10)
+            return str(value)
+        return value
+
+    @classmethod
     def compare_cells(cls, act: Any, exp: Any) -> bool:
+        exp = cls._decode_ascii_cell(exp, cls._cell_kind(act))
         a, b = cls.normalize_cell_value(act), cls.normalize_cell_value(exp)
         if a is None or b is None:
             return a is None and b is None
@@ -273,7 +316,8 @@ class SQLRunner:
     @classmethod
     def compare_results(cls, actual_cols: List[str], actual_rows: List[Tuple],
                         expected_ascii: str, query_has_order: bool = False,
-                        is_ordered: Optional[bool] = None) -> Tuple[bool, str]:
+                        is_ordered: Optional[bool] = None,
+                        expected_column_kinds: Optional[List[Optional[str]]] = None) -> Tuple[bool, str]:
         """
         Verify candidate query results against expected testcase ASCII table.
         - Column headers matched case-insensitively.
@@ -286,6 +330,17 @@ class SQLRunner:
             if not actual_rows:
                 return True, ""
             return False, f"Expected empty result, got {len(actual_rows)} rows" 
+
+        kinds = []
+        for i in range(len(exp_cols)):
+            trusted = expected_column_kinds[i] if expected_column_kinds and i < len(expected_column_kinds) else None
+            observed = {cls._cell_kind(row[i]) for row in actual_rows if i < len(row) and row[i] is not None}
+            # Resolve only legacy expected cells against the native output type.
+            # Input-column types cannot describe aggregates or date expressions.
+            # Typed JSON expectations stay authoritative regardless of this hint.
+            kinds.append(trusted or (next(iter(observed)) if len(observed) == 1 else None))
+        exp_rows = [[cls._decode_ascii_cell(cell, kinds[i]) if i < len(kinds) else cell
+                     for i, cell in enumerate(row)] for row in exp_rows]
 
         # 1. Header count and names comparison (case-insensitive for column names)
         if len(actual_cols) != len(exp_cols):
@@ -429,7 +484,9 @@ class SQLRunner:
 
                 # 4. Compare with expected output
                 case_is_ordered = tc.get("is_ordered", tc.get("ordered", is_ordered))
-                passed, reason = cls.compare_results(actual_cols, actual_rows, raw_expected, query_has_order=query_has_order, is_ordered=case_is_ordered)
+                passed, reason = cls.compare_results(actual_cols, actual_rows, raw_expected,
+                                                     query_has_order=query_has_order, is_ordered=case_is_ordered,
+                                                     expected_column_kinds=tc.get("expected_column_kinds"))
                 if not passed:
                     all_passed = False
 

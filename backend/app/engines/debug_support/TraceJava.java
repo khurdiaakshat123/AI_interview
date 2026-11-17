@@ -75,7 +75,7 @@ public final class TraceJava {
                             if (type.sourceName().equals(args[2])) {
                                 Set<String> installed = new HashSet<>();
                                 for (Location loc : type.allLineLocations()) {
-                                    String key = loc.method().name() + ":" + loc.codeIndex();
+                                    String key = loc.method().name() + loc.method().signature() + ":" + loc.codeIndex();
                                     if (installed.add(key)) {
                                         BreakpointRequest bp = manager.createBreakpointRequest(loc);
                                         bp.setSuspendPolicy(EventRequest.SUSPEND_ALL); bp.enable();

@@ -328,13 +328,13 @@ static void c_format_string(const char* v, CBuffer* b) {
     if (!v) { c_append(b, "null"); return; }
     c_append(b, "\""); c_escape_json(v, b); c_append(b, "\"");
 }
-static void c_format_int_array(const int* arr, int sz, CBuffer* b) {
+static void c_format_int_array(const volatile int* arr, int sz, CBuffer* b) {
     if (sz < 0 || (sz && !arr)) exit(3);
     c_append(b, "[");
     for (int i = 0; i < sz; i++) { if (i) c_append(b, ","); c_printf(b, "%d", arr[i]); }
     c_append(b, "]");
 }
-static void c_format_matrix(int** mat, int rows, const int* cols, CBuffer* b) {
+static void c_format_matrix(const volatile int* const* mat, int rows, const int* cols, CBuffer* b) {
     if (rows < 0 || (rows && (!mat || !cols))) exit(3);
     c_append(b, "[");
     for (int i = 0; i < rows; i++) {
@@ -400,30 +400,45 @@ C_HARNESS_PREAMBLE = C_HEADERS + "\n" + C_STRUCT_LISTNODE + "\n" + C_STRUCT_TREE
 class CRunner:
     @classmethod
     def split_input(cls, raw: str) -> List[str]:
-        raw = re.sub(r'(?:^|[\n,])\s*[a-zA-Z_]\w*\s*=\s*', '\n', raw).strip()
-        lines = [l.strip() for l in raw.splitlines() if l.strip()]
-        if len(lines) == 1 and (',' in lines[0] or '=' in lines[0]):
-            pattern = r"(?:^|[\n,])\s*([a-zA-Z_]\w*)\s*=\s*"
-            if re.search(pattern, lines[0]):
-                splits = re.split(pattern, lines[0])
-                vals = []
-                for i in range(2, len(splits), 2):
-                    vals.append(splits[i].strip().rstrip(","))
-                if vals:
-                    return vals
-            parts, cur, depth = [], [], 0
-            for ch in lines[0]:
-                if ch in '[{(': depth += 1
-                elif ch in ']})': depth -= 1
-                if ch == ',' and depth == 0:
-                    parts.append(''.join(cur).strip())
-                    cur = []
-                else:
-                    cur.append(ch)
-            if cur:
-                parts.append(''.join(cur).strip())
-            return parts
-        return lines
+        """Split argument syntax without interpreting quoted or nested contents."""
+        values, current = [], []
+        quote, escaped, depth = None, False, 0
+
+        def flush():
+            token = ''.join(current).strip()
+            current.clear()
+            if token:
+                # A label is syntax only at the start of a complete argument.
+                values.append(re.sub(r'^[a-zA-Z_]\w*\s*=\s*', '', token, count=1))
+
+        for char in raw.strip():
+            if quote:
+                current.append(char)
+                if escaped:
+                    escaped = False
+                elif char == '\\':
+                    escaped = True
+                elif char == quote:
+                    quote = None
+                continue
+            if char in ('"', "'"):
+                quote = char
+            elif char in '[{(':
+                depth += 1
+            elif char in ']})':
+                depth -= 1
+            elif char in ',\r\n' and depth == 0:
+                flush()
+                continue
+            current.append(char)
+        flush()
+        return values
+
+    @staticmethod
+    def _normalize_c_type(c_type: str) -> str:
+        """Classify pointer depth independently of CV/restrict qualifiers."""
+        unqualified = re.sub(r'\b(?:const|volatile|restrict|__restrict|__restrict__)\b', '', c_type)
+        return re.sub(r'\s+', '', unqualified)
 
     @classmethod
     def detect_c_signature(cls, code: str, expected_func: Optional[str] = None) -> Optional[Tuple[str, str, List[Tuple[str, str]]]]:
@@ -449,7 +464,7 @@ class CRunner:
                 continue
             if re.search(r'\bstruct\b', raw_ret) and '*' not in raw_ret:
                 continue
-            if not any(raw_ret.startswith(k) for k in ("int", "void", "char", "bool", "float", "double", "long", "struct", "short", "unsigned", "signed")) and not raw_ret.endswith('*'):
+            if not any(raw_ret.startswith(k) for k in ("int", "void", "char", "bool", "float", "double", "long", "struct", "short", "unsigned", "signed")) and not cls._normalize_c_type(raw_ret).endswith('*'):
                 continue
                 
             raw_ret = re.sub(r'\b(static|inline|extern)\s+', '', raw_ret).strip()
@@ -512,7 +527,7 @@ class CRunner:
             
             while p_idx < len(params):
                 p_type, p_name = params[p_idx]
-                p_type_clean = p_type.replace(' ', '')
+                p_type_clean = cls._normalize_c_type(p_type)
                 
                 # Check for out-parameters: returnSize
                 if p_type_clean == "int*" and p_name.lower() == "returnsize":
@@ -528,7 +543,7 @@ class CRunner:
                     continue
                 
                 val_str = inp_lines[inp_idx] if inp_idx < len(inp_lines) else ""
-                safe_val = val_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n')
+                safe_val = val_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '\\r')
                 
                 # Check for 2D matrix: int** matrix, int matrixSize, int* matrixColSize
                 if "int**" in p_type_clean and p_idx + 2 < len(params) and "size" in params[p_idx + 1][1].lower():
@@ -610,22 +625,22 @@ class CRunner:
             
             args_str = ", ".join(call_args)
             decls_str = "\n".join(decls)
-            ret_clean = ret_type.replace(' ', '')
+            ret_clean = cls._normalize_c_type(ret_type)
             
             if ret_clean == "void":
                 call_stmt = f"        {func_name}({args_str});"
                 if first_arg_type == "int_array":
                     fmt_stmt = f"        c_format_int_array({first_arg_name[0]}, {first_arg_name[1]}, &act_buf);"
                 elif first_arg_type == "matrix":
-                    fmt_stmt = f"        c_format_matrix({first_arg_name[0]}, {first_arg_name[1]}, {first_arg_name[2]}, &act_buf);"
+                    fmt_stmt = f"        c_format_matrix((const volatile int* const*){first_arg_name[0]}, {first_arg_name[1]}, {first_arg_name[2]}, &act_buf);"
                 else:
                     fmt_stmt = '        c_append(&act_buf, "null");'
             elif ret_clean == "int*":
-                call_stmt = f"        int* ret_val = {func_name}({args_str});"
+                call_stmt = f"        {ret_type} ret_val = {func_name}({args_str});"
                 fmt_stmt = f"        c_format_int_array(ret_val, ret_sz_{tc_idx}, &act_buf);"
             elif ret_clean == "int**":
-                call_stmt = f"        int** ret_val = {func_name}({args_str});"
-                fmt_stmt = f"        c_format_matrix(ret_val, ret_sz_{tc_idx}, ret_col_sz_{tc_idx}, &act_buf);"
+                call_stmt = f"        {ret_type} ret_val = {func_name}({args_str});"
+                fmt_stmt = f"        c_format_matrix((const volatile int* const*)ret_val, ret_sz_{tc_idx}, ret_col_sz_{tc_idx}, &act_buf);"
             elif "char*" in ret_clean:
                 call_stmt = f"        char* ret_val = {func_name}({args_str});"
                 fmt_stmt = f"        c_format_string(ret_val, &act_buf);"

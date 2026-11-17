@@ -93,6 +93,60 @@ class ParentJudgeTests(unittest.TestCase):
 
 
 class SQLTests(unittest.TestCase):
+    def test_ascii_numeric_text_uses_output_column_type(self):
+        for label in ('123', '001', 'true', '1e3', '-12.50', '"123"', '[1,2]', '{"x":1}', '""', '"null"'):
+            with self.subTest(label=label):
+                fixture = json.dumps({'headers': {'T': ['label']}, 'rows': {'T': [[label]]}})
+                expected = SQLRunner.format_ascii_table(['label'], [(label,)])
+                r = SQLRunner.evaluate('SELECT label FROM T', [case(fixture, expected)])
+                self.assertTrue(r['is_correct'], r)
+        fixture = json.dumps({'headers': {'T': ['label']}, 'rows': {'T': [['123']]}})
+        expected = json.dumps({'headers': ['label'], 'rows': [['123']]})
+        cast = SQLRunner.evaluate('SELECT CAST(label AS BIGINT) AS label FROM T', [case(fixture, expected)])
+        self.assertFalse(cast['is_correct'], cast)
+
+    def test_ascii_numeric_columns_remain_numeric(self):
+        fixture = json.dumps({'headers': {'T': ['amount']}, 'rows': {'T': [[123]]}})
+        expected = SQLRunner.format_ascii_table(['amount'], [(123,)])
+        r = SQLRunner.evaluate('SELECT amount FROM T', [case(fixture, expected)])
+        self.assertTrue(r['is_correct'], r)
+        typed_expected = json.dumps({'headers': ['amount'], 'rows': [[123]]})
+        cast = SQLRunner.evaluate('SELECT CAST(amount AS VARCHAR) AS amount FROM T', [case(fixture, typed_expected)])
+        self.assertFalse(cast['is_correct'], cast)
+
+    def test_ascii_aggregate_and_ordering_behavior_is_preserved(self):
+        fixture = json.dumps({'headers': {'T': ['amount']}, 'rows': {'T': [[1], [2], [3]]}})
+        expected = SQLRunner.format_ascii_table(['total'], [(6,)])
+        r = SQLRunner.evaluate('SELECT SUM(amount) AS total FROM T', [case(fixture, expected)])
+        self.assertTrue(r['is_correct'], r)
+        ordered = SQLRunner.format_ascii_table(['amount'], [(1,), (2,), (3,)])
+        wrong = SQLRunner.evaluate('SELECT amount FROM T ORDER BY amount DESC', [case(fixture, ordered)])
+        self.assertFalse(wrong['is_correct'], wrong)
+
+    def test_ascii_computed_columns_do_not_inherit_input_types(self):
+        fixture = json.dumps({'headers': {'T': ['event_date']}, 'rows': {'T': [['2020-01-01']]}})
+        expected = SQLRunner.format_ascii_table(['event_date'], [(2020,)])
+        query = 'SELECT EXTRACT(YEAR FROM event_date) AS event_date FROM T'
+        self.assertTrue(SQLRunner.evaluate(query, [case(fixture, expected)])['is_correct'])
+
+    def test_explicit_legacy_column_type_cannot_be_changed_by_candidate_cast(self):
+        fixture = json.dumps({'headers': {'T': ['amount']}, 'rows': {'T': [[123]]}})
+        expected = SQLRunner.format_ascii_table(['amount'], [(123,)])
+        cases = [case(fixture, expected, expected_column_kinds=['number'])]
+        self.assertTrue(SQLRunner.evaluate('SELECT amount FROM T', cases)['is_correct'])
+        self.assertFalse(SQLRunner.evaluate('SELECT CAST(amount AS VARCHAR) AS amount FROM T', cases)['is_correct'])
+
+    def test_ascii_boolean_and_structured_outputs_keep_native_types(self):
+        for actual, expected in [(True, 'True'), ([1,2], '[1,2]'), ({'x': 1}, '{"x":1}')]:
+            with self.subTest(actual=actual):
+                table = '+-------+\n| value |\n+-------+\n| ' + expected + ' |\n+-------+'
+                self.assertTrue(SQLRunner.compare_results(['value'], [(actual,)], table)[0])
+        fixture = json.dumps({'headers': {'T': ['flag']}, 'rows': {'T': [[True], [False]]}})
+        expected = SQLRunner.format_ascii_table(['flag'], [(True,), (False,)])
+        self.assertTrue(SQLRunner.evaluate('SELECT flag = 1 AS flag FROM T', [case(fixture, expected)])['is_correct'])
+        average = SQLRunner.format_ascii_table(['average'], [(0.5,)])
+        self.assertTrue(SQLRunner.evaluate('SELECT AVG(flag) AS average FROM T', [case(fixture, average)])['is_correct'])
+
     def test_typed_text_is_not_null_or_numeric(self):
         for a, b in [('null', None), ('none', None), ('001', 1), ('  A', 'A'), ('ALLEN', 'Allen')]:
             self.assertFalse(SQLRunner.compare_cells(a, b), (a, b))
@@ -225,6 +279,19 @@ class NativeIntegrationTests(unittest.TestCase):
                 self.assertEqual(traced['status'], 'SUCCESS', traced)
                 self.assertEqual(traced['return_value'], chr(7))
 
+    def test_java_overloaded_methods_have_distinct_breakpoints(self):
+        self.available('java', debug=True)
+        code = ('class Solution {\n'
+                ' public int solve(int n) { return solve(n,2); }\n'
+                ' private int solve(int a,int b) { return a+b; }\n'
+                '}')
+        traced = DebugTracer.trace(code, 'java', '3', 40)
+        self.assertEqual(traced['status'], 'SUCCESS', traced)
+        self.assertEqual(traced['return_value'], 5)
+        self.assertTrue(any(step['line'] == 2 and step['variables'].get('n') == 3 for step in traced['steps']), traced)
+        self.assertTrue(any(step['line'] == 3 and step['variables'].get('a') == 3 and
+                            step['variables'].get('b') == 2 for step in traced['steps']), traced)
+
     def test_pandas_column_alignment_and_actual_values_are_preserved(self):
         fixture = json.dumps({'headers': {'Person': ['name', 'city']}, 'rows': {'Person': [['Allen', None]]}})
         expected = '+-------+------+\n| name | city |\n+-------+------+\n| Allen | null |\n+-------+------+'
@@ -289,6 +356,26 @@ class NativeIntegrationTests(unittest.TestCase):
                 self.assertIsNone(r['return_value'])
 
 
+class CInputTests(unittest.TestCase):
+    def test_quoted_assignment_text_is_one_argument(self):
+        self.assertEqual(CRunner.split_input('"a, b=c"\n7'), ['"a, b=c"', '7'])
+        self.assertEqual(CRunner.split_input('s="a, b=c", n=7'), ['"a, b=c"', '7'])
+
+    def test_nested_values_and_escaped_quotes_preserve_argument_boundaries(self):
+        quoted = json.dumps('a, b="c", next=d\\e')
+        values = '[' + quoted + ',"second, n=3"]'
+        self.assertEqual(CRunner.split_input('items = ' + values + ', limit = 7'), [values, '7'])
+        self.assertEqual(CRunner.split_input(quoted + ', 7'), [quoted, '7'])
+
+    def test_existing_labeled_and_unlabeled_inputs_are_preserved(self):
+        for raw in ('nums = [2,7], target = 9', 'nums = [2,7]\ntarget = 9', '[2,7]\n9', '[2,7],9'):
+            with self.subTest(raw=raw):
+                self.assertEqual(CRunner.split_input(raw), ['[2,7]', '9'])
+        self.assertEqual(CRunner.split_input('s = "", n = 0'), ['""', '0'])
+        matrix = '[\r\n [1,2],\r\n [3,4]\r\n]'
+        self.assertEqual(CRunner.split_input('matrix=' + matrix + '\r\nn=2'), [matrix, '2'])
+
+
 @unittest.skipUnless(shutil.which('gcc') or shutil.which('clang'), 'C compiler unavailable')
 class COutputTests(unittest.TestCase):
     def run_c(self, code, inp, expected):
@@ -304,6 +391,30 @@ class COutputTests(unittest.TestCase):
         matrix = [list(range(3000)), [7], []]
         actual = self.run_c(code, json.dumps(matrix), json.dumps(matrix))
         self.assertEqual(json.loads(actual), matrix)
+
+    def test_qualified_array_returns_and_parameters(self):
+        for return_type in ('const int*', 'int const *', 'volatile int*', 'const volatile int*', 'const int* const'):
+            with self.subTest(return_type=return_type):
+                code = return_type + ' solve(const int* nums, int numsSize, int* const returnSize) {' \
+                    ' int* a=malloc(numsSize*sizeof(int)); for(int i=0;i<numsSize;i++) a[i]=nums[i];' \
+                    ' *returnSize=numsSize; return a; }'
+                actual = self.run_c(code, '[7,8]', '[7,8]')
+                self.assertEqual(json.loads(actual), [7,8])
+
+    def test_qualified_matrix_return_preserves_pointer_depth(self):
+        for return_type in ('int** const', 'int* const*', 'const int**', 'const volatile int* const*'):
+            with self.subTest(return_type=return_type):
+                code = (return_type + ' solve(int* returnSize, int** const returnColumnSizes) {'
+                        ' int** out=malloc(sizeof(int*)); out[0]=malloc(2*sizeof(int));'
+                        ' out[0][0]=7; out[0][1]=8; *returnSize=1;'
+                        ' *returnColumnSizes=malloc(sizeof(int)); **returnColumnSizes=2;'
+                        ' return (' + return_type + ')out; }')
+                self.assertEqual(json.loads(self.run_c(code, '', '[[7,8]]')), [[7,8]])
+
+    def test_quoted_assignment_text_reaches_c_function_unchanged(self):
+        code = 'int solve(char* s, int n) { return strcmp(s,"a, b=c")==0 ? n : 0; }'
+        self.run_c(code, '"a, b=c"\n7', '7')
+        self.run_c(code, 's = "a, b=c", n = 7', '7')
 
     def test_long_array_return_is_not_truncated_or_freed_as_owned(self):
         code = 'int *solve(int* nums, int numsSize, int* returnSize) { *returnSize=numsSize; return nums; }'
