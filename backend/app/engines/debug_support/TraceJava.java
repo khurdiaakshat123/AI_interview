@@ -22,6 +22,9 @@ public final class TraceJava {
         if (v == null) return "null";
         if (v instanceof StringReference) return quote(((StringReference)v).value());
         if (v instanceof CharValue) return quote(String.valueOf(((CharValue)v).value()));
+        if ((v instanceof DoubleValue && !Double.isFinite(((DoubleValue)v).value())) ||
+            (v instanceof FloatValue && !Float.isFinite(((FloatValue)v).value())))
+            return "{\"__type__\":\"float\",\"value\":" + quote(v.toString()) + "}";
         if (v instanceof PrimitiveValue) return v.toString();
         ObjectReference obj = (ObjectReference)v;
         if (depth > 5 || !visited.add(obj.uniqueID())) return quote(obj.referenceType().name() + "@" + obj.uniqueID());

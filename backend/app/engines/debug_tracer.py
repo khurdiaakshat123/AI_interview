@@ -10,6 +10,7 @@ import websocket
 from typing import Dict, Any, List, Optional, Tuple
 
 from backend.app.engines.c_runner import CRunner, C_HEADERS, C_STRUCT_LISTNODE, C_STRUCT_TREENODE, C_HARNESS_HELPERS
+from backend.app.engines.execution_serialization import json_safe_trace
 
 
 class DebugTracer:
@@ -47,17 +48,17 @@ class DebugTracer:
             }
 
         if lang in ["python", "python3", "py"]:
-            return cls._trace_python(clean_code, input_data or "", max_steps)
+            result = cls._trace_python(clean_code, input_data or "", max_steps)
         elif lang in ["c"]:
-            return cls._trace_c_gdb(clean_code, input_data or "", max_steps)
+            result = cls._trace_c_gdb(clean_code, input_data or "", max_steps)
         elif lang in ["cpp", "c++"]:
-            return cls._trace_cpp_gdb(clean_code, input_data or "", max_steps)
+            result = cls._trace_cpp_gdb(clean_code, input_data or "", max_steps)
         elif lang in ["javascript", "js"]:
-            return cls._trace_node_inspector(clean_code, input_data or "", max_steps, is_ts=False)
+            result = cls._trace_node_inspector(clean_code, input_data or "", max_steps, is_ts=False)
         elif lang in ["typescript", "ts"]:
-            return cls._trace_node_inspector(clean_code, input_data or "", max_steps, is_ts=True)
+            result = cls._trace_node_inspector(clean_code, input_data or "", max_steps, is_ts=True)
         elif lang in ["java"]:
-            return cls._trace_java_jdb(clean_code, input_data or "", max_steps)
+            result = cls._trace_java_jdb(clean_code, input_data or "", max_steps)
         else:
             return {
                 "status": "NOT_SUPPORTED",
@@ -68,6 +69,7 @@ class DebugTracer:
                 "stdout": "",
                 "error": f"Interactive step tracing is not available for {lang.upper()}. Supported languages: Python, C, C++, JavaScript, TypeScript, and Java."
             }
+        return json_safe_trace(result)
 
     # =========================================================================
     # PYTHON NATIVE DEBUG TRACER (sys.settrace)
@@ -130,7 +132,7 @@ class DebugTracer:
     ) -> str:
         safe_input = json.dumps(input_data)
 
-        return f"""{user_code}
+        return f"""
 # =============================================================================
 # INTERNAL DEBUG TRACER HARNESS (LINES BELOW ARE NOT DISPLAYED TO USER)
 # =============================================================================
@@ -200,6 +202,8 @@ def __safe_serialize(val, depth=0):
 def __tracer_hook(frame, event, arg):
     global __last_vars
     if len(__captured_steps) >= __max_steps:
+        return None
+    if frame.f_code.co_filename != '<candidate>':
         return None
 
     lineno = frame.f_lineno
@@ -304,6 +308,33 @@ def __parse_robust_input(raw):
 
     return raw
 
+def __bind_argument(param, value):
+    annotation = str(param.annotation)
+    if isinstance(value, list) and 'ListNode' in annotation:
+        dummy = ListNode()
+        tail = dummy
+        for item in value:
+            tail.next = ListNode(item)
+            tail = tail.next
+        return dummy.next
+    if isinstance(value, list) and 'TreeNode' in annotation:
+        if not value or value[0] is None:
+            return None
+        root = TreeNode(value[0])
+        queue, index = [root], 1
+        for node in queue:
+            for side in ('left', 'right'):
+                if index >= len(value):
+                    break
+                item = value[index]
+                index += 1
+                if item is not None:
+                    child = TreeNode(item)
+                    setattr(node, side, child)
+                    queue.append(child)
+        return root
+    return value
+
 def __run_tracer():
     global __orig_stdout
     raw_input = {safe_input}
@@ -315,7 +346,9 @@ def __run_tracer():
     if "Solution" in globals() and isinstance(globals()["Solution"], type):
         sol_class = globals()["Solution"]
         sol = sol_class()
-        methods = [m for m in dir(sol) if not m.startswith("_") and callable(getattr(sol, m))]
+        methods = [m for m in sol_class.__dict__ if not m.startswith("_") and callable(getattr(sol, m))]
+        if not methods:
+            methods = [m for m in dir(sol) if not m.startswith("_") and callable(getattr(sol, m))]
         if methods:
             entrypoint = getattr(sol, methods[0])
     
@@ -343,15 +376,21 @@ def __run_tracer():
         if param_count == 0:
             ret_val = entrypoint()
         elif param_count == 1:
-            if isinstance(parsed_input, list) and len(parsed_input) == 1 and not (isinstance(parsed_input[0], list)):
-                ret_val = entrypoint(parsed_input[0])
-            else:
-                ret_val = entrypoint(parsed_input)
+            annotation = str(params[0].annotation)
+            structured = ('ListNode' in annotation or 'TreeNode' in annotation or
+                          annotation in ('list', 'List', 'tuple', 'Tuple', 'dict', 'Dict', 'set', 'Set', 'Sequence') or
+                          params[0].annotation in (list, tuple, dict, set) or
+                          typing.get_origin(params[0].annotation) in (list, tuple, dict, set) or
+                          any(token in annotation for token in ('List[', 'list[', 'Tuple[', 'tuple[', 'Dict[', 'dict[', 'Set[', 'set[', 'Sequence[')))
+            value = parsed_input
+            if not structured and isinstance(value, list) and len(value) == 1 and not isinstance(value[0], list):
+                value = value[0]
+            ret_val = entrypoint(__bind_argument(params[0], value))
         else:
             if isinstance(parsed_input, (list, tuple)) and len(parsed_input) == param_count:
-                ret_val = entrypoint(*parsed_input)
+                ret_val = entrypoint(*[__bind_argument(p, v) for p, v in zip(params, parsed_input)])
             elif isinstance(parsed_input, dict):
-                ret_val = entrypoint(**parsed_input)
+                ret_val = entrypoint(**{{p.name: __bind_argument(p, parsed_input[p.name]) for p in params if p.name in parsed_input}})
             else:
                 ret_val = entrypoint(parsed_input)
     except Exception as e:
@@ -375,6 +414,7 @@ def __run_tracer():
     print("---DEBUG_TRACE_END---")
 
 if __name__ == "__main__":
+    exec(compile({json.dumps(user_code)}, '<candidate>', 'exec'), globals())
     __run_tracer()
 """
 

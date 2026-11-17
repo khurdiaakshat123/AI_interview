@@ -468,11 +468,14 @@ from typing import *
 import collections
 import math
 import heapq
+import io
+import contextlib
 import sys
 import os
 repo_root = r"__REPO_ROOT__"
 if repo_root not in sys.path:
     sys.path.insert(0, repo_root)
+from backend.app.engines.execution_serialization import dump_answer as _dump_answer, pack_dataframe as _pack_dataframe
 
 __PANDAS_IMPORT__
 
@@ -599,6 +602,7 @@ def __run():
         passed = False
         actual = None
         user_stdout = ""
+        user_io = io.StringIO()
         table_output = None
 
         # 1. Check if test case is an interactive/class Design problem (e.g. LRUCache, MinStack)
@@ -622,17 +626,19 @@ def __run():
             try:
                 target_cls = globals().get(design_methods[0]) or design_cls
                 if target_cls:
-                    obj = target_cls(*design_args[0])
+                    with contextlib.redirect_stdout(user_io), contextlib.redirect_stderr(user_io):
+                        obj = target_cls(*design_args[0])
                     call_results = [None]
                     for m_name, m_args in zip(design_methods[1:], design_args[1:]):
                         if hasattr(obj, m_name):
                             fn = getattr(obj, m_name)
-                            res = fn(*m_args)
+                            with contextlib.redirect_stdout(user_io), contextlib.redirect_stderr(user_io):
+                                res = fn(*m_args)
                             call_results.append(res)
                         else:
                             call_results.append(None)
                     ret = call_results
-                    actual = json.dumps(ret, separators=(',', ':'))
+                    actual = _dump_answer(ret)
                     norm_actual = actual.replace(" ", "").lower()
                     norm_exp = exp.replace(" ", "").lower()
                     passed = is_custom or (norm_actual == norm_exp)
@@ -715,8 +721,6 @@ def __run():
                     in_place_arg = val[0]
 
                 # Dynamic argument dispatch with stdout capture
-                import io, sys
-                user_io = io.StringIO()
                 old_stdout = sys.stdout
                 old_stderr = sys.stderr
                 sys.stdout = user_io
@@ -767,7 +771,7 @@ def __run():
                     ret = []
                 elif is_pandas_db:
                     if isinstance(ret, pd.DataFrame):
-                        table_output = json.loads(ret.to_json(orient="split", date_format="iso"))
+                        table_output = _pack_dataframe(ret)
                         try:
                             passed, reason, act_ascii = _compare_pandas_results(ret, exp, is_ordered=tc.get("is_ordered"))
                             actual = act_ascii
@@ -780,12 +784,7 @@ def __run():
                         actual = f"Expected pandas.DataFrame, got {type_name}: {str(ret)}"
 
                 if not is_pandas_db:
-                    if isinstance(ret, bool):
-                        actual = "true" if ret else "false"
-                    elif isinstance(ret, (list, dict)):
-                        actual = json.dumps(ret, separators=(',', ':'))
-                    else:
-                        actual = json.dumps(ret, ensure_ascii=False)
+                    actual = _dump_answer(ret)
 
                     norm_actual = actual.replace(" ", "").lower()
                     norm_exp = exp.replace(" ", "").lower()
@@ -819,6 +818,7 @@ def __run():
             passed = False
             user_stdout = ""
 
+        user_stdout = user_io.getvalue()
         elapsed = round((time.perf_counter() - start_t) * 1000, 2)
         results.append({
             "test_case_index": idx + 1,
@@ -1082,7 +1082,7 @@ if __name__ == "__main__":
 {vars_str}
             auto _t0 = std::chrono::high_resolution_clock::now();
             {{
-                CoutRedirect _redir;
+                CoutRedirect _redir(&user_stdout);
                 {call_code}
                 user_stdout = _redir.str();
             }}
@@ -1159,8 +1159,10 @@ struct CoutRedirect {
     stringstream ss;
     streambuf *old_c;
     streambuf *old_e;
-    CoutRedirect() : old_c(cout.rdbuf(ss.rdbuf())), old_e(cerr.rdbuf(ss.rdbuf())) {}
+    string* captured;
+    CoutRedirect(string* output = nullptr) : old_c(cout.rdbuf(ss.rdbuf())), old_e(cerr.rdbuf(ss.rdbuf())), captured(output) {}
     ~CoutRedirect() {
+        if (captured) *captured = ss.str();
         cout.rdbuf(old_c);
         cerr.rdbuf(old_e);
     }
@@ -1624,9 +1626,9 @@ int main() {{
             String userStdout = "";
             boolean passed = false;
             double caseMs = 0.01;
+            ByteArrayOutputStream userOut = new ByteArrayOutputStream();
             try {{
 {vars_str}
-                ByteArrayOutputStream userOut = new ByteArrayOutputStream();
                 PrintStream userPs = new PrintStream(userOut);
                 PrintStream oldOut = System.out;
                 PrintStream oldErr = System.err;
@@ -1637,11 +1639,12 @@ int main() {{
                     {exec_code}
                     {output_code}
                 }} finally {{
+                    userStdout = userOut.toString(java.nio.charset.StandardCharsets.UTF_8);
                     System.setOut(oldOut);
                     System.setErr(oldErr);
                 }}
                 caseMs = Math.max(0.01, (System.nanoTime() - tStart) / 1000000.0);
-                userStdout = userOut.toString();
+                userStdout = userOut.toString(java.nio.charset.StandardCharsets.UTF_8);
                 String expStr = readData("{exp_file}");
                 passed = {is_custom_str} || actual.equals(expStr);
             }} catch (Exception e) {{
@@ -1698,9 +1701,9 @@ int main() {{
             String actual = "";
             String userStdout = "";
             boolean passed = false;
-            double caseMs = 0.01;
+    double caseMs = 0.01;
+    ByteArrayOutputStream userOut = new ByteArrayOutputStream();
             try {{
-                ByteArrayOutputStream userOut = new ByteArrayOutputStream();
                 PrintStream userPs = new PrintStream(userOut);
                 PrintStream oldOut = System.out;
                 PrintStream oldErr = System.err;
@@ -1710,11 +1713,12 @@ int main() {{
                 try {{
                     actual = runLRUCacheCase(readData("{ops_file}"), readData("{args_file}"));
                 }} finally {{
+            userStdout = userOut.toString(java.nio.charset.StandardCharsets.UTF_8);
                     System.setOut(oldOut);
                     System.setErr(oldErr);
                 }}
                 caseMs = Math.max(0.01, (System.nanoTime() - tStart) / 1000000.0);
-                userStdout = userOut.toString();
+                userStdout = userOut.toString(java.nio.charset.StandardCharsets.UTF_8);
                 String expStr = readData("{exp_file}");
                 passed = {is_custom_str} || actual.equals(expStr);
             }} catch (Exception e) {{
@@ -2132,6 +2136,50 @@ public static void main(String[] args) {{
     # -------------------------------------------------------------------------
     # JAVASCRIPT / TYPESCRIPT RUNNER (Node.js)
     # -------------------------------------------------------------------------
+    @staticmethod
+    def _has_strict_prologue(code: str) -> bool:
+        """Recognize root directives without scanning strings inside functions."""
+        pos, size = 0, len(code)
+
+        def trivia(at):
+            newline = False
+            while at < size:
+                start = at
+                if code[at].isspace() or code[at] == '\ufeff':
+                    at += 1
+                elif code.startswith('//', at):
+                    at = next((i for i in range(at + 2, size) if code[i] in '\r\n\u2028\u2029'), size)
+                elif code.startswith('/*', at):
+                    end = code.find('*/', at + 2)
+                    at = size if end < 0 else end + 2
+                else:
+                    break
+                newline = newline or any(c in '\r\n\u2028\u2029' for c in code[start:at])
+            return at, newline
+
+        while True:
+            pos, _ = trivia(pos)
+            if pos >= size or code[pos] not in ('"', "'"):
+                return False
+            quote, start = code[pos], pos
+            pos += 1
+            while pos < size and code[pos] != quote:
+                pos += 2 if code[pos] == '\\' else 1
+            if pos >= size:
+                return False
+            literal = code[start + 1:pos]
+            pos, newline = trivia(pos + 1)
+            if pos < size and code[pos] == ';':
+                pos += 1
+            elif pos < size:
+                # A continued expression is not a directive statement.
+                continuation = (code[pos] in '([`.+-*/%<>=&|^?' or code.startswith('!=', pos) or
+                                bool(re.match(r'(?:in|instanceof)\b', code[pos:])))
+                if not newline or (continuation and not code.startswith(('++', '--'), pos)):
+                    return False
+            if literal == 'use strict':
+                return True
+
     @classmethod
     def _detect_js_method(cls, code: str) -> str:
         m = re.search(r'class\s+Solution\s*\{[\s\S]*?([a-zA-Z_]\w*)\s*\(', code)
@@ -2139,6 +2187,8 @@ public static void main(String[] args) {{
         m = re.search(r'(?:var|let|const)\s+([a-zA-Z_]\w*)\s*=\s*function', code)
         if m: return m.group(1)
         m = re.search(r'function\s+([a-zA-Z_]\w*)\s*\(', code)
+        if m: return m.group(1)
+        m = re.search(r'(?:var|let|const)\s+([a-zA-Z_$][\w$]*)\s*=\s*(?:async\s*)?(?:\([^)]*\)|[a-zA-Z_$][\w$]*)\s*=>', code)
         if m: return m.group(1)
         return "solve"
 
@@ -2164,7 +2214,7 @@ public static void main(String[] args) {{
             with open(src, "w", encoding="utf-8") as f:
                 f.write(code + declarations)
             try:
-                proc = subprocess.run([node, tsc, "--target", "es2022", "--module", "commonjs",
+                proc = subprocess.run([node, tsc, "--target", "es2022", "--module", "preserve", "--moduleResolution", "bundler",
                                        "--sourceMap", "--inlineSources", "--noEmitOnError", src],
                                       capture_output=True, text=True, timeout=20)
             except (OSError, subprocess.TimeoutExpired) as exc:
@@ -2340,13 +2390,18 @@ function isTreeNodeInstance(obj) {{
 
 const testCases = {test_cases_json};
 const results = [];
+const _consoleFormat = (typeof process.getBuiltinModule === 'function'
+    ? process.getBuiltinModule('node:util') : require('node:util')).format;
 
 let fn = null;
 try {{
     if (typeof Solution !== 'undefined') {{
         const sol = new Solution();
         const methods = Object.getOwnPropertyNames(Object.getPrototypeOf(sol)).filter(m => m !== 'constructor');
-        if (methods.length) fn = sol[methods[0]].bind(sol);
+        const fields = Object.entries(Object.getOwnPropertyDescriptors(sol))
+            .filter(([name, descriptor]) => typeof descriptor.value === 'function').map(([name]) => name);
+        const entry = methods.length ? methods[0] : fields[0];
+        if (entry) fn = sol[entry].bind(sol);
     }}
 }} catch(e) {{}}
 
@@ -2377,8 +2432,8 @@ for (let i = 0; i < testCases.length; i++) {{
     const _userLogs = [];
     const _origLog = console.log;
     const _origErr = console.error;
-    console.log = (...args) => _userLogs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '));
-    console.error = (...args) => _userLogs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '));
+    console.log = (...args) => _userLogs.push(_consoleFormat(...args));
+    console.error = (...args) => _userLogs.push(_consoleFormat(...args));
 
     try {{
         let rawInput = tc.input;
@@ -2510,6 +2565,7 @@ for (let i = 0; i < testCases.length; i++) {{
         actual = 'Runtime Error: ' + e.message;
         passed = false;
     }} finally {{
+        userStdout = _userLogs.join('\\n');
         console.log = _origLog;
         console.error = _origErr;
     }}
@@ -2531,7 +2587,7 @@ console.log('---SANDBOX_RESULTS_START---');
 console.log(JSON.stringify({{ results }}));
 console.log('---SANDBOX_RESULTS_END---');
 """
-        return harness
+        return ('"use strict";\n' if cls._has_strict_prologue(code) else '') + harness
 
     # -------------------------------------------------------------------------
     # UNIVERSAL / CLOUD FALLBACK EVALUATOR
@@ -2607,19 +2663,26 @@ console.log('---SANDBOX_RESULTS_END---');
                 data_str = stdout[start + len("---SANDBOX_RESULTS_START---"):end].strip()
                 data = json.loads(data_str)
                 results = data.get("results", [])
+                had_runtime_error = False
+                first_runtime_index = None
                 if not isinstance(results, list) or len(results) != len(test_cases):
                     raise ValueError("Runner did not return exactly one result per test case")
                 for idx, (r, tc) in enumerate(zip(results, test_cases)):
-                    if r.get("test_case_index") != idx + 1:
+                    if not isinstance(r, dict) or 'actual_output' not in r:
+                        raise ValueError("Runner result omitted its actual output")
+                    if type(r.get("test_case_index")) is not int or r["test_case_index"] != idx + 1:
                         raise ValueError("Invalid or duplicate test case index")
                     act = r.get("actual_output")
                     exp = tc.get("expected_output", tc.get("expectedOutput", ""))
                     error = str(act).startswith(("Runtime Error:", "Runtime Exception", "Fixture Error:", "No solution"))
+                    had_runtime_error = had_runtime_error or error
+                    if error and first_runtime_index is None:
+                        first_runtime_index = idx
                     table = r.pop("_table_output", None)
                     if table is not None:
-                        import pandas as pd
+                        from backend.app.engines.execution_serialization import unpack_dataframe
                         from backend.app.engines.db_fixture_normalizer import compare_pandas_results
-                        frame = pd.DataFrame(table["data"], columns=table["columns"])
+                        frame = unpack_dataframe(table)
                         passed, reason, _ = compare_pandas_results(frame, exp, is_ordered=tc.get("is_ordered"))
                     else:
                         options = dict(tc.get("comparison_contract") or {})
@@ -2648,7 +2711,10 @@ console.log('---SANDBOX_RESULTS_END---');
                 actual_runtime = tc_total_runtime if tc_total_runtime > 0 else proc_runtime_ms
                 actual_memory = proc_memory_mb or data.get("memory_mb")
 
-                if all_passed:
+                if had_runtime_error:
+                    failed = results[first_runtime_index]
+                    comp_out = f"Runtime Error on testcase {first_runtime_index + 1}: {failed.get('actual_output')}"
+                elif all_passed:
                     comp_out = "Execution completed successfully."
                 else:
                     failing = next((r for r in results if not r.get("passed")), None)
@@ -2664,7 +2730,8 @@ console.log('---SANDBOX_RESULTS_END---');
                         comp_out = "Wrong Answer: Test cases did not pass."
 
                 return {
-                    "status": "ACCEPTED" if all_passed else "WRONG_ANSWER",
+                    "status": "RUNTIME_ERROR" if had_runtime_error else "ACCEPTED" if all_passed else "WRONG_ANSWER",
+                    **({"error": comp_out} if had_runtime_error else {}),
                     "is_correct": all_passed,
                     "score_fraction": score_fraction,
                     "test_cases_passed": passed_count,

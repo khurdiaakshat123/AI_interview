@@ -10,12 +10,54 @@ import shutil
 import tempfile
 import unittest
 from unittest.mock import patch, MagicMock
+from datetime import date, datetime
+from decimal import Decimal
 
 from backend.app.engines.c_runner import CRunner
 from backend.app.engines.comparison_engine import ComparisonContract as Compare
 from backend.app.engines.debug_tracer import DebugTracer
 from backend.app.engines.sandbox_runner import SandboxRunner as Runner, ToolchainUnavailableError
 from backend.app.engines.sql_runner import SQLRunner
+from backend.app.engines.execution_serialization import dump_answer, pack_dataframe, unpack_dataframe
+
+
+class ExecutionSerializationTests(unittest.TestCase):
+    def test_decimal_and_numpy_answers_keep_numeric_types(self):
+        import numpy as np
+        self.assertEqual(json.loads(dump_answer(np.int64(6))), 6)
+        self.assertIs(json.loads(dump_answer(np.bool_(True))), True)
+        self.assertEqual(dump_answer(Decimal('9007199254740993')), '9007199254740993')
+        self.assertEqual(dump_answer(Decimal('1.234567890123456789')), '1.234567890123456789')
+        self.assertEqual(json.loads(dump_answer([np.int64(1), Decimal('1.5'), '001'])), [1, 1.5, '001'])
+        self.assertEqual(json.loads(dump_answer(np.array([1,2]))), [1,2])
+        class CustomInteger(np.int64):
+            pass
+        self.assertEqual(json.loads(dump_answer(CustomInteger(6))), 6)
+
+    def test_dataframe_roundtrip_preserves_dates_and_scalar_values(self):
+        import pandas as pd
+        import numpy as np
+        values = [date(2020,1,1), datetime(2020,1,1,12,30),
+                  pd.Timestamp('2020-01-01T01:02:03.123456789+00:00'),
+                  Decimal('1.234567890123456789'), np.int64(9007199254740993),
+                  np.bool_(True), None, 'null', b'bytes',
+                  np.datetime64('2020-01-01T00:00:00.123456789', 'ns'), np.timedelta64(123456789, 'ns'), pd.NA]
+        frame = pd.DataFrame({'value': values}, dtype=object)
+        wire = json.loads(json.dumps(pack_dataframe(frame), allow_nan=False))
+        restored = unpack_dataframe(wire)
+        for before, after in zip(values[:-1], restored['value'].tolist()[:-1]):
+            self.assertEqual(str(before), str(after))
+        self.assertIs(type(restored.iloc[0,0]), date)
+        self.assertIsInstance(restored.iloc[2,0], pd.Timestamp)
+        self.assertIsInstance(restored.iloc[3,0], Decimal)
+        self.assertIsNone(restored.iloc[-1,0])
+
+    def test_literal_cells_cannot_be_mistaken_for_transport_tags(self):
+        import pandas as pd
+        original = {'value': ['date', '2020-01-01'], 'kind': 'decimal'}
+        frame = pd.DataFrame({'value': [original]}, dtype=object)
+        restored = unpack_dataframe(json.loads(json.dumps(pack_dataframe(frame))))
+        self.assertEqual(restored.iloc[0,0], original)
 
 
 def case(inp, expected, **metadata):
@@ -85,6 +127,9 @@ class ParentJudgeTests(unittest.TestCase):
         self.assertEqual(self.parse(rows, [case('', '1')])['status'], 'WRONG_ANSWER')
         self.assertEqual(self.parse(rows, [case('', '2'), case('', '2')])['status'], 'RUNTIME_ERROR')
         self.assertEqual(self.parse([dict(test_case_index=2, actual_output='2')], [case('', '2')])['status'], 'RUNTIME_ERROR')
+        self.assertEqual(self.parse([dict(test_case_index=1)], [case('', 'null')])['status'], 'RUNTIME_ERROR')
+        self.assertEqual(self.parse([dict(test_case_index=True, actual_output='null')], [case('', 'null')])['status'], 'RUNTIME_ERROR')
+        self.assertTrue(self.parse([dict(test_case_index=1, actual_output=None)], [case('', 'null')])['is_correct'])
 
     def test_custom_inputs_do_not_require_expected_but_errors_fail(self):
         for value, correct in [('42', True), ('Runtime Error: failure', False)]:
@@ -232,6 +277,170 @@ class NativeIntegrationTests(unittest.TestCase):
                 self.assertTrue(r['is_correct'], r)
                 wrong = Runner.evaluate_code(code, lang, [case('2\n3', '9', is_hidden=True)])
                 self.assertFalse(wrong['is_correct'], wrong)
+
+    def test_python_numeric_library_answers_are_graded_as_numbers(self):
+        examples = [
+            ('import numpy as np\ndef solve(nums):\n return np.sum(nums)', '[1,2,3]', '6'),
+            ('import numpy as np\ndef solve(n):\n return np.bool_(n)', '1', 'true'),
+            ('from decimal import Decimal\ndef solve(n):\n return Decimal("1.5")', '1', '1.5'),
+            ('from decimal import Decimal\ndef solve(n):\n return Decimal("9007199254740993")', '1', '9007199254740993'),
+        ]
+        for code, inp, expected in examples:
+            with self.subTest(code=code):
+                self.assertTrue(Runner.evaluate_code(code, 'python', [case(inp, expected)])['is_correct'])
+                self.assertFalse(Runner.evaluate_code(code, 'python', [case(inp, json.dumps(expected))])['is_correct'])
+
+    def test_pandas_dates_timestamps_and_decimals_keep_their_values(self):
+        import pandas as pd
+        from backend.app.engines.db_fixture_normalizer import df_to_ascii_table
+        fixture = json.dumps({'headers': {'T': ['n']}, 'rows': {'T': [[1]]}})
+        constructors = ['date(2020,1,1)', 'pd.Timestamp("2020-01-01T00:00:00.123456789")', 'Decimal("1.5")']
+        for expression in constructors:
+            with self.subTest(expression=expression):
+                original = eval(expression, {'date': date, 'pd': pd, 'Decimal': Decimal})
+                expected = df_to_ascii_table(pd.DataFrame({'value': [original]}))
+                code = 'import pandas as pd\nfrom datetime import date\nfrom decimal import Decimal\ndef solve(t):\n return pd.DataFrame({"value":[' + expression + ']})'
+                result = Runner.evaluate_code(code, 'python', [case(fixture, expected)])
+                self.assertTrue(result['is_correct'], result)
+                self.assertNotIn('_table_output', result['test_case_results'][0])
+                wrong = Runner.evaluate_code(code, 'python', [case(fixture, df_to_ascii_table(pd.DataFrame({'value': ['wrong']})))])
+                self.assertFalse(wrong['is_correct'], wrong)
+
+    def test_typescript_module_and_script_semantics_are_preserved(self):
+        self.available('typescript')
+        examples = [
+            ('export function solve(n:number):number { return this===undefined?1:0; }', '1'),
+            ('export const solve=(n:number):number=>this===undefined?1:0;', '1'),
+            ('function solve(n:number):number { return this===undefined?1:0; }', '0'),
+            ('function solve(n:number):number { return n; } export=solve;', '7'),
+        ]
+        for code, expected in examples:
+            with self.subTest(code=code):
+                result = Runner.evaluate_code(code, 'typescript', [case('7', expected)])
+                self.assertTrue(result['is_correct'], result)
+                traced = DebugTracer.trace(code, 'typescript', '7', 40)
+                self.assertEqual(traced['status'], 'SUCCESS', traced)
+                self.assertEqual(traced['return_value'], int(expected))
+
+    def test_script_strict_directives_and_sloppy_functions_are_preserved(self):
+        for lang, signature in [('javascript', 'function solve(n)'), ('typescript', 'function solve(n:number):number')]:
+            self.available(lang)
+            for prefix in ['"use strict";\n', '/* license */\n"use strict"\n', '"other";\n"use strict";\n']:
+                with self.subTest(language=lang, prefix=prefix):
+                    code = prefix + signature + ' { return this===undefined?1:0; }'
+                    result = Runner.evaluate_code(code, lang, [case('1', '1')])
+                    self.assertTrue(result['is_correct'], result)
+        code = 'function solve(n) { "use strict"; return helper(); }\nfunction helper() { return this===undefined?1:0; }'
+        self.assertTrue(Runner.evaluate_code(code, 'javascript', [case('1', '0')])['is_correct'])
+        for expression in ['!= "x"', 'in {}', 'instanceof Object', '.length']:
+            code = '"use strict"\n' + expression + ';\nfunction solve(n) {return this===undefined?1:0;}'
+            self.assertTrue(Runner.evaluate_code(code, 'javascript', [case('1', '0')])['is_correct'], code)
+
+    def test_debug_api_serializes_java_nonfinite_locals(self):
+        self.available('java', debug=True)
+        from fastapi import FastAPI
+        from fastapi.testclient import TestClient
+        from backend.app.api.lc_practice import router
+        app = FastAPI()
+        app.include_router(router)
+        client = TestClient(app, raise_server_exceptions=False)
+        code = ('class Solution {\n public int solve(int n) {\n'
+                ' double positive=Double.POSITIVE_INFINITY;\n'
+                ' double negative=Double.NEGATIVE_INFINITY;\n'
+                ' double invalid=Double.NaN;\n'
+                ' float invalidFloat=Float.NaN;\n'
+                ' double[] values={positive,negative,invalid};\n'
+                ' return n;\n }}')
+        response = client.post('/api/practice/lc/questions/two-sum/debug',
+                               json={'code': code, 'language': 'java', 'custom_input': '7'})
+        self.assertEqual(response.status_code, 200, response.text)
+        result = response.json()
+        self.assertEqual(result['return_value'], 7)
+        snapshots = [step['variables'] for step in result['steps'] if 'values' in step['variables']]
+        self.assertTrue(snapshots, result)
+        self.assertEqual(snapshots[-1]['positive'], {'__type__': 'float', 'value': 'Infinity'})
+        self.assertEqual(snapshots[-1]['invalidFloat'], {'__type__': 'float', 'value': 'NaN'})
+        json.dumps(result, allow_nan=False)
+
+    def test_python_debug_nonfinite_values_are_json_safe(self):
+        code = 'def solve(n):\n value=float("inf")\n return n'
+        result = DebugTracer.trace(code, 'python', '7', 40)
+        self.assertEqual(result['status'], 'SUCCESS', result)
+        self.assertEqual(result['return_value'], 7)
+        json.dumps(result, allow_nan=False)
+
+    def test_python_debug_binds_standard_annotated_inputs(self):
+        examples = [
+            ('class Solution:\n def solve(self, nums: List[int]) -> int:\n  return nums[0]', '[7]', 7),
+            ('from __future__ import annotations\nclass Solution:\n def solve(self, nums: List[int]) -> int:\n  return nums[0]', '[7]', 7),
+            ('from __future__ import annotations\nclass Solution:\n def solve(self, nums: list) -> int:\n  return nums[0]', '[7]', 7),
+            ('class Solution:\n def solve(self, root: Optional[TreeNode]) -> int:\n  return root.val', '[7]', 7),
+            ('class Solution:\n def solve(self, head: Optional[ListNode]) -> int:\n  return head.next.val', '[7,8]', 8),
+            ('class Solution:\n def solve(self, a: Optional[ListNode], b: Optional[ListNode]) -> int:\n  return a.val+b.val', '[7]\n[8]', 15),
+        ]
+        for code, inp, expected in examples:
+            with self.subTest(code=code):
+                result = DebugTracer.trace(code, 'python', inp, 40)
+                self.assertEqual(result['status'], 'SUCCESS', result)
+                self.assertEqual(result['return_value'], expected)
+                self.assertTrue(all(s['line'] <= len(code.splitlines()) for s in result['steps']))
+
+    def test_stdout_before_exceptions_and_runtime_verdicts_are_preserved(self):
+        examples = {
+            'python': 'def solve(n):\n print("before")\n raise ValueError("boom")',
+            'javascript': 'function solve(n) { console.log("before"); throw new Error("boom"); }',
+            'java': 'class Solution {public int solve(int n) {System.out.print("before"); throw new RuntimeException("boom");}}',
+            'cpp': 'class Solution {public: int solve(int n) {cout << "before"; throw 1;}};',
+        }
+        for lang, code in examples.items():
+            with self.subTest(language=lang):
+                self.available(lang, debug=True)
+                result = Runner.evaluate_code(code, lang, [case('1', '1')])
+                self.assertEqual(result['status'], 'RUNTIME_ERROR', result)
+                self.assertIn('before', result['test_case_results'][0]['stdout'])
+                traced = DebugTracer.trace(code, lang, '1', 40)
+                self.assertEqual(traced['status'], 'RUNTIME_ERROR', traced)
+                self.assertIn('before', traced['stdout'])
+
+    def test_javascript_logging_does_not_execute_tojson_or_fail_on_cycles(self):
+        self.available('javascript')
+        code = 'function solve(n) { let changed=0; console.log({toJSON(){changed++;return "bad";}}); return changed; }'
+        self.assertTrue(Runner.evaluate_code(code, 'javascript', [case('1', '0')])['is_correct'])
+        code = 'function solve(n) { const value={}; value.self=value; console.log(value); return n; }'
+        result = Runner.evaluate_code(code, 'javascript', [case('7', '7')])
+        self.assertTrue(result['is_correct'], result)
+        self.assertIn('Circular', result['test_case_results'][0]['stdout'])
+
+    def test_python_design_operations_keep_output_and_numeric_results(self):
+        code = ('class Counter:\n def __init__(self,n):\n  print("init")\n  self.n=n\n'
+                ' def add(self,n):\n  print("add")\n  self.n+=n\n'
+                ' def value(self):\n  print("value")\n  return self.n')
+        inp = '["Counter","add","value"]\n[[1],[2],[]]'
+        result = Runner.evaluate_code(code, 'python', [case(inp, '[null,null,3]')])
+        self.assertTrue(result['is_correct'], result)
+        self.assertEqual(result['test_case_results'][0]['stdout'], 'init\nadd\nvalue\n')
+
+    def test_javascript_and_typescript_arrow_entrypoints(self):
+        for lang, examples in {
+            'javascript': ['const answer=(n)=>n+1;', 'const answer=n=>n+1;', 'class Solution {answer=(n)=>n+1;}'],
+            'typescript': ['export const answer=(n:number):number=>n+1;', 'class Solution {answer=(n:number):number=>n+1;}'],
+        }.items():
+            self.available(lang, debug=True)
+            for code in examples:
+                with self.subTest(language=lang, code=code):
+                    result = Runner.evaluate_code(code, lang, [case('7', '8')])
+                    self.assertTrue(result['is_correct'], result)
+                    traced = DebugTracer.trace(code, lang, '7', 40)
+                    self.assertEqual(traced['status'], 'SUCCESS', traced)
+                    self.assertEqual(traced['return_value'], 8)
+
+    def test_python_run_and_debug_select_the_same_declared_method(self):
+        code = ('class Solution:\n def solve(self,n):\n  return self.aaa(n)+1\n'
+                ' def aaa(self,n):\n  return n')
+        self.assertTrue(Runner.evaluate_code(code, 'python', [case('7', '8')])['is_correct'])
+        traced = DebugTracer.trace(code, 'python', '7', 40)
+        self.assertEqual(traced['status'], 'SUCCESS', traced)
+        self.assertEqual(traced['return_value'], 8)
 
     def test_strings_retain_json_types_whitespace_and_case(self):
         templates = {
